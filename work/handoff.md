@@ -50,6 +50,116 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-24T10:06Z Run Target Selected: AI-Visual Learning Signal Manifest
+
+STARTED_AT for this run: `2026-05-24T10:06:00Z`. The automation lock was
+acquired, `git fetch origin` and `git pull --ff-only origin main` completed,
+and startup validation passed before implementation: 913 unit tests and
+`PYTHONPATH=src python -m catalytic_earth.cli validate` at 695 curated labels
+and 8 production fingerprints. SSH safety was verified with SSH `origin`, the
+deploy-key `core.sshCommand`, `git ls-remote origin HEAD`, and
+`git push --dry-run origin main`.
+
+Chosen bounded value-add: build a review-only M-CSA AI-assisted visual learning
+signal manifest for the fixed 298-row source universe, separating accepted
+positive review signal, current-target hard negatives, unresolved review holds,
+future-family routes, and fields forbidden for prediction. This is the highest
+safe target from the observed state because the exact-66 triage matrix and
+exact-40 human packets already reduce immediate review burden, while the 210
+safe rejects and 66 holds are still not packaged as a leakage-aware
+representation-learning interface. Confidence call: high that this can be
+derived deterministically from the existing 298-row decision artifact plus the
+66-row triage matrix without label imports, import previews, registry edits,
+fingerprint edits, scoring changes, or source artifact mutation.
+
+Second bounded value-add selected after the manifest completed early:
+derive a 210-row rejected-signal taxonomy from the same fixed source universe,
+preserving current-target rejection reasons, future-family routes, and likely
+reuse lanes for future ontology work. Rationale: the learning manifest protects
+against prediction leakage, but Vivek and later agents still need a compact
+way to mine the 210 safe rejects without reopening them as global negatives.
+Confidence call: high that this is safe because it is a deterministic summary
+of existing rejected rows only and does not assign any new accept/reject
+decision.
+
+Third bounded value-add selected after the rejected taxonomy completed early:
+derive a non-clean exact-40 review strategy for the 30 rows outside the
+clean-10 fast path, grouping them by the safest next reviewer workflow
+(`structure/PyMOL`, `expert biochemistry`, `future-family/schema`, or
+`reject-confirmation review`) without making any row-level decision. Rationale:
+the clean-10 packet is already easy to start; the remaining exact-40 rows are
+where Vivek will save the most time if the next action is pre-sorted.
+Confidence call: high that the strategy can be derived from the existing
+exact-40 packet and 66-row triage matrix while keeping all decisions blank.
+
+Fourth bounded value-add selected after the non-clean strategy completed early:
+build clean-10 fast-review usability cards that join the clean-first packet,
+blank exact-40 template positions, and local PyMOL scripts into one
+review-only checklist. Rationale: this directly reduces Vivek's first-pass
+review friction without making decisions or changing any scientific state.
+Confidence call: high because it is a pure join over existing clean-10 review
+artifacts and local script paths already verified by regression tests.
+
+Completed safe outputs:
+
+```text
+artifacts/v3_mcsa_ai_visual_learning_signal_manifest_20260524.json
+artifacts/v3_mcsa_ai_visual_rejected_signal_taxonomy_20260524.json
+artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json
+artifacts/v3_mcsa_ai_visual_clean10_fast_review_cards_20260524.json
+tests/test_automation_small_win_artifacts.py
+```
+
+Count verification: the learning manifest covers the fixed 298-row AI-visual
+source universe exactly, with 22 `positive_review_signal_review_only` rows,
+210 `current_target_hard_negative` rows, and 66 `unresolved_review_hold` rows.
+It carries explicit prediction-leakage controls and marks every row
+`countable_training_label=false`. The rejected taxonomy covers exactly the 210
+safe rejects in source order, keeps all rows scoped as current-target-only hard
+negatives, preserves future-family routes, and summarizes route buckets:
+56 unrepresented future-family routes, 36 phosphoryl-transfer/kinase routes,
+34 oxidoreductase/redox routes, 31 transferase/thioester routes, 19
+lyase/dehydratase or Schiff-base routes, 14 glycoside hydrolase routes, 12
+isomerase/mutase routes, 3 Cys-His-Asp protease routes, 3 heme/peroxide routes,
+and 2 PLP routes. The non-clean exact-40 strategy covers the 30 rows outside
+the clean-10 fast path: 10 expert-biochemistry boundary rows, 5 future-family
+or schema route rows, 5 reject-confirmation review rows, 5 structure/holo
+alternate rows, and 5 structure/PyMOL geometry rows. The clean-10 card packet
+has 10 cards, 0 missing structure paths, 0 missing PyMOL scripts, and 10 blank
+template decisions.
+
+Verification run:
+
+```text
+PYTHONPATH=src python -m unittest discover -s tests
+PYTHONPATH=src python -m catalytic_earth.cli validate
+PYTHONPATH=src python -m unittest tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_learning_signal_manifest_is_leakage_aware tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_rejected_signal_taxonomy_stays_current_target_only tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_nonclean_exact40_strategy_presorts_without_decisions tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_clean10_fast_review_cards_join_local_scripts
+python -m compileall -q src tests
+python -m json.tool artifacts/v3_mcsa_ai_visual_learning_signal_manifest_20260524.json
+python -m json.tool artifacts/v3_mcsa_ai_visual_rejected_signal_taxonomy_20260524.json
+python -m json.tool artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json
+python -m json.tool artifacts/v3_mcsa_ai_visual_clean10_fast_review_cards_20260524.json
+git diff --check
+```
+
+Results: 917 unit tests passed; targeted M-CSA support-artifact tests passed;
+validate reported 12 source records, 8 mechanism fingerprints, 15 ontology
+families, and 695 curated mechanism labels. Disk had 24 GiB free at wrap.
+`git diff -- data/registries data/fingerprints src/catalytic_earth` was empty.
+No label import, import preview, curated label edit, registry/fingerprint edit,
+production scoring/threshold change, source artifact mutation, migration,
+upload/removal, LFS/history rewrite, or `removal_allowed=true` action occurred.
+The only pre-existing dirty entries still outside this run are the root-level
+untracked CIF files (`6MO.cif`, `IOD.cif`, `NA.cif`, `O.cif`, `UNL.cif`),
+left untouched.
+
+Next recommended target: if Vivek remains away, use these artifacts only to
+prepare review ergonomics, not decisions. The next bounded safe add would be a
+small README/doc note linking the learning manifest, rejected taxonomy,
+non-clean strategy, and clean-10 cards as the current review-support surface,
+or a compact cross-artifact consistency test if any later agent adds another
+M-CSA support packet.
+
 ### 2026-05-24T08:52Z Exact 40 Packet Reverified From origin/main
 
 STARTED_AT for this run: `2026-05-24T08:48:55Z`. The automation lock was

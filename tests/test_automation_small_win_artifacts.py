@@ -1,4 +1,5 @@
 import json
+from collections import Counter
 from pathlib import Path
 import unittest
 
@@ -6611,6 +6612,465 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual([row["entry_id"] for row in pymol_index["rows"]], clean10)
         for row in pymol_index["rows"]:
             self.assertTrue((ROOT / row["pml_script_path"]).exists())
+
+    def test_mcsa_ai_visual_learning_signal_manifest_is_leakage_aware(self) -> None:
+        source = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json"
+        )
+        matrix = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+        )
+        manifest = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_learning_signal_manifest_20260524.json"
+        )
+
+        expected_counts = {"accepted": 22, "needs_more_evidence": 66, "rejected": 210}
+        source_ids = [row["entry_id"] for row in source["review_items"]]
+        matrix_ids = [row["entry_id"] for row in matrix["rows"]]
+        exact40 = matrix["recommended_human_review_plan"][
+            "unique_recommended_review_ids"
+        ]
+        clean10 = matrix["recommended_human_review_plan"][
+            "review_all_clean_likely_positive_ids"
+        ]
+
+        metadata = manifest["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["review_only_source_artifacts_mutated"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+        self.assertEqual(metadata["source_row_count"], 298)
+        self.assertEqual(metadata["emitted_row_count"], 298)
+        self.assertEqual(metadata["source_universe_decision_counts"], expected_counts)
+
+        rows = manifest["rows"]
+        self.assertEqual(len(rows), 298)
+        self.assertEqual([row["entry_id"] for row in rows], source_ids)
+        self.assertEqual(
+            Counter(row["decision_signal"] for row in rows),
+            Counter(expected_counts),
+        )
+        self.assertEqual(
+            manifest["summary_counts"]["learning_signal_partition"],
+            {
+                "current_target_hard_negative": 210,
+                "positive_review_signal_review_only": 22,
+                "unresolved_review_hold": 66,
+            },
+        )
+        self.assertEqual(
+            manifest["summary_counts"]["current_target_training_use"],
+            {
+                "exclude_pending_human_review": 66,
+                "hard_negative_for_current_target_only": 210,
+                "positive_review_signal_not_countable_label": 22,
+            },
+        )
+        self.assertEqual(
+            manifest["summary_counts"]["future_family_route_class_by_decision"],
+            {
+                "accepted": {
+                    "named_future_family_route": 4,
+                    "unrepresented_future_family_route": 18,
+                },
+                "needs_more_evidence": {
+                    "named_future_family_route": 27,
+                    "unrepresented_future_family_route": 39,
+                },
+                "rejected": {
+                    "named_future_family_route": 154,
+                    "unrepresented_future_family_route": 56,
+                },
+            },
+        )
+        self.assertEqual(
+            manifest["summary_counts"]["review_hold_triage_bucket"],
+            matrix["summary_counts"]["by_bucket"],
+        )
+        self.assertEqual(
+            manifest["summary_counts"]["review_hold_triage_confidence"],
+            matrix["summary_counts"]["by_confidence_tier"],
+        )
+        self.assertEqual(
+            manifest["summary_counts"]["exact40_human_review_packet_overlap_count"],
+            40,
+        )
+        self.assertEqual(
+            manifest["summary_counts"]["clean10_review_first_overlap_count"],
+            10,
+        )
+
+        hold_ids = [
+            row["entry_id"]
+            for row in rows
+            if row["decision_signal"] == "needs_more_evidence"
+        ]
+        self.assertEqual(hold_ids, matrix_ids)
+        exact40_manifest_ids = [
+            row["entry_id"]
+            for row in rows
+            if row["unresolved_review_hold_context"]
+            and row["unresolved_review_hold_context"][
+                "exact40_human_review_packet_member"
+            ]
+        ]
+        clean10_manifest_ids = [
+            row["entry_id"]
+            for row in rows
+            if row["unresolved_review_hold_context"]
+            and row["unresolved_review_hold_context"][
+                "clean10_review_first_member"
+            ]
+        ]
+        self.assertEqual(set(exact40_manifest_ids), set(exact40))
+        self.assertEqual(len(exact40_manifest_ids), 40)
+        self.assertEqual(set(clean10_manifest_ids), set(clean10))
+        self.assertEqual(len(clean10_manifest_ids), 10)
+
+        forbidden = set(
+            manifest["prediction_leakage_contract"]["forbidden_for_prediction_fields"]
+        )
+        for field in [
+            "decision_signal",
+            "learning_signal_partition",
+            "future_family_route",
+            "review_signal_reason_codes",
+            "expert_note",
+            "reviewer",
+            "reviewed_at",
+            "review_context",
+            "routing_evidence",
+        ]:
+            self.assertIn(field, forbidden)
+
+        for row in rows:
+            self.assertTrue(row["review_only_signal"])
+            self.assertFalse(row["countable_training_label"])
+            self.assertTrue(row["leakage_control"]["not_import_ready"])
+            self.assertEqual(
+                row["leakage_control"]["prediction_feature_status"],
+                "do_not_train_directly_without_dropping_forbidden_fields",
+            )
+            self.assertNotIn("expert_note", row)
+            self.assertNotIn("reviewer", row)
+            self.assertNotIn("reviewed_at", row)
+            self.assertNotIn("review_context", row)
+            self.assertNotIn("routing_evidence", row)
+            if row["decision_signal"] == "rejected":
+                self.assertEqual(
+                    row["current_target_training_use"],
+                    "hard_negative_for_current_target_only",
+                )
+                self.assertTrue(row["current_target_rejected_not_global_negative"])
+            elif row["decision_signal"] == "accepted":
+                self.assertEqual(
+                    row["current_target_training_use"],
+                    "positive_review_signal_not_countable_label",
+                )
+            else:
+                self.assertEqual(
+                    row["current_target_training_use"],
+                    "exclude_pending_human_review",
+                )
+                self.assertIsNotNone(row["unresolved_review_hold_context"])
+
+    def test_mcsa_ai_visual_rejected_signal_taxonomy_stays_current_target_only(
+        self,
+    ) -> None:
+        source = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json"
+        )
+        taxonomy = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_rejected_signal_taxonomy_20260524.json"
+        )
+
+        rejected_ids = [
+            row["entry_id"]
+            for row in source["review_items"]
+            if row["decision"] == "rejected"
+        ]
+        accepted_or_hold_ids = {
+            row["entry_id"]
+            for row in source["review_items"]
+            if row["decision"] != "rejected"
+        }
+
+        metadata = taxonomy["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["review_only_source_artifacts_mutated"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+        self.assertEqual(metadata["source_universe_row_count"], 298)
+        self.assertEqual(metadata["rejected_row_count"], 210)
+        self.assertEqual(
+            metadata["source_universe_decision_counts"],
+            {"accepted": 22, "needs_more_evidence": 66, "rejected": 210},
+        )
+
+        rows = taxonomy["rows"]
+        self.assertEqual(len(rows), 210)
+        self.assertEqual([row["entry_id"] for row in rows], rejected_ids)
+        self.assertFalse(accepted_or_hold_ids.intersection(row["entry_id"] for row in rows))
+        self.assertEqual(
+            Counter(row["current_decision"] for row in rows),
+            Counter({"rejected": 210}),
+        )
+        self.assertEqual(
+            Counter(row["learning_manifest_partition"] for row in rows),
+            Counter({"current_target_hard_negative": 210}),
+        )
+        self.assertEqual(
+            taxonomy["summary_counts"]["target_fingerprint"],
+            {
+                "cobalamin_radical_rearrangement": 1,
+                "flavin_dehydrogenase_reductase": 17,
+                "flavin_monooxygenase": 9,
+                "heme_peroxidase_oxidase": 28,
+                "metal_dependent_hydrolase": 138,
+                "plp_dependent_enzyme": 5,
+                "ser_his_acid_hydrolase": 12,
+            },
+        )
+        self.assertEqual(
+            taxonomy["summary_counts"]["future_family_route_bucket"],
+            {
+                "cys_his_asp_protease_route": 3,
+                "glycoside_hydrolase_route": 14,
+                "heme_peroxide_chemistry_route": 3,
+                "isomerase_mutase_route": 12,
+                "lyase_dehydratase_or_schiff_base_route": 19,
+                "oxidoreductase_redox_route": 34,
+                "phosphoryl_transfer_kinase_route": 36,
+                "plp_dependent_route": 2,
+                "transferase_thioester_route": 31,
+                "unrepresented_future_family_route": 56,
+            },
+        )
+        self.assertEqual(
+            sum(taxonomy["summary_counts"]["future_family_route_bucket"].values()),
+            210,
+        )
+        self.assertEqual(
+            sum(taxonomy["summary_counts"]["current_target_rejection_axis"].values()),
+            210,
+        )
+
+        contract = taxonomy["taxonomy_contract"]
+        self.assertIn("never global negatives", contract["negative_scope_rule"])
+        self.assertIn("not acceptance decisions", contract["future_family_route_rule"])
+        self.assertIn("forbidden as model features", contract["prediction_leakage_rule"])
+        for row in rows:
+            self.assertEqual(row["negative_scope"], "hard_negative_for_current_target_only")
+            self.assertTrue(row["not_global_negative"])
+            self.assertTrue(
+                row["recommended_future_reuse"][
+                    "use_as_current_target_hard_negative"
+                ]
+            )
+            self.assertFalse(row["recommended_future_reuse"]["use_as_global_negative"])
+            self.assertFalse(
+                row["recommended_future_reuse"][
+                    "use_for_future_family_positive_seed"
+                ]
+            )
+            self.assertEqual(
+                row["recommended_future_reuse"]["prediction_feature_status"],
+                "review_derived_taxonomy_forbidden_as_model_feature",
+            )
+            self.assertNotIn("expert_note", row)
+            self.assertNotIn("reviewer", row)
+            self.assertNotIn("reviewed_at", row)
+
+    def test_mcsa_ai_visual_nonclean_exact40_strategy_presorts_without_decisions(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json"
+        )
+        matrix = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+        )
+        strategy = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json"
+        )
+
+        clean10 = set(
+            matrix["recommended_human_review_plan"][
+                "review_all_clean_likely_positive_ids"
+            ]
+        )
+        nonclean_packet_rows = [
+            row for row in packet["rows"] if row["entry_id"] not in clean10
+        ]
+
+        metadata = strategy["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["review_only_source_artifacts_mutated"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+        self.assertEqual(metadata["exact40_source_row_count"], 40)
+        self.assertEqual(metadata["clean10_excluded_fast_path_count"], 10)
+        self.assertEqual(metadata["nonclean_strategy_row_count"], 30)
+
+        rows = strategy["rows"]
+        self.assertEqual(len(rows), 30)
+        self.assertEqual(
+            [row["entry_id"] for row in rows],
+            [row["entry_id"] for row in nonclean_packet_rows],
+        )
+        self.assertFalse(clean10.intersection(row["entry_id"] for row in rows))
+        self.assertEqual(
+            strategy["summary_counts"]["by_recommended_workflow"],
+            {
+                "expert_biochemistry_boundary_review": 10,
+                "future_family_or_schema_route_review": 5,
+                "reject_confirmation_review": 5,
+                "structure_or_holo_alternate_resolution": 5,
+                "structure_or_pymol_geometry_resolution": 5,
+            },
+        )
+        self.assertEqual(
+            strategy["summary_counts"]["by_blocker_bucket"],
+            {
+                "amp_or_nucleotide_nontransfer_context": 5,
+                "apo_or_holo_missing_cofactor": 5,
+                "loose_open_or_interdomain_geometry": 4,
+                "needs_expert_biochemistry_review": 5,
+                "needs_manual_visual_review": 1,
+                "true_reject": 5,
+                "wrong_fingerprint_or_future_ontology_family": 5,
+            },
+        )
+        self.assertEqual(
+            strategy["summary_counts"]["by_review_group"],
+            {"low_confidence_review": 6, "representative_blocker_review": 24},
+        )
+
+        contract = strategy["strategy_contract"]
+        self.assertIn("pre-sorts review workflows only", contract["decision_rule"])
+        self.assertIn("Do not import labels", contract["no_import_rule"])
+        self.assertEqual(
+            contract["allowed_reviewer_decisions"],
+            ["accepted", "rejected", "needs_more_evidence", "route_future_family"],
+        )
+
+        for row in rows:
+            self.assertEqual(row["current_decision"], "needs_more_evidence")
+            self.assertEqual(row["decision_status"], "blank_no_decision_made")
+            self.assertNotEqual(row["blocker_bucket"], "clean_likely_positive")
+            self.assertIn("needs_more_evidence", row["allowed_reviewer_actions"])
+            self.assertTrue(row["reviewer_question"])
+            self.assertTrue(row["primary_next_action"])
+            self.assertTrue(row["required_human_or_expert_action"])
+
+    def test_mcsa_ai_visual_clean10_fast_review_cards_join_local_scripts(
+        self,
+    ) -> None:
+        clean = _load_json(
+            ARTIFACTS / "v3_mcsa_ai_visual_clean10_review_first_packet_20260524.json"
+        )
+        template = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_exact40_human_decision_template_20260524.json"
+        )
+        pymol_index = _load_json(
+            ARTIFACTS
+            / "review_pymol"
+            / "mcsa_ai_visual_exact40_20260524"
+            / "index.json"
+        )
+        cards = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_clean10_fast_review_cards_20260524.json"
+        )
+
+        clean_ids = [row["entry_id"] for row in clean["rows"]]
+        template_by_id = {row["entry_id"]: row for row in template["rows"]}
+        pymol_by_id = {row["entry_id"]: row for row in pymol_index["rows"]}
+
+        metadata = cards["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["review_only_source_artifacts_mutated"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+        self.assertEqual(metadata["card_count"], 10)
+        self.assertEqual(metadata["missing_structure_path_count"], 0)
+        self.assertEqual(metadata["missing_pymol_script_count"], 0)
+        self.assertEqual(metadata["blank_decision_count"], 10)
+
+        self.assertEqual(
+            cards["card_contract"]["allowed_decisions"],
+            ["accepted", "rejected", "needs_more_evidence", "route_future_family"],
+        )
+        self.assertIn("do not pre-fill", cards["card_contract"]["decision_rule"])
+        self.assertIn("No label import", cards["card_contract"]["no_import_rule"])
+
+        card_rows = cards["cards"]
+        self.assertEqual([row["entry_id"] for row in card_rows], clean_ids)
+        for row in card_rows:
+            self.assertTrue(row["structure_path_exists"])
+            self.assertTrue(row["pymol_script_exists"])
+            self.assertTrue((ROOT / row["pymol_script_path"]).exists())
+            self.assertEqual(
+                row["decision_template_row"],
+                template_by_id[row["entry_id"]]["review_order"],
+            )
+            self.assertIsNone(row["decision_template_current_decision"])
+            self.assertEqual(row["decision_status"], "blank_no_decision_made")
+            self.assertEqual(
+                row["pymol_script_path"],
+                pymol_by_id[row["entry_id"]]["pml_script_path"],
+            )
+            self.assertTrue(row["fast_path_checklist"])
+            self.assertTrue(row["stop_conditions"])
+            self.assertTrue(row["reviewer_question"])
+            self.assertTrue(row["evidence_for_summary"])
+            self.assertTrue(row["evidence_against_summary"])
+            self.assertTrue(row["visual_focus"])
 
     def test_structure_id_mapping_probe_finds_one_repair_candidate_only(self) -> None:
         probe = _load_json(

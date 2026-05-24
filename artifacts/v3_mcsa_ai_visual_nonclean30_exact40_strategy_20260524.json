@@ -1,0 +1,1386 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524",
+    "artifact_upload_or_removal_performed": false,
+    "canonical_label_count_invariant": 695,
+    "canonical_registry_import_performed": false,
+    "clean10_excluded_fast_path_count": 10,
+    "created_at": "2026-05-24T10:17:00Z",
+    "curated_label_registry_edited": false,
+    "dedicated_import_preview_run": false,
+    "exact40_source_row_count": 40,
+    "fingerprint_registry_edited": false,
+    "label_import_performed": false,
+    "method": "derive_nonclean_exact40_review_strategy_from_existing_review_packet",
+    "nonclean_strategy_row_count": 30,
+    "production_fingerprint_universe_count_invariant": 8,
+    "production_scoring_changed": false,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "review_only_source_artifacts_mutated": false,
+    "schema_version": "mcsa_ai_visual_nonclean_exact40_strategy.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json",
+      "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+    ],
+    "source_sha256": {
+      "artifacts/v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json": "55e053c9fcf6d3a918a4ed652f67b01aa95cc02ff25b1d975e6e9906396cd2f4",
+      "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json": "66b53ff95fbcc1b548649f659fad807534d17dc8c128f2e2db918fb21104ff60"
+    }
+  },
+  "rows": [
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "expert_biochemistry_needed"
+      ],
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "confidence": "low",
+      "counterevidence": [
+        "ligand_supported_metal_hydrophobic_low_pocket_support"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:591",
+      "entry_name": "stromelysin 1",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "nearest_expected_ligand_distance_angstrom=5.896"
+      ],
+      "evidence_for": [
+        "Needs more evidence as metal_dependent_hydrolase. M-CSA has partial metal/hydrolytic support, but class/name evidence is not specific enough for an AI-only acceptance; likely route or review target is future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.4.24.17; residue_count=4",
+        "target_score=0.4117 with top1=metal_dependent_hydrolase:0.4117",
+        "cofactor_coverage=all_expected_local; local=['metal_ion']; structure=['metal_ion']",
+        "remediation_bucket=expert_family_boundary_review; priority_score=3.0"
+      ],
+      "expected_special_reviewer_action": "expert_biochemistry_needed",
+      "primary_next_action": "Use expert biochemical mechanism review; do not resolve by visual geometry alone.",
+      "recommended_workflow": "expert_biochemistry_boundary_review",
+      "required_human_or_expert_action": "Expert biochemical boundary review; AI/source evidence is insufficient for countable import.",
+      "review_group": "low_confidence_review",
+      "review_order": 11,
+      "reviewer_question": "Can expert review affirm metal_dependent_hydrolase, or should this row be rejected or routed?",
+      "sample_review_priority": "high",
+      "structure_id": "1HFS",
+      "structure_path": "artifacts/v3_mcsa_pymol_second_materialized_coordinates_20260522/pdb_1HFS.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Expert biochemical review supplies a current-target accept decision or a specific future-family route with gates."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "expert_biochemistry_needed"
+      ],
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "confidence": "low",
+      "counterevidence": [
+        "nonhydrolytic_hydratase_dehydratase_text_context"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:951",
+      "entry_name": "N-sulfoglucosamine sulfohydrolase",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "nearest_expected_ligand_distance_angstrom=4.206",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.10.1.1; residue_count=9",
+        "target_score=0.3685 with top1=metal_dependent_hydrolase:0.3685",
+        "cofactor_coverage=all_expected_local; local=['metal_ion']; structure=['metal_ion']",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_special_reviewer_action": "expert_biochemistry_needed",
+      "primary_next_action": "Use expert biochemical mechanism review; do not resolve by visual geometry alone.",
+      "recommended_workflow": "expert_biochemistry_boundary_review",
+      "required_human_or_expert_action": "Expert biochemical boundary review; AI/source evidence is insufficient for countable import.",
+      "review_group": "low_confidence_review",
+      "review_order": 12,
+      "reviewer_question": "Can expert review affirm metal_dependent_hydrolase, or should this row be rejected or routed?",
+      "sample_review_priority": "high",
+      "structure_id": "4MHX",
+      "structure_path": "artifacts/v3_mcsa_pymol_third_materialized_coordinates_20260522/pdb_4MHX.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Expert biochemical review supplies a current-target accept decision or a specific future-family route with gates."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "expert_biochemistry_needed"
+      ],
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "confidence": "low",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:986",
+      "entry_name": "Thiosulfate dehydrogenase",
+      "evidence_against": [
+        "gap_reasons=review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=oxidoreductase/redox family",
+        "nearest_expected_ligand_distance_angstrom=4.673",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Needs more evidence as heme_peroxidase_oxidase. M-CSA supports heme/cytochrome redox involvement, but not a clean heme_peroxidase_oxidase AI-only acceptance; route/review as oxidoreductase/redox family.",
+        "Target=heme_peroxidase_oxidase; EC=1.8.2.2; residue_count=4",
+        "target_score=0.3935 with top1=heme_peroxidase_oxidase:0.3935",
+        "cofactor_coverage=all_expected_local; local=['heme']; structure=['heme']",
+        "remediation_bucket=retrieval_threshold_evidence_review; priority_score=2.75"
+      ],
+      "expected_special_reviewer_action": "expert_biochemistry_needed",
+      "primary_next_action": "Use expert biochemical mechanism review; do not resolve by visual geometry alone.",
+      "recommended_workflow": "expert_biochemistry_boundary_review",
+      "required_human_or_expert_action": "Expert biochemical boundary review; AI/source evidence is insufficient for countable import.",
+      "review_group": "low_confidence_review",
+      "review_order": 13,
+      "reviewer_question": "Can expert review affirm heme_peroxidase_oxidase, or should this row be rejected or routed?",
+      "sample_review_priority": "high",
+      "structure_id": "4V2K",
+      "structure_path": "artifacts/v3_mcsa_pymol_eighth_materialized_coordinates_20260522/pdb_4V2K.cif",
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "would_unblock_if": "Expert biochemical review supplies a current-target accept decision or a specific future-family route with gates."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "expert_biochemistry_needed"
+      ],
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "confidence": "low",
+      "counterevidence": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:927",
+      "entry_name": "type II site-specific deoxyribonuclease FokI",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,expected_cofactor_absent_from_structure,review_marked_needs_more_evidence",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family"
+      ],
+      "evidence_for": [
+        "Needs more evidence as metal_dependent_hydrolase. M-CSA has partial metal/hydrolytic support, but class/name evidence is not specific enough for an AI-only acceptance; likely route or review target is future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.1.21.4; residue_count=3",
+        "target_score=0.4283 with top1=metal_dependent_hydrolase:0.4283",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=6.0"
+      ],
+      "expected_special_reviewer_action": "expert_biochemistry_needed",
+      "primary_next_action": "Use expert biochemical mechanism review; do not resolve by visual geometry alone.",
+      "recommended_workflow": "expert_biochemistry_boundary_review",
+      "required_human_or_expert_action": "Expert biochemical boundary review; AI/source evidence is insufficient for countable import.",
+      "review_group": "low_confidence_review",
+      "review_order": 14,
+      "reviewer_question": "Can expert review affirm metal_dependent_hydrolase, or should this row be rejected or routed?",
+      "sample_review_priority": "high",
+      "structure_id": "2FOK",
+      "structure_path": "artifacts/v3_mcsa_pymol_eighth_materialized_coordinates_20260522/pdb_2FOK.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Expert biochemical review supplies a current-target accept decision or a specific future-family route with gates."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "blocker_bucket": "needs_manual_visual_review",
+      "confidence": "low",
+      "counterevidence": [
+        "metal_supported_site_for_ser_his_seed",
+        "target_not_top1"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:650",
+      "entry_name": "phospholipase A1",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,target_not_top1",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_not_top1: top1=metal_dependent_hydrolase"
+      ],
+      "evidence_for": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as future unrepresented mechanism family.",
+        "Target=ser_his_acid_hydrolase; EC=3.1.1.32; residue_count=7",
+        "target_score=0.4596 with top1=metal_dependent_hydrolase:0.6085",
+        "cofactor_coverage=not_required; local=['metal_ion']; structure=['metal_ion']",
+        "remediation_bucket=expert_family_boundary_review; priority_score=5.0"
+      ],
+      "expected_special_reviewer_action": "inspect_pymol",
+      "primary_next_action": "Inspect geometry/locality in PyMOL or source coordinates before any later decision.",
+      "recommended_workflow": "structure_or_pymol_geometry_resolution",
+      "required_human_or_expert_action": "Manual visual review and target/top1 reconciliation before deciding accept, reject, or future-family route.",
+      "review_group": "low_confidence_review",
+      "review_order": 15,
+      "reviewer_question": "Does manual visual inspection resolve the target conflict for ser_his_acid_hydrolase?",
+      "sample_review_priority": "high",
+      "structure_id": "1QD6",
+      "structure_path": "artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522/pdb_1QD6.cif",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "would_unblock_if": "Manual visual review resolves the target/top1 conflict and assigns a single import-safe route."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "expert_biochemistry_needed"
+      ],
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "confidence": "low",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:886",
+      "entry_name": "threonine ammonia-lyase (biosynthetic)",
+      "evidence_against": [
+        "gap_reasons=review_marked_needs_more_evidence",
+        "recommended_future_family_or_lane=PLP-dependent enzyme family",
+        "nearest_expected_ligand_distance_angstrom=4.248"
+      ],
+      "evidence_for": [
+        "Needs more evidence as plp_dependent_enzyme. M-CSA supports PLP-family routing, but the mechanism/source wording is not strong enough for AI-only acceptance; route/review as PLP-dependent enzyme family.",
+        "Target=plp_dependent_enzyme; EC=4.3.1.19; residue_count=2",
+        "target_score=0.6074 with top1=plp_dependent_enzyme:0.6074",
+        "cofactor_coverage=all_expected_local; local=['plp']; structure=['plp']",
+        "remediation_bucket=expert_label_decision; priority_score=1.0"
+      ],
+      "expected_special_reviewer_action": "expert_biochemistry_needed",
+      "primary_next_action": "Use expert biochemical mechanism review; do not resolve by visual geometry alone.",
+      "recommended_workflow": "expert_biochemistry_boundary_review",
+      "required_human_or_expert_action": "Expert biochemical boundary review; AI/source evidence is insufficient for countable import.",
+      "review_group": "low_confidence_review",
+      "review_order": 16,
+      "reviewer_question": "Can expert review affirm plp_dependent_enzyme, or should this row be rejected or routed?",
+      "sample_review_priority": "high",
+      "structure_id": "1TDJ",
+      "structure_path": "artifacts/v3_mcsa_pymol_twelfth_materialized_coordinates_20260522/pdb_1TDJ.cif",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "would_unblock_if": "Expert biochemical review supplies a current-target accept decision or a specific future-family route with gates."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "find_holo_alternate"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:952",
+      "entry_name": "phosphohistidine phosphatase",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.9.1.3; residue_count=6",
+        "target_score=0.3626 with top1=metal_dependent_hydrolase:0.3626",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "find_holo_alternate",
+      "primary_next_action": "Check holo alternate or local cofactor evidence before any later decision.",
+      "recommended_workflow": "structure_or_holo_alternate_resolution",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_group": "representative_blocker_review",
+      "review_order": 17,
+      "reviewer_question": "Can local holo or alternate-structure evidence show the expected cofactor for metal_dependent_hydrolase?",
+      "sample_review_priority": "medium",
+      "structure_id": "2HW4",
+      "structure_path": "artifacts/v3_mcsa_pymol_third_materialized_coordinates_20260522/pdb_2HW4.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "find_holo_alternate"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:794",
+      "entry_name": "2',3'-cyclic-nucleotide 3'-phosphodiesterase",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.1.4.37; residue_count=6",
+        "target_score=0.3567 with top1=metal_dependent_hydrolase:0.3567",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "find_holo_alternate",
+      "primary_next_action": "Check holo alternate or local cofactor evidence before any later decision.",
+      "recommended_workflow": "structure_or_holo_alternate_resolution",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_group": "representative_blocker_review",
+      "review_order": 18,
+      "reviewer_question": "Can local holo or alternate-structure evidence show the expected cofactor for metal_dependent_hydrolase?",
+      "sample_review_priority": "medium",
+      "structure_id": "1JH6",
+      "structure_path": "artifacts/v3_mcsa_pymol_third_materialized_coordinates_20260522/pdb_1JH6.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "find_holo_alternate"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:671",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.5.1.77; residue_count=6",
+        "target_score=0.3621 with top1=metal_dependent_hydrolase:0.3621",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "find_holo_alternate",
+      "primary_next_action": "Check holo alternate or local cofactor evidence before any later decision.",
+      "recommended_workflow": "structure_or_holo_alternate_resolution",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_group": "representative_blocker_review",
+      "review_order": 19,
+      "reviewer_question": "Can local holo or alternate-structure evidence show the expected cofactor for metal_dependent_hydrolase?",
+      "sample_review_priority": "medium",
+      "structure_id": "1FO6",
+      "structure_path": "artifacts/v3_mcsa_pymol_third_materialized_coordinates_20260522/pdb_1FO6.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "find_holo_alternate"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:644",
+      "entry_name": "limonene-1,2-epoxide hydrolase",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.3.2.8; residue_count=5",
+        "target_score=0.3572 with top1=metal_dependent_hydrolase:0.3572",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "find_holo_alternate",
+      "primary_next_action": "Check holo alternate or local cofactor evidence before any later decision.",
+      "recommended_workflow": "structure_or_holo_alternate_resolution",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_group": "representative_blocker_review",
+      "review_order": 20,
+      "reviewer_question": "Can local holo or alternate-structure evidence show the expected cofactor for metal_dependent_hydrolase?",
+      "sample_review_priority": "medium",
+      "structure_id": "1NWW",
+      "structure_path": "artifacts/v3_mcsa_pymol_third_materialized_coordinates_20260522/pdb_1NWW.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "find_holo_alternate"
+      ],
+      "blocker_bucket": "apo_or_holo_missing_cofactor",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:832",
+      "entry_name": "rRNA endonuclease",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.1.27.10; residue_count=3",
+        "target_score=0.355 with top1=metal_dependent_hydrolase:0.355",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "find_holo_alternate",
+      "primary_next_action": "Check holo alternate or local cofactor evidence before any later decision.",
+      "recommended_workflow": "structure_or_holo_alternate_resolution",
+      "required_human_or_expert_action": "Find local holo/cofactor evidence in the selected or alternate structure, or keep the row non-countable.",
+      "review_group": "representative_blocker_review",
+      "review_order": 21,
+      "reviewer_question": "Can local holo or alternate-structure evidence show the expected cofactor for metal_dependent_hydrolase?",
+      "sample_review_priority": "medium",
+      "structure_id": "1DE3",
+      "structure_path": "artifacts/v3_mcsa_pymol_fourth_materialized_coordinates_20260522/pdb_1DE3.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Local active-site evidence for expected cofactor family metal_ion is found in a selected or alternate structure."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "blocker_bucket": "loose_open_or_interdomain_geometry",
+      "confidence": "medium",
+      "counterevidence": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:976",
+      "entry_name": "\u03b1\u2011glucosidase maltase-glucoamylase",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "wide visual focus CA-pair distance=20.114 A"
+      ],
+      "evidence_for": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as future unrepresented mechanism family.",
+        "Target=ser_his_acid_hydrolase; EC=3.2.1.20; residue_count=10",
+        "target_score=0.3631 with top1=ser_his_acid_hydrolase:0.3631",
+        "cofactor_coverage=not_required; local=[]; structure=[]",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_special_reviewer_action": "inspect_pymol",
+      "primary_next_action": "Inspect geometry/locality in PyMOL or source coordinates before any later decision.",
+      "recommended_workflow": "structure_or_pymol_geometry_resolution",
+      "required_human_or_expert_action": "Manual PyMOL review of the full active-site context to decide whether the focus pair is a real catalytic unit or an open/interdomain artifact.",
+      "review_group": "representative_blocker_review",
+      "review_order": 22,
+      "reviewer_question": "Do the highlighted residues form one coherent catalytic unit for ser_his_acid_hydrolase?",
+      "sample_review_priority": "medium",
+      "structure_id": "2QMJ",
+      "structure_path": "artifacts/v3_mcsa_pymol_third_materialized_coordinates_20260522/pdb_2QMJ.cif",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "would_unblock_if": "Manual PyMOL inspection shows the measured focus-pair geometry belongs to one relevant catalytic conformation rather than loose/interdomain context."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "blocker_bucket": "loose_open_or_interdomain_geometry",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:847",
+      "entry_name": "epoxide hydrolase",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "wide visual focus CA-pair distance=22.31 A"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.3.2.10; residue_count=7",
+        "target_score=0.3539 with top1=metal_dependent_hydrolase:0.3539",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=external_cofactor_source_review; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "inspect_pymol",
+      "primary_next_action": "Inspect geometry/locality in PyMOL or source coordinates before any later decision.",
+      "recommended_workflow": "structure_or_pymol_geometry_resolution",
+      "required_human_or_expert_action": "Manual PyMOL review of the full active-site context to decide whether the focus pair is a real catalytic unit or an open/interdomain artifact.",
+      "review_group": "representative_blocker_review",
+      "review_order": 23,
+      "reviewer_question": "Do the highlighted residues form one coherent catalytic unit for metal_dependent_hydrolase?",
+      "sample_review_priority": "medium",
+      "structure_id": "1EHY",
+      "structure_path": "artifacts/v3_mcsa_pymol_third_materialized_coordinates_20260522/pdb_1EHY.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Manual PyMOL inspection shows the measured focus-pair geometry belongs to one relevant catalytic conformation rather than loose/interdomain context."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "blocker_bucket": "loose_open_or_interdomain_geometry",
+      "confidence": "medium",
+      "counterevidence": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:642",
+      "entry_name": "vesicle-fusing ATPase",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=ATP-dependent phosphoryl-transfer/kinase family",
+        "nearest_expected_ligand_distance_angstrom=4.176",
+        "target_score is below the 0.4115 abstention threshold",
+        "wide visual focus CA-pair distance=31.492 A"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: possible current metal-dependent hydrolase: EC3 + metal-ligand roles + hydrolytic/water mechanism. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to ATP-dependent phosphoryl-transfer/kinase family.",
+        "Target=metal_dependent_hydrolase; EC=3.6.4.6; residue_count=8",
+        "target_score=0.3985 with top1=metal_dependent_hydrolase:0.3985",
+        "cofactor_coverage=all_expected_local; local=['metal_ion']; structure=['metal_ion']",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_special_reviewer_action": "inspect_pymol",
+      "primary_next_action": "Inspect geometry/locality in PyMOL or source coordinates before any later decision.",
+      "recommended_workflow": "structure_or_pymol_geometry_resolution",
+      "required_human_or_expert_action": "Manual PyMOL review of the full active-site context to decide whether the focus pair is a real catalytic unit or an open/interdomain artifact.",
+      "review_group": "representative_blocker_review",
+      "review_order": 24,
+      "reviewer_question": "Do the highlighted residues form one coherent catalytic unit for metal_dependent_hydrolase?",
+      "sample_review_priority": "medium",
+      "structure_id": "1NSF",
+      "structure_path": "artifacts/v3_mcsa_pymol_fifth_materialized_coordinates_20260522/pdb_1NSF.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Manual PyMOL inspection shows the measured focus-pair geometry belongs to one relevant catalytic conformation rather than loose/interdomain context."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "inspect_pymol"
+      ],
+      "blocker_bucket": "loose_open_or_interdomain_geometry",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:844",
+      "entry_name": "dUTP diphosphatase",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=ATP-dependent phosphoryl-transfer/kinase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "wide visual focus CA-pair distance=26.739 A"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to ATP-dependent phosphoryl-transfer/kinase family.",
+        "Target=metal_dependent_hydrolase; EC=3.6.1.23; residue_count=5",
+        "target_score=0.3249 with top1=metal_dependent_hydrolase:0.3249",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "inspect_pymol",
+      "primary_next_action": "Inspect geometry/locality in PyMOL or source coordinates before any later decision.",
+      "recommended_workflow": "structure_or_pymol_geometry_resolution",
+      "required_human_or_expert_action": "Manual PyMOL review of the full active-site context to decide whether the focus pair is a real catalytic unit or an open/interdomain artifact.",
+      "review_group": "representative_blocker_review",
+      "review_order": 25,
+      "reviewer_question": "Do the highlighted residues form one coherent catalytic unit for metal_dependent_hydrolase?",
+      "sample_review_priority": "medium",
+      "structure_id": "1DUP",
+      "structure_path": "artifacts/v3_mcsa_pymol_eighth_materialized_coordinates_20260522/pdb_1DUP.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Manual PyMOL inspection shows the measured focus-pair geometry belongs to one relevant catalytic conformation rather than loose/interdomain context."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "expert_biochemistry_needed"
+      ],
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:751",
+      "entry_name": "CDP-diacylglycerol diphosphatase",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=PfkB/ribokinase ATP-phosphoryl-transfer family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to PfkB/ribokinase ATP-phosphoryl-transfer family.",
+        "Target=metal_dependent_hydrolase; EC=3.6.1.26; residue_count=4",
+        "target_score=0.3789 with top1=metal_dependent_hydrolase:0.3789",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "expert_biochemistry_needed",
+      "primary_next_action": "Use expert biochemical mechanism review; do not resolve by visual geometry alone.",
+      "recommended_workflow": "expert_biochemistry_boundary_review",
+      "required_human_or_expert_action": "Expert nucleotide-state review; distinguish hydrolytic non-transfer AMP/nucleotide context from ATP/adenylyl-transfer or allosteric context before any future rule.",
+      "review_group": "representative_blocker_review",
+      "review_order": 26,
+      "reviewer_question": "Is the nucleotide state in-scope for metal_dependent_hydrolase, or should the row stay review-only?",
+      "sample_review_priority": "medium",
+      "structure_id": "1TZ3",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1TZ3.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Expert review or a tested production rule distinguishes catalytic-pocket non-transfer nucleotide context from transfer/allosteric controls."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "expert_biochemistry_needed"
+      ],
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:564",
+      "entry_name": "ribonuclease V",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=ATP-dependent phosphoryl-transfer/kinase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to ATP-dependent phosphoryl-transfer/kinase family.",
+        "Target=metal_dependent_hydrolase; EC=3.1.27.8; residue_count=3",
+        "target_score=0.3594 with top1=metal_dependent_hydrolase:0.3594",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "expert_biochemistry_needed",
+      "primary_next_action": "Use expert biochemical mechanism review; do not resolve by visual geometry alone.",
+      "recommended_workflow": "expert_biochemistry_boundary_review",
+      "required_human_or_expert_action": "Expert nucleotide-state review; distinguish hydrolytic non-transfer AMP/nucleotide context from ATP/adenylyl-transfer or allosteric context before any future rule.",
+      "review_group": "representative_blocker_review",
+      "review_order": 27,
+      "reviewer_question": "Is the nucleotide state in-scope for metal_dependent_hydrolase, or should the row stay review-only?",
+      "sample_review_priority": "medium",
+      "structure_id": "1A4Y",
+      "structure_path": "artifacts/v3_mcsa_pymol_fourth_materialized_coordinates_20260522/pdb_1A4Y.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Expert review or a tested production rule distinguishes catalytic-pocket non-transfer nucleotide context from transfer/allosteric controls."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "expert_biochemistry_needed"
+      ],
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "confidence": "medium",
+      "counterevidence": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:833",
+      "entry_name": "DNA helicase",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=ATP-dependent phosphoryl-transfer/kinase family",
+        "nearest_expected_ligand_distance_angstrom=4.844",
+        "target_score is below the 0.4115 abstention threshold",
+        "wide visual focus CA-pair distance=19.538 A"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: possible current metal-dependent hydrolase: EC3 + metal-ligand roles + hydrolytic/water mechanism. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to ATP-dependent phosphoryl-transfer/kinase family.",
+        "Target=metal_dependent_hydrolase; EC=3.6.4.12; residue_count=6",
+        "target_score=0.3925 with top1=metal_dependent_hydrolase:0.3925",
+        "cofactor_coverage=all_expected_local; local=['metal_ion']; structure=['metal_ion']",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_special_reviewer_action": "expert_biochemistry_needed",
+      "primary_next_action": "Use expert biochemical mechanism review; do not resolve by visual geometry alone.",
+      "recommended_workflow": "expert_biochemistry_boundary_review",
+      "required_human_or_expert_action": "Expert nucleotide-state review; distinguish hydrolytic non-transfer AMP/nucleotide context from ATP/adenylyl-transfer or allosteric context before any future rule.",
+      "review_group": "representative_blocker_review",
+      "review_order": 28,
+      "reviewer_question": "Is the nucleotide state in-scope for metal_dependent_hydrolase, or should the row stay review-only?",
+      "sample_review_priority": "medium",
+      "structure_id": "1QHG",
+      "structure_path": "artifacts/v3_mcsa_pymol_sixth_materialized_coordinates_20260522/pdb_1QHG.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Expert review or a tested production rule distinguishes catalytic-pocket non-transfer nucleotide context from transfer/allosteric controls."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "expert_biochemistry_needed"
+      ],
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "confidence": "medium",
+      "counterevidence": [
+        "ligand_supported_metal_without_metal_ligand_roles"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:780",
+      "entry_name": "DNA helicase",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=ATP-dependent phosphoryl-transfer/kinase family",
+        "nearest_expected_ligand_distance_angstrom=5.964",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: possible current metal-dependent hydrolase: EC3 + metal/hydrolytic wording. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to ATP-dependent phosphoryl-transfer/kinase family.",
+        "Target=metal_dependent_hydrolase; EC=3.6.4.12; residue_count=5",
+        "target_score=0.35 with top1=metal_dependent_hydrolase:0.35",
+        "cofactor_coverage=all_expected_local; local=['metal_ion']; structure=['metal_ion']",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_special_reviewer_action": "expert_biochemistry_needed",
+      "primary_next_action": "Use expert biochemical mechanism review; do not resolve by visual geometry alone.",
+      "recommended_workflow": "expert_biochemistry_boundary_review",
+      "required_human_or_expert_action": "Expert nucleotide-state review; distinguish hydrolytic non-transfer AMP/nucleotide context from ATP/adenylyl-transfer or allosteric context before any future rule.",
+      "review_group": "representative_blocker_review",
+      "review_order": 29,
+      "reviewer_question": "Is the nucleotide state in-scope for metal_dependent_hydrolase, or should the row stay review-only?",
+      "sample_review_priority": "medium",
+      "structure_id": "1HQC",
+      "structure_path": "artifacts/v3_mcsa_pymol_seventh_materialized_coordinates_20260522/pdb_1HQC.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Expert review or a tested production rule distinguishes catalytic-pocket non-transfer nucleotide context from transfer/allosteric controls."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "expert_biochemistry_needed"
+      ],
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:656",
+      "entry_name": "adenosinetriphosphatase",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_not_local,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=ATP-dependent phosphoryl-transfer/kinase family",
+        "nearest_expected_ligand_distance_angstrom=7.031",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: possible current metal-dependent hydrolase: EC3 + metal/hydrolytic wording; manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to ATP-dependent phosphoryl-transfer/kinase family.",
+        "Target=metal_dependent_hydrolase; EC=3.6.1.3; residue_count=4",
+        "target_score=0.3503 with top1=metal_dependent_hydrolase:0.3503",
+        "cofactor_coverage=expected_structure_only; local=[]; structure=['metal_ion']",
+        "remediation_bucket=local_mapping_or_structure_selection_review; priority_score=5.25"
+      ],
+      "expected_special_reviewer_action": "expert_biochemistry_needed",
+      "primary_next_action": "Use expert biochemical mechanism review; do not resolve by visual geometry alone.",
+      "recommended_workflow": "expert_biochemistry_boundary_review",
+      "required_human_or_expert_action": "Expert nucleotide-state review; distinguish hydrolytic non-transfer AMP/nucleotide context from ATP/adenylyl-transfer or allosteric context before any future rule.",
+      "review_group": "representative_blocker_review",
+      "review_order": 30,
+      "reviewer_question": "Is the nucleotide state in-scope for metal_dependent_hydrolase, or should the row stay review-only?",
+      "sample_review_priority": "medium",
+      "structure_id": "1KAZ",
+      "structure_path": "artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522/pdb_1KAZ.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Expert review or a tested production rule distinguishes catalytic-pocket non-transfer nucleotide context from transfer/allosteric controls."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "schema_needed"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [
+        "metal_ligand_rich_site_for_ser_his_seed",
+        "metal_supported_site_for_ser_his_seed",
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:793",
+      "entry_name": "mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=glycoside hydrolase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as glycoside hydrolase family.",
+        "Target=ser_his_acid_hydrolase; EC=3.2.1.114; residue_count=5",
+        "target_score=0.3628 with top1=ser_his_acid_hydrolase:0.3628",
+        "cofactor_coverage=not_required; local=['metal_ion']; structure=['metal_ion']",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_special_reviewer_action": "schema_needed",
+      "primary_next_action": "Treat as ontology/future-family routing evidence, not a current-target accept.",
+      "recommended_workflow": "future_family_or_schema_route_review",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_group": "representative_blocker_review",
+      "review_order": 31,
+      "reviewer_question": "Is this a current-target reject and future-family route rather than a ser_his_acid_hydrolase label?",
+      "sample_review_priority": "low",
+      "structure_id": "1QWN",
+      "structure_path": "artifacts/v3_mcsa_pymol_materialized_coordinates_20260522/pdb_1QWN.cif",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "schema_needed"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:755",
+      "entry_name": "lysophospholipase",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=transferase/thioester-transfer family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to transferase/thioester-transfer family.",
+        "Target=metal_dependent_hydrolase; EC=3.1.1.5; residue_count=5",
+        "target_score=0.3519 with top1=metal_dependent_hydrolase:0.3519",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "schema_needed",
+      "primary_next_action": "Treat as ontology/future-family routing evidence, not a current-target accept.",
+      "recommended_workflow": "future_family_or_schema_route_review",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_group": "representative_blocker_review",
+      "review_order": 32,
+      "reviewer_question": "Is this a current-target reject and future-family route rather than a metal_dependent_hydrolase label?",
+      "sample_review_priority": "low",
+      "structure_id": "1J00",
+      "structure_path": "artifacts/v3_mcsa_pymol_fourth_materialized_coordinates_20260522/pdb_1J00.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "schema_needed"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "high",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:817",
+      "entry_name": "chitinase (GH18, class II)",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "wide visual focus CA-pair distance=18.212 A"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=metal_dependent_hydrolase; EC=3.2.1.14; residue_count=4",
+        "target_score=0.3472 with top1=metal_dependent_hydrolase:0.3472",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "schema_needed",
+      "primary_next_action": "Treat as ontology/future-family routing evidence, not a current-target accept.",
+      "recommended_workflow": "future_family_or_schema_route_review",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_group": "representative_blocker_review",
+      "review_order": 33,
+      "reviewer_question": "Is this a current-target reject and future-family route rather than a metal_dependent_hydrolase label?",
+      "sample_review_priority": "low",
+      "structure_id": "1ITX",
+      "structure_path": "artifacts/v3_mcsa_pymol_fourth_materialized_coordinates_20260522/pdb_1ITX.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "schema_needed"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:597",
+      "entry_name": "ubiquitinyl hydrolase 1 (peptidase C12 type)",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to cysteine protease Cys-His-Asp hydrolase family.",
+        "Target=metal_dependent_hydrolase; EC=3.4.19.12; residue_count=5",
+        "target_score=0.3647 with top1=metal_dependent_hydrolase:0.3647",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "schema_needed",
+      "primary_next_action": "Treat as ontology/future-family routing evidence, not a current-target accept.",
+      "recommended_workflow": "future_family_or_schema_route_review",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_group": "representative_blocker_review",
+      "review_order": 34,
+      "reviewer_question": "Is this a current-target reject and future-family route rather than a metal_dependent_hydrolase label?",
+      "sample_review_priority": "low",
+      "structure_id": "1UCH",
+      "structure_path": "artifacts/v3_mcsa_pymol_fifth_materialized_coordinates_20260522/pdb_1UCH.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "schema_needed"
+      ],
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "confidence": "medium",
+      "counterevidence": [],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:729",
+      "entry_name": "protein-glutamate methylesterase (CheD)",
+      "evidence_against": [
+        "gap_reasons=expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=cysteine protease Cys-His-Asp hydrolase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to cysteine protease Cys-His-Asp hydrolase family.",
+        "Target=metal_dependent_hydrolase; EC=3.1.1.61; residue_count=3",
+        "target_score=0.36 with top1=metal_dependent_hydrolase:0.36",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=5.75"
+      ],
+      "expected_special_reviewer_action": "schema_needed",
+      "primary_next_action": "Treat as ontology/future-family routing evidence, not a current-target accept.",
+      "recommended_workflow": "future_family_or_schema_route_review",
+      "required_human_or_expert_action": "Route to a future ontology/fingerprint family or confirm current-target rejection; do not import under the current fingerprint.",
+      "review_group": "representative_blocker_review",
+      "review_order": 35,
+      "reviewer_question": "Is this a current-target reject and future-family route rather than a metal_dependent_hydrolase label?",
+      "sample_review_priority": "low",
+      "structure_id": "2F9Z",
+      "structure_path": "artifacts/v3_mcsa_pymol_sixth_materialized_coordinates_20260522/pdb_2F9Z.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "A future fingerprint/ontology family represents the routed mechanism, or expert review overturns the current-target mismatch."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "keep_review_only"
+      ],
+      "blocker_bucket": "true_reject",
+      "confidence": "high",
+      "counterevidence": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:841",
+      "entry_name": "penicillin amidase (peptidase S45 family)",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "Primary signal supports rejecting the current fingerprint under current evidence rather than importing."
+      ],
+      "evidence_for": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as future unrepresented mechanism family.",
+        "Target=ser_his_acid_hydrolase; EC=3.5.1.11; residue_count=5",
+        "target_score=0.2976 with top1=ser_his_acid_hydrolase:0.2976",
+        "cofactor_coverage=not_required; local=[]; structure=['metal_ion']",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_special_reviewer_action": "keep_review_only",
+      "primary_next_action": "Confirm current-target rejection evidence without promoting to a global negative.",
+      "recommended_workflow": "reject_confirmation_review",
+      "required_human_or_expert_action": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+      "review_group": "representative_blocker_review",
+      "review_order": 36,
+      "reviewer_question": "Confirm rejection for ser_his_acid_hydrolase, or note evidence that overturns the mismatch.",
+      "sample_review_priority": "low",
+      "structure_id": "1PNL",
+      "structure_path": "artifacts/v3_mcsa_pymol_seventh_materialized_coordinates_20260522/pdb_1PNL.cif",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "keep_review_only"
+      ],
+      "blocker_bucket": "true_reject",
+      "confidence": "high",
+      "counterevidence": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:658",
+      "entry_name": "arabinogalactan endo-1,4-beta-galactosidase",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "Primary signal supports rejecting the current fingerprint under current evidence rather than importing."
+      ],
+      "evidence_for": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as future unrepresented mechanism family.",
+        "Target=ser_his_acid_hydrolase; EC=3.2.1.89; residue_count=3",
+        "target_score=0.311 with top1=ser_his_acid_hydrolase:0.311",
+        "cofactor_coverage=not_required; local=[]; structure=[]",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_special_reviewer_action": "keep_review_only",
+      "primary_next_action": "Confirm current-target rejection evidence without promoting to a global negative.",
+      "recommended_workflow": "reject_confirmation_review",
+      "required_human_or_expert_action": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+      "review_group": "representative_blocker_review",
+      "review_order": 37,
+      "reviewer_question": "Confirm rejection for ser_his_acid_hydrolase, or note evidence that overturns the mismatch.",
+      "sample_review_priority": "low",
+      "structure_id": "1FHL",
+      "structure_path": "artifacts/v3_mcsa_pymol_eighth_materialized_coordinates_20260522/pdb_1FHL.cif",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "keep_review_only"
+      ],
+      "blocker_bucket": "true_reject",
+      "confidence": "high",
+      "counterevidence": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:827",
+      "entry_name": "fructan beta-fructosidase",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "Primary signal supports rejecting the current fingerprint under current evidence rather than importing."
+      ],
+      "evidence_for": [
+        "Needs more evidence as ser_his_acid_hydrolase. M-CSA supports hydrolase chemistry but not a clean Ser/His/acid triad call for AI-only acceptance; route/review as future unrepresented mechanism family.",
+        "Target=ser_his_acid_hydrolase; EC=3.2.1.80; residue_count=2",
+        "target_score=0.3137 with top1=ser_his_acid_hydrolase:0.3137",
+        "cofactor_coverage=not_required; local=[]; structure=[]",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_special_reviewer_action": "keep_review_only",
+      "primary_next_action": "Confirm current-target rejection evidence without promoting to a global negative.",
+      "recommended_workflow": "reject_confirmation_review",
+      "required_human_or_expert_action": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+      "review_group": "representative_blocker_review",
+      "review_order": 38,
+      "reviewer_question": "Confirm rejection for ser_his_acid_hydrolase, or note evidence that overturns the mismatch.",
+      "sample_review_priority": "low",
+      "structure_id": "1Y9M",
+      "structure_path": "artifacts/v3_mcsa_pymol_tenth_materialized_coordinates_20260522/pdb_1Y9M.cif",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "keep_review_only"
+      ],
+      "blocker_bucket": "true_reject",
+      "confidence": "high",
+      "counterevidence": [
+        "glycosidase_not_metal_hydrolase_seed"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:774",
+      "entry_name": "lysozyme (glycosyl hydrolase 25 family)",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,expected_cofactor_absent_from_structure,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=glycoside hydrolase family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "Primary signal supports rejecting the current fingerprint under current evidence rather than importing."
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under metal-dependent-hydrolase target. Original note: Rejected as metal_dependent_hydrolase. M-CSA mechanism does not support the current metal_dependent_hydrolase target; route to glycoside hydrolase family.",
+        "Target=metal_dependent_hydrolase; EC=3.2.1.17; residue_count=4",
+        "target_score=0.205 with top1=metal_dependent_hydrolase:0.205",
+        "cofactor_coverage=expected_absent_from_structure; local=[]; structure=[]",
+        "remediation_bucket=alternate_pdb_ligand_scan; priority_score=7.75"
+      ],
+      "expected_special_reviewer_action": "keep_review_only",
+      "primary_next_action": "Confirm current-target rejection evidence without promoting to a global negative.",
+      "recommended_workflow": "reject_confirmation_review",
+      "required_human_or_expert_action": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+      "review_group": "representative_blocker_review",
+      "review_order": 39,
+      "reviewer_question": "Confirm rejection for metal_dependent_hydrolase, or note evidence that overturns the mismatch.",
+      "sample_review_priority": "low",
+      "structure_id": "1OBA",
+      "structure_path": "artifacts/v3_mcsa_pymol_tenth_materialized_coordinates_20260522/pdb_1OBA.cif",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+    },
+    {
+      "allowed_reviewer_actions": [
+        "accept_current_target",
+        "reject_current_target",
+        "needs_more_evidence",
+        "route_future_family",
+        "keep_review_only"
+      ],
+      "blocker_bucket": "true_reject",
+      "confidence": "high",
+      "counterevidence": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "entry_id": "m_csa:831",
+      "entry_name": "glucan 1,3-beta-glucosidase",
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_score is below the 0.4115 abstention threshold",
+        "Primary signal supports rejecting the current fingerprint under current evidence rather than importing."
+      ],
+      "evidence_for": [
+        "Downgraded from AI-assisted rejection during conservative re-audit. Do not bulk-R this row: manual boundary: EC3/name hydrolase under Ser-His target. Original note: Rejected as ser_his_acid_hydrolase. M-CSA mechanism does not support the current ser_his_acid_hydrolase target; route to future unrepresented mechanism family.",
+        "Target=ser_his_acid_hydrolase; EC=3.2.1.58; residue_count=2",
+        "target_score=0.2961 with top1=ser_his_acid_hydrolase:0.2961",
+        "cofactor_coverage=not_required; local=[]; structure=[]",
+        "remediation_bucket=expert_family_boundary_review; priority_score=4.75"
+      ],
+      "expected_special_reviewer_action": "keep_review_only",
+      "primary_next_action": "Confirm current-target rejection evidence without promoting to a global negative.",
+      "recommended_workflow": "reject_confirmation_review",
+      "required_human_or_expert_action": "Confirm as current-target reject or hard boundary training signal; no import path under current evidence.",
+      "review_group": "representative_blocker_review",
+      "review_order": 40,
+      "reviewer_question": "Confirm rejection for ser_his_acid_hydrolase, or note evidence that overturns the mismatch.",
+      "sample_review_priority": "low",
+      "structure_id": "1CZ1",
+      "structure_path": "artifacts/v3_mcsa_pymol_tenth_materialized_coordinates_20260522/pdb_1CZ1.cif",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "would_unblock_if": "Only new mechanism evidence overturning current-target counterevidence would reopen this row."
+    }
+  ],
+  "strategy_contract": {
+    "allowed_reviewer_decisions": [
+      "accepted",
+      "rejected",
+      "needs_more_evidence",
+      "route_future_family"
+    ],
+    "decision_rule": "This artifact pre-sorts review workflows only; every row remains needs_more_evidence until Vivek or an expert fills a decision template.",
+    "negative_scope_rule": "Reject-confirmation rows remain current-target review candidates, not global negatives.",
+    "no_import_rule": "Do not import labels or run import previews from this strategy artifact.",
+    "scope": "exact40_human_review_packet_rows_excluding_clean10_fast_path"
+  },
+  "summary_counts": {
+    "by_blocker_bucket": {
+      "amp_or_nucleotide_nontransfer_context": 5,
+      "apo_or_holo_missing_cofactor": 5,
+      "loose_open_or_interdomain_geometry": 4,
+      "needs_expert_biochemistry_review": 5,
+      "needs_manual_visual_review": 1,
+      "true_reject": 5,
+      "wrong_fingerprint_or_future_ontology_family": 5
+    },
+    "by_confidence": {
+      "high": 6,
+      "low": 6,
+      "medium": 18
+    },
+    "by_recommended_workflow": {
+      "expert_biochemistry_boundary_review": 10,
+      "future_family_or_schema_route_review": 5,
+      "reject_confirmation_review": 5,
+      "structure_or_holo_alternate_resolution": 5,
+      "structure_or_pymol_geometry_resolution": 5
+    },
+    "by_review_group": {
+      "low_confidence_review": 6,
+      "representative_blocker_review": 24
+    },
+    "confidence_by_workflow": {
+      "expert_biochemistry_boundary_review": {
+        "low": 5,
+        "medium": 5
+      },
+      "future_family_or_schema_route_review": {
+        "high": 1,
+        "medium": 4
+      },
+      "reject_confirmation_review": {
+        "high": 5
+      },
+      "structure_or_holo_alternate_resolution": {
+        "medium": 5
+      },
+      "structure_or_pymol_geometry_resolution": {
+        "low": 1,
+        "medium": 4
+      }
+    },
+    "workflow_by_blocker_bucket": {
+      "amp_or_nucleotide_nontransfer_context": {
+        "expert_biochemistry_boundary_review": 5
+      },
+      "apo_or_holo_missing_cofactor": {
+        "structure_or_holo_alternate_resolution": 5
+      },
+      "loose_open_or_interdomain_geometry": {
+        "structure_or_pymol_geometry_resolution": 4
+      },
+      "needs_expert_biochemistry_review": {
+        "expert_biochemistry_boundary_review": 5
+      },
+      "needs_manual_visual_review": {
+        "structure_or_pymol_geometry_resolution": 1
+      },
+      "true_reject": {
+        "reject_confirmation_review": 5
+      },
+      "wrong_fingerprint_or_future_ontology_family": {
+        "future_family_or_schema_route_review": 5
+      }
+    }
+  }
+}
