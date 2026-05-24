@@ -6146,6 +6146,270 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertTrue(row["terminal_artifact"].startswith("artifacts/v3_mcsa_positive_"))
             self.assertIn("still_blocked_terminal", row["new_status"])
 
+    def test_post_clean9_decision_trace_preserves_row_signal_without_import(self) -> None:
+        trace = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json"
+        )
+        metadata = trace["metadata"]
+
+        self.assertEqual(metadata["post_clean9_review_row_count"], 22)
+        self.assertEqual(metadata["terminal_blocker_source_row_count"], 9)
+        self.assertEqual(metadata["unique_trace_row_count"], 22)
+        self.assertEqual(metadata["current_imported_countable_row_count"], 13)
+        self.assertEqual(metadata["current_terminal_blocked_row_count"], 9)
+        self.assertEqual(metadata["current_rejected_row_count"], 0)
+        self.assertEqual(metadata["historical_import_gate_eligible_or_imported_count"], 13)
+        self.assertEqual(metadata["new_import_gate_eligible_count_from_trace"], 0)
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["m_csa_countable_label_count_invariant"], 692)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+        self.assertEqual(metadata["canonical_count_movement_this_artifact"], "695 -> 695")
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["review_only_source_artifacts_mutated"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+        self.assertTrue(metadata["decision_signal_preserved"])
+
+        groups = trace["row_groups"]
+        self.assertEqual(
+            groups["imported_clean9"],
+            [
+                "m_csa:599",
+                "m_csa:623",
+                "m_csa:636",
+                "m_csa:706",
+                "m_csa:812",
+                "m_csa:865",
+                "m_csa:892",
+                "m_csa:917",
+                "m_csa:998",
+            ],
+        )
+        self.assertEqual(
+            groups["imported_holo_override_accept3"],
+            ["m_csa:577", "m_csa:641", "m_csa:897"],
+        )
+        self.assertEqual(groups["imported_m_csa771_2d0d_vivek"], ["m_csa:771"])
+        self.assertEqual(
+            groups["terminal_current_evidence_blocked"],
+            [
+                "m_csa:611",
+                "m_csa:657",
+                "m_csa:1001",
+                "m_csa:836",
+                "m_csa:996",
+                "m_csa:784",
+                "m_csa:904",
+                "m_csa:777",
+                "m_csa:737",
+            ],
+        )
+        self.assertEqual(groups["rejected"], [])
+
+        required_fields = set(trace["trace_contract"]["required_row_fields"])
+        rows = {row["entry_id"]: row for row in trace["rows"]}
+        self.assertEqual(len(rows), 22)
+        for row in rows.values():
+            self.assertTrue(required_fields.issubset(row))
+            self.assertTrue(row["evidence_for"])
+            self.assertTrue(row["allowed_evidence"])
+            self.assertTrue(row["forbidden_or_review_only_evidence"])
+            self.assertTrue(row["reviewer_source"]["source_review_artifact"])
+            self.assertTrue(row["structure_pdb_state"]["selected_pdb"])
+            self.assertIsNotNone(row["tier_confidence"]["review_confidence"])
+            self.assertTrue(row["would_unblock_if"])
+
+        self.assertEqual(
+            rows["m_csa:577"]["decision"]["current_decision"],
+            "imported_by_holo_override_accept3_dedicated_gate",
+        )
+        self.assertEqual(
+            rows["m_csa:577"]["structure_pdb_state"]["alternate_or_override_pdb"],
+            "1AWB",
+        )
+        self.assertEqual(
+            rows["m_csa:771"]["decision"]["current_decision"],
+            "imported_by_m_csa771_2d0d_vivek_dedicated_gate",
+        )
+        self.assertTrue(
+            rows["m_csa:771"]["structure_pdb_state"][
+                "catalytic_ser103_maps_to_m_csa_nucleophile"
+            ]
+        )
+        self.assertEqual(
+            rows["m_csa:777"]["blocker_class"],
+            "plp_threshold_local_evidence",
+        )
+        self.assertIn(
+            "do not lower the 0.4115 threshold by 0.001 to import this row",
+            rows["m_csa:777"]["forbidden_or_review_only_evidence"],
+        )
+        self.assertEqual(
+            rows["m_csa:737"]["blocker_class"],
+            "coupled_plp_adenosylcobalamin_schema",
+        )
+
+    def test_pymol_exact_mapping_terminal_no_go_keeps_tranche_non_countable(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_pymol_exact_mapping_terminal_no_go_23_20260524.json"
+        )
+        metadata = packet["metadata"]
+        decision = packet["decision"]
+
+        self.assertTrue(metadata["terminal_current_evidence_no_go"])
+        self.assertEqual(metadata["row_count"], 23)
+        self.assertEqual(metadata["blocker_class"], "exact_ca_atom_pair_distance_mapping")
+        self.assertEqual(metadata["structure_id_mapping_subblocker_count"], 2)
+        self.assertEqual(metadata["terminal_nine_rows_reopened_count"], 0)
+        self.assertEqual(metadata["next_structure_materialization_candidate_count"], 0)
+        self.assertEqual(metadata["pymol_ready_count_in_source"], 298)
+        self.assertEqual(metadata["rows_with_verified_focus_atoms_in_source"], 298)
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+        self.assertEqual(metadata["canonical_count_movement"], "695 -> 695")
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_gate_eligible_count"], 0)
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(decision["rows_changed"], 23)
+        self.assertEqual(decision["rows_still_blocked"], 23)
+        self.assertEqual(decision["rows_imported"], 0)
+        self.assertIn("m_csa:946", decision["exact_next_target"])
+        self.assertIn("m_csa:930", decision["exact_next_target"])
+
+        terminal_nine = {
+            "m_csa:611",
+            "m_csa:657",
+            "m_csa:1001",
+            "m_csa:836",
+            "m_csa:996",
+            "m_csa:784",
+            "m_csa:904",
+            "m_csa:777",
+            "m_csa:737",
+        }
+        rows = {row["entry_id"]: row for row in packet["rows"]}
+        self.assertEqual(len(rows), 23)
+        self.assertFalse(terminal_nine.intersection(rows))
+        self.assertEqual(
+            {
+                entry_id
+                for entry_id, row in rows.items()
+                if row["blocker_class"] == "structure_id_plus_exact_ca_atom_pair_mapping"
+            },
+            {"m_csa:946", "m_csa:930"},
+        )
+        for row in rows.values():
+            self.assertEqual(
+                row["decision"],
+                "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+            )
+            self.assertEqual(
+                row["new_status"],
+                "still_blocked_terminal_current_mapping_evidence",
+            )
+            self.assertIn("missing_exact_ca_atom_pair", row["missing_fields"])
+            self.assertIn("missing_exact_distance", row["missing_fields"])
+            self.assertFalse(row["import_gate_eligible"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertTrue(row["allowed_evidence"])
+            self.assertTrue(row["forbidden_or_review_only_evidence"])
+            self.assertTrue(row["would_unblock_if"])
+
+    def test_structure_id_mapping_probe_finds_one_repair_candidate_only(self) -> None:
+        probe = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_pymol_structure_id_mapping_repair_probe_m_csa930_946_20260524.json"
+        )
+        metadata = probe["metadata"]
+        decision = probe["decision"]
+
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["row_count"], 2)
+        self.assertEqual(metadata["mapping_repair_candidate_ready_count"], 1)
+        self.assertEqual(metadata["still_blocked_count"], 1)
+        self.assertEqual(metadata["canonical_label_count_invariant"], 695)
+        self.assertEqual(metadata["production_fingerprint_universe_count_invariant"], 8)
+        self.assertEqual(metadata["canonical_count_movement"], "695 -> 695")
+        self.assertEqual(metadata["countable_label_candidate_count"], 0)
+        self.assertEqual(metadata["import_gate_eligible_count"], 0)
+        self.assertFalse(metadata["dedicated_import_preview_run"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["coordinate_sidecars_committed"])
+        self.assertFalse(metadata["artifact_upload_or_removal_performed"])
+        self.assertFalse(metadata["removal_allowed_set_true"])
+
+        self.assertEqual(decision["rows_changed"], 2)
+        self.assertEqual(decision["rows_still_blocked"], 1)
+        self.assertEqual(decision["rows_imported"], 0)
+        self.assertIn("m_csa:946", decision["exact_next_target"])
+        self.assertIn("m_csa:930", decision["exact_next_target"])
+
+        rows = {row["entry_id"]: row for row in probe["rows"]}
+        self.assertEqual(set(rows), {"m_csa:930", "m_csa:946"})
+        self.assertEqual(
+            rows["m_csa:930"]["decision"],
+            "still_blocked_terminal_current_source_mapping",
+        )
+        self.assertEqual(
+            rows["m_csa:930"]["blocker_class"],
+            "candidate_pdb_reference_uniprot_mismatch",
+        )
+        self.assertIsNone(rows["m_csa:930"]["recommended_candidate_pdb_id"])
+        two_pia = rows["m_csa:930"]["candidate_pdb_results"][0]
+        self.assertEqual(two_pia["pdb_id"], "2PIA")
+        self.assertEqual(two_pia["observed_uniprot_accessions"], ["P33164"])
+        self.assertFalse(two_pia["all_requested_residues_mapped_to_ca"])
+
+        self.assertEqual(
+            rows["m_csa:946"]["decision"],
+            "mapping_repair_candidate_ready_for_review_queue_rerun",
+        )
+        self.assertEqual(rows["m_csa:946"]["recommended_candidate_pdb_id"], "5XD7")
+        ready_candidates = [
+            result
+            for result in rows["m_csa:946"]["candidate_pdb_results"]
+            if result["all_requested_residues_mapped_to_ca"]
+        ]
+        self.assertGreaterEqual(len(ready_candidates), 2)
+        five_xd7 = next(
+            result
+            for result in rows["m_csa:946"]["candidate_pdb_results"]
+            if result["pdb_id"] == "5XD7"
+        )
+        self.assertEqual(five_xd7["observed_uniprot_accessions"], ["H2IFX0"])
+        self.assertEqual(five_xd7["mapped_residue_count"], 6)
+        self.assertEqual(five_xd7["requested_residue_count"], 6)
+        self.assertTrue(five_xd7["all_requested_residues_mapped_to_ca"])
+        self.assertEqual(
+            five_xd7["longest_ca_pair"]["left_residue_node_id"],
+            "m_csa:946:residue:2",
+        )
+        self.assertEqual(
+            five_xd7["longest_ca_pair"]["right_residue_node_id"],
+            "m_csa:946:residue:6",
+        )
+        self.assertAlmostEqual(
+            five_xd7["longest_ca_pair"]["distance_angstrom"],
+            18.663,
+            places=3,
+        )
+
     def test_epk_dirty_sibling_followup_synthesis_stays_review_only(self) -> None:
         synthesis = _load_json(
             ARTIFACTS / "v3_epk_dirty_sibling_followup_synthesis_20260521.json"

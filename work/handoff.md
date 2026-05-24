@@ -50,6 +50,43 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-24T04:56Z Decision Trace And Exact-Mapping Repair Split
+
+Scientific target worked: preserve the post-clean9 M-CSA decision signal without
+changing science, then advance the next bounded review-debt blocker class.
+Previous status: the 22-row Vivek M-CSA positive review, 13 post-clean9
+accepted/imported rows, and nine terminal current-evidence holds were spread
+across multiple artifacts; the remaining PyMOL blocker report also had a
+23-row exact focus-pair/distance mapping class with two structure-ID
+subblockers. New status: the decision signal is now joined in
+`artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json`, with
+22 unique rows, 13 current imported countable rows, nine terminal blocked rows,
+zero rejected rows, and zero new import eligibility from the trace itself.
+
+The exact-mapping review-debt tranche is now terminal for current evidence in
+`artifacts/v3_mcsa_pymol_exact_mapping_terminal_no_go_23_20260524.json`.
+Rows changed: 23 blocker rows moved from a generic post-materialization blocker
+surface into a row-level terminal/no-go packet for the exact CA atom-pair and
+distance mapping class. Rows still blocked: all 23; no label import, registry
+edit, fingerprint edit, production scoring change, upload/removal, or
+`removal_allowed=true` occurred. The current nine M-CSA follow-up holds were
+not reopened.
+
+The two structure-ID subblockers were probed against RCSB mmCIF reference
+mappings in
+`artifacts/v3_mcsa_pymol_structure_id_mapping_repair_probe_m_csa930_946_20260524.json`.
+Rows changed: two source-mapping blocker rows were split. `m_csa:946` now has
+a review-only repair candidate: `5XD7` maps UniProt `H2IFX0`, resolves all six
+requested residues to CA atoms, and gives a longest current CA pair
+`m_csa:946:residue:2` to `m_csa:946:residue:6` at 18.663 A. `m_csa:930`
+remains blocked because candidate `2PIA` maps UniProt `P33164`, not the
+requested `Q9ZFQ5` source residue. Exact next target: build a one-row derived
+review-only repair rerun for `m_csa:946` using `5XD7`; keep `m_csa:930`
+blocked until Q9ZFQ5-specific structure or explicit residue-position evidence
+exists. Confidence call: high that the trace/no-go artifacts preserve decision
+signal without changing labels; medium-high that `m_csa:946` is the next
+actionable exact-mapping repair row, pending a derived queue rerun.
+
 ### 2026-05-24T03:52Z Terminal Decisions: Remaining Nine M-CSA Holds
 
 The remaining nine blocked rows from the Vivek-reviewed M-CSA positive

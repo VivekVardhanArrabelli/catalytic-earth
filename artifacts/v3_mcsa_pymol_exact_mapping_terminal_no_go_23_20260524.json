@@ -1,0 +1,1314 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_pymol_exact_mapping_terminal_no_go_23_20260524",
+    "schema_version": "mcsa_pymol_exact_mapping_terminal_no_go.v1",
+    "created_at": "2026-05-24T04:51:22Z",
+    "method": "post_materialization_exact_mapping_blocker_terminal_current_evidence_packet",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json",
+      "artifacts/v3_mcsa_pymol_expert_review_queue_1025_all_materialized_20260522.json"
+    ],
+    "row_count": 23,
+    "blocker_class": "exact_ca_atom_pair_distance_mapping",
+    "structure_id_mapping_subblocker_count": 2,
+    "terminal_nine_rows_reopened_count": 0,
+    "next_structure_materialization_candidate_count": 0,
+    "pymol_ready_count_in_source": 298,
+    "rows_with_verified_focus_atoms_in_source": 298,
+    "canonical_label_count_invariant": 695,
+    "production_fingerprint_universe_count_invariant": 8,
+    "canonical_count_movement": "695 -> 695",
+    "countable_label_candidate_count": 0,
+    "import_gate_eligible_count": 0,
+    "dedicated_import_preview_run": false,
+    "canonical_registry_import_performed": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "production_scoring_changed": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "terminal_current_evidence_no_go": true
+  },
+  "decision": {
+    "previous_status": "The all-materialized PyMOL blocker report named 23 rows with missing exact CA atom-pair/distance fields, including 2 rows also missing structure_id.",
+    "new_status": "The 23-row exact-mapping tranche is terminal for current evidence: no broad structure materialization remains, no row is PyMOL-ready, no row is import-gate eligible, and every row needs mapping repair before review can continue.",
+    "rows_changed": 23,
+    "rows_still_blocked": 23,
+    "rows_imported": 0,
+    "exact_next_target": "repair source graph/PDB structure_id mapping for m_csa:946 and m_csa:930 first; then rerun exact focus CA atom-pair/distance extraction for the repaired mapping class",
+    "confidence_call": "High confidence from the committed blocker report: 298 rows have verified focus atoms, 23 rows lack exact focus-pair/distance evidence, next_structure_materialization_candidates is empty, and no registry or fingerprint gate can consume this tranche."
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:765",
+      "entry_name": "3-dehydro-L-gulonate 2-dehydrogenase",
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "rank": 109,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:765"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1S20",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:730",
+      "entry_name": "threonine synthase",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "rank": 133,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:730"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1KL7",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:893",
+      "entry_name": "medium-chain acyl-CoA dehydrogenase",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "rank": 202,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:893"
+      },
+      "structure_pdb_state": {
+        "structure_id": "3MDD",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:887",
+      "entry_name": "glutamate formimidoyltransferase",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 211,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:887"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1QD1",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:721",
+      "entry_name": "2-dehydropantoate 2-reductase",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "rank": 212,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:721"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1YON",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:950",
+      "entry_name": "DDT-dehydrochlorinase",
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "rank": 213,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:950"
+      },
+      "structure_pdb_state": {
+        "structure_id": "3MAK",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:909",
+      "entry_name": "6,7-dimethyl-8-ribityllumazine synthase",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 218,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:909"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1RVV",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:692",
+      "entry_name": "protein-L-isoaspartate(D-aspartate) O-methyltransferase",
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "rank": 219,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:692"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1DL5",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:945",
+      "entry_name": "nicotinate-nucleotide pyrophosphorylase (carboxylating) (type II)",
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "rank": 222,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:945"
+      },
+      "structure_pdb_state": {
+        "structure_id": "3C2E",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:769",
+      "entry_name": "NAD+---diphthamide ADP-ribosyltransferase",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 223,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:769"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1ZM2",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:946",
+      "entry_name": "3,6-anhydro-alpha-L-galactonate cycloisomerase",
+      "target_fingerprint_id": "radical_sam_enzyme",
+      "rank": 224,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "structure_id_plus_exact_ca_atom_pair_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance",
+        "missing_structure_id"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+        "geometry artifact has no PDB id; needs source graph/PDB mapping repair before PyMOL staging"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance",
+        "missing_structure_id"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:946"
+      },
+      "structure_pdb_state": {
+        "structure_id": null,
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "source graph/PDB mapping plus exact focus CA atom-pair and distance repair"
+    },
+    {
+      "entry_id": "m_csa:813",
+      "entry_name": "branched-chain-amino-acid transaminase",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "rank": 227,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:813"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1IYD",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:809",
+      "entry_name": "polyamine oxidase (propane-1,3-diamine-forming)",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "rank": 232,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:809"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1B5Q",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:677",
+      "entry_name": "pyridoxal 5'-phosphate synthase",
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "rank": 235,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:677"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1G79",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:773",
+      "entry_name": "NAD+---diphthamide ADP-ribosyltransferase",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 236,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:773"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1TOX",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:811",
+      "entry_name": "UDP-N-acetylglucosamine pyrophosphorylase",
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "rank": 237,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:811"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1HV9",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:930",
+      "entry_name": "phthalate dioxygenase system",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 240,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "structure_id_plus_exact_ca_atom_pair_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance",
+        "missing_structure_id"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness",
+        "geometry artifact has no PDB id; needs source graph/PDB mapping repair before PyMOL staging"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance",
+        "missing_structure_id"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:930"
+      },
+      "structure_pdb_state": {
+        "structure_id": null,
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "source graph/PDB mapping plus exact focus CA atom-pair and distance repair"
+    },
+    {
+      "entry_id": "m_csa:861",
+      "entry_name": "D-galactarolactone isomerase",
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "rank": 242,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:861"
+      },
+      "structure_pdb_state": {
+        "structure_id": "4MUP",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:772",
+      "entry_name": "phosphopantothenate-cysteine ligase",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 246,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:772"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1U7U",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:991",
+      "entry_name": "4-hydroxy-3-methylbut-2-en-1-yl diphosphate synthase (IspG)",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 255,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:991"
+      },
+      "structure_pdb_state": {
+        "structure_id": "4S38",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:749",
+      "entry_name": "cytochrome-c peroxidase (di-heme type)",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 261,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:749"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1NML",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:713",
+      "entry_name": "cystathionine beta-synthase",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "rank": 319,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:713"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1M54",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    },
+    {
+      "entry_id": "m_csa:567",
+      "entry_name": "glucose oxidase",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "rank": 321,
+      "decision": "terminal_current_evidence_no_go_for_pymol_readiness_and_import",
+      "previous_status": "blocked_after_all_materializable_pymol_structure_sidecars_were_drained",
+      "new_status": "still_blocked_terminal_current_mapping_evidence",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping",
+      "missing_fields": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "evidence_for": [
+        "row remains part of the post-materialization M-CSA review-debt blocker surface",
+        "all broad structure materialization candidates have already been drained for this queue"
+      ],
+      "evidence_against": [
+        "geometry artifact lacks a resolved CA atom pair/distance for the visual focus; needs residue/atom mapping repair before PyMOL readiness"
+      ],
+      "counterevidence": [
+        "missing_exact_ca_atom_pair",
+        "missing_exact_distance"
+      ],
+      "allowed_evidence": [
+        "source graph/PDB mapping repair that supplies a structure_id when missing",
+        "geometry-feature or review-queue repair that supplies the exact CA atom pair and measured distance",
+        "rerun PyMOL materialization/readiness after the repaired mapping exists",
+        "only after repaired review evidence exists, collect expert decision and run dedicated label-factory import gates for any accepted row set"
+      ],
+      "forbidden_or_review_only_evidence": [
+        "rerunning broad structure materialization when next_structure_materialization_candidates is empty",
+        "manual visual review without exact focus atom pair and distance context",
+        "label import from this blocker packet",
+        "using target fingerprint, entry name, EC, or mechanism text as a substitute for missing local geometry mapping"
+      ],
+      "reviewer_source": {
+        "source": "automation derived from post-materialization blocker report",
+        "human_reviewer": null,
+        "source_artifact": "artifacts/v3_mcsa_pymol_remaining_blocker_report_after_all_materialization_20260522.json#exact_atom_pair_mapping_blockers_sample.entry_id=m_csa:567"
+      },
+      "structure_pdb_state": {
+        "structure_id": "1GAL",
+        "exact_measured_distance_angstrom": null,
+        "pdb_state": "structure_id_present_but_exact_focus_pair_missing"
+      },
+      "tier_confidence": {
+        "tier": null,
+        "confidence": "high_for_blocker_class_from_committed_report",
+        "label_review_status": "not_reviewed_for_counting"
+      },
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "would_unblock_if": "exact focus CA atom-pair and distance repair in geometry/review-queue evidence"
+    }
+  ]
+}

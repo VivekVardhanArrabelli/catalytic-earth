@@ -1,0 +1,1780 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_pymol_structure_id_mapping_repair_probe_m_csa930_946_20260524",
+    "schema_version": "mcsa_pymol_structure_id_mapping_repair_probe.v1",
+    "created_at": "2026-05-24T04:55:41Z",
+    "method": "review_only_rcsb_mmcif_struct_ref_seq_mapping_probe_for_two_structure_id_blockers",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_pymol_exact_mapping_terminal_no_go_23_20260524.json",
+      "artifacts/v3_explicit_alternate_residue_position_requests_1000.json",
+      "artifacts/v1_graph_1025.json"
+    ],
+    "external_coordinate_sources": [
+      "https://files.rcsb.org/download/2PIA.cif",
+      "https://files.rcsb.org/download/5XD7.cif",
+      "https://files.rcsb.org/download/5XD8.cif",
+      "https://files.rcsb.org/download/5XD9.cif"
+    ],
+    "row_count": 2,
+    "mapping_repair_candidate_ready_count": 1,
+    "still_blocked_count": 1,
+    "canonical_label_count_invariant": 695,
+    "production_fingerprint_universe_count_invariant": 8,
+    "canonical_count_movement": "695 -> 695",
+    "countable_label_candidate_count": 0,
+    "import_gate_eligible_count": 0,
+    "dedicated_import_preview_run": false,
+    "canonical_registry_import_performed": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "production_scoring_changed": false,
+    "coordinate_sidecars_committed": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false,
+    "review_only": true
+  },
+  "decision": {
+    "previous_status": "m_csa:946 and m_csa:930 were the two structure_id subblockers inside the 23-row exact-mapping tranche.",
+    "new_status": "m_csa:946 has review-only exact residue-position and CA-distance repair candidates from RCSB 5XD7/5XD8/5XD9; m_csa:930 remains blocked because 2PIA maps UniProt P33164, not the requested Q9ZFQ5 residue source.",
+    "rows_changed": 2,
+    "rows_still_blocked": 1,
+    "rows_imported": 0,
+    "exact_next_target": "use m_csa:946 with 5XD7 as a one-row derived repair rerun; keep m_csa:930 blocked until Q9ZFQ5-specific structure/residue-position evidence is sourced"
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:930",
+      "entry_name": "phthalate dioxygenase system",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "decision": "still_blocked_terminal_current_source_mapping",
+      "new_status": "candidate_pdbs_do_not_map_requested_reference_uniprot_residues",
+      "blocker_class": "candidate_pdb_reference_uniprot_mismatch",
+      "candidate_pdb_results": [
+        {
+          "pdb_id": "2PIA",
+          "source_url": "https://files.rcsb.org/download/2PIA.cif",
+          "source_sha256": "00f9a77ce8b7a0ee4d3b2993366d435c927389c9961b98ef1f02e518415da4b4",
+          "source_size_bytes": 334797,
+          "observed_uniprot_accessions": [
+            "P33164"
+          ],
+          "reference_uniprot_id_requested": "Q9ZFQ5",
+          "all_requested_residues_mapped_to_ca": false,
+          "mapped_residue_count": 0,
+          "requested_residue_count": 1,
+          "mapped_residues": [
+            {
+              "residue_node_id": "m_csa:930:residue:1",
+              "sequence_position": 178,
+              "expected_code": "Asp",
+              "expected_residue_name": "ASP",
+              "roles": [
+                "unknown"
+              ],
+              "mapping_found": false,
+              "verified_mappings": []
+            }
+          ],
+          "pairwise_ca_distance_count": 0,
+          "longest_ca_pair": null,
+          "pairwise_ca_distances_angstrom": []
+        }
+      ],
+      "recommended_candidate_pdb_id": null,
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "canonical_registry_edit_authorized": false,
+      "would_unblock_if": "source a PDB/reference mapping for Q9ZFQ5 or explicit residue positions for the oxygenase-chain catalytic residue; do not use 2PIA/P33164 as a substitute for Q9ZFQ5"
+    },
+    {
+      "entry_id": "m_csa:946",
+      "entry_name": "3,6-anhydro-alpha-L-galactonate cycloisomerase",
+      "target_fingerprint_id": "radical_sam_enzyme",
+      "decision": "mapping_repair_candidate_ready_for_review_queue_rerun",
+      "new_status": "one_or_more_candidate_pdbs_supply_exact_structure_id_and_ca_atom_mapping",
+      "blocker_class": "exact_ca_atom_pair_distance_mapping_repair_candidate_found",
+      "candidate_pdb_results": [
+        {
+          "pdb_id": "5XD7",
+          "source_url": "https://files.rcsb.org/download/5XD7.cif",
+          "source_sha256": "bbb3365e1bbfa9ee90eeb7b4c09c8e222da7cacd445e6bf08557fdb7346a9fbc",
+          "source_size_bytes": 363584,
+          "observed_uniprot_accessions": [
+            "H2IFX0"
+          ],
+          "reference_uniprot_id_requested": "H2IFX0",
+          "all_requested_residues_mapped_to_ca": true,
+          "mapped_residue_count": 6,
+          "requested_residue_count": 6,
+          "mapped_residues": [
+            {
+              "residue_node_id": "m_csa:946:residue:1",
+              "sequence_position": 300,
+              "expected_code": "His",
+              "expected_residue_name": "HIS",
+              "roles": [
+                "proton shuttle (general acid/base)"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "300",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "HIS",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "HIS"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "HIS",
+                      "chain_id": "A",
+                      "auth_seq_id": "300",
+                      "label_seq_id": "300",
+                      "x": 31.811,
+                      "y": 8.315,
+                      "z": 7.645
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:2",
+              "sequence_position": 273,
+              "expected_code": "Asp",
+              "expected_residue_name": "ASP",
+              "roles": [
+                "modifies pKa"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "273",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "ASP",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "ASP"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "ASP",
+                      "chain_id": "A",
+                      "auth_seq_id": "273",
+                      "label_seq_id": "273",
+                      "x": 28.738,
+                      "y": 12.339,
+                      "z": 9.224
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:3",
+              "sequence_position": 198,
+              "expected_code": "Asp",
+              "expected_residue_name": "ASP",
+              "roles": [
+                "metal ligand"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "198",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "ASP",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "ASP"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "ASP",
+                      "chain_id": "A",
+                      "auth_seq_id": "198",
+                      "label_seq_id": "198",
+                      "x": 31.343,
+                      "y": 0.882,
+                      "z": -1.536
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:4",
+              "sequence_position": 224,
+              "expected_code": "Glu",
+              "expected_residue_name": "GLU",
+              "roles": [
+                "metal ligand"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "224",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "GLU",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "GLU"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "GLU",
+                      "chain_id": "A",
+                      "auth_seq_id": "224",
+                      "label_seq_id": "224",
+                      "x": 27.545,
+                      "y": 1.085,
+                      "z": 0.548
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:5",
+              "sequence_position": 250,
+              "expected_code": "Glu",
+              "expected_residue_name": "GLU",
+              "roles": [
+                "metal ligand"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "250",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "GLU",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "GLU"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "GLU",
+                      "chain_id": "A",
+                      "auth_seq_id": "250",
+                      "label_seq_id": "250",
+                      "x": 27.678,
+                      "y": 10.499,
+                      "z": 4.339
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:6",
+              "sequence_position": 169,
+              "expected_code": "Lys",
+              "expected_residue_name": "LYS",
+              "roles": [
+                "proton shuttle (general acid/base)"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "169",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "LYS",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "LYS"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "LYS",
+                      "chain_id": "A",
+                      "auth_seq_id": "169",
+                      "label_seq_id": "169",
+                      "x": 35.587,
+                      "y": 0.792,
+                      "z": -3.74
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "pairwise_ca_distance_count": 15,
+          "longest_ca_pair": {
+            "left_residue_node_id": "m_csa:946:residue:2",
+            "right_residue_node_id": "m_csa:946:residue:6",
+            "left_chain": "A",
+            "left_auth_seq_id": "273",
+            "right_chain": "A",
+            "right_auth_seq_id": "169",
+            "distance_angstrom": 18.663
+          },
+          "pairwise_ca_distances_angstrom": [
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 18.663
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:3",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "198",
+              "distance_angstrom": 15.932
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:5",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "250",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 14.901
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 14.26
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 14.159
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "198",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 11.851
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:3",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "198",
+              "distance_angstrom": 11.822
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 10.993
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:4",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "224",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 10.15
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:4",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "224",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 9.118
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 5.725
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 5.327
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:2",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "273",
+              "distance_angstrom": 5.304
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "198",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 4.783
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "A",
+              "left_auth_seq_id": "198",
+              "right_chain": "A",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 4.337
+            }
+          ]
+        },
+        {
+          "pdb_id": "5XD8",
+          "source_url": "https://files.rcsb.org/download/5XD8.cif",
+          "source_sha256": "de337e6656032f28ad0207c0b9590f9613a4f087cf2712b796412fff8b62672e",
+          "source_size_bytes": 612975,
+          "observed_uniprot_accessions": [
+            "H2IFX0"
+          ],
+          "reference_uniprot_id_requested": "H2IFX0",
+          "all_requested_residues_mapped_to_ca": true,
+          "mapped_residue_count": 6,
+          "requested_residue_count": 6,
+          "mapped_residues": [
+            {
+              "residue_node_id": "m_csa:946:residue:1",
+              "sequence_position": 300,
+              "expected_code": "His",
+              "expected_residue_name": "HIS",
+              "roles": [
+                "proton shuttle (general acid/base)"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "300",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "HIS",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "HIS"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "HIS",
+                      "chain_id": "A",
+                      "auth_seq_id": "300",
+                      "label_seq_id": "300",
+                      "x": -9.349,
+                      "y": 34.943,
+                      "z": -15.571
+                    }
+                  ]
+                },
+                {
+                  "chain_id": "B",
+                  "auth_seq_id": "300",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "HIS",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "HIS"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "HIS",
+                      "chain_id": "B",
+                      "auth_seq_id": "300",
+                      "label_seq_id": "300",
+                      "x": -26.792,
+                      "y": 12.783,
+                      "z": -39.119
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:2",
+              "sequence_position": 273,
+              "expected_code": "Asp",
+              "expected_residue_name": "ASP",
+              "roles": [
+                "modifies pKa"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "273",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "ASP",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "ASP"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "ASP",
+                      "chain_id": "A",
+                      "auth_seq_id": "273",
+                      "label_seq_id": "273",
+                      "x": -8.256,
+                      "y": 31.003,
+                      "z": -18.617
+                    }
+                  ]
+                },
+                {
+                  "chain_id": "B",
+                  "auth_seq_id": "273",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "ASP",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "ASP"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "ASP",
+                      "chain_id": "B",
+                      "auth_seq_id": "273",
+                      "label_seq_id": "273",
+                      "x": -28.037,
+                      "y": 15.966,
+                      "z": -35.056
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:3",
+              "sequence_position": 198,
+              "expected_code": "Asp",
+              "expected_residue_name": "ASP",
+              "roles": [
+                "metal ligand"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "198",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "ASP",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "ASP"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "ASP",
+                      "chain_id": "A",
+                      "auth_seq_id": "198",
+                      "label_seq_id": "198",
+                      "x": -18.155,
+                      "y": 42.648,
+                      "z": -15.591
+                    }
+                  ]
+                },
+                {
+                  "chain_id": "B",
+                  "auth_seq_id": "198",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "ASP",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "ASP"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "ASP",
+                      "chain_id": "B",
+                      "auth_seq_id": "198",
+                      "label_seq_id": "198",
+                      "x": -17.682,
+                      "y": 12.624,
+                      "z": -46.416
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:4",
+              "sequence_position": 224,
+              "expected_code": "Glu",
+              "expected_residue_name": "GLU",
+              "roles": [
+                "metal ligand"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "224",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "GLU",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "GLU"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "GLU",
+                      "chain_id": "A",
+                      "auth_seq_id": "224",
+                      "label_seq_id": "224",
+                      "x": -16.257,
+                      "y": 42.537,
+                      "z": -19.452
+                    }
+                  ]
+                },
+                {
+                  "chain_id": "B",
+                  "auth_seq_id": "224",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "GLU",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "GLU"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "GLU",
+                      "chain_id": "B",
+                      "auth_seq_id": "224",
+                      "label_seq_id": "224",
+                      "x": -19.659,
+                      "y": 16.573,
+                      "z": -46.252
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:5",
+              "sequence_position": 250,
+              "expected_code": "Glu",
+              "expected_residue_name": "GLU",
+              "roles": [
+                "metal ligand"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "250",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "GLU",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "GLU"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "GLU",
+                      "chain_id": "A",
+                      "auth_seq_id": "250",
+                      "label_seq_id": "250",
+                      "x": -13.352,
+                      "y": 33.429,
+                      "z": -19.502
+                    }
+                  ]
+                },
+                {
+                  "chain_id": "B",
+                  "auth_seq_id": "250",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "GLU",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "GLU"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "GLU",
+                      "chain_id": "B",
+                      "auth_seq_id": "250",
+                      "label_seq_id": "250",
+                      "x": -22.953,
+                      "y": 16.903,
+                      "z": -37.262
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:6",
+              "sequence_position": 169,
+              "expected_code": "Lys",
+              "expected_residue_name": "LYS",
+              "roles": [
+                "proton shuttle (general acid/base)"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "169",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "LYS",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "LYS"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "LYS",
+                      "chain_id": "A",
+                      "auth_seq_id": "169",
+                      "label_seq_id": "169",
+                      "x": -20.232,
+                      "y": 42.801,
+                      "z": -11.141
+                    }
+                  ]
+                },
+                {
+                  "chain_id": "B",
+                  "auth_seq_id": "169",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "LYS",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "LYS"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "LYS",
+                      "chain_id": "B",
+                      "auth_seq_id": "169",
+                      "label_seq_id": "169",
+                      "x": -15.933,
+                      "y": 8.075,
+                      "z": -46.536
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "pairwise_ca_distance_count": 60,
+          "longest_ca_pair": {
+            "left_residue_node_id": "m_csa:946:residue:3",
+            "right_residue_node_id": "m_csa:946:residue:6",
+            "left_chain": "B",
+            "left_auth_seq_id": "198",
+            "right_chain": "A",
+            "right_auth_seq_id": "169",
+            "distance_angstrom": 46.492
+          },
+          "pairwise_ca_distances_angstrom": [
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "B",
+              "left_auth_seq_id": "198",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 46.492
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "198",
+              "right_chain": "B",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 46.452
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:4",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "224",
+              "right_chain": "B",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 43.832
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:4",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "B",
+              "left_auth_seq_id": "224",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 43.829
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "B",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 41.556
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "B",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 41.522
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "B",
+              "left_auth_seq_id": "198",
+              "right_chain": "A",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 40.297
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "A",
+              "left_auth_seq_id": "198",
+              "right_chain": "B",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 40.277
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:3",
+              "left_chain": "B",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "198",
+              "distance_angstrom": 38.988
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:3",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "B",
+              "right_auth_seq_id": "198",
+              "distance_angstrom": 38.974
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "B",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 37.217
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "B",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 37.19
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:5",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "250",
+              "right_chain": "B",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 37.153
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "B",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 36.934
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:5",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "B",
+              "left_auth_seq_id": "250",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 36.884
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "B",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 36.783
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:3",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "B",
+              "right_auth_seq_id": "198",
+              "distance_angstrom": 34.633
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:3",
+              "left_chain": "B",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "198",
+              "distance_angstrom": 34.474
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "B",
+              "left_auth_seq_id": "198",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 34.292
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "198",
+              "right_chain": "B",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 33.992
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "B",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 33.196
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:2",
+              "left_chain": "B",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "273",
+              "distance_angstrom": 33.104
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:2",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "B",
+              "right_auth_seq_id": "273",
+              "distance_angstrom": 33.001
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "B",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 32.989
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:4",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "B",
+              "left_auth_seq_id": "224",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 32.241
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:4",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "224",
+              "right_chain": "B",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 31.924
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "B",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 31.492
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "B",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 31.321
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "B",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 27.614
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "B",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 27.612
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "B",
+              "left_auth_seq_id": "273",
+              "right_chain": "B",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 18.454
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 18.399
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:3",
+              "left_chain": "B",
+              "left_auth_seq_id": "273",
+              "right_chain": "B",
+              "right_auth_seq_id": "198",
+              "distance_angstrom": 15.73
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:3",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "198",
+              "distance_angstrom": 15.581
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:5",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "B",
+              "left_auth_seq_id": "250",
+              "right_chain": "B",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 14.602
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:5",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "250",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 14.32
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 14.136
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 14.062
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "B",
+              "left_auth_seq_id": "273",
+              "right_chain": "B",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 13.997
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "B",
+              "left_auth_seq_id": "300",
+              "right_chain": "B",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 13.968
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:3",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "198",
+              "distance_angstrom": 11.701
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:3",
+              "left_chain": "B",
+              "left_auth_seq_id": "300",
+              "right_chain": "B",
+              "right_auth_seq_id": "198",
+              "distance_angstrom": 11.673
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "B",
+              "left_auth_seq_id": "198",
+              "right_chain": "B",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 11.397
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "198",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 11.107
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 10.975
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "B",
+              "left_auth_seq_id": "300",
+              "right_chain": "B",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 10.776
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:4",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "B",
+              "left_auth_seq_id": "224",
+              "right_chain": "B",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 9.58
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:4",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "224",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 9.56
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:4",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "B",
+              "left_auth_seq_id": "224",
+              "right_chain": "B",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 9.283
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:4",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "224",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 9.216
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "B",
+              "left_auth_seq_id": "300",
+              "right_chain": "B",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 5.93
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 5.811
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 5.713
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "B",
+              "left_auth_seq_id": "273",
+              "right_chain": "B",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 5.621
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:2",
+              "left_chain": "B",
+              "left_auth_seq_id": "300",
+              "right_chain": "B",
+              "right_auth_seq_id": "273",
+              "distance_angstrom": 5.309
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:1",
+              "right_residue_node_id": "m_csa:946:residue:2",
+              "left_chain": "A",
+              "left_auth_seq_id": "300",
+              "right_chain": "A",
+              "right_auth_seq_id": "273",
+              "distance_angstrom": 5.099
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "198",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 4.913
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "B",
+              "left_auth_seq_id": "198",
+              "right_chain": "B",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 4.875
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "B",
+              "left_auth_seq_id": "198",
+              "right_chain": "B",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 4.419
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "A",
+              "left_auth_seq_id": "198",
+              "right_chain": "A",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 4.304
+            }
+          ]
+        },
+        {
+          "pdb_id": "5XD9",
+          "source_url": "https://files.rcsb.org/download/5XD9.cif",
+          "source_sha256": "71d4ff36dd7241d58755faf15b0e9cae79582c0c8aa5d441d15cdad38cd387f3",
+          "source_size_bytes": 351592,
+          "observed_uniprot_accessions": [
+            "H2IFX0"
+          ],
+          "reference_uniprot_id_requested": "H2IFX0",
+          "all_requested_residues_mapped_to_ca": false,
+          "mapped_residue_count": 5,
+          "requested_residue_count": 6,
+          "mapped_residues": [
+            {
+              "residue_node_id": "m_csa:946:residue:1",
+              "sequence_position": 300,
+              "expected_code": "His",
+              "expected_residue_name": "HIS",
+              "roles": [
+                "proton shuttle (general acid/base)"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "300",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "HIS",
+                  "ca_atom_found": false,
+                  "observed_ca_residue_names": [
+                    "ASN"
+                  ],
+                  "ca_atoms": []
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:2",
+              "sequence_position": 273,
+              "expected_code": "Asp",
+              "expected_residue_name": "ASP",
+              "roles": [
+                "modifies pKa"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "273",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "ASP",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "ASP"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "ASP",
+                      "chain_id": "A",
+                      "auth_seq_id": "273",
+                      "label_seq_id": "273",
+                      "x": 106.601,
+                      "y": 122.895,
+                      "z": 151.297
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:3",
+              "sequence_position": 198,
+              "expected_code": "Asp",
+              "expected_residue_name": "ASP",
+              "roles": [
+                "metal ligand"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "198",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "ASP",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "ASP"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "ASP",
+                      "chain_id": "A",
+                      "auth_seq_id": "198",
+                      "label_seq_id": "198",
+                      "x": 103.602,
+                      "y": 133.74,
+                      "z": 140.368
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:4",
+              "sequence_position": 224,
+              "expected_code": "Glu",
+              "expected_residue_name": "GLU",
+              "roles": [
+                "metal ligand"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "224",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "GLU",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "GLU"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "GLU",
+                      "chain_id": "A",
+                      "auth_seq_id": "224",
+                      "label_seq_id": "224",
+                      "x": 107.512,
+                      "y": 133.768,
+                      "z": 142.418
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:5",
+              "sequence_position": 250,
+              "expected_code": "Glu",
+              "expected_residue_name": "GLU",
+              "roles": [
+                "metal ligand"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "250",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "GLU",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "GLU"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "GLU",
+                      "chain_id": "A",
+                      "auth_seq_id": "250",
+                      "label_seq_id": "250",
+                      "x": 107.595,
+                      "y": 124.919,
+                      "z": 146.514
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "residue_node_id": "m_csa:946:residue:6",
+              "sequence_position": 169,
+              "expected_code": "Lys",
+              "expected_residue_name": "LYS",
+              "roles": [
+                "proton shuttle (general acid/base)"
+              ],
+              "mapping_found": true,
+              "verified_mappings": [
+                {
+                  "chain_id": "A",
+                  "auth_seq_id": "169",
+                  "mapping_basis": "struct_ref_seq_linear_uniprot_to_auth_seq",
+                  "db_align_beg": 1,
+                  "db_align_end": 362,
+                  "auth_seq_align_beg": 1,
+                  "auth_seq_align_end": 362,
+                  "expected_residue_name": "LYS",
+                  "ca_atom_found": true,
+                  "observed_ca_residue_names": [
+                    "LYS"
+                  ],
+                  "ca_atoms": [
+                    {
+                      "atom_name": "CA",
+                      "residue_name": "LYS",
+                      "chain_id": "A",
+                      "auth_seq_id": "169",
+                      "label_seq_id": "169",
+                      "x": 99.189,
+                      "y": 133.553,
+                      "z": 138.133
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "pairwise_ca_distance_count": 10,
+          "longest_ca_pair": {
+            "left_residue_node_id": "m_csa:946:residue:2",
+            "right_residue_node_id": "m_csa:946:residue:6",
+            "left_chain": "A",
+            "left_auth_seq_id": "273",
+            "right_chain": "A",
+            "right_auth_seq_id": "169",
+            "distance_angstrom": 18.488
+          },
+          "pairwise_ca_distances_angstrom": [
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 18.488
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:3",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "198",
+              "distance_angstrom": 15.686
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:5",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "250",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 14.678
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 14.067
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "198",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 11.469
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:4",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "224",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 9.751
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:4",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "224",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 9.364
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:2",
+              "right_residue_node_id": "m_csa:946:residue:5",
+              "left_chain": "A",
+              "left_auth_seq_id": "273",
+              "right_chain": "A",
+              "right_auth_seq_id": "250",
+              "distance_angstrom": 5.288
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:6",
+              "left_chain": "A",
+              "left_auth_seq_id": "198",
+              "right_chain": "A",
+              "right_auth_seq_id": "169",
+              "distance_angstrom": 4.95
+            },
+            {
+              "left_residue_node_id": "m_csa:946:residue:3",
+              "right_residue_node_id": "m_csa:946:residue:4",
+              "left_chain": "A",
+              "left_auth_seq_id": "198",
+              "right_chain": "A",
+              "right_auth_seq_id": "224",
+              "distance_angstrom": 4.415
+            }
+          ]
+        }
+      ],
+      "recommended_candidate_pdb_id": "5XD7",
+      "import_gate_eligible": false,
+      "countable_label_candidate": false,
+      "canonical_registry_edit_authorized": false,
+      "would_unblock_if": "materialize 5XD7 as the first repaired review-only structure candidate, inject the explicit residue-position mapping into a derived repair artifact, and rerun the PyMOL queue/exact-distance extraction for m_csa:946 only"
+    }
+  ]
+}

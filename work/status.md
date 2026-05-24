@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 301
-- Measured elapsed time: 9116.4 minutes (151.94 hours)
+- Entries: 302
+- Measured elapsed time: 9134.3 minutes (152.24 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2107.1 measured minutes (35.12 hours)
+- v3: 2124.9 measured minutes (35.41 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3282
-- Evidence references logged: 2689
+- Artifact references logged: 3289
+- Evidence references logged: 2701
 
 ## Recent Entries
-
-### 2026-05-22T21:32:20.016660+00:00 - v3
-
-- Task: External review-ready automation stop and family readiness index
-- Time mode: measured
-- Measured minutes: 12.517
-- Started: 2026-05-22T21:19:37Z
-- Ended: 2026-05-22T21:32:08Z
-- Artifacts: artifacts/v3_external_review_ready_automation_terminal_stop_packet_20260522.json, artifacts/v3_external_review_ready_automation_terminal_stop_packet_zero_import_gate_20260522.json, artifacts/v3_non_epk_family_readiness_index_post_external_stop_20260522.json, artifacts/v3_post_external_stop_review_only_zero_import_gate_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 885-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, ePK lane freshness check found current synthesis already includes 5UJ7 and no unsynthesized outputs, seven external mechanism-match rows consolidated as automation-terminal review-ready with human action as exact blocker, non-ePK family index covers 17 review-only families with 0 import-ready and 0 countable candidates, 887-test unit discovery passed, CLI validate passed, compileall passed, artifact migration dry-run passed removal_allowed=0, artifact admission guard passed, JSON artifacts parsed, git diff check passed, no registry or fingerprint diffs
-- Notes: No label import registry edit fingerprint edit threshold change artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T22:58:31.171771+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mcsa_positive_loose_cofactor_locality_policy_decision_3_20260524.json, artifacts/v3_mcsa_positive_apo_holo_terminal_no_go_m_csa836_996_20260524.json, artifacts/v3_mcsa_positive_amp_product_terminal_no_go_m_csa784_904_20260524.json, artifacts/v3_mcsa_positive_plp_threshold_terminal_no_go_m_csa777_20260524.json, artifacts/v3_mcsa_positive_schema_decision_m_csa737_coupled_plp_cobalamin_proposal_20260524.json, artifacts/v3_mcsa_positive_remaining_9_terminal_blocker_summary_20260524.json, tests/test_automation_small_win_artifacts.py, work/handoff.md
 - Evidence: startup 902-test unit discovery passed, startup CLI validate passed with 695 labels and 8 fingerprints, loose/inter-domain/cofactor-locality policy decided with 0 import-gate eligible rows, apo/holo m_csa:836 and m_csa:996 terminally still blocked by no local remapped holo evidence, AMP-product m_csa:784 and m_csa:904 terminally still blocked because review-only stress panel has 2 positives and no tested production rule, m_csa:777 terminally still blocked at 0.4107 below the 0.4115 floor without stronger PLP evidence, m_csa:737 routed to review-only coupled PLP-adenosylcobalamin family proposal with no production fingerprint edit, 908-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, git diff check passed
 - Notes: No label import, registry edit, fingerprint edit, production scoring change, threshold lowering, artifact upload/removal, externalization, Git-LFS migration, history rewrite, or removal_allowed=true occurred. Pre-existing untracked CIF files were left untouched.
+
+### 2026-05-24T04:58:59.872641+00:00 - v3
+
+- Task: M-CSA decision trace and exact mapping repair split
+- Time mode: measured
+- Measured minutes: 17.817
+- Started: 2026-05-24T04:40:55Z
+- Ended: 2026-05-24T04:58:44Z
+- Artifacts: artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json, artifacts/v3_mcsa_pymol_exact_mapping_terminal_no_go_23_20260524.json, artifacts/v3_mcsa_pymol_structure_id_mapping_repair_probe_m_csa930_946_20260524.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/progress_log.jsonl, work/status.md
+- Evidence: startup 908-test unit discovery passed, startup CLI validate passed with 695 labels and 8 fingerprints, post-clean9 22-row decision trace preserves 13 imported rows and 9 terminal blockers with 0 new import eligibility, 23-row PyMOL exact CA atom-pair distance mapping tranche made terminal current-evidence no-go, m_csa946 RCSB 5XD7 maps H2IFX0 all six requested residues and yields 18.663 A longest CA pair, m_csa930 2PIA maps P33164 not requested Q9ZFQ5 so remains blocked, 911-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, artifact admission guard passed in tmp, git diff check passed
+- Notes: No label import registry edit fingerprint edit production scoring change threshold change artifact upload removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred; pre-existing untracked CIF files left untouched.
 
 ## Expectation Updates
 
@@ -361,6 +361,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-23T19:56:43.019061+00:00: Do not return to broad external breadth until post-clean9 M-CSA hold decisions are either accepted through gates or explicitly deferred.
 - 2026-05-23T20:13:13.233624+00:00: Next M-CSA automation needs explicit post-preview accept decisions for held override or m_csa771 rows before more gated imports.
 - 2026-05-24T03:55:03.938943+00:00: Do not repeat the nine-row M-CSA blocker loop without new evidence, production-rule work, or an explicit schema/fingerprint task.
+- 2026-05-24T04:58:59.872641+00:00: Next run should build a one-row derived review-only repair rerun for m_csa:946 using 5XD7 and keep m_csa:930 blocked until Q9ZFQ5 evidence exists.
 
 ## Scope Adjustments
 
@@ -545,3 +546,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-23T19:56:43.019061+00:00: M-CSA clean9 is imported; next M-CSA work is explicit accept decisions for held override and m_csa771 previews before any more imports.
 - 2026-05-23T20:13:13.233624+00:00: No new M-CSA import work was opened because the requested tranche is already canonical and remaining rows are human-decision blocked.
 - 2026-05-24T03:55:03.938943+00:00: Closed the current-evidence loop for the nine remaining Vivek-reviewed M-CSA follow-up blockers without importing labels.
+- 2026-05-24T04:58:59.872641+00:00: Decision-trace signal is now reusable and the exact-mapping blocker class has a one-row actionable repair target without reopening the terminal nine holds.
