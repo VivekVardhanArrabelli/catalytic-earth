@@ -1,0 +1,167 @@
+{
+  "metadata": {
+    "artifact_id": "v3_expert_guidance_amp_nontransfer_and_coupled_plp_cobalamin_20260524",
+    "schema_version": "expert_guidance_note.v1",
+    "created_at": "2026-05-24T00:00:00-05:00",
+    "method": "human_relayed_external_expert_guidance",
+    "source": "vivek_relayed_expert_feedback",
+    "canonical_label_count_invariant": 695,
+    "canonical_registry_import_performed": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "production_scoring_changed": false,
+    "artifact_upload_or_removal_performed": false,
+    "removal_allowed_set_true": false
+  },
+  "amp_nontransfer_guidance": {
+    "recommended_reframe": "AMP-bound hydrolase/exonuclease/phosphatase cases should be treated as non-transfer states rather than strictly product states, because AMP can be substrate-state or product-state while still not being adenylyl-transfer evidence.",
+    "production_rule_status": "not_activated",
+    "scope_requirement": "Only consider AMP within the M-CSA-annotated catalytic pocket, using proximity to annotated catalytic residues, to avoid allosteric or regulatory AMP false positives.",
+    "product_or_nontransfer_positive_examples": [
+      {
+        "class": "5'-nucleotidase / CD73",
+        "ec": "3.1.3.5",
+        "example_m_csa_ids": [
+          "m_csa:611",
+          "m_csa:812"
+        ],
+        "note": "AMP may be substrate-state or product-state; either way it should suppress nucleotide-transfer counterevidence if catalytic-pocket context supports hydrolysis."
+      },
+      {
+        "class": "cAMP phosphodiesterases",
+        "ec": "3.1.4.x",
+        "note": "Hydrolytic cyclic nucleotide phosphodiester cleavage to AMP context."
+      },
+      {
+        "class": "3'-5' exonuclease / polymerase proofreading domains",
+        "ec": "3.1.11.x / 3.1.13.x",
+        "example_m_csa_ids": [
+          "m_csa:784",
+          "m_csa:836"
+        ],
+        "note": "Terminal phosphodiester hydrolysis to NMP/dNMP context."
+      },
+      {
+        "class": "BPNT / 3'(2'),5'-bisphosphate nucleotidase",
+        "ec": "3.1.3.7",
+        "example_m_csa_ids": [
+          "m_csa:904"
+        ],
+        "note": "pAp hydrolysis to AMP context."
+      },
+      {
+        "class": "exoribonuclease",
+        "ec": "3.1.13.x",
+        "note": "RNA exonucleolytic hydrolysis to NMP context."
+      }
+    ],
+    "transfer_state_controls": [
+      {
+        "class": "aminoacyl-tRNA synthetase",
+        "ec": "6.1.1.x",
+        "note": "aa-AMP intermediate; synthetic-site AMP is adenylyl-transfer evidence."
+      },
+      {
+        "class": "DNA/RNA ligase",
+        "ec": "6.5.1.x",
+        "note": "Autoadenylated ligase-AMP intermediate may lack PPi; check covalent AMP-Lys linkage."
+      },
+      {
+        "class": "ANL adenylating enzymes / acyl-CoA synthetases / NRPS A-domains",
+        "ec": "6.2.1.x",
+        "note": "Acyl-AMP intermediate attacked by CoA-SH or carrier-protein thiol."
+      },
+      {
+        "class": "NMN adenylyltransferase",
+        "ec": "2.7.7.1",
+        "note": "AMP transfer from ATP onto NMN; PPi leaving-group context."
+      },
+      {
+        "class": "asparagine synthetase B or related ATP-dependent amide ligases",
+        "ec": "6.3.5.x / 6.3.4.x",
+        "note": "Adenylated intermediate with later nucleophilic attack."
+      }
+    ],
+    "edge_cases_required_before_production": [
+      {
+        "class": "allosteric_or_regulatory_AMP",
+        "examples": [
+          "AMPK",
+          "glycogen phosphorylase b",
+          "fructose-1,6-bisphosphatase"
+        ],
+        "expected_route": "out_of_scope_for_rule_unless_AMP_is_in_M_CSA_annotated_catalytic_pocket"
+      },
+      {
+        "class": "ligase_autoadenylation_intermediate",
+        "expected_route": "transfer_state_subrule",
+        "required_feature": "covalent AMP-Lys linkage from AMP alpha phosphate to conserved Lys Nzeta"
+      },
+      {
+        "class": "adenylate_kinase",
+        "ec": "2.7.4.3",
+        "expected_route": "out_of_scope_for_amp_nontransfer_vs_adenylyl_transfer_rule",
+        "reason": "Phosphoryl transfer involving AMP substrate/product, not adenylyl transfer."
+      },
+      {
+        "class": "Nudix Ap4A hydrolase",
+        "ec": "3.6.1.41",
+        "expected_route": "ambiguous_or_explicit_nudix_subrule",
+        "required_feature": "Distinguish bidentate Ap4A product geometry with two adenines around dimetal center from in-line AMP plus leaving-group geometry."
+      },
+      {
+        "class": "aaRS editing domain",
+        "expected_route": "site_scoped_nontransfer_or_ambiguous",
+        "required_feature": "M-CSA per-residue site distinction between synthetic adenylation site and hydrolytic editing site."
+      }
+    ],
+    "candidate_rule_skeleton": {
+      "if_amp_present_and_in_annotated_catalytic_pocket": [
+        "If EC/fold supports 3.1.3.x, 3.1.4.x, 3.1.11.x, 3.1.13.x, or selected 3.6.1.x hydrolase context, and no transfer-state subrule fires, suppress nucleotide_transfer_ligand_context as non-transfer AMP context.",
+        "If EC/fold supports 2.7.7.x or 6.x adenylyl-transfer / adenylating context, retain nucleotide_transfer_ligand_context when PPi, in-line alpha-phosphate acceptor geometry, or covalent AMP-Lys autoadenylation evidence is present.",
+        "Route EC 2.7.4.x and non-catalytic regulatory AMP to out-of-scope or ambiguous rather than product/transfer classification."
+      ]
+    },
+    "rows_potentially_reopened_by_new_guidance": [
+      "m_csa:784",
+      "m_csa:904"
+    ],
+    "rows_not_reopened_without_new_evidence": [
+      "m_csa:611",
+      "m_csa:836"
+    ]
+  },
+  "coupled_plp_cobalamin_guidance": {
+    "recommended_schema": "coupled_multi_cofactor_motif",
+    "scientific_name_candidates": [
+      "B12-dependent aminomutases of the PLP class",
+      "Class III B12 enzymes",
+      "coupled PLP-adenosylcobalamin aminomutase radical rearrangement motif"
+    ],
+    "production_schema_status": "review_only_proposal",
+    "reasoning": "PLP forms the substrate Schiff base while adenosylcobalamin generates the 5'-deoxyadenosyl radical for H-atom abstraction. Both cofactors are mechanistically essential; collapsing to pure PLP or pure cobalamin loses mechanism-distinguishing spatial and electronic constraints.",
+    "canonical_members": [
+      {
+        "name": "beta-lysine 5,6-aminomutase",
+        "m_csa_id": "m_csa:737",
+        "ec": "5.4.3.3"
+      },
+      {
+        "name": "D-lysine 5,6-aminomutase",
+        "ec": "5.4.3.4"
+      },
+      {
+        "name": "D-ornithine 4,5-aminomutase",
+        "ec": "5.4.3.5"
+      }
+    ],
+    "minimal_evidence_required": [
+      "Both PLP or LLP and adenosylcobalamin/B12 with 5'-deoxyadenosyl moiety present or otherwise explicitly supported by M-CSA mechanism evidence.",
+      "PLP-anchoring catalytic lysine annotated, forming internal or substrate Schiff-base chemistry.",
+      "AdoCbl-positioning catalytic residue annotated near cobalt or Co-C bond homolysis context.",
+      "M-CSA mechanism summary explicitly invokes both PLP-substrate aldimine and adenosylcobalamin-derived radical on the same substrate.",
+      "EC prior in 5.4.3.x intramolecular aminomutases."
+    ],
+    "implication_for_m_csa_737": "Do not force m_csa:737 into pure cobalamin_radical_rearrangement or pure plp_dependent_enzyme. Keep review-only until a coupled multi-cofactor / multi-target schema exists."
+  }
+}

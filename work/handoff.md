@@ -50,6 +50,30 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-24T00:00Z Expert Guidance: AMP Non-Transfer And Coupled PLP-Cobalamin
+
+Vivek relayed external expert guidance that should be treated as new review
+signal, not as a production rule by itself:
+
+```text
+artifacts/v3_expert_guidance_amp_nontransfer_and_coupled_plp_cobalamin_20260524.json
+```
+
+For `m_csa:784` and `m_csa:904`, the AMP issue should be reframed from
+strict "product-state" to **non-transfer AMP context**: AMP can be hydrolytic
+substrate-state or product-state and still should suppress
+`nucleotide_transfer_ligand_context` when it is in the M-CSA-annotated
+catalytic pocket and no transfer-state subrule applies. Required edge cases
+before production activation: allosteric/regulatory AMP, ligase
+autoadenylated AMP-Lys states with no PPi, adenylate kinase as out-of-scope,
+Nudix Ap4A AMP+ATP product geometry, and aaRS editing-site AMP.
+
+For `m_csa:737`, the guidance supports a **coupled PLP-adenosylcobalamin
+aminomutase/radical motif** rather than pure PLP, pure cobalamin, or a generic
+family. This remains a review-only schema proposal until the label schema can
+represent coupled multi-cofactor motifs without collapsing the 3D mechanism
+signal.
+
 ### 2026-05-24T04:56Z Decision Trace And Exact-Mapping Repair Split
 
 Scientific target worked: preserve the post-clean9 M-CSA decision signal without
