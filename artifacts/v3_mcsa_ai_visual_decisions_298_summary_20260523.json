@@ -1,0 +1,91 @@
+{
+  "decision_batch": "/tmp/mcsa_ai_review_all/decisions_ai_assisted_visual_structured_298.json",
+  "decision_counts": {
+    "accepted": 22,
+    "needs_more_evidence": 23,
+    "rejected": 253
+  },
+  "review_item_count": 298,
+  "safety": {
+    "countable_import_ready_count": 0,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "human_approval_required_before_ingest": true,
+    "ready_for_label_import": false,
+    "review_only": true
+  },
+  "target_decision_counts": {
+    "cobalamin_radical_rearrangement": {
+      "accepted": 1,
+      "rejected": 1
+    },
+    "flavin_dehydrogenase_reductase": {
+      "accepted": 1,
+      "rejected": 17
+    },
+    "flavin_monooxygenase": {
+      "rejected": 9
+    },
+    "heme_peroxidase_oxidase": {
+      "needs_more_evidence": 1,
+      "rejected": 28
+    },
+    "metal_dependent_hydrolase": {
+      "accepted": 16,
+      "needs_more_evidence": 8,
+      "rejected": 179
+    },
+    "plp_dependent_enzyme": {
+      "accepted": 2,
+      "needs_more_evidence": 1,
+      "rejected": 5
+    },
+    "ser_his_acid_hydrolase": {
+      "accepted": 2,
+      "needs_more_evidence": 13,
+      "rejected": 14
+    }
+  },
+  "top_rejection_routes": {
+    "ASKHA sugar/acetate kinase ATP-phosphoryl-transfer family": 3,
+    "ATP-dependent phosphoryl-transfer/kinase family": 31,
+    "GHMP or related small-molecule kinase ATP-phosphoryl-transfer family": 2,
+    "PLP-dependent enzyme family": 2,
+    "PfkB/ribokinase ATP-phosphoryl-transfer family": 3,
+    "cysteine protease Cys-His-Asp hydrolase family": 10,
+    "ePK/ePK-like ATP-phosphoryl-transfer family": 4,
+    "future unrepresented mechanism family": 80,
+    "glycoside hydrolase family": 18,
+    "heme/peroxide chemistry family": 3,
+    "isomerase/mutase family": 12,
+    "lyase/dehydratase or Schiff-base lyase family": 19,
+    "oxidoreductase/redox family": 34,
+    "transferase/thioester-transfer family": 32
+  },
+  "visual_inputs": {
+    "contact_sheets": [
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_01.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_02.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_03.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_04.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_05.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_06.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_07.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_08.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_09.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_10.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_11.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_12.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_13.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_14.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_15.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_16.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_17.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_18.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_19.jpg",
+      "/tmp/mcsa_ai_review_all/contact_sheets_pseudo/sheet_20.jpg"
+    ],
+    "render_dir": "/tmp/mcsa_ai_review_all/renders_pseudo",
+    "render_log": "/tmp/mcsa_ai_review_all/render_log_pseudo.json"
+  }
+}

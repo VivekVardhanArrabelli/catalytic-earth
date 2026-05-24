@@ -50,15 +50,29 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-### 2026-05-24T00:10Z Human Direction: Triage Remaining Review Holds Before Manual Review
+### 2026-05-24T00:10Z Human Direction: Exact 66 Review-Hold Triage Before Manual Review
 
 Vivek approved moving the remaining review/on-hold rows into an audited
-batching workflow rather than reviewing every row manually. The user referred
-to this as the "remaining 66"; no literal 66-row artifact name is currently
-known. Next agent must first identify the exact intended row set from current
-review-debt artifacts and report if the count differs.
+batching workflow rather than reviewing every row manually. The exact intended
+row set is now pinned: the 66 `needs_more_evidence` rows in the reaudited
+298-row AI-assisted visual review artifact. Do not rediscover this from broad
+review debt and do not substitute the 1025 review-debt universe as the target.
 
-Primary source candidates:
+Pinned source artifacts:
+
+```text
+artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json
+artifacts/v3_mcsa_ai_visual_decisions_298_summary_20260523.json
+artifacts/v3_mcsa_ai_visual_remaining_66_source_manifest_20260524.json
+```
+
+The source manifest records 298 total rows: 22 accepted/positive rows, 210
+reaudited safe bulk rejects, and exactly 66 rows with
+`decision == "needs_more_evidence"`. The next agent must target only those 66
+IDs. The 22 accepted rows and 210 rejected rows may be used only as reference
+context; they are not part of the next triage target.
+
+Broad review-debt artifacts may be used only for enrichment/cross-reference:
 
 ```text
 artifacts/v3_review_debt_summary_1025_preview.json
@@ -70,11 +84,14 @@ artifacts/v3_expert_guidance_amp_nontransfer_and_coupled_plp_cobalamin_20260524.
 ```
 
 Do **not** manually review all rows and do **not** import labels in this triage
-step. Build a compact triage matrix with one row per candidate and these
-fields: `entry_id`, source artifact, current status, blocker bucket, confidence,
-evidence_for, evidence_against, forbidden/review-only evidence, required human
-or expert action, expected import potential, sample-review priority, and
-`would_unblock_if`.
+step. Build a compact triage matrix at
+`artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json` with one
+row per pinned `needs_more_evidence` candidate and these fields: `entry_id`,
+`entry_name`, `structure_id`, `target_fingerprint_id`, `current_decision`,
+source artifact, blocker bucket, confidence, evidence_for, evidence_against,
+counterevidence, visual evidence, forbidden/review-only evidence, required
+human or expert action, expected import potential, sample-review priority,
+`would_unblock_if`, and `preserve_for_learning=true`.
 
 Required buckets:
 
@@ -87,6 +104,8 @@ amp_or_nucleotide_nontransfer_context
 coupled_or_missing_schema_family
 wrong_fingerprint_or_future_ontology_family
 true_reject
+needs_manual_visual_review
+needs_expert_biochemistry_review
 already_terminal_no_go
 already_imported_or_resolved
 ```
