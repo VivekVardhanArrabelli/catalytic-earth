@@ -13441,6 +13441,50 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertFalse(row["eligible_for_actual_label_import"])
             self.assertFalse(row["actual_label_imported_to_canonical_registry"])
 
+    def test_mcsa_positive_holo_override_accept_decision_is_gate_input_only(
+        self,
+    ) -> None:
+        decision = _load_json(
+            ARTIFACTS / "v3_mcsa_positive_holo_override_accept_decision_3_20260523.json"
+        )
+
+        metadata = decision["metadata"]
+        rows = {row["entry_id"]: row for row in decision["rows"]}
+        review_items = {item["entry_id"]: item for item in decision["review_items"]}
+        expected_ids = ["m_csa:577", "m_csa:641", "m_csa:897"]
+
+        self.assertEqual(metadata["exact_entry_ids"], expected_ids)
+        self.assertEqual(metadata["baseline_canonical_countable_label_count"], 691)
+        self.assertEqual(metadata["expected_preview_countable_label_count_if_gates_pass"], 694)
+        self.assertEqual(metadata["decision_counts"], {"accept_label": 3})
+        self.assertTrue(metadata["ready_for_dedicated_import_gate"])
+        self.assertTrue(metadata["not_new_human_expert_review"])
+        self.assertFalse(metadata["post_preview_human_confirmation_required_before_dedicated_gate"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+
+        self.assertEqual(set(rows), set(expected_ids))
+        self.assertEqual(set(review_items), set(expected_ids))
+        self.assertEqual(rows["m_csa:577"]["override_pdb_id"], "1AWB")
+        self.assertEqual(rows["m_csa:641"]["override_pdb_id"], "1J7N")
+        self.assertEqual(rows["m_csa:897"]["override_pdb_id"], "1H56")
+        for entry_id in expected_ids:
+            row = rows[entry_id]
+            item = review_items[entry_id]
+            item_decision = item["decision"]
+            self.assertTrue(row["eligible_for_dedicated_import_gate"])
+            self.assertEqual(row["post_preview_accept_decision"], "accept_label")
+            self.assertTrue(row["not_new_human_expert_review"])
+            self.assertEqual(item_decision["action"], "accept_label")
+            self.assertEqual(item_decision["review_status"], "automation_curated")
+            self.assertEqual(
+                item_decision["reviewer"],
+                "automation_post_preview_synthesis_from_prior_vivek_review",
+            )
+            self.assertEqual(item_decision["fingerprint_id"], "metal_dependent_hydrolase")
+            self.assertEqual(item_decision["label_type"], "seed_fingerprint")
+            self.assertIn("holo_override_resolves", item_decision["local_evidence_resolution"])
+
     def test_mcsa771_2d0d_review_resolves_ser103_without_import(self) -> None:
         review = _load_json(
             ARTIFACTS
@@ -13477,6 +13521,50 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(plan["metadata"]["near_miss_count"], 0)
         self.assertEqual(plan["metadata"]["out_of_scope_false_non_abstentions"], 0)
         self.assertEqual(plan["metadata"]["actionable_in_scope_failure_count"], 0)
+
+    def test_mcsa771_2d0d_vivek_accept_decision_is_gate_input_only(self) -> None:
+        decision = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_positive_m_csa771_2d0d_vivek_accept_decision_20260523.json"
+        )
+
+        metadata = decision["metadata"]
+        item = decision["review_items"][0]
+        review_decision = item["decision"]
+        context = item["queue_context"]
+
+        self.assertEqual(metadata["entry_id"], "m_csa:771")
+        self.assertEqual(metadata["reviewer"], "vivek")
+        self.assertEqual(metadata["decision_counts"], {"accept_label": 1})
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertTrue(metadata["dedicated_gates_required_before_import"])
+        self.assertTrue(decision["decision"]["do_not_import_without_dedicated_gates"])
+
+        self.assertEqual(item["entry_id"], "m_csa:771")
+        self.assertEqual(review_decision["action"], "accept_label")
+        self.assertEqual(review_decision["reviewer"], "vivek")
+        self.assertEqual(review_decision["review_status"], "expert_reviewed")
+        self.assertEqual(review_decision["fingerprint_id"], "ser_his_acid_hydrolase")
+        self.assertEqual(review_decision["label_type"], "seed_fingerprint")
+        self.assertEqual(review_decision["tier"], "silver")
+        self.assertEqual(context["alternate_pdb_id"], "2D0D")
+        self.assertEqual(context["top1_score"], 0.8933)
+        self.assertEqual(context["top1_counterevidence_reasons"], [])
+        self.assertEqual(
+            context["pyMOL_distance_observations"][
+                "Ser103_OG_to_His252_NE2_angstrom"
+            ],
+            "~2.6-3.1",
+        )
+        self.assertEqual(
+            context["pyMOL_distance_observations"][
+                "His252_ND1_to_Asp224_OD_angstrom"
+            ],
+            "~3.2",
+        )
 
     def test_nucleotide_product_counterevidence_probe_is_general_review_only(
         self,

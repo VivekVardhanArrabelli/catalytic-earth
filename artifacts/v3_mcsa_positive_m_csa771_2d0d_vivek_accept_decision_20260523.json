@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_m_csa771_2d0d_vivek_accept_decision_20260523",
+    "artifact_upload_or_removal_performed": false,
+    "canonical_registry_import_performed": false,
+    "countable_label_candidate_count": 0,
+    "created_at": "2026-05-24T02:46:00Z",
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "accept_label": 1
+    },
+    "dedicated_gates_required_before_import": true,
+    "entry_id": "m_csa:771",
+    "fingerprint_registry_edited": false,
+    "method": "mcsa_positive_m_csa771_2d0d_explicit_accept_decision",
+    "ready_for_label_import": false,
+    "ready_for_label_import_reason": "explicit accept-decision input only; dedicated countable import preview, label-factory gate, batch acceptance, tests, and validate must pass before canonical import",
+    "removal_allowed_set_true": false,
+    "reviewer": "vivek",
+    "schema_version": "mcsa_positive_m_csa771_2d0d_explicit_accept_decision.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_residue_mapping_resolution_m_csa_771_20260523.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_selected_pdb_review_plan_1025.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_noncanonical_review_20260523.json",
+      "artifacts/v3_mcsa_positive_m_csa771_2d0d_gate_preview_plan_20260523.json"
+    ],
+    "visual_review_source": "Vivek PyMOL review on 2026-05-23/2026-05-24 of temporary 2D0D review pack"
+  },
+  "decision": {
+    "accepted_entry_ids": [
+      "m_csa:771"
+    ],
+    "do_not_import_without_dedicated_gates": true,
+    "label_import_authorized_now": false,
+    "next_required_step": "run dedicated m_csa:771 countable import preview, full label-factory gate stack, batch acceptance, tests, and CLI validate before any canonical registry edit"
+  },
+  "review_items": [
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.85,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "seed_fingerprint",
+        "ontology_version_at_decision": "label_factory_v1_8fp",
+        "rationale": "2D0D resolves the selected-PDB catalytic Ser103 mapping blocker for 2-hydroxymuconate-semialdehyde hydrolase. PyMOL visual review confirms a coherent Ser-His-Asp hydrolase triad: catalytic Ser103 is present and maps to the M-CSA nucleophile, His252 and Asp224 form the acid/base pair, Ser OG to His NE2 is approximately 2.6-3.1 A, and His ND1 to Asp OD is approximately 3.2 A. Accept as ser_his_acid_hydrolase pending dedicated label-factory gates.",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:771",
+      "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "alternate_pdb_id": "2D0D",
+        "counterevidence_reasons": [],
+        "current_selected_pdb_id": "1UK7",
+        "decision_source": "explicit_vivek_pymol_review",
+        "entry_id": "m_csa:771",
+        "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+        "label_state": "unlabeled",
+        "mechanical_gate_status_before_decision": "blocked_only_on_explicit_noncanonical_alternate_accept_decision_and_dedicated_gates",
+        "noncanonical_alternate_structure_review": true,
+        "pyMOL_distance_observations": {
+          "His252_ND1_to_Asp224_OD_angstrom": "~3.2",
+          "Ser103_OG_to_His252_NE2_angstrom": "~2.6-3.1"
+        },
+        "target_fingerprint_preview": "ser_his_acid_hydrolase",
+        "top1_counterevidence_reasons": [],
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_score": 0.8933,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.3586
+      },
+      "rank": 294
+    }
+  ]
+}

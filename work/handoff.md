@@ -50,6 +50,45 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-24T02:50Z Agent Output: Holo Overrides Ready For Dedicated Gates
+
+The prior automation left a post-preview accept-decision artifact for the three
+holo override rows:
+
+```text
+artifacts/v3_mcsa_positive_holo_override_accept_decision_3_20260523.json
+```
+
+It is explicitly automation-assisted, not new human expert review. It uses the
+prior Vivek hold decisions plus the derived holo evidence from the selected-PDB
+override preview. The accepted gate-input rows are `m_csa:577 -> 1AWB`,
+`m_csa:641 -> 1J7N`, and `m_csa:897 -> 1H56`; all remain non-imported until a
+dedicated countable import preview, full label-factory gate, batch acceptance,
+tests, and CLI validate pass. If gates pass, the only allowed canonical movement
+from this artifact is `691 -> 694` with exactly those three entries added.
+
+### 2026-05-24T02:46Z Human Decision: m_csa:771 Accepted For Dedicated Gates
+
+Vivek completed the PyMOL check for `m_csa:771` with alternate structure
+`2D0D`. The explicit decision artifact is:
+
+```text
+artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_accept_decision_20260523.json
+```
+
+The decision is `accept_label` as `ser_his_acid_hydrolase`, reviewer `vivek`.
+The evidence is that `2D0D` resolves the selected-PDB Ser103 mutation blocker,
+shows catalytic Ser103 mapped to the M-CSA nucleophile, and PyMOL review places
+Ser103/His252/Asp224 in a coherent Ser-His-Asp triad: Ser103 OG to His252 NE2
+is approximately 2.6-3.1 A and His252 ND1 to Asp224 OD is approximately 3.2 A.
+This artifact is a gate input only: it does not import the label, edit the
+canonical registry, or authorize import without a dedicated countable import
+preview, full label-factory gates, batch acceptance, tests, and CLI validate.
+
+Next automation should consume this decision and run the dedicated `m_csa:771`
+gate/import-preview path. If gates pass, the only allowed canonical movement
+from this row is `691 -> 692` with exactly `m_csa:771` added.
+
 ### 2026-05-23T20:09Z Verification: Requested M-CSA Tranche Already Landed
 
 The 2026-05-23T20:09:07Z automation start found `origin/main` already at the

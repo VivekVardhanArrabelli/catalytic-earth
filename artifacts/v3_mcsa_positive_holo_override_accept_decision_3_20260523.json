@@ -1,0 +1,372 @@
+{
+  "decision": {
+    "accept_decisions_recorded": true,
+    "do_not_mix_with_clean9_or_m_csa771_or_caveat_rows": true,
+    "human_confirmation_required_before_dedicated_gate": false,
+    "label_import_authorized_by_this_artifact_alone": false,
+    "requires_dedicated_import_preview_and_full_label_factory_gate_stack": true
+  },
+  "metadata": {
+    "artifact_id": "v3_mcsa_positive_holo_override_accept_decision_3_20260523",
+    "artifact_upload_or_removal_performed": false,
+    "baseline_canonical_countable_label_count": 691,
+    "created_at": "2026-05-24T02:50:40Z",
+    "curated_label_registry_edited": false,
+    "decision_counts": {
+      "accept_label": 3
+    },
+    "decision_source_classification": "automation_assisted_post_preview_accepts_based_on_prior_vivek_hold_conditions_and_derived_holo_evidence",
+    "exact_entry_ids": [
+      "m_csa:577",
+      "m_csa:641",
+      "m_csa:897"
+    ],
+    "expected_preview_countable_label_count_if_gates_pass": 694,
+    "fingerprint_registry_edited": false,
+    "method": "mcsa_positive_holo_override_post_preview_accept_decision",
+    "not_new_human_expert_review": true,
+    "post_preview_human_confirmation_required_before_dedicated_gate": false,
+    "prior_human_review_source": "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+    "prior_human_validation_source": "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523_validation.json",
+    "ready_for_dedicated_import_gate": true,
+    "removal_allowed_set_true": false,
+    "review_only_source_artifacts_mutated": false,
+    "schema_version": "mcsa_positive_holo_override_accept_decision.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json",
+      "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523_validation.json",
+      "artifacts/v3_mcsa_positive_hold_apo_holo_override_plan_5_20260523.json",
+      "artifacts/v3_mcsa_positive_holo_override_import_preview_20260523.json",
+      "artifacts/v3_mcsa_positive_holo_override_20260523_selected_pdb_plan_1025.json",
+      "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_features_1025.json",
+      "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_retrieval_1025.json",
+      "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_label_eval_post_clean9_691_1025.json",
+      "artifacts/v3_mcsa_positive_holo_override_20260523_hard_negative_controls_post_clean9_691_1025.json",
+      "artifacts/v3_mcsa_positive_holo_override_20260523_in_scope_failure_analysis_post_clean9_691_1025.json"
+    ]
+  },
+  "review_items": [
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "decision_source_classification": "automation_assisted_post_preview_accept_based_on_prior_vivek_hold_condition",
+        "evidence_score": 0.5962,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "holo_override_resolves_prior_selected_structure_cofactor_blocker",
+        "ontology_version_at_decision": "label_factory_v1_8fp",
+        "post_preview_human_confirmation_required_before_gate": false,
+        "prior_human_review_action": "mark_needs_more_evidence",
+        "prior_human_review_timestamp_utc": "2026-05-23T16:49:51Z",
+        "prior_human_reviewer": "vivek",
+        "rationale": "Automation-assisted post-preview accept for m_csa:577: Vivek's 2026-05-23 review classified the chemistry as metal_dependent_hydrolase but held the row because selected PDB 1IMA lacked usable biological local metal evidence. The dedicated holo override preview applies 1AWB, resolves 6 catalytic residue positions with local ligand/cofactor evidence ['IPD', 'CA'], scores top1 metal_dependent_hydrolase at 0.5962, and reports no top1 counterevidence, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0 actionable in-scope failures. This is not a new human post-override decision; it is an automation-assisted acceptance of the exact hold condition using the prior Vivek review plus derived holo evidence.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_post_preview_synthesis_from_prior_vivek_review",
+        "selected_pdb_override": {
+          "from_pdb_id": "1IMA",
+          "local_cofactor_families": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "IPD",
+            "CA"
+          ],
+          "missing_positions": 0,
+          "replacement_basis": "existing_700_override_plan_plus_20260523_rescan",
+          "resolved_residue_count": 6,
+          "to_pdb_id": "1AWB"
+        },
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "post_override_preview_context": {
+        "cofactor_evidence_level": "ligand_supported",
+        "evidence_pointers": {
+          "geometry_feature_row": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_features_1025.json#entries.entry_id=m_csa:577",
+          "override_plan_row": "artifacts/v3_mcsa_positive_holo_override_20260523_selected_pdb_plan_1025.json#rows.entry_id=m_csa:577",
+          "post_clean9_eval": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_label_eval_post_clean9_691_1025.json",
+          "post_clean9_hard_negatives": "artifacts/v3_mcsa_positive_holo_override_20260523_hard_negative_controls_post_clean9_691_1025.json",
+          "post_clean9_in_scope_failures": "artifacts/v3_mcsa_positive_holo_override_20260523_in_scope_failure_analysis_post_clean9_691_1025.json",
+          "retrieval_row": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_retrieval_1025.json#results.entry_id=m_csa:577"
+        },
+        "geometry_factory_preview_passed": true,
+        "local_cofactor_families": [
+          "metal_ion"
+        ],
+        "local_ligand_codes": [
+          "IPD",
+          "CA"
+        ],
+        "missing_positions": 0,
+        "override_pdb_id": "1AWB",
+        "resolved_residue_count": 6,
+        "target_fingerprint": "metal_dependent_hydrolase",
+        "top1_counterevidence_reasons": [],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5962
+      },
+      "prior_vivek_review_decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.4288,
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "requires_alternate_structure_mapping",
+        "rationale": "Hold: chemistry is metal-dependent hydrolase, but selected 1IMA has Gd inhibitor context rather than biological Mg; needs holo alternate scan/override before countable import.",
+        "resolution_bucket": "hold_for_holo_alternate",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "ligand_supported",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:577",
+        "entry_name": "inositol-phosphate phosphatase",
+        "label_state": "unlabeled",
+        "rank": 1,
+        "readiness_blockers": [],
+        "recommended_action": "post_override_accept_after_prior_vivek_hold_condition_resolved",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.5962
+      },
+      "rank": 1
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "decision_source_classification": "automation_assisted_post_preview_accept_based_on_prior_vivek_hold_condition",
+        "evidence_score": 0.594,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "holo_override_resolves_prior_selected_structure_cofactor_blocker",
+        "ontology_version_at_decision": "label_factory_v1_8fp",
+        "post_preview_human_confirmation_required_before_gate": false,
+        "prior_human_review_action": "mark_needs_more_evidence",
+        "prior_human_review_timestamp_utc": "2026-05-23T16:49:51Z",
+        "prior_human_reviewer": "vivek",
+        "rationale": "Automation-assisted post-preview accept for m_csa:641: Vivek's 2026-05-23 review classified the chemistry as metal_dependent_hydrolase but held the row because selected PDB 1PWV lacked usable biological local metal evidence. The dedicated holo override preview applies 1J7N, resolves 5 catalytic residue positions with local ligand/cofactor evidence ['ZN'], scores top1 metal_dependent_hydrolase at 0.5940, and reports no top1 counterevidence, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0 actionable in-scope failures. This is not a new human post-override decision; it is an automation-assisted acceptance of the exact hold condition using the prior Vivek review plus derived holo evidence.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_post_preview_synthesis_from_prior_vivek_review",
+        "selected_pdb_override": {
+          "from_pdb_id": "1PWV",
+          "local_cofactor_families": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "ZN"
+          ],
+          "missing_positions": 0,
+          "replacement_basis": "existing_700_override_plan_plus_20260523_rescan",
+          "resolved_residue_count": 5,
+          "to_pdb_id": "1J7N"
+        },
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "post_override_preview_context": {
+        "cofactor_evidence_level": "ligand_supported",
+        "evidence_pointers": {
+          "geometry_feature_row": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_features_1025.json#entries.entry_id=m_csa:641",
+          "override_plan_row": "artifacts/v3_mcsa_positive_holo_override_20260523_selected_pdb_plan_1025.json#rows.entry_id=m_csa:641",
+          "post_clean9_eval": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_label_eval_post_clean9_691_1025.json",
+          "post_clean9_hard_negatives": "artifacts/v3_mcsa_positive_holo_override_20260523_hard_negative_controls_post_clean9_691_1025.json",
+          "post_clean9_in_scope_failures": "artifacts/v3_mcsa_positive_holo_override_20260523_in_scope_failure_analysis_post_clean9_691_1025.json",
+          "retrieval_row": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_retrieval_1025.json#results.entry_id=m_csa:641"
+        },
+        "geometry_factory_preview_passed": true,
+        "local_cofactor_families": [
+          "metal_ion"
+        ],
+        "local_ligand_codes": [
+          "ZN"
+        ],
+        "missing_positions": 0,
+        "override_pdb_id": "1J7N",
+        "resolved_residue_count": 5,
+        "target_fingerprint": "metal_dependent_hydrolase",
+        "top1_counterevidence_reasons": [],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.594
+      },
+      "prior_vivek_review_decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.4261,
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "requires_alternate_structure_mapping",
+        "rationale": "Hold: chemistry is metal-dependent hydrolase, but selected 1PWV has no biological metal; needs holo alternate scan/override before countable import.",
+        "resolution_bucket": "hold_for_holo_alternate",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "ligand_supported",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:641",
+        "entry_name": "anthrax lethal factor endopeptidase",
+        "label_state": "unlabeled",
+        "rank": 2,
+        "readiness_blockers": [],
+        "recommended_action": "post_override_accept_after_prior_vivek_hold_condition_resolved",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.594
+      },
+      "rank": 2
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "decision_source_classification": "automation_assisted_post_preview_accept_based_on_prior_vivek_hold_condition",
+        "evidence_score": 0.59,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "local_evidence_resolution": "holo_override_resolves_prior_selected_structure_cofactor_blocker",
+        "ontology_version_at_decision": "label_factory_v1_8fp",
+        "post_preview_human_confirmation_required_before_gate": false,
+        "prior_human_review_action": "mark_needs_more_evidence",
+        "prior_human_review_timestamp_utc": "2026-05-23T16:49:51Z",
+        "prior_human_reviewer": "vivek",
+        "rationale": "Automation-assisted post-preview accept for m_csa:897: Vivek's 2026-05-23 review classified the chemistry as metal_dependent_hydrolase but held the row because selected PDB 1PVI lacked usable biological local metal evidence. The dedicated holo override preview applies 1H56, resolves 3 catalytic residue positions with local ligand/cofactor evidence ['MG'], scores top1 metal_dependent_hydrolase at 0.5900, and reports no top1 counterevidence, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0 actionable in-scope failures. This is not a new human post-override decision; it is an automation-assisted acceptance of the exact hold condition using the prior Vivek review plus derived holo evidence.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_post_preview_synthesis_from_prior_vivek_review",
+        "selected_pdb_override": {
+          "from_pdb_id": "1PVI",
+          "local_cofactor_families": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "MG"
+          ],
+          "missing_positions": 0,
+          "replacement_basis": "20260523_bounded_scan_prefer_mg_local_holo_candidate",
+          "resolved_residue_count": 3,
+          "to_pdb_id": "1H56"
+        },
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:897",
+      "entry_name": "type II site-specific deoxyribonuclease PvuII",
+      "post_override_preview_context": {
+        "cofactor_evidence_level": "ligand_supported",
+        "evidence_pointers": {
+          "geometry_feature_row": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_features_1025.json#entries.entry_id=m_csa:897",
+          "override_plan_row": "artifacts/v3_mcsa_positive_holo_override_20260523_selected_pdb_plan_1025.json#rows.entry_id=m_csa:897",
+          "post_clean9_eval": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_label_eval_post_clean9_691_1025.json",
+          "post_clean9_hard_negatives": "artifacts/v3_mcsa_positive_holo_override_20260523_hard_negative_controls_post_clean9_691_1025.json",
+          "post_clean9_in_scope_failures": "artifacts/v3_mcsa_positive_holo_override_20260523_in_scope_failure_analysis_post_clean9_691_1025.json",
+          "retrieval_row": "artifacts/v3_mcsa_positive_holo_override_20260523_geometry_retrieval_1025.json#results.entry_id=m_csa:897"
+        },
+        "geometry_factory_preview_passed": true,
+        "local_cofactor_families": [
+          "metal_ion"
+        ],
+        "local_ligand_codes": [
+          "MG"
+        ],
+        "missing_positions": 0,
+        "override_pdb_id": "1H56",
+        "resolved_residue_count": 3,
+        "target_fingerprint": "metal_dependent_hydrolase",
+        "top1_counterevidence_reasons": [],
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.59
+      },
+      "prior_vivek_review_decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "high",
+        "evidence_score": 0.429,
+        "expert_review_timestamp_utc": "2026-05-23T16:49:51Z",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "requires_alternate_structure_mapping",
+        "rationale": "Hold: PvuII is a two-Mg metal-dependent hydrolase/nuclease, but selected 1PVI has no metals; needs holo alternate scan/override before countable import.",
+        "resolution_bucket": "hold_for_holo_alternate",
+        "review_status": "expert_reviewed",
+        "reviewer": "vivek",
+        "tier": null
+      },
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "ligand_supported",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:897",
+        "entry_name": "type II site-specific deoxyribonuclease PvuII",
+        "label_state": "unlabeled",
+        "rank": 3,
+        "readiness_blockers": [],
+        "recommended_action": "post_override_accept_after_prior_vivek_hold_condition_resolved",
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.59
+      },
+      "rank": 3
+    }
+  ],
+  "rows": [
+    {
+      "decision_source_classification": "automation_assisted_post_preview_accept_based_on_prior_vivek_hold_condition",
+      "eligible_for_dedicated_import_gate": true,
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "gate_preview_passed_for_selected_pdb_geometry": true,
+      "human_confirmation_required_before_dedicated_gate": false,
+      "not_new_human_expert_review": true,
+      "override_pdb_id": "1AWB",
+      "post_preview_accept_decision": "accept_label",
+      "prior_vivek_review_action": "mark_needs_more_evidence",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "top1_counterevidence_reasons": [],
+      "top1_score": 0.5962
+    },
+    {
+      "decision_source_classification": "automation_assisted_post_preview_accept_based_on_prior_vivek_hold_condition",
+      "eligible_for_dedicated_import_gate": true,
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "gate_preview_passed_for_selected_pdb_geometry": true,
+      "human_confirmation_required_before_dedicated_gate": false,
+      "not_new_human_expert_review": true,
+      "override_pdb_id": "1J7N",
+      "post_preview_accept_decision": "accept_label",
+      "prior_vivek_review_action": "mark_needs_more_evidence",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "top1_counterevidence_reasons": [],
+      "top1_score": 0.594
+    },
+    {
+      "decision_source_classification": "automation_assisted_post_preview_accept_based_on_prior_vivek_hold_condition",
+      "eligible_for_dedicated_import_gate": true,
+      "entry_id": "m_csa:897",
+      "entry_name": "type II site-specific deoxyribonuclease PvuII",
+      "gate_preview_passed_for_selected_pdb_geometry": true,
+      "human_confirmation_required_before_dedicated_gate": false,
+      "not_new_human_expert_review": true,
+      "override_pdb_id": "1H56",
+      "post_preview_accept_decision": "accept_label",
+      "prior_vivek_review_action": "mark_needs_more_evidence",
+      "target_fingerprint": "metal_dependent_hydrolase",
+      "top1_counterevidence_reasons": [],
+      "top1_score": 0.59
+    }
+  ]
+}
