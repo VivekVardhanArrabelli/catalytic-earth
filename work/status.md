@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 299
-- Measured elapsed time: 9061.4 minutes (151.02 hours)
+- Entries: 300
+- Measured elapsed time: 9101.6 minutes (151.69 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2052.0 measured minutes (34.20 hours)
+- v3: 2092.2 measured minutes (34.87 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3255
-- Evidence references logged: 2665
+- Artifact references logged: 3274
+- Evidence references logged: 2677
 
 ## Recent Entries
-
-### 2026-05-22T19:42:57.546947+00:00 - v3
-
-- Task: NADP redox cofactor proxy blocker pressure test
-- Time mode: measured
-- Measured minutes: 24.25
-- Started: 2026-05-22T19:18:23Z
-- Ended: 2026-05-22T19:42:38Z
-- Artifacts: src/catalytic_earth/sdr_active_site.py, tests/test_sdr_active_site.py, artifacts/v3_nadp_redox_family_source_free_cofactor_blocker_queue_post_sdr_20260522.json, artifacts/v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json, artifacts/v3_nadp_redox_holo_or_specificity_source_request_queue_post_proxy_20260522.json, artifacts/v3_non_epk_family_readiness_index_post_nadp_cofactor_blocker_20260522.json, artifacts/v3_post_nadp_cofactor_blocker_review_only_zero_import_gate_20260522.json, tests/test_automation_small_win_artifacts.py, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 875-test unit discovery passed, startup CLI validate passed with 682 labels and 8 fingerprints, strict SDR NADP pocket proxy uses only coordinate sequence/order residue IDs atom names and distances, proxy resolved O14756 and O75828 so it is pressure evidence not production axis, source request queue names exact missing holo or specificity evidence for O14756 O75828 and C9JRZ8, review-only zero-import gate passed 4/4, 882-test unit discovery passed, CLI validate passed with 682 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, no registry or fingerprint diffs
-- Notes: Wrapped before 48 minutes because the remaining no-breadth queue is human review or missing NADP holo/specificity evidence; no label import registry edit fingerprint edit artifact upload/removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred.
 
 ### 2026-05-22T20:37:21.159775+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/handoff.md, work/progress_log.jsonl, work/status.md
 - Evidence: git fetch and pull confirmed origin/main already up to date, requested clean9 import artifact already records canonical 682 to 691 import, 899-test unit discovery passed, current CLI validate passed with 691 labels and 8 fingerprints, remaining holo override and m_csa771 rows require explicit accept decisions before import, pre-existing untracked CIF files left untouched
 - Notes: Verification-only run; no registry fingerprint artifact migration upload removal externalization Git-LFS migration history rewrite threshold change or removal_allowed=true action occurred.
+
+### 2026-05-24T03:19:08.116370+00:00 - v3
+
+- Task: Post-clean9 M-CSA hold imports and AMP-product stress panel
+- Time mode: measured
+- Measured minutes: 40.233
+- Started: 2026-05-24T02:38:54Z
+- Ended: 2026-05-24T03:19:08Z
+- Artifacts: data/registries/curated_mechanism_labels.json, artifacts/v3_label_summary.json, artifacts/v3_mcsa_positive_holo_override_accept_decision_3_20260523.json, artifacts/v3_mcsa_positive_holo_override_accept3_20260523_label_factory_gate_check_import_preview_1025.json, artifacts/v3_mcsa_positive_holo_override_accept3_20260523_label_batch_acceptance_check_import_preview_1025.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_accept_decision_20260523.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_label_factory_gate_check_import_preview_1025.json, artifacts/v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_label_batch_acceptance_check_import_preview_1025.json, artifacts/v3_mcsa_positive_nucleotide_product_counterevidence_rule_stress_panel_20260524.json, artifacts/v3_mcsa_positive_post_clean9_followup_import_summary_20260524.json, artifacts/v3_mcsa_positive_remaining_13_decision_matrix_post_import_20260524.json, README.md, docs/label_factory.md, work/handoff.md, tests/test_automation_small_win_artifacts.py, tests/test_geometry_artifact_regression.py, tests/test_labels.py, tests/test_scaling_1025_artifacts.py, tests/test_source_only_contract.py
+- Evidence: startup unittest discovery passed at 899 tests and CLI validate passed with 691 labels, holo override accept3 gate passed 21 of 21 with exactly m_csa:577 m_csa:641 m_csa:897 imported, canonical registry moved 691 to 694 then validated, m_csa771 Vivek 2D0D gate passed 21 of 21 with exactly m_csa:771 imported, canonical registry moved 694 to 695 then validated, AMP product stress panel stayed review-only with 2 product candidates and 33 transfer controls, 902-test unit discovery passed, compileall passed, CLI validate passed with 695 labels, artifact migration dry-run passed removal_allowed=0, artifact admission guard passed, no fingerprint registry edit threshold change artifact upload removal externalization Git-LFS migration history rewrite or removal_allowed=true
+- Notes: Pre-existing untracked CIF files were left untouched; the earlier overlapping preview state is superseded by the gate-backed 695-label canonical import.
 
 ## Expectation Updates
 
