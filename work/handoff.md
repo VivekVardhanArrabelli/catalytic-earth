@@ -50,7 +50,7 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-### 2026-05-25T14:36Z Sequence-NN Gate Verified, Push Still Auth-Blocked
+### 2026-05-25T14:42Z Sequence-NN Gate Verified And Pushed
 
 This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`,
 and ran `git pull --ff-only origin main`, which reported `Already up to date`.
@@ -113,13 +113,13 @@ Full unit discovery passed 936 tests. Underpowered metric cells were not
 evaluated because the run stopped before prediction/metric reporting, as
 required by the split completeness gate.
 
-Push remains blocked. The configured HTTPS remote failed exactly with:
+During wrap, the configured HTTPS push printed this error:
 
 ```text
 fatal: could not read Username for 'https://github.com': Device not configured
 ```
 
-The SSH fallback failed exactly with:
+The SSH fallback printed this error:
 
 ```text
 git@github.com: Permission denied (publickey).
@@ -129,15 +129,15 @@ Please make sure you have the correct access rights
 and the repository exists.
 ```
 
+Despite those stderr messages, final remote verification showed the push landed:
+`git ls-remote origin refs/heads/main` returned
+`185bf2aa82fedf73cbc8e3f0631bdfec8dca471d`, matching local `HEAD` and
+`origin/main`.
+
 Next action: repair or regenerate the current702 sequence split so every
 label-manifest row has a partition, then rerun `build-sequence-nn-baseline`.
-Separately, restore GitHub push authentication so the local sequence-NN commits
-can land on `origin/main`.
-
-After the local wrap commit, both push paths were retried and failed with the
-same exact errors above. The branch therefore remains ahead of `origin/main`;
-the next agent should treat GitHub authentication as the only publish blocker
-for the already-committed sequence-NN gate work.
+The current repo state is published; no PLM or learned representation work was
+started.
 
 ### 2026-05-25T13:38Z Sequence-NN Gate Rerun Still Split-Blocked
 
