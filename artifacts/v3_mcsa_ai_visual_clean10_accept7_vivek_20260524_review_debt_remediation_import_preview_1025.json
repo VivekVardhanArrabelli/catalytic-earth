@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "all_requested_entries_have_gap_detail": true,
+    "alternate_pdb_position_gap_entry_count": 0,
+    "alternate_pdb_position_gap_entry_ids": [],
+    "carried_review_debt_entry_ids": [],
+    "coverage_status_counts": {},
+    "debt_status_filter": "all",
+    "emitted_row_count": 0,
+    "expected_cofactor_family_counts": {},
+    "gap_reason_counts": {},
+    "method": "review_debt_remediation_plan",
+    "missing_gap_detail_entry_ids": [],
+    "missing_geometry_entry_ids": [],
+    "missing_graph_context_entry_ids": [],
+    "new_review_debt_entry_ids": [],
+    "remediation_bucket_counts": {},
+    "requested_entry_count": 0,
+    "selected_pdb_position_gap_entry_count": 0,
+    "selected_pdb_position_gap_entry_ids": [],
+    "source_review_debt_method": "review_debt_summary",
+    "source_review_gap_method": "review_evidence_gap_analysis",
+    "structure_availability_counts": {},
+    "triage_rule": "keep review-debt rows out of the countable benchmark; inspect selected-structure cofactor gaps against alternate PDB availability, active-site mapping status, and graph reference-protein context before promoting any additional labels"
+  },
+  "rows": []
+}

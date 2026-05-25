@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "active_queue_rows_linked": 0,
+    "carried_review_debt_count": 0,
+    "carried_review_debt_entry_ids": [],
+    "coverage_status_counts": {},
+    "debt_status_counts": {},
+    "gap_reason_counts": {},
+    "method": "review_debt_summary",
+    "needs_more_evidence_count": 0,
+    "new_review_debt_count": 0,
+    "new_review_debt_entry_ids": [],
+    "prioritized_count": 0,
+    "recommended_next_action_counts": {},
+    "recommended_next_action_counts_by_debt_status": {},
+    "review_debt_count": 0,
+    "review_debt_entry_ids": [],
+    "source_method": "review_evidence_gap_analysis",
+    "triage_rule": "prioritize review debt with local/structure-wide cofactor gaps, counterevidence, below-threshold retrieval, family mismatches, and high active-learning rank"
+  },
+  "rows": []
+}

@@ -1195,10 +1195,18 @@ alternate path uses the explicit Vivek PyMOL decision
 the derived
 `v3_mcsa_positive_m_csa771_2d0d_vivek_20260523_*_import_preview_1025.json`
 gate stack passes 21/21 checks and batch acceptance with exactly `m_csa:771`,
-moving the canonical registry from 694 to 695. The current registry has 225
-seed-fingerprint labels, 470 out-of-scope labels, 10 expert-reviewed silver
-labels, the same three imported external out-of-scope hard negatives, and 0
-external seed-fingerprint imports. The post-import summary is
+moving the canonical registry from 694 to 695. The later clean-10 AI-visual
+accept-7 stack
+`v3_mcsa_ai_visual_clean10_accept7_vivek_20260524_*_import_preview_1025.json`
+passes label-factory gates and batch acceptance with exactly `m_csa:596`,
+`m_csa:626`, `m_csa:668`, `m_csa:710`, `m_csa:720`, `m_csa:791`, and
+`m_csa:838`, moving the canonical registry from 695 to 702. The current
+registry has 232 seed-fingerprint labels, 470 out-of-scope labels, 17
+expert-reviewed silver labels, the same three imported external out-of-scope
+hard negatives, and 0 external seed-fingerprint imports. The clean10 import
+summary is
+`artifacts/v3_mcsa_ai_visual_clean10_accept7_vivek_20260524_import_summary.json`;
+the earlier post-clean9 follow-up summary remains
 `artifacts/v3_mcsa_positive_post_clean9_followup_import_summary_20260524.json`.
 The bounded hold-apo scan
 `artifacts/v3_mcsa_positive_hold_apo_alternate_structure_scan_5_20260523.json`

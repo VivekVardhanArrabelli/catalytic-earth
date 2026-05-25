@@ -1,0 +1,327 @@
+{
+  "metadata": {
+    "audit_rule": "review deferrals must preserve the local evidence gap rather than silently counting structure-wide or text-only support",
+    "coverage_status_counts": {
+      "all_expected_local": 7
+    },
+    "gap_count": 0,
+    "gap_reason_counts": {},
+    "method": "review_evidence_gap_analysis",
+    "needs_more_evidence_count": 0,
+    "needs_more_evidence_entry_ids": [],
+    "reviewed_decision_count": 7
+  },
+  "rows": [
+    {
+      "abstain_threshold": 0.4115,
+      "counterevidence_reasons": [],
+      "coverage_status": "all_expected_local",
+      "decision_action": "accept_label",
+      "decision_rationale": "Accepted as metal_dependent_hydrolase. Fungal zincin metalloprotease/deuterolysin; Zn present. Asp143 metal ligand and Tyr106 electrostatic stabilizer fit zincin geometry.",
+      "decision_review_status": "expert_reviewed",
+      "entry_id": "m_csa:596",
+      "entry_name": "deuterolysin",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [],
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "matching_structure_ligands": [
+        {
+          "code": "ZN",
+          "family": "metal_ion",
+          "instance_count": 1,
+          "min_distance_to_active_site": 4.857
+        }
+      ],
+      "mechanism_text_snippets": [
+        "Glu 129 and Zn together act to activate a water molecule so that it can act as a nucleophile to attack the peptide substrate. This forms a tetrahedral intermediate, stabilised by proton donation by Tyr 106, which then collapses to release the products."
+      ],
+      "nearest_expected_ligand_distance_angstrom": 4.857,
+      "proximal_ligand_codes": [
+        "ZN"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ZN",
+        "EDO"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_rank": 1,
+      "target_score": 0.5936,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5936
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "counterevidence_reasons": [],
+      "coverage_status": "all_expected_local",
+      "decision_action": "accept_label",
+      "decision_rationale": "Accepted as metal_dependent_hydrolase. Canonical HExxH zincin metalloprotease botulinum neurotoxin; Zn present. His233 is metal ligand and Arg369 is substrate-binding stabilizer on the other side of the active site.",
+      "decision_review_status": "expert_reviewed",
+      "entry_id": "m_csa:626",
+      "entry_name": "bontoxilysin",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [],
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "matching_structure_ligands": [
+        {
+          "code": "ZN",
+          "family": "metal_ion",
+          "instance_count": 1,
+          "min_distance_to_active_site": 5.008
+        }
+      ],
+      "mechanism_text_snippets": [
+        "Glu231 is abase which deprotonates water and in conjugation with polarization by Zn2+ activates water so that it can act as a nucleophile and attack the carbonyl of the peptide bond. Arg369 and Zn2+ stabilise the transition state by interacting with the negatively charged carbonyl oxygen atom of..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": 5.008,
+      "proximal_ligand_codes": [
+        "ZN",
+        "SO4"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ZN",
+        "SO4"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_rank": 1,
+      "target_score": 0.5901,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5901
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "counterevidence_reasons": [],
+      "coverage_status": "all_expected_local",
+      "decision_action": "accept_label",
+      "decision_rationale": "Accepted as metal_dependent_hydrolase. Leishmanolysin/gp63 HExxH zincin; Zn present. His235 metal ligand plus Glu166 HExxH acid/base is canonical zincin chemistry.",
+      "decision_review_status": "expert_reviewed",
+      "entry_id": "m_csa:668",
+      "entry_name": "leishmanolysin",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [],
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "matching_structure_ligands": [
+        {
+          "code": "ZN",
+          "family": "metal_ion",
+          "instance_count": 1,
+          "min_distance_to_active_site": 5.921
+        }
+      ],
+      "mechanism_text_snippets": [
+        "Leishmanolysin consists of HEXXH motif which is common in all zinc metalloproteinase, so it was proposed that it shares the same mechanism as the other zinc metalloproteinases such as thermolysin. Glu265, acting in conjunction with Zn2+ ion to deprotonate and activate a water molecule. The activa..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": 5.921,
+      "proximal_ligand_codes": [
+        "ZN"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ZN"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_rank": 1,
+      "target_score": 0.5942,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5942
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "counterevidence_reasons": [],
+      "coverage_status": "all_expected_local",
+      "decision_action": "accept_label",
+      "decision_rationale": "Accepted as metal_dependent_hydrolase. Amidohydrolase superfamily cytosine deaminase; Fe-activated water attacks C4 of cytosine. Fe is present and His67/Glu221 geometry is consistent with opposite faces of the substrate.",
+      "decision_review_status": "expert_reviewed",
+      "entry_id": "m_csa:710",
+      "entry_name": "cytosine deaminase (bacterial)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [],
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "matching_structure_ligands": [
+        {
+          "code": "FE",
+          "family": "metal_ion",
+          "instance_count": 1,
+          "min_distance_to_active_site": 5.116
+        }
+      ],
+      "mechanism_text_snippets": [
+        "Glu217 initially deprotonates the Zn bound and then after some structural movements transfers the proton to the N3 nitrogen. The hydroxyl can then attack the C4 carbon and then the amino group accepts a proton from the hydroxyl which initiates the collapse of the tetrahedral intermediate which re..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": 5.116,
+      "proximal_ligand_codes": [
+        "FE",
+        "FPY"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "FE",
+        "FPY"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_rank": 1,
+      "target_score": 0.5851,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5851
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "counterevidence_reasons": [],
+      "coverage_status": "all_expected_local",
+      "decision_action": "accept_label",
+      "decision_rationale": "Accepted as metal_dependent_hydrolase. Binuclear Zn amidohydrolase creatininase; two Zn ions present. Glu183/Glu122 reflect binuclear-center and substrate-stabilization roles.",
+      "decision_review_status": "expert_reviewed",
+      "entry_id": "m_csa:720",
+      "entry_name": "creatininase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [],
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "matching_structure_ligands": [
+        {
+          "code": "ZN",
+          "family": "metal_ion",
+          "instance_count": 12,
+          "min_distance_to_active_site": 3.782
+        }
+      ],
+      "mechanism_text_snippets": [
+        "A water molecule bridging the two metal ions is likely to form a hydroxide ion which acts as the nucleophile. The hydroxide attacks the carbonyl carbon of the creatinine substrate and is then deprotonated by His 178. The tetrahedral intermediate is stabilised by coordination to the two metal ions..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": 3.782,
+      "proximal_ligand_codes": [
+        "ZN"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "ZN",
+        "SO4"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_rank": 1,
+      "target_score": 0.5931,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5931
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "counterevidence_reasons": [],
+      "coverage_status": "all_expected_local",
+      "decision_action": "accept_label",
+      "decision_rationale": "Accepted as metal_dependent_hydrolase. HNH-family Zn endonuclease; Zn-activated water hydrolyzes phosphodiester. Arg96/Arg5 flank DNA substrate; long C-alpha distance is structural rather than mechanistic counterevidence.",
+      "decision_review_status": "expert_reviewed",
+      "entry_id": "m_csa:791",
+      "entry_name": "colicin-E9",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [],
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "matching_structure_ligands": [
+        {
+          "code": "ZN",
+          "family": "metal_ion",
+          "instance_count": 1,
+          "min_distance_to_active_site": 3.668
+        }
+      ],
+      "mechanism_text_snippets": [
+        "His 103 acts as a general base by abstracting a proton from a water molecule, activating it for nucleophilic attack on the scissile phosphorus atom. This leads to a penta-covalent intermediate being formed. The Zn ion activates a water molecule so it will donate a proton to the 3' hydroxyl leavin..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": 3.668,
+      "proximal_ligand_codes": [
+        "PO4",
+        "ZN"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "PO4",
+        "ZN"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_rank": 1,
+      "target_score": 0.5899,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5899
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "counterevidence_reasons": [],
+      "coverage_status": "all_expected_local",
+      "decision_action": "accept_label",
+      "decision_rationale": "Accepted as metal_dependent_hydrolase with note. HNH endonuclease Colicin-E7; Ni in the crystal is treated as a divalent metal surrogate and current cofactor-family evidence remains metal_ion with no mismatch counterevidence. Active-site geometry is preserved.",
+      "decision_review_status": "expert_reviewed",
+      "entry_id": "m_csa:838",
+      "entry_name": "Colicin-E7",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [],
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "matching_structure_ligands": [
+        {
+          "code": "NI",
+          "family": "metal_ion",
+          "instance_count": 2,
+          "min_distance_to_active_site": 3.836
+        }
+      ],
+      "mechanism_text_snippets": [
+        "A water nucleophile is polarised by His 545, which acts as a general base to generate hydroxide. An non-bridging oxygen of the scissile phosphodiester group coordinates to Zn(II), making the phosphorus more electrophilic. Hydroxide attacks the scissile phosphodiester bond. Zn(II) stabilises the c..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": 3.836,
+      "proximal_ligand_codes": [
+        "PO4",
+        "NI"
+      ],
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "PO4",
+        "NI"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_rank": 1,
+      "target_score": 0.5956,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5956
+    }
+  ]
+}

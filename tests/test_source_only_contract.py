@@ -44,7 +44,7 @@ class SourceOnlyContractTests(unittest.TestCase):
             "--dry-run",
         )
         self.assertIn("validate", help_result.stdout)
-        self.assertIn("Validated 695 curated mechanism labels", validate_result.stdout)
+        self.assertIn("Validated 702 curated mechanism labels", validate_result.stdout)
         self.assertIn("artifact migration validation passed", migration_result.stdout)
 
     def test_transfer_scope_public_contract_symbols_are_importable(self) -> None:

@@ -18,7 +18,7 @@ slices are countable only through the label-factory batch checks.
 
 Curated seed labels live in
 `data/registries/curated_mechanism_labels.json`. The registry currently covers
-695 countable labels. Review-state registries preserve pending
+702 countable labels. Review-state registries preserve pending
 `needs_expert_review` rows separately so unresolved evidence gaps do not count
 as benchmark labels.
 
@@ -49,6 +49,46 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    the worktree is clean.
 
 ## Current Handoff
+
+### 2026-05-25T02:52Z Clean10 Accept7 Imported
+
+The clean-10 M-CSA AI-visual expert decisions were split into seven countable
+acceptances and three preserved non-countable signals. The accepted labels are:
+
+```text
+m_csa:596, m_csa:626, m_csa:668, m_csa:710, m_csa:720, m_csa:791, m_csa:838
+```
+
+Dedicated import-preview artifacts are under:
+
+```text
+artifacts/v3_mcsa_ai_visual_clean10_accept7_vivek_20260524_*_import_preview_1025.json
+```
+
+The batch acceptance artifact
+`artifacts/v3_mcsa_ai_visual_clean10_accept7_vivek_20260524_label_batch_acceptance_check_import_preview_1025.json`
+passes with `accepted_for_counting=true`, `accepted_new_label_count=7`, 0
+accepted review gaps, 0 hard-negative controls, and 0 accepted
+reaction/substrate mismatches. Canonical curated labels moved from 695 to 702,
+with all seven new rows as `seed_fingerprint`, `metal_dependent_hydrolase`,
+`silver`, `expert_reviewed`, `label_factory_v1_8fp`.
+
+The three non-imported clean-10 rows are deliberately preserved:
+`m_csa:954` and `m_csa:955` route to future terpene/isoprenoid carbocation
+cyclization family evidence, while `m_csa:661` remains an FGly/sulfatase
+sub-family/schema hold. The other 30 exact-40 rows are also preserved in
+`artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json`
+with bucket counts: 5 AMP/nucleotide non-transfer, 5 apo/holo missing cofactor,
+4 loose/open/interdomain geometry, 5 expert-biochemistry review, 1 manual
+visual review, 5 true reject, and 5 wrong-fingerprint/future-family.
+
+Verification after canonical import:
+
+```text
+PYTHONPATH=src python -m catalytic_earth.cli validate
+```
+
+passed and validated 702 curated mechanism labels.
 
 ### 2026-05-24T21:13Z Clean10 Expert Decisions Recorded
 

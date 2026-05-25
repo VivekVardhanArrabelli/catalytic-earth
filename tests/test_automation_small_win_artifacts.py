@@ -5728,8 +5728,8 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         for label in labels:
             by_type[label["label_type"]] = by_type.get(label["label_type"], 0) + 1
 
-        self.assertEqual(len(labels), 695)
-        self.assertEqual(by_type, {"out_of_scope": 470, "seed_fingerprint": 225})
+        self.assertEqual(len(labels), 702)
+        self.assertEqual(by_type, {"out_of_scope": 470, "seed_fingerprint": 232})
 
         labels_by_entry = {label["entry_id"]: label for label in labels}
         self.assertEqual(

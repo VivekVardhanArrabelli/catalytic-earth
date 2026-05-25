@@ -53,9 +53,10 @@ The repository currently contains:
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Structure-wide ligand inventory for cofactor coverage audits.
 7. Substrate-pocket descriptor extraction from nearby protein residues.
-8. Curated mechanism labels for 695 entries: 692 accepted M-CSA labels through
-   the clean M-CSA positive-review import tranche plus the post-clean9
-   holo-override and `m_csa:771` dedicated gates, plus three factory-gated
+8. Curated mechanism labels for 702 entries: 699 accepted M-CSA labels through
+   the clean M-CSA positive-review import tranche, the post-clean9
+   holo-override and `m_csa:771` dedicated gates, and the clean-10
+   AI-visual accept-7 gate, plus three factory-gated
    external out-of-scope hard negatives (`uniprot:P06744`, `uniprot:P78549`,
    and `uniprot:Q3LXA3`). External seed-fingerprint imports remain 0.
 9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
@@ -120,8 +121,12 @@ The repository currently contains:
     review cards, exact-40 workqueue plus TSV worksheet, blank decision
     template, PyMOL index, learning-signal manifest, rejected-signal taxonomy,
     non-clean strategy, deferred-26 after-exact40 backlog plus TSV worksheet,
-    and a compact review-surface README without making decisions or authorizing
-    imports.
+    and a compact review-surface README. The later clean-10 accept-7 import
+    promotes `m_csa:596`, `m_csa:626`, `m_csa:668`, `m_csa:710`,
+    `m_csa:720`, `m_csa:791`, and `m_csa:838` through dedicated gates; the
+    non-imported clean-10 rows (`m_csa:954`, `m_csa:955`, `m_csa:661`) and
+    the other 30 exact-40 rows remain explicit non-countable learning/review
+    signal in `artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json`.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives

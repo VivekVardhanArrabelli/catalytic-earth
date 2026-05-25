@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 309
-- Measured elapsed time: 9318.5 minutes (155.31 hours)
+- Entries: 310
+- Measured elapsed time: 9338.9 minutes (155.65 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2303.1 measured minutes (38.39 hours)
+- v3: 2323.5 measured minutes (38.73 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3352
-- Evidence references logged: 2759
+- Artifact references logged: 3356
+- Evidence references logged: 2764
 
 ## Recent Entries
-
-### 2026-05-24T04:58:59.872641+00:00 - v3
-
-- Task: M-CSA decision trace and exact mapping repair split
-- Time mode: measured
-- Measured minutes: 17.817
-- Started: 2026-05-24T04:40:55Z
-- Ended: 2026-05-24T04:58:44Z
-- Artifacts: artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json, artifacts/v3_mcsa_pymol_exact_mapping_terminal_no_go_23_20260524.json, artifacts/v3_mcsa_pymol_structure_id_mapping_repair_probe_m_csa930_946_20260524.json, tests/test_automation_small_win_artifacts.py, work/handoff.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 908-test unit discovery passed, startup CLI validate passed with 695 labels and 8 fingerprints, post-clean9 22-row decision trace preserves 13 imported rows and 9 terminal blockers with 0 new import eligibility, 23-row PyMOL exact CA atom-pair distance mapping tranche made terminal current-evidence no-go, m_csa946 RCSB 5XD7 maps H2IFX0 all six requested residues and yields 18.663 A longest CA pair, m_csa930 2PIA maps P33164 not requested Q9ZFQ5 so remains blocked, 911-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, compileall passed, artifact migration dry-run passed removal_allowed=0, artifact admission guard passed in tmp, git diff check passed
-- Notes: No label import registry edit fingerprint edit production scoring change threshold change artifact upload removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred; pre-existing untracked CIF files left untouched.
 
 ### 2026-05-24T05:54:43.004965+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/generalization.py, artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json, work/handoff.md, work/progress_log.jsonl, work/status.md
 - Evidence: tests.test_generalization passed with 29 tests, CLI validate passed with 695 labels and 8 fingerprints, compileall and git diff guards passed, no registry or fingerprint diff
 - Notes: Follow-up to intermittent full-suite MMseqs failure; review-support outputs remain unchanged except related-output hash refresh.
+
+### 2026-05-25T02:54:42.762799+00:00 - v3
+
+- Task: M-CSA clean10 accept7 canonical import
+- Time mode: measured
+- Measured minutes: 20.4
+- Started: 2026-05-25T02:34:00Z
+- Ended: 2026-05-25T02:54:24Z
+- Artifacts: artifacts/v3_mcsa_ai_visual_clean10_accept7_vivek_20260524_import_summary.json, artifacts/v3_mcsa_ai_visual_clean10_accept7_vivek_20260524_label_batch_acceptance_check_import_preview_1025.json, artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json, data/registries/curated_mechanism_labels.json
+- Evidence: accepted_new_label_count=7, canonical_countable_labels=702, batch_acceptance=true, full_unit_suite_924_tests_passed, CLI_validate_passed_702_labels
+- Notes: Promoted only the seven clean current-target acceptances; preserved route_future_family/schema-hold/remaining30 rows as non-countable signal. Pre-existing root CIF files left untouched.
 
 ## Expectation Updates
 

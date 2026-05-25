@@ -13,12 +13,12 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
     def test_label_summary_artifact_matches_curated_registry(self) -> None:
         summary = _load_json(ROOT / "artifacts" / "v3_label_summary.json")
 
-        self.assertEqual(summary["label_count"], 695)
-        self.assertEqual(summary["by_type"]["seed_fingerprint"], 225)
+        self.assertEqual(summary["label_count"], 702)
+        self.assertEqual(summary["by_type"]["seed_fingerprint"], 232)
         self.assertEqual(summary["by_type"]["out_of_scope"], 470)
         self.assertEqual(
             summary["by_ontology_version_at_decision"],
-            {"label_factory_v1_8fp": 695},
+            {"label_factory_v1_8fp": 702},
         )
 
     def test_125_entry_geometry_artifacts_remain_clean(self) -> None:
@@ -546,10 +546,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         gate = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_500.json")
 
-        self.assertEqual(label_summary["by_tier"], {"bronze": 685, "silver": 10})
+        self.assertEqual(label_summary["by_tier"], {"bronze": 685, "silver": 17})
         self.assertEqual(
             label_summary["by_review_status"],
-            {"automation_curated": 685, "expert_reviewed": 10},
+            {"automation_curated": 685, "expert_reviewed": 17},
         )
         self.assertEqual(audit["metadata"]["promote_to_silver_count"], 63)
         self.assertEqual(audit["metadata"]["abstention_or_review_count"], 101)
