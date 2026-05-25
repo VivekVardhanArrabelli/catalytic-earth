@@ -1,0 +1,733 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_ai_visual_apo_holo_exact5_remediation_20260525",
+    "artifact_upload_or_removal_performed": false,
+    "canonical_label_count_invariant": 702,
+    "canonical_registry_import_performed": false,
+    "created_at": "2026-05-25T04:25:00Z",
+    "curated_label_registry_edited": false,
+    "exact_entry_ids": [
+      "m_csa:952",
+      "m_csa:794",
+      "m_csa:671",
+      "m_csa:644",
+      "m_csa:832"
+    ],
+    "filter_rule": "Preserve only the exact apo/holo missing-cofactor bucket requested by the scheduled automation; use as input to scan-review-debt-alternate-structures.",
+    "fingerprint_registry_edited": false,
+    "label_import_performed": false,
+    "method": "exact_row_review_debt_remediation_filter",
+    "production_fingerprint_universe_count_invariant": 8,
+    "production_scoring_changed": false,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "row_count": 5,
+    "schema_version": "exact_row_remediation_filter.v1",
+    "source_remediation_artifact": "artifacts/v3_review_debt_remediation_1025_preview_all.json",
+    "source_remediation_method": "review_debt_remediation_plan",
+    "source_remediation_row_count": 329,
+    "source_sha256": {
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json": "1888307cf408b7d94d6defb27246e287258f46c4d7c479d66bed5ff7d86d0022"
+    }
+  },
+  "rows": [
+    {
+      "alphafold_structure_ids": [
+        "Q9NRX4"
+      ],
+      "alternate_pdb_count": 4,
+      "alternate_pdb_ids": [
+        "2AI6",
+        "2NMM",
+        "2OZW",
+        "2OZX"
+      ],
+      "alternate_pdb_residue_position_counts": {
+        "2AI6": 0,
+        "2NMM": 0,
+        "2OZW": 0,
+        "2OZX": 0
+      },
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_residue_position_counts": {
+        "2AI6": 0,
+        "2HW4": 6,
+        "2NMM": 0,
+        "2OZW": 0,
+        "2OZX": 0
+      },
+      "candidate_pdb_residue_positions": {
+        "2HW4": [
+          {
+            "chain_name": "A",
+            "code": "Ala",
+            "resid": 73,
+            "residue_node_id": "m_csa:952:residue:1",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "His",
+            "resid": 72,
+            "residue_node_id": "m_csa:952:residue:2",
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Ser",
+            "resid": 113,
+            "residue_node_id": "m_csa:952:residue:3",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Ala",
+            "resid": 115,
+            "residue_node_id": "m_csa:952:residue:4",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Arg",
+            "resid": 97,
+            "residue_node_id": "m_csa:952:residue:5",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Lys",
+            "resid": 40,
+            "residue_node_id": "m_csa:952:residue:6",
+            "roles": [
+              "electrostatic stabiliser",
+              "modifies pKa"
+            ]
+          }
+        ]
+      },
+      "candidate_pdb_structure_count": 5,
+      "candidate_pdb_structure_ids": [
+        "2AI6",
+        "2HW4",
+        "2NMM",
+        "2OZW",
+        "2OZX"
+      ],
+      "candidate_pdb_with_residue_positions_count": 1,
+      "cofactor_gap_requires_local_evidence": true,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "entry_id": "m_csa:952",
+      "entry_name": "phosphohistidine phosphatase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_status": "ok",
+      "local_cofactor_families": [],
+      "matching_structure_ligands": [],
+      "missing_positions": 0,
+      "nearest_expected_ligand_distance_angstrom": null,
+      "priority_score": 5.75,
+      "proximal_ligand_codes": [
+        "FMT"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "reference_uniprot_ids": [
+        "Q9NRX4"
+      ],
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "resolved_residue_count": 6,
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "2HW4",
+      "selected_pdb_residue_position_count": 6,
+      "selected_structure_has_expected_family": false,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "FMT"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3626,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3626
+    },
+    {
+      "alphafold_structure_ids": [
+        "O04147"
+      ],
+      "alternate_pdb_count": 2,
+      "alternate_pdb_ids": [
+        "1FSI",
+        "1JH7"
+      ],
+      "alternate_pdb_residue_position_counts": {
+        "1FSI": 0,
+        "1JH7": 0
+      },
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_residue_position_counts": {
+        "1FSI": 0,
+        "1JH6": 6,
+        "1JH7": 0
+      },
+      "candidate_pdb_residue_positions": {
+        "1JH6": [
+          {
+            "chain_name": "A",
+            "code": "Thr",
+            "resid": 44,
+            "residue_node_id": "m_csa:794:residue:1",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Met",
+            "resid": 117,
+            "residue_node_id": "m_csa:794:residue:2",
+            "roles": [
+              "electrostatic stabiliser",
+              "increase basicity"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "His",
+            "resid": 42,
+            "residue_node_id": "m_csa:794:residue:3",
+            "roles": [
+              "proton donor"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "His",
+            "resid": 119,
+            "residue_node_id": "m_csa:794:residue:4",
+            "roles": [
+              "increase nucleophilicity",
+              "proton acceptor"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Ser",
+            "resid": 121,
+            "residue_node_id": "m_csa:794:residue:5",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Tyr",
+            "resid": 124,
+            "residue_node_id": "m_csa:794:residue:6",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        ]
+      },
+      "candidate_pdb_structure_count": 3,
+      "candidate_pdb_structure_ids": [
+        "1FSI",
+        "1JH6",
+        "1JH7"
+      ],
+      "candidate_pdb_with_residue_positions_count": 1,
+      "cofactor_gap_requires_local_evidence": true,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "entry_id": "m_csa:794",
+      "entry_name": "2',3'-cyclic-nucleotide 3'-phosphodiesterase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_status": "ok",
+      "local_cofactor_families": [],
+      "matching_structure_ligands": [],
+      "missing_positions": 0,
+      "nearest_expected_ligand_distance_angstrom": null,
+      "priority_score": 5.75,
+      "proximal_ligand_codes": [
+        "SO4"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "reference_uniprot_ids": [
+        "O04147"
+      ],
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "resolved_residue_count": 6,
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1JH6",
+      "selected_pdb_residue_position_count": 6,
+      "selected_structure_has_expected_family": false,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "SO4"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3567,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3567
+    },
+    {
+      "alphafold_structure_ids": [
+        "Q44185"
+      ],
+      "alternate_pdb_count": 2,
+      "alternate_pdb_ids": [
+        "2GGK",
+        "2GGL"
+      ],
+      "alternate_pdb_residue_position_counts": {
+        "2GGK": 0,
+        "2GGL": 0
+      },
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_residue_position_counts": {
+        "1FO6": 6,
+        "2GGK": 0,
+        "2GGL": 0
+      },
+      "candidate_pdb_residue_positions": {
+        "1FO6": [
+          {
+            "chain_name": "A",
+            "code": "Glu",
+            "resid": 47,
+            "residue_node_id": "m_csa:671:residue:1",
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Asn",
+            "resid": 110,
+            "residue_node_id": "m_csa:671:residue:2",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Lys",
+            "resid": 127,
+            "residue_node_id": "m_csa:671:residue:3",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Glu",
+            "resid": 146,
+            "residue_node_id": "m_csa:671:residue:4",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Cys",
+            "resid": 172,
+            "residue_node_id": "m_csa:671:residue:5",
+            "roles": [
+              "nucleofuge",
+              "nucleophile",
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Asn",
+            "resid": 197,
+            "residue_node_id": "m_csa:671:residue:6",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          }
+        ]
+      },
+      "candidate_pdb_structure_count": 3,
+      "candidate_pdb_structure_ids": [
+        "1FO6",
+        "2GGK",
+        "2GGL"
+      ],
+      "candidate_pdb_with_residue_positions_count": 1,
+      "cofactor_gap_requires_local_evidence": true,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "entry_id": "m_csa:671",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_status": "ok",
+      "local_cofactor_families": [],
+      "matching_structure_ligands": [],
+      "missing_positions": 0,
+      "nearest_expected_ligand_distance_angstrom": null,
+      "priority_score": 5.75,
+      "proximal_ligand_codes": [],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "reference_uniprot_ids": [
+        "Q44185"
+      ],
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "resolved_residue_count": 6,
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1FO6",
+      "selected_pdb_residue_position_count": 6,
+      "selected_structure_has_expected_family": false,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "XE"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3621,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3621
+    },
+    {
+      "alphafold_structure_ids": [
+        "Q9ZAG3"
+      ],
+      "alternate_pdb_count": 23,
+      "alternate_pdb_ids": [
+        "1NU3",
+        "4R9K",
+        "4R9L",
+        "4XBT",
+        "4XBX",
+        "4XBY",
+        "4XDV",
+        "4XDW",
+        "5CF1",
+        "5CF2",
+        "5CK6",
+        "5CLK",
+        "5GKW",
+        "5JPP",
+        "5JPU",
+        "5YAO",
+        "5YNG",
+        "5YQT",
+        "7VWD",
+        "7VWM",
+        "7VX2",
+        "7XEE",
+        "7XEF"
+      ],
+      "alternate_pdb_residue_position_counts": {
+        "1NU3": 0,
+        "4R9K": 0,
+        "4R9L": 0,
+        "4XBT": 0,
+        "4XBX": 0,
+        "4XBY": 0,
+        "4XDV": 0,
+        "4XDW": 0,
+        "5CF1": 0,
+        "5CF2": 0,
+        "5CK6": 0,
+        "5CLK": 0,
+        "5GKW": 0,
+        "5JPP": 0,
+        "5JPU": 0,
+        "5YAO": 0,
+        "5YNG": 0,
+        "5YQT": 0,
+        "7VWD": 0,
+        "7VWM": 0,
+        "7VX2": 0,
+        "7XEE": 0,
+        "7XEF": 0
+      },
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_residue_position_counts": {
+        "1NU3": 0,
+        "1NWW": 5,
+        "4R9K": 0,
+        "4R9L": 0,
+        "4XBT": 0,
+        "4XBX": 0,
+        "4XBY": 0,
+        "4XDV": 0,
+        "4XDW": 0,
+        "5CF1": 0,
+        "5CF2": 0,
+        "5CK6": 0,
+        "5CLK": 0,
+        "5GKW": 0,
+        "5JPP": 0,
+        "5JPU": 0,
+        "5YAO": 0,
+        "5YNG": 0,
+        "5YQT": 0,
+        "7VWD": 0,
+        "7VWM": 0,
+        "7VX2": 0,
+        "7XEE": 0,
+        "7XEF": 0
+      },
+      "candidate_pdb_residue_positions": {
+        "1NWW": [
+          {
+            "chain_name": "A",
+            "code": "Tyr",
+            "resid": 53,
+            "residue_node_id": "m_csa:644:residue:1",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Asn",
+            "resid": 55,
+            "residue_node_id": "m_csa:644:residue:2",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Arg",
+            "resid": 99,
+            "residue_node_id": "m_csa:644:residue:3",
+            "roles": [
+              "electrostatic stabiliser",
+              "proton acceptor",
+              "proton donor",
+              "proton relay"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Asp",
+            "resid": 101,
+            "residue_node_id": "m_csa:644:residue:4",
+            "roles": [
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "Asp",
+            "resid": 132,
+            "residue_node_id": "m_csa:644:residue:5",
+            "roles": [
+              "activator",
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        ]
+      },
+      "candidate_pdb_structure_count": 24,
+      "candidate_pdb_structure_ids": [
+        "1NU3",
+        "1NWW",
+        "4R9K",
+        "4R9L",
+        "4XBT",
+        "4XBX",
+        "4XBY",
+        "4XDV",
+        "4XDW",
+        "5CF1",
+        "5CF2",
+        "5CK6",
+        "5CLK",
+        "5GKW",
+        "5JPP",
+        "5JPU",
+        "5YAO",
+        "5YNG",
+        "5YQT",
+        "7VWD",
+        "7VWM",
+        "7VX2",
+        "7XEE",
+        "7XEF"
+      ],
+      "candidate_pdb_with_residue_positions_count": 1,
+      "cofactor_gap_requires_local_evidence": true,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "entry_id": "m_csa:644",
+      "entry_name": "limonene-1,2-epoxide hydrolase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_status": "ok",
+      "local_cofactor_families": [],
+      "matching_structure_ligands": [],
+      "missing_positions": 0,
+      "nearest_expected_ligand_distance_angstrom": null,
+      "priority_score": 5.75,
+      "proximal_ligand_codes": [
+        "HPN"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "reference_uniprot_ids": [
+        "Q9ZAG3"
+      ],
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "resolved_residue_count": 5,
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1NWW",
+      "selected_pdb_residue_position_count": 5,
+      "selected_structure_has_expected_family": false,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "HPN",
+        "MES"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3572,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3572
+    },
+    {
+      "alphafold_structure_ids": [
+        "P00655"
+      ],
+      "alternate_pdb_count": 1,
+      "alternate_pdb_ids": [
+        "1R4Y"
+      ],
+      "alternate_pdb_residue_position_counts": {
+        "1R4Y": 0
+      },
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_residue_position_counts": {
+        "1DE3": 3,
+        "1R4Y": 0
+      },
+      "candidate_pdb_residue_positions": {
+        "1DE3": [
+          {
+            "chain_name": "A",
+            "code": "Glu",
+            "resid": 96,
+            "residue_node_id": "m_csa:832:residue:1",
+            "roles": [
+              "increase nucleophilicity",
+              "promote heterolysis",
+              "proton acceptor",
+              "proton donor"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "His",
+            "resid": 50,
+            "residue_node_id": "m_csa:832:residue:2",
+            "roles": [
+              "electrostatic stabiliser"
+            ]
+          },
+          {
+            "chain_name": "A",
+            "code": "His",
+            "resid": 137,
+            "residue_node_id": "m_csa:832:residue:3",
+            "roles": [
+              "increase nucleophilicity",
+              "promote heterolysis",
+              "proton acceptor",
+              "proton donor"
+            ]
+          }
+        ]
+      },
+      "candidate_pdb_structure_count": 2,
+      "candidate_pdb_structure_ids": [
+        "1DE3",
+        "1R4Y"
+      ],
+      "candidate_pdb_with_residue_positions_count": 1,
+      "cofactor_gap_requires_local_evidence": true,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "entry_id": "m_csa:832",
+      "entry_name": "rRNA endonuclease",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_status": "ok",
+      "local_cofactor_families": [],
+      "matching_structure_ligands": [],
+      "missing_positions": 0,
+      "nearest_expected_ligand_distance_angstrom": null,
+      "priority_score": 5.75,
+      "proximal_ligand_codes": [],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "reference_uniprot_ids": [
+        "P00655"
+      ],
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "resolved_residue_count": 3,
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1DE3",
+      "selected_pdb_residue_position_count": 3,
+      "selected_structure_has_expected_family": false,
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.355,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.355
+    }
+  ]
+}

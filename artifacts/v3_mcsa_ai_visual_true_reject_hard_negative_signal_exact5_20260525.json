@@ -1,0 +1,311 @@
+{
+  "hard_negative_contract": {
+    "future_family_rule": "Future-family routes remain backlog hints, not positive seeds or labels.",
+    "import_rule": "No true-reject row is eligible for label import without a future explicit expert decision overturning current-target evidence and passing gates.",
+    "negative_scope_rule": "Rows are hard negatives for the named current target only; never treat as global negatives for enzyme function.",
+    "prediction_leakage_rule": "Review-derived reject status and route fields are forbidden as direct model input features."
+  },
+  "metadata": {
+    "artifact_id": "v3_mcsa_ai_visual_true_reject_hard_negative_signal_exact5_20260525",
+    "artifact_upload_or_removal_performed": false,
+    "canonical_label_count_invariant": 702,
+    "canonical_registry_import_performed": false,
+    "created_at": "2026-05-25T04:46:00Z",
+    "curated_label_registry_edited": false,
+    "dedicated_import_preview_run": false,
+    "exact_entry_ids": [
+      "m_csa:841",
+      "m_csa:658",
+      "m_csa:827",
+      "m_csa:774",
+      "m_csa:831"
+    ],
+    "fingerprint_registry_edited": false,
+    "label_import_performed": false,
+    "method": "exact40_true_reject_current_target_hard_negative_signal",
+    "production_fingerprint_universe_count_invariant": 8,
+    "production_scoring_changed": false,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "row_count": 5,
+    "schema_version": "mcsa_true_reject_hard_negative_signal_exact5.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json",
+      "artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json",
+      "artifacts/v3_review_evidence_gaps_1025_preview.json",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json"
+    ],
+    "source_sha256": {
+      "artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json": "427744aff898e75d847eaa6a287aaf584082322abdab8c247318faf158107e59",
+      "artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json": "6adead5adcf3ba31092195b4c960748eb8e221d71f959974e62d04d06133a1cf",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json": "1888307cf408b7d94d6defb27246e287258f46c4d7c479d66bed5ff7d86d0022",
+      "artifacts/v3_review_evidence_gaps_1025_preview.json": "6c612289244b75529ffa82a596cbe09df0e60c77d02e09e32877369a9a0917d3"
+    }
+  },
+  "rows": [
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "true_reject",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "coverage_status": "not_required",
+      "current_decision": "needs_more_evidence",
+      "current_target_negative_scope": "hard_negative_for_current_target_only",
+      "entry_id": "m_csa:841",
+      "entry_name": "penicillin amidase (peptidase S45 family)",
+      "expected_cofactor_families": [],
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_status": "ok",
+      "hard_negative_signal_use": "current_target_boundary_control_only",
+      "import_candidate": false,
+      "local_cofactor_families": [],
+      "mechanism_text_snippets": [
+        "The penicillin binds in the active site near to the reactive N-terminal serine. The amino group enhances the serines nucleophilic character (via a bridging water) allowing it to attack the carbonyl carbon at the amide bond to be cleaved. The tetrahedral intermediate is stabilised by the side chai..."
+      ],
+      "not_global_negative": true,
+      "prediction_feature_status": "review_derived_hard_negative_signal_forbidden_as_direct_model_feature",
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [
+        "PAC"
+      ],
+      "recommended_future_family_or_lane": "future unrepresented mechanism family",
+      "recommended_workflow": "reject_confirmation_review",
+      "resolved_residue_count": 5,
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1PNL",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_id": "1PNL",
+      "structure_ligand_codes": [
+        "PAC",
+        "CA"
+      ],
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "target_score": 0.2976,
+      "terminal_reason": "Penicillin amidase has N-terminal serine amidase chemistry, but the current ser_his_acid_hydrolase seed evidence is incoherent and below threshold; preserve as current-target hard negative only.",
+      "use_as_global_negative": false,
+      "use_for_future_family_positive_seed": false
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "true_reject",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "coverage_status": "not_required",
+      "current_decision": "needs_more_evidence",
+      "current_target_negative_scope": "hard_negative_for_current_target_only",
+      "entry_id": "m_csa:658",
+      "entry_name": "arabinogalactan endo-1,4-beta-galactosidase",
+      "expected_cofactor_families": [],
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_status": "ok",
+      "hard_negative_signal_use": "current_target_boundary_control_only",
+      "import_candidate": false,
+      "local_cofactor_families": [],
+      "mechanism_text_snippets": [
+        "Glu136 protonates the glycosidic oxygen while Glu246 acts as a nucleophilic to attack the anomeric carbon to form a covalent enzyme-substrate intermediate. The deprotonated Glu136 then activates a water molecule to hydrolyse the covalent enzyme-substrate intermediate. Arg45 hydrogen bonds with Gl..."
+      ],
+      "not_global_negative": true,
+      "prediction_feature_status": "review_derived_hard_negative_signal_forbidden_as_direct_model_feature",
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [],
+      "recommended_future_family_or_lane": "future unrepresented mechanism family",
+      "recommended_workflow": "reject_confirmation_review",
+      "resolved_residue_count": 3,
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1FHL",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "structure_cofactor_families": [],
+      "structure_id": "1FHL",
+      "structure_ligand_codes": [],
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "target_score": 0.311,
+      "terminal_reason": "Arabinogalactan beta-galactosidase is glycosidic double-displacement chemistry with ser-his triad incoherence under the current seed.",
+      "use_as_global_negative": false,
+      "use_for_future_family_positive_seed": false
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "true_reject",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "coverage_status": "not_required",
+      "current_decision": "needs_more_evidence",
+      "current_target_negative_scope": "hard_negative_for_current_target_only",
+      "entry_id": "m_csa:827",
+      "entry_name": "fructan beta-fructosidase",
+      "expected_cofactor_families": [],
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_status": "ok",
+      "hard_negative_signal_use": "current_target_boundary_control_only",
+      "import_candidate": false,
+      "local_cofactor_families": [],
+      "mechanism_text_snippets": [
+        "Exo-inulase catalyses a double displacement mechanism, resulting in retention of configuration. Asp 41 acts as a nucleophile, attacking the carbon atom of the glycosidic bond. As the glycosidic bond is broken, Glu 241 acts as a general acid by donating a proton to the leaving group oxygen atom. G..."
+      ],
+      "not_global_negative": true,
+      "prediction_feature_status": "review_derived_hard_negative_signal_forbidden_as_direct_model_feature",
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [],
+      "recommended_future_family_or_lane": "future unrepresented mechanism family",
+      "recommended_workflow": "reject_confirmation_review",
+      "resolved_residue_count": 2,
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1Y9M",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "structure_cofactor_families": [],
+      "structure_id": "1Y9M",
+      "structure_ligand_codes": [
+        "GOL",
+        "NAG",
+        "MAN"
+      ],
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "target_score": 0.3137,
+      "terminal_reason": "Fructan beta-fructosidase is glycoside hydrolase chemistry with fewer than three resolved residues and ser-his triad incoherence.",
+      "use_as_global_negative": false,
+      "use_for_future_family_positive_seed": false
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "true_reject",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "glycosidase_not_metal_hydrolase_seed"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "current_decision": "needs_more_evidence",
+      "current_target_negative_scope": "hard_negative_for_current_target_only",
+      "entry_id": "m_csa:774",
+      "entry_name": "lysozyme (glycosyl hydrolase 25 family)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_status": "ok",
+      "hard_negative_signal_use": "current_target_boundary_control_only",
+      "import_candidate": false,
+      "local_cofactor_families": [],
+      "mechanism_text_snippets": [
+        "Asp 10 acts as a general base, activating a water molecule for nucleophilic attack at the carbon atom of the glycosidic bond. As the glycosidic bond cleaves, protonated Glu 94 acts as a general acid by protonating the leaving group oxygen atom.",
+        "More recent evidence suggests a mechanism which proceeds via an oxazoline ion. Glu94 donates a proton to the glycosidic oxygen causing the cleavage of the glycosidic bond and the formation of the oxazoline ion. A water molecule is then activated by Glu94 which hydrolyzes the oxazoline ion."
+      ],
+      "not_global_negative": true,
+      "prediction_feature_status": "review_derived_hard_negative_signal_forbidden_as_direct_model_feature",
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [],
+      "recommended_future_family_or_lane": "glycoside hydrolase family",
+      "recommended_workflow": "reject_confirmation_review",
+      "resolved_residue_count": 4,
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1OBA",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "structure_cofactor_families": [],
+      "structure_id": "1OBA",
+      "structure_ligand_codes": [
+        "CHT"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.205,
+      "terminal_reason": "GH25 lysozyme is glycoside hydrolase chemistry with explicit glycosidase-not-metal-hydrolase counterevidence and absent selected metal evidence.",
+      "use_as_global_negative": false,
+      "use_for_future_family_positive_seed": false
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "true_reject",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "coverage_status": "not_required",
+      "current_decision": "needs_more_evidence",
+      "current_target_negative_scope": "hard_negative_for_current_target_only",
+      "entry_id": "m_csa:831",
+      "entry_name": "glucan 1,3-beta-glucosidase",
+      "expected_cofactor_families": [],
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_status": "ok",
+      "hard_negative_signal_use": "current_target_boundary_control_only",
+      "import_candidate": false,
+      "local_cofactor_families": [],
+      "mechanism_text_snippets": [
+        "The reaction proceeds by a double displacement mechanism with net retention of configuration at the anomeric C1 position. Nucleophilic attack by Glu 292 leads to displacement of the leaving group and formation of a covalent glucosyl-enzyme intermediate via a presumed oxo-carbenium ion-like transi..."
+      ],
+      "not_global_negative": true,
+      "prediction_feature_status": "review_derived_hard_negative_signal_forbidden_as_direct_model_feature",
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [],
+      "recommended_future_family_or_lane": "future unrepresented mechanism family",
+      "recommended_workflow": "reject_confirmation_review",
+      "resolved_residue_count": 2,
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1CZ1",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "structure_cofactor_families": [],
+      "structure_id": "1CZ1",
+      "structure_ligand_codes": [],
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "target_score": 0.2961,
+      "terminal_reason": "Glucan beta-glucosidase is glycoside hydrolase double-displacement chemistry with too little resolved catalytic context for ser-his seed counting.",
+      "use_as_global_negative": false,
+      "use_for_future_family_positive_seed": false
+    }
+  ],
+  "summary": {
+    "countable_label_candidate_entry_ids": [],
+    "current_target_hard_negative_entry_ids": [
+      "m_csa:841",
+      "m_csa:658",
+      "m_csa:827",
+      "m_csa:774",
+      "m_csa:831"
+    ],
+    "future_family_route_counts": {
+      "future unrepresented mechanism family": 4,
+      "glycoside hydrolase family": 1
+    },
+    "global_negative_entry_ids": [],
+    "import_candidate_entry_ids": [],
+    "target_fingerprint_counts": {
+      "metal_dependent_hydrolase": 1,
+      "ser_his_acid_hydrolase": 4
+    },
+    "terminal_decision": "all true-reject rows are preserved as current-target-only hard-negative signal; no global negative or import action is authorized"
+  }
+}

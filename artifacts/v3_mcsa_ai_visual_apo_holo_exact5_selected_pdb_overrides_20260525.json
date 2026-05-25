@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "application_rule": "Only holo-preference swap recommendations with explicit or conservatively remapped residue positions become ready_to_apply; the override changes geometry evidence only and does not make any label countable without downstream review/import and full label-factory gates.",
+    "apply_status_counts": {},
+    "blocked_entry_count": 0,
+    "blocked_entry_ids": [],
+    "blocker_removed": "selected_pdb_single_point_mitigation",
+    "countable_label_candidate_count": 0,
+    "method": "selected_pdb_override_plan",
+    "policy_skipped_entry_ids": [],
+    "ready_to_apply_count": 0,
+    "ready_to_apply_entry_ids": [],
+    "requested_entry_ids": [
+      "m_csa:644",
+      "m_csa:671",
+      "m_csa:794",
+      "m_csa:832",
+      "m_csa:952"
+    ],
+    "skipped_entry_count": 0,
+    "skipped_entry_ids": [],
+    "source_audit": "artifacts/v3_mcsa_ai_visual_apo_holo_exact5_holo_preference_audit_20260525.json",
+    "source_audit_method": "structure_selection_holo_preference_audit",
+    "source_remediation": "artifacts/v3_mcsa_ai_visual_apo_holo_exact5_remediation_20260525.json",
+    "source_remediation_method": "exact_row_review_debt_remediation_filter"
+  },
+  "rows": []
+}

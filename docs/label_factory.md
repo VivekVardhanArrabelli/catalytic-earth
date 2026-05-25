@@ -1262,6 +1262,16 @@ workqueue, worksheets, and README do not authorize label imports, import
 previews, registry edits, fingerprint edits, production scoring changes, or
 automated accept/reject decisions.
 
+The post-clean10 exact-bucket follow-up keeps this surface non-countable while
+making several review lanes terminal for current evidence:
+`artifacts/v3_mcsa_ai_visual_amp_nontransfer_discriminator_eval_20260525.json`
+keeps the AMP/nucleotide rule review-only with required transfer and edge
+controls, `artifacts/v3_mcsa_ai_visual_apo_holo_exact5_alternate_structure_scan_20260525.json`
+and companion audit/override artifacts find 0 local holo swaps across 37
+checked structures, and the loose-geometry, future-family backlog, and
+true-reject hard-negative artifacts preserve exact current-target boundary
+signal without schema, fingerprint, scoring, preview, or registry changes.
+
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures \
   --remediation artifacts/v3_review_debt_remediation_700.json \

@@ -1,0 +1,413 @@
+{
+  "classification_legend": {
+    "admissible_nontransfer_hydrolytic_context": "Catalytic-pocket AMP/nucleotide is hydrolytic substrate/product context, no transfer controls fire, and local expected cofactor evidence is adequate for future gated use.",
+    "ambiguous_review_only": "Non-transfer-like or unclear nucleotide context lacks enough pocket/cofactor/site evidence for production use; preserve signal but do not import.",
+    "true_transfer_atpase_helicase_kinase_counterevidence": "Nucleotide state indicates ATPase, helicase, kinase, phosphoryl-transfer, or adenylyl-transfer chemistry outside current metal_dependent_hydrolase import scope."
+  },
+  "control_evaluation": [
+    {
+      "control_id": "aminoacyl_tRNA_synthetase_synthetic_site",
+      "expected_action": "retain_nucleotide_transfer_ligand_context",
+      "expected_discriminator_classification": "transfer_or_adenylating_counterevidence",
+      "required_control_class": "aminoacyl-tRNA synthetase",
+      "required_feature": "aa-AMP synthetic-site intermediate or aminoacyl transfer to tRNA"
+    },
+    {
+      "control_id": "dna_rna_ligase_covalent_amp_lys_without_ppi",
+      "expected_action": "retain_nucleotide_transfer_ligand_context",
+      "expected_discriminator_classification": "transfer_or_adenylating_counterevidence",
+      "required_control_class": "DNA/RNA ligase including covalent AMP-Lys autoadenylation without PPi",
+      "required_feature": "covalent AMP alpha phosphate to conserved Lys Nzeta, even when PPi is absent"
+    },
+    {
+      "control_id": "anl_acyl_coa_synthetase_or_nrps_a_domain",
+      "expected_action": "retain_nucleotide_transfer_ligand_context",
+      "expected_discriminator_classification": "transfer_or_adenylating_counterevidence",
+      "required_control_class": "ANL/acyl-CoA synthetase or NRPS A-domain",
+      "required_feature": "acyl-AMP or aminoacyl-AMP intermediate attacked by CoA or carrier-protein thiol"
+    },
+    {
+      "control_id": "nmnat",
+      "expected_action": "retain_nucleotide_transfer_ligand_context",
+      "expected_discriminator_classification": "transfer_or_adenylating_counterevidence",
+      "required_control_class": "NMNAT",
+      "required_feature": "AMP transfer from ATP onto NMN with PPi leaving-group chemistry"
+    },
+    {
+      "control_id": "asparagine_synthetase_or_atp_dependent_amide_ligase",
+      "expected_action": "retain_nucleotide_transfer_ligand_context",
+      "expected_discriminator_classification": "transfer_or_adenylating_counterevidence",
+      "required_control_class": "asparagine synthetase or related ATP-dependent amide ligase",
+      "required_feature": "adenylated carboxylate intermediate followed by nucleophilic attack"
+    },
+    {
+      "control_id": "adenylate_kinase_ec_2_7_4_3",
+      "expected_action": "route_out_of_scope_or_ambiguous_not_amp_nontransfer",
+      "expected_discriminator_classification": "edge_out_of_scope",
+      "required_control_class": "adenylate kinase EC 2.7.4.3",
+      "required_feature": "phosphoryl transfer involving AMP substrate/product rather than adenylyl transfer"
+    },
+    {
+      "control_id": "nudix_ap4a_hydrolase",
+      "expected_action": "terminal_review_only_until_Ap4A_subrule_exists",
+      "expected_discriminator_classification": "edge_ambiguous_requires_subrule",
+      "required_control_class": "Nudix Ap4A hydrolase",
+      "required_feature": "distinguish Ap4A two-adenine dimetal product geometry from in-line AMP/leaving-group geometry"
+    },
+    {
+      "control_id": "allosteric_or_regulatory_amp",
+      "expected_action": "do_not_classify_as_catalytic_nontransfer",
+      "expected_discriminator_classification": "edge_out_of_scope",
+      "required_control_class": "allosteric/regulatory AMP",
+      "required_feature": "AMP is not in the M-CSA annotated catalytic pocket"
+    },
+    {
+      "control_id": "aars_editing_site_amp",
+      "expected_action": "require_site_scoped_M_CSA_residue_evidence_before_suppression",
+      "expected_discriminator_classification": "edge_site_scoped_ambiguous_or_nontransfer",
+      "required_control_class": "aaRS editing-site AMP",
+      "required_feature": "distinguish synthetic adenylation site from hydrolytic editing site"
+    }
+  ],
+  "discriminator_contract": {
+    "nontransfer_suppression_rule": "Only suppress nucleotide_transfer_ligand_context when AMP or related nucleotide is in the M-CSA annotated catalytic pocket, chemistry is hydrolytic substrate/product/non-transfer context, and no transfer-state control or edge-control subrule fires.",
+    "production_status": "not_activated_review_only_terminal_evaluation",
+    "regulatory_or_allosteric_amp_excluded": true,
+    "required_edge_or_out_of_scope_controls": [
+      "adenylate kinase EC 2.7.4.3",
+      "Nudix Ap4A hydrolase",
+      "allosteric/regulatory AMP",
+      "aaRS editing-site AMP"
+    ],
+    "required_transfer_controls": [
+      "aminoacyl-tRNA synthetase",
+      "DNA/RNA ligase including covalent AMP-Lys autoadenylation without PPi",
+      "ANL/acyl-CoA synthetase or NRPS A-domain",
+      "NMNAT",
+      "asparagine synthetase or related ATP-dependent amide ligase"
+    ],
+    "scope_requires_mcsa_annotated_catalytic_pocket": true,
+    "terminal_ambiguity_rule": "If pocket locality, site identity, or transfer-vs-nontransfer state cannot be distinguished, emit review-only/ambiguous signal and do not edit production labels or scoring."
+  },
+  "metadata": {
+    "artifact_id": "v3_mcsa_ai_visual_amp_nontransfer_discriminator_eval_20260525",
+    "artifact_upload_or_removal_performed": false,
+    "canonical_label_count_invariant": 702,
+    "canonical_registry_import_performed": false,
+    "control_assertion_count": 9,
+    "created_at": "2026-05-25T04:25:00Z",
+    "curated_label_registry_edited": false,
+    "dedicated_import_preview_run": false,
+    "exact_entry_ids": [
+      "m_csa:751",
+      "m_csa:564",
+      "m_csa:833",
+      "m_csa:780",
+      "m_csa:656"
+    ],
+    "fingerprint_registry_edited": false,
+    "label_import_performed": false,
+    "method": "exact40_amp_nucleotide_bucket_review_only_discriminator_evaluation",
+    "production_fingerprint_universe_count_invariant": 8,
+    "production_rule_activated": false,
+    "production_scoring_changed": false,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "row_count": 5,
+    "schema_version": "mcsa_amp_nontransfer_discriminator_eval.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json",
+      "artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json",
+      "artifacts/v3_expert_guidance_amp_nontransfer_and_coupled_plp_cobalamin_20260524.json",
+      "artifacts/v3_review_evidence_gaps_1025_preview.json"
+    ],
+    "source_sha256": {
+      "artifacts/v3_expert_guidance_amp_nontransfer_and_coupled_plp_cobalamin_20260524.json": "f47285783b61b5ebf4cae8bab641b8de880d4ecb196d81f617e016679b6a2a16",
+      "artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json": "427744aff898e75d847eaa6a287aaf584082322abdab8c247318faf158107e59",
+      "artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json": "6adead5adcf3ba31092195b4c960748eb8e221d71f959974e62d04d06133a1cf",
+      "artifacts/v3_review_evidence_gaps_1025_preview.json": "6c612289244b75529ffa82a596cbe09df0e60c77d02e09e32877369a9a0917d3"
+    }
+  },
+  "rows": [
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "current_decision": "needs_more_evidence",
+      "discriminator_classification": "true_transfer_atpase_helicase_kinase_counterevidence",
+      "entry_id": "m_csa:751",
+      "entry_name": "CDP-diacylglycerol diphosphatase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "future_family_route": "PfkB/ribokinase ATP-phosphoryl-transfer family",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "is_import_candidate": false,
+      "local_cofactor_families": [],
+      "matching_structure_ligands": [],
+      "mechanism_text_snippets": [
+        "The mechanism proposed is mainly by homology to other ribokinases, such as human adenosine kinase. Asp 252 is a general base and deprotonates the 5' hydroxyl group of the ribose. The deprotonated hydroxyl attacks the gamma-phosphate of ATP in an inline displacement mechanism. The backbone amides..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": null,
+      "nucleotide_context_call": "ATP_gamma_phosphoryl_transfer_not_amp_nontransfer",
+      "preserve_for_learning": true,
+      "production_counterevidence_action": "retain_or_route_transfer_counterevidence; do_not_suppress_as_amp_nontransfer",
+      "proximal_ligand_codes": [
+        "AIS",
+        "K",
+        "MSE"
+      ],
+      "row_decision": "true_reject_current_target_route_future_family",
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "strategy_recommended_workflow": "expert_biochemistry_boundary_review",
+      "structure_cofactor_families": [],
+      "structure_id": "1TZ3",
+      "structure_ligand_codes": [
+        "AIS",
+        "K",
+        "MSE"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3789,
+      "terminal_reason": "M-CSA mechanism text describes ribokinase/adenosine-kinase-like gamma-phosphate transfer from ATP to a ribose 5-hydroxyl, not non-transfer AMP/product hydrolysis; selected structure also lacks local expected metal evidence."
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "current_decision": "needs_more_evidence",
+      "discriminator_classification": "ambiguous_review_only",
+      "entry_id": "m_csa:564",
+      "entry_name": "ribonuclease V",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "future_family_route": "RNA phosphodiesterase/ribonuclease review lane",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "is_import_candidate": false,
+      "local_cofactor_families": [],
+      "matching_structure_ligands": [],
+      "mechanism_text_snippets": [
+        "The cleavage of substrate by ribonucleases is a two-step reaction: the first step is a transesterification of which a nucleophilic displacement at the phosphorus atom of the 5' leaving group by the 2' entering oxygen atom takes place, forming a nucleoside 2',3'-cyclophosphate intermediate, which..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": null,
+      "nucleotide_context_call": "nontransfer_nucleic_acid_substrate_context_without_local_metal_evidence",
+      "preserve_for_learning": true,
+      "production_counterevidence_action": "terminal_review_only_until local catalytic-pocket metal/cofactor evidence and a tested phosphodiesterase rule exist",
+      "proximal_ligand_codes": [],
+      "row_decision": "review_only_nontransfer_like_but_not_import_candidate",
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "strategy_recommended_workflow": "expert_biochemistry_boundary_review",
+      "structure_cofactor_families": [],
+      "structure_id": "1A4Y",
+      "structure_ligand_codes": [],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3594,
+      "terminal_reason": "Mechanism text is nucleic-acid phosphodiester cleavage/transesterification rather than adenylyl transfer, but the exact selected structure has no local/structure metal cofactor evidence and the score remains below the abstention floor."
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "coverage_status": "all_expected_local",
+      "current_decision": "needs_more_evidence",
+      "discriminator_classification": "true_transfer_atpase_helicase_kinase_counterevidence",
+      "entry_id": "m_csa:833",
+      "entry_name": "DNA helicase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "future_family_route": "ATP-dependent helicase/ATPase family",
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "is_import_candidate": false,
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "matching_structure_ligands": [
+        {
+          "code": "MG",
+          "family": "metal_ion",
+          "instance_count": 1,
+          "min_distance_to_active_site": 4.844
+        }
+      ],
+      "mechanism_text_snippets": [
+        "PcrA uses Glu 224 as a general base to deprotonate the water molecule that attacks the gamma phosphate of ATP. In addition, Lys 37,Arg 387, Arg 610, Gln 254 and an Mg2+ ion contact the triphosphate chain of ATP and stabilise negative charge in the transition state."
+      ],
+      "nearest_expected_ligand_distance_angstrom": 4.844,
+      "nucleotide_context_call": "local_ATP_Mg_helicase_ATPase_counterevidence",
+      "preserve_for_learning": true,
+      "production_counterevidence_action": "retain_nucleotide_transfer_ligand_context_or_ATPase_boundary_counterevidence",
+      "proximal_ligand_codes": [
+        "ATP",
+        "MG"
+      ],
+      "row_decision": "true_reject_current_target_route_future_family",
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "strategy_recommended_workflow": "expert_biochemistry_boundary_review",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_id": "1QHG",
+      "structure_ligand_codes": [
+        "ATP",
+        "MG"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3925,
+      "terminal_reason": "DNA helicase PcrA mechanism text and local ATP/Mg context identify gamma-phosphate ATP hydrolysis coupled to helicase chemistry; this is not AMP product/non-transfer hydrolase evidence for the current metal-dependent hydrolase fingerprint."
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "counterevidence_reasons": [
+        "ligand_supported_metal_without_metal_ligand_roles"
+      ],
+      "coverage_status": "all_expected_local",
+      "current_decision": "needs_more_evidence",
+      "discriminator_classification": "true_transfer_atpase_helicase_kinase_counterevidence",
+      "entry_id": "m_csa:780",
+      "entry_name": "DNA helicase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "future_family_route": "ATP-dependent helicase/ATPase family",
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "is_import_candidate": false,
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "matching_structure_ligands": [
+        {
+          "code": "MG",
+          "family": "metal_ion",
+          "instance_count": 2,
+          "min_distance_to_active_site": 5.964
+        }
+      ],
+      "mechanism_text_snippets": [
+        "ATP hydrolysis occurs through nucleophilic attack by water on the electrophilic phosphorous atom of the gamma phosphate of ATP to produce a pentavalent phosphate transition state, stabilised by contacts with Mg2+, Arg 205, Lys 51 and Thr 146. Collapse of this intermediate releases ADP and Pi, and..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": 5.964,
+      "nucleotide_context_call": "helicase_ATPase_gamma_phosphate_hydrolysis_counterevidence",
+      "preserve_for_learning": true,
+      "production_counterevidence_action": "retain_ATPase_boundary_counterevidence; do_not_import_current_target",
+      "proximal_ligand_codes": [
+        "MG"
+      ],
+      "row_decision": "true_reject_current_target_route_future_family",
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "strategy_recommended_workflow": "expert_biochemistry_boundary_review",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_id": "1HQC",
+      "structure_ligand_codes": [
+        "MG",
+        "ADE"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.35,
+      "terminal_reason": "DNA helicase mechanism text describes water attack on ATP gamma phosphate with Mg stabilization and ADP/Pi release; helicase ATPase context is a boundary/future-family route, not AMP non-transfer suppression evidence."
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "amp_or_nucleotide_nontransfer_context",
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_structure_only",
+      "current_decision": "needs_more_evidence",
+      "discriminator_classification": "true_transfer_atpase_helicase_kinase_counterevidence",
+      "entry_id": "m_csa:656",
+      "entry_name": "adenosinetriphosphatase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "future_family_route": "ATPase / ATP-dependent phosphoryl-transfer family",
+      "gap_reasons": [
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "is_import_candidate": false,
+      "local_cofactor_families": [],
+      "matching_structure_ligands": [
+        {
+          "code": "MG",
+          "family": "metal_ion",
+          "instance_count": 1,
+          "min_distance_to_active_site": 7.031
+        }
+      ],
+      "mechanism_text_snippets": [
+        "Once ATP has bound to the enzyme, hydrolysis proceeds through the attack of a water molecule, activated by Lys 71, on the gamma phosphate of ATP. This results in a pentavalent phosphate transition state, stabilised by Mg2+ at the active site, which collapses to release ADP and Pi. In addition, th..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": 7.031,
+      "nucleotide_context_call": "ATPase_gamma_phosphate_hydrolysis_not_amp_nontransfer",
+      "preserve_for_learning": true,
+      "production_counterevidence_action": "retain_ATPase_boundary_counterevidence; do_not_import_current_target",
+      "proximal_ligand_codes": [
+        "K"
+      ],
+      "row_decision": "true_reject_current_target_route_future_family",
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "strategy_recommended_workflow": "expert_biochemistry_boundary_review",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_id": "1KAZ",
+      "structure_ligand_codes": [
+        "K",
+        "MG",
+        "ATP",
+        "CL"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3503,
+      "terminal_reason": "ATPase mechanism text describes water attack on the ATP gamma phosphate, Mg-stabilized transition state, and ADP/Pi release; local expected metal support is insufficient and the row is not an AMP non-transfer hydrolase import candidate."
+    }
+  ],
+  "summary": {
+    "classification_counts": {
+      "ambiguous_review_only": 1,
+      "true_transfer_atpase_helicase_kinase_counterevidence": 4
+    },
+    "future_family_route_entry_ids": {
+      "m_csa:656": "ATPase / ATP-dependent phosphoryl-transfer family",
+      "m_csa:751": "PfkB/ribokinase ATP-phosphoryl-transfer family",
+      "m_csa:780": "ATP-dependent helicase/ATPase family",
+      "m_csa:833": "ATP-dependent helicase/ATPase family"
+    },
+    "import_candidate_entry_ids": [],
+    "review_only_entry_ids": [
+      "m_csa:564"
+    ],
+    "terminal_decision": "no_import_candidates; preserve one ambiguous nontransfer-like ribonuclease row and route four ATPase/helicase/kinase rows away from current metal_dependent_hydrolase counting",
+    "true_reject_entry_ids": [
+      "m_csa:751",
+      "m_csa:833",
+      "m_csa:780",
+      "m_csa:656"
+    ]
+  }
+}

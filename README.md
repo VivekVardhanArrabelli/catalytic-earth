@@ -127,6 +127,14 @@ The repository currently contains:
     non-imported clean-10 rows (`m_csa:954`, `m_csa:955`, `m_csa:661`) and
     the other 30 exact-40 rows remain explicit non-countable learning/review
     signal in `artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json`.
+    Follow-up exact-bucket artifacts now resolve the AMP/nucleotide,
+    apo/holo, loose-geometry, future-family backlog, and true-reject signal
+    lanes without adding labels: the AMP discriminator has 0 import candidates
+    (`m_csa:751`, `m_csa:833`, `m_csa:780`, and `m_csa:656` route as
+    ATPase/helicase/kinase or phosphoryl-transfer rejects; `m_csa:564` remains
+    review-only), the apo/holo scan checks 37 structures with 0 local holo
+    swaps, and the loose/future-family/true-reject artifacts preserve exact
+    current-target boundary signal only.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives

@@ -50,6 +50,77 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-25T04:50Z Exact40 AMP/Holo Follow-Up Buckets Closed Review-Only
+
+This run continued from `origin/main` commit `2569007`, acquired the automation
+lock, fast-forward synced, and worked only on exact nonclean exact40 buckets.
+No labels were imported, no import previews were run, no canonical registry,
+ontology, fingerprint, threshold, or scoring state changed, and the
+pre-existing root CIF files were ignored.
+
+New review-only artifacts:
+
+```text
+artifacts/v3_mcsa_ai_visual_amp_nontransfer_discriminator_eval_20260525.json
+artifacts/v3_mcsa_ai_visual_apo_holo_exact5_remediation_20260525.json
+artifacts/v3_mcsa_ai_visual_apo_holo_exact5_alternate_structure_scan_20260525.json
+artifacts/v3_mcsa_ai_visual_apo_holo_exact5_holo_preference_audit_20260525.json
+artifacts/v3_mcsa_ai_visual_apo_holo_exact5_selected_pdb_overrides_20260525.json
+artifacts/v3_mcsa_ai_visual_loose_geometry_policy_exact4_20260525.json
+artifacts/v3_mcsa_ai_visual_future_family_ontology_backlog_exact5_20260525.json
+artifacts/v3_mcsa_ai_visual_true_reject_hard_negative_signal_exact5_20260525.json
+```
+
+AMP/nucleotide exact-five decision: 0 import candidates. `m_csa:751`,
+`m_csa:833`, `m_csa:780`, and `m_csa:656` route as current-target rejects or
+future-family ATPase/helicase/kinase/phosphoryl-transfer evidence; `m_csa:564`
+remains terminal review-only because the chemistry is non-transfer-like RNA
+phosphodiester cleavage but local/structure metal evidence is absent and the
+score stays below threshold. The discriminator artifact explicitly requires
+M-CSA catalytic-pocket scope, blocks allosteric/regulatory AMP from catalytic
+non-transfer classification, retains aaRS/ligase/ANL/NMNAT/asparagine
+synthetase transfer controls, and keeps adenylate kinase, Nudix Ap4A, and
+aaRS editing-site AMP as edge/out-of-scope controls.
+
+Apo/holo exact-five decision: the exact remediation filter fed the existing
+`scan-review-debt-alternate-structures` CLI. The scan checked all 37 candidate
+structures with 0 fetch failures. `m_csa:952`, `m_csa:794`, `m_csa:671`, and
+`m_csa:832` have no expected metal in scanned structures. `m_csa:644` has
+structure-wide metal hits in alternates (`5CK6`, `5CLK`, `5YNG`) but 0 local
+active-site expected-family hits, so the holo-preference audit recommends 0
+swaps and the selected-PDB override plan has 0 ready rows.
+
+Additional exact40 buckets handled before wrap:
+
+```text
+loose/open/interdomain geometry:
+  m_csa:976, m_csa:847, m_csa:642, m_csa:844
+wrong-fingerprint/future-family backlog:
+  m_csa:793, m_csa:755, m_csa:817, m_csa:597, m_csa:729
+true-reject current-target hard-negative signal:
+  m_csa:841, m_csa:658, m_csa:827, m_csa:774, m_csa:831
+```
+
+All remain non-countable. The loose-geometry artifact blocks import from wide
+focus-pair or boundary evidence alone. The future-family backlog records
+glycoside hydrolase, transferase/thioester-transfer, cysteine-protease, and
+GH18/substrate-assisted routes without ontology or fingerprint edits. The
+true-reject artifact preserves those rows as hard negatives for the named
+current target only, never as global negatives or future-family positive
+seeds.
+
+Rows intentionally left as explicit holds: `m_csa:650` remains manual visual
+target/top1 reconciliation; the five expert-biochemistry rows remain expert
+holds. Next action: if continuing exact40 cleanup, build only a hold/index
+artifact for manual/expert rows or wait for human review; do not import unless
+a dedicated preview, label-factory gate, and batch acceptance all pass.
+
+Targeted verification passed:
+
+```text
+PYTHONPATH=src python -m unittest tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_amp_nontransfer_discriminator_exact5_review_only tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_apo_holo_exact5_scan_finds_no_local_holo_swaps tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_loose_geometry_policy_exact4_stays_review_only tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_future_family_backlog_exact5_does_not_edit_schema tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_true_reject_hard_negatives_are_current_target_only
+```
+
 ### 2026-05-25T02:52Z Clean10 Accept7 Imported
 
 The clean-10 M-CSA AI-visual expert decisions were split into seven countable

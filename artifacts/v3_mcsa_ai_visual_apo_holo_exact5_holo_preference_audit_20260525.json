@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "already_holo_entry_count": 0,
+    "already_holo_entry_ids": [],
+    "audited_entry_count": 5,
+    "decision_rule": "Recommend swapping the canonical reference PDB to a scanned alternate when (a) the selected structure lacks the expected cofactor family at the active site, (b) at least one alternate PDB has the expected family locally with usable residue positions >= min_usable_residue_positions, and (c) selection tiebreak prefers mcsa_explicit residue source over conservative remap when prefer_mcsa_explicit_over_remap=True. Recommendations are advisory; applying them requires regenerating geometry features and dependent label/audit artifacts for the affected entries.",
+    "method": "structure_selection_holo_preference_audit",
+    "min_usable_residue_positions": 1,
+    "no_expected_cofactor_families_entry_count": 0,
+    "no_expected_cofactor_families_entry_ids": [],
+    "no_holo_alternate_entry_count": 5,
+    "no_holo_alternate_entry_ids": [
+      "m_csa:644",
+      "m_csa:671",
+      "m_csa:794",
+      "m_csa:832",
+      "m_csa:952"
+    ],
+    "prefer_mcsa_explicit_over_remap": true,
+    "source_method": "review_debt_alternate_structure_scan",
+    "swap_recommended_count": 0,
+    "swap_recommended_entry_ids": [],
+    "swap_residue_position_source_counts": {}
+  },
+  "rows": [
+    {
+      "alternative_holo_candidate_count": 0,
+      "alternative_holo_candidate_pdb_ids": [],
+      "current_selected_pdb_id": "1NWW",
+      "entry_id": "m_csa:644",
+      "entry_name": "limonene-1,2-epoxide hydrolase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "recommendation": "no_swap_no_holo_alternate",
+      "recommendation_rationale": "Selected PDB 1NWW lacks expected cofactor family ['metal_ion'] at active site, and no scanned alternate PDB provides it with sufficient residue support.",
+      "recommended_pdb_id": null,
+      "recommended_pdb_local_expected_family_hits": [],
+      "recommended_pdb_local_ligand_codes": [],
+      "recommended_pdb_local_resolved_residue_count": 0,
+      "recommended_pdb_residue_position_source": null,
+      "recommended_pdb_usable_residue_position_count": 0,
+      "selected_active_site_has_expected_family": false,
+      "selected_structure_has_expected_family": false
+    },
+    {
+      "alternative_holo_candidate_count": 0,
+      "alternative_holo_candidate_pdb_ids": [],
+      "current_selected_pdb_id": "1FO6",
+      "entry_id": "m_csa:671",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "recommendation": "no_swap_no_holo_alternate",
+      "recommendation_rationale": "Selected PDB 1FO6 lacks expected cofactor family ['metal_ion'] at active site, and no scanned alternate PDB provides it with sufficient residue support.",
+      "recommended_pdb_id": null,
+      "recommended_pdb_local_expected_family_hits": [],
+      "recommended_pdb_local_ligand_codes": [],
+      "recommended_pdb_local_resolved_residue_count": 0,
+      "recommended_pdb_residue_position_source": null,
+      "recommended_pdb_usable_residue_position_count": 0,
+      "selected_active_site_has_expected_family": false,
+      "selected_structure_has_expected_family": false
+    },
+    {
+      "alternative_holo_candidate_count": 0,
+      "alternative_holo_candidate_pdb_ids": [],
+      "current_selected_pdb_id": "1JH6",
+      "entry_id": "m_csa:794",
+      "entry_name": "2',3'-cyclic-nucleotide 3'-phosphodiesterase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "recommendation": "no_swap_no_holo_alternate",
+      "recommendation_rationale": "Selected PDB 1JH6 lacks expected cofactor family ['metal_ion'] at active site, and no scanned alternate PDB provides it with sufficient residue support.",
+      "recommended_pdb_id": null,
+      "recommended_pdb_local_expected_family_hits": [],
+      "recommended_pdb_local_ligand_codes": [],
+      "recommended_pdb_local_resolved_residue_count": 0,
+      "recommended_pdb_residue_position_source": null,
+      "recommended_pdb_usable_residue_position_count": 0,
+      "selected_active_site_has_expected_family": false,
+      "selected_structure_has_expected_family": false
+    },
+    {
+      "alternative_holo_candidate_count": 0,
+      "alternative_holo_candidate_pdb_ids": [],
+      "current_selected_pdb_id": "1DE3",
+      "entry_id": "m_csa:832",
+      "entry_name": "rRNA endonuclease",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "recommendation": "no_swap_no_holo_alternate",
+      "recommendation_rationale": "Selected PDB 1DE3 lacks expected cofactor family ['metal_ion'] at active site, and no scanned alternate PDB provides it with sufficient residue support.",
+      "recommended_pdb_id": null,
+      "recommended_pdb_local_expected_family_hits": [],
+      "recommended_pdb_local_ligand_codes": [],
+      "recommended_pdb_local_resolved_residue_count": 0,
+      "recommended_pdb_residue_position_source": null,
+      "recommended_pdb_usable_residue_position_count": 0,
+      "selected_active_site_has_expected_family": false,
+      "selected_structure_has_expected_family": false
+    },
+    {
+      "alternative_holo_candidate_count": 0,
+      "alternative_holo_candidate_pdb_ids": [],
+      "current_selected_pdb_id": "2HW4",
+      "entry_id": "m_csa:952",
+      "entry_name": "phosphohistidine phosphatase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "recommendation": "no_swap_no_holo_alternate",
+      "recommendation_rationale": "Selected PDB 2HW4 lacks expected cofactor family ['metal_ion'] at active site, and no scanned alternate PDB provides it with sufficient residue support.",
+      "recommended_pdb_id": null,
+      "recommended_pdb_local_expected_family_hits": [],
+      "recommended_pdb_local_ligand_codes": [],
+      "recommended_pdb_local_resolved_residue_count": 0,
+      "recommended_pdb_residue_position_source": null,
+      "recommended_pdb_usable_residue_position_count": 0,
+      "selected_active_site_has_expected_family": false,
+      "selected_structure_has_expected_family": false
+    }
+  ]
+}

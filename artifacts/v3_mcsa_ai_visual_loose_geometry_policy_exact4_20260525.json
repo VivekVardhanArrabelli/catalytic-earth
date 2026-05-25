@@ -1,0 +1,350 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_ai_visual_loose_geometry_policy_exact4_20260525",
+    "artifact_upload_or_removal_performed": false,
+    "canonical_label_count_invariant": 702,
+    "canonical_registry_import_performed": false,
+    "created_at": "2026-05-25T04:36:00Z",
+    "curated_label_registry_edited": false,
+    "dedicated_import_preview_run": false,
+    "exact_entry_ids": [
+      "m_csa:976",
+      "m_csa:847",
+      "m_csa:642",
+      "m_csa:844"
+    ],
+    "fingerprint_registry_edited": false,
+    "label_import_performed": false,
+    "method": "exact40_loose_open_interdomain_geometry_policy_review_only",
+    "production_fingerprint_universe_count_invariant": 8,
+    "production_policy_activated": false,
+    "production_scoring_changed": false,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "row_count": 4,
+    "schema_version": "mcsa_loose_geometry_policy_exact4.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json",
+      "artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json",
+      "artifacts/v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json",
+      "artifacts/v3_review_evidence_gaps_1025_preview.json",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json"
+    ],
+    "source_sha256": {
+      "artifacts/v3_mcsa_ai_visual_exact40_human_review_packet_20260524.json": "55e053c9fcf6d3a918a4ed652f67b01aa95cc02ff25b1d975e6e9906396cd2f4",
+      "artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json": "427744aff898e75d847eaa6a287aaf584082322abdab8c247318faf158107e59",
+      "artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json": "6adead5adcf3ba31092195b4c960748eb8e221d71f959974e62d04d06133a1cf",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json": "1888307cf408b7d94d6defb27246e287258f46c4d7c479d66bed5ff7d86d0022",
+      "artifacts/v3_review_evidence_gaps_1025_preview.json": "6c612289244b75529ffa82a596cbe09df0e60c77d02e09e32877369a9a0917d3"
+    }
+  },
+  "policy_contract": {
+    "admissible_future_use": "A future import would require a compact coherent catalytic unit with catalytic residues, substrate/water/cofactor context, and no current-target/future-family boundary counterevidence, followed by dedicated label-factory gates.",
+    "broad_call_guardrail": "This artifact makes only exact-row current-target route calls; it does not define a broad biological accept/reject rule for these enzyme families.",
+    "no_import_rule": "Wide focus-pair or loose/open/interdomain visual evidence cannot authorize countable labels by itself.",
+    "terminal_review_only_rule": "Rows with wide focus pairs plus missing local cofactor, nucleotide/ATPase boundary, or wrong seed-family chemistry remain non-countable review signal."
+  },
+  "rows": [
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "loose_open_or_interdomain_geometry",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "coverage_status": "not_required",
+      "current_decision": "needs_more_evidence",
+      "entry_id": "m_csa:976",
+      "entry_name": "\u03b1\u2011glucosidase maltase-glucoamylase",
+      "expected_cofactor_families": [],
+      "focus_pair": {
+        "distance_angstrom": 20.114,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "TRP",
+          "residue_node_id": "m_csa:976:residue:7",
+          "residue_number": 406,
+          "roles": [
+            "pi-pi interaction"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "TRP",
+          "residue_node_id": "m_csa:976:residue:9",
+          "residue_number": 539,
+          "roles": [
+            "pi-pi interaction"
+          ]
+        }
+      },
+      "future_family_route": "glycoside hydrolase or unrepresented retaining glucosidase family",
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_policy_call": "reject_current_ser_his_seed_geometry; route_future_glycoside_or_unrepresented_family",
+      "import_candidate": false,
+      "local_cofactor_families": [],
+      "mechanism_text_snippets": [
+        "The mechanism involves cleavage of the maltose molecule with net retention of anomeric configuration. Asp443 performs a nucleophilic attack on the anomeric carbon of the maltose molecule and then attack of a water molecule forms the second glucose product. Asp542 acts as a general acid/base catal..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": null,
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [
+        "AC1",
+        "GLC"
+      ],
+      "recommended_workflow": "structure_or_pymol_geometry_resolution",
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "2QMJ",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "structure_cofactor_families": [],
+      "structure_id": "2QMJ",
+      "structure_ligand_codes": [
+        "AC1",
+        "GLC",
+        "GOL",
+        "NAG",
+        "SO4"
+      ],
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "target_score": 0.3631,
+      "terminal_reason": "The highlighted 20.114 A CA pair joins two pi-interaction tryptophans, not a compact Ser/His/acid catalytic triad; mechanism is glycosidic cleavage/retaining glucosidase chemistry outside the current ser_his_acid_hydrolase seed.",
+      "visual_focus_distance_angstrom": 20.114
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "loose_open_or_interdomain_geometry",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "current_decision": "needs_more_evidence",
+      "entry_id": "m_csa:847",
+      "entry_name": "epoxide hydrolase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "focus_pair": {
+        "distance_angstrom": 22.31,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:847:residue:6",
+          "residue_number": 246,
+          "roles": [
+            "electrostatic stabiliser",
+            "increase basicity"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "TYR",
+          "residue_node_id": "m_csa:847:residue:7",
+          "residue_number": 215,
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      },
+      "future_family_route": "epoxide hydrolase / alpha-beta hydrolase review lane",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_policy_call": "ambiguous_review_only_current_metal_hydrolase_target",
+      "import_candidate": false,
+      "local_cofactor_families": [],
+      "mechanism_text_snippets": [
+        "The mechanism involves two steps. In the first reaction an ester bond is formed between the enzyme and substrate by attack of the nucleophilic Asp 107 on the primary carbon of the substrate; in the second step this ester bond is hydrolysed by a water molecule, activated by the His275/Asp246 pair...."
+      ],
+      "nearest_expected_ligand_distance_angstrom": null,
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [
+        "K"
+      ],
+      "recommended_workflow": "structure_or_pymol_geometry_resolution",
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1EHY",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "structure_cofactor_families": [],
+      "structure_id": "1EHY",
+      "structure_ligand_codes": [
+        "K"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3539,
+      "terminal_reason": "The highlighted 22.310 A CA pair is wide and the selected structure lacks expected metal evidence; mechanism text is epoxide hydrolase covalent Asp/substrate then water hydrolysis, so no current metal_dependent_hydrolase import is supported.",
+      "visual_focus_distance_angstrom": 22.31
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "loose_open_or_interdomain_geometry",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "coverage_status": "all_expected_local",
+      "current_decision": "needs_more_evidence",
+      "entry_id": "m_csa:642",
+      "entry_name": "vesicle-fusing ATPase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "focus_pair": {
+        "distance_angstrom": 31.492,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "LYS",
+          "residue_node_id": "m_csa:642:residue:7",
+          "residue_number": 235,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "LYS",
+          "residue_node_id": "m_csa:642:residue:8",
+          "residue_number": 158,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        }
+      },
+      "future_family_route": "ATP-dependent ATPase / phosphoryl-transfer family",
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_policy_call": "reject_current_metal_hydrolase_geometry; route_ATPase_family",
+      "import_candidate": false,
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "mechanism_text_snippets": [
+        "Hydrolysis of ATP is facilitated by a Mg2+ ion and two Lysine residues (Lys 549 and Lys 708) and Thr 550 which contact the beta and gamma phosphates of the ATP and Asp 504 and Mg2+ aid in the deprotonation of water so that it can nucleophilically attack the gamma phosphate of ATP. This enables th..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": 4.176,
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [
+        "ATP",
+        "MG"
+      ],
+      "recommended_workflow": "structure_or_pymol_geometry_resolution",
+      "selected_active_site_has_expected_family": true,
+      "selected_pdb_id": "1NSF",
+      "selected_structure_has_expected_family": true,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_id": "1NSF",
+      "structure_ligand_codes": [
+        "ATP",
+        "MG"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3985,
+      "terminal_reason": "The highlighted 31.492 A CA pair spans noncompact ATPase residues while local ATP/Mg and nucleotide-transfer counterevidence identify vesicle-fusing ATPase boundary chemistry rather than a countable current metal hydrolase.",
+      "visual_focus_distance_angstrom": 31.492
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "loose_open_or_interdomain_geometry",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "current_decision": "needs_more_evidence",
+      "entry_id": "m_csa:844",
+      "entry_name": "dUTP diphosphatase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "focus_pair": {
+        "distance_angstrom": 26.739,
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "GLY",
+          "residue_node_id": "m_csa:844:residue:2",
+          "residue_number": 73,
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        "right": {
+          "atom_name": "CA",
+          "chain_name": "A",
+          "residue_name": "ASP",
+          "residue_node_id": "m_csa:844:residue:5",
+          "residue_number": 90,
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      },
+      "future_family_route": "nucleotide pyrophosphatase / dUTPase review lane",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "geometry_policy_call": "ambiguous_review_only_current_metal_hydrolase_target",
+      "import_candidate": false,
+      "local_cofactor_families": [],
+      "mechanism_text_snippets": [
+        "Asp90 activates the catalytic water, which attacks the gamma phosphate, elimintating the diphoshate and forming dUMP."
+      ],
+      "nearest_expected_ligand_distance_angstrom": null,
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [],
+      "recommended_workflow": "structure_or_pymol_geometry_resolution",
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1DUP",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "structure_cofactor_families": [],
+      "structure_id": "1DUP",
+      "structure_ligand_codes": [],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3249,
+      "terminal_reason": "The highlighted 26.739 A CA pair is wide and selected-structure metal evidence is absent; dUTP diphosphatase mechanism is nucleotide phosphate hydrolysis requiring future family/pocket handling before any current-target import.",
+      "visual_focus_distance_angstrom": 26.739
+    }
+  ],
+  "summary": {
+    "countable_label_candidate_entry_ids": [],
+    "future_family_route_entry_ids": {
+      "m_csa:642": "ATP-dependent ATPase / phosphoryl-transfer family",
+      "m_csa:844": "nucleotide pyrophosphatase / dUTPase review lane",
+      "m_csa:847": "epoxide hydrolase / alpha-beta hydrolase review lane",
+      "m_csa:976": "glycoside hydrolase or unrepresented retaining glucosidase family"
+    },
+    "import_candidate_entry_ids": [],
+    "policy_call_counts": {
+      "ambiguous_review_only_current_metal_hydrolase_target": 2,
+      "reject_current_metal_hydrolase_geometry; route_ATPase_family": 1,
+      "reject_current_ser_his_seed_geometry; route_future_glycoside_or_unrepresented_family": 1
+    },
+    "terminal_decision": "no loose/open/interdomain geometry rows are import candidates under current evidence"
+  }
+}

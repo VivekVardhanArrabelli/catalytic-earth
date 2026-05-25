@@ -1,0 +1,292 @@
+{
+  "backlog_contract": {
+    "future_use_rule": "Use these rows as prioritized future-family/schema design evidence; any later label import requires an explicit family, review decision, import preview, and label-factory acceptance.",
+    "no_import_rule": "Backlog routing does not create labels, production fingerprints, ontology families, or import previews.",
+    "prediction_leakage_rule": "Backlog routes are review-derived and must not be used as direct model input features.",
+    "scope": "Exact current-target mismatch rows from the nonclean exact40 strategy only."
+  },
+  "metadata": {
+    "artifact_id": "v3_mcsa_ai_visual_future_family_ontology_backlog_exact5_20260525",
+    "artifact_upload_or_removal_performed": false,
+    "canonical_label_count_invariant": 702,
+    "canonical_registry_import_performed": false,
+    "created_at": "2026-05-25T04:42:00Z",
+    "curated_label_registry_edited": false,
+    "dedicated_import_preview_run": false,
+    "exact_entry_ids": [
+      "m_csa:793",
+      "m_csa:755",
+      "m_csa:817",
+      "m_csa:597",
+      "m_csa:729"
+    ],
+    "fingerprint_registry_edited": false,
+    "label_import_performed": false,
+    "method": "exact40_wrong_fingerprint_future_family_backlog_review_only",
+    "ontology_registry_edited": false,
+    "production_fingerprint_universe_count_invariant": 8,
+    "production_scoring_changed": false,
+    "ready_for_label_import": false,
+    "removal_allowed_set_true": false,
+    "review_only": true,
+    "row_count": 5,
+    "schema_version": "mcsa_future_family_ontology_backlog_exact5.v1",
+    "source_artifacts": [
+      "artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json",
+      "artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json",
+      "artifacts/v3_review_evidence_gaps_1025_preview.json",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json"
+    ],
+    "source_sha256": {
+      "artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json": "427744aff898e75d847eaa6a287aaf584082322abdab8c247318faf158107e59",
+      "artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json": "6adead5adcf3ba31092195b4c960748eb8e221d71f959974e62d04d06133a1cf",
+      "artifacts/v3_review_debt_remediation_1025_preview_all.json": "1888307cf408b7d94d6defb27246e287258f46c4d7c479d66bed5ff7d86d0022",
+      "artifacts/v3_review_evidence_gaps_1025_preview.json": "6c612289244b75529ffa82a596cbe09df0e60c77d02e09e32877369a9a0917d3"
+    }
+  },
+  "rows": [
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "metal_ligand_rich_site_for_ser_his_seed",
+        "metal_supported_site_for_ser_his_seed",
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "coverage_status": "not_required",
+      "current_decision": "needs_more_evidence",
+      "entry_id": "m_csa:793",
+      "entry_name": "mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase",
+      "expected_cofactor_families": [],
+      "fingerprint_edited": false,
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "import_candidate": false,
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "mechanism_text_snippets": [
+        "The two glycosidic bonds are hydrolysed in the same catalytic site. The bond to the alpha1,6-linked mannose residue is hydrolysed first. This is followed by a rearrangement of the substrate which results in the repositioning of the alpha1,3-linked mannose residue from the holding site into the ca..."
+      ],
+      "ontology_backlog_route": "glycoside_hydrolase_family",
+      "ontology_edited": false,
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [
+        "ZN",
+        "GUL",
+        "TRS"
+      ],
+      "recommended_workflow": "future_family_or_schema_route_review",
+      "route_status": "future_family_schema_needed",
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1QWN",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "strategy_future_family_or_lane": "glycoside hydrolase family",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_id": "1QWN",
+      "structure_ligand_codes": [
+        "ZN",
+        "GUL",
+        "TRS",
+        "MPD",
+        "NAG"
+      ],
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "target_score": 0.3628,
+      "terminal_reason": "Mannosidase glycosidic-bond hydrolysis and metal-rich/ser-his counterevidence do not fit the current ser_his_acid_hydrolase seed; preserve as glycoside hydrolase route evidence."
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "current_decision": "needs_more_evidence",
+      "entry_id": "m_csa:755",
+      "entry_name": "lysophospholipase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "fingerprint_edited": false,
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "import_candidate": false,
+      "local_cofactor_families": [],
+      "mechanism_text_snippets": [
+        "The catalytic triad (Ser 10 - Asp 154 - His 157) and the oxyanion hole (Ser 10 - Gly 44 - Asn 73) are involved in the deacylation catalytic mechanism. The His 157 imidazole ring becomes deprotonated, and its Ne2 lone pair becomes available for hydrogen bonding to the Ser 10 hydroxyl. Asp 154 is p..."
+      ],
+      "ontology_backlog_route": "transferase_or_thioester_transfer_family",
+      "ontology_edited": false,
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [
+        "SDP"
+      ],
+      "recommended_workflow": "future_family_or_schema_route_review",
+      "route_status": "future_family_schema_needed",
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1J00",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "strategy_future_family_or_lane": "transferase/thioester-transfer family",
+      "structure_cofactor_families": [],
+      "structure_id": "1J00",
+      "structure_ligand_codes": [
+        "SDP",
+        "SO4"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3519,
+      "terminal_reason": "Lysophospholipase mechanism text supports a Ser-Asp-His deacylation/oxyanion-hole chemistry, while current target is metal_dependent_hydrolase with absent selected-structure metal evidence."
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "current_decision": "needs_more_evidence",
+      "entry_id": "m_csa:817",
+      "entry_name": "chitinase (GH18, class II)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "fingerprint_edited": false,
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "import_candidate": false,
+      "local_cofactor_families": [],
+      "mechanism_text_snippets": [
+        "The nitrogen atom of the substrate pushes electrons up toward the acetyl group, causing the oxygen atom of the acetyl to nucleophilically attack the C1 atom of the substrate. This breaks the C1-O bond, and the leaving group oxygen atom is protonated by Glu 204. Asp 202 and Tyr 279 distort the sub..."
+      ],
+      "ontology_backlog_route": "glycoside_hydrolase_GH18_or_substrate_assisted_family",
+      "ontology_edited": false,
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [
+        "GOL"
+      ],
+      "recommended_workflow": "future_family_or_schema_route_review",
+      "route_status": "future_family_schema_needed",
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1ITX",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "strategy_future_family_or_lane": "future unrepresented mechanism family",
+      "structure_cofactor_families": [],
+      "structure_id": "1ITX",
+      "structure_ligand_codes": [
+        "GOL"
+      ],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3472,
+      "terminal_reason": "GH18 chitinase substrate-assisted glycoside hydrolysis is not represented by the current metal_dependent_hydrolase seed and lacks selected-structure metal evidence."
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "current_decision": "needs_more_evidence",
+      "entry_id": "m_csa:597",
+      "entry_name": "ubiquitinyl hydrolase 1 (peptidase C12 type)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "fingerprint_edited": false,
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "import_candidate": false,
+      "local_cofactor_families": [],
+      "mechanism_text_snippets": [
+        "<p>UCH hydrolyses the peptide bond at the C-terminus of ubiquitin to regenerate active ubiquitin from adducts with small nucleophiles and is thought to use the same catalytic mechanism as that established for the well-studied papain family of cysteine proteases. </p> <p>The catalytic Cys residue..."
+      ],
+      "ontology_backlog_route": "cysteine_protease_Cys_His_Asp_hydrolase_family",
+      "ontology_edited": false,
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [],
+      "recommended_workflow": "future_family_or_schema_route_review",
+      "route_status": "future_family_schema_needed",
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1UCH",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "strategy_future_family_or_lane": "cysteine protease Cys-His-Asp hydrolase family",
+      "structure_cofactor_families": [],
+      "structure_id": "1UCH",
+      "structure_ligand_codes": [],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3647,
+      "terminal_reason": "Ubiquitinyl hydrolase follows papain-like cysteine protease chemistry, not metal-dependent hydrolysis under the current target."
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "blocker_bucket": "wrong_fingerprint_or_future_ontology_family",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "current_decision": "needs_more_evidence",
+      "entry_id": "m_csa:729",
+      "entry_name": "protein-glutamate methylesterase (CheD)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "fingerprint_edited": false,
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "import_candidate": false,
+      "local_cofactor_families": [],
+      "mechanism_text_snippets": [
+        "A mechanism analogous to that seen in cysteine proteases, such as papain, has been proposed for the deamidation. Cys27 acts as the nucleophile. It attacks the carbonyl carbon of the substrate yielding a tetrahedral intermediate. Ammonia is lost yielding a thioester which is hydrolysed by a water..."
+      ],
+      "ontology_backlog_route": "cysteine_protease_Cys_His_Asp_hydrolase_family",
+      "ontology_edited": false,
+      "preserve_for_learning": true,
+      "proximal_ligand_codes": [],
+      "recommended_workflow": "future_family_or_schema_route_review",
+      "route_status": "future_family_schema_needed",
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "2F9Z",
+      "selected_structure_has_expected_family": false,
+      "source_signal_status": "preserved_non_countable_pending_future_review_or_rule",
+      "strategy_future_family_or_lane": "cysteine protease Cys-His-Asp hydrolase family",
+      "structure_cofactor_families": [],
+      "structure_id": "2F9Z",
+      "structure_ligand_codes": [],
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.36,
+      "terminal_reason": "CheD mechanism is proposed as cysteine-protease-like nucleophilic Cys chemistry with thioester hydrolysis, not a current metal-dependent hydrolase import."
+    }
+  ],
+  "summary": {
+    "countable_label_candidate_entry_ids": [],
+    "fingerprint_edit_candidate_count_now": 0,
+    "import_candidate_entry_ids": [],
+    "ontology_backlog_route_counts": {
+      "cysteine_protease_Cys_His_Asp_hydrolase_family": 2,
+      "glycoside_hydrolase_GH18_or_substrate_assisted_family": 1,
+      "glycoside_hydrolase_family": 1,
+      "transferase_or_thioester_transfer_family": 1
+    },
+    "ontology_edit_candidate_count_now": 0,
+    "terminal_decision": "all exact future-family rows remain non-countable backlog signal; no ontology or fingerprint edit is authorized"
+  }
+}

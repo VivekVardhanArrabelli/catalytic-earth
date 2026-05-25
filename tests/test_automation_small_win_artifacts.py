@@ -15866,6 +15866,407 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
                 ]
             )
 
+    def test_mcsa_ai_visual_amp_nontransfer_discriminator_exact5_review_only(
+        self,
+    ) -> None:
+        discriminator = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_amp_nontransfer_discriminator_eval_20260525.json"
+        )
+
+        metadata = discriminator["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["production_rule_activated"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(
+            metadata["exact_entry_ids"],
+            ["m_csa:751", "m_csa:564", "m_csa:833", "m_csa:780", "m_csa:656"],
+        )
+        self.assertEqual(metadata["row_count"], 5)
+        self.assertEqual(metadata["control_assertion_count"], 9)
+
+        contract = discriminator["discriminator_contract"]
+        self.assertTrue(contract["scope_requires_mcsa_annotated_catalytic_pocket"])
+        self.assertTrue(contract["regulatory_or_allosteric_amp_excluded"])
+        self.assertEqual(
+            set(contract["required_transfer_controls"]),
+            {
+                "aminoacyl-tRNA synthetase",
+                "DNA/RNA ligase including covalent AMP-Lys autoadenylation without PPi",
+                "ANL/acyl-CoA synthetase or NRPS A-domain",
+                "NMNAT",
+                "asparagine synthetase or related ATP-dependent amide ligase",
+            },
+        )
+        self.assertEqual(
+            set(contract["required_edge_or_out_of_scope_controls"]),
+            {
+                "adenylate kinase EC 2.7.4.3",
+                "Nudix Ap4A hydrolase",
+                "allosteric/regulatory AMP",
+                "aaRS editing-site AMP",
+            },
+        )
+        self.assertIn("review-only/ambiguous", contract["terminal_ambiguity_rule"])
+
+        controls = {row["control_id"]: row for row in discriminator["control_evaluation"]}
+        self.assertEqual(set(controls), {
+            "aminoacyl_tRNA_synthetase_synthetic_site",
+            "dna_rna_ligase_covalent_amp_lys_without_ppi",
+            "anl_acyl_coa_synthetase_or_nrps_a_domain",
+            "nmnat",
+            "asparagine_synthetase_or_atp_dependent_amide_ligase",
+            "adenylate_kinase_ec_2_7_4_3",
+            "nudix_ap4a_hydrolase",
+            "allosteric_or_regulatory_amp",
+            "aars_editing_site_amp",
+        })
+        for control_id in [
+            "aminoacyl_tRNA_synthetase_synthetic_site",
+            "dna_rna_ligase_covalent_amp_lys_without_ppi",
+            "anl_acyl_coa_synthetase_or_nrps_a_domain",
+            "nmnat",
+            "asparagine_synthetase_or_atp_dependent_amide_ligase",
+        ]:
+            self.assertEqual(
+                controls[control_id]["expected_action"],
+                "retain_nucleotide_transfer_ligand_context",
+            )
+        self.assertEqual(
+            controls["allosteric_or_regulatory_amp"]["expected_action"],
+            "do_not_classify_as_catalytic_nontransfer",
+        )
+
+        rows = {row["entry_id"]: row for row in discriminator["rows"]}
+        self.assertEqual(
+            discriminator["summary"]["import_candidate_entry_ids"],
+            [],
+        )
+        self.assertEqual(
+            discriminator["summary"]["true_reject_entry_ids"],
+            ["m_csa:751", "m_csa:833", "m_csa:780", "m_csa:656"],
+        )
+        self.assertEqual(discriminator["summary"]["review_only_entry_ids"], ["m_csa:564"])
+        self.assertEqual(
+            discriminator["summary"]["classification_counts"],
+            {
+                "ambiguous_review_only": 1,
+                "true_transfer_atpase_helicase_kinase_counterevidence": 4,
+            },
+        )
+
+        self.assertEqual(
+            rows["m_csa:564"]["discriminator_classification"],
+            "ambiguous_review_only",
+        )
+        self.assertIn(
+            "selected structure has no local/structure metal cofactor evidence",
+            rows["m_csa:564"]["terminal_reason"],
+        )
+        for entry_id in ("m_csa:751", "m_csa:833", "m_csa:780", "m_csa:656"):
+            row = rows[entry_id]
+            self.assertEqual(
+                row["discriminator_classification"],
+                "true_transfer_atpase_helicase_kinase_counterevidence",
+            )
+            self.assertEqual(
+                row["row_decision"],
+                "true_reject_current_target_route_future_family",
+            )
+            self.assertFalse(row["is_import_candidate"])
+            self.assertTrue(row["future_family_route"])
+            self.assertTrue(row["preserve_for_learning"])
+
+    def test_mcsa_ai_visual_apo_holo_exact5_scan_finds_no_local_holo_swaps(
+        self,
+    ) -> None:
+        remediation = _load_json(
+            ARTIFACTS / "v3_mcsa_ai_visual_apo_holo_exact5_remediation_20260525.json"
+        )
+        scan = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_apo_holo_exact5_alternate_structure_scan_20260525.json"
+        )
+        audit = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_apo_holo_exact5_holo_preference_audit_20260525.json"
+        )
+        overrides = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_apo_holo_exact5_selected_pdb_overrides_20260525.json"
+        )
+
+        exact_ids = ["m_csa:952", "m_csa:794", "m_csa:671", "m_csa:644", "m_csa:832"]
+        self.assertTrue(remediation["metadata"]["review_only"])
+        self.assertFalse(remediation["metadata"]["ready_for_label_import"])
+        self.assertEqual(remediation["metadata"]["exact_entry_ids"], exact_ids)
+        self.assertEqual([row["entry_id"] for row in remediation["rows"]], exact_ids)
+        self.assertTrue(
+            all(
+                row["remediation_bucket"] == "alternate_pdb_ligand_scan"
+                for row in remediation["rows"]
+            )
+        )
+
+        scan_meta = scan["metadata"]
+        self.assertEqual(scan_meta["source_method"], "exact_row_review_debt_remediation_filter")
+        self.assertEqual(scan_meta["scanned_entry_count"], 5)
+        self.assertEqual(scan_meta["candidate_entry_count"], 5)
+        self.assertEqual(scan_meta["scanned_structure_count"], 37)
+        self.assertEqual(scan_meta["unscanned_structure_count"], 0)
+        self.assertTrue(scan_meta["all_candidate_structures_scanned"])
+        self.assertEqual(scan_meta["fetch_failure_count"], 0)
+        self.assertEqual(scan_meta["expected_family_hit_entry_ids"], ["m_csa:644"])
+        self.assertEqual(scan_meta["local_expected_family_hit_entry_ids"], [])
+        self.assertEqual(
+            scan_meta["local_expected_family_hit_from_remap_entry_ids"],
+            [],
+        )
+        self.assertEqual(
+            scan_meta["structure_wide_hit_without_local_support_entry_ids"],
+            ["m_csa:644"],
+        )
+        self.assertEqual(
+            scan_meta["scan_outcome_counts"],
+            {
+                "alternate_structure_has_expected_cofactor_candidate": 1,
+                "no_expected_cofactor_in_scanned_structures": 4,
+            },
+        )
+
+        scan_rows = {row["entry_id"]: row for row in scan["rows"]}
+        self.assertTrue(scan_rows["m_csa:644"]["alternate_structure_expected_family_observed"])
+        self.assertFalse(scan_rows["m_csa:644"]["local_active_site_expected_family_observed"])
+        self.assertEqual(scan_rows["m_csa:644"]["alternate_pdb_with_remapped_positions_count"], 18)
+        for entry_id in ("m_csa:952", "m_csa:794", "m_csa:671", "m_csa:832"):
+            self.assertFalse(
+                scan_rows[entry_id]["alternate_structure_expected_family_observed"]
+            )
+            self.assertFalse(
+                scan_rows[entry_id]["local_active_site_expected_family_observed"]
+            )
+
+        audit_meta = audit["metadata"]
+        self.assertEqual(audit_meta["audited_entry_count"], 5)
+        self.assertEqual(audit_meta["swap_recommended_count"], 0)
+        self.assertEqual(audit_meta["already_holo_entry_count"], 0)
+        self.assertEqual(audit_meta["no_holo_alternate_entry_count"], 5)
+        self.assertEqual(
+            audit_meta["no_holo_alternate_entry_ids"],
+            ["m_csa:644", "m_csa:671", "m_csa:794", "m_csa:832", "m_csa:952"],
+        )
+        for row in audit["rows"]:
+            self.assertEqual(row["recommendation"], "no_swap_no_holo_alternate")
+            self.assertIsNone(row["recommended_pdb_id"])
+            self.assertEqual(row["alternative_holo_candidate_count"], 0)
+            self.assertIn("no scanned alternate PDB provides it", row["recommendation_rationale"])
+
+        override_meta = overrides["metadata"]
+        self.assertEqual(override_meta["ready_to_apply_count"], 0)
+        self.assertEqual(override_meta["ready_to_apply_entry_ids"], [])
+        self.assertEqual(override_meta["blocked_entry_count"], 0)
+        self.assertEqual(override_meta["countable_label_candidate_count"], 0)
+        self.assertEqual(overrides["rows"], [])
+
+    def test_mcsa_ai_visual_loose_geometry_policy_exact4_stays_review_only(
+        self,
+    ) -> None:
+        policy = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_loose_geometry_policy_exact4_20260525.json"
+        )
+
+        metadata = policy["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["production_policy_activated"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertEqual(
+            metadata["exact_entry_ids"],
+            ["m_csa:976", "m_csa:847", "m_csa:642", "m_csa:844"],
+        )
+        self.assertEqual(metadata["row_count"], 4)
+
+        contract = policy["policy_contract"]
+        self.assertIn("cannot authorize countable labels", contract["no_import_rule"])
+        self.assertIn("dedicated label-factory gates", contract["admissible_future_use"])
+        self.assertIn("exact-row current-target", contract["broad_call_guardrail"])
+
+        self.assertEqual(policy["summary"]["import_candidate_entry_ids"], [])
+        self.assertEqual(policy["summary"]["countable_label_candidate_entry_ids"], [])
+        self.assertEqual(
+            policy["summary"]["policy_call_counts"],
+            {
+                "ambiguous_review_only_current_metal_hydrolase_target": 2,
+                "reject_current_metal_hydrolase_geometry; route_ATPase_family": 1,
+                "reject_current_ser_his_seed_geometry; route_future_glycoside_or_unrepresented_family": 1,
+            },
+        )
+
+        rows = {row["entry_id"]: row for row in policy["rows"]}
+        expected_distances = {
+            "m_csa:976": 20.114,
+            "m_csa:847": 22.31,
+            "m_csa:642": 31.492,
+            "m_csa:844": 26.739,
+        }
+        for entry_id, distance in expected_distances.items():
+            row = rows[entry_id]
+            self.assertEqual(row["blocker_bucket"], "loose_open_or_interdomain_geometry")
+            self.assertEqual(row["visual_focus_distance_angstrom"], distance)
+            self.assertFalse(row["import_candidate"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertTrue(row["preserve_for_learning"])
+            self.assertTrue(row["terminal_reason"])
+            self.assertTrue(row["future_family_route"])
+
+        self.assertIn(
+            "ATPase",
+            rows["m_csa:642"]["future_family_route"],
+        )
+        self.assertIn(
+            "glycoside hydrolase",
+            rows["m_csa:976"]["future_family_route"],
+        )
+
+    def test_mcsa_ai_visual_future_family_backlog_exact5_does_not_edit_schema(
+        self,
+    ) -> None:
+        backlog = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_future_family_ontology_backlog_exact5_20260525.json"
+        )
+
+        metadata = backlog["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ontology_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertEqual(
+            metadata["exact_entry_ids"],
+            ["m_csa:793", "m_csa:755", "m_csa:817", "m_csa:597", "m_csa:729"],
+        )
+        self.assertEqual(metadata["row_count"], 5)
+
+        contract = backlog["backlog_contract"]
+        self.assertIn("Exact current-target mismatch", contract["scope"])
+        self.assertIn("does not create labels", contract["no_import_rule"])
+        self.assertIn("review-derived", contract["prediction_leakage_rule"])
+
+        self.assertEqual(backlog["summary"]["import_candidate_entry_ids"], [])
+        self.assertEqual(backlog["summary"]["countable_label_candidate_entry_ids"], [])
+        self.assertEqual(backlog["summary"]["ontology_edit_candidate_count_now"], 0)
+        self.assertEqual(backlog["summary"]["fingerprint_edit_candidate_count_now"], 0)
+        self.assertEqual(
+            backlog["summary"]["ontology_backlog_route_counts"],
+            {
+                "cysteine_protease_Cys_His_Asp_hydrolase_family": 2,
+                "glycoside_hydrolase_GH18_or_substrate_assisted_family": 1,
+                "glycoside_hydrolase_family": 1,
+                "transferase_or_thioester_transfer_family": 1,
+            },
+        )
+
+        rows = {row["entry_id"]: row for row in backlog["rows"]}
+        for row in rows.values():
+            self.assertEqual(
+                row["blocker_bucket"],
+                "wrong_fingerprint_or_future_ontology_family",
+            )
+            self.assertEqual(row["route_status"], "future_family_schema_needed")
+            self.assertFalse(row["import_candidate"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertFalse(row["ontology_edited"])
+            self.assertFalse(row["fingerprint_edited"])
+            self.assertTrue(row["preserve_for_learning"])
+            self.assertTrue(row["terminal_reason"])
+
+        self.assertEqual(
+            rows["m_csa:597"]["ontology_backlog_route"],
+            "cysteine_protease_Cys_His_Asp_hydrolase_family",
+        )
+        self.assertEqual(
+            rows["m_csa:793"]["ontology_backlog_route"],
+            "glycoside_hydrolase_family",
+        )
+
+    def test_mcsa_ai_visual_true_reject_hard_negatives_are_current_target_only(
+        self,
+    ) -> None:
+        hard = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_true_reject_hard_negative_signal_exact5_20260525.json"
+        )
+
+        metadata = hard["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertEqual(
+            metadata["exact_entry_ids"],
+            ["m_csa:841", "m_csa:658", "m_csa:827", "m_csa:774", "m_csa:831"],
+        )
+        self.assertEqual(metadata["row_count"], 5)
+
+        contract = hard["hard_negative_contract"]
+        self.assertIn("current target only", contract["negative_scope_rule"])
+        self.assertIn("not positive seeds", contract["future_family_rule"])
+        self.assertIn("forbidden as direct model input", contract["prediction_leakage_rule"])
+        self.assertIn("No true-reject row", contract["import_rule"])
+
+        self.assertEqual(
+            hard["summary"]["current_target_hard_negative_entry_ids"],
+            ["m_csa:841", "m_csa:658", "m_csa:827", "m_csa:774", "m_csa:831"],
+        )
+        self.assertEqual(hard["summary"]["global_negative_entry_ids"], [])
+        self.assertEqual(hard["summary"]["import_candidate_entry_ids"], [])
+        self.assertEqual(hard["summary"]["countable_label_candidate_entry_ids"], [])
+        self.assertEqual(
+            hard["summary"]["target_fingerprint_counts"],
+            {"metal_dependent_hydrolase": 1, "ser_his_acid_hydrolase": 4},
+        )
+
+        rows = {row["entry_id"]: row for row in hard["rows"]}
+        for row in rows.values():
+            self.assertEqual(row["blocker_bucket"], "true_reject")
+            self.assertEqual(
+                row["current_target_negative_scope"],
+                "hard_negative_for_current_target_only",
+            )
+            self.assertTrue(row["not_global_negative"])
+            self.assertFalse(row["use_as_global_negative"])
+            self.assertFalse(row["use_for_future_family_positive_seed"])
+            self.assertFalse(row["import_candidate"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertTrue(row["preserve_for_learning"])
+            self.assertIn("forbidden", row["prediction_feature_status"])
+            self.assertTrue(row["terminal_reason"])
+
+        self.assertEqual(
+            rows["m_csa:774"]["counterevidence_reasons"],
+            ["glycosidase_not_metal_hydrolase_seed"],
+        )
+        self.assertEqual(
+            rows["m_csa:658"]["target_fingerprint_id"],
+            "ser_his_acid_hydrolase",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
