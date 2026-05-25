@@ -50,6 +50,71 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-25T08:40Z Representation Baseline Shootout V0 And Final Exact40 Holds
+
+This run continued from `origin/main` commit `f7d05c5`, acquired the automation
+lock, fast-forward synced, and observed that Targets A/B plus the other
+nonclean exact40 buckets were already closed review-only in the latest pushed
+state. No labels were imported, no import previews were run, no registry,
+ontology, fingerprint, threshold, or production scoring state changed, and the
+pre-existing root CIF files were ignored.
+
+New review-only artifacts:
+
+```text
+artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json
+artifacts/v3_sequence_distance_holdout_eval_1025_current702_20260525.json
+artifacts/v3_representation_baseline_shootout_plan_20260525.json
+artifacts/v3_mcsa_ai_visual_remaining_manual_expert_holds_index_20260525.json
+```
+
+Representation baseline v0 status: the current 702-label registry is now
+specified for representation work without a training claim. The full current
+learned-retrieval interface covers 698 labels, marks 635 eligible for future
+learned-retrieval interfaces, and records four exact missing rows:
+`m_csa:204`, `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`. The
+shootout plan separates 17 expert-reviewed silver labels as high-trust
+evaluation/calibration anchors, 215 automation bronze positives as weak
+supervision only, and 470 out-of-scope labels as negative/OOD calibration. The
+current 702-label sequence holdout refresh evaluates 698 labels, holds out 140,
+retains 0 held-out false non-abstentions for geometry, and records 20 rows with
+missing sequence coverage (`m_csa:577`, `m_csa:596`, `m_csa:599`, `m_csa:623`,
+`m_csa:626`, `m_csa:636`, `m_csa:641`, `m_csa:668`, `m_csa:706`,
+`m_csa:710`, `m_csa:720`, `m_csa:771`, `m_csa:791`, `m_csa:812`,
+`m_csa:838`, `m_csa:865`, `m_csa:892`, `m_csa:897`, `m_csa:917`,
+`m_csa:998`). The plan compares those heuristic geometry metrics against a
+deterministic 3-mer sequence-nearest-neighbor smoke on the current split; the
+k-mer smoke gets 0.5441 exact-label accuracy overall, 0.1136 in-scope
+exact-label accuracy, and a 0.25 no-threshold out-of-scope false-positive rate.
+This is not a model-training result.
+
+The representation plan records existing external k-mer and ESM-2 controls as
+external-only sidecars and blocks full ESM/hybrid representation claims until
+the 20 missing sequence records and a full current embedding sidecar exist. The
+next exact rerun command after supplementing sequence coverage is:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-sequence-distance-holdout-eval --slice-id 1025_current702 --retrieval artifacts/v3_geometry_retrieval_1025.json --labels data/registries/curated_mechanism_labels.json --sequence-clusters artifacts/v3_sequence_cluster_proxy_1025.json --geometry artifacts/v3_geometry_features_1025.json --sequence-fasta artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta --sequence-identity-backend mmseqs --out artifacts/v3_sequence_distance_holdout_eval_1025_current702_20260525.json
+```
+
+Remaining exact40 manual/expert residue is now explicit in the holds index:
+`m_csa:591`, `m_csa:951`, `m_csa:986`, `m_csa:927`, and `m_csa:886` require
+expert biochemical boundary review; `m_csa:650` requires manual visual
+target/top1 reconciliation. All six remain non-countable and not import-ready.
+
+Targeted verification passed:
+
+```text
+PYTHONPATH=src python -m unittest tests.test_representation_baseline tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_representation_baseline_shootout_plan_is_leakage_guarded tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mcsa_ai_visual_remaining_manual_expert_holds_are_explicit
+PYTHONPATH=src python -m catalytic_earth.cli validate
+PYTHONPATH=src python -m unittest discover -s tests
+git diff --check
+python -m json.tool artifacts/v3_sequence_distance_holdout_eval_1025_current702_20260525.json
+python -m json.tool artifacts/v3_representation_baseline_shootout_plan_20260525.json
+python -m json.tool artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json
+python -m json.tool artifacts/v3_mcsa_ai_visual_remaining_manual_expert_holds_index_20260525.json
+```
+
 ### 2026-05-25T04:50Z Exact40 AMP/Holo Follow-Up Buckets Closed Review-Only
 
 This run continued from `origin/main` commit `2569007`, acquired the automation

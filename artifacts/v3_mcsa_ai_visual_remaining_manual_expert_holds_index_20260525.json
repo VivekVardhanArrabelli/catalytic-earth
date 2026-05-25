@@ -1,0 +1,195 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_ai_visual_remaining_manual_expert_holds_index_20260525",
+    "schema_version": "mcsa_ai_visual_remaining_manual_expert_holds_index.v1",
+    "method": "derive_remaining_manual_expert_holds_from_nonclean_exact40_strategy",
+    "created_at": "2026-05-25T08:39:32Z",
+    "review_only": true,
+    "source_artifact": "artifacts/v3_mcsa_ai_visual_nonclean30_exact40_strategy_20260524.json",
+    "row_count": 6,
+    "manual_visual_hold_count": 1,
+    "expert_biochemistry_hold_count": 5,
+    "exact_entry_ids": [
+      "m_csa:591",
+      "m_csa:951",
+      "m_csa:986",
+      "m_csa:927",
+      "m_csa:650",
+      "m_csa:886"
+    ],
+    "ready_for_label_import": false,
+    "label_import_performed": false,
+    "canonical_registry_import_performed": false,
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false
+  },
+  "hold_contract": {
+    "scope": "Only the unresolved manual/expert rows left after exact40 follow-up buckets.",
+    "no_import_rule": "No hold row is an import candidate until a dedicated import preview, label-factory gate, and batch acceptance pass with accepted_for_counting=true.",
+    "decision_rule": "This artifact makes no biochemical accept/reject call; it records the terminal automation blocker and the required human or expert action.",
+    "prediction_leakage_rule": "Hold reasons and reviewer questions are review context only and are forbidden as direct model input."
+  },
+  "summary": {
+    "import_candidate_entry_ids": [],
+    "countable_label_candidate_entry_ids": [],
+    "hold_bucket_counts": {
+      "needs_expert_biochemistry_review": 5,
+      "needs_manual_visual_review": 1
+    },
+    "target_fingerprint_counts": {
+      "heme_peroxidase_oxidase": 1,
+      "metal_dependent_hydrolase": 3,
+      "plp_dependent_enzyme": 1,
+      "ser_his_acid_hydrolase": 1
+    },
+    "next_action": "Wait for expert biochemical decisions for five rows and manual PyMOL target/top1 reconciliation for m_csa:650."
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:591",
+      "entry_name": "stromelysin 1",
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "structure_id": "1HFS",
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "confidence": "low",
+      "counterevidence": [
+        "ligand_supported_metal_hydrophobic_low_pocket_support"
+      ],
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "nearest_expected_ligand_distance_angstrom=5.896"
+      ],
+      "required_human_or_expert_action": "Expert biochemical boundary review; AI/source evidence is insufficient for countable import.",
+      "reviewer_question": "Can expert review affirm metal_dependent_hydrolase, or should this row be rejected or routed?",
+      "would_unblock_if": "Expert biochemical review supplies a current-target accept decision or a specific future-family route with gates.",
+      "import_candidate": false,
+      "countable_label_candidate": false,
+      "prediction_feature_status": "review_hold_context_forbidden_as_direct_model_input"
+    },
+    {
+      "entry_id": "m_csa:951",
+      "entry_name": "N-sulfoglucosamine sulfohydrolase",
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "structure_id": "4MHX",
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "confidence": "low",
+      "counterevidence": [
+        "nonhydrolytic_hydratase_dehydratase_text_context"
+      ],
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "nearest_expected_ligand_distance_angstrom=4.206",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "required_human_or_expert_action": "Expert biochemical boundary review; AI/source evidence is insufficient for countable import.",
+      "reviewer_question": "Can expert review affirm metal_dependent_hydrolase, or should this row be rejected or routed?",
+      "would_unblock_if": "Expert biochemical review supplies a current-target accept decision or a specific future-family route with gates.",
+      "import_candidate": false,
+      "countable_label_candidate": false,
+      "prediction_feature_status": "review_hold_context_forbidden_as_direct_model_input"
+    },
+    {
+      "entry_id": "m_csa:986",
+      "entry_name": "Thiosulfate dehydrogenase",
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "structure_id": "4V2K",
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "confidence": "low",
+      "counterevidence": [],
+      "evidence_against": [
+        "gap_reasons=review_marked_needs_more_evidence,top1_below_abstention_threshold",
+        "recommended_future_family_or_lane=oxidoreductase/redox family",
+        "nearest_expected_ligand_distance_angstrom=4.673",
+        "target_score is below the 0.4115 abstention threshold"
+      ],
+      "required_human_or_expert_action": "Expert biochemical boundary review; AI/source evidence is insufficient for countable import.",
+      "reviewer_question": "Can expert review affirm heme_peroxidase_oxidase, or should this row be rejected or routed?",
+      "would_unblock_if": "Expert biochemical review supplies a current-target accept decision or a specific future-family route with gates.",
+      "import_candidate": false,
+      "countable_label_candidate": false,
+      "prediction_feature_status": "review_hold_context_forbidden_as_direct_model_input"
+    },
+    {
+      "entry_id": "m_csa:927",
+      "entry_name": "type II site-specific deoxyribonuclease FokI",
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "structure_id": "2FOK",
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "confidence": "low",
+      "counterevidence": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,expected_cofactor_absent_from_structure,review_marked_needs_more_evidence",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family"
+      ],
+      "required_human_or_expert_action": "Expert biochemical boundary review; AI/source evidence is insufficient for countable import.",
+      "reviewer_question": "Can expert review affirm metal_dependent_hydrolase, or should this row be rejected or routed?",
+      "would_unblock_if": "Expert biochemical review supplies a current-target accept decision or a specific future-family route with gates.",
+      "import_candidate": false,
+      "countable_label_candidate": false,
+      "prediction_feature_status": "review_hold_context_forbidden_as_direct_model_input"
+    },
+    {
+      "entry_id": "m_csa:650",
+      "entry_name": "phospholipase A1",
+      "blocker_bucket": "needs_manual_visual_review",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "structure_id": "1QD6",
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "confidence": "low",
+      "counterevidence": [
+        "metal_supported_site_for_ser_his_seed",
+        "target_not_top1"
+      ],
+      "evidence_against": [
+        "gap_reasons=counterevidence_present,review_marked_needs_more_evidence,target_not_top1",
+        "recommended_future_family_or_lane=future unrepresented mechanism family",
+        "selected active site lacks the expected cofactor family",
+        "target_not_top1: top1=metal_dependent_hydrolase"
+      ],
+      "required_human_or_expert_action": "Manual visual review and target/top1 reconciliation before deciding accept, reject, or future-family route.",
+      "reviewer_question": "Does manual visual inspection resolve the target conflict for ser_his_acid_hydrolase?",
+      "would_unblock_if": "Manual visual review resolves the target/top1 conflict and assigns a single import-safe route.",
+      "import_candidate": false,
+      "countable_label_candidate": false,
+      "prediction_feature_status": "review_hold_context_forbidden_as_direct_model_input"
+    },
+    {
+      "entry_id": "m_csa:886",
+      "entry_name": "threonine ammonia-lyase (biosynthetic)",
+      "blocker_bucket": "needs_expert_biochemistry_review",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "structure_id": "1TDJ",
+      "current_decision": "needs_more_evidence",
+      "decision_status": "blank_no_decision_made",
+      "confidence": "low",
+      "counterevidence": [],
+      "evidence_against": [
+        "gap_reasons=review_marked_needs_more_evidence",
+        "recommended_future_family_or_lane=PLP-dependent enzyme family",
+        "nearest_expected_ligand_distance_angstrom=4.248"
+      ],
+      "required_human_or_expert_action": "Expert biochemical boundary review; AI/source evidence is insufficient for countable import.",
+      "reviewer_question": "Can expert review affirm plp_dependent_enzyme, or should this row be rejected or routed?",
+      "would_unblock_if": "Expert biochemical review supplies a current-target accept decision or a specific future-family route with gates.",
+      "import_candidate": false,
+      "countable_label_candidate": false,
+      "prediction_feature_status": "review_hold_context_forbidden_as_direct_model_input"
+    }
+  ]
+}

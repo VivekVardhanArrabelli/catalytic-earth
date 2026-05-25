@@ -134,7 +134,22 @@ The repository currently contains:
     ATPase/helicase/kinase or phosphoryl-transfer rejects; `m_csa:564` remains
     review-only), the apo/holo scan checks 37 structures with 0 local holo
     swaps, and the loose/future-family/true-reject artifacts preserve exact
-    current-target boundary signal only.
+    current-target boundary signal only. The current representation-baseline
+    follow-up adds
+    `artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json`
+    and
+    `artifacts/v3_representation_baseline_shootout_plan_20260525.json`: the
+    plan separates the 702-label registry into 17 expert-reviewed calibration
+    anchors, 215 weak-supervision positives, and 470 negative/OOD calibration
+    labels, runs only a deterministic 3-mer nearest-neighbor smoke on the
+    current sequence split in
+    `artifacts/v3_sequence_distance_holdout_eval_1025_current702_20260525.json`,
+    and blocks full representation or hybrid claims until 20 missing sequence
+    records are filled and an embedding artifact exists. The final exact40
+    residue is explicit in
+    `artifacts/v3_mcsa_ai_visual_remaining_manual_expert_holds_index_20260525.json`
+    as five expert-biochemistry holds plus one manual visual hold, with no
+    import candidates.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives

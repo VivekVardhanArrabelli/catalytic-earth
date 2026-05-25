@@ -16267,6 +16267,159 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "ser_his_acid_hydrolase",
         )
 
+    def test_representation_baseline_shootout_plan_is_leakage_guarded(self) -> None:
+        plan = _load_json(
+            ARTIFACTS / "v3_representation_baseline_shootout_plan_20260525.json"
+        )
+        manifest = _load_json(
+            ARTIFACTS
+            / "v3_learned_retrieval_manifest_1025_current702_full_20260525.json"
+        )
+
+        metadata = plan["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["current_label_registry_count"], 702)
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["ontology_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertFalse(metadata["large_model_training_performed"])
+        self.assertFalse(metadata["learned_superiority_claimed"])
+
+        registry = plan["benchmark_spec"]["registry_scope"]
+        self.assertEqual(registry["current_label_count"], 702)
+        self.assertEqual(registry["entry_scope_counts"], {"external": 3, "m_csa": 699})
+        self.assertEqual(registry["learned_manifest_covered_entry_count"], 698)
+        self.assertEqual(
+            registry["labels_missing_from_learned_manifest_entry_ids"],
+            ["m_csa:204", "uniprot:P06744", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertEqual(
+            plan["benchmark_spec"]["role_counts"],
+            {
+                "high_trust_evaluation_calibration_anchor": 17,
+                "negative_ood_calibration": 470,
+                "weak_supervision_only": 215,
+            },
+        )
+        self.assertEqual(manifest["metadata"]["labeled_entry_count"], 698)
+        self.assertEqual(manifest["metadata"]["eligible_entry_count"], 635)
+
+        contract = plan["prediction_leakage_contract"]
+        self.assertIn("mechanism_text", contract["forbidden_for_prediction_fields"])
+        self.assertIn("entry_name", contract["forbidden_for_prediction_fields"])
+        self.assertIn("ec_labels", contract["forbidden_for_prediction_fields"])
+
+        baselines = {row["baseline_id"]: row for row in plan["baseline_matrix"]}
+        geometry = baselines["current_heuristic_geometry"]
+        self.assertEqual(
+            geometry["status"],
+            "computed_on_current_sequence_holdout",
+        )
+        self.assertEqual(geometry["artifact_label_registry_count"], 702)
+        self.assertEqual(
+            geometry["heldout_metrics"]["out_of_scope_false_non_abstentions"], 0
+        )
+
+        kmer = baselines["deterministic_3mer_jaccard_nearest_neighbor_smoke"]
+        self.assertEqual(
+            kmer["status"],
+            "computed_current_sequence_holdout",
+        )
+        self.assertEqual(kmer["predictive_inputs"], ["amino_acid_sequence_only"])
+        self.assertEqual(kmer["forbidden_inputs_used"], [])
+        self.assertEqual(kmer["metrics"]["exact_label_accuracy_all"], 0.5441)
+        self.assertEqual(kmer["metrics"]["exact_label_accuracy_in_scope"], 0.1136)
+        self.assertEqual(
+            kmer["metrics"]["out_of_scope_false_positive_rate_no_threshold"], 0.25
+        )
+
+        hybrid = baselines["hybrid_representation_plus_geometry"]
+        self.assertEqual(
+            hybrid["status"], "blocked_until_current_split_and_embeddings_exist"
+        )
+        self.assertIn(
+            "full_current_702_embedding_artifact_missing", hybrid["blockers"]
+        )
+        self.assertEqual(
+            plan["next_exact_compute_step"]["status"],
+            "blocked_by_current_sequence_coverage_gap",
+        )
+        self.assertEqual(
+            plan["next_exact_compute_step"]["missing_sequence_entry_count"], 20
+        )
+        self.assertIn(
+            "build-sequence-distance-holdout-eval",
+            plan["next_exact_compute_step"]["rerun_after_sequence_supplement_command"],
+        )
+
+        sequence = _load_json(
+            ARTIFACTS / "v3_sequence_distance_holdout_eval_1025_current702_20260525.json"
+        )
+        sequence_meta = sequence["metadata"]
+        self.assertEqual(sequence_meta["label_registry_count"], 702)
+        self.assertEqual(sequence_meta["evaluated_count"], 698)
+        self.assertEqual(sequence_meta["heldout_count"], 140)
+        self.assertEqual(sequence_meta["sequence_missing_entry_count"], 20)
+        self.assertFalse(sequence_meta["sequence_identity_target_achieved"])
+
+    def test_mcsa_ai_visual_remaining_manual_expert_holds_are_explicit(self) -> None:
+        holds = _load_json(
+            ARTIFACTS
+            / "v3_mcsa_ai_visual_remaining_manual_expert_holds_index_20260525.json"
+        )
+
+        metadata = holds["metadata"]
+        self.assertTrue(metadata["review_only"])
+        self.assertEqual(metadata["row_count"], 6)
+        self.assertEqual(metadata["manual_visual_hold_count"], 1)
+        self.assertEqual(metadata["expert_biochemistry_hold_count"], 5)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertFalse(metadata["label_import_performed"])
+        self.assertFalse(metadata["canonical_registry_import_performed"])
+        self.assertFalse(metadata["curated_label_registry_edited"])
+        self.assertFalse(metadata["fingerprint_registry_edited"])
+        self.assertFalse(metadata["ontology_registry_edited"])
+        self.assertFalse(metadata["production_scoring_changed"])
+        self.assertEqual(
+            metadata["exact_entry_ids"],
+            [
+                "m_csa:591",
+                "m_csa:951",
+                "m_csa:986",
+                "m_csa:927",
+                "m_csa:650",
+                "m_csa:886",
+            ],
+        )
+
+        self.assertEqual(holds["summary"]["import_candidate_entry_ids"], [])
+        self.assertEqual(holds["summary"]["countable_label_candidate_entry_ids"], [])
+        self.assertEqual(
+            holds["summary"]["hold_bucket_counts"],
+            {
+                "needs_expert_biochemistry_review": 5,
+                "needs_manual_visual_review": 1,
+            },
+        )
+        self.assertIn("makes no biochemical", holds["hold_contract"]["decision_rule"])
+        self.assertIn("forbidden", holds["hold_contract"]["prediction_leakage_rule"])
+
+        rows = {row["entry_id"]: row for row in holds["rows"]}
+        self.assertEqual(rows["m_csa:650"]["blocker_bucket"], "needs_manual_visual_review")
+        self.assertEqual(
+            rows["m_csa:650"]["target_fingerprint_id"], "ser_his_acid_hydrolase"
+        )
+        self.assertEqual(
+            rows["m_csa:886"]["target_fingerprint_id"], "plp_dependent_enzyme"
+        )
+        for row in rows.values():
+            self.assertFalse(row["import_candidate"])
+            self.assertFalse(row["countable_label_candidate"])
+            self.assertIn("forbidden", row["prediction_feature_status"])
+
 
 if __name__ == "__main__":
     unittest.main()

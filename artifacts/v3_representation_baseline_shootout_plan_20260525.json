@@ -1,0 +1,460 @@
+{
+  "baseline_matrix": [
+    {
+      "artifact_label_registry_count": 702,
+      "baseline_id": "current_heuristic_geometry",
+      "current_label_registry_count": 702,
+      "forbidden_inputs_used": [],
+      "heldout_metrics": {
+        "evaluated_count": 140,
+        "in_scope_count": 48,
+        "out_of_scope_abstention_rate": 1.0,
+        "out_of_scope_count": 92,
+        "out_of_scope_false_non_abstentions": 0,
+        "top1_accuracy_in_scope": 0.9792,
+        "top3_accuracy_in_scope": 1.0
+      },
+      "predictive_inputs": [
+        "active_site_residue_identity",
+        "active_site_residue_roles",
+        "local_ligand_cofactor_context",
+        "substrate_pocket_descriptors",
+        "active_site_compactness"
+      ],
+      "source_artifact_method": "sequence_fold_distance_holdout_evaluation",
+      "status": "computed_on_current_sequence_holdout"
+    },
+    {
+      "baseline_id": "ec_or_family_prior_review_only",
+      "comparison_role": "sanity-check leakage and family imbalance; not eligible as a learned representation feature",
+      "forbidden_for_learned_input": true,
+      "predictive_inputs": [],
+      "review_context_inputs": [
+        "ec_labels",
+        "family_names"
+      ],
+      "status": "planned_review_only_not_predictive_input"
+    },
+    {
+      "artifact_label_registry_count": 702,
+      "baseline_id": "deterministic_3mer_jaccard_nearest_neighbor_smoke",
+      "comparison_sample": [
+        {
+          "entry_id": "m_csa:3",
+          "exact_label_match": false,
+          "jaccard_similarity": 0.0593,
+          "label_group": "flavin_dehydrogenase_reductase",
+          "nearest_train_entry_id": "m_csa:404",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "true_in_scope": true
+        },
+        {
+          "entry_id": "m_csa:9",
+          "exact_label_match": false,
+          "jaccard_similarity": 0.0809,
+          "label_group": "out_of_scope",
+          "nearest_train_entry_id": "m_csa:304",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "out_of_scope_false_positive": true,
+          "true_in_scope": false
+        },
+        {
+          "entry_id": "m_csa:10",
+          "exact_label_match": true,
+          "jaccard_similarity": 0.0519,
+          "label_group": "out_of_scope",
+          "nearest_train_entry_id": "m_csa:476",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "true_in_scope": false
+        },
+        {
+          "entry_id": "m_csa:12",
+          "exact_label_match": false,
+          "jaccard_similarity": 0.0734,
+          "label_group": "out_of_scope",
+          "nearest_train_entry_id": "m_csa:699",
+          "nearest_train_label_group": "heme_peroxidase_oxidase",
+          "out_of_scope_false_positive": true,
+          "true_in_scope": false
+        },
+        {
+          "entry_id": "m_csa:14",
+          "exact_label_match": true,
+          "jaccard_similarity": 0.0881,
+          "label_group": "out_of_scope",
+          "nearest_train_entry_id": "m_csa:268",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "true_in_scope": false
+        },
+        {
+          "entry_id": "m_csa:20",
+          "exact_label_match": true,
+          "jaccard_similarity": 0.0971,
+          "label_group": "flavin_dehydrogenase_reductase",
+          "nearest_train_entry_id": "m_csa:304",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "out_of_scope_false_positive": false,
+          "true_in_scope": true
+        },
+        {
+          "entry_id": "m_csa:30",
+          "exact_label_match": true,
+          "jaccard_similarity": 0.0928,
+          "label_group": "out_of_scope",
+          "nearest_train_entry_id": "m_csa:268",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "true_in_scope": false
+        },
+        {
+          "entry_id": "m_csa:31",
+          "exact_label_match": false,
+          "jaccard_similarity": 0.0547,
+          "label_group": "out_of_scope",
+          "nearest_train_entry_id": "m_csa:935",
+          "nearest_train_label_group": "heme_peroxidase_oxidase",
+          "out_of_scope_false_positive": true,
+          "true_in_scope": false
+        },
+        {
+          "entry_id": "m_csa:32",
+          "exact_label_match": true,
+          "jaccard_similarity": 0.0614,
+          "label_group": "out_of_scope",
+          "nearest_train_entry_id": "m_csa:359",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "true_in_scope": false
+        },
+        {
+          "entry_id": "m_csa:34",
+          "exact_label_match": false,
+          "jaccard_similarity": 0.0607,
+          "label_group": "out_of_scope",
+          "nearest_train_entry_id": "m_csa:304",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "out_of_scope_false_positive": true,
+          "true_in_scope": false
+        },
+        {
+          "entry_id": "m_csa:43",
+          "exact_label_match": false,
+          "jaccard_similarity": 0.0657,
+          "label_group": "metal_dependent_hydrolase",
+          "nearest_train_entry_id": "m_csa:808",
+          "nearest_train_label_group": "ser_his_acid_hydrolase",
+          "out_of_scope_false_positive": false,
+          "true_in_scope": true
+        },
+        {
+          "entry_id": "m_csa:44",
+          "exact_label_match": false,
+          "jaccard_similarity": 0.0878,
+          "label_group": "metal_dependent_hydrolase",
+          "nearest_train_entry_id": "m_csa:245",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "true_in_scope": true
+        }
+      ],
+      "current_label_registry_count": 702,
+      "forbidden_inputs_used": [],
+      "heldout_sequence_count": 136,
+      "limitations": [
+        "deterministic k-mer Jaccard is a smoke baseline, not a trained representation model",
+        "nearest-neighbor labels are assigned from existing split partitions only",
+        "no threshold calibration or hard-negative OOD calibration is claimed here"
+      ],
+      "metrics": {
+        "exact_label_accuracy_all": 0.5441,
+        "exact_label_accuracy_in_scope": 0.1136,
+        "max_nearest_jaccard_similarity": 0.1664,
+        "mean_nearest_jaccard_similarity": 0.0761,
+        "out_of_scope_false_positive_rate_no_threshold": 0.25
+      },
+      "missing_sequence_entry_count": 22,
+      "missing_sequence_entry_ids_sample": [
+        "m_csa:519",
+        "m_csa:577",
+        "m_csa:588",
+        "m_csa:596",
+        "m_csa:599",
+        "m_csa:623",
+        "m_csa:626",
+        "m_csa:636",
+        "m_csa:641",
+        "m_csa:668",
+        "m_csa:706",
+        "m_csa:710"
+      ],
+      "predictive_inputs": [
+        "amino_acid_sequence_only"
+      ],
+      "status": "computed_current_sequence_holdout",
+      "train_sequence_count": 540,
+      "training_mode": "none_nearest_neighbor_lookup_only"
+    },
+    {
+      "backend_status_counts": {
+        "representation_near_duplicate_holdout": 1,
+        "sequence_kmer_embedding_control_complete": 11
+      },
+      "baseline_id": "existing_external_deterministic_kmer_control",
+      "candidate_count": 12,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_status": "computed_review_only",
+      "predictive_feature_policy": "representation status is computed from sequence embeddings and sequence length coverage only; identifiers, EC/Rhea, mechanism text, labels, and heuristic fingerprint ids are review context or holdout context only",
+      "ready_for_label_import": false,
+      "representation_near_duplicate_alert_count": 1,
+      "review_only_rule": "computed representation samples are controls only; they do not replace sequence-search, review-decision, or factory gates",
+      "status": "external_sample_only_not_full_702_registry"
+    },
+    {
+      "backend_status_counts": {
+        "learned_representation_sample_complete": 5,
+        "representation_near_duplicate_holdout": 7
+      },
+      "baseline_id": "existing_external_esm2_sample_control",
+      "candidate_count": 12,
+      "embedding_backend": "esm2_t30_150m_ur50d",
+      "embedding_status": "computed_review_only",
+      "predictive_feature_policy": "representation status is computed from sequence embeddings and sequence length coverage only; identifiers, EC/Rhea, mechanism text, labels, and heuristic fingerprint ids are review context or holdout context only",
+      "ready_for_label_import": false,
+      "representation_near_duplicate_alert_count": 7,
+      "review_only_rule": "computed representation samples are controls only; they do not replace sequence-search, review-decision, or factory gates",
+      "status": "external_sample_only_not_full_702_registry"
+    },
+    {
+      "allowed_future_inputs": [
+        "sequence_embeddings",
+        "active_site_geometry_features"
+      ],
+      "baseline_id": "hybrid_representation_plus_geometry",
+      "blockers": [
+        "full_current_702_embedding_artifact_missing",
+        "hybrid_must_be_compared_against_geometry_and_sequence_baselines",
+        "no_leakage_audit_for_hybrid_feature_join_yet"
+      ],
+      "forbidden_inputs": [
+        "mechanism_text",
+        "entry_name",
+        "ec_labels",
+        "rhea_identifiers",
+        "source_entry_ids",
+        "expert_notes",
+        "review_decision_text",
+        "mechanism_prose"
+      ],
+      "status": "blocked_until_current_split_and_embeddings_exist"
+    }
+  ],
+  "benchmark_spec": {
+    "registry_scope": {
+      "current_label_count": 702,
+      "entry_scope_counts": {
+        "external": 3,
+        "m_csa": 699
+      },
+      "fingerprint_or_scope_counts": {
+        "cobalamin_radical_rearrangement": 3,
+        "flavin_dehydrogenase_reductase": 50,
+        "flavin_monooxygenase": 2,
+        "heme_peroxidase_oxidase": 20,
+        "metal_dependent_hydrolase": 83,
+        "out_of_scope": 470,
+        "plp_dependent_enzyme": 31,
+        "radical_sam_enzyme": 1,
+        "ser_his_acid_hydrolase": 42
+      },
+      "label_type_counts": {
+        "out_of_scope": 470,
+        "seed_fingerprint": 232
+      },
+      "labels_missing_from_learned_manifest_entry_ids": [
+        "m_csa:204",
+        "uniprot:P06744",
+        "uniprot:P78549",
+        "uniprot:Q3LXA3"
+      ],
+      "learned_manifest_covered_entry_count": 698,
+      "review_status_counts": {
+        "automation_curated": 685,
+        "expert_reviewed": 17
+      },
+      "tier_counts": {
+        "bronze": 685,
+        "silver": 17
+      }
+    },
+    "review_signal_roles": {
+      "learning_signal_partition_counts": {
+        "current_target_hard_negative": 210,
+        "positive_review_signal_review_only": 22,
+        "unresolved_review_hold": 66
+      },
+      "positive_review_signal_review_only_count": 22,
+      "positive_review_signal_review_only_sample_entry_ids": [
+        "m_csa:1001",
+        "m_csa:577",
+        "m_csa:599",
+        "m_csa:611",
+        "m_csa:623",
+        "m_csa:636",
+        "m_csa:641",
+        "m_csa:657",
+        "m_csa:706",
+        "m_csa:737",
+        "m_csa:771",
+        "m_csa:777"
+      ],
+      "prediction_feature_status": "review-derived signals define evaluation/calibration roles only; review text and target decisions are forbidden as direct model inputs",
+      "review_derived_current_target_hard_negative_count": 215,
+      "review_derived_current_target_hard_negative_sample_entry_ids": [
+        "m_csa:1000",
+        "m_csa:1002",
+        "m_csa:494",
+        "m_csa:510",
+        "m_csa:534",
+        "m_csa:553",
+        "m_csa:559",
+        "m_csa:568",
+        "m_csa:572",
+        "m_csa:578",
+        "m_csa:592",
+        "m_csa:600"
+      ],
+      "unresolved_hold_count": 66,
+      "unresolved_hold_sample_entry_ids": [
+        "m_csa:529",
+        "m_csa:558",
+        "m_csa:564",
+        "m_csa:591",
+        "m_csa:596",
+        "m_csa:597",
+        "m_csa:598",
+        "m_csa:624",
+        "m_csa:626",
+        "m_csa:642",
+        "m_csa:644",
+        "m_csa:650"
+      ]
+    },
+    "role_counts": {
+      "high_trust_evaluation_calibration_anchor": 17,
+      "negative_ood_calibration": 470,
+      "weak_supervision_only": 215
+    },
+    "role_definitions": {
+      "abstention_ood_review_hold": "future-family, unresolved, or review-only rows are OOD/abstention cases until explicit import gates pass",
+      "high_trust_evaluation_calibration_anchor": "expert-reviewed silver/gold labels are held for calibration or evaluation anchors, not weak-supervision bulk training",
+      "negative_ood_calibration": "countable out-of-scope labels and review-derived hard negatives calibrate abstention/OOD behavior; they are not global negatives",
+      "weak_supervision_only": "automation-curated bronze seed-fingerprint positives may be used only as weak supervision after split and leakage controls"
+    },
+    "sequence_holdout_controls": {
+      "artifact_label_registry_count": 702,
+      "current_label_registry_count": 702,
+      "evaluated_count": 698,
+      "heldout_count": 140,
+      "in_distribution_count": 558,
+      "limitations": [
+        "2 FASTA records use selected-PDB sequence fallbacks for unavailable UniProt accessions",
+        "MMseqs2 clustering threshold is 0.30; connected clusters can hide within-cluster diversity and are not taxonomic or structural families",
+        "MMseqs2 easy-search reports heuristic local alignments at the configured coverage; it is not an exhaustive Smith-Waterman all-vs-all matrix",
+        "real sequence identity is unavailable for rows without amino-acid sequence records",
+        "sequence-distance partitioning supersedes proxy cluster selection, but fold/TM-score distance is still not computed"
+      ],
+      "max_observed_train_test_identity": 0.284,
+      "real_tm_score_computed": false,
+      "sequence_identity_backend_available": true,
+      "sequence_identity_target_achieved": false,
+      "status": "available_for_current_label_count"
+    },
+    "split_policy": {
+      "abstention_ood": "future-family backlog and unresolved holds remain abstention/OOD cases, not positive labels",
+      "calibration": "use expert anchors, hard negatives, rejects, and out-of-scope rows to tune abstention without using review prose as features",
+      "evaluation": "reserve expert-reviewed anchors and sequence/family held-out rows; do not train on all 702 labels",
+      "training": "use only weak-supervision rows assigned to train after whole-sequence or family-aware holdout assignment"
+    }
+  },
+  "metadata": {
+    "artifact_id": "v3_representation_baseline_shootout_plan_20260525",
+    "canonical_registry_import_performed": false,
+    "curated_label_registry_edited": false,
+    "current_label_registry_count": 702,
+    "fingerprint_registry_edited": false,
+    "label_import_performed": false,
+    "large_model_training_performed": false,
+    "learned_superiority_claimed": false,
+    "method": "representation_baseline_shootout_plan",
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false,
+    "review_only": true,
+    "schema_version": "representation_baseline_shootout_plan.v1",
+    "stale_or_missing_source_flags": []
+  },
+  "next_exact_compute_step": {
+    "missing_sequence_entry_count": 20,
+    "missing_sequence_entry_ids": [
+      "m_csa:577",
+      "m_csa:596",
+      "m_csa:599",
+      "m_csa:623",
+      "m_csa:626",
+      "m_csa:636",
+      "m_csa:641",
+      "m_csa:668",
+      "m_csa:706",
+      "m_csa:710",
+      "m_csa:720",
+      "m_csa:771",
+      "m_csa:791",
+      "m_csa:812",
+      "m_csa:838",
+      "m_csa:865",
+      "m_csa:892",
+      "m_csa:897",
+      "m_csa:917",
+      "m_csa:998"
+    ],
+    "rerun_after_sequence_supplement_command": "PYTHONPATH=src python -m catalytic_earth.cli build-sequence-distance-holdout-eval --slice-id 1025_current702 --retrieval artifacts/v3_geometry_retrieval_1025.json --labels data/registries/curated_mechanism_labels.json --sequence-clusters artifacts/v3_sequence_cluster_proxy_1025.json --geometry artifacts/v3_geometry_features_1025.json --sequence-fasta artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta --sequence-identity-backend mmseqs --out artifacts/v3_sequence_distance_holdout_eval_1025_current702_20260525.json",
+    "status": "blocked_by_current_sequence_coverage_gap",
+    "then": "after the sequence split has complete current-label coverage, build full current-registry representation sidecars or record exact embedding backend/cache blockers"
+  },
+  "prediction_leakage_contract": {
+    "allowed_representation_inputs": [
+      "amino_acid_sequence",
+      "sequence_embedding_vectors",
+      "active_site_geometry_features",
+      "local_ligand_context"
+    ],
+    "forbidden_for_prediction_fields": [
+      "mechanism_text",
+      "entry_name",
+      "ec_labels",
+      "rhea_identifiers",
+      "source_entry_ids",
+      "expert_notes",
+      "review_decision_text",
+      "mechanism_prose"
+    ],
+    "review_only_context_fields": [
+      "entry_id",
+      "entry_name",
+      "ec_labels",
+      "expert_review_notes",
+      "review_decision",
+      "target_fingerprint_for_evaluation"
+    ],
+    "rule": "mechanism prose, entry names, EC labels, source ids, and expert notes may define evaluation strata or review context but must not enter learned/representation predictive features"
+  },
+  "success_criteria": [
+    "current-registry split artifact covers all 702 labels or records exact missing rows",
+    "held-out metrics are reported separately from weak-supervision training rows",
+    "geometry, EC/family-prior review context, deterministic sequence, and ESM controls are compared before any model-training claim",
+    "hard negatives and future-family holds are calibrated as current-target/OOD cases, not global labels",
+    "no mechanism prose, entry names, EC labels, Rhea ids, or expert notes are used as predictive representation inputs"
+  ]
+}

@@ -1272,6 +1272,32 @@ checked structures, and the loose-geometry, future-family backlog, and
 true-reject hard-negative artifacts preserve exact current-target boundary
 signal without schema, fingerprint, scoring, preview, or registry changes.
 
+The representation-baseline v0 follow-up is review-only and makes no learned
+superiority claim. `artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json`
+materializes the current 702-label registry interface over available 1025-slice
+geometry/retrieval rows: 698 labels are covered, 635 are eligible for a future
+learned-retrieval interface, and the exact uncovered rows are `m_csa:204`,
+`uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`.
+`artifacts/v3_representation_baseline_shootout_plan_20260525.json` separates
+17 expert-reviewed silver labels as evaluation/calibration anchors, 215
+automation bronze positives as weak supervision only, and 470 countable
+out-of-scope labels as negative/OOD calibration. The companion
+`artifacts/v3_sequence_distance_holdout_eval_1025_current702_20260525.json`
+refreshes the sequence split for the current label count: 698 labels are
+evaluated, 140 are held out, held-out geometry has 0 false non-abstentions,
+and 20 current labels still lack amino-acid sequence coverage. The shootout
+plan compares those geometry metrics with a deterministic 3-mer
+sequence-nearest-neighbor smoke, records existing external k-mer and ESM-2
+controls as external-only sidecars, and blocks hybrid representation-plus-
+geometry claims until the 20 missing sequence records and a full embedding
+sidecar exist.
+
+The remaining exact40 manual/expert residue is frozen in
+`artifacts/v3_mcsa_ai_visual_remaining_manual_expert_holds_index_20260525.json`:
+`m_csa:591`, `m_csa:951`, `m_csa:986`, `m_csa:927`, and `m_csa:886` require
+expert biochemical boundary review, while `m_csa:650` requires manual visual
+target/top1 reconciliation. No hold row is import-ready.
+
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures \
   --remediation artifacts/v3_review_debt_remediation_700.json \

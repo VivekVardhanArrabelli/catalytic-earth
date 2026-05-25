@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 310
-- Measured elapsed time: 9338.9 minutes (155.65 hours)
+- Entries: 312
+- Measured elapsed time: 9358.8 minutes (155.98 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2323.5 measured minutes (38.73 hours)
+- v3: 2343.4 measured minutes (39.06 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,32 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3356
-- Evidence references logged: 2764
+- Artifact references logged: 3370
+- Evidence references logged: 2776
 
 ## Recent Entries
-
-### 2026-05-24T05:54:43.004965+00:00 - v3
-
-- Task: Exact 66 M-CSA AI-visual review-hold triage matrix
-- Time mode: measured
-- Measured minutes: 12.433
-- Started: 2026-05-24T05:42:02Z
-- Ended: 2026-05-24T05:54:28Z
-- Artifacts: artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json, tests/test_automation_small_win_artifacts.py, work/handoff.md
-- Evidence: startup 911-test unit discovery passed, startup CLI validate passed with 695 labels and 8 fingerprints, source integrity verified at 298 rows with accepted 22 rejected 210 needs_more_evidence 66, manifest exact target matched the 66 source rows in order, accepted and rejected source rows excluded with zero overlap, triage matrix bucket counts sum to 66 and confidence counts sum to 66, human review plan estimates maximum 40 rows, targeted exact-66 artifact test passed, final 912-test unit discovery passed, compileall passed, CLI validate passed with 695 labels and 8 fingerprints, git diff check passed
-- Notes: No label import import preview registry edit fingerprint edit production scoring change artifact upload removal externalization Git-LFS migration history rewrite or removal_allowed=true occurred; pre-existing untracked CIF files left untouched.
-
-### 2026-05-24T18:47:30.176583+00:00 - v3
-
-- Task: M-CSA AI-visual review support surface
-- Time mode: measured
-- Measured minutes: 40.633
-- Started: 2026-05-24T18:06:32Z
-- Ended: 2026-05-24T18:47:10Z
-- Artifacts: artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/progress_log.jsonl, work/status.md
-- Evidence: fixed 298-row source universe preserved as 22 accepted review signals plus 210 current-target rejects plus 66 unresolved holds, exact40 workqueue has 40 blank-decision rows split into 10 clean fast-path and 30 non-clean strategy rows, deferred26 backlog remains outside exact40 with 9 cofactor deferrals plus 13 future-family/schema deferrals plus 4 reject-confirmation deferrals, TSV worksheets keep decision reviewer date note columns blank, targeted review-support tests passed and full 924-test unit discovery passed, CLI validate passed at 695 curated labels and 8 production fingerprints, compileall JSON TSV and git diff guards passed with no registry fingerprint or scoring diff
-- Notes: Pre-existing root-level CIF files were left untouched; no upload removal migration LFS history rewrite or removal_allowed=true action occurred.
 
 ### 2026-05-24T18:48:42.697558+00:00 - v3
 
@@ -119,6 +97,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mcsa_ai_visual_clean10_accept7_vivek_20260524_import_summary.json, artifacts/v3_mcsa_ai_visual_clean10_accept7_vivek_20260524_label_batch_acceptance_check_import_preview_1025.json, artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json, data/registries/curated_mechanism_labels.json
 - Evidence: accepted_new_label_count=7, canonical_countable_labels=702, batch_acceptance=true, full_unit_suite_924_tests_passed, CLI_validate_passed_702_labels
 - Notes: Promoted only the seven clean current-target acceptances; preserved route_future_family/schema-hold/remaining30 rows as non-countable signal. Pre-existing root CIF files left untouched.
+
+### 2026-05-25T08:43:00.748877+00:00 - v3
+
+- Task: Representation baseline shootout v0 and exact40 hold index
+- Time mode: measured
+- Measured minutes: 14.233
+- Started: 2026-05-25T08:28:32Z
+- Ended: 2026-05-25T08:42:46Z
+- Artifacts: artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json, artifacts/v3_representation_baseline_shootout_plan_20260525.json, artifacts/v3_mcsa_ai_visual_remaining_manual_expert_holds_index_20260525.json, src/catalytic_earth/representation_baseline.py, tests/test_representation_baseline.py, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md
+- Evidence: current 702-label representation roles recorded as 17 expert anchors 215 weak positives 470 negative/OOD labels, full learned retrieval interface covers 698 labels and 635 future-eligible rows, deterministic 3-mer sequence-nearest-neighbor smoke computed on stale 679-label split, full ESM/hybrid claims blocked until current 702 split and embedding sidecars, remaining exact40 holds indexed as 5 expert-biochemistry plus 1 manual visual hold, targeted tests and JSON validation passed
+- Notes: No label import, import preview, registry edit, fingerprint edit, ontology edit, scoring change, large-model training, artifact upload/removal, migration, history rewrite, or removal_allowed=true action occurred; pre-existing root-level CIF files left untouched.
+
+### 2026-05-25T08:48:33.348733+00:00 - v3
+
+- Task: Current 702 sequence split refresh for representation baseline
+- Time mode: measured
+- Measured minutes: 5.633
+- Started: 2026-05-25T08:42:47Z
+- Ended: 2026-05-25T08:48:25Z
+- Artifacts: artifacts/v3_sequence_distance_holdout_eval_1025_current702_20260525.json, artifacts/v3_representation_baseline_shootout_plan_20260525.json, README.md, docs/label_factory.md, work/handoff.md
+- Evidence: current 702-label sequence holdout evaluated 698 labels, held out 140 rows, preserved 0 held-out false non-abstentions, max observed train-test identity 0.284, recorded 20 missing sequence rows, reran representation plan against current sequence split with no learned superiority claim
+- Notes: No model training or label import occurred; current split remains blocked for full representation claims until missing sequence records and embedding sidecars are supplied.
 
 ## Expectation Updates
 

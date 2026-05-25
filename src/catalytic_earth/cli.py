@@ -46,6 +46,7 @@ from .generalization import (
     project_foldseek_tm_score_split_repair,
 )
 from .learned_retrieval import build_learned_retrieval_manifest
+from .representation_baseline import build_representation_baseline_shootout_plan
 from .labels import (
     analyze_cofactor_abstention_policy,
     analyze_cofactor_coverage,
@@ -9460,6 +9461,45 @@ def cmd_build_learned_retrieval_manifest(args: argparse.Namespace) -> int:
         f"{args.out} ({manifest['metadata']['eligible_entry_count']} eligible entries)"
     )
     return 0
+
+
+def cmd_build_representation_baseline_shootout_plan(args: argparse.Namespace) -> int:
+    learned_manifest = _load_optional_json(args.learned_manifest)
+    sequence_holdout_eval = _load_optional_json(args.sequence_holdout_eval)
+    learning_signal_manifest = _load_optional_json(args.learning_signal_manifest)
+    rejected_signal_taxonomy = _load_optional_json(args.rejected_signal_taxonomy)
+    exact_true_reject_signal = _load_optional_json(args.exact_true_reject_signal)
+    external_kmer_sample = _load_optional_json(args.external_kmer_sample)
+    external_esm_sample = _load_optional_json(args.external_esm_sample)
+    sequence_fasta_text = None
+    if args.sequence_fasta:
+        sequence_fasta_text = Path(args.sequence_fasta).read_text(encoding="utf-8")
+    plan = build_representation_baseline_shootout_plan(
+        load_labels(Path(args.labels)),
+        learned_manifest=learned_manifest,
+        sequence_holdout_eval=sequence_holdout_eval,
+        learning_signal_manifest=learning_signal_manifest,
+        rejected_signal_taxonomy=rejected_signal_taxonomy,
+        exact_true_reject_signal=exact_true_reject_signal,
+        external_kmer_sample=external_kmer_sample,
+        external_esm_sample=external_esm_sample,
+        sequence_fasta_text=sequence_fasta_text,
+        kmer_size=args.kmer_size,
+        max_smoke_heldout=args.max_smoke_heldout,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote representation baseline shootout plan to "
+        f"{args.out} ({plan['metadata']['current_label_registry_count']} labels)"
+    )
+    return 0
+
+
+def _load_optional_json(path: str | None) -> dict[str, Any] | None:
+    if not path:
+        return None
+    with Path(path).open("r", encoding="utf-8") as handle:
+        return json.load(handle)
 
 
 def cmd_audit_sequence_similarity_failure_sets(args: argparse.Namespace) -> int:
@@ -19628,6 +19668,59 @@ def build_parser() -> argparse.ArgumentParser:
     )
     learned_retrieval_manifest.set_defaults(
         func=cmd_build_learned_retrieval_manifest
+    )
+
+    representation_baseline = subparsers.add_parser(
+        "build-representation-baseline-shootout-plan",
+        help="plan leakage-aware representation baselines before training claims",
+    )
+    representation_baseline.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    representation_baseline.add_argument(
+        "--learned-manifest",
+        default="artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json",
+    )
+    representation_baseline.add_argument(
+        "--sequence-holdout-eval",
+        default="artifacts/v3_sequence_distance_holdout_eval_1025.json",
+    )
+    representation_baseline.add_argument(
+        "--learning-signal-manifest",
+        default="artifacts/v3_mcsa_ai_visual_learning_signal_manifest_20260524.json",
+    )
+    representation_baseline.add_argument(
+        "--rejected-signal-taxonomy",
+        default="artifacts/v3_mcsa_ai_visual_rejected_signal_taxonomy_20260524.json",
+    )
+    representation_baseline.add_argument(
+        "--exact-true-reject-signal",
+        default="artifacts/v3_mcsa_ai_visual_true_reject_hard_negative_signal_exact5_20260525.json",
+    )
+    representation_baseline.add_argument(
+        "--external-kmer-sample",
+        default="artifacts/v3_external_source_kmer_representation_backend_sample_1025.json",
+    )
+    representation_baseline.add_argument(
+        "--external-esm-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json"
+        ),
+    )
+    representation_baseline.add_argument(
+        "--sequence-fasta",
+        default="artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta",
+    )
+    representation_baseline.add_argument("--kmer-size", type=int, default=3)
+    representation_baseline.add_argument("--max-smoke-heldout", type=int, default=160)
+    representation_baseline.add_argument(
+        "--out",
+        default="artifacts/v3_representation_baseline_shootout_plan_20260525.json",
+    )
+    representation_baseline.set_defaults(
+        func=cmd_build_representation_baseline_shootout_plan
     )
 
     sequence_failure_audit = subparsers.add_parser(
