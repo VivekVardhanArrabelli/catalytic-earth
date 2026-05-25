@@ -83,6 +83,30 @@ class SequenceNearestNeighborBaselineTests(unittest.TestCase):
         )
         self.assertFalse(compliance["metadata"]["prediction_metrics_reported"])
         self.assertEqual(
+            compliance["split_assignment_blocker"]["status"],
+            "blocked_split_incomplete",
+        )
+        self.assertEqual(
+            compliance["split_assignment_blocker"]["missing_current_label_rows"],
+            [
+                {
+                    "accession": "P00104",
+                    "benchmark_role": "oos_tier::unknown_oos",
+                    "blocker": "missing_partition_in_split_artifact",
+                    "entry_id": "m_csa:204",
+                    "fingerprint_id": None,
+                    "label_type": "out_of_scope",
+                    "manifest_status": "blocked_missing_sequence_or_split",
+                    "oos_tier": "unknown_oos",
+                    "probe_role": "unknown_oos_abstention_diagnostic",
+                    "sequence_coverage_status": "covered",
+                    "sequence_id": "P00104",
+                    "sequence_record_count": 1,
+                    "sequence_sha256": "bbb",
+                }
+            ],
+        )
+        self.assertEqual(
             compliance["primary_seed_metrics"]["status"],
             "not_reported_split_blocked",
         )

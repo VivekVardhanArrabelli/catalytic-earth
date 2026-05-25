@@ -181,8 +181,10 @@ The repository currently contains:
     fail-closes before sequence-NN predictions or metrics because the repaired
     split rows cover 698/702 labels: `m_csa:204`, `uniprot:P06744`,
     `uniprot:P78549`, and `uniprot:Q3LXA3` have repaired sequences but no split
-    assignment. The next sequence-NN action is to repair/regenerate the
-    current702 split so every label-manifest row has a partition, then run MMseqs
+    assignment. The compliance artifact now records those four out-of-scope
+    rows with benchmark roles, accessions, sequence SHA-256 values, and coverage
+    statuses. The next sequence-NN action is to repair/regenerate the current702
+    split so every label-manifest row has a partition, then run MMseqs
     nearest-neighbor predictions.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression

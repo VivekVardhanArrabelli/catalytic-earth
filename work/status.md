@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 316
-- Measured elapsed time: 9413.2 minutes (156.89 hours)
+- Entries: 317
+- Measured elapsed time: 9419.1 minutes (156.99 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- sequence-nn-baseline: 9.2 measured minutes (0.15 hours)
+- sequence-nn-baseline: 15.1 measured minutes (0.25 hours)
 - v3: 2388.6 measured minutes (39.81 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -28,21 +28,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3389
-- Evidence references logged: 2801
+- Artifact references logged: 3394
+- Evidence references logged: 2806
 
 ## Recent Entries
-
-### 2026-05-24T18:53:19.546556+00:00 - ops
-
-- Task: MMseqs temp-directory collision hardening
-- Time mode: measured
-- Measured minutes: 1.167
-- Started: 2026-05-24T18:52:00Z
-- Ended: 2026-05-24T18:53:10Z
-- Artifacts: src/catalytic_earth/generalization.py, artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json, work/handoff.md, work/progress_log.jsonl, work/status.md
-- Evidence: tests.test_generalization passed with 29 tests, CLI validate passed with 695 labels and 8 fingerprints, compileall and git diff guards passed, no registry or fingerprint diff
-- Notes: Follow-up to intermittent full-suite MMseqs failure; review-support outputs remain unchanged except related-output hash refresh.
 
 ### 2026-05-25T02:54:42.762799+00:00 - v3
 
@@ -120,6 +109,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_sequence_nn_label_manifest_current702_20260525.json, artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json
 - Evidence: PYTHONPATH=src python -m catalytic_earth.cli validate, PYTHONPATH=src python -m unittest discover -s tests, git diff --check, jq empty sequence-NN JSON artifacts
 - Notes: Baseline metrics intentionally not emitted because repaired current702 split rows cover 698/702 labels; missing split assignments are m_csa:204, uniprot:P06744, uniprot:P78549, and uniprot:Q3LXA3.
+
+### 2026-05-25T12:36:38Z - sequence-nn-baseline
+
+- Task: current702 sequence-NN split blocker detail
+- Time mode: measured
+- Measured minutes: 5.97
+- Started: 2026-05-25T12:30:40Z
+- Ended: 2026-05-25T12:36:38Z
+- Artifacts: artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json, src/catalytic_earth/sequence_nn.py, tests/test_sequence_nn.py, README.md, work/handoff.md
+- Evidence: sequence-NN compliance now records row-level split blocker details for all 4 missing current702 split assignments, missing rows remain m_csa:204, uniprot:P06744, uniprot:P78549, and uniprot:Q3LXA3 with repaired sequence SHA-256 values recorded, PYTHONPATH=src python -m catalytic_earth.cli validate passed with 702 labels, PYTHONPATH=src python -m unittest discover -s tests passed with 936 tests, git diff --check and jq empty over sequence-NN JSON artifacts passed
+- Notes: No label import registry edit fingerprint edit ontology edit scoring change threshold change model training PLM embedding artifact removal migration upload history rewrite or removal_allowed=true action occurred; no new large artifact was created, so the admission guard condition was not triggered.
 
 ## Expectation Updates
 
@@ -369,6 +369,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-24T18:53:06.309748+00:00: Next no-human run should only maintain review-support consistency or leakage-safe manifests; human review starts with clean10.
 - 2026-05-25T09:13:01Z: Next benchmark work should resolve the 20 missing sequence rows before any representation training or learned-superiority claim.
 - 2026-05-25T11:17:39.450858+00:00: Future sequence-NN or PLM benchmark results must cite the contract SHA and include OOS tier plus diversity reports before interpretation.
+- 2026-05-25T12:36:38Z: Repair or regenerate the current702 split before any sequence-NN prediction or metric artifact is allowed.
 
 ## Scope Adjustments
 

@@ -55,6 +55,68 @@
         "uniprot:P78549",
         "uniprot:Q3LXA3"
       ],
+      "affected_rows": [
+        {
+          "accession": "P10746",
+          "benchmark_role": "oos_tier::unknown_oos",
+          "blocker": "missing_partition_in_split_artifact",
+          "entry_id": "m_csa:204",
+          "fingerprint_id": null,
+          "label_type": "out_of_scope",
+          "manifest_status": "blocked_missing_sequence_or_split",
+          "oos_tier": "unknown_oos",
+          "probe_role": "unknown_oos_abstention_diagnostic",
+          "sequence_coverage_status": "covered_by_sequence_coverage_repair_uniprot",
+          "sequence_id": "P10746",
+          "sequence_record_count": 1,
+          "sequence_sha256": "01062407ddcb2c98548de1d956dafa8c5c18aca14ac61c0d36c635e235eb3e73"
+        },
+        {
+          "accession": "P06744",
+          "benchmark_role": "oos_tier::unknown_oos",
+          "blocker": "missing_partition_in_split_artifact",
+          "entry_id": "uniprot:P06744",
+          "fingerprint_id": null,
+          "label_type": "out_of_scope",
+          "manifest_status": "blocked_missing_sequence_or_split",
+          "oos_tier": "unknown_oos",
+          "probe_role": "unknown_oos_abstention_diagnostic",
+          "sequence_coverage_status": "covered_by_sequence_coverage_repair_uniprot",
+          "sequence_id": "P06744",
+          "sequence_record_count": 1,
+          "sequence_sha256": "272fc149643cdf85e7bdf8be908a732f796d89ed1c62fc229e576e042c290983"
+        },
+        {
+          "accession": "P78549",
+          "benchmark_role": "oos_tier::unknown_oos",
+          "blocker": "missing_partition_in_split_artifact",
+          "entry_id": "uniprot:P78549",
+          "fingerprint_id": null,
+          "label_type": "out_of_scope",
+          "manifest_status": "blocked_missing_sequence_or_split",
+          "oos_tier": "unknown_oos",
+          "probe_role": "unknown_oos_abstention_diagnostic",
+          "sequence_coverage_status": "covered_by_sequence_coverage_repair_uniprot",
+          "sequence_id": "P78549",
+          "sequence_record_count": 1,
+          "sequence_sha256": "2c784d6c37a7abb4d87ea1451073f522c6c9f253335f4d71a29fd87aee8fd81f"
+        },
+        {
+          "accession": "Q3LXA3",
+          "benchmark_role": "oos_tier::unknown_oos",
+          "blocker": "missing_partition_in_split_artifact",
+          "entry_id": "uniprot:Q3LXA3",
+          "fingerprint_id": null,
+          "label_type": "out_of_scope",
+          "manifest_status": "blocked_missing_sequence_or_split",
+          "oos_tier": "unknown_oos",
+          "probe_role": "unknown_oos_abstention_diagnostic",
+          "sequence_coverage_status": "covered_by_sequence_coverage_repair_uniprot",
+          "sequence_id": "Q3LXA3",
+          "sequence_record_count": 1,
+          "sequence_sha256": "ba204dee5f637838bfca90fe54177d0bd318dd29b1063708638ce74a6fe2ed4e"
+        }
+      ],
       "failure_mode": "current702_split_rows_do_not_cover_label_manifest",
       "next_action": "regenerate or repair the current702 sequence split so every sequence-manifest row has a partition before running MMseqs nearest-neighbor predictions"
     }
@@ -136,6 +198,78 @@
   "primary_seed_metrics": {
     "reason": "sequence-NN metrics require split assignments for all current702 labels",
     "status": "not_reported_split_blocked"
+  },
+  "split_assignment_blocker": {
+    "expected_label_manifest_row_count": 702,
+    "missing_current_label_row_count": 4,
+    "missing_current_label_rows": [
+      {
+        "accession": "P10746",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "blocker": "missing_partition_in_split_artifact",
+        "entry_id": "m_csa:204",
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "manifest_status": "blocked_missing_sequence_or_split",
+        "oos_tier": "unknown_oos",
+        "probe_role": "unknown_oos_abstention_diagnostic",
+        "sequence_coverage_status": "covered_by_sequence_coverage_repair_uniprot",
+        "sequence_id": "P10746",
+        "sequence_record_count": 1,
+        "sequence_sha256": "01062407ddcb2c98548de1d956dafa8c5c18aca14ac61c0d36c635e235eb3e73"
+      },
+      {
+        "accession": "P06744",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "blocker": "missing_partition_in_split_artifact",
+        "entry_id": "uniprot:P06744",
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "manifest_status": "blocked_missing_sequence_or_split",
+        "oos_tier": "unknown_oos",
+        "probe_role": "unknown_oos_abstention_diagnostic",
+        "sequence_coverage_status": "covered_by_sequence_coverage_repair_uniprot",
+        "sequence_id": "P06744",
+        "sequence_record_count": 1,
+        "sequence_sha256": "272fc149643cdf85e7bdf8be908a732f796d89ed1c62fc229e576e042c290983"
+      },
+      {
+        "accession": "P78549",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "blocker": "missing_partition_in_split_artifact",
+        "entry_id": "uniprot:P78549",
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "manifest_status": "blocked_missing_sequence_or_split",
+        "oos_tier": "unknown_oos",
+        "probe_role": "unknown_oos_abstention_diagnostic",
+        "sequence_coverage_status": "covered_by_sequence_coverage_repair_uniprot",
+        "sequence_id": "P78549",
+        "sequence_record_count": 1,
+        "sequence_sha256": "2c784d6c37a7abb4d87ea1451073f522c6c9f253335f4d71a29fd87aee8fd81f"
+      },
+      {
+        "accession": "Q3LXA3",
+        "benchmark_role": "oos_tier::unknown_oos",
+        "blocker": "missing_partition_in_split_artifact",
+        "entry_id": "uniprot:Q3LXA3",
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "manifest_status": "blocked_missing_sequence_or_split",
+        "oos_tier": "unknown_oos",
+        "probe_role": "unknown_oos_abstention_diagnostic",
+        "sequence_coverage_status": "covered_by_sequence_coverage_repair_uniprot",
+        "sequence_id": "Q3LXA3",
+        "sequence_record_count": 1,
+        "sequence_sha256": "ba204dee5f637838bfca90fe54177d0bd318dd29b1063708638ce74a6fe2ed4e"
+      }
+    ],
+    "reason": "repaired current702 sequence split does not cover every label row",
+    "split_artifact_evaluated_count": 698,
+    "split_artifact_row_count": 698,
+    "split_artifact_sequence_entry_coverage_count": 698,
+    "split_artifact_sequence_missing_entry_count": 0,
+    "status": "blocked_split_incomplete"
   },
   "split_quality_summary": {
     "heldout_count": 140,

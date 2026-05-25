@@ -285,6 +285,10 @@ def build_sequence_nn_eval_contract_compliance(
     sequence_missing = _string_list(
         manifest_metadata.get("sequence_manifest_missing_entry_ids")
     )
+    missing_split_details = _missing_split_details(
+        label_manifest=label_manifest,
+        missing_entry_ids=split_missing,
+    )
     split_counts = manifest_metadata.get("split_assignment_counts", {})
     canary_ids = [
         str(row.get("entry_id"))
@@ -338,6 +342,25 @@ def build_sequence_nn_eval_contract_compliance(
             "split_assignment_missing_entry_count": len(split_missing),
             "split_assignment_missing_entry_ids": split_missing,
             "split_assignment_counts": split_counts,
+        },
+        "split_assignment_blocker": {
+            "status": "blocked_split_incomplete" if split_missing else "passed",
+            "reason": (
+                "repaired current702 sequence split does not cover every label row"
+                if split_missing
+                else None
+            ),
+            "split_artifact_row_count": len(split_artifact.get("rows", []) or []),
+            "expected_label_manifest_row_count": len(labels),
+            "split_artifact_evaluated_count": split_metadata.get("evaluated_count"),
+            "split_artifact_sequence_entry_coverage_count": split_metadata.get(
+                "sequence_entry_coverage_count"
+            ),
+            "split_artifact_sequence_missing_entry_count": split_metadata.get(
+                "sequence_missing_entry_count"
+            ),
+            "missing_current_label_row_count": len(split_missing),
+            "missing_current_label_rows": missing_split_details,
         },
         "split_quality_summary": {
             "split_artifact_complete_for_current702": not split_missing,
@@ -394,6 +417,7 @@ def build_sequence_nn_eval_contract_compliance(
             {
                 "failure_mode": "current702_split_rows_do_not_cover_label_manifest",
                 "affected_entry_ids": split_missing,
+                "affected_rows": missing_split_details,
                 "next_action": (
                     "regenerate or repair the current702 sequence split so every "
                     "sequence-manifest row has a partition before running MMseqs "
@@ -504,6 +528,39 @@ def _sequence_nn_blockers(
             }
         )
     return blockers
+
+
+def _missing_split_details(
+    *,
+    label_manifest: dict[str, Any],
+    missing_entry_ids: list[str],
+) -> list[dict[str, Any]]:
+    manifest_rows = {
+        str(row.get("entry_id")): row
+        for row in label_manifest.get("rows", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    details: list[dict[str, Any]] = []
+    for entry_id in sorted(missing_entry_ids, key=_entry_id_sort_key):
+        row = manifest_rows.get(entry_id, {})
+        details.append(
+            {
+                "entry_id": entry_id,
+                "label_type": row.get("label_type"),
+                "fingerprint_id": row.get("fingerprint_id"),
+                "benchmark_role": row.get("benchmark_role"),
+                "sequence_id": row.get("sequence_id"),
+                "accession": row.get("accession"),
+                "sequence_sha256": row.get("sequence_sha256"),
+                "sequence_coverage_status": row.get("sequence_coverage_status"),
+                "sequence_record_count": row.get("sequence_record_count"),
+                "oos_tier": row.get("oos_tier"),
+                "probe_role": row.get("probe_role"),
+                "manifest_status": row.get("manifest_status"),
+                "blocker": "missing_partition_in_split_artifact",
+            }
+        )
+    return details
 
 
 def _rows_by_entry(artifact: dict[str, Any]) -> dict[str, dict[str, Any]]:

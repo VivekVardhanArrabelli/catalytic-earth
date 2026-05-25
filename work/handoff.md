@@ -50,6 +50,50 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-25T12:35Z Sequence-NN Split Blocker Sharpened
+
+This run acquired `.git/catalytic-earth-automation.lock`, fetched
+`origin/main`, and confirmed the local branch was already up to date before
+edits. Scope stayed limited to the current702 sequence-nearest-neighbor
+baseline gate: no labels were imported, no production fingerprints, ontology,
+scoring, thresholds, or curated labels were edited, no PLM embeddings were
+computed, and no model training was performed.
+
+Updated artifact:
+
+```text
+artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json
+```
+
+The sequence-NN compliance artifact still blocks before predictions or metrics,
+as required by the frozen split contract, because the repaired current702 split
+artifact has rows for 698/702 current labels. The blocker is now row-level
+explicit under `split_assignment_blocker`: the missing split rows are all
+out-of-scope labels with repaired sequence coverage, and the artifact records
+their benchmark roles, accessions, sequence SHA-256 values, sequence coverage
+statuses, and OOS diagnostic roles.
+
+Exact missing split rows:
+
+```text
+m_csa:204       accession=P10746 sequence_sha256=01062407ddcb2c98548de1d956dafa8c5c18aca14ac61c0d36c635e235eb3e73
+uniprot:P06744 accession=P06744 sequence_sha256=272fc149643cdf85e7bdf8be908a732f796d89ed1c62fc229e576e042c290983
+uniprot:P78549 accession=P78549 sequence_sha256=2c784d6c37a7abb4d87ea1451073f522c6c9f253335f4d71a29fd87aee8fd81f
+uniprot:Q3LXA3 accession=Q3LXA3 sequence_sha256=ba204dee5f637838bfca90fe54177d0bd318dd29b1063708638ce74a6fe2ed4e
+```
+
+Contract SHA-256 retained by the sequence-NN artifacts:
+
+```text
+c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50
+```
+
+Underpowered metric cells were not evaluated because the run stopped before
+metric reporting. Next action: repair/regenerate the current702 split so all
+702 label-manifest rows have a partition, then rerun
+`PYTHONPATH=src python -m catalytic_earth.cli build-sequence-nn-baseline` to
+permit MMseqs nearest-neighbor predictions and contract-governed metrics.
+
 ### 2026-05-25T11:29Z Sequence-NN Baseline Preflight Blocked On Split Coverage
 
 This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`, and
