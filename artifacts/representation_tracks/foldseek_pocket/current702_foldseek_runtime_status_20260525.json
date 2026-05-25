@@ -1,0 +1,68 @@
+{
+  "accepted_outputs": {
+    "coverage_artifact": "artifacts/representation_tracks/foldseek_pocket/current702_structure_pocket_coverage_20260525.json",
+    "metrics_json": null,
+    "prediction_jsonl": null
+  },
+  "metadata": {
+    "artifact_id": "current702_foldseek_runtime_status_20260525",
+    "coverage_artifact": "artifacts/representation_tracks/foldseek_pocket/current702_structure_pocket_coverage_20260525.json",
+    "coverage_artifact_sha256": "99a3e19b3f82753a395b162c6deae52df8833734a45309320bd4aff7d41c2c66",
+    "curated_label_registry_edited": false,
+    "eval_contract_artifact": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+    "eval_contract_sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
+    "fingerprint_registry_edited": false,
+    "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "foldseek_version_command": "/private/tmp/catalytic-foldseek-env/bin/foldseek version",
+    "forbidden_inputs_used": [],
+    "full_structure_pooling_mode": "unavailable",
+    "full_structure_scope": "full_structure_foldseek_3di_tm_alignment",
+    "generated_at": "2026-05-25T16:47:45.828063+00:00",
+    "input_leakage_contract": "no EC/name/prose/expert-note fields used as predictive features",
+    "label_import_performed": false,
+    "model_training_performed": false,
+    "ontology_registry_edited": false,
+    "oos_abstention_diagnostics_status": "not_computed_foldseek_runtime_blocked",
+    "plm_embeddings_computed": false,
+    "pocket_pooling_mode_when_eligible": "known_active_site_window_ablation",
+    "prediction_metrics_status": "not_computed",
+    "production_scoring_changed": false,
+    "schema_version": "foldseek_pocket_runtime_status.v1",
+    "sequence_nn_metrics_artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+    "sequence_nn_metrics_sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "split_artifact_sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425",
+    "track": "representation_tracks/foldseek_pocket"
+  },
+  "next_exact_actions": [
+    "Run heldout-vs-train Foldseek with a shell timeout and entry-specific symlinks before parsing metrics.",
+    "Parse only final TSV output; score heldout entries against in_distribution targets under the frozen split.",
+    "Emit predictions and metrics with primary macro-F1/accuracy, per-fingerprint support, OOS tier diagnostics, canaries, and unavailable-structure abstentions."
+  ],
+  "runtime_attempts": [
+    {
+      "accepted_for_metrics": false,
+      "attempt_id": "exact_all_materialized_all_vs_all",
+      "blocker": "exact all-vs-all Foldseek/TM refinement exceeded useful automation window; partial intermediate DBs are not accepted as metrics",
+      "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search artifacts/v3_foldseek_coordinates_1000 artifacts/v3_foldseek_coordinates_1000 /private/tmp/catalytic-earth-repr-foldseek-pocket-current702/full_structure_tm.tsv /private/tmp/catalytic-earth-repr-foldseek-pocket-current702/tmp --format-output query,target,qtmscore,ttmscore,alntmscore,bits,evalue --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --threads 4 -v 1",
+      "expected_output_tsv": "/private/tmp/catalytic-earth-repr-foldseek-pocket-current702/full_structure_tm.tsv",
+      "output_tsv_exists_at_status_write": false,
+      "scratch_dir": "/private/tmp/catalytic-earth-repr-foldseek-pocket-current702",
+      "status": "started_but_no_output_tsv_within_automation_window"
+    },
+    {
+      "accepted_for_metrics": false,
+      "attempt_id": "entry_symlink_heldout_vs_train_fast",
+      "blocker": "heldout-vs-train Foldseek search did not emit final TSV before wrap; no partial intermediate DBs are accepted as predictions",
+      "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn/heldout /private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn/train /private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn/heldout_train_fast.tsv /private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn/tmp --format-output query,target,qtmscore,ttmscore,alntmscore,bits,evalue --alignment-type 1 --tmalign-fast 1 --threads 1 -v 1",
+      "entry_specific_symlink_count": 676,
+      "expected_output_tsv": "/private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn/heldout_train_fast.tsv",
+      "heldout_symlink_count": 134,
+      "output_tsv_exists_at_status_write": false,
+      "scratch_dir": "/private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn",
+      "status": "started_but_no_output_tsv_within_automation_window",
+      "train_symlink_count": 542
+    }
+  ]
+}
