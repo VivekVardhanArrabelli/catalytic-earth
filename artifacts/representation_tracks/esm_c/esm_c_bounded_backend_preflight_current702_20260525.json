@@ -1,0 +1,315 @@
+{
+  "metadata": {
+    "artifact_id": "esm_c_bounded_backend_preflight_current702_20260525",
+    "schema_version": "representation_track_backend_preflight.v1",
+    "track": "representation_tracks/esm_c",
+    "automation_id": "representation-track-esm-c",
+    "generated_at_utc": "2026-05-25T17:13:06Z",
+    "branch": "research/representation-esm-c",
+    "origin_main_baseline_commit": "8e69bf002097d5cf55521a13764e096908d8e0af",
+    "origin_main_baseline_requirement_satisfied": true,
+    "status": "blocked_needs_isolated_runtime_and_weight_cache",
+    "result_type": "bounded_backend_preflight",
+    "embedding_vectors_computed": false,
+    "predictions_computed": false,
+    "metrics_computed": false,
+    "model_training_performed": false,
+    "large_model_training_performed": false,
+    "label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false,
+    "shared_artifact_names_written": false
+  },
+  "shared_baseline_citations": {
+    "fingerprint_audit": {
+      "path": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json",
+      "sha256": "cf9d5d3b17fa95d51374d244497ceba52414e60b8bdaefa12304ba3372cab734"
+    },
+    "eval_contract": {
+      "path": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+      "sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50"
+    },
+    "sequence_manifest": {
+      "path": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+      "sha256": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b"
+    },
+    "split_artifact": {
+      "path": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+      "sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425"
+    },
+    "sequence_fasta": {
+      "path": "artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta",
+      "sha256": "f151bcf8e3e9b7ca7adfd6bbf1da119e3d486228f3dad19f92dc4b9f20c42a3e"
+    },
+    "sequence_nn_metrics": {
+      "path": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+      "sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26"
+    },
+    "previous_esm_c_blocker": {
+      "path": "artifacts/representation_tracks/esm_c/esm_c_feasibility_backend_blocker_current702_20260525.json",
+      "sha256": "d533c3378a85da024ff349e94eaa9f77197e1a02ef5bc87388f94addfe114ae9"
+    }
+  },
+  "requested_model": {
+    "model_family": "ESM-C",
+    "model_id": "esmc_300m",
+    "canonical_hf_repo_requested": "EvolutionaryScale/esmc-300m-2024-12",
+    "hf_repo_resolved_model_id": "biohub/esmc-300m-2024-12",
+    "hf_repo_sha": "c309e1f43e775c1a513826dba9f1fe04622e96a1",
+    "hf_repo_last_modified_utc": "2026-05-18T17:30:13Z",
+    "hf_repo_private": false,
+    "hf_repo_gated": false,
+    "requested_parameter_count": "300M",
+    "model_weight_file": "data/weights/esmc_300m_2024_12_v0.pth",
+    "model_weight_size_bytes": 1332095738,
+    "known_total_repo_file_bytes": 1332098570,
+    "model_weight_size_status": "remote_metadata_only_not_downloaded",
+    "six_b_or_api_used": false,
+    "six_b_or_api_status": "not_requested_not_used"
+  },
+  "pooling_contract": {
+    "pooling_mode": "whole_sequence",
+    "primary_benchmark_pooling_mode": "whole_sequence",
+    "active_site_pooling_used": false,
+    "known_active_site_window_ablation_status": "not_run",
+    "contract_source": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json::active_site_pooling_contract"
+  },
+  "input_leakage_contract": {
+    "status": "enforced_by_non_execution_and_next_step_spec",
+    "allowed_predictive_inputs_for_this_track": [
+      "amino_acid_sequence"
+    ],
+    "forbidden_predictive_inputs": [
+      "EC labels",
+      "entry names",
+      "mechanism prose",
+      "expert notes",
+      "review decision text",
+      "source identifiers as features"
+    ],
+    "forbidden_inputs_used": [],
+    "contract": "No EC/name/prose/expert-note fields may enter ESM-C embedding, classifier, abstention threshold selection, or nearest-neighbor prediction features."
+  },
+  "sequence_and_split_scope": {
+    "sequence_covered_label_count": 702,
+    "missing_sequence_entry_count": 0,
+    "fasta_record_count": 760,
+    "fasta_min_sequence_length": 14,
+    "fasta_max_sequence_length": 3011,
+    "fasta_mean_sequence_length": 418.8,
+    "fasta_total_amino_acids": 318251,
+    "train_sequence_count": 562,
+    "heldout_sequence_count": 140,
+    "split_assignment_counts": {
+      "heldout": 140,
+      "in_distribution": 562
+    },
+    "max_observed_train_test_identity": 0.284,
+    "sequence_identity_target_achieved": true,
+    "sequence_fasta": "artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json"
+  },
+  "bounded_network_preflight": {
+    "package_index_query_attempted": true,
+    "package_index_query": "PIP_CACHE_DIR=/private/tmp/esm_c_pip_cache python -m pip index versions esm",
+    "package_index_cache_path": "/private/tmp/esm_c_pip_cache",
+    "package_index_latest_version": "3.2.3",
+    "package_index_versions_available": [
+      "3.2.3",
+      "3.2.2.post2",
+      "3.2.2",
+      "3.2.1.post1",
+      "3.2.1",
+      "3.2.0",
+      "3.1.6",
+      "3.1.4",
+      "3.1.3",
+      "3.1.2",
+      "3.1.1",
+      "3.1.0",
+      "3.0.8",
+      "3.0.7.post1",
+      "3.0.7",
+      "3.0.6",
+      "3.0.5",
+      "3.0.4",
+      "3.0.3",
+      "3.0.2",
+      "3.0.1",
+      "3.0.0.post2",
+      "3.0.0"
+    ],
+    "pypi_metadata_url": "https://pypi.org/pypi/esm/3.2.3/json",
+    "pypi_metadata_summary": "EvolutionaryScale open model repository",
+    "pypi_requires_python": "<3.13,>=3.12",
+    "pypi_wheel_size_bytes": 2484829,
+    "pypi_requires_dist_relevant": [
+      "torch>=2.2.0",
+      "torchvision",
+      "torchtext",
+      "transformers<4.48.2",
+      "einops",
+      "biotite>=1.0.0",
+      "msgpack-numpy",
+      "biopython",
+      "scikit-learn",
+      "pandas",
+      "cloudpathlib",
+      "httpx",
+      "tenacity",
+      "zstd",
+      "pydssp",
+      "pygtrie",
+      "dna_features_viewer"
+    ],
+    "hf_model_info_query_attempted": true,
+    "hf_model_info_query": "HfApi().model_info('EvolutionaryScale/esmc-300m-2024-12', files_metadata=True)",
+    "hf_model_files_metadata_only": true,
+    "hf_model_files_downloaded": false,
+    "hf_largest_files": [
+      {
+        "rfilename": "data/weights/esmc_300m_2024_12_v0.pth",
+        "size_bytes": 1332095738,
+        "lfs": true,
+        "blob_id": "f86851ea1c05360f615c42d397d72ee3a2009e3a"
+      },
+      {
+        "rfilename": ".gitattributes",
+        "size_bytes": 1519,
+        "lfs": false,
+        "blob_id": "a6344aac8c09253b3b630fb776ae94478aa0275b"
+      },
+      {
+        "rfilename": "README.md",
+        "size_bytes": 1311,
+        "lfs": false,
+        "blob_id": "8ae1a918d527c9bcc03ae934887da9fd00ee2d65"
+      },
+      {
+        "rfilename": "config.json",
+        "size_bytes": 2,
+        "lfs": false,
+        "blob_id": "9e26dfeeb6e641a33dae4961196235bdb965b21b"
+      }
+    ],
+    "package_install_attempted": false,
+    "model_weight_download_attempted": false,
+    "embedding_run_attempted": false
+  },
+  "local_runtime_probe": {
+    "python_version": "3.12.9",
+    "pip_version": "25.0",
+    "installed_package_versions": {
+      "esm": null,
+      "torch": "2.7.1",
+      "torchvision": "0.22.1",
+      "torchtext": null,
+      "transformers": "4.53.2",
+      "huggingface_hub": "0.33.4",
+      "safetensors": "0.5.3",
+      "numpy": "2.3.1",
+      "scikit-learn": "1.7.0",
+      "biotite": null,
+      "msgpack-numpy": null,
+      "einops": null,
+      "biopython": null,
+      "pandas": "2.3.3",
+      "cloudpathlib": null,
+      "httpx": "0.28.1",
+      "tenacity": null,
+      "zstd": null,
+      "pydssp": null,
+      "pygtrie": null,
+      "dna_features_viewer": null
+    },
+    "device_probe": {
+      "cuda_available": false,
+      "mps_available": false,
+      "torch_version": "2.7.1"
+    },
+    "cache_probe": {
+      "hf_home": null,
+      "huggingface_hub_cache_env": null,
+      "transformers_cache_env": null,
+      "torch_home": null,
+      "default_huggingface_hub_cache": "/Users/vivekvardhanarrabelli/.cache/huggingface/hub",
+      "default_huggingface_hub_cache_exists": false,
+      "default_torch_cache": "/Users/vivekvardhanarrabelli/.cache/torch",
+      "default_torch_cache_exists": false
+    }
+  },
+  "backend_blockers": [
+    {
+      "blocker_id": "python_package_esm_not_installed",
+      "severity": "blocking",
+      "evidence": "importlib.util.find_spec('esm') returned false and package metadata lookup returned not installed.",
+      "impact": "Cannot call the local EvolutionaryScale ESM-C loader for esmc_300m."
+    },
+    {
+      "blocker_id": "local_transformers_version_conflicts_with_esm_requirements",
+      "severity": "blocking",
+      "evidence": "Installed transformers is 4.53.2, while esm 3.2.3 declares transformers<4.48.2.",
+      "impact": "Installing esm into the shared environment could downgrade an existing package and perturb unrelated benchmark tooling."
+    },
+    {
+      "blocker_id": "runtime_dependencies_missing",
+      "severity": "blocking",
+      "evidence": "torchtext, einops, biotite, msgpack-numpy, biopython, cloudpathlib, tenacity, zstd, pydssp, pygtrie, and dna_features_viewer are not installed.",
+      "impact": "A direct ESM-C run requires dependency installation in an isolated environment before embeddings are attempted."
+    },
+    {
+      "blocker_id": "local_esmc_weights_not_cached",
+      "severity": "blocking",
+      "evidence": "Default Hugging Face and Torch cache directories do not exist; remote metadata reports a 1,332,095,738 byte 300M weight file but no local cache was found.",
+      "impact": "The current run cannot produce bounded local whole-sequence embeddings without a planned cache download."
+    },
+    {
+      "blocker_id": "cpu_only_runtime_risk",
+      "severity": "caution",
+      "evidence": "CUDA and MPS are unavailable, and the repaired FASTA contains 760 records totaling 318,251 amino acids with max length 3,011.",
+      "impact": "Even after dependency setup, full current702 ESM-C 300M embedding on CPU may exceed a short automation window."
+    }
+  ],
+  "run_gate_decision": {
+    "decision": "do_not_install_or_download_weights_in_shared_runtime_this_run",
+    "reason": "ESM-C is public and bounded by remote metadata, but this environment lacks the package, has an incompatible transformers version for esm 3.2.3, has missing runtime dependencies, has no local weights, and has CPU-only execution.",
+    "safe_next_attempt": [
+      "Create an isolated ESM-C runtime outside the shared project interpreter.",
+      "Pin esm==3.2.3 and the dependency set required by its package metadata, including transformers<4.48.2.",
+      "Set HF_HOME or HUGGINGFACE_HUB_CACHE to a recorded bounded cache path.",
+      "Download only biohub/esmc-300m-2024-12 data/weights/esmc_300m_2024_12_v0.pth after confirming the 1,332,095,738 byte size budget.",
+      "Run a two-record smoke embedding first, then full whole-sequence embeddings if CPU wall time is acceptable.",
+      "Write embeddings, predictions, metrics, and any failure artifacts only under artifacts/representation_tracks/esm_c/."
+    ]
+  },
+  "metrics_status": {
+    "primary_macro_f1": null,
+    "primary_accuracy": null,
+    "per_fingerprint_breakdown": null,
+    "oos_false_positive_abstention_diagnostics_by_tier": null,
+    "canary_predictions": null,
+    "underpowered_cell_flags": null,
+    "status": "not_computed_backend_preflight_blocked",
+    "reason": "No ESM-C embeddings or predictions were produced."
+  },
+  "oos_abstention_diagnostics": {
+    "status": "not_computed_backend_preflight_blocked",
+    "required_tiers_from_eval_contract": [
+      "far_oos",
+      "near_oos",
+      "boundary_oos",
+      "unknown_oos",
+      "secondary_probe_fingerprints"
+    ],
+    "threshold_selection_rule": "Any ESM-C abstention threshold must be chosen on train/calibration data only and reported unchanged on OOS tiers and primary eval rows.",
+    "sequence_nn_baseline_context": {
+      "artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+      "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+      "false_positive_rate_no_threshold": 0.2717,
+      "false_positive_count": 25,
+      "out_of_scope_heldout_count": 92,
+      "status": "baseline_context_only_not_esm_c_result"
+    }
+  }
+}
