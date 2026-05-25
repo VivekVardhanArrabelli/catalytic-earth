@@ -65,6 +65,13 @@ Updated artifact:
 artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json
 ```
 
+Push blocker: committing locally succeeded, but both push paths failed. The
+configured HTTPS remote failed exactly with
+`fatal: could not read Username for 'https://github.com': Device not configured`.
+The SSH fallback failed exactly with
+`git@github.com: Permission denied (publickey).` followed by
+`fatal: Could not read from remote repository.`
+
 The sequence-NN compliance artifact still blocks before predictions or metrics,
 as required by the frozen split contract, because the repaired current702 split
 artifact has rows for 698/702 current labels. The blocker is now row-level
