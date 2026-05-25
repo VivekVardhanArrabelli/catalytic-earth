@@ -134,6 +134,11 @@ label-manifest row has a partition, then rerun `build-sequence-nn-baseline`.
 Separately, restore GitHub push authentication so the local sequence-NN commits
 can land on `origin/main`.
 
+After the local wrap commit, both push paths were retried and failed with the
+same exact errors above. The branch therefore remains ahead of `origin/main`;
+the next agent should treat GitHub authentication as the only publish blocker
+for the already-committed sequence-NN gate work.
+
 ### 2026-05-25T13:38Z Sequence-NN Gate Rerun Still Split-Blocked
 
 This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`,
