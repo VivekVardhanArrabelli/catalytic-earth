@@ -3,41 +3,112 @@
 Run date: 2026-05-25
 Branch: research/representation-saprot
 
-## Artifact
+## Decision
+
+SaProt is no longer blocked at generic feasibility. A bounded public HF/Transformers SaProt-35M run was completed on the frozen current702 split using whole selected-structure Foldseek SA tokens and nearest-neighbor lookup over in-distribution embeddings.
+
+This is not a full SaProt-650M result. The 650M repository was metadata-checked only and not downloaded because the public repo reports about 5.21 GB across duplicate `.pt` and `pytorch_model.bin` weight formats.
+
+## New Artifacts
+
+- `artifacts/representation_tracks/saprot/saprot_chain_token_policy_current702_20260525.json`
+- `artifacts/representation_tracks/saprot/saprot_tokenization_coverage_current702_20260525.json`
+- `artifacts/representation_tracks/saprot/saprot_sa_tokens_current702_20260525.jsonl`
+- `artifacts/representation_tracks/saprot/saprot_embeddings_manifest_current702_20260525.json`
+- `artifacts/representation_tracks/saprot/saprot_predictions_current702_20260525.jsonl`
+- `artifacts/representation_tracks/saprot/saprot_metrics_current702_20260525.json`
+
+Prior feasibility artifact retained:
 
 - `artifacts/representation_tracks/saprot/saprot_feasibility_current702_20260525.json`
 
-## Decision
+## Frozen Chain/Token Policy
 
-Do not run full SaProt embeddings yet. The current sequence split is ready, and a bounded Foldseek 3Di conversion smoke passed on one staged selected PDB, but the full backend is not clean enough for a current702 SaProt result.
+- Use the selected structure provenance from the frozen current702 split artifact.
+- For each selected coordinate, parse all Foldseek `structureto3didescriptor` records.
+- If multiple records are emitted, choose the longest amino-acid/3Di record.
+- Ties are resolved deterministically by Foldseek record id, then original Foldseek record index.
+- Record all Foldseek alternatives with lengths and hashes.
+- Do not use labels, EC, names, mechanism prose, expert notes, or model outcomes to choose chains.
+- Pair Foldseek-emitted amino acid tokens with aligned Foldseek 3Di tokens lowercased for SaProt input.
+- Whole-sequence/whole-structure mean pooling is the primary representation; active-site pooling remains a future ablation.
 
-## Required citations recorded
+## Coverage
 
-- Eval contract: `artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json`, SHA256 `c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50`
-- Sequence-NN metrics: `artifacts/v3_sequence_nn_metrics_current702_20260525.json`, SHA256 `22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26`
-- Split artifact: `artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json`, SHA256 `dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425`
-- Model id: `westlake-repl/SaProt_650M_AF2_candidate_not_downloaded`
-- Pooling mode: `whole_sequence`
-- Structure source: selected PDB local mmCIF from current702 split and geometry features
-- Input leakage contract: amino-acid sequence plus structure-derived 3Di tokens only; no EC/name/prose/expert-note/source-id predictive features
-- OOS diagnostics: not computed for SaProt because backend is blocked; sequence-NN OOS diagnostics are cited as comparator context
+- Foldseek emitted 1,833 records across 672 staged coordinate files.
+- 661 of 702 current rows are SaProt-token compatible.
+- 41 rows are blocked before SaProt embedding:
+  - 34 in-distribution
+  - 7 held out
+- The 41 blockers include the prior missing/un-staged selected coordinates plus model-token compatibility blockers:
+  - 6 selected records exceed the HF model 1,024-residue limit.
+  - 9 selected records contain unsupported Foldseek amino-acid token `X`.
+- 414 rows had multiple Foldseek records; all alternatives are recorded, and longest-record selection was applied deterministically.
 
-## Coverage Findings
+## Backend
 
-- Sequence coverage is complete for current702: 702 of 702 labels, with 2 selected-PDB sequence fallbacks.
-- Frozen split is 562 in-distribution and 140 held out; max observed train/test sequence identity is 0.284.
-- Selected PDB coverage is partial: 696 rows have selected PDB keys, 676 rows have local selected-PDB coordinates, and 26 rows are blocked.
-- Blocked rows are 20 in-distribution and 6 held out.
-- Reference structure crossrefs include AFDB for 680 rows and PDB for 693 rows, but the current selected-structure path is PDB/mmCIF; no AFDB coordinate cache was staged for SaProt in this run.
+- Model: `westlake-repl/SaProt_35M_AF2`
+- Revision/SHA: `316cd4017d29f4657b959365f24b57f1ee278912`
+- Embedding dimension: 480
+- Pooling: mean last hidden state over non-special whole-sequence SA tokens
+- Python: `/opt/homebrew/Caskroom/miniconda/base/bin/python`
+- `torch`: 2.7.1
+- `transformers`: 4.53.2
+- `huggingface_hub`: 0.33.4
+- Cache path: `/private/tmp/catalytic-saprot-hf-cache`
+- Recorded cache size in metrics artifact: 766,366,756 bytes
+- Recorded main weight size: `pytorch_model.bin` 136,862,061 bytes
+- Foldseek: `/private/tmp/catalytic-foldseek-env/bin/foldseek`, version `718d42176d2f67d36a60866fedfb881f8d5a7ebf`
 
-## Backend Findings
+## Metrics
 
-- Foldseek is available only at `/private/tmp/catalytic-foldseek-env/bin/foldseek`, not on `PATH`; version output was `718d42176d2f67d36a60866fedfb881f8d5a7ebf`.
-- A bounded 3Di smoke on `artifacts/v3_foldseek_coordinates_1000/pdb_1B73.cif` completed with matched AA and 3Di token lengths, 252 and 252.
-- `torch` 2.7.1 and `transformers` 4.53.2 are installed.
-- `saprot` and `esm` Python packages are not installed.
-- Hugging Face and torch cache paths do not exist; no model was downloaded, so model size was not recorded.
+From `saprot_metrics_current702_20260525.json`:
 
-## Next Step
+- Primary macro-F1: 0.5134
+- Primary supervised accuracy: 0.3333, 15/45
+- Exact label accuracy, all heldout: 0.6357
+- Exact label accuracy, in-scope heldout: 0.3125
+- OOS false-positive rate without threshold: 0.1957, 18/92
+- Embedded heldout rows: 133
+- Heldout coordinate/tokenization abstentions: 7
 
-Freeze the exact SaProt model/cache policy and chain-alignment policy, then materialize or formally exclude the 26 rows missing selected local coordinates before attempting even a bounded embedding smoke.
+Per-fingerprint top-1 accuracy:
+
+- `flavin_dehydrogenase_reductase`: 0.4000, 4/10
+- `heme_peroxidase_oxidase`: 0.5000, 2/4, underpowered
+- `metal_dependent_hydrolase`: 0.0588, 1/17
+- `plp_dependent_enzyme`: 0.8333, 5/6
+- `ser_his_acid_hydrolase`: 0.3750, 3/8
+
+OOS diagnostics by tier:
+
+- `far_oos`: false-positive rate 0.0000, abstention rate 1.0000, 1 row
+- `near_oos`: false-positive rate 0.3333, abstention rate 0.6667, 3 rows
+- `unknown_oos`: false-positive rate 0.1932, abstention rate 0.8068, 88 rows
+
+Comparator context:
+
+- Sequence-NN current702 primary accuracy was 0.1556 and OOS FP rate was 0.2717; bounded SaProt-35M is +0.1777 primary accuracy with lower OOS FP rate.
+- Foldseek 3Di current702 is represented here as tokenization coverage, not a predictive metric.
+- ProtT5 current702 comparator is not available in this branch.
+- ESM-2 150M exists only as the prior 12-row external-source sample artifact, not a current702 direct comparator.
+
+## Verification
+
+- JSON artifacts validated with `python -m json.tool`.
+- JSONL artifacts parsed successfully:
+  - 661 token rows
+  - 140 heldout prediction rows
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed:
+  - 12 source records
+  - 8 mechanism fingerprints
+  - 15 mechanism ontology families
+  - 702 curated mechanism labels
+
+## Caveats
+
+- No labels, fingerprints, ontology, production scoring, thresholds, or main docs were edited.
+- No large model was trained.
+- No EC/name/prose/expert-note fields were used as predictive features.
+- SaProt-650M remains uncomputed.
+- The nearest-neighbor classifier has no calibrated abstention threshold; abstention is only nearest-train out-of-scope or explicit coordinate/tokenization blocker.
