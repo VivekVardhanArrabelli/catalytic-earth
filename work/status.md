@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 315
-- Measured elapsed time: 9404.0 minutes (156.73 hours)
+- Entries: 316
+- Measured elapsed time: 9413.2 minutes (156.89 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,6 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
+- sequence-nn-baseline: 9.2 measured minutes (0.15 hours)
 - v3: 2388.6 measured minutes (39.81 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -27,21 +28,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3387
-- Evidence references logged: 2797
+- Artifact references logged: 3389
+- Evidence references logged: 2801
 
 ## Recent Entries
-
-### 2026-05-24T18:53:06.309748+00:00 - v3
-
-- Task: M-CSA review workqueue support surface
-- Time mode: measured
-- Measured minutes: 46.933
-- Started: 2026-05-24T18:05:54Z
-- Ended: 2026-05-24T18:52:50Z
-- Artifacts: artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 917-test unit discovery passed, startup CLI validate passed with 695 labels and 8 fingerprints, review support index pins fixed 298 row universe, exact40 workqueue has 40 blank decisions and clean10 plus nonclean30 routing, deferred26 backlog and worksheet preserve rows outside exact40, targeted M-CSA review-support tests passed, final 924-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, compileall passed, JSON and TSV checks passed, git diff check passed, no registry fingerprint or source code diff
-- Notes: No label import import preview registry edit fingerprint edit scoring change source artifact mutation upload removal migration LFS history rewrite or removal_allowed=true action occurred; pre-existing root CIF files left untouched.
 
 ### 2026-05-24T18:53:19.546556+00:00 - ops
 
@@ -119,6 +109,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json, README.md, docs/label_factory.md, work/handoff.md
 - Evidence: contract freezes five primary fingerprints and three secondary OOD probes, source digests recorded for audit plan labels and fingerprints, partial OOS tier assignment status is explicit, canary expansion needed is explicit, full unittest discovery passed 934 tests
 - Notes: No label import registry edit fingerprint edit ontology edit scoring change threshold change model training PLM embedding sequence-NN benchmark artifact removal migration upload history rewrite or removal_allowed=true action occurred; pre-existing root CIF files left untouched.
+
+### 2026-05-25T11:38:22.081117+00:00 - sequence-nn-baseline
+
+- Task: current702 sequence-NN manifest and split completeness blocker
+- Time mode: measured
+- Measured minutes: 9.15
+- Started: 2026-05-25T11:29:12Z
+- Ended: 2026-05-25T11:38:21Z
+- Artifacts: artifacts/v3_sequence_nn_label_manifest_current702_20260525.json, artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json
+- Evidence: PYTHONPATH=src python -m catalytic_earth.cli validate, PYTHONPATH=src python -m unittest discover -s tests, git diff --check, jq empty sequence-NN JSON artifacts
+- Notes: Baseline metrics intentionally not emitted because repaired current702 split rows cover 698/702 labels; missing split assignments are m_csa:204, uniprot:P06744, uniprot:P78549, and uniprot:Q3LXA3.
 
 ## Expectation Updates
 

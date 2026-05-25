@@ -174,6 +174,16 @@ The repository currently contains:
     OOS abstention by frozen tier/probe policy, report primary-fingerprint
     diversity bins, flag underpowered cells, and keep active-site pooling
     ablations separate from whole-sequence evidence budgets.
+    `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json` now
+    joins all 702 current labels to repaired sequence records, benchmark roles,
+    OOS/probe roles, and the frozen contract SHA. The paired compliance artifact
+    `artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json`
+    fail-closes before sequence-NN predictions or metrics because the repaired
+    split rows cover 698/702 labels: `m_csa:204`, `uniprot:P06744`,
+    `uniprot:P78549`, and `uniprot:Q3LXA3` have repaired sequences but no split
+    assignment. The next sequence-NN action is to repair/regenerate the
+    current702 split so every label-manifest row has a partition, then run MMseqs
+    nearest-neighbor predictions.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives

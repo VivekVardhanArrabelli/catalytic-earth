@@ -50,6 +50,54 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-25T11:29Z Sequence-NN Baseline Preflight Blocked On Split Coverage
+
+This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`, and
+fast-forward checked `origin/main` at
+`9a8dd8b77cf453674796c4a7ce460fd37bdeab0d` before edits. Scope stayed limited
+to the current702 sequence-nearest-neighbor baseline gate: no labels were
+imported, no production fingerprints, ontology, scoring, thresholds, or curated
+labels were edited, no PLM embeddings were computed, and no model training was
+performed.
+
+New command:
+
+```text
+PYTHONPATH=src python -m catalytic_earth.cli build-sequence-nn-baseline
+```
+
+New artifacts:
+
+```text
+artifacts/v3_sequence_nn_label_manifest_current702_20260525.json
+artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json
+```
+
+Contract SHA-256 cited by both sequence-NN artifacts:
+
+```text
+c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50
+```
+
+Headline result: the label manifest covers all 702 labels and repaired sequence
+records, but sequence-NN predictions and metrics were not emitted. The
+compliance gate fail-closes because the repaired split artifact has split rows
+for 698/702 labels. Missing split assignments are exactly:
+
+```text
+m_csa:204
+uniprot:P06744
+uniprot:P78549
+uniprot:Q3LXA3
+```
+
+The repaired sequence manifest covers those four rows, so the blocker is split
+partition coverage rather than sequence coverage. Underpowered metric cells were
+not evaluated because the run stopped before metric reporting. Next action:
+repair/regenerate the current702 sequence split so every label-manifest row has
+a partition, then rerun `build-sequence-nn-baseline` to allow MMseqs
+nearest-neighbor predictions and contract-governed metrics.
+
 ### 2026-05-25T11:16Z Mechanism Prediction OOS/Diversity Contract Frozen
 
 This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`, and

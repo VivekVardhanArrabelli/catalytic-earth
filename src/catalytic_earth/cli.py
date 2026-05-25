@@ -50,6 +50,7 @@ from .mechanism_prediction_contract import (
     build_mechanism_prediction_oos_and_diversity_eval_contract,
 )
 from .representation_baseline import build_representation_baseline_shootout_plan
+from .sequence_nn import build_sequence_nn_label_manifest_and_compliance
 from .labels import (
     analyze_cofactor_abstention_policy,
     analyze_cofactor_coverage,
@@ -927,6 +928,54 @@ def cmd_build_sequence_distance_holdout_eval(args: argparse.Namespace) -> int:
         f"{args.out} ({artifact['metadata']['heldout_count']} held out, "
         f"{artifact['metrics']['heldout']['out_of_scope_false_non_abstentions']} "
         "held-out false non-abstentions)"
+    )
+    return 0
+
+
+def cmd_build_sequence_nn_baseline(args: argparse.Namespace) -> int:
+    labels_path = Path(args.labels)
+    fingerprints_path = Path(args.fingerprints)
+    coherence_audit_path = Path(args.coherence_audit)
+    eval_contract_path = Path(args.eval_contract)
+    sequence_manifest_path = Path(args.sequence_manifest)
+    split_artifact_path = Path(args.split_artifact)
+    label_manifest_out = Path(args.label_manifest_out)
+    predictions_out = Path(args.predictions_out)
+    metrics_out = Path(args.metrics_out)
+    compliance_out = Path(args.compliance_out)
+
+    labels = load_labels(labels_path)
+    fingerprints = load_fingerprints(fingerprints_path)
+    coherence_audit = read_json_object(coherence_audit_path)
+    eval_contract = read_json_object(eval_contract_path)
+    sequence_manifest = read_json_object(sequence_manifest_path)
+    split_artifact = read_json_object(split_artifact_path)
+    artifacts = build_sequence_nn_label_manifest_and_compliance(
+        labels=labels,
+        fingerprints=fingerprints,
+        coherence_audit=coherence_audit,
+        eval_contract=eval_contract,
+        sequence_manifest=sequence_manifest,
+        split_artifact=split_artifact,
+        label_registry_path=labels_path,
+        fingerprint_registry_path=fingerprints_path,
+        coherence_audit_path=coherence_audit_path,
+        eval_contract_path=eval_contract_path,
+        sequence_manifest_path=sequence_manifest_path,
+        split_artifact_path=split_artifact_path,
+        label_manifest_out=label_manifest_out,
+        predictions_out=predictions_out,
+        metrics_out=metrics_out,
+        compliance_out=compliance_out,
+    )
+    write_json(label_manifest_out, artifacts["label_manifest"])
+    write_json(compliance_out, artifacts["compliance"])
+    status = artifacts["compliance"]["metadata"]["status"]
+    blocker_count = len(artifacts["compliance"].get("blockers", []))
+    print(
+        "Wrote sequence-NN label manifest and compliance to "
+        f"{label_manifest_out} / {compliance_out} "
+        f"(status={status}, blockers={blocker_count})"
     )
     return 0
 
@@ -19780,6 +19829,61 @@ def build_parser() -> argparse.ArgumentParser:
     mechanism_prediction_contract.set_defaults(
         func=cmd_build_mechanism_prediction_oos_and_diversity_eval_contract
     )
+
+    sequence_nn = subparsers.add_parser(
+        "build-sequence-nn-baseline",
+        help="build the sequence-nearest-neighbor manifest and contract gate",
+    )
+    sequence_nn.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    sequence_nn.add_argument(
+        "--fingerprints",
+        default="data/registries/mechanism_fingerprints.json",
+    )
+    sequence_nn.add_argument(
+        "--coherence-audit",
+        default="artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json",
+    )
+    sequence_nn.add_argument(
+        "--eval-contract",
+        default=(
+            "artifacts/"
+            "v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json"
+        ),
+    )
+    sequence_nn.add_argument(
+        "--sequence-manifest",
+        default="artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    )
+    sequence_nn.add_argument(
+        "--split-artifact",
+        default=(
+            "artifacts/"
+            "v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json"
+        ),
+    )
+    sequence_nn.add_argument(
+        "--label-manifest-out",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    sequence_nn.add_argument(
+        "--predictions-out",
+        default="artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl",
+    )
+    sequence_nn.add_argument(
+        "--metrics-out",
+        default="artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+    )
+    sequence_nn.add_argument(
+        "--compliance-out",
+        default=(
+            "artifacts/"
+            "v3_sequence_nn_eval_contract_compliance_current702_20260525.json"
+        ),
+    )
+    sequence_nn.set_defaults(func=cmd_build_sequence_nn_baseline)
 
     sequence_failure_audit = subparsers.add_parser(
         "audit-sequence-similarity-failure-sets",

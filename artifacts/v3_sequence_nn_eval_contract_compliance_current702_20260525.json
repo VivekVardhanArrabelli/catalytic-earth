@@ -1,0 +1,152 @@
+{
+  "blocked_outputs": {
+    "metrics_json": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+    "predictions_jsonl": "artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl",
+    "reason": "not written because split completeness gate failed"
+  },
+  "blockers": [
+    {
+      "expected_label_manifest_row_count": 702,
+      "missing_entry_count": 4,
+      "missing_entry_ids": [
+        "m_csa:204",
+        "uniprot:P06744",
+        "uniprot:P78549",
+        "uniprot:Q3LXA3"
+      ],
+      "observed_split_row_count": 698,
+      "reason": "split_artifact_missing_current_label_rows"
+    }
+  ],
+  "canary_predictions": {
+    "canary_count": 42,
+    "split_missing_canary_entry_count": 0,
+    "split_missing_canary_entry_ids": [],
+    "status": "not_reported_split_blocked"
+  },
+  "coverage_summary": {
+    "label_manifest_row_count": 702,
+    "sequence_covered_label_count": 702,
+    "sequence_manifest_missing_entry_count": 0,
+    "sequence_manifest_missing_entry_ids": [],
+    "split_assignment_counts": {
+      "heldout": 140,
+      "in_distribution": 558,
+      "missing": 4
+    },
+    "split_assignment_covered_label_count": 698,
+    "split_assignment_missing_entry_count": 4,
+    "split_assignment_missing_entry_ids": [
+      "m_csa:204",
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ]
+  },
+  "diversity_stratified_accuracy": {
+    "required_axis": "nearest_same_fingerprint_different_subfamily_train_example",
+    "status": "not_reported_split_blocked"
+  },
+  "failure_modes_and_next_actions": [
+    {
+      "affected_entry_ids": [
+        "m_csa:204",
+        "uniprot:P06744",
+        "uniprot:P78549",
+        "uniprot:Q3LXA3"
+      ],
+      "failure_mode": "current702_split_rows_do_not_cover_label_manifest",
+      "next_action": "regenerate or repair the current702 sequence split so every sequence-manifest row has a partition before running MMseqs nearest-neighbor predictions"
+    }
+  ],
+  "metadata": {
+    "artifact_id": "v3_sequence_nn_eval_contract_compliance_current702_20260525",
+    "backend_name": "mmseqs2_cluster_sequence_identity",
+    "backend_tool_version": "18-8cc5c",
+    "current_label_count": 702,
+    "eval_contract_artifact": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+    "eval_contract_sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
+    "label_manifest_artifact": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    "label_registry_artifact": "data/registries/curated_mechanism_labels.json",
+    "label_registry_edited": false,
+    "label_registry_sha256": "5a1ce4af25af0fbb3bfff3be07118484e08de7ee318fad8d783fab10a540c684",
+    "leakage_contract": "no EC/name/prose/expert-note predictive features",
+    "mechanism_fingerprint_version": "label_factory_v1_8fp",
+    "metrics_artifact_blocked": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+    "model_training_performed": false,
+    "out_of_scope_tier_counts": {
+      "boundary_oos": 3,
+      "far_oos": 3,
+      "near_oos": 3,
+      "unknown_oos": 461
+    },
+    "plm_embeddings_computed": false,
+    "prediction_metrics_reported": false,
+    "predictions_artifact_blocked": "artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl",
+    "primary_fingerprint_ids": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "schema_version": "sequence_nn_eval_contract_compliance.v1",
+    "secondary_ood_probe_fingerprint_ids": [
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase"
+    ],
+    "sequence_manifest_artifact": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    "sequence_manifest_sha256": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json",
+    "split_artifact_sha256": "41fad29f1d77dc446009915cc4cf7b74aec5675db5bba36eb1032d86d2425d29",
+    "status": "blocked_before_sequence_nn_metrics"
+  },
+  "oos_abstention_diagnostics": {
+    "secondary_probe_fingerprint_ids": [
+      "radical_sam_enzyme",
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase"
+    ],
+    "status": "not_reported_split_blocked",
+    "tiers_required": [
+      "far_oos",
+      "near_oos",
+      "boundary_oos",
+      "unknown_oos"
+    ]
+  },
+  "per_fingerprint_metrics": {
+    "flavin_dehydrogenase_reductase": {
+      "status": "not_reported_split_blocked"
+    },
+    "heme_peroxidase_oxidase": {
+      "status": "not_reported_split_blocked"
+    },
+    "metal_dependent_hydrolase": {
+      "status": "not_reported_split_blocked"
+    },
+    "plp_dependent_enzyme": {
+      "status": "not_reported_split_blocked"
+    },
+    "ser_his_acid_hydrolase": {
+      "status": "not_reported_split_blocked"
+    }
+  },
+  "primary_seed_metrics": {
+    "reason": "sequence-NN metrics require split assignments for all current702 labels",
+    "status": "not_reported_split_blocked"
+  },
+  "split_quality_summary": {
+    "heldout_count": 140,
+    "in_distribution_count": 558,
+    "max_observed_train_test_identity": 0.284,
+    "partition_rule": "deterministic holdout by whole MMseqs2 sequence clusters at the configured identity threshold; label/fingerprint stratification is attempted by cluster units, and sequence separation takes precedence",
+    "sequence_identity_backend_available": true,
+    "sequence_identity_target_achieved": true,
+    "sequence_missing_entry_count": 0,
+    "split_artifact_complete_for_current702": false,
+    "split_artifact_evaluated_count": 698,
+    "split_artifact_label_registry_count": 702
+  }
+}
