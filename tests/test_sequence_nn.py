@@ -165,6 +165,87 @@ class SequenceNearestNeighborBaselineTests(unittest.TestCase):
         self.assertEqual(row["oos_tier"], "far_oos")
         self.assertEqual(row["probe_role"], "far_oos_tail_diagnostic")
 
+    def test_complete_current_split_emits_sequence_nn_metrics(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            fasta = root / "sequences.fasta"
+            fasta.write_text(
+                ">sp|P00005|ROW5 m_csa:5\nACDEFGHIKLMNPQRSTVWY\n"
+                ">sp|P00006|ROW6 m_csa:6\nACDEFGHIKLMNPQRSAVWY\n",
+                encoding="utf-8",
+            )
+            labels = [
+                MechanismLabel(
+                    entry_id="m_csa:5",
+                    fingerprint_id="ser_his_acid_hydrolase",
+                    label_type="seed_fingerprint",
+                    confidence="medium",
+                    rationale="fixture",
+                ),
+                MechanismLabel(
+                    entry_id="m_csa:6",
+                    fingerprint_id="ser_his_acid_hydrolase",
+                    label_type="seed_fingerprint",
+                    confidence="medium",
+                    rationale="fixture",
+                ),
+            ]
+            paths = _fixture_paths(root)
+            result = build_sequence_nn_label_manifest_and_compliance(
+                labels=labels,
+                fingerprints=[object()] * 8,
+                coherence_audit={
+                    "fingerprints_kept_for_primary_metric": [
+                        "ser_his_acid_hydrolase"
+                    ]
+                },
+                eval_contract=_eval_contract(),
+                sequence_manifest={
+                    "metadata": {
+                        "current_label_count": 2,
+                        "missing_sequence_entry_count": 0,
+                        "sequence_covered_label_count": 2,
+                    },
+                    "rows": [
+                        _sequence_row("m_csa:5", "P00005", "aaa"),
+                        _sequence_row("m_csa:6", "P00006", "bbb"),
+                    ],
+                },
+                split_artifact={
+                    "metadata": {
+                        "label_registry_count": 2,
+                        "evaluated_count": 2,
+                        "heldout_count": 1,
+                        "in_distribution_count": 1,
+                        "sequence_identity_target_achieved": True,
+                        "sequence_source": f"fasta:{fasta}; records=2",
+                    },
+                    "rows": [
+                        {
+                            "entry_id": "m_csa:5",
+                            "partition": "in_distribution",
+                            "reference_uniprot_ids": ["P00005"],
+                            "real_sequence_identity_cluster_id": "mmseqs30:m_csa:5",
+                        },
+                        {
+                            "entry_id": "m_csa:6",
+                            "partition": "heldout",
+                            "reference_uniprot_ids": ["P00006"],
+                            "real_sequence_identity_cluster_id": "mmseqs30:m_csa:6",
+                        },
+                    ],
+                },
+                **paths,
+            )
+
+        self.assertEqual(
+            result["compliance"]["metadata"]["status"],
+            "sequence_nn_metrics_reported",
+        )
+        self.assertEqual(len(result["predictions"]), 1)
+        self.assertEqual(result["predictions"][0]["predicted_label_group"], "ser_his_acid_hydrolase")
+        self.assertEqual(result["metrics"]["metadata"]["prediction_count"], 1)
+
 
 def _fixture_paths(root: Path) -> dict[str, Path]:
     names = {

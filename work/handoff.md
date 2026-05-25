@@ -50,6 +50,70 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-25T15:08Z Sequence-NN Split Repair Complete
+
+This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`,
+and found local `main` still ahead of `origin/main` by the two prior handoff
+commits with no newer remote commits.
+
+Root cause: `build-sequence-distance-holdout-eval` builds split rows from
+geometry retrieval results. The four current-label rows below had repaired
+UniProt sequence coverage but no geometry retrieval result row, so the split
+artifact writer omitted them; this was not a FASTA/header mismatch, M-CSA graph
+join issue, or cluster-proxy identity conflict.
+
+Repaired rows:
+
+```text
+m_csa:204 / P10746 / in_distribution / mmseqs30:m_csa:204
+uniprot:P06744 / P06744 / in_distribution / mmseqs30:uniprot:P06744
+uniprot:P78549 / P78549 / in_distribution / mmseqs30:uniprot:P78549
+uniprot:Q3LXA3 / Q3LXA3 / in_distribution / mmseqs30:uniprot:Q3LXA3
+```
+
+Artifacts written:
+
+```text
+artifacts/v3_sequence_split_assignment_repair_current702_20260525.json
+artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json
+artifacts/v3_sequence_nn_label_manifest_current702_20260525.json
+artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json
+artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl
+artifacts/v3_sequence_nn_metrics_current702_20260525.json
+```
+
+The split assignment gate now passes: 702/702 labels have sequence coverage and
+702/702 have split assignments (`heldout=140`, `in_distribution=562`). Max
+observed train/test sequence identity is unchanged at 0.284 before and after
+repair, so the <=0.30 sequence-hard target remains satisfied. The compliance
+artifact status is `sequence_nn_metrics_reported` with 0 blockers.
+
+The sequence-NN baseline is deterministic 3-mer Jaccard nearest neighbor over
+amino-acid sequences only. It reports 140 heldout predictions, primary support
+45, primary supervised accuracy 0.1556, exact-label accuracy all 0.5286,
+exact-label accuracy in scope 0.1458, and OOS false-positive rate 0.2717. No
+label import, registry edit, fingerprint edit, ontology edit, scoring or
+threshold change, model training, PLM embedding computation, artifact removal,
+migration, upload, history rewrite, or `removal_allowed=true` action occurred.
+
+Verification passed:
+
+```text
+PYTHONPATH=src python -m catalytic_earth.cli validate
+PYTHONPATH=src python -m unittest discover -s tests
+git diff --check
+jq empty artifacts/v3_sequence_split_assignment_repair_current702_20260525.json artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json artifacts/v3_sequence_nn_label_manifest_current702_20260525.json artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json artifacts/v3_sequence_nn_metrics_current702_20260525.json
+jq -c . artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl
+PYTHONPATH=src python -m catalytic_earth.cli check-artifact-admission-guard --out /private/tmp/catalytic-earth-artifact-admission-guard-check.json
+```
+
+Full unit discovery passed 937 tests. All new artifacts are below 5 MB, and the
+temporary admission guard passed.
+
+Next action: inspect the weak deterministic sequence baseline only as a
+non-learned control, or move to the next allowed project item. Do not start PLM
+or learned-representation work unless a future prompt explicitly asks for it.
+
 ### 2026-05-25T14:44Z Sequence-NN Gate Verified, Final Handoff Local
 
 This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`,

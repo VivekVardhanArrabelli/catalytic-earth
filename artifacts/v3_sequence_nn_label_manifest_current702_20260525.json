@@ -64,21 +64,15 @@
     "sequence_manifest_missing_entry_count": 0,
     "sequence_manifest_missing_entry_ids": [],
     "sequence_manifest_sha256": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b",
-    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json",
-    "split_artifact_sha256": "41fad29f1d77dc446009915cc4cf7b74aec5675db5bba36eb1032d86d2425d29",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "split_artifact_sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425",
     "split_assignment_counts": {
       "heldout": 140,
-      "in_distribution": 558,
-      "missing": 4
+      "in_distribution": 562
     },
-    "split_assignment_missing_entry_count": 4,
-    "split_assignment_missing_entry_ids": [
-      "m_csa:204",
-      "uniprot:P06744",
-      "uniprot:P78549",
-      "uniprot:Q3LXA3"
-    ],
-    "status": "blocked_split_incomplete"
+    "split_assignment_missing_entry_count": 0,
+    "split_assignment_missing_entry_ids": [],
+    "status": "ready_for_sequence_nn"
   },
   "rows": [
     {
@@ -7403,14 +7397,16 @@
       "entry_id": "m_csa:204",
       "fingerprint_id": null,
       "label_type": "out_of_scope",
-      "manifest_status": "blocked_missing_sequence_or_split",
+      "manifest_status": "ready_for_sequence_nn",
       "mechanism_fingerprint_id": null,
-      "mmseqs30_subfamily_cluster_id": null,
+      "mmseqs30_subfamily_cluster_id": "mmseqs30:m_csa:204",
       "oos_tier": "unknown_oos",
       "oos_tier_assignment_source": "fail_closed_unknown_full_oos_tier_assignment_pending",
       "probe_role": "unknown_oos_abstention_diagnostic",
-      "real_sequence_accessions": [],
-      "sequence_cluster_id": null,
+      "real_sequence_accessions": [
+        "P10746"
+      ],
+      "sequence_cluster_id": "uniprot:P10746",
       "sequence_coverage_status": "covered_by_sequence_coverage_repair_uniprot",
       "sequence_id": "P10746",
       "sequence_record_count": 1,
@@ -7424,8 +7420,8 @@
         }
       ],
       "sequence_sha256": "01062407ddcb2c98548de1d956dafa8c5c18aca14ac61c0d36c635e235eb3e73",
-      "split_assignment": null,
-      "split_assignment_source": null
+      "split_assignment": "in_distribution",
+      "split_assignment_source": "sequence_distance_holdout_eval_current702_repaired"
     },
     {
       "accession": "P00489",
@@ -25045,14 +25041,16 @@
       "entry_id": "uniprot:P06744",
       "fingerprint_id": null,
       "label_type": "out_of_scope",
-      "manifest_status": "blocked_missing_sequence_or_split",
+      "manifest_status": "ready_for_sequence_nn",
       "mechanism_fingerprint_id": null,
-      "mmseqs30_subfamily_cluster_id": null,
+      "mmseqs30_subfamily_cluster_id": "mmseqs30:uniprot:P06744",
       "oos_tier": "unknown_oos",
       "oos_tier_assignment_source": "fail_closed_unknown_full_oos_tier_assignment_pending",
       "probe_role": "unknown_oos_abstention_diagnostic",
-      "real_sequence_accessions": [],
-      "sequence_cluster_id": null,
+      "real_sequence_accessions": [
+        "P06744"
+      ],
+      "sequence_cluster_id": "uniprot:P06744",
       "sequence_coverage_status": "covered_by_sequence_coverage_repair_uniprot",
       "sequence_id": "P06744",
       "sequence_record_count": 1,
@@ -25066,8 +25064,8 @@
         }
       ],
       "sequence_sha256": "272fc149643cdf85e7bdf8be908a732f796d89ed1c62fc229e576e042c290983",
-      "split_assignment": null,
-      "split_assignment_source": null
+      "split_assignment": "in_distribution",
+      "split_assignment_source": "sequence_distance_holdout_eval_current702_repaired"
     },
     {
       "accession": "P78549",
@@ -25078,14 +25076,16 @@
       "entry_id": "uniprot:P78549",
       "fingerprint_id": null,
       "label_type": "out_of_scope",
-      "manifest_status": "blocked_missing_sequence_or_split",
+      "manifest_status": "ready_for_sequence_nn",
       "mechanism_fingerprint_id": null,
-      "mmseqs30_subfamily_cluster_id": null,
+      "mmseqs30_subfamily_cluster_id": "mmseqs30:uniprot:P78549",
       "oos_tier": "unknown_oos",
       "oos_tier_assignment_source": "fail_closed_unknown_full_oos_tier_assignment_pending",
       "probe_role": "unknown_oos_abstention_diagnostic",
-      "real_sequence_accessions": [],
-      "sequence_cluster_id": null,
+      "real_sequence_accessions": [
+        "P78549"
+      ],
+      "sequence_cluster_id": "uniprot:P78549",
       "sequence_coverage_status": "covered_by_sequence_coverage_repair_uniprot",
       "sequence_id": "P78549",
       "sequence_record_count": 1,
@@ -25099,8 +25099,8 @@
         }
       ],
       "sequence_sha256": "2c784d6c37a7abb4d87ea1451073f522c6c9f253335f4d71a29fd87aee8fd81f",
-      "split_assignment": null,
-      "split_assignment_source": null
+      "split_assignment": "in_distribution",
+      "split_assignment_source": "sequence_distance_holdout_eval_current702_repaired"
     },
     {
       "accession": "Q3LXA3",
@@ -25111,14 +25111,16 @@
       "entry_id": "uniprot:Q3LXA3",
       "fingerprint_id": null,
       "label_type": "out_of_scope",
-      "manifest_status": "blocked_missing_sequence_or_split",
+      "manifest_status": "ready_for_sequence_nn",
       "mechanism_fingerprint_id": null,
-      "mmseqs30_subfamily_cluster_id": null,
+      "mmseqs30_subfamily_cluster_id": "mmseqs30:uniprot:Q3LXA3",
       "oos_tier": "unknown_oos",
       "oos_tier_assignment_source": "fail_closed_unknown_full_oos_tier_assignment_pending",
       "probe_role": "unknown_oos_abstention_diagnostic",
-      "real_sequence_accessions": [],
-      "sequence_cluster_id": null,
+      "real_sequence_accessions": [
+        "Q3LXA3"
+      ],
+      "sequence_cluster_id": "uniprot:Q3LXA3",
       "sequence_coverage_status": "covered_by_sequence_coverage_repair_uniprot",
       "sequence_id": "Q3LXA3",
       "sequence_record_count": 1,
@@ -25132,8 +25134,8 @@
         }
       ],
       "sequence_sha256": "ba204dee5f637838bfca90fe54177d0bd318dd29b1063708638ce74a6fe2ed4e",
-      "split_assignment": null,
-      "split_assignment_source": null
+      "split_assignment": "in_distribution",
+      "split_assignment_source": "sequence_distance_holdout_eval_current702_repaired"
     }
   ]
 }

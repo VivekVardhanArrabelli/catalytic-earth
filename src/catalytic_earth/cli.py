@@ -50,7 +50,10 @@ from .mechanism_prediction_contract import (
     build_mechanism_prediction_oos_and_diversity_eval_contract,
 )
 from .representation_baseline import build_representation_baseline_shootout_plan
-from .sequence_nn import build_sequence_nn_label_manifest_and_compliance
+from .sequence_nn import (
+    build_sequence_nn_label_manifest_and_compliance,
+    repair_sequence_split_assignments,
+)
 from .labels import (
     analyze_cofactor_abstention_policy,
     analyze_cofactor_coverage,
@@ -364,12 +367,28 @@ def write_json(path: Path, payload: object) -> None:
         handle.write("\n")
 
 
+def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as handle:
+        for row in rows:
+            json.dump(row, handle, sort_keys=True)
+            handle.write("\n")
+
+
 def read_json_object(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as handle:
         payload = json.load(handle)
     if not isinstance(payload, dict):
         raise ValueError(f"{path} must contain a JSON object")
     return payload
+
+
+def _sha256_path(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 _LABEL_FACTORY_GATE_SLICE_ID_RE = re.compile(
@@ -969,6 +988,9 @@ def cmd_build_sequence_nn_baseline(args: argparse.Namespace) -> int:
         compliance_out=compliance_out,
     )
     write_json(label_manifest_out, artifacts["label_manifest"])
+    if "predictions" in artifacts and "metrics" in artifacts:
+        write_jsonl(predictions_out, artifacts["predictions"])
+        write_json(metrics_out, artifacts["metrics"])
     write_json(compliance_out, artifacts["compliance"])
     status = artifacts["compliance"]["metadata"]["status"]
     blocker_count = len(artifacts["compliance"].get("blockers", []))
@@ -976,6 +998,38 @@ def cmd_build_sequence_nn_baseline(args: argparse.Namespace) -> int:
         "Wrote sequence-NN label manifest and compliance to "
         f"{label_manifest_out} / {compliance_out} "
         f"(status={status}, blockers={blocker_count})"
+    )
+    return 0
+
+
+def cmd_repair_sequence_split_assignments(args: argparse.Namespace) -> int:
+    label_manifest_path = Path(args.label_manifest)
+    sequence_manifest_path = Path(args.sequence_manifest)
+    split_artifact_path = Path(args.split_artifact)
+    repaired_split_out = Path(args.repaired_split_out)
+    repair_out = Path(args.repair_out)
+    artifacts = repair_sequence_split_assignments(
+        label_manifest=read_json_object(label_manifest_path),
+        sequence_manifest=read_json_object(sequence_manifest_path),
+        split_artifact=read_json_object(split_artifact_path),
+        split_artifact_path=split_artifact_path,
+        repaired_split_out=repaired_split_out,
+        repair_out=repair_out,
+        sequence_identity_threshold=args.sequence_identity_threshold,
+        sequence_identity_coverage=args.sequence_identity_coverage,
+        mmseqs_binary=args.mmseqs_binary,
+    )
+    write_json(repaired_split_out, artifacts["repaired_split"])
+    artifacts["repair"]["split_artifact_after"]["sha256"] = _sha256_path(
+        repaired_split_out
+    )
+    write_json(repair_out, artifacts["repair"])
+    status = artifacts["repair"]["metadata"]["status"]
+    repaired_count = len(artifacts["repair"].get("repaired_entry_ids", []))
+    print(
+        "Wrote sequence split assignment repair to "
+        f"{repair_out} / {repaired_split_out} "
+        f"(status={status}, repaired_entries={repaired_count})"
     )
     return 0
 
@@ -19861,7 +19915,8 @@ def build_parser() -> argparse.ArgumentParser:
         "--split-artifact",
         default=(
             "artifacts/"
-            "v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json"
+            "v3_sequence_distance_holdout_eval_1025_current702_"
+            "split_assignment_repaired_20260525.json"
         ),
     )
     sequence_nn.add_argument(
@@ -19884,6 +19939,50 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     sequence_nn.set_defaults(func=cmd_build_sequence_nn_baseline)
+
+    split_assignment_repair = subparsers.add_parser(
+        "repair-sequence-split-assignments",
+        help="repair current-label sequence split assignments for covered non-eval rows",
+    )
+    split_assignment_repair.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    split_assignment_repair.add_argument(
+        "--sequence-manifest",
+        default="artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    )
+    split_assignment_repair.add_argument(
+        "--split-artifact",
+        default=(
+            "artifacts/"
+            "v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json"
+        ),
+    )
+    split_assignment_repair.add_argument(
+        "--repaired-split-out",
+        default=(
+            "artifacts/"
+            "v3_sequence_distance_holdout_eval_1025_current702_"
+            "split_assignment_repaired_20260525.json"
+        ),
+    )
+    split_assignment_repair.add_argument(
+        "--repair-out",
+        default="artifacts/v3_sequence_split_assignment_repair_current702_20260525.json",
+    )
+    split_assignment_repair.add_argument(
+        "--sequence-identity-threshold",
+        type=float,
+        default=0.30,
+    )
+    split_assignment_repair.add_argument(
+        "--sequence-identity-coverage",
+        type=float,
+        default=0.80,
+    )
+    split_assignment_repair.add_argument("--mmseqs-binary", default="mmseqs")
+    split_assignment_repair.set_defaults(func=cmd_repair_sequence_split_assignments)
 
     sequence_failure_audit = subparsers.add_parser(
         "audit-sequence-similarity-failure-sets",

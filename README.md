@@ -174,18 +174,21 @@ The repository currently contains:
     OOS abstention by frozen tier/probe policy, report primary-fingerprint
     diversity bins, flag underpowered cells, and keep active-site pooling
     ablations separate from whole-sequence evidence budgets.
-    `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json` now
-    joins all 702 current labels to repaired sequence records, benchmark roles,
-    OOS/probe roles, and the frozen contract SHA. The paired compliance artifact
-    `artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json`
-    fail-closes before sequence-NN predictions or metrics because the repaired
-    split rows cover 698/702 labels: `m_csa:204`, `uniprot:P06744`,
-    `uniprot:P78549`, and `uniprot:Q3LXA3` have repaired sequences but no split
-    assignment. The compliance artifact now records those four out-of-scope
-    rows with benchmark roles, accessions, sequence SHA-256 values, and coverage
-    statuses. The next sequence-NN action is to repair/regenerate the current702
-    split so every label-manifest row has a partition, then run MMseqs
-    nearest-neighbor predictions.
+    `artifacts/v3_sequence_split_assignment_repair_current702_20260525.json`
+    repairs the four current702 split-assignment gaps (`m_csa:204`,
+    `uniprot:P06744`, `uniprot:P78549`, and `uniprot:Q3LXA3`) by reclustering
+    all 702 sequence-covered labels with MMseqs and assigning the four singleton
+    clusters to `in_distribution`; max observed train/test identity remains
+    0.284, satisfying the <=0.30 sequence-hard target. The repaired split
+    artifact
+    `artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json`
+    now covers all 702 labels. `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`
+    and `artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json`
+    are ready/reported with 0 split-assignment gaps, and the deterministic
+    amino-acid-only 3-mer sequence-NN smoke baseline writes
+    `artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl` plus
+    `artifacts/v3_sequence_nn_metrics_current702_20260525.json` without model
+    training, PLM embeddings, or EC/name/prose/expert-note predictive features.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives

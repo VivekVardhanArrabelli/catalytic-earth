@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 319
-- Measured elapsed time: 9435.4 minutes (157.26 hours)
+- Entries: 320
+- Measured elapsed time: 9450.8 minutes (157.51 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- sequence-nn-baseline: 31.4 measured minutes (0.52 hours)
+- sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
 - v3: 2388.6 measured minutes (39.81 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -28,21 +28,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3401
-- Evidence references logged: 2820
+- Artifact references logged: 3412
+- Evidence references logged: 2828
 
 ## Recent Entries
-
-### 2026-05-25T08:48:33.348733+00:00 - v3
-
-- Task: Current 702 sequence split refresh for representation baseline
-- Time mode: measured
-- Measured minutes: 5.633
-- Started: 2026-05-25T08:42:47Z
-- Ended: 2026-05-25T08:48:25Z
-- Artifacts: artifacts/v3_sequence_distance_holdout_eval_1025_current702_20260525.json, artifacts/v3_representation_baseline_shootout_plan_20260525.json, README.md, docs/label_factory.md, work/handoff.md
-- Evidence: current 702-label sequence holdout evaluated 698 labels, held out 140 rows, preserved 0 held-out false non-abstentions, max observed train-test identity 0.284, recorded 20 missing sequence rows, reran representation plan against current sequence split with no learned superiority claim
-- Notes: No model training or label import occurred; current split remains blocked for full representation claims until missing sequence records and embedding sidecars are supplied.
 
 ### 2026-05-25T09:13:01Z - v3
 
@@ -120,6 +109,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_sequence_nn_label_manifest_current702_20260525.json, artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json, work/handoff.md, work/status.md
 - Evidence: sequence-NN gate status blocked_before_sequence_nn_metrics, missing split rows m_csa:204/uniprot:P06744/uniprot:P78549/uniprot:Q3LXA3, 936 unit tests passed, validate passed, diff check passed, jq passed, artifact admission guard passed
 - Notes: Continuation from local ahead commits; rerun was deterministic and produced no prediction or metric artifact.
+
+### 2026-05-25T15:10:30.958833+00:00 - sequence-nn-baseline
+
+- Task: current702 split assignment repair and deterministic sequence NN baseline
+- Time mode: measured
+- Measured minutes: 15.333
+- Started: 2026-05-25T14:54:56Z
+- Ended: 2026-05-25T15:10:16Z
+- Artifacts: artifacts/v3_sequence_split_assignment_repair_current702_20260525.json, artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json, artifacts/v3_sequence_nn_label_manifest_current702_20260525.json, artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json, artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl, artifacts/v3_sequence_nn_metrics_current702_20260525.json, src/catalytic_earth/sequence_nn.py, src/catalytic_earth/cli.py, tests/test_sequence_nn.py, README.md, work/handoff.md
+- Evidence: split assignment missing count 0, sequence identity target achieved max 0.284, sequence NN metrics reported 140 predictions, validate passed, 937 unit tests passed, diff check passed, jq JSON and JSONL parsing passed, artifact admission guard passed
+- Notes: No label import registry edit fingerprint edit ontology edit scoring threshold model training PLM embedding artifact removal migration upload history rewrite or removal_allowed=true action occurred.
 
 ## Expectation Updates
 
@@ -372,6 +372,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-25T12:36:38Z: Repair or regenerate the current702 split before any sequence-NN prediction or metric artifact is allowed.
 - 2026-05-25T13:37:58.445786+00:00: Repair or regenerate the current702 split before sequence-NN predictions or metrics; restore GitHub push authentication before local ahead commits can land.
 - 2026-05-25T14:36:49.637815+00:00: Next run should repair/regenerate split coverage before MMseqs nearest-neighbor prediction.
+- 2026-05-25T15:10:30.958833+00:00: Next work should inspect or compare the deterministic sequence baseline as a control rather than repairing split coverage.
 
 ## Scope Adjustments
 
@@ -563,3 +564,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-24T18:53:19.546556+00:00: Hardened only temporary MMseqs workdir handling to avoid concurrent digest-path collisions; no scoring threshold ontology label or fingerprint semantics changed.
 - 2026-05-25T09:13:01Z: Target 0 completed as a frozen caveat artifact; Target A remains blocked on exact sequence coverage rows.
 - 2026-05-25T14:36:49.637815+00:00: Sequence-NN remains fail-closed until the repaired current702 split covers all 702 labels; no PLM or learned baseline work was started.
+- 2026-05-25T15:10:30.958833+00:00: Current702 sequence-NN is unblocked and reported with deterministic amino-acid-only baseline artifacts; PLM and learned representation work remain outside this prompt.

@@ -1,0 +1,122 @@
+{
+  "blockers": [],
+  "label_registry_edited": false,
+  "max_observed_train_test_identity_after": 0.284,
+  "max_observed_train_test_identity_before": 0.284,
+  "metadata": {
+    "artifact_id": "v3_sequence_split_assignment_repair_current702_20260525",
+    "label_registry_edited": false,
+    "leakage_contract": "no EC/name/prose/expert-note predictive features",
+    "model_training_performed": false,
+    "plm_embeddings_computed": false,
+    "schema_version": "sequence_split_assignment_repair.v1",
+    "status": "repaired"
+  },
+  "repaired_entry_ids": [
+    "m_csa:204",
+    "uniprot:P06744",
+    "uniprot:P78549",
+    "uniprot:Q3LXA3"
+  ],
+  "root_cause_by_entry": {
+    "m_csa:204": "split artifact writer builds rows from geometry retrieval results; this current-label row has repaired sequence coverage but no geometry retrieval result row, so it was omitted from split rows",
+    "uniprot:P06744": "split artifact writer builds rows from geometry retrieval results; this current-label row has repaired sequence coverage but no geometry retrieval result row, so it was omitted from split rows",
+    "uniprot:P78549": "split artifact writer builds rows from geometry retrieval results; this current-label row has repaired sequence coverage but no geometry retrieval result row, so it was omitted from split rows",
+    "uniprot:Q3LXA3": "split artifact writer builds rows from geometry retrieval results; this current-label row has repaired sequence coverage but no geometry retrieval result row, so it was omitted from split rows"
+  },
+  "sequence_identity_cluster_metadata": {
+    "backend_resolved_path": "/opt/homebrew/bin/mmseqs",
+    "backend_version": "18-8cc5c",
+    "entry_cluster_count": 656,
+    "limitations": [
+      "2 FASTA records use selected-PDB sequence fallbacks for unavailable UniProt accessions"
+    ],
+    "record_cluster_count": 714,
+    "sequence_count": 764,
+    "sequence_entry_coverage_count": 702,
+    "sequence_missing_entry_count": 0,
+    "sequence_missing_entry_ids": [],
+    "sequence_source": "fasta:artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta; records=760",
+    "usable": true
+  },
+  "sequence_identity_target_achieved": true,
+  "split_artifact_after": {
+    "heldout_count": 140,
+    "in_distribution_count": 562,
+    "label_registry_count": 702,
+    "path": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "row_count": 702,
+    "sequence_entry_coverage_count": 702,
+    "sequence_missing_entry_count": 0,
+    "sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425"
+  },
+  "split_artifact_before": {
+    "heldout_count": 140,
+    "in_distribution_count": 558,
+    "label_registry_count": 702,
+    "max_observed_train_test_identity": 0.284,
+    "missing_label_manifest_entry_count": 4,
+    "missing_label_manifest_entry_ids": [
+      "m_csa:204",
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "path": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json",
+    "row_count": 698,
+    "sequence_entry_coverage_count": 698,
+    "sequence_identity_target_achieved": true,
+    "sequence_missing_entry_count": 0,
+    "sha256": "41fad29f1d77dc446009915cc4cf7b74aec5675db5bba36eb1032d86d2425d29"
+  },
+  "split_assignment_by_entry": {
+    "m_csa:204": {
+      "assignment_rule": "inherit_heldout_when_cluster_already_heldout_else_in_distribution",
+      "cluster_existing_entry_ids": [],
+      "cluster_existing_partitions": [],
+      "entry_id": "m_csa:204",
+      "partition": "in_distribution",
+      "real_sequence_identity_cluster_id": "mmseqs30:m_csa:204",
+      "sequence_accessions": [
+        "P10746"
+      ],
+      "sequence_record_count": 1
+    },
+    "uniprot:P06744": {
+      "assignment_rule": "inherit_heldout_when_cluster_already_heldout_else_in_distribution",
+      "cluster_existing_entry_ids": [],
+      "cluster_existing_partitions": [],
+      "entry_id": "uniprot:P06744",
+      "partition": "in_distribution",
+      "real_sequence_identity_cluster_id": "mmseqs30:uniprot:P06744",
+      "sequence_accessions": [
+        "P06744"
+      ],
+      "sequence_record_count": 1
+    },
+    "uniprot:P78549": {
+      "assignment_rule": "inherit_heldout_when_cluster_already_heldout_else_in_distribution",
+      "cluster_existing_entry_ids": [],
+      "cluster_existing_partitions": [],
+      "entry_id": "uniprot:P78549",
+      "partition": "in_distribution",
+      "real_sequence_identity_cluster_id": "mmseqs30:uniprot:P78549",
+      "sequence_accessions": [
+        "P78549"
+      ],
+      "sequence_record_count": 1
+    },
+    "uniprot:Q3LXA3": {
+      "assignment_rule": "inherit_heldout_when_cluster_already_heldout_else_in_distribution",
+      "cluster_existing_entry_ids": [],
+      "cluster_existing_partitions": [],
+      "entry_id": "uniprot:Q3LXA3",
+      "partition": "in_distribution",
+      "real_sequence_identity_cluster_id": "mmseqs30:uniprot:Q3LXA3",
+      "sequence_accessions": [
+        "Q3LXA3"
+      ],
+      "sequence_record_count": 1
+    }
+  }
+}
