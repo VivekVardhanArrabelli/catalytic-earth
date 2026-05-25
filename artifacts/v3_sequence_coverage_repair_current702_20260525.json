@@ -1,0 +1,740 @@
+{
+  "metadata": {
+    "additional_current_label_sequence_gap_count": 4,
+    "additional_current_label_sequence_gap_entry_ids": [
+      "m_csa:204",
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "artifact_id": "v3_sequence_coverage_repair_current702_20260525",
+    "coverage_status_counts": {
+      "covered_by_uniprot_accession_sequence": 26
+    },
+    "curated_label_registry_edited": false,
+    "current_label_count": 702,
+    "current_label_registry": "data/registries/curated_mechanism_labels.json",
+    "fallback_count_for_repair_rows": 0,
+    "fallback_entry_ids_for_repair_rows": [],
+    "fingerprint_registry_edited": false,
+    "generated_at": "2026-05-25T09:46:01.811913+00:00",
+    "label_import_performed": false,
+    "method": "current702_sequence_coverage_repair_supplement",
+    "model_benchmark_run": false,
+    "multi_accession_repaired_entry_ids": [
+      "m_csa:791",
+      "m_csa:838"
+    ],
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false,
+    "resolved_entry_count": 24,
+    "resolved_sequence_record_count": 26,
+    "resolved_uniprot_accession_count": 26,
+    "schema_version": "sequence_coverage_repair.v1",
+    "source_graph": "artifacts/v1_graph_1025.json",
+    "source_historical_fasta": "artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta",
+    "source_sequence_cluster_proxy": "artifacts/v3_sequence_cluster_proxy_1025.json",
+    "starting_holdout_missing_sequence_entry_count": 20,
+    "starting_holdout_missing_sequence_entry_ids": [
+      "m_csa:577",
+      "m_csa:596",
+      "m_csa:599",
+      "m_csa:623",
+      "m_csa:626",
+      "m_csa:636",
+      "m_csa:641",
+      "m_csa:668",
+      "m_csa:706",
+      "m_csa:710",
+      "m_csa:720",
+      "m_csa:771",
+      "m_csa:791",
+      "m_csa:812",
+      "m_csa:838",
+      "m_csa:865",
+      "m_csa:892",
+      "m_csa:897",
+      "m_csa:917",
+      "m_csa:998"
+    ],
+    "uniprot_query_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+    "unresolved_entry_count": 0,
+    "unresolved_entry_ids": []
+  },
+  "rows": [
+    {
+      "accession_or_structure_id": "P10746",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:204",
+      "entry_name": "uroporphyrinogen-III synthase",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 265,
+      "label_type": "out_of_scope",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "current_label_manifest_additional_non_evaluated_row",
+      "sequence_length": 265,
+      "sequence_sha256": "01062407ddcb2c98548de1d956dafa8c5c18aca14ac61c0d36c635e235eb3e73",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P10746"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": null,
+      "uniprot_entry_name": "HEM4_HUMAN",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P29218",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 277,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 277,
+      "sequence_sha256": "8dfa317b0c2b7bd7a20857e127c506e04e100a0b3cd0045d906de2ee961ac21f",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P29218"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "IMPA1_HUMAN",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P46076",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:596",
+      "entry_name": "deuterolysin",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 352,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 352,
+      "sequence_sha256": "cc92670c326e164e456308c97740bbc010b7695efeec675e4c92771be186f306",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P46076"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "NPII_ASPOR",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P36936",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:599",
+      "entry_name": "dipeptidase E",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 229,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 229,
+      "sequence_sha256": "c6cd8a0d3ddae5d9363bcbb48aa543bcbc8937e2f8714044f3f876068ef6f424",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P36936"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "uniprot_entry_name": "PEPE_SALTY",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P08473",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:623",
+      "entry_name": "neprilysin",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 750,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 750,
+      "sequence_sha256": "1a916537b7b555892eb6262b941745a4bee0eec5d0d65b73609e69a3a5ace44f",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P08473"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "NEP_HUMAN",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P10844",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:626",
+      "entry_name": "bontoxilysin",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 1291,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 1291,
+      "sequence_sha256": "da587ec3c70e05573e959f580455ce0f3fc62bf6b80db0a357fb8d390c952645",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P10844"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "BXB_CLOBO",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "Q12178",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:636",
+      "entry_name": "cytosine deaminase (yeast)",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 158,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 158,
+      "sequence_sha256": "07116e31b984b01799a7cb93d1e883144c59326b4a921dc46627cd3f7dca8404",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "Q12178"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "FCY1_YEAST",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P15917",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 809,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 809,
+      "sequence_sha256": "0f08a0f33648783b36fada752d56def0c2649349ef9dae080b01812e205a122f",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P15917"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "LEF_BACAN",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P08148",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:668",
+      "entry_name": "leishmanolysin",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 602,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 602,
+      "sequence_sha256": "1ad3f0b981d51120e8d1b9e684637f939f16e0098a779006bcd2ad322755e6fe",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P08148"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "GP63_LEIMA",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "Q06241",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:706",
+      "entry_name": "D-Ala-D-Ala dipeptidase",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 202,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 202,
+      "sequence_sha256": "f745dd77779192e2fa0799ec955f885d631a16cd5a563093305af7f16cf04101",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "Q06241"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "VANX_ENTFC",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P25524",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:710",
+      "entry_name": "cytosine deaminase (bacterial)",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 427,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 427,
+      "sequence_sha256": "f7149c5de913f994b2017125451d0fcef157f37e5cf185e61b5259a33d791489",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P25524"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "CODA_ECOLI",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P83772",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:720",
+      "entry_name": "creatininase",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 260,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 260,
+      "sequence_sha256": "16c002c1ec20819d8c056797ef2e30d460ea1708f2969b6a282034e7edd33e27",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P83772"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "CRNA_PSEPU",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P96965",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:771",
+      "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 282,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 282,
+      "sequence_sha256": "af8b756d4d41e3ff490ea8e95dcd330283cefbb3a690bfdac3e6fff687cead95",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P96965"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "uniprot_entry_name": "P96965_PSEFL",
+      "uniprot_reviewed": "unreviewed"
+    },
+    {
+      "accession_or_structure_id": "P09883",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:791",
+      "entry_name": "colicin-E9",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 582,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 582,
+      "sequence_sha256": "98586c87e74a98e21c661b658a8784e5dedd69401b0aa344a68c04ef25d9c232",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P09883",
+        "P13479"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "CEA9_ECOLX",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P13479",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:791",
+      "entry_name": "colicin-E9",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 86,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 86,
+      "sequence_sha256": "97295d31fdaa4ed4f16db5cdc2246a3cbd07316dd4eab5ac0c1fa3523334dd9c",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P09883",
+        "P13479"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "IMM9_ECOLX",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "Q9NPB1",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:812",
+      "entry_name": "5'-nucleotidase (mitochondrial)",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 228,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 228,
+      "sequence_sha256": "0ffbbed23b94a7616021b74da92d87e87b0da0234f530ce77e09f69062bd46a5",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "Q9NPB1"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "NT5M_HUMAN",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "Q03708",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:838",
+      "entry_name": "Colicin-E7",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 87,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 87,
+      "sequence_sha256": "a707b41439accaf25315e28be157c91cd31af3180c307b8776e0f6281948801a",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "Q03708",
+        "Q47112"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "IMM7_ECOLX",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "Q47112",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:838",
+      "entry_name": "Colicin-E7",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 576,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 576,
+      "sequence_sha256": "b53aa75a455e9cfc48fc6fe9a3112e6a22a11b0f53a01dbc3c0bfbd1da240237",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "Q03708",
+        "Q47112"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "CEA7_ECOLX",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P0A1E3",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:865",
+      "entry_name": "cysteine synthase",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 323,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 323,
+      "sequence_sha256": "ffe440b8389f820e9fcc87ec02718ec6f72a266675235021bf7c69fd677e61ef",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P0A1E3"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "uniprot_entry_name": "CYSK_SALTY",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "A2RJT9",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:892",
+      "entry_name": "dihydroorotate dehydrogenase (fumarate)",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 311,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 311,
+      "sequence_sha256": "39a9db03eeb2ed00bfefdd6e7f0e50ba79bf4a5aad943038dd8f4cc7591d07f6",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "A2RJT9"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "uniprot_entry_name": "PYRDA_LACLM",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P23657",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:897",
+      "entry_name": "type II site-specific deoxyribonuclease PvuII",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 157,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 157,
+      "sequence_sha256": "fd920945d4b55f835b00f490d26642727e63c092113195b9a9c385a412334814",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P23657"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "T2P2_PROHU",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P56218",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:917",
+      "entry_name": "methionyl aminopeptidase",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 295,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 295,
+      "sequence_sha256": "84168762dfe512aa5922bf3ca50d29d8b0696fd5b67a905221dec332640fbda9",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P56218"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "MAP2_PYRFU",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "F8W4B7",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "m_csa:998",
+      "entry_name": "histone deacetylase 6 enzyme (HDAC6)",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": true,
+      "graph_sequence_length": 1081,
+      "label_type": "seed_fingerprint",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_sequence_cluster_proxy_1025.json",
+        "artifacts/v1_graph_1025.json"
+      ],
+      "repair_scope": "sequence_distance_holdout_missing_evaluated_row",
+      "sequence_length": 1081,
+      "sequence_sha256": "e7832d706f0313c710928767ad3554f2c1a154da19431ba67000a952fc3392e8",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "F8W4B7"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "uniprot_entry_name": "F8W4B7_DANRE",
+      "uniprot_reviewed": "unreviewed"
+    },
+    {
+      "accession_or_structure_id": "P06744",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "uniprot:P06744",
+      "entry_name": "G6PI_HUMAN",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": null,
+      "graph_sequence_length": null,
+      "label_type": "out_of_scope",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json"
+      ],
+      "repair_scope": "current_label_manifest_additional_non_evaluated_row",
+      "sequence_length": 558,
+      "sequence_sha256": "272fc149643cdf85e7bdf8be908a732f796d89ed1c62fc229e576e042c290983",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P06744"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": null,
+      "uniprot_entry_name": "G6PI_HUMAN",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "P78549",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "uniprot:P78549",
+      "entry_name": "NTH_HUMAN",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": null,
+      "graph_sequence_length": null,
+      "label_type": "out_of_scope",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json"
+      ],
+      "repair_scope": "current_label_manifest_additional_non_evaluated_row",
+      "sequence_length": 304,
+      "sequence_sha256": "2c784d6c37a7abb4d87ea1451073f522c6c9f253335f4d71a29fd87aee8fd81f",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "P78549"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": null,
+      "uniprot_entry_name": "NTH_HUMAN",
+      "uniprot_reviewed": "reviewed"
+    },
+    {
+      "accession_or_structure_id": "Q3LXA3",
+      "coverage_status": "covered_by_uniprot_accession_sequence",
+      "entry_id": "uniprot:Q3LXA3",
+      "entry_name": "TKFC_HUMAN",
+      "fallback_reason": null,
+      "graph_length_matches_fetched_sequence": null,
+      "graph_sequence_length": null,
+      "label_type": "out_of_scope",
+      "provenance_artifacts": [
+        "data/registries/curated_mechanism_labels.json"
+      ],
+      "repair_scope": "current_label_manifest_additional_non_evaluated_row",
+      "sequence_length": 575,
+      "sequence_sha256": "ba204dee5f637838bfca90fe54177d0bd318dd29b1063708638ce74a6fe2ed4e",
+      "sequence_source_type": "uniprot_accession",
+      "source_cluster_reference_uniprot_ids": [
+        "Q3LXA3"
+      ],
+      "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28accession%3AA2RJT9+OR+accession%3AF8W4B7+OR+accession%3AP06744+OR+accession%3AP08148+OR+accession%3AP08473+OR+accession%3AP09883+OR+accession%3AP0A1E3+OR+accession%3AP10746+OR+accession%3AP10844+OR+accession%3AP13479+OR+accession%3AP15917+OR+accession%3AP23657+OR+accession%3AP25524+OR+accession%3AP29218+OR+accession%3AP36936+OR+accession%3AP46076+OR+accession%3AP56218+OR+accession%3AP78549+OR+accession%3AP83772+OR+accession%3AP96965+OR+accession%3AQ03708+OR+accession%3AQ06241+OR+accession%3AQ12178+OR+accession%3AQ3LXA3+OR+accession%3AQ47112+OR+accession%3AQ9NPB1%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=26",
+      "target_fingerprint_id": null,
+      "uniprot_entry_name": "TKFC_HUMAN",
+      "uniprot_reviewed": "reviewed"
+    }
+  ]
+}

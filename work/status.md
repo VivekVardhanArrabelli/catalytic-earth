@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 313
-- Measured elapsed time: 9378.8 minutes (156.31 hours)
+- Entries: 314
+- Measured elapsed time: 9393.4 minutes (156.56 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2363.4 measured minutes (39.39 hours)
+- v3: 2378.0 measured minutes (39.63 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3375
-- Evidence references logged: 2785
+- Artifact references logged: 3383
+- Evidence references logged: 2792
 
 ## Recent Entries
-
-### 2026-05-24T18:49:21.274042+00:00 - v3
-
-- Task: M-CSA AI-visual review support surface
-- Time mode: measured
-- Measured minutes: 43.233
-- Started: 2026-05-24T18:05:51Z
-- Ended: 2026-05-24T18:49:05Z
-- Artifacts: artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/progress_log.jsonl, work/status.md
-- Evidence: fixed 298-row AI-visual universe preserved as 22 accepted review signals plus 210 current-target rejects plus 66 unresolved holds, exact40 workqueue has 40 blank decisions 10 clean fast-path rows 30 nonclean strategy rows 10 clean PyMOL scripts and 40 structure paths, deferred26 backlog remains outside exact40 with 9 cofactor deferrals 13 future-family schema deferrals and 4 reject-confirmation deferrals, seven targeted M-CSA support tests passed, full 924-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, JSON and TSV checks passed, git diff checks passed with no registry fingerprint or src diffs
-- Notes: No label import import preview curated label edit fingerprint edit production scoring or threshold change source artifact mutation migration upload removal LFS history rewrite or removal_allowed=true occurred; pre-existing root-level CIF files left untouched.
 
 ### 2026-05-24T18:52:17.683600+00:00 - ops
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md
 - Evidence: audited all 8 production fingerprint ids against the 702-label registry, primary metric frozen to 5 coherent/coarse acceptable fingerprints covering 226 seed labels, radical SAM cobalamin radical and flavin monooxygenase held secondary-only for tail/split caveats, downstream benchmark rules pinned for hard-negative tiers cluster bootstrap leakage-aware EC prior OOD abstention diversity checks and conjunctive win condition, targeted fingerprint audit test passed, PYTHONPATH=src python -m catalytic_earth.cli validate passed with 702 labels 8 fingerprints 15 ontology families, full unittest discovery passed with 933 tests, git diff --check passed, new audit JSON parsed
 - Notes: Direct locked audit-only run. No label import import preview registry edit fingerprint edit ontology edit scoring change threshold change model training artifact upload/removal externalization migration history rewrite or removal_allowed=true action occurred. Non-destructive git fetch against the configured SSH remote failed with a public-key error; local HEAD matched the recorded origin/main ref before edits. Pre-existing root CIF files were left untouched.
+
+### 2026-05-25T09:51:46.143569+00:00 - v3
+
+- Task: Current702 sequence coverage repair
+- Time mode: measured
+- Measured minutes: 14.65
+- Started: 2026-05-25T09:36:54Z
+- Ended: 2026-05-25T09:51:33Z
+- Artifacts: artifacts/v3_sequence_coverage_repair_current702_20260525.json, artifacts/v3_sequence_manifest_current702_repaired_20260525.json, artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta, artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json, artifacts/v3_representation_baseline_sequence_coverage_addendum_20260525.json, README.md, docs/label_factory.md, work/handoff.md
+- Evidence: resolved 20 holdout missing sequence rows plus 4 non-evaluated current-label manifest gaps, current-label sequence coverage 702 of 702, holdout evaluated sequence coverage 698 of 698, missing sequence count 0, max train-test identity 0.284 target <=0.30 achieved, full unit discovery passed 933 tests, CLI validate and jq and git diff checks passed
+- Notes: No label import, registry edit, fingerprint edit, ontology edit, scoring or threshold change, model benchmark, artifact removal, migration, upload, history rewrite, or removal_allowed=true action occurred; temporary admission guard blocked only pre-existing large geometry artifacts while new sequence files were below the 5 MB threshold.
 
 ## Expectation Updates
 

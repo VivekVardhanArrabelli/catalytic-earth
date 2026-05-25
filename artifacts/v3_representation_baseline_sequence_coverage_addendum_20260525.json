@@ -1,0 +1,87 @@
+{
+  "commands": {
+    "regenerate_sequence_distance_holdout_eval": "PYTHONPATH=src python -m catalytic_earth.cli build-sequence-distance-holdout-eval --slice-id 1025_current702_repaired --retrieval artifacts/v3_geometry_retrieval_1025.json --labels data/registries/curated_mechanism_labels.json --sequence-clusters artifacts/v3_sequence_cluster_proxy_1025.json --geometry artifacts/v3_geometry_features_1025.json --sequence-fasta artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta --sequence-identity-backend mmseqs --out artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json"
+  },
+  "metadata": {
+    "artifact_id": "v3_representation_baseline_sequence_coverage_addendum_20260525",
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "generated_at": "2026-05-25T09:48:08.289848+00:00",
+    "label_import_performed": false,
+    "learned_representation_claimed": false,
+    "method": "current702_sequence_coverage_repair_addendum",
+    "model_benchmark_run": false,
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false,
+    "schema_version": "representation_baseline_sequence_coverage_addendum.v1",
+    "sequence_fasta": "artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta",
+    "sequence_holdout_eval": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json",
+    "sequence_manifest": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    "sequence_supplement": "artifacts/v3_sequence_coverage_repair_current702_20260525.json",
+    "source_plan": "artifacts/v3_representation_baseline_shootout_plan_20260525.json"
+  },
+  "next_action": "Build full current-registry embedding sidecars only when explicitly authorized; do not run model benchmarks in the sequence coverage repair lane.",
+  "sequence_coverage_summary": {
+    "additional_current_label_sequence_gap_count": 4,
+    "additional_current_label_sequence_gap_entry_ids": [
+      "m_csa:204",
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "fallback_count": 2,
+    "fallback_entry_ids": [
+      "m_csa:519",
+      "m_csa:588"
+    ],
+    "holdout_eval_evaluated_count": 698,
+    "holdout_eval_missing_sequence_entry_count": 0,
+    "holdout_eval_missing_sequence_entry_ids": [],
+    "holdout_eval_sequence_coverage_count": 698,
+    "missing_sequence_entry_count_after_repair": 0,
+    "missing_sequence_entry_ids_after_repair": [],
+    "repair_sequence_record_count": 26,
+    "sequence_covered_labels": 702,
+    "starting_holdout_missing_sequence_entry_count": 20,
+    "starting_holdout_missing_sequence_entry_ids": [
+      "m_csa:577",
+      "m_csa:596",
+      "m_csa:599",
+      "m_csa:623",
+      "m_csa:626",
+      "m_csa:636",
+      "m_csa:641",
+      "m_csa:668",
+      "m_csa:706",
+      "m_csa:710",
+      "m_csa:720",
+      "m_csa:771",
+      "m_csa:791",
+      "m_csa:812",
+      "m_csa:838",
+      "m_csa:865",
+      "m_csa:892",
+      "m_csa:897",
+      "m_csa:917",
+      "m_csa:998"
+    ],
+    "total_current_labels": 702
+  },
+  "sequence_distance_holdout_summary": {
+    "heldout_count": 140,
+    "in_distribution_count": 558,
+    "limitations": [
+      "2 FASTA records use selected-PDB sequence fallbacks for unavailable UniProt accessions",
+      "MMseqs2 clustering threshold is 0.30; connected clusters can hide within-cluster diversity and are not taxonomic or structural families",
+      "MMseqs2 easy-search reports heuristic local alignments at the configured coverage; it is not an exhaustive Smith-Waterman all-vs-all matrix",
+      "sequence-distance partitioning supersedes proxy cluster selection, but fold/TM-score distance is still not computed"
+    ],
+    "max_observed_train_test_identity": 0.284,
+    "max_observed_train_test_identity_alignment_count": 12,
+    "sequence_identity_backend_available": true,
+    "sequence_identity_backend_requested": "mmseqs",
+    "sequence_identity_target_achieved": true,
+    "slice_id": "1025_current702_repaired",
+    "target_max_train_test_identity": 0.3
+  }
+}

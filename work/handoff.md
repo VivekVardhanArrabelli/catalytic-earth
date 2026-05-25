@@ -50,6 +50,81 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-25T09:49Z Current702 Sequence Coverage Repaired
+
+This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`, and
+confirmed local `HEAD` matched `origin/main` at
+`ad785b59a8087598dd9f66feee8003f7d200258a` before edits. Scope stayed limited
+to sequence coverage repair: no labels were imported, no registries,
+fingerprints, ontology, scoring, or thresholds changed, and no representation
+model benchmark was run.
+
+New sequence repair artifacts:
+
+```text
+artifacts/v3_sequence_coverage_repair_current702_20260525.json
+artifacts/v3_sequence_manifest_current702_repaired_20260525.json
+artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta
+artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json
+artifacts/v3_representation_baseline_sequence_coverage_addendum_20260525.json
+```
+
+The starting holdout blocker rows were the 20 M-CSA entries named in
+`artifacts/v3_representation_baseline_shootout_plan_20260525.json`. All were
+resolved from UniProt accession sequences through the existing adapter. Two
+multi-accession rows (`m_csa:791`, `m_csa:838`) contribute two sequence records
+each, so the supplement records 26 UniProt sequence records across 24 current
+labels: the 20 holdout-missing rows plus four non-evaluated current-label
+manifest gaps (`m_csa:204`, `uniprot:P06744`, `uniprot:P78549`,
+`uniprot:Q3LXA3`). No repair row needed a selected-PDB fallback.
+
+Current coverage summary:
+
+```text
+total_current_labels = 702
+sequence_covered_labels = 702
+missing_sequence_entry_count_after_repair = 0
+fallback_count = 2
+fallback_entry_ids = m_csa:519, m_csa:588
+```
+
+The two fallback rows are pre-existing selected-PDB sequence fallback records
+preserved from the historical FASTA, not new fallbacks introduced by this
+repair. The repaired sequence-distance holdout evaluates 698 labels, covers
+698/698 evaluated rows, holds out 140 rows, has
+`sequence_missing_entry_count = 0`, and reports max observed train/test identity
+`0.284`; the `<=0.30` sequence-hard target is satisfied.
+
+Recomputed command:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-sequence-distance-holdout-eval --slice-id 1025_current702_repaired --retrieval artifacts/v3_geometry_retrieval_1025.json --labels data/registries/curated_mechanism_labels.json --sequence-clusters artifacts/v3_sequence_cluster_proxy_1025.json --geometry artifacts/v3_geometry_features_1025.json --sequence-fasta artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta --sequence-identity-backend mmseqs --out artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json
+```
+
+Verification passed:
+
+```text
+PYTHONPATH=src python -m catalytic_earth.cli validate
+PYTHONPATH=src python -m unittest discover -s tests
+git diff --check
+jq empty artifacts/v3_sequence_coverage_repair_current702_20260525.json artifacts/v3_sequence_manifest_current702_repaired_20260525.json artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json artifacts/v3_representation_baseline_sequence_coverage_addendum_20260525.json
+```
+
+Full unit discovery passed 933 tests. A temporary artifact-admission guard run
+with fresh inventory/producer-consumer outputs blocked only on four pre-existing
+large geometry artifacts:
+`artifacts/v3_mcsa_positive_holo_override_20260523_geometry_features_1025.json`,
+`artifacts/v3_mcsa_positive_holo_override_20260523_geometry_retrieval_1025.json`,
+`artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_features_1025.json`,
+and
+`artifacts/v3_mcsa_positive_m_csa771_2d0d_20260523_geometry_retrieval_1025.json`.
+The new sequence artifacts are below the guard's 5 MB large-file threshold.
+
+Next action: do not rerun model benchmarks from this handoff. The sequence
+coverage blocker is closed; representation work is now blocked on explicit
+authorization to build full current-registry embedding sidecars and then run
+the planned benchmark comparisons.
+
 ### 2026-05-25T09:08Z Fingerprint V1 Coherence Audit Frozen
 
 This run acquired the automation lock and continued from local `HEAD` and

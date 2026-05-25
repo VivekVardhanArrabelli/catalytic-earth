@@ -1300,12 +1300,18 @@ out-of-scope labels as negative/OOD calibration. The companion
 `artifacts/v3_sequence_distance_holdout_eval_1025_current702_20260525.json`
 refreshes the sequence split for the current label count: 698 labels are
 evaluated, 140 are held out, held-out geometry has 0 false non-abstentions,
-and 20 current labels still lack amino-acid sequence coverage. The shootout
-plan compares those geometry metrics with a deterministic 3-mer
+and 20 evaluated current labels lacked amino-acid sequence coverage before the
+repair pass. `artifacts/v3_sequence_coverage_repair_current702_20260525.json`,
+`artifacts/v3_sequence_manifest_current702_repaired_20260525.json`, and
+`artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json`
+close that blocker: the current-label manifest covers 702/702 labels, the
+repaired holdout has 0 missing evaluated sequence rows, and max observed
+train/test identity is 0.284, satisfying the <=0.30 sequence-hard target. The
+shootout plan compares geometry metrics with a deterministic 3-mer
 sequence-nearest-neighbor smoke, records existing external k-mer and ESM-2
-controls as external-only sidecars, and blocks hybrid representation-plus-
-geometry claims until the 20 missing sequence records and a full embedding
-sidecar exist.
+controls as external-only sidecars, and still blocks hybrid
+representation-plus-geometry claims until a full embedding sidecar exists. No
+model benchmark has been run for the sequence repair.
 
 The remaining exact40 manual/expert residue is frozen in
 `artifacts/v3_mcsa_ai_visual_remaining_manual_expert_holds_index_20260525.json`:

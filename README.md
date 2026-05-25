@@ -143,9 +143,16 @@ The repository currently contains:
     anchors, 215 weak-supervision positives, and 470 negative/OOD calibration
     labels, runs only a deterministic 3-mer nearest-neighbor smoke on the
     current sequence split in
-    `artifacts/v3_sequence_distance_holdout_eval_1025_current702_20260525.json`,
-    and blocks full representation or hybrid claims until 20 missing sequence
-    records are filled and an embedding artifact exists. The final exact40
+    `artifacts/v3_sequence_distance_holdout_eval_1025_current702_20260525.json`.
+    The follow-up sequence repair now adds
+    `artifacts/v3_sequence_coverage_repair_current702_20260525.json`,
+    `artifacts/v3_sequence_manifest_current702_repaired_20260525.json`, and
+    `artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json`:
+    all 702 current labels have sequence coverage, the repaired holdout has 0
+    missing evaluated sequence rows, and max observed train/test identity is
+    0.284, satisfying the <=0.30 sequence-hard target. Full representation or
+    hybrid claims remain blocked until an embedding artifact exists; no model
+    benchmark has been run. The final exact40
     residue is explicit in
     `artifacts/v3_mcsa_ai_visual_remaining_manual_expert_holds_index_20260525.json`
     as five expert-biochemistry holds plus one manual visual hold, with no
