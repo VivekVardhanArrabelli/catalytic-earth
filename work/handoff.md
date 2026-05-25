@@ -110,6 +110,16 @@ PYTHONPATH=src python -m catalytic_earth.cli check-artifact-admission-guard --ou
 Full unit discovery passed 937 tests. All new artifacts are below 5 MB, and the
 temporary admission guard passed.
 
+Commit `d102bc5` was created locally, but push is still blocked by the
+configured HTTPS remote. Exact push failure:
+
+```text
+fatal: could not read Username for 'https://github.com': Device not configured
+```
+
+At this point local `main` is ahead of `origin/main`; the unpushed local commits
+include this sequence-NN repair plus the two earlier handoff-only commits.
+
 Next action: inspect the weak deterministic sequence baseline only as a
 non-learned control, or move to the next allowed project item. Do not start PLM
 or learned-representation work unless a future prompt explicitly asks for it.
