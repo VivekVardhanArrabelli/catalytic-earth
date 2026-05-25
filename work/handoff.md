@@ -50,7 +50,7 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
-### 2026-05-25T14:42Z Sequence-NN Gate Verified And Pushed
+### 2026-05-25T14:44Z Sequence-NN Gate Verified, Final Handoff Local
 
 This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`,
 and ran `git pull --ff-only origin main`, which reported `Already up to date`.
@@ -129,15 +129,17 @@ Please make sure you have the correct access rights
 and the repository exists.
 ```
 
-Despite those stderr messages, final remote verification showed the push landed:
-`git ls-remote origin refs/heads/main` returned
-`185bf2aa82fedf73cbc8e3f0631bdfec8dca471d`, matching local `HEAD` and
-`origin/main`.
+Despite those stderr messages, remote verification showed the sequence-NN gate
+commits through `185bf2aa82fedf73cbc8e3f0631bdfec8dca471d` landed:
+`git ls-remote origin refs/heads/main` returned that SHA. A later handoff-only
+clarification commit could not be pushed; the configured HTTPS push failed
+again with `fatal: could not read Username for 'https://github.com': Device not
+configured`, and `git ls-remote` still showed remote `main` at `185bf2a`.
 
 Next action: repair or regenerate the current702 sequence split so every
 label-manifest row has a partition, then rerun `build-sequence-nn-baseline`.
-The current repo state is published; no PLM or learned representation work was
-started.
+No PLM or learned representation work was started. Before new scientific work,
+restore push authentication or reconcile/publish the local handoff-only commit.
 
 ### 2026-05-25T13:38Z Sequence-NN Gate Rerun Still Split-Blocked
 
