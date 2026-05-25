@@ -1,58 +1,100 @@
 # ESM-C Representation Track Handoff
 
-Run timestamp: 2026-05-25T17:13:06Z
+Run timestamp: 2026-05-25T18:42:43Z
 
 Branch: `research/representation-esm-c`
 
 ## Status
 
-ESM-C 300M remains blocked at backend feasibility, now with a bounded package/model preflight. No embeddings, predictions, metrics, labels, fingerprints, ontology entries, thresholds, or production scoring were changed.
+ESM-C 300M is unblocked and computed for the current702 representation track. No labels, fingerprints, ontology entries, production scoring, thresholds, or main docs were changed.
 
 Track artifacts:
 
+- `artifacts/representation_tracks/esm_c/esm_c_300m_backend_setup_current702_20260525.json`
+- SHA-256: `66292518be6a680c6b7f230f512d52c739498096807a56659f0ffebe694527d6`
+- `artifacts/representation_tracks/esm_c/esm_c_300m_embeddings_manifest_current702_20260525.json`
+- SHA-256: `8bf36bc4aaee58769c5a577b5dc1b5dae2acc1b5b136a261d18ef62624b03d7b`
+- `artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz`
+- SHA-256: `29143be5fd8c034c5bfb8a3aa742ebb96c59e692de27234b152ac6fe456828a2`
+- `artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_index_current702_20260525.jsonl`
+- SHA-256: `c138a80886ee25f806a45dfc7850d8f885fbd1a29880459762565e343f2fce70`
+- `artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_cosine_nn_predictions_current702_20260525.jsonl`
+- SHA-256: `ec704392b862d8e05674d05336f9878bae5ffe52dadcff534eca131af7d17498`
+- `artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_cosine_nn_metrics_current702_20260525.json`
+- SHA-256: `b7cc6a2ae77e2bcc09bb21acb79d2ac10097889c0dd536e10caebc0f13fb295d`
+
+Prior feasibility artifacts remain for audit trail:
+
 - `artifacts/representation_tracks/esm_c/esm_c_feasibility_backend_blocker_current702_20260525.json`
-- SHA-256: `d533c3378a85da024ff349e94eaa9f77197e1a02ef5bc87388f94addfe114ae9`
 - `artifacts/representation_tracks/esm_c/esm_c_bounded_backend_preflight_current702_20260525.json`
-- SHA-256: `6f8be06cc4c207bb8b18716231777336a4375582c3cafc6c56c0bc3aa80ce109`
 
-## What Was Checked
+## Backend Setup
 
-- Shared baseline: `origin/main` is `8e69bf002097d5cf55521a13764e096908d8e0af`, satisfying the requested baseline.
-- Eval contract SHA: `c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50`.
-- Sequence manifest SHA: `b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b`.
-- Repaired split SHA: `dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425`.
-- Sequence-NN metrics SHA: `22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26`.
-- Repaired current702 FASTA SHA: `f151bcf8e3e9b7ca7adfd6bbf1da119e3d486228f3dad19f92dc4b9f20c42a3e`.
+- Isolated runtime: `/private/tmp/esmc_runtime_20260525`.
+- Package versions: `esm==3.2.3`, `torch==2.7.1`, `transformers==4.48.1`, `huggingface_hub==0.33.4`, `numpy==2.3.1`.
+- Runtime size: 360,248,821 bytes. Pip cache: 102,310,229 bytes.
+- Cache path: `/private/tmp/esm_c_hf_home_20260525`.
+- Hugging Face cache apparent size after download: 3,996,517,080 bytes, including symlink-accounting and Xet transfer cache.
+- Hugging Face hub cache apparent size after download/final cleanup: 2,664,197,181 bytes; disk usage is about 1.3 GB because the snapshot weight path is a symlink to the blob.
+- Xet transient cache removed after download: 1,332,319,898 bytes; final Xet cache size: 0 bytes.
+- Model requested: `EvolutionaryScale/esmc-300m-2024-12`.
+- Model resolved: `biohub/esmc-300m-2024-12`.
+- Checkpoint commit: `c309e1f43e775c1a513826dba9f1fe04622e96a1`.
+- Weight file: `data/weights/esmc_300m_2024_12_v0.pth`.
+- Weight size: 1,332,095,738 bytes.
+- Weight SHA-256: `323dff9fbf3fef297a74f4f18b6528e6f2e599b0bcf72b6927516804015becea`.
+- Metadata LFS blob id: `f86851ea1c05360f615c42d397d72ee3a2009e3a`.
+- Device: CPU. ESM-C 6B and remote API were not used.
 
-Backend probe:
+## Metrics
 
-- `esm` package: unavailable.
-- `torch`: available, version `2.7.1`.
-- `transformers`: available, version `4.53.2`.
-- `huggingface_hub`: available, version `0.33.4`.
-- PyPI `esm` latest version: `3.2.3`, requiring Python `<3.13,>=3.12` and `transformers<4.48.2`.
-- Local runtime conflict: installed `transformers` is `4.53.2`, so installing `esm` into the shared interpreter would require a downgrade.
-- Missing local ESM-C runtime dependencies include `torchtext`, `einops`, `biotite`, `msgpack-numpy`, `biopython`, `cloudpathlib`, `tenacity`, `zstd`, `pydssp`, `pygtrie`, and `dna_features_viewer`.
-- CUDA and MPS: unavailable.
-- Default Hugging Face cache path checked: `/Users/vivekvardhanarrabelli/.cache/huggingface/hub`; directory absent.
-- Default Torch cache path checked: `/Users/vivekvardhanarrabelli/.cache/torch`; directory absent.
-- Local-only probes for `EvolutionaryScale/esmc-300m-2024-12`, `esmc_300m`, and `facebook/esm2_t6_8M_UR50D` found no cached files.
-- Hugging Face model metadata resolved `EvolutionaryScale/esmc-300m-2024-12` to `biohub/esmc-300m-2024-12`, public and ungated at commit `c309e1f43e775c1a513826dba9f1fe04622e96a1`.
-- Remote metadata reports `data/weights/esmc_300m_2024_12_v0.pth` at `1,332,095,738` bytes. No model file was downloaded.
-- The repaired FASTA has 760 records totaling 318,251 amino acids; max sequence length is 3,011. CPU-only full embedding may exceed a short automation window.
+Method: whole-sequence mean ESM-C embeddings excluding BOS/EOS, frozen cosine 1-NN over the repaired train/heldout split. No classifier was trained.
+
+- Embedded FASTA records: 760.
+- Total amino acids embedded: 318,251.
+- Embedding dimension: 960.
+- Batch count: 89.
+- Total runtime: 971.089 seconds.
+- Heldout predictions: 140.
+- Primary supervised support: 45.
+- Primary macro-F1: 0.1493.
+- Primary accuracy: 0.0889.
+- Exact label accuracy, all heldout rows: 0.4643.
+- Exact label accuracy, in-scope heldout rows: 0.0833.
+- OOS false-positive rate without threshold: 0.3370.
+- OOS false-positive count: 31 of 92.
+- Underpowered cells: 12 flagged, including `primary::heme_peroxidase_oxidase` with support 4.
+
+Direct comparison recorded in the metrics artifact:
+
+- Sequence-NN current702: primary macro-F1 0.2374, primary accuracy 0.1556, OOS FP rate 0.2717.
+- Heuristic geometry current702: in-scope top1 accuracy 0.9792, OOS abstention rate 1.0, OOS false non-abstentions 0.
+- 3Di smoke: no current702 artifact found in workspace.
+- ProtT5: no current702 artifact found in workspace.
+- ESM-2 150M: only an external-source review-only sample artifact was available, not a current702 full split metric.
 
 ## Contract State
 
-Prepared ESM-C settings:
+- Pooling mode: `whole_sequence`; active-site pooling was not run.
+- Predictive inputs: amino-acid sequence only.
+- Forbidden predictive inputs used: none.
+- Label registry edited: false.
+- Fingerprint registry edited: false.
+- Ontology registry edited: false.
+- Production scoring changed: false.
+- Large model training performed: false.
+- Frozen classifier training performed: false.
 
-- Model id: `esmc_300m`.
-- Pooling mode: `whole_sequence`.
-- Active-site pooling: not run; remains separate as `known_active_site_window_ablation`.
-- Allowed predictive input: amino-acid sequence only.
-- Forbidden predictive inputs: EC labels, entry names, mechanism prose, expert notes, review text, and source identifiers as features.
+## Verification
 
-No ESM-C metrics were computed. The artifact explicitly marks primary macro-F1, accuracy, per-fingerprint breakdown, OOS tier diagnostics, canary predictions, and underpowered-cell flags as blocked because no embeddings or predictions exist.
+- JSON artifacts validated with Python `json.load`.
+- JSONL artifacts validated line-by-line: embeddings index has 760 rows; predictions has 140 rows.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed:
+  - 12 source records
+  - 8 mechanism fingerprints
+  - 15 mechanism ontology families
+  - 702 curated mechanism labels
 
 ## Next Exact Step
 
-Create an isolated ESM-C runtime rather than mutating the shared interpreter, pin `esm==3.2.3` with `transformers<4.48.2`, set a recorded `HF_HOME` or `HUGGINGFACE_HUB_CACHE`, and download only `biohub/esmc-300m-2024-12/data/weights/esmc_300m_2024_12_v0.pth` after accepting the 1.33 GB size budget. Run a two-record smoke embedding first; if CPU wall time is acceptable, compute whole-sequence frozen embeddings for the repaired current702 FASTA. Write all embeddings, predictions, and metrics only under `artifacts/representation_tracks/esm_c/`.
+Review the ESM-C metrics against the sequence-NN and geometry baselines. ESM-C 300M is worse than sequence-NN on primary macro-F1, primary accuracy, and OOS false-positive rate in this frozen 1-NN setup, so no win claim should be made from this run.
