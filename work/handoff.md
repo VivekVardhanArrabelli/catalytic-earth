@@ -50,6 +50,92 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-25T13:38Z Sequence-NN Gate Rerun Still Split-Blocked
+
+This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`,
+and ran `git pull --ff-only origin main`, which reported `Already up to date`.
+The local branch started clean but still had the two prior sequence-NN commits
+ahead of `origin/main`:
+
+```text
+11fd8b5 Record sequence NN push failure
+bf88a1f Detail sequence NN split blocker
+```
+
+Scope stayed limited to the current702 sequence-nearest-neighbor baseline gate:
+no labels were imported, no production fingerprints, ontology, scoring,
+thresholds, or curated labels were edited, no PLM embeddings were computed, and
+no model training was performed.
+
+Rerun command:
+
+```text
+PYTHONPATH=src python -m catalytic_earth.cli build-sequence-nn-baseline
+```
+
+The rerun was deterministic and produced no file diff. The sequence-NN
+compliance artifact remains `blocked_before_sequence_nn_metrics` with one
+split-completeness blocker: the repaired current702 split covers 698/702
+current labels, and the missing split rows remain:
+
+```text
+m_csa:204
+uniprot:P06744
+uniprot:P78549
+uniprot:Q3LXA3
+```
+
+Predictions and metrics artifacts remain intentionally absent:
+
+```text
+artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl
+artifacts/v3_sequence_nn_metrics_current702_20260525.json
+```
+
+Contract SHA-256 retained by the sequence-NN artifacts:
+
+```text
+c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50
+```
+
+Verification passed:
+
+```text
+PYTHONPATH=src python -m catalytic_earth.cli validate
+PYTHONPATH=src python -m unittest discover -s tests
+git diff --check
+jq empty artifacts/v3_sequence_nn_label_manifest_current702_20260525.json artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json artifacts/v3_sequence_manifest_current702_repaired_20260525.json artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json
+```
+
+Full unit discovery passed 936 tests. The sequence-NN label manifest is
+1,005,417 bytes and the compliance artifact is 11,757 bytes, below the
+large-artifact guard threshold used in recent runs.
+
+Push remains blocked. The configured HTTPS remote failed exactly with:
+
+```text
+fatal: could not read Username for 'https://github.com': Device not configured
+```
+
+The SSH fallback failed exactly with:
+
+```text
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+```
+
+Next action: repair or regenerate the current702 sequence split so every
+label-manifest row has a partition, then rerun `build-sequence-nn-baseline`.
+Separately, restore GitHub push authentication so the local sequence-NN commits
+can land on `origin/main`.
+
+After this run's local handoff/status commit, the branch is three commits ahead
+of `origin/main`; both the configured HTTPS push and SSH fallback still fail
+with the exact errors shown above.
+
 ### 2026-05-25T12:35Z Sequence-NN Split Blocker Sharpened
 
 This run acquired `.git/catalytic-earth-automation.lock`, fetched

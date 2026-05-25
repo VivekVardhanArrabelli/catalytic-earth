@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 317
-- Measured elapsed time: 9419.1 minutes (156.99 hours)
+- Entries: 318
+- Measured elapsed time: 9424.1 minutes (157.07 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- sequence-nn-baseline: 15.1 measured minutes (0.25 hours)
+- sequence-nn-baseline: 20.1 measured minutes (0.33 hours)
 - v3: 2388.6 measured minutes (39.81 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -28,21 +28,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3394
-- Evidence references logged: 2806
+- Artifact references logged: 3397
+- Evidence references logged: 2813
 
 ## Recent Entries
-
-### 2026-05-25T02:54:42.762799+00:00 - v3
-
-- Task: M-CSA clean10 accept7 canonical import
-- Time mode: measured
-- Measured minutes: 20.4
-- Started: 2026-05-25T02:34:00Z
-- Ended: 2026-05-25T02:54:24Z
-- Artifacts: artifacts/v3_mcsa_ai_visual_clean10_accept7_vivek_20260524_import_summary.json, artifacts/v3_mcsa_ai_visual_clean10_accept7_vivek_20260524_label_batch_acceptance_check_import_preview_1025.json, artifacts/v3_mcsa_ai_visual_post_clean10_remaining30_signal_20260524.json, data/registries/curated_mechanism_labels.json
-- Evidence: accepted_new_label_count=7, canonical_countable_labels=702, batch_acceptance=true, full_unit_suite_924_tests_passed, CLI_validate_passed_702_labels
-- Notes: Promoted only the seven clean current-target acceptances; preserved route_future_family/schema-hold/remaining30 rows as non-countable signal. Pre-existing root CIF files left untouched.
 
 ### 2026-05-25T08:43:00.748877+00:00 - v3
 
@@ -120,6 +109,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json, src/catalytic_earth/sequence_nn.py, tests/test_sequence_nn.py, README.md, work/handoff.md
 - Evidence: sequence-NN compliance now records row-level split blocker details for all 4 missing current702 split assignments, missing rows remain m_csa:204, uniprot:P06744, uniprot:P78549, and uniprot:Q3LXA3 with repaired sequence SHA-256 values recorded, PYTHONPATH=src python -m catalytic_earth.cli validate passed with 702 labels, PYTHONPATH=src python -m unittest discover -s tests passed with 936 tests, git diff --check and jq empty over sequence-NN JSON artifacts passed
 - Notes: No label import registry edit fingerprint edit ontology edit scoring change threshold change model training PLM embedding artifact removal migration upload history rewrite or removal_allowed=true action occurred; no new large artifact was created, so the admission guard condition was not triggered.
+
+### 2026-05-25T13:37:58.445786+00:00 - sequence-nn-baseline
+
+- Task: current702 sequence-NN gated rerun and push check
+- Time mode: measured
+- Measured minutes: 4.967
+- Started: 2026-05-25T13:32:49Z
+- Ended: 2026-05-25T13:37:47Z
+- Artifacts: artifacts/v3_sequence_nn_label_manifest_current702_20260525.json, artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json, work/handoff.md
+- Evidence: build-sequence-nn-baseline rerun deterministic blocked_before_sequence_nn_metrics with 1 split blocker, validate passed with 702 labels 8 fingerprints 15 ontology families, unittest discovery passed 936 tests, git diff --check passed, jq empty sequence-NN JSON artifacts passed, HTTPS push failed fatal could not read Username for https://github.com Device not configured, SSH push failed Permission denied publickey
+- Notes: No label import registry edit fingerprint edit ontology edit scoring threshold change model training PLM embedding artifact removal migration upload history rewrite or removal_allowed=true action occurred; pre-existing root CIF files left untouched; predictions and metrics artifacts remain absent by contract.
 
 ## Expectation Updates
 
@@ -370,6 +370,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-25T09:13:01Z: Next benchmark work should resolve the 20 missing sequence rows before any representation training or learned-superiority claim.
 - 2026-05-25T11:17:39.450858+00:00: Future sequence-NN or PLM benchmark results must cite the contract SHA and include OOS tier plus diversity reports before interpretation.
 - 2026-05-25T12:36:38Z: Repair or regenerate the current702 split before any sequence-NN prediction or metric artifact is allowed.
+- 2026-05-25T13:37:58.445786+00:00: Repair or regenerate the current702 split before sequence-NN predictions or metrics; restore GitHub push authentication before local ahead commits can land.
 
 ## Scope Adjustments
 
