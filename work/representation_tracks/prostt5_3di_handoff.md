@@ -86,6 +86,53 @@ Required provenance recorded in the artifacts:
 - Coherence audit SHA:
   `cf9d5d3b17fa95d51374d244497ceba52414e60b8bdaefa12304ba3372cab734`.
 
+## 3Di vs Sequence-NN Readiness Comparison
+
+Comparison artifact:
+`artifacts/representation_tracks/prostt5_3di/current702_3di_vs_sequence_nn_readiness_20260525.json`
+
+This artifact compares the Foldseek 3Di 3-mer NN smoke result against the
+frozen deterministic sequence 3-mer NN baseline on the same repaired split.
+It does not download or run ProstT5 weights.
+
+Main deltas, reported as 3Di minus sequence-NN:
+
+- Prediction count: `-1`, because held-out `m_csa:372` lacks a tokenized
+  selected structure.
+- Primary supervised accuracy: `+0.0222`.
+- Recomputed primary macro-F1: `+0.0759`.
+- Exact label accuracy across all held-out predictions: `+0.0613`.
+- Exact label accuracy on in-scope held-out rows: `+0.0244`.
+- OOS false-positive rate without threshold calibration: `-0.0760`.
+
+Row-level overlap:
+
+- Common held-out predictions: 139.
+- Common primary supervised rows: 45.
+- Both baselines top-1 correct on 3 primary rows.
+- 3Di-only top-1 correct on 5 primary rows.
+- Sequence-only top-1 correct on 4 primary rows.
+- Neither top-1 correct on 33 primary rows.
+
+OOS diagnostics:
+
+- Far-OOS false-positive rate moved from `1.0000` to `0.0000`, but this is a
+  single row.
+- Near-OOS false-positive rate was unchanged at `0.3333`.
+- Unknown-OOS false-positive rate moved from `0.2614` to `0.1932`.
+- Canary changes are explicitly listed; `m_csa:372` remains a missing-structure
+  3Di canary case, while 3Di abstains on `m_csa:853` where sequence-NN does not.
+
+Decision:
+
+- Foldseek 3Di tokens are ready as a bounded, track-local structure-alphabet
+  baseline for review.
+- ProstT5 remains blocked for this run because no `Rostlab/ProstT5` weights were
+  cached under the probed Hugging Face cache paths and this track still needs a
+  bounded weights cache/download plan before embedding.
+- No learned superiority claim is made; underpowered fingerprint/diversity cells
+  remain descriptive only.
+
 ## Validation
 
 Completed:
