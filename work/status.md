@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 318
-- Measured elapsed time: 9424.1 minutes (157.07 hours)
+- Entries: 319
+- Measured elapsed time: 9435.4 minutes (157.26 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- sequence-nn-baseline: 20.1 measured minutes (0.33 hours)
+- sequence-nn-baseline: 31.4 measured minutes (0.52 hours)
 - v3: 2388.6 measured minutes (39.81 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -28,21 +28,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3397
-- Evidence references logged: 2813
+- Artifact references logged: 3401
+- Evidence references logged: 2820
 
 ## Recent Entries
-
-### 2026-05-25T08:43:00.748877+00:00 - v3
-
-- Task: Representation baseline shootout v0 and exact40 hold index
-- Time mode: measured
-- Measured minutes: 14.233
-- Started: 2026-05-25T08:28:32Z
-- Ended: 2026-05-25T08:42:46Z
-- Artifacts: artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json, artifacts/v3_representation_baseline_shootout_plan_20260525.json, artifacts/v3_mcsa_ai_visual_remaining_manual_expert_holds_index_20260525.json, src/catalytic_earth/representation_baseline.py, tests/test_representation_baseline.py, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md
-- Evidence: current 702-label representation roles recorded as 17 expert anchors 215 weak positives 470 negative/OOD labels, full learned retrieval interface covers 698 labels and 635 future-eligible rows, deterministic 3-mer sequence-nearest-neighbor smoke computed on stale 679-label split, full ESM/hybrid claims blocked until current 702 split and embedding sidecars, remaining exact40 holds indexed as 5 expert-biochemistry plus 1 manual visual hold, targeted tests and JSON validation passed
-- Notes: No label import, import preview, registry edit, fingerprint edit, ontology edit, scoring change, large-model training, artifact upload/removal, migration, history rewrite, or removal_allowed=true action occurred; pre-existing root-level CIF files left untouched.
 
 ### 2026-05-25T08:48:33.348733+00:00 - v3
 
@@ -120,6 +109,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_sequence_nn_label_manifest_current702_20260525.json, artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json, work/handoff.md
 - Evidence: build-sequence-nn-baseline rerun deterministic blocked_before_sequence_nn_metrics with 1 split blocker, validate passed with 702 labels 8 fingerprints 15 ontology families, unittest discovery passed 936 tests, git diff --check passed, jq empty sequence-NN JSON artifacts passed, HTTPS push failed fatal could not read Username for https://github.com Device not configured, SSH push failed Permission denied publickey
 - Notes: No label import registry edit fingerprint edit ontology edit scoring threshold change model training PLM embedding artifact removal migration upload history rewrite or removal_allowed=true action occurred; pre-existing root CIF files left untouched; predictions and metrics artifacts remain absent by contract.
+
+### 2026-05-25T14:36:49.637815+00:00 - sequence-nn-baseline
+
+- Task: Rerun current702 sequence-NN split gate and validation
+- Time mode: measured
+- Measured minutes: 11.333
+- Started: 2026-05-25T14:25:00Z
+- Ended: 2026-05-25T14:36:20Z
+- Artifacts: artifacts/v3_sequence_nn_label_manifest_current702_20260525.json, artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json, work/handoff.md, work/status.md
+- Evidence: sequence-NN gate status blocked_before_sequence_nn_metrics, missing split rows m_csa:204/uniprot:P06744/uniprot:P78549/uniprot:Q3LXA3, 936 unit tests passed, validate passed, diff check passed, jq passed, artifact admission guard passed
+- Notes: Continuation from local ahead commits; rerun was deterministic and produced no prediction or metric artifact.
 
 ## Expectation Updates
 
@@ -371,6 +371,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-25T11:17:39.450858+00:00: Future sequence-NN or PLM benchmark results must cite the contract SHA and include OOS tier plus diversity reports before interpretation.
 - 2026-05-25T12:36:38Z: Repair or regenerate the current702 split before any sequence-NN prediction or metric artifact is allowed.
 - 2026-05-25T13:37:58.445786+00:00: Repair or regenerate the current702 split before sequence-NN predictions or metrics; restore GitHub push authentication before local ahead commits can land.
+- 2026-05-25T14:36:49.637815+00:00: Next run should repair/regenerate split coverage before MMseqs nearest-neighbor prediction.
 
 ## Scope Adjustments
 
@@ -561,3 +562,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-24T18:53:06.309748+00:00: Review-support surface is now a navigation layer only; no M-CSA decisions or imports were opened while Vivek is away.
 - 2026-05-24T18:53:19.546556+00:00: Hardened only temporary MMseqs workdir handling to avoid concurrent digest-path collisions; no scoring threshold ontology label or fingerprint semantics changed.
 - 2026-05-25T09:13:01Z: Target 0 completed as a frozen caveat artifact; Target A remains blocked on exact sequence coverage rows.
+- 2026-05-25T14:36:49.637815+00:00: Sequence-NN remains fail-closed until the repaired current702 split covers all 702 labels; no PLM or learned baseline work was started.
