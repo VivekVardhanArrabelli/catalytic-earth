@@ -16420,6 +16420,79 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             self.assertFalse(row["countable_label_candidate"])
             self.assertIn("forbidden", row["prediction_feature_status"])
 
+    def test_mechanism_fingerprint_v1_coherence_audit_freezes_primary_target(self) -> None:
+        audit = _load_json(
+            ARTIFACTS / "v3_mechanism_fingerprint_v1_coherence_audit_702.json"
+        )
+
+        self.assertEqual(
+            audit["schema_version"], "mechanism_fingerprint_v1_coherence_audit.v1"
+        )
+        self.assertEqual(audit["baseline_label_count"], 702)
+        self.assertEqual(
+            audit["mechanism_fingerprint_version"], "label_factory_v1_8fp"
+        )
+        self.assertEqual(audit["audit_scope"]["fingerprint_count"], 8)
+        self.assertFalse(audit["audit_scope"]["registry_edit_performed"])
+        self.assertFalse(audit["audit_scope"]["label_import_performed"])
+        self.assertFalse(audit["audit_scope"]["ontology_edit_performed"])
+        self.assertFalse(audit["audit_scope"]["production_scoring_change_performed"])
+
+        fingerprints = {row["fingerprint_id"]: row for row in audit["fingerprints"]}
+        self.assertEqual(
+            set(fingerprints),
+            {
+                "ser_his_acid_hydrolase",
+                "metal_dependent_hydrolase",
+                "plp_dependent_enzyme",
+                "radical_sam_enzyme",
+                "cobalamin_radical_rearrangement",
+                "flavin_monooxygenase",
+                "flavin_dehydrogenase_reductase",
+                "heme_peroxidase_oxidase",
+            },
+        )
+        self.assertEqual(
+            audit["fingerprints_kept_for_primary_metric"],
+            [
+                "ser_his_acid_hydrolase",
+                "metal_dependent_hydrolase",
+                "plp_dependent_enzyme",
+                "flavin_dehydrogenase_reductase",
+                "heme_peroxidase_oxidase",
+            ],
+        )
+        self.assertEqual(
+            audit["freeze_decision_summary"]["primary_metric_seed_label_count"], 226
+        )
+        self.assertEqual(
+            audit["freeze_decision_summary"]["secondary_only_seed_label_count"], 6
+        )
+        self.assertEqual(
+            fingerprints["metal_dependent_hydrolase"]["evaluation_status"],
+            "coarse_but_acceptable_v1",
+        )
+        self.assertEqual(
+            fingerprints["radical_sam_enzyme"]["evaluation_status"],
+            "singleton_underpowered",
+        )
+        self.assertEqual(
+            fingerprints["cobalamin_radical_rearrangement"]["v1_freeze_decision"],
+            "split_later_do_not_edit_now",
+        )
+        self.assertIn(
+            "Win condition is conjunctive",
+            " ".join(audit["downstream_benchmark_rules"]),
+        )
+
+        labels_path = ROOT / "data" / "registries" / "curated_mechanism_labels.json"
+        labels = _load_json(labels_path)
+        self.assertEqual(len(labels), audit["baseline_label_count"])
+        self.assertEqual(
+            "sha256:" + hashlib.sha256(labels_path.read_bytes()).hexdigest(),
+            audit["label_registry_digest"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

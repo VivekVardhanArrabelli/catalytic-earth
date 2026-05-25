@@ -50,6 +50,88 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-25T09:08Z Fingerprint V1 Coherence Audit Frozen
+
+This run acquired the automation lock and continued from local `HEAD` and
+`origin/main` at `5a2d562`. The required non-destructive fetch attempted against
+the configured SSH remote but failed with a public-key error; no merge or
+destructive sync was performed. The working baseline still matched the recorded
+`origin/main` ref before edits.
+
+New audit-only artifact:
+
+```text
+artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json
+```
+
+The artifact freezes `mechanism_fingerprint_v1_8fp` for benchmark target
+definition without editing `mechanism_fingerprints.json`,
+`mechanism_ontology.json`, `curated_mechanism_labels.json`, scoring code, or
+thresholds. It audits all eight production fingerprint ids against the current
+702-label registry and records SHA-256 digests for the fingerprint and label
+registries. Counts are frozen at 232 seed-fingerprint labels and 470
+out-of-scope labels.
+
+Primary metric implication: only the five fingerprints with
+`coherent_v1` or `coarse_but_acceptable_v1` status are eligible for primary
+`mechanism_fingerprint_id` metrics:
+
+```text
+ser_his_acid_hydrolase
+metal_dependent_hydrolase
+plp_dependent_enzyme
+flavin_dehydrogenase_reductase
+heme_peroxidase_oxidase
+```
+
+These cover 226 seed-fingerprint labels. The audit keeps caveats explicit:
+metal hydrolase, PLP, flavin redox, and heme redox are coarse v1 buckets and
+must be reported with within-fingerprint diversity checks. Radical SAM,
+cobalamin radical rearrangement, and flavin monooxygenase are secondary-only
+for v1: radical SAM and flavin monooxygenase are singleton/underpowered tails,
+and cobalamin radical rearrangement needs a future split because `m_csa:853`
+looks like cobalamin adenosyltransferase-like chemistry rather than a radical
+rearrangement.
+
+Benchmark rules are now pinned in the audit: out-of-scope/none-of-above is a
+secondary abstention target stratified by hard-negative tier where possible;
+bootstrap comparisons resample sequence or structure clusters for cluster-based
+splits; EC/family prior is a leakage-aware reference only; AFDB/Swiss-Prot
+pilots primarily test OOD abstention or embedding-space structure unless real
+curated ground truth exists; and a representation win is conjunctive:
+mechanism-prediction improvement plus maintained or improved calibrated
+abstention on tail and hard-negative cases.
+
+Target A next action remains sequence coverage, not model training. The exact
+current blocker is still the 20 missing sequence rows from
+`artifacts/v3_representation_baseline_shootout_plan_20260525.json`:
+
+```text
+m_csa:577, m_csa:596, m_csa:599, m_csa:623, m_csa:626, m_csa:636,
+m_csa:641, m_csa:668, m_csa:706, m_csa:710, m_csa:720, m_csa:771,
+m_csa:791, m_csa:812, m_csa:838, m_csa:865, m_csa:892, m_csa:897,
+m_csa:917, m_csa:998
+```
+
+After supplementing the FASTA/sequence coverage, rerun the sequence holdout
+command already recorded under
+`artifacts/v3_representation_baseline_shootout_plan_20260525.json`.
+Do not train ESM/ProtT5/ESM-C or claim learned superiority before that blocker
+is closed.
+
+Verification for this audit passed:
+
+```text
+python -m json.tool artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json
+PYTHONPATH=src python -m unittest tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mechanism_fingerprint_v1_coherence_audit_freezes_primary_target
+PYTHONPATH=src python -m catalytic_earth.cli validate
+PYTHONPATH=src python -m unittest discover -s tests
+git diff --check
+PYTHONPATH=src python -m catalytic_earth.cli progress-report --out work/status.md
+```
+
+Full unit discovery passed 933 tests.
+
 ### 2026-05-25T08:40Z Representation Baseline Shootout V0 And Final Exact40 Holds
 
 This run continued from `origin/main` commit `f7d05c5`, acquired the automation

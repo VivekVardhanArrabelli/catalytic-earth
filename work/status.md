@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 312
-- Measured elapsed time: 9358.8 minutes (155.98 hours)
+- Entries: 313
+- Measured elapsed time: 9378.8 minutes (156.31 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2343.4 measured minutes (39.06 hours)
+- v3: 2363.4 measured minutes (39.39 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3370
-- Evidence references logged: 2776
+- Artifact references logged: 3375
+- Evidence references logged: 2785
 
 ## Recent Entries
-
-### 2026-05-24T18:48:42.697558+00:00 - v3
-
-- Task: M-CSA AI-visual review workqueue support surface
-- Time mode: measured
-- Measured minutes: 35.0
-- Started: 2026-05-24T18:13:28Z
-- Ended: 2026-05-24T18:48:28Z
-- Artifacts: artifacts/v3_mcsa_ai_visual_review_support_index_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_20260524.json, artifacts/v3_mcsa_ai_visual_exact40_review_workqueue_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_exact40_review_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_backlog_20260524.json, artifacts/v3_mcsa_ai_visual_deferred26_after_exact40_worksheet_20260524.tsv, artifacts/v3_mcsa_ai_visual_review_surface_readme_20260524.md, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md, work/progress_log.jsonl, work/status.md
-- Evidence: startup 917-test unit discovery passed, startup CLI validate passed with 695 curated labels and 8 production fingerprints, review support index preserves 298 source rows with 22 accepted 210 rejected 66 holds, exact40 workqueue and worksheets preserve 40 blank decisions 10 clean rows and 30 nonclean rows, deferred26 backlog and worksheet preserve 26 needs_more_evidence rows outside exact40, 924-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, compileall passed, JSON and TSV parse checks passed, git diff check passed, no registry fingerprint scoring or source diffs
-- Notes: Wrapped before 48 minutes because bounded safe review-support work was exhausted; the next meaningful action is human exact40 review. No label import, import preview, registry edit, fingerprint edit, scoring change, artifact upload/removal, migration, history rewrite, or removal_allowed=true occurred; pre-existing root-level CIF files were left untouched.
 
 ### 2026-05-24T18:49:21.274042+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_sequence_distance_holdout_eval_1025_current702_20260525.json, artifacts/v3_representation_baseline_shootout_plan_20260525.json, README.md, docs/label_factory.md, work/handoff.md
 - Evidence: current 702-label sequence holdout evaluated 698 labels, held out 140 rows, preserved 0 held-out false non-abstentions, max observed train-test identity 0.284, recorded 20 missing sequence rows, reran representation plan against current sequence split with no learned superiority claim
 - Notes: No model training or label import occurred; current split remains blocked for full representation claims until missing sequence records and embedding sidecars are supplied.
+
+### 2026-05-25T09:13:01Z - v3
+
+- Task: Fingerprint v1 coherence audit for representation target
+- Time mode: measured
+- Measured minutes: 20.0
+- Started: 2026-05-25T08:53:01Z
+- Ended: 2026-05-25T09:13:01Z
+- Artifacts: artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md
+- Evidence: audited all 8 production fingerprint ids against the 702-label registry, primary metric frozen to 5 coherent/coarse acceptable fingerprints covering 226 seed labels, radical SAM cobalamin radical and flavin monooxygenase held secondary-only for tail/split caveats, downstream benchmark rules pinned for hard-negative tiers cluster bootstrap leakage-aware EC prior OOD abstention diversity checks and conjunctive win condition, targeted fingerprint audit test passed, PYTHONPATH=src python -m catalytic_earth.cli validate passed with 702 labels 8 fingerprints 15 ontology families, full unittest discovery passed with 933 tests, git diff --check passed, new audit JSON parsed
+- Notes: Direct locked audit-only run. No label import import preview registry edit fingerprint edit ontology edit scoring change threshold change model training artifact upload/removal externalization migration history rewrite or removal_allowed=true action occurred. Non-destructive git fetch against the configured SSH remote failed with a public-key error; local HEAD matched the recorded origin/main ref before edits. Pre-existing root CIF files were left untouched.
 
 ## Expectation Updates
 
@@ -366,6 +366,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-24T18:47:30.176583+00:00: Next substantive step is human review of clean10 then exact40; while Vivek is away only maintain consistency or docs around the fixed 298-row support surface.
 - 2026-05-24T18:49:21.274042+00:00: Do not make M-CSA review decisions while Vivek is away; next safe work should only maintain review-support consistency or documentation until human review happens.
 - 2026-05-24T18:53:06.309748+00:00: Next no-human run should only maintain review-support consistency or leakage-safe manifests; human review starts with clean10.
+- 2026-05-25T09:13:01Z: Next benchmark work should resolve the 20 missing sequence rows before any representation training or learned-superiority claim.
 
 ## Scope Adjustments
 
@@ -555,3 +556,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-24T18:47:30.176583+00:00: Added review-only navigation and worksheets without label import import previews registry edits fingerprint edits scoring changes or source artifact mutation.
 - 2026-05-24T18:53:06.309748+00:00: Review-support surface is now a navigation layer only; no M-CSA decisions or imports were opened while Vivek is away.
 - 2026-05-24T18:53:19.546556+00:00: Hardened only temporary MMseqs workdir handling to avoid concurrent digest-path collisions; no scoring threshold ontology label or fingerprint semantics changed.
+- 2026-05-25T09:13:01Z: Target 0 completed as a frozen caveat artifact; Target A remains blocked on exact sequence coverage rows.

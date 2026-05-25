@@ -1,0 +1,528 @@
+{
+  "schema_version": "mechanism_fingerprint_v1_coherence_audit.v1",
+  "audit_timestamp_utc": "2026-05-25T09:07:51Z",
+  "mechanism_fingerprint_version": "label_factory_v1_8fp",
+  "baseline_label_count": 702,
+  "fingerprint_registry_digest": "sha256:a1e7ae135adb97dc79d8cab91345bc3ed4720cf3371115737e05f10b629a2516",
+  "label_registry_digest": "sha256:5a1ce4af25af0fbb3bfff3be07118484e08de7ee318fad8d783fab10a540c684",
+  "audit_scope": {
+    "fingerprint_count": 8,
+    "curated_seed_fingerprint_label_count": 232,
+    "curated_out_of_scope_label_count": 470,
+    "registry_edit_performed": false,
+    "label_import_performed": false,
+    "ontology_edit_performed": false,
+    "production_scoring_change_performed": false,
+    "audit_only_rule": "This artifact freezes benchmark-target caveats for mechanism_fingerprint_v1_8fp and does not relabel any row."
+  },
+  "freeze_decision_summary": {
+    "overall_decision": "freeze_mechanism_fingerprint_v1_8fp_as_a_benchmark_target_with_primary_secondary_split",
+    "primary_metric_seed_label_count": 226,
+    "secondary_only_seed_label_count": 6,
+    "kept_primary_fingerprint_count": 5,
+    "secondary_only_fingerprint_count": 3,
+    "primary_metric_rule": "Use mechanism_fingerprint_id as the primary target only for seed_fingerprint labels whose fingerprint audit status is coherent_v1 or coarse_but_acceptable_v1.",
+    "caveat": "Several kept fingerprints are intentionally coarse chemistry buckets; the audit preserves their caveats and future split candidates instead of editing v1 labels."
+  },
+  "fingerprints_kept_for_primary_metric": [
+    "ser_his_acid_hydrolase",
+    "metal_dependent_hydrolase",
+    "plp_dependent_enzyme",
+    "flavin_dehydrogenase_reductase",
+    "heme_peroxidase_oxidase"
+  ],
+  "fingerprints_excluded_or_flagged_for_secondary_only": [
+    {
+      "fingerprint_id": "radical_sam_enzyme",
+      "reason": "singleton_underpowered at one M-CSA member; keep as an OOD/tail diagnostic until additional radical SAM labels exist."
+    },
+    {
+      "fingerprint_id": "cobalamin_radical_rearrangement",
+      "reason": "three-member bucket mixes true adenosylcobalamin radical mutases with an adenosyltransferase-like cobalamin row; use secondary-only until split or re-review."
+    },
+    {
+      "fingerprint_id": "flavin_monooxygenase",
+      "reason": "two-member oxygen-transfer tail; likely underrepresented relative to real enzyme-space coverage."
+    }
+  ],
+  "unresolved_ontology_questions": [
+    "Should metal_dependent_hydrolase be split into metalloprotease, nuclease/phosphoesterase, deaminase/amidohydrolase, carbonic-anhydrase/hydration, and NTPase/phosphohydrolase children before a v2 target?",
+    "Should plp_dependent_enzyme split transamination, decarboxylation, racemization, beta/gamma elimination, glycogen-phosphorylase-like acid catalysis, and coupled PLP-radical cases before a v2 target?",
+    "Should flavin_dehydrogenase_reductase move oxygenase-like rows to flavin_monooxygenase and split hydride-transfer reductases, oxidases/dehydrogenases, electron-transfer proteins, and photolyase-like photochemistry?",
+    "Should heme_peroxidase_oxidase split P450 monooxygenase, peroxidase/catalase, terminal oxidase, nitric-oxide/nitrite reductase, and heme oxygenase families?",
+    "Should cobalamin_radical_rearrangement exclude cobalamin adenosyltransferase rows from radical rearrangement metrics or receive a separate cobalamin-adenosylation fingerprint?"
+  ],
+  "downstream_benchmark_rules": [
+    "Primary target remains mechanism_fingerprint_id only for seed_fingerprint labels whose fingerprint audit status is coherent_v1 or coarse_but_acceptable_v1.",
+    "out_of_scope / none_of_above is the abstention secondary target and must be stratified by hard-negative tier when possible.",
+    "Hard negatives are not one bucket: easy = non-enzymes/non-catalytic where present; medium = known enzymes outside the 8 fingerprints; hard = enzymes sharing fold/cofactor/active-site geometry but different chemistry.",
+    "Bootstrap comparisons must resample sequence or structure clusters, not individual entries, when the split is cluster-derived.",
+    "EC/family prior is a leakage-aware reference only; report the gap between EC prior and learned models, do not use EC/name/prose as production predictive features.",
+    "External AFDB/Swiss-Prot pilot should primarily test OOD abstention behavior and embedding-space structure unless curated ground-truth mechanism labels exist; do not pretend propagated labels are independent truth.",
+    "Within-fingerprint diversity check plan: report whether correct predictions span diverse sequence/structure neighborhoods or only interpolate inside tight clusters.",
+    "Win condition is conjunctive: a representation model must improve mechanism prediction against baselines AND maintain or improve calibrated abstention on tail/hard-negative cases. Macro-F1 gain alone is not a win."
+  ],
+  "same_fingerprint_pairs_that_look_mechanistically_different": [
+    {
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "entry_id_pair": [
+        "m_csa:15",
+        "m_csa:535"
+      ],
+      "concern": "Metallo-beta-lactamase amide hydrolysis and Mg-linked GTP hydrolysis share metal/water logic but differ in substrate class and reaction-center geometry."
+    },
+    {
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "entry_id_pair": [
+        "m_csa:171",
+        "m_csa:376"
+      ],
+      "concern": "Zinc metalloprotease peptide hydrolysis and zinc-supported hydrolytic deamination are both water-activation mechanisms but likely separate v2 subfamilies."
+    },
+    {
+      "fingerprint_id": "plp_dependent_enzyme",
+      "entry_id_pair": [
+        "m_csa:66",
+        "m_csa:205"
+      ],
+      "concern": "Classic aminotransferase chemistry and glycogen-phosphorylase-like PLP acid catalysis share PLP but not the same bond-change class."
+    },
+    {
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "entry_id_pair": [
+        "m_csa:6",
+        "m_csa:183"
+      ],
+      "concern": "Disulfide reductase hydride transfer and photolyase photochemical electron transfer are both flavin redox but not the same reaction-center operation."
+    },
+    {
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "entry_id_pair": [
+        "m_csa:124",
+        "m_csa:133"
+      ],
+      "concern": "Terminal heme-copper oxygen reduction and P450 substrate monooxygenation share heme redox chemistry but are distinct catalytic operations."
+    },
+    {
+      "fingerprint_id": "cobalamin_radical_rearrangement",
+      "entry_id_pair": [
+        "m_csa:62",
+        "m_csa:853"
+      ],
+      "concern": "Adenosylcobalamin mutase radical rearrangement and cobalamin adenosyltransferase-like chemistry should not be treated as equivalent target labels."
+    }
+  ],
+  "different_fingerprint_pairs_that_may_be_equivalent": [
+    {
+      "entry_id_pair": [
+        "m_csa:131",
+        "m_csa:551"
+      ],
+      "fingerprint_id_pair": [
+        "flavin_monooxygenase",
+        "flavin_dehydrogenase_reductase"
+      ],
+      "concern": "Aromatic flavin hydroxylase and a phenol monooxygenase-like row may belong to the same flavin oxygen-transfer v2 family if peroxide/oxygen insertion is confirmed."
+    },
+    {
+      "entry_id_pair": [
+        "m_csa:132",
+        "m_csa:973"
+      ],
+      "fingerprint_id_pair": [
+        "flavin_monooxygenase",
+        "flavin_dehydrogenase_reductase"
+      ],
+      "concern": "FMN/FAD oxygenation rows may be split inconsistently between oxygen-transfer and broad flavin-redox targets."
+    },
+    {
+      "entry_id_pair": [
+        "m_csa:358",
+        "m_csa:372"
+      ],
+      "fingerprint_id_pair": [
+        "plp_dependent_enzyme",
+        "radical_sam_enzyme"
+      ],
+      "concern": "PLP plus SAM/Fe-S aminomutase chemistry and radical SAM chemistry share radical cofactor logic; a coupled PLP-radical v2 family may be cleaner than either parent alone."
+    },
+    {
+      "entry_id_pair": [
+        "m_csa:141",
+        "m_csa:208"
+      ],
+      "fingerprint_id_pair": [
+        "flavin_dehydrogenase_reductase",
+        "heme_peroxidase_oxidase"
+      ],
+      "concern": "Multi-cofactor flavin/heme electron-transfer rows may be assigned by the dominant cofactor rather than a single reaction-center target."
+    }
+  ],
+  "fingerprints": [
+    {
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "support_count": 42,
+      "mcsa_seed_count": 42,
+      "expert_reviewed_count": 2,
+      "automation_curated_count": 40,
+      "representative_entry_ids": [
+        "m_csa:5",
+        "m_csa:173",
+        "m_csa:218",
+        "m_csa:248",
+        "m_csa:387",
+        "m_csa:599",
+        "m_csa:771",
+        "m_csa:922"
+      ],
+      "head_body_tail_status": "head",
+      "shared_catalytic_operation": "Yes: representative members share nucleophilic acyl substitution through a serine acyl-enzyme intermediate followed by water deacylation or closely related perhydrolysis.",
+      "shared_residue_role_pattern": "Strong: catalytic Ser nucleophile plus His general base plus Asp/Glu acid/orienter is the repeated role pattern; rare Ser-His-His or perhydrolase variants are caveats, not broad counterexamples.",
+      "shared_cofactor_or_metal_logic": "Strong: no obligate metal or organic cofactor is part of the target logic; metal-dependent rows are excluded unless the Ser-His-acid triad is the central mechanism.",
+      "shared_reaction_center_logic": "Strong: acyl heteroatom bond hydrolysis/perhydrolysis around an acyl-enzyme reaction center is consistent across protease, esterase, lipase, cutinase, and polyesterase representatives.",
+      "known_collapsed_subfamilies": [
+        "serine proteases",
+        "lipases and carboxylesterases",
+        "cutinases/polyesterases",
+        "protein acyl thioesterases",
+        "cofactor-free haloperoxidase/perhydrolase-like serine hydrolases"
+      ],
+      "entries_that_may_not_belong": [
+        {
+          "entry_id": "m_csa:248",
+          "reason": "Cofactor-free chloride peroxidase/perhydrolase chemistry is acyl-enzyme Ser-His-Asp-like but may deserve a perhydrolase child target."
+        },
+        {
+          "entry_id": "m_csa:238",
+          "reason": "Ser-His-His assemblin variant lacks the canonical Asp/Glu acid slot and should stay a v1 caveat."
+        }
+      ],
+      "entries_that_suggest_future_split": [
+        "m_csa:248",
+        "m_csa:728",
+        "m_csa:808"
+      ],
+      "possible_equivalent_other_fingerprint_ids": [],
+      "singleton_or_underpowered_reason": null,
+      "evaluation_status": "coherent_v1",
+      "v1_freeze_decision": "keep_for_benchmark",
+      "model_benchmark_implication": "Eligible for primary mechanism_fingerprint_id metrics; require within-fingerprint diversity checks so a model is not only interpolating among tight serine-protease or lipase neighborhoods."
+    },
+    {
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "support_count": 83,
+      "mcsa_seed_count": 83,
+      "expert_reviewed_count": 13,
+      "automation_curated_count": 70,
+      "representative_entry_ids": [
+        "m_csa:15",
+        "m_csa:43",
+        "m_csa:87",
+        "m_csa:171",
+        "m_csa:376",
+        "m_csa:535",
+        "m_csa:596",
+        "m_csa:791",
+        "m_csa:838",
+        "m_csa:998"
+      ],
+      "head_body_tail_status": "head",
+      "shared_catalytic_operation": "Mostly yes at v1 granularity: representatives share metal-assisted water/hydroxide activation for bond cleavage or hydrolytic group removal, but the target intentionally collapses several metal-water submechanisms.",
+      "shared_residue_role_pattern": "Moderate: His/Asp/Glu/Cys metal ligands and acid/base water activators recur, but leaving-group stabilizers and substrate-binding residues are family-specific.",
+      "shared_cofactor_or_metal_logic": "Strong but coarse: Zn, Mg, Mn, Fe, Ni, Co, or surrogate divalent metal centers are central to the catalytic water logic; metal identity is not yet a separate target axis.",
+      "shared_reaction_center_logic": "Moderate: all kept rows involve metal-activated hydrolytic chemistry, but peptide, beta-lactam, phosphate, nucleotide, deamination, carbonic-anhydrase, and NTPase reaction centers are not interchangeable.",
+      "known_collapsed_subfamilies": [
+        "zinc metalloproteases and metallo-beta-lactamases",
+        "nucleases and phosphoesterases",
+        "phosphatases and pyrophosphatases",
+        "amidohydrolases and deaminases",
+        "carbonic anhydrase/dehydratase chemistry",
+        "NTPase or nucleotide-phosphohydrolase-like rows"
+      ],
+      "entries_that_may_not_belong": [
+        {
+          "entry_id": "m_csa:535",
+          "reason": "Protein-synthesizing GTPase is phosphate hydrolysis with metal/NTP context and should be a hard tail caveat, not evidence that all NTPases are metal hydrolases."
+        },
+        {
+          "entry_id": "m_csa:216",
+          "reason": "Carbonate dehydratase/carbonic anhydrase uses zinc-bound hydroxide chemistry but does not fit the same scissile-bond logic as proteases or nucleases."
+        }
+      ],
+      "entries_that_suggest_future_split": [
+        "m_csa:43",
+        "m_csa:87",
+        "m_csa:376",
+        "m_csa:535",
+        "m_csa:791"
+      ],
+      "possible_equivalent_other_fingerprint_ids": [],
+      "singleton_or_underpowered_reason": null,
+      "evaluation_status": "coarse_but_acceptable_v1",
+      "v1_freeze_decision": "keep_with_caveat",
+      "model_benchmark_implication": "Eligible for primary metrics as a coarse class only; report per-subfamily diversity and do not treat wins driven by zinc metalloprotease or nuclease interpolation as general metal-hydrolase understanding."
+    },
+    {
+      "fingerprint_id": "plp_dependent_enzyme",
+      "support_count": 31,
+      "mcsa_seed_count": 31,
+      "expert_reviewed_count": 1,
+      "automation_curated_count": 30,
+      "representative_entry_ids": [
+        "m_csa:66",
+        "m_csa:147",
+        "m_csa:186",
+        "m_csa:205",
+        "m_csa:213",
+        "m_csa:358",
+        "m_csa:383",
+        "m_csa:865"
+      ],
+      "head_body_tail_status": "body",
+      "shared_catalytic_operation": "Yes at PLP-cofactor granularity: representatives use PLP Schiff-base/electron-sink chemistry or PLP-assisted acid/base chemistry to stabilize carbanion-like intermediates.",
+      "shared_residue_role_pattern": "Moderate to strong: Lys-PLP internal aldimine and nearby acid/base or phosphate-binding residues recur, but individual acid/base identities and substrate-control residues vary widely.",
+      "shared_cofactor_or_metal_logic": "Strong: PLP/LLP/PMP/P5P context is central; coupled SAM/Fe-S rows are caveats rather than the dominant v1 logic.",
+      "shared_reaction_center_logic": "Moderate: C-N, C-C, C-S, beta/gamma elimination, racemization, decarboxylation, transamination, and phosphorylase-like reactions all use PLP but do not share one substrate bond class.",
+      "known_collapsed_subfamilies": [
+        "aminotransferases",
+        "decarboxylases",
+        "racemases",
+        "beta/gamma eliminases and lyases",
+        "PLP-dependent synthases",
+        "glycogen-phosphorylase-like PLP acid catalysis",
+        "coupled PLP-radical aminomutases"
+      ],
+      "entries_that_may_not_belong": [
+        {
+          "entry_id": "m_csa:205",
+          "reason": "Glycogen phosphorylase uses PLP in a phosphate/acid-catalysis role rather than the canonical amino-acid external-aldimine target logic."
+        },
+        {
+          "entry_id": "m_csa:358",
+          "reason": "Lysine 2,3-aminomutase requires PLP plus SAM/Fe-S radical chemistry and may be cleaner as a coupled PLP-radical child."
+        }
+      ],
+      "entries_that_suggest_future_split": [
+        "m_csa:205",
+        "m_csa:358",
+        "m_csa:383",
+        "m_csa:430"
+      ],
+      "possible_equivalent_other_fingerprint_ids": [
+        "radical_sam_enzyme"
+      ],
+      "singleton_or_underpowered_reason": null,
+      "evaluation_status": "coarse_but_acceptable_v1",
+      "v1_freeze_decision": "keep_with_caveat",
+      "model_benchmark_implication": "Eligible for primary metrics as a PLP-cofactor mechanism target; require diversity checks across transaminase, decarboxylase, lyase, racemase, and coupled-radical neighborhoods."
+    },
+    {
+      "fingerprint_id": "radical_sam_enzyme",
+      "support_count": 1,
+      "mcsa_seed_count": 1,
+      "expert_reviewed_count": 0,
+      "automation_curated_count": 1,
+      "representative_entry_ids": [
+        "m_csa:372"
+      ],
+      "head_body_tail_status": "tail",
+      "shared_catalytic_operation": "Not evaluable from the registry: the sole member is NikJ with [4Fe-4S]-AdoMet radical chemistry.",
+      "shared_residue_role_pattern": "Underpowered: Cys cluster-ligand and SAM-binding motif logic is plausible but cannot be audited across representative M-CSA diversity with one member.",
+      "shared_cofactor_or_metal_logic": "Underpowered but specific: [4Fe-4S] plus S-adenosylmethionine is the intended logic.",
+      "shared_reaction_center_logic": "Underpowered: radical C-H activation/rearrangement cannot be distinguished from broader radical chemistry with one label.",
+      "known_collapsed_subfamilies": [],
+      "entries_that_may_not_belong": [],
+      "entries_that_suggest_future_split": [],
+      "possible_equivalent_other_fingerprint_ids": [
+        "plp_dependent_enzyme"
+      ],
+      "singleton_or_underpowered_reason": "Likely underrepresented due to M-CSA/atlas coverage and the current conservative import gate; radical SAM enzyme-space is broad but only one seed_fingerprint label is present.",
+      "evaluation_status": "singleton_underpowered",
+      "v1_freeze_decision": "exclude_from_primary_metric",
+      "model_benchmark_implication": "Use only as a tail/OOD diagnostic and do not include in primary supervised fingerprint metrics until more independently curated radical SAM positives exist."
+    },
+    {
+      "fingerprint_id": "cobalamin_radical_rearrangement",
+      "support_count": 3,
+      "mcsa_seed_count": 3,
+      "expert_reviewed_count": 0,
+      "automation_curated_count": 3,
+      "representative_entry_ids": [
+        "m_csa:62",
+        "m_csa:63",
+        "m_csa:853"
+      ],
+      "head_body_tail_status": "tail",
+      "shared_catalytic_operation": "Mixed: m_csa:62 and m_csa:63 are coherent adenosylcobalamin radical rearrangements, while m_csa:853 appears closer to cobalamin adenosylation/adenosyltransferase chemistry.",
+      "shared_residue_role_pattern": "Weak: cobalamin-binding and substrate-orienting residues are not enough to make all three rows a shared radical rearrangement residue-role target.",
+      "shared_cofactor_or_metal_logic": "Partial: adenosylcobalamin/cobalamin context is shared, but cofactor presence alone collapses rearrangement and cofactor-biosynthesis/adenosylation logic.",
+      "shared_reaction_center_logic": "Weak: carbon-skeleton rearrangement and ammonia-elimination-like radical chemistry do not cover cobalamin adenosyltransferase-like reaction centers.",
+      "known_collapsed_subfamilies": [
+        "adenosylcobalamin mutases",
+        "cobalamin adenosyltransferase-like chemistry"
+      ],
+      "entries_that_may_not_belong": [
+        {
+          "entry_id": "m_csa:853",
+          "reason": "Cobalamin ligand/cofactor context is strong, but the named adenosyltransferase-like chemistry is not a radical rearrangement benchmark target."
+        }
+      ],
+      "entries_that_suggest_future_split": [
+        "m_csa:853"
+      ],
+      "possible_equivalent_other_fingerprint_ids": [],
+      "singleton_or_underpowered_reason": null,
+      "evaluation_status": "needs_future_split",
+      "v1_freeze_decision": "split_later_do_not_edit_now",
+      "model_benchmark_implication": "Keep labels frozen for provenance, but exclude this fingerprint from the primary metric; report it as secondary tail evidence until m_csa:853 is re-reviewed or a separate cobalamin-adenosylation target exists."
+    },
+    {
+      "fingerprint_id": "flavin_monooxygenase",
+      "support_count": 2,
+      "mcsa_seed_count": 2,
+      "expert_reviewed_count": 0,
+      "automation_curated_count": 2,
+      "representative_entry_ids": [
+        "m_csa:131",
+        "m_csa:132"
+      ],
+      "head_body_tail_status": "tail",
+      "shared_catalytic_operation": "Plausible but underpowered: both rows use flavin oxygen-transfer chemistry, one aromatic hydroxylase and one alkanal monooxygenase.",
+      "shared_residue_role_pattern": "Underpowered: flavin-binding and NAD(P)H/substrate-orienting motifs are plausible, but two rows cannot establish a robust residue-role pattern.",
+      "shared_cofactor_or_metal_logic": "Plausible: FAD/FMN plus NAD(P)H oxygen activation is the intended shared logic.",
+      "shared_reaction_center_logic": "Plausible but sparse: oxygen insertion/hydroxylation is shared, but substrate classes differ and the current registry may have oxygenase-like rows in flavin_dehydrogenase_reductase.",
+      "known_collapsed_subfamilies": [
+        "aromatic flavin hydroxylases",
+        "FMN-linked alkanal monooxygenases"
+      ],
+      "entries_that_may_not_belong": [],
+      "entries_that_suggest_future_split": [],
+      "possible_equivalent_other_fingerprint_ids": [
+        "flavin_dehydrogenase_reductase"
+      ],
+      "singleton_or_underpowered_reason": "Likely underrepresented by current M-CSA/atlas coverage and prior conservative imports; real flavin oxygenase space is larger than two labels.",
+      "evaluation_status": "singleton_underpowered",
+      "v1_freeze_decision": "exclude_from_primary_metric",
+      "model_benchmark_implication": "Use as secondary tail/OOD analysis only; do not reward or penalize primary representation models on a two-member oxygen-transfer class."
+    },
+    {
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "support_count": 50,
+      "mcsa_seed_count": 50,
+      "expert_reviewed_count": 1,
+      "automation_curated_count": 49,
+      "representative_entry_ids": [
+        "m_csa:3",
+        "m_csa:6",
+        "m_csa:68",
+        "m_csa:110",
+        "m_csa:117",
+        "m_csa:183",
+        "m_csa:354",
+        "m_csa:551",
+        "m_csa:892",
+        "m_csa:973"
+      ],
+      "head_body_tail_status": "head",
+      "shared_catalytic_operation": "Mostly yes at v1 granularity: representatives share flavin-mediated hydride/electron transfer, but oxidase, reductase, electron-transfer, and photochemical subfamilies are collapsed.",
+      "shared_residue_role_pattern": "Moderate: flavin-binding motifs and redox acid/base or electron-transfer residues recur, but specific catalytic residues differ substantially by family.",
+      "shared_cofactor_or_metal_logic": "Strong: FAD/FMN is central. Multi-cofactor rows with heme or Fe-S are acceptable only when flavin is the principal redox relay.",
+      "shared_reaction_center_logic": "Moderate: hydride/electron transfer without committed oxygen insertion is the intended rule, but several oxygenase-like names need future adjudication.",
+      "known_collapsed_subfamilies": [
+        "flavin reductases",
+        "flavin dehydrogenases/oxidases",
+        "disulfide reductases",
+        "electron-transfer flavoproteins",
+        "photolyase-like photochemistry",
+        "multi-cofactor flavin/Fe-S or flavin/heme chains"
+      ],
+      "entries_that_may_not_belong": [
+        {
+          "entry_id": "m_csa:551",
+          "reason": "Phenol 2-monooxygenase name suggests oxygen-transfer chemistry that may belong with flavin_monooxygenase if local peroxide/oxygen insertion evidence confirms it."
+        },
+        {
+          "entry_id": "m_csa:973",
+          "reason": "DszC-like flavin oxygenation/sulfur oxidation may be closer to flavin_monooxygenase than to non-oxygen-insertion redox transfer."
+        },
+        {
+          "entry_id": "m_csa:941",
+          "reason": "Mandelonitrile lyase naming and chemistry should be rechecked against flavin redox being the true catalytic target rather than binding/context evidence."
+        }
+      ],
+      "entries_that_suggest_future_split": [
+        "m_csa:183",
+        "m_csa:497",
+        "m_csa:551",
+        "m_csa:895",
+        "m_csa:973"
+      ],
+      "possible_equivalent_other_fingerprint_ids": [
+        "flavin_monooxygenase",
+        "heme_peroxidase_oxidase"
+      ],
+      "singleton_or_underpowered_reason": null,
+      "evaluation_status": "coarse_but_acceptable_v1",
+      "v1_freeze_decision": "keep_with_caveat",
+      "model_benchmark_implication": "Eligible for primary metrics only as a broad flavin-redox target; evaluate oxygenase-like and photolyase-like rows as caveat strata and report confusion against flavin_monooxygenase."
+    },
+    {
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "support_count": 20,
+      "mcsa_seed_count": 20,
+      "expert_reviewed_count": 0,
+      "automation_curated_count": 20,
+      "representative_entry_ids": [
+        "m_csa:37",
+        "m_csa:124",
+        "m_csa:133",
+        "m_csa:239",
+        "m_csa:573",
+        "m_csa:699",
+        "m_csa:795",
+        "m_csa:903",
+        "m_csa:935",
+        "m_csa:944"
+      ],
+      "head_body_tail_status": "body",
+      "shared_catalytic_operation": "Yes at broad heme-redox granularity: all representative rows depend on heme-centered redox chemistry, but peroxide, oxygen-reduction, monooxygenation, nitrite/NO reduction, and heme oxygenase operations are distinct.",
+      "shared_residue_role_pattern": "Moderate: His/Cys/Tyr heme ligation and nearby acid/base or electron-transfer residues recur, but P450, peroxidase, catalase, oxidase, and reductase families use different role patterns.",
+      "shared_cofactor_or_metal_logic": "Strong: heme or heme-copper redox logic is central; H2O2/O2/NO/nitrite substrate logic differs by subfamily.",
+      "shared_reaction_center_logic": "Coarse: heme-mediated redox is shared, but oxygen insertion, peroxide dismutation/reduction, terminal O2 reduction, and nitrogen-oxide reduction should be split in v2.",
+      "known_collapsed_subfamilies": [
+        "heme peroxidases",
+        "catalases",
+        "cytochrome P450 monooxygenases",
+        "terminal oxidases",
+        "heme oxygenases",
+        "NO/nitrite reductases",
+        "heme electron-transfer chains"
+      ],
+      "entries_that_may_not_belong": [
+        {
+          "entry_id": "m_csa:208",
+          "reason": "Ubiquinol-cytochrome-c reductase may be more electron-transfer-chain context than a single local heme oxidase/peroxidase target."
+        },
+        {
+          "entry_id": "m_csa:758",
+          "reason": "Hydroperoxide dehydratase chemistry may require a family-specific split rather than broad heme redox."
+        }
+      ],
+      "entries_that_suggest_future_split": [
+        "m_csa:124",
+        "m_csa:133",
+        "m_csa:573",
+        "m_csa:795",
+        "m_csa:903"
+      ],
+      "possible_equivalent_other_fingerprint_ids": [
+        "flavin_monooxygenase",
+        "flavin_dehydrogenase_reductase"
+      ],
+      "singleton_or_underpowered_reason": null,
+      "evaluation_status": "coarse_but_acceptable_v1",
+      "v1_freeze_decision": "keep_with_caveat",
+      "model_benchmark_implication": "Eligible for primary metrics as broad heme-redox only; require subfamily-stratified reporting so P450/peroxidase/oxidase/catalase interpolation is visible."
+    }
+  ]
+}

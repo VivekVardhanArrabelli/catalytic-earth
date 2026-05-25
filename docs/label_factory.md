@@ -146,6 +146,21 @@ review-backed family boundaries into mechanism families:
 - ATP-dependent phosphoryl transfer, with child family records for ePK, ASKHA,
   ATP-grasp, GHKL, dNK, NDK, PfkA, PfkB, and GHMP
 
+The current 702-label benchmark target definition is frozen by
+`artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json`. It is an
+audit-only artifact: it edits no registry, ontology, fingerprint, scoring rule,
+threshold, or label. For primary mechanism-fingerprint metrics, only
+`coherent_v1` and `coarse_but_acceptable_v1` fingerprints count:
+`ser_his_acid_hydrolase`, `metal_dependent_hydrolase`,
+`plp_dependent_enzyme`, `flavin_dehydrogenase_reductase`, and
+`heme_peroxidase_oxidase`. `radical_sam_enzyme`,
+`cobalamin_radical_rearrangement`, and `flavin_monooxygenase` are preserved as
+secondary-only tail/split diagnostics for v1. Representation benchmark reports
+must keep out-of-scope abstention stratified by hard-negative tier, resample
+clusters for bootstrap comparisons, treat EC/family prior as leakage-aware
+reference only, and require both mechanism-prediction improvement and calibrated
+tail/hard-negative abstention before claiming a win.
+
 `build-family-propagation-guardrails` audits where family propagation is blocked
 across UniRef/CATH/InterPro-style evidence or the current local proxies
 available in this repo: M-CSA mechanism text, ligand/cofactor context, and

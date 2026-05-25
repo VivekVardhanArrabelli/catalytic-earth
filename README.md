@@ -150,6 +150,16 @@ The repository currently contains:
     `artifacts/v3_mcsa_ai_visual_remaining_manual_expert_holds_index_20260525.json`
     as five expert-biochemistry holds plus one manual visual hold, with no
     import candidates.
+    `artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json` now
+    freezes `mechanism_fingerprint_v1_8fp` as the representation benchmark
+    target definition without editing labels, fingerprints, ontology, scoring,
+    or thresholds. The audit keeps Ser-His-acid hydrolase, metal hydrolase,
+    PLP, flavin dehydrogenase/reductase, and heme redox fingerprints eligible
+    for the primary metric with caveats; radical SAM, cobalamin radical, and
+    flavin monooxygenase stay secondary-only until tail coverage or split
+    questions are resolved. Benchmark wins must improve mechanism prediction
+    against baselines while maintaining calibrated abstention on tail and hard
+    negatives.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
