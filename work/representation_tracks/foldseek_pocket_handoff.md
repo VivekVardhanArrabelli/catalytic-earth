@@ -19,6 +19,8 @@ Shared baseline cited:
 
 - `artifacts/representation_tracks/foldseek_pocket/current702_structure_pocket_coverage_20260525.json`
 - `artifacts/representation_tracks/foldseek_pocket/current702_foldseek_runtime_status_20260525.json`
+- `artifacts/representation_tracks/foldseek_pocket/current702_foldseek_fast3di_full_structure_predictions_20260525.jsonl`
+- `artifacts/representation_tracks/foldseek_pocket/current702_foldseek_fast3di_full_structure_metrics_20260525.json`
 
 Coverage summary:
 
@@ -36,7 +38,26 @@ Foldseek is available only through the explicit prior environment path, not `PAT
 - Version command: `/private/tmp/catalytic-foldseek-env/bin/foldseek version`
 - Version output: `718d42176d2f67d36a60866fedfb881f8d5a7ebf`
 
-The coverage artifact records an exact full-structure command plan using `artifacts/v3_foldseek_coordinates_1000` as both query and target sidecar. During the first run, both an exact all-vs-all command and a smaller heldout-vs-train symlink command were started, but neither emitted a final TSV before wrap. A later retry resumed the heldout-vs-train command from `/private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn`, but it again stayed in the TM-align alignment stage with zero-byte `aln` output and no final TSV. The sandbox denied manual cleanup with `operation not permitted`, so `current702_foldseek_runtime_status_20260525.json` now records the retry and the non-signalable active Foldseek processes. Prediction metrics remain not computed, and no partial intermediate DB output was accepted.
+The coverage artifact records an exact full-structure command plan using `artifacts/v3_foldseek_coordinates_1000` as both query and target sidecar. During earlier runs, exact TM and TM-align-fast attempts did not emit a final TSV and no partial intermediate DB output was accepted.
+
+This run completed the immediate unblock by switching to a clearly labeled fast Foldseek structural NN / 3Di smoke baseline with entry-specific coordinate symlinks:
+
+- Command mode: heldout-vs-train `foldseek easy-search`, `--alignment-type 0`, `--max-seqs 100`, `--threads 1`
+- Scratch: `/private/tmp/catalytic-foldseek-fast3di-current702-20260525T181437Z`
+- Final TSV: 22,716 rows, SHA256 `c3d0fbab2cb9e6da6502a3f54a15d5a99b42fb2bae53894e622a3498373d7027`
+- Runtime: 97.114 seconds
+- Heldout/train symlinks: 134 / 542
+
+Fast Foldseek structural NN metrics:
+
+- Primary supervised accuracy: 0.6222 over 45 primary heldout rows
+- Primary supervised macro-F1: 0.7649
+- Available-only primary accuracy: 0.7000 over 40 primary heldout rows with coordinates
+- All-heldout exact-label accuracy: 0.8000
+- OOS false-positive rate without threshold: 0.0870
+- Unavailable heldout structure abstentions: 6
+
+The metrics JSON includes per-fingerprint precision/recall/F1, underpowered-cell flags, OOS abstention/false-positive diagnostics by tier, secondary probes, canary predictions, unavailable-structure abstention counts, and direct comparison entries for sequence-NN, the fast 3Di structural smoke, and the unavailable full-current702 ESM-2 150M mechanism-NN comparator.
 
 ## Leakage Contract
 
@@ -44,9 +65,8 @@ Predictive inputs are restricted to selected-PDB/AFDB coordinates with row-level
 
 ## Next Step
 
-After stale `/private/tmp/catalytic-earth-repr-foldseek-pocket-current702*` Foldseek processes have exited or are killed outside this sandbox, rerun heldout-vs-train Foldseek from a fresh scratch directory under a watchdog that can interrupt the job. Then emit:
+Optional next work:
 
-- `current702_foldseek_full_structure_predictions_20260525.jsonl`
-- `current702_foldseek_full_structure_metrics_20260525.json`
-
-Metrics must include primary macro-F1/accuracy, per-fingerprint support and underpowered flags, OOS abstention/false-positive diagnostics by tier, canary predictions, unavailable-structure abstention counts, and exact Foldseek command/version provenance.
+- Run exact-TM refinement only as a separate artifact from a fresh scratch path; keep it distinct from the accepted fast3Di baseline and continue to reject partial DBs.
+- Materialize a pocket coordinate sidecar before attempting pocket-restricted Foldseek NN. Pocket eligibility is still coverage-only.
+- A full current702 ESM-2 150M mechanism-NN comparator is still absent from the repository; only external review-only 150M sidecars were found.
