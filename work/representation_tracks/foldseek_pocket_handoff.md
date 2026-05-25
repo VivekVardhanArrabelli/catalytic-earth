@@ -63,6 +63,14 @@ The metrics JSON includes per-fingerprint precision/recall/F1, underpowered-cell
 
 Predictive inputs are restricted to selected-PDB/AFDB coordinates with row-level provenance. EC labels, names, mechanism prose, expert notes, and review text were not used as predictive features. Pocket eligibility uses existing resolved active-site residue counts only as a controlled known-active-site ablation, not as a source-free primary representation benchmark.
 
+## Verification
+
+- JSON validation passed for the metrics/status artifacts.
+- JSONL validation passed for 140 heldout prediction rows.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with 702 curated labels, 8 mechanism fingerprints, and 15 ontology families.
+- Local commit created on `research/representation-foldseek-pocket`.
+- Push is blocked in this environment: HTTPS reports `could not read Username for 'https://github.com'`, and SSH reports `Permission denied (publickey)`. Local branch HEAD is ahead of `origin/research/representation-foldseek-pocket` until credentials are restored.
+
 ## Next Step
 
 Optional next work:
