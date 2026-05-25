@@ -127,11 +127,34 @@ Decision:
 
 - Foldseek 3Di tokens are ready as a bounded, track-local structure-alphabet
   baseline for review.
-- ProstT5 remains blocked for this run because no `Rostlab/ProstT5` weights were
-  cached under the probed Hugging Face cache paths and this track still needs a
-  bounded weights cache/download plan before embedding.
+- ProstT5 remains blocked for this run. The canonical `Rostlab/ProstT5` repo
+  has an 11,275,478,387 byte `pytorch_model.bin`; `Rostlab/ProstT5_fp16` has a
+  5,637,876,077 byte `pytorch_model.bin`. Neither snapshot is cached under the
+  probed Hugging Face cache paths, and this runtime has no CUDA or MPS backend,
+  so embedding would be CPU-only after a large uncached download.
 - No learned superiority claim is made; underpowered fingerprint/diversity cells
   remain descriptive only.
+
+## ProstT5 Backend Setup Blocker
+
+Backend setup artifact:
+`artifacts/representation_tracks/prostt5_3di/current702_prostt5_backend_setup_terminal_blocker_20260525.json`
+
+The bounded backend decision is terminal for this run:
+
+- Probed cache paths:
+  `/Users/vivekvardhanarrabelli/.cache/huggingface/hub` and
+  `/private/tmp/catalytic-earth-hf-cache/hub`.
+- Local-only `snapshot_download` probes failed with `LocalEntryNotFoundError`
+  for both `Rostlab/ProstT5` and `Rostlab/ProstT5_fp16`.
+- Tool versions recorded: torch `2.7.1`, transformers `4.53.2`,
+  sentencepiece `0.2.0`, huggingface_hub `0.33.4`; `accelerate` is missing.
+- Accelerator probe recorded: CUDA unavailable, MPS built but unavailable.
+- Existing ESM-2 150M cache context was observed under
+  `/private/tmp/catalytic-earth-hf-cache`, but there is no current702
+  frozen-split ESM-2 150M or ProtT5 comparator artifact for this track.
+- No ProstT5 embeddings manifest, predictions JSONL, or metrics JSON were
+  emitted because the backend is unavailable locally.
 
 ## Validation
 
@@ -140,10 +163,11 @@ Completed:
 - `jq empty` on the new JSON artifacts.
 - JSONL line-by-line `jq empty` on the new predictions artifact.
 - `PYTHONPATH=src python -m catalytic_earth.cli validate`.
+- `python -m json.tool` on the new ProstT5 backend blocker artifact.
 
 ## Next Step
 
-If this track continues, the next useful step is a bounded ProstT5 embedding
-decision: either explicitly allow a bounded weights download/cache recording
-step, or keep this as the Foldseek structure-derived 3Di token baseline and
-compare it against the existing deterministic sequence-NN baseline only.
+This run keeps the Foldseek structure-derived 3Di token baseline as the completed
+structural-alphabet result. A future ProstT5 embedding run needs explicit large
+cache approval plus either an accelerator-capable runtime or an accepted long CPU
+embedding window.

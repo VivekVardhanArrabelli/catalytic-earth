@@ -1,0 +1,197 @@
+{
+  "metadata": {
+    "artifact_id": "current702_prostt5_backend_setup_terminal_blocker_20260525",
+    "schema_version": "prostt5_backend_setup_terminal_blocker.v1",
+    "track": "representation_tracks/prostt5_3di",
+    "generated_at": "2026-05-25T18:12:47Z",
+    "status": "terminal_backend_blocker_for_full_prostt5_embeddings",
+    "decision": "keep_existing_foldseek_3di_token_nn_as_completed_structural_alphabet_baseline",
+    "downloads_performed": false,
+    "embedding_model_downloaded": false,
+    "plm_embeddings_computed": false,
+    "predictions_artifact_emitted": false,
+    "prostt5_metrics_artifact_emitted": false,
+    "large_model_training_performed": false,
+    "label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false,
+    "input_leakage_contract": "no EC/name/prose/expert-note fields; no mechanism text; no production scores or thresholds; backend probing used model repository metadata and local cache state only",
+    "origin_main_reference": "8e69bf002097d5cf55521a13764e096908d8e0af",
+    "origin_main_reference_contains_8e69bf0_or_later": true
+  },
+  "environment": {
+    "platform": "macOS-15.5-arm64-arm-64bit",
+    "python_packages": {
+      "torch": "2.7.1",
+      "transformers": "4.53.2",
+      "sentencepiece": "0.2.0",
+      "huggingface_hub": "0.33.4",
+      "accelerate": "MISSING",
+      "numpy": "2.3.1",
+      "scikit_learn": "1.7.0"
+    },
+    "accelerators": {
+      "cuda_available": false,
+      "mps_built": true,
+      "mps_available": false,
+      "selected_backend_if_model_were_cached": "cpu"
+    },
+    "filesystem_probe": {
+      "probed_mount": "/System/Volumes/Data",
+      "available_1024_blocks": 20237276,
+      "available_bytes": 20722970624,
+      "df_command": "df -k /private/tmp . ~/.cache 2>/dev/null"
+    }
+  },
+  "model_repository_probe": {
+    "queried_with": "huggingface_hub.model_info(..., files_metadata=True)",
+    "models": [
+      {
+        "model_name": "Rostlab/ProstT5",
+        "sha": "d7d097d5bf9a993ab8f68488b4681d6ca70db9e5",
+        "last_modified": "2023-11-16T08:51:30+00:00",
+        "file_count": 10,
+        "total_size_bytes": 11276207312,
+        "largest_weight_file": {
+          "path": "pytorch_model.bin",
+          "size_bytes": 11275478387
+        },
+        "cache_status": "not_cached_in_probed_paths",
+        "tractability_status": "blocked",
+        "blockers": [
+          "canonical full-precision ProstT5 weights are not present in the bounded local Hugging Face caches",
+          "CPU-only backend would be required because CUDA and MPS are unavailable",
+          "downloading an uncached 11.28 GB T5-XL weight file and embedding 696 selected structures is outside this bounded run"
+        ]
+      },
+      {
+        "model_name": "Rostlab/ProstT5_fp16",
+        "sha": "07a6547d51de603f1be84fd9f2db4680ee535a86",
+        "last_modified": "2023-08-07T14:17:31+00:00",
+        "file_count": 9,
+        "total_size_bytes": 5638121374,
+        "largest_weight_file": {
+          "path": "pytorch_model.bin",
+          "size_bytes": 5637876077
+        },
+        "cache_status": "not_cached_in_probed_paths",
+        "tractability_status": "blocked",
+        "blockers": [
+          "fp16 ProstT5 weights are not present in the bounded local Hugging Face caches",
+          "CPU-only backend would be required because CUDA and MPS are unavailable",
+          "download was not attempted because this run is scoped to a bounded local cache decision and track-local artifacts"
+        ]
+      }
+    ]
+  },
+  "cache_probe": {
+    "probed_cache_paths": [
+      "/Users/vivekvardhanarrabelli/.cache/huggingface/hub",
+      "/private/tmp/catalytic-earth-hf-cache/hub"
+    ],
+    "local_files_only": true,
+    "results": [
+      {
+        "model_name": "Rostlab/ProstT5",
+        "cache_path": "/Users/vivekvardhanarrabelli/.cache/huggingface/hub",
+        "status": "unavailable",
+        "failure_type": "LocalEntryNotFoundError"
+      },
+      {
+        "model_name": "Rostlab/ProstT5",
+        "cache_path": "/private/tmp/catalytic-earth-hf-cache/hub",
+        "status": "unavailable",
+        "failure_type": "LocalEntryNotFoundError"
+      },
+      {
+        "model_name": "Rostlab/ProstT5_fp16",
+        "cache_path": "/Users/vivekvardhanarrabelli/.cache/huggingface/hub",
+        "status": "unavailable",
+        "failure_type": "LocalEntryNotFoundError"
+      },
+      {
+        "model_name": "Rostlab/ProstT5_fp16",
+        "cache_path": "/private/tmp/catalytic-earth-hf-cache/hub",
+        "status": "unavailable",
+        "failure_type": "LocalEntryNotFoundError"
+      }
+    ],
+    "existing_related_cache_context": [
+      {
+        "model_name": "facebook/esm2_t30_150M_UR50D",
+        "cache_path": "/private/tmp/catalytic-earth-hf-cache/hub/models--facebook--esm2_t30_150M_UR50D",
+        "status": "cached_but_not_a_prostt5_backend"
+      }
+    ]
+  },
+  "exact_commands": {
+    "package_versions": "python - <<'PY'\nimport importlib.metadata as md\nmods=['torch','transformers','sentencepiece','huggingface_hub','accelerate','numpy','sklearn']\nfor m in mods:\n    try:\n        name='scikit-learn' if m=='sklearn' else m\n        print(f'{m}={md.version(name)}')\n    except Exception:\n        print(f'{m}=MISSING')\nPY",
+    "accelerator_probe": "python - <<'PY'\nimport torch\nprint('torch', torch.__version__)\nprint('mps_built', torch.backends.mps.is_built())\nprint('mps_available', torch.backends.mps.is_available())\nprint('cuda_available', torch.cuda.is_available())\nPY",
+    "repository_metadata_probe": "python - <<'PY'\nfrom huggingface_hub import model_info\nmodels=['Rostlab/ProstT5','Rostlab/ProstT5_fp16','facebook/esm2_t30_150M_UR50D']\nfor model in models:\n    info=model_info(model, files_metadata=True)\n    print(model, info.sha, info.last_modified)\n    total=0\n    for sibling in info.siblings:\n        size=getattr(sibling,'size',None) or 0\n        total += size\n        print(size, sibling.rfilename)\n    print('total_size', total)\nPY",
+    "local_cache_probe": "python - <<'PY'\nfrom huggingface_hub import snapshot_download\nfrom pathlib import Path\nmodels=['Rostlab/ProstT5','Rostlab/ProstT5_fp16']\ncaches=[Path.home()/'.cache'/'huggingface'/'hub', Path('/private/tmp/catalytic-earth-hf-cache/hub')]\nfor model in models:\n    for cache in caches:\n        print(f'## model={model} cache={cache}')\n        try:\n            print(snapshot_download(model, cache_dir=str(cache), local_files_only=True))\n        except Exception as e:\n            print(type(e).__name__, str(e).replace('\\n',' ')[:800])\nPY",
+    "not_run_download_command_if_explicitly_authorized_later": "HF_HOME=/private/tmp/catalytic-earth-prostt5-hf-cache python - <<'PY'\nfrom huggingface_hub import snapshot_download\nsnapshot_download('Rostlab/ProstT5_fp16', local_files_only=False, allow_patterns=['config.json','generation_config.json','spiece.model','tokenizer_config.json','special_tokens_map.json','added_tokens.json','pytorch_model.bin'])\nPY"
+  },
+  "shared_baseline_context": {
+    "fingerprint_audit": {
+      "artifact": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json",
+      "sha256": "cf9d5d3b17fa95d51374d244497ceba52414e60b8bdaefa12304ba3372cab734"
+    },
+    "eval_contract": {
+      "artifact": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+      "sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50"
+    },
+    "sequence_manifest": {
+      "artifact": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+      "sha256": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b"
+    },
+    "split_assignment": {
+      "artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+      "sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425"
+    },
+    "sequence_nn_metrics": {
+      "artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+      "sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26"
+    }
+  },
+  "completed_structural_alphabet_baseline": {
+    "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+    "metrics_artifact": "artifacts/representation_tracks/prostt5_3di/current702_3di_nn_smoke_metrics_20260525.json",
+    "metrics_sha256": "f735fbf9e91743c23dc295fafc08432b89f61267f51db9f075b8bf88d11ae208",
+    "predictions_artifact": "artifacts/representation_tracks/prostt5_3di/current702_3di_nn_smoke_predictions_20260525.jsonl",
+    "comparison_artifact": "artifacts/representation_tracks/prostt5_3di/current702_3di_vs_sequence_nn_readiness_20260525.json",
+    "comparison_sha256": "3766a7633ecb8c64ec5ff500dc80e1fc3fe1078d23fd8b4ec7f7234ed2008bc3",
+    "headline_metrics": {
+      "prediction_count": 139,
+      "primary_supervised_accuracy": 0.1778,
+      "primary_macro_f1": 0.3133,
+      "exact_label_accuracy_all": 0.5899,
+      "exact_label_accuracy_in_scope": 0.1702,
+      "out_of_scope_false_positive_rate_no_threshold": 0.1957
+    },
+    "sequence_nn_delta": {
+      "prediction_count": -1,
+      "primary_supervised_accuracy": 0.0222,
+      "primary_macro_f1": 0.0759,
+      "exact_label_accuracy_all": 0.0613,
+      "exact_label_accuracy_in_scope": 0.0244,
+      "out_of_scope_false_positive_rate_no_threshold": -0.076
+    }
+  },
+  "unavailable_comparators": {
+    "prostt5_full_current702": "blocked_by_uncached_weights_and_cpu_only_backend",
+    "prot_t5_full_current702": "not_available_for_this_track; no current702 ProtT5 artifact found or computed",
+    "esm2_150m_full_current702": "not_available_for_this_track; only prior external-source sample cache/artifacts were observed, not a current702 frozen-split comparator"
+  },
+  "terminal_blocker": {
+    "blocker_id": "prostt5_full_current702_backend_unavailable_bounded_local_cache",
+    "summary": "Full ProstT5 frozen embeddings were not computed because neither canonical nor fp16 ProstT5 weights are cached in the bounded local cache paths, and the available runtime is CPU-only.",
+    "decision": "Do not emit ProstT5 embeddings, predictions, or metrics from this run. Keep the Foldseek 3Di token nearest-neighbor smoke result as the completed structural alphabet baseline.",
+    "next_unblock_requires": [
+      "explicit approval for a large Hugging Face model cache under a disposable path",
+      "preflight free-space and cleanup budget for at least the 5.64 GB fp16 ProstT5 snapshot or 11.28 GB canonical snapshot",
+      "an accelerator-capable runtime or an accepted long CPU embedding window",
+      "a no-commit guarantee for downloaded model weights"
+    ]
+  }
+}
