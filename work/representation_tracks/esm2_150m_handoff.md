@@ -95,3 +95,10 @@ PYTHONPATH=src python -m unittest tests.test_representation_baseline
 ```
 
 Focused jq lineage checks also passed for model id, pooling mode, no forbidden inputs, eval contract SHA, sequence-NN metrics SHA, split artifact, and OOS diagnostics status.
+
+Validation refresh:
+
+- Run timestamp: `2026-05-25T18:15:50Z`
+- Added validation artifact: `artifacts/representation_tracks/esm2_150m/esm2_150m_validation_current702_20260525_run2.json`
+- Re-checked JSON/JSONL parse validity, backend-recorded output hashes, ESM-2 150M lineage fields, required metrics fields, canary rows, underpowered-cell flags, `PYTHONPATH=src python -m unittest tests.test_representation_baseline`, and `PYTHONPATH=src python -m catalytic_earth.cli validate`.
+- This refresh did not regenerate embeddings or predictions and did not mix active-site pooling into the whole-sequence evidence budget.
