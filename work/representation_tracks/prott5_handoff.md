@@ -65,7 +65,7 @@ Underpowered cells are flagged in the artifact. The heme heldout cell has only 4
 - `jq -e` validation passed for the H5 key coverage artifact.
 - JSONL parsing validation passed for 132 prediction rows.
 - `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
-- Local branch commit with these updates: `92523d25552f7d62504a24d678ccea5d53c09bb8`.
+- Push attempt commit before this blocker note: `92523d25552f7d62504a24d678ccea5d53c09bb8`.
 - Push is blocked in this environment: `git push origin 92523d25552f7d62504a24d678ccea5d53c09bb8:refs/heads/research/representation-prott5` fails with `fatal: could not read Username for 'https://github.com': Device not configured`; `gh auth status` reports an invalid token. Remote branch remains `c381239d91b912549e25a0514f6d5c98b09b3c90`.
 
 ## Next Step
