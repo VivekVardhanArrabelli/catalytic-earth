@@ -50,6 +50,64 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-25T11:16Z Mechanism Prediction OOS/Diversity Contract Frozen
+
+This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`, and
+fast-forward checked `origin/main` before edits. Scope stayed limited to the
+mechanism-prediction evaluation contract: no labels were imported, no
+production fingerprints, ontology, scoring, thresholds, or curated labels were
+edited, and no sequence-NN, PLM embedding, model training, or learned
+representation benchmark result was run.
+
+New evaluation-contract artifact:
+
+```text
+artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json
+```
+
+Contract SHA-256 for future benchmark result artifacts:
+
+```text
+c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50
+```
+
+The artifact freezes the five primary mechanism fingerprints for supervised
+metrics and keeps radical SAM, cobalamin radical rearrangement, and flavin
+monooxygenase as secondary OOD probe fingerprints with explicit probe roles.
+It records SHA-256 digests for the coherence audit, representation baseline
+plan, curated label registry, and mechanism fingerprint registry. It also
+freezes deterministic OOS tiering rules, train-only MMseqs 30% identity / 80%
+coverage diversity reporting, support thresholds, abstention diagnostics,
+canary examples, and active-site pooling evidence-budget rules.
+
+Caveat: the full 470-row out-of-scope tier assignment is explicitly not
+complete. The contract freezes representative tier assignments and all
+secondary probe assignments, then names the next exact task: apply the frozen
+rules to all 470 `label_type=out_of_scope` rows and emit
+`artifacts/v3_mechanism_prediction_oos_tier_assignments_702.json` with
+per-entry tier, trigger, evidence source, and exclusion reason fields before
+interpreting model results. Canary expansion remains marked as needed for that
+same reason.
+
+Future sequence-NN, PLM, or hybrid benchmark result artifacts must cite the
+contract SHA above, stratify OOS abstention by this tier/probe policy, report
+primary-fingerprint diversity bins, flag underpowered cells as
+`qualitative_only`, and report whole-sequence and active-site-pooled evidence
+budgets separately. Macro-F1 alone is not an interpretable win.
+
+Verification passed:
+
+```text
+PYTHONPATH=src python -m catalytic_earth.cli validate
+PYTHONPATH=src python -m unittest tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_mechanism_prediction_eval_contract_freezes_oos_diversity_policy
+PYTHONPATH=src python -m unittest discover -s tests
+git diff --check
+jq empty artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json
+```
+
+Full unit discovery passed 934 tests. The new artifact is 48,676 bytes, so the
+artifact-admission guard was not needed for a large-file check.
+
 ### 2026-05-25T09:49Z Current702 Sequence Coverage Repaired
 
 This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`, and

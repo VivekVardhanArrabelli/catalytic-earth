@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 314
-- Measured elapsed time: 9393.4 minutes (156.56 hours)
+- Entries: 315
+- Measured elapsed time: 9404.0 minutes (156.73 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -18,7 +18,7 @@ Generated from `work/progress_log.jsonl`.
 - post-infra-science: 1804.7 measured minutes (30.08 hours)
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
-- v3: 2378.0 measured minutes (39.63 hours)
+- v3: 2388.6 measured minutes (39.81 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -27,21 +27,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3383
-- Evidence references logged: 2792
+- Artifact references logged: 3387
+- Evidence references logged: 2797
 
 ## Recent Entries
-
-### 2026-05-24T18:52:17.683600+00:00 - ops
-
-- Task: Post-status validation for M-CSA review support surface
-- Time mode: measured
-- Measured minutes: 4.833
-- Started: 2026-05-24T18:47:10Z
-- Ended: 2026-05-24T18:52:00Z
-- Artifacts: work/progress_log.jsonl, work/status.md, work/handoff.md
-- Evidence: post-status full 924-test unit discovery passed, CLI validate passed with 695 labels and 8 fingerprints, compileall JSON git diff and registry fingerprint scoring guards passed, targeted MMseqs test passed when rerun after an intermittent full-suite failure
-- Notes: Recorded after regenerating status and rerunning full discovery; M-CSA support artifacts remain review-only.
 
 ### 2026-05-24T18:53:06.309748+00:00 - v3
 
@@ -119,6 +108,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_sequence_coverage_repair_current702_20260525.json, artifacts/v3_sequence_manifest_current702_repaired_20260525.json, artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta, artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json, artifacts/v3_representation_baseline_sequence_coverage_addendum_20260525.json, README.md, docs/label_factory.md, work/handoff.md
 - Evidence: resolved 20 holdout missing sequence rows plus 4 non-evaluated current-label manifest gaps, current-label sequence coverage 702 of 702, holdout evaluated sequence coverage 698 of 698, missing sequence count 0, max train-test identity 0.284 target <=0.30 achieved, full unit discovery passed 933 tests, CLI validate and jq and git diff checks passed
 - Notes: No label import, registry edit, fingerprint edit, ontology edit, scoring or threshold change, model benchmark, artifact removal, migration, upload, history rewrite, or removal_allowed=true action occurred; temporary admission guard blocked only pre-existing large geometry artifacts while new sequence files were below the 5 MB threshold.
+
+### 2026-05-25T11:17:39.450858+00:00 - v3
+
+- Task: Mechanism prediction OOS/diversity eval contract freeze
+- Time mode: measured
+- Measured minutes: 10.6
+- Started: 2026-05-25T11:06:53Z
+- Ended: 2026-05-25T11:17:29Z
+- Artifacts: artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json, README.md, docs/label_factory.md, work/handoff.md
+- Evidence: contract freezes five primary fingerprints and three secondary OOD probes, source digests recorded for audit plan labels and fingerprints, partial OOS tier assignment status is explicit, canary expansion needed is explicit, full unittest discovery passed 934 tests
+- Notes: No label import registry edit fingerprint edit ontology edit scoring change threshold change model training PLM embedding sequence-NN benchmark artifact removal migration upload history rewrite or removal_allowed=true action occurred; pre-existing root CIF files left untouched.
 
 ## Expectation Updates
 
@@ -367,6 +367,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-24T18:49:21.274042+00:00: Do not make M-CSA review decisions while Vivek is away; next safe work should only maintain review-support consistency or documentation until human review happens.
 - 2026-05-24T18:53:06.309748+00:00: Next no-human run should only maintain review-support consistency or leakage-safe manifests; human review starts with clean10.
 - 2026-05-25T09:13:01Z: Next benchmark work should resolve the 20 missing sequence rows before any representation training or learned-superiority claim.
+- 2026-05-25T11:17:39.450858+00:00: Future sequence-NN or PLM benchmark results must cite the contract SHA and include OOS tier plus diversity reports before interpretation.
 
 ## Scope Adjustments
 

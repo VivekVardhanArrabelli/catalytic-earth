@@ -161,6 +161,15 @@ clusters for bootstrap comparisons, treat EC/family prior as leakage-aware
 reference only, and require both mechanism-prediction improvement and calibrated
 tail/hard-negative abstention before claiming a win.
 
+`artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json`
+freezes the mechanism-prediction OOS/diversity evaluation contract for the 702
+label baseline. Sequence-NN, PLM, or hybrid benchmark result artifacts must
+cite that contract artifact's exact SHA-256, keep the five primary fingerprints
+separate from the three secondary OOD probe fingerprints, report train-only
+MMseqs 30% identity / 80% coverage diversity bins for every primary
+fingerprint, flag below-threshold metric cells as `qualitative_only`, and
+report whole-sequence and active-site-pooled evidence budgets separately.
+
 `build-family-propagation-guardrails` audits where family propagation is blocked
 across UniRef/CATH/InterPro-style evidence or the current local proxies
 available in this repo: M-CSA mechanism text, ligand/cofactor context, and

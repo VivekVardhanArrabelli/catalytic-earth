@@ -46,6 +46,9 @@ from .generalization import (
     project_foldseek_tm_score_split_repair,
 )
 from .learned_retrieval import build_learned_retrieval_manifest
+from .mechanism_prediction_contract import (
+    build_mechanism_prediction_oos_and_diversity_eval_contract,
+)
 from .representation_baseline import build_representation_baseline_shootout_plan
 from .labels import (
     analyze_cofactor_abstention_policy,
@@ -9491,6 +9494,30 @@ def cmd_build_representation_baseline_shootout_plan(args: argparse.Namespace) ->
     print(
         "Wrote representation baseline shootout plan to "
         f"{args.out} ({plan['metadata']['current_label_registry_count']} labels)"
+    )
+    return 0
+
+
+def cmd_build_mechanism_prediction_oos_and_diversity_eval_contract(
+    args: argparse.Namespace,
+) -> int:
+    coherence_audit = read_json_object(Path(args.coherence_audit))
+    source_artifact_paths = [
+        Path(args.coherence_audit),
+        Path(args.representation_plan),
+        Path(args.labels),
+        Path(args.fingerprints),
+    ]
+    contract = build_mechanism_prediction_oos_and_diversity_eval_contract(
+        labels=load_labels(Path(args.labels)),
+        fingerprints=load_fingerprints(Path(args.fingerprints)),
+        coherence_audit=coherence_audit,
+        source_artifact_paths=source_artifact_paths,
+    )
+    write_json(Path(args.out), contract)
+    print(
+        "Wrote mechanism prediction OOS/diversity eval contract to "
+        f"{args.out} ({contract['baseline_label_count']} labels)"
     )
     return 0
 
@@ -19721,6 +19748,37 @@ def build_parser() -> argparse.ArgumentParser:
     )
     representation_baseline.set_defaults(
         func=cmd_build_representation_baseline_shootout_plan
+    )
+
+    mechanism_prediction_contract = subparsers.add_parser(
+        "build-mechanism-prediction-oos-diversity-eval-contract",
+        help="freeze mechanism prediction OOS and diversity evaluation policy",
+    )
+    mechanism_prediction_contract.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    mechanism_prediction_contract.add_argument(
+        "--fingerprints",
+        default="data/registries/mechanism_fingerprints.json",
+    )
+    mechanism_prediction_contract.add_argument(
+        "--coherence-audit",
+        default="artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json",
+    )
+    mechanism_prediction_contract.add_argument(
+        "--representation-plan",
+        default="artifacts/v3_representation_baseline_shootout_plan_20260525.json",
+    )
+    mechanism_prediction_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json"
+        ),
+    )
+    mechanism_prediction_contract.set_defaults(
+        func=cmd_build_mechanism_prediction_oos_and_diversity_eval_contract
     )
 
     sequence_failure_audit = subparsers.add_parser(

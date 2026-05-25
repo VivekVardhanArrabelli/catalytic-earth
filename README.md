@@ -167,6 +167,13 @@ The repository currently contains:
     questions are resolved. Benchmark wins must improve mechanism prediction
     against baselines while maintaining calibrated abstention on tail and hard
     negatives.
+    `artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json`
+    now freezes the mechanism-prediction OOS/diversity evaluation contract
+    before any sequence-NN or PLM result is interpreted. Future benchmark
+    result artifacts must record this contract artifact's SHA-256, stratify
+    OOS abstention by frozen tier/probe policy, report primary-fingerprint
+    diversity bins, flag underpowered cells, and keep active-site pooling
+    ablations separate from whole-sequence evidence budgets.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives

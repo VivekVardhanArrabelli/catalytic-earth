@@ -16493,6 +16493,148 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             audit["label_registry_digest"],
         )
 
+    def test_mechanism_prediction_eval_contract_freezes_oos_diversity_policy(self) -> None:
+        contract = _load_json(
+            ARTIFACTS
+            / "v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json"
+        )
+
+        self.assertEqual(
+            contract["schema_version"],
+            "mechanism_prediction_oos_and_diversity_eval_contract.v1",
+        )
+        self.assertEqual(contract["baseline_label_count"], 702)
+        self.assertEqual(
+            contract["mechanism_fingerprint_version"], "label_factory_v1_8fp"
+        )
+        self.assertFalse(
+            contract["contract_scope"]["model_training_or_benchmark_results_created"]
+        )
+
+        self.assertEqual(
+            contract["primary_fingerprints"],
+            [
+                "ser_his_acid_hydrolase",
+                "metal_dependent_hydrolase",
+                "plp_dependent_enzyme",
+                "flavin_dehydrogenase_reductase",
+                "heme_peroxidase_oxidase",
+            ],
+        )
+        secondary = {
+            row["fingerprint_id"]: row
+            for row in contract["secondary_ood_probe_fingerprints"]
+        }
+        self.assertEqual(
+            set(secondary),
+            {
+                "radical_sam_enzyme",
+                "cobalamin_radical_rearrangement",
+                "flavin_monooxygenase",
+            },
+        )
+        self.assertEqual(
+            secondary["radical_sam_enzyme"]["probe_role"],
+            "far_oos_tail_diagnostic",
+        )
+        self.assertEqual(
+            secondary["cobalamin_radical_rearrangement"]["oos_tier"],
+            "boundary_oos",
+        )
+        self.assertEqual(
+            secondary["flavin_monooxygenase"]["primary_metric_status"],
+            "excluded_from_primary_supervised_metrics",
+        )
+
+        required_sources = [
+            "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json",
+            "artifacts/v3_representation_baseline_shootout_plan_20260525.json",
+            "data/registries/curated_mechanism_labels.json",
+            "data/registries/mechanism_fingerprints.json",
+        ]
+        for source in required_sources:
+            self.assertIn(source, contract["source_artifacts"])
+            source_path = ROOT / source
+            self.assertEqual(
+                hashlib.sha256(source_path.read_bytes()).hexdigest(),
+                contract["source_artifacts"][source]["sha256"],
+            )
+
+        tiering = contract["oos_tiering_policy"]["tier_definitions"]
+        self.assertIn("no cofactor overlap", tiering["far_oos"]["deterministic_rule"])
+        self.assertIn(
+            "shares a cofactor or metal",
+            tiering["near_oos"]["deterministic_rule"],
+        )
+        self.assertEqual(
+            tiering["boundary_oos"]["criteria_type"], "curated_list"
+        )
+        self.assertEqual(tiering["unknown_oos"]["criteria_type"], "fail_closed")
+
+        assignment = contract["frozen_oos_tier_assignments_summary"]
+        self.assertFalse(assignment["complete_oos_assignment"])
+        self.assertFalse(
+            assignment["partial_assignment_status"]["full_470_out_of_scope_assigned"]
+        )
+        self.assertEqual(
+            assignment["partial_representative_assignment_counts"][
+                "secondary_probe_seed_rows_assigned_in_this_contract"
+            ],
+            6,
+        )
+        self.assertIn(
+            "artifacts/v3_mechanism_prediction_oos_tier_assignments_702.json",
+            assignment["partial_assignment_status"]["next_exact_task"],
+        )
+
+        diversity = contract["diversity_stratified_accuracy_policy"]
+        self.assertEqual(
+            diversity["default_subfamily_clustering"],
+            {
+                "applies_where": "amino-acid sequences exist",
+                "cluster_source_rule": (
+                    "Clusters must be generated from train-only data for any split "
+                    "that uses cluster-derived thresholds or bins"
+                ),
+                "coverage": 0.8,
+                "method": "MMseqs",
+                "sequence_identity": 0.3,
+            },
+        )
+        self.assertIn("macro-F1 is not sufficient", diversity["headline_rule"])
+        self.assertEqual(
+            contract["support_threshold_policy"]["quantitative_reporting_thresholds"][
+                "accuracy_or_recall_cell_min_n"
+            ],
+            30,
+        )
+        self.assertEqual(
+            contract["support_threshold_policy"]["quantitative_reporting_thresholds"][
+                "ece_or_calibration_cell_min_n"
+            ],
+            50,
+        )
+
+        canaries = contract["canary_examples"]
+        self.assertTrue(canaries["canary_expansion_needed"])
+        self.assertEqual(len(canaries["examples"]), 42)
+        self.assertEqual(
+            canaries["primary_canary_count_by_fingerprint"][
+                "ser_his_acid_hydrolase"
+            ],
+            5,
+        )
+        self.assertEqual(
+            contract["active_site_pooling_contract"][
+                "primary_benchmark_pooling_mode"
+            ],
+            "whole_sequence",
+        )
+        self.assertEqual(
+            contract["next_allowed_benchmark_step"]["status"],
+            "contract_frozen_stop_before_model_results",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
