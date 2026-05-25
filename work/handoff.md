@@ -50,6 +50,34 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-24T21:13Z Clean10 Expert Decisions Recorded
+
+Vivek relayed expert review decisions for the clean-10 M-CSA AI-visual packet.
+The decision artifact is:
+
+```text
+artifacts/v3_mcsa_ai_visual_clean10_vivek_expert_decision_batch_20260524.json
+```
+
+Decision counts: seven `accepted` for the current `metal_dependent_hydrolase`
+target (`m_csa:710`, `m_csa:791`, `m_csa:626`, `m_csa:720`, `m_csa:596`,
+`m_csa:668`, `m_csa:838`), two `route_future_family` rows (`m_csa:954`,
+`m_csa:955`) routed to the existing terpene/isoprenoid carbocation-cyclization
+future-family/out-of-scope lane, and one `needs_more_evidence` row
+(`m_csa:661`) held for an FGly sulfatase / arylsulfatase sub-family decision.
+
+Pre-commit caveats were checked. `m_csa:838` has `NI` in the selected crystal
+structure, but current evidence artifacts classify expected, local, and
+structure cofactor families as `metal_ion`, with no counterevidence; the expert
+note records Ni as a divalent metal surrogate. `m_csa:954` and `m_csa:955`
+match existing out-of-scope terpene carbocation/cyclization precedent in the
+registry and artifacts; no production fingerprint or ontology edit was made.
+
+This is a decision-recording artifact only. No labels were imported, no import
+preview was run, and no registry, fingerprint, threshold, or scoring state was
+changed. Next exact action, if Vivek approves: build dedicated gate/import
+preview artifacts for only the seven accepted rows.
+
 ### 2026-05-24T18:13Z Run Target Selected: M-CSA Review Workqueue Surface
 
 STARTED_AT for this run: `2026-05-24T18:05:54Z`. Automation memory was checked

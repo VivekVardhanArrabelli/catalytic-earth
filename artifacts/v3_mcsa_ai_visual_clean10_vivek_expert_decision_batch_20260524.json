@@ -1,0 +1,543 @@
+{
+  "metadata": {
+    "artifact_id": "v3_mcsa_ai_visual_clean10_vivek_expert_decision_batch_20260524",
+    "canonical_label_count_invariant": 695,
+    "created_at": "2026-05-25T02:12:47.630540Z",
+    "curated_registry_edited": false,
+    "decision_counts": {
+      "accepted": 7,
+      "needs_more_evidence": 1,
+      "route_future_family": 2
+    },
+    "fingerprint_registry_edited": false,
+    "import_preview_run": false,
+    "notes": [
+      "Seven rows are human/expert accepted for current target, pending later label-factory gates/import preview.",
+      "Two rows are routed to the existing terpene/isoprenoid carbocation cyclization future-family/out-of-scope lane.",
+      "One row remains held for FGly sulfatase sub-family/schema decision.",
+      "No labels are imported by this artifact."
+    ],
+    "production_scoring_changed": false,
+    "ready_for_label_import": false,
+    "row_count": 10,
+    "schema_version": "mcsa_ai_visual_clean10_expert_decision_batch.v1",
+    "source_packet": "artifacts/v3_mcsa_ai_visual_clean10_detailed_expert_review_packet_20260524.json"
+  },
+  "precommit_verifications": {
+    "m_csa:838": {
+      "conclusion": "No cofactor-family mismatch at current scorer family level. Preserve expert note that Ni is a crystal metal surrogate for a biological divalent metal.",
+      "finding": "Current review-debt/evidence-gap artifacts list expected_cofactor_families, local_cofactor_families, and structure_cofactor_families as metal_ion; structure_ligand_codes include NI and PO4; matching_structure_ligands contains NI as family metal_ion; counterevidence_reasons is empty.",
+      "question": "Confirm Ni-vs-Zn does not produce a cofactor-family mismatch."
+    },
+    "m_csa:954_and_m_csa:955": {
+      "conclusion": "Use existing future-family/out-of-scope terpene carbocation cyclization route. This records no new production fingerprint or ontology edit.",
+      "finding": "Existing curated/out-of-scope precedents include pentalenene synthase, squalene-hopene cyclase, bornyl diphosphate synthase, aristolochene synthase, trichodiene synthase, epi-isozizaene synthase, and 5-epi-aristolochene synthase with rationales describing terpene carbocation cyclization outside current hydrolase/cofactor seed fingerprints.",
+      "question": "Confirm terpene/isoprenoid route has precedent."
+    }
+  },
+  "review_rows": [
+    {
+      "decision": "accepted",
+      "ec": "3.5.4.1",
+      "entry_id": "m_csa:710",
+      "entry_name": "cytosine deaminase (bacterial)",
+      "expert_note": "Accepted as metal_dependent_hydrolase. Amidohydrolase superfamily cytosine deaminase; Fe-activated water attacks C4 of cytosine. Fe is present and His67/Glu221 geometry is consistent with opposite faces of the substrate.",
+      "heuristic_score": 0.5851,
+      "mechanism_summary": "Glu217 initially deprotonates the Zn bound and then after some structural movements transfers the proton to the N3 nitrogen. The hydroxyl can then attack the C4 carbon and then the amino group accepts a proton from the hydroxyl which initiates the collapse of the tetrahedral intermediate which releases the products: ammonia and uracil.",
+      "metal_hetatms_in_structure": [
+        "FE A/500"
+      ],
+      "nearest_expected_ligand_distance_angstrom": 5.116,
+      "pymol_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_710.pml",
+      "review_guardrail": "This decision artifact records human/expert review intent only; label import requires a later dedicated gate/import-preview step.",
+      "reviewed_at": "2026-05-24",
+      "reviewer": "vivek_relayed_expert_review",
+      "scored_focus_pair": {
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain": "A",
+          "mcsa_roles": [
+            "metal ligand"
+          ],
+          "pos": 67,
+          "residue_node_id": "m_csa:710:residue:3",
+          "resn": "HIS"
+        },
+        "measured_distance_angstrom": 15.358,
+        "right": {
+          "atom_name": "CA",
+          "chain": "A",
+          "mcsa_roles": [
+            "proton acceptor",
+            "proton donor"
+          ],
+          "pos": 221,
+          "residue_node_id": "m_csa:710:residue:5",
+          "resn": "GLU"
+        }
+      },
+      "scored_residue_count": 6,
+      "selected_pdb": "1RA0",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_label_action": "accept_current_target_after_later_gates",
+      "top1_fingerprint": "metal_dependent_hydrolase",
+      "top1_score": 0.5851
+    },
+    {
+      "decision": "accepted",
+      "ec": "3.1.21.1",
+      "entry_id": "m_csa:791",
+      "entry_name": "colicin-E9",
+      "expert_note": "Accepted as metal_dependent_hydrolase. HNH-family Zn endonuclease; Zn-activated water hydrolyzes phosphodiester. Arg96/Arg5 flank DNA substrate; long C-alpha distance is structural rather than mechanistic counterevidence.",
+      "heuristic_score": 0.5899,
+      "mechanism_summary": "His 103 acts as a general base by abstracting a proton from a water molecule, activating it for nucleophilic attack on the scissile phosphorus atom.\r\n This leads to a penta-covalent intermediate being formed. The Zn ion activates a water molecule so it will donate a proton to the 3' hydroxyl leaving group. The intermediate then collapses forming the products.",
+      "metal_hetatms_in_structure": [
+        "ZN B/301"
+      ],
+      "nearest_expected_ligand_distance_angstrom": 3.668,
+      "pymol_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_791.pml",
+      "review_guardrail": "This decision artifact records human/expert review intent only; label import requires a later dedicated gate/import-preview step.",
+      "reviewed_at": "2026-05-24",
+      "reviewer": "vivek_relayed_expert_review",
+      "scored_focus_pair": {
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain": "B",
+          "mcsa_roles": [
+            "electrostatic stabiliser"
+          ],
+          "pos": 96,
+          "residue_node_id": "m_csa:791:residue:4",
+          "resn": "ARG"
+        },
+        "measured_distance_angstrom": 19.64,
+        "right": {
+          "atom_name": "CA",
+          "chain": "B",
+          "mcsa_roles": [
+            "electrostatic stabiliser"
+          ],
+          "pos": 5,
+          "residue_node_id": "m_csa:791:residue:7",
+          "resn": "ARG"
+        }
+      },
+      "scored_residue_count": 7,
+      "selected_pdb": "1FR2",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_label_action": "accept_current_target_after_later_gates",
+      "top1_fingerprint": "metal_dependent_hydrolase",
+      "top1_score": 0.5899
+    },
+    {
+      "decision": "accepted",
+      "ec": "3.4.24.69",
+      "entry_id": "m_csa:626",
+      "entry_name": "bontoxilysin",
+      "expert_note": "Accepted as metal_dependent_hydrolase. Canonical HExxH zincin metalloprotease botulinum neurotoxin; Zn present. His233 is metal ligand and Arg369 is substrate-binding stabilizer on the other side of the active site.",
+      "heuristic_score": 0.5901,
+      "mechanism_summary": "Glu231 is abase which deprotonates water and in conjugation with polarization by Zn2+ activates water so that it can act as a nucleophile and attack the carbonyl of the peptide bond. Arg369 and Zn2+ stabilise the transition state by interacting with the negatively charged carbonyl oxygen atom of the tetrahedral intermediate. The collapse of the oxyanion results in the cleavage of the peptide bond and the kinetically favoured products of this reaction are the carboxyanion and the amine cation, thus in a final step the N-terminal amine deprotonates the C-terminal carboxyacid.",
+      "metal_hetatms_in_structure": [
+        "ZN A/1291"
+      ],
+      "nearest_expected_ligand_distance_angstrom": 5.008,
+      "pymol_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_626.pml",
+      "review_guardrail": "This decision artifact records human/expert review intent only; label import requires a later dedicated gate/import-preview step.",
+      "reviewed_at": "2026-05-24",
+      "reviewer": "vivek_relayed_expert_review",
+      "scored_focus_pair": {
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain": "A",
+          "mcsa_roles": [
+            "metal ligand"
+          ],
+          "pos": 233,
+          "residue_node_id": "m_csa:626:residue:2",
+          "resn": "HIS"
+        },
+        "measured_distance_angstrom": 17.957,
+        "right": {
+          "atom_name": "CA",
+          "chain": "A",
+          "mcsa_roles": [
+            "electrostatic stabiliser"
+          ],
+          "pos": 369,
+          "residue_node_id": "m_csa:626:residue:5",
+          "resn": "ARG"
+        }
+      },
+      "scored_residue_count": 5,
+      "selected_pdb": "1EPW",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_label_action": "accept_current_target_after_later_gates",
+      "top1_fingerprint": "metal_dependent_hydrolase",
+      "top1_score": 0.5901
+    },
+    {
+      "decision": "accepted",
+      "ec": "3.5.2.10",
+      "entry_id": "m_csa:720",
+      "entry_name": "creatininase",
+      "expert_note": "Accepted as metal_dependent_hydrolase. Binuclear Zn amidohydrolase creatininase; two Zn ions present. Glu183/Glu122 reflect binuclear-center and substrate-stabilization roles.",
+      "heuristic_score": 0.5931,
+      "mechanism_summary": "A water molecule bridging the two metal ions is likely to form a hydroxide ion which acts as the nucleophile.  The hydroxide attacks the carbonyl carbon of the creatinine substrate and is then deprotonated by His 178. The tetrahedral intermediate is stabilised by coordination to the two metal ions.  Ring opening occurs simultaneously with the protonation of the amide nitrogen on the intermediate by His 178.",
+      "metal_hetatms_in_structure": [
+        "ZN A/302",
+        "ZN A/301",
+        "ZN B/302",
+        "ZN B/301",
+        "ZN C/302",
+        "ZN C/301",
+        "ZN D/302",
+        "ZN D/301",
+        "ZN E/302",
+        "ZN E/301",
+        "ZN F/302",
+        "ZN F/301"
+      ],
+      "nearest_expected_ligand_distance_angstrom": 3.782,
+      "pymol_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_720.pml",
+      "review_guardrail": "This decision artifact records human/expert review intent only; label import requires a later dedicated gate/import-preview step.",
+      "reviewed_at": "2026-05-24",
+      "reviewer": "vivek_relayed_expert_review",
+      "scored_focus_pair": {
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain": "A",
+          "mcsa_roles": [
+            "metal ligand"
+          ],
+          "pos": 183,
+          "residue_node_id": "m_csa:720:residue:5",
+          "resn": "GLU"
+        },
+        "measured_distance_angstrom": 15.535,
+        "right": {
+          "atom_name": "CA",
+          "chain": "A",
+          "mcsa_roles": [
+            "electrostatic stabiliser"
+          ],
+          "pos": 122,
+          "residue_node_id": "m_csa:720:residue:6",
+          "resn": "GLU"
+        }
+      },
+      "scored_residue_count": 7,
+      "selected_pdb": "1J2U",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_label_action": "accept_current_target_after_later_gates",
+      "top1_fingerprint": "metal_dependent_hydrolase",
+      "top1_score": 0.5931
+    },
+    {
+      "decision": "accepted",
+      "ec": "3.4.24.39",
+      "entry_id": "m_csa:596",
+      "entry_name": "deuterolysin",
+      "expert_note": "Accepted as metal_dependent_hydrolase. Fungal zincin metalloprotease/deuterolysin; Zn present. Asp143 metal ligand and Tyr106 electrostatic stabilizer fit zincin geometry.",
+      "heuristic_score": 0.5936,
+      "mechanism_summary": "Glu 129 and Zn together act to activate a water molecule so that it can act as a nucleophile to attack the peptide substrate. This forms a tetrahedral intermediate, stabilised by proton donation by Tyr 106, which then collapses to release the products.",
+      "metal_hetatms_in_structure": [
+        "ZN A/178"
+      ],
+      "nearest_expected_ligand_distance_angstrom": 4.857,
+      "pymol_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_596.pml",
+      "review_guardrail": "This decision artifact records human/expert review intent only; label import requires a later dedicated gate/import-preview step.",
+      "reviewed_at": "2026-05-24",
+      "reviewer": "vivek_relayed_expert_review",
+      "scored_focus_pair": {
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain": "A",
+          "mcsa_roles": [
+            "metal ligand"
+          ],
+          "pos": 143,
+          "residue_node_id": "m_csa:596:residue:3",
+          "resn": "ASP"
+        },
+        "measured_distance_angstrom": 17.532,
+        "right": {
+          "atom_name": "CA",
+          "chain": "A",
+          "mcsa_roles": [
+            "electrostatic stabiliser"
+          ],
+          "pos": 106,
+          "residue_node_id": "m_csa:596:residue:4",
+          "resn": "TYR"
+        }
+      },
+      "scored_residue_count": 5,
+      "selected_pdb": "1EB6",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_label_action": "accept_current_target_after_later_gates",
+      "top1_fingerprint": "metal_dependent_hydrolase",
+      "top1_score": 0.5936
+    },
+    {
+      "decision": "accepted",
+      "ec": "3.4.24.36",
+      "entry_id": "m_csa:668",
+      "entry_name": "leishmanolysin",
+      "expert_note": "Accepted as metal_dependent_hydrolase. Leishmanolysin/gp63 HExxH zincin; Zn present. His235 metal ligand plus Glu166 HExxH acid/base is canonical zincin chemistry.",
+      "heuristic_score": 0.5942,
+      "mechanism_summary": "Leishmanolysin consists of HEXXH motif which is common in all zinc metalloproteinase, so it was proposed that it shares the same mechanism as the other zinc metalloproteinases such as thermolysin. Glu265, acting in conjunction with Zn2+ ion to deprotonate and activate a water molecule. The activated water molecule acts as a nucleophile to attack the carbonyl of the peptide bond. Zn2+ stabilises the transition state by interacting with the negative charged carbonyl oxygen atom of the tetrahedral intermediate.",
+      "metal_hetatms_in_structure": [
+        "ZN A/578"
+      ],
+      "nearest_expected_ligand_distance_angstrom": 5.921,
+      "pymol_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_668.pml",
+      "review_guardrail": "This decision artifact records human/expert review intent only; label import requires a later dedicated gate/import-preview step.",
+      "reviewed_at": "2026-05-24",
+      "reviewer": "vivek_relayed_expert_review",
+      "scored_focus_pair": {
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain": "A",
+          "mcsa_roles": [
+            "metal ligand"
+          ],
+          "pos": 235,
+          "residue_node_id": "m_csa:668:residue:3",
+          "resn": "HIS"
+        },
+        "measured_distance_angstrom": 10.9,
+        "right": {
+          "atom_name": "CA",
+          "chain": "A",
+          "mcsa_roles": [
+            "proton shuttle (general acid/base)"
+          ],
+          "pos": 166,
+          "residue_node_id": "m_csa:668:residue:4",
+          "resn": "GLU"
+        }
+      },
+      "scored_residue_count": 4,
+      "selected_pdb": "1LML",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_label_action": "accept_current_target_after_later_gates",
+      "top1_fingerprint": "metal_dependent_hydrolase",
+      "top1_score": 0.5942
+    },
+    {
+      "decision": "accepted",
+      "ec": "3.1.-.-",
+      "entry_id": "m_csa:838",
+      "entry_name": "Colicin-E7",
+      "expert_note": "Accepted as metal_dependent_hydrolase with note. HNH endonuclease Colicin-E7; Ni in the crystal is treated as a divalent metal surrogate and current cofactor-family evidence remains metal_ion with no mismatch counterevidence. Active-site geometry is preserved.",
+      "heuristic_score": 0.5956,
+      "mechanism_summary": "A water nucleophile is polarised by His 545, which acts as a general base to generate hydroxide. An non-bridging oxygen of the scissile phosphodiester group coordinates to Zn(II), making the phosphorus more electrophilic.  Hydroxide attacks the scissile phosphodiester bond.  Zn(II) stabilises the charge build-up in the pentacovalent transition state.  The transition state collapses upon protonation of the leaving group oxygen by Arg 447, with Zn(II) stabilising the charge on the terminal 3' hydroxyl cleavage product.",
+      "metal_hetatms_in_structure": [
+        "NI B/580",
+        "NI D/580"
+      ],
+      "nearest_expected_ligand_distance_angstrom": 3.836,
+      "pymol_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_838.pml",
+      "review_guardrail": "This decision artifact records human/expert review intent only; label import requires a later dedicated gate/import-preview step.",
+      "reviewed_at": "2026-05-24",
+      "reviewer": "vivek_relayed_expert_review",
+      "scored_focus_pair": {
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain": "B",
+          "mcsa_roles": [
+            "metal ligand"
+          ],
+          "pos": 131,
+          "residue_node_id": "m_csa:838:residue:1",
+          "resn": "HIS"
+        },
+        "measured_distance_angstrom": 10.544,
+        "right": {
+          "atom_name": "CA",
+          "chain": "B",
+          "mcsa_roles": [
+            "proton acceptor",
+            "proton donor"
+          ],
+          "pos": 103,
+          "residue_node_id": "m_csa:838:residue:5",
+          "resn": "GLU"
+        }
+      },
+      "scored_residue_count": 5,
+      "selected_pdb": "1ZNV",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_label_action": "accept_current_target_after_later_gates",
+      "top1_fingerprint": "metal_dependent_hydrolase",
+      "top1_score": 0.5956
+    },
+    {
+      "decision": "route_future_family",
+      "ec": "3.1.7.9",
+      "entry_id": "m_csa:954",
+      "entry_name": "isotuberculosinol synthase",
+      "expert_note": "Route to future family, not current metal_dependent_hydrolase. Isotuberculosinol synthase is hydrolytic terpene/isoprenoid cyclization chemistry: Tyr-activated water attacks a carbocation intermediate generated by Mg-promoted diphosphate ionization. This follows existing terpene-carbocation out-of-scope precedent rather than metalloprotease/metallophosphatase chemistry.",
+      "heuristic_score": 0.5674,
+      "mechanism_summary": "This mechanism represents formation of the 13R product. the Tyr51 abstracts a proton from the catalytic water, which attacks the C13 position. This initiates an allylic rearrangement and elimination of the phosphate group with concomitant deprotonation of Arg38.",
+      "metal_hetatms_in_structure": [
+        "MG A/301",
+        "MG A/302",
+        "MG B/301",
+        "MG B/302",
+        "MG C/301",
+        "MG C/302",
+        "MG D/301",
+        "MG D/302"
+      ],
+      "nearest_expected_ligand_distance_angstrom": 4.895,
+      "pymol_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_954.pml",
+      "review_guardrail": "This decision artifact records human/expert review intent only; label import requires a later dedicated gate/import-preview step.",
+      "reviewed_at": "2026-05-24",
+      "reviewer": "vivek_relayed_expert_review",
+      "scored_focus_pair": {
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain": "B",
+          "mcsa_roles": [
+            "metal ligand"
+          ],
+          "pos": 34,
+          "residue_node_id": "m_csa:954:residue:1",
+          "resn": "ASP"
+        },
+        "measured_distance_angstrom": 16.976,
+        "right": {
+          "atom_name": "CA",
+          "chain": "B",
+          "mcsa_roles": [
+            "activator",
+            "proton acceptor",
+            "proton donor"
+          ],
+          "pos": 90,
+          "residue_node_id": "m_csa:954:residue:3",
+          "resn": "TYR"
+        }
+      },
+      "scored_residue_count": 4,
+      "selected_pdb": "3WQL",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_label_action": "do_not_accept_current_target_route_future_family",
+      "top1_fingerprint": "metal_dependent_hydrolase",
+      "top1_score": 0.5674
+    },
+    {
+      "decision": "route_future_family",
+      "ec": "3.1.7.8",
+      "entry_id": "m_csa:955",
+      "entry_name": "tuberculosinol synthase",
+      "expert_note": "Route to future family, not current metal_dependent_hydrolase. Tuberculosinol synthase uses the same 3WQL protein/terpene-isoprenoid cyclization logic as m_csa:954; route together with 954.",
+      "heuristic_score": 0.5666,
+      "mechanism_summary": "This mechanism proposal represents the primary product of this enzyme. Tyr51 abstracts a proton from the catalytic water, which attacks the C15 position and eliminates the diphosphate group.",
+      "metal_hetatms_in_structure": [
+        "MG A/301",
+        "MG A/302",
+        "MG B/301",
+        "MG B/302",
+        "MG C/301",
+        "MG C/302",
+        "MG D/301",
+        "MG D/302"
+      ],
+      "nearest_expected_ligand_distance_angstrom": 4.895,
+      "pymol_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_955.pml",
+      "review_guardrail": "This decision artifact records human/expert review intent only; label import requires a later dedicated gate/import-preview step.",
+      "reviewed_at": "2026-05-24",
+      "reviewer": "vivek_relayed_expert_review",
+      "scored_focus_pair": {
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain": "B",
+          "mcsa_roles": [
+            "proton acceptor",
+            "proton donor"
+          ],
+          "pos": 51,
+          "residue_node_id": "m_csa:955:residue:1",
+          "resn": "TYR"
+        },
+        "measured_distance_angstrom": 13.995,
+        "right": {
+          "atom_name": "CA",
+          "chain": "B",
+          "mcsa_roles": [
+            "metal ligand"
+          ],
+          "pos": 34,
+          "residue_node_id": "m_csa:955:residue:2",
+          "resn": "ASP"
+        }
+      },
+      "scored_residue_count": 2,
+      "selected_pdb": "3WQL",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_label_action": "do_not_accept_current_target_route_future_family",
+      "top1_fingerprint": "metal_dependent_hydrolase",
+      "top1_score": 0.5666
+    },
+    {
+      "decision": "needs_more_evidence",
+      "ec": "3.1.6.1",
+      "entry_id": "m_csa:661",
+      "entry_name": "arylsulfatase",
+      "expert_note": "Needs more evidence / sub-family decision. Arylsulfatase is metal-dependent and hydrolytic, but uses post-translational C-alpha-formylglycine as catalytic nucleophile with Ca-stabilized sulfate/oxyanion. Hold pending decision whether FGly sulfatases are accepted under broad metal-dependent hydrolase or split into a future FGly-sulfatase family.",
+      "heuristic_score": 0.5818,
+      "mechanism_summary": "The sulfate ester cleavage involves an aldehyde hydrate, a modified residue FGly 51, as the functional group that initiates the reaction through a nucleophilic attack on the sulphur atom of the substrate. Lys 113 and FGly 51 contribute to electron density withdrawal from the sulfate oxygen atoms to give increased electrophilicity at the sulphur centre. The nucleophilicity of the oxygen in the aldehyde hydrate is enhanced by coordination to the Ca cation and facilitated proton transfer by Asp 317. An alcohol is eliminated in an SN2 substitution reaction, and the pentacoordinate sulphur intermediate is stabilised by Lys 375, His 211 and the Ca cation - the His or the Lys can act as proton donors to the alcoholate depending on the pH conditions. Sulfate elimination regenerates the aldehyde, by deprotonation of FGly 51 with His 115 acting as a proton acceptor. The aldehyde is hydrated by water, with the C-O bond being polarised by His 115, Arg 55, Asn 318 and the Ca cation.",
+      "metal_hetatms_in_structure": [
+        "CA A/1528",
+        "CA B/1528"
+      ],
+      "nearest_expected_ligand_distance_angstrom": 4.276,
+      "pymol_script_path": "artifacts/review_pymol/mcsa_ai_visual_exact40_20260524/m_csa_661.pml",
+      "review_guardrail": "This decision artifact records human/expert review intent only; label import requires a later dedicated gate/import-preview step.",
+      "reviewed_at": "2026-05-24",
+      "reviewer": "vivek_relayed_expert_review",
+      "scored_focus_pair": {
+        "distance_source_field": "pairwise_distances_angstrom",
+        "left": {
+          "atom_name": "CA",
+          "chain": "A",
+          "mcsa_roles": [
+            "electrostatic stabiliser"
+          ],
+          "pos": 375,
+          "residue_node_id": "m_csa:661:residue:10",
+          "resn": "LYS"
+        },
+        "measured_distance_angstrom": 17.772,
+        "right": {
+          "atom_name": "CA",
+          "chain": "A",
+          "mcsa_roles": [
+            "electrostatic stabiliser",
+            "increase electrophilicity"
+          ],
+          "pos": 113,
+          "residue_node_id": "m_csa:661:residue:5",
+          "resn": "LYS"
+        }
+      },
+      "scored_residue_count": 10,
+      "selected_pdb": "1HDH",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_label_action": "hold_pending_schema_or_subfamily_decision",
+      "top1_fingerprint": "metal_dependent_hydrolase",
+      "top1_score": 0.5818
+    }
+  ]
+}
