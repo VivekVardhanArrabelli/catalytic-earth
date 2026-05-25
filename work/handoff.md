@@ -60,6 +60,12 @@ imported, no production fingerprints, ontology, scoring, thresholds, or curated
 labels were edited, no PLM embeddings were computed, and no model training was
 performed.
 
+Push note: the first `git push origin main` attempt against the HTTPS remote
+failed exactly with `fatal: could not read Username for 'https://github.com':
+Device not configured`. The existing deploy-key SSH path was then verified with
+`git ls-remote`, and the committed work was pushed successfully to
+`git@github.com:VivekVardhanArrabelli/catalytic-earth.git`.
+
 New command:
 
 ```text
