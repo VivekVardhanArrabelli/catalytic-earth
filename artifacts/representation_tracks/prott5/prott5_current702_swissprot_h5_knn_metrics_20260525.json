@@ -649,7 +649,7 @@
     "h5_accession_hit_count": 721,
     "h5_accession_missing_count": 39,
     "h5_key_coverage_artifact": "artifacts/representation_tracks/prott5/prott5_current702_swissprot_h5_key_coverage_20260525.json",
-    "h5_key_coverage_artifact_sha256": "ddc8cdcf8ecb2471a3ee35dae0dfb35777e0d58e4ffced4edf9e270ae05ec120",
+    "h5_key_coverage_artifact_sha256": "4c90d425f124ec7fabe56bc6864f95c0462472c7164b4f7b6b6e8bff0fed81dc",
     "h5_missing_accessions": [
       "B9JNP7",
       "F8W4B7",
@@ -1479,7 +1479,7 @@
     "forbidden_inputs_used": [],
     "generated_at": "2026-05-25T17:20:35.931054+00:00",
     "h5_key_coverage_artifact": "artifacts/representation_tracks/prott5/prott5_current702_swissprot_h5_key_coverage_20260525.json",
-    "h5_key_coverage_artifact_sha256": "ddc8cdcf8ecb2471a3ee35dae0dfb35777e0d58e4ffced4edf9e270ae05ec120",
+    "h5_key_coverage_artifact_sha256": "4c90d425f124ec7fabe56bc6864f95c0462472c7164b4f7b6b6e8bff0fed81dc",
     "h5_verification_status": "open_ok_sha256_and_current702_key_coverage_recorded",
     "h5_verification_updated_at": "2026-05-25T18:21:43.685283+00:00",
     "label_import_performed": false,
@@ -1769,7 +1769,7 @@
     },
     "h5_key_coverage_artifact": {
       "path": "artifacts/representation_tracks/prott5/prott5_current702_swissprot_h5_key_coverage_20260525.json",
-      "sha256": "ddc8cdcf8ecb2471a3ee35dae0dfb35777e0d58e4ffced4edf9e270ae05ec120"
+      "sha256": "4c90d425f124ec7fabe56bc6864f95c0462472c7164b4f7b6b6e8bff0fed81dc"
     },
     "sequence_manifest": {
       "artifact_id": "v3_sequence_manifest_current702_repaired_20260525",

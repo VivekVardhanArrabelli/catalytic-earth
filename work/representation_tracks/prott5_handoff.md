@@ -55,7 +55,7 @@ Underpowered cells are flagged in the artifact. The heme heldout cell has only 4
 - Fingerprint audit: `artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json`
   SHA-256 `cf9d5d3b17fa95d51374d244497ceba52414e60b8bdaefa12304ba3372cab734`
 - H5 key coverage artifact: `artifacts/representation_tracks/prott5/prott5_current702_swissprot_h5_key_coverage_20260525.json`
-  SHA-256 `ddc8cdcf8ecb2471a3ee35dae0dfb35777e0d58e4ffced4edf9e270ae05ec120`
+  SHA-256 `4c90d425f124ec7fabe56bc6864f95c0462472c7164b4f7b6b6e8bff0fed81dc`
 - ESM-2 150M comparator metrics: `research/representation-esm2-150m:artifacts/representation_tracks/esm2_150m/esm2_150m_metrics_current702_20260525.json`
   SHA-256 `b67dee9010e5dc0c20c92709fe6094b29228d07b151c9fcbe1d11530edc7fa6b`
 
