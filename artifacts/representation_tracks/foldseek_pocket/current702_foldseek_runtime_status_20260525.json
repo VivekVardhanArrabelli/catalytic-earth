@@ -8,6 +8,10 @@
     "artifact_id": "current702_foldseek_runtime_status_20260525",
     "coverage_artifact": "artifacts/representation_tracks/foldseek_pocket/current702_structure_pocket_coverage_20260525.json",
     "coverage_artifact_sha256": "99a3e19b3f82753a395b162c6deae52df8833734a45309320bd4aff7d41c2c66",
+    "origin_main_commit_cited": "8e69bf002097d5cf55521a13764e096908d8e0af",
+    "fingerprint_audit_artifact": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json",
+    "fingerprint_audit_sha256": "cf9d5d3b17fa95d51374d244497ceba52414e60b8bdaefa12304ba3372cab734",
+    "structure_source_scope": "selected_pdb_or_afdb_coordinates_only_with_row_level_provenance",
     "curated_label_registry_edited": false,
     "eval_contract_artifact": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
     "eval_contract_sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
@@ -18,27 +22,30 @@
     "forbidden_inputs_used": [],
     "full_structure_pooling_mode": "unavailable",
     "full_structure_scope": "full_structure_foldseek_3di_tm_alignment",
-    "generated_at": "2026-05-25T16:47:45.828063+00:00",
+    "generated_at": "2026-05-25T17:25:13.900246Z",
     "input_leakage_contract": "no EC/name/prose/expert-note fields used as predictive features",
     "label_import_performed": false,
     "model_training_performed": false,
     "ontology_registry_edited": false,
-    "oos_abstention_diagnostics_status": "not_computed_foldseek_runtime_blocked",
+    "oos_abstention_diagnostics_status": "not_computed_foldseek_runtime_blocked_after_retry",
     "plm_embeddings_computed": false,
     "pocket_pooling_mode_when_eligible": "known_active_site_window_ablation",
-    "prediction_metrics_status": "not_computed",
+    "prediction_metrics_status": "not_computed_foldseek_runtime_blocked_after_retry",
     "production_scoring_changed": false,
     "schema_version": "foldseek_pocket_runtime_status.v1",
     "sequence_nn_metrics_artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
     "sequence_nn_metrics_sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26",
     "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
     "split_artifact_sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425",
-    "track": "representation_tracks/foldseek_pocket"
+    "track": "representation_tracks/foldseek_pocket",
+    "runtime_cleanup_status": "active_foldseek_processes_observed_but_not_signalable_from_sandbox",
+    "retry_recorded_at": "2026-05-25T17:25:13.900246Z"
   },
   "next_exact_actions": [
-    "Run heldout-vs-train Foldseek with a shell timeout and entry-specific symlinks before parsing metrics.",
-    "Parse only final TSV output; score heldout entries against in_distribution targets under the frozen split.",
-    "Emit predictions and metrics with primary macro-F1/accuracy, per-fingerprint support, OOS tier diagnostics, canaries, and unavailable-structure abstentions."
+    "Do not reuse existing /private/tmp Foldseek scratch directories that contain zero-byte aln outputs; start with a fresh scratch directory after killing or letting stale processes exit.",
+    "Run heldout-vs-train Foldseek under an external watchdog/PTY so the process can be interrupted cleanly before parsing metrics.",
+    "If exact TM-align remains too slow, run deterministic query chunks or a declared top-hit approximate Foldseek baseline; keep scope/version/provenance separate from exact full-structure TM metrics.",
+    "Parse only a complete final TSV; score heldout entries against in_distribution targets under the frozen split and emit predictions/metrics with OOS diagnostics."
   ],
   "runtime_attempts": [
     {
@@ -63,6 +70,57 @@
       "scratch_dir": "/private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn",
       "status": "started_but_no_output_tsv_within_automation_window",
       "train_symlink_count": 542
+    },
+    {
+      "attempt_id": "entry_symlink_heldout_vs_train_fast_resume_20260525T1713Z",
+      "accepted_for_metrics": false,
+      "command": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn/heldout /private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn/train /private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn/heldout_train_fast.tsv /private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn/tmp --format-output query,target,qtmscore,ttmscore,alntmscore,bits,evalue --alignment-type 1 --tmalign-fast 1 --threads 1 -v 2",
+      "expected_output_tsv": "/private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn/heldout_train_fast.tsv",
+      "scratch_dir": "/private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn",
+      "status": "started_but_no_output_tsv_and_process_termination_blocked_by_sandbox",
+      "blocker": "Foldseek remained in TM-align alignment stage with zero-byte aln output; no final TSV emitted, and sandbox denied kill -9 cleanup with operation not permitted",
+      "output_tsv_exists_at_status_write": false,
+      "observed_active_processes_at_status_write": [
+        {
+          "process": "bash",
+          "pid": "7237"
+        },
+        {
+          "process": "bash",
+          "pid": "7258"
+        },
+        {
+          "process": "bash",
+          "pid": "94473"
+        },
+        {
+          "process": "bash",
+          "pid": "94505"
+        },
+        {
+          "process": "bash",
+          "pid": "98532"
+        },
+        {
+          "process": "bash",
+          "pid": "98536"
+        },
+        {
+          "process": "foldseek",
+          "pid": "7626"
+        },
+        {
+          "process": "foldseek",
+          "pid": "95002"
+        },
+        {
+          "process": "foldseek",
+          "pid": "98746"
+        }
+      ],
+      "manual_termination_attempted": true,
+      "manual_termination_result": "blocked_operation_not_permitted",
+      "partial_intermediate_dbs_accepted_for_metrics": false
     }
   ]
 }

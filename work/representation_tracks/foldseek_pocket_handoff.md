@@ -36,7 +36,7 @@ Foldseek is available only through the explicit prior environment path, not `PAT
 - Version command: `/private/tmp/catalytic-foldseek-env/bin/foldseek version`
 - Version output: `718d42176d2f67d36a60866fedfb881f8d5a7ebf`
 
-The coverage artifact records an exact full-structure command plan using `artifacts/v3_foldseek_coordinates_1000` as both query and target sidecar. During this run, both an exact all-vs-all command and a smaller heldout-vs-train symlink command were started, but neither emitted a final TSV before wrap. `current702_foldseek_runtime_status_20260525.json` records both attempted commands and marks prediction metrics as not computed; no partial intermediate DB output was accepted.
+The coverage artifact records an exact full-structure command plan using `artifacts/v3_foldseek_coordinates_1000` as both query and target sidecar. During the first run, both an exact all-vs-all command and a smaller heldout-vs-train symlink command were started, but neither emitted a final TSV before wrap. A later retry resumed the heldout-vs-train command from `/private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn`, but it again stayed in the TM-align alignment stage with zero-byte `aln` output and no final TSV. The sandbox denied manual cleanup with `operation not permitted`, so `current702_foldseek_runtime_status_20260525.json` now records the retry and the non-signalable active Foldseek processes. Prediction metrics remain not computed, and no partial intermediate DB output was accepted.
 
 ## Leakage Contract
 
@@ -44,7 +44,7 @@ Predictive inputs are restricted to selected-PDB/AFDB coordinates with row-level
 
 ## Next Step
 
-Run the heldout-vs-train Foldseek NN command using entry-specific temporary coordinate symlinks, then emit:
+After stale `/private/tmp/catalytic-earth-repr-foldseek-pocket-current702*` Foldseek processes have exited or are killed outside this sandbox, rerun heldout-vs-train Foldseek from a fresh scratch directory under a watchdog that can interrupt the job. Then emit:
 
 - `current702_foldseek_full_structure_predictions_20260525.jsonl`
 - `current702_foldseek_full_structure_metrics_20260525.json`
