@@ -94,6 +94,9 @@ Direct comparison recorded in the metrics artifact:
   - 8 mechanism fingerprints
   - 15 mechanism ontology families
   - 702 curated mechanism labels
+- Local commit created with commit-tree because the sandbox could not write the linked worktree index lock.
+- Push blocked: `GIT_DIR=/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git git push origin refs/heads/research/representation-esm-c:refs/heads/research/representation-esm-c` failed with `fatal: could not read Username for 'https://github.com': Device not configured`.
+- Required human action: restore GitHub credentials for shell git push, or push local branch `research/representation-esm-c` from an authenticated environment.
 
 ## Next Exact Step
 
