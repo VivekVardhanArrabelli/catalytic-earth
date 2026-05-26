@@ -979,6 +979,7 @@
   "source_pooling_mode": "whole_sequence_mean_last_hidden_state",
   "standardized_predictions_artifact": "artifacts/representation_tracks/saprot/saprot_wave1_standardized_predictions_current702_20260526.jsonl",
   "standardized_predictions_sha256": "71aaa8c402a4e6082088db6208d69704af118304a0c2c28aedb58594572da888",
+  "status": "computed_current702_saprot_wave1_standardized_from_cached_heldout_predictions",
   "structure_token_policy": {
     "chain_selection_policy": "parse all Foldseek structureto3didescriptor records; choose the longest AA/3Di record; break ties by Foldseek record id then source record index; record alternatives",
     "forbidden_inputs_policy": "no EC, entry name, mechanism prose, expert notes, labels, ontology text, or review/source text used as predictive features",

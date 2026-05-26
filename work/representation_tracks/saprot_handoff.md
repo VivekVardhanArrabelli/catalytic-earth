@@ -3,6 +3,57 @@
 Run date: 2026-05-25
 Branch: research/representation-saprot
 
+## 2026-05-26 Wave 1 Standardized Export
+
+Standardized SaProt row-level audit artifacts were emitted from the cached
+bounded SaProt-35M heldout predictions only. No new SaProt setup, model
+download, active-site pooling, registry edit, threshold edit, or label edit was
+performed.
+
+New Wave 1 artifacts:
+
+- `artifacts/representation_tracks/saprot/saprot_wave1_standardized_predictions_current702_20260526.jsonl`
+- `artifacts/representation_tracks/saprot/saprot_wave1_standardized_metrics_current702_20260526.json`
+- `artifacts/representation_tracks/saprot/saprot_wave1_standardized_blocker_or_coverage_current702_20260526.json`
+
+The prediction export contains 140 heldout rows: 45 primary in-scope rows, 92
+out-of-scope rows, and 3 secondary-probe rows. All rows use
+`schema_version=wave1_model_prediction_export.v1`, `model_track=saprot`, and
+`pooling_mode=whole_structure_sequence`; `active_site_pooling_contract` is
+`null` throughout. The row schema carries backend/model identity, frozen
+selected-structure and Foldseek chain policy provenance, branch/head commit,
+eval contract and split hashes, row/label/M-CSA/protein identifiers, true and
+predicted fingerprint fields, confidence scores, primary correctness, OOS or
+secondary false-positive flags, abstention flags, missing-coordinate flags, and
+chain/token blockers where applicable.
+
+The standardized metrics preserve the cached SaProt headline result:
+
+- Primary macro-F1: 0.5134
+- Primary supervised accuracy: 0.3333, 15/45
+- Embedded heldout rows: 133
+- Heldout coordinate/tokenization abstentions: 7
+- OOS false-positive rate without threshold: 0.1957, 18/92
+
+Full current702 prediction rows are not locally available. The blocker/coverage
+artifact records this explicitly: the cached prediction artifact covers heldout
+rows only, while 562 in-distribution rows remain train/lookup references under
+the frozen split. Structure-token coverage remains 661/702 ready for SaProt
+embedding and 41/702 blocked before embedding, including 7 heldout blockers.
+Blocked reasons are 20 unstaged selected PDB coordinates, 9 unsupported Foldseek
+AA-token rows, 6 over-length selected records, 4 non-PDB/unrecognized selected
+structure proxies, and 2 missing selected-structure proxies.
+
+Comparator status in the standardized metrics:
+
+- Sequence-NN current702 comparator is available directly.
+- Foldseek local artifacts are available as tokenization coverage and a
+  non-predictive TM-score signal; no Foldseek classifier metric is mixed with
+  SaProt metrics.
+- ESM-2 artifacts are available only as external-source review-only samples,
+  not as current702 direct metrics.
+- ProtT5 and ESM-C current702 metrics were not found locally.
+
 ## Decision
 
 SaProt is no longer blocked at generic feasibility. A bounded public HF/Transformers SaProt-35M run was completed on the frozen current702 split using whole selected-structure Foldseek SA tokens and nearest-neighbor lookup over in-distribution embeddings.

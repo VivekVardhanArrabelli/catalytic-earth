@@ -904,7 +904,7 @@
     }
   },
   "standardized_metrics_artifact": "artifacts/representation_tracks/saprot/saprot_wave1_standardized_metrics_current702_20260526.json",
-  "standardized_metrics_sha256": "c1bb06f4f278b6d4cd27348d4541bd984638c99bf1e094d0d1e70008a4f2ecb3",
+  "standardized_metrics_sha256": "5d38076523e5f3f13238b9664343533a7a864e5f0b222d8a24b8cbc80cdfb62f",
   "standardized_predictions_artifact": "artifacts/representation_tracks/saprot/saprot_wave1_standardized_predictions_current702_20260526.jsonl",
   "standardized_predictions_sha256": "71aaa8c402a4e6082088db6208d69704af118304a0c2c28aedb58594572da888",
   "status": "heldout_predictions_available_full_current702_prediction_export_unavailable",
