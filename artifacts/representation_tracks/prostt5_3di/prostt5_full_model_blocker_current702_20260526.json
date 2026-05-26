@@ -1,0 +1,153 @@
+{
+  "artifact_id": "prostt5_full_model_blocker_current702_20260526",
+  "bounded_policy": {
+    "do_not_download_full_prostt5_weights": true,
+    "do_not_launch_unbounded_embedding_jobs": true,
+    "local_files_only": true,
+    "max_download_bytes_allowed_without_human_approval": 0,
+    "network_download_allowed": false
+  },
+  "branch": "research/representation-prostt5-3di",
+  "cache_probe_current_filesystem": {
+    "any_prostt5_weight_file_present": false,
+    "filesystem_scan_results": [
+      {
+        "cache_root": "/Users/vivekvardhanarrabelli/.cache/huggingface/hub",
+        "model_name": "Rostlab/ProstT5_fp16",
+        "repo_cache_dir": "/Users/vivekvardhanarrabelli/.cache/huggingface/hub/models--Rostlab--ProstT5_fp16",
+        "repo_cache_dir_exists": false,
+        "snapshot_count": 0,
+        "snapshots": [],
+        "weight_file_present": false
+      },
+      {
+        "cache_root": "/private/tmp/catalytic-earth-hf-cache/hub",
+        "model_name": "Rostlab/ProstT5_fp16",
+        "repo_cache_dir": "/private/tmp/catalytic-earth-hf-cache/hub/models--Rostlab--ProstT5_fp16",
+        "repo_cache_dir_exists": false,
+        "snapshot_count": 0,
+        "snapshots": [],
+        "weight_file_present": false
+      },
+      {
+        "cache_root": "/Users/vivekvardhanarrabelli/.cache/huggingface/hub",
+        "model_name": "Rostlab/ProstT5",
+        "repo_cache_dir": "/Users/vivekvardhanarrabelli/.cache/huggingface/hub/models--Rostlab--ProstT5",
+        "repo_cache_dir_exists": false,
+        "snapshot_count": 0,
+        "snapshots": [],
+        "weight_file_present": false
+      },
+      {
+        "cache_root": "/private/tmp/catalytic-earth-hf-cache/hub",
+        "model_name": "Rostlab/ProstT5",
+        "repo_cache_dir": "/private/tmp/catalytic-earth-hf-cache/hub/models--Rostlab--ProstT5",
+        "repo_cache_dir_exists": false,
+        "snapshot_count": 0,
+        "snapshots": [],
+        "weight_file_present": false
+      }
+    ],
+    "models_checked": [
+      "Rostlab/ProstT5_fp16",
+      "Rostlab/ProstT5"
+    ],
+    "probed_cache_roots": [
+      "/Users/vivekvardhanarrabelli/.cache/huggingface/hub",
+      "/private/tmp/catalytic-earth-hf-cache/hub"
+    ]
+  },
+  "downloads_performed": false,
+  "environment": {
+    "accelerators": {
+      "cuda_available": false,
+      "mps_available": false,
+      "mps_built": true,
+      "selected_backend_if_weights_cached": "cpu",
+      "torch_import_status": "imported",
+      "torch_version": "2.7.1"
+    },
+    "cache_environment": {
+      "HF_HOME": null,
+      "HUGGINGFACE_HUB_CACHE": null
+    },
+    "platform": "macOS-15.5-arm64-arm-64bit",
+    "python_executable": "/opt/homebrew/Caskroom/miniconda/base/bin/python"
+  },
+  "full_or_fp16_weight_download_allowed": false,
+  "generated_at": "2026-05-26T05:04:35Z",
+  "head_commit": "07f45b7c5e329f171f8baa5ba3b13315ee1ac73f",
+  "large_model_training_performed": false,
+  "metrics_artifact_emitted_for_prostt5": false,
+  "plm_embeddings_computed": false,
+  "predictions_artifact_emitted_for_prostt5": false,
+  "prior_repository_size_context": {
+    "models": [
+      {
+        "blockers": [
+          "canonical full-precision ProstT5 weights are not present in the bounded local Hugging Face caches",
+          "CPU-only backend would be required because CUDA and MPS are unavailable",
+          "downloading an uncached 11.28 GB T5-XL weight file and embedding 696 selected structures is outside this bounded run"
+        ],
+        "cache_status": "not_cached_in_probed_paths",
+        "file_count": 10,
+        "largest_weight_file": {
+          "path": "pytorch_model.bin",
+          "size_bytes": 11275478387
+        },
+        "last_modified": "2023-11-16T08:51:30+00:00",
+        "model_name": "Rostlab/ProstT5",
+        "sha": "d7d097d5bf9a993ab8f68488b4681d6ca70db9e5",
+        "total_size_bytes": 11276207312,
+        "tractability_status": "blocked"
+      },
+      {
+        "blockers": [
+          "fp16 ProstT5 weights are not present in the bounded local Hugging Face caches",
+          "CPU-only backend would be required because CUDA and MPS are unavailable",
+          "download was not attempted because this run is scoped to a bounded local cache decision and track-local artifacts"
+        ],
+        "cache_status": "not_cached_in_probed_paths",
+        "file_count": 9,
+        "largest_weight_file": {
+          "path": "pytorch_model.bin",
+          "size_bytes": 5637876077
+        },
+        "last_modified": "2023-08-07T14:17:31+00:00",
+        "model_name": "Rostlab/ProstT5_fp16",
+        "sha": "07a6547d51de603f1be84fd9f2db4680ee535a86",
+        "total_size_bytes": 5638121374,
+        "tractability_status": "blocked"
+      }
+    ],
+    "queried_with": "huggingface_hub.model_info(..., files_metadata=True)"
+  },
+  "schema_version": "prostt5_full_model_blocker.v1",
+  "source_artifacts": {
+    "backend_setup_terminal_blocker": {
+      "artifact": "artifacts/representation_tracks/prostt5_3di/current702_prostt5_backend_setup_terminal_blocker_20260525.json",
+      "sha256": "7ae6587ea728ff61894366f157b826d495bce1bea89b5285e6974243445d9e41"
+    },
+    "final_backend_preflight": {
+      "artifact": "artifacts/representation_tracks/prostt5_3di/current702_prostt5_final_backend_preflight_20260525.json",
+      "sha256": "219d61e026bfbb073390bfd0383595d7f2679cb8c964ffc5e1052177abf3aaf1"
+    },
+    "standardized_foldseek_3di_metrics": {
+      "artifact": "artifacts/representation_tracks/prostt5_3di/foldseek_3di_wave1_standardized_metrics_current702_20260526.json",
+      "sha256": "a0f2fcf745449919dfac56ae09bf21d9d4d74e0ff3827f7dbacd98cf98f8842a"
+    }
+  },
+  "status": "terminal_blocker_current_run",
+  "terminal_blocker": {
+    "blocker_id": "prostt5_full_current702_backend_unavailable_bounded_local_cache_20260526",
+    "decision": "Do not emit ProstT5 embeddings, predictions, or metrics. Use the completed Foldseek 3Di token NN standardized export for Wave 1 review.",
+    "next_unblock_requires": [
+      "explicit approval before any multi-GB ProstT5 weight download",
+      "preflight free-space budget for at least the fp16 or canonical ProstT5 snapshot",
+      "accelerator-capable runtime or an explicitly accepted CPU embedding window",
+      "bounded embedding manifest/prediction/metrics emission under this track only"
+    ],
+    "summary": "Full ProstT5 current702 embeddings remain infeasible in this run because neither canonical nor fp16 ProstT5 weights are cached in the probed local Hugging Face cache roots, and the available backend is CPU-only."
+  },
+  "track": "representation_tracks/prostt5_3di"
+}

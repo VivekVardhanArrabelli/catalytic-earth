@@ -1,6 +1,6 @@
 # ProstT5 / Foldseek 3Di Representation Track Handoff
 
-Run date: 2026-05-25
+Run date: 2026-05-26
 
 ## Scope
 
@@ -11,7 +11,8 @@ production scoring, thresholds, or shared artifact names were changed.
 Predictive inputs used in the smoke baseline:
 
 - Foldseek 3Di tokens derived from selected coordinate sidecars only.
-- No EC labels, entry names, mechanism prose, expert notes, or production scores.
+- No EC labels, entry names, mechanism prose, expert notes, source/review text,
+  or production scores.
 - Whole selected-structure pooling, implemented as the longest Foldseek 3Di
   record per selected PDB when Foldseek emitted multiple records.
 
@@ -85,6 +86,35 @@ Required provenance recorded in the artifacts:
   `b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b`.
 - Coherence audit SHA:
   `cf9d5d3b17fa95d51374d244497ceba52414e60b8bdaefa12304ba3372cab734`.
+
+## Wave 1 Standardized Export
+
+Standardized predictions artifact:
+`artifacts/representation_tracks/prostt5_3di/foldseek_3di_wave1_standardized_predictions_current702_20260526.jsonl`
+
+Standardized metrics artifact:
+`artifacts/representation_tracks/prostt5_3di/foldseek_3di_wave1_standardized_metrics_current702_20260526.json`
+
+Schema:
+
+- Prediction rows use `wave1_model_prediction_export.v1`.
+- Metrics use `wave1_model_metrics_export.v1`.
+- `model_track` is `foldseek_3di_token_nn`.
+- `pooling_mode` is `whole_structure_3di_token_nn`.
+- `active_site_pooling_contract` is `null`; no active-site pooling was used.
+
+Row coverage:
+
+- Standardized heldout rows: 140.
+- Source tokenized 3Di NN predictions: 139.
+- Explicit missing-coordinate/token blocker rows: 1, `m_csa:372`.
+- Scope counts: 45 primary in-scope rows, 92 OOS rows, 3 secondary OOD probe
+  rows.
+
+Each standardized row carries branch/head commit, eval-contract and split
+artifact SHAs, label/protein identifiers, true and predicted fingerprint state,
+nearest-train score, primary-row correctness, OOS/secondary false-positive flag,
+and missing-token blocker fields when applicable.
 
 ## 3Di vs Sequence-NN Readiness Comparison
 
@@ -176,6 +206,20 @@ model weights:
   download approval plus an accelerator-capable runtime or accepted CPU smoke
   window.
 
+Current ProstT5 full-model blocker artifact:
+`artifacts/representation_tracks/prostt5_3di/prostt5_full_model_blocker_current702_20260526.json`
+
+The current blocker keeps the same terminal decision with a fresh local
+filesystem cache scan:
+
+- No canonical or fp16 ProstT5 snapshot/weight file is present under the probed
+  Hugging Face cache roots.
+- CUDA is unavailable and MPS is built but unavailable; a later run would select
+  CPU unless the runtime changes.
+- No ProstT5 embeddings, predictions, or metrics were emitted.
+- Unblocking still requires explicit multi-GB weight download approval plus an
+  accelerator-capable runtime or accepted CPU embedding window.
+
 Comparator rollup artifact:
 `artifacts/representation_tracks/prostt5_3di/current702_3di_comparator_rollup_20260525.json`
 
@@ -192,10 +236,11 @@ Comparator scan:
 - 3Di minus sequence-NN: primary supervised accuracy `+0.0222`, macro-F1
   `+0.0759`, exact label accuracy all `+0.0613`, OOS false-positive rate
   `-0.0760`.
-- No local current702 frozen-split metrics or predictions were found for
-  Foldseek fast3Di, SaProt, ProtT5, or ESM-2 150M. Local ESM-2 150M references
-  are prior external/control or tranche context, so they are listed but not
-  treated as direct benchmark comparators.
+- No local current702 frozen-split metrics or predictions were found for ESM-2,
+  ESM-C, ProtT5, SaProt, or a separate Foldseek structural-NN comparator. Local
+  ESM-2 references are prior external/control context, and local Foldseek/TM
+  artifacts are coordinate-readiness or split/leakage screens, not direct
+  current702 representation comparators.
 
 ## Validation
 
