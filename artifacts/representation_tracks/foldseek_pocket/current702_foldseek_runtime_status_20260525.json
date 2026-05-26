@@ -72,7 +72,9 @@
       "https_push_error": "fatal: could not read Username for 'https://github.com': Device not configured",
       "ssh_push_status": "blocked",
       "ssh_push_error": "git@github.com: Permission denied (publickey)",
-      "branch_head_equals_origin_tracking_ref_after_push_attempt": false
+      "branch_head_equals_origin_tracking_ref_after_push_attempt": false,
+      "connector_publish_status": "attempting_after_local_git_push_blocker",
+      "connector_publish_checked_at": "2026-05-26T02:15:07Z"
     },
     "schema_version": "foldseek_pocket_runtime_status.v1",
     "sequence_nn_metrics_artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
