@@ -119,3 +119,23 @@ Lineage verification refresh:
 - Re-cited the eval contract SHA, sequence-NN metrics SHA, split artifact SHA, model id, whole-sequence pooling mode, amino-acid-only leakage contract, OOS abstention diagnostics, canary count, and underpowered-cell status in a compact track-scoped artifact.
 - Passed JSON/JSONL parsing, focused jq lineage assertions, `PYTHONPATH=src python -m unittest tests.test_representation_baseline`, and `PYTHONPATH=src python -m catalytic_earth.cli validate`.
 - This audit did not regenerate embeddings or predictions and did not mix active-site pooling into the whole-sequence evidence budget.
+
+Wave 1 standardized row-level export:
+
+- Run timestamp: `2026-05-26T05:00:29Z`
+- Added standardized prediction export: `artifacts/representation_tracks/esm2_150m/esm2_150m_wave1_standardized_predictions_current702_20260526.jsonl`
+- Standardized prediction export SHA256: `14515fc3f39d92fb2f6c151d28bd66ac37b09a57290edf58e235e0cb67343e25`
+- Added standardized metrics export: `artifacts/representation_tracks/esm2_150m/esm2_150m_wave1_standardized_metrics_current702_20260526.json`
+- Standardized metrics export SHA256: `75747c989738ad9e1cc3066731e93a6f82172e7ba60013a410b8450442042629`
+- Source predictions were reused from `artifacts/representation_tracks/esm2_150m/esm2_150m_predictions_current702_20260525.jsonl` at SHA256 `5ef109653f49f4c1f84522819f76c83c474cccd6ff52dcedc673a78a1a007b99`; source metrics were reused from `artifacts/representation_tracks/esm2_150m/esm2_150m_metrics_current702_20260525.json` at SHA256 `b67dee9010e5dc0c20c92709fe6094b29228d07b151c9fcbe1d11530edc7fa6b`.
+- The standardized prediction rows use schema `wave1_model_prediction_export.v1`, model track `esm2_150m`, model id `facebook/esm2_t30_150M_UR50D`, branch `research/representation-esm2-150m`, and export-source head commit `06206bbbc06136a76e075232f9ddffb0d1b3ccc8`.
+- Pooling is reported as `whole_sequence_mean` in the Wave 1 schema. `active_site_pooling_contract` is `null` for every row, and the metrics export records `active_site_ablation_included=false`.
+- Row counts: 140 standardized heldout prediction rows; 45 primary rows, 92 out-of-scope rows, and 3 secondary-probe rows.
+- Primary metrics are unchanged from the existing ESM-2 150M whole-sequence run: accuracy `0.577778`, macro-F1 `0.695681`, support `45`.
+- Per-primary-fingerprint precision/recall/F1/support are present in the standardized metrics export. The heme peroxidase/oxidase macro-F1 class remains underpowered; all per-fingerprint accuracy/recall cells remain qualitative under the 30-row threshold.
+- OOS diagnostics are preserved, including tiered false-positive and abstention rates where tier labels are available: boundary OOS 1 row, far OOS 2 rows, near OOS 4 rows, and unknown OOS 88 rows.
+- Canary predictions are copied from the source ESM-2 150M metrics export.
+- Comparison metadata is included for the local sequence-NN baseline (`artifacts/v3_sequence_nn_metrics_current702_20260525.json`, SHA256 `22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26`) and the local Foldseek TM-score signal (`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`, SHA256 `316a97f98b1c2e8242f7bd3e4783a70ba132a571a49a1cea11b27f6cb004cf25`). Foldseek remains review-only/non-countable and is not a full accepted TM-score holdout benchmark.
+- Structure-neighborhood audit metadata from the split artifact is attached as audit-only row metadata and is explicitly marked `used_by_scoring_head=false`; the ESM-2 scoring head remains frozen whole-sequence embeddings plus sklearn logistic regression.
+- Verification passed: `jq -c .` on the standardized JSONL, `jq -e .` on the standardized metrics JSON, focused Python assertions for required Wave 1 row fields and counts, and `PYTHONPATH=src python -m catalytic_earth.cli validate`.
+- This export did not regenerate embeddings or predictions and did not introduce or mix active-site pooling into the whole-sequence metric.
