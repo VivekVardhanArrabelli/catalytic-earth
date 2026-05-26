@@ -72,6 +72,17 @@ Conclusion: ESM-C 300M is not suspiciously broken under this setup after
 scoring alignment, but it still underperforms ESM-2 150M logistic on primary
 accuracy and macro-F1. No model-win claim should be made for ESM-C over ESM-2.
 
+Commit/push status for this audit:
+
+- Local commit created: `52ba09999829f6adbe118f2445138430c3e99507`
+  (`Diagnose ESM-C representation anomaly`).
+- The linked worktree index is still not writable from this sandbox, so the
+  commit was created with a temporary index and `git commit-tree`.
+- Push command attempted:
+  `git push origin refs/heads/research/representation-esm-c:refs/heads/research/representation-esm-c`
+- Push blocker:
+  `fatal: could not read Username for 'https://github.com': Device not configured`
+
 ## Status
 
 ESM-C 300M is unblocked and computed for the current702 representation track. No labels, fingerprints, ontology entries, production scoring, thresholds, or main docs were changed.
