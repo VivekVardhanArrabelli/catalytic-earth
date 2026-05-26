@@ -1,0 +1,1336 @@
+{
+  "artifact_id": "v3_targeted_mechanism_evidence_acquisition_queue_702_20260526",
+  "created_utc": "2026-05-26T05:29:42Z",
+  "queue": {
+    "OOS_boundary_hard_negative_needed": [
+      {
+        "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json raw_component_oos_or_secondary_false_positive_counts",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "ser_his_acid_hydrolase",
+          "metal_dependent_hydrolase",
+          "flavin_dehydrogenase_reductase",
+          "heme_peroxidase_oxidase"
+        ],
+        "item_id": "oos_foldseek_false_positive_panel",
+        "missing_evidence": "Hard-negative review labels and fuller neighbor metadata, not threshold tuning on heldout.",
+        "priority": "P0",
+        "rows": [
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:733",
+            "foldseek_nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "217",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:217",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:124",
+            "foldseek_nearest_train_fingerprint_id": "heme_peroxidase_oxidase",
+            "foldseek_predicted_fingerprint_id": "heme_peroxidase_oxidase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "30",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:30",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "broad_bucket_ambiguous",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:160",
+            "foldseek_nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "31",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:31",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "broad_bucket_ambiguous",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:11",
+            "foldseek_nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "428",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:428",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:697",
+            "foldseek_nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "440",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:440",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:608",
+            "foldseek_nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "477",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:477",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:114",
+            "foldseek_nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "634",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:634",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "broad_bucket_ambiguous",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:123",
+            "foldseek_nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "651",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:651",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "broad_bucket_ambiguous",
+            "true_fingerprint_id": null
+          }
+        ],
+        "successful_resolution_would_change": "Would calibrate OOS-boundary abstention before any future production candidate router.",
+        "why_it_matters": "Raw Foldseek has eight OOS/secondary false positives; these are the best hard negatives for a router abstention policy."
+      },
+      {
+        "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json geometry_baseline rows",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "heme_peroxidase_oxidase",
+          "flavin_monooxygenase",
+          "ser_his_acid_hydrolase",
+          "plp_dependent_enzyme",
+          "metal_dependent_hydrolase"
+        ],
+        "item_id": "oos_geometry_raw_top1_abstention_canaries",
+        "missing_evidence": "Reviewed OOS boundary status and retained raw geometry-score provenance as audit-only canary evidence.",
+        "priority": "P1",
+        "rows": [
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:461",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "heme_peroxidase_oxidase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "10",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "oos_boundary_abstain",
+            "row_id": "m_csa:10",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "broad_bucket_ambiguous",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:496",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "flavin_monooxygenase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "116",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "oos_boundary_abstain",
+            "row_id": "m_csa:116",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "broad_bucket_ambiguous",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:398",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "191",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "oos_boundary_abstain",
+            "row_id": "m_csa:191",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "broad_bucket_ambiguous",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:457",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "plp_dependent_enzyme",
+            "geometry_top1_correct": false,
+            "m_csa_id": "369",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "oos_boundary_abstain",
+            "row_id": "m_csa:369",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "broad_bucket_ambiguous",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:11",
+            "foldseek_nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "428",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:428",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+            "true_fingerprint_id": null
+          }
+        ],
+        "successful_resolution_would_change": "Would preserve geometry as a support router instead of a raw positive scorer.",
+        "why_it_matters": "Geometry abstains correctly on OOS rows despite raw top1 active-site matches; this is a key guardrail against raw-score production use."
+      }
+    ],
+    "fold_conflict_high_value": [
+      {
+        "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json; v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "flavin_dehydrogenase_reductase",
+          "flavin_monooxygenase"
+        ],
+        "item_id": "fold_conflict_secondary_flavin_boundary_m_csa_131",
+        "missing_evidence": "Expert boundary decision and fuller fold-neighbor context for whether this stays secondary-only or becomes a future v2 boundary stratum.",
+        "priority": "P0",
+        "rows": [
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:281",
+            "foldseek_nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "flavin_monooxygenase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "131",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:131",
+            "status": "secondary_ood_probe",
+            "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+            "true_fingerprint_id": "flavin_monooxygenase"
+          }
+        ],
+        "successful_resolution_would_change": "Would turn the flavin monooxygenase boundary from an anecdotal conflict into a curated fold-conflict eval case.",
+        "why_it_matters": "Foldseek transfers to the dehydrogenase/reductase neighbor while geometry recovers the secondary flavin monooxygenase probe."
+      },
+      {
+        "artifact_showing_gap": "v3_mechanism_prediction_fold_controlled_eval_design_702_20260525.json; Wave 1 fold-control candidate summary",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "ser_his_acid_hydrolase",
+          "metal_dependent_hydrolase",
+          "flavin_dehydrogenase_reductase"
+        ],
+        "item_id": "fold_conflict_oos_high_structure_traps",
+        "missing_evidence": "Fuller Foldseek nearest-neighbor table, retained pair metadata, and hard-negative expert review confirming OOS status under primary-neighbor pressure.",
+        "priority": "P0",
+        "rows": [
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:733",
+            "foldseek_nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "217",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:217",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:11",
+            "foldseek_nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "428",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:428",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:697",
+            "foldseek_nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "440",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:440",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+            "true_fingerprint_id": null
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:608",
+            "foldseek_nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": true,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": false,
+            "m_csa_id": "477",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:477",
+            "status": "out_of_scope",
+            "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+            "true_fingerprint_id": null
+          }
+        ],
+        "successful_resolution_would_change": "Would freeze the first curated OOS-vs-primary fold-conflict panel for abstention calibration.",
+        "why_it_matters": "These out-of-scope rows sit near primary fingerprints in Foldseek space and are exactly where fold transfer can hallucinate mechanism."
+      },
+      {
+        "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json top foldseek failure rescue cases",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "heme_peroxidase_oxidase",
+          "flavin_dehydrogenase_reductase",
+          "metal_dependent_hydrolase"
+        ],
+        "item_id": "fold_conflict_primary_geometry_rescue_rows",
+        "missing_evidence": "Curated active-site confirmation plus pairwise fold-neighbor provenance for each wrong Foldseek transfer.",
+        "priority": "P1",
+        "rows": [
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:28",
+            "foldseek_nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "heme_peroxidase_oxidase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "250",
+            "proposal_only_v2_sublabel": "heme.peroxidase_catalase_like",
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:250",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "heme_peroxidase_oxidase"
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:16",
+            "foldseek_nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "497",
+            "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:497",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:519",
+            "foldseek_nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "517",
+            "proposal_only_v2_sublabel": "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:517",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:110",
+            "foldseek_nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "916",
+            "proposal_only_v2_sublabel": "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:916",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:762",
+            "foldseek_nearest_train_fingerprint_id": "plp_dependent_enzyme",
+            "foldseek_predicted_fingerprint_id": "plp_dependent_enzyme",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "990",
+            "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:990",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          }
+        ],
+        "successful_resolution_would_change": "Would justify a review-before-transfer rule for active-site/fold conflicts.",
+        "why_it_matters": "Geometry is correct while non-abstained Foldseek transfers to the wrong primary fingerprint."
+      }
+    ],
+    "geometry_failure_canary_needed": [
+      {
+        "artifact_showing_gap": "v3_foldseek_geometry_diagnostic_router_pilot_702_20260526.json foldseek_correct_geometry_conflict_cases is empty",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "all current primary families; prioritize heme/flavin/metal children"
+        ],
+        "item_id": "mine_foldseek_correct_geometry_wrong_primary_canary",
+        "missing_evidence": "A curated primary case or future heldout row with reliable Foldseek transfer but wrong/ambiguous geometry support.",
+        "priority": "P0",
+        "rows": [],
+        "successful_resolution_would_change": "Would prevent the diagnostic router from over-trusting geometry on near-orphans.",
+        "why_it_matters": "Wave 1 found no heldout primary row where Foldseek is correct and geometry is wrong, so geometry lacks a true failure canary."
+      },
+      {
+        "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json input_completeness.geometry_baseline",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "metal_dependent_hydrolase",
+          "ser_his_acid_hydrolase",
+          "flavin_dehydrogenase_reductase"
+        ],
+        "item_id": "geometry_missing_no_reliable_structure_panel",
+        "missing_evidence": "Structure materialization or explicit no-structure blocker decision for each row.",
+        "priority": "P1",
+        "rows": [
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": null,
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": null,
+            "geometry_predicted_fingerprint_id": null,
+            "geometry_top1_correct": null,
+            "m_csa_id": "577",
+            "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+            "route_decision": "missing_structure_or_embedding_blocker",
+            "row_id": "m_csa:577",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "no_reliable_structure",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": null,
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": null,
+            "geometry_predicted_fingerprint_id": null,
+            "geometry_top1_correct": null,
+            "m_csa_id": "599",
+            "proposal_only_v2_sublabel": "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+            "route_decision": "missing_structure_or_embedding_blocker",
+            "row_id": "m_csa:599",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "no_reliable_structure",
+            "true_fingerprint_id": "ser_his_acid_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": null,
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": null,
+            "geometry_predicted_fingerprint_id": null,
+            "geometry_top1_correct": null,
+            "m_csa_id": "710",
+            "proposal_only_v2_sublabel": "metal_hydrolase.amidohydrolase_deaminase_like",
+            "route_decision": "missing_structure_or_embedding_blocker",
+            "row_id": "m_csa:710",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "no_reliable_structure",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": null,
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": null,
+            "geometry_predicted_fingerprint_id": null,
+            "geometry_top1_correct": null,
+            "m_csa_id": "892",
+            "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+            "route_decision": "missing_structure_or_embedding_blocker",
+            "row_id": "m_csa:892",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "no_reliable_structure",
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": null,
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": null,
+            "geometry_predicted_fingerprint_id": null,
+            "geometry_top1_correct": null,
+            "m_csa_id": "897",
+            "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+            "route_decision": "missing_structure_or_embedding_blocker",
+            "row_id": "m_csa:897",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "no_reliable_structure",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          }
+        ],
+        "successful_resolution_would_change": "Would convert missing-structure blockers into either geometry-supported candidates or clean abstentions.",
+        "why_it_matters": "Rows without reliable structure also lack geometry joins, making the router blind exactly where near-orphan behavior matters."
+      }
+    ],
+    "near_orphan_primary_support_needed": [
+      {
+        "artifact_showing_gap": "v3_mechanism_prediction_orphan_eval_design_702_20260525.json; Wave 1 near-orphan route rows",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "metal_dependent_hydrolase"
+        ],
+        "item_id": "near_orphan_geometry_supported_metal_hydrolase_panel",
+        "missing_evidence": "Same-fingerprint structural-neighbor evidence from a fuller Foldseek table and reviewed active-site role evidence for the proposed child strata.",
+        "priority": "P0",
+        "rows": [
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:187",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "163",
+            "proposal_only_v2_sublabel": "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+            "route_decision": "near_orphan_geometry_supported",
+            "row_id": "m_csa:163",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:622",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "403",
+            "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+            "route_decision": "v2_sublabel_needed",
+            "row_id": "m_csa:403",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:360",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "686",
+            "proposal_only_v2_sublabel": "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+            "route_decision": "near_orphan_geometry_supported",
+            "row_id": "m_csa:686",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:435",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "97",
+            "proposal_only_v2_sublabel": "metal_hydrolase.amidohydrolase_deaminase_like",
+            "route_decision": "near_orphan_geometry_supported",
+            "row_id": "m_csa:97",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:262",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "994",
+            "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+            "route_decision": "v2_sublabel_needed",
+            "row_id": "m_csa:994",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          }
+        ],
+        "successful_resolution_would_change": "Would separate true geometry-rescued primary support from underpowered near-orphan abstentions.",
+        "why_it_matters": "Metal hydrolase near-orphans repeatedly need geometry to carry the primary mechanism when Foldseek abstains or misroutes."
+      },
+      {
+        "artifact_showing_gap": "v3_mechanism_prediction_orphan_eval_design_702_20260525.json; v3_wave1_structure_neighborhood_audit_20260526.json",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "flavin_dehydrogenase_reductase",
+          "ser_his_acid_hydrolase"
+        ],
+        "item_id": "near_orphan_flavin_and_ser_his_primary_support",
+        "missing_evidence": "Reviewed primary support and fuller structural-neighbor absence/presence evidence.",
+        "priority": "P1",
+        "rows": [
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:327",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "211",
+            "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+            "route_decision": "near_orphan_geometry_supported",
+            "row_id": "m_csa:211",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:16",
+            "foldseek_nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "497",
+            "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:497",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:380",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "723",
+            "proposal_only_v2_sublabel": "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+            "route_decision": "v2_sublabel_needed",
+            "row_id": "m_csa:723",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "ser_his_acid_hydrolase"
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:68",
+            "foldseek_nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_top1_correct": true,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "750",
+            "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+            "route_decision": "near_orphan_geometry_supported",
+            "row_id": "m_csa:750",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          }
+        ],
+        "successful_resolution_would_change": "Would make near-orphan eval reporting actionable by family rather than pooled accuracy.",
+        "why_it_matters": "These rows stress whether active-site geometry generalizes beyond dense fold neighborhoods for flavin and serine-hydrolase chemistry."
+      }
+    ],
+    "representation_failure_canary_needed": [
+      {
+        "artifact_showing_gap": "v3_wave1_representation_shootout_result_card_20260526.json top_foldseek_success_learned_failure_cases",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "metal_dependent_hydrolase",
+          "flavin_dehydrogenase_reductase"
+        ],
+        "item_id": "learned_rep_failure_when_foldseek_geometry_succeed",
+        "missing_evidence": "Reviewed family/sublabel context and replicated standardized row-level exports in future representation runs.",
+        "priority": "P0",
+        "rows": [
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:472",
+            "foldseek_nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_top1_correct": true,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "43",
+            "proposal_only_v2_sublabel": "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+            "route_decision": "near_orphan_geometry_supported",
+            "row_id": "m_csa:43",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:68",
+            "foldseek_nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_top1_correct": true,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "750",
+            "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+            "route_decision": "near_orphan_geometry_supported",
+            "row_id": "m_csa:750",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          }
+        ],
+        "successful_resolution_would_change": "Would force future representation upgrades to prove value on known failure canaries before scaling claims.",
+        "why_it_matters": "Foldseek and geometry recover these near-orphans while all available learned representation tracks fail, making them canaries for model-scaling overconfidence."
+      },
+      {
+        "artifact_showing_gap": "v3_foldseek_geometry_diagnostic_router_pilot_702_20260526.json learned_representations_add_signal_over_both_structure_nn_and_geometry",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "metal_dependent_hydrolase"
+        ],
+        "item_id": "learned_rep_only_signal_missing_structure_rows",
+        "missing_evidence": "Structure repair or accepted missing-structure protocol plus confirmation that learned signal is not leakage or source-context driven.",
+        "priority": "P1",
+        "rows": [
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": null,
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": null,
+            "geometry_predicted_fingerprint_id": null,
+            "geometry_top1_correct": null,
+            "m_csa_id": "577",
+            "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+            "route_decision": "missing_structure_or_embedding_blocker",
+            "row_id": "m_csa:577",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "no_reliable_structure",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": null,
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": null,
+            "geometry_predicted_fingerprint_id": null,
+            "geometry_top1_correct": null,
+            "m_csa_id": "710",
+            "proposal_only_v2_sublabel": "metal_hydrolase.amidohydrolase_deaminase_like",
+            "route_decision": "missing_structure_or_embedding_blocker",
+            "row_id": "m_csa:710",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "no_reliable_structure",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": null,
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": null,
+            "geometry_predicted_fingerprint_id": null,
+            "geometry_top1_correct": null,
+            "m_csa_id": "897",
+            "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+            "route_decision": "missing_structure_or_embedding_blocker",
+            "row_id": "m_csa:897",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "no_reliable_structure",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          }
+        ],
+        "successful_resolution_would_change": "Would define when a learned rep can trigger evidence acquisition rather than a direct mechanism claim.",
+        "why_it_matters": "Learned reps add signal where structure/geometry are missing, but this is a blocker-routing clue rather than permission to bypass evidence coverage."
+      }
+    ],
+    "v2_sublabel_expert_review_needed": [
+      {
+        "artifact_showing_gap": "v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json readiness_summary",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "metal_hydrolase.unresolved_metal_water_hydrolase",
+          "ser_his_acid.unresolved_acyl_enzyme_hydrolase"
+        ],
+        "item_id": "v2_unresolved_metal_water_and_acyl_hydrolase_review",
+        "missing_evidence": "Expert approval or rejection of proposal-only v2 sublabels using review-only rationale outside model features.",
+        "priority": "P0",
+        "rows": [
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:28",
+            "foldseek_nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "foldseek_top1_correct": true,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "180",
+            "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+            "route_decision": "v2_sublabel_needed",
+            "row_id": "m_csa:180",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:622",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "403",
+            "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+            "route_decision": "v2_sublabel_needed",
+            "row_id": "m_csa:403",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": null,
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": null,
+            "geometry_predicted_fingerprint_id": null,
+            "geometry_top1_correct": null,
+            "m_csa_id": "577",
+            "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+            "route_decision": "missing_structure_or_embedding_blocker",
+            "row_id": "m_csa:577",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "no_reliable_structure",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": null,
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": null,
+            "geometry_predicted_fingerprint_id": null,
+            "geometry_top1_correct": null,
+            "m_csa_id": "599",
+            "proposal_only_v2_sublabel": "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+            "route_decision": "missing_structure_or_embedding_blocker",
+            "row_id": "m_csa:599",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "no_reliable_structure",
+            "true_fingerprint_id": "ser_his_acid_hydrolase"
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:798",
+            "foldseek_nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_top1_correct": true,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "688",
+            "proposal_only_v2_sublabel": "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+            "route_decision": "v2_sublabel_needed",
+            "row_id": "m_csa:688",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "ser_his_acid_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:380",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "723",
+            "proposal_only_v2_sublabel": "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+            "route_decision": "v2_sublabel_needed",
+            "row_id": "m_csa:723",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "ser_his_acid_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": null,
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": null,
+            "geometry_predicted_fingerprint_id": null,
+            "geometry_top1_correct": null,
+            "m_csa_id": "897",
+            "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+            "route_decision": "missing_structure_or_embedding_blocker",
+            "row_id": "m_csa:897",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "no_reliable_structure",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": true,
+            "foldseek_nearest_train_entry_id": "m_csa:262",
+            "foldseek_nearest_train_fingerprint_id": null,
+            "foldseek_predicted_fingerprint_id": null,
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "994",
+            "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+            "route_decision": "v2_sublabel_needed",
+            "row_id": "m_csa:994",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          }
+        ],
+        "successful_resolution_would_change": "Would allow future evals to report v2 strata without editing production registries in this run.",
+        "why_it_matters": "Coarse v1 labels are too broad for the North-Star mechanism question when child mechanisms remain unresolved."
+      },
+      {
+        "artifact_showing_gap": "v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json expected_candidate_gaps and secondary_boundary_context",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "flavin.boundary_monooxygenase_like_review_needed",
+          "flavin_monooxygenase"
+        ],
+        "item_id": "v2_flavin_monooxygenase_boundary_review",
+        "missing_evidence": "Expert boundary decision and additional curated support before any registry or metric use.",
+        "priority": "P0",
+        "rows": [
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:800",
+            "foldseek_nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_top1_correct": true,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "109",
+            "proposal_only_v2_sublabel": "flavin.boundary_monooxygenase_like_review_needed",
+            "route_decision": "v2_sublabel_needed",
+            "row_id": "m_csa:109",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:281",
+            "foldseek_nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "flavin_monooxygenase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "131",
+            "proposal_only_v2_sublabel": null,
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:131",
+            "status": "secondary_ood_probe",
+            "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+            "true_fingerprint_id": "flavin_monooxygenase"
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:281",
+            "foldseek_nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "foldseek_top1_correct": true,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "551",
+            "proposal_only_v2_sublabel": "flavin.boundary_monooxygenase_like_review_needed",
+            "route_decision": "v2_sublabel_needed",
+            "row_id": "m_csa:551",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          }
+        ],
+        "successful_resolution_would_change": "Would clarify whether flavin monooxygenase stays secondary/OOD or becomes an explicit future child eval stratum.",
+        "why_it_matters": "Wave 1 exposes a flavin boundary where geometry can distinguish monooxygenase-like active sites from dehydrogenase/reductase folds."
+      },
+      {
+        "artifact_showing_gap": "v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json candidate_summary",
+        "constraints": [
+          "diagnostic_only",
+          "no_label_edits_without_future_explicit_import_gate",
+          "no_threshold_tuning_on_heldout",
+          "no_production_scorer_claim"
+        ],
+        "families": [
+          "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+          "plp.racemase_epimerase",
+          "ser_his_acid.unresolved_acyl_enzyme_hydrolase"
+        ],
+        "item_id": "v2_underpowered_child_family_review",
+        "missing_evidence": "Expert review plus at least minimal additional support rows for underpowered child mechanisms.",
+        "priority": "P1",
+        "rows": [
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:519",
+            "foldseek_nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_top1_correct": false,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "metal_dependent_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "517",
+            "proposal_only_v2_sublabel": "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+            "route_decision": "fold_conflict_abstain_or_review",
+            "row_id": "m_csa:517",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:937",
+            "foldseek_nearest_train_fingerprint_id": "plp_dependent_enzyme",
+            "foldseek_predicted_fingerprint_id": "plp_dependent_enzyme",
+            "foldseek_top1_correct": true,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "plp_dependent_enzyme",
+            "geometry_top1_correct": true,
+            "m_csa_id": "213",
+            "proposal_only_v2_sublabel": "plp.racemase_epimerase",
+            "route_decision": "near_orphan_geometry_supported",
+            "row_id": "m_csa:213",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+            "true_fingerprint_id": "plp_dependent_enzyme"
+          },
+          {
+            "foldseek_abstained": false,
+            "foldseek_nearest_train_entry_id": "m_csa:169",
+            "foldseek_nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "foldseek_top1_correct": true,
+            "geometry_abstained": false,
+            "geometry_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+            "geometry_top1_correct": true,
+            "m_csa_id": "866",
+            "proposal_only_v2_sublabel": "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+            "route_decision": "v2_sublabel_needed",
+            "row_id": "m_csa:866",
+            "status": "in_scope_primary",
+            "structural_neighborhood_bin": "dense_same_mechanism_structural_neighborhood",
+            "true_fingerprint_id": "ser_his_acid_hydrolase"
+          }
+        ],
+        "successful_resolution_would_change": "Would prevent overclaiming coarse-family wins as mechanism-level progress.",
+        "why_it_matters": "Several child labels have too little or too ambiguous support to be meaningful evaluation strata yet."
+      }
+    ]
+  },
+  "schema_version": "targeted_evidence_queue.v1",
+  "scope": {
+    "label_count": 702,
+    "source_router": "artifacts/v3_foldseek_geometry_diagnostic_router_pilot_702_20260526.json",
+    "status": "diagnostic_queue_only_no_import_or_registry_change"
+  },
+  "source_artifacts": {
+    "fold_controlled_eval_design": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_prediction_fold_controlled_eval_design_702_20260525.json",
+      "role": "fold_conflict_prior_design",
+      "sha256": "32133230ad372b6ce7594ff75a61e1be449ba273ff025c206b745b0a9d331be9"
+    },
+    "geometry_label_eval": {
+      "exists": true,
+      "path": "artifacts/v3_geometry_label_eval_1000_selected_pdb_override.json",
+      "role": "existing_geometry_eval_joined_in_wave1",
+      "sha256": "466c8006bfbe596f7654c2cfb99e1e66accd421de9862b315e481cd3cc386760"
+    },
+    "geometry_retrieval": {
+      "exists": true,
+      "path": "artifacts/v3_geometry_retrieval_1025.json",
+      "role": "existing_geometry_baseline_context",
+      "sha256": "27d7b73d7ab31a3ffd329ea2c9c5f76d48e265fc74d30069e9c7d8f3d39fad6a"
+    },
+    "learned_retrieval_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json",
+      "role": "existing_learned_retrieval_manifest",
+      "sha256": "388533742b51fb78f98b257cd9231a497dee7b6016be3e6cea11b7e44e8511b8"
+    },
+    "orphan_eval_design": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_prediction_orphan_eval_design_702_20260525.json",
+      "role": "near_orphan_prior_design",
+      "sha256": "71df9869f983b7ea98d454c12b92259136cfa0343071f0260cfba385f930a5a8"
+    },
+    "sequence_nn_metrics": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+      "role": "existing_sequence_nn_metrics",
+      "sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26"
+    },
+    "sequence_nn_predictions": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl",
+      "role": "existing_sequence_nn_predictions",
+      "sha256": "700d032e393f6dcd1e4202e050ab0d7f1dd8e269641d575caa211308e91f431a"
+    },
+    "v2_sublabel_audit": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json",
+      "role": "proposal_only_v2_review_context",
+      "sha256": "afc80e7fa4f6f4db5521388803cae8fda24ec7cca9fbafa723cf3c1234ce951b"
+    },
+    "wave1_representation_shootout_result_card": {
+      "exists": true,
+      "path": "artifacts/v3_wave1_representation_shootout_result_card_20260526.json",
+      "role": "wave1_decision_summary",
+      "sha256": "7a33fec362cbc3f5a7e672785cecc265919b4ba6920c3c138e28d0b507998f0b"
+    },
+    "wave1_structure_neighborhood_audit": {
+      "exists": true,
+      "path": "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json",
+      "role": "joined_wave1_row_evidence",
+      "sha256": "8383074a7bb586cbff8219c8f903068e265b30a5f3596a50fa12444083c3a156"
+    }
+  },
+  "summary": {
+    "diagnostic_only": true,
+    "highest_value_next_action": "Curate the fold-conflict/OOS hard-negative panel and repair near-orphan structure/geometry coverage before model scaling.",
+    "queue_group_counts": {
+      "OOS_boundary_hard_negative_needed": 2,
+      "fold_conflict_high_value": 3,
+      "geometry_failure_canary_needed": 2,
+      "near_orphan_primary_support_needed": 2,
+      "representation_failure_canary_needed": 2,
+      "v2_sublabel_expert_review_needed": 3
+    },
+    "what_success_changes": "It makes the North Star more true by deciding when fold similarity transfers mechanism, when geometry overrides or supports it, and where labels are too coarse for mechanism-level evaluation."
+  }
+}

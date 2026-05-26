@@ -50,6 +50,71 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-26T05:32Z Foldseek+Geometry Diagnostic Router Pilot
+
+This run stayed on `main`, acquired `.git/catalytic-earth-automation.lock`,
+pulled `origin/main`, and converted the Wave 1 diagnosis into a diagnostic
+Foldseek-plus-geometry router and targeted evidence-acquisition queue. It did
+not edit labels, registries, ontology, fingerprints, imports, thresholds,
+production scoring, model scaling, or representation branch outputs.
+
+Artifacts written:
+
+```text
+artifacts/v3_foldseek_geometry_diagnostic_router_pilot_702_20260526.json
+artifacts/v3_targeted_mechanism_evidence_acquisition_queue_702_20260526.json
+work/northstar_wave1_to_engine_handoff_20260526.md
+```
+
+Router readout: 140 heldout Wave 1 rows were routed using only already-computed
+Foldseek, geometry, sequence-NN, ESM-2, ESM-C, ProtT5, SaProt, and 3Di evidence.
+Route counts are 83 `oos_boundary_abstain`, 18
+`near_orphan_geometry_supported`, 15 `fold_conflict_abstain_or_review`, 9
+`structure_neighbor_transfer_supported`, 8 `v2_sublabel_needed`, 6
+`missing_structure_or_embedding_blocker`, and 1 `evidence_conflict_no_claim`.
+The composite diagnostic policy retains 27 primary candidates, abstains or
+routes to review/blockers on 113 rows, and has 0 composite OOS false positives.
+Raw component OOS/secondary false positives remain canaries: Foldseek structural
+NN 8, sequence-NN 25, ESM-2 16, ESM-C corrected logistic 16, ProtT5 20, SaProt
+18, 3Di 18, and geometry 0 under its abstention policy.
+
+Decision: do not scale models next. Scale the diagnostic evidence router and
+evidence-acquisition loop. Use Foldseek as a structural-neighborhood router,
+not a standalone mechanism scorer; let active-site geometry nominate near-orphan
+primary candidates; force abstain/review on OOS, secondary, or cross-fingerprint
+fold conflicts; and send proposal-only v2 sublabels to expert review before
+using child mechanism strata.
+
+Highest-value next evidence queue: curate the fold-conflict/OOS hard-negative
+panel (`m_csa:217`, `m_csa:428`, `m_csa:440`, `m_csa:477`, plus geometry-rescue
+primary rows `m_csa:250`, `m_csa:497`, `m_csa:517`, `m_csa:916`, `m_csa:990`);
+repair or confirm near-orphan structure/geometry support; review unresolved v2
+sublabels; keep `m_csa:43` and `m_csa:750` as learned-representation failure
+canaries; and mine a true Foldseek-correct/geometry-wrong primary canary because
+Wave 1 currently has none.
+
+Verification passed for this run:
+
+```text
+python -m json.tool artifacts/v3_foldseek_geometry_diagnostic_router_pilot_702_20260526.json
+python -m json.tool artifacts/v3_targeted_mechanism_evidence_acquisition_queue_702_20260526.json
+PYTHONPATH=src python -m catalytic_earth.cli validate
+git diff --check
+```
+
+Focused tests were not run because this was an artifact/documentation-only
+change with no code edits.
+
+The commit was created locally, but `git push origin main` failed with:
+
+```text
+fatal: could not read Username for 'https://github.com': Device not configured
+```
+
+Local `main` is therefore clean and ahead of `origin/main` until GitHub
+authentication is restored or the commit is pushed from an authenticated
+environment.
+
 ### 2026-05-26T04:27:02Z Wave 1 Structural-Neighborhood Diagnostic
 
 This run stayed on `main`, read representation worktree artifacts as read-only inputs, and converted Wave 1 outputs into a current702 heldout diagnostic map. It did not edit labels, registries, ontology, fingerprints, imports, thresholds, production scoring, or representation branch outputs.
