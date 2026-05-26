@@ -72,3 +72,10 @@ Underpowered cells are flagged in the artifact at top-level `underpowered_cell_f
 ## Next Step
 
 Authenticate push access, then push local `research/representation-prott5` HEAD. After that, review the missing-H5 heldout rows before interpreting the win claim broadly. The main unresolved risk is coverage bias from Swiss-Prot-only vectors, especially the missing radical-SAM secondary probe `m_csa:372` and two missing `ser_his_acid_hydrolase` primary rows.
+
+## Orchestration Update
+
+- 2026-05-26T05:06Z: the stale shell-credential push blocker is resolved for
+  this branch. `research/representation-prott5` is pushed to origin at
+  `27636f1`. No further human push action is required for this handoff state.
+  The scientific caveat remains coverage bias from Swiss-Prot-only vectors.
