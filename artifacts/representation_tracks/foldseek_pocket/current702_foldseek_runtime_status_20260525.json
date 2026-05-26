@@ -64,6 +64,16 @@
         }
       ]
     },
+    "push_status": {
+      "checked_at": "2026-05-26T02:10:30Z",
+      "local_head_at_push_attempt": "767977e1598eea3d24c086d65c80e056e26241e0",
+      "origin_tracking_head_at_push_attempt": "ae5f46fec8c239948365909e4e0a88377697e8ef",
+      "https_push_status": "blocked",
+      "https_push_error": "fatal: could not read Username for 'https://github.com': Device not configured",
+      "ssh_push_status": "blocked",
+      "ssh_push_error": "git@github.com: Permission denied (publickey)",
+      "branch_head_equals_origin_tracking_ref_after_push_attempt": false
+    },
     "schema_version": "foldseek_pocket_runtime_status.v1",
     "sequence_nn_metrics_artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
     "sequence_nn_metrics_sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26",

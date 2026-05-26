@@ -97,8 +97,9 @@ Predictive inputs are restricted to selected-PDB/AFDB coordinates with row-level
 - JSON validation passed for the metrics/status artifacts.
 - JSONL validation passed for 140 heldout prediction rows.
 - `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with 702 curated labels, 8 mechanism fingerprints, and 15 ontology families.
-- Local commit created on `research/representation-foldseek-pocket`.
-- Fast artifact push verified before this status-only follow-up: local `HEAD` equaled `origin/research/representation-foldseek-pocket` at `ae5f46fec8c239948365909e4e0a88377697e8ef`.
+- Local commits created on `research/representation-foldseek-pocket`.
+- Fast artifact push was verified before this status-only follow-up: local `HEAD` equaled `origin/research/representation-foldseek-pocket` at `ae5f46fec8c239948365909e4e0a88377697e8ef`.
+- Follow-up push attempt on 2026-05-26T02:10:30Z is blocked in this environment: HTTPS reports `could not read Username for 'https://github.com'`, and SSH reports `Permission denied (publickey)`. Local branch remains ahead of `origin/research/representation-foldseek-pocket`.
 - Post-fast3Di runtime check on 2026-05-26T02:08:08Z: process inspection is still blocked by sandbox policy (`ps` reports `operation not permitted`), and stale scratch directories remain at `/private/tmp/catalytic-earth-repr-foldseek-pocket-current702`, `/private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn`, and `/private/tmp/catalytic-foldseek-fast3di-current702-20260525T181437Z`. No exact-TM refinement was launched after this check.
 
 ## Next Step
