@@ -67,8 +67,9 @@ Underpowered cells are flagged in the artifact at top-level `underpowered_cell_f
 - `jq -e` validation passed for the H5 key coverage artifact.
 - JSONL parsing validation passed for 132 prediction rows.
 - `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
-- Branch `research/representation-prott5` is pushed; final wrap should verify local `HEAD` equals `origin/research/representation-prott5`.
+- Local metrics-refresh commit before this blocker note: `e10aba46f18e1ca1916be56371812b5ac58de59c`.
+- Push is blocked in this environment: `git push origin HEAD:refs/heads/research/representation-prott5` fails with `fatal: could not read Username for 'https://github.com': Device not configured`; `gh auth status` reports an invalid token. Remote branch remains `fceaadb4a5b6d538e22bacfc318c63a810cef882`.
 
 ## Next Step
 
-Review the missing-H5 heldout rows before interpreting the win claim broadly. The main unresolved risk is coverage bias from Swiss-Prot-only vectors, especially the missing radical-SAM secondary probe `m_csa:372` and two missing `ser_his_acid_hydrolase` primary rows.
+Authenticate push access, then push local `research/representation-prott5` HEAD. After that, review the missing-H5 heldout rows before interpreting the win claim broadly. The main unresolved risk is coverage bias from Swiss-Prot-only vectors, especially the missing radical-SAM secondary probe `m_csa:372` and two missing `ser_his_acid_hydrolase` primary rows.
