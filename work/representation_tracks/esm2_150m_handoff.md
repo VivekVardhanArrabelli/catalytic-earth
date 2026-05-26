@@ -28,6 +28,7 @@ The benchmark used whole-sequence amino-acid inputs from the repaired current702
 - `artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl`
 - `artifacts/representation_tracks/esm2_150m/esm2_150m_predictions_current702_20260525.jsonl`
 - `artifacts/representation_tracks/esm2_150m/esm2_150m_metrics_current702_20260525.json`
+- `artifacts/representation_tracks/esm2_150m/esm2_150m_lineage_verification_current702_20260526.json`
 
 Output SHA256 values are recorded in the backend execution artifact.
 
@@ -102,3 +103,12 @@ Validation refresh:
 - Added validation artifact: `artifacts/representation_tracks/esm2_150m/esm2_150m_validation_current702_20260525_run2.json`
 - Re-checked JSON/JSONL parse validity, backend-recorded output hashes, ESM-2 150M lineage fields, required metrics fields, canary rows, underpowered-cell flags, `PYTHONPATH=src python -m unittest tests.test_representation_baseline`, and `PYTHONPATH=src python -m catalytic_earth.cli validate`.
 - This refresh did not regenerate embeddings or predictions and did not mix active-site pooling into the whole-sequence evidence budget.
+
+Lineage verification refresh:
+
+- Run timestamp: `2026-05-26T02:07:49Z`
+- Added lineage verification artifact: `artifacts/representation_tracks/esm2_150m/esm2_150m_lineage_verification_current702_20260526.json`
+- Re-confirmed branch and remote were at `6bc960d9fcabb7d58835ca6082b26c66567d0f75` before this audit, with `origin/main` at the frozen baseline `8e69bf002097d5cf55521a13764e096908d8e0af`.
+- Re-cited the eval contract SHA, sequence-NN metrics SHA, split artifact SHA, model id, whole-sequence pooling mode, amino-acid-only leakage contract, OOS abstention diagnostics, canary count, and underpowered-cell status in a compact track-scoped artifact.
+- Passed JSON/JSONL parsing, focused jq lineage assertions, `PYTHONPATH=src python -m unittest tests.test_representation_baseline`, and `PYTHONPATH=src python -m catalytic_earth.cli validate`.
+- This audit did not regenerate embeddings or predictions and did not mix active-site pooling into the whole-sequence evidence budget.
