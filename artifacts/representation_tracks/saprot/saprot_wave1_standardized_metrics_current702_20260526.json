@@ -1,0 +1,1030 @@
+{
+  "active_site_pooling_contract": null,
+  "artifact_id": "saprot_wave1_standardized_metrics_current702_20260526",
+  "backend": {
+    "backend_family": "SaProt",
+    "classifier": "nearest_neighbor_lookup_over_in_distribution_embeddings",
+    "embedding_vector_dimension": 480,
+    "model_id": "westlake-repl/SaProt_35M_AF2",
+    "model_parameter_scale": "35M",
+    "model_revision": "316cd4017d29f4657b959365f24b57f1ee278912",
+    "model_sha": "316cd4017d29f4657b959365f24b57f1ee278912",
+    "training_mode": "none_nearest_neighbor_lookup_only"
+  },
+  "blocked_coordinate_abstention_counts": {
+    "by_benchmark_role": {
+      "oos_tier::unknown_oos": 1,
+      "primary_supervised_metric::flavin_dehydrogenase_reductase": 1,
+      "primary_supervised_metric::metal_dependent_hydrolase": 3,
+      "primary_supervised_metric::ser_his_acid_hydrolase": 1,
+      "secondary_ood_probe::radical_sam_enzyme": 1
+    },
+    "by_label_group": {
+      "flavin_dehydrogenase_reductase": 1,
+      "metal_dependent_hydrolase": 3,
+      "out_of_scope": 1,
+      "radical_sam_enzyme": 1,
+      "ser_his_acid_hydrolase": 1
+    },
+    "entry_ids": [
+      "m_csa:372",
+      "m_csa:409",
+      "m_csa:577",
+      "m_csa:599",
+      "m_csa:710",
+      "m_csa:892",
+      "m_csa:897"
+    ],
+    "heldout_blocked_coordinate_or_tokenization_abstention_count": 7
+  },
+  "branch": "research/representation-saprot",
+  "canary_predictions": {
+    "canary_count": 42,
+    "reported_canary_count": 12,
+    "rows": [
+      {
+        "abstained": null,
+        "entry_id": "m_csa:5",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:173",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:218",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:248",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:387",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:15",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "entry_id": "m_csa:43",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "split_assignment": "heldout",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": false
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:87",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "entry_id": "m_csa:171",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "split_assignment": "heldout",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": false
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:376",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:66",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:147",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:186",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:205",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": false,
+        "entry_id": "m_csa:213",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "predicted_label_group": "plp_dependent_enzyme",
+        "prediction_status": "reported",
+        "split_assignment": "heldout",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": true
+      },
+      {
+        "abstained": false,
+        "entry_id": "m_csa:3",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "prediction_status": "reported",
+        "split_assignment": "heldout",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": true
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:6",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:68",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:110",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:117",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:37",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:124",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:133",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "entry_id": "m_csa:239",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "split_assignment": "heldout",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": false
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:573",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "entry_id": "m_csa:372",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate far_oos_tail_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::radical_sam_enzyme",
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "blocked_coordinate_or_tokenization_abstention",
+        "split_assignment": "heldout",
+        "tokenization_blockers": [
+          "missing_selected_structure_proxy"
+        ],
+        "tokenization_status": "blocked_before_saprot_embedding",
+        "top1_correct": false
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:62",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate ontology_boundary_mixed_ood_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:63",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate ontology_boundary_mixed_ood_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "entry_id": "m_csa:853",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate ontology_boundary_mixed_ood_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "split_assignment": "heldout",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": false
+      },
+      {
+        "abstained": false,
+        "entry_id": "m_csa:131",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate near_oos_against_flavin_redox_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::flavin_monooxygenase",
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "prediction_status": "reported",
+        "split_assignment": "heldout",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": false
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:132",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate near_oos_against_flavin_redox_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::flavin_monooxygenase",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:1",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::far_oos",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "entry_id": "m_csa:12",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::far_oos",
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "split_assignment": "heldout",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": false
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:23",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::far_oos",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "entry_id": "m_csa:14",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::near_oos",
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "split_assignment": "heldout",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": false
+      },
+      {
+        "abstained": true,
+        "entry_id": "m_csa:32",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::near_oos",
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "split_assignment": "heldout",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": false
+      },
+      {
+        "abstained": false,
+        "entry_id": "m_csa:34",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::near_oos",
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "prediction_status": "reported",
+        "split_assignment": "heldout",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": false
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:2",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::boundary_oos",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:19",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::boundary_oos",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:39",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::boundary_oos",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:25",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::unknown_oos",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "entry_id": "m_csa:96",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::unknown_oos",
+        "predicted_label_group": null,
+        "prediction_status": "not_heldout",
+        "split_assignment": "in_distribution",
+        "tokenization_blockers": [],
+        "tokenization_status": "ready_for_saprot_embedding",
+        "top1_correct": null
+      }
+    ],
+    "status": "computed"
+  },
+  "contracts": {
+    "eval_contract_artifact": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+    "eval_contract_sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
+    "label_manifest_artifact": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    "label_manifest_sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "split_artifact_sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425"
+  },
+  "coordinate_chain_token_coverage_counts": {
+    "blocked_before_saprot_embedding_count": 41,
+    "blocker_reason_counts": {
+      "missing_selected_structure_proxy": 2,
+      "non_pdb_or_unrecognized_selected_structure_proxy": 4,
+      "selected_pdb_coordinate_not_staged_locally": 20,
+      "selected_record_exceeds_saprot_max_position_embeddings": 6,
+      "unsupported_foldseek_aa_token": 9
+    },
+    "current_label_count": 702,
+    "heldout_blocked_before_saprot_embedding_count": 7,
+    "in_distribution_blocked_before_saprot_embedding_count": 34,
+    "multiple_foldseek_record_summary": {
+      "entry_ids_sample": [
+        "m_csa:3",
+        "m_csa:4",
+        "m_csa:5",
+        "m_csa:6",
+        "m_csa:8",
+        "m_csa:10",
+        "m_csa:13",
+        "m_csa:15",
+        "m_csa:16",
+        "m_csa:21",
+        "m_csa:22",
+        "m_csa:23",
+        "m_csa:24",
+        "m_csa:25",
+        "m_csa:28",
+        "m_csa:29",
+        "m_csa:30",
+        "m_csa:32",
+        "m_csa:33",
+        "m_csa:34",
+        "m_csa:35",
+        "m_csa:36",
+        "m_csa:37",
+        "m_csa:38",
+        "m_csa:39",
+        "m_csa:40",
+        "m_csa:42",
+        "m_csa:43",
+        "m_csa:44",
+        "m_csa:46",
+        "m_csa:48",
+        "m_csa:49",
+        "m_csa:50",
+        "m_csa:52",
+        "m_csa:54",
+        "m_csa:55",
+        "m_csa:56",
+        "m_csa:57",
+        "m_csa:58",
+        "m_csa:59",
+        "m_csa:60",
+        "m_csa:61",
+        "m_csa:62",
+        "m_csa:63",
+        "m_csa:66",
+        "m_csa:68",
+        "m_csa:70",
+        "m_csa:73",
+        "m_csa:75",
+        "m_csa:77"
+      ],
+      "max_alternative_record_count": 40,
+      "row_count": 414
+    },
+    "ready_for_saprot_embedding_count": 661,
+    "ready_length_max": 1023,
+    "ready_length_mean": 365.25,
+    "ready_length_min": 62,
+    "status_by_label_group": {
+      "blocked_before_saprot_embedding::flavin_dehydrogenase_reductase": 3,
+      "blocked_before_saprot_embedding::metal_dependent_hydrolase": 17,
+      "blocked_before_saprot_embedding::out_of_scope": 17,
+      "blocked_before_saprot_embedding::plp_dependent_enzyme": 1,
+      "blocked_before_saprot_embedding::radical_sam_enzyme": 1,
+      "blocked_before_saprot_embedding::ser_his_acid_hydrolase": 2,
+      "ready_for_saprot_embedding::cobalamin_radical_rearrangement": 3,
+      "ready_for_saprot_embedding::flavin_dehydrogenase_reductase": 47,
+      "ready_for_saprot_embedding::flavin_monooxygenase": 2,
+      "ready_for_saprot_embedding::heme_peroxidase_oxidase": 20,
+      "ready_for_saprot_embedding::metal_dependent_hydrolase": 66,
+      "ready_for_saprot_embedding::out_of_scope": 453,
+      "ready_for_saprot_embedding::plp_dependent_enzyme": 30,
+      "ready_for_saprot_embedding::ser_his_acid_hydrolase": 40
+    },
+    "status_by_partition": {
+      "blocked_before_saprot_embedding::heldout": 7,
+      "blocked_before_saprot_embedding::in_distribution": 34,
+      "ready_for_saprot_embedding::heldout": 133,
+      "ready_for_saprot_embedding::in_distribution": 528
+    },
+    "status_counts": {
+      "blocked_before_saprot_embedding": 41,
+      "ready_for_saprot_embedding": 661
+    }
+  },
+  "direct_comparisons": {
+    "esm_2": {
+      "audit_artifact": "artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_audit_1025.json",
+      "audit_sha256": "e14d5e4cf52b82091ea44922602a1aaf2124c3e5a0b6d781a05cb623651aeaf7",
+      "candidate_count": 12,
+      "comparison_status": "external_source_review_only_sample_available_not_direct_current702_holdout_comparator",
+      "computed_embedding_backend": "esm2_t30_150m_ur50d",
+      "countable_label_candidate_count": 0,
+      "embedding_status": "computed_review_only",
+      "local_artifact_available": true,
+      "note": "Local ESM-2 artifacts are external-source review controls; they are not current702 row-level metrics.",
+      "ready_for_label_import": false,
+      "requested_embedding_backend": "esm2_t33_650m_ur50d",
+      "sample_artifact": "artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+      "sample_sha256": "194c13e6c83d12427ea3acd62c8fbce7d342aeee0db1dfffe3885edab511641e",
+      "stability_artifact": "artifacts/v3_external_source_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json",
+      "stability_sha256": "afdca4cf19f444b1e0b0050335cdd745f91104148e8c65e471fce2eaaecdf315"
+    },
+    "esm_c": {
+      "comparison_status": "not_found_by_local_artifact_scan_no_current702_or_review_sample_metric_available",
+      "local_artifact_available": false
+    },
+    "foldseek": {
+      "comparison_status": "local_foldseek_artifacts_available_as_structure_coverage_and_tm_signal_not_current702_prediction_metric",
+      "foldseek_version": "10.941cd33",
+      "full_tm_score_holdout_claim_permitted": false,
+      "full_tm_score_split_computed": false,
+      "local_artifact_available": true,
+      "note": "SaProt uses Foldseek AA/3Di tokens here; no separate Foldseek classifier metric is mixed with SaProt metrics.",
+      "staged_coordinate_count": 672,
+      "tm_signal_artifact": "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json",
+      "tm_signal_pair_count": 952922,
+      "tm_signal_sha256": "316a97f98b1c2e8242f7bd3e4783a70ba132a571a49a1cea11b27f6cb004cf25",
+      "tokenization_coverage_artifact": "artifacts/representation_tracks/saprot/saprot_tokenization_coverage_current702_20260525.json",
+      "tokenization_coverage_sha256": "b478ead4a75a3525c1c3905f7147019ed98b24cc7690084001657ef978c3341a"
+    },
+    "prot_t5": {
+      "comparison_status": "not_found_by_local_artifact_scan_no_current702_or_review_sample_metric_available",
+      "local_artifact_available": false
+    },
+    "sequence_nn": {
+      "artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+      "comparison_status": "direct_current702_holdout_comparator_available",
+      "delta_vs_saprot_oos_false_positive_rate": -0.076,
+      "delta_vs_saprot_primary_accuracy": 0.1777,
+      "exact_label_accuracy_all": 0.5286,
+      "local_artifact_available": true,
+      "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+      "oos_false_positive_rate_no_threshold": 0.2717,
+      "primary_accuracy": 0.1556,
+      "primary_macro_f1": null,
+      "primary_support_count": 45,
+      "sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26"
+    }
+  },
+  "generated_at": "2026-05-26T05:03:04.332782Z",
+  "guardrails": {
+    "active_site_and_whole_structure_results_mixed": false,
+    "fingerprint_registry_edited": false,
+    "forbidden_inputs_used": [],
+    "label_registry_edited": false,
+    "large_model_training_performed": false,
+    "ontology_registry_edited": false
+  },
+  "head_commit": "507d40efbadafe00f215e001249f4176bb2dcce4",
+  "headline_metrics": {
+    "blocked_heldout_count": 7,
+    "embedded_heldout_count": 133,
+    "exact_label_accuracy_all": 0.6357,
+    "exact_label_accuracy_in_scope": 0.3125,
+    "max_nearest_cosine_similarity": 0.9766,
+    "mean_nearest_cosine_similarity": 0.9342,
+    "out_of_scope_false_positive_count": 18,
+    "out_of_scope_false_positive_rate_no_threshold": 0.1957,
+    "primary_correct_count": 15,
+    "primary_macro_f1": 0.5134,
+    "primary_supervised_accuracy": 0.3333,
+    "primary_support_count": 45
+  },
+  "limitations": [
+    "This is a bounded SaProt-35M HF/Transformers run; the full SaProt-650M checkpoint was not downloaded because repository metadata reports about 5.21 GB across duplicate weight formats.",
+    "41 current702 rows are coordinate/tokenization/model-limit blocked and are counted as abstentions, including 7 heldout rows.",
+    "No abstention threshold was calibrated; non-abstention follows nearest in-distribution label group, with nearest out_of_scope treated as abstention.",
+    "No EC, entry name, mechanism prose, expert-note, or label text was used as a predictive feature.",
+    "ESM-2 150M and ProtT5 current702 metrics are not available in this branch; only existing comparator artifacts are cited."
+  ],
+  "model_track": "saprot",
+  "oos_false_positive_and_abstention_diagnostics": {
+    "abstention_rate": 0.8043,
+    "by_oos_tier": {
+      "far_oos": {
+        "abstention_rate": 1.0,
+        "blocked_coordinate_or_tokenization_abstention_count": 0,
+        "confidence_distribution_on_oos_rows": {
+          "max": 0.9662,
+          "mean": 0.9662,
+          "min": 0.9662
+        },
+        "embedded_row_count": 1,
+        "false_positive_count": 0,
+        "false_positive_rate_by_predicted_primary_fingerprint": {},
+        "false_positive_rate_no_threshold": 0.0,
+        "row_count": 1
+      },
+      "near_oos": {
+        "abstention_rate": 0.6667,
+        "blocked_coordinate_or_tokenization_abstention_count": 0,
+        "confidence_distribution_on_oos_rows": {
+          "max": 0.9324,
+          "mean": 0.9246,
+          "min": 0.9127
+        },
+        "embedded_row_count": 3,
+        "false_positive_count": 1,
+        "false_positive_rate_by_predicted_primary_fingerprint": {
+          "flavin_dehydrogenase_reductase": 0.3333
+        },
+        "false_positive_rate_no_threshold": 0.3333,
+        "row_count": 3
+      },
+      "unknown_oos": {
+        "abstention_rate": 0.8068,
+        "blocked_coordinate_or_tokenization_abstention_count": 1,
+        "confidence_distribution_on_oos_rows": {
+          "max": 0.9766,
+          "mean": 0.9353,
+          "min": 0.8812
+        },
+        "embedded_row_count": 87,
+        "false_positive_count": 17,
+        "false_positive_rate_by_predicted_primary_fingerprint": {
+          "cobalamin_radical_rearrangement": 0.0114,
+          "flavin_dehydrogenase_reductase": 0.0341,
+          "heme_peroxidase_oxidase": 0.0114,
+          "metal_dependent_hydrolase": 0.0795,
+          "plp_dependent_enzyme": 0.0227,
+          "ser_his_acid_hydrolase": 0.0341
+        },
+        "false_positive_rate_no_threshold": 0.1932,
+        "row_count": 88
+      }
+    },
+    "confidence_distribution_on_correctly_classified_in_scope_rows": {
+      "max": 0.9621,
+      "mean": 0.9347,
+      "min": 0.8729
+    },
+    "false_positive_count": 18,
+    "false_positive_rate_no_threshold": 0.1957,
+    "out_of_scope_heldout_count": 92,
+    "overlap_diagnostic_for_any_threshold_separating_oos_from_in_scope": {
+      "correct_in_scope_confidence_min": 0.8729,
+      "oos_confidence_max": 0.9766,
+      "oos_confidence_min": 0.8812,
+      "perfect_separation_exists": false
+    },
+    "secondary_probe_heldout_count": 3,
+    "secondary_probe_rows": [
+      {
+        "abstained": false,
+        "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+        "entry_id": "m_csa:131",
+        "nearest_cosine_similarity": 0.9363,
+        "oos_tier": "near_oos",
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "prediction_status": "reported"
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+        "entry_id": "m_csa:372",
+        "nearest_cosine_similarity": null,
+        "oos_tier": "far_oos",
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "blocked_coordinate_or_tokenization_abstention"
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "entry_id": "m_csa:853",
+        "nearest_cosine_similarity": 0.9282,
+        "oos_tier": "boundary_oos",
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported"
+      }
+    ],
+    "status": "computed"
+  },
+  "per_primary_fingerprint_breakdown": {
+    "flavin_dehydrogenase_reductase": {
+      "blocked_coordinate_or_tokenization_abstention_count": 1,
+      "correct_count": 4,
+      "embedded_row_count": 9,
+      "f1": 0.5,
+      "heldout_row_count": 10,
+      "precision": 0.6667,
+      "recall": 0.4,
+      "status": "computed",
+      "top1_accuracy": 0.4,
+      "underpowered": false
+    },
+    "heme_peroxidase_oxidase": {
+      "blocked_coordinate_or_tokenization_abstention_count": 0,
+      "correct_count": 2,
+      "embedded_row_count": 4,
+      "f1": 0.6667,
+      "heldout_row_count": 4,
+      "precision": 1.0,
+      "recall": 0.5,
+      "status": "computed",
+      "top1_accuracy": 0.5,
+      "underpowered": true
+    },
+    "metal_dependent_hydrolase": {
+      "blocked_coordinate_or_tokenization_abstention_count": 3,
+      "correct_count": 1,
+      "embedded_row_count": 14,
+      "f1": 0.1053,
+      "heldout_row_count": 17,
+      "precision": 0.5,
+      "recall": 0.0588,
+      "status": "computed",
+      "top1_accuracy": 0.0588,
+      "underpowered": false
+    },
+    "plp_dependent_enzyme": {
+      "blocked_coordinate_or_tokenization_abstention_count": 0,
+      "correct_count": 5,
+      "embedded_row_count": 6,
+      "f1": 0.8333,
+      "heldout_row_count": 6,
+      "precision": 0.8333,
+      "recall": 0.8333,
+      "status": "computed",
+      "top1_accuracy": 0.8333,
+      "underpowered": false
+    },
+    "ser_his_acid_hydrolase": {
+      "blocked_coordinate_or_tokenization_abstention_count": 1,
+      "correct_count": 3,
+      "embedded_row_count": 7,
+      "f1": 0.4615,
+      "heldout_row_count": 8,
+      "precision": 0.6,
+      "recall": 0.375,
+      "status": "computed",
+      "top1_accuracy": 0.375,
+      "underpowered": false
+    }
+  },
+  "pooling_mode": "whole_structure_sequence",
+  "prediction_export_counts": {
+    "full_current702_prediction_export_available": false,
+    "full_current702_prediction_export_note": "Only heldout predictions are present in the cached SaProt artifact; in-distribution rows were training/lookup references under the frozen split.",
+    "rows_by_prediction_status": {
+      "blocked_coordinate_or_tokenization_abstention": 7,
+      "reported": 133
+    },
+    "rows_by_scope": {
+      "out_of_scope": 92,
+      "primary_in_scope": 45,
+      "secondary_probe": 3
+    },
+    "source_prediction_rows": 140,
+    "standardized_prediction_rows": 140
+  },
+  "primary_metrics": {
+    "accuracy": 0.3333,
+    "correct_count": 15,
+    "fingerprint_ids": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "macro_f1": 0.5134,
+    "support_count": 45
+  },
+  "schema_version": "wave1_model_metrics_export.v1",
+  "source_artifacts": {
+    "chain_token_policy": {
+      "artifact": "artifacts/representation_tracks/saprot/saprot_chain_token_policy_current702_20260525.json",
+      "sha256": "e87aba3c69ebf68f158087e96202d3994568856ae2f0ab85a7d64819b584deed"
+    },
+    "embeddings_manifest": {
+      "artifact": "artifacts/representation_tracks/saprot/saprot_embeddings_manifest_current702_20260525.json",
+      "sha256": "059875dba62a0703043aedc566bcf6cc8515558f5ec22e45c518e4146be1339e"
+    },
+    "eval_contract": {
+      "artifact": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+      "sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50"
+    },
+    "label_manifest": {
+      "artifact": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "source_metrics": {
+      "artifact": "artifacts/representation_tracks/saprot/saprot_metrics_current702_20260525.json",
+      "sha256": "df019e738e87a2869621b59664803a3e549ec4b07ee33dcd5f6df6d20543db73"
+    },
+    "source_predictions": {
+      "artifact": "artifacts/representation_tracks/saprot/saprot_predictions_current702_20260525.jsonl",
+      "sha256": "bd1fcd7e5d21b430bc6878a02eb58487bfbe6f5fbf333783a0e90a63ca90ca88"
+    },
+    "split": {
+      "artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+      "sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425"
+    },
+    "tokenization_coverage": {
+      "artifact": "artifacts/representation_tracks/saprot/saprot_tokenization_coverage_current702_20260525.json",
+      "sha256": "b478ead4a75a3525c1c3905f7147019ed98b24cc7690084001657ef978c3341a"
+    },
+    "tokens": {
+      "artifact": "artifacts/representation_tracks/saprot/saprot_sa_tokens_current702_20260525.jsonl",
+      "sha256": "44f350d1e96d61809938996aec60494b807e59656eac976a74b70efcddaf0f6c"
+    }
+  },
+  "source_pooling_mode": "whole_sequence_mean_last_hidden_state",
+  "standardized_predictions_artifact": "artifacts/representation_tracks/saprot/saprot_wave1_standardized_predictions_current702_20260526.jsonl",
+  "standardized_predictions_sha256": "71aaa8c402a4e6082088db6208d69704af118304a0c2c28aedb58594572da888",
+  "structure_token_policy": {
+    "chain_selection_policy": "parse all Foldseek structureto3didescriptor records; choose the longest AA/3Di record; break ties by Foldseek record id then source record index; record alternatives",
+    "forbidden_inputs_policy": "no EC, entry name, mechanism prose, expert notes, labels, ontology text, or review/source text used as predictive features",
+    "policy_artifact": "artifacts/representation_tracks/saprot/saprot_chain_token_policy_current702_20260525.json",
+    "policy_sha256": "e87aba3c69ebf68f158087e96202d3994568856ae2f0ab85a7d64819b584deed",
+    "predictive_inputs": [
+      "whole_selected_structure_foldseek_sa_tokens"
+    ],
+    "selected_structure_policy": "use frozen current702 selected-structure provenance from the split/label artifacts",
+    "token_policy": "pair Foldseek-emitted amino-acid tokens with aligned lower-case Foldseek 3Di tokens as SaProt input"
+  },
+  "underpowered_cell_flags": {
+    "diversity_underpowered_cell_flags": {
+      "flavin_dehydrogenase_reductase": [
+        "blocked_coordinate_or_tokenization",
+        "close",
+        "medium"
+      ],
+      "heme_peroxidase_oxidase": [
+        "close",
+        "far",
+        "medium"
+      ],
+      "metal_dependent_hydrolase": [
+        "blocked_coordinate_or_tokenization",
+        "close"
+      ],
+      "plp_dependent_enzyme": [
+        "close",
+        "far",
+        "medium"
+      ],
+      "ser_his_acid_hydrolase": [
+        "blocked_coordinate_or_tokenization",
+        "close",
+        "far",
+        "medium"
+      ]
+    },
+    "macro_f1_class_min_n": 5,
+    "per_fingerprint_underpowered": {
+      "flavin_dehydrogenase_reductase": false,
+      "heme_peroxidase_oxidase": true,
+      "metal_dependent_hydrolase": false,
+      "plp_dependent_enzyme": false,
+      "ser_his_acid_hydrolase": false
+    }
+  }
+}
