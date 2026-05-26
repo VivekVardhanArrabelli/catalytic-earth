@@ -246,12 +246,18 @@ Comparator scan:
 
 Completed:
 
-- `jq empty` on the new JSON artifacts, including the final preflight and
-  comparator rollup artifacts.
-- JSONL line-by-line `jq empty` on the new predictions artifact.
-- `PYTHONPATH=src python -m catalytic_earth.cli validate`.
-- `python -m json.tool` on the new ProstT5 backend blocker, final preflight,
+- `jq empty` on
+  `foldseek_3di_wave1_standardized_metrics_current702_20260526.json`,
+  `prostt5_full_model_blocker_current702_20260526.json`, the final preflight,
   and comparator rollup artifacts.
+- JSONL line-by-line `jq -c .` on
+  `foldseek_3di_wave1_standardized_predictions_current702_20260526.jsonl`
+  reported 140 valid rows.
+- Python JSON assertions confirmed 140 standardized heldout rows, 139 tokenized
+  predictions, and one missing-token blocker row.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`.
+- `python -m json.tool` on the standardized metrics and current ProstT5 blocker
+  artifacts.
 
 ## Next Step
 
