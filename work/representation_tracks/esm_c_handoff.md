@@ -66,6 +66,20 @@ Verification for this export:
   - 15 mechanism ontology families
   - 702 curated mechanism labels
 
+Commit/push status for this export:
+
+- Normal `git add`/`git commit` remains blocked by the linked-worktree index
+  lock permission issue:
+  `fatal: Unable to create '.../catalytic-earth/.git/worktrees/catalytic-earth-repr-esm-c/index.lock': Operation not permitted`
+- The local branch was advanced with a temporary index and `git commit-tree`.
+- Temporary-index status against `HEAD` is clean/ahead, but ordinary `git
+  status` still reports stale index entries because the sandbox also cannot
+  overwrite the linked-worktree index file.
+- Push command attempted:
+  `git push origin refs/heads/research/representation-esm-c:refs/heads/research/representation-esm-c`
+- Push blocker:
+  `fatal: could not read Username for 'https://github.com': Device not configured`
+
 ## 2026-05-26 Anomaly Audit Result
 
 The suspicious ESM-C 300M cosine 1-NN result was reproduced exactly under the
