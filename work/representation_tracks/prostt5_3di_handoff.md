@@ -156,14 +156,57 @@ The bounded backend decision is terminal for this run:
 - No ProstT5 embeddings manifest, predictions JSONL, or metrics JSON were
   emitted because the backend is unavailable locally.
 
+## Final ProstT5 Backend Preflight
+
+Final preflight artifact:
+`artifacts/representation_tracks/prostt5_3di/current702_prostt5_final_backend_preflight_20260525.json`
+
+The final bounded preflight used local-only cache checks and did not download
+model weights:
+
+- `Rostlab/ProstT5_fp16` is not cached under
+  `/Users/vivekvardhanarrabelli/.cache/huggingface/hub` or
+  `/private/tmp/catalytic-earth-hf-cache/hub`.
+- `Rostlab/ProstT5` is also not cached under either probed path.
+- Accelerator probe: CUDA unavailable; MPS built but unavailable; selected
+  backend would be CPU if weights appeared later.
+- Two-record ProstT5 smoke was not run. The smoke gate required cached fp16
+  weights or an accelerator; neither condition was met.
+- Terminal blocker is retained. Unblocking still needs explicit multi-GB weight
+  download approval plus an accelerator-capable runtime or accepted CPU smoke
+  window.
+
+Comparator rollup artifact:
+`artifacts/representation_tracks/prostt5_3di/current702_3di_comparator_rollup_20260525.json`
+
+Comparator scan:
+
+- Direct current702 comparators found locally: Foldseek 3Di token NN and
+  deterministic sequence-NN.
+- Foldseek 3Di token NN: 139 heldout predictions, primary supervised accuracy
+  `0.1778`, macro-F1 `0.3133`, exact label accuracy all `0.5899`, OOS
+  false-positive rate `0.1957`.
+- Sequence-NN: 140 heldout predictions, primary supervised accuracy `0.1556`,
+  macro-F1 `0.2374`, exact label accuracy all `0.5286`, OOS false-positive
+  rate `0.2717`.
+- 3Di minus sequence-NN: primary supervised accuracy `+0.0222`, macro-F1
+  `+0.0759`, exact label accuracy all `+0.0613`, OOS false-positive rate
+  `-0.0760`.
+- No local current702 frozen-split metrics or predictions were found for
+  Foldseek fast3Di, SaProt, ProtT5, or ESM-2 150M. Local ESM-2 150M references
+  are prior external/control or tranche context, so they are listed but not
+  treated as direct benchmark comparators.
+
 ## Validation
 
 Completed:
 
-- `jq empty` on the new JSON artifacts.
+- `jq empty` on the new JSON artifacts, including the final preflight and
+  comparator rollup artifacts.
 - JSONL line-by-line `jq empty` on the new predictions artifact.
 - `PYTHONPATH=src python -m catalytic_earth.cli validate`.
-- `python -m json.tool` on the new ProstT5 backend blocker artifact.
+- `python -m json.tool` on the new ProstT5 backend blocker, final preflight,
+  and comparator rollup artifacts.
 
 ## Next Step
 

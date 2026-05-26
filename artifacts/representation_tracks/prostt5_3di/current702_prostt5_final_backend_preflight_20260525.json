@@ -1,0 +1,300 @@
+{
+  "bounded_preflight_policy": {
+    "full_embedding_run_allowed": false,
+    "full_or_fp16_weight_download_allowed": false,
+    "local_files_only": true,
+    "max_download_bytes_allowed_without_human_approval": 0,
+    "network_download_allowed": false,
+    "two_record_smoke_allowed_only_if_fp16_cached_or_accelerator_available": true
+  },
+  "cache_probe": {
+    "filesystem_scan_results": [
+      {
+        "model_name": "Rostlab/ProstT5_fp16",
+        "repo_cache_dir": "/Users/vivekvardhanarrabelli/.cache/huggingface/hub/models--Rostlab--ProstT5_fp16",
+        "repo_cache_dir_exists": false,
+        "snapshot_count": 0,
+        "snapshots": []
+      },
+      {
+        "model_name": "Rostlab/ProstT5_fp16",
+        "repo_cache_dir": "/private/tmp/catalytic-earth-hf-cache/hub/models--Rostlab--ProstT5_fp16",
+        "repo_cache_dir_exists": false,
+        "snapshot_count": 0,
+        "snapshots": []
+      },
+      {
+        "model_name": "Rostlab/ProstT5",
+        "repo_cache_dir": "/Users/vivekvardhanarrabelli/.cache/huggingface/hub/models--Rostlab--ProstT5",
+        "repo_cache_dir_exists": false,
+        "snapshot_count": 0,
+        "snapshots": []
+      },
+      {
+        "model_name": "Rostlab/ProstT5",
+        "repo_cache_dir": "/private/tmp/catalytic-earth-hf-cache/hub/models--Rostlab--ProstT5",
+        "repo_cache_dir_exists": false,
+        "snapshot_count": 0,
+        "snapshots": []
+      }
+    ],
+    "fp16_weights_cached": false,
+    "models_checked": [
+      "Rostlab/ProstT5_fp16",
+      "Rostlab/ProstT5"
+    ],
+    "probed_cache_paths": [
+      "/Users/vivekvardhanarrabelli/.cache/huggingface/hub",
+      "/private/tmp/catalytic-earth-hf-cache/hub"
+    ],
+    "snapshot_download_results": [
+      {
+        "cache_path": "/Users/vivekvardhanarrabelli/.cache/huggingface/hub",
+        "cache_path_exists": false,
+        "cache_status": "not_cached_in_this_path",
+        "failure": "Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass 'local_files_only=False' as input.",
+        "failure_type": "LocalEntryNotFoundError",
+        "model_name": "Rostlab/ProstT5_fp16",
+        "resolved_snapshot_path": null,
+        "snapshot_download_local_files_only_status": "unavailable",
+        "weight_file_present": false,
+        "weight_file_size_bytes": null
+      },
+      {
+        "cache_path": "/private/tmp/catalytic-earth-hf-cache/hub",
+        "cache_path_exists": true,
+        "cache_status": "not_cached_in_this_path",
+        "failure": "Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass 'local_files_only=False' as input.",
+        "failure_type": "LocalEntryNotFoundError",
+        "model_name": "Rostlab/ProstT5_fp16",
+        "resolved_snapshot_path": null,
+        "snapshot_download_local_files_only_status": "unavailable",
+        "weight_file_present": false,
+        "weight_file_size_bytes": null
+      },
+      {
+        "cache_path": "/Users/vivekvardhanarrabelli/.cache/huggingface/hub",
+        "cache_path_exists": false,
+        "cache_status": "not_cached_in_this_path",
+        "failure": "Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass 'local_files_only=False' as input.",
+        "failure_type": "LocalEntryNotFoundError",
+        "model_name": "Rostlab/ProstT5",
+        "resolved_snapshot_path": null,
+        "snapshot_download_local_files_only_status": "unavailable",
+        "weight_file_present": false,
+        "weight_file_size_bytes": null
+      },
+      {
+        "cache_path": "/private/tmp/catalytic-earth-hf-cache/hub",
+        "cache_path_exists": true,
+        "cache_status": "not_cached_in_this_path",
+        "failure": "Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass 'local_files_only=False' as input.",
+        "failure_type": "LocalEntryNotFoundError",
+        "model_name": "Rostlab/ProstT5",
+        "resolved_snapshot_path": null,
+        "snapshot_download_local_files_only_status": "unavailable",
+        "weight_file_present": false,
+        "weight_file_size_bytes": null
+      }
+    ]
+  },
+  "comparator_scan": {
+    "comparison_scope_note": "Only current702 frozen-split metrics/predictions are direct comparators for this benchmark track; external-source samples are listed as context only.",
+    "existing_readiness_artifact": {
+      "artifact": "artifacts/representation_tracks/prostt5_3di/current702_3di_vs_sequence_nn_readiness_20260525.json",
+      "exists": true,
+      "sha256": "3766a7633ecb8c64ec5ff500dc80e1fc3fe1078d23fd8b4ec7f7234ed2008bc3"
+    },
+    "metric_delta_foldseek_3di_minus_sequence_nn": {
+      "exact_label_accuracy_all": {
+        "delta_foldseek_3di_minus_sequence_nn": 0.0613,
+        "foldseek_3di": 0.5899,
+        "sequence_nn": 0.5286
+      },
+      "exact_label_accuracy_in_scope": {
+        "delta_foldseek_3di_minus_sequence_nn": 0.0244,
+        "foldseek_3di": 0.1702,
+        "sequence_nn": 0.1458
+      },
+      "max_nearest_3di_jaccard_similarity": {
+        "delta_foldseek_3di_minus_sequence_nn": null,
+        "foldseek_3di": 0.2756,
+        "sequence_nn": null
+      },
+      "max_nearest_jaccard_similarity": {
+        "delta_foldseek_3di_minus_sequence_nn": null,
+        "foldseek_3di": null,
+        "sequence_nn": 0.1664
+      },
+      "mean_nearest_3di_jaccard_similarity": {
+        "delta_foldseek_3di_minus_sequence_nn": null,
+        "foldseek_3di": 0.1829,
+        "sequence_nn": null
+      },
+      "mean_nearest_jaccard_similarity": {
+        "delta_foldseek_3di_minus_sequence_nn": null,
+        "foldseek_3di": null,
+        "sequence_nn": 0.076
+      },
+      "out_of_scope_false_positive_rate_no_threshold": {
+        "delta_foldseek_3di_minus_sequence_nn": -0.076,
+        "foldseek_3di": 0.1957,
+        "sequence_nn": 0.2717
+      },
+      "primary_macro_f1": {
+        "delta_foldseek_3di_minus_sequence_nn": null,
+        "foldseek_3di": 0.3133,
+        "sequence_nn": null
+      },
+      "primary_supervised_accuracy": {
+        "delta_foldseek_3di_minus_sequence_nn": 0.0222,
+        "foldseek_3di": 0.1778,
+        "sequence_nn": 0.1556
+      }
+    },
+    "requested_comparator_matrix": {
+      "esm2_150m": {
+        "availability": "not_found_as_current702_metrics_or_predictions; local non-current702 ESM-2 150M/control context exists",
+        "comparison_status": "not_directly_compared_current702_comparator_missing; listed local ESM-2 150M artifacts are prior external/control or tranche context, not current702 frozen-split metrics",
+        "local_artifacts_considered": [
+          "artifacts/representation_tracks/prostt5_3di/current702_prostt5_backend_setup_terminal_blocker_20260525.json",
+          "artifacts/v3_akr_family_readiness_packet_20260520.json",
+          "artifacts/v3_dna_glycosylase_lyase_control_tranche_baseline_comparison_20260520.json",
+          "artifacts/v3_external_source_pilot_akr_nadp_repair_control_1025.json",
+          "artifacts/v3_external_source_pilot_decision_confidence_audit_1025.json",
+          "artifacts/v3_external_source_pilot_decisions_review_normalized_1025.json",
+          "artifacts/v3_external_source_pilot_dna_pol_x_lyase_repair_control_1025.json",
+          "artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json",
+          "artifacts/v3_external_source_pilot_human_expert_review_queue_1025.json",
+          "artifacts/v3_external_source_pilot_human_expert_review_queue_normalized_1025.json",
+          "artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json",
+          "artifacts/v3_external_source_pilot_needs_review_resolution_1025.json",
+          "artifacts/v3_external_source_pilot_representation_adjudication_1025.json",
+          "artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+          "artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_audit_1025.json",
+          "artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json",
+          "artifacts/v3_external_source_pilot_schiff_base_lyase_control_1025.json",
+          "artifacts/v3_external_source_pilot_sdr_redox_repair_control_1025.json",
+          "artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_control_1025.json",
+          "artifacts/v3_external_source_pilot_terminal_decisions_1025.json",
+          "artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+          "artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_audit_1025.json",
+          "artifacts/v3_external_source_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json",
+          "artifacts/v3_glycoside_hydrolase_control_tranche_baseline_comparison_20260520.json",
+          "artifacts/v3_representation_baseline_shootout_plan_20260525.json",
+          "artifacts/v3_schiff_base_lyase_control_tranche_baseline_comparison_20260520.json"
+        ]
+      },
+      "foldseek_3di_token_nn": {
+        "artifact": "artifacts/representation_tracks/prostt5_3di/current702_3di_nn_smoke_metrics_20260525.json",
+        "availability": "computed_current702_frozen_split",
+        "headline_metrics": {
+          "exact_label_accuracy_all": 0.5899,
+          "exact_label_accuracy_in_scope": 0.1702,
+          "max_nearest_3di_jaccard_similarity": 0.2756,
+          "mean_nearest_3di_jaccard_similarity": 0.1829,
+          "out_of_scope_false_positive_rate_no_threshold": 0.1957,
+          "primary_macro_f1": 0.3133,
+          "primary_supervised_accuracy": 0.1778
+        },
+        "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+        "prediction_count": 139,
+        "predictions_artifact": "artifacts/representation_tracks/prostt5_3di/current702_3di_nn_smoke_predictions_20260525.jsonl",
+        "sha256": "f735fbf9e91743c23dc295fafc08432b89f61267f51db9f075b8bf88d11ae208"
+      },
+      "foldseek_fast3di": {
+        "availability": "not_found_as_current702_metrics_or_predictions",
+        "comparison_status": "not_compared_no_local_current702_artifact",
+        "local_artifacts_considered": []
+      },
+      "prot_t5": {
+        "availability": "not_found_as_current702_metrics_or_predictions",
+        "comparison_status": "not_compared_no_local_current702_artifact",
+        "local_artifacts_considered": []
+      },
+      "saprot": {
+        "availability": "not_found_as_current702_metrics_or_predictions",
+        "comparison_status": "not_compared_no_local_current702_artifact",
+        "local_artifacts_considered": []
+      },
+      "sequence_nn": {
+        "artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+        "availability": "computed_current702_frozen_split",
+        "headline_metrics": {
+          "exact_label_accuracy_all": 0.5286,
+          "exact_label_accuracy_in_scope": 0.1458,
+          "max_nearest_jaccard_similarity": 0.1664,
+          "mean_nearest_jaccard_similarity": 0.076,
+          "out_of_scope_false_positive_rate_no_threshold": 0.2717,
+          "primary_supervised_accuracy": 0.1556
+        },
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "prediction_count": 140,
+        "predictions_artifact": "artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl",
+        "sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26"
+      }
+    }
+  },
+  "decision": {
+    "accelerator_available": false,
+    "fp16_weights_cached": false,
+    "next_unblock_requires": [
+      "explicit approval before downloading multi-GB ProstT5 weights",
+      "accelerator-capable runtime or accepted CPU smoke/run window",
+      "track-local embeddings/predictions/metrics artifact emission after backend availability"
+    ],
+    "summary": "Keep terminal ProstT5 blocker: fp16 weights are not cached in the probed local paths and CUDA/MPS are unavailable.",
+    "terminal_blocker_kept": true,
+    "two_record_smoke_feasible": false,
+    "two_record_smoke_status": "not_run_no_cached_fp16_weights_and_no_accelerator"
+  },
+  "environment": {
+    "accelerators": {
+      "cuda_available": false,
+      "mps_available": false,
+      "mps_built": true,
+      "selected_backend_if_weights_cached": "cpu",
+      "torch_import_status": "imported",
+      "torch_version": "2.7.1"
+    },
+    "cache_environment": {
+      "HF_HOME": null,
+      "HUGGINGFACE_HUB_CACHE": null
+    },
+    "platform": "macOS-15.5-arm64-arm-64bit",
+    "python_executable": "/opt/homebrew/Caskroom/miniconda/base/bin/python",
+    "python_packages": {
+      "accelerate": "MISSING",
+      "huggingface_hub": "0.33.4",
+      "sentencepiece": "0.2.0",
+      "torch": "2.7.1",
+      "transformers": "4.53.2"
+    }
+  },
+  "exact_commands": {
+    "generated_by": "python local-only cache and accelerator probe; Hugging Face snapshot_download used local_files_only=True and metadata/tokenizer/weight allow_patterns only",
+    "validation_required": [
+      "jq empty artifacts/representation_tracks/prostt5_3di/current702_prostt5_final_backend_preflight_20260525.json",
+      "JSONL line-by-line jq on artifacts/representation_tracks/prostt5_3di/current702_3di_nn_smoke_predictions_20260525.jsonl",
+      "PYTHONPATH=src python -m catalytic_earth.cli validate"
+    ]
+  },
+  "metadata": {
+    "artifact_id": "current702_prostt5_final_backend_preflight_20260525",
+    "downloads_performed": false,
+    "embedding_model_downloaded": false,
+    "fingerprint_registry_edited": false,
+    "generated_at": "2026-05-26T02:09:20Z",
+    "input_leakage_contract": "backend probing and artifact comparison only; no EC/name/prose/expert-note/review text used as predictive features",
+    "label_registry_edited": false,
+    "large_model_training_performed": false,
+    "network_download_allowed": false,
+    "ontology_registry_edited": false,
+    "plm_embeddings_computed": false,
+    "production_scoring_changed": false,
+    "schema_version": "prostt5_final_backend_preflight.v2",
+    "status": "terminal_backend_blocker_confirmed",
+    "track": "representation_tracks/prostt5_3di",
+    "two_record_smoke_run": false
+  }
+}
