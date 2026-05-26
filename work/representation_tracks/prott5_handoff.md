@@ -1,11 +1,12 @@
 # ProtT5 Representation Track Handoff
 
-Run date: 2026-05-25
+Run dates: artifact generation 2026-05-25; verification refresh 2026-05-26T02:16:17Z (2026-05-25 CDT)
 Branch: `research/representation-prott5`
 
 ## Output
 
 - Metrics artifact: `artifacts/representation_tracks/prott5/prott5_current702_swissprot_h5_knn_metrics_20260525.json`
+  SHA-256 `f37c3aa780c6d2ec169f36ee38a02fdcd4dee957a54483972bb2e54000d61959`
 - Predictions artifact: `artifacts/representation_tracks/prott5/prott5_current702_swissprot_h5_knn_predictions_20260525.jsonl`
 - H5 key coverage artifact: `artifacts/representation_tracks/prott5/prott5_current702_swissprot_h5_key_coverage_20260525.json`
 - Prior feasibility/blocker artifact, now superseded by exact H5 probing: `artifacts/representation_tracks/prott5/prott5_current702_swissprot_embedding_feasibility_20260525.json`
@@ -40,7 +41,7 @@ Branch: `research/representation-prott5`
 - Sequence-NN comparison from the frozen baseline: primary accuracy improved from 0.1556 to 0.3953; OOS false-positive rate improved from 0.2717 to 0.2299, with the caveat that ProtT5 covers 132/140 heldout rows because Swiss-Prot H5 lacks TrEMBL/fallback entries.
 - ESM-2 150M comparator from local branch `research/representation-esm2-150m` (`6bc960d`): primary accuracy 0.577778, macro-F1 0.695681, OOS false-positive/non-abstention rate 0.168421 on 140/140 heldout rows. ProtT5 is lower by 0.182478 accuracy and 0.119781 macro-F1, and higher by 0.061479 OOS false-positive rate; this comparison mixes representation, model head, and coverage differences.
 
-Underpowered cells are flagged in the artifact. The heme heldout cell has only 4 embedded rows and remains qualitative under the contract's macro-F1 class minimum.
+Underpowered cells are flagged in the artifact at top-level `underpowered_cell_flags` and inside the detailed breakdowns. The heme heldout cell has only 4 embedded rows and remains qualitative under the contract's macro-F1 class minimum; the `boundary_oos` embedded out-of-scope tier has 0 rows; the radical-SAM secondary canary `m_csa:372` is missing from the H5.
 
 ## Required Citations
 
@@ -61,13 +62,13 @@ Underpowered cells are flagged in the artifact. The heme heldout cell has only 4
 
 ## Verification
 
+- Fresh H5 probe on 2026-05-26T02:13:44Z opened `artifacts/representation_tracks/prott5/downloads/uniprot_sprot_per-protein.h5` with `h5py`; size is 1,383,407,848 bytes, SHA-256 is `15d7bc28aca161e70e25bd7ad51bc49a9824677e9cb28cbdd69765d0029d62d5`, top-level key count is 574,615, and sample dataset `A0A009IHW8` is shape `[1024]` dtype `float16`.
 - `jq -e` validation passed for the metrics artifact.
 - `jq -e` validation passed for the H5 key coverage artifact.
 - JSONL parsing validation passed for 132 prediction rows.
 - `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
-- Push attempt commit before this blocker note: `92523d25552f7d62504a24d678ccea5d53c09bb8`.
-- Push is blocked in this environment: `git push origin 92523d25552f7d62504a24d678ccea5d53c09bb8:refs/heads/research/representation-prott5` fails with `fatal: could not read Username for 'https://github.com': Device not configured`; `gh auth status` reports an invalid token. Remote branch remains `c381239d91b912549e25a0514f6d5c98b09b3c90`.
+- Branch `research/representation-prott5` is pushed; final wrap should verify local `HEAD` equals `origin/research/representation-prott5`.
 
 ## Next Step
 
-Authenticate push access, then push `research/representation-prott5`. After that, review the missing-H5 heldout rows before interpreting the win claim broadly. The main unresolved risk is coverage bias from Swiss-Prot-only vectors, especially the missing radical-SAM secondary probe `m_csa:372` and two missing `ser_his_acid_hydrolase` primary rows.
+Review the missing-H5 heldout rows before interpreting the win claim broadly. The main unresolved risk is coverage bias from Swiss-Prot-only vectors, especially the missing radical-SAM secondary probe `m_csa:372` and two missing `ser_his_acid_hydrolase` primary rows.

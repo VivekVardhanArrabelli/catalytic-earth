@@ -1481,7 +1481,7 @@
     "h5_key_coverage_artifact": "artifacts/representation_tracks/prott5/prott5_current702_swissprot_h5_key_coverage_20260525.json",
     "h5_key_coverage_artifact_sha256": "4c90d425f124ec7fabe56bc6864f95c0462472c7164b4f7b6b6e8bff0fed81dc",
     "h5_verification_status": "open_ok_sha256_and_current702_key_coverage_recorded",
-    "h5_verification_updated_at": "2026-05-25T18:21:43.685283+00:00",
+    "h5_verification_updated_at": "2026-05-26T02:13:44Z",
     "label_import_performed": false,
     "label_registry_edited": false,
     "large_model_training_performed": false,
@@ -1719,6 +1719,36 @@
       "underpowered": false,
       "underpowered_reason": null
     }
+  },
+  "underpowered_cell_flags": {
+    "oos_tier_flags": [
+      {
+        "oos_tier": "boundary_oos",
+        "reason": "no_embedded_out_of_scope_rows_for_tier",
+        "row_count_with_h5_embedding": 0,
+        "underpowered": true
+      }
+    ],
+    "primary_macro_f1_class_min_n": 5,
+    "primary_supervised_flags": [
+      {
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "heldout_row_count_with_h5_embedding": 4,
+        "missing_embedding_heldout_row_count": 0,
+        "reason": "heldout_support_below_macro_F1_class_min_n_5",
+        "underpowered": true
+      }
+    ],
+    "secondary_probe_flags": [
+      {
+        "entry_id": "m_csa:372",
+        "fingerprint_id": "radical_sam_enzyme",
+        "h5_embedding_available": false,
+        "reason": "secondary_probe_missing_h5_embedding",
+        "underpowered": true
+      }
+    ],
+    "status": "reported"
   },
   "primary_seed_metrics": {
     "accuracy": 0.3953,
