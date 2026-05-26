@@ -1,0 +1,3419 @@
+{
+  "artifact_id": "v3_mechanism_prediction_orphan_eval_design_702_20260525",
+  "baseline_label_count": 702,
+  "blockers_and_next_steps": [
+    "Retained Foldseek rows do not prove absence of all same-fingerprint structural neighbors; they are a pilot proxy until a full nearest-neighbor Foldseek table is emitted.",
+    "Rows with high active-site geometry top1 scores but no retained same-fingerprint Foldseek neighbors are good calibration targets for future PLM and hybrid models.",
+    "Absent ESM-2 150M, ProtT5, SaProt, 3Di-token, and ESM-C row-level prediction artifacts block cross-model orphan conclusions today."
+  ],
+  "created_utc": "2026-05-26T03:25:54Z",
+  "model_availability": {
+    "active_site_geometry_retrieval_baseline": {
+      "artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+      "availability_note": "included as a local baseline context row; not one of the requested PLM models",
+      "available": true
+    },
+    "esm2_150m": {
+      "available": false,
+      "reason": "no current702 row-level prediction/NN artifact found locally"
+    },
+    "esm_c": {
+      "available": false,
+      "reason": "no current702 row-level prediction/NN artifact found locally"
+    },
+    "foldseek_fast_structural_nn": {
+      "artifact": "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json",
+      "availability_note": "evaluated as nearest retained Foldseek TM structural neighbor, not as a full production model",
+      "available": true
+    },
+    "prott5": {
+      "available": false,
+      "reason": "no current702 row-level prediction/NN artifact found locally"
+    },
+    "saprot": {
+      "available": false,
+      "reason": "no current702 row-level prediction/NN artifact found locally"
+    },
+    "sequence_nn": {
+      "artifact": "artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl",
+      "available": true,
+      "model_id": "deterministic_3mer_jaccard_sequence_nn.v1"
+    },
+    "three_di_token_nn": {
+      "available": false,
+      "reason": "no standalone 3Di token NN artifact found locally"
+    }
+  },
+  "near_orphan_definition": {
+    "calibration_metric_priority": "abstention usefulness and wrong confident transfer rate before raw accuracy",
+    "fold_proxy_status": "provisional_retained_foldseek_tm_signal_not_full_tm_split",
+    "primary_definition": "heldout seed-fingerprint row whose retained Foldseek train-neighbor evidence has no same-fingerprint neighbor with TM-score >= 0.70",
+    "selected_structure_fallback": "selected_structure_proxy_id, active_site_geometry_proxy_bucket, and low_neighborhood_proxy_score are carried as context only when retained Foldseek evidence is absent"
+  },
+  "pilot_summary": {
+    "heldout_primary_seed_rows": 45,
+    "interpretation_guardrail": "A correct confident transfer on a near-orphan row is informative, but calibrated abstention is preferred over wrong confident transfer when same-fingerprint structural support is weak or absent.",
+    "model_behavior_counts": {
+      "active_site_geometry_retrieval_baseline": {
+        "correct": 35
+      },
+      "esm2_150m": {
+        "not_evaluated_local_artifact_absent": 35
+      },
+      "esm_c": {
+        "not_evaluated_local_artifact_absent": 35
+      },
+      "foldseek_fast_structural_nn": {
+        "abstain_no_strong_retained_structural_neighbor": 35
+      },
+      "prott5": {
+        "not_evaluated_local_artifact_absent": 35
+      },
+      "saprot": {
+        "not_evaluated_local_artifact_absent": 35
+      },
+      "sequence_nn": {
+        "abstain_useful_due_to_weak_same_fingerprint_structure_support": 25,
+        "correct": 6,
+        "wrong_confident_transfer": 4
+      },
+      "three_di_token_nn": {
+        "not_evaluated_local_artifact_absent": 35
+      }
+    },
+    "near_orphan_row_count": 35,
+    "sequence_nn_abstention_useful_count": 25,
+    "sequence_nn_wrong_confident_transfer_count": 4
+  },
+  "rows": [
+    {
+      "active_site_geometry_proxy_bucket": "top1:flavin_dehydrogenase_reductase|residues:ASN-ASN-ASN-LYS-PHE-SER-THR|cofactors:flavin|median:8-12|resolved:6-8",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:109",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0897,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:8",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.7532
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1D3G",
+      "sequence_nn_nearest_jaccard_similarity": 0.0897,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:flavin_dehydrogenase_reductase|residues:ASP-GLU-HIS|cofactors:flavin|median:12-16|resolved:2-4",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:115",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.1091,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:496",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.8193
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1W1O",
+      "sequence_nn_nearest_jaccard_similarity": 0.1091,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:flavin_dehydrogenase_reductase|residues:ARG-ARG-ARG-GLU-HIS-HIS-HIS|cofactors:flavin|median:8-12|resolved:6-8",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:20",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": false,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0971,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:304",
+          "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.7527
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1QJD",
+      "sequence_nn_nearest_jaccard_similarity": 0.0971,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:flavin_dehydrogenase_reductase|residues:GLU-LYS-LYS|cofactors:flavin|median:12-16|resolved:2-4",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:211",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0617,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:638",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.5459
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1IDT",
+      "sequence_nn_nearest_jaccard_similarity": 0.0617,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:flavin_dehydrogenase_reductase|residues:GLY-HIS-TYR|cofactors:flavin|median:8-12|resolved:2-4",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:3",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0593,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:404",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.7506
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1D4A",
+      "sequence_nn_nearest_jaccard_similarity": 0.0593,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:flavin_dehydrogenase_reductase|residues:ASP-ASP-GLU-HIS-HIS-HIS-HIS-TYR|cofactors:flavin|median:8-12|resolved:8-10",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:497",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0772,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:268",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.675
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1YCF",
+      "sequence_nn_nearest_jaccard_similarity": 0.0772,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:flavin_dehydrogenase_reductase|residues:ARG-ASP-PRO-TYR|cofactors:flavin|median:8-12|resolved:4-6",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:551",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": false,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0962,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:808",
+          "nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+          "nearest_train_label_group": "ser_his_acid_hydrolase",
+          "orphan_eval_outcome": "wrong_confident_transfer",
+          "outcome": "wrong_confident_transfer",
+          "predicted_fingerprint_id": "ser_his_acid_hydrolase",
+          "predicted_label_group": "ser_his_acid_hydrolase",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.67
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1FOH",
+      "sequence_nn_nearest_jaccard_similarity": 0.0962,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:flavin_dehydrogenase_reductase|residues:CYS-CYS-CYS-GLU-GLU-HIS-THR-TYR|cofactors:fe_s_cluster-flavin|median:8-12|resolved:8-10",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:750",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0785,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:268",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.7524
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1U8V",
+      "sequence_nn_nearest_jaccard_similarity": 0.0785,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:flavin_dehydrogenase_reductase|residues:CYS-LYS|cofactors:flavin|median:8-12|resolved:2-4",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:892",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0706,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:461",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.6657
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:2DOR",
+      "sequence_nn_nearest_jaccard_similarity": 0.0706,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:flavin_dehydrogenase_reductase|residues:ASP-GLN-GLU-HIS|cofactors:fe_s_cluster-flavin|median:12-16|resolved:4-6",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:990",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0802,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:59",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.7317
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:5DQR",
+      "sequence_nn_nearest_jaccard_similarity": 0.0802,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:heme_peroxidase_oxidase|residues:ASP-CYS-GLU-HIS|cofactors:heme-metal_ion|median:8-12|resolved:4-6",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:250",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0726,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:466",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "heme_peroxidase_oxidase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "heme_peroxidase_oxidase",
+          "top1_score": 0.7104
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:2CPO",
+      "sequence_nn_nearest_jaccard_similarity": 0.0726,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:heme_peroxidase_oxidase|residues:ARG-ASN-ASN-ASP-ASP-GLU-HIS-MET-PHE-PHE-SER-SER-SER-THR-THR-THR-THR-THR-TYR-TYR|cofactors:heme-metal_ion|median:20-24|resolved:20-22",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:714",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": false,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.1109,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:124",
+          "nearest_train_fingerprint_id": "heme_peroxidase_oxidase",
+          "nearest_train_label_group": "heme_peroxidase_oxidase",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "heme_peroxidase_oxidase",
+          "predicted_label_group": "heme_peroxidase_oxidase",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "heme_peroxidase_oxidase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "heme_peroxidase_oxidase",
+          "top1_score": 0.6643
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1FFT",
+      "sequence_nn_nearest_jaccard_similarity": 0.1109,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ASP-ASP-HIS-HIS-HIS-HIS-HIS-LYS|cofactors:metal_ion|median:8-12|resolved:8-10",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:159",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0904,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "uniprot:Q3LXA3",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5897
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1HZY",
+      "sequence_nn_nearest_jaccard_similarity": 0.0904,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ASP-ASP-ASP-GLU-GLY-HIS|cofactors:metal_ion|median:8-12|resolved:6-8",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:163",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": false,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0494,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:917",
+          "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+          "nearest_train_label_group": "metal_dependent_hydrolase",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.599
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1RDD",
+      "sequence_nn_nearest_jaccard_similarity": 0.0494,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ARG-GLU-GLU-HIS-HIS|cofactors:metal_ion|median:4-8|resolved:4-6",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:171",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.07,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:612",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.6043
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1M4L",
+      "sequence_nn_nearest_jaccard_similarity": 0.07,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ARG-ASP-ASP-GLN-GLU-GLU-GLU-HIS-LYS-LYS-THR|cofactors:metal_ion|median:8-12|resolved:10-12",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:180",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0718,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:59",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5821
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1HYO",
+      "sequence_nn_nearest_jaccard_similarity": 0.0718,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ASN-ASP-ASP-ASP-ASP-GLU-GLY-HIS-HIS-LYS-TRP|cofactors:metal_ion|median:8-12|resolved:10-12",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:242",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0648,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:417",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5849
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:2F9R",
+      "sequence_nn_nearest_jaccard_similarity": 0.0648,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ASP-ASP-ASP-GLU-TYR|cofactors:metal_ion|median:8-12|resolved:4-6",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:321",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": false,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0707,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:68",
+          "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "orphan_eval_outcome": "wrong_confident_transfer",
+          "outcome": "wrong_confident_transfer",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5907
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1YT3",
+      "sequence_nn_nearest_jaccard_similarity": 0.0707,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:GLU-HIS-HIS-HIS-TYR|cofactors:metal_ion|median:8-12|resolved:4-6",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:403",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": false,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0513,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:111",
+          "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "orphan_eval_outcome": "wrong_confident_transfer",
+          "outcome": "wrong_confident_transfer",
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5973
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1AST",
+      "sequence_nn_nearest_jaccard_similarity": 0.0513,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ASN-ASP-ASP-HIS-HIS-HIS-HIS-HIS-HIS-TYR|cofactors:metal_ion|median:8-12|resolved:10-12",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:43",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": false,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0657,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:808",
+          "nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+          "nearest_train_label_group": "ser_his_acid_hydrolase",
+          "orphan_eval_outcome": "wrong_confident_transfer",
+          "outcome": "wrong_confident_transfer",
+          "predicted_fingerprint_id": "ser_his_acid_hydrolase",
+          "predicted_label_group": "ser_his_acid_hydrolase",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.59
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:4KBP",
+      "sequence_nn_nearest_jaccard_similarity": 0.0657,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ARG-ASP-ASP-ASP-ASP-GLU-HIS-HIS-HIS-LYS-SER-THR|cofactors:metal_ion|median:8-12|resolved:12-14",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:44",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0933,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "uniprot:Q3LXA3",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5944
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1ALK",
+      "sequence_nn_nearest_jaccard_similarity": 0.0933,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ARG-ASP-CYS-CYS-HIS|cofactors:metal_ion|median:8-12|resolved:4-6",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:517",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0532,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:450",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5965
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1I6P",
+      "sequence_nn_nearest_jaccard_similarity": 0.0532,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ASP-ASP-ASP-GLU-ILE-THR|cofactors:none|median:4-8|resolved:6-8",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:577",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0661,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:268",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.4288
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1IMA",
+      "sequence_nn_nearest_jaccard_similarity": 0.0661,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ASN-ASN-ASP-GLU-GLU-HIS|cofactors:metal_ion|median:8-12|resolved:6-8",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:686",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0568,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:246",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5817
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1E1A",
+      "sequence_nn_nearest_jaccard_similarity": 0.0568,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ASP-GLN-GLU-HIS-HIS-HIS|cofactors:metal_ion|median:8-12|resolved:6-8",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:710",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": false,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0765,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:447",
+          "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+          "nearest_train_label_group": "metal_dependent_hydrolase",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5851
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1RA0",
+      "sequence_nn_nearest_jaccard_similarity": 0.0765,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ASP-GLU-LYS|cofactors:none|median:4-8|resolved:2-4",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:897",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.046,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:308",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.429
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1PVI",
+      "sequence_nn_nearest_jaccard_similarity": 0.046,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ASP-ASP-ASP-ASP-GLU-TYR|cofactors:metal_ion|median:8-12|resolved:6-8",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:916",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0453,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:316",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5698
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:4Z71",
+      "sequence_nn_nearest_jaccard_similarity": 0.0453,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:CYS-CYS-GLU-HIS|cofactors:metal_ion|median:4-8|resolved:4-6",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:97",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0776,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:417",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.6009
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1CTT",
+      "sequence_nn_nearest_jaccard_similarity": 0.0776,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:metal_dependent_hydrolase|residues:ARG-ASP-ASP-ASP-ASP-GLN-HIS-HIS-HIS-HIS-HIS-LYS|cofactors:metal_ion|median:12-16|resolved:12-14",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:994",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": false,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0879,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:626",
+          "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+          "nearest_train_label_group": "metal_dependent_hydrolase",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5716
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:4BZC",
+      "sequence_nn_nearest_jaccard_similarity": 0.0879,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:plp_dependent_enzyme|residues:ARG-ARG-ASP-CYS-HIS-LYS-TYR|cofactors:plp|median:12-16|resolved:6-8",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:213",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0831,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:466",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "plp_dependent_enzyme",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "plp_dependent_enzyme",
+          "top1_score": 0.5839
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1L6G",
+      "sequence_nn_nearest_jaccard_similarity": 0.0831,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:plp_dependent_enzyme|residues:ASP-LYS-TRP|cofactors:plp|median:12-16|resolved:2-4",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:424",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0712,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:476",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "plp_dependent_enzyme",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "plp_dependent_enzyme",
+          "top1_score": 0.6296
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1BJO",
+      "sequence_nn_nearest_jaccard_similarity": 0.0712,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:ser_his_acid_hydrolase|residues:ALA-GLU-GLY-HIS-SER|cofactors:none|median:8-12|resolved:4-6",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:599",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0748,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:303",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "ser_his_acid_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "ser_his_acid_hydrolase",
+          "top1_score": 0.8182
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1FY2",
+      "sequence_nn_nearest_jaccard_similarity": 0.0748,
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:ser_his_acid_hydrolase|residues:ASP-GLY-HIS-SER-SER-SER|cofactors:none|median:4-8|resolved:6-8",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:609",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": false,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0988,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:608",
+          "nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+          "nearest_train_label_group": "ser_his_acid_hydrolase",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "ser_his_acid_hydrolase",
+          "predicted_label_group": "ser_his_acid_hydrolase",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "ser_his_acid_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "ser_his_acid_hydrolase",
+          "top1_score": 0.8864
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1SSX",
+      "sequence_nn_nearest_jaccard_similarity": 0.0988,
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:ser_his_acid_hydrolase|residues:ASP-HIS-SER-SER|cofactors:none|median:32-36|resolved:4-6",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:688",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0975,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:59",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "ser_his_acid_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "ser_his_acid_hydrolase",
+          "top1_score": 0.83
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:2ODQ",
+      "sequence_nn_nearest_jaccard_similarity": 0.0975,
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "active_site_geometry_proxy_bucket": "top1:ser_his_acid_hydrolase|residues:ASN-ASP-HIS-SER-SER|cofactors:none|median:8-12|resolved:4-6",
+      "active_site_geometry_proxy_bucket_count": 1,
+      "entry_id": "m_csa:723",
+      "low_neighborhood_proxy_score": 1.0,
+      "max_any_retained_train_tm_score": null,
+      "max_same_fingerprint_train_tm_score": null,
+      "model_behaviors": [
+        {
+          "abstained": true,
+          "availability": "evaluated",
+          "forbidden_inputs_used": [],
+          "jaccard_similarity": 0.0887,
+          "model_id": "sequence_nn",
+          "nearest_train_entry_id": "m_csa:421",
+          "nearest_train_fingerprint_id": null,
+          "nearest_train_label_group": "out_of_scope",
+          "orphan_eval_outcome": "abstain_useful_due_to_weak_same_fingerprint_structure_support",
+          "outcome": "abstains",
+          "predicted_fingerprint_id": null,
+          "predicted_label_group": "out_of_scope",
+          "predictive_inputs": [
+            "amino_acid_sequence_only"
+          ]
+        },
+        {
+          "abstained": true,
+          "availability": "evaluated_as_provisional_fold_neighborhood_proxy",
+          "max_pair_tm_score": null,
+          "model_id": "foldseek_fast_structural_nn",
+          "nearest_train_entry_id": null,
+          "outcome": "abstain_no_strong_retained_structural_neighbor",
+          "predicted_fingerprint_id": null,
+          "proxy_limitations": [
+            "retained Foldseek rows only",
+            "not a full accepted TM-score split"
+          ]
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm2_150m",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-2 150M prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "prott5",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ProtT5 prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "saprot",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level SaProt prediction or NN artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "three_di_token_nn",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "Foldseek output is present, but no standalone 3Di-token NN prediction artifact is present locally"
+        },
+        {
+          "availability": "not_evaluated_local_artifact_absent",
+          "model_id": "esm_c",
+          "outcome": "not_evaluated_local_artifact_absent",
+          "reason": "no current702 row-level ESM-C prediction or NN artifact is present locally"
+        },
+        {
+          "abstained": false,
+          "availability": "evaluated_existing_baseline_not_one_of_requested_plm_models",
+          "model_id": "active_site_geometry_retrieval_baseline",
+          "orphan_eval_outcome": "correct",
+          "outcome": "predicts_mechanism_correctly",
+          "predicted_fingerprint_id": "ser_his_acid_hydrolase",
+          "predictive_inputs": [
+            "active_site_residue_identity",
+            "active_site_residue_roles",
+            "local_ligand_cofactor_context",
+            "substrate_pocket_descriptors",
+            "active_site_compactness"
+          ],
+          "raw_top1_fingerprint_id": "ser_his_acid_hydrolase",
+          "top1_score": 0.9115
+        }
+      ],
+      "near_orphan_definition": "heldout primary row with no retained same-fingerprint Foldseek train neighbor at TM-score >= 0.70",
+      "near_orphan_status": "near_orphan_under_retained_foldseek_signal",
+      "primary_train_neighbor_count_in_retained_signal": 0,
+      "same_fingerprint_train_neighbor_count_in_retained_signal": 0,
+      "selected_structure_proxy_id": "pdb:1S01",
+      "sequence_nn_nearest_jaccard_similarity": 0.0887,
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    }
+  ],
+  "schema_version": "mechanism_prediction_orphan_eval_design.v1",
+  "scope": {
+    "fingerprint_registry_edited": false,
+    "label_registry_edited": false,
+    "model_training_performed": false,
+    "ontology_registry_edited": false,
+    "production_scoring_or_threshold_changed": false,
+    "target_question": "Do models abstain usefully on heldout examples lacking strong same-fingerprint structural neighbors?"
+  },
+  "source_artifacts": {
+    "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json": {
+      "role": "foldseek_tm_signal",
+      "sha256": "316a97f98b1c2e8242f7bd3e4783a70ba132a571a49a1cea11b27f6cb004cf25"
+    },
+    "artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json": {
+      "role": "learned_manifest",
+      "sha256": "388533742b51fb78f98b257cd9231a497dee7b6016be3e6cea11b7e44e8511b8"
+    },
+    "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json": {
+      "role": "eval_contract",
+      "sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50"
+    },
+    "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json": {
+      "role": "split",
+      "sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425"
+    },
+    "artifacts/v3_sequence_nn_metrics_current702_20260525.json": {
+      "role": "sequence_nn_metrics",
+      "sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26"
+    },
+    "artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl": {
+      "role": "sequence_nn_predictions",
+      "sha256": "700d032e393f6dcd1e4202e050ab0d7f1dd8e269641d575caa211308e91f431a"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "role": "label_registry",
+      "sha256": "5a1ce4af25af0fbb3bfff3be07118484e08de7ee318fad8d783fab10a540c684"
+    }
+  }
+}

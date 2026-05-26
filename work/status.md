@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 320
-- Measured elapsed time: 9450.8 minutes (157.51 hours)
+- Entries: 321
+- Measured elapsed time: 9465.3 minutes (157.75 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -19,7 +19,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
-- v3: 2388.6 measured minutes (39.81 hours)
+- v3: 2403.1 measured minutes (40.05 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -28,21 +28,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3412
-- Evidence references logged: 2828
+- Artifact references logged: 3417
+- Evidence references logged: 2829
 
 ## Recent Entries
-
-### 2026-05-25T09:13:01Z - v3
-
-- Task: Fingerprint v1 coherence audit for representation target
-- Time mode: measured
-- Measured minutes: 20.0
-- Started: 2026-05-25T08:53:01Z
-- Ended: 2026-05-25T09:13:01Z
-- Artifacts: artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json, tests/test_automation_small_win_artifacts.py, README.md, docs/label_factory.md, work/handoff.md
-- Evidence: audited all 8 production fingerprint ids against the 702-label registry, primary metric frozen to 5 coherent/coarse acceptable fingerprints covering 226 seed labels, radical SAM cobalamin radical and flavin monooxygenase held secondary-only for tail/split caveats, downstream benchmark rules pinned for hard-negative tiers cluster bootstrap leakage-aware EC prior OOD abstention diversity checks and conjunctive win condition, targeted fingerprint audit test passed, PYTHONPATH=src python -m catalytic_earth.cli validate passed with 702 labels 8 fingerprints 15 ontology families, full unittest discovery passed with 933 tests, git diff --check passed, new audit JSON parsed
-- Notes: Direct locked audit-only run. No label import import preview registry edit fingerprint edit ontology edit scoring change threshold change model training artifact upload/removal externalization migration history rewrite or removal_allowed=true action occurred. Non-destructive git fetch against the configured SSH remote failed with a public-key error; local HEAD matched the recorded origin/main ref before edits. Pre-existing root CIF files were left untouched.
 
 ### 2026-05-25T09:51:46.143569+00:00 - v3
 
@@ -120,6 +109,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_sequence_split_assignment_repair_current702_20260525.json, artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json, artifacts/v3_sequence_nn_label_manifest_current702_20260525.json, artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json, artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl, artifacts/v3_sequence_nn_metrics_current702_20260525.json, src/catalytic_earth/sequence_nn.py, src/catalytic_earth/cli.py, tests/test_sequence_nn.py, README.md, work/handoff.md
 - Evidence: split assignment missing count 0, sequence identity target achieved max 0.284, sequence NN metrics reported 140 predictions, validate passed, 937 unit tests passed, diff check passed, jq JSON and JSONL parsing passed, artifact admission guard passed
 - Notes: No label import registry edit fingerprint edit ontology edit scoring threshold model training PLM embedding artifact removal migration upload history rewrite or removal_allowed=true action occurred.
+
+### 2026-05-26T03:29:07.990468+00:00 - v3
+
+- Task: mechanism evaluation sharpening and v2 sublabel audit
+- Time mode: measured
+- Measured minutes: 14.5
+- Started: 2026-05-26T03:16:20Z
+- Ended: 2026-05-26T03:30:50Z
+- Artifacts: artifacts/v3_mechanism_prediction_fold_controlled_eval_design_702_20260525.json, artifacts/v3_mechanism_prediction_orphan_eval_design_702_20260525.json, artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json, work/mechanism_eval_sharpening_handoff_20260525.md, work/handoff.md
+- Evidence: Fold-control pilot found 3 retained Foldseek OOS-vs-primary trap rows and 0 primary-vs-primary retained traps; orphan pilot found 35 heldout primary near-orphan rows with sequence-NN 25 useful abstentions 6 correct 4 wrong confident transfers; v2 audit assigned 226 v1 primary labels across 23 proposal-only sublabel buckets with 9 ready-after-expert-approval candidates
+- Notes: No label import registry edit fingerprint edit ontology edit production scoring threshold model training PLM embedding representation branch artifact edit or Foldseek win claim occurred; CATH/SCOP unavailable so Foldseek TM is provisional.
 
 ## Expectation Updates
 

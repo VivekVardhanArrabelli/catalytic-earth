@@ -50,6 +50,67 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-26T03:16Z Mechanism Evaluation Sharpening Artifacts
+
+This run stayed on `main`, acquired `.git/catalytic-earth-automation.lock`,
+fetched/pulled `origin/main`, and produced artifact-only evaluation sharpening
+for the current 702-label registry. No curated labels, fingerprint registries,
+ontology registries, production scoring, thresholds, model training, PLM
+embedding computation, representation branch outputs, label imports, artifact
+removals, uploads, migrations, or history rewrites were changed.
+
+Artifacts written:
+
+```text
+artifacts/v3_mechanism_prediction_fold_controlled_eval_design_702_20260525.json
+artifacts/v3_mechanism_prediction_orphan_eval_design_702_20260525.json
+artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json
+work/mechanism_eval_sharpening_handoff_20260525.md
+```
+
+Fold-controlled pilot: the retained local Foldseek TM signal contains 3
+high-TM OOS-vs-primary fold-transfer traps across 2 heldout examples and 0
+primary-vs-primary cross-fingerprint traps. Foldseek structural NN would follow
+the fold neighbor incorrectly in 3/3. Sequence-NN abstains correctly on 2/3 and
+makes 1 wrong confident transfer. Active-site geometry abstains correctly on
+3/3. ESM-2 150M, ProtT5, SaProt, 3Di-token NN, and ESM-C row-level current702
+prediction artifacts are absent locally, so they are recorded as unavailable
+rather than as abstentions.
+
+Near-orphan pilot: using the retained Foldseek signal as a provisional proxy,
+35 heldout v1 primary rows have no retained same-fingerprint train neighbor at
+TM-score >= 0.70. Sequence-NN shows 25 useful abstentions, 6 correct
+predictions, and 4 wrong confident transfers. Foldseek structural NN abstains
+for all 35 under the retained-signal rule. Active-site geometry predicts the
+v1 primary correctly for all 35. The priority metric is calibrated abstention
+versus wrong confident transfer, not raw accuracy alone.
+
+V2 audit: all 226 v1 primary positive labels were assigned proposal-only
+sublabels using current curated artifacts. The audit concludes the 5 v1 primary
+groups remain usable as coarse benchmark labels, but are too coarse for the
+final representation-learning question unless future evaluations also report
+proposal-v2 sublabel strata. Ready-after-expert-approval candidates include
+serine protease/peptidase, lipase/esterase/cutinase, metal phosphoesterase or
+nuclease, metal amidohydrolase/deaminase, zinc metalloprotease, PLP
+lyase/eliminase, PLP aminotransferase, flavin hydride-transfer, and heme
+peroxidase/catalase. Boundary/underpowered/unresolved candidates remain expert
+review only. Review-only rationale/context is explicitly kept out of predictive
+features.
+
+Next action: if representation scoring resumes, first emit fuller current702
+row-level prediction artifacts and a fuller retained nearest-neighbor Foldseek
+table. Do not claim a Foldseek or broad-bucket model win from these pilots.
+
+A commit was created locally for this artifact-only run, but the configured
+HTTPS push failed with:
+
+```text
+fatal: could not read Username for 'https://github.com': Device not configured
+```
+
+Local `main` is therefore ahead of `origin/main` until GitHub authentication is
+restored or the commit is pushed from an authenticated environment.
+
 ### 2026-05-25T15:08Z Sequence-NN Split Repair Complete
 
 This run acquired `.git/catalytic-earth-automation.lock`, fetched `origin`,
