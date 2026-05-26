@@ -104,6 +104,13 @@ Validation refresh:
 - Re-checked JSON/JSONL parse validity, backend-recorded output hashes, ESM-2 150M lineage fields, required metrics fields, canary rows, underpowered-cell flags, `PYTHONPATH=src python -m unittest tests.test_representation_baseline`, and `PYTHONPATH=src python -m catalytic_earth.cli validate`.
 - This refresh did not regenerate embeddings or predictions and did not mix active-site pooling into the whole-sequence evidence budget.
 
+Validation refresh run 3:
+
+- Run timestamp: `2026-05-26T02:11:36Z`
+- Added validation artifact: `artifacts/representation_tracks/esm2_150m/esm2_150m_validation_current702_20260525_run3.json`
+- Re-checked track JSON/JSONL parse validity, metrics lineage, backend lineage, backend-recorded output hashes, focused representation baseline unit coverage, and `PYTHONPATH=src python -m catalytic_earth.cli validate`.
+- This refresh did not regenerate embeddings or predictions and did not mix active-site pooling into the whole-sequence evidence budget.
+
 Lineage verification refresh:
 
 - Run timestamp: `2026-05-26T02:07:49Z`
