@@ -83,6 +83,10 @@ Commit/push status for this audit:
 - Push blocker:
   `fatal: could not read Username for 'https://github.com': Device not configured`
 
+Post-run orchestration note: the push blocker above was resolved after the
+automation completed. Branch `research/representation-esm-c` was pushed to
+origin through commit `19be3e3`; the local branch and origin branch are synced.
+
 ## Status
 
 ESM-C 300M is unblocked and computed for the current702 representation track. No labels, fingerprints, ontology entries, production scoring, thresholds, or main docs were changed.
