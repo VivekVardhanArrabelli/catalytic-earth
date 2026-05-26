@@ -1,15 +1,28 @@
 # ProtT5 Representation Track Handoff
 
-Run dates: artifact generation 2026-05-25; verification refresh 2026-05-26T02:16:17Z (2026-05-25 CDT)
+Run dates: artifact generation 2026-05-25; verification refresh 2026-05-26T02:16:17Z; Wave 1 standardized export 2026-05-26T05:03:35Z
 Branch: `research/representation-prott5`
 
 ## Output
 
+- Wave 1 standardized predictions: `artifacts/representation_tracks/prott5/prott5_wave1_standardized_predictions_current702_20260526.jsonl`
+  SHA-256 `c59ecf2c774a175b1d6badbfd03164061d67663240a8b43ec2ee6b0fabb67c7c`
+- Wave 1 standardized metrics: `artifacts/representation_tracks/prott5/prott5_wave1_standardized_metrics_current702_20260526.json`
+  SHA-256 `9703c614b0060d7264723a3fd35352be635d9b7424f5d770c5190f4daae27356`
 - Metrics artifact: `artifacts/representation_tracks/prott5/prott5_current702_swissprot_h5_knn_metrics_20260525.json`
   SHA-256 `f37c3aa780c6d2ec169f36ee38a02fdcd4dee957a54483972bb2e54000d61959`
 - Predictions artifact: `artifacts/representation_tracks/prott5/prott5_current702_swissprot_h5_knn_predictions_20260525.jsonl`
 - H5 key coverage artifact: `artifacts/representation_tracks/prott5/prott5_current702_swissprot_h5_key_coverage_20260525.json`
 - Prior feasibility/blocker artifact, now superseded by exact H5 probing: `artifacts/representation_tracks/prott5/prott5_current702_swissprot_embedding_feasibility_20260525.json`
+
+## Wave 1 Standardized Export
+
+- Row schema: `wave1_model_prediction_export.v1`.
+- Model track: `prott5`; branch/head recorded as `research/representation-prott5` / `27636f193c9524f9987b3883e0b840f59469e5f4`.
+- Standardized prediction rows: 140 heldout rows total, covering 132 embedded ProtT5 KNN outputs plus 8 explicit missing-H5 coverage blocker rows.
+- Pooling mode is `whole_sequence_per_protein` for every row; `active_site_pooling_contract` is `null` throughout. No active-site pooling was attempted or mixed into these metrics.
+- Each row records the local Swiss-Prot ProtT5 H5 path, size, SHA-256, source prediction/metrics artifact hashes, eval contract hash, label manifest hash, split hash, true status, predicted output or `none`, score when available, primary correctness, OOS/secondary false-positive diagnostics, and a coverage blocker for missing H5 accessions.
+- Missing-H5 rows in the standardized export are `m_csa:67`, `m_csa:201`, `m_csa:372`, `m_csa:428`, `m_csa:453`, `m_csa:509`, `m_csa:634`, and `m_csa:688`; they are not imputed.
 
 ## Coverage
 
@@ -40,6 +53,8 @@ Branch: `research/representation-prott5`
 - OOS abstention rate: 0.7701.
 - Sequence-NN comparison from the frozen baseline: primary accuracy improved from 0.1556 to 0.3953; OOS false-positive rate improved from 0.2717 to 0.2299, with the caveat that ProtT5 covers 132/140 heldout rows because Swiss-Prot H5 lacks TrEMBL/fallback entries.
 - ESM-2 150M comparator from local branch `research/representation-esm2-150m` (`6bc960d`): primary accuracy 0.577778, macro-F1 0.695681, OOS false-positive/non-abstention rate 0.168421 on 140/140 heldout rows. ProtT5 is lower by 0.182478 accuracy and 0.119781 macro-F1, and higher by 0.061479 OOS false-positive rate; this comparison mixes representation, model head, and coverage differences.
+- ESM-C corrected comparator from local standardized artifact: primary accuracy 0.377778, macro-F1 0.46022, OOS/secondary false-positive non-abstention rate 0.168421 on 140/140 heldout rows. ProtT5 is higher by 0.017522 accuracy and 0.11568 macro-F1, and higher by 0.061479 OOS/secondary false-positive rate.
+- Foldseek full-structure comparator from the local artifact: primary accuracy 0.6222, macro-F1 0.7649, OOS false-positive rate 0.087. This is a structure-neighborhood comparator with a different evidence budget from ProtT5 whole-sequence per-protein embeddings.
 
 Underpowered cells are flagged in the artifact at top-level `underpowered_cell_flags` and inside the detailed breakdowns. The heme heldout cell has only 4 embedded rows and remains qualitative under the contract's macro-F1 class minimum; the `boundary_oos` embedded out-of-scope tier has 0 rows; the radical-SAM secondary canary `m_csa:372` is missing from the H5.
 
@@ -59,19 +74,27 @@ Underpowered cells are flagged in the artifact at top-level `underpowered_cell_f
   SHA-256 `4c90d425f124ec7fabe56bc6864f95c0462472c7164b4f7b6b6e8bff0fed81dc`
 - ESM-2 150M comparator metrics: `research/representation-esm2-150m:artifacts/representation_tracks/esm2_150m/esm2_150m_metrics_current702_20260525.json`
   SHA-256 `b67dee9010e5dc0c20c92709fe6094b29228d07b151c9fcbe1d11530edc7fa6b`
+- ESM-C corrected standardized comparator metrics: `research/representation-esm-c:artifacts/representation_tracks/esm_c/esm_c_300m_wave1_standardized_metrics_current702_20260526.json`
+  SHA-256 `61315c6d82169839ac4ac8e45f0f569ca400490281a0367528d928c401051ad6`
+- Foldseek comparator metrics: `research/representation-foldseek-pocket:artifacts/representation_tracks/foldseek_pocket/current702_foldseek_fast3di_full_structure_metrics_20260525.json`
+  SHA-256 `7abc57d4f179a49db444aea7b5210b1e8ed72d7ffdb957dab7700e2de94dcb0a`
 
 ## Verification
 
 - Fresh H5 probe on 2026-05-26T02:13:44Z opened `artifacts/representation_tracks/prott5/downloads/uniprot_sprot_per-protein.h5` with `h5py`; size is 1,383,407,848 bytes, SHA-256 is `15d7bc28aca161e70e25bd7ad51bc49a9824677e9cb28cbdd69765d0029d62d5`, top-level key count is 574,615, and sample dataset `A0A009IHW8` is shape `[1024]` dtype `float16`.
+- `jq -e` validation passed for `prott5_wave1_standardized_metrics_current702_20260526.json`.
+- `jq -c` JSONL validation passed for `prott5_wave1_standardized_predictions_current702_20260526.jsonl`.
+- Custom schema/count checks passed for 140 rows, one schema version, `model_track=prott5`, `pooling_mode=whole_sequence_per_protein`, 132 embedded rows, 8 coverage blockers, 45 primary rows, and 95 OOS/secondary rows.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed after generating the Wave 1 standardized files.
 - `jq -e` validation passed for the metrics artifact.
 - `jq -e` validation passed for the H5 key coverage artifact.
 - JSONL parsing validation passed for 132 prediction rows.
 - `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
-- Local branch contains the metrics and handoff refresh commits, but push is blocked in this environment: `git push origin HEAD:refs/heads/research/representation-prott5` fails with `fatal: could not read Username for 'https://github.com': Device not configured`; `gh auth status` reports an invalid token. Direct remote check still reports `origin/research/representation-prott5` at `fceaadb4a5b6d538e22bacfc318c63a810cef882`.
+- Previous run recorded a push-auth blocker; this run rechecks push after committing the Wave 1 standardized export.
 
 ## Next Step
 
-Authenticate push access, then push local `research/representation-prott5` HEAD. After that, review the missing-H5 heldout rows before interpreting the win claim broadly. The main unresolved risk is coverage bias from Swiss-Prot-only vectors, especially the missing radical-SAM secondary probe `m_csa:372` and two missing `ser_his_acid_hydrolase` primary rows.
+Review the standardized Wave 1 row export before interpreting the win claim broadly. The main unresolved risk is coverage bias from Swiss-Prot-only vectors, especially the missing radical-SAM secondary probe `m_csa:372` and two missing `ser_his_acid_hydrolase` primary rows.
 
 ## Orchestration Update
 
