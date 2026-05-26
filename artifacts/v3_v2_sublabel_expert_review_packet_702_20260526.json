@@ -1,0 +1,3230 @@
+{
+  "artifact_id": "v3_v2_sublabel_expert_review_packet_702_20260526",
+  "audit_readiness_summary": {
+    "candidate_ready_for_future_eval_design_after_expert_approval": 9,
+    "candidate_summary_count": 23,
+    "expected_candidate_gap_count": 2,
+    "expert_review_needed_candidates": [
+      "ser_his_acid.perhydrolase_haloperoxidase_caveat",
+      "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+      "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+      "metal_hydrolase.metallo_beta_lactamase_like",
+      "metal_hydrolase.ntpase_nucleotide_hydrolase_tail",
+      "metal_hydrolase.sulfatase_fgly_like",
+      "metal_hydrolase.unresolved_metal_water_hydrolase",
+      "plp.coupled_plp_radical_or_cobalamin_boundary",
+      "plp.decarboxylase",
+      "plp.phosphorylase_acid_catalysis_caveat",
+      "plp.racemase_epimerase",
+      "plp.unresolved_plp_chemistry",
+      "flavin.boundary_monooxygenase_like_review_needed",
+      "flavin.unresolved_flavin_redox"
+    ],
+    "needs_expert_review_before_future_evaluation": 14,
+    "ready_candidates": [
+      "ser_his_acid.lipase_esterase_cutinase_like",
+      "ser_his_acid.serine_protease_peptidase_like",
+      "metal_hydrolase.amidohydrolase_deaminase_like",
+      "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+      "metal_hydrolase.zinc_metalloprotease_or_metallopeptidase_like",
+      "plp.lyase_eliminase_synthase",
+      "plp.transaminase_aminotransferase",
+      "flavin.dehydrogenase_oxidase_hydride_transfer",
+      "heme.peroxidase_catalase_like"
+    ]
+  },
+  "child_labels": [
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:218",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1HPL",
+            "residue_codes": [
+              "LEU",
+              "SER",
+              "ASP",
+              "HIS",
+              "PHE"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:337",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1CHD",
+            "residue_codes": [
+              "MET",
+              "ASP",
+              "HIS",
+              "SER",
+              "THR"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:401",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1AQL",
+            "residue_codes": [
+              "ALA",
+              "HIS",
+              "ALA",
+              "SER",
+              "ASP",
+              "GLY"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:407",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "2O7R",
+            "residue_codes": [
+              "GLY",
+              "GLY",
+              "ALA",
+              "SER",
+              "HIS",
+              "ASP",
+              "GLN",
+              "MET"
+            ],
+            "resolved_residue_count": 8,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:431",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1BS9",
+            "residue_codes": [
+              "SER",
+              "THR",
+              "THR",
+              "ASP",
+              "GLN",
+              "HIS"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 19,
+      "blocker_reason": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+      "confidence_counts": {
+        "medium": 19
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Approve or reject the proposal-only child label for future evaluation design; no production label change is implied.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "ser_his_acid.lipase_esterase_cutinase_like",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 19
+      },
+      "readiness": "candidate_ready_for_future_eval_design_after_expert_approval",
+      "router_row_examples": [
+        "m_csa:407",
+        "m_csa:431",
+        "m_csa:453"
+      ],
+      "row_examples": [
+        "m_csa:94",
+        "m_csa:218",
+        "m_csa:337",
+        "m_csa:401",
+        "m_csa:407",
+        "m_csa:431",
+        "m_csa:453",
+        "m_csa:465",
+        "m_csa:518"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 19,
+      "v1_benchmark_label_group": "ser_his_acid_hydrolase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:248",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1A7U",
+            "residue_codes": [
+              "MET",
+              "PHE",
+              "ASP",
+              "HIS",
+              "SER"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 1,
+      "blocker_reason": "unresolved_or_underpowered_candidate_needs_expert_review",
+      "confidence_counts": {
+        "low": 1
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Decide whether current support is enough for a future evaluation stratum or whether more curated rows are required.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "ser_his_acid.perhydrolase_haloperoxidase_caveat",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 1
+      },
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "router_row_examples": [],
+      "row_examples": [
+        "m_csa:248"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 1,
+      "v1_benchmark_label_group": "ser_his_acid_hydrolase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:169",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1PFQ",
+            "residue_codes": [
+              "TYR",
+              "TYR",
+              "SER",
+              "ASP",
+              "HIS"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:238",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1WPO",
+            "residue_codes": [
+              "HIS",
+              "HIS",
+              "SER",
+              "SER",
+              "ARG",
+              "ARG"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:387",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1YPH",
+            "residue_codes": [
+              "HIS",
+              "ASP",
+              "GLY",
+              "SER",
+              "GLY"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:412",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1AZW",
+            "residue_codes": [
+              "TRP",
+              "ASP",
+              "HIS",
+              "SER",
+              "GLY"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:425",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1QRZ",
+            "residue_codes": [
+              "GLY",
+              "HIS",
+              "ASP",
+              "SER"
+            ],
+            "resolved_residue_count": 4,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 10,
+      "blocker_reason": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+      "confidence_counts": {
+        "medium": 10
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Approve or reject the proposal-only child label for future evaluation design; no production label change is implied.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "ser_his_acid.serine_protease_peptidase_like",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 10
+      },
+      "readiness": "candidate_ready_for_future_eval_design_after_expert_approval",
+      "router_row_examples": [
+        "m_csa:609"
+      ],
+      "row_examples": [
+        "m_csa:5",
+        "m_csa:169",
+        "m_csa:238",
+        "m_csa:387",
+        "m_csa:412",
+        "m_csa:425",
+        "m_csa:609",
+        "m_csa:808"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 10,
+      "v1_benchmark_label_group": "ser_his_acid_hydrolase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:173",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1PQ5",
+            "residue_codes": [
+              "GLY",
+              "SER",
+              "GLN",
+              "HIS",
+              "ASP",
+              "SER",
+              "ASP"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:437",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1C4X",
+            "residue_codes": [
+              "ASN",
+              "TRP",
+              "ASP",
+              "SER",
+              "HIS",
+              "GLY",
+              "MET",
+              "ARG"
+            ],
+            "resolved_residue_count": 8,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:522",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1EH5",
+            "residue_codes": [
+              "GLN",
+              "HIS",
+              "ASP",
+              "SER",
+              "MET"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:523",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1PJA",
+            "residue_codes": [
+              "LEU",
+              "SER",
+              "GLN",
+              "ASP",
+              "HIS"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:599",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "silver",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1FY2",
+            "residue_codes": [
+              "GLY",
+              "GLU",
+              "SER",
+              "ALA",
+              "HIS"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "expert_reviewed"
+        }
+      ],
+      "automation_curated_count": 10,
+      "blocker_reason": "unresolved_or_underpowered_candidate_needs_expert_review",
+      "confidence_counts": {
+        "low": 12
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Resolve whether these rows split into one or more named child mechanisms, remain an unresolved bucket, or require more source-free evidence.",
+      "expert_reviewed_count": 2,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+      "queue_v2_rows_for_label": [
+        "m_csa:599",
+        "m_csa:688",
+        "m_csa:723",
+        "m_csa:866"
+      ],
+      "raw_blocker_reason_counts": {
+        "unresolved_review_only_text_insufficient_for_child_target": 12
+      },
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "router_row_examples": [
+        "m_csa:599",
+        "m_csa:688",
+        "m_csa:723",
+        "m_csa:866"
+      ],
+      "row_examples": [
+        "m_csa:173",
+        "m_csa:437",
+        "m_csa:522",
+        "m_csa:523",
+        "m_csa:599",
+        "m_csa:608",
+        "m_csa:688",
+        "m_csa:723",
+        "m_csa:866"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [
+        "m_csa:599",
+        "m_csa:688",
+        "m_csa:723",
+        "m_csa:866"
+      ],
+      "support_count": 12,
+      "v1_benchmark_label_group": "ser_his_acid_hydrolase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:376",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1A4L",
+            "residue_codes": [
+              "GLU",
+              "HIS",
+              "HIS",
+              "ASP",
+              "HIS",
+              "HIS"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:636",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "silver",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1UAQ",
+            "residue_codes": [
+              "CYS",
+              "HIS",
+              "CYS",
+              "CYS",
+              "GLU",
+              "SER"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "expert_reviewed"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:710",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "silver",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1RA0",
+            "residue_codes": [
+              "ASP",
+              "HIS",
+              "HIS",
+              "HIS",
+              "GLU",
+              "GLN"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "expert_reviewed"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:716",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1IM5",
+            "residue_codes": [
+              "ASP",
+              "ASP",
+              "HIS",
+              "SER",
+              "HIS",
+              "GLU",
+              "CYS",
+              "LYS",
+              "ALA",
+              "CYS"
+            ],
+            "resolved_residue_count": 10,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:720",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "silver",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1J2U",
+            "residue_codes": [
+              "GLU",
+              "HIS",
+              "ASP",
+              "HIS",
+              "GLU",
+              "GLU",
+              "HIS"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "expert_reviewed"
+        }
+      ],
+      "automation_curated_count": 4,
+      "blocker_reason": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+      "confidence_counts": {
+        "medium": 7
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Approve or reject the proposal-only child label for future evaluation design; no production label change is implied.",
+      "expert_reviewed_count": 3,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "metal_hydrolase.amidohydrolase_deaminase_like",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 7
+      },
+      "readiness": "candidate_ready_for_future_eval_design_after_expert_approval",
+      "router_row_examples": [
+        "m_csa:710",
+        "m_csa:97"
+      ],
+      "row_examples": [
+        "m_csa:87",
+        "m_csa:97",
+        "m_csa:376",
+        "m_csa:636",
+        "m_csa:710",
+        "m_csa:716",
+        "m_csa:720"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 7,
+      "v1_benchmark_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:216",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1CA2",
+            "residue_codes": [
+              "THR",
+              "GLU",
+              "HIS",
+              "HIS",
+              "HIS",
+              "HIS"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:516",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1QRG",
+            "residue_codes": [
+              "HIS",
+              "HIS",
+              "GLU",
+              "GLU",
+              "HIS",
+              "ASN",
+              "GLN"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:517",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1I6P",
+            "residue_codes": [
+              "CYS",
+              "CYS",
+              "HIS",
+              "ASP",
+              "ARG"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 3,
+      "blocker_reason": "underpowered_or_boundary_candidate_needs_expert_review",
+      "confidence_counts": {
+        "low": 3
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Decide whether the boundary is a real child evaluation stratum or only review-only context for coarse-label failure analysis.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+      "queue_v2_rows_for_label": [
+        "m_csa:517"
+      ],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 3
+      },
+      "readiness": "candidate_underpowered_but_named_for_review",
+      "router_row_examples": [
+        "m_csa:517"
+      ],
+      "row_examples": [
+        "m_csa:216",
+        "m_csa:516",
+        "m_csa:517"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 3,
+      "v1_benchmark_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:15",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1ZNB",
+            "residue_codes": [
+              "ASP",
+              "CYS",
+              "ASN",
+              "HIS",
+              "HIS",
+              "HIS",
+              "HIS",
+              "LYS"
+            ],
+            "resolved_residue_count": 8,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:16",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1BC2",
+            "residue_codes": [
+              "ASP",
+              "ASN",
+              "HIS",
+              "HIS",
+              "HIS"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:258",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1SML",
+            "residue_codes": [
+              "TYR",
+              "HIS",
+              "HIS",
+              "HIS",
+              "ASP",
+              "HIS",
+              "HIS"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 3,
+      "blocker_reason": "underpowered_or_boundary_candidate_needs_expert_review",
+      "confidence_counts": {
+        "medium": 3
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Decide whether the boundary is a real child evaluation stratum or only review-only context for coarse-label failure analysis.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "metal_hydrolase.metallo_beta_lactamase_like",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 3
+      },
+      "readiness": "candidate_underpowered_but_named_for_review",
+      "router_row_examples": [],
+      "row_examples": [
+        "m_csa:15",
+        "m_csa:16",
+        "m_csa:258"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 3,
+      "v1_benchmark_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:535",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "4PC7",
+            "residue_codes": [
+              "LYS",
+              "HIS",
+              "THR",
+              "ASP"
+            ],
+            "resolved_residue_count": 4,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 1,
+      "blocker_reason": "unresolved_or_underpowered_candidate_needs_expert_review",
+      "confidence_counts": {
+        "low": 1
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Decide whether current support is enough for a future evaluation stratum or whether more curated rows are required.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "metal_hydrolase.ntpase_nucleotide_hydrolase_tail",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 1
+      },
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "router_row_examples": [],
+      "row_examples": [
+        "m_csa:535"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 1,
+      "v1_benchmark_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:11",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1QUM",
+            "residue_codes": [
+              "ARG",
+              "ASP",
+              "HIS",
+              "TYR",
+              "HIS",
+              "GLU",
+              "ASP",
+              "HIS",
+              "GLU",
+              "HIS",
+              "HIS"
+            ],
+            "resolved_residue_count": 11,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:159",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1HZY",
+            "residue_codes": [
+              "LYS",
+              "HIS",
+              "HIS",
+              "HIS",
+              "HIS",
+              "ASP",
+              "HIS",
+              "ASP"
+            ],
+            "resolved_residue_count": 8,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:160",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1AKO",
+            "residue_codes": [
+              "ASP",
+              "ASN",
+              "ASP",
+              "ASN",
+              "GLU",
+              "HIS",
+              "ASP"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:161",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1EN7",
+            "residue_codes": [
+              "ASN",
+              "ASP",
+              "HIS",
+              "GLU",
+              "HIS",
+              "HIS"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:163",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1RDD",
+            "residue_codes": [
+              "ASP",
+              "GLU",
+              "ASP",
+              "GLY",
+              "HIS",
+              "ASP"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 32,
+      "blocker_reason": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+      "confidence_counts": {
+        "medium": 35
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Approve or reject the proposal-only child label for future evaluation design; no production label change is implied.",
+      "expert_reviewed_count": 3,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 35
+      },
+      "readiness": "candidate_ready_for_future_eval_design_after_expert_approval",
+      "router_row_examples": [
+        "m_csa:159",
+        "m_csa:163",
+        "m_csa:242",
+        "m_csa:321",
+        "m_csa:43",
+        "m_csa:44",
+        "m_csa:686",
+        "m_csa:916"
+      ],
+      "row_examples": [
+        "m_csa:11",
+        "m_csa:27",
+        "m_csa:28",
+        "m_csa:41",
+        "m_csa:42",
+        "m_csa:43",
+        "m_csa:44",
+        "m_csa:159",
+        "m_csa:160",
+        "m_csa:161",
+        "m_csa:163",
+        "m_csa:165"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 35,
+      "v1_benchmark_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:158",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1AUK",
+            "residue_codes": [
+              "ASN",
+              "ASP",
+              "ASP",
+              "SER",
+              "LYS",
+              "ASP",
+              "ARG",
+              "LYS",
+              "HIS",
+              "HIS"
+            ],
+            "resolved_residue_count": 10,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 1,
+      "blocker_reason": "unresolved_or_underpowered_candidate_needs_expert_review",
+      "confidence_counts": {
+        "low": 1
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Decide whether current support is enough for a future evaluation stratum or whether more curated rows are required.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "metal_hydrolase.sulfatase_fgly_like",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 1
+      },
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "router_row_examples": [],
+      "row_examples": [
+        "m_csa:158"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 1,
+      "v1_benchmark_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:157",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1QH5",
+            "residue_codes": [
+              "ASP",
+              "ASP",
+              "HIS",
+              "HIS",
+              "HIS",
+              "HIS",
+              "HIS"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:166",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1HS6",
+            "residue_codes": [
+              "HIS",
+              "HIS",
+              "GLU",
+              "GLU",
+              "TYR",
+              "ASP",
+              "GLU"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:180",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1HYO",
+            "residue_codes": [
+              "LYS",
+              "HIS",
+              "GLU",
+              "THR",
+              "GLU",
+              "GLU",
+              "ASP",
+              "ARG",
+              "GLN",
+              "LYS",
+              "ASP"
+            ],
+            "resolved_residue_count": 11,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:181",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1RQL",
+            "residue_codes": [
+              "ALA",
+              "MET",
+              "HIS",
+              "ARG",
+              "ASP",
+              "ALA",
+              "ASP",
+              "LYS"
+            ],
+            "resolved_residue_count": 8,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:38",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1FBX",
+            "residue_codes": [
+              "HIS",
+              "HIS",
+              "GLU",
+              "HIS",
+              "GLN",
+              "CYS",
+              "CYS"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 17,
+      "blocker_reason": "unresolved_or_underpowered_candidate_needs_expert_review",
+      "confidence_counts": {
+        "low": 20
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Resolve whether these rows split into one or more named child mechanisms, remain an unresolved bucket, or require more source-free evidence.",
+      "expert_reviewed_count": 3,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+      "queue_v2_rows_for_label": [
+        "m_csa:180",
+        "m_csa:403",
+        "m_csa:577",
+        "m_csa:897",
+        "m_csa:994"
+      ],
+      "raw_blocker_reason_counts": {
+        "unresolved_review_only_text_insufficient_for_child_target": 20
+      },
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "router_row_examples": [
+        "m_csa:180",
+        "m_csa:403",
+        "m_csa:577",
+        "m_csa:897",
+        "m_csa:994"
+      ],
+      "row_examples": [
+        "m_csa:38",
+        "m_csa:83",
+        "m_csa:98",
+        "m_csa:157",
+        "m_csa:166",
+        "m_csa:180",
+        "m_csa:181",
+        "m_csa:403",
+        "m_csa:445",
+        "m_csa:528",
+        "m_csa:577",
+        "m_csa:897"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [
+        "m_csa:180",
+        "m_csa:403",
+        "m_csa:577",
+        "m_csa:897",
+        "m_csa:994"
+      ],
+      "support_count": 20,
+      "v1_benchmark_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:167",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1LOK",
+            "residue_codes": [
+              "HIS",
+              "GLU",
+              "ASP",
+              "ASP",
+              "HIS",
+              "GLU"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:168",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1ITQ",
+            "residue_codes": [
+              "GLU",
+              "HIS",
+              "HIS",
+              "HIS",
+              "ASP",
+              "ASP",
+              "HIS"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:170",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1O8A",
+            "residue_codes": [
+              "HIS",
+              "ALA",
+              "GLU",
+              "HIS",
+              "HIS",
+              "TYR",
+              "GLU",
+              "HIS"
+            ],
+            "resolved_residue_count": 8,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:171",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1M4L",
+            "residue_codes": [
+              "ARG",
+              "HIS",
+              "GLU",
+              "HIS",
+              "GLU"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:172",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion"
+            ],
+            "pdb_id": "1ONW",
+            "residue_codes": [
+              "HIS",
+              "HIS",
+              "HIS",
+              "ASP",
+              "HIS"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": [
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 9,
+      "blocker_reason": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+      "confidence_counts": {
+        "medium": 13
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Approve or reject the proposal-only child label for future evaluation design; no production label change is implied.",
+      "expert_reviewed_count": 4,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "metal_hydrolase.zinc_metalloprotease_or_metallopeptidase_like",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 13
+      },
+      "readiness": "candidate_ready_for_future_eval_design_after_expert_approval",
+      "router_row_examples": [
+        "m_csa:171"
+      ],
+      "row_examples": [
+        "m_csa:167",
+        "m_csa:168",
+        "m_csa:170",
+        "m_csa:171",
+        "m_csa:172",
+        "m_csa:176",
+        "m_csa:379",
+        "m_csa:447"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 13,
+      "v1_benchmark_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:195",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "2GSA",
+            "residue_codes": [
+              "LYS",
+              "ASP",
+              "TYR"
+            ],
+            "resolved_residue_count": 3,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:358",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "fe_s_cluster",
+              "plp",
+              "sam"
+            ],
+            "pdb_id": "2A5H",
+            "residue_codes": [
+              "ARG",
+              "CYS",
+              "TYR",
+              "ARG",
+              "CYS",
+              "ARG",
+              "LYS",
+              "ASP",
+              "ASP",
+              "CYS"
+            ],
+            "resolved_residue_count": 10,
+            "structure_cofactor_families": [
+              "fe_s_cluster",
+              "metal_ion",
+              "plp",
+              "sam"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 2,
+      "blocker_reason": "unresolved_or_underpowered_candidate_needs_expert_review",
+      "confidence_counts": {
+        "low": 2
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Decide whether the boundary is a real child evaluation stratum or only review-only context for coarse-label failure analysis.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "plp.coupled_plp_radical_or_cobalamin_boundary",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 2
+      },
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "router_row_examples": [],
+      "row_examples": [
+        "m_csa:195",
+        "m_csa:358"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 2,
+      "v1_benchmark_label_group": "plp_dependent_enzyme"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:430",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [],
+            "pdb_id": "1BS0",
+            "residue_codes": [
+              "LYS",
+              "SER",
+              "ASP",
+              "HIS",
+              "HIS",
+              "GLU",
+              "ASN"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": []
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:482",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1D7R",
+            "residue_codes": [
+              "TRP",
+              "GLU",
+              "ASP",
+              "GLN",
+              "LYS",
+              "ARG"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:860",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1ORD",
+            "residue_codes": [
+              "HIS",
+              "ASP",
+              "LYS"
+            ],
+            "resolved_residue_count": 3,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:937",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "7ODC",
+            "residue_codes": [
+              "HIS",
+              "LYS",
+              "GLU"
+            ],
+            "resolved_residue_count": 3,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 4,
+      "blocker_reason": "underpowered_or_boundary_candidate_needs_expert_review",
+      "confidence_counts": {
+        "medium": 4
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Decide whether the boundary is a real child evaluation stratum or only review-only context for coarse-label failure analysis.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "plp.decarboxylase",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 4
+      },
+      "readiness": "candidate_underpowered_but_named_for_review",
+      "router_row_examples": [],
+      "row_examples": [
+        "m_csa:430",
+        "m_csa:482",
+        "m_csa:860",
+        "m_csa:937"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 4,
+      "v1_benchmark_label_group": "plp_dependent_enzyme"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:186",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1PWH",
+            "residue_codes": [
+              "CYS",
+              "ALA",
+              "LYS"
+            ],
+            "resolved_residue_count": 3,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:286",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "2Z67",
+            "residue_codes": [
+              "HIS",
+              "ARG",
+              "SER",
+              "GLN",
+              "ALA",
+              "LYS",
+              "ARG",
+              "ARG"
+            ],
+            "resolved_residue_count": 8,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:305",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1ET0",
+            "residue_codes": [
+              "LYS",
+              "GLU",
+              "THR"
+            ],
+            "resolved_residue_count": 3,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:383",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1A50",
+            "residue_codes": [
+              "GLU",
+              "TYR",
+              "TYR",
+              "THR",
+              "SER",
+              "ASN",
+              "SER",
+              "THR",
+              "GLY",
+              "GLY",
+              "GLY",
+              "ASP",
+              "GLY",
+              "LYS",
+              "GLU",
+              "TYR",
+              "SER",
+              "SER",
+              "SER",
+              "THR"
+            ],
+            "resolved_residue_count": 20,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:410",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1AX4",
+            "residue_codes": [
+              "TYR",
+              "ASP",
+              "HIS",
+              "ASP",
+              "PHE",
+              "ALA"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 11,
+      "blocker_reason": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+      "confidence_counts": {
+        "medium": 11
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Approve or reject the proposal-only child label for future evaluation design; no production label change is implied.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "plp.lyase_eliminase_synthase",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 11
+      },
+      "readiness": "candidate_ready_for_future_eval_design_after_expert_approval",
+      "router_row_examples": [
+        "m_csa:418",
+        "m_csa:419"
+      ],
+      "row_examples": [
+        "m_csa:186",
+        "m_csa:286",
+        "m_csa:305",
+        "m_csa:383",
+        "m_csa:410",
+        "m_csa:418",
+        "m_csa:419",
+        "m_csa:449"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 11,
+      "v1_benchmark_label_group": "plp_dependent_enzyme"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:205",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1GPB",
+            "residue_codes": [
+              "HIS",
+              "LYS",
+              "HIS",
+              "LYS",
+              "ARG",
+              "LYS",
+              "THR"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 1,
+      "blocker_reason": "unresolved_or_underpowered_candidate_needs_expert_review",
+      "confidence_counts": {
+        "low": 1
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Decide whether current support is enough for a future evaluation stratum or whether more curated rows are required.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "plp.phosphorylase_acid_catalysis_caveat",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 1
+      },
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "router_row_examples": [],
+      "row_examples": [
+        "m_csa:205"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 1,
+      "v1_benchmark_label_group": "plp_dependent_enzyme"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:213",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1L6G",
+            "residue_codes": [
+              "CYS",
+              "ARG",
+              "TYR",
+              "ASP",
+              "HIS",
+              "LYS",
+              "ARG"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:330",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "metal_ion",
+              "plp"
+            ],
+            "pdb_id": "2ZR8",
+            "residue_codes": [
+              "GLU",
+              "GLY",
+              "ASP",
+              "SER",
+              "SER",
+              "LYS"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "metal_ion",
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 2,
+      "blocker_reason": "unresolved_or_underpowered_candidate_needs_expert_review",
+      "confidence_counts": {
+        "medium": 2
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Decide whether current support is enough for a future evaluation stratum or whether more curated rows are required.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "plp.racemase_epimerase",
+      "queue_v2_rows_for_label": [
+        "m_csa:213"
+      ],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 2
+      },
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "router_row_examples": [
+        "m_csa:213"
+      ],
+      "row_examples": [
+        "m_csa:213",
+        "m_csa:330"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 2,
+      "v1_benchmark_label_group": "plp_dependent_enzyme"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:249",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1DTY",
+            "residue_codes": [
+              "TYR",
+              "TYR",
+              "ASP",
+              "LYS"
+            ],
+            "resolved_residue_count": 4,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:411",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1AY4",
+            "residue_codes": [
+              "ALA",
+              "ASP",
+              "LYS",
+              "TRP"
+            ],
+            "resolved_residue_count": 4,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:424",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1BJO",
+            "residue_codes": [
+              "ASP",
+              "TRP",
+              "LYS"
+            ],
+            "resolved_residue_count": 3,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:66",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1DAA",
+            "residue_codes": [
+              "LYS",
+              "TYR",
+              "LEU",
+              "GLU"
+            ],
+            "resolved_residue_count": 4,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:854",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1OHV",
+            "residue_codes": [
+              "PHE",
+              "ASP",
+              "LYS",
+              "THR"
+            ],
+            "resolved_residue_count": 4,
+            "structure_cofactor_families": [
+              "fe_s_cluster",
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 5,
+      "blocker_reason": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+      "confidence_counts": {
+        "medium": 5
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Approve or reject the proposal-only child label for future evaluation design; no production label change is implied.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "plp.transaminase_aminotransferase",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 5
+      },
+      "readiness": "candidate_ready_for_future_eval_design_after_expert_approval",
+      "router_row_examples": [
+        "m_csa:424",
+        "m_csa:854"
+      ],
+      "row_examples": [
+        "m_csa:66",
+        "m_csa:249",
+        "m_csa:411",
+        "m_csa:424",
+        "m_csa:854"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 5,
+      "v1_benchmark_label_group": "plp_dependent_enzyme"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:147",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1LS3",
+            "residue_codes": [
+              "THR",
+              "LYS",
+              "GLU",
+              "ASP",
+              "ARG",
+              "TYR"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:545",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1F2D",
+            "residue_codes": [
+              "TYR",
+              "TYR",
+              "LYS"
+            ],
+            "resolved_residue_count": 3,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:742",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1QZ9",
+            "residue_codes": [
+              "TYR",
+              "ARG",
+              "PHE",
+              "ASP",
+              "LYS"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:762",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1FC4",
+            "residue_codes": [
+              "SER",
+              "HIS",
+              "LYS"
+            ],
+            "resolved_residue_count": 3,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:855",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "plp"
+            ],
+            "pdb_id": "1I29",
+            "residue_codes": [
+              "GLN",
+              "LYS",
+              "HIS",
+              "ASP",
+              "CYS"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": [
+              "plp"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 5,
+      "blocker_reason": "unresolved_or_underpowered_candidate_needs_expert_review",
+      "confidence_counts": {
+        "low": 6
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Resolve whether these rows split into one or more named child mechanisms, remain an unresolved bucket, or require more source-free evidence.",
+      "expert_reviewed_count": 1,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "plp.unresolved_plp_chemistry",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "unresolved_review_only_text_insufficient_for_child_target": 6
+      },
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "router_row_examples": [
+        "m_csa:545"
+      ],
+      "row_examples": [
+        "m_csa:147",
+        "m_csa:545",
+        "m_csa:742",
+        "m_csa:762",
+        "m_csa:855",
+        "m_csa:865"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [
+        "m_csa:545"
+      ],
+      "support_count": 6,
+      "v1_benchmark_label_group": "plp_dependent_enzyme"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:109",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "flavin"
+            ],
+            "pdb_id": "1D3G",
+            "residue_codes": [
+              "ASN",
+              "ASN",
+              "ASN",
+              "THR",
+              "PHE",
+              "LYS",
+              "SER"
+            ],
+            "resolved_residue_count": 7,
+            "structure_cofactor_families": [
+              "flavin"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:551",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "flavin"
+            ],
+            "pdb_id": "1FOH",
+            "residue_codes": [
+              "PRO",
+              "ARG",
+              "TYR",
+              "ASP"
+            ],
+            "resolved_residue_count": 4,
+            "structure_cofactor_families": [
+              "flavin"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 2,
+      "blocker_reason": "unresolved_or_underpowered_candidate_needs_expert_review",
+      "confidence_counts": {
+        "low": 2
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Decide whether the boundary is a real child evaluation stratum or only review-only context for coarse-label failure analysis.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "flavin.boundary_monooxygenase_like_review_needed",
+      "queue_v2_rows_for_label": [
+        "m_csa:109",
+        "m_csa:551"
+      ],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 2
+      },
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "router_row_examples": [
+        "m_csa:109",
+        "m_csa:551"
+      ],
+      "row_examples": [
+        "m_csa:109",
+        "m_csa:551"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [
+        "m_csa:109",
+        "m_csa:551"
+      ],
+      "support_count": 2,
+      "v1_benchmark_label_group": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:102",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "flavin"
+            ],
+            "pdb_id": "1FCB",
+            "residue_codes": [
+              "TYR",
+              "ASP",
+              "HIS"
+            ],
+            "resolved_residue_count": 3,
+            "structure_cofactor_families": [
+              "flavin",
+              "heme"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:103",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "flavin"
+            ],
+            "pdb_id": "1VAO",
+            "residue_codes": [
+              "HIS",
+              "TYR",
+              "ARG",
+              "TYR",
+              "ASP"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": [
+              "flavin"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:108",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "fe_s_cluster"
+            ],
+            "pdb_id": "1PS9",
+            "residue_codes": [
+              "HIS",
+              "ARG",
+              "GLN",
+              "GLU",
+              "TYR"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": [
+              "fe_s_cluster",
+              "flavin",
+              "nad"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:110",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "flavin"
+            ],
+            "pdb_id": "1C0P",
+            "residue_codes": [
+              "SER",
+              "GLN",
+              "ASN",
+              "ASN",
+              "SER"
+            ],
+            "resolved_residue_count": 5,
+            "structure_cofactor_families": [
+              "flavin"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:111",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "flavin"
+            ],
+            "pdb_id": "1OFD",
+            "residue_codes": [
+              "ASN",
+              "CYS",
+              "ARG",
+              "CYS",
+              "GLY",
+              "GLU",
+              "GLN",
+              "LYS",
+              "GLN",
+              "PHE"
+            ],
+            "resolved_residue_count": 10,
+            "structure_cofactor_families": [
+              "flavin"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 46,
+      "blocker_reason": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+      "confidence_counts": {
+        "medium": 47
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Approve or reject the proposal-only child label for future evaluation design; no production label change is implied.",
+      "expert_reviewed_count": 1,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 47
+      },
+      "readiness": "candidate_ready_for_future_eval_design_after_expert_approval",
+      "router_row_examples": [
+        "m_csa:115",
+        "m_csa:20",
+        "m_csa:211",
+        "m_csa:3",
+        "m_csa:497",
+        "m_csa:750",
+        "m_csa:892",
+        "m_csa:990"
+      ],
+      "row_examples": [
+        "m_csa:3",
+        "m_csa:6",
+        "m_csa:20",
+        "m_csa:68",
+        "m_csa:102",
+        "m_csa:103",
+        "m_csa:108",
+        "m_csa:110",
+        "m_csa:111",
+        "m_csa:113",
+        "m_csa:114",
+        "m_csa:115"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 47,
+      "v1_benchmark_label_group": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "low",
+          "blocker_reason_if_unresolved": "unresolved_review_only_text_insufficient_for_child_target",
+          "entry_id": "m_csa:183",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "flavin"
+            ],
+            "pdb_id": "1DNP",
+            "residue_codes": [
+              "ASN",
+              "TRP",
+              "GLU",
+              "TRP",
+              "TRP",
+              "TRP"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "flavin"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 1,
+      "blocker_reason": "unresolved_or_underpowered_candidate_needs_expert_review",
+      "confidence_counts": {
+        "low": 1
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Resolve whether these rows split into one or more named child mechanisms, remain an unresolved bucket, or require more source-free evidence.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "flavin.unresolved_flavin_redox",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "unresolved_review_only_text_insufficient_for_child_target": 1
+      },
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "router_row_examples": [],
+      "row_examples": [
+        "m_csa:183"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 1,
+      "v1_benchmark_label_group": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "audit_assignment_examples": [
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:124",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "heme",
+              "metal_ion"
+            ],
+            "pdb_id": "1V54",
+            "residue_codes": [
+              "TRP",
+              "SER",
+              "HIS",
+              "ARG",
+              "THR",
+              "LYS",
+              "HIS",
+              "ASP",
+              "SER",
+              "SER",
+              "HIS",
+              "GLU",
+              "TYR",
+              "HIS"
+            ],
+            "resolved_residue_count": 14,
+            "structure_cofactor_families": [
+              "heme",
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:133",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "heme"
+            ],
+            "pdb_id": "1YRC",
+            "residue_codes": [
+              "ASP",
+              "THR",
+              "CYS",
+              "LEU",
+              "GLY",
+              "ARG"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "heme"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:208",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "fe_s_cluster",
+              "heme"
+            ],
+            "pdb_id": "1EZV",
+            "residue_codes": [
+              "GLU",
+              "LYS",
+              "HIS",
+              "HIS",
+              "ASP",
+              "SER"
+            ],
+            "resolved_residue_count": 6,
+            "structure_cofactor_families": [
+              "fe_s_cluster",
+              "heme"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:239",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "heme"
+            ],
+            "pdb_id": "7ATJ",
+            "residue_codes": [
+              "ARG",
+              "HIS",
+              "HIS",
+              "ASN"
+            ],
+            "resolved_residue_count": 4,
+            "structure_cofactor_families": [
+              "heme",
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        },
+        {
+          "assignment_confidence": "medium",
+          "blocker_reason_if_unresolved": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+          "entry_id": "m_csa:250",
+          "evidence_use_policy": "review_only_not_predictive_model_features",
+          "label_tier": "bronze",
+          "local_feature_summary": {
+            "local_cofactor_families": [
+              "heme",
+              "metal_ion"
+            ],
+            "pdb_id": "2CPO",
+            "residue_codes": [
+              "GLU",
+              "CYS",
+              "HIS",
+              "ASP"
+            ],
+            "resolved_residue_count": 4,
+            "structure_cofactor_families": [
+              "heme",
+              "metal_ion"
+            ]
+          },
+          "review_status": "automation_curated"
+        }
+      ],
+      "automation_curated_count": 20,
+      "blocker_reason": "proposal_only_requires_expert_review_before_registry_or_metric_use",
+      "confidence_counts": {
+        "medium": 20
+      },
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Proposal-only child label may be needed to prevent coarse v1 families from hiding mechanism-level failures; it is not a production label."
+      },
+      "evidence_fields": [
+        "local_learned_manifest_feature_summary",
+        "review_only_curated_label_rationale"
+      ],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Approve or reject the proposal-only child label for future evaluation design; no production label change is implied.",
+      "expert_reviewed_count": 0,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "heme.peroxidase_catalase_like",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": {
+        "proposal_only_requires_expert_review_before_registry_or_metric_use": 20
+      },
+      "readiness": "candidate_ready_for_future_eval_design_after_expert_approval",
+      "router_row_examples": [
+        "m_csa:239",
+        "m_csa:250",
+        "m_csa:709",
+        "m_csa:714"
+      ],
+      "row_examples": [
+        "m_csa:37",
+        "m_csa:124",
+        "m_csa:133",
+        "m_csa:208",
+        "m_csa:239",
+        "m_csa:250",
+        "m_csa:399",
+        "m_csa:473",
+        "m_csa:709",
+        "m_csa:714"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 20,
+      "v1_benchmark_label_group": "heme_peroxidase_oxidase"
+    },
+    {
+      "audit_assignment_examples": [],
+      "automation_curated_count": null,
+      "blocker_reason": "Two primary flavin rows route to a monooxygenase-like boundary candidate, and two additional flavin_monooxygenase rows already exist as secondary-only probes.",
+      "confidence_counts": null,
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "Two primary flavin rows route to a monooxygenase-like boundary candidate, and two additional flavin_monooxygenase rows already exist as secondary-only probes."
+      },
+      "evidence_fields": [],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Decide whether this expected but unsupported child mechanism should be gathered as future evidence or left out of v2 evaluation design.",
+      "expert_reviewed_count": null,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "flavin.monooxygenase_like_boundary_against_secondary_probe",
+      "queue_v2_rows_for_label": [
+        "m_csa:131"
+      ],
+      "raw_blocker_reason_counts": null,
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "router_row_examples": [
+        "m_csa:131"
+      ],
+      "row_examples": [
+        "m_csa:131"
+      ],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 2,
+      "v1_benchmark_label_group": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "audit_assignment_examples": [],
+      "automation_curated_count": null,
+      "blocker_reason": "The v1 group name includes oxidase/oxygenase-like chemistry, but current deterministic curated-artifact rules assigned all 20 heme primary rows to peroxidase/catalase-like support.",
+      "confidence_counts": null,
+      "evaluation_not_production_assessment": {
+        "likely_needed_for_evaluation_not_production": true,
+        "reason": "The v1 group name includes oxidase/oxygenase-like chemistry, but current deterministic curated-artifact rules assigned all 20 heme primary rows to peroxidase/catalase-like support."
+      },
+      "evidence_fields": [],
+      "evidence_use_policy": "review_only_not_predictive_model_features",
+      "expert_must_decide": "Decide whether this expected but unsupported child mechanism should be gathered as future evidence or left out of v2 evaluation design.",
+      "expert_reviewed_count": null,
+      "proposal_only": true,
+      "proposed_v2_sublabel": "heme.oxidase_oxygenase_like",
+      "queue_v2_rows_for_label": [],
+      "raw_blocker_reason_counts": null,
+      "readiness": "needs_expert_review_and_or_additional_curated_support_before_future_evaluation",
+      "router_row_examples": [],
+      "row_examples": [],
+      "rows_with_proposal_only_sublabel_ending_review_needed_or_unresolved": [],
+      "support_count": 0,
+      "v1_benchmark_label_group": "heme_peroxidase_oxidase"
+    }
+  ],
+  "expected_candidate_gaps_included": [
+    {
+      "expected_v2_sublabel": "heme.oxidase_oxygenase_like",
+      "readiness": "needs_expert_review_and_or_additional_curated_support_before_future_evaluation",
+      "reason": "The v1 group name includes oxidase/oxygenase-like chemistry, but current deterministic curated-artifact rules assigned all 20 heme primary rows to peroxidase/catalase-like support.",
+      "support_count_in_current_deterministic_audit": 0,
+      "v1_benchmark_label_group": "heme_peroxidase_oxidase"
+    },
+    {
+      "expected_v2_sublabel": "flavin.monooxygenase_like_boundary_against_secondary_probe",
+      "readiness": "needs_expert_review_before_future_evaluation",
+      "reason": "Two primary flavin rows route to a monooxygenase-like boundary candidate, and two additional flavin_monooxygenase rows already exist as secondary-only probes.",
+      "support_count_in_current_deterministic_audit": 2,
+      "v1_benchmark_label_group": "flavin_dehydrogenase_reductase"
+    }
+  ],
+  "input_queue_groups": [
+    "v2_sublabel_expert_review_needed"
+  ],
+  "schema_version": "review_packet.v1",
+  "scope": {
+    "created_utc": "2026-05-26T06:23:42Z",
+    "diagnostic_only": true,
+    "fingerprint_registry_edits": 0,
+    "forbidden_predictive_inputs": [
+      "EC numbers",
+      "enzyme names",
+      "mechanism prose",
+      "expert notes",
+      "source IDs"
+    ],
+    "import_decisions": 0,
+    "label_edits": 0,
+    "model_training_or_scaling": 0,
+    "ontology_registry_edits": 0,
+    "packet_name": "v2_sublabel_expert_review_packet",
+    "production_claim": false,
+    "proposal_only_where_v2_labels_appear": true,
+    "review_context_policy": "Source/review context is retained only as provenance/review-only explanation and is not a predictive feature.",
+    "review_only": true,
+    "threshold_changes": 0
+  },
+  "source_artifacts": {
+    "foldseek_structural_nn_predictions": {
+      "exists": true,
+      "path": "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json",
+      "role": "joined_wave1_row_evidence",
+      "sha256": "8383074a7bb586cbff8219c8f903068e265b30a5f3596a50fa12444083c3a156"
+    },
+    "geometry_label_eval_family": "artifacts/v3_geometry_label_eval_*.json",
+    "geometry_retrieval_family": "artifacts/v3_geometry_retrieval_*.json",
+    "representation_shootout_result_card": "artifacts/v3_wave1_representation_shootout_result_card_20260526.json",
+    "router": "artifacts/v3_foldseek_geometry_diagnostic_router_pilot_702_20260526.json",
+    "sequence_nn_metrics": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+    "sequence_nn_predictions": "artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl",
+    "structure_neighborhood_audit": "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json",
+    "targeted_queue": "artifacts/v3_targeted_mechanism_evidence_acquisition_queue_702_20260526.json",
+    "v2_sublabel_audit": "artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json"
+  },
+  "summary": {
+    "automatic_action_blocker": "Every v2 label is proposal-only and requires expert approval before registry, metric, or eval-design use.",
+    "can_be_acted_on_automatically_later_without_expert_input": false,
+    "candidate_summary_child_label_count": 23,
+    "child_label_count": 25,
+    "expected_candidate_gap_count": 2,
+    "priority_expert_review_child_labels": [
+      "ser_his_acid.perhydrolase_haloperoxidase_caveat",
+      "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+      "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+      "metal_hydrolase.metallo_beta_lactamase_like",
+      "metal_hydrolase.ntpase_nucleotide_hydrolase_tail",
+      "metal_hydrolase.sulfatase_fgly_like",
+      "metal_hydrolase.unresolved_metal_water_hydrolase",
+      "plp.coupled_plp_radical_or_cobalamin_boundary",
+      "plp.decarboxylase",
+      "plp.phosphorylase_acid_catalysis_caveat",
+      "plp.racemase_epimerase",
+      "plp.unresolved_plp_chemistry",
+      "flavin.boundary_monooxygenase_like_review_needed",
+      "flavin.unresolved_flavin_redox"
+    ],
+    "queue_v2_row_count": 14,
+    "readiness_counts": {
+      "candidate_ready_for_future_eval_design_after_expert_approval": 9,
+      "candidate_underpowered_but_named_for_review": 3,
+      "needs_expert_review_and_or_additional_curated_support_before_future_evaluation": 1,
+      "needs_expert_review_before_future_evaluation": 12
+    },
+    "router_proposal_only_row_count": 45
+  }
+}

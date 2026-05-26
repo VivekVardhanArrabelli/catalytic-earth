@@ -50,6 +50,60 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-26T06:26Z North-Star Review Packets
+
+This run stayed on `main`, used the current Wave 1 Foldseek+geometry router and
+targeted evidence queue as read-only inputs, and packaged the next concrete
+review actions for expert/curation work. It did not edit labels, registries,
+ontology, fingerprints, imports, thresholds, production scoring, model scaling,
+or representation branch outputs. The automation lock was confirmed unlocked
+and acquired for wrap validation/commit protocol.
+
+Artifacts written:
+
+```text
+artifacts/v3_fold_conflict_oos_hard_negative_review_packet_702_20260526.json
+artifacts/v3_near_orphan_geometry_support_review_packet_702_20260526.json
+artifacts/v3_v2_sublabel_expert_review_packet_702_20260526.json
+work/northstar_next_review_packets_handoff_20260526.md
+```
+
+Packet readout:
+
+- Fold-conflict / OOS hard-negative packet: 18 rows; 12
+  `keep_oos_hard_negative`, 5 `structure_neighbor_transfer_invalid`, and 1
+  `boundary_review_needed`.
+- Near-orphan geometry support packet: 26 rows; 18
+  `future_curated_validation_candidate`, 8 `review_only_signal`, and 0
+  acquisition targets inside this packet.
+- V2 sublabel expert-review packet: 25 proposal-only child-label records,
+  covering 23 audit candidate labels plus 2 expected candidate gaps.
+
+Reviewer priority: review the fold-conflict/OOS hard-negative packet first. It
+decides whether high Foldseek structural similarity transfers mechanism, must
+abstain on OOS/boundary rows, or is invalidated by active-site geometry. That
+decision unlocks or blocks both near-orphan validation and proposal-only v2
+child-stratum use.
+
+Exact expert questions and row IDs are in
+`work/northstar_next_review_packets_handoff_20260526.md`. No packet can be
+acted on automatically later without expert input; the only safe automatic
+follow-up is packaging already-reviewed outcomes into a future explicit
+import/evaluation-design gate.
+
+Verification passed for this run:
+
+```text
+python -m json.tool artifacts/v3_fold_conflict_oos_hard_negative_review_packet_702_20260526.json
+python -m json.tool artifacts/v3_near_orphan_geometry_support_review_packet_702_20260526.json
+python -m json.tool artifacts/v3_v2_sublabel_expert_review_packet_702_20260526.json
+PYTHONPATH=src python -m catalytic_earth.cli validate
+git diff --check
+```
+
+Focused tests were not run because this was an artifact/documentation-only
+change with no code edits.
+
 ### 2026-05-26T05:32Z Foldseek+Geometry Diagnostic Router Pilot
 
 This run stayed on `main`, acquired `.git/catalytic-earth-automation.lock`,

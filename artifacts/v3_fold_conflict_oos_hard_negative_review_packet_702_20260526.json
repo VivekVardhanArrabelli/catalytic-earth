@@ -1,0 +1,4156 @@
+{
+  "artifact_id": "v3_fold_conflict_oos_hard_negative_review_packet_702_20260526",
+  "input_queue_groups": [
+    "fold_conflict_high_value",
+    "OOS_boundary_hard_negative_needed"
+  ],
+  "required_rows_included": {
+    "m_csa:217": true,
+    "m_csa:428": true,
+    "m_csa:440": true,
+    "m_csa:477": true
+  },
+  "rows": [
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:281",
+        "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "nearest_train_sequence_id": "P55931",
+        "nearest_train_structure_id": "m_csa__281__pdb_2GMH_A",
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "prediction": "flavin_dehydrogenase_reductase",
+        "score": {
+          "bits": 307.0,
+          "evalue": 4.348e-14,
+          "fident": 0.089,
+          "lddt": 0.4325,
+          "prob": 1.0,
+          "qcov": 1.0,
+          "tcov": 0.731
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 89,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1DOC"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": false,
+        "available": true,
+        "blocker": "secondary_probe_geometry_signal_review_only_not_countable_primary",
+        "correct": true,
+        "exact_label_match": false,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "flavin_monooxygenase",
+        "prediction": "flavin_monooxygenase",
+        "score": {
+          "active_site_geometry_score": 0.5551
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.929806
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.929806
+            },
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.065312
+            },
+            {
+              "label_group": "plp_dependent_enzyme",
+              "probability": 0.003633
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "plp_dependent_enzyme",
+          "predicted_label_group": "plp_dependent_enzyme",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.426426
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "plp_dependent_enzyme",
+              "probability": 0.426426
+            },
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.348271
+            },
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.116689
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:108",
+          "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:381",
+          "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:978",
+          "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:366",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "131",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json; v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json",
+          "item_id": "fold_conflict_secondary_flavin_boundary_m_csa_131",
+          "missing_evidence": "Expert boundary decision and fuller fold-neighbor context for whether this stays secondary-only or becomes a future v2 boundary stratum.",
+          "priority": "P0",
+          "queue_group": "fold_conflict_high_value",
+          "successful_resolution_would_change": "Would turn the flavin monooxygenase boundary from an anecdotal conflict into a curated fold-conflict eval case.",
+          "why_it_matters": "Foldseek transfers to the dehydrogenase/reductase neighbor while geometry recovers the secondary flavin monooxygenase probe."
+        },
+        {
+          "artifact_showing_gap": "v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json expected_candidate_gaps and secondary_boundary_context",
+          "item_id": "v2_flavin_monooxygenase_boundary_review",
+          "missing_evidence": "Expert boundary decision and additional curated support before any registry or metric use.",
+          "priority": "P0",
+          "queue_group": "v2_sublabel_expert_review_needed",
+          "successful_resolution_would_change": "Would clarify whether flavin monooxygenase stays secondary/OOD or becomes an explicit future child eval stratum.",
+          "why_it_matters": "Wave 1 exposes a flavin boundary where geometry can distinguish monooxygenase-like active sites from dehydrogenase/reductase folds."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:131",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 89,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1DOC"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": false,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:223",
+        "nearest_train_label_group": "out_of_scope",
+        "oos_or_secondary_false_positive": false,
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "high_structure_similarity_different_fingerprint",
+        "reason": "Nearest train structure is a primary/different-fingerprint neighbor under high Foldseek bits/prob proxy."
+      },
+      "successful_resolution_changes": "Clarifies whether a coarse fingerprint boundary needs a future proposal-only evaluation stratum.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "boundary_review_needed",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "secondary_ood_probe",
+        "true_fingerprint_id": "flavin_monooxygenase",
+        "true_label_group": "flavin_monooxygenase"
+      },
+      "what_review_would_decide": "Decide whether the row is a secondary/boundary mechanism stratum or only review-only counterexample; no production label change is implied.",
+      "why_foldseek_would_mislead_or_abstain": "Nearest train fingerprint flavin_dehydrogenase_reductase differs from true fingerprint flavin_monooxygenase; fold-level transfer would overwrite active-site/geometry evidence."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:733",
+        "nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+        "nearest_train_label_group": "ser_his_acid_hydrolase",
+        "nearest_train_sequence_id": "Q3HWU8",
+        "nearest_train_structure_id": "m_csa__733__pdb_1ZOI_C",
+        "oos_or_secondary_false_positive": true,
+        "predicted_label_group": "ser_his_acid_hydrolase",
+        "prediction": "ser_his_acid_hydrolase",
+        "score": {
+          "bits": 245.0,
+          "evalue": 1.899e-09,
+          "fident": 0.131,
+          "lddt": 0.578,
+          "prob": 1.0,
+          "qcov": 0.984,
+          "tcov": 0.924
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 94,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1SC9"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": true,
+        "available": true,
+        "blocker": "abstained_on_oos_boundary_raw_top1_retained_for_audit_only",
+        "correct": false,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "ser_his_acid_hydrolase",
+        "prediction": "ser_his_acid_hydrolase",
+        "score": {
+          "active_site_geometry_score": 0.3979
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.756995
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.756995
+            },
+            {
+              "label_group": "ser_his_acid_hydrolase",
+              "probability": 0.23597
+            },
+            {
+              "label_group": "plp_dependent_enzyme",
+              "probability": 0.004235
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.932712
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.932712
+            },
+            {
+              "label_group": "ser_his_acid_hydrolase",
+              "probability": 0.047167
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.006686
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:360",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:621",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:621",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:625",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "217",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json raw_component_oos_or_secondary_false_positive_counts",
+          "item_id": "oos_foldseek_false_positive_panel",
+          "missing_evidence": "Hard-negative review labels and fuller neighbor metadata, not threshold tuning on heldout.",
+          "priority": "P0",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would calibrate OOS-boundary abstention before any future production candidate router.",
+          "why_it_matters": "Raw Foldseek has eight OOS/secondary false positives; these are the best hard negatives for a router abstention policy."
+        },
+        {
+          "artifact_showing_gap": "v3_mechanism_prediction_fold_controlled_eval_design_702_20260525.json; Wave 1 fold-control candidate summary",
+          "item_id": "fold_conflict_oos_high_structure_traps",
+          "missing_evidence": "Fuller Foldseek nearest-neighbor table, retained pair metadata, and hard-negative expert review confirming OOS status under primary-neighbor pressure.",
+          "priority": "P0",
+          "queue_group": "fold_conflict_high_value",
+          "successful_resolution_would_change": "Would freeze the first curated OOS-vs-primary fold-conflict panel for abstention calibration.",
+          "why_it_matters": "These out-of-scope rows sit near primary fingerprints in Foldseek space and are exactly where fold transfer can hallucinate mechanism."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:217",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 94,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1SC9"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": true,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:179",
+        "nearest_train_label_group": "out_of_scope",
+        "oos_or_secondary_false_positive": false,
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "high_structure_similarity_different_fingerprint",
+        "reason": "Nearest train structure is a primary/different-fingerprint neighbor under high Foldseek bits/prob proxy."
+      },
+      "successful_resolution_changes": "Adds a curated OOS/fold-neighbor trap for measuring abstention and false-positive retention without threshold tuning.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "keep_oos_hard_negative",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "out_of_scope",
+        "true_fingerprint_id": null,
+        "true_label_group": "out_of_scope"
+      },
+      "what_review_would_decide": "Confirm the row stays an OOS hard negative under fold-neighbor pressure; retain raw model predictions only as diagnostic canary evidence.",
+      "why_foldseek_would_mislead_or_abstain": "Raw Foldseek transfers ser_his_acid_hydrolase from nearest train m_csa:733, but the row is currently out_of_scope; treating that transfer as positive would create a hard-negative false positive."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:11",
+        "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_train_label_group": "metal_dependent_hydrolase",
+        "nearest_train_sequence_id": "P0A6C1",
+        "nearest_train_structure_id": "m_csa__11__pdb_1QUM_A",
+        "oos_or_secondary_false_positive": true,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "prediction": "metal_dependent_hydrolase",
+        "score": {
+          "bits": 113.0,
+          "evalue": 5.621e-05,
+          "fident": 0.065,
+          "lddt": 0.4049,
+          "prob": 1.0,
+          "qcov": 0.825,
+          "tcov": 0.975
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 97,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1BQC"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": true,
+        "available": true,
+        "blocker": "abstained_on_oos_boundary_raw_top1_retained_for_audit_only",
+        "correct": false,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "prediction": "metal_dependent_hydrolase",
+        "score": {
+          "active_site_geometry_score": 0.3648
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.725087
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.725087
+            },
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.273929
+            },
+            {
+              "label_group": "ser_his_acid_hydrolase",
+              "probability": 0.000983
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.634955
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.634955
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.340253
+            },
+            {
+              "label_group": "ser_his_acid_hydrolase",
+              "probability": 0.024752
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:272",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "available": false,
+          "prediction_status": "missing_per_row_export_or_row_absent",
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:548",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:376",
+          "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+          "nearest_train_label_group": "metal_dependent_hydrolase",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "428",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json raw_component_oos_or_secondary_false_positive_counts",
+          "item_id": "oos_foldseek_false_positive_panel",
+          "missing_evidence": "Hard-negative review labels and fuller neighbor metadata, not threshold tuning on heldout.",
+          "priority": "P0",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would calibrate OOS-boundary abstention before any future production candidate router.",
+          "why_it_matters": "Raw Foldseek has eight OOS/secondary false positives; these are the best hard negatives for a router abstention policy."
+        },
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json geometry_baseline rows",
+          "item_id": "oos_geometry_raw_top1_abstention_canaries",
+          "missing_evidence": "Reviewed OOS boundary status and retained raw geometry-score provenance as audit-only canary evidence.",
+          "priority": "P1",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would preserve geometry as a support router instead of a raw positive scorer.",
+          "why_it_matters": "Geometry abstains correctly on OOS rows despite raw top1 active-site matches; this is a key guardrail against raw-score production use."
+        },
+        {
+          "artifact_showing_gap": "v3_mechanism_prediction_fold_controlled_eval_design_702_20260525.json; Wave 1 fold-control candidate summary",
+          "item_id": "fold_conflict_oos_high_structure_traps",
+          "missing_evidence": "Fuller Foldseek nearest-neighbor table, retained pair metadata, and hard-negative expert review confirming OOS status under primary-neighbor pressure.",
+          "priority": "P0",
+          "queue_group": "fold_conflict_high_value",
+          "successful_resolution_would_change": "Would freeze the first curated OOS-vs-primary fold-conflict panel for abstention calibration.",
+          "why_it_matters": "These out-of-scope rows sit near primary fingerprints in Foldseek space and are exactly where fold transfer can hallucinate mechanism."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:428",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 97,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1BQC"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": true,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:421",
+        "nearest_train_label_group": "out_of_scope",
+        "oos_or_secondary_false_positive": false,
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "high_structure_similarity_different_fingerprint",
+        "reason": "Nearest train structure is a primary/different-fingerprint neighbor under high Foldseek bits/prob proxy."
+      },
+      "successful_resolution_changes": "Adds a curated OOS/fold-neighbor trap for measuring abstention and false-positive retention without threshold tuning.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "keep_oos_hard_negative",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "out_of_scope",
+        "true_fingerprint_id": null,
+        "true_label_group": "out_of_scope"
+      },
+      "what_review_would_decide": "Confirm the row stays an OOS hard negative under fold-neighbor pressure; retain raw model predictions only as diagnostic canary evidence.",
+      "why_foldseek_would_mislead_or_abstain": "Raw Foldseek transfers metal_dependent_hydrolase from nearest train m_csa:11, but the row is currently out_of_scope; treating that transfer as positive would create a hard-negative false positive."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:697",
+        "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "nearest_train_sequence_id": "Q9FEW9",
+        "nearest_train_structure_id": "m_csa__697__pdb_2HSA_A",
+        "oos_or_secondary_false_positive": true,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "prediction": "flavin_dehydrogenase_reductase",
+        "score": {
+          "bits": 76.0,
+          "evalue": 0.0004973,
+          "fident": 0.063,
+          "lddt": 0.3326,
+          "prob": 0.971,
+          "qcov": 0.725,
+          "tcov": 0.777
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 188,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1QK2"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": true,
+        "available": true,
+        "blocker": "abstained_on_oos_boundary_raw_top1_retained_for_audit_only",
+        "correct": false,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "prediction": "metal_dependent_hydrolase",
+        "score": {
+          "active_site_geometry_score": 0.3601
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.998641
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.998641
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.001178
+            },
+            {
+              "label_group": "ser_his_acid_hydrolase",
+              "probability": 0.000177
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.999924
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.999924
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 7e-05
+            },
+            {
+              "label_group": "cobalamin_radical_rearrangement",
+              "probability": 4e-06
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:786",
+          "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+          "nearest_train_label_group": "metal_dependent_hydrolase",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:631",
+          "nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+          "nearest_train_label_group": "ser_his_acid_hydrolase",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "ser_his_acid_hydrolase",
+          "predicted_label_group": "ser_his_acid_hydrolase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:421",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:308",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "440",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json raw_component_oos_or_secondary_false_positive_counts",
+          "item_id": "oos_foldseek_false_positive_panel",
+          "missing_evidence": "Hard-negative review labels and fuller neighbor metadata, not threshold tuning on heldout.",
+          "priority": "P0",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would calibrate OOS-boundary abstention before any future production candidate router.",
+          "why_it_matters": "Raw Foldseek has eight OOS/secondary false positives; these are the best hard negatives for a router abstention policy."
+        },
+        {
+          "artifact_showing_gap": "v3_mechanism_prediction_fold_controlled_eval_design_702_20260525.json; Wave 1 fold-control candidate summary",
+          "item_id": "fold_conflict_oos_high_structure_traps",
+          "missing_evidence": "Fuller Foldseek nearest-neighbor table, retained pair metadata, and hard-negative expert review confirming OOS status under primary-neighbor pressure.",
+          "priority": "P0",
+          "queue_group": "fold_conflict_high_value",
+          "successful_resolution_would_change": "Would freeze the first curated OOS-vs-primary fold-conflict panel for abstention calibration.",
+          "why_it_matters": "These out-of-scope rows sit near primary fingerprints in Foldseek space and are exactly where fold transfer can hallucinate mechanism."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:440",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 188,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1QK2"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": true,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:421",
+        "nearest_train_label_group": "out_of_scope",
+        "oos_or_secondary_false_positive": false,
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "high_structure_similarity_different_fingerprint",
+        "reason": "Nearest train structure is a primary/different-fingerprint neighbor under high Foldseek bits/prob proxy."
+      },
+      "successful_resolution_changes": "Adds a curated OOS/fold-neighbor trap for measuring abstention and false-positive retention without threshold tuning.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "keep_oos_hard_negative",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "out_of_scope",
+        "true_fingerprint_id": null,
+        "true_label_group": "out_of_scope"
+      },
+      "what_review_would_decide": "Confirm the row stays an OOS hard negative under fold-neighbor pressure; retain raw model predictions only as diagnostic canary evidence.",
+      "why_foldseek_would_mislead_or_abstain": "Raw Foldseek transfers flavin_dehydrogenase_reductase from nearest train m_csa:697, but the row is currently out_of_scope; treating that transfer as positive would create a hard-negative false positive."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:608",
+        "nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+        "nearest_train_label_group": "ser_his_acid_hydrolase",
+        "nearest_train_sequence_id": "P00777",
+        "nearest_train_structure_id": "m_csa__608__pdb_1DS2_E",
+        "oos_or_secondary_false_positive": true,
+        "predicted_label_group": "ser_his_acid_hydrolase",
+        "prediction": "ser_his_acid_hydrolase",
+        "score": {
+          "bits": 155.0,
+          "evalue": 5.13e-05,
+          "fident": 0.121,
+          "lddt": 0.4993,
+          "prob": 1.0,
+          "qcov": 0.894,
+          "tcov": 0.924
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 54,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1CQQ"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": true,
+        "available": true,
+        "blocker": "abstained_on_oos_boundary_raw_top1_retained_for_audit_only",
+        "correct": false,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "prediction": "metal_dependent_hydrolase",
+        "score": {
+          "active_site_geometry_score": 0.37
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.70882
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.70882
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.286591
+            },
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.002559
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.783182
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.783182
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.208586
+            },
+            {
+              "label_group": "ser_his_acid_hydrolase",
+              "probability": 0.004215
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:339",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:776",
+          "nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+          "nearest_train_label_group": "ser_his_acid_hydrolase",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "ser_his_acid_hydrolase",
+          "predicted_label_group": "ser_his_acid_hydrolase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:612",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:325",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "477",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json raw_component_oos_or_secondary_false_positive_counts",
+          "item_id": "oos_foldseek_false_positive_panel",
+          "missing_evidence": "Hard-negative review labels and fuller neighbor metadata, not threshold tuning on heldout.",
+          "priority": "P0",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would calibrate OOS-boundary abstention before any future production candidate router.",
+          "why_it_matters": "Raw Foldseek has eight OOS/secondary false positives; these are the best hard negatives for a router abstention policy."
+        },
+        {
+          "artifact_showing_gap": "v3_mechanism_prediction_fold_controlled_eval_design_702_20260525.json; Wave 1 fold-control candidate summary",
+          "item_id": "fold_conflict_oos_high_structure_traps",
+          "missing_evidence": "Fuller Foldseek nearest-neighbor table, retained pair metadata, and hard-negative expert review confirming OOS status under primary-neighbor pressure.",
+          "priority": "P0",
+          "queue_group": "fold_conflict_high_value",
+          "successful_resolution_would_change": "Would freeze the first curated OOS-vs-primary fold-conflict panel for abstention calibration.",
+          "why_it_matters": "These out-of-scope rows sit near primary fingerprints in Foldseek space and are exactly where fold transfer can hallucinate mechanism."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:477",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 54,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1CQQ"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": true,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:59",
+        "nearest_train_label_group": "out_of_scope",
+        "oos_or_secondary_false_positive": false,
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "high_structure_similarity_different_fingerprint",
+        "reason": "Nearest train structure is a primary/different-fingerprint neighbor under high Foldseek bits/prob proxy."
+      },
+      "successful_resolution_changes": "Adds a curated OOS/fold-neighbor trap for measuring abstention and false-positive retention without threshold tuning.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "keep_oos_hard_negative",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "out_of_scope",
+        "true_fingerprint_id": null,
+        "true_label_group": "out_of_scope"
+      },
+      "what_review_would_decide": "Confirm the row stays an OOS hard negative under fold-neighbor pressure; retain raw model predictions only as diagnostic canary evidence.",
+      "why_foldseek_would_mislead_or_abstain": "Raw Foldseek transfers ser_his_acid_hydrolase from nearest train m_csa:608, but the row is currently out_of_scope; treating that transfer as positive would create a hard-negative false positive."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:28",
+        "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_train_label_group": "metal_dependent_hydrolase",
+        "nearest_train_sequence_id": "P10688",
+        "nearest_train_structure_id": "m_csa__28__pdb_1DJX_A",
+        "oos_or_secondary_false_positive": null,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "prediction": "metal_dependent_hydrolase",
+        "score": {
+          "bits": 15.0,
+          "evalue": 4.133,
+          "fident": 0.068,
+          "lddt": 0.3015,
+          "prob": 0.011,
+          "qcov": 0.291,
+          "tcov": 0.138
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 37,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:2CPO"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": false,
+        "available": true,
+        "blocker": null,
+        "correct": true,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": null,
+        "predicted_label_group": "heme_peroxidase_oxidase",
+        "prediction": "heme_peroxidase_oxidase",
+        "score": {
+          "active_site_geometry_score": 0.7104
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.999367
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.999367
+            },
+            {
+              "label_group": "heme_peroxidase_oxidase",
+              "probability": 0.00053
+            },
+            {
+              "label_group": "ser_his_acid_hydrolase",
+              "probability": 4.6e-05
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.867588
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.867588
+            },
+            {
+              "label_group": "heme_peroxidase_oxidase",
+              "probability": 0.065885
+            },
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.061758
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:758",
+          "nearest_train_fingerprint_id": "heme_peroxidase_oxidase",
+          "nearest_train_label_group": "heme_peroxidase_oxidase",
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "heme_peroxidase_oxidase",
+          "predicted_label_group": "heme_peroxidase_oxidase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": true,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:596",
+          "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+          "nearest_train_label_group": "metal_dependent_hydrolase",
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:583",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:623",
+          "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+          "nearest_train_label_group": "metal_dependent_hydrolase",
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "250",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json top foldseek failure rescue cases",
+          "item_id": "fold_conflict_primary_geometry_rescue_rows",
+          "missing_evidence": "Curated active-site confirmation plus pairwise fold-neighbor provenance for each wrong Foldseek transfer.",
+          "priority": "P1",
+          "queue_group": "fold_conflict_high_value",
+          "successful_resolution_would_change": "Would justify a review-before-transfer rule for active-site/fold conflicts.",
+          "why_it_matters": "Geometry is correct while non-abstained Foldseek transfers to the wrong primary fingerprint."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:250",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 37,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:2CPO"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": false,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:466",
+        "nearest_train_label_group": "out_of_scope",
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "low_structure_neighborhood_near_orphan",
+        "reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70."
+      },
+      "successful_resolution_changes": "Converts a wrong Foldseek top1 case into a concrete active-site-vs-fold conflict benchmark candidate after expert approval.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "structure_neighbor_transfer_invalid",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "proposal_only_v2_sublabel": "heme.peroxidase_catalase_like",
+        "split_assignment": "heldout",
+        "status": "in_scope_primary",
+        "true_fingerprint_id": "heme_peroxidase_oxidase",
+        "true_label_group": "heme_peroxidase_oxidase"
+      },
+      "what_review_would_decide": "Mark nearest-neighbor structural transfer as invalid for this row-level diagnostic; require expert/curated active-site evidence before any future eval import.",
+      "why_foldseek_would_mislead_or_abstain": "Nearest train fingerprint metal_dependent_hydrolase differs from true fingerprint heme_peroxidase_oxidase; fold-level transfer would overwrite active-site/geometry evidence."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:16",
+        "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_train_label_group": "metal_dependent_hydrolase",
+        "nearest_train_sequence_id": "P04190",
+        "nearest_train_structure_id": "m_csa__16__pdb_1BC2_B",
+        "oos_or_secondary_false_positive": null,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "prediction": "metal_dependent_hydrolase",
+        "score": {
+          "bits": 248.0,
+          "evalue": 1.191e-08,
+          "fident": 0.114,
+          "lddt": 0.5562,
+          "prob": 1.0,
+          "qcov": 0.606,
+          "tcov": 0.944
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 343,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1YCF"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": false,
+        "available": true,
+        "blocker": null,
+        "correct": true,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": null,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "prediction": "flavin_dehydrogenase_reductase",
+        "score": {
+          "active_site_geometry_score": 0.675
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.666037
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.666037
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.316537
+            },
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.012056
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.943615
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.943615
+            },
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.042566
+            },
+            {
+              "label_group": "plp_dependent_enzyme",
+              "probability": 0.009701
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:39",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:720",
+          "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+          "nearest_train_label_group": "metal_dependent_hydrolase",
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:209",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:237",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "497",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json top foldseek failure rescue cases",
+          "item_id": "fold_conflict_primary_geometry_rescue_rows",
+          "missing_evidence": "Curated active-site confirmation plus pairwise fold-neighbor provenance for each wrong Foldseek transfer.",
+          "priority": "P1",
+          "queue_group": "fold_conflict_high_value",
+          "successful_resolution_would_change": "Would justify a review-before-transfer rule for active-site/fold conflicts.",
+          "why_it_matters": "Geometry is correct while non-abstained Foldseek transfers to the wrong primary fingerprint."
+        },
+        {
+          "artifact_showing_gap": "v3_mechanism_prediction_orphan_eval_design_702_20260525.json; v3_wave1_structure_neighborhood_audit_20260526.json",
+          "item_id": "near_orphan_flavin_and_ser_his_primary_support",
+          "missing_evidence": "Reviewed primary support and fuller structural-neighbor absence/presence evidence.",
+          "priority": "P1",
+          "queue_group": "near_orphan_primary_support_needed",
+          "successful_resolution_would_change": "Would make near-orphan eval reporting actionable by family rather than pooled accuracy.",
+          "why_it_matters": "These rows stress whether active-site geometry generalizes beyond dense fold neighborhoods for flavin and serine-hydrolase chemistry."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:497",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 343,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1YCF"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": false,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:268",
+        "nearest_train_label_group": "out_of_scope",
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "low_structure_neighborhood_near_orphan",
+        "reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70."
+      },
+      "successful_resolution_changes": "Converts a wrong Foldseek top1 case into a concrete active-site-vs-fold conflict benchmark candidate after expert approval.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "structure_neighbor_transfer_invalid",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+        "split_assignment": "heldout",
+        "status": "in_scope_primary",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "true_label_group": "flavin_dehydrogenase_reductase"
+      },
+      "what_review_would_decide": "Mark nearest-neighbor structural transfer as invalid for this row-level diagnostic; require expert/curated active-site evidence before any future eval import.",
+      "why_foldseek_would_mislead_or_abstain": "Nearest train fingerprint metal_dependent_hydrolase differs from true fingerprint flavin_dehydrogenase_reductase; fold-level transfer would overwrite active-site/geometry evidence."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:519",
+        "nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+        "nearest_train_label_group": "ser_his_acid_hydrolase",
+        "nearest_train_sequence_id": "1TAH",
+        "nearest_train_structure_id": "m_csa__519__pdb_1TAH_D",
+        "oos_or_secondary_false_positive": null,
+        "predicted_label_group": "ser_his_acid_hydrolase",
+        "prediction": "ser_his_acid_hydrolase",
+        "score": {
+          "bits": 38.0,
+          "evalue": 0.04285,
+          "fident": 0.043,
+          "lddt": 0.33,
+          "prob": 0.179,
+          "qcov": 0.664,
+          "tcov": 0.55
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 67,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1I6P"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": false,
+        "available": true,
+        "blocker": null,
+        "correct": true,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": null,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "prediction": "metal_dependent_hydrolase",
+        "score": {
+          "active_site_geometry_score": 0.5965
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.462226
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.462226
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.44172
+            },
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.041642
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.880234
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.880234
+            },
+            {
+              "label_group": "ser_his_acid_hydrolase",
+              "probability": 0.107217
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.006894
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:85",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:60",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:615",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:610",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "517",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json top foldseek failure rescue cases",
+          "item_id": "fold_conflict_primary_geometry_rescue_rows",
+          "missing_evidence": "Curated active-site confirmation plus pairwise fold-neighbor provenance for each wrong Foldseek transfer.",
+          "priority": "P1",
+          "queue_group": "fold_conflict_high_value",
+          "successful_resolution_would_change": "Would justify a review-before-transfer rule for active-site/fold conflicts.",
+          "why_it_matters": "Geometry is correct while non-abstained Foldseek transfers to the wrong primary fingerprint."
+        },
+        {
+          "artifact_showing_gap": "v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json candidate_summary",
+          "item_id": "v2_underpowered_child_family_review",
+          "missing_evidence": "Expert review plus at least minimal additional support rows for underpowered child mechanisms.",
+          "priority": "P1",
+          "queue_group": "v2_sublabel_expert_review_needed",
+          "successful_resolution_would_change": "Would prevent overclaiming coarse-family wins as mechanism-level progress.",
+          "why_it_matters": "Several child labels have too little or too ambiguous support to be meaningful evaluation strata yet."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:517",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 67,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1I6P"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": false,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:450",
+        "nearest_train_label_group": "out_of_scope",
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "low_structure_neighborhood_near_orphan",
+        "reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70."
+      },
+      "successful_resolution_changes": "Converts a wrong Foldseek top1 case into a concrete active-site-vs-fold conflict benchmark candidate after expert approval.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "structure_neighbor_transfer_invalid",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "proposal_only_v2_sublabel": "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+        "split_assignment": "heldout",
+        "status": "in_scope_primary",
+        "true_fingerprint_id": "metal_dependent_hydrolase",
+        "true_label_group": "metal_dependent_hydrolase"
+      },
+      "what_review_would_decide": "Mark nearest-neighbor structural transfer as invalid for this row-level diagnostic; require expert/curated active-site evidence before any future eval import.",
+      "why_foldseek_would_mislead_or_abstain": "Nearest train fingerprint ser_his_acid_hydrolase differs from true fingerprint metal_dependent_hydrolase; fold-level transfer would overwrite active-site/geometry evidence."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:110",
+        "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "nearest_train_sequence_id": "P80324",
+        "nearest_train_structure_id": "m_csa__110__pdb_1C0P",
+        "oos_or_secondary_false_positive": null,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "prediction": "flavin_dehydrogenase_reductase",
+        "score": {
+          "bits": 18.0,
+          "evalue": 3.479,
+          "fident": 0.058,
+          "lddt": 0.3588,
+          "prob": 0.02,
+          "qcov": 0.438,
+          "tcov": 0.253
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 94,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:4Z71"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": false,
+        "available": true,
+        "blocker": null,
+        "correct": true,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": null,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "prediction": "metal_dependent_hydrolase",
+        "score": {
+          "active_site_geometry_score": 0.5698
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.923869
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.923869
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.073536
+            },
+            {
+              "label_group": "heme_peroxidase_oxidase",
+              "probability": 0.001428
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.813543
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.813543
+            },
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.185655
+            },
+            {
+              "label_group": "ser_his_acid_hydrolase",
+              "probability": 0.000703
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:377",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:332",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:329",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:506",
+          "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "916",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json top foldseek failure rescue cases",
+          "item_id": "fold_conflict_primary_geometry_rescue_rows",
+          "missing_evidence": "Curated active-site confirmation plus pairwise fold-neighbor provenance for each wrong Foldseek transfer.",
+          "priority": "P1",
+          "queue_group": "fold_conflict_high_value",
+          "successful_resolution_would_change": "Would justify a review-before-transfer rule for active-site/fold conflicts.",
+          "why_it_matters": "Geometry is correct while non-abstained Foldseek transfers to the wrong primary fingerprint."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:916",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 94,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:4Z71"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": false,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:316",
+        "nearest_train_label_group": "out_of_scope",
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "low_structure_neighborhood_near_orphan",
+        "reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70."
+      },
+      "successful_resolution_changes": "Converts a wrong Foldseek top1 case into a concrete active-site-vs-fold conflict benchmark candidate after expert approval.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "structure_neighbor_transfer_invalid",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "proposal_only_v2_sublabel": "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+        "split_assignment": "heldout",
+        "status": "in_scope_primary",
+        "true_fingerprint_id": "metal_dependent_hydrolase",
+        "true_label_group": "metal_dependent_hydrolase"
+      },
+      "what_review_would_decide": "Mark nearest-neighbor structural transfer as invalid for this row-level diagnostic; require expert/curated active-site evidence before any future eval import.",
+      "why_foldseek_would_mislead_or_abstain": "Nearest train fingerprint flavin_dehydrogenase_reductase differs from true fingerprint metal_dependent_hydrolase; fold-level transfer would overwrite active-site/geometry evidence."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:762",
+        "nearest_train_fingerprint_id": "plp_dependent_enzyme",
+        "nearest_train_label_group": "plp_dependent_enzyme",
+        "nearest_train_sequence_id": "P0AB77",
+        "nearest_train_structure_id": "m_csa__762__pdb_1FC4_A",
+        "oos_or_secondary_false_positive": null,
+        "predicted_label_group": "plp_dependent_enzyme",
+        "prediction": "plp_dependent_enzyme",
+        "score": {
+          "bits": 53.0,
+          "evalue": 0.009464,
+          "fident": 0.046,
+          "lddt": 0.2758,
+          "prob": 0.569,
+          "qcov": 0.836,
+          "tcov": 0.646
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 466,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:5DQR"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": false,
+        "available": true,
+        "blocker": null,
+        "correct": true,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": null,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "prediction": "flavin_dehydrogenase_reductase",
+        "score": {
+          "active_site_geometry_score": 0.7317
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.586664
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.586664
+            },
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.374067
+            },
+            {
+              "label_group": "plp_dependent_enzyme",
+              "probability": 0.015048
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.399225
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.399225
+            },
+            {
+              "label_group": "heme_peroxidase_oxidase",
+              "probability": 0.336107
+            },
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.256435
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:262",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:618",
+          "nearest_train_label_group": "out_of_scope",
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:860",
+          "nearest_train_fingerprint_id": "plp_dependent_enzyme",
+          "nearest_train_label_group": "plp_dependent_enzyme",
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "plp_dependent_enzyme",
+          "predicted_label_group": "plp_dependent_enzyme",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:623",
+          "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+          "nearest_train_label_group": "metal_dependent_hydrolase",
+          "out_of_scope_false_positive": false,
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "990",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json top foldseek failure rescue cases",
+          "item_id": "fold_conflict_primary_geometry_rescue_rows",
+          "missing_evidence": "Curated active-site confirmation plus pairwise fold-neighbor provenance for each wrong Foldseek transfer.",
+          "priority": "P1",
+          "queue_group": "fold_conflict_high_value",
+          "successful_resolution_would_change": "Would justify a review-before-transfer rule for active-site/fold conflicts.",
+          "why_it_matters": "Geometry is correct while non-abstained Foldseek transfers to the wrong primary fingerprint."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:990",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 466,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:5DQR"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": false,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:59",
+        "nearest_train_label_group": "out_of_scope",
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "low_structure_neighborhood_near_orphan",
+        "reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70."
+      },
+      "successful_resolution_changes": "Converts a wrong Foldseek top1 case into a concrete active-site-vs-fold conflict benchmark candidate after expert approval.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "structure_neighbor_transfer_invalid",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+        "split_assignment": "heldout",
+        "status": "in_scope_primary",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "true_label_group": "flavin_dehydrogenase_reductase"
+      },
+      "what_review_would_decide": "Mark nearest-neighbor structural transfer as invalid for this row-level diagnostic; require expert/curated active-site evidence before any future eval import.",
+      "why_foldseek_would_mislead_or_abstain": "Nearest train fingerprint plp_dependent_enzyme differs from true fingerprint flavin_dehydrogenase_reductase; fold-level transfer would overwrite active-site/geometry evidence."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:124",
+        "nearest_train_fingerprint_id": "heme_peroxidase_oxidase",
+        "nearest_train_label_group": "heme_peroxidase_oxidase",
+        "nearest_train_sequence_id": "P00396",
+        "nearest_train_structure_id": "m_csa__124__pdb_1V54_P",
+        "oos_or_secondary_false_positive": true,
+        "predicted_label_group": "heme_peroxidase_oxidase",
+        "prediction": "heme_peroxidase_oxidase",
+        "score": {
+          "bits": 25.0,
+          "evalue": 0.2636,
+          "fident": 0.072,
+          "lddt": 0.2834,
+          "prob": 0.057,
+          "qcov": 0.269,
+          "tcov": 0.776
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 109,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:2PFL"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": true,
+        "available": true,
+        "blocker": "abstained_on_oos_boundary_raw_top1_retained_for_audit_only",
+        "correct": false,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "prediction": "metal_dependent_hydrolase",
+        "score": {
+          "active_site_geometry_score": 0.26
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.99533
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.99533
+            },
+            {
+              "label_group": "heme_peroxidase_oxidase",
+              "probability": 0.002352
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.001561
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.948827
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.948827
+            },
+            {
+              "label_group": "plp_dependent_enzyme",
+              "probability": 0.038473
+            },
+            {
+              "label_group": "cobalamin_radical_rearrangement",
+              "probability": 0.009973
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:468",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:53",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:416",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:800",
+          "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "30",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json raw_component_oos_or_secondary_false_positive_counts",
+          "item_id": "oos_foldseek_false_positive_panel",
+          "missing_evidence": "Hard-negative review labels and fuller neighbor metadata, not threshold tuning on heldout.",
+          "priority": "P0",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would calibrate OOS-boundary abstention before any future production candidate router.",
+          "why_it_matters": "Raw Foldseek has eight OOS/secondary false positives; these are the best hard negatives for a router abstention policy."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:30",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 109,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:2PFL"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": true,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:268",
+        "nearest_train_label_group": "out_of_scope",
+        "oos_or_secondary_false_positive": false,
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "broad_bucket_ambiguous",
+        "reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only."
+      },
+      "successful_resolution_changes": "Adds a curated OOS/fold-neighbor trap for measuring abstention and false-positive retention without threshold tuning.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "keep_oos_hard_negative",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "out_of_scope",
+        "true_fingerprint_id": null,
+        "true_label_group": "out_of_scope"
+      },
+      "what_review_would_decide": "Confirm the row stays an OOS hard negative under fold-neighbor pressure; retain raw model predictions only as diagnostic canary evidence.",
+      "why_foldseek_would_mislead_or_abstain": "Raw Foldseek transfers heme_peroxidase_oxidase from nearest train m_csa:124, but the row is currently out_of_scope; treating that transfer as positive would create a hard-negative false positive."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:160",
+        "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+        "nearest_train_label_group": "metal_dependent_hydrolase",
+        "nearest_train_sequence_id": "P09030",
+        "nearest_train_structure_id": "m_csa__160__pdb_1AKO",
+        "oos_or_secondary_false_positive": true,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "prediction": "metal_dependent_hydrolase",
+        "score": {
+          "bits": 16.0,
+          "evalue": 2.602,
+          "fident": 0.031,
+          "lddt": 0.2744,
+          "prob": 0.014,
+          "qcov": 0.307,
+          "tcov": 0.448
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 37,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1LCB"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": true,
+        "available": true,
+        "blocker": "abstained_on_oos_boundary_raw_top1_retained_for_audit_only",
+        "correct": false,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "prediction": "metal_dependent_hydrolase",
+        "score": {
+          "active_site_geometry_score": 0.3424
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "heme_peroxidase_oxidase",
+          "predicted_label_group": "heme_peroxidase_oxidase",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.745876
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "heme_peroxidase_oxidase",
+              "probability": 0.745876
+            },
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.251854
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.001561
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.998644
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.998644
+            },
+            {
+              "label_group": "heme_peroxidase_oxidase",
+              "probability": 0.000645
+            },
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.000401
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:51",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:579",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:51",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:544",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "31",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json raw_component_oos_or_secondary_false_positive_counts",
+          "item_id": "oos_foldseek_false_positive_panel",
+          "missing_evidence": "Hard-negative review labels and fuller neighbor metadata, not threshold tuning on heldout.",
+          "priority": "P0",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would calibrate OOS-boundary abstention before any future production candidate router.",
+          "why_it_matters": "Raw Foldseek has eight OOS/secondary false positives; these are the best hard negatives for a router abstention policy."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:31",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 37,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1LCB"
+      },
+      "sequence_nn_prediction": {
+        "abstained": false,
+        "available": true,
+        "exact_label_match": false,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:935",
+        "nearest_train_fingerprint_id": "heme_peroxidase_oxidase",
+        "nearest_train_label_group": "heme_peroxidase_oxidase",
+        "oos_or_secondary_false_positive": true,
+        "out_of_scope_false_positive": true,
+        "predicted_fingerprint_id": "heme_peroxidase_oxidase",
+        "predicted_label_group": "heme_peroxidase_oxidase",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "broad_bucket_ambiguous",
+        "reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only."
+      },
+      "successful_resolution_changes": "Adds a curated OOS/fold-neighbor trap for measuring abstention and false-positive retention without threshold tuning.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "keep_oos_hard_negative",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "out_of_scope",
+        "true_fingerprint_id": null,
+        "true_label_group": "out_of_scope"
+      },
+      "what_review_would_decide": "Confirm the row stays an OOS hard negative under fold-neighbor pressure; retain raw model predictions only as diagnostic canary evidence.",
+      "why_foldseek_would_mislead_or_abstain": "Raw Foldseek transfers metal_dependent_hydrolase from nearest train m_csa:160, but the row is currently out_of_scope; treating that transfer as positive would create a hard-negative false positive."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:114",
+        "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "nearest_train_sequence_id": "P16099",
+        "nearest_train_structure_id": "m_csa__114__pdb_2TMD_B",
+        "oos_or_secondary_false_positive": true,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "prediction": "flavin_dehydrogenase_reductase",
+        "score": {
+          "bits": 29.0,
+          "evalue": 0.01483,
+          "fident": 0.048,
+          "lddt": 0.2127,
+          "prob": 0.082,
+          "qcov": 0.809,
+          "tcov": 0.41
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 86,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1V0Y"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": true,
+        "available": true,
+        "blocker": "abstained_on_oos_boundary_raw_top1_retained_for_audit_only",
+        "correct": false,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "ser_his_acid_hydrolase",
+        "prediction": "ser_his_acid_hydrolase",
+        "score": {
+          "active_site_geometry_score": 0.3542
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.974623
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.974623
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.010342
+            },
+            {
+              "label_group": "ser_his_acid_hydrolase",
+              "probability": 0.00879
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.80655
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.80655
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.150557
+            },
+            {
+              "label_group": "heme_peroxidase_oxidase",
+              "probability": 0.025078
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:581",
+          "nearest_train_fingerprint_id": "heme_peroxidase_oxidase",
+          "nearest_train_label_group": "heme_peroxidase_oxidase",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "heme_peroxidase_oxidase",
+          "predicted_label_group": "heme_peroxidase_oxidase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "available": false,
+          "prediction_status": "missing_per_row_export_or_row_absent",
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:42",
+          "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+          "nearest_train_label_group": "metal_dependent_hydrolase",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:367",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "634",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json raw_component_oos_or_secondary_false_positive_counts",
+          "item_id": "oos_foldseek_false_positive_panel",
+          "missing_evidence": "Hard-negative review labels and fuller neighbor metadata, not threshold tuning on heldout.",
+          "priority": "P0",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would calibrate OOS-boundary abstention before any future production candidate router.",
+          "why_it_matters": "Raw Foldseek has eight OOS/secondary false positives; these are the best hard negatives for a router abstention policy."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:634",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 86,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1V0Y"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": true,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:59",
+        "nearest_train_label_group": "out_of_scope",
+        "oos_or_secondary_false_positive": false,
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "broad_bucket_ambiguous",
+        "reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only."
+      },
+      "successful_resolution_changes": "Adds a curated OOS/fold-neighbor trap for measuring abstention and false-positive retention without threshold tuning.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "keep_oos_hard_negative",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "out_of_scope",
+        "true_fingerprint_id": null,
+        "true_label_group": "out_of_scope"
+      },
+      "what_review_would_decide": "Confirm the row stays an OOS hard negative under fold-neighbor pressure; retain raw model predictions only as diagnostic canary evidence.",
+      "why_foldseek_would_mislead_or_abstain": "Raw Foldseek transfers flavin_dehydrogenase_reductase from nearest train m_csa:114, but the row is currently out_of_scope; treating that transfer as positive would create a hard-negative false positive."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": false,
+        "available": true,
+        "correct": false,
+        "exact_label_match": false,
+        "nearest_train_entry_id": "m_csa:123",
+        "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "nearest_train_sequence_id": "O28603",
+        "nearest_train_structure_id": "m_csa__123__pdb_1JNR_D",
+        "oos_or_secondary_false_positive": true,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "prediction": "flavin_dehydrogenase_reductase",
+        "score": {
+          "bits": 30.0,
+          "evalue": 1.298,
+          "fident": 0.102,
+          "lddt": 0.2952,
+          "prob": 0.09,
+          "qcov": 0.104,
+          "tcov": 0.302
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 63,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1IG8"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": true,
+        "available": true,
+        "blocker": "abstained_on_oos_boundary_raw_top1_retained_for_audit_only",
+        "correct": false,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "prediction": "metal_dependent_hydrolase",
+        "score": {
+          "active_site_geometry_score": 0.3633
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.611991
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.611991
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.314115
+            },
+            {
+              "label_group": "plp_dependent_enzyme",
+              "probability": 0.056556
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.810853
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.810853
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.108575
+            },
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.068978
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:102",
+          "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:59",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:21",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:318",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "651",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json raw_component_oos_or_secondary_false_positive_counts",
+          "item_id": "oos_foldseek_false_positive_panel",
+          "missing_evidence": "Hard-negative review labels and fuller neighbor metadata, not threshold tuning on heldout.",
+          "priority": "P0",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would calibrate OOS-boundary abstention before any future production candidate router.",
+          "why_it_matters": "Raw Foldseek has eight OOS/secondary false positives; these are the best hard negatives for a router abstention policy."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_review_or_blocker",
+      "router_decision": "fold_conflict_abstain_or_review",
+      "row_id": "m_csa:651",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 63,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1IG8"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": true,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:496",
+        "nearest_train_label_group": "out_of_scope",
+        "oos_or_secondary_false_positive": false,
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "broad_bucket_ambiguous",
+        "reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only."
+      },
+      "successful_resolution_changes": "Adds a curated OOS/fold-neighbor trap for measuring abstention and false-positive retention without threshold tuning.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "keep_oos_hard_negative",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "out_of_scope",
+        "true_fingerprint_id": null,
+        "true_label_group": "out_of_scope"
+      },
+      "what_review_would_decide": "Confirm the row stays an OOS hard negative under fold-neighbor pressure; retain raw model predictions only as diagnostic canary evidence.",
+      "why_foldseek_would_mislead_or_abstain": "Raw Foldseek transfers flavin_dehydrogenase_reductase from nearest train m_csa:123, but the row is currently out_of_scope; treating that transfer as positive would create a hard-negative false positive."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": true,
+        "available": true,
+        "correct": false,
+        "exact_label_match": true,
+        "nearest_train_entry_id": "m_csa:461",
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": "out_of_scope",
+        "nearest_train_sequence_id": "P51659",
+        "nearest_train_structure_id": "m_csa__461__pdb_1S9C_F",
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction": null,
+        "score": {
+          "bits": 58.0,
+          "evalue": 0.06864,
+          "fident": 0.053,
+          "lddt": 0.4499,
+          "prob": 0.72,
+          "qcov": 0.649,
+          "tcov": 0.457
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 138,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1MKB"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": true,
+        "available": true,
+        "blocker": "abstained_on_oos_boundary_raw_top1_retained_for_audit_only",
+        "correct": false,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "heme_peroxidase_oxidase",
+        "prediction": "heme_peroxidase_oxidase",
+        "score": {
+          "active_site_geometry_score": 0.3544
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.907156
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.907156
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.089429
+            },
+            {
+              "label_group": "heme_peroxidase_oxidase",
+              "probability": 0.00146
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.999121
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.999121
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.000542
+            },
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.000252
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:463",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:463",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:461",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:575",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "10",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json geometry_baseline rows",
+          "item_id": "oos_geometry_raw_top1_abstention_canaries",
+          "missing_evidence": "Reviewed OOS boundary status and retained raw geometry-score provenance as audit-only canary evidence.",
+          "priority": "P1",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would preserve geometry as a support router instead of a raw positive scorer.",
+          "why_it_matters": "Geometry abstains correctly on OOS rows despite raw top1 active-site matches; this is a key guardrail against raw-score production use."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_abstention",
+      "router_decision": "oos_boundary_abstain",
+      "row_id": "m_csa:10",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 138,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1MKB"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": true,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:476",
+        "nearest_train_label_group": "out_of_scope",
+        "oos_or_secondary_false_positive": false,
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "broad_bucket_ambiguous",
+        "reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics."
+      },
+      "successful_resolution_changes": "Adds a curated OOS/fold-neighbor trap for measuring abstention and false-positive retention without threshold tuning.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "keep_oos_hard_negative",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "out_of_scope",
+        "true_fingerprint_id": null,
+        "true_label_group": "out_of_scope"
+      },
+      "what_review_would_decide": "Confirm the row stays an OOS hard negative under fold-neighbor pressure; retain raw model predictions only as diagnostic canary evidence.",
+      "why_foldseek_would_mislead_or_abstain": "Foldseek abstains from a benchmark fingerprint even though a nearest structural row is recorded (m_csa:461); the raw neighbor remains review-only OOS boundary evidence."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": true,
+        "available": true,
+        "correct": false,
+        "exact_label_match": true,
+        "nearest_train_entry_id": "m_csa:496",
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": "out_of_scope",
+        "nearest_train_sequence_id": "Q13423",
+        "nearest_train_structure_id": "m_csa__496__pdb_1DJL_B",
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction": null,
+        "score": {
+          "bits": 566.0,
+          "evalue": 6.686e-16,
+          "fident": 0.462,
+          "lddt": 0.8904,
+          "prob": 1.0,
+          "qcov": 0.994,
+          "tcov": 0.951
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 282,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1HZZ"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": true,
+        "available": true,
+        "blocker": "abstained_on_oos_boundary_raw_top1_retained_for_audit_only",
+        "correct": false,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "flavin_monooxygenase",
+        "prediction": "flavin_monooxygenase",
+        "score": {
+          "active_site_geometry_score": 0.3044
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.839428
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.839428
+            },
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.057051
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.049774
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.997849
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.997849
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.001263
+            },
+            {
+              "label_group": "flavin_dehydrogenase_reductase",
+              "probability": 0.000735
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:476",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:476",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:527",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:114",
+          "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "116",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json geometry_baseline rows",
+          "item_id": "oos_geometry_raw_top1_abstention_canaries",
+          "missing_evidence": "Reviewed OOS boundary status and retained raw geometry-score provenance as audit-only canary evidence.",
+          "priority": "P1",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would preserve geometry as a support router instead of a raw positive scorer.",
+          "why_it_matters": "Geometry abstains correctly on OOS rows despite raw top1 active-site matches; this is a key guardrail against raw-score production use."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_abstention",
+      "router_decision": "oos_boundary_abstain",
+      "row_id": "m_csa:116",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 282,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1HZZ"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": true,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:496",
+        "nearest_train_label_group": "out_of_scope",
+        "oos_or_secondary_false_positive": false,
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "broad_bucket_ambiguous",
+        "reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics."
+      },
+      "successful_resolution_changes": "Adds a curated OOS/fold-neighbor trap for measuring abstention and false-positive retention without threshold tuning.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "keep_oos_hard_negative",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "out_of_scope",
+        "true_fingerprint_id": null,
+        "true_label_group": "out_of_scope"
+      },
+      "what_review_would_decide": "Confirm the row stays an OOS hard negative under fold-neighbor pressure; retain raw model predictions only as diagnostic canary evidence.",
+      "why_foldseek_would_mislead_or_abstain": "Foldseek abstains from a benchmark fingerprint even though a nearest structural row is recorded (m_csa:496); the raw neighbor remains review-only OOS boundary evidence."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": true,
+        "available": true,
+        "correct": false,
+        "exact_label_match": true,
+        "nearest_train_entry_id": "m_csa:398",
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": "out_of_scope",
+        "nearest_train_sequence_id": "P17846",
+        "nearest_train_structure_id": "m_csa__398__pdb_1AOP",
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction": null,
+        "score": {
+          "bits": 28.0,
+          "evalue": 0.3489,
+          "fident": 0.059,
+          "lddt": 0.331,
+          "prob": 0.076,
+          "qcov": 0.767,
+          "tcov": 0.25
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 1244,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1MEK"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": true,
+        "available": true,
+        "blocker": "abstained_on_oos_boundary_raw_top1_retained_for_audit_only",
+        "correct": false,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "ser_his_acid_hydrolase",
+        "prediction": "ser_his_acid_hydrolase",
+        "score": {
+          "active_site_geometry_score": 0.3773
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.992147
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.992147
+            },
+            {
+              "label_group": "ser_his_acid_hydrolase",
+              "probability": 0.003178
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.002385
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.952187
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.952187
+            },
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.040293
+            },
+            {
+              "label_group": "ser_his_acid_hydrolase",
+              "probability": 0.007429
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:470",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:362",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:504",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:98",
+          "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+          "nearest_train_label_group": "metal_dependent_hydrolase",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "metal_dependent_hydrolase",
+          "predicted_label_group": "metal_dependent_hydrolase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "191",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json geometry_baseline rows",
+          "item_id": "oos_geometry_raw_top1_abstention_canaries",
+          "missing_evidence": "Reviewed OOS boundary status and retained raw geometry-score provenance as audit-only canary evidence.",
+          "priority": "P1",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would preserve geometry as a support router instead of a raw positive scorer.",
+          "why_it_matters": "Geometry abstains correctly on OOS rows despite raw top1 active-site matches; this is a key guardrail against raw-score production use."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_abstention",
+      "router_decision": "oos_boundary_abstain",
+      "row_id": "m_csa:191",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 1244,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1MEK"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": true,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:207",
+        "nearest_train_label_group": "out_of_scope",
+        "oos_or_secondary_false_positive": false,
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "broad_bucket_ambiguous",
+        "reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only."
+      },
+      "successful_resolution_changes": "Adds a curated OOS/fold-neighbor trap for measuring abstention and false-positive retention without threshold tuning.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "keep_oos_hard_negative",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "out_of_scope",
+        "true_fingerprint_id": null,
+        "true_label_group": "out_of_scope"
+      },
+      "what_review_would_decide": "Confirm the row stays an OOS hard negative under fold-neighbor pressure; retain raw model predictions only as diagnostic canary evidence.",
+      "why_foldseek_would_mislead_or_abstain": "Foldseek abstains from a benchmark fingerprint even though a nearest structural row is recorded (m_csa:398); the raw neighbor remains review-only OOS boundary evidence."
+    },
+    {
+      "foldseek_nearest_train": {
+        "abstained": true,
+        "available": true,
+        "correct": false,
+        "exact_label_match": true,
+        "nearest_train_entry_id": "m_csa:457",
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": "out_of_scope",
+        "nearest_train_sequence_id": "P0A6D3",
+        "nearest_train_structure_id": "m_csa__457__pdb_1G6T",
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction": null,
+        "score": {
+          "bits": 533.0,
+          "evalue": 8.498e-18,
+          "fident": 0.187,
+          "lddt": 0.5767,
+          "prob": 1.0,
+          "qcov": 0.971,
+          "tcov": 0.986
+        },
+        "structure_query": {
+          "candidate_hit_count_for_query_entry": 99,
+          "coordinate_available": true,
+          "coordinate_source": "selected_pdb",
+          "selected_structure_proxy_id": "pdb:1DLG"
+        }
+      },
+      "geometry_prediction_and_blocker": {
+        "abstained": true,
+        "available": true,
+        "blocker": "abstained_on_oos_boundary_raw_top1_retained_for_audit_only",
+        "correct": false,
+        "exact_label_match": true,
+        "oos_or_secondary_false_positive": false,
+        "predicted_label_group": "plp_dependent_enzyme",
+        "prediction": "plp_dependent_enzyme",
+        "score": {
+          "active_site_geometry_score": 0.3048
+        }
+      },
+      "learned_model_predictions_review_only": [
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "facebook/esm2_t30_150M_UR50D",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.998664
+          },
+          "top1_correct": true,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.998664
+            },
+            {
+              "label_group": "plp_dependent_enzyme",
+              "probability": 0.001306
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 1.6e-05
+            }
+          ],
+          "track_id": "esm2_150m"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "esmc_300m",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {
+            "predicted_label_probability": 0.945685
+          },
+          "top1_correct": false,
+          "top_label_group_probabilities_top3": [
+            {
+              "label_group": "out_of_scope",
+              "probability": 0.945685
+            },
+            {
+              "label_group": "plp_dependent_enzyme",
+              "probability": 0.052215
+            },
+            {
+              "label_group": "metal_dependent_hydrolase",
+              "probability": 0.001491
+            }
+          ],
+          "track_id": "esm_c_corrected_logistic"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "esmc_300m",
+          "nearest_train_entry_id": "m_csa:195",
+          "nearest_train_fingerprint_id": "plp_dependent_enzyme",
+          "nearest_train_label_group": "plp_dependent_enzyme",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "plp_dependent_enzyme",
+          "predicted_label_group": "plp_dependent_enzyme",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "esm_c_cosine_nn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "uniprot_sprot_prott5_per_protein_h5_cosine_1nn.v1",
+          "nearest_train_entry_id": "m_csa:457",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "prott5_swissprot_h5_knn"
+        },
+        {
+          "abstained": true,
+          "available": true,
+          "exact_label_match": true,
+          "model_id": "westlake-repl/SaProt_35M_AF2",
+          "nearest_train_entry_id": "m_csa:457",
+          "nearest_train_label_group": "out_of_scope",
+          "oos_or_secondary_false_positive": false,
+          "out_of_scope_false_positive": false,
+          "predicted_label_group": "out_of_scope",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "saprot_35m_structure_tokens"
+        },
+        {
+          "abstained": false,
+          "available": true,
+          "exact_label_match": false,
+          "model_id": "foldseek_3di_3mer_jaccard_nn.v1",
+          "nearest_train_entry_id": "m_csa:800",
+          "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+          "oos_or_secondary_false_positive": true,
+          "out_of_scope_false_positive": true,
+          "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "predicted_label_group": "flavin_dehydrogenase_reductase",
+          "prediction_status": "reported",
+          "score": {},
+          "top1_correct": false,
+          "track_id": "foldseek_3di_token_nn"
+        }
+      ],
+      "m_csa_id": "369",
+      "queue_sources": [
+        {
+          "artifact_showing_gap": "v3_wave1_structure_neighborhood_audit_20260526.json geometry_baseline rows",
+          "item_id": "oos_geometry_raw_top1_abstention_canaries",
+          "missing_evidence": "Reviewed OOS boundary status and retained raw geometry-score provenance as audit-only canary evidence.",
+          "priority": "P1",
+          "queue_group": "OOS_boundary_hard_negative_needed",
+          "successful_resolution_would_change": "Would preserve geometry as a support router instead of a raw positive scorer.",
+          "why_it_matters": "Geometry abstains correctly on OOS rows despite raw top1 active-site matches; this is a key guardrail against raw-score production use."
+        }
+      ],
+      "review_constraints": [
+        "review_only",
+        "no_label_edits",
+        "no_threshold_tuning",
+        "no_production_claim"
+      ],
+      "route_claim_status": "diagnostic_abstention",
+      "router_decision": "oos_boundary_abstain",
+      "row_id": "m_csa:369",
+      "selected_structure_provenance": {
+        "candidate_hit_count_for_query_entry": 99,
+        "coordinate_available": true,
+        "coordinate_source": "selected_pdb",
+        "selected_structure_proxy_id": "pdb:1DLG"
+      },
+      "sequence_nn_prediction": {
+        "abstained": true,
+        "available": true,
+        "exact_label_match": true,
+        "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+        "nearest_train_entry_id": "m_csa:221",
+        "nearest_train_label_group": "out_of_scope",
+        "oos_or_secondary_false_positive": false,
+        "out_of_scope_false_positive": false,
+        "predicted_label_group": "out_of_scope",
+        "prediction_status": "reported",
+        "score": {},
+        "top1_correct": false,
+        "track_id": "sequence_nn"
+      },
+      "structural_neighborhood": {
+        "bin": "broad_bucket_ambiguous",
+        "reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics."
+      },
+      "successful_resolution_changes": "Adds a curated OOS/fold-neighbor trap for measuring abstention and false-positive retention without threshold tuning.",
+      "terminal_decision_basis": "Derived only from current router/queue/audit artifacts; no label promotion or policy change.",
+      "terminal_decision_category": "keep_oos_hard_negative",
+      "true_status_and_fingerprint": {
+        "benchmark_role": "oos_tier::unknown_oos",
+        "proposal_only_v2_sublabel": null,
+        "split_assignment": "heldout",
+        "status": "out_of_scope",
+        "true_fingerprint_id": null,
+        "true_label_group": "out_of_scope"
+      },
+      "what_review_would_decide": "Confirm the row stays an OOS hard negative under fold-neighbor pressure; retain raw model predictions only as diagnostic canary evidence.",
+      "why_foldseek_would_mislead_or_abstain": "Foldseek abstains from a benchmark fingerprint even though a nearest structural row is recorded (m_csa:457); the raw neighbor remains review-only OOS boundary evidence."
+    }
+  ],
+  "schema_version": "review_packet.v1",
+  "scope": {
+    "created_utc": "2026-05-26T06:23:42Z",
+    "diagnostic_only": true,
+    "fingerprint_registry_edits": 0,
+    "forbidden_predictive_inputs": [
+      "EC numbers",
+      "enzyme names",
+      "mechanism prose",
+      "expert notes",
+      "source IDs"
+    ],
+    "import_decisions": 0,
+    "label_edits": 0,
+    "model_training_or_scaling": 0,
+    "ontology_registry_edits": 0,
+    "packet_name": "fold_conflict_oos_hard_negative_review_packet",
+    "production_claim": false,
+    "proposal_only_where_v2_labels_appear": true,
+    "review_context_policy": "Source/review context is retained only as provenance/review-only explanation and is not a predictive feature.",
+    "review_only": true,
+    "threshold_changes": 0
+  },
+  "source_artifacts": {
+    "foldseek_structural_nn_predictions": {
+      "exists": true,
+      "path": "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json",
+      "role": "joined_wave1_row_evidence",
+      "sha256": "8383074a7bb586cbff8219c8f903068e265b30a5f3596a50fa12444083c3a156"
+    },
+    "geometry_label_eval_family": "artifacts/v3_geometry_label_eval_*.json",
+    "geometry_retrieval_family": "artifacts/v3_geometry_retrieval_*.json",
+    "representation_shootout_result_card": "artifacts/v3_wave1_representation_shootout_result_card_20260526.json",
+    "router": "artifacts/v3_foldseek_geometry_diagnostic_router_pilot_702_20260526.json",
+    "sequence_nn_metrics": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+    "sequence_nn_predictions": "artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl",
+    "structure_neighborhood_audit": "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json",
+    "targeted_queue": "artifacts/v3_targeted_mechanism_evidence_acquisition_queue_702_20260526.json",
+    "v2_sublabel_audit": "artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json"
+  },
+  "summary": {
+    "automatic_action_blocker": "All terminal categories are review-only and require expert/curation confirmation before any countable eval import or registry change.",
+    "can_be_acted_on_automatically_later_without_expert_input": false,
+    "decision_category_counts": {
+      "boundary_review_needed": 1,
+      "keep_oos_hard_negative": 12,
+      "structure_neighbor_transfer_invalid": 5
+    },
+    "queue_group_counts": {
+      "OOS_boundary_hard_negative_needed": 12,
+      "fold_conflict_high_value": 10
+    },
+    "review_first_reason": "This packet has the largest immediate North-Star gain because it tests whether high Foldseek similarity should transfer mechanism or be retained as an abstain/OOS hard negative.",
+    "row_count": 18
+  }
+}
