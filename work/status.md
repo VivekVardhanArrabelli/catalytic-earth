@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 321
-- Measured elapsed time: 9465.3 minutes (157.75 hours)
+- Entries: 322
+- Measured elapsed time: 9515.3 minutes (158.59 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -19,7 +19,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
-- v3: 2403.1 measured minutes (40.05 hours)
+- v3: 2453.1 measured minutes (40.89 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -28,21 +28,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3417
-- Evidence references logged: 2829
+- Artifact references logged: 3421
+- Evidence references logged: 2833
 
 ## Recent Entries
-
-### 2026-05-25T09:51:46.143569+00:00 - v3
-
-- Task: Current702 sequence coverage repair
-- Time mode: measured
-- Measured minutes: 14.65
-- Started: 2026-05-25T09:36:54Z
-- Ended: 2026-05-25T09:51:33Z
-- Artifacts: artifacts/v3_sequence_coverage_repair_current702_20260525.json, artifacts/v3_sequence_manifest_current702_repaired_20260525.json, artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta, artifacts/v3_sequence_distance_holdout_eval_1025_current702_repaired_20260525.json, artifacts/v3_representation_baseline_sequence_coverage_addendum_20260525.json, README.md, docs/label_factory.md, work/handoff.md
-- Evidence: resolved 20 holdout missing sequence rows plus 4 non-evaluated current-label manifest gaps, current-label sequence coverage 702 of 702, holdout evaluated sequence coverage 698 of 698, missing sequence count 0, max train-test identity 0.284 target <=0.30 achieved, full unit discovery passed 933 tests, CLI validate and jq and git diff checks passed
-- Notes: No label import, registry edit, fingerprint edit, ontology edit, scoring or threshold change, model benchmark, artifact removal, migration, upload, history rewrite, or removal_allowed=true action occurred; temporary admission guard blocked only pre-existing large geometry artifacts while new sequence files were below the 5 MB threshold.
 
 ### 2026-05-25T11:17:39.450858+00:00 - v3
 
@@ -120,6 +109,15 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_mechanism_prediction_fold_controlled_eval_design_702_20260525.json, artifacts/v3_mechanism_prediction_orphan_eval_design_702_20260525.json, artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json, work/mechanism_eval_sharpening_handoff_20260525.md, work/handoff.md
 - Evidence: Fold-control pilot found 3 retained Foldseek OOS-vs-primary trap rows and 0 primary-vs-primary retained traps; orphan pilot found 35 heldout primary near-orphan rows with sequence-NN 25 useful abstentions 6 correct 4 wrong confident transfers; v2 audit assigned 226 v1 primary labels across 23 proposal-only sublabel buckets with 9 ready-after-expert-approval candidates
 - Notes: No label import registry edit fingerprint edit ontology edit production scoring threshold model training PLM embedding representation branch artifact edit or Foldseek win claim occurred; CATH/SCOP unavailable so Foldseek TM is provisional.
+
+### 2026-05-26T04:27:02.589694+00:00 - v3
+
+- Task: Wave 1 structural-neighborhood representation diagnostic
+- Time mode: measured
+- Measured minutes: 50.0
+- Artifacts: artifacts/v3_wave1_structure_neighborhood_audit_20260526.json, artifacts/v3_wave1_representation_shootout_result_card_20260526.json, docs/wave1_representation_shootout.md, work/handoff.md
+- Evidence: joined 140 current702 heldout rows across Wave 1 baseline and representation tracks, reported metrics by structural-neighborhood bin for Foldseek ESM-2 ESM-C ProtT5 SaProt 3Di geometry and sequence-NN, identified fold-controlled contrast near-orphan and proposal-only v2 sublabel candidate rows, interpreted Wave 1 as structural-neighborhood transfer and abstention diagnostics, not a model-scaling win
+- Notes: No label import registry edit fingerprint edit ontology edit threshold change production scoring model scaling or representation branch artifact edit occurred.
 
 ## Expectation Updates
 
@@ -565,3 +563,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-25T09:13:01Z: Target 0 completed as a frozen caveat artifact; Target A remains blocked on exact sequence coverage rows.
 - 2026-05-25T14:36:49.637815+00:00: Sequence-NN remains fail-closed until the repaired current702 split covers all 702 labels; no PLM or learned baseline work was started.
 - 2026-05-25T15:10:30.958833+00:00: Current702 sequence-NN is unblocked and reported with deterministic amino-acid-only baseline artifacts; PLM and learned representation work remain outside this prompt.
+- 2026-05-26T04:27:02.589694+00:00: Wave 1 representation results are now framed as diagnostic structural-neighborhood evidence, not a bigger-model leaderboard.

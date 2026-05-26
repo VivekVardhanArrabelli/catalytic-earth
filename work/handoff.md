@@ -50,6 +50,35 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-26T04:27:02Z Wave 1 Structural-Neighborhood Diagnostic
+
+This run stayed on `main`, read representation worktree artifacts as read-only inputs, and converted Wave 1 outputs into a current702 heldout diagnostic map. It did not edit labels, registries, ontology, fingerprints, imports, thresholds, production scoring, or representation branch outputs.
+
+Artifacts written:
+
+```text
+artifacts/v3_wave1_structure_neighborhood_audit_20260526.json
+artifacts/v3_wave1_representation_shootout_result_card_20260526.json
+docs/wave1_representation_shootout.md
+```
+
+The audit joins 140 heldout rows across sequence-NN, Foldseek full-structure NN, active-site geometry where available, ESM-2 150M, ESM-C corrected logistic, ESM-C cosine NN, ProtT5, SaProt, and Foldseek 3Di token NN. Coverage caveats are explicit: ProtT5 joins 132/140 heldout rows, 3Di joins 139/140, geometry joins 135/140 from an existing non-current702-native geometry export, and retained TM-score evidence is partial.
+
+Interpretation: Wave 1 currently supports a broad-bucket structural-neighborhood transfer and abstention diagnostic, not a mechanism-prediction claim and not a reason to scale models first. The next useful month is Foldseek+geometry engine hardening, fold-controlled and near-orphan evaluation freeze, proposal-only v2 sublabel strata, and targeted labels for sparse/misleading structural cells.
+
+Verification passed for this run: both new JSON artifacts parse with
+`python -m json.tool`, `PYTHONPATH=src python -m catalytic_earth.cli validate`
+passes with 702 labels, `git diff --check` is clean, and the artifact
+admission guard passed. Push was attempted and failed with:
+
+```text
+fatal: could not read Username for 'https://github.com': Device not configured
+```
+
+Local `main` is therefore clean and ahead of `origin/main` until GitHub
+authentication is restored or the commit is pushed from an authenticated
+environment.
+
 ### 2026-05-26T03:16Z Mechanism Evaluation Sharpening Artifacts
 
 This run stayed on `main`, acquired `.git/catalytic-earth-automation.lock`,

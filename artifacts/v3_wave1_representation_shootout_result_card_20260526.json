@@ -1,0 +1,1199 @@
+{
+  "artifact_id": "v3_wave1_representation_shootout_result_card_20260526",
+  "created_utc": "2026-05-26T04:27:02Z",
+  "decision": "Do not scale models first. Build a Foldseek-plus-geometry diagnostic engine, freeze fold-controlled and near-orphan evals, report proposal-only v2 sublabel strata, and acquire targeted labels for sparse contrast cells.",
+  "evidence_map": {
+    "fold_control_candidate_count": 6,
+    "heldout_row_count": 140,
+    "metrics_by_structural_neighborhood_bin": {
+      "esm2_150m": {
+        "broad_bucket_ambiguous": {
+          "abstention_count": 75,
+          "abstention_rate": 0.8427,
+          "available_prediction_count": 89,
+          "exact_label_accuracy_all_statuses": 0.8315,
+          "exact_label_match_count_all_statuses": 74,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 14,
+          "oos_or_secondary_false_positive_rate": 0.1573,
+          "oos_or_secondary_support_count": 89,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 89,
+          "status_mix": {
+            "out_of_scope": 88,
+            "secondary_ood_probe": 1
+          }
+        },
+        "dense_same_mechanism_structural_neighborhood": {
+          "abstention_count": 3,
+          "abstention_rate": 0.3,
+          "available_prediction_count": 10,
+          "exact_label_accuracy_all_statuses": 0.7,
+          "exact_label_match_count_all_statuses": 7,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.7,
+          "primary_correct_count": 7,
+          "primary_support_count": 10,
+          "row_count": 10,
+          "status_mix": {
+            "in_scope_primary": 10
+          }
+        },
+        "high_structure_similarity_different_fingerprint": {
+          "abstention_count": 3,
+          "abstention_rate": 0.6,
+          "available_prediction_count": 5,
+          "exact_label_accuracy_all_statuses": 0.6,
+          "exact_label_match_count_all_statuses": 3,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 2,
+          "oos_or_secondary_false_positive_rate": 0.4,
+          "oos_or_secondary_support_count": 5,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 5,
+          "status_mix": {
+            "out_of_scope": 4,
+            "secondary_ood_probe": 1
+          }
+        },
+        "low_structure_neighborhood_near_orphan": {
+          "abstention_count": 14,
+          "abstention_rate": 0.4667,
+          "available_prediction_count": 30,
+          "exact_label_accuracy_all_statuses": 0.5333,
+          "exact_label_match_count_all_statuses": 16,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.5333,
+          "primary_correct_count": 16,
+          "primary_support_count": 30,
+          "row_count": 30,
+          "status_mix": {
+            "in_scope_primary": 30
+          }
+        },
+        "no_reliable_structure": {
+          "abstention_count": 3,
+          "abstention_rate": 0.5,
+          "available_prediction_count": 6,
+          "exact_label_accuracy_all_statuses": 0.5,
+          "exact_label_match_count_all_statuses": 3,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": 0.0,
+          "oos_or_secondary_support_count": 1,
+          "primary_accuracy": 0.6,
+          "primary_correct_count": 3,
+          "primary_support_count": 5,
+          "row_count": 6,
+          "status_mix": {
+            "in_scope_primary": 5,
+            "secondary_ood_probe": 1
+          }
+        }
+      },
+      "esm_c_corrected_logistic": {
+        "broad_bucket_ambiguous": {
+          "abstention_count": 74,
+          "abstention_rate": 0.8315,
+          "available_prediction_count": 89,
+          "exact_label_accuracy_all_statuses": 0.8202,
+          "exact_label_match_count_all_statuses": 73,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 15,
+          "oos_or_secondary_false_positive_rate": 0.1685,
+          "oos_or_secondary_support_count": 89,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 89,
+          "status_mix": {
+            "out_of_scope": 88,
+            "secondary_ood_probe": 1
+          }
+        },
+        "dense_same_mechanism_structural_neighborhood": {
+          "abstention_count": 6,
+          "abstention_rate": 0.6,
+          "available_prediction_count": 10,
+          "exact_label_accuracy_all_statuses": 0.4,
+          "exact_label_match_count_all_statuses": 4,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.4,
+          "primary_correct_count": 4,
+          "primary_support_count": 10,
+          "row_count": 10,
+          "status_mix": {
+            "in_scope_primary": 10
+          }
+        },
+        "high_structure_similarity_different_fingerprint": {
+          "abstention_count": 4,
+          "abstention_rate": 0.8,
+          "available_prediction_count": 5,
+          "exact_label_accuracy_all_statuses": 0.8,
+          "exact_label_match_count_all_statuses": 4,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 1,
+          "oos_or_secondary_false_positive_rate": 0.2,
+          "oos_or_secondary_support_count": 5,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 5,
+          "status_mix": {
+            "out_of_scope": 4,
+            "secondary_ood_probe": 1
+          }
+        },
+        "low_structure_neighborhood_near_orphan": {
+          "abstention_count": 16,
+          "abstention_rate": 0.5333,
+          "available_prediction_count": 30,
+          "exact_label_accuracy_all_statuses": 0.3333,
+          "exact_label_match_count_all_statuses": 10,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.3333,
+          "primary_correct_count": 10,
+          "primary_support_count": 30,
+          "row_count": 30,
+          "status_mix": {
+            "in_scope_primary": 30
+          }
+        },
+        "no_reliable_structure": {
+          "abstention_count": 3,
+          "abstention_rate": 0.5,
+          "available_prediction_count": 6,
+          "exact_label_accuracy_all_statuses": 0.5,
+          "exact_label_match_count_all_statuses": 3,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": 0.0,
+          "oos_or_secondary_support_count": 1,
+          "primary_accuracy": 0.6,
+          "primary_correct_count": 3,
+          "primary_support_count": 5,
+          "row_count": 6,
+          "status_mix": {
+            "in_scope_primary": 5,
+            "secondary_ood_probe": 1
+          }
+        }
+      },
+      "esm_c_cosine_nn": {
+        "broad_bucket_ambiguous": {
+          "abstention_count": 58,
+          "abstention_rate": 0.6517,
+          "available_prediction_count": 89,
+          "exact_label_accuracy_all_statuses": 0.6517,
+          "exact_label_match_count_all_statuses": 58,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 30,
+          "oos_or_secondary_false_positive_rate": 0.3371,
+          "oos_or_secondary_support_count": 89,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 89,
+          "status_mix": {
+            "out_of_scope": 88,
+            "secondary_ood_probe": 1
+          }
+        },
+        "dense_same_mechanism_structural_neighborhood": {
+          "abstention_count": 7,
+          "abstention_rate": 0.7,
+          "available_prediction_count": 10,
+          "exact_label_accuracy_all_statuses": 0.1,
+          "exact_label_match_count_all_statuses": 1,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.1,
+          "primary_correct_count": 1,
+          "primary_support_count": 10,
+          "row_count": 10,
+          "status_mix": {
+            "in_scope_primary": 10
+          }
+        },
+        "high_structure_similarity_different_fingerprint": {
+          "abstention_count": 3,
+          "abstention_rate": 0.6,
+          "available_prediction_count": 5,
+          "exact_label_accuracy_all_statuses": 0.6,
+          "exact_label_match_count_all_statuses": 3,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 1,
+          "oos_or_secondary_false_positive_rate": 0.2,
+          "oos_or_secondary_support_count": 5,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 5,
+          "status_mix": {
+            "out_of_scope": 4,
+            "secondary_ood_probe": 1
+          }
+        },
+        "low_structure_neighborhood_near_orphan": {
+          "abstention_count": 20,
+          "abstention_rate": 0.6667,
+          "available_prediction_count": 30,
+          "exact_label_accuracy_all_statuses": 0.1,
+          "exact_label_match_count_all_statuses": 3,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.1,
+          "primary_correct_count": 3,
+          "primary_support_count": 30,
+          "row_count": 30,
+          "status_mix": {
+            "in_scope_primary": 30
+          }
+        },
+        "no_reliable_structure": {
+          "abstention_count": 4,
+          "abstention_rate": 0.6667,
+          "available_prediction_count": 6,
+          "exact_label_accuracy_all_statuses": 0.0,
+          "exact_label_match_count_all_statuses": 0,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": 0.0,
+          "oos_or_secondary_support_count": 1,
+          "primary_accuracy": 0.0,
+          "primary_correct_count": 0,
+          "primary_support_count": 5,
+          "row_count": 6,
+          "status_mix": {
+            "in_scope_primary": 5,
+            "secondary_ood_probe": 1
+          }
+        }
+      },
+      "foldseek_3di_token_nn": {
+        "broad_bucket_ambiguous": {
+          "abstention_count": 72,
+          "abstention_rate": 0.809,
+          "available_prediction_count": 89,
+          "exact_label_accuracy_all_statuses": 0.7978,
+          "exact_label_match_count_all_statuses": 71,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 17,
+          "oos_or_secondary_false_positive_rate": 0.191,
+          "oos_or_secondary_support_count": 89,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 89,
+          "status_mix": {
+            "out_of_scope": 88,
+            "secondary_ood_probe": 1
+          }
+        },
+        "dense_same_mechanism_structural_neighborhood": {
+          "abstention_count": 7,
+          "abstention_rate": 0.7,
+          "available_prediction_count": 10,
+          "exact_label_accuracy_all_statuses": 0.3,
+          "exact_label_match_count_all_statuses": 3,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.3,
+          "primary_correct_count": 3,
+          "primary_support_count": 10,
+          "row_count": 10,
+          "status_mix": {
+            "in_scope_primary": 10
+          }
+        },
+        "high_structure_similarity_different_fingerprint": {
+          "abstention_count": 4,
+          "abstention_rate": 0.8,
+          "available_prediction_count": 5,
+          "exact_label_accuracy_all_statuses": 0.6,
+          "exact_label_match_count_all_statuses": 3,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 1,
+          "oos_or_secondary_false_positive_rate": 0.2,
+          "oos_or_secondary_support_count": 5,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 5,
+          "status_mix": {
+            "out_of_scope": 4,
+            "secondary_ood_probe": 1
+          }
+        },
+        "low_structure_neighborhood_near_orphan": {
+          "abstention_count": 19,
+          "abstention_rate": 0.6333,
+          "available_prediction_count": 30,
+          "exact_label_accuracy_all_statuses": 0.1667,
+          "exact_label_match_count_all_statuses": 5,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.1667,
+          "primary_correct_count": 5,
+          "primary_support_count": 30,
+          "row_count": 30,
+          "status_mix": {
+            "in_scope_primary": 30
+          }
+        },
+        "no_reliable_structure": {
+          "abstention_count": 4,
+          "abstention_rate": 0.8,
+          "available_prediction_count": 5,
+          "exact_label_accuracy_all_statuses": 0.0,
+          "exact_label_match_count_all_statuses": 0,
+          "missing_prediction_count": 1,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.0,
+          "primary_correct_count": 0,
+          "primary_support_count": 5,
+          "row_count": 6,
+          "status_mix": {
+            "in_scope_primary": 5,
+            "secondary_ood_probe": 1
+          }
+        }
+      },
+      "foldseek_structural_nn": {
+        "broad_bucket_ambiguous": {
+          "abstention_count": 85,
+          "abstention_rate": 0.9551,
+          "available_prediction_count": 89,
+          "exact_label_accuracy_all_statuses": 0.9438,
+          "exact_label_match_count_all_statuses": 84,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 4,
+          "oos_or_secondary_false_positive_rate": 0.0449,
+          "oos_or_secondary_support_count": 89,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 89,
+          "status_mix": {
+            "out_of_scope": 88,
+            "secondary_ood_probe": 1
+          }
+        },
+        "dense_same_mechanism_structural_neighborhood": {
+          "abstention_count": 0,
+          "abstention_rate": 0.0,
+          "available_prediction_count": 10,
+          "exact_label_accuracy_all_statuses": 1.0,
+          "exact_label_match_count_all_statuses": 10,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 1.0,
+          "primary_correct_count": 10,
+          "primary_support_count": 10,
+          "row_count": 10,
+          "status_mix": {
+            "in_scope_primary": 10
+          }
+        },
+        "high_structure_similarity_different_fingerprint": {
+          "abstention_count": 0,
+          "abstention_rate": 0.0,
+          "available_prediction_count": 5,
+          "exact_label_accuracy_all_statuses": 0.0,
+          "exact_label_match_count_all_statuses": 0,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 4,
+          "oos_or_secondary_false_positive_rate": 0.8,
+          "oos_or_secondary_support_count": 5,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 5,
+          "status_mix": {
+            "out_of_scope": 4,
+            "secondary_ood_probe": 1
+          }
+        },
+        "low_structure_neighborhood_near_orphan": {
+          "abstention_count": 7,
+          "abstention_rate": 0.2333,
+          "available_prediction_count": 30,
+          "exact_label_accuracy_all_statuses": 0.6,
+          "exact_label_match_count_all_statuses": 18,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.6,
+          "primary_correct_count": 18,
+          "primary_support_count": 30,
+          "row_count": 30,
+          "status_mix": {
+            "in_scope_primary": 30
+          }
+        },
+        "no_reliable_structure": {
+          "abstention_count": 6,
+          "abstention_rate": 1.0,
+          "available_prediction_count": 6,
+          "exact_label_accuracy_all_statuses": 0.0,
+          "exact_label_match_count_all_statuses": 0,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": 0.0,
+          "oos_or_secondary_support_count": 1,
+          "primary_accuracy": 0.0,
+          "primary_correct_count": 0,
+          "primary_support_count": 5,
+          "row_count": 6,
+          "status_mix": {
+            "in_scope_primary": 5,
+            "secondary_ood_probe": 1
+          }
+        }
+      },
+      "geometry_baseline": {
+        "broad_bucket_ambiguous": {
+          "abstention_count": 88,
+          "abstention_rate": 0.9888,
+          "available_prediction_count": 89,
+          "exact_label_accuracy_all_statuses": 0.9888,
+          "exact_label_match_count_all_statuses": 88,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": 0.0,
+          "oos_or_secondary_support_count": 89,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 89,
+          "status_mix": {
+            "out_of_scope": 88,
+            "secondary_ood_probe": 1
+          }
+        },
+        "dense_same_mechanism_structural_neighborhood": {
+          "abstention_count": 0,
+          "abstention_rate": 0.0,
+          "available_prediction_count": 10,
+          "exact_label_accuracy_all_statuses": 1.0,
+          "exact_label_match_count_all_statuses": 10,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 1.0,
+          "primary_correct_count": 10,
+          "primary_support_count": 10,
+          "row_count": 10,
+          "status_mix": {
+            "in_scope_primary": 10
+          }
+        },
+        "high_structure_similarity_different_fingerprint": {
+          "abstention_count": 4,
+          "abstention_rate": 0.8,
+          "available_prediction_count": 5,
+          "exact_label_accuracy_all_statuses": 0.8,
+          "exact_label_match_count_all_statuses": 4,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": 0.0,
+          "oos_or_secondary_support_count": 5,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 5,
+          "status_mix": {
+            "out_of_scope": 4,
+            "secondary_ood_probe": 1
+          }
+        },
+        "low_structure_neighborhood_near_orphan": {
+          "abstention_count": 0,
+          "abstention_rate": 0.0,
+          "available_prediction_count": 30,
+          "exact_label_accuracy_all_statuses": 1.0,
+          "exact_label_match_count_all_statuses": 30,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 1.0,
+          "primary_correct_count": 30,
+          "primary_support_count": 30,
+          "row_count": 30,
+          "status_mix": {
+            "in_scope_primary": 30
+          }
+        },
+        "no_reliable_structure": {
+          "abstention_count": 1,
+          "abstention_rate": 1.0,
+          "available_prediction_count": 1,
+          "exact_label_accuracy_all_statuses": 1.0,
+          "exact_label_match_count_all_statuses": 1,
+          "missing_prediction_count": 5,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": 0.0,
+          "oos_or_secondary_support_count": 1,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 6,
+          "status_mix": {
+            "in_scope_primary": 5,
+            "secondary_ood_probe": 1
+          }
+        }
+      },
+      "prott5_swissprot_h5_knn": {
+        "broad_bucket_ambiguous": {
+          "abstention_count": 66,
+          "abstention_rate": 0.7765,
+          "available_prediction_count": 85,
+          "exact_label_accuracy_all_statuses": 0.7765,
+          "exact_label_match_count_all_statuses": 66,
+          "missing_prediction_count": 4,
+          "oos_or_secondary_false_positive_count": 18,
+          "oos_or_secondary_false_positive_rate": 0.2118,
+          "oos_or_secondary_support_count": 85,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 89,
+          "status_mix": {
+            "out_of_scope": 88,
+            "secondary_ood_probe": 1
+          }
+        },
+        "dense_same_mechanism_structural_neighborhood": {
+          "abstention_count": 2,
+          "abstention_rate": 0.2222,
+          "available_prediction_count": 9,
+          "exact_label_accuracy_all_statuses": 0.7778,
+          "exact_label_match_count_all_statuses": 7,
+          "missing_prediction_count": 1,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.7778,
+          "primary_correct_count": 7,
+          "primary_support_count": 9,
+          "row_count": 10,
+          "status_mix": {
+            "in_scope_primary": 10
+          }
+        },
+        "high_structure_similarity_different_fingerprint": {
+          "abstention_count": 1,
+          "abstention_rate": 0.25,
+          "available_prediction_count": 4,
+          "exact_label_accuracy_all_statuses": 0.25,
+          "exact_label_match_count_all_statuses": 1,
+          "missing_prediction_count": 1,
+          "oos_or_secondary_false_positive_count": 2,
+          "oos_or_secondary_false_positive_rate": 0.5,
+          "oos_or_secondary_support_count": 4,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 5,
+          "status_mix": {
+            "out_of_scope": 4,
+            "secondary_ood_probe": 1
+          }
+        },
+        "low_structure_neighborhood_near_orphan": {
+          "abstention_count": 15,
+          "abstention_rate": 0.5172,
+          "available_prediction_count": 29,
+          "exact_label_accuracy_all_statuses": 0.2759,
+          "exact_label_match_count_all_statuses": 8,
+          "missing_prediction_count": 1,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.2759,
+          "primary_correct_count": 8,
+          "primary_support_count": 29,
+          "row_count": 30,
+          "status_mix": {
+            "in_scope_primary": 30
+          }
+        },
+        "no_reliable_structure": {
+          "abstention_count": 2,
+          "abstention_rate": 0.4,
+          "available_prediction_count": 5,
+          "exact_label_accuracy_all_statuses": 0.4,
+          "exact_label_match_count_all_statuses": 2,
+          "missing_prediction_count": 1,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.4,
+          "primary_correct_count": 2,
+          "primary_support_count": 5,
+          "row_count": 6,
+          "status_mix": {
+            "in_scope_primary": 5,
+            "secondary_ood_probe": 1
+          }
+        }
+      },
+      "saprot_35m_structure_tokens": {
+        "broad_bucket_ambiguous": {
+          "abstention_count": 71,
+          "abstention_rate": 0.7978,
+          "available_prediction_count": 89,
+          "exact_label_accuracy_all_statuses": 0.7865,
+          "exact_label_match_count_all_statuses": 70,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 18,
+          "oos_or_secondary_false_positive_rate": 0.2022,
+          "oos_or_secondary_support_count": 89,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 89,
+          "status_mix": {
+            "out_of_scope": 88,
+            "secondary_ood_probe": 1
+          }
+        },
+        "dense_same_mechanism_structural_neighborhood": {
+          "abstention_count": 6,
+          "abstention_rate": 0.6,
+          "available_prediction_count": 10,
+          "exact_label_accuracy_all_statuses": 0.4,
+          "exact_label_match_count_all_statuses": 4,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.4,
+          "primary_correct_count": 4,
+          "primary_support_count": 10,
+          "row_count": 10,
+          "status_mix": {
+            "in_scope_primary": 10
+          }
+        },
+        "high_structure_similarity_different_fingerprint": {
+          "abstention_count": 4,
+          "abstention_rate": 0.8,
+          "available_prediction_count": 5,
+          "exact_label_accuracy_all_statuses": 0.8,
+          "exact_label_match_count_all_statuses": 4,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": 0.0,
+          "oos_or_secondary_support_count": 5,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 5,
+          "status_mix": {
+            "out_of_scope": 4,
+            "secondary_ood_probe": 1
+          }
+        },
+        "low_structure_neighborhood_near_orphan": {
+          "abstention_count": 12,
+          "abstention_rate": 0.4,
+          "available_prediction_count": 30,
+          "exact_label_accuracy_all_statuses": 0.3667,
+          "exact_label_match_count_all_statuses": 11,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.3667,
+          "primary_correct_count": 11,
+          "primary_support_count": 30,
+          "row_count": 30,
+          "status_mix": {
+            "in_scope_primary": 30
+          }
+        },
+        "no_reliable_structure": {
+          "abstention_count": 6,
+          "abstention_rate": 1.0,
+          "available_prediction_count": 6,
+          "exact_label_accuracy_all_statuses": 0.0,
+          "exact_label_match_count_all_statuses": 0,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": 0.0,
+          "oos_or_secondary_support_count": 1,
+          "primary_accuracy": 0.0,
+          "primary_correct_count": 0,
+          "primary_support_count": 5,
+          "row_count": 6,
+          "status_mix": {
+            "in_scope_primary": 5,
+            "secondary_ood_probe": 1
+          }
+        }
+      },
+      "sequence_nn": {
+        "broad_bucket_ambiguous": {
+          "abstention_count": 63,
+          "abstention_rate": 0.7079,
+          "available_prediction_count": 89,
+          "exact_label_accuracy_all_statuses": 0.7079,
+          "exact_label_match_count_all_statuses": 63,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 25,
+          "oos_or_secondary_false_positive_rate": 0.2809,
+          "oos_or_secondary_support_count": 89,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 89,
+          "status_mix": {
+            "out_of_scope": 88,
+            "secondary_ood_probe": 1
+          }
+        },
+        "dense_same_mechanism_structural_neighborhood": {
+          "abstention_count": 8,
+          "abstention_rate": 0.8,
+          "available_prediction_count": 10,
+          "exact_label_accuracy_all_statuses": 0.1,
+          "exact_label_match_count_all_statuses": 1,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.1,
+          "primary_correct_count": 1,
+          "primary_support_count": 10,
+          "row_count": 10,
+          "status_mix": {
+            "in_scope_primary": 10
+          }
+        },
+        "high_structure_similarity_different_fingerprint": {
+          "abstention_count": 5,
+          "abstention_rate": 1.0,
+          "available_prediction_count": 5,
+          "exact_label_accuracy_all_statuses": 0.8,
+          "exact_label_match_count_all_statuses": 4,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": 0.0,
+          "oos_or_secondary_support_count": 5,
+          "primary_accuracy": null,
+          "primary_correct_count": 0,
+          "primary_support_count": 0,
+          "row_count": 5,
+          "status_mix": {
+            "out_of_scope": 4,
+            "secondary_ood_probe": 1
+          }
+        },
+        "low_structure_neighborhood_near_orphan": {
+          "abstention_count": 21,
+          "abstention_rate": 0.7,
+          "available_prediction_count": 30,
+          "exact_label_accuracy_all_statuses": 0.1667,
+          "exact_label_match_count_all_statuses": 5,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": null,
+          "oos_or_secondary_support_count": 0,
+          "primary_accuracy": 0.1667,
+          "primary_correct_count": 5,
+          "primary_support_count": 30,
+          "row_count": 30,
+          "status_mix": {
+            "in_scope_primary": 30
+          }
+        },
+        "no_reliable_structure": {
+          "abstention_count": 4,
+          "abstention_rate": 0.6667,
+          "available_prediction_count": 6,
+          "exact_label_accuracy_all_statuses": 0.1667,
+          "exact_label_match_count_all_statuses": 1,
+          "missing_prediction_count": 0,
+          "oos_or_secondary_false_positive_count": 0,
+          "oos_or_secondary_false_positive_rate": 0.0,
+          "oos_or_secondary_support_count": 1,
+          "primary_accuracy": 0.2,
+          "primary_correct_count": 1,
+          "primary_support_count": 5,
+          "row_count": 6,
+          "status_mix": {
+            "in_scope_primary": 5,
+            "secondary_ood_probe": 1
+          }
+        }
+      }
+    },
+    "near_orphan_candidate_count": 35,
+    "structural_neighborhood_bin_counts": {
+      "broad_bucket_ambiguous": 89,
+      "dense_same_mechanism_structural_neighborhood": 10,
+      "high_structure_similarity_different_fingerprint": 5,
+      "low_structure_neighborhood_near_orphan": 30,
+      "no_reliable_structure": 6
+    },
+    "top_foldseek_failure_rescue_cases": [
+      {
+        "entry_id": "m_csa:163",
+        "foldseek_predicted_fingerprint_id": null,
+        "proposal_only_v2_sublabel": "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "successful_tracks": [
+          "esm2_150m",
+          "geometry_baseline"
+        ],
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "entry_id": "m_csa:211",
+        "foldseek_predicted_fingerprint_id": null,
+        "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "successful_tracks": [
+          "geometry_baseline"
+        ],
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "entry_id": "m_csa:250",
+        "foldseek_predicted_fingerprint_id": "metal_dependent_hydrolase",
+        "proposal_only_v2_sublabel": "heme.peroxidase_catalase_like",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "successful_tracks": [
+          "geometry_baseline"
+        ],
+        "true_fingerprint_id": "heme_peroxidase_oxidase"
+      },
+      {
+        "entry_id": "m_csa:403",
+        "foldseek_predicted_fingerprint_id": null,
+        "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "successful_tracks": [
+          "esm2_150m",
+          "geometry_baseline",
+          "saprot_35m_structure_tokens"
+        ],
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "entry_id": "m_csa:497",
+        "foldseek_predicted_fingerprint_id": "metal_dependent_hydrolase",
+        "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "successful_tracks": [
+          "geometry_baseline"
+        ],
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "entry_id": "m_csa:517",
+        "foldseek_predicted_fingerprint_id": "ser_his_acid_hydrolase",
+        "proposal_only_v2_sublabel": "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "successful_tracks": [
+          "geometry_baseline"
+        ],
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "entry_id": "m_csa:577",
+        "foldseek_predicted_fingerprint_id": null,
+        "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+        "structural_neighborhood_bin": "no_reliable_structure",
+        "successful_tracks": [
+          "esm2_150m",
+          "esm_c_corrected_logistic",
+          "prott5_swissprot_h5_knn"
+        ],
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "entry_id": "m_csa:686",
+        "foldseek_predicted_fingerprint_id": null,
+        "proposal_only_v2_sublabel": "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "successful_tracks": [
+          "geometry_baseline"
+        ],
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "entry_id": "m_csa:710",
+        "foldseek_predicted_fingerprint_id": null,
+        "proposal_only_v2_sublabel": "metal_hydrolase.amidohydrolase_deaminase_like",
+        "structural_neighborhood_bin": "no_reliable_structure",
+        "successful_tracks": [
+          "esm2_150m",
+          "esm_c_corrected_logistic",
+          "prott5_swissprot_h5_knn"
+        ],
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "entry_id": "m_csa:723",
+        "foldseek_predicted_fingerprint_id": null,
+        "proposal_only_v2_sublabel": "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "successful_tracks": [
+          "esm2_150m",
+          "geometry_baseline",
+          "saprot_35m_structure_tokens"
+        ],
+        "true_fingerprint_id": "ser_his_acid_hydrolase"
+      },
+      {
+        "entry_id": "m_csa:897",
+        "foldseek_predicted_fingerprint_id": null,
+        "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+        "structural_neighborhood_bin": "no_reliable_structure",
+        "successful_tracks": [
+          "esm2_150m",
+          "esm_c_corrected_logistic"
+        ],
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "entry_id": "m_csa:916",
+        "foldseek_predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "proposal_only_v2_sublabel": "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "successful_tracks": [
+          "esm_c_corrected_logistic",
+          "geometry_baseline"
+        ],
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "entry_id": "m_csa:97",
+        "foldseek_predicted_fingerprint_id": null,
+        "proposal_only_v2_sublabel": "metal_hydrolase.amidohydrolase_deaminase_like",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "successful_tracks": [
+          "geometry_baseline"
+        ],
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "entry_id": "m_csa:990",
+        "foldseek_predicted_fingerprint_id": "plp_dependent_enzyme",
+        "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "successful_tracks": [
+          "esm2_150m",
+          "esm_c_corrected_logistic",
+          "geometry_baseline"
+        ],
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "entry_id": "m_csa:994",
+        "foldseek_predicted_fingerprint_id": null,
+        "proposal_only_v2_sublabel": "metal_hydrolase.unresolved_metal_water_hydrolase",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "successful_tracks": [
+          "esm2_150m",
+          "geometry_baseline"
+        ],
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      }
+    ],
+    "top_foldseek_success_learned_failure_cases": [
+      {
+        "available_learned_tracks_that_failed": [
+          "esm2_150m",
+          "esm_c_corrected_logistic",
+          "prott5_swissprot_h5_knn",
+          "saprot_35m_structure_tokens"
+        ],
+        "entry_id": "m_csa:43",
+        "foldseek_nearest_train_entry_id": "m_csa:472",
+        "proposal_only_v2_sublabel": "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      {
+        "available_learned_tracks_that_failed": [
+          "esm2_150m",
+          "esm_c_corrected_logistic",
+          "prott5_swissprot_h5_knn",
+          "saprot_35m_structure_tokens"
+        ],
+        "entry_id": "m_csa:750",
+        "foldseek_nearest_train_entry_id": "m_csa:68",
+        "proposal_only_v2_sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+        "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+        "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      }
+    ],
+    "track_cards": {
+      "esm2_150m": {
+        "coverage_note": "standardized heldout row export present",
+        "display_name": "ESM-2 150M logistic",
+        "exact_label_accuracy_all": 0.735714,
+        "family": "learned_sequence_representation",
+        "joined_heldout_rows": 140,
+        "missing_heldout_rows": 0,
+        "oos_false_positive_rate": 0.168421,
+        "primary_accuracy": 0.577778,
+        "primary_macro_f1": 0.695681,
+        "primary_support_count": 45
+      },
+      "esm_c_corrected_logistic": {
+        "coverage_note": "standardized heldout row export present",
+        "display_name": "ESM-C 300M corrected logistic",
+        "exact_label_accuracy_all": 0.671429,
+        "family": "learned_sequence_representation",
+        "joined_heldout_rows": 140,
+        "missing_heldout_rows": 0,
+        "oos_false_positive_rate": 0.168421,
+        "primary_accuracy": 0.377778,
+        "primary_macro_f1": 0.46022,
+        "primary_support_count": 45
+      },
+      "esm_c_cosine_nn": {
+        "coverage_note": "standardized heldout row export present",
+        "display_name": "ESM-C 300M cosine NN",
+        "exact_label_accuracy_all": 0.4643,
+        "family": "learned_sequence_representation_auxiliary",
+        "joined_heldout_rows": 140,
+        "missing_heldout_rows": 0,
+        "oos_false_positive_rate": 0.337,
+        "primary_accuracy": 0.0889,
+        "primary_macro_f1": 0.1493,
+        "primary_support_count": 45
+      },
+      "foldseek_3di_token_nn": {
+        "coverage_note": "standardized heldout row export present for rows with selected-structure 3Di tokens",
+        "display_name": "Foldseek 3Di token 3-mer NN",
+        "exact_label_accuracy_all": 0.5899,
+        "family": "structural_token_baseline",
+        "joined_heldout_rows": 139,
+        "missing_heldout_rows": 1,
+        "oos_false_positive_rate": 0.1957,
+        "primary_accuracy": 0.1778,
+        "primary_macro_f1": 0.3133,
+        "primary_support_count": 45
+      },
+      "foldseek_structural_nn": {
+        "coverage_note": "standardized heldout row export present",
+        "display_name": "Foldseek full-structure NN",
+        "exact_label_accuracy_all": 0.8,
+        "family": "structural_baseline",
+        "joined_heldout_rows": 140,
+        "missing_heldout_rows": 0,
+        "oos_false_positive_rate": 0.087,
+        "primary_accuracy": 0.6222,
+        "primary_macro_f1": 0.7649,
+        "primary_support_count": 45
+      },
+      "geometry_baseline": {
+        "coverage_note": "existing geometry eval export joins by entry_id but is not a current702 heldout-native standardized representation export",
+        "display_name": "Active-site geometry baseline",
+        "exact_label_accuracy_all": null,
+        "family": "geometry_baseline",
+        "joined_heldout_rows": 135,
+        "missing_heldout_rows": 5,
+        "oos_false_positive_rate": null,
+        "primary_accuracy": null,
+        "primary_macro_f1": null,
+        "primary_support_count": null
+      },
+      "prott5_swissprot_h5_knn": {
+        "coverage_note": "standardized heldout row export present for embedding-covered rows; missing rows lack Swiss-Prot H5 embeddings",
+        "display_name": "ProtT5 Swiss-Prot H5 cosine NN",
+        "exact_label_accuracy_all": 0.6364,
+        "family": "learned_sequence_representation",
+        "joined_heldout_rows": 132,
+        "missing_heldout_rows": 8,
+        "oos_false_positive_rate": 0.2299,
+        "primary_accuracy": 0.3953,
+        "primary_macro_f1": 0.5759,
+        "primary_support_count": 43
+      },
+      "saprot_35m_structure_tokens": {
+        "coverage_note": "standardized heldout row export present",
+        "display_name": "SaProt 35M structure-token NN",
+        "exact_label_accuracy_all": 0.6357,
+        "family": "learned_structure_aware_representation",
+        "joined_heldout_rows": 140,
+        "missing_heldout_rows": 0,
+        "oos_false_positive_rate": 0.1957,
+        "primary_accuracy": 0.3333,
+        "primary_macro_f1": 0.5134,
+        "primary_support_count": 45
+      },
+      "sequence_nn": {
+        "coverage_note": "standardized heldout row export present",
+        "display_name": "Sequence-NN 3-mer Jaccard",
+        "exact_label_accuracy_all": 0.5286,
+        "family": "sequence_baseline",
+        "joined_heldout_rows": 140,
+        "missing_heldout_rows": 0,
+        "oos_false_positive_rate": 0.2717,
+        "primary_accuracy": 0.1556,
+        "primary_macro_f1": null,
+        "primary_support_count": 45
+      }
+    },
+    "v2_sublabel_candidate_count": 38
+  },
+  "headline": "Wave 1 is a structural-neighborhood diagnostic, not a bigger-model leaderboard.",
+  "non_claims": [
+    "Foldseek broad-bucket performance is not mechanism prediction proof.",
+    "Proposal v2 sublabels are not registry or production labels.",
+    "No thresholds, imports, label edits, ontology edits, or production scoring decisions are made by this artifact."
+  ],
+  "preserved_prior_artifacts": [
+    "artifacts/v3_mechanism_prediction_fold_controlled_eval_design_702_20260525.json",
+    "artifacts/v3_mechanism_prediction_orphan_eval_design_702_20260525.json",
+    "artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json"
+  ],
+  "recommended_next_steps": [
+    "Freeze fold-controlled contrast and near-orphan evaluation rows before claiming mechanism prediction.",
+    "Treat Foldseek and SaProt wins in dense same-mechanism neighborhoods as transfer diagnostics, not proof of mechanism understanding.",
+    "Use geometry as the practical complement where structure-neighborhood evidence is sparse or misleading.",
+    "Keep v2 sublabels proposal-only, but report them as strata in the next diagnostic evaluation.",
+    "Acquire targeted labels for high-structure-different-fingerprint and near-orphan cells before scaling model size."
+  ],
+  "schema_version": "wave1_representation_shootout_result_card.v1",
+  "source_audit_artifact": "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json"
+}
