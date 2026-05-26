@@ -107,8 +107,8 @@ Direct comparison recorded in the metrics artifact:
 - HTTPS push remains blocked: `GIT_DIR=/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git git push origin refs/heads/research/representation-esm-c:refs/heads/research/representation-esm-c` failed with `fatal: could not read Username for 'https://github.com': Device not configured`.
 - SSH push fallback remains blocked: `GIT_DIR=/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git git push git@github.com:VivekVardhanArrabelli/catalytic-earth.git refs/heads/research/representation-esm-c:refs/heads/research/representation-esm-c` failed with `git@github.com: Permission denied (publickey).`
 - `gh auth status` reports the default GitHub token is invalid and suggests `gh auth login -h github.com`.
-- GitHub connector fallback was unavailable: `_fetch_commit` failed during MCP startup with `HTTP request failed: error sending request for url (https://chatgpt.com/backend-api/wham/apps)`.
-- Required human action: restore GitHub shell credentials or connector availability, then push local branch `research/representation-esm-c`.
+- GitHub connector lookup reached the repository but confirmed the local smoke commit is not present remotely: `_fetch_commit` for `7c77cf23bc95c702c666b1480598c2558f0d851d` returned `No commit found for SHA`.
+- Required human action: restore GitHub shell credentials, then push local branch `research/representation-esm-c`.
 
 ## Next Exact Step
 
