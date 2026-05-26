@@ -13,7 +13,7 @@
     "curated_label_registry_edited": false,
     "eval_contract_artifact": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
     "eval_contract_sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
-    "exact_tm_refinement_status": "not_attempted_after_fast_baseline_completed_within_window",
+    "exact_tm_refinement_status": "not_attempted_after_fast_baseline_completed_because_process_state_is_not_inspectable_and_stale_scratch_remains",
     "fast_foldseek_metrics_artifact": "artifacts/representation_tracks/foldseek_pocket/current702_foldseek_fast3di_full_structure_metrics_20260525.json",
     "fast_foldseek_metrics_sha256": "7abc57d4f179a49db444aea7b5210b1e8ed72d7ffdb957dab7700e2de94dcb0a",
     "fast_foldseek_predictions_artifact": "artifacts/representation_tracks/foldseek_pocket/current702_foldseek_fast3di_full_structure_predictions_20260525.jsonl",
@@ -39,7 +39,31 @@
     "prediction_metrics_status": "computed_fast_foldseek_structural_nn",
     "production_scoring_changed": false,
     "retry_recorded_at": "2026-05-25T17:25:13.900246Z",
-    "runtime_cleanup_status": "fresh_fast3di_scratch_completed_and_tmp_removed_by_foldseek; stale_prior_process_state_not_inspectable_ps_operation_not_permitted",
+    "runtime_cleanup_status": "fresh_fast3di_scratch completed with final TSV parsed; process state remains not inspectable because ps is denied by the sandbox; stale scratch directories remain under /private/tmp; no exact-TM refinement was launched in this follow-up",
+    "post_fast3di_stale_runtime_check": {
+      "checked_at": "2026-05-26T02:08:08Z",
+      "exact_tm_refinement_launched_after_fast3di": false,
+      "process_check_command": "ps -axo pid,ppid,etime,stat,command | rg 'foldseek|catalytic-foldseek|easy-search|catalytic-earth-repr-foldseek-pocket-current702|catalytic-foldseek-fast3di'",
+      "process_check_status": "not_inspectable",
+      "process_check_error": "zsh:1: operation not permitted: ps",
+      "stale_scratch_dirs": [
+        {
+          "path": "/private/tmp/catalytic-earth-repr-foldseek-pocket-current702-entrynn",
+          "du_size": "35M",
+          "accepted_for_metrics": false
+        },
+        {
+          "path": "/private/tmp/catalytic-foldseek-fast3di-current702-20260525T181437Z",
+          "du_size": "2.5M",
+          "accepted_for_metrics": true
+        },
+        {
+          "path": "/private/tmp/catalytic-earth-repr-foldseek-pocket-current702",
+          "du_size": "117M",
+          "accepted_for_metrics": false
+        }
+      ]
+    },
     "schema_version": "foldseek_pocket_runtime_status.v1",
     "sequence_nn_metrics_artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
     "sequence_nn_metrics_sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26",
