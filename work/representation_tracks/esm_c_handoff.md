@@ -1,6 +1,7 @@
 # ESM-C Representation Track Handoff
 
 Run timestamp: 2026-05-25T18:42:43Z
+Standalone smoke artifact follow-up: 2026-05-26T02:16:06Z
 
 Branch: `research/representation-esm-c`
 
@@ -12,6 +13,12 @@ Track artifacts:
 
 - `artifacts/representation_tracks/esm_c/esm_c_300m_backend_setup_current702_20260525.json`
 - SHA-256: `66292518be6a680c6b7f230f512d52c739498096807a56659f0ffebe694527d6`
+- `artifacts/representation_tracks/esm_c/esm_c_300m_smoke_embeddings_current702_20260525.json`
+- SHA-256: `46f6d8f8529c31be70f176eda8f018cfc5cce1f5eb5bec04e95ee22eb9fb4f75`
+- `artifacts/representation_tracks/esm_c/esm_c_300m_smoke_embeddings_current702_20260526.json`
+- SHA-256: `0c113a1563d83ed9c794476830b8707d0dabe6ac75e568bc62025eb31fdce018`
+- `artifacts/representation_tracks/esm_c/esm_c_300m_smoke_embeddings_current702_20260526.npz`
+- SHA-256: `9fb29d1f4c1ff6141e798d8bda76b2e90f96312869c402b71c3f97f30381fd8e`
 - `artifacts/representation_tracks/esm_c/esm_c_300m_embeddings_manifest_current702_20260525.json`
 - SHA-256: `8bf36bc4aaee58769c5a577b5dc1b5dae2acc1b5b136a261d18ef62624b03d7b`
 - `artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz`
@@ -45,6 +52,10 @@ Prior feasibility artifacts remain for audit trail:
 - Weight SHA-256: `323dff9fbf3fef297a74f4f18b6528e6f2e599b0bcf72b6927516804015becea`.
 - Metadata LFS blob id: `f86851ea1c05360f615c42d397d72ee3a2009e3a`.
 - Device: CPU. ESM-C 6B and remote API were not used.
+- Standalone two-record smoke artifacts: `artifacts/representation_tracks/esm_c/esm_c_300m_smoke_embeddings_current702_20260525.json`, `artifacts/representation_tracks/esm_c/esm_c_300m_smoke_embeddings_current702_20260526.json`, and `artifacts/representation_tracks/esm_c/esm_c_300m_smoke_embeddings_current702_20260526.npz`.
+- The `20260526` JSON/NPZ pair is the canonical embedded-array smoke artifact; the `20260525` JSON is a compact smoke summary.
+- Smoke command used the existing isolated runtime/cache with `HF_HUB_OFFLINE=1` and `TRANSFORMERS_OFFLINE=1`; no remote API was used.
+- Canonical smoke result: 2 FASTA records, embedding dimension 960, model load 2.737 seconds, embedding forward 2.575 seconds.
 
 ## Metrics
 
@@ -95,8 +106,8 @@ Direct comparison recorded in the metrics artifact:
   - 15 mechanism ontology families
   - 702 curated mechanism labels
 - Local commit created with commit-tree because the sandbox could not write the linked worktree index lock.
-- Push blocked: `GIT_DIR=/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth/.git git push origin refs/heads/research/representation-esm-c:refs/heads/research/representation-esm-c` failed with `fatal: could not read Username for 'https://github.com': Device not configured`.
-- Required human action: restore GitHub credentials for shell git push, or push local branch `research/representation-esm-c` from an authenticated environment.
+- Previous shell-git push blocker is cleared for the already-pushed ESM-C metric artifacts: at follow-up start, `git rev-parse HEAD` and `git rev-parse origin/research/representation-esm-c` both returned `63c8f0c72c9f36caf30c19b28be829b4289739f7`.
+- Follow-up standalone smoke JSON artifacts validated with `json.load`; smoke NPZ loaded with shape `(2, 960)`; `PYTHONPATH=src python -m catalytic_earth.cli validate` re-run passed.
 
 ## Next Exact Step
 
