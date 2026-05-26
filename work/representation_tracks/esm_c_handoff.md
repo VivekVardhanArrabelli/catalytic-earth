@@ -281,3 +281,10 @@ Review the new scoring-aligned ESM-C artifacts against the ESM-2 150M track.
 The corrected ESM-C head clears the original anomaly versus sequence-NN but
 still trails ESM-2 150M logistic; focus any model conclusion on that gap, not on
 the stale 1-NN artifact alone.
+
+## Orchestration Update
+
+- 2026-05-26T05:06Z: the stale shell-credential push blocker is resolved for
+  this branch. `research/representation-esm-c` is pushed to origin at
+  `33ea668` with the corrected ESM-C metrics and Wave 1 standardized export.
+  No further human push action is required for this handoff state.
