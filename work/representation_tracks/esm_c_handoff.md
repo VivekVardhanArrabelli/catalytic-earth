@@ -3,8 +3,68 @@
 Run timestamp: 2026-05-25T18:42:43Z
 Standalone smoke artifact follow-up: 2026-05-26T02:14:29Z
 Anomaly audit update: 2026-05-26T03:25:00Z
+Wave 1 standardized export update: 2026-05-26T04:20:40Z
 
 Branch: `research/representation-esm-c`
+
+## 2026-05-26 Wave 1 Standardized Export
+
+The corrected ESM-C 300M logistic result is now exported in the Wave 1
+row-level schema. This is a standardization pass over the existing corrected
+logistic artifacts only; it does not overwrite or hide the original cosine 1-NN
+anomaly artifact.
+
+New standardized artifacts:
+
+- `artifacts/representation_tracks/esm_c/esm_c_300m_wave1_standardized_predictions_current702_20260526.jsonl`
+- SHA-256: `4340fc1300b8467a7ca07adc283e6f148cf88a5debc1200990545de2015a8d0f`
+- `artifacts/representation_tracks/esm_c/esm_c_300m_wave1_standardized_metrics_current702_20260526.json`
+- SHA-256: `61315c6d82169839ac4ac8e45f0f569ca400490281a0367528d928c401051ad6`
+
+Export contents:
+
+- Prediction rows: 140 heldout rows; 45 primary, 92 out-of-scope, 3 secondary
+  OOD probe rows.
+- Row schema: `wave1_model_prediction_export.v1`.
+- Model track: `esm_c_300m_corrected_logistic`.
+- Pooling mode: `whole_sequence_mean`; source pooling was
+  `whole_sequence_mean_excluding_bos_eos`.
+- Active-site pooling: not used; `active_site_pooling_contract` is `null` in the
+  standardized row export and metrics export.
+- Scoring head: train-split-only sklearn logistic regression over frozen ESM-C
+  embeddings, with no heldout threshold tuning.
+
+Standardized headline metrics:
+
+- Primary accuracy: `0.377778`.
+- Primary macro-F1: `0.460220`.
+- Exact label accuracy, all heldout rows: `0.671429`.
+- OOS-label false-positive rate: `0.163043` (`15/92`).
+- OOS-or-secondary false-positive rate: `0.168421` (`16/95`).
+- Original ESM-C cosine 1-NN is included only as a non-primary anomaly
+  reference: primary accuracy `0.0889`, macro-F1 `0.1493`, OOS-label FP rate
+  `0.3370`.
+
+Local comparisons recorded in the standardized metrics artifact:
+
+- ESM-2 150M logistic local artifact: primary accuracy `0.577778`, macro-F1
+  `0.695681`, OOS-or-secondary FP rate `0.168421`.
+- Sequence-NN local artifact: primary accuracy `0.1556`, macro-F1 `0.2374`,
+  OOS FP rate `0.2717`.
+- Foldseek local artifacts: staged TM-score signal is available, but no
+  current702 prediction metric is available; full TM-score split was not
+  computed and the computed subset max train/test TM score was `0.9749`.
+
+Verification for this export:
+
+- Standardized metrics JSON loaded successfully with `json.load`.
+- Standardized prediction JSONL validated line-by-line: 140 rows, all with
+  `pooling_mode=whole_sequence_mean` and null active-site pooling contracts.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed:
+  - 12 source records
+  - 8 mechanism fingerprints
+  - 15 mechanism ontology families
+  - 702 curated mechanism labels
 
 ## 2026-05-26 Anomaly Audit Result
 
