@@ -104,6 +104,17 @@ git diff --check
 Focused tests were not run because this was an artifact/documentation-only
 change with no code edits.
 
+The review-packet commit was created locally, but `git push origin main` failed
+with:
+
+```text
+fatal: could not read Username for 'https://github.com': Device not configured
+```
+
+Local `main` is therefore clean and ahead of `origin/main` until GitHub
+authentication is restored or the commits are pushed from an authenticated
+environment.
+
 ### 2026-05-26T05:32Z Foldseek+Geometry Diagnostic Router Pilot
 
 This run stayed on `main`, acquired `.git/catalytic-earth-automation.lock`,
