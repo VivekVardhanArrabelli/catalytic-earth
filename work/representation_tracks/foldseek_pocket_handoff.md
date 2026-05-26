@@ -110,3 +110,10 @@ Optional next work:
 - Run exact-TM refinement only as a separate artifact from a fresh scratch path; keep it distinct from the accepted fast3Di baseline and continue to reject partial DBs.
 - Materialize a pocket coordinate sidecar before attempting pocket-restricted Foldseek NN. Pocket eligibility is still coverage-only.
 - A full current702 ESM-2 150M mechanism-NN comparator is still absent from the repository; only external review-only 150M sidecars were found. Full current702 ProtT5, SaProt, and separate 3Di-token NN metrics were not found.
+
+## Orchestration Update
+
+- 2026-05-26T05:06Z: the stale shell-credential push blocker is resolved for
+  this branch. `research/representation-foldseek-pocket` is pushed to origin at
+  `241fa71`, including the refreshed Foldseek Wave 1 status. No further human
+  push action is required for this handoff state.
