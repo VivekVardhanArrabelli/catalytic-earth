@@ -117,3 +117,72 @@ Optional next work:
   this branch. `research/representation-foldseek-pocket` is pushed to origin at
   `241fa71`, including the refreshed Foldseek Wave 1 status. No further human
   push action is required for this handoff state.
+
+## Wave 1 Standardized Export
+
+Run timestamp: 2026-05-26T05:17Z
+
+This follow-up materializes the row-level Wave 1 diagnostic export for the
+accepted fast Foldseek structural NN / 3Di full-structure baseline. It reuses
+the existing heldout-vs-train Foldseek TSV and does not launch exact-TM or any
+other structural search.
+
+New standardized artifacts:
+
+- `artifacts/representation_tracks/foldseek_pocket/foldseek_structural_nn_wave1_standardized_predictions_current702_20260526.jsonl`, SHA256 `8285cc7c14b9570869962cfbcd059a9d07e5cc67ce4d6db87c81a8a0e7ff5361`
+- `artifacts/representation_tracks/foldseek_pocket/foldseek_structural_nn_wave1_standardized_metrics_current702_20260526.json`, SHA256 `936e50b7c32c8a222aa5b62adad49db35d79b87ba94d472ea55cf42f8c6545f6`
+- `artifacts/representation_tracks/foldseek_pocket/foldseek_structure_neighborhood_metadata_current702_20260526.jsonl`, SHA256 `f55b1c072666f403404d0ac02d73e5809b7206e3fddc1afe321b16e45e297227`
+
+Row export coverage:
+
+- Standardized prediction rows: 140 heldout rows, schema `wave1_model_prediction_export.v1`
+- Structure-neighborhood rows: 140 heldout rows, schema `wave1_structure_neighborhood.v1`
+- Each row carries `model_track=foldseek_structural_nn`, branch, generation head commit, eval contract and split artifact hashes, row/M-CSA/protein identifiers where available, true/predicted fingerprint state, abstention reason, selected-structure provenance, nearest-train structure metadata, and structural-neighborhood bin.
+- Label IDs use the entry ID as a stable fallback because the current curated registry has no distinct label ID field.
+
+Structural-neighborhood bins use the explicitly recorded fast-Foldseek proxy
+rule: `nearest_foldseek_prob >= 0.90` and `nearest_foldseek_bits >= 50`. Exact
+TM is recorded as supplementary evidence only when present and is not used for
+prediction or bin assignment.
+
+Bin counts:
+
+| Structural-neighborhood bin | Rows |
+| --- | ---: |
+| `dense_same_mechanism_structural_neighborhood` | 25 |
+| `high_structure_similarity_different_fingerprint` | 2 |
+| `low_structure_neighborhood_near_orphan` | 14 |
+| `no_reliable_structure` | 6 |
+| `broad_bucket_ambiguous` | 93 |
+
+Wave 1 metrics retained from the accepted fast baseline:
+
+- Primary supervised accuracy: 0.6222 over 45 primary heldout rows
+- Primary supervised macro-F1: 0.7649
+- Available-only primary accuracy: 0.7000 over 40 primary heldout rows with coordinates
+- OOS false-positive rate without threshold: 0.0870
+- OOS abstention rate: 0.9130
+- Unavailable heldout structure abstentions: 6
+
+Structure-neighborhood diagnostics:
+
+- Top-1 high-similarity same-fingerprint rows: 25
+- Top-1 high-similarity different-fingerprint rows: 2
+- Candidate fold-conflict rows: 2 (`m_csa:131`, `m_csa:497`)
+- Candidate near-orphan rows with no strong same-fingerprint structural neighbor: 15
+- Supplementary exact-TM artifact, not used for predictions: `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`, SHA256 `316a97f98b1c2e8242f7bd3e4783a70ba132a571a49a1cea11b27f6cb004cf25`
+
+Comparator availability in the standardized metrics JSON:
+
+- Sequence-NN current702: available and included.
+- Geometry retrieval: local geometry artifact included as non-direct context because it predates the repaired current702 split.
+- ESM-2: no full current702 mechanism-NN artifact found; review-only ESM-2 sample sidecars are recorded.
+- ESM-C, ProtT5, SaProt, separate 3Di-token NN: no current702 metrics artifacts found locally.
+
+Verification for this export:
+
+- JSONL validation passed for both standardized 140-row exports.
+- JSON validation passed for the standardized metrics artifact.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with 12 source records, 8 mechanism fingerprints, 15 ontology families, and 702 curated mechanism labels.
+- Local normal `git add`/`git commit` is blocked by sandbox permissions on the linked worktree gitdir index lock: `Unable to create .../.git/worktrees/catalytic-earth-repr-foldseek-pocket/index.lock: Operation not permitted`.
+- A real local commit object was created with an alternate temporary index (`6e29895aab5720d8ae9c123ce90e7ac433bdb810`), but pushing it is blocked: HTTPS reports `could not read Username for 'https://github.com': Device not configured`; SSH reports `Permission denied (publickey)`; `gh auth status` reports the stored token is invalid.

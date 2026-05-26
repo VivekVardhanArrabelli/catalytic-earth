@@ -1,0 +1,841 @@
+{
+  "artifact_id": "foldseek_structural_nn_wave1_standardized_metrics_current702_20260526",
+  "branch": "research/representation-foldseek-pocket",
+  "candidate_fold_conflict_rows": [
+    {
+      "nearest_foldseek_bits": 307.0,
+      "nearest_foldseek_prob": 1.0,
+      "nearest_train_entry_id": "m_csa:281",
+      "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "row_id": "m_csa:131",
+      "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+      "true_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "nearest_foldseek_bits": 248.0,
+      "nearest_foldseek_prob": 1.0,
+      "nearest_train_entry_id": "m_csa:16",
+      "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_fingerprint_id": "metal_dependent_hydrolase",
+      "row_id": "m_csa:497",
+      "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    }
+  ],
+  "candidate_near_orphan_rows": [
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 65.0,
+      "nearest_foldseek_prob": 0.872,
+      "nearest_train_entry_id": "m_csa:472",
+      "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_fingerprint_id": "metal_dependent_hydrolase",
+      "row_id": "m_csa:43",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "bits": 65.0,
+        "entry_id": "m_csa:472",
+        "evalue": 0.0003129,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "high_confidence": false,
+        "label_group": "metal_dependent_hydrolase",
+        "lddt": 0.2546,
+        "prob": 0.872,
+        "qcov": 0.719,
+        "raw_target": "m_csa__472__pdb_1S95_B",
+        "tcov": 0.8
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 15.0,
+      "nearest_foldseek_prob": 0.011,
+      "nearest_train_entry_id": "m_csa:435",
+      "nearest_train_fingerprint_id": null,
+      "predicted_fingerprint_id": null,
+      "row_id": "m_csa:97",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "bits": 7.0,
+        "entry_id": "m_csa:41",
+        "evalue": 5.445,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "high_confidence": false,
+        "label_group": "metal_dependent_hydrolase",
+        "lddt": 0.1696,
+        "prob": 0.0,
+        "qcov": 0.333,
+        "raw_target": "m_csa__41__pdb_1DNK_A",
+        "tcov": 0.456
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "evaluation_status": "secondary_ood_probe",
+      "nearest_foldseek_bits": 307.0,
+      "nearest_foldseek_prob": 1.0,
+      "nearest_train_entry_id": "m_csa:281",
+      "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "row_id": "m_csa:131",
+      "strongest_same_fingerprint_train_neighbor": null,
+      "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+      "true_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 34.0,
+      "nearest_foldseek_prob": 0.126,
+      "nearest_train_entry_id": "m_csa:187",
+      "nearest_train_fingerprint_id": null,
+      "predicted_fingerprint_id": null,
+      "row_id": "m_csa:163",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "bits": 11.0,
+        "entry_id": "m_csa:486",
+        "evalue": 5.04,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "high_confidence": false,
+        "label_group": "metal_dependent_hydrolase",
+        "lddt": 0.2206,
+        "prob": 0.007,
+        "qcov": 0.245,
+        "raw_target": "m_csa__486__pdb_1D8H_A",
+        "tcov": 0.125
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 25.0,
+      "nearest_foldseek_prob": 0.057,
+      "nearest_train_entry_id": "m_csa:28",
+      "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_fingerprint_id": "metal_dependent_hydrolase",
+      "row_id": "m_csa:180",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "bits": 25.0,
+        "entry_id": "m_csa:28",
+        "evalue": 0.1574,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "high_confidence": false,
+        "label_group": "metal_dependent_hydrolase",
+        "lddt": 0.2391,
+        "prob": 0.057,
+        "qcov": 0.678,
+        "raw_target": "m_csa__28__pdb_1DJX_A",
+        "tcov": 0.277
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 24.0,
+      "nearest_foldseek_prob": 0.051,
+      "nearest_train_entry_id": "m_csa:327",
+      "nearest_train_fingerprint_id": null,
+      "predicted_fingerprint_id": null,
+      "row_id": "m_csa:211",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "bits": 15.0,
+        "entry_id": "m_csa:141",
+        "evalue": 1.147,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "high_confidence": false,
+        "label_group": "flavin_dehydrogenase_reductase",
+        "lddt": 0.2735,
+        "prob": 0.011,
+        "qcov": 0.806,
+        "raw_target": "m_csa__141__pdb_1DII_B",
+        "tcov": 0.375
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 15.0,
+      "nearest_foldseek_prob": 0.011,
+      "nearest_train_entry_id": "m_csa:28",
+      "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_fingerprint_id": "metal_dependent_hydrolase",
+      "row_id": "m_csa:250",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "bits": 13.0,
+        "entry_id": "m_csa:37",
+        "evalue": 0.3837,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "high_confidence": false,
+        "label_group": "heme_peroxidase_oxidase",
+        "lddt": 0.1995,
+        "prob": 0.009,
+        "qcov": 0.816,
+        "raw_target": "m_csa__37__pdb_5COX_B",
+        "tcov": 0.536
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 60.0,
+      "nearest_foldseek_prob": 0.772,
+      "nearest_train_entry_id": "m_csa:754",
+      "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_fingerprint_id": "metal_dependent_hydrolase",
+      "row_id": "m_csa:321",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "bits": 60.0,
+        "entry_id": "m_csa:754",
+        "evalue": 0.04135,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "high_confidence": false,
+        "label_group": "metal_dependent_hydrolase",
+        "lddt": 0.3421,
+        "prob": 0.772,
+        "qcov": 0.395,
+        "raw_target": "m_csa__754__pdb_1J53",
+        "tcov": 0.989
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 18.0,
+      "nearest_foldseek_prob": 0.02,
+      "nearest_train_entry_id": "m_csa:622",
+      "nearest_train_fingerprint_id": null,
+      "predicted_fingerprint_id": null,
+      "row_id": "m_csa:403",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "bits": 18.0,
+        "entry_id": "m_csa:176",
+        "evalue": 0.9099,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "high_confidence": false,
+        "label_group": "metal_dependent_hydrolase",
+        "lddt": 0.2759,
+        "prob": 0.02,
+        "qcov": 0.855,
+        "raw_target": "m_csa__176__pdb_1KEI",
+        "tcov": 0.541
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 38.0,
+      "nearest_foldseek_prob": 0.179,
+      "nearest_train_entry_id": "m_csa:519",
+      "nearest_train_fingerprint_id": "ser_his_acid_hydrolase",
+      "predicted_fingerprint_id": "ser_his_acid_hydrolase",
+      "row_id": "m_csa:517",
+      "strongest_same_fingerprint_train_neighbor": null,
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 234.0,
+      "nearest_foldseek_prob": 1.0,
+      "nearest_train_entry_id": "m_csa:380",
+      "nearest_train_fingerprint_id": null,
+      "predicted_fingerprint_id": null,
+      "row_id": "m_csa:723",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "bits": 26.0,
+        "entry_id": "m_csa:94",
+        "evalue": 0.0435,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "high_confidence": false,
+        "label_group": "ser_his_acid_hydrolase",
+        "lddt": 0.228,
+        "prob": 0.063,
+        "qcov": 0.651,
+        "raw_target": "m_csa__94__pdb_1WAB",
+        "tcov": 0.75
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "evaluation_status": "secondary_ood_probe",
+      "nearest_foldseek_bits": 85.0,
+      "nearest_foldseek_prob": 0.992,
+      "nearest_train_entry_id": "m_csa:178",
+      "nearest_train_fingerprint_id": null,
+      "predicted_fingerprint_id": null,
+      "row_id": "m_csa:853",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "bits": 7.0,
+        "entry_id": "m_csa:63",
+        "evalue": 8.897,
+        "fingerprint_id": "cobalamin_radical_rearrangement",
+        "high_confidence": false,
+        "label_group": "cobalamin_radical_rearrangement",
+        "lddt": 0.2694,
+        "prob": 0.0,
+        "qcov": 0.852,
+        "raw_target": "m_csa__63__pdb_1CB7_D",
+        "tcov": 0.211
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "cobalamin_radical_rearrangement"
+    },
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 18.0,
+      "nearest_foldseek_prob": 0.02,
+      "nearest_train_entry_id": "m_csa:110",
+      "nearest_train_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "row_id": "m_csa:916",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "bits": 16.0,
+        "entry_id": "m_csa:338",
+        "evalue": 1.031,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "high_confidence": false,
+        "label_group": "metal_dependent_hydrolase",
+        "lddt": 0.2247,
+        "prob": 0.014,
+        "qcov": 0.656,
+        "raw_target": "m_csa__338__pdb_2ID0_A",
+        "tcov": 0.228
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 53.0,
+      "nearest_foldseek_prob": 0.569,
+      "nearest_train_entry_id": "m_csa:762",
+      "nearest_train_fingerprint_id": "plp_dependent_enzyme",
+      "predicted_fingerprint_id": "plp_dependent_enzyme",
+      "row_id": "m_csa:990",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "bits": 24.0,
+        "entry_id": "m_csa:120",
+        "evalue": 0.059,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "high_confidence": false,
+        "label_group": "flavin_dehydrogenase_reductase",
+        "lddt": 0.2459,
+        "prob": 0.051,
+        "qcov": 0.625,
+        "raw_target": "m_csa__120__pdb_1ZP3_B",
+        "tcov": 0.862
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "evaluation_status": "primary_in_scope",
+      "nearest_foldseek_bits": 28.0,
+      "nearest_foldseek_prob": 0.076,
+      "nearest_train_entry_id": "m_csa:262",
+      "nearest_train_fingerprint_id": null,
+      "predicted_fingerprint_id": null,
+      "row_id": "m_csa:994",
+      "strongest_same_fingerprint_train_neighbor": {
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "bits": 12.0,
+        "entry_id": "m_csa:988",
+        "evalue": 9.479,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "high_confidence": false,
+        "label_group": "metal_dependent_hydrolase",
+        "lddt": 0.2927,
+        "prob": 0.008,
+        "qcov": 0.121,
+        "raw_target": "m_csa__988__pdb_3SHD_E",
+        "tcov": 0.447
+      },
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    }
+  ],
+  "direct_comparisons": {
+    "esm2_current702_mechanism_nn": {
+      "numeric_comparison": null,
+      "review_only_150m_sidecars_present": [
+        "artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+        "artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json"
+      ],
+      "searched_artifact_hint": "no full current702 ESM-2 150M mechanism-NN metrics artifact found under artifacts/",
+      "status": "not_available_in_repository_for_current702_split"
+    },
+    "esm2_external_review_only_sample": {
+      "artifact": "artifacts/v3_representation_baseline_shootout_plan_20260525.json",
+      "candidate_count": 12,
+      "comparison_scope": "external_sample_only_not_full_current702_mechanism_nn",
+      "embedding_backend": "esm2_t30_150m_ur50d",
+      "representation_near_duplicate_alert_count": 7,
+      "status": "external_sample_only_not_full_702_registry"
+    },
+    "esm_c_current702": {
+      "numeric_comparison": null,
+      "searched_artifact_hint": "no ESM-C/ESM_C/ESMC current702 metrics artifact found under artifacts/",
+      "status": "not_available_in_repository_for_current702_split"
+    },
+    "foldseek_fast3di_structural_nn_current702": {
+      "label": "fast Foldseek structural NN / 3Di smoke, no exact TM refinement",
+      "metrics_artifact": "artifacts/representation_tracks/foldseek_pocket/current702_foldseek_fast3di_full_structure_metrics_20260525.json",
+      "predictions_artifact": "artifacts/representation_tracks/foldseek_pocket/current702_foldseek_fast3di_full_structure_predictions_20260525.jsonl",
+      "primary_accuracy": 0.6222,
+      "primary_macro_f1": 0.7649,
+      "primary_support_count": 45,
+      "status": "computed_in_this_artifact"
+    },
+    "geometry_retrieval_local": {
+      "artifact": "artifacts/v3_geometry_label_eval_1000.json",
+      "artifact_sha256": "466c8006bfbe596f7654c2cfb99e1e66accd421de9862b315e481cd3cc386760",
+      "comparison_scope_note": "geometry artifact is local and useful as context, but it predates the repaired current702 split and is not a direct Wave 1 comparator",
+      "evaluated_count": 678,
+      "label_count": 679,
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_false_non_abstentions": 0,
+      "status": "available_local_geometry_label_eval_not_current702_holdout_comparable",
+      "top1_accuracy_in_scope": 0.9811,
+      "top3_accuracy_in_scope": 0.9953
+    },
+    "prott5_current702": {
+      "numeric_comparison": null,
+      "searched_artifact_hint": "no ProtT5/prot_t5 current702 metrics artifact found under artifacts/",
+      "status": "not_available_in_repository_for_current702_split"
+    },
+    "saprot_current702": {
+      "numeric_comparison": null,
+      "searched_artifact_hint": "no SaProt current702 metrics artifact found under artifacts/",
+      "status": "not_available_in_repository_for_current702_split"
+    },
+    "sequence_nn_current702": {
+      "headline_metrics": {
+        "exact_label_accuracy_all": 0.5286,
+        "exact_label_accuracy_in_scope": 0.1458,
+        "max_nearest_jaccard_similarity": 0.1664,
+        "mean_nearest_jaccard_similarity": 0.076,
+        "out_of_scope_false_positive_rate_no_threshold": 0.2717,
+        "primary_supervised_accuracy": 0.1556
+      },
+      "metrics_artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+      "metrics_artifact_sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26",
+      "predictions_artifact": "artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl",
+      "predictions_artifact_sha256": "700d032e393f6dcd1e4202e050ab0d7f1dd8e269641d575caa211308e91f431a",
+      "primary_accuracy": 0.1556,
+      "primary_macro_f1_recomputed_same_rule": 0.2374,
+      "primary_support_count": 45,
+      "status": "computed_current702_sequence_nn_baseline"
+    },
+    "three_di_token_nn_current702": {
+      "note": "current Foldseek baseline uses Foldseek 3Di structural alignment scores, not a separate token-nearest-neighbor export",
+      "numeric_comparison": null,
+      "status": "no_separate_3di_token_nn_artifact_found"
+    }
+  },
+  "generated_at": "2026-05-26T05:17:36Z",
+  "head_commit": "b75e320950448ef58f9abe0c5181ec1d17aa1de4",
+  "leakage_contract": {
+    "fingerprint_registry_edited": false,
+    "forbidden_inputs_used": [],
+    "input_leakage_contract": "no EC/name/prose/expert-note fields used as predictive features",
+    "label_registry_edited": false,
+    "model_training_performed": false,
+    "ontology_registry_edited": false,
+    "predictive_inputs": [
+      "selected-PDB/AFDB full-structure coordinates only",
+      "Foldseek 3Di structural alignment scores"
+    ],
+    "production_scoring_changed": false
+  },
+  "limitations": [
+    "This is a fast Foldseek 3Di full-structure nearest-neighbor baseline, not exact TM-score refinement.",
+    "No calibrated abstention threshold was selected; abstention is inherited only from nearest train label group out_of_scope or unavailable coordinates.",
+    "Pocket-restricted nearest-neighbor was not run in this artifact; pocket eligibility remains coverage-only.",
+    "No EC, name, mechanism prose, or expert-note fields were used as predictive features.",
+    "Wave 1 structural-neighborhood bins use fast Foldseek 3Di proxy scores; exact TM evidence is recorded only as supplementary context.",
+    "Same-fingerprint neighborhood diagnostics use true labels after prediction for audit stratification, not as predictive features."
+  ],
+  "model_id": "foldseek_fast3di_full_structure_nn.v1",
+  "model_track": "foldseek_structural_nn",
+  "oos_false_positive_abstention_diagnostics": {
+    "abstention_count": 84,
+    "abstention_rate": 0.913,
+    "available_out_of_scope_structure_count": 92,
+    "by_oos_tier": {
+      "far_oos": {
+        "abstention_count": 1,
+        "abstention_rate": 1.0,
+        "available_structure_count": 1,
+        "confidence_distribution_on_oos_false_positive_bits": {
+          "count": 0,
+          "max": null,
+          "mean": null,
+          "median": null,
+          "min": null
+        },
+        "confidence_distribution_on_oos_rows_bits": {
+          "count": 1,
+          "max": 563.0,
+          "mean": 563.0,
+          "median": 563.0,
+          "min": 563.0
+        },
+        "false_positive_count": 0,
+        "false_positive_rate_by_predicted_primary_fingerprint": {},
+        "false_positive_rate_no_threshold": 0.0,
+        "row_count": 1,
+        "unavailable_structure_abstention_count": 0
+      },
+      "near_oos": {
+        "abstention_count": 3,
+        "abstention_rate": 1.0,
+        "available_structure_count": 3,
+        "confidence_distribution_on_oos_false_positive_bits": {
+          "count": 0,
+          "max": null,
+          "mean": null,
+          "median": null,
+          "min": null
+        },
+        "confidence_distribution_on_oos_rows_bits": {
+          "count": 3,
+          "max": 277.0,
+          "mean": 152.3333,
+          "median": 128.0,
+          "min": 52.0
+        },
+        "false_positive_count": 0,
+        "false_positive_rate_by_predicted_primary_fingerprint": {},
+        "false_positive_rate_no_threshold": 0.0,
+        "row_count": 3,
+        "unavailable_structure_abstention_count": 0
+      },
+      "unknown_oos": {
+        "abstention_count": 80,
+        "abstention_rate": 0.9091,
+        "available_structure_count": 88,
+        "confidence_distribution_on_oos_false_positive_bits": {
+          "count": 8,
+          "max": 245.0,
+          "mean": 86.125,
+          "median": 53.0,
+          "min": 16.0
+        },
+        "confidence_distribution_on_oos_rows_bits": {
+          "count": 88,
+          "max": 1029.0,
+          "mean": 203.6136,
+          "median": 77.0,
+          "min": 15.0
+        },
+        "false_positive_count": 8,
+        "false_positive_rate_by_predicted_primary_fingerprint": {
+          "flavin_dehydrogenase_reductase": 3,
+          "heme_peroxidase_oxidase": 1,
+          "metal_dependent_hydrolase": 2,
+          "ser_his_acid_hydrolase": 2
+        },
+        "false_positive_rate_no_threshold": 0.0909,
+        "row_count": 88,
+        "unavailable_structure_abstention_count": 0
+      }
+    },
+    "confidence_distribution_on_correctly_classified_in_scope_rows_bits": {
+      "count": 28,
+      "max": 952.0,
+      "mean": 290.3571,
+      "median": 258.0,
+      "min": 25.0
+    },
+    "confidence_distribution_on_oos_rows_bits": {
+      "count": 92,
+      "max": 1029.0,
+      "mean": 205.8478,
+      "median": 89.5,
+      "min": 15.0
+    },
+    "false_positive_count": 8,
+    "false_positive_rate_no_threshold": 0.087,
+    "out_of_scope_heldout_count": 92,
+    "overlap_diagnostic_for_any_threshold_separating_oos_from_in_scope": {
+      "correctly_classified_primary_count_with_score": 28,
+      "exists_strict_threshold_between_oos_false_positives_and_correct_primary": false,
+      "max_oos_false_positive_bits": 245.0,
+      "min_correctly_classified_primary_bits": 25.0,
+      "oos_false_positive_count_with_score": 8,
+      "score_field": "nearest_foldseek_bits",
+      "threshold_calibrated": false
+    },
+    "secondary_probe_heldout_count": 3,
+    "secondary_probe_rows": [
+      {
+        "abstained": false,
+        "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+        "coordinate_available_for_full_structure_foldseek": true,
+        "entry_id": "m_csa:131",
+        "nearest_foldseek_bits": 307.0,
+        "nearest_train_entry_id": "m_csa:281",
+        "predicted_label_group": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+        "coordinate_available_for_full_structure_foldseek": false,
+        "entry_id": "m_csa:372",
+        "nearest_foldseek_bits": null,
+        "nearest_train_entry_id": null,
+        "predicted_label_group": "out_of_scope"
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "coordinate_available_for_full_structure_foldseek": true,
+        "entry_id": "m_csa:853",
+        "nearest_foldseek_bits": 85.0,
+        "nearest_train_entry_id": "m_csa:178",
+        "predicted_label_group": "out_of_scope"
+      }
+    ],
+    "status": "computed",
+    "unavailable_out_of_scope_structure_abstention_count": 0
+  },
+  "origin_main_commit_cited": "8e69bf002097d5cf55521a13764e096908d8e0af",
+  "per_primary_fingerprint_metrics": {
+    "flavin_dehydrogenase_reductase": {
+      "available_structure_count": 9,
+      "correct_count": 6,
+      "f1": 0.7059,
+      "false_negative_count": 4,
+      "false_positive_count_within_primary_eval": 1,
+      "precision": 0.8571,
+      "recall": 0.6,
+      "support": 10,
+      "unavailable_structure_abstention_count": 1,
+      "underpowered": false
+    },
+    "heme_peroxidase_oxidase": {
+      "available_structure_count": 4,
+      "correct_count": 3,
+      "f1": 0.8571,
+      "false_negative_count": 1,
+      "false_positive_count_within_primary_eval": 0,
+      "precision": 1.0,
+      "recall": 0.75,
+      "support": 4,
+      "unavailable_structure_abstention_count": 0,
+      "underpowered": true
+    },
+    "metal_dependent_hydrolase": {
+      "available_structure_count": 14,
+      "correct_count": 7,
+      "f1": 0.5385,
+      "false_negative_count": 10,
+      "false_positive_count_within_primary_eval": 2,
+      "precision": 0.7778,
+      "recall": 0.4118,
+      "support": 17,
+      "unavailable_structure_abstention_count": 3,
+      "underpowered": false
+    },
+    "plp_dependent_enzyme": {
+      "available_structure_count": 6,
+      "correct_count": 6,
+      "f1": 0.9231,
+      "false_negative_count": 0,
+      "false_positive_count_within_primary_eval": 1,
+      "precision": 0.8571,
+      "recall": 1.0,
+      "support": 6,
+      "unavailable_structure_abstention_count": 0,
+      "underpowered": false
+    },
+    "ser_his_acid_hydrolase": {
+      "available_structure_count": 7,
+      "correct_count": 6,
+      "f1": 0.8,
+      "false_negative_count": 2,
+      "false_positive_count_within_primary_eval": 1,
+      "precision": 0.8571,
+      "recall": 0.75,
+      "support": 8,
+      "unavailable_structure_abstention_count": 1,
+      "underpowered": false
+    }
+  },
+  "primary_metrics": {
+    "accuracy": 0.6222,
+    "available_only_accuracy": 0.7,
+    "available_only_macro_f1": 0.7992,
+    "available_only_support": 40,
+    "correct_count": 28,
+    "fingerprint_ids": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "macro_f1": 0.7649,
+    "support": 45,
+    "underpowered_fingerprint_ids": [
+      "heme_peroxidase_oxidase"
+    ]
+  },
+  "row_counts": {
+    "retained_foldseek_tsv_rows": 22716,
+    "source_prediction_rows": 140,
+    "standardized_prediction_rows": 140,
+    "structure_neighborhood_rows": 140
+  },
+  "schema_version": "wave1_model_prediction_metrics.v1",
+  "secondary_probe_diagnostics": {
+    "secondary_probe_heldout_count": 3,
+    "secondary_probe_rows": [
+      {
+        "abstained": false,
+        "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+        "coordinate_available_for_full_structure_foldseek": true,
+        "entry_id": "m_csa:131",
+        "nearest_foldseek_bits": 307.0,
+        "nearest_train_entry_id": "m_csa:281",
+        "predicted_label_group": "flavin_dehydrogenase_reductase"
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+        "coordinate_available_for_full_structure_foldseek": false,
+        "entry_id": "m_csa:372",
+        "nearest_foldseek_bits": null,
+        "nearest_train_entry_id": null,
+        "predicted_label_group": "out_of_scope"
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "coordinate_available_for_full_structure_foldseek": true,
+        "entry_id": "m_csa:853",
+        "nearest_foldseek_bits": 85.0,
+        "nearest_train_entry_id": "m_csa:178",
+        "predicted_label_group": "out_of_scope"
+      }
+    ],
+    "standardized_secondary_false_positive_count": 1
+  },
+  "source_artifacts": {
+    "coverage_artifact": "artifacts/representation_tracks/foldseek_pocket/current702_structure_pocket_coverage_20260525.json",
+    "coverage_artifact_sha256": "99a3e19b3f82753a395b162c6deae52df8833734a45309320bd4aff7d41c2c66",
+    "eval_contract_artifact": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+    "eval_contract_sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
+    "sequence_label_manifest_artifact": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    "sequence_label_manifest_sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151",
+    "source_fast_foldseek_metrics_artifact": "artifacts/representation_tracks/foldseek_pocket/current702_foldseek_fast3di_full_structure_metrics_20260525.json",
+    "source_fast_foldseek_metrics_sha256": "7abc57d4f179a49db444aea7b5210b1e8ed72d7ffdb957dab7700e2de94dcb0a",
+    "source_fast_foldseek_predictions_artifact": "artifacts/representation_tracks/foldseek_pocket/current702_foldseek_fast3di_full_structure_predictions_20260525.jsonl",
+    "source_fast_foldseek_predictions_sha256": "78ec6ae209e5e0263e278e8e99d2d952c949eb3fd90f84ce0151a743ed5af831",
+    "source_fast_foldseek_tsv_path": "/private/tmp/catalytic-foldseek-fast3di-current702-20260525T181437Z/heldout_train_fast3di.tsv",
+    "source_fast_foldseek_tsv_sha256": "c3d0fbab2cb9e6da6502a3f54a15d5a99b42fb2bae53894e622a3498373d7027",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "split_artifact_sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425",
+    "standardized_predictions_artifact": "artifacts/representation_tracks/foldseek_pocket/foldseek_structural_nn_wave1_standardized_predictions_current702_20260526.jsonl",
+    "standardized_predictions_sha256": "8285cc7c14b9570869962cfbcd059a9d07e5cc67ce4d6db87c81a8a0e7ff5361",
+    "structure_neighborhood_metadata_artifact": "artifacts/representation_tracks/foldseek_pocket/foldseek_structure_neighborhood_metadata_current702_20260526.jsonl",
+    "structure_neighborhood_metadata_sha256": "f55b1c072666f403404d0ac02d73e5809b7206e3fddc1afe321b16e45e297227"
+  },
+  "structure_neighborhood_diagnostics": {
+    "bin_counts": {
+      "broad_bucket_ambiguous": 93,
+      "dense_same_mechanism_structural_neighborhood": 25,
+      "high_structure_similarity_different_fingerprint": 2,
+      "low_structure_neighborhood_near_orphan": 14,
+      "no_reliable_structure": 6
+    },
+    "broad_bucket_ambiguous_count": 93,
+    "candidate_fold_conflict_count": 2,
+    "candidate_near_orphan_count": 15,
+    "evaluation_status_counts": {
+      "out_of_scope": 92,
+      "primary_in_scope": 45,
+      "secondary_ood_probe": 3
+    },
+    "high_confidence_rule": {
+      "bits_min": 50.0,
+      "definition": "prob >= 0.90 and bits >= 50 on Foldseek alignment-type 0 fast 3Di hit",
+      "fields": [
+        "nearest_foldseek_prob",
+        "nearest_foldseek_bits"
+      ],
+      "name": "fast_foldseek_high_confidence_proxy.v1",
+      "prob_min": 0.9,
+      "tm_score_available": false
+    },
+    "no_reliable_structure_count": 6,
+    "top1_high_similarity_different_fingerprint_count": 2,
+    "top1_high_similarity_primary_neighbor_for_oos_or_secondary_count": 5,
+    "top1_high_similarity_same_fingerprint_count": 25,
+    "topk_strong_same_fingerprint_neighbor_count": 27
+  },
+  "supplementary_exact_tm_evidence": {
+    "artifact": "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json",
+    "artifact_sha256": "316a97f98b1c2e8242f7bd3e4783a70ba132a571a49a1cea11b27f6cb004cf25",
+    "coordinate_readiness_artifact": "artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json",
+    "coordinate_readiness_sha256": "bd2fd16bd57f0a472ac6c5d90a4b89587bbc9498fef14dc4bb08ceceeb6e4ebe",
+    "foldseek_run_status": "completed",
+    "full_tm_score_holdout_claim_permitted": false,
+    "full_tm_score_split_computed": false,
+    "limitations": [
+      "Foldseek output names are mapped by exact filename/basename/stem/structure-metadata aliases or by an unambiguous generated PDB stem plus chain suffix; other differing raw names remain unmapped",
+      "all currently materializable selected coordinates were searched, but excluded rows without selected structures still block a full evaluated-coordinate claim",
+      "full evaluated-coordinate coverage is absent; full TM-score split remains blocked",
+      "partial staged-coordinate Foldseek signal only; it is not a full accepted-registry TM-score holdout",
+      "review-only artifact; it creates no countable labels and no import-ready rows",
+      "tm_score_split_computed=false because no canonical full TM-score split is emitted here"
+    ],
+    "max_observed_train_test_tm_score": 0.9749,
+    "method": "foldseek_tm_score_signal",
+    "partial_tm_score_signal_computed": true,
+    "row_count": 200,
+    "status": "supplementary_only_not_replacement_for_fast_foldseek_baseline",
+    "used_for_predictions": false
+  },
+  "unavailable_structure_abstention_counts": {
+    "by_prediction_status": {
+      "unavailable_structure_abstention": 6
+    },
+    "by_true_label_group": {
+      "flavin_dehydrogenase_reductase": 1,
+      "metal_dependent_hydrolase": 3,
+      "radical_sam_enzyme": 1,
+      "ser_his_acid_hydrolase": 1
+    },
+    "entry_ids": [
+      "m_csa:372",
+      "m_csa:577",
+      "m_csa:599",
+      "m_csa:710",
+      "m_csa:892",
+      "m_csa:897"
+    ],
+    "heldout_unavailable_structure_count": 6,
+    "prediction_policy": "abstain_as_out_of_scope_when selected-PDB/AFDB coordinates are unavailable or no Foldseek hit is emitted"
+  }
+}
