@@ -186,3 +186,9 @@ Verification for this export:
 - `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with 12 source records, 8 mechanism fingerprints, 15 ontology families, and 702 curated mechanism labels.
 - Local normal `git add`/`git commit` is blocked by sandbox permissions on the linked worktree gitdir index lock: `Unable to create .../.git/worktrees/catalytic-earth-repr-foldseek-pocket/index.lock: Operation not permitted`.
 - A real local commit object was created with an alternate temporary index (`6e29895aab5720d8ae9c123ce90e7ac433bdb810`), but pushing it is blocked: HTTPS reports `could not read Username for 'https://github.com': Device not configured`; SSH reports `Permission denied (publickey)`; `gh auth status` reports the stored token is invalid.
+
+Orchestration follow-up:
+
+- 2026-05-26T06:03Z: the stale push blocker above is resolved. The Wave 1
+  standardized Foldseek export is committed and pushed to
+  `research/representation-foldseek-pocket` at `0381139`.
