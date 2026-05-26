@@ -1,0 +1,458 @@
+{
+  "alignment_checks": {
+    "all_sequence_records_embedding_missing_count": 0,
+    "all_sequence_records_missing_examples": [],
+    "embedding_dim": 960,
+    "embedding_row_count": 760,
+    "fasta_index_mismatch_count": 0,
+    "fasta_index_mismatch_examples": [],
+    "fasta_index_order_match": true,
+    "label_first_sequence_embedding_coverage_count": 702,
+    "label_first_sequence_embedding_missing_count": 0,
+    "label_first_sequence_missing_examples": [],
+    "original_heldout_prediction_reproduction": {
+      "cosine_1nn_first_sequence_matches_original_predictions": 140,
+      "cosine_1nn_mean_all_sequence_records_matches_original_predictions": 131,
+      "heldout_prediction_count": 140
+    }
+  },
+  "conclusion": {
+    "anomaly_explanation": "The poor original metric is reproduced by the original cosine 1-NN head, not by corrupted embeddings or row misalignment.",
+    "embedding_sanity_status": "passed",
+    "evidence": "No NaN/inf/zero/constant embeddings, FASTA/index/label alignment is exact, first two smoke vectors match the full NPZ, and high 3-mer-similarity sequence pairs have high ESM-C cosine similarities."
+  },
+  "embedding_statistics": {
+    "constant_row_count": 0,
+    "embedding_dtype": "float32",
+    "embedding_shape": [
+      760,
+      960
+    ],
+    "exact_duplicate_embedding_group_count": 0,
+    "exact_duplicate_embedding_row_count": 0,
+    "exact_duplicate_sequence_group_count": 0,
+    "exact_duplicate_sequence_row_count": 0,
+    "inf_value_count": 0,
+    "l2_norm_distribution": {
+      "count": 760,
+      "max": 1.473962,
+      "mean": 0.794931,
+      "median": 0.767415,
+      "min": 0.621275,
+      "q01": 0.662913,
+      "q05": 0.689766,
+      "q25": 0.731414,
+      "q75": 0.825775,
+      "q95": 0.971016,
+      "q99": 1.269387
+    },
+    "nan_value_count": 0,
+    "near_duplicate_embedding_pair_examples": [
+      {
+        "cosine_similarity": 0.997132,
+        "embedding_cosine": 0.997132,
+        "record_i": {
+          "fasta_first_token": "sp|P51659|DHB4_HUMAN",
+          "record_id": "P51659",
+          "record_index": 510,
+          "sequence_length": 736,
+          "sequence_sha256": "fe07ad8dc6b7afa8886d5101e538c0c712caf5416863338094dca3b2110e8ed5"
+        },
+        "record_j": {
+          "fasta_first_token": "sp|P97852|DHB4_RAT",
+          "record_id": "P97852",
+          "record_index": 583,
+          "sequence_length": 735,
+          "sequence_sha256": "9becf2a8fe0eaa406b93aa540fd971d27a9fe5252281488eb99b9e6685cbb325"
+        },
+        "same_sequence_sha256": false
+      },
+      {
+        "cosine_similarity": 0.995931,
+        "embedding_cosine": 0.995931,
+        "record_i": {
+          "fasta_first_token": "sp|P00646|CEA3_ECOLX",
+          "record_id": "P00646",
+          "record_index": 65,
+          "sequence_length": 551,
+          "sequence_sha256": "0298630076ff861dd7f95a799065bf60264dd410ff306b4a328770a6b7b89d1e"
+        },
+        "record_j": {
+          "fasta_first_token": "sp|P09883|CEA9_ECOLX",
+          "record_id": "P09883",
+          "record_index": 205,
+          "sequence_length": 582,
+          "sequence_sha256": "98586c87e74a98e21c661b658a8784e5dedd69401b0aa344a68c04ef25d9c232"
+        },
+        "same_sequence_sha256": false
+      },
+      {
+        "cosine_similarity": 0.995354,
+        "embedding_cosine": 0.995354,
+        "record_i": {
+          "fasta_first_token": "sp|P09883|CEA9_ECOLX",
+          "record_id": "P09883",
+          "record_index": 205,
+          "sequence_length": 582,
+          "sequence_sha256": "98586c87e74a98e21c661b658a8784e5dedd69401b0aa344a68c04ef25d9c232"
+        },
+        "record_j": {
+          "fasta_first_token": "sp|Q47112|CEA7_ECOLX",
+          "record_id": "Q47112",
+          "record_index": 645,
+          "sequence_length": 576,
+          "sequence_sha256": "b53aa75a455e9cfc48fc6fe9a3112e6a22a11b0f53a01dbc3c0bfbd1da240237"
+        },
+        "same_sequence_sha256": false
+      }
+    ],
+    "near_duplicate_embedding_pairs_cosine_gt_0_995_count": 3,
+    "normalized_embedding_shape": [
+      760,
+      960
+    ],
+    "pairwise_cosine_distribution_all_fasta_records": {
+      "count": 288420,
+      "max": 0.997132,
+      "mean": 0.741209,
+      "median": 0.777393,
+      "min": -0.323074,
+      "q01": 0.193333,
+      "q05": 0.439519,
+      "q25": 0.681301,
+      "q75": 0.844294,
+      "q95": 0.907775,
+      "q99": 0.935842
+    },
+    "row_mean_distribution": {
+      "count": 760,
+      "max": 0.000994,
+      "mean": 0.000295,
+      "median": 0.000279,
+      "min": -0.000234,
+      "q01": -9.4e-05,
+      "q05": 5.9e-05,
+      "q25": 0.000178,
+      "q75": 0.000397,
+      "q95": 0.000604,
+      "q99": 0.000774
+    },
+    "row_std_distribution": {
+      "count": 760,
+      "max": 0.047564,
+      "mean": 0.025654,
+      "median": 0.024765,
+      "min": 0.020051,
+      "q01": 0.021395,
+      "q05": 0.022262,
+      "q25": 0.023606,
+      "q75": 0.026649,
+      "q95": 0.031338,
+      "q99": 0.040963
+    },
+    "three_mer_jaccard_proxy_pairs_ge_0_85_cosine_distribution": {
+      "count": 0
+    },
+    "three_mer_jaccard_proxy_pairs_ge_0_85_count": 0,
+    "top_three_mer_jaccard_proxy_pair_examples": [
+      {
+        "cosine_similarity": 0.997132,
+        "record_i": {
+          "fasta_first_token": "sp|P51659|DHB4_HUMAN",
+          "record_id": "P51659",
+          "record_index": 510,
+          "sequence_length": 736,
+          "sequence_sha256": "fe07ad8dc6b7afa8886d5101e538c0c712caf5416863338094dca3b2110e8ed5"
+        },
+        "record_j": {
+          "fasta_first_token": "sp|P97852|DHB4_RAT",
+          "record_id": "P97852",
+          "record_index": 583,
+          "sequence_length": 735,
+          "sequence_sha256": "9becf2a8fe0eaa406b93aa540fd971d27a9fe5252281488eb99b9e6685cbb325"
+        },
+        "same_sequence_sha256": false,
+        "three_mer_jaccard": 0.554273
+      },
+      {
+        "cosine_similarity": 0.995931,
+        "record_i": {
+          "fasta_first_token": "sp|P00646|CEA3_ECOLX",
+          "record_id": "P00646",
+          "record_index": 65,
+          "sequence_length": 551,
+          "sequence_sha256": "0298630076ff861dd7f95a799065bf60264dd410ff306b4a328770a6b7b89d1e"
+        },
+        "record_j": {
+          "fasta_first_token": "sp|P09883|CEA9_ECOLX",
+          "record_id": "P09883",
+          "record_index": 205,
+          "sequence_length": 582,
+          "sequence_sha256": "98586c87e74a98e21c661b658a8784e5dedd69401b0aa344a68c04ef25d9c232"
+        },
+        "same_sequence_sha256": false,
+        "three_mer_jaccard": 0.543511
+      },
+      {
+        "cosine_similarity": 0.995354,
+        "record_i": {
+          "fasta_first_token": "sp|P09883|CEA9_ECOLX",
+          "record_id": "P09883",
+          "record_index": 205,
+          "sequence_length": 582,
+          "sequence_sha256": "98586c87e74a98e21c661b658a8784e5dedd69401b0aa344a68c04ef25d9c232"
+        },
+        "record_j": {
+          "fasta_first_token": "sp|Q47112|CEA7_ECOLX",
+          "record_id": "Q47112",
+          "record_index": 645,
+          "sequence_length": 576,
+          "sequence_sha256": "b53aa75a455e9cfc48fc6fe9a3112e6a22a11b0f53a01dbc3c0bfbd1da240237"
+        },
+        "same_sequence_sha256": false,
+        "three_mer_jaccard": 0.391421
+      },
+      {
+        "cosine_similarity": 0.992311,
+        "record_i": {
+          "fasta_first_token": "sp|P00646|CEA3_ECOLX",
+          "record_id": "P00646",
+          "record_index": 65,
+          "sequence_length": 551,
+          "sequence_sha256": "0298630076ff861dd7f95a799065bf60264dd410ff306b4a328770a6b7b89d1e"
+        },
+        "record_j": {
+          "fasta_first_token": "sp|Q47112|CEA7_ECOLX",
+          "record_id": "Q47112",
+          "record_index": 645,
+          "sequence_length": 576,
+          "sequence_sha256": "b53aa75a455e9cfc48fc6fe9a3112e6a22a11b0f53a01dbc3c0bfbd1da240237"
+        },
+        "same_sequence_sha256": false,
+        "three_mer_jaccard": 0.314767
+      },
+      {
+        "cosine_similarity": 0.961541,
+        "record_i": {
+          "fasta_first_token": "sp|P55038|GLTS_SYNY3",
+          "record_id": "P55038",
+          "record_index": 521,
+          "sequence_length": 1556,
+          "sequence_sha256": "9db80178f806bc59007221d88d3356c275fd68bc13bf9fb3d8aa76b073b10ebf"
+        },
+        "record_j": {
+          "fasta_first_token": "sp|Q05755|GLTB_AZOBR",
+          "record_id": "Q05755",
+          "record_index": 609,
+          "sequence_length": 1515,
+          "sequence_sha256": "f543c8be7384d7dd2e01f1b376cc5973f60cb351645b79b9e58a1e36d9034ff7"
+        },
+        "same_sequence_sha256": false,
+        "three_mer_jaccard": 0.232237
+      },
+      {
+        "cosine_similarity": 0.973513,
+        "record_i": {
+          "fasta_first_token": "sp|P00327|ADH1E_HORSE",
+          "record_id": "P00327",
+          "record_index": 37,
+          "sequence_length": 375,
+          "sequence_sha256": "5f674a2c7c6b8f349defbed78840ff7738dc2f8eda4228e0ff8bb98d615f9b66"
+        },
+        "record_j": {
+          "fasta_first_token": "sp|P28332|ADH6_HUMAN",
+          "record_id": "P28332",
+          "record_index": 431,
+          "sequence_length": 368,
+          "sequence_sha256": "4a27c8a894da3867cb4c5efb4528a611f210fd4ce0515012e21c09829cdc026a"
+        },
+        "same_sequence_sha256": false,
+        "three_mer_jaccard": 0.218803
+      },
+      {
+        "cosine_similarity": 0.94172,
+        "record_i": {
+          "fasta_first_token": "sp|P00327|ADH1E_HORSE",
+          "record_id": "P00327",
+          "record_index": 37,
+          "sequence_length": 375,
+          "sequence_sha256": "5f674a2c7c6b8f349defbed78840ff7738dc2f8eda4228e0ff8bb98d615f9b66"
+        },
+        "record_j": {
+          "fasta_first_token": "sp|P11766|ADHX_HUMAN",
+          "record_id": "P11766",
+          "record_index": 294,
+          "sequence_length": 374,
+          "sequence_sha256": "ed8a1691faf6bd8eac040ff9346640c46fa2a683425b30a4f9292b4abfd96835"
+        },
+        "same_sequence_sha256": false,
+        "three_mer_jaccard": 0.214527
+      },
+      {
+        "cosine_similarity": 0.985113,
+        "record_i": {
+          "fasta_first_token": "sp|P13479|IMM9_ECOLX",
+          "record_id": "P13479",
+          "record_index": 314,
+          "sequence_length": 86,
+          "sequence_sha256": "97295d31fdaa4ed4f16db5cdc2246a3cbd07316dd4eab5ac0c1fa3523334dd9c"
+        },
+        "record_j": {
+          "fasta_first_token": "sp|Q03708|IMM7_ECOLX",
+          "record_id": "Q03708",
+          "record_index": 602,
+          "sequence_length": 87,
+          "sequence_sha256": "a707b41439accaf25315e28be157c91cd31af3180c307b8776e0f6281948801a"
+        },
+        "same_sequence_sha256": false,
+        "three_mer_jaccard": 0.195652
+      }
+    ],
+    "zero_norm_row_count": 0
+  },
+  "metadata": {
+    "artifact_id": "esm_c_300m_embedding_sanity_audit_current702_20260526",
+    "embedding_index_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_index_current702_20260525.jsonl",
+    "embedding_npz_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz",
+    "forbidden_inputs_used": [],
+    "generated_at_utc": "2026-05-26T03:25:02Z",
+    "label_manifest_artifact": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    "predictive_inputs": [
+      "amino_acid_sequence_only"
+    ],
+    "schema_version": "esm_c_embedding_sanity_audit.v1",
+    "sequence_fasta_artifact": "artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "status": "completed"
+  },
+  "model_and_tokenizer": {
+    "hf_metadata_lfs_blob_id": "f86851ea1c05360f615c42d397d72ee3a2009e3a",
+    "model_family": "ESM-C",
+    "model_id": "esmc_300m",
+    "model_parameter_count": "300M",
+    "package_versions": {
+      "esm": "3.2.3",
+      "huggingface_hub": "0.33.4",
+      "numpy": "2.3.1",
+      "python": "3.12.9",
+      "torch": "2.7.1",
+      "transformers": "4.48.1"
+    },
+    "repo_requested": "EvolutionaryScale/esmc-300m-2024-12",
+    "repo_resolved": "biohub/esmc-300m-2024-12",
+    "repo_sha": "c309e1f43e775c1a513826dba9f1fe04622e96a1",
+    "tokenizer_probe": {
+      "bos_token": "<cls>",
+      "bos_token_id": 0,
+      "eos_token": "<eos>",
+      "eos_token_id": 2,
+      "longest_sequence_tokenization": {
+        "encoded_token_count": 3013,
+        "expected_with_bos_eos": 3013,
+        "fasta_first_token": "sp|P27958|POLG_HCV77",
+        "first_token_id": 0,
+        "last_token_id": 2,
+        "sequence_length": 3011
+      },
+      "mask_token": "<mask>",
+      "mask_token_id": 32,
+      "pad_token": "<pad>",
+      "pad_token_id": 1,
+      "tokenizer_class": "EsmSequenceTokenizer",
+      "unk_token": "<unk>",
+      "unk_token_id": 3,
+      "vocab_size": 33
+    },
+    "weight_relative_path": "data/weights/esmc_300m_2024_12_v0.pth",
+    "weight_sha256": "323dff9fbf3fef297a74f4f18b6528e6f2e599b0bcf72b6927516804015becea",
+    "weight_size_bytes": 1332095738
+  },
+  "pooling_checks": {
+    "bos_eos_handling": "BOS <cls> and EOS <eos> are excluded from mean pooling; smoke artifacts report token_count_with_bos_eos = sequence_length + 2 for sampled rows.",
+    "mean_pooling_behavior": "one pooled 960-d float32 vector per FASTA record; entry-level diagnostics use first repaired sequence record per label row, while mean-all-sequence-record aggregation was separately evaluated",
+    "pooling_mode_recorded": "whole_sequence_mean_excluding_bos_eos",
+    "smoke_first_two_embedding_match_full_npz": true
+  },
+  "sequence_preprocessing": {
+    "all_sequences_uppercase": true,
+    "extra_fasta_records_due_to_multi_sequence_entries": 58,
+    "fasta_record_count": 760,
+    "label_manifest_row_count": 702,
+    "most_common_residues": [
+      [
+        "A",
+        28537
+      ],
+      [
+        "L",
+        28527
+      ],
+      [
+        "G",
+        24935
+      ],
+      [
+        "V",
+        22496
+      ],
+      [
+        "E",
+        20381
+      ],
+      [
+        "S",
+        18838
+      ],
+      [
+        "D",
+        18177
+      ],
+      [
+        "T",
+        17560
+      ],
+      [
+        "I",
+        17346
+      ],
+      [
+        "K",
+        17228
+      ],
+      [
+        "R",
+        16151
+      ],
+      [
+        "P",
+        15944
+      ]
+    ],
+    "multi_sequence_entry_count": 49,
+    "residue_spacing": "none; FASTA sequences are contiguous uppercase strings",
+    "sequence_length_distribution": {
+      "count": 760,
+      "max": 3011.0,
+      "mean": 418.751316,
+      "median": 366.0,
+      "min": 14.0,
+      "q01": 87.59,
+      "q05": 150.0,
+      "q25": 268.0,
+      "q75": 508.5,
+      "q95": 865.45,
+      "q99": 1316.66
+    },
+    "sequence_manifest_entry_count": 702,
+    "sequence_record_count_distribution": {
+      "1": 653,
+      "2": 37,
+      "3": 11,
+      "4": 1
+    },
+    "sequence_rows_with_lowercase_count": 0,
+    "sequence_rows_with_whitespace_count": 0,
+    "truncation_or_windowing": "no truncation/windowing observed in ESM-C artifact; every FASTA record has one embedding row and longest tokenization probe preserved length+2 special tokens",
+    "unusual_residue_counts_outside_allowed_tokenizer_vocab": {}
+  }
+}

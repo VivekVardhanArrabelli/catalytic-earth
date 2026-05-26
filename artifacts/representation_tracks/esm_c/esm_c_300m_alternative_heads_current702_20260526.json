@@ -1,0 +1,1026 @@
+{
+  "heads": {
+    "cosine_1nn_first_sequence": {
+      "entry_embedding_policy": "first_sequence",
+      "heldout_predicted_label_group_counts": {
+        "cobalamin_radical_rearrangement": 1,
+        "flavin_dehydrogenase_reductase": 18,
+        "heme_peroxidase_oxidase": 5,
+        "metal_dependent_hydrolase": 9,
+        "out_of_scope": 92,
+        "plp_dependent_enzyme": 7,
+        "ser_his_acid_hydrolase": 8
+      },
+      "macro_f1_details": {
+        "by_class": {
+          "flavin_dehydrogenase_reductase": {
+            "f1": 0.0,
+            "false_negative_count": 10,
+            "false_positive_count_on_primary_rows": 4,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 4,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 10,
+            "underpowered": false
+          },
+          "heme_peroxidase_oxidase": {
+            "f1": 0.333333,
+            "false_negative_count": 3,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.5,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.25,
+            "true_positive_count": 1,
+            "true_support_count": 4,
+            "underpowered": true
+          },
+          "metal_dependent_hydrolase": {
+            "f1": 0.105263,
+            "false_negative_count": 16,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.5,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.058824,
+            "true_positive_count": 1,
+            "true_support_count": 17,
+            "underpowered": false
+          },
+          "plp_dependent_enzyme": {
+            "f1": 0.0,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 1,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 6,
+            "underpowered": false
+          },
+          "ser_his_acid_hydrolase": {
+            "f1": 0.307692,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 3,
+            "precision": 0.4,
+            "predicted_count_on_primary_rows": 5,
+            "recall": 0.25,
+            "true_positive_count": 2,
+            "true_support_count": 8,
+            "underpowered": false
+          }
+        },
+        "class_count_in_macro": 5,
+        "macro_f1": 0.149258
+      },
+      "metrics": {
+        "exact_label_accuracy_all_heldout": 0.464286,
+        "heldout_prediction_count": 140,
+        "oos_or_secondary_abstention_count": 62,
+        "oos_or_secondary_abstention_rate": 0.652632,
+        "oos_or_secondary_count": 95,
+        "oos_or_secondary_false_positive_count": 33,
+        "oos_or_secondary_false_positive_rate": 0.347368,
+        "out_of_scope_label_abstention_count": 61,
+        "out_of_scope_label_abstention_rate": 0.663043,
+        "out_of_scope_label_count": 92,
+        "out_of_scope_label_false_positive_count": 31,
+        "out_of_scope_label_false_positive_rate": 0.336957,
+        "primary_accuracy": 0.088889,
+        "primary_macro_f1": 0.149258,
+        "primary_support_count": 45
+      },
+      "prediction_head": "cosine_1nn",
+      "training_mode": "none_nearest_neighbor_lookup_only"
+    },
+    "cosine_1nn_mean_all_sequence_records": {
+      "entry_embedding_policy": "mean_all_sequence_records",
+      "heldout_predicted_label_group_counts": {
+        "cobalamin_radical_rearrangement": 2,
+        "flavin_dehydrogenase_reductase": 17,
+        "heme_peroxidase_oxidase": 4,
+        "metal_dependent_hydrolase": 8,
+        "out_of_scope": 96,
+        "plp_dependent_enzyme": 5,
+        "ser_his_acid_hydrolase": 8
+      },
+      "macro_f1_details": {
+        "by_class": {
+          "flavin_dehydrogenase_reductase": {
+            "f1": 0.0,
+            "false_negative_count": 10,
+            "false_positive_count_on_primary_rows": 4,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 4,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 10,
+            "underpowered": false
+          },
+          "heme_peroxidase_oxidase": {
+            "f1": 0.333333,
+            "false_negative_count": 3,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.5,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.25,
+            "true_positive_count": 1,
+            "true_support_count": 4,
+            "underpowered": true
+          },
+          "metal_dependent_hydrolase": {
+            "f1": 0.105263,
+            "false_negative_count": 16,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.5,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.058824,
+            "true_positive_count": 1,
+            "true_support_count": 17,
+            "underpowered": false
+          },
+          "plp_dependent_enzyme": {
+            "f1": 0.0,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 2,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 6,
+            "underpowered": false
+          },
+          "ser_his_acid_hydrolase": {
+            "f1": 0.307692,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 3,
+            "precision": 0.4,
+            "predicted_count_on_primary_rows": 5,
+            "recall": 0.25,
+            "true_positive_count": 2,
+            "true_support_count": 8,
+            "underpowered": false
+          }
+        },
+        "class_count_in_macro": 5,
+        "macro_f1": 0.149258
+      },
+      "metrics": {
+        "exact_label_accuracy_all_heldout": 0.507143,
+        "heldout_prediction_count": 140,
+        "oos_or_secondary_abstention_count": 68,
+        "oos_or_secondary_abstention_rate": 0.715789,
+        "oos_or_secondary_count": 95,
+        "oos_or_secondary_false_positive_count": 27,
+        "oos_or_secondary_false_positive_rate": 0.284211,
+        "out_of_scope_label_abstention_count": 67,
+        "out_of_scope_label_abstention_rate": 0.728261,
+        "out_of_scope_label_count": 92,
+        "out_of_scope_label_false_positive_count": 25,
+        "out_of_scope_label_false_positive_rate": 0.271739,
+        "primary_accuracy": 0.088889,
+        "primary_macro_f1": 0.149258,
+        "primary_support_count": 45
+      },
+      "prediction_head": "cosine_1nn",
+      "training_mode": "none_nearest_neighbor_lookup_only"
+    },
+    "cosine_3nn_first_sequence": {
+      "entry_embedding_policy": "first_sequence",
+      "heldout_predicted_label_group_counts": {
+        "cobalamin_radical_rearrangement": 1,
+        "flavin_dehydrogenase_reductase": 12,
+        "heme_peroxidase_oxidase": 5,
+        "metal_dependent_hydrolase": 7,
+        "out_of_scope": 104,
+        "plp_dependent_enzyme": 5,
+        "ser_his_acid_hydrolase": 6
+      },
+      "macro_f1_details": {
+        "by_class": {
+          "flavin_dehydrogenase_reductase": {
+            "f1": 0.25,
+            "false_negative_count": 8,
+            "false_positive_count_on_primary_rows": 4,
+            "precision": 0.333333,
+            "predicted_count_on_primary_rows": 6,
+            "recall": 0.2,
+            "true_positive_count": 2,
+            "true_support_count": 10,
+            "underpowered": false
+          },
+          "heme_peroxidase_oxidase": {
+            "f1": 0.285714,
+            "false_negative_count": 3,
+            "false_positive_count_on_primary_rows": 2,
+            "precision": 0.333333,
+            "predicted_count_on_primary_rows": 3,
+            "recall": 0.25,
+            "true_positive_count": 1,
+            "true_support_count": 4,
+            "underpowered": true
+          },
+          "metal_dependent_hydrolase": {
+            "f1": 0.111111,
+            "false_negative_count": 16,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 1,
+            "recall": 0.058824,
+            "true_positive_count": 1,
+            "true_support_count": 17,
+            "underpowered": false
+          },
+          "plp_dependent_enzyme": {
+            "f1": 0.0,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 2,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 6,
+            "underpowered": false
+          },
+          "ser_his_acid_hydrolase": {
+            "f1": 0.333333,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 2,
+            "precision": 0.5,
+            "predicted_count_on_primary_rows": 4,
+            "recall": 0.25,
+            "true_positive_count": 2,
+            "true_support_count": 8,
+            "underpowered": false
+          }
+        },
+        "class_count_in_macro": 5,
+        "macro_f1": 0.196032
+      },
+      "metrics": {
+        "exact_label_accuracy_all_heldout": 0.578571,
+        "heldout_prediction_count": 140,
+        "oos_or_secondary_abstention_count": 76,
+        "oos_or_secondary_abstention_rate": 0.8,
+        "oos_or_secondary_count": 95,
+        "oos_or_secondary_false_positive_count": 19,
+        "oos_or_secondary_false_positive_rate": 0.2,
+        "out_of_scope_label_abstention_count": 75,
+        "out_of_scope_label_abstention_rate": 0.815217,
+        "out_of_scope_label_count": 92,
+        "out_of_scope_label_false_positive_count": 17,
+        "out_of_scope_label_false_positive_rate": 0.184783,
+        "primary_accuracy": 0.133333,
+        "primary_macro_f1": 0.196032,
+        "primary_support_count": 45
+      },
+      "prediction_head": "cosine_3nn",
+      "training_mode": "none_nearest_neighbor_lookup_only"
+    },
+    "cosine_3nn_mean_all_sequence_records": {
+      "entry_embedding_policy": "mean_all_sequence_records",
+      "heldout_predicted_label_group_counts": {
+        "cobalamin_radical_rearrangement": 1,
+        "flavin_dehydrogenase_reductase": 12,
+        "heme_peroxidase_oxidase": 2,
+        "metal_dependent_hydrolase": 7,
+        "out_of_scope": 108,
+        "plp_dependent_enzyme": 5,
+        "ser_his_acid_hydrolase": 5
+      },
+      "macro_f1_details": {
+        "by_class": {
+          "flavin_dehydrogenase_reductase": {
+            "f1": 0.25,
+            "false_negative_count": 8,
+            "false_positive_count_on_primary_rows": 4,
+            "precision": 0.333333,
+            "predicted_count_on_primary_rows": 6,
+            "recall": 0.2,
+            "true_positive_count": 2,
+            "true_support_count": 10,
+            "underpowered": false
+          },
+          "heme_peroxidase_oxidase": {
+            "f1": 0.333333,
+            "false_negative_count": 3,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.5,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.25,
+            "true_positive_count": 1,
+            "true_support_count": 4,
+            "underpowered": true
+          },
+          "metal_dependent_hydrolase": {
+            "f1": 0.111111,
+            "false_negative_count": 16,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 1,
+            "recall": 0.058824,
+            "true_positive_count": 1,
+            "true_support_count": 17,
+            "underpowered": false
+          },
+          "plp_dependent_enzyme": {
+            "f1": 0.0,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 2,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 6,
+            "underpowered": false
+          },
+          "ser_his_acid_hydrolase": {
+            "f1": 0.333333,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 2,
+            "precision": 0.5,
+            "predicted_count_on_primary_rows": 4,
+            "recall": 0.25,
+            "true_positive_count": 2,
+            "true_support_count": 8,
+            "underpowered": false
+          }
+        },
+        "class_count_in_macro": 5,
+        "macro_f1": 0.205556
+      },
+      "metrics": {
+        "exact_label_accuracy_all_heldout": 0.6,
+        "heldout_prediction_count": 140,
+        "oos_or_secondary_abstention_count": 79,
+        "oos_or_secondary_abstention_rate": 0.831579,
+        "oos_or_secondary_count": 95,
+        "oos_or_secondary_false_positive_count": 16,
+        "oos_or_secondary_false_positive_rate": 0.168421,
+        "out_of_scope_label_abstention_count": 78,
+        "out_of_scope_label_abstention_rate": 0.847826,
+        "out_of_scope_label_count": 92,
+        "out_of_scope_label_false_positive_count": 14,
+        "out_of_scope_label_false_positive_rate": 0.152174,
+        "primary_accuracy": 0.133333,
+        "primary_macro_f1": 0.205556,
+        "primary_support_count": 45
+      },
+      "prediction_head": "cosine_3nn",
+      "training_mode": "none_nearest_neighbor_lookup_only"
+    },
+    "cosine_5nn_first_sequence": {
+      "entry_embedding_policy": "first_sequence",
+      "heldout_predicted_label_group_counts": {
+        "flavin_dehydrogenase_reductase": 6,
+        "heme_peroxidase_oxidase": 2,
+        "metal_dependent_hydrolase": 4,
+        "out_of_scope": 121,
+        "plp_dependent_enzyme": 3,
+        "ser_his_acid_hydrolase": 4
+      },
+      "macro_f1_details": {
+        "by_class": {
+          "flavin_dehydrogenase_reductase": {
+            "f1": 0.0,
+            "false_negative_count": 10,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 1,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 10,
+            "underpowered": false
+          },
+          "heme_peroxidase_oxidase": {
+            "f1": 0.0,
+            "false_negative_count": 4,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 1,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 4,
+            "underpowered": true
+          },
+          "metal_dependent_hydrolase": {
+            "f1": 0.0,
+            "false_negative_count": 17,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 1,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 17,
+            "underpowered": false
+          },
+          "plp_dependent_enzyme": {
+            "f1": 0.0,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 1,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 6,
+            "underpowered": false
+          },
+          "ser_his_acid_hydrolase": {
+            "f1": 0.545455,
+            "false_negative_count": 5,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 3,
+            "recall": 0.375,
+            "true_positive_count": 3,
+            "true_support_count": 8,
+            "underpowered": false
+          }
+        },
+        "class_count_in_macro": 5,
+        "macro_f1": 0.109091
+      },
+      "metrics": {
+        "exact_label_accuracy_all_heldout": 0.607143,
+        "heldout_prediction_count": 140,
+        "oos_or_secondary_abstention_count": 83,
+        "oos_or_secondary_abstention_rate": 0.873684,
+        "oos_or_secondary_count": 95,
+        "oos_or_secondary_false_positive_count": 12,
+        "oos_or_secondary_false_positive_rate": 0.126316,
+        "out_of_scope_label_abstention_count": 82,
+        "out_of_scope_label_abstention_rate": 0.891304,
+        "out_of_scope_label_count": 92,
+        "out_of_scope_label_false_positive_count": 10,
+        "out_of_scope_label_false_positive_rate": 0.108696,
+        "primary_accuracy": 0.066667,
+        "primary_macro_f1": 0.109091,
+        "primary_support_count": 45
+      },
+      "prediction_head": "cosine_5nn",
+      "training_mode": "none_nearest_neighbor_lookup_only"
+    },
+    "cosine_5nn_mean_all_sequence_records": {
+      "entry_embedding_policy": "mean_all_sequence_records",
+      "heldout_predicted_label_group_counts": {
+        "flavin_dehydrogenase_reductase": 6,
+        "metal_dependent_hydrolase": 3,
+        "out_of_scope": 124,
+        "plp_dependent_enzyme": 4,
+        "ser_his_acid_hydrolase": 3
+      },
+      "macro_f1_details": {
+        "by_class": {
+          "flavin_dehydrogenase_reductase": {
+            "f1": 0.0,
+            "false_negative_count": 10,
+            "false_positive_count_on_primary_rows": 2,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 10,
+            "underpowered": false
+          },
+          "heme_peroxidase_oxidase": {
+            "f1": 0.0,
+            "false_negative_count": 4,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 0,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 4,
+            "underpowered": true
+          },
+          "metal_dependent_hydrolase": {
+            "f1": 0.0,
+            "false_negative_count": 17,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 1,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 17,
+            "underpowered": false
+          },
+          "plp_dependent_enzyme": {
+            "f1": 0.0,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.0,
+            "predicted_count_on_primary_rows": 1,
+            "recall": 0.0,
+            "true_positive_count": 0,
+            "true_support_count": 6,
+            "underpowered": false
+          },
+          "ser_his_acid_hydrolase": {
+            "f1": 0.4,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.25,
+            "true_positive_count": 2,
+            "true_support_count": 8,
+            "underpowered": false
+          }
+        },
+        "class_count_in_macro": 5,
+        "macro_f1": 0.08
+      },
+      "metrics": {
+        "exact_label_accuracy_all_heldout": 0.614286,
+        "heldout_prediction_count": 140,
+        "oos_or_secondary_abstention_count": 85,
+        "oos_or_secondary_abstention_rate": 0.894737,
+        "oos_or_secondary_count": 95,
+        "oos_or_secondary_false_positive_count": 10,
+        "oos_or_secondary_false_positive_rate": 0.105263,
+        "out_of_scope_label_abstention_count": 84,
+        "out_of_scope_label_abstention_rate": 0.913043,
+        "out_of_scope_label_count": 92,
+        "out_of_scope_label_false_positive_count": 8,
+        "out_of_scope_label_false_positive_rate": 0.086957,
+        "primary_accuracy": 0.044444,
+        "primary_macro_f1": 0.08,
+        "primary_support_count": 45
+      },
+      "prediction_head": "cosine_5nn",
+      "training_mode": "none_nearest_neighbor_lookup_only"
+    },
+    "logistic_l2_then_standardized_balanced_C1_first_sequence_raw": {
+      "classes": [
+        "cobalamin_radical_rearrangement",
+        "flavin_dehydrogenase_reductase",
+        "flavin_monooxygenase",
+        "heme_peroxidase_oxidase",
+        "metal_dependent_hydrolase",
+        "out_of_scope",
+        "plp_dependent_enzyme",
+        "ser_his_acid_hydrolase"
+      ],
+      "config": "L2 normalization and StandardScaler fit on train embeddings, then multinomial logistic regression with class_weight=balanced, C=1.0.",
+      "entry_embedding_policy": "first_sequence_raw",
+      "heldout_predicted_label_group_counts": {
+        "flavin_dehydrogenase_reductase": 8,
+        "heme_peroxidase_oxidase": 5,
+        "metal_dependent_hydrolase": 13,
+        "out_of_scope": 103,
+        "plp_dependent_enzyme": 4,
+        "ser_his_acid_hydrolase": 7
+      },
+      "macro_f1_details": {
+        "by_class": {
+          "flavin_dehydrogenase_reductase": {
+            "f1": 0.571429,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 4,
+            "recall": 0.4,
+            "true_positive_count": 4,
+            "true_support_count": 10,
+            "underpowered": false
+          },
+          "heme_peroxidase_oxidase": {
+            "f1": 0.4,
+            "false_negative_count": 3,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 1,
+            "recall": 0.25,
+            "true_positive_count": 1,
+            "true_support_count": 4,
+            "underpowered": true
+          },
+          "metal_dependent_hydrolase": {
+            "f1": 0.615385,
+            "false_negative_count": 9,
+            "false_positive_count_on_primary_rows": 1,
+            "precision": 0.888889,
+            "predicted_count_on_primary_rows": 9,
+            "recall": 0.470588,
+            "true_positive_count": 8,
+            "true_support_count": 17,
+            "underpowered": false
+          },
+          "plp_dependent_enzyme": {
+            "f1": 0.285714,
+            "false_negative_count": 5,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 1,
+            "recall": 0.166667,
+            "true_positive_count": 1,
+            "true_support_count": 6,
+            "underpowered": false
+          },
+          "ser_his_acid_hydrolase": {
+            "f1": 0.428571,
+            "false_negative_count": 5,
+            "false_positive_count_on_primary_rows": 3,
+            "precision": 0.5,
+            "predicted_count_on_primary_rows": 6,
+            "recall": 0.375,
+            "true_positive_count": 3,
+            "true_support_count": 8,
+            "underpowered": false
+          }
+        },
+        "class_count_in_macro": 5,
+        "macro_f1": 0.46022
+      },
+      "metrics": {
+        "exact_label_accuracy_all_heldout": 0.671429,
+        "heldout_prediction_count": 140,
+        "oos_or_secondary_abstention_count": 79,
+        "oos_or_secondary_abstention_rate": 0.831579,
+        "oos_or_secondary_count": 95,
+        "oos_or_secondary_false_positive_count": 16,
+        "oos_or_secondary_false_positive_rate": 0.168421,
+        "out_of_scope_label_abstention_count": 77,
+        "out_of_scope_label_abstention_rate": 0.836957,
+        "out_of_scope_label_count": 92,
+        "out_of_scope_label_false_positive_count": 15,
+        "out_of_scope_label_false_positive_rate": 0.163043,
+        "primary_accuracy": 0.377778,
+        "primary_macro_f1": 0.46022,
+        "primary_support_count": 45
+      },
+      "prediction_head": "train_only_sklearn_logistic_regression",
+      "training_mode": "frozen_esm_c_embeddings_plus_train_split_logistic_regression"
+    },
+    "logistic_l2_then_standardized_balanced_C1_mean_all_sequence_records_raw": {
+      "classes": [
+        "cobalamin_radical_rearrangement",
+        "flavin_dehydrogenase_reductase",
+        "flavin_monooxygenase",
+        "heme_peroxidase_oxidase",
+        "metal_dependent_hydrolase",
+        "out_of_scope",
+        "plp_dependent_enzyme",
+        "ser_his_acid_hydrolase"
+      ],
+      "config": "L2 normalization and StandardScaler fit on train embeddings, then multinomial logistic regression with class_weight=balanced, C=1.0.",
+      "entry_embedding_policy": "mean_all_sequence_records_raw",
+      "heldout_predicted_label_group_counts": {
+        "flavin_dehydrogenase_reductase": 6,
+        "heme_peroxidase_oxidase": 6,
+        "metal_dependent_hydrolase": 17,
+        "out_of_scope": 101,
+        "plp_dependent_enzyme": 5,
+        "ser_his_acid_hydrolase": 5
+      },
+      "macro_f1_details": {
+        "by_class": {
+          "flavin_dehydrogenase_reductase": {
+            "f1": 0.461538,
+            "false_negative_count": 7,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 3,
+            "recall": 0.3,
+            "true_positive_count": 3,
+            "true_support_count": 10,
+            "underpowered": false
+          },
+          "heme_peroxidase_oxidase": {
+            "f1": 0.666667,
+            "false_negative_count": 2,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.5,
+            "true_positive_count": 2,
+            "true_support_count": 4,
+            "underpowered": true
+          },
+          "metal_dependent_hydrolase": {
+            "f1": 0.592593,
+            "false_negative_count": 9,
+            "false_positive_count_on_primary_rows": 2,
+            "precision": 0.8,
+            "predicted_count_on_primary_rows": 10,
+            "recall": 0.470588,
+            "true_positive_count": 8,
+            "true_support_count": 17,
+            "underpowered": false
+          },
+          "plp_dependent_enzyme": {
+            "f1": 0.5,
+            "false_negative_count": 4,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.333333,
+            "true_positive_count": 2,
+            "true_support_count": 6,
+            "underpowered": false
+          },
+          "ser_his_acid_hydrolase": {
+            "f1": 0.307692,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 3,
+            "precision": 0.4,
+            "predicted_count_on_primary_rows": 5,
+            "recall": 0.25,
+            "true_positive_count": 2,
+            "true_support_count": 8,
+            "underpowered": false
+          }
+        },
+        "class_count_in_macro": 5,
+        "macro_f1": 0.505698
+      },
+      "metrics": {
+        "exact_label_accuracy_all_heldout": 0.657143,
+        "heldout_prediction_count": 140,
+        "oos_or_secondary_abstention_count": 78,
+        "oos_or_secondary_abstention_rate": 0.821053,
+        "oos_or_secondary_count": 95,
+        "oos_or_secondary_false_positive_count": 17,
+        "oos_or_secondary_false_positive_rate": 0.178947,
+        "out_of_scope_label_abstention_count": 75,
+        "out_of_scope_label_abstention_rate": 0.815217,
+        "out_of_scope_label_count": 92,
+        "out_of_scope_label_false_positive_count": 17,
+        "out_of_scope_label_false_positive_rate": 0.184783,
+        "primary_accuracy": 0.377778,
+        "primary_macro_f1": 0.505698,
+        "primary_support_count": 45
+      },
+      "prediction_head": "train_only_sklearn_logistic_regression",
+      "training_mode": "frozen_esm_c_embeddings_plus_train_split_logistic_regression"
+    },
+    "logistic_standardized_balanced_C1_first_sequence_raw": {
+      "classes": [
+        "cobalamin_radical_rearrangement",
+        "flavin_dehydrogenase_reductase",
+        "flavin_monooxygenase",
+        "heme_peroxidase_oxidase",
+        "metal_dependent_hydrolase",
+        "out_of_scope",
+        "plp_dependent_enzyme",
+        "ser_his_acid_hydrolase"
+      ],
+      "config": "StandardScaler fit on train embeddings, then multinomial logistic regression with class_weight=balanced, C=1.0.",
+      "entry_embedding_policy": "first_sequence_raw",
+      "heldout_predicted_label_group_counts": {
+        "flavin_dehydrogenase_reductase": 7,
+        "heme_peroxidase_oxidase": 4,
+        "metal_dependent_hydrolase": 14,
+        "out_of_scope": 103,
+        "plp_dependent_enzyme": 5,
+        "ser_his_acid_hydrolase": 7
+      },
+      "macro_f1_details": {
+        "by_class": {
+          "flavin_dehydrogenase_reductase": {
+            "f1": 0.461538,
+            "false_negative_count": 7,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 3,
+            "recall": 0.3,
+            "true_positive_count": 3,
+            "true_support_count": 10,
+            "underpowered": false
+          },
+          "heme_peroxidase_oxidase": {
+            "f1": 0.4,
+            "false_negative_count": 3,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 1,
+            "recall": 0.25,
+            "true_positive_count": 1,
+            "true_support_count": 4,
+            "underpowered": true
+          },
+          "metal_dependent_hydrolase": {
+            "f1": 0.592593,
+            "false_negative_count": 9,
+            "false_positive_count_on_primary_rows": 2,
+            "precision": 0.8,
+            "predicted_count_on_primary_rows": 10,
+            "recall": 0.470588,
+            "true_positive_count": 8,
+            "true_support_count": 17,
+            "underpowered": false
+          },
+          "plp_dependent_enzyme": {
+            "f1": 0.5,
+            "false_negative_count": 4,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.333333,
+            "true_positive_count": 2,
+            "true_support_count": 6,
+            "underpowered": false
+          },
+          "ser_his_acid_hydrolase": {
+            "f1": 0.428571,
+            "false_negative_count": 5,
+            "false_positive_count_on_primary_rows": 3,
+            "precision": 0.5,
+            "predicted_count_on_primary_rows": 6,
+            "recall": 0.375,
+            "true_positive_count": 3,
+            "true_support_count": 8,
+            "underpowered": false
+          }
+        },
+        "class_count_in_macro": 5,
+        "macro_f1": 0.47654
+      },
+      "metrics": {
+        "exact_label_accuracy_all_heldout": 0.671429,
+        "heldout_prediction_count": 140,
+        "oos_or_secondary_abstention_count": 80,
+        "oos_or_secondary_abstention_rate": 0.842105,
+        "oos_or_secondary_count": 95,
+        "oos_or_secondary_false_positive_count": 15,
+        "oos_or_secondary_false_positive_rate": 0.157895,
+        "out_of_scope_label_abstention_count": 77,
+        "out_of_scope_label_abstention_rate": 0.836957,
+        "out_of_scope_label_count": 92,
+        "out_of_scope_label_false_positive_count": 15,
+        "out_of_scope_label_false_positive_rate": 0.163043,
+        "primary_accuracy": 0.377778,
+        "primary_macro_f1": 0.47654,
+        "primary_support_count": 45
+      },
+      "prediction_head": "train_only_sklearn_logistic_regression",
+      "training_mode": "frozen_esm_c_embeddings_plus_train_split_logistic_regression"
+    },
+    "logistic_standardized_balanced_C1_mean_all_sequence_records_raw": {
+      "classes": [
+        "cobalamin_radical_rearrangement",
+        "flavin_dehydrogenase_reductase",
+        "flavin_monooxygenase",
+        "heme_peroxidase_oxidase",
+        "metal_dependent_hydrolase",
+        "out_of_scope",
+        "plp_dependent_enzyme",
+        "ser_his_acid_hydrolase"
+      ],
+      "config": "StandardScaler fit on train embeddings, then multinomial logistic regression with class_weight=balanced, C=1.0.",
+      "entry_embedding_policy": "mean_all_sequence_records_raw",
+      "heldout_predicted_label_group_counts": {
+        "cobalamin_radical_rearrangement": 1,
+        "flavin_dehydrogenase_reductase": 6,
+        "heme_peroxidase_oxidase": 6,
+        "metal_dependent_hydrolase": 15,
+        "out_of_scope": 101,
+        "plp_dependent_enzyme": 6,
+        "ser_his_acid_hydrolase": 5
+      },
+      "macro_f1_details": {
+        "by_class": {
+          "flavin_dehydrogenase_reductase": {
+            "f1": 0.461538,
+            "false_negative_count": 7,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 3,
+            "recall": 0.3,
+            "true_positive_count": 3,
+            "true_support_count": 10,
+            "underpowered": false
+          },
+          "heme_peroxidase_oxidase": {
+            "f1": 0.666667,
+            "false_negative_count": 2,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.5,
+            "true_positive_count": 2,
+            "true_support_count": 4,
+            "underpowered": true
+          },
+          "metal_dependent_hydrolase": {
+            "f1": 0.592593,
+            "false_negative_count": 9,
+            "false_positive_count_on_primary_rows": 2,
+            "precision": 0.8,
+            "predicted_count_on_primary_rows": 10,
+            "recall": 0.470588,
+            "true_positive_count": 8,
+            "true_support_count": 17,
+            "underpowered": false
+          },
+          "plp_dependent_enzyme": {
+            "f1": 0.5,
+            "false_negative_count": 4,
+            "false_positive_count_on_primary_rows": 0,
+            "precision": 1.0,
+            "predicted_count_on_primary_rows": 2,
+            "recall": 0.333333,
+            "true_positive_count": 2,
+            "true_support_count": 6,
+            "underpowered": false
+          },
+          "ser_his_acid_hydrolase": {
+            "f1": 0.307692,
+            "false_negative_count": 6,
+            "false_positive_count_on_primary_rows": 3,
+            "precision": 0.4,
+            "predicted_count_on_primary_rows": 5,
+            "recall": 0.25,
+            "true_positive_count": 2,
+            "true_support_count": 8,
+            "underpowered": false
+          }
+        },
+        "class_count_in_macro": 5,
+        "macro_f1": 0.505698
+      },
+      "metrics": {
+        "exact_label_accuracy_all_heldout": 0.664286,
+        "heldout_prediction_count": 140,
+        "oos_or_secondary_abstention_count": 79,
+        "oos_or_secondary_abstention_rate": 0.831579,
+        "oos_or_secondary_count": 95,
+        "oos_or_secondary_false_positive_count": 16,
+        "oos_or_secondary_false_positive_rate": 0.168421,
+        "out_of_scope_label_abstention_count": 76,
+        "out_of_scope_label_abstention_rate": 0.826087,
+        "out_of_scope_label_count": 92,
+        "out_of_scope_label_false_positive_count": 16,
+        "out_of_scope_label_false_positive_rate": 0.173913,
+        "primary_accuracy": 0.377778,
+        "primary_macro_f1": 0.505698,
+        "primary_support_count": 45
+      },
+      "prediction_head": "train_only_sklearn_logistic_regression",
+      "training_mode": "frozen_esm_c_embeddings_plus_train_split_logistic_regression"
+    }
+  },
+  "main_observation": {
+    "best_train_only_logistic_head_reported": "logistic_l2_then_standardized_balanced_C1_first_sequence_raw",
+    "esm2_150m_reported_logistic": {
+      "exact_label_accuracy_all_heldout": 0.735714,
+      "heldout_prediction_count": 140,
+      "oos_false_positive_non_abstention_rate": 0.168421,
+      "oos_primary_fingerprint_false_positive_rate": 0.168421,
+      "primary_accuracy": 0.577778,
+      "primary_macro_f1": 0.695681,
+      "primary_support_count": 45,
+      "sequence_nn_baseline_oos_false_positive_rate_no_threshold": 0.2717,
+      "sequence_nn_baseline_primary_accuracy": 0.1556
+    },
+    "original_cosine_1nn_oos_label_false_positive_rate": 0.337,
+    "original_cosine_1nn_primary_accuracy": 0.0889,
+    "original_cosine_1nn_primary_macro_f1": 0.1493,
+    "scoring_aligned_logistic_metrics": {
+      "exact_label_accuracy_all_heldout": 0.671429,
+      "heldout_prediction_count": 140,
+      "oos_or_secondary_abstention_count": 79,
+      "oos_or_secondary_abstention_rate": 0.831579,
+      "oos_or_secondary_count": 95,
+      "oos_or_secondary_false_positive_count": 16,
+      "oos_or_secondary_false_positive_rate": 0.168421,
+      "out_of_scope_label_abstention_count": 77,
+      "out_of_scope_label_abstention_rate": 0.836957,
+      "out_of_scope_label_count": 92,
+      "out_of_scope_label_false_positive_count": 15,
+      "out_of_scope_label_false_positive_rate": 0.163043,
+      "primary_accuracy": 0.377778,
+      "primary_macro_f1": 0.46022,
+      "primary_support_count": 45
+    },
+    "sequence_nn_baseline": {
+      "exact_label_accuracy_all": 0.5286,
+      "exact_label_accuracy_in_scope": 0.1458,
+      "max_nearest_jaccard_similarity": 0.1664,
+      "mean_nearest_jaccard_similarity": 0.076,
+      "out_of_scope_false_positive_rate_no_threshold": 0.2717,
+      "primary_supervised_accuracy": 0.1556
+    }
+  },
+  "metadata": {
+    "artifact_id": "esm_c_300m_alternative_heads_current702_20260526",
+    "calibration_or_heldout_threshold_tuning": "none",
+    "corrected_scoring_aligned_metrics_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_scoring_aligned_logistic_metrics_current702_20260526.json",
+    "corrected_scoring_aligned_predictions_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_scoring_aligned_logistic_predictions_current702_20260526.jsonl",
+    "embedding_index_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_index_current702_20260525.jsonl",
+    "embedding_npz_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz",
+    "forbidden_inputs_used": [],
+    "generated_at_utc": "2026-05-26T03:25:02Z",
+    "heldout_rows_scored": 140,
+    "label_manifest_artifact": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    "large_model_training_performed": false,
+    "original_anomaly_metrics_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_cosine_nn_metrics_current702_20260525.json",
+    "predictive_inputs": [
+      "amino_acid_sequence_only"
+    ],
+    "schema_version": "esm_c_alternative_heads.v1",
+    "selection_note": "The corrected scoring-aligned head uses a fixed ESM-2-style train-only logistic probe; the artifact reports all tested heads and does not tune thresholds on heldout.",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "status": "computed",
+    "train_split_rows_used_for_small_heads": 562
+  }
+}

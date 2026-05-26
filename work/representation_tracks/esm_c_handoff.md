@@ -2,8 +2,75 @@
 
 Run timestamp: 2026-05-25T18:42:43Z
 Standalone smoke artifact follow-up: 2026-05-26T02:14:29Z
+Anomaly audit update: 2026-05-26T03:25:00Z
 
 Branch: `research/representation-esm-c`
+
+## 2026-05-26 Anomaly Audit Result
+
+The suspicious ESM-C 300M cosine 1-NN result was reproduced exactly under the
+original scoring head, but the embedding audit did not find corruption,
+misalignment, truncation, or pooling breakage.
+
+Current diagnosis:
+
+- FASTA/index alignment is exact for all 760 repaired FASTA records.
+- All 702 label-manifest rows map to exactly one first repaired sequence
+  embedding; all 760 sequence records across multi-sequence entries are covered.
+- The first repaired sequence per label row reproduces the original ESM-C
+  heldout 1-NN predictions `140/140`.
+- No NaN, inf, zero-norm, constant, or duplicate embedding rows were found.
+- ESM-C tokenizer probe: `EsmSequenceTokenizer`, BOS `<cls>` id `0`, EOS
+  `<eos>` id `2`, PAD id `1`, vocab size `33`.
+- Longest repaired FASTA sequence had length `3011` and encoded to `3013`
+  tokens, matching `sequence_length + BOS/EOS`; no truncation/windowing issue was
+  observed.
+- The main anomaly is scoring-head mismatch against the successful ESM-2 150M
+  track: ESM-C was originally reported with cosine 1-NN, while ESM-2 150M used a
+  train-split sklearn logistic probe on frozen embeddings.
+
+New audit artifacts:
+
+- `artifacts/representation_tracks/esm_c/esm_c_300m_embedding_sanity_audit_current702_20260526.json`
+- SHA-256: `6c0ec7e8ea0d14dae5ca5c66dd0adb177c5ed94b4f2e6de92af574a8f630ad58`
+- `artifacts/representation_tracks/esm_c/esm_c_300m_pipeline_comparison_to_esm2_current702_20260526.json`
+- SHA-256: `1945f3e016014796131c991602c5c0503275bdfce674e65630a0297458f53f72`
+- `artifacts/representation_tracks/esm_c/esm_c_300m_alternative_heads_current702_20260526.json`
+- SHA-256: `a8c936db75534db6b405676fa65b913a715765797360caf3a060d689115eee67`
+
+Corrected scoring-aligned artifacts, emitted separately without overwriting the
+original 1-NN anomaly artifact:
+
+- `artifacts/representation_tracks/esm_c/esm_c_300m_scoring_aligned_logistic_metrics_current702_20260526.json`
+- SHA-256: `15244e29b7b19a8541a2099e103d69286495f6b4ed85508742903ffba66785d4`
+- `artifacts/representation_tracks/esm_c/esm_c_300m_scoring_aligned_logistic_predictions_current702_20260526.jsonl`
+- SHA-256: `80a53302658a27f7dfb70ee8609e4866da1be0d133e05ede984e884413805afd`
+
+Corrected scoring-aligned ESM-C result:
+
+- Head: frozen ESM-C embeddings plus train-split-only logistic regression with
+  L2 normalization, train-fit standardization, `class_weight=balanced`, `C=1.0`.
+- Heldout predictions: 140.
+- Primary support: 45.
+- Primary accuracy: `0.377778`.
+- Primary macro-F1: `0.460220`.
+- Exact label accuracy, all heldout rows: `0.671429`.
+- OOS-label false-positive rate: `0.163043` (`15/92`).
+- OOS-or-secondary false-positive rate: `0.168421` (`16/95`).
+
+Comparison:
+
+- Original ESM-C cosine 1-NN: primary accuracy `0.0889`, macro-F1 `0.1493`,
+  OOS-label FP rate `0.3370`.
+- Sequence-NN baseline: primary accuracy `0.1556`, OOS FP rate `0.2717`.
+- ESM-2 150M reported logistic benchmark: primary accuracy `0.577778`,
+  macro-F1 `0.695681`, OOS-or-secondary FP rate `0.168421`.
+- Same-head ESM-2 cosine 1-NN diagnostic: primary accuracy `0.222222`,
+  macro-F1 `0.367903`, OOS-or-secondary FP rate `0.221053`.
+
+Conclusion: ESM-C 300M is not suspiciously broken under this setup after
+scoring alignment, but it still underperforms ESM-2 150M logistic on primary
+accuracy and macro-F1. No model-win claim should be made for ESM-C over ESM-2.
 
 ## Status
 
@@ -93,6 +160,15 @@ Direct comparison recorded in the metrics artifact:
 
 ## Verification
 
+- Current anomaly-audit JSON artifacts validated with Python `json.load`.
+- Corrected scoring-aligned prediction JSONL validated line-by-line with 140
+  rows.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed on the current
+  run:
+  - 12 source records
+  - 8 mechanism fingerprints
+  - 15 mechanism ontology families
+  - 702 curated mechanism labels
 - JSON artifacts validated with Python `json.load`.
 - JSONL artifacts validated line-by-line: embeddings index has 760 rows; predictions has 140 rows.
 - `PYTHONPATH=src python -m catalytic_earth.cli validate` passed:
@@ -112,4 +188,7 @@ Direct comparison recorded in the metrics artifact:
 
 ## Next Exact Step
 
-First push local branch `research/representation-esm-c` from an authenticated environment. Then review the ESM-C metrics against the sequence-NN and geometry baselines. ESM-C 300M is worse than sequence-NN on primary macro-F1, primary accuracy, and OOS false-positive rate in this frozen 1-NN setup, so no win claim should be made from this run.
+Review the new scoring-aligned ESM-C artifacts against the ESM-2 150M track.
+The corrected ESM-C head clears the original anomaly versus sequence-NN but
+still trails ESM-2 150M logistic; focus any model conclusion on that gap, not on
+the stale 1-NN artifact alone.
