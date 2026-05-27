@@ -1,0 +1,171 @@
+{
+  "artifact_id": "v3_flavin_monooxygenase_acquisition_closure_702_20260527",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "current_counts": {
+    "canonical_flavin_monooxygenase_count": 2,
+    "canonical_flavin_monooxygenase_rows": [
+      "m_csa:131",
+      "m_csa:132"
+    ],
+    "clean_acquisition_count_if_candidates_are_counted_for_readiness": 4,
+    "goal_clean_count_before_primary_promotion_reconsideration": 6,
+    "missing_canonical_count_to_n6_without_relabeling_candidates": 4,
+    "missing_clean_count_to_n6_after_this_closure": 2,
+    "new_clean_local_secondary_or_future_candidate_count": 2,
+    "new_clean_local_secondary_or_future_candidates": [
+      "m_csa:551",
+      "m_csa:973"
+    ]
+  },
+  "guardrails": {
+    "fingerprint_registry_changed": false,
+    "label_registry_changed_by_this_artifact": false,
+    "model_retrained": false,
+    "ontology_registry_changed": false,
+    "primary_promotion_reconsidered_now": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false
+  },
+  "local_candidate_reviews": [
+    {
+      "canonical_label_action": "no_canonical_relabel_in_this_closure",
+      "current_canonical_state": {
+        "confidence": "high",
+        "entry_id": "m_csa:551",
+        "evidence_score": 0.72,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "seed_fingerprint",
+        "rationale": "phenol 2-monooxygenase is provisionally assigned to flavin_dehydrogenase_reductase: retrieval score 0.6700 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": "clean_FMO_secondary_or_future_row",
+      "entry_id": "m_csa:551",
+      "entry_name": "phenol 2-monooxygenase",
+      "rationale": "Mechanism uses NADPH-reduced FAD plus O2 to form C4a-hydroperoxyflavin and hydroxylate phenol at the ortho position; this is clean flavin monooxygenase chemistry but remains non-promotional until the n>=6 and hard-negative gates are met."
+    },
+    {
+      "canonical_label_action": "no_canonical_relabel_in_this_closure",
+      "current_canonical_state": {
+        "confidence": "high",
+        "entry_id": "m_csa:973",
+        "evidence_score": 0.72,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "seed_fingerprint",
+        "rationale": "DszC protein is provisionally assigned to flavin_dehydrogenase_reductase: retrieval score 0.7478 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": "clean_FMO_secondary_or_future_row",
+      "entry_id": "m_csa:973",
+      "entry_name": "DszC protein",
+      "rationale": "Mechanism uses FMNH2 proton-coupled electron transfer to dioxygen to form C4a-hydroperoxyflavin, followed by sulfur oxygenation; clean FMO acquisition signal, not primary promotion evidence yet."
+    },
+    {
+      "decision": "not_clean_FMO_for_this_packet",
+      "entry_id": "m_csa:141",
+      "entry_name": "4-cresol dehydrogenase (hydroxylating)",
+      "rationale": "Hydroxylating dehydrogenase uses hydride transfer to FAD and water-derived oxygen; overlaps flavin_dehydrogenase_reductase rather than clean C4a-peroxy monooxygenation."
+    },
+    {
+      "decision": "not_FMO",
+      "entry_id": "m_csa:128",
+      "entry_name": "Photinus-luciferin 4-monooxygenase (ATP-hydrolysing)",
+      "rationale": "ATP/luciferyl-adenylate oxygenation lacks flavin monooxygenase mechanism support."
+    }
+  ],
+  "named_target_family_search": [
+    {
+      "decision": "missing_local_clean_row",
+      "local_candidates_found": [],
+      "notes": "m_csa:132 contains Baeyer-Villiger-like FMN-peroxo language but is alkanal monooxygenase, not a named cyclohexanone/BVMO row.",
+      "target_family": "cyclohexanone_monooxygenase_or_BVMO"
+    },
+    {
+      "decision": "missing_local_clean_row",
+      "local_candidates_found": [],
+      "target_family": "4_hydroxyacetophenone_monooxygenase_HAPMO"
+    },
+    {
+      "decision": "missing_local_clean_row",
+      "local_candidates_found": [],
+      "notes": "Local lysine N6 hits are transferase/aminomutase/demethylase naming matches, not IucD-class flavin hydroxylase rows.",
+      "target_family": "IucD_class_lysine_N6_hydroxylase"
+    },
+    {
+      "decision": "missing_local_clean_row",
+      "local_candidates_found": [],
+      "target_family": "tryptophan_2_monooxygenase"
+    },
+    {
+      "decision": "missing_local_clean_row",
+      "local_candidates_found": [],
+      "target_family": "salicylate_1_monooxygenase"
+    },
+    {
+      "decision": "missing_local_clean_row",
+      "local_candidates_found": [],
+      "target_family": "FMO1_FMO3_FMO5"
+    },
+    {
+      "decision": "missing_local_clean_row",
+      "local_candidates_found": [],
+      "target_family": "dimethylaniline_monooxygenase"
+    },
+    {
+      "decision": "four_clean_local_signals_total",
+      "local_candidates_found": [
+        "m_csa:131",
+        "m_csa:132",
+        "m_csa:551",
+        "m_csa:973"
+      ],
+      "target_family": "local_non_target_clean_FMO"
+    }
+  ],
+  "primary_promotion_decision": {
+    "next_exact_acquisition_need": "Find at least two more clean flavin C4a-peroxy monooxygenase rows, preferably from named missing families, then run hard-negative separation before primary promotion reconsideration.",
+    "promote_fmo_primary_now": false,
+    "reason": "Clean acquisition count is 4 if m_csa:551 and m_csa:973 are counted as secondary/future candidates, still below n>=6; canonical FMO support remains 2 and hard-negative separation evidence is absent."
+  },
+  "review_only": true,
+  "schema_version": "v3_flavin_monooxygenase_acquisition_closure.v1",
+  "screened_out_local_monooxygenase_rows": [
+    {
+      "entry_id": "m_csa:128",
+      "reason": "ATP/luciferin oxygenation without flavin mechanism support"
+    },
+    {
+      "entry_id": "m_csa:133",
+      "reason": "P450 heme monooxygenase, not flavin monooxygenase"
+    },
+    {
+      "entry_id": "m_csa:134",
+      "reason": "tetrahydrobiopterin/non-heme iron hydroxylase"
+    },
+    {
+      "entry_id": "m_csa:135",
+      "reason": "copper-dependent monooxygenase"
+    },
+    {
+      "entry_id": "m_csa:600",
+      "reason": "soluble methane monooxygenase metal chemistry"
+    },
+    {
+      "entry_id": "m_csa:768",
+      "reason": "Renilla luciferin monooxygenase lacks clean flavin C4a-peroxy support in current local labels"
+    }
+  ],
+  "source_artifacts": {
+    "artifacts/v1_graph_1025.json": {
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json": {
+      "sha256": "9d2059f7a7c8d8f4ca939258cae366b4376c41c4e447fec16220674d0feb6500"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    }
+  },
+  "status": "acquisition_closure_complete_primary_promotion_blocked"
+}

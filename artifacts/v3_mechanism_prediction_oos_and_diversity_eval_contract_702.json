@@ -491,7 +491,7 @@
       }
     ],
     "complete_oos_assignment": false,
-    "current_registry_out_of_scope_label_count": 471,
+    "current_registry_out_of_scope_label_count": 472,
     "partial_assignment_status": {
       "full_470_out_of_scope_assigned": false,
       "next_exact_task": "Apply oos_tiering_policy to all current label_type=out_of_scope rows using registry/fingerprint/audit evidence plus train-free sequence or structure neighborhoods, then emit artifacts/v3_mechanism_prediction_oos_tier_assignments_702.json with per-entry tier, trigger, evidence source, and exclusion reason fields before interpreting model results",
@@ -506,7 +506,7 @@
         "unknown_oos": 2
       },
       "out_of_scope_label_rows_assigned_in_this_contract": 11,
-      "remaining_out_of_scope_label_rows_pending_assignment": 459,
+      "remaining_out_of_scope_label_rows_pending_assignment": 461,
       "secondary_probe_seed_rows_assigned_in_this_contract": 6
     },
     "representative_entry_ids_by_tier": {
@@ -791,9 +791,10 @@
         "m_csa:892",
         "m_csa:973"
       ],
-      "support_count": 49,
+      "support_count": 48,
       "post_contract_notes": [
-        "m_csa:497 relabeled out_of_scope on 2026-05-27; support count revised from 50 to 49."
+        "m_csa:497 relabeled out_of_scope on 2026-05-27; support count revised from 50 to 49.",
+        "m_csa:750 relabeled out_of_scope on 2026-05-27; support count revised from 49 to 48."
       ]
     },
     {
@@ -831,14 +832,14 @@
   ],
   "registry_scope_summary": {
     "label_type_counts": {
-      "out_of_scope": 471,
-      "seed_fingerprint": 231
+      "out_of_scope": 472,
+      "seed_fingerprint": 230
     },
-    "primary_seed_label_count": 225,
+    "primary_seed_label_count": 224,
     "secondary_probe_seed_label_count": 6,
     "seed_fingerprint_counts": {
       "cobalamin_radical_rearrangement": 3,
-      "flavin_dehydrogenase_reductase": 49,
+      "flavin_dehydrogenase_reductase": 48,
       "flavin_monooxygenase": 2,
       "heme_peroxidase_oxidase": 20,
       "metal_dependent_hydrolase": 83,
@@ -892,7 +893,7 @@
   "source_artifacts": {
     "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json": {
       "role": "primary_and_secondary_fingerprint_freeze",
-      "sha256": "a3bb4038ba44f11090421382f9546595f3089f0aea647e4ddcda6bbeb1247d10"
+      "sha256": "3ba214b706e8889a8a32f424b7ed7f7d7959f10aef5197dc997318e6cfee5b32"
     },
     "artifacts/v3_representation_baseline_shootout_plan_20260525.json": {
       "role": "leakage_and_baseline_plan_context",
@@ -900,7 +901,7 @@
     },
     "data/registries/curated_mechanism_labels.json": {
       "role": "current_702_label_registry",
-      "sha256": "aedbc56e20cad1908e152c83400dfd9fbb63774b4d0c56fc7b8b7ebeebecfcd1"
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
     },
     "data/registries/mechanism_fingerprints.json": {
       "role": "production_fingerprint_registry",
@@ -924,6 +925,13 @@
       "entry_id": "m_csa:497",
       "revision_artifact": "artifacts/v3_m_csa497_label_revision_702_20260527.json",
       "metric_impact_artifact": "artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json",
+      "previous_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "revised_eval_role": "out_of_scope_boundary_negative"
+    },
+    {
+      "entry_id": "m_csa:750",
+      "revision_artifact": "artifacts/v3_m_csa750_label_revision_702_20260527.json",
+      "metric_impact_artifact": "artifacts/v3_m_csa750_wave1_metric_canary_impact_702_20260527.json",
       "previous_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
       "revised_eval_role": "out_of_scope_boundary_negative"
     }

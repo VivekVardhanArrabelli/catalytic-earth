@@ -1,0 +1,59 @@
+{
+  "artifact_id": "v3_m_csa43_wave1_canary_closure_702_20260527",
+  "canary_decision": {
+    "m_csa43_remains_valid_wave1_top_foldseek_success_learned_failure_canary": true,
+    "needs_relabel_review": false,
+    "reason": "Current label, mechanism text, and Wave 1 role are internally consistent.",
+    "should_be_replaced": false
+  },
+  "canary_set_after_m_csa750": {
+    "exact_next_decision": "Select a replacement only through a label-state review of another primary row with Foldseek-success/learned-failure behavior; none is promoted here.",
+    "m_csa750_removed_from_canary_use": true,
+    "remaining_valid_canaries": [
+      "m_csa:43"
+    ],
+    "replacement_canary_proposed": null,
+    "status": "underpowered_singleton_canary_set"
+  },
+  "created_utc": "2026-05-27T00:00:00Z",
+  "entry": {
+    "confidence": "medium",
+    "entry_id": "m_csa:43",
+    "evidence_score": 0.65,
+    "fingerprint_id": "metal_dependent_hydrolase",
+    "label_type": "seed_fingerprint",
+    "rationale": "Purple acid phosphatase performs metal-assisted phosphate ester hydrolysis, fitting the metal-dependent hydrolase seed.",
+    "review_status": "automation_curated",
+    "tier": "bronze"
+  },
+  "guardrails": {
+    "fingerprint_registry_changed": false,
+    "label_registry_changed_by_this_artifact": false,
+    "model_retrained": false,
+    "ontology_registry_changed": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false
+  },
+  "mechanism_evidence": {
+    "fit": "Metal-bound phosphate ester hydrolysis with Fe(III)-bound hydroxide in-line attack matches metal_dependent_hydrolase.",
+    "mechanism_text": "On the basis of structural studies with bound phosphate and tungstate (inhibitor), and the observed inversion of the phosphorous configuration during catalysis, an SN2-type mechanism is proposed for PAP. The substrate phosphate is bound to the Me(II) ion via one of the non-esterified oxygen atoms and oriented by His202 and His296 (numbering for kidney bean enzyme) for in-line attack of an Fe(III)-bound hydroxide ion from a position opposite the esterified oxygen. These residues and the metal ions are presumed to stabilise the pentaco-ordinate transition state. Tentatively, His296 may then act as a general acid to protonate the leaving group, followed by the attack of a water molecule on the Fe(III) atom to release the inorganic phosphate.",
+    "source": "artifacts/v1_graph_1025.json:m_csa:43:mechanism:1"
+  },
+  "review_only": true,
+  "schema_version": "v3_m_csa43_wave1_canary_closure.v1",
+  "source_artifacts": {
+    "artifacts/v3_m_csa43_wave1_canary_mechanism_check_702_20260527.json": {
+      "sha256": "45ee961899a90bc3324dc9135ddd985aad4d5bceae6bfe96a6dbfcceb0fb6de3"
+    },
+    "artifacts/v3_m_csa750_wave1_metric_canary_impact_702_20260527.json": {
+      "sha256": "e3de377f15e277ad3e718b5760e1f9c6b62a8c933741ed5660a39fdd314b6c04"
+    },
+    "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json": {
+      "sha256": "8383074a7bb586cbff8219c8f903068e265b30a5f3596a50fa12444083c3a156"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    }
+  },
+  "status": "canary_closure_valid_but_underpowered_after_750_removal"
+}

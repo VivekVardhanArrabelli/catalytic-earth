@@ -1,0 +1,103 @@
+{
+  "artifact_id": "v3_wave1_tm_pair_signal_expansion_blocker_702_20260527",
+  "schema_version": "v3_wave1_tm_pair_signal_expansion_blocker.v1",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "checklist_item": "full_tm_pair_signal_expansion",
+  "status": "blocked_runtime_unbounded_foldseek_attempt_running_without_result",
+  "guardrails": {
+    "review_only": true,
+    "canonical_label_registry_changed": false,
+    "fingerprint_registry_changed": false,
+    "ontology_ids_changed": false,
+    "production_scoring_changed": false,
+    "thresholds_changed": false,
+    "model_outputs_changed": false,
+    "artifact_migration_state_changed": false
+  },
+  "readiness_stage": {
+    "status": "completed",
+    "artifact": "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json",
+    "available_staged_coordinate_count": 692,
+    "coordinate_materialization_possible_count": 696,
+    "foldseek_binary_available": true,
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "full_tm_score_split_computed": false
+  },
+  "existing_signal_before_this_attempt": {
+    "artifact": "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json",
+    "pair_rows_produced": 952922,
+    "reported_pair_row_count": 200,
+    "max_reported_pair_rows": 200,
+    "retention_policy": "summary_top_train_test_and_target_violations"
+  },
+  "attempted_expansion": {
+    "target_reported_pair_rows": 5000,
+    "output_artifact": "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_pair_rows5000_20260527.json",
+    "command": "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-signal --slice-id 1000_current702_wave1 --readiness artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --threads 4 --summary-only --max-reported-rows 5000 --out artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_pair_rows5000_20260527.json",
+    "observed_temp_workdir": "/private/tmp/catalytic-earth-foldseek-tm-1000_current702_wave1-928d50262750",
+    "observed_foldseek_pid": 64301,
+    "observed_result_files": {
+      "repo_output_artifact_exists": false,
+      "temp_staged_tm_scores_tsv_exists": false,
+      "temp_alignment_shards_observed": [
+        "tmp/10521327985337071076/search_tmp/9464998028328508808/strualn.0",
+        "tmp/10521327985337071076/search_tmp/9464998028328508808/strualn.1",
+        "tmp/10521327985337071076/search_tmp/9464998028328508808/strualn.2",
+        "tmp/10521327985337071076/search_tmp/9464998028328508808/strualn.3"
+      ]
+    },
+    "interruption_attempts": [
+      {
+        "method": "session_stdin_ctrl_c",
+        "result": "not_available_stdin_closed"
+      },
+      {
+        "method": "pkill_or_killall_or_kill_from_sandbox",
+        "result": "denied_by_sandbox_or_process_list_policy"
+      }
+    ]
+  },
+  "blocker": {
+    "terminal_for_this_closure_cycle": true,
+    "exact_reason": "A direct unbounded build-foldseek-tm-score-signal run over 692 staged current702 Wave 1 structures did not return a 5000-row artifact during the closure cycle, and the sandbox does not allow interrupting the child Foldseek process once started from the closed-stdin exec session.",
+    "missing_for_success": [
+      "completed artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_pair_rows5000_20260527.json",
+      "reported_pair_row_count near 5000 or an explicit smaller all-pair count",
+      "metadata showing the current702 Wave 1 heldout-vs-train pair rows were retained beyond the old 200-row cap"
+    ]
+  },
+  "minimal_next_commands": [
+    {
+      "purpose": "bounded all-materializable retry with timeout and 5000 retained pair summaries",
+      "command": "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-all-materializable-signal --slice-id 1000_current702_wave1 --readiness artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --threads 4 --max-runtime-seconds 1800 --max-reported-pairs 5000 --out artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_pair_rows5000_20260527.json"
+    },
+    {
+      "purpose": "resumable fallback if the bounded all-materializable retry times out",
+      "command": "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk-signal --slice-id 1000_current702_wave1 --readiness artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --chunk-index 0 --chunk-size 24 --threads 4 --max-runtime-seconds 900 --max-reported-pairs 5000 --out artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_query_chunk_000_20260527.json"
+    }
+  ],
+  "packet1_fold_neighborhood_claim_status": {
+    "m_csa:217": {
+      "current_decision": "verified_anchor_from_existing_packet1_addenda",
+      "effect_of_this_blocker": "not_upgraded_by_5000_row_signal",
+      "full_fold_neighborhood_support": "still_capped_by_prior_200_row_retention"
+    },
+    "m_csa:477": {
+      "current_decision": "verified_anchor_from_existing_packet1_addenda",
+      "effect_of_this_blocker": "not_upgraded_by_5000_row_signal",
+      "full_fold_neighborhood_support": "still_capped_by_prior_200_row_retention"
+    },
+    "m_csa:428": {
+      "current_decision": "caveated_partial_anchor",
+      "effect_of_this_blocker": "caveat_not_removed",
+      "full_fold_neighborhood_support": "still_capped_by_prior_200_row_retention"
+    },
+    "m_csa:440": {
+      "current_decision": "near_orphan_oos_router_abstention_diagnostic",
+      "effect_of_this_blocker": "near_orphan_status_not_reopened",
+      "full_fold_neighborhood_support": "still_capped_by_prior_200_row_retention"
+    }
+  },
+  "closure_cycle_decision": "item_5_blocked_with_exact_runtime_and_next_command"
+}

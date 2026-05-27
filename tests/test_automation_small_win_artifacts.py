@@ -5729,7 +5729,7 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             by_type[label["label_type"]] = by_type.get(label["label_type"], 0) + 1
 
         self.assertEqual(len(labels), 702)
-        self.assertEqual(by_type, {"out_of_scope": 471, "seed_fingerprint": 231})
+        self.assertEqual(by_type, {"out_of_scope": 472, "seed_fingerprint": 230})
 
         labels_by_entry = {label["entry_id"]: label for label in labels}
         self.assertEqual(
@@ -16463,7 +16463,7 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             ],
         )
         self.assertEqual(
-            audit["freeze_decision_summary"]["primary_metric_seed_label_count"], 225
+            audit["freeze_decision_summary"]["primary_metric_seed_label_count"], 224
         )
         self.assertEqual(
             audit["freeze_decision_summary"]["secondary_only_seed_label_count"], 6
@@ -16639,6 +16639,9 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         lockdown = _load_json(
             ARTIFACTS / "v3_packet1_wave1_lockdown_addendum_702_20260527.json"
         )
+        closure = _load_json(
+            ARTIFACTS / "v3_packet1_wave1_decision_closure_702_20260527.json"
+        )
         hydride_demotion = _load_json(
             ARTIFACTS
             / "v3_v2_sublabel_audit_702_flavin_hydride_transfer_demotion_20260527.json"
@@ -16676,6 +16679,18 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "primary flavin_dehydrogenase_reductase support and metrics",
             cells["excluded_after_oos_relabel"]["exclude_from"],
         )
+        closure_rows = {
+            row["entry_id"]: row["closure_state"]
+            for row in closure["row_closures"]
+        }
+        self.assertEqual(closure_rows["m_csa:217"], "verified_anchor")
+        self.assertEqual(closure_rows["m_csa:477"], "verified_anchor")
+        self.assertEqual(closure_rows["m_csa:428"], "caveated_partial")
+        self.assertEqual(closure_rows["m_csa:440"], "near_orphan_oos")
+        self.assertEqual(
+            closure_rows["m_csa:497"],
+            "excluded_from_primary_flavin_metrics",
+        )
 
         demotion = hydride_demotion["field_demotion"]
         self.assertEqual(
@@ -16707,18 +16722,72 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             ).hexdigest(),
         )
 
+    def test_wave1_tm_pair_signal_expansion_is_exactly_blocked(self) -> None:
+        blocker = _load_json(
+            ARTIFACTS
+            / "v3_wave1_tm_pair_signal_expansion_blocker_702_20260527.json"
+        )
+
+        self.assertEqual(
+            blocker["status"],
+            "blocked_runtime_unbounded_foldseek_attempt_running_without_result",
+        )
+        self.assertTrue(blocker["guardrails"]["review_only"])
+        self.assertFalse(blocker["guardrails"]["canonical_label_registry_changed"])
+        self.assertEqual(
+            blocker["readiness_stage"]["available_staged_coordinate_count"],
+            692,
+        )
+        self.assertEqual(
+            blocker["existing_signal_before_this_attempt"]["max_reported_pair_rows"],
+            200,
+        )
+        self.assertEqual(
+            blocker["attempted_expansion"]["target_reported_pair_rows"],
+            5000,
+        )
+        self.assertFalse(
+            blocker["attempted_expansion"]["observed_result_files"][
+                "repo_output_artifact_exists"
+            ]
+        )
+        self.assertIn(
+            "--max-runtime-seconds 1800",
+            blocker["minimal_next_commands"][0]["command"],
+        )
+        claim_status = blocker["packet1_fold_neighborhood_claim_status"]
+        self.assertEqual(
+            claim_status["m_csa:217"]["full_fold_neighborhood_support"],
+            "still_capped_by_prior_200_row_retention",
+        )
+        self.assertEqual(
+            claim_status["m_csa:428"]["current_decision"],
+            "caveated_partial_anchor",
+        )
+
     def test_m_csa750_packet_and_mismatch_audit_are_fail_closed(self) -> None:
         packet = _load_json(
             ARTIFACTS / "v3_m_csa750_review_packet_702_20260527.json"
+        )
+        revision = _load_json(
+            ARTIFACTS / "v3_m_csa750_label_revision_702_20260527.json"
+        )
+        metric_impact = _load_json(
+            ARTIFACTS / "v3_m_csa750_wave1_metric_canary_impact_702_20260527.json"
         )
         audit = _load_json(
             ARTIFACTS
             / "v3_label_factory_review_import_mechanism_mismatch_audit_702_20260527.json"
         )
+        close_read = _load_json(
+            ARTIFACTS
+            / "v3_label_factory_review_import_mechanism_mismatch_close_read_702_20260527.json"
+        )
+        labels = _load_json(ROOT / "data" / "registries" / "curated_mechanism_labels.json")
+        label_by_entry = {row["entry_id"]: row for row in labels}
 
         self.assertEqual(packet["status"], "review_blocked_no_canonical_relabel")
         self.assertFalse(packet["guardrails"]["canonical_label_changed"])
-        self.assertTrue(packet["entry"]["canonical_row_left_unchanged"])
         self.assertEqual(
             packet["review_decision"]["mechanism_class"],
             "flavin_radical_fe_s_dehydratase",
@@ -16735,6 +16804,26 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         evidence_text = json.dumps(packet["decisive_mechanism_evidence"])
         self.assertIn("semiquinone", evidence_text)
         self.assertIn("Fe-S", evidence_text)
+        self.assertEqual(revision["decision"], "relabel_out_of_scope")
+        self.assertEqual(
+            revision["revised_label_state"]["label_type"],
+            "out_of_scope",
+        )
+        self.assertTrue(
+            revision["evaluation_policy_effect"]["pull_from_wave1_primary_flavin_metrics"]
+        )
+        self.assertEqual(label_by_entry["m_csa:750"]["label_type"], "out_of_scope")
+        self.assertIsNone(label_by_entry["m_csa:750"]["fingerprint_id"])
+        self.assertEqual(label_by_entry["m_csa:750"]["review_status"], "expert_reviewed")
+        self.assertIn(
+            "label_factory_review_import",
+            label_by_entry["m_csa:750"]["evidence"]["sources"],
+        )
+        self.assertTrue(metric_impact["canary_impact"]["removed_from_canary_use"])
+        self.assertEqual(
+            metric_impact["canary_impact"]["canary_set_status"],
+            "underpowered_after_m_csa750_removal",
+        )
 
         self.assertTrue(audit["review_only"])
         self.assertEqual(
@@ -16759,13 +16848,28 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             audit["shortlist_summary"]["already_resolved_prior_revision_entry_ids"],
             ["m_csa:497"],
         )
+        close_read_rows = {row["entry_id"]: row for row in close_read["rows"]}
+        self.assertEqual(close_read_rows["m_csa:750"]["disposition"], "relabel_out_of_scope")
+        self.assertEqual(close_read_rows["m_csa:506"]["disposition"], "keep_current_label")
+        self.assertEqual(
+            close_read_rows["m_csa:714"]["disposition"],
+            "move_to_secondary_or_future_family_blocker",
+        )
+        self.assertFalse(close_read["guardrails"]["ontology_registry_changed"])
+        self.assertEqual(close_read["summary"]["relabel_out_of_scope_count"], 1)
 
     def test_fmo_acquisition_and_m_csa43_canary_checks_are_review_only(self) -> None:
         fmo = _load_json(
             ARTIFACTS / "v3_flavin_monooxygenase_acquisition_packet_702_20260527.json"
         )
+        fmo_closure = _load_json(
+            ARTIFACTS / "v3_flavin_monooxygenase_acquisition_closure_702_20260527.json"
+        )
         canary = _load_json(
             ARTIFACTS / "v3_m_csa43_wave1_canary_mechanism_check_702_20260527.json"
+        )
+        canary_closure = _load_json(
+            ARTIFACTS / "v3_m_csa43_wave1_canary_closure_702_20260527.json"
         )
 
         self.assertTrue(fmo["review_only"])
@@ -16793,12 +16897,42 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
         self.assertEqual(local_decisions["m_csa:551"], "clean_FMO_candidate")
         self.assertEqual(local_decisions["m_csa:973"], "clean_FMO_candidate")
         self.assertEqual(local_decisions["m_csa:128"], "not_FMO")
+        self.assertEqual(
+            fmo_closure["current_counts"][
+                "clean_acquisition_count_if_candidates_are_counted_for_readiness"
+            ],
+            4,
+        )
+        self.assertEqual(
+            fmo_closure["current_counts"]["missing_clean_count_to_n6_after_this_closure"],
+            2,
+        )
+        self.assertFalse(
+            fmo_closure["primary_promotion_decision"]["promote_fmo_primary_now"]
+        )
+        target_decisions = {
+            row["target_family"]: row["decision"]
+            for row in fmo_closure["named_target_family_search"]
+        }
+        self.assertEqual(
+            target_decisions["cyclohexanone_monooxygenase_or_BVMO"],
+            "missing_local_clean_row",
+        )
 
         self.assertTrue(canary["review_only"])
         self.assertFalse(canary["guardrails"]["label_registry_changed"])
         self.assertEqual(canary["entry"]["current_fingerprint_id"], "metal_dependent_hydrolase")
         self.assertTrue(canary["canary_decision"]["remains_valid_wave1_canary"])
         self.assertFalse(canary["canary_decision"]["label_review_needed"])
+        self.assertTrue(
+            canary_closure["canary_decision"][
+                "m_csa43_remains_valid_wave1_top_foldseek_success_learned_failure_canary"
+            ]
+        )
+        self.assertEqual(
+            canary_closure["canary_set_after_m_csa750"]["status"],
+            "underpowered_singleton_canary_set",
+        )
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@
   },
   "by_fingerprint": {
     "cobalamin_radical_rearrangement": 3,
-    "flavin_dehydrogenase_reductase": 49,
+    "flavin_dehydrogenase_reductase": 48,
     "flavin_monooxygenase": 2,
     "heme_peroxidase_oxidase": 20,
     "metal_dependent_hydrolase": 83,
@@ -18,17 +18,17 @@
     "label_factory_v1_8fp": 702
   },
   "by_review_status": {
-    "automation_curated": 684,
-    "expert_reviewed": 18
+    "automation_curated": 683,
+    "expert_reviewed": 19
   },
   "by_tier": {
     "bronze": 685,
     "silver": 17
   },
   "by_type": {
-    "out_of_scope": 471,
-    "seed_fingerprint": 231
+    "out_of_scope": 472,
+    "seed_fingerprint": 230
   },
   "label_count": 702,
-  "mean_evidence_score": 0.6478
+  "mean_evidence_score": 0.6481
 }

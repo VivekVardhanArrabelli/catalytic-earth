@@ -1,0 +1,101 @@
+{
+  "addenda_integrity": [
+    {
+      "artifact": "artifacts/v3_packet1_wave1_lockdown_addendum_702_20260527.json",
+      "internally_consistent": true,
+      "present": true,
+      "role": "Packet 1 lockdown read-through"
+    },
+    {
+      "artifact": "artifacts/v3_v2_sublabel_audit_702_flavin_hydride_transfer_demotion_20260527.json",
+      "internally_consistent": true,
+      "present": true,
+      "role": "v2 flavin hydride-transfer demotion"
+    },
+    {
+      "artifact": "artifacts/v3_wave1_representation_shootout_result_card_702_20260527_addendum.json",
+      "internally_consistent": true,
+      "present": true,
+      "role": "Wave 1 result-card stale-cell addendum"
+    },
+    {
+      "artifact": "artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json",
+      "internally_consistent": true,
+      "present": true,
+      "role": "m_csa:497 primary metric exclusion impact"
+    }
+  ],
+  "artifact_id": "v3_packet1_wave1_decision_closure_702_20260527",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "guardrails": {
+    "fingerprint_registry_changed": false,
+    "historical_artifacts_rewritten": false,
+    "imports_changed": false,
+    "model_retrained": false,
+    "ontology_registry_changed": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false
+  },
+  "review_only": true,
+  "row_closures": [
+    {
+      "closure_state": "verified_anchor",
+      "entry_id": "m_csa:217",
+      "eval_cell": "tm_pair_verified_fold_conflict_oos_anchor",
+      "reason": "Mechanism text explicitly says Ser-His-Asp alpha/beta hydrolase-like triad chemistry proceeds by acid/base lyase chemistry rather than serine nucleophilic acyl hydrolysis; existing retained TM pair supports misleading ser_his_acid_hydrolase fold neighbor."
+    },
+    {
+      "closure_state": "verified_anchor",
+      "entry_id": "m_csa:477",
+      "eval_cell": "tm_pair_verified_fold_conflict_oos_anchor",
+      "reason": "Picornain 3C is Cys-His-Glu protease chemistry outside current serine hydrolase seed; existing disposition keeps it as a verified fold-conflict OOS anchor."
+    },
+    {
+      "closure_state": "caveated_partial",
+      "entry_id": "m_csa:428",
+      "eval_cell": "partial_fold_conflict_with_caveat",
+      "reason": "Retaining mannanase Glu/Glu glycosyl-enzyme chemistry is OOS, but Packet 1 use remains caveated as partial/incidental primary-hit evidence rather than a clean TM-pair anchor."
+    },
+    {
+      "closure_state": "near_orphan_oos",
+      "entry_id": "m_csa:440",
+      "eval_cell": "near_orphan_oos_router_abstention_diagnostic",
+      "reason": "Inverting glycosidase water-attack chemistry is OOS; kept as near-orphan OOS/abstention diagnostic, not a verified fold-conflict anchor."
+    },
+    {
+      "closure_state": "excluded_from_primary_flavin_metrics",
+      "entry_id": "m_csa:497",
+      "eval_cell": "excluded_after_oos_relabel",
+      "reason": "Canonical row is out_of_scope after flavodiiron NO-reductase review; primary flavin and near-orphan primary metrics must read through the metric-impact addendum."
+    },
+    {
+      "closure_state": "excluded_from_primary_flavin_metrics_and_canary_use",
+      "entry_id": "m_csa:750",
+      "eval_cell": "removed_after_oos_relabel",
+      "reason": "Canonical row is now out_of_scope after radical flavin/Fe-S dehydratase review; prior canary wording is superseded by the m_csa:750 metric/canary impact artifact."
+    }
+  ],
+  "schema_version": "v3_packet1_wave1_decision_closure.v1",
+  "scope": "Focused closure artifact for Packet 1 / Wave 1 stale follow-through after the m_csa:497 and m_csa:750 label-state reviews.",
+  "source_artifacts": {
+    "artifacts/v3_m_csa497_label_revision_702_20260527.json": {
+      "sha256": "4c2127a646b6436e09dce0f506a507f074e86381b2d6b04557bca586b24eb92d"
+    },
+    "artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json": {
+      "sha256": "ebc53c24538018544ad11c04f0a20c59ac03963d51d0b91a7c4d837df70655fb"
+    },
+    "artifacts/v3_packet1_wave1_lockdown_addendum_702_20260527.json": {
+      "sha256": "b50a95d5b843ddf1d1d0a1cf2fbe8a3a835a7c41b154387ffc8def32c4861cfa"
+    },
+    "artifacts/v3_v2_sublabel_audit_702_flavin_hydride_transfer_demotion_20260527.json": {
+      "sha256": "9b33238dee261a17f2007c1b7a44c4ca4efcc7d62c5bb64075a4f7429f22a037"
+    },
+    "artifacts/v3_wave1_representation_shootout_result_card_702_20260527_addendum.json": {
+      "sha256": "61277aedbcb9f3c463e2b303408640690d008fecd5c47d29f56b642fc9f7217e"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    }
+  },
+  "status": "decision_complete_closure"
+}

@@ -1,0 +1,65 @@
+{
+  "artifact_id": "v3_m_csa750_label_revision_702_20260527",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "decision": "relabel_out_of_scope",
+  "decision_basis": {
+    "decisive_local_mechanism_evidence": [
+      "FAD semiquinone radical anion abstracts the substrate C3-proS hydrogen.",
+      "Substrate hydroxy group coordinates to an iron in the Fe-S cluster during ketyl radical anion chemistry.",
+      "Fe-S participates in polarization/elimination chemistry and is not merely a distant electron relay.",
+      "The net reaction is radical dehydration, not ordinary flavin hydride-transfer dehydrogenase/reductase chemistry."
+    ],
+    "excluded_v1_fingerprint": "flavin_dehydrogenase_reductase",
+    "exclusion_reason": "The v1 fingerprint admits hydride/proton/electron transfer without oxygen insertion, but not a dedicated radical FAD semiquinone plus Fe-S dehydration locus.",
+    "mechanism_class": "radical_flavin_fe_s_dehydratase",
+    "mechanism_text": "4-BUDH utilises an oxidised FAD quinone to carry out radical formation. This lowers the pKa of the C3 hydrogen, thus activating the usually unreactive C3-H bond. His 292 acts as a general base to enolise 4-hydroxybutanoyl-CoA by abstraction of the C2-proR-hydrogen. FAD removes an electron from the enolate oxygen to create the enoxy radical. The FAD-. semiquinone radical anion abstracts the substrate's C3-proS-hydrogen. The substrate is now a ketyl radical anion with the hydroxy group coordinated to an iron in the Fe-S cluster. This polarises the hydroxy group and enables the ketyl radical anion to eliminate water, with the extra proton coming from the FADH. semiquinone (i.e. the proton that was removed from C3 by FAD-.). The dienoxy radical produced undergoes one electron reduction by FAD-. to yield a dienolate. Glu455 donates a proton to C4 of the dienolate to yield the product.",
+    "prior_review_preserved": "The prior automation_curated label-factory review remains in curated_mechanism_labels.json evidence.expert_reviews as counter-history."
+  },
+  "entry_id": "m_csa:750",
+  "entry_name": "4-hydroxybutanoyl-CoA dehydratase",
+  "evaluation_policy_effect": {
+    "future_family_candidate_countable": false,
+    "pull_from_top_foldseek_success_learned_failure_canary": true,
+    "pull_from_wave1_primary_flavin_metrics": true,
+    "recommended_future_family_candidate": "radical_flavin_fe_s_dehydratase",
+    "retain_as_oos_or_boundary_negative": true
+  },
+  "previous_label_state": {
+    "fingerprint_id": "flavin_dehydrogenase_reductase",
+    "label_type": "seed_fingerprint",
+    "prior_rationale": "4-hydroxybutanoyl-CoA dehydratase was provisionally assigned to flavin_dehydrogenase_reductase by retrieval and ligand-supported flavin context.",
+    "review_status": "automation_curated",
+    "source": "label_factory_review_import",
+    "tier": "bronze"
+  },
+  "registry_effect": {
+    "external_imports_changed": false,
+    "fingerprint_registry_changed": false,
+    "flavin_dehydrogenase_reductase_delta": -1,
+    "ontology_ids_changed": false,
+    "out_of_scope_delta": 1,
+    "production_imports_changed": false,
+    "seed_fingerprint_delta": -1,
+    "thresholds_changed": false,
+    "total_labels": 702
+  },
+  "revised_label_state": {
+    "fingerprint_id": null,
+    "label_type": "out_of_scope",
+    "review_status": "expert_reviewed",
+    "reviewer": "automation_closure_cycle",
+    "tier": "bronze"
+  },
+  "schema_version": "v3_m_csa750_label_revision.v1",
+  "source_artifacts": {
+    "artifacts/v1_graph_1025.json": {
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "artifacts/v3_m_csa750_review_packet_702_20260527.json": {
+      "sha256": "21734c19d4174e51f42c07ae08923cba53628e3e6e3c3000680e33bc745ed27a"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    }
+  }
+}

@@ -4,11 +4,11 @@
   "mechanism_fingerprint_version": "label_factory_v1_8fp",
   "baseline_label_count": 702,
   "fingerprint_registry_digest": "sha256:a1e7ae135adb97dc79d8cab91345bc3ed4720cf3371115737e05f10b629a2516",
-  "label_registry_digest": "sha256:aedbc56e20cad1908e152c83400dfd9fbb63774b4d0c56fc7b8b7ebeebecfcd1",
+  "label_registry_digest": "sha256:5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505",
   "audit_scope": {
     "fingerprint_count": 8,
-    "curated_seed_fingerprint_label_count": 231,
-    "curated_out_of_scope_label_count": 471,
+    "curated_seed_fingerprint_label_count": 230,
+    "curated_out_of_scope_label_count": 472,
     "registry_edit_performed": false,
     "label_import_performed": false,
     "ontology_edit_performed": false,
@@ -17,7 +17,7 @@
   },
   "freeze_decision_summary": {
     "overall_decision": "freeze_mechanism_fingerprint_v1_8fp_as_a_benchmark_target_with_primary_secondary_split",
-    "primary_metric_seed_label_count": 225,
+    "primary_metric_seed_label_count": 224,
     "secondary_only_seed_label_count": 6,
     "kept_primary_fingerprint_count": 5,
     "secondary_only_fingerprint_count": 3,
@@ -407,10 +407,10 @@
     },
     {
       "fingerprint_id": "flavin_dehydrogenase_reductase",
-      "support_count": 49,
-      "mcsa_seed_count": 49,
+      "support_count": 48,
+      "mcsa_seed_count": 48,
       "expert_reviewed_count": 1,
-      "automation_curated_count": 48,
+      "automation_curated_count": 47,
       "representative_entry_ids": [
         "m_csa:3",
         "m_csa:6",
@@ -466,7 +466,8 @@
       "v1_freeze_decision": "keep_with_caveat",
       "model_benchmark_implication": "Eligible for primary metrics only as a broad flavin-redox target; evaluate oxygenase-like and photolyase-like rows as caveat strata and report confusion against flavin_monooxygenase.",
       "caveats": [
-        "m_csa:497 was relabeled out_of_scope on 2026-05-27 after mechanism-locus review; flavin support count decreased by one."
+        "m_csa:497 was relabeled out_of_scope on 2026-05-27 after mechanism-locus review; flavin support count decreased by one.",
+        "m_csa:750 was relabeled out_of_scope on 2026-05-27 after radical flavin/Fe-S dehydratase review; flavin support count decreased by one."
       ]
     },
     {
@@ -537,6 +538,15 @@
       "revised_label_type": "out_of_scope",
       "revised_fingerprint_id": null,
       "effect": "primary metric seed label count 226 -> 225; curated out_of_scope count 470 -> 471"
+    },
+    {
+      "entry_id": "m_csa:750",
+      "revision_artifact": "artifacts/v3_m_csa750_label_revision_702_20260527.json",
+      "previous_label_type": "seed_fingerprint",
+      "previous_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "revised_label_type": "out_of_scope",
+      "revised_fingerprint_id": null,
+      "effect": "primary metric seed label count 225 -> 224; curated out_of_scope count 471 -> 472"
     }
   ]
 }

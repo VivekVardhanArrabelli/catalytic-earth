@@ -1,0 +1,175 @@
+{
+  "artifact_id": "v3_m_csa750_wave1_metric_canary_impact_702_20260527",
+  "canary_impact": {
+    "canary_set_status": "underpowered_after_m_csa750_removal",
+    "next_exact_decision": "Choose a replacement only after a label-state review finds another primary row with the same foldseek-success/learned-failure pattern; do not use m_csa:750.",
+    "previous_canary_role": "top_foldseek_success_learned_failure candidate paired with m_csa:43",
+    "reason": "Canonical row is now out_of_scope/future radical-flavin/Fe-S dehydratase signal, so it cannot validate primary flavin_dehydrogenase_reductase canary behavior.",
+    "remaining_valid_canaries": [
+      "m_csa:43"
+    ],
+    "removed_from_canary_use": true,
+    "replacement_canary_selected": false
+  },
+  "change": "seed_fingerprint:flavin_dehydrogenase_reductase -> out_of_scope",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "entry_id": "m_csa:750",
+  "guardrails": {
+    "fingerprint_registry_changed": false,
+    "model_retrained": false,
+    "ontology_registry_changed": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false
+  },
+  "interpretation": "m_csa:750 was a top Foldseek-success / learned-failure canary candidate only under the old flavin_dehydrogenase_reductase label. The radical flavin/Fe-S dehydratase relabel removes it from primary flavin metrics and canary use; Foldseek/geometry successes against the old flavin label are stale rather than wins.",
+  "metric_scope": "Existing standardized Wave 1 heldout predictions are re-scored after the prior m_csa:497 OOS revision and the new m_csa:750 OOS revision; models were not retrained and thresholds were not changed.",
+  "schema_version": "v3_m_csa750_wave1_metric_canary_impact.v1",
+  "source_artifacts": {
+    "artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json": {
+      "sha256": "ebc53c24538018544ad11c04f0a20c59ac03963d51d0b91a7c4d837df70655fb"
+    },
+    "artifacts/v3_m_csa750_label_revision_702_20260527.json": {
+      "sha256": "6d965d2b4d64ebe1ec1a6e704ac0b7824dbc53d1b79e489181569f452e07de6d"
+    },
+    "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json": {
+      "sha256": "8383074a7bb586cbff8219c8f903068e265b30a5f3596a50fa12444083c3a156"
+    }
+  },
+  "tracks": [
+    {
+      "oos_or_secondary_false_positive_rate_after": 0.2783505155,
+      "oos_or_secondary_false_positive_rate_before": 0.28125,
+      "oos_or_secondary_support_after": 97,
+      "oos_or_secondary_support_before": 96,
+      "primary_accuracy_after": 0.1627906977,
+      "primary_accuracy_before": 0.1590909091,
+      "primary_support_after": 43,
+      "primary_support_before": 44,
+      "row750_new_oos_false_positive": false,
+      "row750_prediction": "out_of_scope",
+      "row750_previous_primary_correct": false,
+      "row750_previous_true": "flavin_dehydrogenase_reductase",
+      "track_id": "sequence_nn"
+    },
+    {
+      "oos_or_secondary_false_positive_rate_after": 0.1649484536,
+      "oos_or_secondary_false_positive_rate_before": 0.1666666667,
+      "oos_or_secondary_support_after": 97,
+      "oos_or_secondary_support_before": 96,
+      "primary_accuracy_after": 0.6046511628,
+      "primary_accuracy_before": 0.5909090909,
+      "primary_support_after": 43,
+      "primary_support_before": 44,
+      "row750_new_oos_false_positive": false,
+      "row750_prediction": "out_of_scope",
+      "row750_previous_primary_correct": false,
+      "row750_previous_true": "flavin_dehydrogenase_reductase",
+      "track_id": "esm2_150m"
+    },
+    {
+      "oos_or_secondary_false_positive_rate_after": 0.175257732,
+      "oos_or_secondary_false_positive_rate_before": 0.1770833333,
+      "oos_or_secondary_support_after": 97,
+      "oos_or_secondary_support_before": 96,
+      "primary_accuracy_after": 0.3953488372,
+      "primary_accuracy_before": 0.3863636364,
+      "primary_support_after": 43,
+      "primary_support_before": 44,
+      "row750_new_oos_false_positive": false,
+      "row750_prediction": "out_of_scope",
+      "row750_previous_primary_correct": false,
+      "row750_previous_true": "flavin_dehydrogenase_reductase",
+      "track_id": "esm_c_300m"
+    },
+    {
+      "oos_or_secondary_false_positive_rate_after": 0.3505154639,
+      "oos_or_secondary_false_positive_rate_before": 0.34375,
+      "oos_or_secondary_support_after": 97,
+      "oos_or_secondary_support_before": 96,
+      "primary_accuracy_after": 0.0930232558,
+      "primary_accuracy_before": 0.0909090909,
+      "primary_support_after": 43,
+      "primary_support_before": 44,
+      "row750_new_oos_false_positive": true,
+      "row750_prediction": "cobalamin_radical_rearrangement",
+      "row750_previous_primary_correct": false,
+      "row750_previous_true": "flavin_dehydrogenase_reductase",
+      "track_id": "esm_c_cosine_nn"
+    },
+    {
+      "oos_or_secondary_false_positive_rate_after": 0.2527472527,
+      "oos_or_secondary_false_positive_rate_before": 0.2555555556,
+      "oos_or_secondary_support_after": 91,
+      "oos_or_secondary_support_before": 90,
+      "primary_accuracy_after": 0.4146341463,
+      "primary_accuracy_before": 0.4047619048,
+      "primary_support_after": 41,
+      "primary_support_before": 42,
+      "row750_new_oos_false_positive": false,
+      "row750_prediction": "out_of_scope",
+      "row750_previous_primary_correct": false,
+      "row750_previous_true": "flavin_dehydrogenase_reductase",
+      "track_id": "prott5"
+    },
+    {
+      "oos_or_secondary_false_positive_rate_after": 0.206185567,
+      "oos_or_secondary_false_positive_rate_before": 0.1979166667,
+      "oos_or_secondary_support_after": 97,
+      "oos_or_secondary_support_before": 96,
+      "primary_accuracy_after": 0.3488372093,
+      "primary_accuracy_before": 0.3409090909,
+      "primary_support_after": 43,
+      "primary_support_before": 44,
+      "row750_new_oos_false_positive": true,
+      "row750_prediction": "cobalamin_radical_rearrangement",
+      "row750_previous_primary_correct": false,
+      "row750_previous_true": "flavin_dehydrogenase_reductase",
+      "track_id": "saprot"
+    },
+    {
+      "oos_or_secondary_false_positive_rate_after": 0.1875,
+      "oos_or_secondary_false_positive_rate_before": 0.1894736842,
+      "oos_or_secondary_support_after": 96,
+      "oos_or_secondary_support_before": 95,
+      "primary_accuracy_after": 0.1860465116,
+      "primary_accuracy_before": 0.1818181818,
+      "primary_support_after": 43,
+      "primary_support_before": 44,
+      "row750_new_oos_false_positive": false,
+      "row750_prediction": "out_of_scope",
+      "row750_previous_primary_correct": false,
+      "row750_previous_true": "flavin_dehydrogenase_reductase",
+      "track_id": "prostt5_3di"
+    },
+    {
+      "oos_or_secondary_false_positive_rate_after": 0.1134020619,
+      "oos_or_secondary_false_positive_rate_before": 0.1041666667,
+      "oos_or_secondary_support_after": 97,
+      "oos_or_secondary_support_before": 96,
+      "primary_accuracy_after": 0.6279069767,
+      "primary_accuracy_before": 0.6363636364,
+      "primary_support_after": 43,
+      "primary_support_before": 44,
+      "row750_new_oos_false_positive": true,
+      "row750_prediction": "flavin_dehydrogenase_reductase",
+      "row750_previous_primary_correct": true,
+      "row750_previous_true": "flavin_dehydrogenase_reductase",
+      "track_id": "foldseek_structural"
+    },
+    {
+      "oos_or_secondary_false_positive_rate_after": 1.0,
+      "oos_or_secondary_false_positive_rate_before": 1.0,
+      "oos_or_secondary_support_after": 97,
+      "oos_or_secondary_support_before": 96,
+      "primary_accuracy_after": 1.0,
+      "primary_accuracy_before": 1.0,
+      "primary_support_after": 38,
+      "primary_support_before": 39,
+      "row750_new_oos_false_positive": true,
+      "row750_prediction": "flavin_dehydrogenase_reductase",
+      "row750_previous_primary_correct": true,
+      "row750_previous_true": "flavin_dehydrogenase_reductase",
+      "track_id": "geometry_baseline"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "artifact_id": "v3_label_factory_review_import_mechanism_mismatch_close_read_702_20260527",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "guardrails": {
+    "automatic_broad_relabels": 0,
+    "canonical_relabels_from_close_read": [
+      "m_csa:750"
+    ],
+    "fingerprint_registry_changed": false,
+    "label_registry_changed_only_for_explicit_revision": true,
+    "model_retrained": false,
+    "ontology_registry_changed": false,
+    "threshold_changed": false
+  },
+  "population": {
+    "close_read_scope": "shortlist_rows_only",
+    "label_factory_review_import_bronze_row_count": 210,
+    "manual_reviewed_all_rows": false,
+    "shortlist_count": 7
+  },
+  "review_only": true,
+  "rows": [
+    {
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "disposition": "keep_current_label",
+      "entry_id": "m_csa:506",
+      "entry_name": "ferredoxin--NADP reductase",
+      "rationale": "Semiquinone is an on-path FAD redox intermediate; the mechanism ends in hydride transfer from FAD hydroquinone to NADP+, fitting the v1 flavin dehydrogenase/reductase fingerprint."
+    },
+    {
+      "current_fingerprint_id": "heme_peroxidase_oxidase",
+      "disposition": "move_to_secondary_or_future_family_blocker",
+      "entry_id": "m_csa:714",
+      "entry_name": "ubiquinol oxidase (H+-transporting)",
+      "rationale": "Mixed heme-Cu terminal oxidase/proton-pumping chemistry is broader than the seed examples, but heme-mediated O2 reduction remains close enough that OOS relabel is not fail-closed. Exact blocker: need a heme_copper_terminal_oxidase subfamily policy before separating it from heme_peroxidase_oxidase."
+    },
+    {
+      "current_fingerprint_id": "heme_peroxidase_oxidase",
+      "disposition": "move_to_secondary_or_future_family_blocker",
+      "entry_id": "m_csa:735",
+      "entry_name": "cytochrome-c oxidase (BA3 type)",
+      "rationale": "BA3 cytochrome-c oxidase has heme/Cu binuclear terminal oxidase chemistry. It should be reviewed with m_csa:714 if a heme_copper_terminal_oxidase future family is opened; current evidence is not strong enough for OOS relabel."
+    },
+    {
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "disposition": "relabel_out_of_scope",
+      "entry_id": "m_csa:750",
+      "entry_name": "4-hydroxybutanoyl-CoA dehydratase",
+      "rationale": "Curated text explicitly describes FAD semiquinone radical and Fe-S coordinated radical dehydration rather than ordinary v1 flavin hydride-transfer dehydrogenase/reductase chemistry. Canonical revision artifact closes this row."
+    },
+    {
+      "current_fingerprint_id": "plp_dependent_enzyme",
+      "disposition": "keep_current_label",
+      "entry_id": "m_csa:855",
+      "entry_name": "cysteine desulfurase",
+      "rationale": "Fe-S appears as downstream sulfur-transfer/biogenesis context; the catalytic mechanism is PLP internal/external aldimine and enzyme-persulfide chemistry, fitting the PLP seed."
+    },
+    {
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "disposition": "keep_current_label",
+      "entry_id": "m_csa:862",
+      "entry_name": "cytochrome-b5 reductase",
+      "rationale": "Semiquinone is part of the FAD redox cycle following NADH hydride transfer and single-electron transfer to cytochrome b5; this is in-scope flavin reductase chemistry."
+    },
+    {
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "disposition": "keep_current_label",
+      "entry_id": "m_csa:978",
+      "entry_name": "D-arginine dehydrogenase",
+      "rationale": "Mechanism text explicitly supports hydride transfer to flavin N5 and states there is no evidence for a radical; heuristic radical match is a false positive."
+    }
+  ],
+  "schema_version": "v3_label_factory_review_import_mechanism_mismatch_close_read.v1",
+  "source_artifacts": {
+    "artifacts/v1_graph_1025.json": {
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "artifacts/v3_label_factory_review_import_mechanism_mismatch_audit_702_20260527.json": {
+      "sha256": "a94c5a3519cda54805a196b8e79f67b3a96b84580f358ca3d418800670e8d8a4"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    }
+  },
+  "source_audit": "artifacts/v3_label_factory_review_import_mechanism_mismatch_audit_702_20260527.json",
+  "status": "shortlist_close_read_complete",
+  "summary": {
+    "broader_scan_recommendation": "No automatic broad relabels. The observed strong canonical mismatch rate is low; use targeted future-family review for heme-copper oxidases and radical flavin/Fe-S chemistry instead of a full 210-row manual scan now.",
+    "keep_current_label_count": 4,
+    "move_to_secondary_or_future_family_blocker_count": 2,
+    "needs_human_expert_count": 0,
+    "relabel_out_of_scope_count": 1,
+    "shortlist_action_rate_among_210_review_import_rows": 0.0143,
+    "strong_mismatch_rate_among_210_review_import_rows": 0.0048
+  }
+}
