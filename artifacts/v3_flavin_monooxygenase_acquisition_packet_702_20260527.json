@@ -1,0 +1,197 @@
+{
+  "acquisition_gap": {
+    "additional_clean_rows_needed": 4,
+    "blocker": "Need clean, non-duplicate, source-free reviewed rows with explicit flavin C4a-peroxy/oxygenation chemistry before countable support can reach n>=6.",
+    "local_clean_review_candidates_identified_not_countable": [
+      "m_csa:551",
+      "m_csa:973"
+    ],
+    "remaining_gap_after_if_both_are_expert_accepted": 2
+  },
+  "artifact_id": "v3_flavin_monooxygenase_acquisition_packet_702_20260527",
+  "candidate_family_search_targets": [
+    {
+      "decision": "insufficient_evidence",
+      "family": "cyclohexanone_monooxygenase_and_other_BVMOs",
+      "local_m_csa_support_observed": false,
+      "next_action": "source clean BVMO rows, then run source-free geometry and duplicate/leakage screens"
+    },
+    {
+      "decision": "insufficient_evidence",
+      "family": "HAPMO_4_hydroxyacetophenone_monooxygenase",
+      "local_m_csa_support_observed": false,
+      "next_action": "source if reviewed/PDB-backed external rows exist"
+    },
+    {
+      "decision": "insufficient_evidence",
+      "family": "IucD_class_lysine_N6_hydroxylase",
+      "local_m_csa_support_observed": false,
+      "next_action": "source as FAD-dependent N-hydroxylase candidate; avoid PLP/metal-only hydroxylase leakage"
+    },
+    {
+      "decision": "insufficient_evidence",
+      "family": "tryptophan_2_monooxygenase",
+      "local_m_csa_support_observed": false,
+      "next_action": "source/package only with explicit flavin oxygenation evidence"
+    },
+    {
+      "decision": "insufficient_evidence",
+      "family": "salicylate_1_monooxygenase",
+      "local_m_csa_support_observed": false,
+      "next_action": "source/package if non-P450 flavin C4a-peroxy chemistry is explicit"
+    },
+    {
+      "decision": "insufficient_evidence",
+      "family": "FMO1_FMO3_FMO5",
+      "local_m_csa_support_observed": false,
+      "next_action": "source/package if M-CSA or external rows have structure and explicit FAD/NADPH oxygenation mechanism"
+    },
+    {
+      "decision": "insufficient_evidence",
+      "family": "dimethylaniline_monooxygenase",
+      "local_m_csa_support_observed": false,
+      "next_action": "source/package if clean flavin monooxygenase row is available"
+    },
+    {
+      "candidate_entry_id": "m_csa:551",
+      "decision": "clean_FMO_candidate",
+      "family": "phenol_2_monooxygenase",
+      "local_m_csa_support_observed": true,
+      "next_action": "expert review current flavin_dehydrogenase_reductase label; do not auto-relabel"
+    },
+    {
+      "candidate_entry_id": "m_csa:973",
+      "decision": "clean_FMO_candidate",
+      "family": "DszC_dibenzothiophene_monooxygenase",
+      "local_m_csa_support_observed": true,
+      "next_action": "expert review current flavin_dehydrogenase_reductase label; do not auto-relabel"
+    }
+  ],
+  "created_utc": "2026-05-27T00:00:00Z",
+  "current_state": {
+    "current_flavin_monooxygenase_rows": [
+      "m_csa:131",
+      "m_csa:132"
+    ],
+    "current_support_count": 2,
+    "goal_total_support_before_primary_promotion_reconsideration": 6,
+    "m_csa_131_role": "secondary_ood_probe::flavin_monooxygenase",
+    "primary_metric_status": "excluded_from_primary_supervised_metrics",
+    "promotion_decision_now": "no_promotion_underpowered_secondary_probe",
+    "target_additional_clean_rows_before_reconsideration": 4
+  },
+  "decision_vocabulary": [
+    "clean_FMO_candidate",
+    "not_FMO",
+    "insufficient_evidence",
+    "overlaps_flavin_reductase"
+  ],
+  "external_source_candidates_from_prior_frozen_packet": [
+    {
+      "accession": "O15229",
+      "candidate_family": "kynurenine_3_monooxygenase",
+      "decision": "insufficient_evidence",
+      "decision_reason": "Prior frozen FMO mini-campaign row has source EC/flavin/PDB context, but source-free geometry, duplicate-screen, terminal review, and factory/import gates do not yield a clean countable row.",
+      "entry_name": "KMO_HUMAN",
+      "ready_for_label_import_now": false,
+      "row_id": "uniprot:O15229"
+    },
+    {
+      "accession": "P25535",
+      "candidate_family": "2_octaprenylphenol_hydroxylase",
+      "decision": "insufficient_evidence",
+      "decision_reason": "Prior frozen FMO mini-campaign row has source EC/flavin/PDB context, but source-free geometry, duplicate-screen, terminal review, and factory/import gates do not yield a clean countable row.",
+      "entry_name": "UBII_ECOLI",
+      "ready_for_label_import_now": false,
+      "row_id": "uniprot:P25535"
+    },
+    {
+      "accession": "H3JQW0",
+      "candidate_family": "OTEMO_flavin_monooxygenase",
+      "decision": "insufficient_evidence",
+      "decision_reason": "Prior frozen FMO mini-campaign row has source EC/flavin/PDB context, but source-free geometry, duplicate-screen, terminal review, and factory/import gates do not yield a clean countable row.",
+      "entry_name": "OTEMO_PSEPU",
+      "ready_for_label_import_now": false,
+      "row_id": "uniprot:H3JQW0"
+    },
+    {
+      "accession": "Q6F4M8",
+      "candidate_family": "nitrophenol_or_nitrocatechol_monooxygenase",
+      "decision": "insufficient_evidence",
+      "decision_reason": "Prior frozen FMO mini-campaign row has source EC/flavin/PDB context, but source-free geometry, duplicate-screen, terminal review, and factory/import gates do not yield a clean countable row.",
+      "entry_name": "NPCA_RHOOP",
+      "ready_for_label_import_now": false,
+      "row_id": "uniprot:Q6F4M8"
+    }
+  ],
+  "guardrails": {
+    "fingerprint_registry_changed": false,
+    "import_decision_changed": false,
+    "label_registry_changed": false,
+    "model_retrained": false,
+    "ontology_registry_changed": false,
+    "primary_promotion_reconsidered_now": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false
+  },
+  "local_m_csa_review_candidates": [
+    {
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_type": "seed_fingerprint",
+      "decision": "clean_FMO_candidate",
+      "entry_id": "m_csa:551",
+      "entry_name": "phenol 2-monooxygenase",
+      "mechanism_excerpt": "<p>It has been propose that a movement of FAD takes place in concert with a large conformational change of residues 170-210 during catalysis. The catalytic mechanism of PHHY is complex, involving FAD and three substrates: molecular oxygen, phenol and NADPH. The overall mechanism is of the type bi-uni-uni-bi ping pong. While in the past the mechanism has been",
+      "notes": "Phenol 2-monooxygenase mechanism uses reduced FAD plus O2 to form C4a-hydroperoxyflavin and hydroxylate phenol.",
+      "ready_for_label_import_now": false
+    },
+    {
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_type": "seed_fingerprint",
+      "decision": "clean_FMO_candidate",
+      "entry_id": "m_csa:973",
+      "entry_name": "DszC protein",
+      "mechanism_excerpt": "Mechanistic studies have shown that sulfur oxidation of dibenzothiophenes (DBT) by DszC occurs in three major stages catalyzed by five main catalytic residues: His92, Tyr96, Asn129, Ser163, and His391. Firstly, Cys391 catalyzes molecular oxygen activation through proton-coupled electron transfer from FMNH<sub>2</sub> to dioxygen, forming C<sup>4a</sup>-hydro",
+      "notes": "DszC sulfur oxidation uses FMNH2 plus dioxygen to form C4a-hydroperoxyflavin before substrate oxygenation.",
+      "ready_for_label_import_now": false
+    },
+    {
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_type": "seed_fingerprint",
+      "decision": "overlaps_flavin_reductase",
+      "entry_id": "m_csa:141",
+      "entry_name": "4-cresol dehydrogenase (hydroxylating)",
+      "mechanism_excerpt": "The enzyme first catalyses the oxidation of p-cresol to p-hydroxybenzyl alcohol, utilising one atom of oxygen derived from water and yielding one molecule of reduced FAD. An enzymic base, Tyr473 removes the proton from the hydroxyl group of p-cresol and a hydride ion is transferred from the methyl group to the N5 atom of FAD. This results in a quinone methid",
+      "notes": "4-cresol hydroxylating dehydrogenase uses hydride transfer to FAD and water-derived oxygen; keep out of clean FMO acquisition unless expert review separates it.",
+      "ready_for_label_import_now": false
+    },
+    {
+      "current_fingerprint_id": null,
+      "current_label_type": "out_of_scope",
+      "decision": "not_FMO",
+      "entry_id": "m_csa:128",
+      "entry_name": "Photinus-luciferin 4-monooxygenase (ATP-hydrolysing)",
+      "mechanism_excerpt": "Partial reactions are catalysed by two different conformations of the enzyme. Adenylation in the PheA closed conformation and thioester formation in the bAcs rotated form. Lys443 and Lys529 are located on opposite sides of the C-terminal domain of the enzyme and are each essential for only one of the partial reactions of firefly bioluminescence supporting th",
+      "notes": "Luciferin monooxygenase is ATP/luciferyl-adenylate oxygenation without flavin mechanism support.",
+      "ready_for_label_import_now": false
+    }
+  ],
+  "review_only": true,
+  "schema_version": "v3_flavin_monooxygenase_acquisition_packet.v1",
+  "scope": "FMO acquisition packet after Packet 1/Wave 1 follow-through. It keeps m_csa:131 as secondary_ood_probe::flavin_monooxygenase, sets a >=4 additional clean-row target before primary promotion reconsideration, and packages candidates without import or relabel.",
+  "source_artifacts": {
+    "artifacts/v2_benchmark_1025.json": {
+      "sha256": "a69c0d77f0040cf65b6cd48e767839ed26b1e7fd7975158db14e6bc296b722d0"
+    },
+    "artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk004_followup_20260521.json": {
+      "sha256": "877887365942bb4b4bdfa9894a1da4d18b78abb8f9e5e14e8c129b8122eb4ba2"
+    },
+    "artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_decision_packet_20260521.json": {
+      "sha256": "06f39ca9d47bb0fac302ba35d333fe4d6d2bd42058a75b2c704162346d6a4c19"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "sha256": "aedbc56e20cad1908e152c83400dfd9fbb63774b4d0c56fc7b8b7ebeebecfcd1"
+    }
+  },
+  "status": "review_only_acquisition_packet"
+}

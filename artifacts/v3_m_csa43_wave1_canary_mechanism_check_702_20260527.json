@@ -1,0 +1,36 @@
+{
+  "artifact_id": "v3_m_csa43_wave1_canary_mechanism_check_702_20260527",
+  "canary_decision": {
+    "canary_role": "top_foldseek_success_learned_failure metal_dependent_hydrolase canary",
+    "label_review_needed": false,
+    "reason": "Mechanism text supports metal-assisted phosphate ester hydrolysis and matches the metal_dependent_hydrolase seed fingerprint.",
+    "remains_valid_wave1_canary": true
+  },
+  "created_utc": "2026-05-27T00:00:00Z",
+  "entry": {
+    "current_fingerprint_id": "metal_dependent_hydrolase",
+    "current_label_type": "seed_fingerprint",
+    "current_review_status": "automation_curated",
+    "entry_id": "m_csa:43",
+    "enzyme_name": "purple acid phosphatase"
+  },
+  "guardrails": {
+    "fingerprint_registry_changed": false,
+    "import_decision_changed": false,
+    "label_registry_changed": false,
+    "model_retrained": false,
+    "ontology_registry_changed": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false
+  },
+  "mechanism_evidence": {
+    "mechanism_excerpt": "On the basis of structural studies with bound phosphate and tungstate (inhibitor), and the observed inversion of the phosphorous configuration during catalysis, an SN2-type mechanism is proposed for PAP. The substrate phosphate is bound to the Me(II) ion via one of the non-esterified oxygen atoms and oriented by His202 and His296 (numbering for kidney bean e",
+    "short_paraphrase": "Purple acid phosphatase binds substrate phosphate to a metal ion and uses an Fe(III)-bound hydroxide for in-line attack, with metal ions stabilizing the transition state.",
+    "source_artifact": "artifacts/v2_benchmark_1025.json",
+    "source_artifact_sha256": "a69c0d77f0040cf65b6cd48e767839ed26b1e7fd7975158db14e6bc296b722d0"
+  },
+  "review_only": true,
+  "schema_version": "v3_m_csa43_wave1_canary_mechanism_check.v1",
+  "scope": "Quick mechanism-text check for m_csa:43 Wave 1 learned-representation failure canary status. No label or model change.",
+  "status": "review_only_canary_check"
+}

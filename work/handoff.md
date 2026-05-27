@@ -12300,3 +12300,16 @@ Known blockers:
   `artifacts/v3_m_csa497_label_revision_702_20260527.json`,
   `artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json`, and
   `work/m_csa497_label_revision_20260527.md`.
+
+- 2026-05-27 Packet 1 / Wave 1 follow-through lock-down: read the original
+  Wave 1 result card through the `m_csa:497` metric-impact artifact, the Wave 1
+  result-card addendum, the flavin hydride-transfer sublabel demotion, and
+  `artifacts/v3_packet1_wave1_lockdown_addendum_702_20260527.json`. Locked eval
+  cells are: `m_csa:217` and `m_csa:477` as TM-pair-verified fold-conflict OOS
+  anchors; `m_csa:428` as partial fold-conflict with TIM-barrel
+  incidental-primary-hit caveat; `m_csa:440` as near-orphan OOS/router
+  abstention diagnostic; and `m_csa:497` excluded from primary flavin and
+  near-orphan primary metrics after OOS relabel. `m_csa:750` is review-blocked
+  and unsafe for Wave 1 canary use until label state resolves; `m_csa:43`
+  remains a valid metal-hydrolase canary. See
+  `work/packet1_wave1_followthrough_20260527.md`.

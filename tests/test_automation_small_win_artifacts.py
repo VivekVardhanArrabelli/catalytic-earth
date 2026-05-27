@@ -16635,6 +16635,171 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "contract_frozen_stop_before_model_results",
         )
 
+    def test_packet1_wave1_followthrough_addenda_lock_cells(self) -> None:
+        lockdown = _load_json(
+            ARTIFACTS / "v3_packet1_wave1_lockdown_addendum_702_20260527.json"
+        )
+        hydride_demotion = _load_json(
+            ARTIFACTS
+            / "v3_v2_sublabel_audit_702_flavin_hydride_transfer_demotion_20260527.json"
+        )
+        card_addendum = _load_json(
+            ARTIFACTS
+            / "v3_wave1_representation_shootout_result_card_702_20260527_addendum.json"
+        )
+        metric_impact = _load_json(
+            ARTIFACTS / "v3_m_csa497_wave1_metric_impact_702_20260527.json"
+        )
+
+        self.assertTrue(lockdown["review_only"])
+        self.assertFalse(lockdown["guardrails"]["label_registry_changed_by_this_artifact"])
+        cells = lockdown["locked_packet1_eval_cells"]
+        self.assertEqual(
+            cells["tm_pair_verified_fold_conflict_oos_anchors"]["rows"],
+            ["m_csa:217", "m_csa:477"],
+        )
+        self.assertEqual(
+            cells["partial_fold_conflict_with_caveat"]["rows"], ["m_csa:428"]
+        )
+        self.assertIn(
+            "incidental-primary-hit",
+            cells["partial_fold_conflict_with_caveat"]["eval_use"],
+        )
+        self.assertEqual(
+            cells["near_orphan_oos_router_abstention_diagnostic"]["rows"],
+            ["m_csa:440"],
+        )
+        self.assertEqual(
+            cells["excluded_after_oos_relabel"]["current_label_state"], "out_of_scope"
+        )
+        self.assertIn(
+            "primary flavin_dehydrogenase_reductase support and metrics",
+            cells["excluded_after_oos_relabel"]["exclude_from"],
+        )
+
+        demotion = hydride_demotion["field_demotion"]
+        self.assertEqual(
+            demotion["sublabel"],
+            "flavin.dehydrogenase_oxidase_hydride_transfer",
+        )
+        self.assertEqual(
+            demotion["new_state"]["list"],
+            "readiness_summary.expert_review_needed_candidates",
+        )
+        self.assertFalse(hydride_demotion["guardrails"]["production_scoring_changed"])
+
+        self.assertEqual(metric_impact["entry_id"], "m_csa:497")
+        for track in metric_impact["tracks"]:
+            self.assertEqual(track["primary_support_before"], 45)
+            self.assertEqual(track["primary_support_after"], 44)
+        self.assertIn(
+            "low_structure_neighborhood_near_orphan",
+            card_addendum["stale_fields_in_result_card"]["per_bin_metrics"][0][
+                "field_path_pattern"
+            ],
+        )
+        self.assertEqual(
+            card_addendum["source_artifacts"][
+                "artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json"
+            ]["sha256"],
+            hashlib.sha256(
+                (ARTIFACTS / "v3_m_csa497_wave1_metric_impact_702_20260527.json").read_bytes()
+            ).hexdigest(),
+        )
+
+    def test_m_csa750_packet_and_mismatch_audit_are_fail_closed(self) -> None:
+        packet = _load_json(
+            ARTIFACTS / "v3_m_csa750_review_packet_702_20260527.json"
+        )
+        audit = _load_json(
+            ARTIFACTS
+            / "v3_label_factory_review_import_mechanism_mismatch_audit_702_20260527.json"
+        )
+
+        self.assertEqual(packet["status"], "review_blocked_no_canonical_relabel")
+        self.assertFalse(packet["guardrails"]["canonical_label_changed"])
+        self.assertTrue(packet["entry"]["canonical_row_left_unchanged"])
+        self.assertEqual(
+            packet["review_decision"]["mechanism_class"],
+            "flavin_radical_fe_s_dehydratase",
+        )
+        self.assertFalse(
+            packet["review_decision"]["ordinary_flavin_dehydrogenase_reductase_fit"]
+        )
+        self.assertIn("future_radical_flavin_fe_s_dehydratase", packet["review_decision"]["likely_resolution"])
+        self.assertTrue(
+            packet["wave1_eval_effect"][
+                "unsafe_for_top_foldseek_success_learned_failure_canary"
+            ]
+        )
+        evidence_text = json.dumps(packet["decisive_mechanism_evidence"])
+        self.assertIn("semiquinone", evidence_text)
+        self.assertIn("Fe-S", evidence_text)
+
+        self.assertTrue(audit["review_only"])
+        self.assertEqual(
+            audit["population"]["label_factory_review_import_bronze_row_count"], 210
+        )
+        self.assertEqual(audit["guardrails"]["automatic_relabels"], 0)
+        self.assertFalse(audit["guardrails"]["manual_reviewed_all_rows"])
+        rule_ids = {row["rule_id"] for row in audit["rules"]}
+        self.assertEqual(
+            rule_ids,
+            {
+                "flavin_metal_radical_conflict",
+                "ser_his_cys_nucleophile_conflict",
+                "heme_nonheme_or_mixed_metal_oxidase_signal",
+                "plp_cobalamin_radical_coupling_conflict",
+            },
+        )
+        rows = {row["entry_id"]: row for row in audit["shortlist_rows"]}
+        self.assertIn("m_csa:750", rows)
+        self.assertEqual(rows["m_csa:750"]["heuristic_priority"], "high")
+        self.assertEqual(
+            audit["shortlist_summary"]["already_resolved_prior_revision_entry_ids"],
+            ["m_csa:497"],
+        )
+
+    def test_fmo_acquisition_and_m_csa43_canary_checks_are_review_only(self) -> None:
+        fmo = _load_json(
+            ARTIFACTS / "v3_flavin_monooxygenase_acquisition_packet_702_20260527.json"
+        )
+        canary = _load_json(
+            ARTIFACTS / "v3_m_csa43_wave1_canary_mechanism_check_702_20260527.json"
+        )
+
+        self.assertTrue(fmo["review_only"])
+        self.assertFalse(fmo["guardrails"]["primary_promotion_reconsidered_now"])
+        self.assertEqual(
+            fmo["current_state"]["m_csa_131_role"],
+            "secondary_ood_probe::flavin_monooxygenase",
+        )
+        self.assertEqual(fmo["current_state"]["current_support_count"], 2)
+        self.assertEqual(
+            fmo["current_state"]["target_additional_clean_rows_before_reconsideration"],
+            4,
+        )
+        self.assertEqual(
+            fmo["current_state"]["goal_total_support_before_primary_promotion_reconsideration"],
+            6,
+        )
+        self.assertEqual(
+            set(fmo["decision_vocabulary"]),
+            {"clean_FMO_candidate", "not_FMO", "insufficient_evidence", "overlaps_flavin_reductase"},
+        )
+        local_decisions = {
+            row["entry_id"]: row["decision"] for row in fmo["local_m_csa_review_candidates"]
+        }
+        self.assertEqual(local_decisions["m_csa:551"], "clean_FMO_candidate")
+        self.assertEqual(local_decisions["m_csa:973"], "clean_FMO_candidate")
+        self.assertEqual(local_decisions["m_csa:128"], "not_FMO")
+
+        self.assertTrue(canary["review_only"])
+        self.assertFalse(canary["guardrails"]["label_registry_changed"])
+        self.assertEqual(canary["entry"]["current_fingerprint_id"], "metal_dependent_hydrolase")
+        self.assertTrue(canary["canary_decision"]["remains_valid_wave1_canary"])
+        self.assertFalse(canary["canary_decision"]["label_review_needed"])
+
 
 if __name__ == "__main__":
     unittest.main()

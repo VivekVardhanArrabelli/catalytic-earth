@@ -1,0 +1,90 @@
+{
+  "schema_version": "v3_v2_sublabel_audit_flavin_hydride_transfer_demotion.v1",
+  "artifact_id": "v3_v2_sublabel_audit_702_flavin_hydride_transfer_demotion_20260527",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "status": "review_only_audit_field_demotion_record",
+  "scope": "Records a field-level readiness demotion for the v2 sublabel `flavin.dehydrogenase_oxidase_hydride_transfer`. Does not rewrite the original audit artifact, edit any registry, change thresholds, alter production scoring, or import any labels. The original audit remains byte-stable and SHA-referenceable.",
+  "guardrails": {
+    "label_registry_changed": false,
+    "ontology_registry_changed": false,
+    "fingerprint_registry_changed": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false,
+    "import_decision_changed": false,
+    "model_scaling_triggered": false,
+    "original_audit_artifact_rewritten": false
+  },
+  "headline": "Move `flavin.dehydrogenase_oxidase_hydride_transfer` from `ready_candidates` to `expert_review_needed_candidates`. Sublabel currently lumps clean hydride-transfer chemistry with semiquinone/electron-transfer, covalent FAD-adduct, flavin radical dehydratase, and already-relabeled NO reductase chemistries.",
+  "applies_to": {
+    "artifact": "artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json",
+    "sha256": "afc80e7fa4f6f4db5521388803cae8fda24ec7cca9fbafa723cf3c1234ce951b",
+    "field_path": "readiness_summary"
+  },
+  "field_demotion": {
+    "sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+    "prior_state": {
+      "list": "readiness_summary.ready_candidates",
+      "readiness_label": "candidate_ready_for_future_eval_design_after_expert_approval"
+    },
+    "new_state": {
+      "list": "readiness_summary.expert_review_needed_candidates",
+      "readiness_label": "needs_expert_review_before_future_evaluation"
+    },
+    "effect_on_audit_counts_when_applied": {
+      "candidate_ready_for_future_eval_design_after_expert_approval": "9 -> 8",
+      "needs_expert_review_before_future_evaluation": "14 -> 15"
+    }
+  },
+  "reason": {
+    "summary": "Population scan of the 50 flavin_dehydrogenase_reductase rows shows the proposed sublabel groups at least four mechanism classes that are not equivalent under hydride-transfer semantics. Promoting it to ready status would invite a stratified evaluation cell whose internal members do not share the named mechanism.",
+    "mechanism_class_breakdown": {
+      "clean_hydride_transfer_at_flavin": {
+        "examples": ["m_csa:108", "m_csa:114", "m_csa:142", "m_csa:294", "m_csa:800"],
+        "fit_under_current_sublabel_name": true
+      },
+      "semiquinone_or_electron_transfer_at_flavin_with_fe_s_relay": {
+        "examples": ["m_csa:281", "m_csa:990"],
+        "fit_under_current_sublabel_name": "stretched"
+      },
+      "covalent_fad_substrate_adduct": {
+        "examples": ["m_csa:123"],
+        "fit_under_current_sublabel_name": false
+      },
+      "flavin_radical_dehydratase_with_catalytic_fe_s": {
+        "examples": ["m_csa:750"],
+        "fit_under_current_sublabel_name": false,
+        "v1_label_also_under_review": true
+      },
+      "no_reductase_diiron_chemistry_already_relabeled": {
+        "examples": ["m_csa:497"],
+        "fit_under_current_sublabel_name": false,
+        "v1_label_already_corrected": "moved to out_of_scope"
+      }
+    },
+    "evidence_use_policy": "review_only_not_predictive_model_features"
+  },
+  "interim_eval_design_recommendation": {
+    "option": "B",
+    "description": "Keep a single broad `flavin.dehydrogenase_oxidase_hydride_transfer` proposal-only stratum for statistical power, but add diagnostic axes when reporting per-row results.",
+    "diagnostic_axes_to_report_alongside_the_sublabel": [
+      "cofactor_complexity: flavin_only | fe_s_plus_flavin | flavin_plus_metal_ion | flavin_plus_heme",
+      "mechanism_class: clean_hydride_transfer | electron_transfer_coupled | covalent_fad_adduct | flavin_radical_dehydratase | boundary_or_unresolved"
+    ],
+    "rationale": "Statistically cheap, surfaces whether learned representations are recognising cofactor signatures versus FAD active-site mechanism."
+  },
+  "source_artifacts": {
+    "artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json": {
+      "sha256": "afc80e7fa4f6f4db5521388803cae8fda24ec7cca9fbafa723cf3c1234ce951b",
+      "role": "original_audit_being_demoted_field_level"
+    },
+    "artifacts/v3_flavin_fe_s_population_expert_disposition_702_20260527.json": {
+      "sha256": "85953e774cb8d045fbf89bf59608f34f80cd189647645ce1272e7874bb79e3d4",
+      "role": "evidence_for_demotion"
+    }
+  },
+  "downstream_consumers_to_update": [
+    "Any future eval-design artifact that draws from `readiness_summary.ready_candidates` should also read this addendum and exclude `flavin.dehydrogenase_oxidase_hydride_transfer` until expert review resolves the in-bucket heterogeneity."
+  ],
+  "registry_edits": 0,
+  "review_only": true
+}

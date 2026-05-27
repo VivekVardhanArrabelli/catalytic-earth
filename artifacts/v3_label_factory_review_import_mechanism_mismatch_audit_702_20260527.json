@@ -1,0 +1,226 @@
+{
+  "already_resolved_prior_revision_rows": [
+    {
+      "current_fingerprint_id": null,
+      "current_label_type": "out_of_scope",
+      "entry_id": "m_csa:497",
+      "resolution": "already_expert_revised_to_out_of_scope_before_this_audit",
+      "source": "artifacts/v3_m_csa497_label_revision_702_20260527.json"
+    }
+  ],
+  "artifact_id": "v3_label_factory_review_import_mechanism_mismatch_audit_702_20260527",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "guardrails": {
+    "automatic_relabels": 0,
+    "fingerprint_registry_changed": false,
+    "import_decision_changed": false,
+    "label_registry_changed": false,
+    "manual_reviewed_all_rows": false,
+    "model_retrained": false,
+    "ontology_registry_changed": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false
+  },
+  "population": {
+    "current_fingerprint_counts": {
+      "None": 123,
+      "cobalamin_radical_rearrangement": 1,
+      "flavin_dehydrogenase_reductase": 16,
+      "heme_peroxidase_oxidase": 12,
+      "metal_dependent_hydrolase": 24,
+      "plp_dependent_enzyme": 11,
+      "ser_his_acid_hydrolase": 23
+    },
+    "current_label_type_counts": {
+      "out_of_scope": 123,
+      "seed_fingerprint": 87
+    },
+    "label_factory_review_import_bronze_row_count": 210,
+    "review_status_counts": {
+      "automation_curated": 209,
+      "expert_reviewed": 1
+    }
+  },
+  "review_only": true,
+  "rules": [
+    {
+      "description": "Flag flavin_dehydrogenase_reductase rows whose mechanism text contains di-iron, non-heme, Fe-S, iron-sulfur, radical, semiquinone, covalent FAD/flavin, or related signals. This preserves clean hydride-transfer rows but shortlists mixed radical/metal chemistry for expert review.",
+      "hit_count": 4,
+      "rule_id": "flavin_metal_radical_conflict"
+    },
+    {
+      "description": "Flag ser_his_acid_hydrolase rows whose mechanism text has Cys/cysteine/thiolate/cysteine-protease nucleophile signals.",
+      "hit_count": 0,
+      "rule_id": "ser_his_cys_nucleophile_conflict"
+    },
+    {
+      "description": "Flag heme_peroxidase_oxidase rows whose text includes non-heme or mixed-metal oxidase signals such as copper, manganese, molybdenum, pterin, di-iron, or non-heme wording.",
+      "hit_count": 2,
+      "rule_id": "heme_nonheme_or_mixed_metal_oxidase_signal"
+    },
+    {
+      "description": "Flag PLP, cobalamin, or radical-SAM rows whose text contains a coupled non-headline cofactor/radical signal.",
+      "hit_count": 1,
+      "rule_id": "plp_cobalamin_radical_coupling_conflict"
+    }
+  ],
+  "schema_version": "v3_label_factory_review_import_mechanism_mismatch_audit.v1",
+  "scope": "Cheap deterministic mechanism-text/fingerprint mismatch scan over the 210 bronze rows carrying label_factory_review_import provenance in the current 702-label registry. The scan preserves signal and never relabels automatically.",
+  "shortlist_rows": [
+    {
+      "action": "expert_review_shortlist_only_no_automatic_relabel",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_type": "seed_fingerprint",
+      "current_review_status": "automation_curated",
+      "entry_id": "m_csa:506",
+      "entry_name": "ferredoxin--NADP reductase",
+      "heuristic_priority": "low_review_false_positive_possible",
+      "matched_rules": [
+        {
+          "matched_signals": [
+            "semiquinone"
+          ],
+          "rule_id": "flavin_metal_radical_conflict"
+        }
+      ],
+      "mechanism_excerpt": "The FAD cofactor is the functional catalytic group, however the residues around it are conserved and have roles in bonding, orientation, proton transfer and modification of the reduction potential at the FAD. \r <br/><br/>\r Ferredoxin (Fd) transfers an electron to FAD via the pi-system of Phe65 of Fd. A proton is transferred from the hydroxyl group of Fd S54,"
+    },
+    {
+      "action": "expert_review_shortlist_only_no_automatic_relabel",
+      "current_fingerprint_id": "heme_peroxidase_oxidase",
+      "current_label_type": "seed_fingerprint",
+      "current_review_status": "automation_curated",
+      "entry_id": "m_csa:714",
+      "entry_name": "ubiquinol oxidase (H+-transporting)",
+      "heuristic_priority": "medium",
+      "matched_rules": [
+        {
+          "matched_signals": [
+            "copper"
+          ],
+          "rule_id": "heme_nonheme_or_mixed_metal_oxidase_signal"
+        }
+      ],
+      "mechanism_excerpt": "<p>The bo3 ubiquinol oxidase has a tightly bound ubiquinol at the QH (high affinity) site, low-spin protoheme b (heme b) and a redox active binuclear centre comprising a copper ion (CuB) and an O-type heme (heme o3). Tyr 288 is near CuB and heme o3, and has a low pKa due to a covalent bond with His 284. In the resting (oxidised or O) state, the heme o3 conta"
+    },
+    {
+      "action": "expert_review_shortlist_only_no_automatic_relabel",
+      "current_fingerprint_id": "heme_peroxidase_oxidase",
+      "current_label_type": "seed_fingerprint",
+      "current_review_status": "automation_curated",
+      "entry_id": "m_csa:735",
+      "entry_name": "cytochrome-c oxidase (BA3 type)",
+      "heuristic_priority": "medium",
+      "matched_rules": [
+        {
+          "matched_signals": [
+            "copper"
+          ],
+          "rule_id": "heme_nonheme_or_mixed_metal_oxidase_signal"
+        }
+      ],
+      "mechanism_excerpt": "<p>The ba3-type COX has a copper CuA centre (comprising two copper ions), a haem b, and a redox active binuclear centre comprising CuB and a haem As3 iron. Tyr 237 is near CuB and haem As3, and has a low pKa due to a covalent bond with His 233. In the resting (oxidised or O) state, the haem As3 contains Fe(III) and CuB is Cu(II). A hydroxide ion is bound by "
+    },
+    {
+      "action": "expert_review_shortlist_only_no_automatic_relabel",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_type": "seed_fingerprint",
+      "current_review_status": "automation_curated",
+      "entry_id": "m_csa:750",
+      "entry_name": "4-hydroxybutanoyl-CoA dehydratase",
+      "heuristic_priority": "high",
+      "matched_rules": [
+        {
+          "matched_signals": [
+            "fe-s",
+            "ketyl radical",
+            "radical",
+            "semiquinone"
+          ],
+          "rule_id": "flavin_metal_radical_conflict"
+        }
+      ],
+      "mechanism_excerpt": "4-BUDH utilises an oxidised FAD quinone to carry out radical formation. This lowers the pKa of the C3 hydrogen, thus activating the usually unreactive C3-H bond.  His 292 acts as a general base to enolise 4-hydroxybutanoyl-CoA by abstraction of the C2-proR-hydrogen.   FAD removes an electron from the enolate oxygen to create the enoxy radical. The FAD-. semi"
+    },
+    {
+      "action": "expert_review_shortlist_only_no_automatic_relabel",
+      "current_fingerprint_id": "plp_dependent_enzyme",
+      "current_label_type": "seed_fingerprint",
+      "current_review_status": "automation_curated",
+      "entry_id": "m_csa:855",
+      "entry_name": "cysteine desulfurase",
+      "heuristic_priority": "medium",
+      "matched_rules": [
+        {
+          "matched_signals": [
+            "fe-s"
+          ],
+          "rule_id": "plp_cobalamin_radical_coupling_conflict"
+        }
+      ],
+      "mechanism_excerpt": "Lys226 forms an imine linkage with PLP in the free enzyme. The catalytic residue His123 deprotonates the substrate amino group. The substrate cysteine then acts as a nucleophile to displace the Lys226 via a tetrahedral geminal diamine intermediate and forms a Schiff base with PLP. Schiff base and pyridine ring has a conjugated pi electron withdrawing effect,"
+    },
+    {
+      "action": "expert_review_shortlist_only_no_automatic_relabel",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_type": "seed_fingerprint",
+      "current_review_status": "automation_curated",
+      "entry_id": "m_csa:862",
+      "entry_name": "cytochrome-b5 reductase",
+      "heuristic_priority": "low_review_false_positive_possible",
+      "matched_rules": [
+        {
+          "matched_signals": [
+            "semiquinone"
+          ],
+          "rule_id": "flavin_metal_radical_conflict"
+        }
+      ],
+      "mechanism_excerpt": "<p>The binding of NADH induces domain motion. Thr66 moves close to the N5 atom of FAD upon domain orientation rearrangement and forms a hydrogen-bonding network from N5 to His49. This pathway is essential for the rapid proton emission from FAD and in the conversion from the blue to the red semiquinone forms.</p>\r <p>In the first step of the reaction, a hydri"
+    },
+    {
+      "action": "expert_review_shortlist_only_no_automatic_relabel",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_type": "seed_fingerprint",
+      "current_review_status": "automation_curated",
+      "entry_id": "m_csa:978",
+      "entry_name": "D-arginine dehydrogenase",
+      "heuristic_priority": "low_review_false_positive_possible",
+      "matched_rules": [
+        {
+          "matched_signals": [
+            "radical"
+          ],
+          "rule_id": "flavin_metal_radical_conflict"
+        }
+      ],
+      "mechanism_excerpt": "Hydride transfer mechanism supported by kinetic studies. In principle, transfer of an electron and a hydrogen atom from the substrate to the flavin is possible, but there is no evidence for presence of a radical as of yet. Deprotonation of the substrate \u03b1-amine occurs first, triggering CH bond cleavage through hydride transfer to the flavin N5 atom. Subseque"
+    }
+  ],
+  "shortlist_summary": {
+    "already_resolved_prior_revision_entry_ids": [
+      "m_csa:497"
+    ],
+    "highest_priority_entry_ids": [
+      "m_csa:750"
+    ],
+    "shortlist_count": 7,
+    "shortlist_counts_by_current_fingerprint": {
+      "flavin_dehydrogenase_reductase": 4,
+      "heme_peroxidase_oxidase": 2,
+      "plp_dependent_enzyme": 1
+    }
+  },
+  "source_artifacts": {
+    "artifacts/v2_benchmark_1025.json": {
+      "sha256": "a69c0d77f0040cf65b6cd48e767839ed26b1e7fd7975158db14e6bc296b722d0"
+    },
+    "artifacts/v3_label_factory_audit_1025_preview_batch.json": {
+      "sha256": "daa5475a6266fb12214acfe04757e7f11c7e3151535659a057d06210eb54461e"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "sha256": "aedbc56e20cad1908e152c83400dfd9fbb63774b4d0c56fc7b8b7ebeebecfcd1"
+    }
+  },
+  "status": "review_only_heuristic_shortlist"
+}

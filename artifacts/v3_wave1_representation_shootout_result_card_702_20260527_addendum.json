@@ -1,0 +1,82 @@
+{
+  "schema_version": "v3_wave1_representation_shootout_result_card_addendum.v1",
+  "artifact_id": "v3_wave1_representation_shootout_result_card_702_20260527_addendum",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "status": "review_only_stale_field_addendum",
+  "scope": "Marks fields in the 2026-05-26 Wave 1 result card that are stale after the canonical relabel of m_csa:497 from `flavin_dehydrogenase_reductase` to `out_of_scope`. Does not rewrite the result card, retrain models, edit thresholds, change ontology, or alter the eval contract. The original card remains byte-stable and SHA-referenceable.",
+  "guardrails": {
+    "label_registry_changed": false,
+    "ontology_registry_changed": false,
+    "fingerprint_registry_changed": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false,
+    "model_retrained": false,
+    "result_card_rewritten": false
+  },
+  "headline": "Wave 1 result card cells that involve the `flavin_dehydrogenase_reductase` primary support or the `low_structure_neighborhood_near_orphan` bin for that fingerprint are now stale by one row. Recomputed numbers live in the m_csa:497 metric-impact artifact; per-track shift is +0.9 to +1.3 percentage points on primary accuracy.",
+  "applies_to": {
+    "artifact": "artifacts/v3_wave1_representation_shootout_result_card_20260526.json",
+    "sha256": "7a33fec362cbc3f5a7e672785cecc265919b4ba6920c3c138e28d0b507998f0b"
+  },
+  "trigger": {
+    "entry_id": "m_csa:497",
+    "change": "seed_fingerprint:flavin_dehydrogenase_reductase -> out_of_scope",
+    "biological_basis": "Flavodiiron NO reductase (FprA/FDP class); catalytic chemistry is NO reduction at a non-heme Fe(II)Fe(II) carboxylate-bridged centre per M-CSA mechanism text; FMNH2 is an electron donor to the di-iron site, not a hydride-transfer cofactor.",
+    "metric_recomputation_artifact": "artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json",
+    "metric_recomputation_sha256": "ebc53c24538018544ad11c04f0a20c59ac03963d51d0b91a7c4d837df70655fb"
+  },
+  "stale_fields_in_result_card": {
+    "global_counts": [
+      {
+        "field_path": "evidence_map.near_orphan_candidate_count",
+        "stale_value": 35,
+        "new_value": 34,
+        "reason": "m_csa:497 was a near_orphan_candidate primary row in the original card; now out_of_scope."
+      },
+      {
+        "field_path": "evidence_map.structural_neighborhood_bin_counts.low_structure_neighborhood_near_orphan",
+        "stale_value": 30,
+        "new_value": "30 in-scope-primary contribution drops by 1 to 29; broad_bucket_ambiguous now includes m_csa:497.",
+        "reason": "Bin membership shift follows the label change."
+      }
+    ],
+    "per_track_primary_metrics": "All entries under evidence_map.track_cards.<track>.{primary_accuracy, primary_support_count, primary_macro_f1} are stale by one row. Recomputed primary_accuracy_after and primary_support_after for every track are in the metric-impact artifact `tracks[]` list.",
+    "per_bin_metrics": [
+      {
+        "field_path_pattern": "evidence_map.metrics_by_structural_neighborhood_bin.<track>.low_structure_neighborhood_near_orphan",
+        "reason": "m_csa:497 was a row in this bin for the flavin_dehydrogenase_reductase primary cell. row_count drops by 1; abstention_count, primary_correct_count, primary_accuracy, and exact_label_accuracy_all_statuses for in_scope_primary status_mix all shift."
+      },
+      {
+        "field_path_pattern": "evidence_map.metrics_by_structural_neighborhood_bin.<track>.broad_bucket_ambiguous",
+        "reason": "m_csa:497 status changed from in_scope_primary to out_of_scope; oos_or_secondary_support_count rises by 1; oos_or_secondary_false_positive_count rises for tracks whose row-497 prediction was a primary fingerprint (esm_c_corrected_logistic, prott5_swissprot_h5_knn per metric-impact tracks list)."
+      }
+    ],
+    "top_case_lists": [
+      {
+        "field_path": "evidence_map.top_foldseek_failure_rescue_cases",
+        "reason": "The entry with entry_id m_csa:497 in this list is now stale; the row is no longer an in-scope-primary failure-rescue case because its true_fingerprint_id is null (out_of_scope)."
+      }
+    ]
+  },
+  "interpretation": {
+    "magnitude": "Per the metric-impact artifact, primary_accuracy increases by ~0.009-0.013 across tracks (primary_support 45 -> 44). OOS false-positive rate is unchanged or shifts slightly upward for tracks whose row-497 prediction was a primary fingerprint.",
+    "ranking_effect": "The relative ordering of tracks in the result card is preserved. Foldseek full-structure NN remains the top primary scorer; ESM-2 150M remains the strongest learned representation.",
+    "should_card_be_rebuilt": "Not blocking. The metric-impact artifact already records the recomputed numbers track-by-track. A future v2 of the result card should consume both artifacts and the demotion record `artifacts/v3_v2_sublabel_audit_702_flavin_hydride_transfer_demotion_20260527.json`."
+  },
+  "source_artifacts": {
+    "artifacts/v3_wave1_representation_shootout_result_card_20260526.json": {
+      "sha256": "7a33fec362cbc3f5a7e672785cecc265919b4ba6920c3c138e28d0b507998f0b",
+      "role": "original_result_card_being_annotated"
+    },
+    "artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json": {
+      "sha256": "ebc53c24538018544ad11c04f0a20c59ac03963d51d0b91a7c4d837df70655fb",
+      "role": "recomputed_track_level_metrics"
+    },
+    "artifacts/v3_flavin_fe_s_population_expert_disposition_702_20260527.json": {
+      "sha256": "85953e774cb8d045fbf89bf59608f34f80cd189647645ce1272e7874bb79e3d4",
+      "role": "label_change_evidence"
+    }
+  },
+  "registry_edits": 0,
+  "review_only": true
+}

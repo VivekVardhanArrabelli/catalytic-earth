@@ -1,0 +1,103 @@
+{
+  "artifact_id": "v3_packet1_wave1_lockdown_addendum_702_20260527",
+  "canary_lock": {
+    "m_csa:43": "Mechanism-text check remains valid as a metal-dependent hydrolase learned-representation failure canary; see v3_m_csa43_wave1_canary_mechanism_check_702_20260527.json.",
+    "m_csa:750": "Unsafe for Wave 1 top_foldseek_success_learned_failure canary use until label state is resolved; see v3_m_csa750_review_packet_702_20260527.json."
+  },
+  "canonical_registry_snapshot": {
+    "label_count": 702,
+    "m_csa_497_current_fingerprint_id": null,
+    "m_csa_497_current_label_type": "out_of_scope",
+    "m_csa_497_review_status": "expert_reviewed",
+    "out_of_scope_count": 471,
+    "seed_fingerprint_count": 231
+  },
+  "created_utc": "2026-05-27T00:00:00Z",
+  "guardrails": {
+    "fingerprint_registry_changed": false,
+    "historical_artifact_rewritten": false,
+    "import_decision_changed": false,
+    "label_registry_changed_by_this_artifact": false,
+    "model_retrained": false,
+    "ontology_registry_changed": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false
+  },
+  "locked_packet1_eval_cells": {
+    "excluded_after_oos_relabel": {
+      "current_label_state": "out_of_scope",
+      "exclude_from": [
+        "primary flavin_dehydrogenase_reductase support and metrics",
+        "near-orphan primary eval cells",
+        "geometry-correct/Foldseek-wrong primary rescue lists",
+        "flavin.dehydrogenase_oxidase_hydride_transfer child-sublabel counts"
+      ],
+      "read_through": "artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json",
+      "rows": [
+        "m_csa:497"
+      ]
+    },
+    "near_orphan_oos_router_abstention_diagnostic": {
+      "eval_use": "Near-orphan OOS / Foldseek-router-abstention diagnostic, not fold-conflict.",
+      "reason": "TM-pair follow-up found zero hits under the verification run.",
+      "rows": [
+        "m_csa:440"
+      ]
+    },
+    "partial_fold_conflict_with_caveat": {
+      "caveat": "Most TM>=0.70 neighbors are OOS glycosidase-like rows, and one apparent primary-neighbor path is weakened by the contested m_csa:750 flavin label.",
+      "eval_use": "TIM-barrel incidental-primary-hit caveat case, not a clean fold-conflict anchor.",
+      "rows": [
+        "m_csa:428"
+      ]
+    },
+    "tm_pair_verified_fold_conflict_oos_anchors": {
+      "eval_use": "Primary Packet 1 fold-conflict OOS anchors only.",
+      "requirement": "Use only with TM-pair verification provenance from the Packet 1 follow-up disposition.",
+      "rows": [
+        "m_csa:217",
+        "m_csa:477"
+      ]
+    }
+  },
+  "review_only": true,
+  "schema_version": "v3_packet1_wave1_lockdown_addendum.v1",
+  "scope": "Final additive Packet 1 / Wave 1 follow-through lock-down. Historical artifacts remain byte-stable; this file resolves stale wording after the m_csa:497 canonical OOS relabel and records eval-use constraints.",
+  "source_artifacts": {
+    "artifacts/v3_flavin_fe_s_population_expert_disposition_702_20260527.json": {
+      "sha256": "85953e774cb8d045fbf89bf59608f34f80cd189647645ce1272e7874bb79e3d4"
+    },
+    "artifacts/v3_fold_conflict_packet1_expert_disposition_702_20260527.json": {
+      "sha256": "5c6e7bc9e25a74db5b18e7fd1e9effa0ffb24ee2b711311c32f14f39c56c0238"
+    },
+    "artifacts/v3_m_csa497_label_revision_702_20260527.json": {
+      "sha256": "4c2127a646b6436e09dce0f506a507f074e86381b2d6b04557bca586b24eb92d"
+    },
+    "artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json": {
+      "sha256": "ebc53c24538018544ad11c04f0a20c59ac03963d51d0b91a7c4d837df70655fb"
+    },
+    "artifacts/v3_packet1_tm_and_497_expert_disposition_702_20260527.json": {
+      "sha256": "05e5321bf0e23473ce15800f9bff3d4b199e753305d4a18d3a8362019a582443"
+    },
+    "artifacts/v3_v2_sublabel_audit_702_flavin_hydride_transfer_demotion_20260527.json": {
+      "sha256": "9b33238dee261a17f2007c1b7a44c4ca4efcc7d62c5bb64075a4f7429f22a037"
+    },
+    "artifacts/v3_wave1_representation_shootout_result_card_702_20260527_addendum.json": {
+      "sha256": "61277aedbcb9f3c463e2b303408640690d008fecd5c47d29f56b642fc9f7217e"
+    }
+  },
+  "status": "review_only_lockdown_addendum",
+  "v2_sublabel_lock": {
+    "effective_state": "expert_review_required_before_future_eval_design",
+    "not_ready_reason": "The current bucket spans clean hydride transfer, semiquinone/electron-transfer, covalent FAD-adduct, flavin radical dehydratase, and the already fixed NO reductase issue.",
+    "ready_for_future_eval": false,
+    "sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer"
+  },
+  "wave1_result_card_reading_order": [
+    "Start with artifacts/v3_wave1_representation_shootout_result_card_20260526.json for the frozen original card.",
+    "Apply artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json for track-level rescoring after m_csa:497 moved to OOS.",
+    "Apply artifacts/v3_wave1_representation_shootout_result_card_702_20260527_addendum.json for stale-cell annotations.",
+    "Apply artifacts/v3_v2_sublabel_audit_702_flavin_hydride_transfer_demotion_20260527.json before treating v2 hydride-transfer strata as ready.",
+    "Apply this Packet 1 lock-down addendum before using fold-conflict, near-orphan, or canary rows."
+  ]
+}

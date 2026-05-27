@@ -1,0 +1,55 @@
+{
+  "artifact_id": "v3_m_csa750_review_packet_702_20260527",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "decisive_mechanism_evidence": {
+    "fe_s_role_interpretation": "Catalytic polarizing/coordination role in water elimination, not a simple electron-relay role.",
+    "flavin_role_interpretation": "FAD/FAD semiquinone participates in radical formation, H abstraction, and electron/proton bookkeeping rather than a clean hydride-transfer step.",
+    "paraphrase": "The mechanism uses oxidized FAD to initiate radical formation, then a flavin semiquinone radical anion abstracts the substrate C3-proS hydrogen. The substrate radical anion is coordinated through its hydroxy group to an Fe in the Fe-S cluster, which polarizes the hydroxy group and enables water elimination. This is radical dehydration chemistry, not ordinary flavin hydride-transfer dehydrogenase/reductase chemistry.",
+    "short_direct_snippets": [
+      "The FAD-. semiquinone radical anion abstracts the substrate's C3-proS-hydrogen.",
+      "with the hydroxy group coordinated to an iron in the Fe-S cluster"
+    ],
+    "source_artifact": "artifacts/v2_benchmark_1025.json",
+    "source_artifact_sha256": "a69c0d77f0040cf65b6cd48e767839ed26b1e7fd7975158db14e6bc296b722d0"
+  },
+  "entry": {
+    "canonical_row_left_unchanged": true,
+    "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+    "current_label_type": "seed_fingerprint",
+    "current_review_status": "automation_curated",
+    "entry_id": "m_csa:750",
+    "enzyme_name": "4-hydroxybutanoyl-CoA dehydratase"
+  },
+  "guardrails": {
+    "canonical_label_changed": false,
+    "fail_closed_label_revision_artifact_created": false,
+    "fingerprint_registry_changed": false,
+    "label_registry_changed_by_this_artifact": false,
+    "model_retrained": false,
+    "ontology_registry_changed": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false
+  },
+  "relationship_to_other_artifacts": {
+    "flavin_fe_s_population_artifact": "artifacts/v3_flavin_fe_s_population_expert_disposition_702_20260527.json",
+    "hydride_sublabel_demotion_artifact": "artifacts/v3_v2_sublabel_audit_702_flavin_hydride_transfer_demotion_20260527.json",
+    "packet1_lockdown_addendum": "artifacts/v3_packet1_wave1_lockdown_addendum_702_20260527.json"
+  },
+  "review_decision": {
+    "label_state": "review_blocked_current_row_unchanged",
+    "likely_resolution": "future_radical_flavin_fe_s_dehydratase_fingerprint_if_the_ontology_expands; otherwise out_of_scope_under_current_v1_primary_fingerprints",
+    "mechanism_class": "flavin_radical_fe_s_dehydratase",
+    "ordinary_flavin_dehydrogenase_reductase_fit": false,
+    "requires_expert_review_before_any_label_revision": true
+  },
+  "review_only": true,
+  "schema_version": "v3_m_csa750_review_packet.v1",
+  "scope": "Dedicated review packet for m_csa:750 after flavin Fe-S population audit. This packet does not relabel, import, change ontology, change thresholds, retrain models, or change production scoring.",
+  "status": "review_blocked_no_canonical_relabel",
+  "wave1_eval_effect": {
+    "affected_prior_card_field": "evidence_map.top_foldseek_success_learned_failure_cases",
+    "reason": "A canary must have stable ground truth. m_csa:750 currently has contested v1 flavin label state.",
+    "remove_or_flag_from_canary_lists_until_label_resolved": true,
+    "unsafe_for_top_foldseek_success_learned_failure_canary": true
+  }
+}

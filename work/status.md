@@ -564,3 +564,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-25T14:36:49.637815+00:00: Sequence-NN remains fail-closed until the repaired current702 split covers all 702 labels; no PLM or learned baseline work was started.
 - 2026-05-25T15:10:30.958833+00:00: Current702 sequence-NN is unblocked and reported with deterministic amino-acid-only baseline artifacts; PLM and learned representation work remain outside this prompt.
 - 2026-05-26T04:27:02.589694+00:00: Wave 1 representation results are now framed as diagnostic structural-neighborhood evidence, not a bigger-model leaderboard.
+- 2026-05-27T00:00:00+00:00: Packet 1 / Wave 1 follow-through is locked down with additive review-only artifacts: 217/477 are verified fold-conflict OOS anchors, 428 is caveated, 440 is near-orphan OOS/router-abstention, 497 is excluded after OOS relabel, the flavin hydride-transfer v2 sublabel is demoted to expert review, 750 is unsafe as a canary pending label review, and 43 remains valid.
