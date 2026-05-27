@@ -1,0 +1,397 @@
+{
+  "artifact_id": "v3_packets2_3_northstar_review_backlog_closure_summary_702_20260527",
+  "schema_version": "v3_packets2_3_northstar_review_backlog_closure_summary.v1",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "scope": "integrated_review_only_packet2_packet3_northstar_backlog_closure_no_registry_or_metric_change",
+  "status": "decision_complete_closure",
+  "review_only": true,
+  "source_artifacts": {
+    "artifacts/v3_near_orphan_geometry_support_review_packet_702_20260526.json": {
+      "sha256": "858d66b750354db7c9d9eb92d832caee15e8bbd93bf7fc2aa7d1c58f4f71acd0"
+    },
+    "artifacts/v3_v2_sublabel_expert_review_packet_702_20260526.json": {
+      "sha256": "954668e13ab1b4a9a47fd176032e05adc1da576332fed8e423f99506c46e0678"
+    },
+    "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json": {
+      "sha256": "8383074a7bb586cbff8219c8f903068e265b30a5f3596a50fa12444083c3a156"
+    },
+    "artifacts/v3_mechanism_prediction_fold_controlled_eval_design_702_20260525.json": {
+      "sha256": "32133230ad372b6ce7594ff75a61e1be449ba273ff025c206b745b0a9d331be9"
+    },
+    "artifacts/v3_mechanism_prediction_orphan_eval_design_702_20260525.json": {
+      "sha256": "71df9869f983b7ea98d454c12b92259136cfa0343071f0260cfba385f930a5a8"
+    },
+    "artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json": {
+      "sha256": "afc80e7fa4f6f4db5521388803cae8fda24ec7cca9fbafa723cf3c1234ce951b"
+    },
+    "artifacts/v3_packet1_wave1_decision_closure_702_20260527.json": {
+      "sha256": "26a84914b33a65e5f844299f4ad2b4dc4997a1f82c1b0025ee2c3498b296870b"
+    },
+    "artifacts/v3_m_csa497_label_revision_702_20260527.json": {
+      "sha256": "4c2127a646b6436e09dce0f506a507f074e86381b2d6b04557bca586b24eb92d"
+    },
+    "artifacts/v3_m_csa750_label_revision_702_20260527.json": {
+      "sha256": "6d965d2b4d64ebe1ec1a6e704ac0b7824dbc53d1b79e489181569f452e07de6d"
+    },
+    "artifacts/v3_wave1_tm_pair_signal_expansion_result_702_20260527.json": {
+      "sha256": "92f671c740a8779fed0882dc1ff78b89614cb99a167d74329354a9ef51e00016"
+    },
+    "artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json": {
+      "sha256": "863a44bc76f3f2f58db4b4b3289a108edef7bb84cecc9db721d892548cff16be"
+    },
+    "artifacts/v3_packet2_near_orphan_geometry_support_decision_closure_702_20260527.json": {
+      "sha256": "7fe2177f6dba3ee2d89ceaa327418a12613271bf5b5948e0308e0da9491a2871"
+    },
+    "artifacts/v3_packet3_v2_sublabel_decision_closure_702_20260527.json": {
+      "sha256": "193014974aa038d81b87bd91df3ee5dea44cab83dfbc50ebeaaaf8242d740970"
+    },
+    "work/northstar_next_review_packets_handoff_20260526.md": {
+      "sha256": "2e039ec161c214965ba029cc86a1a88ac2fcc203a77160a67043c4e1820c92b1"
+    },
+    "work/packet1_wave1_closure_cycle_20260527.md": {
+      "sha256": "c78236dfdd195a920a96ae5cc1939ab1bed08c5ad115f4cd4c749b0c6bc34c27"
+    }
+  },
+  "guardrails": {
+    "canonical_label_registry_changed": false,
+    "ontology_ids_changed": false,
+    "fingerprint_registry_changed": false,
+    "thresholds_changed": false,
+    "production_scoring_changed": false,
+    "imports_changed": false,
+    "model_outputs_changed": false,
+    "representation_model_artifacts_changed": false,
+    "artifact_migration_state_changed": false
+  },
+  "packet2_counts": {
+    "source_row_count": 26,
+    "row_closure_count": 26,
+    "final_disposition_counts": {
+      "closed_label_quality_blocker_excluded_from_primary_metrics": 2,
+      "review_only_near_orphan_geometry_rescue_candidate": 12,
+      "review_only_near_orphan_geometry_rescue_underpowered_v2_cell": 1,
+      "review_only_near_orphan_geometry_rescue_with_flavin_v2_caveat": 4,
+      "review_only_near_orphan_wrong_foldseek_transfer_geometry_rescue": 4,
+      "review_only_v2_design_signal_unresolved_bucket": 3
+    },
+    "eval_cell_counts": {
+      "label_quality_blocker": 2,
+      "near_orphan_primary_geometry_rescue_candidate": 17,
+      "near_orphan_wrong_foldseek_transfer_diagnostic": 4,
+      "review_only_signal": 3
+    },
+    "countable_label_allowed_now_count": 0,
+    "claim_allowed_now_count": 26,
+    "needs_human_expert_review_count": 24,
+    "fold_conflict_candidate_count": 0
+  },
+  "packet2_remaining_blockers": [
+    {
+      "blocker": "human_expert_or_curator_approval_before_any_countable_near_orphan_validation",
+      "affected_entry_ids": [
+        "m_csa:163",
+        "m_csa:403",
+        "m_csa:686",
+        "m_csa:97",
+        "m_csa:994",
+        "m_csa:211",
+        "m_csa:723",
+        "m_csa:115",
+        "m_csa:159",
+        "m_csa:171",
+        "m_csa:20",
+        "m_csa:213",
+        "m_csa:242",
+        "m_csa:3",
+        "m_csa:321",
+        "m_csa:424",
+        "m_csa:43",
+        "m_csa:44",
+        "m_csa:609",
+        "m_csa:714",
+        "m_csa:250",
+        "m_csa:517",
+        "m_csa:916",
+        "m_csa:990"
+      ]
+    },
+    {
+      "blocker": "closed_oos_label_revisions_must_read_through_metrics",
+      "affected_entry_ids": [
+        "m_csa:497",
+        "m_csa:750"
+      ]
+    },
+    {
+      "blocker": "v2_child_cells_underpowered_or_unresolved",
+      "affected_entry_ids": [
+        "m_csa:213",
+        "m_csa:403",
+        "m_csa:517",
+        "m_csa:723",
+        "m_csa:994"
+      ]
+    },
+    {
+      "blocker": "wrong_foldseek_transfer_is_diagnostic_not_countable_support",
+      "affected_entry_ids": [
+        "m_csa:250",
+        "m_csa:517",
+        "m_csa:916",
+        "m_csa:990"
+      ]
+    }
+  ],
+  "packet3_counts": {
+    "source_child_label_count": 25,
+    "child_label_closure_count": 25,
+    "final_disposition_counts": {
+      "abstention_probe_unresolved_bucket": 3,
+      "canary_only_underpowered_candidate": 7,
+      "demoted_mixed_chemistry_do_not_use": 1,
+      "future_acquisition_target": 6,
+      "review_only_v2_pilot_candidate": 8
+    },
+    "eval_use_now_counts": {
+      "abstention_probe_only": 3,
+      "canary_only": 7,
+      "do_not_use": 2,
+      "future_acquisition_target": 5,
+      "pilot_only": 8
+    },
+    "ready_for_v2_pilot_now_count": 8,
+    "ready_for_canonical_registry_count": 0,
+    "needs_more_support_count": 17,
+    "needs_expert_review_count": 25
+  },
+  "packet3_remaining_blockers": [
+    {
+      "blocker": "expert_approval_required_before_any_registry_or_metric_use",
+      "affected_child_label_ids": [
+        "ser_his_acid.lipase_esterase_cutinase_like",
+        "ser_his_acid.perhydrolase_haloperoxidase_caveat",
+        "ser_his_acid.serine_protease_peptidase_like",
+        "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+        "metal_hydrolase.amidohydrolase_deaminase_like",
+        "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+        "metal_hydrolase.metallo_beta_lactamase_like",
+        "metal_hydrolase.ntpase_nucleotide_hydrolase_tail",
+        "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+        "metal_hydrolase.sulfatase_fgly_like",
+        "metal_hydrolase.unresolved_metal_water_hydrolase",
+        "metal_hydrolase.zinc_metalloprotease_or_metallopeptidase_like",
+        "plp.coupled_plp_radical_or_cobalamin_boundary",
+        "plp.decarboxylase",
+        "plp.lyase_eliminase_synthase",
+        "plp.phosphorylase_acid_catalysis_caveat",
+        "plp.racemase_epimerase",
+        "plp.transaminase_aminotransferase",
+        "plp.unresolved_plp_chemistry",
+        "flavin.boundary_monooxygenase_like_review_needed",
+        "flavin.dehydrogenase_oxidase_hydride_transfer",
+        "flavin.unresolved_flavin_redox",
+        "heme.peroxidase_catalase_like",
+        "flavin.monooxygenase_like_boundary_against_secondary_probe",
+        "heme.oxidase_oxygenase_like"
+      ]
+    },
+    {
+      "blocker": "underpowered_or_unresolved_cells_must_not_inflate_metrics",
+      "affected_child_label_ids": [
+        "ser_his_acid.perhydrolase_haloperoxidase_caveat",
+        "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+        "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+        "metal_hydrolase.metallo_beta_lactamase_like",
+        "metal_hydrolase.ntpase_nucleotide_hydrolase_tail",
+        "metal_hydrolase.sulfatase_fgly_like",
+        "metal_hydrolase.unresolved_metal_water_hydrolase",
+        "plp.coupled_plp_radical_or_cobalamin_boundary",
+        "plp.decarboxylase",
+        "plp.phosphorylase_acid_catalysis_caveat",
+        "plp.racemase_epimerase",
+        "plp.unresolved_plp_chemistry",
+        "flavin.boundary_monooxygenase_like_review_needed",
+        "flavin.dehydrogenase_oxidase_hydride_transfer",
+        "flavin.unresolved_flavin_redox",
+        "flavin.monooxygenase_like_boundary_against_secondary_probe",
+        "heme.oxidase_oxygenase_like"
+      ]
+    },
+    {
+      "blocker": "flavin_hydride_child_demoted_until_split",
+      "affected_child_label_ids": [
+        "flavin.dehydrogenase_oxidase_hydride_transfer"
+      ]
+    },
+    {
+      "blocker": "fmo_secondary_underpowered_until_n6_and_hard_negative_separation",
+      "affected_child_label_ids": [
+        "flavin.boundary_monooxygenase_like_review_needed",
+        "flavin.monooxygenase_like_boundary_against_secondary_probe"
+      ]
+    }
+  ],
+  "immediate_review_only_diagnostic_eval_cells": {
+    "packet2_entry_ids": [
+      "m_csa:163",
+      "m_csa:403",
+      "m_csa:686",
+      "m_csa:97",
+      "m_csa:994",
+      "m_csa:211",
+      "m_csa:723",
+      "m_csa:115",
+      "m_csa:159",
+      "m_csa:171",
+      "m_csa:20",
+      "m_csa:213",
+      "m_csa:242",
+      "m_csa:3",
+      "m_csa:321",
+      "m_csa:424",
+      "m_csa:43",
+      "m_csa:44",
+      "m_csa:609",
+      "m_csa:714",
+      "m_csa:250",
+      "m_csa:517",
+      "m_csa:916",
+      "m_csa:990"
+    ],
+    "packet3_child_label_ids": [
+      "ser_his_acid.lipase_esterase_cutinase_like",
+      "ser_his_acid.perhydrolase_haloperoxidase_caveat",
+      "ser_his_acid.serine_protease_peptidase_like",
+      "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+      "metal_hydrolase.amidohydrolase_deaminase_like",
+      "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+      "metal_hydrolase.metallo_beta_lactamase_like",
+      "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+      "metal_hydrolase.unresolved_metal_water_hydrolase",
+      "metal_hydrolase.zinc_metalloprotease_or_metallopeptidase_like",
+      "plp.coupled_plp_radical_or_cobalamin_boundary",
+      "plp.decarboxylase",
+      "plp.lyase_eliminase_synthase",
+      "plp.phosphorylase_acid_catalysis_caveat",
+      "plp.racemase_epimerase",
+      "plp.transaminase_aminotransferase",
+      "plp.unresolved_plp_chemistry",
+      "heme.peroxidase_catalase_like"
+    ]
+  },
+  "must_remain_out_of_metrics": {
+    "packet2_entry_ids": [
+      "m_csa:163",
+      "m_csa:403",
+      "m_csa:686",
+      "m_csa:97",
+      "m_csa:994",
+      "m_csa:211",
+      "m_csa:497",
+      "m_csa:723",
+      "m_csa:750",
+      "m_csa:115",
+      "m_csa:159",
+      "m_csa:171",
+      "m_csa:20",
+      "m_csa:213",
+      "m_csa:242",
+      "m_csa:3",
+      "m_csa:321",
+      "m_csa:424",
+      "m_csa:43",
+      "m_csa:44",
+      "m_csa:609",
+      "m_csa:714",
+      "m_csa:250",
+      "m_csa:517",
+      "m_csa:916",
+      "m_csa:990"
+    ],
+    "packet3_child_label_ids": [
+      "ser_his_acid.lipase_esterase_cutinase_like",
+      "ser_his_acid.perhydrolase_haloperoxidase_caveat",
+      "ser_his_acid.serine_protease_peptidase_like",
+      "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+      "metal_hydrolase.amidohydrolase_deaminase_like",
+      "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+      "metal_hydrolase.metallo_beta_lactamase_like",
+      "metal_hydrolase.ntpase_nucleotide_hydrolase_tail",
+      "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+      "metal_hydrolase.sulfatase_fgly_like",
+      "metal_hydrolase.unresolved_metal_water_hydrolase",
+      "metal_hydrolase.zinc_metalloprotease_or_metallopeptidase_like",
+      "plp.coupled_plp_radical_or_cobalamin_boundary",
+      "plp.decarboxylase",
+      "plp.lyase_eliminase_synthase",
+      "plp.phosphorylase_acid_catalysis_caveat",
+      "plp.racemase_epimerase",
+      "plp.transaminase_aminotransferase",
+      "plp.unresolved_plp_chemistry",
+      "flavin.boundary_monooxygenase_like_review_needed",
+      "flavin.dehydrogenase_oxidase_hydride_transfer",
+      "flavin.unresolved_flavin_redox",
+      "heme.peroxidase_catalase_like",
+      "flavin.monooxygenase_like_boundary_against_secondary_probe",
+      "heme.oxidase_oxygenase_like"
+    ],
+    "reason": "All closures are review-only; no countable labels, production metrics, registry entries, imports, thresholds, or model outputs changed."
+  },
+  "proposed_acquisition_targets": [
+    {
+      "target": "flavodiiron_nitric_oxide_reductase",
+      "source": "m_csa:497",
+      "reason": "closed OOS label-quality blocker exposes a distinct non-heme flavodiiron family"
+    },
+    {
+      "target": "radical_flavin_fe_s_dehydratase",
+      "source": "m_csa:750",
+      "reason": "closed OOS label-quality blocker exposes radical FAD plus Fe-S dehydration chemistry"
+    },
+    {
+      "target": "flavin_monooxygenase",
+      "source": "Packet 3 FMO boundary labels plus FMO closure",
+      "reason": "two more clean C4a-peroxy flavin monooxygenase rows needed before any primary-promotion reconsideration"
+    },
+    {
+      "target": "metal_hydrolase.ntpase_nucleotide_hydrolase_tail",
+      "source": "Packet 3",
+      "reason": "single support row"
+    },
+    {
+      "target": "metal_hydrolase.sulfatase_fgly_like",
+      "source": "Packet 3",
+      "reason": "single FGly/sulfatase support row"
+    },
+    {
+      "target": "flavin.unresolved_flavin_redox",
+      "source": "Packet 3",
+      "reason": "single support row and mixed redox boundary"
+    },
+    {
+      "target": "heme.oxidase_oxygenase_like",
+      "source": "Packet 3",
+      "reason": "zero current support rows"
+    }
+  ],
+  "proposed_but_not_applied_label_or_ontology_revisions": [],
+  "already_applied_label_revisions_read_through": [
+    "artifacts/v3_m_csa497_label_revision_702_20260527.json",
+    "artifacts/v3_m_csa750_label_revision_702_20260527.json"
+  ],
+  "next_benchmark_model_decision_after_closure": {
+    "decision": "run_next_model_or_benchmark_readout_with_packets2_3_as_review_only_diagnostics_not_countable_metrics",
+    "use_now": [
+      "Packet 2 near-orphan geometry-rescue rows as review-only diagnostic slices",
+      "Packet 2 wrong-Foldseek-transfer rows as review-only geometry-rescue diagnostics",
+      "Packet 3 eight coherent child labels as non-canonical pilot-only review slices",
+      "Packet 3 underpowered/unresolved labels as canary or abstention probes only"
+    ],
+    "exclude_now": [
+      "m_csa:497 and m_csa:750 from primary flavin and near-orphan metrics",
+      "flavin.dehydrogenase_oxidase_hydride_transfer from v2 pilot metrics until split",
+      "all Packet 3 child labels from canonical registry and production metrics"
+    ],
+    "human_decision_needed": "Vivek can now decide whether to run the next benchmark with these non-countable diagnostic slices enabled, or to first prioritize acquisition for FMO, radical flavin/Fe-S, flavodiiron NO reductase, sulfatase/FGly, NTPase, and heme oxidase/oxygenase gaps."
+  }
+}

@@ -17006,6 +17006,100 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "underpowered_singleton_canary_set",
         )
 
+    def test_packets2_3_northstar_backlog_closure_is_review_only(self) -> None:
+        packet2 = _load_json(
+            ARTIFACTS
+            / "v3_packet2_near_orphan_geometry_support_decision_closure_702_20260527.json"
+        )
+        packet3 = _load_json(
+            ARTIFACTS / "v3_packet3_v2_sublabel_decision_closure_702_20260527.json"
+        )
+        summary = _load_json(
+            ARTIFACTS
+            / "v3_packets2_3_northstar_review_backlog_closure_summary_702_20260527.json"
+        )
+
+        self.assertTrue(packet2["review_only"])
+        self.assertFalse(packet2["guardrails"]["canonical_label_registry_changed"])
+        self.assertFalse(packet2["guardrails"]["imports_changed"])
+        self.assertEqual(packet2["source_row_count"], 26)
+        self.assertEqual(len(packet2["row_closures"]), 26)
+        self.assertEqual(
+            sum(packet2["closure_counts"]["final_disposition_counts"].values()), 26
+        )
+        self.assertEqual(
+            packet2["closure_counts"]["countable_label_allowed_now_count"], 0
+        )
+        self.assertTrue(
+            all(
+                not row["countable_label_allowed_now"]
+                for row in packet2["row_closures"]
+            )
+        )
+
+        packet2_rows = {row["entry_id"]: row for row in packet2["row_closures"]}
+        self.assertEqual(
+            packet2_rows["m_csa:497"]["eval_cell"], "label_quality_blocker"
+        )
+        self.assertEqual(
+            packet2_rows["m_csa:750"]["eval_cell"], "label_quality_blocker"
+        )
+        self.assertEqual(packet2["closure_counts"]["fold_conflict_candidate_count"], 0)
+        for entry_id in ("m_csa:250", "m_csa:517", "m_csa:916", "m_csa:990"):
+            self.assertEqual(
+                packet2_rows[entry_id]["eval_cell"],
+                "near_orphan_wrong_foldseek_transfer_diagnostic",
+            )
+
+        self.assertTrue(packet3["review_only"])
+        self.assertFalse(packet3["guardrails"]["canonical_label_registry_changed"])
+        self.assertEqual(packet3["source_child_label_count"], 25)
+        self.assertEqual(len(packet3["child_label_closures"]), 25)
+        self.assertEqual(
+            sum(packet3["closure_counts"]["final_disposition_counts"].values()), 25
+        )
+        self.assertEqual(
+            packet3["closure_counts"]["ready_for_canonical_registry_count"], 0
+        )
+        self.assertTrue(
+            all(
+                not row["ready_for_canonical_registry"]
+                for row in packet3["child_label_closures"]
+            )
+        )
+
+        packet3_rows = {
+            row["child_label_id"]: row for row in packet3["child_label_closures"]
+        }
+        flavin_hydride = packet3_rows["flavin.dehydrogenase_oxidase_hydride_transfer"]
+        self.assertEqual(
+            flavin_hydride["final_disposition"],
+            "demoted_mixed_chemistry_do_not_use",
+        )
+        self.assertEqual(flavin_hydride["eval_use_now"], "do_not_use")
+        self.assertFalse(flavin_hydride["ready_for_v2_pilot_now"])
+        self.assertIn(
+            "mixed_flavin_chemistries",
+            flavin_hydride["known_confounds_or_counterexamples"],
+        )
+
+        fmo_boundary = packet3_rows[
+            "flavin.monooxygenase_like_boundary_against_secondary_probe"
+        ]
+        self.assertEqual(fmo_boundary["final_disposition"], "future_acquisition_target")
+        self.assertIn(
+            "do_not_absorb_into_generic_flavin_reductase_or_oos",
+            fmo_boundary["known_confounds_or_counterexamples"],
+        )
+
+        self.assertTrue(summary["review_only"])
+        self.assertEqual(summary["packet2_counts"]["row_closure_count"], 26)
+        self.assertEqual(summary["packet3_counts"]["child_label_closure_count"], 25)
+        self.assertFalse(summary["guardrails"]["canonical_label_registry_changed"])
+        self.assertEqual(
+            summary["proposed_but_not_applied_label_or_ontology_revisions"], []
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
