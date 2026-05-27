@@ -1,0 +1,360 @@
+{
+  "artifact_id": "v3_wave1_1_review_only_diagnostic_readout_702_20260527",
+  "schema_version": "v3_wave1_1_review_only_diagnostic_readout.v1",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "scope": "review_only_wave1_1_diagnostic_readout_after_packet2_packet3_and_m_csa497_m_csa750_closure",
+  "status": "ready_for_review_only_diagnostic_readout",
+  "review_only": true,
+  "source_artifacts": {
+    "artifacts/v3_m_csa497_label_revision_702_20260527.json": {
+      "sha256": "4c2127a646b6436e09dce0f506a507f074e86381b2d6b04557bca586b24eb92d"
+    },
+    "artifacts/v3_m_csa750_label_revision_702_20260527.json": {
+      "sha256": "6d965d2b4d64ebe1ec1a6e704ac0b7824dbc53d1b79e489181569f452e07de6d"
+    },
+    "artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json": {
+      "sha256": "ebc53c24538018544ad11c04f0a20c59ac03963d51d0b91a7c4d837df70655fb"
+    },
+    "artifacts/v3_m_csa750_wave1_metric_canary_impact_702_20260527.json": {
+      "sha256": "e3de377f15e277ad3e718b5760e1f9c6b62a8c933741ed5660a39fdd314b6c04"
+    },
+    "artifacts/v3_packet2_near_orphan_geometry_support_decision_closure_702_20260527.json": {
+      "sha256": "f6f7c237b7df213f05a9f8b17b5084e57e42eebd2d5c15f3db2f0fced93df633"
+    },
+    "artifacts/v3_packet3_v2_sublabel_decision_closure_702_20260527.json": {
+      "sha256": "c0c6c5d8bb9b3898093f993e096b5d14a9982e95ffe24a8d71cf3df8e807ec0d"
+    },
+    "artifacts/v3_packets2_3_northstar_review_backlog_closure_summary_702_20260527.json": {
+      "sha256": "c1136a9aa8809870f398a20f864eaf3be0b582ade738b8626c5000452c8d6a69"
+    },
+    "artifacts/v3_wave1_representation_shootout_result_card_702_20260527_addendum.json": {
+      "sha256": "61277aedbcb9f3c463e2b303408640690d008fecd5c47d29f56b642fc9f7217e"
+    },
+    "work/packet2_near_orphan_geometry_support_closure_20260527.md": {
+      "sha256": "1cbee7a3b6459ff9a03dcd8168977535a7c4003d7d29cb8456a7e7e7fed468e5"
+    },
+    "work/packet3_v2_sublabel_closure_20260527.md": {
+      "sha256": "a7b89384c09acffd3c9c5aea4f8f4374a79c607c37ebcfdaaffe055989622aa0"
+    }
+  },
+  "guardrails": {
+    "canonical_label_registry_changed": false,
+    "ontology_ids_changed": false,
+    "fingerprint_registry_changed": false,
+    "thresholds_changed": false,
+    "production_scoring_changed": false,
+    "imports_changed": false,
+    "model_outputs_changed": false,
+    "representation_model_artifacts_changed": false,
+    "artifact_migration_state_changed": false,
+    "result_card_rewritten": false,
+    "new_countable_metrics_created": false,
+    "canonical_v2_child_labels_created": false
+  },
+  "readout_summary": {
+    "requested_readout_cell_count": 6,
+    "primary_readthrough_excluded_entry_ids": [
+      "m_csa:497",
+      "m_csa:750"
+    ],
+    "packet2_near_orphan_geometry_rescue_row_count": 17,
+    "packet2_wrong_foldseek_transfer_diagnostic_row_count": 4,
+    "packet2_label_quality_blocker_row_count": 2,
+    "packet2_review_only_signal_row_count": 3,
+    "packet3_pilot_only_child_label_count": 8,
+    "packet3_abstention_probe_child_label_count": 3,
+    "packet3_underpowered_canary_child_label_count": 7,
+    "packet3_mixed_chemistry_blocked_child_label_count": 1,
+    "packet3_future_acquisition_target_child_label_count": 5,
+    "all_packet2_countable_label_allowed_now_count": 0,
+    "all_packet3_ready_for_canonical_registry_count": 0
+  },
+  "primary_v1_readthrough_policy": {
+    "m_csa497": {
+      "pull_from_wave1_primary_flavin_metrics": true,
+      "pull_from_near_orphan_primary_eval_cell": true,
+      "retain_as_oos_or_boundary_negative": true,
+      "recommended_future_family_candidate": "flavodiiron_nitric_oxide_reductase",
+      "future_family_candidate_countable": false
+    },
+    "m_csa750": {
+      "future_family_candidate_countable": false,
+      "pull_from_top_foldseek_success_learned_failure_canary": true,
+      "pull_from_wave1_primary_flavin_metrics": true,
+      "recommended_future_family_candidate": "radical_flavin_fe_s_dehydratase",
+      "retain_as_oos_or_boundary_negative": true
+    },
+    "readthrough_decision": "exclude both rows from primary v1 metrics, retain as OOS/boundary or future acquisition signals, and use metric-impact addenda for review-only readout."
+  },
+  "diagnostic_readout_cells": [
+    {
+      "cell_id": "primary_v1_metrics_after_m_csa497_m_csa750_readthrough",
+      "requested_item": "primary v1 metrics after m_csa:497 / m_csa:750 read-through",
+      "readout_type": "track_level_existing_wave1_metrics_rescored_review_only",
+      "status": "available_review_only_not_production_metric",
+      "entry_ids_read_through": [
+        "m_csa:497",
+        "m_csa:750"
+      ],
+      "rows_removed_from_primary_metrics": 2,
+      "rows_retained_as_oos_or_boundary_negative": 2,
+      "track_count": 9,
+      "track_readout": [
+        {
+          "track_id": "sequence_nn",
+          "after_both_readthrough_primary_support": 43,
+          "after_both_readthrough_primary_accuracy": 0.1627906977,
+          "after_both_readthrough_oos_or_secondary_support": 97,
+          "after_both_readthrough_oos_or_secondary_false_positive_rate": 0.2783505155,
+          "m_csa497_prediction": "out_of_scope",
+          "m_csa497_new_oos_false_positive": false,
+          "m_csa750_prediction": "out_of_scope",
+          "m_csa750_new_oos_false_positive": false
+        },
+        {
+          "track_id": "esm2_150m",
+          "after_both_readthrough_primary_support": 43,
+          "after_both_readthrough_primary_accuracy": 0.6046511628,
+          "after_both_readthrough_oos_or_secondary_support": 97,
+          "after_both_readthrough_oos_or_secondary_false_positive_rate": 0.1649484536,
+          "m_csa497_prediction": "out_of_scope",
+          "m_csa497_new_oos_false_positive": false,
+          "m_csa750_prediction": "out_of_scope",
+          "m_csa750_new_oos_false_positive": false
+        },
+        {
+          "track_id": "esm_c_300m",
+          "after_both_readthrough_primary_support": 43,
+          "after_both_readthrough_primary_accuracy": 0.3953488372,
+          "after_both_readthrough_oos_or_secondary_support": 97,
+          "after_both_readthrough_oos_or_secondary_false_positive_rate": 0.175257732,
+          "m_csa497_prediction": "metal_dependent_hydrolase",
+          "m_csa497_new_oos_false_positive": true,
+          "m_csa750_prediction": "out_of_scope",
+          "m_csa750_new_oos_false_positive": false
+        },
+        {
+          "track_id": "esm_c_cosine_nn",
+          "after_both_readthrough_primary_support": 43,
+          "after_both_readthrough_primary_accuracy": 0.0930232558,
+          "after_both_readthrough_oos_or_secondary_support": 97,
+          "after_both_readthrough_oos_or_secondary_false_positive_rate": 0.3505154639,
+          "m_csa497_prediction": null,
+          "m_csa497_new_oos_false_positive": null,
+          "m_csa750_prediction": "cobalamin_radical_rearrangement",
+          "m_csa750_new_oos_false_positive": true
+        },
+        {
+          "track_id": "prott5",
+          "after_both_readthrough_primary_support": 41,
+          "after_both_readthrough_primary_accuracy": 0.4146341463,
+          "after_both_readthrough_oos_or_secondary_support": 91,
+          "after_both_readthrough_oos_or_secondary_false_positive_rate": 0.2527472527,
+          "m_csa497_prediction": "metal_dependent_hydrolase",
+          "m_csa497_new_oos_false_positive": true,
+          "m_csa750_prediction": "out_of_scope",
+          "m_csa750_new_oos_false_positive": false
+        },
+        {
+          "track_id": "saprot",
+          "after_both_readthrough_primary_support": 43,
+          "after_both_readthrough_primary_accuracy": 0.3488372093,
+          "after_both_readthrough_oos_or_secondary_support": 97,
+          "after_both_readthrough_oos_or_secondary_false_positive_rate": 0.206185567,
+          "m_csa497_prediction": "out_of_scope",
+          "m_csa497_new_oos_false_positive": false,
+          "m_csa750_prediction": "cobalamin_radical_rearrangement",
+          "m_csa750_new_oos_false_positive": true
+        },
+        {
+          "track_id": "prostt5_3di",
+          "after_both_readthrough_primary_support": 43,
+          "after_both_readthrough_primary_accuracy": 0.1860465116,
+          "after_both_readthrough_oos_or_secondary_support": 96,
+          "after_both_readthrough_oos_or_secondary_false_positive_rate": 0.1875,
+          "m_csa497_prediction": "out_of_scope",
+          "m_csa497_new_oos_false_positive": false,
+          "m_csa750_prediction": "out_of_scope",
+          "m_csa750_new_oos_false_positive": false
+        },
+        {
+          "track_id": "foldseek_structural",
+          "after_both_readthrough_primary_support": 43,
+          "after_both_readthrough_primary_accuracy": 0.6279069767,
+          "after_both_readthrough_oos_or_secondary_support": 97,
+          "after_both_readthrough_oos_or_secondary_false_positive_rate": 0.1134020619,
+          "m_csa497_prediction": "metal_dependent_hydrolase",
+          "m_csa497_new_oos_false_positive": true,
+          "m_csa750_prediction": "flavin_dehydrogenase_reductase",
+          "m_csa750_new_oos_false_positive": true
+        },
+        {
+          "track_id": "geometry_baseline",
+          "after_both_readthrough_primary_support": 38,
+          "after_both_readthrough_primary_accuracy": 1.0,
+          "after_both_readthrough_oos_or_secondary_support": 97,
+          "after_both_readthrough_oos_or_secondary_false_positive_rate": 1.0,
+          "m_csa497_prediction": null,
+          "m_csa497_new_oos_false_positive": null,
+          "m_csa750_prediction": "flavin_dehydrogenase_reductase",
+          "m_csa750_new_oos_false_positive": true
+        }
+      ],
+      "interpretation": "Use the m_csa:750 impact artifact as the after-both-revisions primary-v1 read-through. Existing Wave 1 predictions are re-scored only; no model retraining, threshold change, or result-card rewrite is implied.",
+      "metric_use_allowed_now": "review_only_diagnostic_summary_only"
+    },
+    {
+      "cell_id": "packet2_near_orphan_geometry_rescue_behavior",
+      "requested_item": "Packet 2 near-orphan geometry-rescue behavior",
+      "readout_type": "row_level_packet2_geometry_rescue_diagnostic",
+      "status": "available_review_only_diagnostic_cell",
+      "entry_ids": [
+        "m_csa:163",
+        "m_csa:686",
+        "m_csa:97",
+        "m_csa:211",
+        "m_csa:115",
+        "m_csa:159",
+        "m_csa:171",
+        "m_csa:20",
+        "m_csa:213",
+        "m_csa:242",
+        "m_csa:3",
+        "m_csa:321",
+        "m_csa:424",
+        "m_csa:43",
+        "m_csa:44",
+        "m_csa:609",
+        "m_csa:714"
+      ],
+      "row_count": 17,
+      "countable_label_allowed_now_count": 0,
+      "needs_human_expert_review_count": 17,
+      "included_final_dispositions": {
+        "review_only_near_orphan_geometry_rescue_candidate": 12,
+        "review_only_near_orphan_geometry_rescue_with_flavin_v2_caveat": 4,
+        "review_only_near_orphan_geometry_rescue_underpowered_v2_cell": 1
+      },
+      "behavior_to_measure": "Geometry supports the v1 family in low-structure-neighborhood rows where structure/neighborhood evidence is weak or stale; report as diagnostic rescue behavior, not countable validation.",
+      "metric_use_allowed_now": "review_only_diagnostic_slice_only"
+    },
+    {
+      "cell_id": "packet2_wrong_foldseek_transfer_diagnostic_behavior",
+      "requested_item": "Packet 2 wrong-Foldseek-transfer diagnostic behavior",
+      "readout_type": "row_level_wrong_foldseek_transfer_diagnostic",
+      "status": "available_review_only_diagnostic_cell",
+      "entry_ids": [
+        "m_csa:250",
+        "m_csa:517",
+        "m_csa:916",
+        "m_csa:990"
+      ],
+      "row_count": 4,
+      "countable_label_allowed_now_count": 0,
+      "needs_human_expert_review_count": 4,
+      "included_final_dispositions": {
+        "review_only_near_orphan_wrong_foldseek_transfer_geometry_rescue": 4
+      },
+      "behavior_to_measure": "Foldseek transfers to the wrong current primary family while active-site geometry supports the true family; report as diagnostic geometry-vs-structure-neighbor conflict, not as a fold-conflict anchor or countable support.",
+      "metric_use_allowed_now": "review_only_diagnostic_slice_only"
+    },
+    {
+      "cell_id": "packet3_eight_pilot_only_child_stratum_readout",
+      "requested_item": "Packet 3 eight pilot-only child-stratum readout",
+      "readout_type": "proposal_only_child_stratum_pilot_readout",
+      "status": "available_pilot_only_review_only_not_canonical",
+      "child_label_ids": [
+        "ser_his_acid.lipase_esterase_cutinase_like",
+        "ser_his_acid.serine_protease_peptidase_like",
+        "metal_hydrolase.amidohydrolase_deaminase_like",
+        "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+        "metal_hydrolase.zinc_metalloprotease_or_metallopeptidase_like",
+        "plp.lyase_eliminase_synthase",
+        "plp.transaminase_aminotransferase",
+        "heme.peroxidase_catalase_like"
+      ],
+      "child_label_count": 8,
+      "support_count_by_child_label": {
+        "ser_his_acid.lipase_esterase_cutinase_like": 19,
+        "ser_his_acid.serine_protease_peptidase_like": 10,
+        "metal_hydrolase.amidohydrolase_deaminase_like": 7,
+        "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like": 35,
+        "metal_hydrolase.zinc_metalloprotease_or_metallopeptidase_like": 13,
+        "plp.lyase_eliminase_synthase": 11,
+        "plp.transaminase_aminotransferase": 5,
+        "heme.peroxidase_catalase_like": 20
+      },
+      "ready_for_v2_pilot_now_count": 8,
+      "ready_for_canonical_registry_count": 0,
+      "behavior_to_measure": "Read these child strata as pilot-only review slices to expose v1-family internal failure modes; do not treat them as canonical labels or production metrics.",
+      "metric_use_allowed_now": "pilot_only_review_slice_not_canonical_metric"
+    },
+    {
+      "cell_id": "abstention_behavior_on_unresolved_or_underpowered_child_buckets",
+      "requested_item": "abstention behavior on unresolved/underpowered child buckets",
+      "readout_type": "proposal_only_abstention_probe_readout",
+      "status": "available_abstention_probe_only",
+      "child_label_ids": [
+        "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+        "metal_hydrolase.unresolved_metal_water_hydrolase",
+        "plp.unresolved_plp_chemistry"
+      ],
+      "child_label_count": 3,
+      "support_count_by_child_label": {
+        "ser_his_acid.unresolved_acyl_enzyme_hydrolase": 12,
+        "metal_hydrolase.unresolved_metal_water_hydrolase": 20,
+        "plp.unresolved_plp_chemistry": 6
+      },
+      "ready_for_canonical_registry_count": 0,
+      "needs_more_support_count": 3,
+      "behavior_to_measure": "Models should avoid confident child-stratum claims on unresolved buckets; evaluate abstention or uncertainty behavior only, because these buckets mix mechanisms and would inflate metrics.",
+      "metric_use_allowed_now": "abstention_probe_only_not_accuracy_metric"
+    },
+    {
+      "cell_id": "canary_behavior_for_underpowered_or_mixed_chemistry_cells",
+      "requested_item": "canary behavior for underpowered or mixed-chemistry cells",
+      "readout_type": "proposal_only_canary_and_blocked_mixed_chemistry_readout",
+      "status": "available_canary_only_or_do_not_use_for_mixed_chemistry",
+      "underpowered_canary_child_label_ids": [
+        "ser_his_acid.perhydrolase_haloperoxidase_caveat",
+        "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+        "metal_hydrolase.metallo_beta_lactamase_like",
+        "plp.coupled_plp_radical_or_cobalamin_boundary",
+        "plp.decarboxylase",
+        "plp.phosphorylase_acid_catalysis_caveat",
+        "plp.racemase_epimerase"
+      ],
+      "underpowered_canary_count": 7,
+      "mixed_chemistry_blocked_child_label_ids": [
+        "flavin.dehydrogenase_oxidase_hydride_transfer"
+      ],
+      "mixed_chemistry_blocked_count": 1,
+      "other_terminal_no_use_child_label_ids": [
+        "heme.oxidase_oxygenase_like"
+      ],
+      "m_csa750_canary_effect": {
+        "canary_set_status": "underpowered_after_m_csa750_removal",
+        "next_exact_decision": "Choose a replacement only after a label-state review finds another primary row with the same foldseek-success/learned-failure pattern; do not use m_csa:750.",
+        "previous_canary_role": "top_foldseek_success_learned_failure candidate paired with m_csa:43",
+        "reason": "Canonical row is now out_of_scope/future radical-flavin/Fe-S dehydratase signal, so it cannot validate primary flavin_dehydrogenase_reductase canary behavior.",
+        "remaining_valid_canaries": [
+          "m_csa:43"
+        ],
+        "removed_from_canary_use": true,
+        "replacement_canary_selected": false
+      },
+      "behavior_to_measure": "Underpowered child cells can serve as small canaries only; mixed-chemistry flavin hydride transfer is explicitly blocked from pilot/metric use until split, and m_csa:750 is removed from primary flavin canary use.",
+      "metric_use_allowed_now": "canary_only_or_do_not_use_not_countable_metric",
+      "child_label_count": 8,
+      "blocked_no_use_child_label_count": 2
+    }
+  ],
+  "not_allowed_now": [
+    "Do not import Packet 2 rows as countable labels.",
+    "Do not promote Packet 3 child labels into canonical registries.",
+    "Do not use unresolved, underpowered, or mixed-chemistry cells to inflate accuracy metrics.",
+    "Do not rewrite the Wave 1 result card in this artifact; consume addenda instead.",
+    "Do not change thresholds, production scoring, model outputs, ontology IDs, fingerprint IDs, imports, or artifact migration state."
+  ],
+  "recommended_next_use": "Run the next Wave 1.1 review-only benchmark/reporting readout with these six diagnostic cells enabled as non-countable slices alongside the existing primary/OOS metrics after 497/750 read-through."
+}

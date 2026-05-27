@@ -17100,6 +17100,63 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             summary["proposed_but_not_applied_label_or_ontology_revisions"], []
         )
 
+    def test_wave1_1_review_only_diagnostic_readout_pins_closed_cells(self) -> None:
+        readout = _load_json(
+            ARTIFACTS / "v3_wave1_1_review_only_diagnostic_readout_702_20260527.json"
+        )
+
+        self.assertTrue(readout["review_only"])
+        self.assertFalse(readout["guardrails"]["canonical_label_registry_changed"])
+        self.assertFalse(readout["guardrails"]["production_scoring_changed"])
+        self.assertFalse(readout["guardrails"]["new_countable_metrics_created"])
+        self.assertFalse(readout["guardrails"]["canonical_v2_child_labels_created"])
+
+        summary = readout["readout_summary"]
+        self.assertEqual(summary["requested_readout_cell_count"], 6)
+        self.assertEqual(
+            summary["primary_readthrough_excluded_entry_ids"],
+            ["m_csa:497", "m_csa:750"],
+        )
+        self.assertEqual(summary["packet2_near_orphan_geometry_rescue_row_count"], 17)
+        self.assertEqual(
+            summary["packet2_wrong_foldseek_transfer_diagnostic_row_count"], 4
+        )
+        self.assertEqual(summary["packet3_pilot_only_child_label_count"], 8)
+        self.assertEqual(summary["packet3_abstention_probe_child_label_count"], 3)
+        self.assertEqual(summary["packet3_underpowered_canary_child_label_count"], 7)
+        self.assertEqual(
+            summary["packet3_mixed_chemistry_blocked_child_label_count"], 1
+        )
+        self.assertEqual(summary["all_packet2_countable_label_allowed_now_count"], 0)
+        self.assertEqual(summary["all_packet3_ready_for_canonical_registry_count"], 0)
+
+        cells = {
+            row["cell_id"]: row for row in readout["diagnostic_readout_cells"]
+        }
+        self.assertEqual(
+            cells["primary_v1_metrics_after_m_csa497_m_csa750_readthrough"][
+                "track_count"
+            ],
+            9,
+        )
+        self.assertEqual(
+            cells["packet3_eight_pilot_only_child_stratum_readout"][
+                "ready_for_canonical_registry_count"
+            ],
+            0,
+        )
+        self.assertIn(
+            "flavin.dehydrogenase_oxidase_hydride_transfer",
+            cells["canary_behavior_for_underpowered_or_mixed_chemistry_cells"][
+                "mixed_chemistry_blocked_child_label_ids"
+            ],
+        )
+        self.assertTrue(
+            cells["canary_behavior_for_underpowered_or_mixed_chemistry_cells"][
+                "m_csa750_canary_effect"
+            ]["removed_from_canary_use"]
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
