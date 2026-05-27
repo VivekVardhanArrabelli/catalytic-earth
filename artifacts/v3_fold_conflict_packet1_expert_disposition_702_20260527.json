@@ -1,0 +1,208 @@
+{
+  "schema_version": "fold_conflict_packet1_expert_disposition.v1",
+  "artifact_id": "v3_fold_conflict_packet1_expert_disposition_702_20260527",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "status": "review_only",
+  "scope": {
+    "source_packet": "artifacts/v3_fold_conflict_oos_hard_negative_review_packet_702_20260526.json",
+    "source_audit": "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json",
+    "reason": "Correct Packet 1 eval framing after expert review. The original packet grouped fold-control candidates, near-orphan candidates, and generic OOS abstention diagnostics under one heading, which would blur separate benchmark cells."
+  },
+  "guardrails": {
+    "label_registry_changed": false,
+    "ontology_registry_changed": false,
+    "fingerprint_registry_changed": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false,
+    "import_decision_changed": false,
+    "model_scaling_triggered": false
+  },
+  "core_correction": {
+    "packet1_original_issue": "The packet conflated mutually distinct audit flags: fold_control_candidate, near_orphan_candidate, and neither-flag OOS diagnostics.",
+    "fold_control_candidate_rows": [
+      "m_csa:131",
+      "m_csa:217",
+      "m_csa:428",
+      "m_csa:440",
+      "m_csa:477"
+    ],
+    "near_orphan_candidate_rows": [
+      "m_csa:250",
+      "m_csa:497",
+      "m_csa:517",
+      "m_csa:916",
+      "m_csa:990"
+    ],
+    "neither_flag_oos_abstention_diagnostic_rows": [
+      "m_csa:10",
+      "m_csa:30",
+      "m_csa:31",
+      "m_csa:116",
+      "m_csa:191",
+      "m_csa:369",
+      "m_csa:634",
+      "m_csa:651"
+    ],
+    "tm_pair_verification_state": {
+      "verified": {
+        "m_csa:217": {
+          "max_pair_tm": 0.7761,
+          "verified_against": [
+            "m_csa:248",
+            "m_csa:412"
+          ],
+          "decision": "verified_fold_conflict_oos_hard_negative"
+        }
+      },
+      "candidate_only_needs_tm_pair_verification": [
+        "m_csa:428",
+        "m_csa:440",
+        "m_csa:477"
+      ]
+    }
+  },
+  "cell_assignments": [
+    {
+      "cell_name": "fold_controlled_oos_hard_negative_verified",
+      "rows": [
+        "m_csa:217"
+      ],
+      "decision": "keep_oos_hard_negative",
+      "use": "Primary fold-conflict metric anchor; TM-pair verified.",
+      "notes": "Textbook same-fold or high-structure-neighborhood transfer would point at an in-scope family, but biology remains distinct OOS."
+    },
+    {
+      "cell_name": "fold_controlled_oos_hard_negative_candidate_needs_tm_pair_verification",
+      "rows": [
+        "m_csa:428",
+        "m_csa:440",
+        "m_csa:477"
+      ],
+      "decision": "keep_oos_hard_negative_pending_tm_pair_verification",
+      "use": "Candidate fold-conflict rows; promote to verified fold-controlled eval only after TM-pair confirmation against a primary train neighbor at TM >= 0.70.",
+      "notes": "Biology stays OOS now, but eval-cell status requires equal verification to m_csa:217."
+    },
+    {
+      "cell_name": "oos_as_oos_structural_neighbor_router_correct",
+      "rows": [
+        "m_csa:10",
+        "m_csa:116",
+        "m_csa:191",
+        "m_csa:369"
+      ],
+      "decision": "keep_oos_hard_negative",
+      "use": "Positive evidence that Foldseek-as-router can correctly transfer OOS status when the nearest structural neighbor is itself OOS.",
+      "notes": "This is not a fold-conflict failure cell."
+    },
+    {
+      "cell_name": "abstention_floor_weak_foldseek_noise",
+      "rows": [
+        "m_csa:30",
+        "m_csa:31",
+        "m_csa:634",
+        "m_csa:651"
+      ],
+      "decision": "keep_oos_hard_negative",
+      "use": "Probability-floor and calibration diagnostic for weak structural hits; not a fold-conflict anchor.",
+      "notes": "These rows test low-confidence Foldseek noise and learned-representation miscalibration."
+    },
+    {
+      "cell_name": "secondary_ood_probe_flavin_monooxygenase",
+      "rows": [
+        "m_csa:131"
+      ],
+      "decision": "keep_secondary_ood_probe",
+      "use": "Highest-value flavin boundary probe against flavin_dehydrogenase_reductase; keep secondary until support is sufficient.",
+      "notes": "Not a v2 replacement and not insufficient evidence. Existing secondary fingerprint support is underpowered."
+    },
+    {
+      "cell_name": "near_orphan_primary_foldseek_noise_geometry_rescue",
+      "rows": [
+        "m_csa:250",
+        "m_csa:517",
+        "m_csa:916"
+      ],
+      "decision": "geometry_better_than_foldseek_for_near_orphan",
+      "use": "Geometry-rescue primary cell where Foldseek has no defensible neighbor.",
+      "notes": "Do not mix with fold-controlled conflict metrics."
+    },
+    {
+      "cell_name": "near_orphan_primary_foldseek_strong_or_moderate_wrong",
+      "rows": [
+        "m_csa:990"
+      ],
+      "decision": "usable_with_cofactor_caveat",
+      "use": "Informative near-orphan/fold-conflict-like primary miss where Foldseek points to the wrong mechanism.",
+      "notes": "Retain metadata caveat: Fe-S plus flavin combined-cofactor reductase, not vanilla flavin-only."
+    },
+    {
+      "cell_name": "pull_from_test_set_pending_expert_label_review",
+      "rows": [
+        "m_csa:497"
+      ],
+      "decision": "do_not_use_as_fold_conflict_anchor_until_label_review",
+      "use": "Expert label review first.",
+      "notes": "FMN-dependent nitric-oxide reductase has flavin plus metal-ion/di-metal active-site evidence; broad v1 flavin_dehydrogenase_reductase assignment may be contested."
+    }
+  ],
+  "specific_decisions": {
+    "q1_oos_rows": {
+      "decision": "all_12_stay_oos",
+      "but_split_eval_cells": true,
+      "cell_groups": [
+        "fold_controlled_oos_hard_negative_verified",
+        "fold_controlled_oos_hard_negative_candidate_needs_tm_pair_verification",
+        "oos_as_oos_structural_neighbor_router_correct",
+        "abstention_floor_weak_foldseek_noise"
+      ]
+    },
+    "q2_m_csa_131": {
+      "decision": "keep_as_secondary_ood_probe_flavin_monooxygenase",
+      "not_v2_sublabel_question": true,
+      "not_insufficient_evidence": true,
+      "acquisition_target": "Acquire additional flavin monooxygenase rows such as BVMO, salicylate hydroxylase, lysine N6-hydroxylase, and FMO1/FMO3/FMO5-like examples before considering primary promotion."
+    },
+    "q3_near_orphan_rows": {
+      "decision": "split_near_orphan_cells_and_remove_m_csa_497_until_label_review",
+      "geometry_rescue_rows": [
+        "m_csa:250",
+        "m_csa:517",
+        "m_csa:916"
+      ],
+      "usable_with_caveat_rows": [
+        "m_csa:990"
+      ],
+      "label_review_first_rows": [
+        "m_csa:497"
+      ]
+    }
+  },
+  "open_questions_before_locking_test_set": [
+    {
+      "id": "m_csa_497_label_review",
+      "question": "Is flavin_dehydrogenase_reductase the right v1 bucket for an FMN-dependent nitric-oxide reductase with Fe-Fe carboxylate-bridged active-site evidence?",
+      "blocking": true
+    },
+    {
+      "id": "tm_pair_verification_428_440_477",
+      "question": "Do m_csa:428, m_csa:440, and m_csa:477 have train rows at TM >= 0.70 in their fold-conflict direction?",
+      "blocking": true
+    },
+    {
+      "id": "m_csa_990_cofactor_metadata",
+      "question": "Should HCAR be represented as a flavin+Fe-S-cluster reductase child stratum or retained under the broader flavin hydride-transfer stratum with caveat metadata?",
+      "blocking": false
+    },
+    {
+      "id": "fmo_acquisition_plan",
+      "question": "Which flavin monooxygenase rows should be acquired to raise secondary support before any future primary promotion discussion?",
+      "blocking": false
+    }
+  ],
+  "next_actions": [
+    "Update future eval-design code/artifacts to keep fold-control, near-orphan, OOS-as-OOS, and weak-Foldseek-noise cells separate.",
+    "Run TM-pair verification for m_csa:428, m_csa:440, and m_csa:477 before treating them as verified fold-controlled OOS hard negatives.",
+    "Route m_csa:497 to expert label review before any fold-conflict use.",
+    "Keep m_csa:131 as a secondary OOD flavin_monooxygenase probe and add acquisition targets for additional FMO support."
+  ]
+}

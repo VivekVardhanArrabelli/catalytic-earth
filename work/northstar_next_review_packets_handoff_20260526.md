@@ -118,3 +118,30 @@ decisions, threshold tuning, model scaling, or production claims.
   automation is resolved. Because the packet conclusion says no row can be
   acted on automatically without expert input, the main work loop should pause
   rather than manufacture additional review-only machinery.
+
+## 2026-05-27 Packet 1 Expert Disposition
+
+The first expert review corrected the Packet 1 framing. Packet 1 should not be
+used as a single fold-conflict bucket. It must be split into true
+fold-control candidates, near-orphan candidates, OOS-as-OOS structural-neighbor
+diagnostics, and weak-Foldseek abstention-floor diagnostics.
+
+New review-only artifacts:
+
+```text
+artifacts/v3_fold_conflict_packet1_expert_disposition_702_20260527.json
+work/fold_conflict_packet1_expert_disposition_20260527.md
+```
+
+Key decisions:
+
+- All 12 OOS rows stay OOS, but they occupy different eval cells.
+- `m_csa:217` is the only currently TM-pair-verified fold-controlled OOS hard
+  negative anchor.
+- `m_csa:428`, `m_csa:440`, and `m_csa:477` stay OOS but need TM-pair
+  verification before verified fold-controlled use.
+- `m_csa:131` stays a secondary OOD probe for `flavin_monooxygenase`.
+- `m_csa:250`, `m_csa:517`, and `m_csa:916` are near-orphan geometry-rescue
+  candidates, not fold-conflict anchors.
+- `m_csa:990` is usable with Fe-S plus flavin caveat metadata.
+- `m_csa:497` is pulled from fold-conflict use pending expert label review.
