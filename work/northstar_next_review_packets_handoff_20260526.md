@@ -171,3 +171,31 @@ Follow-up decisions:
   primary-hit caveat.
 - `m_csa:440` is not TM-verified and moves to near-orphan OOS /
   Foldseek-router-abstention diagnostics.
+
+## 2026-05-27 Flavin Fe-S Population Follow-Up
+
+New review-only artifacts:
+
+```text
+artifacts/v3_flavin_fe_s_population_expert_disposition_702_20260527.json
+work/flavin_fe_s_population_expert_disposition_20260527.md
+```
+
+Follow-up decisions:
+
+- `m_csa:990` stays v1 `flavin_dehydrogenase_reductase`. Its catalytic locus is
+  FAD; Fe-S clusters are electron relay. Carry Fe-S plus flavin and coupled
+  dehydration/reduction caveat metadata.
+- The proposed v2 child label
+  `flavin.dehydrogenase_oxidase_hydride_transfer` should move from ready to
+  expert-review-needed for evaluation design because the 9 Fe-S plus flavin
+  rows contain clean hydride transfer, electron-transfer/coupled chemistry,
+  covalent FAD-adduct chemistry, and flavin radical dehydratase chemistry.
+- Immediate fix: report flavin results with cofactor-complexity and
+  mechanism-class diagnostic axes rather than treating all current flavin rows
+  as one clean hydride-transfer v2 stratum.
+- `m_csa:750` should be pulled from learned-representation failure-canary use
+  until v1 label review; it may be a flavin radical dehydratase rather than a
+  flavin reductase.
+- `m_csa:428` gets a stronger caveat because one of its apparent primary TM
+  neighbors is `m_csa:750`, whose v1 label is now contested.

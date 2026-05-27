@@ -62,3 +62,19 @@ Updated dispositions:
    flavin support before locking claims.
 3. Use `m_csa:477` and `m_csa:217` as the clean verified fold-conflict anchors.
 
+## Flavin Fe-S Follow-Up
+
+The Fe-S plus flavin population review adds two caveats to this disposition:
+
+- `m_csa:990` is not analogous to `m_csa:497`; keep its v1 flavin label with
+  Fe-S plus flavin / coupled dehydration-reduction metadata.
+- `m_csa:428` should be treated even more cautiously because its apparent
+  primary TM-neighbor set includes `m_csa:750`, whose v1 flavin label is now
+  contested.
+
+See:
+
+```text
+artifacts/v3_flavin_fe_s_population_expert_disposition_702_20260527.json
+work/flavin_fe_s_population_expert_disposition_20260527.md
+```

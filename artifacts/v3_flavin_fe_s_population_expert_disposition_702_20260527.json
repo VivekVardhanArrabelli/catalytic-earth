@@ -1,0 +1,151 @@
+{
+  "schema_version": "flavin_fe_s_population_expert_disposition.v1",
+  "artifact_id": "v3_flavin_fe_s_population_expert_disposition_702_20260527",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "status": "review_only_disposition",
+  "scope": {
+    "source_audit": "artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json",
+    "related_packet1_dispositions": [
+      "artifacts/v3_fold_conflict_packet1_expert_disposition_702_20260527.json",
+      "artifacts/v3_packet1_tm_and_497_expert_disposition_702_20260527.json"
+    ],
+    "purpose": "Record expert population review of Fe-S plus flavin rows and constrain future use of the proposed v2 flavin.dehydrogenase_oxidase_hydride_transfer sublabel."
+  },
+  "guardrails": {
+    "label_registry_changed": false,
+    "ontology_registry_changed": false,
+    "fingerprint_registry_changed": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false,
+    "import_decision_changed": false,
+    "model_scaling_triggered": false
+  },
+  "headline": {
+    "m_csa_990_v1_label": "defensible",
+    "m_csa_990_current_v2_sublabel": "not_ready_without_caveat",
+    "flavin_v2_sublabel_status": "move_from_ready_to_expert_review_needed_for_evaluation_design",
+    "side_finding": "m_csa:750 may be mislabeled at v1 and should be pulled from current evaluation until reviewed"
+  },
+  "population_scan": {
+    "primary_fingerprint": "flavin_dehydrogenase_reductase",
+    "row_count": 50,
+    "cofactor_signature_counts": {
+      "flavin_only": 34,
+      "flavin_plus_fe_s_cluster": 9,
+      "flavin_plus_metal_ion": 4,
+      "flavin_plus_heme": 3
+    },
+    "interpretation": "Fe-S plus flavin rows are 18 percent of the current v1 flavin bucket, so this is not a one-off caveat. A single hydride-transfer v2 child label would conflate distinct catalytic chemistries."
+  },
+  "fe_s_plus_flavin_mechanism_groups": [
+    {
+      "group_id": "I",
+      "group_name": "clean_hydride_transfer_at_fad_or_fmn",
+      "rows": [
+        "m_csa:108",
+        "m_csa:114",
+        "m_csa:142",
+        "m_csa:294",
+        "m_csa:800"
+      ],
+      "fit_to_current_v2_sublabel": "fits",
+      "notes": "Fe-S is treated as electron relay while the catalytic step is hydride transfer from or to substrate via flavin."
+    },
+    {
+      "group_id": "II",
+      "group_name": "fad_electron_donor_coupled_chemistry",
+      "rows": [
+        "m_csa:281",
+        "m_csa:990"
+      ],
+      "fit_to_current_v2_sublabel": "stretched",
+      "notes": "Sequential electron/proton chemistry or coupled dehydration/reduction. Not classical concerted hydride-transfer semantics."
+    },
+    {
+      "group_id": "III",
+      "group_name": "mechanistically_distinct_from_current_hydride_sublabel",
+      "rows": [
+        "m_csa:123",
+        "m_csa:750"
+      ],
+      "fit_to_current_v2_sublabel": "does_not_fit_cleanly",
+      "notes": "Includes covalent FAD-substrate adduct chemistry and flavin radical dehydratase chemistry."
+    }
+  ],
+  "row_decisions": {
+    "m_csa:990": {
+      "current_v1_label": "flavin_dehydrogenase_reductase",
+      "v1_decision": "keep",
+      "v1_rationale": "The catalytic locus is the FAD-substrate interface. Two 4Fe-4S clusters relay electrons from ferredoxin to FAD; FAD performs substrate reduction while Asp237 supports dehydration.",
+      "v2_decision": "do_not_use_current_hydride_transfer_sublabel_without_caveat",
+      "recommended_eval_metadata": {
+        "cofactor_complexity": "fe_s_plus_flavin",
+        "mechanism_class": "coupled_dehydration_and_reduction",
+        "flavin_role": "catalytic_substrate_reduction_locus",
+        "fe_s_role": "electron_relay"
+      },
+      "test_set_placement": "near_orphan_primary_with_cofactor_complexity_diagnostic_flag"
+    },
+    "m_csa:750": {
+      "current_v1_label": "flavin_dehydrogenase_reductase",
+      "v1_decision": "needs_expert_review_likely_mislabeled",
+      "rationale": "Mechanism is flavin radical dehydratase chemistry with flavin semiquinone and Fe-S cluster participation, not reductase chemistry in the v1 broad sense.",
+      "recommended_action": "pull_from_current_evaluation_until_v1_label_review",
+      "possible_future_state": "out_of_scope_or_new_flavin_radical_dehydratase_fingerprint",
+      "test_set_impact": "Currently a learned-representation failure canary in the Wave 1 result card; if mislabeled, using it as a canary against flavin_dehydrogenase_reductase is unsafe."
+    },
+    "m_csa:123": {
+      "current_v1_label": "flavin_dehydrogenase_reductase",
+      "v1_decision": "keep_with_boundary_flag",
+      "rationale": "FAD is mechanistically central, but the mechanism involves covalent FAD-substrate adduct and sulfur-oxygen bond cleavage rather than classical hydride transfer.",
+      "recommended_eval_metadata": {
+        "mechanism_class": "covalent_fad_substrate_adduct",
+        "current_v2_hydride_sublabel": "defer"
+      }
+    },
+    "m_csa:497": {
+      "current_v1_label": "flavin_dehydrogenase_reductase",
+      "v1_decision": "recommended_out_of_scope_in_prior_disposition",
+      "relationship_to_this_scan": "Included in flavin plus metal-ion population; reinforces that cofactor presence alone is not enough to define a flavin hydride-transfer mechanism."
+    }
+  },
+  "v2_sublabel_decision": {
+    "sublabel": "flavin.dehydrogenase_oxidase_hydride_transfer",
+    "prior_audit_state": "ready_candidate_for_future_eval_design",
+    "new_recommendation": "move_to_expert_review_needed_candidates",
+    "reason": "The current sublabel groups clean hydride-transfer enzymes, semiquinone/electron-transfer enzymes, covalent FAD-adduct chemistry, flavin radical dehydratase chemistry, and already-flagged NO reductase chemistry.",
+    "immediate_fix": {
+      "recommended_option": "B",
+      "description": "Keep a broad flavin v1 bucket for statistical power but add a cofactor-complexity and mechanism-class diagnostic axis to evaluation reporting.",
+      "diagnostic_axes": [
+        "cofactor_complexity: flavin_only | fe_s_plus_flavin | flavin_plus_metal_ion | flavin_plus_heme",
+        "mechanism_class: clean_hydride_transfer | electron_transfer_coupled | covalent_fad_adduct | flavin_radical_dehydratase | boundary_or_unresolved"
+      ]
+    },
+    "eventual_goal": {
+      "recommended_option": "A",
+      "description": "Split into mechanism-typed v2 strata once support is sufficient.",
+      "candidate_strata": [
+        "flavin.simple_hydride_transfer",
+        "flavin.hydride_transfer_with_fe_s_relay",
+        "flavin.electron_transfer_with_fe_s_relay",
+        "flavin.covalent_adduct_apsr",
+        "flavin.radical_dehydratase"
+      ],
+      "caveat": "Several strata are currently n=1-2 and underpowered."
+    }
+  },
+  "packet1_implications": {
+    "m_csa:990": "Keep as v1 flavin primary near-orphan row, but carry Fe-S plus flavin and coupled dehydration/reduction metadata.",
+    "m_csa:750": "Pull from learned-representation failure canary use until v1 label review.",
+    "m_csa:428": "Caveat becomes stronger because one of its apparent primary TM neighbors is m_csa:750, whose v1 label is now contested.",
+    "m_csa:497": "Prior out_of_scope recommendation remains reinforced."
+  },
+  "next_actions": [
+    "Do not use flavin.dehydrogenase_oxidase_hydride_transfer as a ready v2 evaluation child label until expert review splits or annotates heterogeneity.",
+    "Add cofactor-complexity and mechanism-class diagnostic axes before reporting flavin v2/within-bucket results.",
+    "Pull m_csa:750 from Wave 1 learned-representation failure canaries until v1 label review.",
+    "Keep m_csa:990 as v1 flavin_dehydrogenase_reductase with Fe-S plus flavin caveat metadata.",
+    "Treat m_csa:428's primary-neighbor evidence as weaker because its primary-hit set includes label-questionable flavin rows."
+  ]
+}
