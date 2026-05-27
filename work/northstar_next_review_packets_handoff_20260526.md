@@ -5,6 +5,14 @@ concrete expert-review packets. It is review-only/proposal-only: no labels,
 registries, ontology, fingerprints, imports, thresholds, model scaling, or
 production policy changed.
 
+Update 2026-05-27: packet follow-up expert review accepted one canonical
+label-state revision. `m_csa:497` is now `out_of_scope` instead of
+`seed_fingerprint::flavin_dehydrogenase_reductase` because the catalytic locus
+is non-heme flavodiiron NO reduction and FMNH2 is an electron donor rather than
+the v1 flavin hydride-transfer locus. See
+`artifacts/v3_m_csa497_label_revision_702_20260527.json` and
+`work/m_csa497_label_revision_20260527.md`.
+
 ## Deliverables
 
 - `artifacts/v3_fold_conflict_oos_hard_negative_review_packet_702_20260526.json`

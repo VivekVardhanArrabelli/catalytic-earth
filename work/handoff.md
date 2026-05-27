@@ -12290,3 +12290,13 @@ Known blockers:
   search, a terminal candidate-class decision, or a wet-lab/expert-adjudication
   bridge. No labels, fingerprints, thresholds, production scorers, imports, or
   migration state changed.
+
+- 2026-05-27 `m_csa:497` expert label-state revision: relabeled from
+  `seed_fingerprint::flavin_dehydrogenase_reductase` to `out_of_scope` after
+  mechanism-locus review concluded the row is flavodiiron nitric oxide
+  reduction at a non-heme Fe(II)Fe(II) center, with FMNH2 acting as electron
+  donor rather than catalytic flavin hydride-transfer locus. Canonical label
+  count remains 702; seed labels are now 231 and out-of-scope labels 471. See
+  `artifacts/v3_m_csa497_label_revision_702_20260527.json`,
+  `artifacts/v3_m_csa497_wave1_metric_impact_702_20260527.json`, and
+  `work/m_csa497_label_revision_20260527.md`.

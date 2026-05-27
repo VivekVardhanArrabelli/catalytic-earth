@@ -1,0 +1,45 @@
+{
+  "schema_version": "v3_m_csa497_label_revision",
+  "created_utc": "2026-05-27T09:13:07Z",
+  "entry_id": "m_csa:497",
+  "previous_label_state": {
+    "label_type": "seed_fingerprint",
+    "fingerprint_id": "flavin_dehydrogenase_reductase",
+    "review_status": "automation_curated",
+    "tier": "bronze",
+    "source": "label_factory_review_import"
+  },
+  "revised_label_state": {
+    "label_type": "out_of_scope",
+    "fingerprint_id": null,
+    "review_status": "expert_reviewed",
+    "tier": "bronze",
+    "reviewer": "vivek_expert_review_20260527"
+  },
+  "decision": "relabel_out_of_scope",
+  "decision_basis": {
+    "primary_source_artifact": "artifacts/v3_packet1_tm_and_497_expert_disposition_702_20260527.json",
+    "supporting_source_artifact": "work/packet1_tm_and_497_expert_disposition_20260527.md",
+    "mechanism_locus": "non-heme Fe(II)Fe(II) carboxylate-bridged center",
+    "flavin_role": "FMNH2 electron donor to the di-iron nitrosyl complex",
+    "excluded_v1_fingerprint": "flavin_dehydrogenase_reductase",
+    "exclusion_reason": "The v1 flavin_dehydrogenase_reductase fingerprint represents catalytic flavin hydride-transfer chemistry; m_csa:497 is flavodiiron nitric oxide reduction at a non-heme di-iron center."
+  },
+  "registry_effect": {
+    "total_labels": 702,
+    "seed_fingerprint_delta": -1,
+    "out_of_scope_delta": 1,
+    "flavin_dehydrogenase_reductase_delta": -1,
+    "external_imports_changed": false,
+    "thresholds_changed": false,
+    "ontology_ids_changed": false,
+    "production_imports_changed": false
+  },
+  "evaluation_policy_effect": {
+    "pull_from_wave1_primary_flavin_metrics": true,
+    "pull_from_near_orphan_primary_eval_cell": true,
+    "retain_as_oos_or_boundary_negative": true,
+    "recommended_future_family_candidate": "flavodiiron_nitric_oxide_reductase",
+    "future_family_candidate_countable": false
+  }
+}

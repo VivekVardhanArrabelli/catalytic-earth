@@ -5729,7 +5729,7 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             by_type[label["label_type"]] = by_type.get(label["label_type"], 0) + 1
 
         self.assertEqual(len(labels), 702)
-        self.assertEqual(by_type, {"out_of_scope": 470, "seed_fingerprint": 232})
+        self.assertEqual(by_type, {"out_of_scope": 471, "seed_fingerprint": 231})
 
         labels_by_entry = {label["entry_id"]: label for label in labels}
         self.assertEqual(
@@ -16463,7 +16463,7 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             ],
         )
         self.assertEqual(
-            audit["freeze_decision_summary"]["primary_metric_seed_label_count"], 226
+            audit["freeze_decision_summary"]["primary_metric_seed_label_count"], 225
         )
         self.assertEqual(
             audit["freeze_decision_summary"]["secondary_only_seed_label_count"], 6

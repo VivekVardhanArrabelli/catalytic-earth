@@ -408,9 +408,12 @@ def _frozen_oos_tier_assignments_summary(
     secondary_assigned = sum(
         assignment["entry_count"] for assignment in secondary_assignments.values()
     )
+    out_of_scope_count = sum(
+        1 for label in label_by_entry.values() if label.label_type == "out_of_scope"
+    )
     return {
         "assignment_version": "partial_oos_tiers.v1",
-        "current_registry_out_of_scope_label_count": 470,
+        "current_registry_out_of_scope_label_count": out_of_scope_count,
         "secondary_probe_seed_label_count": secondary_assigned,
         "complete_oos_assignment": False,
         "partial_assignment_status": {
@@ -419,10 +422,10 @@ def _frozen_oos_tier_assignments_summary(
             "reason": (
                 "This contract freezes deterministic rules and representative "
                 "tier canaries, but does not run a full per-entry tier pass over "
-                "all 470 out-of-scope registry rows"
+                "all current out-of-scope registry rows"
             ),
             "next_exact_task": (
-                "Apply oos_tiering_policy to all 470 label_type=out_of_scope "
+                "Apply oos_tiering_policy to all current label_type=out_of_scope "
                 "rows using registry/fingerprint/audit evidence plus train-free "
                 "sequence or structure neighborhoods, then emit "
                 "artifacts/v3_mechanism_prediction_oos_tier_assignments_702.json "
