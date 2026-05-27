@@ -145,3 +145,29 @@ Key decisions:
   candidates, not fold-conflict anchors.
 - `m_csa:990` is usable with Fe-S plus flavin caveat metadata.
 - `m_csa:497` is pulled from fold-conflict use pending expert label review.
+
+## 2026-05-27 Packet 1 TM / m_csa:497 Follow-Up
+
+New review-only artifacts:
+
+```text
+artifacts/v3_packet1_tm_and_497_expert_disposition_702_20260527.json
+work/packet1_tm_and_497_expert_disposition_20260527.md
+```
+
+Follow-up decisions:
+
+- `m_csa:497` should be relabeled from `flavin_dehydrogenase_reductase` to
+  `out_of_scope` if Vivek accepts the gated label revision. It is a flavodiiron
+  nitric oxide reductase where the catalytic chemistry is centered at a
+  non-heme Fe(II)Fe(II) site; FMNH2 is an electron donor, not the v1 flavin
+  hydride-transfer locus. This recommendation is not yet applied to the
+  canonical registry.
+- `m_csa:477` is now the cleanest verified fold-conflict OOS hard-negative
+  anchor, with nine TM>=0.70 primary hits across six distinct primary M-CSA
+  entries.
+- `m_csa:217` remains verified.
+- `m_csa:428` is only partially verified and must carry a TIM-barrel incidental
+  primary-hit caveat.
+- `m_csa:440` is not TM-verified and moves to near-orphan OOS /
+  Foldseek-router-abstention diagnostics.

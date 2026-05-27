@@ -59,3 +59,17 @@ verification before being used as verified fold-controlled eval anchors.
 4. Acquire more flavin monooxygenase support before any primary-promotion
    discussion for `flavin_monooxygenase`.
 
+## Follow-Up Disposition
+
+These open questions now have a follow-up review-only artifact:
+
+```text
+artifacts/v3_packet1_tm_and_497_expert_disposition_702_20260527.json
+work/packet1_tm_and_497_expert_disposition_20260527.md
+```
+
+The follow-up recommends pulling and relabeling `m_csa:497` to
+`out_of_scope`, verifies `m_csa:477` as the cleanest fold-conflict anchor,
+keeps `m_csa:217` verified, marks `m_csa:428` verified-with-caveat, and moves
+`m_csa:440` to near-orphan OOS diagnostics. The canonical registry has not
+been changed.

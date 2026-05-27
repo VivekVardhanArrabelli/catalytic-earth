@@ -1,0 +1,213 @@
+{
+  "schema_version": "packet1_tm_and_497_expert_disposition.v1",
+  "artifact_id": "v3_packet1_tm_and_497_expert_disposition_702_20260527",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "status": "review_only_disposition",
+  "scope": {
+    "source_packet": "artifacts/v3_fold_conflict_oos_hard_negative_review_packet_702_20260526.json",
+    "prior_disposition": "artifacts/v3_fold_conflict_packet1_expert_disposition_702_20260527.json",
+    "purpose": "Record expert follow-up on m_csa:497 label validity and TM-pair verification for m_csa:428, m_csa:440, and m_csa:477."
+  },
+  "guardrails": {
+    "label_registry_changed": false,
+    "ontology_registry_changed": false,
+    "fingerprint_registry_changed": false,
+    "production_scoring_changed": false,
+    "threshold_changed": false,
+    "import_decision_changed": false,
+    "model_scaling_triggered": false
+  },
+  "m_csa_497_label_review": {
+    "current_label_state": {
+      "entry_id": "m_csa:497",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_type": "seed_fingerprint",
+      "source": "label_factory_review_import",
+      "retrieval_score": 0.675,
+      "abstention_floor": 0.4115
+    },
+    "expert_recommendation": "Relabel m_csa:497 from flavin_dehydrogenase_reductase to out_of_scope.",
+    "recommended_new_label_state": {
+      "label_type": "out_of_scope",
+      "fingerprint_id": null
+    },
+    "mechanism_rationale": "Flavodiiron nitric oxide reductase / FprA-FDP chemistry is centered at a non-heme Fe(II)Fe(II) carboxylate-bridged active site. FMNH2 donates electrons to the di-iron nitrosyl complex but is not the catalytic hydride-transfer locus represented by v1 flavin_dehydrogenase_reductase.",
+    "curated_mechanism_text_summary": "The M-CSA mechanism describes a resting Fe(II)Fe(II) center coordinating two NO molecules, forming a diferrous dinitrosyl complex. FMNH2 reduces that complex; Tyr195 and His25 protonate nitrosyl oxygen atoms, yielding N2O and H2O while restoring the diferrous center.",
+    "why_not_v1_primary_fingerprints": {
+      "flavin_dehydrogenase_reductase": "Mismatch: flavin is an electron donor to the di-iron site, not the catalytic hydride-transfer locus.",
+      "metal_dependent_hydrolase": "Mismatch: reduction, not hydrolysis.",
+      "heme_peroxidase_oxidase": "Mismatch: non-heme di-iron, not heme.",
+      "plp_dependent_enzyme": "Irrelevant chemistry.",
+      "ser_his_acid_hydrolase": "Irrelevant chemistry."
+    },
+    "identity_confirmation": {
+      "uniprot": "Q9FDN7",
+      "protein": "Type A flavoprotein FprA / Flavoprotein A",
+      "organism_context": "Moorella thermoacetica",
+      "family": "flavodiiron protein / FNOR-like nitric oxide reductase",
+      "ec_state": "EC 1.-.-.- / effectively unassigned in cited review context"
+    },
+    "eval_impact": {
+      "pull_from_wave1_primary_eval": true,
+      "pull_from_near_orphan_primary_eval_cell": true,
+      "drop_proposed_v2_sublabel_for_this_row": "flavin.dehydrogenase_oxidase_hydride_transfer",
+      "reported_primary_metric_sensitivity": "Pulling one row changes the 45-row primary support by about 1/45, approximately 2.2 percentage points before metric recomputation.",
+      "reason": "Using m_csa:497 as geometry-correct/Foldseek-wrong would penalize models that recognize metal-centered chemistry if the current broad flavin label is wrong."
+    },
+    "implementation_status": "not_applied_to_canonical_registry",
+    "required_next_step_for_label_change": "Run an explicit gated label-state revision/import decision if Vivek accepts the relabel recommendation."
+  },
+  "tm_pair_verification": {
+    "method": {
+      "tool": "Foldseek 10.941cd33 easy-search",
+      "parameters": "--alignment-type 1 -e inf --tmscore-threshold 0.0 --max-seqs 600",
+      "queries": [
+        "pdb_1BQC",
+        "pdb_1QK2",
+        "pdb_1CQQ"
+      ],
+      "target_set": "538 train-partition-only structures from artifacts/v3_foldseek_coordinates_1000/",
+      "filter": "TM >= 0.70 and primary-fingerprint targets"
+    },
+    "rows": {
+      "m_csa:217": {
+        "identity": "(S)-hydroxynitrile lyase",
+        "packet_foldseek_neighbor": "m_csa:733 ser_his_acid_hydrolase",
+        "tm_primary_hits": 3,
+        "top_primary_neighbors": [
+          {
+            "entry_id": "m_csa:248",
+            "structure": "1A7U",
+            "tm": 0.7761
+          },
+          {
+            "entry_id": "m_csa:412",
+            "structure": "1AZW",
+            "tm": 0.7369
+          },
+          {
+            "entry_id": "m_csa:415",
+            "structure": "1B6G",
+            "tm": 0.7625
+          }
+        ],
+        "verdict": "verified_fold_conflict_oos_hard_negative"
+      },
+      "m_csa:428": {
+        "identity": "TIM-barrel glycosidase / mannosidase",
+        "packet_foldseek_neighbor": "m_csa:11 metal_dependent_hydrolase",
+        "tm_hits_total": 69,
+        "tm_primary_hits": 3,
+        "top_primary_neighbors": [
+          {
+            "entry_id": "m_csa:697",
+            "structure": "2HSA",
+            "fingerprint_id": "flavin_dehydrogenase_reductase",
+            "tm": 0.7338
+          },
+          {
+            "entry_id": "m_csa:114",
+            "structure": "2TMD",
+            "fingerprint_id": "flavin_dehydrogenase_reductase",
+            "tm": 0.7123
+          },
+          {
+            "entry_id": "m_csa:114",
+            "structure": "2TMD_B",
+            "fingerprint_id": "flavin_dehydrogenase_reductase",
+            "tm": 0.7119
+          }
+        ],
+        "verdict": "partially_verified_with_caveat",
+        "caveat": "Most TM>=0.70 neighborhood is OOS TIM-barrel glycosidase-like; primary hits are incidental TIM-barrel structural matches, not a clean same-fold primary mechanism conflict."
+      },
+      "m_csa:440": {
+        "identity": "beta-jelly-roll GH7 cellobiosidase",
+        "packet_foldseek_neighbor": "m_csa:697 flavin_dehydrogenase_reductase",
+        "tm_hits_total": 0,
+        "tm_primary_hits": 0,
+        "verdict": "not_verified_near_orphan_oos",
+        "reclassification": "Move from fold-conflict candidate to near-orphan OOS / Foldseek-router-abstention diagnostic."
+      },
+      "m_csa:477": {
+        "identity": "picornain 3C cysteine protease in chymotrypsin fold",
+        "packet_foldseek_neighbor": "m_csa:608 ser_his_acid_hydrolase",
+        "tm_primary_hits": 9,
+        "top_primary_neighbors": [
+          {
+            "entry_id": "m_csa:608",
+            "structure": "1DS2",
+            "tm": 0.8043
+          },
+          {
+            "entry_id": "m_csa:173",
+            "structure": "1PQ5",
+            "tm": 0.7963
+          },
+          {
+            "entry_id": "m_csa:798",
+            "structure": "1RTF",
+            "tm": 0.7759
+          },
+          {
+            "entry_id": "m_csa:425",
+            "structure": "1QRZ",
+            "tm": 0.759
+          },
+          {
+            "entry_id": "m_csa:776",
+            "structure": "1RGQ",
+            "tm": 0.7485
+          },
+          {
+            "entry_id": "m_csa:387",
+            "structure": "1YPH",
+            "tm": 0.7133
+          }
+        ],
+        "verdict": "strongly_verified_fold_conflict_oos_hard_negative",
+        "note": "Cleanest Packet 1 adversarial fold-conflict case; six distinct primary M-CSA entries confirm the structural neighborhood."
+      }
+    }
+  },
+  "updated_test_set_cells": [
+    {
+      "cell": "verified_fold_conflict_oos_hard_negatives_tm_ge_0_70_to_primary",
+      "rows": [
+        "m_csa:217",
+        "m_csa:477"
+      ],
+      "caveat_rows": [
+        "m_csa:428"
+      ],
+      "use": "Primary fold-conflict metric anchor. Use m_csa:428 with explicit TIM-barrel incidental-match caveat."
+    },
+    {
+      "cell": "near_orphan_oos_no_fold_neighbor",
+      "rows": [
+        "m_csa:440"
+      ],
+      "additional_prior_rows": [
+        "m_csa:10",
+        "m_csa:116",
+        "m_csa:191",
+        "m_csa:369"
+      ],
+      "use": "Foldseek-as-router correctness / abstention diagnostic rather than fold-conflict."
+    },
+    {
+      "cell": "pull_from_test_set_pending_or_until_relabel",
+      "rows": [
+        "m_csa:497"
+      ],
+      "use": "Do not include in primary flavin or near-orphan geometry-rescue metrics unless the canonical label-state decision is explicitly resolved."
+    }
+  ],
+  "next_actions": [
+    "If accepted by Vivek, run a gated canonical label-state revision for m_csa:497 from flavin_dehydrogenase_reductase to out_of_scope.",
+    "Recompute or annotate Wave 1 metrics with m_csa:497 excluded from primary flavin support before locking claims.",
+    "Use m_csa:477 and m_csa:217 as the clean verified fold-conflict OOS anchors.",
+    "Use m_csa:428 only with TIM-barrel incidental-primary-hit caveat.",
+    "Move m_csa:440 to near-orphan OOS / router-abstention diagnostics."
+  ]
+}
