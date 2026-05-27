@@ -50,6 +50,47 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-05-27T13:10Z Wave 1 TM-Pair Expansion Closure
+
+This run stayed on `main` at `ea0b158` / `origin/main` and closed the remaining
+Packet 1 Wave 1 TM-pair retention blocker without changing labels, ontology
+IDs, fingerprints, imports, thresholds, production scoring, model outputs,
+representation artifacts, or artifact migration state.
+
+Artifacts written:
+
+```text
+artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa217_query_chunk_215_20260527.json
+artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa477_query_chunk_470_20260527.json
+artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa428_query_chunk_423_20260527.json
+artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa440_query_chunk_435_20260527.json
+artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_targeted_packet1_tm_pairs5000_20260527.json
+artifacts/v3_wave1_tm_pair_signal_expansion_result_702_20260527.json
+```
+
+Readout: the targeted exact Foldseek query chunks retained 2,971 heldout-vs-train
+rows under a 5,000-row cap. `m_csa:217` and `m_csa:477` are no longer capped and
+remain fully supported fold-conflict OOS anchors. `m_csa:428` is no longer capped
+but remains caveated because the high-TM neighbors are mostly OOS rows with only
+incidental primary hits. `m_csa:440` is no longer capped and is supported as a
+near-orphan OOS/router-abstention case, not a fold-conflict case. Full
+692-query all-materializable all-vs-all Foldseek coverage is still incomplete
+and not claimed.
+
+Verification passed:
+
+```text
+python -m json.tool artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa217_query_chunk_215_20260527.json
+python -m json.tool artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa477_query_chunk_470_20260527.json
+python -m json.tool artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa428_query_chunk_423_20260527.json
+python -m json.tool artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa440_query_chunk_435_20260527.json
+python -m json.tool artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_targeted_packet1_tm_pairs5000_20260527.json
+python -m json.tool artifacts/v3_wave1_tm_pair_signal_expansion_result_702_20260527.json
+PYTHONPATH=src python -m unittest tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_wave1_tm_pair_signal_expansion_result_closes_packet1_rows tests.test_automation_small_win_artifacts.AutomationSmallWinArtifactsTest.test_wave1_tm_pair_signal_expansion_is_exactly_blocked
+PYTHONPATH=src python -m catalytic_earth.cli validate
+git diff --check
+```
+
 ### 2026-05-26T06:26Z North-Star Review Packets
 
 This run stayed on `main`, used the current Wave 1 Foldseek+geometry router and

@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 322
-- Measured elapsed time: 9515.3 minutes (158.59 hours)
+- Entries: 324
+- Measured elapsed time: 9640.3 minutes (160.67 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -19,7 +19,7 @@ Generated from `work/progress_log.jsonl`.
 - post-mcsa-spof-hardening: 1764.6 measured minutes (29.41 hours)
 - post-v2: 2950.7 measured minutes (49.18 hours)
 - sequence-nn-baseline: 46.8 measured minutes (0.78 hours)
-- v3: 2453.1 measured minutes (40.89 hours)
+- v3: 2578.1 measured minutes (42.97 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -28,32 +28,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 3421
-- Evidence references logged: 2833
+- Artifact references logged: 3441
+- Evidence references logged: 2854
 
 ## Recent Entries
-
-### 2026-05-25T11:17:39.450858+00:00 - v3
-
-- Task: Mechanism prediction OOS/diversity eval contract freeze
-- Time mode: measured
-- Measured minutes: 10.6
-- Started: 2026-05-25T11:06:53Z
-- Ended: 2026-05-25T11:17:29Z
-- Artifacts: artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json, README.md, docs/label_factory.md, work/handoff.md
-- Evidence: contract freezes five primary fingerprints and three secondary OOD probes, source digests recorded for audit plan labels and fingerprints, partial OOS tier assignment status is explicit, canary expansion needed is explicit, full unittest discovery passed 934 tests
-- Notes: No label import registry edit fingerprint edit ontology edit scoring change threshold change model training PLM embedding sequence-NN benchmark artifact removal migration upload history rewrite or removal_allowed=true action occurred; pre-existing root CIF files left untouched.
-
-### 2026-05-25T11:38:22.081117+00:00 - sequence-nn-baseline
-
-- Task: current702 sequence-NN manifest and split completeness blocker
-- Time mode: measured
-- Measured minutes: 9.15
-- Started: 2026-05-25T11:29:12Z
-- Ended: 2026-05-25T11:38:21Z
-- Artifacts: artifacts/v3_sequence_nn_label_manifest_current702_20260525.json, artifacts/v3_sequence_nn_eval_contract_compliance_current702_20260525.json
-- Evidence: PYTHONPATH=src python -m catalytic_earth.cli validate, PYTHONPATH=src python -m unittest discover -s tests, git diff --check, jq empty sequence-NN JSON artifacts
-- Notes: Baseline metrics intentionally not emitted because repaired current702 split rows cover 698/702 labels; missing split assignments are m_csa:204, uniprot:P06744, uniprot:P78549, and uniprot:Q3LXA3.
 
 ### 2026-05-25T12:36:38Z - sequence-nn-baseline
 
@@ -118,6 +96,29 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_wave1_structure_neighborhood_audit_20260526.json, artifacts/v3_wave1_representation_shootout_result_card_20260526.json, docs/wave1_representation_shootout.md, work/handoff.md
 - Evidence: joined 140 current702 heldout rows across Wave 1 baseline and representation tracks, reported metrics by structural-neighborhood bin for Foldseek ESM-2 ESM-C ProtT5 SaProt 3Di geometry and sequence-NN, identified fold-controlled contrast near-orphan and proposal-only v2 sublabel candidate rows, interpreted Wave 1 as structural-neighborhood transfer and abstention diagnostics, not a model-scaling win
 - Notes: No label import registry edit fingerprint edit ontology edit threshold change production scoring model scaling or representation branch artifact edit occurred.
+
+### 2026-05-27T10:15:26Z - v3
+
+- Task: Packet 1 and Wave 1 follow-through lock-down
+- Time mode: measured
+- Measured minutes: 35.0
+- Started: 2026-05-27T09:40:00Z
+- Ended: 2026-05-27T10:15:26Z
+- Artifacts: artifacts/v3_v2_sublabel_audit_702_flavin_hydride_transfer_demotion_20260527.json, artifacts/v3_wave1_representation_shootout_result_card_702_20260527_addendum.json, artifacts/v3_packet1_wave1_lockdown_addendum_702_20260527.json, artifacts/v3_m_csa750_review_packet_702_20260527.json, artifacts/v3_label_factory_review_import_mechanism_mismatch_audit_702_20260527.json, artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json, artifacts/v3_m_csa43_wave1_canary_mechanism_check_702_20260527.json, tests/test_automation_small_win_artifacts.py, work/packet1_wave1_followthrough_20260527.md, work/handoff.md, work/status.md
+- Evidence: integrated the two pre-existing review-only artifacts after JSON validation, locked Packet 1 cells: 217/477 verified anchors, 428 caveated, 440 near-orphan OOS, 497 excluded after OOS relabel, demoted flavin.dehydrogenase_oxidase_hydride_transfer to expert review, flagged m_csa:750 as review-blocked and unsafe for Wave 1 canary use, generated 210-row label_factory_review_import heuristic mismatch shortlist without automatic relabeling, created FMO acquisition packet with n>=6 before primary-promotion reconsideration, m_csa:43 remains valid as metal-dependent hydrolase canary, JSON validation passed, focused artifact tests passed, PYTHONPATH=src python -m catalytic_earth.cli validate passed, git diff --check passed, push blocked: HTTPS credential prompt unavailable and SSH publickey denied
+- Commit: `local_unpushed_commit`
+- Notes: No label registry edit ontology edit fingerprint edit threshold change import decision production scoring change model retraining or representation output edit occurred in this run. Local commit exists but origin/main is still one commit behind because both HTTPS and SSH push paths failed auth.
+
+### 2026-05-27T13:12:54.482909+00:00 - v3
+
+- Task: Wave 1 TM-pair expansion blocker closure
+- Time mode: measured
+- Measured minutes: 90.0
+- Started: 2026-05-27T11:42:00Z
+- Ended: 2026-05-27T13:12:00Z
+- Artifacts: artifacts/v3_wave1_tm_pair_signal_expansion_result_702_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_targeted_packet1_tm_pairs5000_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa217_query_chunk_215_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa477_query_chunk_470_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa428_query_chunk_423_20260527.json, artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa440_query_chunk_435_20260527.json, tests/test_automation_small_win_artifacts.py, work/packet1_wave1_closure_cycle_20260527.md, work/handoff.md
+- Evidence: targeted Foldseek chunks completed for m_csa217 m_csa477 m_csa428 m_csa440, 2971 heldout-vs-train rows retained under 5000-row cap, 217 and 477 fully supported fold-conflict anchors, 428 caveated not capped, 440 near-orphan not fold-conflict, JSON parse passed, focused artifact tests passed, CLI validate passed, git diff check passed
+- Notes: No label registry edit ontology edit fingerprint edit threshold change import decision production scoring change model output edit representation artifact edit or artifact migration state change occurred.
 
 ## Expectation Updates
 
@@ -371,6 +372,8 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-25T13:37:58.445786+00:00: Repair or regenerate the current702 split before sequence-NN predictions or metrics; restore GitHub push authentication before local ahead commits can land.
 - 2026-05-25T14:36:49.637815+00:00: Next run should repair/regenerate split coverage before MMseqs nearest-neighbor prediction.
 - 2026-05-25T15:10:30.958833+00:00: Next work should inspect or compare the deterministic sequence baseline as a control rather than repairing split coverage.
+- 2026-05-27T10:15:26Z: Next Packet 1/Wave 1 work should be expert review for m_csa:750 plus FMO acquisition; do not treat hydride sublabel as ready. Push requires GitHub credential repair.
+- 2026-05-27T13:12:54.482909+00:00: Wave 1 Packet 1 TM-pair claims are no longer capped by the prior 200-row retention limit; full 692-query all-vs-all remains unclaimed.
 
 ## Scope Adjustments
 
@@ -564,4 +567,5 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-25T14:36:49.637815+00:00: Sequence-NN remains fail-closed until the repaired current702 split covers all 702 labels; no PLM or learned baseline work was started.
 - 2026-05-25T15:10:30.958833+00:00: Current702 sequence-NN is unblocked and reported with deterministic amino-acid-only baseline artifacts; PLM and learned representation work remain outside this prompt.
 - 2026-05-26T04:27:02.589694+00:00: Wave 1 representation results are now framed as diagnostic structural-neighborhood evidence, not a bigger-model leaderboard.
-- 2026-05-27T00:00:00+00:00: Packet 1 / Wave 1 follow-through is locked down with additive review-only artifacts: 217/477 are verified fold-conflict OOS anchors, 428 is caveated, 440 is near-orphan OOS/router-abstention, 497 is excluded after OOS relabel, the flavin hydride-transfer v2 sublabel is demoted to expert review, 750 is unsafe as a canary pending label review, and 43 remains valid.
+- 2026-05-27T10:15:26Z: Packet 1 and Wave 1 are now read through additive review-only addenda rather than stale readiness/canary advertising.
+- 2026-05-27T13:12:54.482909+00:00: Closed evaluation-design evidence only with review-only Foldseek chunk artifacts and no registry scoring threshold import model or representation changes.
