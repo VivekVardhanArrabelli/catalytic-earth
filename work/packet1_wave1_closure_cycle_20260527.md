@@ -24,6 +24,29 @@ or artifact migration state.
   `m_csa:477`, `m_csa:428`, and `m_csa:440` remain capped by the prior 200-row
   retention until the bounded retry or chunked fallback completes.
 
+## TM-Pair Expansion Follow-Up
+
+The chunked fallback completed for the four Packet 1 heldout rows and is
+recorded in
+`artifacts/v3_wave1_tm_pair_signal_expansion_result_702_20260527.json`.
+The fallback retained 2,971 targeted heldout-vs-train pair rows under a
+5,000-row reporting cap, so the old 200-row retention ceiling no longer caps
+the `m_csa:217`, `m_csa:477`, `m_csa:428`, or `m_csa:440` claims.
+
+Current readout:
+
+- `m_csa:217`: fully supported verified fold-conflict OOS anchor.
+- `m_csa:477`: fully supported verified fold-conflict OOS anchor.
+- `m_csa:428`: caveated TIM-barrel/incidental-primary-hit case; high-TM
+  neighbors are mostly OOS rows with only incidental primary hits.
+- `m_csa:440`: fully supported as near-orphan OOS/router-abstention, not a
+  fold-conflict row.
+
+The result is review-only evaluation evidence. It does not complete the full
+692-query all-materializable all-vs-all TM-score run and does not change labels,
+ontology IDs, fingerprints, imports, thresholds, production scoring, model
+outputs, representation artifacts, or artifact migration state.
+
 ## Acquisition State
 
 FMO acquisition now has two canonical rows (`m_csa:131`, `m_csa:132`) plus two

@@ -16765,6 +16765,78 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             "caveated_partial_anchor",
         )
 
+    def test_wave1_tm_pair_signal_expansion_result_closes_packet1_rows(self) -> None:
+        result = _load_json(
+            ARTIFACTS
+            / "v3_wave1_tm_pair_signal_expansion_result_702_20260527.json"
+        )
+        aggregate = _load_json(
+            ARTIFACTS
+            / "v3_foldseek_tm_score_signal_1000_current702_wave1_targeted_packet1_tm_pairs5000_20260527.json"
+        )
+
+        self.assertEqual(result["status"], "completed_targeted_query_chunk_fallback")
+        self.assertTrue(result["guardrails"]["review_only"])
+        self.assertFalse(result["guardrails"]["canonical_label_registry_changed"])
+        self.assertFalse(result["guardrails"]["production_scoring_changed"])
+
+        retention = result["retention_result"]
+        self.assertEqual(retention["old_retained_pair_row_ceiling"], 200)
+        self.assertEqual(retention["new_aggregate_reported_pair_row_ceiling"], 5000)
+        self.assertEqual(retention["targeted_train_test_rows_observed"], 2971)
+        self.assertEqual(retention["targeted_train_test_rows_retained"], 2971)
+        self.assertFalse(retention["targeted_blocking_limit_applied"])
+        self.assertTrue(
+            retention["old_200_row_retention_blocker_removed_for_key_packet1_claims"]
+        )
+        self.assertTrue(retention["full_692_query_all_vs_all_still_incomplete"])
+
+        self.assertEqual(aggregate["metadata"]["max_reported_pairs"], 5000)
+        self.assertEqual(len(aggregate["top_train_test_pairs"]), 2971)
+        self.assertEqual(len(aggregate["blocking_pairs"]), 31)
+
+        claim_status = result["packet1_fold_neighborhood_claim_status"]
+        self.assertEqual(
+            claim_status["m_csa:217"]["decision_after_expansion"],
+            "fully_supported",
+        )
+        self.assertEqual(
+            claim_status["m_csa:477"]["decision_after_expansion"],
+            "fully_supported",
+        )
+        self.assertEqual(
+            claim_status["m_csa:428"]["decision_after_expansion"], "caveated"
+        )
+        self.assertEqual(
+            claim_status["m_csa:440"]["decision_after_expansion"],
+            "fully_supported_as_near_orphan_not_fold_conflict",
+        )
+        for row in claim_status.values():
+            self.assertEqual(
+                row["truncation_status"],
+                "not_capped_by_prior_200_row_retention",
+            )
+            self.assertTrue(row["retained_train_test_pair_count_matches_observed"])
+
+        self.assertEqual(
+            claim_status["m_csa:217"]["tm_ge_0_70_neighbor_label_counts"][
+                "ser_his_acid_hydrolase"
+            ],
+            12,
+        )
+        self.assertEqual(
+            claim_status["m_csa:477"]["tm_ge_0_70_neighbor_label_counts"],
+            {"ser_his_acid_hydrolase": 8},
+        )
+        self.assertEqual(
+            claim_status["m_csa:428"]["tm_ge_0_70_neighbor_label_counts"],
+            {"flavin_dehydrogenase_reductase": 2, "out_of_scope": 44},
+        )
+        self.assertEqual(
+            claim_status["m_csa:440"]["tm_ge_0_70_train_test_pair_row_count"],
+            0,
+        )
+
     def test_m_csa750_packet_and_mismatch_audit_are_fail_closed(self) -> None:
         packet = _load_json(
             ARTIFACTS / "v3_m_csa750_review_packet_702_20260527.json"

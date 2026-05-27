@@ -1,0 +1,1250 @@
+{
+  "artifact_id": "v3_wave1_tm_pair_signal_expansion_result_702_20260527",
+  "checklist_item": "full_tm_pair_signal_expansion_blocker_closure_for_packet1_rows",
+  "created_utc": "2026-05-27T13:10:40Z",
+  "fallback_execution": {
+    "aggregate_all_query_chunks_completed": false,
+    "aggregate_artifact": "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_targeted_packet1_tm_pairs5000_20260527.json",
+    "aggregate_completed_query_chunk_indices": [
+      215,
+      423,
+      435,
+      470
+    ],
+    "aggregate_completed_query_coordinate_count": 4,
+    "aggregate_full_tm_score_holdout_claim_permitted": false,
+    "aggregate_missing_query_chunk_count_for_full_all_materializable": 688,
+    "aggregate_pair_count": 3562,
+    "aggregate_reported_blocking_pair_limit_applied": false,
+    "aggregate_retained_blocking_pair_count": 31,
+    "aggregate_retained_train_test_pair_count": 2971,
+    "aggregate_sha256": "cbb7e552ae75e533d3a0bb8f9983c748290eb44c3f06a6557fca53fe3cde3e68",
+    "aggregate_train_test_pair_count": 2971,
+    "commands": [
+      "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk-signal --slice-id 1000_current702_wave1 --readiness artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --chunk-index 215 --chunk-size 1 --threads 4 --max-runtime-seconds 600 --max-reported-pairs 5000 --out artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa217_query_chunk_215_20260527.json",
+      "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk-signal --slice-id 1000_current702_wave1 --readiness artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --chunk-index 423 --chunk-size 1 --threads 4 --max-runtime-seconds 600 --max-reported-pairs 5000 --out artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa428_query_chunk_423_20260527.json",
+      "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk-signal --slice-id 1000_current702_wave1 --readiness artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --chunk-index 435 --chunk-size 1 --threads 4 --max-runtime-seconds 600 --max-reported-pairs 5000 --out artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa440_query_chunk_435_20260527.json",
+      "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk-signal --slice-id 1000_current702_wave1 --readiness artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --chunk-index 470 --chunk-size 1 --threads 4 --max-runtime-seconds 600 --max-reported-pairs 5000 --out artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa477_query_chunk_470_20260527.json",
+      "PYTHONPATH=src python -m catalytic_earth.cli aggregate-foldseek-tm-score-query-chunks --slice-id 1000_current702_wave1_targeted_packet1 --chunks artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa217_query_chunk_215_20260527.json artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa477_query_chunk_470_20260527.json artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa428_query_chunk_423_20260527.json artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa440_query_chunk_435_20260527.json --max-reported-pairs 5000 --out artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_targeted_packet1_tm_pairs5000_20260527.json"
+    ],
+    "foldseek_versions": [
+      "718d42176d2f67d36a60866fedfb881f8d5a7ebf"
+    ],
+    "max_reported_pair_rows": 5000,
+    "max_reported_pairs": 5000,
+    "query_index_policy": "build_foldseek_tm_score_query_chunk_signal sorts staged structures by entry_id numeric sort key before applying chunk_index; corrected indices are recorded per row.",
+    "reason_direct_all_vs_all_not_repeated_as_blocking_step": "The prior direct 692-coordinate exact Foldseek run did not return an artifact in-cycle; this run used deterministic single-query chunks to answer the four named fold-neighborhood claims without claiming full all-vs-all completion.",
+    "target_reported_pair_rows": 5000,
+    "targeted_query_chunk_size": 1
+  },
+  "guardrails": {
+    "artifact_migration_state_changed": false,
+    "canonical_label_registry_changed": false,
+    "fingerprint_registry_changed": false,
+    "imports_changed": false,
+    "model_outputs_changed": false,
+    "ontology_ids_changed": false,
+    "production_scoring_changed": false,
+    "representation_model_artifacts_changed": false,
+    "review_only": true,
+    "thresholds_changed": false
+  },
+  "limitations": [
+    "Targeted exact Foldseek query chunks answer the four Packet 1 rows only; they do not complete the full 692-query all-materializable aggregate.",
+    "The artifact is review-only evaluation-design evidence and creates no labels, imports, thresholds, production scoring, or model outputs.",
+    "CATH/SCOP fold assignments remain unavailable locally; interpretation remains a Foldseek/TM proxy.",
+    "Six evaluated current702 rows still lack supported selected coordinates per readiness metadata, so no full evaluated-coordinate holdout claim is made."
+  ],
+  "packet1_fold_neighborhood_claim_status": {
+    "m_csa:217": {
+      "decision_after_expansion": "fully_supported",
+      "entry_id": "m_csa:217",
+      "eval_cell": "tm_pair_verified_fold_conflict_oos_anchor",
+      "expected_role": "verified fold-conflict OOS anchor",
+      "interpretation": "Exact targeted TM query finds multiple TM>=0.70 heldout-vs-train neighbors, dominated by ser_his_acid_hydrolase primary rows; this remains a fold-conflict OOS anchor.",
+      "max_observed_train_test_tm_score": 0.7761,
+      "old_200_row_cap_would_have_truncated_this_row": true,
+      "pair_count": 882,
+      "query_chunk_artifact": "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa217_query_chunk_215_20260527.json",
+      "query_chunk_index": 215,
+      "query_chunk_size": 1,
+      "query_entry_ids": [
+        "m_csa:217"
+      ],
+      "query_structure_key": "pdb:1SC9",
+      "retained_train_test_pair_count": 719,
+      "retained_train_test_pair_count_matches_observed": true,
+      "retention_basis": "all targeted heldout-vs-train pairs retained because max_reported_pair_rows=5000 exceeds this query chunk train_test_pair_count",
+      "targeted_query_complete": true,
+      "tm_ge_0_70_neighbor_label_counts": {
+        "out_of_scope": 2,
+        "ser_his_acid_hydrolase": 12
+      },
+      "tm_ge_0_70_train_test_pair_row_count": 14,
+      "tm_ge_0_70_unique_structure_pair_count": 9,
+      "top_evidence_pair": {
+        "alntmscore": 0.7761,
+        "max_pair_tm_score": 0.7761,
+        "qtmscore": 0.7652,
+        "query_entry_ids": [
+          "m_csa:217"
+        ],
+        "query_labels": [
+          {
+            "entry_id": "m_csa:217",
+            "fingerprint_id": null,
+            "label_type": "out_of_scope",
+            "review_status": "automation_curated",
+            "tier": "bronze"
+          }
+        ],
+        "query_structure_key": "pdb:1SC9",
+        "raw_query_name": "pdb_1SC9",
+        "raw_target_name": "pdb_1A7U_A",
+        "source_signal_line_number": 2,
+        "target_entry_ids": [
+          "m_csa:248"
+        ],
+        "target_labels": [
+          {
+            "entry_id": "m_csa:248",
+            "fingerprint_id": "ser_his_acid_hydrolase",
+            "label_type": "seed_fingerprint",
+            "review_status": "automation_curated",
+            "tier": "bronze"
+          }
+        ],
+        "target_structure_key": "pdb:1A7U",
+        "ttmscore": 0.7129,
+        "violates_target": true
+      },
+      "top_tm_ge_0_70_pairs": [
+        {
+          "alntmscore": 0.7761,
+          "max_pair_tm_score": 0.7761,
+          "qtmscore": 0.7652,
+          "query_entry_ids": [
+            "m_csa:217"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:217",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1SC9",
+          "raw_query_name": "pdb_1SC9",
+          "raw_target_name": "pdb_1A7U_A",
+          "source_signal_line_number": 2,
+          "target_entry_ids": [
+            "m_csa:248"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:248",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1A7U",
+          "ttmscore": 0.7129,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.776,
+          "max_pair_tm_score": 0.776,
+          "qtmscore": 0.7651,
+          "query_entry_ids": [
+            "m_csa:217"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:217",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1SC9",
+          "raw_query_name": "pdb_1SC9",
+          "raw_target_name": "pdb_1A7U_B",
+          "source_signal_line_number": 3,
+          "target_entry_ids": [
+            "m_csa:248"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:248",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1A7U",
+          "ttmscore": 0.7129,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7656,
+          "max_pair_tm_score": 0.7656,
+          "qtmscore": 0.755,
+          "query_entry_ids": [
+            "m_csa:217"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:217",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1SC9",
+          "raw_query_name": "pdb_1SC9",
+          "raw_target_name": "pdb_1ZOI_C",
+          "source_signal_line_number": 4,
+          "target_entry_ids": [
+            "m_csa:733"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:733",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1ZOI",
+          "ttmscore": 0.7086,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7649,
+          "max_pair_tm_score": 0.7649,
+          "qtmscore": 0.5438,
+          "query_entry_ids": [
+            "m_csa:217"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:217",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1SC9",
+          "raw_query_name": "pdb_1SC9",
+          "raw_target_name": "pdb_1R4Z_A",
+          "source_signal_line_number": 13,
+          "target_entry_ids": [
+            "m_csa:518"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:518",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1R4Z",
+          "ttmscore": 0.7463,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7646,
+          "max_pair_tm_score": 0.7646,
+          "qtmscore": 0.7541,
+          "query_entry_ids": [
+            "m_csa:217"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:217",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1SC9",
+          "raw_query_name": "pdb_1SC9",
+          "raw_target_name": "pdb_1ZOI_A",
+          "source_signal_line_number": 5,
+          "target_entry_ids": [
+            "m_csa:733"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:733",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1ZOI",
+          "ttmscore": 0.7077,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.763,
+          "max_pair_tm_score": 0.763,
+          "qtmscore": 0.7499,
+          "query_entry_ids": [
+            "m_csa:217"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:217",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1SC9",
+          "raw_query_name": "pdb_1SC9",
+          "raw_target_name": "pdb_1ZOI_B",
+          "source_signal_line_number": 6,
+          "target_entry_ids": [
+            "m_csa:733"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:733",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1ZOI",
+          "ttmscore": 0.7061,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7625,
+          "max_pair_tm_score": 0.7625,
+          "qtmscore": 0.76,
+          "query_entry_ids": [
+            "m_csa:217"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:217",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1SC9",
+          "raw_query_name": "pdb_1SC9",
+          "raw_target_name": "pdb_1B6G",
+          "source_signal_line_number": 8,
+          "target_entry_ids": [
+            "m_csa:415"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:415",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1B6G",
+          "ttmscore": 0.6436,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7624,
+          "max_pair_tm_score": 0.7624,
+          "qtmscore": 0.5426,
+          "query_entry_ids": [
+            "m_csa:217"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:217",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1SC9",
+          "raw_query_name": "pdb_1SC9",
+          "raw_target_name": "pdb_1R4Z_B",
+          "source_signal_line_number": 14,
+          "target_entry_ids": [
+            "m_csa:518"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:518",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1R4Z",
+          "ttmscore": 0.7438,
+          "violates_target": true
+        }
+      ],
+      "train_test_pair_count": 719,
+      "truncation_status": "not_capped_by_prior_200_row_retention"
+    },
+    "m_csa:428": {
+      "decision_after_expansion": "caveated",
+      "entry_id": "m_csa:428",
+      "eval_cell": "partial_fold_conflict_with_caveat",
+      "expected_role": "partial/caveated TIM-barrel incidental-primary-hit case",
+      "interpretation": "Exact targeted TM query finds TM>=0.70 neighbors, but retained high-TM hits are mostly OOS glycosidase-like rows with only incidental primary hits; this remains caveated rather than a clean anchor.",
+      "max_observed_train_test_tm_score": 0.767,
+      "old_200_row_cap_would_have_truncated_this_row": true,
+      "pair_count": 873,
+      "query_chunk_artifact": "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa428_query_chunk_423_20260527.json",
+      "query_chunk_index": 423,
+      "query_chunk_size": 1,
+      "query_entry_ids": [
+        "m_csa:428"
+      ],
+      "query_structure_key": "pdb:1BQC",
+      "retained_train_test_pair_count": 709,
+      "retained_train_test_pair_count_matches_observed": true,
+      "retention_basis": "all targeted heldout-vs-train pairs retained because max_reported_pair_rows=5000 exceeds this query chunk train_test_pair_count",
+      "targeted_query_complete": true,
+      "tm_ge_0_70_neighbor_label_counts": {
+        "flavin_dehydrogenase_reductase": 2,
+        "out_of_scope": 44
+      },
+      "tm_ge_0_70_train_test_pair_row_count": 46,
+      "tm_ge_0_70_unique_structure_pair_count": 17,
+      "top_evidence_pair": {
+        "alntmscore": 0.767,
+        "max_pair_tm_score": 0.767,
+        "qtmscore": 0.5255,
+        "query_entry_ids": [
+          "m_csa:428"
+        ],
+        "query_labels": [
+          {
+            "entry_id": "m_csa:428",
+            "fingerprint_id": null,
+            "label_type": "out_of_scope",
+            "review_status": "automation_curated",
+            "tier": "bronze"
+          }
+        ],
+        "query_structure_key": "pdb:1BQC",
+        "raw_query_name": "pdb_1BQC",
+        "raw_target_name": "pdb_1LBM",
+        "source_signal_line_number": 10,
+        "target_entry_ids": [
+          "m_csa:328"
+        ],
+        "target_labels": [
+          {
+            "entry_id": "m_csa:328",
+            "fingerprint_id": null,
+            "label_type": "out_of_scope",
+            "review_status": "automation_curated",
+            "tier": "bronze"
+          }
+        ],
+        "target_structure_key": "pdb:1LBM",
+        "ttmscore": 0.7637,
+        "violates_target": true
+      },
+      "top_tm_ge_0_70_pairs": [
+        {
+          "alntmscore": 0.767,
+          "max_pair_tm_score": 0.767,
+          "qtmscore": 0.5255,
+          "query_entry_ids": [
+            "m_csa:428"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:428",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1BQC",
+          "raw_query_name": "pdb_1BQC",
+          "raw_target_name": "pdb_1LBM",
+          "source_signal_line_number": 10,
+          "target_entry_ids": [
+            "m_csa:328"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:328",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1LBM",
+          "ttmscore": 0.7637,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7564,
+          "max_pair_tm_score": 0.7564,
+          "qtmscore": 0.701,
+          "query_entry_ids": [
+            "m_csa:428"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:428",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1BQC",
+          "raw_query_name": "pdb_1BQC",
+          "raw_target_name": "pdb_1MYR_A",
+          "source_signal_line_number": 62,
+          "target_entry_ids": [
+            "m_csa:460"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:460",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1MYR",
+          "ttmscore": 0.4507,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7502,
+          "max_pair_tm_score": 0.7502,
+          "qtmscore": 0.5517,
+          "query_entry_ids": [
+            "m_csa:428"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:428",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1BQC",
+          "raw_query_name": "pdb_1BQC",
+          "raw_target_name": "pdb_1FQ0_A",
+          "source_signal_line_number": 9,
+          "target_entry_ids": [
+            "m_csa:550"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:550",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1FQ0",
+          "ttmscore": 0.7387,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.747,
+          "max_pair_tm_score": 0.747,
+          "qtmscore": 0.549,
+          "query_entry_ids": [
+            "m_csa:428"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:428",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1BQC",
+          "raw_query_name": "pdb_1BQC",
+          "raw_target_name": "pdb_1Q6L_B",
+          "source_signal_line_number": 12,
+          "target_entry_ids": [
+            "m_csa:236"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:236",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1Q6L",
+          "ttmscore": 0.7326,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7467,
+          "max_pair_tm_score": 0.7467,
+          "qtmscore": 0.5663,
+          "query_entry_ids": [
+            "m_csa:428"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:428",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1BQC",
+          "raw_query_name": "pdb_1BQC",
+          "raw_target_name": "pdb_2DW7_N",
+          "source_signal_line_number": 109,
+          "target_entry_ids": [
+            "m_csa:463"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:463",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:2DW7",
+          "ttmscore": 0.4556,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7461,
+          "max_pair_tm_score": 0.7461,
+          "qtmscore": 0.5662,
+          "query_entry_ids": [
+            "m_csa:428"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:428",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1BQC",
+          "raw_query_name": "pdb_1BQC",
+          "raw_target_name": "pdb_2DW7_F",
+          "source_signal_line_number": 110,
+          "target_entry_ids": [
+            "m_csa:463"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:463",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:2DW7",
+          "ttmscore": 0.4555,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7456,
+          "max_pair_tm_score": 0.7456,
+          "qtmscore": 0.5659,
+          "query_entry_ids": [
+            "m_csa:428"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:428",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1BQC",
+          "raw_query_name": "pdb_1BQC",
+          "raw_target_name": "pdb_2DW7_H",
+          "source_signal_line_number": 112,
+          "target_entry_ids": [
+            "m_csa:463"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:463",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:2DW7",
+          "ttmscore": 0.4553,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7456,
+          "max_pair_tm_score": 0.7456,
+          "qtmscore": 0.5659,
+          "query_entry_ids": [
+            "m_csa:428"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:428",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1BQC",
+          "raw_query_name": "pdb_1BQC",
+          "raw_target_name": "pdb_2DW7_K",
+          "source_signal_line_number": 113,
+          "target_entry_ids": [
+            "m_csa:463"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:463",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:2DW7",
+          "ttmscore": 0.4553,
+          "violates_target": true
+        }
+      ],
+      "train_test_pair_count": 709,
+      "truncation_status": "not_capped_by_prior_200_row_retention"
+    },
+    "m_csa:440": {
+      "decision_after_expansion": "fully_supported_as_near_orphan_not_fold_conflict",
+      "entry_id": "m_csa:440",
+      "eval_cell": "near_orphan_oos_router_abstention_diagnostic",
+      "expected_role": "near-orphan OOS/router-abstention, not fold-conflict",
+      "interpretation": "Exact targeted TM query retains 1,365 heldout-vs-train rows and finds zero TM>=0.70 neighbors; this supports near-orphan/router-abstention use, not fold-conflict use.",
+      "max_observed_train_test_tm_score": 0.6455,
+      "old_200_row_cap_would_have_truncated_this_row": true,
+      "pair_count": 1612,
+      "query_chunk_artifact": "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa440_query_chunk_435_20260527.json",
+      "query_chunk_index": 435,
+      "query_chunk_size": 1,
+      "query_entry_ids": [
+        "m_csa:440"
+      ],
+      "query_structure_key": "pdb:1QK2",
+      "retained_train_test_pair_count": 1365,
+      "retained_train_test_pair_count_matches_observed": true,
+      "retention_basis": "all targeted heldout-vs-train pairs retained because max_reported_pair_rows=5000 exceeds this query chunk train_test_pair_count",
+      "targeted_query_complete": true,
+      "tm_ge_0_70_neighbor_label_counts": {},
+      "tm_ge_0_70_train_test_pair_row_count": 0,
+      "tm_ge_0_70_unique_structure_pair_count": 0,
+      "top_evidence_pair": {
+        "alntmscore": 0.6455,
+        "max_pair_tm_score": 0.6455,
+        "qtmscore": 0.5541,
+        "query_entry_ids": [
+          "m_csa:440"
+        ],
+        "query_labels": [
+          {
+            "entry_id": "m_csa:440",
+            "fingerprint_id": null,
+            "label_type": "out_of_scope",
+            "review_status": "automation_curated",
+            "tier": "bronze"
+          }
+        ],
+        "query_structure_key": "pdb:1QK2",
+        "raw_query_name": "pdb_1QK2_A",
+        "raw_target_name": "pdb_1EXP_A",
+        "source_signal_line_number": 798,
+        "target_entry_ids": [
+          "m_csa:548"
+        ],
+        "target_labels": [
+          {
+            "entry_id": "m_csa:548",
+            "fingerprint_id": null,
+            "label_type": "out_of_scope",
+            "review_status": "automation_curated",
+            "tier": "bronze"
+          }
+        ],
+        "target_structure_key": "pdb:1EXP",
+        "ttmscore": 0.6256,
+        "violates_target": false
+      },
+      "top_tm_ge_0_70_pairs": [],
+      "train_test_pair_count": 1365,
+      "truncation_status": "not_capped_by_prior_200_row_retention"
+    },
+    "m_csa:477": {
+      "decision_after_expansion": "fully_supported",
+      "entry_id": "m_csa:477",
+      "eval_cell": "tm_pair_verified_fold_conflict_oos_anchor",
+      "expected_role": "verified fold-conflict OOS anchor",
+      "interpretation": "Exact targeted TM query finds TM>=0.70 heldout-vs-train neighbors, all retained high-TM hits are ser_his_acid_hydrolase primary rows; this remains a fold-conflict OOS anchor.",
+      "max_observed_train_test_tm_score": 0.7723,
+      "old_200_row_cap_would_have_truncated_this_row": false,
+      "pair_count": 195,
+      "query_chunk_artifact": "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa477_query_chunk_470_20260527.json",
+      "query_chunk_index": 470,
+      "query_chunk_size": 1,
+      "query_entry_ids": [
+        "m_csa:477"
+      ],
+      "query_structure_key": "pdb:1CQQ",
+      "retained_train_test_pair_count": 178,
+      "retained_train_test_pair_count_matches_observed": true,
+      "retention_basis": "the targeted query produced only 178 heldout-vs-train pairs, all retained under max_reported_pair_rows=5000; absence of truncation is explicit rather than inferred",
+      "targeted_query_complete": true,
+      "tm_ge_0_70_neighbor_label_counts": {
+        "ser_his_acid_hydrolase": 8
+      },
+      "tm_ge_0_70_train_test_pair_row_count": 8,
+      "tm_ge_0_70_unique_structure_pair_count": 5,
+      "top_evidence_pair": {
+        "alntmscore": 0.7723,
+        "max_pair_tm_score": 0.7723,
+        "qtmscore": 0.7278,
+        "query_entry_ids": [
+          "m_csa:477"
+        ],
+        "query_labels": [
+          {
+            "entry_id": "m_csa:477",
+            "fingerprint_id": null,
+            "label_type": "out_of_scope",
+            "review_status": "automation_curated",
+            "tier": "bronze"
+          }
+        ],
+        "query_structure_key": "pdb:1CQQ",
+        "raw_query_name": "pdb_1CQQ",
+        "raw_target_name": "pdb_1DS2_E",
+        "source_signal_line_number": 2,
+        "target_entry_ids": [
+          "m_csa:608"
+        ],
+        "target_labels": [
+          {
+            "entry_id": "m_csa:608",
+            "fingerprint_id": "ser_his_acid_hydrolase",
+            "label_type": "seed_fingerprint",
+            "review_status": "automation_curated",
+            "tier": "bronze"
+          }
+        ],
+        "target_structure_key": "pdb:1DS2",
+        "ttmscore": 0.7109,
+        "violates_target": true
+      },
+      "top_tm_ge_0_70_pairs": [
+        {
+          "alntmscore": 0.7723,
+          "max_pair_tm_score": 0.7723,
+          "qtmscore": 0.7278,
+          "query_entry_ids": [
+            "m_csa:477"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:477",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1CQQ",
+          "raw_query_name": "pdb_1CQQ",
+          "raw_target_name": "pdb_1DS2_E",
+          "source_signal_line_number": 2,
+          "target_entry_ids": [
+            "m_csa:608"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:608",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1DS2",
+          "ttmscore": 0.7109,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7569,
+          "max_pair_tm_score": 0.7569,
+          "qtmscore": 0.7425,
+          "query_entry_ids": [
+            "m_csa:477"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:477",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1CQQ",
+          "raw_query_name": "pdb_1CQQ",
+          "raw_target_name": "pdb_1PQ5",
+          "source_signal_line_number": 4,
+          "target_entry_ids": [
+            "m_csa:173"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:173",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1PQ5",
+          "ttmscore": 0.6154,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7406,
+          "max_pair_tm_score": 0.7406,
+          "qtmscore": 0.7166,
+          "query_entry_ids": [
+            "m_csa:477"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:477",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1CQQ",
+          "raw_query_name": "pdb_1CQQ",
+          "raw_target_name": "pdb_1RTF_B",
+          "source_signal_line_number": 6,
+          "target_entry_ids": [
+            "m_csa:798"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:798",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1RTF",
+          "ttmscore": 0.559,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7258,
+          "max_pair_tm_score": 0.7258,
+          "qtmscore": 0.7191,
+          "query_entry_ids": [
+            "m_csa:477"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:477",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1CQQ",
+          "raw_query_name": "pdb_1CQQ",
+          "raw_target_name": "pdb_1QRZ_A",
+          "source_signal_line_number": 7,
+          "target_entry_ids": [
+            "m_csa:425"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:425",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1QRZ",
+          "ttmscore": 0.5504,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.725,
+          "max_pair_tm_score": 0.725,
+          "qtmscore": 0.7182,
+          "query_entry_ids": [
+            "m_csa:477"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:477",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1CQQ",
+          "raw_query_name": "pdb_1CQQ",
+          "raw_target_name": "pdb_1QRZ_C",
+          "source_signal_line_number": 8,
+          "target_entry_ids": [
+            "m_csa:425"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:425",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1QRZ",
+          "ttmscore": 0.55,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7244,
+          "max_pair_tm_score": 0.7244,
+          "qtmscore": 0.7177,
+          "query_entry_ids": [
+            "m_csa:477"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:477",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1CQQ",
+          "raw_query_name": "pdb_1CQQ",
+          "raw_target_name": "pdb_1QRZ_D",
+          "source_signal_line_number": 9,
+          "target_entry_ids": [
+            "m_csa:425"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:425",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1QRZ",
+          "ttmscore": 0.5503,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7241,
+          "max_pair_tm_score": 0.7241,
+          "qtmscore": 0.7174,
+          "query_entry_ids": [
+            "m_csa:477"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:477",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1CQQ",
+          "raw_query_name": "pdb_1CQQ",
+          "raw_target_name": "pdb_1QRZ_B",
+          "source_signal_line_number": 10,
+          "target_entry_ids": [
+            "m_csa:425"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:425",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1QRZ",
+          "ttmscore": 0.5498,
+          "violates_target": true
+        },
+        {
+          "alntmscore": 0.7141,
+          "max_pair_tm_score": 0.7141,
+          "qtmscore": 0.6125,
+          "query_entry_ids": [
+            "m_csa:477"
+          ],
+          "query_labels": [
+            {
+              "entry_id": "m_csa:477",
+              "fingerprint_id": null,
+              "label_type": "out_of_scope",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "query_structure_key": "pdb:1CQQ",
+          "raw_query_name": "pdb_1CQQ",
+          "raw_target_name": "pdb_1RGQ_A",
+          "source_signal_line_number": 5,
+          "target_entry_ids": [
+            "m_csa:776"
+          ],
+          "target_labels": [
+            {
+              "entry_id": "m_csa:776",
+              "fingerprint_id": "ser_his_acid_hydrolase",
+              "label_type": "seed_fingerprint",
+              "review_status": "automation_curated",
+              "tier": "bronze"
+            }
+          ],
+          "target_structure_key": "pdb:1RGQ",
+          "ttmscore": 0.699,
+          "violates_target": true
+        }
+      ],
+      "train_test_pair_count": 178,
+      "truncation_status": "not_capped_by_prior_200_row_retention"
+    }
+  },
+  "prior_blocker": {
+    "artifact": "artifacts/v3_wave1_tm_pair_signal_expansion_blocker_702_20260527.json",
+    "blocked_output_artifact": "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_pair_rows5000_20260527.json",
+    "resolution_in_this_artifact": "replaces the unreturned full all-vs-all artifact with bounded exact query chunks for the four Packet 1 claims and a 5,000-row aggregate reporting cap",
+    "sha256": "0850da9ff3e22d5bb480509c79230e6523603d9a21b70ce0422b42599e0fee81",
+    "status": "blocked_runtime_unbounded_foldseek_attempt_running_without_result",
+    "target_reported_pair_rows": 5000
+  },
+  "readiness_stage": {
+    "artifact": "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json",
+    "available_staged_coordinate_count": 692,
+    "coordinate_materialization_possible_count": 696,
+    "foldseek_binary_available": true,
+    "foldseek_binary_resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "materialized_coordinate_count": 692,
+    "missing_or_unsupported_structure_count": 6,
+    "sha256": "27e4359fde6371cea1c4957542a167124daa6edce23cf62c579a7a60877e98d3",
+    "slice_id": "1000_current702_wave1"
+  },
+  "retention_result": {
+    "full_692_query_all_vs_all_still_incomplete": true,
+    "full_all_vs_all_remaining_query_chunk_count": 688,
+    "new_aggregate_reported_pair_row_ceiling": 5000,
+    "old_200_row_retention_blocker_removed_for_key_packet1_claims": true,
+    "old_retained_pair_row_ceiling": 200,
+    "targeted_blocking_limit_applied": false,
+    "targeted_blocking_rows_retained": 31,
+    "targeted_train_test_rows_observed": 2971,
+    "targeted_train_test_rows_retained": 2971
+  },
+  "schema_version": "v3_wave1_tm_pair_signal_expansion_result.v1",
+  "scope": "evaluation-design evidence closure for current702 Wave 1 heldout-vs-train TM-pair claims on m_csa:217, m_csa:477, m_csa:428, and m_csa:440; not a production scorer or canonical full TM-score split",
+  "source_artifacts": {
+    "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json": {
+      "sha256": "27e4359fde6371cea1c4957542a167124daa6edce23cf62c579a7a60877e98d3"
+    },
+    "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa217_query_chunk_215_20260527.json": {
+      "sha256": "b7fe941d7c3efd54c0625a14e81b3088d22d5a1091517b380d8266740c8dbe3d"
+    },
+    "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa428_query_chunk_423_20260527.json": {
+      "sha256": "8ed89dd2e717b923f7b069ce2824c921e4c5a9e3b938a05662ea24a00529289f"
+    },
+    "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa440_query_chunk_435_20260527.json": {
+      "sha256": "a0b9069d0446dfc82c92a76d9c2e2805136e590a7d9f6c6f1ed9cc7a965bbc1b"
+    },
+    "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa477_query_chunk_470_20260527.json": {
+      "sha256": "f2b9130d6646c124f805abe1e8cffd4343e90a844d67e768e7cf1be2034d0e40"
+    },
+    "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_targeted_packet1_tm_pairs5000_20260527.json": {
+      "sha256": "cbb7e552ae75e533d3a0bb8f9983c748290eb44c3f06a6557fca53fe3cde3e68"
+    },
+    "artifacts/v3_packet1_wave1_decision_closure_702_20260527.json": {
+      "sha256": "26a84914b33a65e5f844299f4ad2b4dc4997a1f82c1b0025ee2c3498b296870b"
+    },
+    "artifacts/v3_packet1_wave1_lockdown_addendum_702_20260527.json": {
+      "sha256": "b50a95d5b843ddf1d1d0a1cf2fbe8a3a835a7c41b154387ffc8def32c4861cfa"
+    },
+    "artifacts/v3_wave1_tm_pair_signal_expansion_blocker_702_20260527.json": {
+      "sha256": "0850da9ff3e22d5bb480509c79230e6523603d9a21b70ce0422b42599e0fee81"
+    }
+  },
+  "status": "completed_targeted_query_chunk_fallback"
+}
