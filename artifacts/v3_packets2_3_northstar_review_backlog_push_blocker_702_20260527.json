@@ -2,8 +2,8 @@
   "artifact_id": "v3_packets2_3_northstar_review_backlog_push_blocker_702_20260527",
   "schema_version": "v3_terminal_push_blocker.v1",
   "created_utc": "2026-05-27T00:00:00Z",
-  "scope": "terminal_push_blocker_for_packet2_packet3_closure_after_local_commit",
-  "status": "terminal_push_blocked_by_missing_or_invalid_github_credentials",
+  "scope": "push_blocker_record_and_resolution_for_packet2_packet3_closure",
+  "status": "resolved_after_unsandboxed_git_push",
   "review_closure_commit_before_blocker_artifact": "54a2e4c84561ddf7d74f896088980e1c6bbf9dce",
   "branch_state_after_review_commit": "main ahead of origin/main by 1",
   "push_attempts": [
@@ -16,6 +16,12 @@
       "command": "git -c http.version=HTTP/1.1 -c http.postBuffer=524288000 -c http.lowSpeedLimit=0 push origin main",
       "exit_code": 128,
       "stderr": "fatal: could not read Username for 'https://github.com': Device not configured"
+    },
+    {
+      "command": "git push origin main",
+      "execution_context": "unsandboxed_after_user_approval",
+      "exit_code": 0,
+      "stdout": "To https://github.com/VivekVardhanArrabelli/catalytic-earth.git\n   8e97dfd..75ab68c  main -> main"
     }
   ],
   "credential_checks": [
@@ -31,7 +37,13 @@
     }
   ],
   "remote": "https://github.com/VivekVardhanArrabelli/catalytic-earth.git",
-  "terminal_blocker": "No valid HTTPS credential, GitHub CLI token, or SSH key is available in this environment; pushing requires re-authentication or a working credential helper.",
+  "terminal_blocker": "Resolved: sandboxed pushes could not access a usable GitHub credential, but unsandboxed git push used macOS credential access successfully after user approval.",
+  "resolution": {
+    "resolved": true,
+    "resolved_by": "unsandboxed_git_push_origin_main_after_user_approval",
+    "resolved_remote_range": "8e97dfd..75ab68c",
+    "resolved_remote_tip_before_resolution_artifact_update": "75ab68c586e2a957e373f4586885a3aa68c605a2"
+  },
   "work_completed_locally": true,
   "safe_to_retry_after_credentials_fixed": true,
   "retry_command_after_credentials_fixed": "git push origin main",
