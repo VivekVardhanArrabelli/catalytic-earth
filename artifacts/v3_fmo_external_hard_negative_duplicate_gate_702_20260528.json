@@ -1,0 +1,571 @@
+{
+  "schema_version": "v3_fmo_external_hard_negative_duplicate_gate.v1",
+  "artifact_id": "v3_fmo_external_hard_negative_duplicate_gate_702_20260528",
+  "created_utc": "2026-05-28T04:10:21Z",
+  "status": "complete_review_only_no_imports",
+  "review_only": true,
+  "scope": {
+    "purpose": "External FMO hard-negative, duplicate, and leakage gate for the current acquisition candidates. The gate asks whether each source-admissible external FMO candidate is a genuinely new evidence row or only duplicate/supporting evidence already covered by current canonical/proposed rows.",
+    "candidate_priority_order": [
+      "uniprot:P12015",
+      "uniprot:H3JQW0",
+      "uniprot:Q93TJ5",
+      "uniprot:Q01740",
+      "uniprot:O15229",
+      "uniprot:P23262"
+    ],
+    "current_canonical_fmo_rows": [
+      "m_csa:131",
+      "m_csa:132"
+    ],
+    "current_proposed_fmo_rows": [
+      "m_csa:551",
+      "m_csa:973"
+    ],
+    "allowed_dispositions": [
+      "hard_negative_gate_pass",
+      "duplicate_hold",
+      "boundary_hold",
+      "reject_not_fmo"
+    ]
+  },
+  "guardrails": {
+    "canonical_label_registry_changed": false,
+    "registry_edits": false,
+    "ontology_edits": false,
+    "threshold_edits": false,
+    "production_scoring_edits": false,
+    "model_outputs_changed": false,
+    "imports_changed": false,
+    "label_edits": false,
+    "new_countable_or_import_ready_rows": 0
+  },
+  "source_artifacts": {
+    "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json": {
+      "role": "hard_negative_control_axis",
+      "sha256": "b15d239b831f8dcc31262d1812890d7c11a4f46d59835c336af85b5f645667cd"
+    },
+    "artifacts/v3_fmo_local_candidate_adjudication_551_973_702_20260528.json": {
+      "role": "local_m_csa_551_973_adjudication",
+      "sha256": "3cf0e39f335bf6d2f60a80b18457c59128f1f97359723211cac05017d30e833c"
+    },
+    "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json": {
+      "role": "fmo_evidence_contract_and_v2_design_context",
+      "sha256": "3afe1006d1d4c6e75f6aebcd1944108a4e34cfc4874da8d8393f2e7e4d6d1253"
+    },
+    "artifacts/v3_packet3_v2_sublabel_decision_closure_702_20260527.json": {
+      "role": "packet3_fmo_underpowered_and_generic_flavin_split_context",
+      "sha256": "c0c6c5d8bb9b3898093f993e096b5d14a9982e95ffe24a8d71cf3df8e807ec0d"
+    },
+    "artifacts/v3_fmo_source_evidence_scout_702_20260527.json": {
+      "role": "external_candidate_source_packets",
+      "sha256": "7065d5fd005dde1002e8a011f6278d9f36383a185a91f6564fc04e70e569c0a7"
+    },
+    "artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_geometry_and_full_current_screen_20260521.json": {
+      "role": "prior_source_free_geometry_and_full_current_duplicate_leakage_context_for_H3JQW0_and_O15229",
+      "sha256": "24fe2d2e17bcf4c4a480ac7ce4cf39ec7c0de1d152540a1e7606a919bd04272e"
+    },
+    "artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_targeted_fmo_rescue_screen_20260521.json": {
+      "role": "prior_targeted_current_fmo_duplicate_context_for_O15229",
+      "sha256": "0c5d94c7599c6f12274ddb800c4b8bd9fedb9b584f4467928e76786bd3071376"
+    }
+  },
+  "external_lookup": {
+    "source": "UniProt REST API",
+    "retrieved_utc": "2026-05-28T04:10:21Z",
+    "query_url": "https://rest.uniprot.org/uniprotkb/accessions?accessions=P12015,H3JQW0,Q93TJ5,Q01740,O15229,P23262&format=json",
+    "parsed_records": [
+      {
+        "candidate_id": "uniprot:P12015",
+        "uniprot_id": "CHNB_ACIJO",
+        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "protein_name": "Cyclohexanone monooxygenase",
+        "organism": "Acinetobacter johnsonii",
+        "gene": "chnB",
+        "ec": [
+          "1.14.13.22"
+        ],
+        "cofactor": [
+          "FAD"
+        ],
+        "catalytic_activity": [
+          {
+            "rhea": [
+              "RHEA:24068"
+            ],
+            "reaction": "cyclohexanone + NADPH + O2 + H(+) = hexano-6-lactone + NADP(+) + H2O"
+          }
+        ],
+        "structure_crossrefs": [
+          "AlphaFoldDB:P12015"
+        ]
+      },
+      {
+        "candidate_id": "uniprot:H3JQW0",
+        "uniprot_id": "OTEMO_PSEPU",
+        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "protein_name": "2-oxo-Delta(3)-4,5,5-trimethylcyclopentenylacetyl-CoA monooxygenase",
+        "organism": "Pseudomonas putida",
+        "gene": "otemo",
+        "ec": [
+          "1.14.13.160"
+        ],
+        "cofactor": [
+          "FAD"
+        ],
+        "catalytic_activity": [
+          {
+            "rhea": [
+              "RHEA:33015"
+            ],
+            "reaction": "[(1R)-2,2,3-trimethyl-5-oxocyclopent-3-enyl]acetyl-CoA + NADPH + O2 + H(+) = [(2R)-3,3,4-trimethyl-6-oxo-3,6-dihydro-1H-pyran-2-yl]acetyl-CoA + NADP(+) + H2O"
+          }
+        ],
+        "structure_crossrefs": [
+          "PDB:3UOV",
+          "PDB:3UOX",
+          "PDB:3UOY",
+          "PDB:3UOZ",
+          "PDB:3UP4",
+          "PDB:3UP5",
+          "AlphaFoldDB:H3JQW0"
+        ]
+      },
+      {
+        "candidate_id": "uniprot:Q93TJ5",
+        "uniprot_id": "HAPMO_PSEFL",
+        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "protein_name": "4-hydroxyacetophenone monooxygenase",
+        "organism": "Pseudomonas fluorescens",
+        "gene": "hapE",
+        "ec": [
+          "1.14.13.84"
+        ],
+        "cofactor": [
+          "FAD"
+        ],
+        "catalytic_activity": [
+          {
+            "rhea": [
+              "RHEA:22916"
+            ],
+            "reaction": "4'-hydroxyacetophenone + NADPH + O2 + H(+) = 4-acetoxyphenol + NADP(+) + H2O"
+          }
+        ],
+        "structure_crossrefs": [
+          "AlphaFoldDB:Q93TJ5"
+        ]
+      },
+      {
+        "candidate_id": "uniprot:Q01740",
+        "uniprot_id": "FMO1_HUMAN",
+        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "protein_name": "Flavin-containing monooxygenase 1",
+        "organism": "Homo sapiens",
+        "gene": "FMO1",
+        "ec": [
+          "1.14.13.148",
+          "1.14.13.8"
+        ],
+        "cofactor": [
+          "FAD"
+        ],
+        "catalytic_activity": [
+          {
+            "rhea": [
+              "RHEA:69819"
+            ],
+            "reaction": "hypotaurine + NADPH + O2 + H(+) = taurine + NADP(+) + H2O"
+          },
+          {
+            "rhea": [
+              "RHEA:74111"
+            ],
+            "reaction": "hypotaurine + NADH + O2 + H(+) = taurine + NAD(+) + H2O"
+          },
+          {
+            "rhea": [
+              "RHEA:31979"
+            ],
+            "reaction": "trimethylamine + NADPH + O2 = trimethylamine N-oxide + NADP(+) + H2O"
+          },
+          {
+            "rhea": [
+              "RHEA:24468"
+            ],
+            "reaction": "N,N-dimethylaniline + NADPH + O2 + H(+) = N,N-dimethylaniline N-oxide + NADP(+) + H2O"
+          }
+        ],
+        "structure_crossrefs": [
+          "AlphaFoldDB:Q01740"
+        ]
+      },
+      {
+        "candidate_id": "uniprot:O15229",
+        "uniprot_id": "KMO_HUMAN",
+        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "protein_name": "Kynurenine 3-monooxygenase",
+        "organism": "Homo sapiens",
+        "gene": "KMO",
+        "ec": [
+          "1.14.13.9"
+        ],
+        "cofactor": [
+          "FAD"
+        ],
+        "catalytic_activity": [
+          {
+            "rhea": [
+              "RHEA:20545"
+            ],
+            "reaction": "L-kynurenine + NADPH + O2 + H(+) = 3-hydroxy-L-kynurenine + NADP(+) + H2O"
+          }
+        ],
+        "structure_crossrefs": [
+          "PDB:5X68",
+          "AlphaFoldDB:O15229"
+        ]
+      },
+      {
+        "candidate_id": "uniprot:P23262",
+        "uniprot_id": "NHG1_PSEPU",
+        "entry_type": "UniProtKB reviewed (Swiss-Prot)",
+        "protein_name": "Salicylate hydroxylase",
+        "organism": "Pseudomonas putida",
+        "gene": "nahG",
+        "ec": [
+          "1.14.13.1"
+        ],
+        "cofactor": [
+          "FAD"
+        ],
+        "catalytic_activity": [
+          {
+            "rhea": [
+              "RHEA:11004"
+            ],
+            "reaction": "salicylate + NADH + O2 + 2 H(+) = catechol + CO2 + NAD(+) + H2O"
+          }
+        ],
+        "structure_crossrefs": [
+          "PDB:6BZ5",
+          "AlphaFoldDB:P23262"
+        ]
+      }
+    ]
+  },
+  "decision_summary": {
+    "hard_negative_gate_pass": [
+      "uniprot:P12015",
+      "uniprot:Q93TJ5",
+      "uniprot:Q01740"
+    ],
+    "duplicate_hold": [
+      "uniprot:H3JQW0",
+      "uniprot:O15229",
+      "uniprot:P23262"
+    ],
+    "boundary_hold": [],
+    "reject_not_fmo": [],
+    "genuinely_new_evidence_rows_for_future_review_only": [
+      "uniprot:P12015",
+      "uniprot:Q93TJ5",
+      "uniprot:Q01740"
+    ],
+    "same_family_or_duplicate_support_only": [
+      "uniprot:H3JQW0",
+      "uniprot:O15229",
+      "uniprot:P23262"
+    ],
+    "new_import_ready_rows": 0,
+    "new_countable_metric_rows": 0,
+    "bottom_line": "CHMO, HAPMO, and human FMO1 separate from the hard-negative panel and are not duplicates of the four current canonical/proposed FMO rows, but they remain source-only review leads. OTEMO is held by prior structural duplicate/leakage evidence, KMO is held by prior duplicate/leakage to m_csa:131, and salicylate hydroxylase is held as same-family aromatic hydroxylase support already covered by m_csa:131 and m_csa:551."
+  },
+  "global_hard_negative_panel": {
+    "ordinary_flavin_hydride_transfer_dehydrogenase_reductase": "Require reduced-flavin O2 activation and substrate oxygen insertion; FAD/FMN plus NAD(P)H is not sufficient.",
+    "flavin_oxidase_o2_acceptor_not_monooxygenase": "O2 as terminal electron acceptor or peroxide generator is not sufficient; O2-derived oxygen must enter substrate.",
+    "flavin_fe_s_relay_hcar_like": "Fe-S/flavin electron relay is a negative unless the flavin active site forms an oxygenating peroxyflavin species.",
+    "flavodiiron_no_reductase": "FMN electron donation to a diiron NO-reducing site rejects as FMO.",
+    "radical_flavin_fe_s_dehydratase": "FAD semiquinone radical or Fe-S dehydration chemistry rejects as FMO.",
+    "covalent_fad_adduct_chemistry": "Covalent FAD-substrate adduct chemistry is not C4a-peroxy oxygen insertion.",
+    "heme_p450_peroxidase": "Heme-centered oxygen activation routes away from FMO.",
+    "nonflavin_oxygenase": "Pterin, non-heme iron, copper, diiron, ATP/luciferyl-adenylate, and name-only oxygenase hits reject or hold without flavin peroxy evidence."
+  },
+  "candidates": [
+    {
+      "priority": 1,
+      "candidate_id": "uniprot:P12015",
+      "short_name": "CHMO",
+      "enzyme_name": "Cyclohexanone monooxygenase",
+      "candidate_family": "classic_Baeyer_Villiger_monooxygenase_CHMO",
+      "source_status": "source_admissible_true_fmo",
+      "duplicate_family_overlap_with_current_rows": {
+        "m_csa:131": "not_duplicate; current row is aromatic hydroxylation of 4-hydroxybenzoate, while CHMO is cyclic-ketone Baeyer-Villiger oxygen insertion.",
+        "m_csa:132": "broad reduced-flavin O2 overlap only; current row is FMN-linked alkanal/luciferase-like oxygenation, not CHMO/BVMO evidence.",
+        "m_csa:551": "not_duplicate; current proposed row is phenol ortho-hydroxylation.",
+        "m_csa:973": "not_duplicate; current proposed row is two-component FMNH2 sulfur oxygenation."
+      },
+      "new_evidence_assessment": {
+        "genuinely_new_evidence_row": true,
+        "same_family_duplicate_support_only": false,
+        "reason": "Adds the missing BVMO cyclic-ketone-to-lactone oxygen insertion axis not represented by current canonical/proposed FMO rows."
+      },
+      "hard_negative_separation": {
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase": "separates; NADPH reduces FAD to activate O2 and the product is a lactone from oxygen insertion, not a simple substrate redox pair.",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase": "separates; O2 is incorporated through Baeyer-Villiger oxygen insertion rather than used only as terminal acceptor.",
+        "flavin_fe_s_relay": "separates; UniProt cofactor is FAD with no Fe-S relay evidence.",
+        "flavodiiron_no_reductase": "separates; no diiron NO reduction evidence.",
+        "radical_flavin_fe_s_dehydratase": "separates; no radical dehydration or Fe-S substrate polarization evidence.",
+        "covalent_fad_adduct": "separates; BVMO peroxyflavin/Criegee chemistry is not covalent FAD-substrate adduct reduction.",
+        "heme_p450_peroxidase": "separates; no heme/P450/peroxidase oxygen-activation locus.",
+        "nonflavin_oxygenase_or_name_only": "separates; source support includes FAD, NADPH, Rhea reaction, and reported FAD-4a-OOH transient intermediate, not name-only monooxygenase text."
+      },
+      "expected_generic_flavin_overabsorption_failure_mode": "A learned model or geometry scorer may key on the Rossmann-like FAD/NADPH fold and generic redox residues, top-ranking flavin_dehydrogenase_reductase unless the Baeyer-Villiger lactone product and FAD-4a-OOH/peroxyflavin oxygen-transfer step are encoded as required evidence.",
+      "prior_duplicate_leakage_context": {
+        "prior_terminal_decision_found": false,
+        "structural_duplicate_clear_established": false,
+        "note": "No current source-free full-current duplicate-clear claim is made in this artifact; the present decision is a duplicate/family-overlap gate against the four current FMO rows plus hard-negative chemistry."
+      },
+      "disposition": "hard_negative_gate_pass",
+      "disposition_reason": "Promising new BVMO evidence lane; keep source-only and send to later source-free geometry/materialization and duplicate/leakage gates before any import."
+    },
+    {
+      "priority": 2,
+      "candidate_id": "uniprot:H3JQW0",
+      "short_name": "OTEMO",
+      "enzyme_name": "2-oxo-Delta(3)-4,5,5-trimethylcyclopentenylacetyl-CoA monooxygenase",
+      "candidate_family": "OTEMO_Baeyer_Villiger_monooxygenase",
+      "source_status": "source_admissible_true_fmo_but_prior_duplicate_leakage_hold",
+      "duplicate_family_overlap_with_current_rows": {
+        "m_csa:131": "not a direct family duplicate by reaction; both are flavin oxygenases but OTEMO is a BVMO lactonization.",
+        "m_csa:132": "broad reduced-flavin/peroxy oxygenation overlap only; not the same alkanal/FMNH2 luciferase row.",
+        "m_csa:551": "not_duplicate; phenol hydroxylation is a different substrate and product axis.",
+        "m_csa:973": "not_duplicate; DszC is two-component FMNH2 sulfur oxygenation.",
+        "external_priority_context": "same broad BVMO acquisition axis as uniprot:P12015 and uniprot:Q93TJ5, but with prior source-free structural leakage evidence."
+      },
+      "new_evidence_assessment": {
+        "genuinely_new_evidence_row": false,
+        "same_family_duplicate_support_only": true,
+        "reason": "The chemistry is true FMO/BVMO, but the prior deep packet recorded terminal duplicate/leakage evidence; it should not be treated as a new current evidence row."
+      },
+      "hard_negative_separation": {
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase": "source chemistry separates; reaction is FAD/NADPH/O2 lactonization, not simple hydride-transfer dehydrogenase chemistry.",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase": "source chemistry separates; product requires oxygen insertion into the substrate.",
+        "flavin_fe_s_relay": "separates; no Fe-S cofactor is recorded.",
+        "flavodiiron_no_reductase": "separates; no flavodiiron NO-reductase evidence.",
+        "radical_flavin_fe_s_dehydratase": "separates; no radical FAD/Fe-S dehydration chemistry.",
+        "covalent_fad_adduct": "separates; no covalent FAD-substrate adduct reduction evidence.",
+        "heme_p450_peroxidase": "separates; no heme/P450/peroxidase locus.",
+        "nonflavin_oxygenase_or_name_only": "separates by source; UniProt records FAD, NADPH, O2, Rhea reaction, and PDB structures, not a name-only hit."
+      },
+      "expected_generic_flavin_overabsorption_failure_mode": "This failure mode already appeared in prior source-free geometry: H3JQW0 barely reached the FMO lane floor but still top-ranked as flavin_dehydrogenase_reductase, reflecting generic FAD/NADPH fold absorption without explicit peroxyflavin/product constraints.",
+      "prior_duplicate_leakage_context": {
+        "prior_terminal_decision_found": true,
+        "terminal_decision": "terminal_rejection_duplicate_or_leakage",
+        "screen_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_full_current_subchunk_screen_20260521.json",
+        "pair_cache_complete": true,
+        "unique_query_target_pair_count": 672,
+        "tm_score_threshold": 0.7,
+        "nearest_current_countable_hit": {
+          "target_entry_ids": [
+            "m_csa:246"
+          ],
+          "target_label_types": [
+            "out_of_scope"
+          ],
+          "target_structure_key": "pdb:1IR3",
+          "max_pair_tm_score": 0.7646
+        },
+        "geometry_score_context": {
+          "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.6461,
+          "target_lane_score": 0.4127,
+          "target_lane_at_or_above_floor": true,
+          "text_or_label_fields_used_for_score": false
+        }
+      },
+      "disposition": "duplicate_hold",
+      "disposition_reason": "True FMO source chemistry, but prior current-countable structural duplicate/leakage evidence blocks use as a new row."
+    },
+    {
+      "priority": 3,
+      "candidate_id": "uniprot:Q93TJ5",
+      "short_name": "HAPMO",
+      "enzyme_name": "4-hydroxyacetophenone monooxygenase",
+      "candidate_family": "HAPMO_aromatic_ketone_Baeyer_Villiger_monooxygenase",
+      "source_status": "source_admissible_true_fmo",
+      "duplicate_family_overlap_with_current_rows": {
+        "m_csa:131": "not_duplicate; current row is aromatic hydroxylation, while HAPMO performs Baeyer-Villiger ester formation from an aromatic ketone.",
+        "m_csa:132": "broad reduced-flavin oxygen-transfer overlap only; not the same FMN-linked alkanal monooxygenase/luciferase row.",
+        "m_csa:551": "not_duplicate; phenol hydroxylation differs from aromatic ketone ester-forming BVMO chemistry.",
+        "m_csa:973": "not_duplicate; DszC sulfur oxygenation is a different oxygenation class.",
+        "external_priority_context": "same broad BVMO acquisition axis as CHMO but distinct named HAPMO family and aromatic-ketone substrate; count only after future diversity and source-free duplicate review."
+      },
+      "new_evidence_assessment": {
+        "genuinely_new_evidence_row": true,
+        "same_family_duplicate_support_only": false,
+        "reason": "Adds HAPMO/aromatic-ketone Baeyer-Villiger ester-forming chemistry not covered by m_csa:131, m_csa:132, m_csa:551, or m_csa:973."
+      },
+      "hard_negative_separation": {
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase": "separates; NADPH/FAD chemistry is coupled to O2-derived ester formation, not substrate-only hydride transfer.",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase": "separates; product is oxygen-inserted ester rather than oxidase reoxidation by O2.",
+        "flavin_fe_s_relay": "separates; no Fe-S relay evidence.",
+        "flavodiiron_no_reductase": "separates; no diiron NO reduction evidence.",
+        "radical_flavin_fe_s_dehydratase": "separates; no radical dehydration evidence.",
+        "covalent_fad_adduct": "separates; no covalent FAD-substrate adduct reduction evidence.",
+        "heme_p450_peroxidase": "separates; no heme/P450/peroxidase evidence.",
+        "nonflavin_oxygenase_or_name_only": "separates; FAD cofactor plus Rhea NADPH/O2 reaction and source-scout peroxyflavin support exceed name-only evidence."
+      },
+      "expected_generic_flavin_overabsorption_failure_mode": "A geometry-only scorer may treat HAPMO as another FAD/NADPH oxidoreductase because the captured fold and nicotinamide context are generic; without the ester product and peroxyflavin/Criegee step, it can collapse into flavin_dehydrogenase_reductase.",
+      "prior_duplicate_leakage_context": {
+        "prior_terminal_decision_found": false,
+        "structural_duplicate_clear_established": false,
+        "note": "No source-free current-countable duplicate-clear claim is made here."
+      },
+      "disposition": "hard_negative_gate_pass",
+      "disposition_reason": "Passes chemistry hard negatives and is not duplicate of the four current FMO rows; keep source-only pending source-free geometry/materialization and duplicate/leakage screening."
+    },
+    {
+      "priority": 4,
+      "candidate_id": "uniprot:Q01740",
+      "short_name": "human FMO1",
+      "enzyme_name": "Flavin-containing monooxygenase 1",
+      "candidate_family": "class_B_FMO_N_S_oxygenation",
+      "source_status": "source_admissible_true_fmo",
+      "duplicate_family_overlap_with_current_rows": {
+        "m_csa:131": "not_duplicate; aromatic hydroxylation differs from class B soft-nucleophile N/S oxygenation.",
+        "m_csa:132": "not_duplicate; FMN-linked alkanal/luciferase-like oxygenation differs from mammalian FAD/NADPH FMO1.",
+        "m_csa:551": "not_duplicate; phenol hydroxylation differs from FMO1 N/S oxygenation.",
+        "m_csa:973": "partial oxygenation-class overlap; both can support sulfur oxygenation, but m_csa:973 is a two-component FMNH2 DszC system while FMO1 is single-chain class B FAD/NADPH xenobiotic/soft-nucleophile oxygenation."
+      },
+      "new_evidence_assessment": {
+        "genuinely_new_evidence_row": true,
+        "same_family_duplicate_support_only": false,
+        "reason": "Adds the class B FMO architecture and N/S oxygenation axis, distinct from current aromatic hydroxylases, FMN-linked luciferase-like alkanal oxygenation, phenol hydroxylase, and two-component DszC."
+      },
+      "hard_negative_separation": {
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase": "separates; FAD/NADPH primes oxygenation of nucleophilic substrates rather than substrate dehydrogenation.",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase": "separates; Rhea reactions produce N-oxide or S-oxygenated products rather than using O2 only as terminal acceptor.",
+        "flavin_fe_s_relay": "separates; no Fe-S relay evidence.",
+        "flavodiiron_no_reductase": "separates; no diiron NO reduction evidence.",
+        "radical_flavin_fe_s_dehydratase": "separates; no radical FAD/Fe-S dehydration evidence.",
+        "covalent_fad_adduct": "separates; no covalent FAD-substrate adduct chemistry.",
+        "heme_p450_peroxidase": "separates; class B FMO/FAD/NADPH source identity keeps it away from P450 heme monooxygenases.",
+        "nonflavin_oxygenase_or_name_only": "separates; UniProt/Rhea records FAD and multiple O2/nicotinamide oxygenation reactions, not name-only monooxygenase text."
+      },
+      "expected_generic_flavin_overabsorption_failure_mode": "Because the human record lacks a reviewed PDB structure in the current lookup and shares FAD/NADPH-binding motifs with many oxidoreductases, a learned model may absorb it into generic flavin_dehydrogenase_reductase unless N-oxide/S-oxygenation products and C4a-hydroperoxyflavin class-B FMO context are explicit.",
+      "prior_duplicate_leakage_context": {
+        "prior_terminal_decision_found": false,
+        "structural_duplicate_clear_established": false,
+        "note": "No source-free current-countable duplicate-clear claim is made here; only AlphaFoldDB was available in the current UniProt lookup."
+      },
+      "disposition": "hard_negative_gate_pass",
+      "disposition_reason": "Passes hard-negative separation and adds a class B FMO axis not covered by current rows; source-only and not import-ready."
+    },
+    {
+      "priority": 5,
+      "candidate_id": "uniprot:O15229",
+      "short_name": "KMO",
+      "enzyme_name": "Kynurenine 3-monooxygenase",
+      "candidate_family": "kynurenine_3_monooxygenase_aromatic_ring_hydroxylase",
+      "source_status": "source_admissible_true_fmo_but_prior_duplicate_hold",
+      "duplicate_family_overlap_with_current_rows": {
+        "m_csa:131": "duplicate/leakage hold; prior targeted current FMO rescue screen found a high-TM hit to m_csa:131/pdb:1DOC with max pair TM 0.8122.",
+        "m_csa:132": "not_duplicate by structure or chemistry; prior targeted screen top hit to m_csa:132/pdb:1LUC was low TM 0.29.",
+        "m_csa:551": "same broad aromatic hydroxylase evidence family as phenol hydroxylase, but the decisive prior duplicate signal is to m_csa:131.",
+        "m_csa:973": "not_duplicate; DszC sulfur oxygenation is different."
+      },
+      "new_evidence_assessment": {
+        "genuinely_new_evidence_row": false,
+        "same_family_duplicate_support_only": true,
+        "reason": "Source chemistry is FMO-like aromatic hydroxylation, but prior source-free structural duplicate/leakage to canonical m_csa:131 blocks counting as a new row."
+      },
+      "hard_negative_separation": {
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase": "source chemistry separates; FAD/NADPH/O2 hydroxylates L-kynurenine, but geometry alone overabsorbs into generic flavin redox.",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase": "source chemistry separates; product is hydroxylated substrate, not only O2 terminal acceptor turnover.",
+        "flavin_fe_s_relay": "separates; no Fe-S relay evidence.",
+        "flavodiiron_no_reductase": "separates; no diiron NO reduction evidence.",
+        "radical_flavin_fe_s_dehydratase": "separates; no radical dehydration evidence.",
+        "covalent_fad_adduct": "separates; no covalent FAD-substrate adduct evidence.",
+        "heme_p450_peroxidase": "separates; no heme/P450/peroxidase locus.",
+        "nonflavin_oxygenase_or_name_only": "separates by source; UniProt/Rhea records FAD, NADPH, O2, and hydroxylated product, not name-only evidence."
+      },
+      "expected_generic_flavin_overabsorption_failure_mode": "This failure mode is already observed: source-free geometry top-ranked O15229 as flavin_dehydrogenase_reductase with score 0.6498 while the FMO lane stayed below floor at 0.2674, so a model would likely learn generic FAD/NADPH redox instead of the oxygenation product unless mechanism fields override geometry.",
+      "prior_duplicate_leakage_context": {
+        "prior_terminal_decision_found": true,
+        "terminal_decision": "terminal_rejection_duplicate_or_leakage",
+        "screen_artifact": "artifacts/v3_flavin_monooxygenase_deep_packet_targeted_current_fmo_rescue_screen_20260521.json",
+        "targeted_current_fmo_rescue_pair_cache_complete": true,
+        "target_subset_count": 2,
+        "nearest_current_countable_hit": {
+          "target_entry_ids": [
+            "m_csa:131"
+          ],
+          "target_label_types": [
+            "seed_fingerprint"
+          ],
+          "target_fingerprint_ids": [
+            "flavin_monooxygenase"
+          ],
+          "target_structure_key": "pdb:1DOC",
+          "max_pair_tm_score": 0.8122,
+          "alntmscore": 0.8196
+        },
+        "geometry_score_context": {
+          "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "top1_score": 0.6498,
+          "target_lane_score": 0.2674,
+          "target_lane_at_or_above_floor": false,
+          "text_or_label_fields_used_for_score": false
+        }
+      },
+      "disposition": "duplicate_hold",
+      "disposition_reason": "True source-admissible FMO chemistry but terminal duplicate/leakage to existing canonical m_csa:131; do not count as a new row."
+    },
+    {
+      "priority": 6,
+      "candidate_id": "uniprot:P23262",
+      "short_name": "salicylate 1-monooxygenase",
+      "enzyme_name": "Salicylate hydroxylase",
+      "candidate_family": "salicylate_1_monooxygenase_aromatic_hydroxylase",
+      "source_status": "source_admissible_true_fmo_but_family_duplicate_hold",
+      "duplicate_family_overlap_with_current_rows": {
+        "m_csa:131": "strong same-family evidence overlap; both are FAD-dependent aromatic carboxylate hydroxylase/monooxygenase rows and m_csa:131 already covers the canonical aromatic hydroxylase axis.",
+        "m_csa:132": "not_duplicate; salicylate hydroxylase is not FMN-linked alkanal/luciferase-like chemistry.",
+        "m_csa:551": "same broad aromatic hydroxylation support family; both are phenolic/aromatic FAD monooxygenase chemistry, with P23262 adding NADH and oxidative decarboxylation but not a new high-level FMO axis.",
+        "m_csa:973": "not_duplicate; DszC sulfur oxygenation is different."
+      },
+      "new_evidence_assessment": {
+        "genuinely_new_evidence_row": false,
+        "same_family_duplicate_support_only": true,
+        "reason": "Mechanistically clean but mostly reinforces the aromatic hydroxylase evidence already represented by m_csa:131 and m_csa:551; hold until a later packet explicitly needs same-family support."
+      },
+      "hard_negative_separation": {
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase": "separates by source; FAD/NADH/O2 converts salicylate to catechol and CO2 rather than simple dehydrogenation.",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase": "separates; O2-dependent hydroxylation/oxidative decarboxylation produces catechol, not only reoxidation of FAD by O2.",
+        "flavin_fe_s_relay": "separates; no Fe-S relay evidence.",
+        "flavodiiron_no_reductase": "separates; no diiron NO reduction evidence.",
+        "radical_flavin_fe_s_dehydratase": "separates; no radical dehydration evidence.",
+        "covalent_fad_adduct": "separates; no covalent FAD-substrate adduct chemistry.",
+        "heme_p450_peroxidase": "separates; no heme/P450/peroxidase locus.",
+        "nonflavin_oxygenase_or_name_only": "separates by source; UniProt/Rhea records FAD, NADH, O2, and product chemistry, with source scout C4a-hydroperoxyflavin mechanism support."
+      },
+      "expected_generic_flavin_overabsorption_failure_mode": "Because the record uses NADH rather than NADPH and resembles other FAD aromatic hydroxylases, a model can treat it as ordinary flavin_dehydrogenase_reductase or flavin oxidase unless the salicylate-to-catechol oxygen insertion and C4a-hydroperoxyflavin step are required.",
+      "prior_duplicate_leakage_context": {
+        "prior_terminal_decision_found": false,
+        "structural_duplicate_clear_established": false,
+        "note": "No source-free duplicate-clear claim is made here. The hold is family-duplicate evidence against current aromatic FMO rows rather than a new structural terminal decision."
+      },
+      "disposition": "duplicate_hold",
+      "disposition_reason": "Clean FMO source chemistry but same-family aromatic hydroxylase support already covered by current rows; not a new evidence row for this gate."
+    }
+  ],
+  "non_claims": [
+    "This gate does not edit labels, registries, ontology files, thresholds, production scoring, model outputs, or imports.",
+    "No external UniProt candidate is import-ready or countable from this artifact.",
+    "Hard_negative_gate_pass means the candidate separates chemically from the hard-negative panel and is not duplicate of the four current FMO rows; it does not mean source-free structural duplicate clearance has been established.",
+    "Duplicate_hold candidates may still be true FMO chemistry; the hold prevents duplicate/leakage or same-family evidence from inflating support.",
+    "The v2 or primary FMO promotion state is unchanged; n>=6, source-free geometry, duplicate/leakage, terminal review, and human/import gates remain required."
+  ],
+  "exact_next_action": "Stop after this gate artifact. If FMO acquisition resumes later, materialize and source-free geometry/duplicate-screen the hard_negative_gate_pass rows in priority order without importing or relabeling."
+}
