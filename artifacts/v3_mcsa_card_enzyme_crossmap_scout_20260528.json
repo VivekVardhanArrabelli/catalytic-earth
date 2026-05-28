@@ -1,0 +1,499 @@
+{
+  "artifact_id": "v3_mcsa_card_enzyme_crossmap_scout_20260528",
+  "schema_version": "mcsa_card_crossmap_scout.v1",
+  "generated_at_utc": "2026-05-28T06:58:16Z",
+  "mode": "read_only_detection_classification_scout",
+  "scope": {
+    "objective": "Assess whether local M-CSA/current702 mechanism evidence overlaps public CARD enzyme-mediated AMR families enough to justify a cross-domain transfer benchmark.",
+    "allowed_use": "Detection/classification benchmark design only.",
+    "disallowed_actions": [
+      "No antimicrobial resistance design, optimization, mutation, engineering, synthesis, or phenotype enhancement.",
+      "No wet-lab protocols.",
+      "No variant suggestions.",
+      "No AMRFinderPlus baseline run.",
+      "No edits to labels, registries, ontology files, production scoring, imports, or thresholds.",
+      "No large downloads."
+    ],
+    "actions_performed": [
+      "Read existing local graph, geometry, learned-retrieval, and current702 sequence artifacts.",
+      "Performed small public CARD metadata lookups only for AMR family naming and scope checks.",
+      "Created scout artifact and report."
+    ]
+  },
+  "local_sources": {
+    "current702_sequence_manifest": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    "current702_learned_retrieval_manifest": "artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json",
+    "source_graph": "artifacts/v1_graph_1025.json",
+    "geometry_features": "artifacts/v3_geometry_features_1025.json",
+    "curated_label_registry_read_only": "data/registries/curated_mechanism_labels.json"
+  },
+  "public_card_metadata_references": [
+    {
+      "label": "CARD 2023 overview",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9825576/"
+    },
+    {
+      "label": "CARD APH(3-prime)-IIb example",
+      "url": "https://card.mcmaster.ca/ontology/39045"
+    },
+    {
+      "label": "CARD ANT(4-prime) AMR gene family",
+      "url": "https://card.mcmaster.ca/ontology/36368"
+    },
+    {
+      "label": "CARD chloramphenicol acetyltransferase example",
+      "url": "https://card.mcmaster.ca/ontology/39104"
+    },
+    {
+      "label": "CARD FosA example",
+      "url": "https://card.mcmaster.ca/ontology/36288"
+    },
+    {
+      "label": "CARD macrolide phosphotransferase family",
+      "url": "https://card.mcmaster.ca/ontology/36472"
+    }
+  ],
+  "candidate_mapping_records": [
+    {
+      "record_id": "mcsa_card_amr_001",
+      "m_csa_id": "m_csa:2",
+      "m_csa_name": "beta-lactamase (Class A)",
+      "current702_member": true,
+      "current702_label_type": "out_of_scope",
+      "current_registry_fingerprint_id": null,
+      "reference_uniprot": "P62593",
+      "selected_pdb": "1BTL",
+      "representative_public_pdb_refs": [
+        "1BTL",
+        "1AXB",
+        "1BT5"
+      ],
+      "sequence_availability": "current702 sequence covered from historical UniProt FASTA; one reference sequence record; sequence not reproduced here.",
+      "structure_availability": "selected PDB 1BTL has all 7 local catalytic residues resolved; additional PDB and AlphaFold references exist in the local source graph.",
+      "mechanism_fingerprint": {
+        "scout_fingerprint": "serine_beta_lactam_acyl_enzyme_hydrolysis",
+        "source": "derived from M-CSA mechanism text and active-site geometry for this scout only; not a registry label"
+      },
+      "amr_class": {
+        "public_family": "class A beta-lactamase",
+        "card_scope": "beta-lactam antibiotic inactivation / beta-lactamase family"
+      },
+      "expected_active_site_chemistry": "Serine acyl-enzyme hydrolysis of beta-lactam carbonyl with general acid/base assistance and oxyanion stabilization.",
+      "cofactor_or_metal_requirements": "No obligatory metal or organic cofactor detected in the selected local structure context.",
+      "safe_public_known_detection_classification_example": true,
+      "benchmark_role": "likely_positive_current702",
+      "caveats": [
+        "Current Catalytic Earth label is out_of_scope, so this is biological AMR overlap but not existing production-positive fingerprint overlap.",
+        "Use for classification/gate design only."
+      ]
+    },
+    {
+      "record_id": "mcsa_card_amr_002",
+      "m_csa_id": "m_csa:257",
+      "m_csa_name": "beta-lactamase (Class C)",
+      "current702_member": true,
+      "current702_label_type": "out_of_scope",
+      "current_registry_fingerprint_id": null,
+      "reference_uniprot": "P05364",
+      "selected_pdb": "1XX2",
+      "representative_public_pdb_refs": [
+        "1XX2",
+        "1BLS",
+        "1GCE"
+      ],
+      "sequence_availability": "current702 sequence covered from historical UniProt FASTA; one reference sequence record; sequence not reproduced here.",
+      "structure_availability": "selected PDB 1XX2 has all 7 local catalytic residues resolved; additional PDB and AlphaFold references exist in the local source graph.",
+      "mechanism_fingerprint": {
+        "scout_fingerprint": "serine_beta_lactam_acyl_enzyme_hydrolysis_class_c",
+        "source": "derived from M-CSA mechanism text and active-site geometry for this scout only; not a registry label"
+      },
+      "amr_class": {
+        "public_family": "class C beta-lactamase",
+        "card_scope": "beta-lactam antibiotic inactivation / beta-lactamase family"
+      },
+      "expected_active_site_chemistry": "Serine acyl-enzyme beta-lactam hydrolysis with Tyr/Lys/Glu active-site acid/base and stabilization network.",
+      "cofactor_or_metal_requirements": "No obligatory metal or organic cofactor detected in the selected local structure context.",
+      "safe_public_known_detection_classification_example": true,
+      "benchmark_role": "likely_positive_current702",
+      "caveats": [
+        "Current Catalytic Earth label is out_of_scope, so this is biological AMR overlap but not existing production-positive fingerprint overlap.",
+        "Use for classification/gate design only."
+      ]
+    },
+    {
+      "record_id": "mcsa_card_amr_003",
+      "m_csa_id": "m_csa:210",
+      "m_csa_name": "beta-lactamase (Class D)",
+      "current702_member": true,
+      "current702_label_type": "out_of_scope",
+      "current_registry_fingerprint_id": null,
+      "reference_uniprot": "P13661",
+      "selected_pdb": "1M6K",
+      "representative_public_pdb_refs": [
+        "1M6K",
+        "3ISG",
+        "4MLL"
+      ],
+      "sequence_availability": "current702 sequence covered from historical UniProt FASTA; one reference sequence record; sequence not reproduced here.",
+      "structure_availability": "selected PDB 1M6K resolves 6 of 7 local catalytic residues; additional PDB and AlphaFold references exist in the local source graph.",
+      "mechanism_fingerprint": {
+        "scout_fingerprint": "serine_beta_lactam_acyl_enzyme_hydrolysis_class_d_carbamylated_lys",
+        "source": "derived from M-CSA mechanism text and active-site geometry for this scout only; not a registry label"
+      },
+      "amr_class": {
+        "public_family": "class D beta-lactamase",
+        "card_scope": "beta-lactam antibiotic inactivation / beta-lactamase family"
+      },
+      "expected_active_site_chemistry": "Serine acyl-enzyme beta-lactam hydrolysis with a carboxylated lysine acid/base feature in the selected structure context.",
+      "cofactor_or_metal_requirements": "No metal required; selected local ligand context includes a carboxylated lysine feature rather than a free metal cofactor.",
+      "safe_public_known_detection_classification_example": true,
+      "benchmark_role": "likely_positive_current702",
+      "caveats": [
+        "Current Catalytic Earth label is out_of_scope, so this is biological AMR overlap but not existing production-positive fingerprint overlap.",
+        "One local catalytic residue is unresolved in selected geometry; still supported by M-CSA mechanism text and public structures."
+      ]
+    },
+    {
+      "record_id": "mcsa_card_amr_004",
+      "m_csa_id": "m_csa:15",
+      "m_csa_name": "beta-lactamase (Class B1)",
+      "current702_member": true,
+      "current702_label_type": "seed_fingerprint",
+      "current_registry_fingerprint_id": "metal_dependent_hydrolase",
+      "reference_uniprot": "P25910",
+      "selected_pdb": "1ZNB",
+      "representative_public_pdb_refs": [
+        "1ZNB",
+        "1A7T",
+        "1A8T"
+      ],
+      "sequence_availability": "current702 sequence covered from historical UniProt FASTA; one reference sequence record; sequence not reproduced here.",
+      "structure_availability": "selected PDB 1ZNB has all 8 local catalytic residues resolved; local ligand context includes Zn.",
+      "mechanism_fingerprint": {
+        "current_registry_fingerprint_id": "metal_dependent_hydrolase",
+        "scout_refinement": "zinc_metallo_beta_lactam_hydrolysis"
+      },
+      "amr_class": {
+        "public_family": "class B1 metallo-beta-lactamase",
+        "card_scope": "beta-lactam antibiotic inactivation / class B metallo-beta-lactamase"
+      },
+      "expected_active_site_chemistry": "Zn(II)-activated water or hydroxide attacks the beta-lactam carbonyl; metal ligands and electrostatic residues stabilize the hydrolytic intermediate.",
+      "cofactor_or_metal_requirements": "Zn(II) metal ion requirement; selected local structure has proximal Zn.",
+      "safe_public_known_detection_classification_example": true,
+      "benchmark_role": "likely_positive_current702",
+      "caveats": [
+        "Current fingerprint is broad metal_dependent_hydrolase, not beta-lactamase-specific.",
+        "Use for classification/gate design only."
+      ]
+    },
+    {
+      "record_id": "mcsa_card_amr_005",
+      "m_csa_id": "m_csa:16",
+      "m_csa_name": "beta-lactamase (Class B1)",
+      "current702_member": true,
+      "current702_label_type": "seed_fingerprint",
+      "current_registry_fingerprint_id": "metal_dependent_hydrolase",
+      "reference_uniprot": "P04190",
+      "selected_pdb": "1BC2",
+      "representative_public_pdb_refs": [
+        "1BC2",
+        "1BMC",
+        "1BVT"
+      ],
+      "sequence_availability": "current702 sequence covered from historical UniProt FASTA; one reference sequence record; sequence not reproduced here.",
+      "structure_availability": "selected PDB 1BC2 has all 5 local catalytic residues resolved; local ligand context includes Zn.",
+      "mechanism_fingerprint": {
+        "current_registry_fingerprint_id": "metal_dependent_hydrolase",
+        "scout_refinement": "zinc_metallo_beta_lactam_hydrolysis_monometal_context"
+      },
+      "amr_class": {
+        "public_family": "class B1 metallo-beta-lactamase",
+        "card_scope": "beta-lactam antibiotic inactivation / class B metallo-beta-lactamase"
+      },
+      "expected_active_site_chemistry": "Zn(II)-activated water or hydroxide performs beta-lactam carbonyl hydrolysis with histidine metal ligands and acid/base assistance.",
+      "cofactor_or_metal_requirements": "Zn(II) metal ion requirement; selected local structure has proximal Zn.",
+      "safe_public_known_detection_classification_example": true,
+      "benchmark_role": "likely_positive_current702",
+      "caveats": [
+        "Current fingerprint is broad metal_dependent_hydrolase, not beta-lactamase-specific.",
+        "Use for classification/gate design only."
+      ]
+    },
+    {
+      "record_id": "mcsa_card_amr_006",
+      "m_csa_id": "m_csa:258",
+      "m_csa_name": "beta-lactamase (Class B1)",
+      "current702_member": true,
+      "current702_label_type": "seed_fingerprint",
+      "current_registry_fingerprint_id": "metal_dependent_hydrolase",
+      "reference_uniprot": "P52700",
+      "selected_pdb": "1SML",
+      "representative_public_pdb_refs": [
+        "1SML",
+        "2AIO",
+        "2FM6"
+      ],
+      "sequence_availability": "current702 sequence covered from historical UniProt FASTA; one reference sequence record; sequence not reproduced here.",
+      "structure_availability": "selected PDB 1SML has all 7 local catalytic residues resolved; local ligand context includes Zn.",
+      "mechanism_fingerprint": {
+        "current_registry_fingerprint_id": "metal_dependent_hydrolase",
+        "scout_refinement": "zinc_metallo_beta_lactam_hydrolysis_dinuclear_context"
+      },
+      "amr_class": {
+        "public_family": "class B1 metallo-beta-lactamase",
+        "card_scope": "beta-lactam antibiotic inactivation / class B metallo-beta-lactamase"
+      },
+      "expected_active_site_chemistry": "Zn(II)-polarized beta-lactam carbonyl and metal-bound hydroxide support hydrolytic ring opening.",
+      "cofactor_or_metal_requirements": "Zn(II) metal ion requirement; selected local structure has proximal Zn.",
+      "safe_public_known_detection_classification_example": true,
+      "benchmark_role": "likely_positive_current702",
+      "caveats": [
+        "Current fingerprint is broad metal_dependent_hydrolase, not beta-lactamase-specific.",
+        "Use for classification/gate design only."
+      ]
+    },
+    {
+      "record_id": "mcsa_card_amr_007",
+      "m_csa_id": "m_csa:640",
+      "m_csa_name": "kanamycin kinase",
+      "current702_member": true,
+      "current702_label_type": "out_of_scope",
+      "current_registry_fingerprint_id": null,
+      "reference_uniprot": "P0A3Y5",
+      "selected_pdb": "1L8T",
+      "representative_public_pdb_refs": [
+        "1L8T",
+        "1J7I",
+        "3TM0"
+      ],
+      "sequence_availability": "current702 sequence covered from historical UniProt FASTA; one reference sequence record; sequence not reproduced here.",
+      "structure_availability": "selected PDB 1L8T has all 4 local catalytic residues resolved; local ligand context includes ADP, Mg, and kanamycin.",
+      "mechanism_fingerprint": {
+        "scout_fingerprint": "aminoglycoside_o_phosphoryl_transfer_atp_mg",
+        "source": "derived from M-CSA mechanism text and active-site geometry for this scout only; not a registry label"
+      },
+      "amr_class": {
+        "public_family": "aminoglycoside phosphotransferase, APH(3-prime)-like",
+        "card_scope": "aminoglycoside modifying enzyme / phosphorylation of antibiotic conferring resistance"
+      },
+      "expected_active_site_chemistry": "ATP-dependent phosphoryl transfer to an aminoglycoside hydroxyl via an in-line phosphoryl-transfer transition state.",
+      "cofactor_or_metal_requirements": "Mg(II) and nucleotide ligand context present in selected local structure.",
+      "safe_public_known_detection_classification_example": true,
+      "benchmark_role": "likely_positive_current702",
+      "caveats": [
+        "Current Catalytic Earth label is out_of_scope, so this is biological AMR overlap but not existing production-positive fingerprint overlap.",
+        "Only one current702 APH-like row was found, below a standalone family benchmark threshold."
+      ]
+    },
+    {
+      "record_id": "mcsa_card_amr_008",
+      "m_csa_id": "m_csa:647",
+      "m_csa_name": "kanamycin nucleotidyltransferase",
+      "current702_member": true,
+      "current702_label_type": "out_of_scope",
+      "current_registry_fingerprint_id": null,
+      "reference_uniprot": "P05057",
+      "selected_pdb": "1KNY",
+      "representative_public_pdb_refs": [
+        "1KNY",
+        "1KAN",
+        "6NLT"
+      ],
+      "sequence_availability": "current702 sequence covered from historical UniProt FASTA; one reference sequence record; sequence not reproduced here.",
+      "structure_availability": "selected PDB 1KNY has all 4 local catalytic residues resolved; local ligand context includes Mg, nucleotide analog, and kanamycin in the structure.",
+      "mechanism_fingerprint": {
+        "scout_fingerprint": "aminoglycoside_o_nucleotidyl_transfer_nucleotide_mg",
+        "source": "derived from M-CSA mechanism text and active-site geometry for this scout only; not a registry label"
+      },
+      "amr_class": {
+        "public_family": "aminoglycoside nucleotidyltransferase, ANT(4-prime)-like",
+        "card_scope": "aminoglycoside modifying enzyme / nucleotidylation of antibiotic conferring resistance"
+      },
+      "expected_active_site_chemistry": "In-line nucleotidyl transfer from nucleotide donor to an aminoglycoside hydroxyl with pyrophosphate leaving group.",
+      "cofactor_or_metal_requirements": "Mg(II) and nucleotide ligand context present in selected local structure.",
+      "safe_public_known_detection_classification_example": true,
+      "benchmark_role": "likely_positive_current702",
+      "caveats": [
+        "Current Catalytic Earth label is out_of_scope, so this is biological AMR overlap but not existing production-positive fingerprint overlap.",
+        "Only one current702 ANT-like row was found, below a standalone family benchmark threshold."
+      ]
+    },
+    {
+      "record_id": "mcsa_card_amr_009",
+      "m_csa_id": "m_csa:934",
+      "m_csa_name": "chloramphenicol O-acetyltransferase",
+      "current702_member": false,
+      "current702_label_type": "not_in_current702",
+      "current_registry_fingerprint_id": null,
+      "reference_uniprot": "P00484",
+      "selected_pdb": "3CLA",
+      "representative_public_pdb_refs": [
+        "3CLA",
+        "1CLA",
+        "2CLA"
+      ],
+      "sequence_availability": "reference UniProt and public structures are present in the local source graph, but this entry is not in the current702 sequence manifest.",
+      "structure_availability": "selected PDB 3CLA has all 4 local catalytic residues resolved; public PDB and AlphaFold references exist in the local source graph.",
+      "mechanism_fingerprint": {
+        "scout_fingerprint": "acetyl_coa_antibiotic_o_acetyl_transfer",
+        "source": "derived from M-CSA mechanism text and active-site geometry for this scout only; not a registry label"
+      },
+      "amr_class": {
+        "public_family": "chloramphenicol acetyltransferase (CAT)",
+        "card_scope": "phenicol antibiotic inactivation / acylation of antibiotic conferring resistance"
+      },
+      "expected_active_site_chemistry": "Acetyl-CoA-dependent O-acetyl transfer to chloramphenicol hydroxyl with histidine acid/base assistance and transition-state stabilization.",
+      "cofactor_or_metal_requirements": "Acetyl-CoA cosubstrate; no required metal inferred for the catalytic class.",
+      "safe_public_known_detection_classification_example": true,
+      "benchmark_role": "scout_positive_m_csa_not_current702",
+      "caveats": [
+        "Do not count as a current702 benchmark positive unless a separate, authorized label-review/import path adds it.",
+        "Useful as public-known scout evidence that M-CSA contains at least one CAT mechanism entry."
+      ]
+    }
+  ],
+  "excluded_near_misses": [
+    {
+      "m_csa_id": "m_csa:303",
+      "m_csa_name": "(carboxyethyl)arginine beta-lactam-synthase",
+      "current702_member": true,
+      "reference_uniprot": "P0DJQ7",
+      "selected_pdb": "1MB9",
+      "reason_excluded": "Beta-lactam biosynthesis-like chemistry, not beta-lactam antibiotic inactivation or an AMR enzyme family."
+    },
+    {
+      "m_csa_id": "m_csa:369",
+      "m_csa_name": "UDP-N-acetylglucosamine enolpyruvyl transferase",
+      "current702_member": true,
+      "reference_uniprot": "P33038",
+      "selected_pdb": "1DLG",
+      "reason_excluded": "Public fosfomycin-related target enzyme, not a fosfomycin-inactivation enzyme such as CARD FosA/FosB/FosX/FosC families."
+    },
+    {
+      "m_csa_id": "m_csa:466",
+      "m_csa_name": "fusarinine-C ornithinesterase",
+      "current702_member": true,
+      "reference_uniprot": "Q9KX40",
+      "selected_pdb": "1CI8",
+      "reason_excluded": "M-CSA mechanism text notes beta-lactamase-like similarity but lack of beta-lactamase activity; not an AMR positive."
+    }
+  ],
+  "coverage_gaps": [
+    {
+      "public_amr_class": "aminoglycoside acetyltransferase",
+      "current702_likely_positive_count": 0,
+      "m_csa_scout_only_count": 0,
+      "status": "not_supported_by_local_m_csa_current702_search"
+    },
+    {
+      "public_amr_class": "tetracycline destructase",
+      "current702_likely_positive_count": 0,
+      "m_csa_scout_only_count": 0,
+      "status": "not_supported_by_local_m_csa_current702_search"
+    },
+    {
+      "public_amr_class": "macrolide esterase or macrolide phosphotransferase",
+      "current702_likely_positive_count": 0,
+      "m_csa_scout_only_count": 0,
+      "status": "not_supported_by_local_m_csa_current702_search"
+    },
+    {
+      "public_amr_class": "fosfomycin inactivation enzyme",
+      "current702_likely_positive_count": 0,
+      "m_csa_scout_only_count": 0,
+      "status": "not_supported_by_local_m_csa_current702_search; MurA target-like row excluded"
+    }
+  ],
+  "counts": {
+    "current702_likely_positive_records_total": 8,
+    "current702_likely_positive_records_with_sequence": 8,
+    "current702_likely_positive_records_with_selected_structure": 8,
+    "current702_likely_positive_records_with_active_site_geometry": 8,
+    "m_csa_scout_only_positive_records_total": 1,
+    "records_by_mechanism_class": [
+      {
+        "mechanism_class": "serine beta-lactam acyl-enzyme hydrolysis",
+        "current702_likely_positive_count": 3,
+        "m_csa_ids": [
+          "m_csa:2",
+          "m_csa:210",
+          "m_csa:257"
+        ]
+      },
+      {
+        "mechanism_class": "zinc metallo-beta-lactam hydrolysis",
+        "current702_likely_positive_count": 3,
+        "m_csa_ids": [
+          "m_csa:15",
+          "m_csa:16",
+          "m_csa:258"
+        ]
+      },
+      {
+        "mechanism_class": "aminoglycoside O-phosphoryl transfer",
+        "current702_likely_positive_count": 1,
+        "m_csa_ids": [
+          "m_csa:640"
+        ]
+      },
+      {
+        "mechanism_class": "aminoglycoside O-nucleotidyl transfer",
+        "current702_likely_positive_count": 1,
+        "m_csa_ids": [
+          "m_csa:647"
+        ]
+      },
+      {
+        "mechanism_class": "chloramphenicol O-acetyl transfer",
+        "current702_likely_positive_count": 0,
+        "m_csa_scout_only_count": 1,
+        "m_csa_ids": [
+          "m_csa:934"
+        ]
+      }
+    ],
+    "records_by_current_label_type": {
+      "seed_fingerprint": 3,
+      "out_of_scope": 5,
+      "not_in_current702": 1
+    }
+  },
+  "feasibility_gate": {
+    "gate_name": "enzyme_only_amr_cross_domain_transfer_benchmark_gate",
+    "proceed_to_real_benchmark": false,
+    "status": "do_not_proceed_full_benchmark_keep_amr_as_scout_panel",
+    "criteria": [
+      "At least three CARD-relevant enzyme families must have current702 positives with public sequence, selected structure, and active-site evidence.",
+      "At least two non-beta-lactamase AMR families should each have three or more current702 positives before claiming broad enzyme-only AMR scaling support.",
+      "M-CSA entries outside current702 do not count toward current benchmark positives without a separate authorized review/import path.",
+      "Current registry labels should support the mechanism axis directly or be explicitly treated as scout-only."
+    ],
+    "observed": {
+      "current702_family_support": {
+        "beta_lactamase": 6,
+        "aminoglycoside_modifying_enzyme": 2,
+        "chloramphenicol_acetyltransferase": 0,
+        "aminoglycoside_acetyltransferase": 0,
+        "tetracycline_destructase": 0,
+        "macrolide_inactivation_enzyme": 0,
+        "fosfomycin_inactivation_enzyme": 0
+      },
+      "public_sequence_structure_active_site_support": "All 8 current702 likely positives have sequence coverage, selected PDB structures, and local active-site geometry evidence; 3 of 8 have current seed_fingerprint labels and 5 of 8 are current out_of_scope rows.",
+      "diversity_limitation": "Support is concentrated in beta-lactamases; aminoglycoside support has only one APH-like and one ANT-like row; CAT is M-CSA-only outside current702."
+    },
+    "decision_rationale": "The overlap is enough for a beta-lactamase-centric smoke panel and an AMR scout panel, but not enough for a real broad enzyme-only AMR cross-domain transfer benchmark."
+  },
+  "amrfinderplus_baseline": {
+    "run": false,
+    "reason": "Task requested cross-map and feasibility only."
+  },
+  "production_side_effects": {
+    "label_registry_edited": false,
+    "ontology_edited": false,
+    "fingerprint_registry_edited": false,
+    "production_scoring_changed": false,
+    "imports_changed": false,
+    "thresholds_changed": false,
+    "large_downloads_performed": false
+  }
+}
