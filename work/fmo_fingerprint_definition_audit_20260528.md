@@ -1,6 +1,6 @@
 # FMO Fingerprint Definition Audit - 2026-05-28
 
-Run time: 2026-05-28T07:05:00Z
+Run time: 2026-05-28T07:03:12Z
 
 Review-only audit. No labels, registries, ontology files, thresholds, production scoring, imports, or model outputs were changed. No large downloads were performed; this pass used existing local artifacts, coordinate caches, source-review packets, and prior small metadata lookup artifacts as review context.
 

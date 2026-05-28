@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_fmo_fingerprint_definition_audit_702_20260528",
   "automation_id": "fmo-fingerprint-definition-audit",
-  "created_utc": "2026-05-28T07:05:00Z",
+  "created_utc": "2026-05-28T07:03:12Z",
   "schema_version": "1.0",
   "status": "review_only_definition_audit_complete",
   "review_only": true,
