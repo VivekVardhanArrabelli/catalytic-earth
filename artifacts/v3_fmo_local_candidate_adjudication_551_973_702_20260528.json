@@ -1,0 +1,283 @@
+{
+  "artifact_id": "v3_fmo_local_candidate_adjudication_551_973_702_20260528",
+  "schema_version": "v3_fmo_local_candidate_adjudication.v1",
+  "created_utc": "2026-05-28T03:49:12Z",
+  "status": "complete_review_only_no_imports",
+  "review_only": true,
+  "scope": {
+    "candidate_entry_ids": [
+      "m_csa:551",
+      "m_csa:973"
+    ],
+    "local_only": true,
+    "external_acquisition_started": false,
+    "canonical_label_edits": false,
+    "registry_edits": false,
+    "ontology_edits": false,
+    "threshold_edits": false,
+    "production_scoring_edits": false,
+    "model_output_edits": false,
+    "imports_changed": false
+  },
+  "source_inputs": [
+    "artifacts/v3_fmo_acquisition_sprint_integrated_status_702_20260527.json",
+    "artifacts/v3_fmo_admission_gate_and_benchmark_impact_702_20260527.json",
+    "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
+    "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json",
+    "artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+    "artifacts/v3_foldseek_coordinates_1000/pdb_1FOH.cif",
+    "artifacts/v3_foldseek_coordinates_1000/pdb_3X0Y.cif"
+  ],
+  "method": [
+    "Converted the latest local human/expert guidance into row-level adjudication fields for m_csa:551 and m_csa:973 only.",
+    "Inspected the prior review-only FMO acquisition, geometry, admission-gate, and v2-design artifacts.",
+    "Parsed local mmCIF atom_site evidence for pdb_1FOH and pdb_3X0Y without downloading external sources or starting external acquisition.",
+    "Interpreted missing NADPH/NADP and missing C4a-peroxy coordinates as structural-state caveats where the human guidance explicitly marked them non-disqualifying."
+  ],
+  "global_guardrail_statement": "This closure is a review artifact and next-action packet only. It does not authorize canonical label changes, registry edits, ontology edits, threshold changes, production scoring changes, model-output changes, imports, or countable benchmark changes.",
+  "rows": [
+    {
+      "entry_id": "m_csa:551",
+      "entry_name": "phenol 2-monooxygenase",
+      "selected_structure": "pdb:1FOH",
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1FOH.cif",
+      "mechanism_clean": true,
+      "coordinate_clean": true,
+      "coordinate_clean_scope": "true for the identified productive 1FOH copy, author chain C; the prior mapped chain A remains a coordinate-selection caveat for future extraction workflows",
+      "coordinate_fix_required": true,
+      "accepted_for_clean_support_readiness": true,
+      "accepted_for_clean_support_readiness_basis": "Mechanism is clean FMO support and the local coordinate contains a productive phenol/IPH copy once future pocket extraction uses chain C instead of the prior mapped chain A. This is review/readiness support only, not import readiness.",
+      "import_ready": false,
+      "registry_edit_allowed": false,
+      "mechanism_decision": "mechanism_clean_fmo_support",
+      "coordinate_decision": "coordinate_fixable_use_productive_1FOH_chain_C_copy",
+      "no_label_change_no_import_guardrail_statement": "No canonical label change, registry edit, import, ontology edit, threshold edit, production scoring edit, model-output edit, or countable FMO promotion is allowed for m_csa:551 in this closure.",
+      "local_evidence": {
+        "source_mechanism_summary": "Reviewed mechanism uses NADPH-reduced FAD plus O2 to form C4a-hydroperoxyflavin, followed by phenol hydroxylation.",
+        "structural_state_caveats_not_disqualifiers": [
+          "No NADPH/NADP ligand is present in the selected coordinate; this is expected for the captured structural state and is not a mechanism disqualifier.",
+          "No C4a-hydroperoxy/peroxide flavin state is present in the selected coordinate; this is expected for the captured structural state and is not a mechanism disqualifier."
+        ],
+        "prior_mapped_copy": {
+          "auth_asym_id": "A",
+          "fad_c4x_to_iph_o1_distance_angstrom": 7.1,
+          "interpretation": "Not the copy to use for future pocket extraction because the substrate pose is longer than the productive copies."
+        },
+        "productive_copy_to_use_for_future_pocket_extraction": {
+          "auth_asym_id": "C",
+          "polymer_label_asym_id": "C",
+          "fad": {
+            "label_asym_id": "I",
+            "auth_asym_id": "C",
+            "auth_seq_id": "801",
+            "reactive_atom": "C4X",
+            "reactive_atom_occupancy": 1.0,
+            "reactive_atom_b_iso": 37.09
+          },
+          "phenol_iph": {
+            "label_asym_id": "J",
+            "auth_asym_id": "C",
+            "auth_seq_id": "802",
+            "nearest_atom": "O1",
+            "nearest_atom_occupancy": 1.0,
+            "nearest_atom_b_iso": 34.23
+          },
+          "fad_c4x_to_iph_o1_distance_angstrom": 4.582,
+          "active_site_coordinate_completeness_proxy": {
+            "note": "No density map was inspected; local confirmation is from resolved atom_site occupancy, B factors, alt-id absence, and expected non-hydrogen atom completeness.",
+            "complete_expected_non_hydrogen_atoms": true,
+            "all_checked_atoms_occupancy_1_00": true,
+            "alternate_location_ids": [
+              "."
+            ],
+            "residues": [
+              {
+                "residue": "Asp54",
+                "expected_non_hydrogen_atoms_missing": [],
+                "occupancy_min_max": [
+                  1.0,
+                  1.0
+                ],
+                "b_iso_min_max": [
+                  35.38,
+                  37.59
+                ]
+              },
+              {
+                "residue": "Arg281",
+                "expected_non_hydrogen_atoms_missing": [],
+                "occupancy_min_max": [
+                  1.0,
+                  1.0
+                ],
+                "b_iso_min_max": [
+                  31.64,
+                  36.78
+                ]
+              },
+              {
+                "residue": "Tyr289",
+                "expected_non_hydrogen_atoms_missing": [],
+                "occupancy_min_max": [
+                  1.0,
+                  1.0
+                ],
+                "b_iso_min_max": [
+                  32.49,
+                  40.81
+                ]
+              },
+              {
+                "residue": "Pro364",
+                "expected_non_hydrogen_atoms_missing": [],
+                "occupancy_min_max": [
+                  1.0,
+                  1.0
+                ],
+                "b_iso_min_max": [
+                  35.11,
+                  38.21
+                ]
+              }
+            ]
+          }
+        },
+        "secondary_corroborating_copy": {
+          "auth_asym_id": "D",
+          "fad_label_asym_id": "K",
+          "phenol_iph_label_asym_id": "L",
+          "fad_c4x_to_iph_o1_distance_angstrom": 4.649,
+          "active_site_expected_non_hydrogen_atoms_complete": true,
+          "all_checked_atoms_occupancy_1_00": true
+        }
+      },
+      "blockers_or_caveats": [
+        "Future pocket extraction must use author chain C, not the prior mapped chain A, to avoid carrying forward the 7.10 A nonproductive FAD C4X-to-IPH O1 distance.",
+        "No NADPH/NADP ligand is present in the coordinate; this is a structural-state caveat and not a mechanism disqualifier.",
+        "No C4a-hydroperoxy/peroxide flavin state is present in the coordinate; this is a structural-state caveat and not a mechanism disqualifier.",
+        "Do not relabel, import, or count as a canonical FMO positive in this closure."
+      ],
+      "exact_next_action": "Record pdb:1FOH author chain C as the productive copy for future pocket extraction, with FAD label_asym I/auth_seq_id 801 and IPH label_asym J/auth_seq_id 802; keep chain D as corroborating geometry only; make no label, registry, import, ontology, threshold, scoring, or model-output changes."
+    },
+    {
+      "entry_id": "m_csa:973",
+      "entry_name": "DszC protein",
+      "selected_structure": "pdb:3X0Y",
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_3X0Y.cif",
+      "mechanism_clean": true,
+      "coordinate_clean": false,
+      "coordinate_clean_scope": "not coordinate-clean until the residue-391 discrepancy is explicitly closed by external primary-source check or retained as a terminal caveat; substrate/peroxy absence remains a coordinate-state caveat",
+      "coordinate_fix_required": false,
+      "accepted_for_clean_support_readiness": true,
+      "accepted_for_clean_support_readiness_basis": "Mechanism is clean two-component FMNH2 sulfur monooxygenase support. The coordinate is sufficient for a review packet but remains non-clean at the coordinate gate pending terminal handling of residue 391 plus substrate/peroxy state caveats.",
+      "import_ready": false,
+      "registry_edit_allowed": false,
+      "mechanism_decision": "mechanism_clean_two_component_FMNH2_sulfur_monooxygenase_support",
+      "coordinate_decision": "structure_resolved_His391_source_text_typo_pending_external_source_check",
+      "no_label_change_no_import_guardrail_statement": "No canonical label change, registry edit, import, ontology edit, threshold edit, production scoring edit, model-output edit, or countable FMO promotion is allowed for m_csa:973 in this closure.",
+      "local_evidence": {
+        "source_mechanism_summary": "Reviewed mechanism uses supplied FMNH2 and O2 to form C4a-hydroperoxyflavin before dibenzothiophene sulfur oxygenation.",
+        "two_component_reductase_context": "NADPH/NADP absence in pdb:3X0Y is not a blocker because DszC is the oxygenase component and the reductase partner supplies reduced FMNH2.",
+        "structural_state_caveats": [
+          "No substrate or substrate analog is present in the selected coordinate.",
+          "No C4a-hydroperoxy/peroxide flavin state is present in the selected coordinate."
+        ],
+        "residue_391_local_resolution": {
+          "classification": "structure_resolved_His391_source_text_typo_pending_external_source_check",
+          "acquisition_packet_internal_inconsistency": "The packet text names His391 in the catalytic-residue list but later says Cys391 catalyzes oxygen activation.",
+          "coordinate_result": "pdb:3X0Y atom_site contains HIS391 in every resolved polymer chain A-H and contains no CYS at auth_seq_id 391.",
+          "resolved_polymer_chains_checked": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          "his391_atom_site_counts_by_chain": {
+            "A": 10,
+            "B": 10,
+            "C": 10,
+            "D": 10,
+            "E": 10,
+            "F": 10,
+            "G": 10,
+            "H": 10
+          },
+          "cys391_atom_site_count": 0,
+          "his391_expected_non_hydrogen_atoms_complete_all_checked_chains": true,
+          "his391_occupancy_all_checked_atoms": 1.0,
+          "his391_alternate_location_ids": [
+            "."
+          ],
+          "his391_b_iso_min_max_by_chain": {
+            "A": [
+              24.4,
+              25.31
+            ],
+            "B": [
+              23.04,
+              23.84
+            ],
+            "C": [
+              29.31,
+              30.38
+            ],
+            "D": [
+              30.4,
+              32.11
+            ],
+            "E": [
+              23.35,
+              24.42
+            ],
+            "F": [
+              27.15,
+              28.49
+            ],
+            "G": [
+              29.76,
+              30.29
+            ],
+            "H": [
+              44.01,
+              46.31
+            ]
+          }
+        },
+        "flavin_site_context_from_prior_geometry_audit": {
+          "cofactor": "FMN",
+          "reactive_atom_proxy": "FMN:C4A",
+          "mapped_chain_A_contacts_angstrom": [
+            {
+              "residue": "Tyr96",
+              "atom": "OH",
+              "distance": 3.37
+            },
+            {
+              "residue": "Ser163",
+              "atom": "OG",
+              "distance": 3.689
+            },
+            {
+              "residue": "His391",
+              "atom": "NE2",
+              "distance": 4.233
+            }
+          ]
+        }
+      },
+      "blockers_or_caveats": [
+        "No substrate or substrate analog is present in the selected coordinate; this is a coordinate-state caveat.",
+        "No C4a-hydroperoxy/peroxide flavin state is present in the selected coordinate; this is a coordinate-state caveat.",
+        "NADPH/NADP absence is not a blocker because the reductase partner supplies FMNH2.",
+        "Local coordinates resolve residue 391 as His391, but the acquisition packet has an internal His391/Cys391 inconsistency; keep classification structure_resolved_His391_source_text_typo_pending_external_source_check until an external primary-source check explicitly closes it or the caveat is retained as terminal.",
+        "Do not relabel, import, or count as coordinate-clean in this closure."
+      ],
+      "exact_next_action": "Carry m_csa:973 forward as mechanism-clean two-component FMNH2 sulfur monooxygenase support in the review packet; retain coordinate_clean=false; classify residue 391 as structure_resolved_His391_source_text_typo_pending_external_source_check; perform the external primary-source check in a later run or explicitly retain the discrepancy as a terminal caveat; make no label, registry, import, ontology, threshold, scoring, or model-output changes."
+    }
+  ],
+  "bottom_line": "m_csa:551 and m_csa:973 are mechanism-clean FMO support for review/readiness purposes only. m_csa:551 has a local coordinate fix: use 1FOH author chain C for future pocket extraction. m_csa:973 remains coordinate-clean=false pending terminal handling of the residue-391 source-text discrepancy and substrate/peroxy state caveats. Both rows are import_ready=false and registry_edit_allowed=false."
+}
