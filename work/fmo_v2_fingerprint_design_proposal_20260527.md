@@ -36,6 +36,8 @@ After the initial inventory, FMO status/blocker artifacts appeared at `artifacts
 
 A later geometry artifact appeared at `artifacts/v3_fmo_structure_geometry_audit_702_20260527.json`. It adds review-only structural caveats: `m_csa:551` has FAD plus phenol/IPH context but no NADPH or peroxyflavin state and needs visual pose review; `m_csa:973` has an FMN active-site residue cluster but no substrate/analog or peroxyflavin state; `m_csa:141` is structurally flavin/heme redox; `m_csa:128` has no flavin ligand.
 
+The later candidate, source-evidence, and hard-negative artifacts sharpen but do not change the recommendation. `artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json` confirms no new clean local rows beyond `m_csa:551` and `m_csa:973`. `artifacts/v3_fmo_source_evidence_scout_702_20260527.json` names source-admissible external candidates for future packets: CHMO `uniprot:P12015`, HAPMO `uniprot:Q93TJ5`, salicylate hydroxylase `uniprot:P23262`, IucD `uniprot:P11295`, FMO1 `uniprot:Q01740`, KMO `uniprot:O15229`, UbiI `uniprot:P25535`, OTEMO `uniprot:H3JQW0`, and NPCA `uniprot:Q6F4M8`. They still need source-free geometry, duplicate/leakage, terminal review, and import gates before any label action. `artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json` makes the hard-negative groups explicit.
+
 ## Exclusion Rules
 
 Exclude ordinary flavin dehydrogenases, reductases, and oxidases when the chemistry is hydride transfer to flavin, terminal O2 reoxidation, peroxide formation, or water-derived oxygen without substrate oxygen insertion. `m_csa:141` is the local control example.

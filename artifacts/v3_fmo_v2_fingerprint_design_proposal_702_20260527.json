@@ -10,10 +10,28 @@
     "evidence_requirements_defined_before_future_metrics": true,
     "new_v3_fmo_candidate_source_geometry_control_artifacts_present": [
       {
+        "path": "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+        "artifact_class": "candidate",
+        "status": "review_only_post_inventory",
+        "design_relevance": "Confirms m_csa:551 and m_csa:973 are the only clean local candidates beyond m_csa:131 and m_csa:132; no additional clean named-target-family local rows were found."
+      },
+      {
         "path": "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
         "artifact_class": "structure_geometry",
         "status": "review_only_post_inventory",
         "design_relevance": "Adds structural-state caveats for m_csa:551, m_csa:973, m_csa:141, and m_csa:128 without creating countable positives or imports."
+      },
+      {
+        "path": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+        "artifact_class": "source",
+        "status": "review_only_post_inventory",
+        "design_relevance": "Names source-admissible external FMO candidates for future packets while preserving source-free geometry, duplicate/leakage, terminal review, and import gates."
+      },
+      {
+        "path": "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json",
+        "artifact_class": "control",
+        "status": "review_only_post_inventory",
+        "design_relevance": "Defines hard-negative control groups for ordinary flavin hydride transfer, flavin oxidase, Fe-S relay, flavodiiron, radical flavin/Fe-S, covalent FAD-adduct, heme oxygenase, and non-flavin oxygenase boundaries."
       }
     ],
     "additional_v3_fmo_artifacts_seen_after_initial_inventory": [
@@ -32,7 +50,10 @@
       "artifacts/v3_packet3_v2_sublabel_decision_closure_702_20260527.json",
       "artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json",
       "artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
-      "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json"
+      "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+      "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
+      "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
     ]
   },
   "guardrails": {
@@ -102,6 +123,93 @@
       "remaining_clean_count_needed_after_current_candidates": 2,
       "hard_negative_separation_available_now": false
     }
+  },
+  "post_inventory_candidate_source_and_control_updates": {
+    "candidate_scout_summary": {
+      "clean_local_candidates_beyond_current_fmo": [
+        "m_csa:551",
+        "m_csa:973"
+      ],
+      "new_clean_local_candidates_beyond_prior_closure": [],
+      "local_named_target_family_clean_hits": [],
+      "local_wrong_chemistry_confounds_to_preserve": [
+        "m_csa:781",
+        "m_csa:977"
+      ]
+    },
+    "source_evidence_external_candidates_for_future_packets": [
+      {
+        "candidate_id": "uniprot:P12015",
+        "family": "cyclohexanone_monooxygenase_CHMO",
+        "source_status": "true_BVMO_source_admissible",
+        "remaining_gate": "source_free_structure_geometry_duplicate_leakage_terminal_review_and_import_gates"
+      },
+      {
+        "candidate_id": "uniprot:Q93TJ5",
+        "family": "HAPMO_4_hydroxyacetophenone_monooxygenase",
+        "source_status": "true_BVMO_source_admissible",
+        "remaining_gate": "source_free_structure_geometry_duplicate_leakage_terminal_review_and_import_gates"
+      },
+      {
+        "candidate_id": "uniprot:P23262",
+        "family": "salicylate_1_monooxygenase",
+        "source_status": "true_flavoprotein_monooxygenase_source_admissible",
+        "remaining_gate": "source_free_structure_geometry_duplicate_leakage_terminal_review_and_import_gates"
+      },
+      {
+        "candidate_id": "uniprot:P11295",
+        "family": "IucD_like_lysine_N6_hydroxylase",
+        "source_status": "true_FAD_NADPH_N_hydroxylase_medium_confidence",
+        "remaining_gate": "add_candidate_specific_C4a_intermediate_source_if_required_then_geometry_duplicate_leakage_terminal_review"
+      },
+      {
+        "candidate_id": "uniprot:Q01740",
+        "family": "FMO1_dimethylaniline_monooxygenase",
+        "source_status": "true_class_B_FMO_source_admissible",
+        "remaining_gate": "source_free_structure_geometry_duplicate_leakage_terminal_review_and_import_gates"
+      },
+      {
+        "candidate_id": "uniprot:O15229",
+        "family": "kynurenine_3_monooxygenase_KMO",
+        "source_status": "true_FAD_NADPH_monooxygenase_source_admissible",
+        "remaining_gate": "prior_external_process_gates_incomplete"
+      },
+      {
+        "candidate_id": "uniprot:P25535",
+        "family": "UbiI_2_octaprenylphenol_hydroxylase",
+        "source_status": "true_aromatic_FAD_NADPH_hydroxylase_medium_confidence",
+        "remaining_gate": "add_explicit_C4a_source_if_required_then_geometry_duplicate_leakage_terminal_review"
+      },
+      {
+        "candidate_id": "uniprot:H3JQW0",
+        "family": "OTEMO_BVMO",
+        "source_status": "true_BVMO_source_admissible",
+        "remaining_gate": "prior_external_process_gates_incomplete"
+      },
+      {
+        "candidate_id": "uniprot:Q6F4M8",
+        "family": "nitrophenol_or_nitrocatechol_monooxygenase",
+        "source_status": "true_flavin_monooxygenase_medium_confidence",
+        "remaining_gate": "add_explicit_C4a_source_if_required_then_geometry_duplicate_leakage_terminal_review"
+      }
+    ],
+    "source_evidence_boundary_not_clean": [
+      {
+        "candidate_id": "uniprot:P06617",
+        "family": "tryptophan_2_monooxygenase",
+        "reason": "FMN and O2 support exist, but scout did not find NAD(P)H reductive activation or explicit C4a oxygen-transfer mechanism."
+      }
+    ],
+    "hard_negative_counteraxis_groups": [
+      "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+      "flavin_oxidase_o2_acceptor_not_monooxygenase",
+      "flavin_fe_s_relay_hcar_like",
+      "flavodiiron_no_reductase_m_csa497",
+      "radical_flavin_fe_s_dehydratase_m_csa750",
+      "covalent_fad_adduct_aps_reductase_like",
+      "heme_oxygenases_p450_peroxidases_not_fmo",
+      "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+    ]
   },
   "post_inventory_structure_geometry_caveats": [
     {
