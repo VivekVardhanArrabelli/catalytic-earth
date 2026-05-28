@@ -1,0 +1,1006 @@
+{
+  "schema_version": "v3_external_stress_panel_roadmap.v1",
+  "artifact_id": "v3_external_stress_panel_roadmap_20260528",
+  "created_utc": "2026-05-28T06:50:11Z",
+  "status": "review_only_roadmap_complete",
+  "review_only": true,
+  "purpose": "Define external or M-CSA-plus-external stress panels that test whether the M-CSA-built evidence router generalizes without expanding labels from weak cofactor, name, EC, or fold signals.",
+  "guardrails": {
+    "canonical_label_registry_changed": false,
+    "fingerprint_registry_changed": false,
+    "ontology_ids_changed": false,
+    "thresholds_changed": false,
+    "imports_changed": false,
+    "production_scoring_changed": false,
+    "model_training_triggered": false,
+    "model_outputs_changed": false,
+    "label_import_authorized": false,
+    "artifact_use": "roadmap_only"
+  },
+  "source_artifacts": {
+    "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json": {
+      "sha256": "b15d239b831f8dcc31262d1812890d7c11a4f46d59835c336af85b5f645667cd"
+    },
+    "artifacts/v3_external_source_transfer_blocker_matrix_1025.json": {
+      "sha256": "4aa729a3e3da5c5511ce776046159496708f87545f16f49d603b998fa56f9778"
+    },
+    "artifacts/v3_external_source_active_site_evidence_queue_1025.json": {
+      "sha256": "ad48e1f8ab3c0e706693f649b1bf96e4cbef8b3640bc30074c91ad4afe012019"
+    },
+    "artifacts/v3_external_source_sequence_alignment_verification_1025.json": {
+      "sha256": "2cb5b8c60b923355b48b9d5baba9a386ba690e00fc7dd98c041fb7f7fe60660e"
+    },
+    "artifacts/v3_external_source_all_vs_all_sequence_search_1025.json": {
+      "sha256": "fe52dcc5612bee63d808b59007dd4f019cbcab77b3ba18c60dc55a355946e74a"
+    },
+    "artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json": {
+      "sha256": "d55bc4aefbab34c418690a2dc7e9d2eab651d0c8483ef0d5e149b984ae89730d"
+    },
+    "artifacts/v3_external_source_pilot_sugar_phosphate_isomerase_control_1025.json": {
+      "sha256": "46412242d2ae65044ca2e5f25382eb251f31aa4032608336bcf827b644e3a6f6"
+    },
+    "artifacts/v3_mcsa_positive_schema_decision_m_csa737_coupled_plp_cobalamin_proposal_20260524.json": {
+      "sha256": "bf8bec477eeb9662f2f29c3b5208442ea4351468d81436652e4c0707b49f58fb"
+    },
+    "artifacts/v3_non_epk_family_readiness_index_post_external_stop_20260522.json": {
+      "sha256": "796c29e77dd909eac17b92683b26fd169c98c8a62968fe4a55c7913a7dca836b"
+    },
+    "artifacts/v3_external_source_pilot_mechanism_repair_lanes_1025.json": {
+      "sha256": "5f18dfdb05c2cc41b46bc997f208777fb7abaa658df8d4880f6b7949c08eaeb4"
+    },
+    "artifacts/v1_graph_1025.json": {
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    }
+  },
+  "global_admission_rules": [
+    "Panels are validation contracts only; no panel row is a countable label candidate in this artifact.",
+    "A row cannot be a positive validation row unless active-site residues, cofactor or substrate role, sequence-neighbor status, Foldseek-neighbor status, and provenance tier are all recorded in a future packet.",
+    "External positives must be sourced from curated mechanism or active-site evidence, not from names, EC terms, cofactors, or nearest-neighbor predictions alone.",
+    "Exact M-CSA reference overlaps and external near duplicates remain holdout controls, not external positives.",
+    "A successful router result can be correct route, specific child route, or calibrated abstention when the child family is intentionally not in production; forced label inflation is a failure.",
+    "Any hard negative routed into the target positive mechanism because it shares cofactor, metal, O2, PLP, heme, glycan, or fold words is a panel regression."
+  ],
+  "label_provenance_tier_definitions": {
+    "tier_A_mcsa_curated": "M-CSA curated active-site and mechanism row or current registry row used as an anchor/control; may be positive, hard negative, or OOS depending on current policy.",
+    "tier_B_external_curated": "External Swiss-Prot/Rhea/PDB or literature-backed row with explicit active-site residues and structure mapping; eligible for validation only after sequence and Foldseek controls.",
+    "tier_C_external_incomplete": "External row with reaction or EC evidence but missing active-site, ligand-state, sequence, Foldseek, or terminal review evidence; may only appear as sourcing backlog.",
+    "tier_D_control_only": "Known OOS, exact-overlap, near-duplicate, or mismatch row used only for rejection, abstention, or leakage checks."
+  },
+  "panel_count": 5,
+  "panels": [
+    {
+      "panel_id": "flavin_redox_boundary",
+      "panel_name": "Flavin and Redox Boundary",
+      "panel_type": "m_csa_plus_external",
+      "priority": 1,
+      "hypothesis": "The router should separate flavin hydride/electron transfer, clean flavin monooxygenation, flavodiiron NO reduction, radical flavin-Fe-S chemistry, and covalent FAD-adduct chemistry without treating FAD/FMN, NAD(P)H, Fe-S, O2, or oxygenase wording as sufficient.",
+      "candidate_positives": [
+        {
+          "slice_id": "clean_fmo_positive",
+          "expected_router_result": "flavin_monooxygenase_or_child_clean_fmo",
+          "example_rows": [
+            {
+              "id": "m_csa:131",
+              "name": "4-hydroxybenzoate 3-monooxygenase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:132",
+              "name": "alkanal monooxygenase (FMN-linked)",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:551",
+              "name": "phenol 2-monooxygenase",
+              "source": "M-CSA future/acquisition candidate from local FMO closure",
+              "label_provenance_tier": "tier_A_mcsa_curated_review_only"
+            },
+            {
+              "id": "m_csa:973",
+              "name": "DszC protein",
+              "source": "M-CSA future/acquisition candidate from local FMO closure",
+              "label_provenance_tier": "tier_A_mcsa_curated_review_only"
+            }
+          ],
+          "required_positive_evidence": [
+            "flavin-dependent O2 activation to C4a-(hydro)peroxyflavin or equivalent peroxyflavin intermediate",
+            "substrate oxygen insertion or oxygenation rather than O2 as terminal electron acceptor",
+            "FAD/FMN ligand state mapped to selected structure or a defensible homologous active state"
+          ]
+        },
+        {
+          "slice_id": "ordinary_flavin_hydride_transfer_positive",
+          "expected_router_result": "flavin_dehydrogenase_reductase",
+          "example_rows": [
+            {
+              "id": "m_csa:3",
+              "name": "NAD(P)H dehydrogenase (quinone)",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:6",
+              "name": "glutathione-disulfide reductase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:110",
+              "name": "D-amino-acid oxidase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            }
+          ],
+          "required_positive_evidence": [
+            "hydride or electron transfer between substrate, nicotinamide, quinone, disulfide, ferredoxin, or O2 acceptor",
+            "absence of substrate oxygen insertion by a peroxyflavin intermediate"
+          ]
+        }
+      ],
+      "near_family_hard_negatives": [
+        {
+          "id": "m_csa:497",
+          "name": "nitric-oxide reductase (FMN)",
+          "why_hard": "FMN is present, but the catalytic locus is flavodiiron NO reduction.",
+          "expected_router_result": "reject_or_abstain_as_flavodiiron_no_reductase_boundary",
+          "label_provenance_tier": "tier_D_control_only"
+        },
+        {
+          "id": "m_csa:750",
+          "name": "4-hydroxybutanoyl-CoA dehydratase",
+          "why_hard": "FAD semiquinone plus Fe-S radical dehydration shares redox cofactors but is not FMO or ordinary hydride transfer.",
+          "expected_router_result": "reject_or_abstain_as_radical_flavin_fe_s_boundary",
+          "label_provenance_tier": "tier_D_control_only"
+        },
+        {
+          "id": "m_csa:123",
+          "name": "adenylyl-sulfate reductase",
+          "why_hard": "Covalent FAD-substrate adduct and sulfur-oxygen chemistry can look flavin-positive but should not route to FMO.",
+          "expected_router_result": "route_other_flavin_boundary_or_abstain",
+          "label_provenance_tier": "tier_A_mcsa_curated"
+        },
+        {
+          "id": "m_csa:990",
+          "name": "7-hydroxymethyl chlorophyll A reductase (HCAR)",
+          "why_hard": "Fe-S plus flavin electron relay can inflate FMO or hydride-transfer labels if cofactor complexity is ignored.",
+          "expected_router_result": "flavin_dehydrogenase_reductase_with_fe_s_boundary_diagnostic_or_abstain",
+          "label_provenance_tier": "tier_A_mcsa_curated"
+        }
+      ],
+      "oos_controls": [
+        "heme oxygenases/P450/peroxidases such as m_csa:133, m_csa:601, m_csa:699, and m_csa:795 must route away from FMO",
+        "non-flavin oxygenases, pterin/non-heme iron hydroxylases, copper monooxygenases, and luciferase-like oxygenations remain rejection controls",
+        "external SDR/AKR NAD(P) redox rows such as O14756 are redox controls but not flavin positives"
+      ],
+      "structure_availability_status": "M-CSA anchor and hard-negative rows have curated mechanisms and graph-linked structural context. External clean-FMO expansion is not yet sourced in this roadmap and must be added only if PDB or AlphaFold structures can map the flavin and substrate/O2 active state.",
+      "cofactor_ligand_needs": [
+        "FAD or FMN identity and binding pose",
+        "NADH or NADPH donor when mechanistically relevant",
+        "O2 or peroxide role as oxygen donor versus electron acceptor",
+        "Fe-S cluster, non-heme diiron, or covalent FAD-adduct state when present",
+        "heme evidence as a negative-routing feature, not an FMO feature"
+      ],
+      "sequence_neighbor_check": {
+        "required": true,
+        "checks": [
+          "screen every external flavin candidate against all current countable M-CSA reference accessions",
+          "run external-external all-vs-all search and retain UniRef90/UniRef50 or UniRef-wide duplicate search as a blocker until complete",
+          "mark exact M-CSA overlaps as holdout controls rather than external positives",
+          "review nearest current flavin, heme, redox, and OOS neighbors before interpreting router output"
+        ],
+        "known_local_status": "Existing external source sequence packets cover the 30-candidate pilot generally, but no dedicated external clean-FMO panel sequence packet exists yet."
+      },
+      "foldseek_neighbor_check": {
+        "required": true,
+        "checks": [
+          "compare selected active-state or best homolog structures against current countable flavin, heme, metal, and OOS structures",
+          "flag high-TM neighbors with conflicting cofactor locus as hard-neighbor controls",
+          "do not allow fold similarity to override local peroxyflavin or redox-locus evidence"
+        ],
+        "known_local_status": "FMO and Fe-S/flavin local review artifacts exist; a dedicated external Foldseek panel packet remains to be built."
+      },
+      "active_site_evidence_extraction_needs": [
+        "extract flavin isoalloxazine position, C4a-proximal oxygen/peroxide compatibility, and substrate oxygenation geometry",
+        "extract NAD(P)H donor proximity separately from flavin oxygen-transfer evidence",
+        "extract Fe-S and diiron ligand sets and mark them as boundary diagnostics",
+        "extract covalent FAD-substrate adduct evidence separately from hydride-transfer evidence",
+        "require mechanism text or curated residue support for any peroxyflavin claim"
+      ],
+      "label_provenance_tier": {
+        "positive_minimum": "tier_A_mcsa_curated for M-CSA anchors; tier_B_external_curated for future external positives",
+        "hard_negative_minimum": "tier_A_mcsa_curated or tier_D_control_only with explicit local rationale",
+        "tier_C_use": "sourcing backlog only"
+      },
+      "successful_router_model_result": [
+        "clean FMO rows route to FMO only when peroxyflavin plus oxygen-insertion evidence is present",
+        "ordinary flavin hydride-transfer rows route to flavin_dehydrogenase_reductase or a child hydride/electron-transfer route, not FMO",
+        "m_csa:497 and m_csa:750 never receive an FMO positive call",
+        "heme and non-flavin oxygenases route away from FMO even when named monooxygenase/oxygenase",
+        "zero external label import is still a success if failures are evidence-explained rather than process-missing"
+      ]
+    },
+    {
+      "panel_id": "metal_hydrolase_tails",
+      "panel_name": "Metal Hydrolase Tails",
+      "panel_type": "m_csa_plus_external",
+      "priority": 2,
+      "hypothesis": "The router should keep metal-water chemistry separate from phosphatase/nuclease, metallo-beta-lactamase, sulfatase/FGly, NTPase/nucleotide hydrolase, carbonic anhydrase, serine hydrolase, and carbohydrate hydrolase tails instead of collapsing all active-site metals into one broad label.",
+      "candidate_positives": [
+        {
+          "slice_id": "phosphatase_nuclease_phosphoesterase",
+          "expected_router_result": "metal_dependent_hydrolase_or_review_only_phosphoesterase_child",
+          "example_rows": [
+            {
+              "id": "m_csa:11",
+              "name": "deoxyribonuclease IV (phage-T4-induced)",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:83",
+              "name": "phospholipase A2 (group IB)",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            }
+          ],
+          "required_positive_evidence": [
+            "metal-activated water or hydroxide attacking phosphate, phosphodiester, or phospholipid ester substrate",
+            "substrate phosphate or phosphoester ligand/proxy mapped near catalytic metals"
+          ]
+        },
+        {
+          "slice_id": "mbl_like_amidohydrolase",
+          "expected_router_result": "metal_dependent_hydrolase_or_review_only_mbl_child",
+          "example_rows": [
+            {
+              "id": "m_csa:15",
+              "name": "beta-lactamase (Class B1)",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:16",
+              "name": "beta-lactamase (Class B1)",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            }
+          ],
+          "required_positive_evidence": [
+            "one- or two-metal beta-lactamase/amidohydrolase site",
+            "Zn or equivalent catalytic metal ligands and hydrolytic water"
+          ]
+        },
+        {
+          "slice_id": "fgly_sulfatase_future_tail",
+          "expected_router_result": "abstain_or_review_only_fgly_sulfatase_boundary",
+          "example_rows": [
+            {
+              "id": "m_csa:661",
+              "name": "arylsulfatase",
+              "source": "M-CSA held for FGly/sulfatase subfamily decision in local handoff",
+              "label_provenance_tier": "tier_A_mcsa_curated_review_only"
+            }
+          ],
+          "required_positive_evidence": [
+            "formylglycine aldehyde/hydrate nucleophile or validated FGly precursor context",
+            "sulfate ester substrate geometry separated from generic metal phosphatase geometry"
+          ]
+        },
+        {
+          "slice_id": "ntpase_nucleotide_hydrolase_and_carbonic_anhydrase_acquisition",
+          "expected_router_result": "abstain_until_external_tier_B_positive_set_exists",
+          "example_rows": [
+            {
+              "id": "external_sourcing:ntpase_nucleotide_hydrolase",
+              "name": "external ATP/GTP/nucleotide hydrolase rows with explicit Mg/nucleotide active states",
+              "source": "future external sourcing",
+              "label_provenance_tier": "tier_C_external_incomplete"
+            },
+            {
+              "id": "external_sourcing:carbonic_anhydrase",
+              "name": "external carbonic anhydrase rows with Zn-bound water/CO2-bicarbonate context",
+              "source": "future external sourcing",
+              "label_provenance_tier": "tier_C_external_incomplete"
+            }
+          ],
+          "required_positive_evidence": [
+            "nucleotide or carbonate/bicarbonate ligand-state evidence",
+            "metal-activated water geometry that is not just an active-site metal count"
+          ]
+        }
+      ],
+      "near_family_hard_negatives": [
+        {
+          "id": "m_csa:169",
+          "name": "dipeptidyl-peptidase IV",
+          "why_hard": "Ser-His-Asp/Glu hydrolase chemistry can look hydrolase-like but is not metal-water chemistry.",
+          "expected_router_result": "ser_his_acid_hydrolase_or_route_away_from_metal",
+          "label_provenance_tier": "tier_A_mcsa_curated"
+        },
+        {
+          "id": "m_csa:19",
+          "name": "mannosyl-oligosaccharide 1,2-alpha-mannosidase",
+          "why_hard": "Glycoside hydrolysis can be misrouted to metal hydrolase when acid/base chemistry and glycan pocket context are ignored.",
+          "expected_router_result": "glycoside_boundary_or_oos_not_metal_dependent_hydrolase",
+          "label_provenance_tier": "tier_D_control_only"
+        },
+        {
+          "id": "m_csa:97",
+          "name": "cytidine deaminase",
+          "why_hard": "Zinc-assisted deamination should not be conflated with phosphatase/nuclease tails.",
+          "expected_router_result": "metal_dependent_hydrolase_parent_or_abstain_child_specific",
+          "label_provenance_tier": "tier_A_mcsa_curated"
+        },
+        {
+          "id": "m_csa:98",
+          "name": "peptide deformylase",
+          "why_hard": "Metal amide chemistry is parent-family plausible but a hard negative for phosphatase/nuclease specificity.",
+          "expected_router_result": "metal_dependent_hydrolase_parent_or_mbl_amidohydrolase_boundary",
+          "label_provenance_tier": "tier_A_mcsa_curated"
+        }
+      ],
+      "oos_controls": [
+        "glycoside hydrolase acid/base rows with no catalytic metal-water axis",
+        "serine/cysteine proteases and esterases with catalytic triads",
+        "PLP and redox enzymes that carry metal cofactors structurally but do not use metal-activated hydrolysis",
+        "ATP/Mg binding proteins where Mg positions nucleotide but does not define hydrolytic active-site chemistry"
+      ],
+      "structure_availability_status": "Current M-CSA metal hydrolase anchors are structure-rich. External metal-phosphatase materialization and scoring packets exist locally, but FGly/sulfatase, carbonic anhydrase, and NTPase/nucleotide-hydrolase child panels still require explicit active-state structure selection and duplicate screens.",
+      "cofactor_ligand_needs": [
+        "Zn, Mg, Mn, Co, Fe, or Ca metal identity and metal count",
+        "bound or modelable hydrolytic water/hydroxide",
+        "phosphate, phosphodiester, nucleotide, beta-lactam, sulfate, carbonate, or substrate analog ligand",
+        "FGly aldehyde/hydrate state for sulfatases",
+        "explicit absence of catalytic metal-water context for serine and glycoside hard negatives"
+      ],
+      "sequence_neighbor_check": {
+        "required": true,
+        "checks": [
+          "screen external candidates against all current metal_dependent_hydrolase, ser_his_acid_hydrolase, glycoside/OOS, and nucleotide-binding M-CSA reference accessions",
+          "separate exact-reference and near-duplicate controls from true external positives",
+          "cluster by tail class so phosphatases, nucleases, MBL-like rows, carbonic anhydrases, and NTPases do not leak each other by sequence family"
+        ],
+        "known_local_status": "External source sequence controls exist for the broad 30-row pilot; metal-tail-specific external breadth and UniRef-wide duplicate search remain future work."
+      },
+      "foldseek_neighbor_check": {
+        "required": true,
+        "checks": [
+          "run Foldseek against current countable metal hydrolases and against hard-negative serine/glycoside hydrolases",
+          "flag same-fold but different-substrate-tail neighbors for reviewer inspection",
+          "require local ligand and metal-water evidence before accepting any tail-specific route"
+        ],
+        "known_local_status": "Several metal phosphatase Foldseek/readiness artifacts exist, but this five-tail panel has not been assembled as a single Foldseek holdout."
+      },
+      "active_site_evidence_extraction_needs": [
+        "metal ligand set, metal count, and metal-metal spacing",
+        "water/hydroxide position and nucleophile plausibility",
+        "substrate atom attacked and leaving group class",
+        "phosphate/sulfate/nucleotide/carbonate binding pocket roles",
+        "FGly detection and sulfatase-specific residue context",
+        "negative evidence for serine-triad and glycoside acidic-dyad mechanisms"
+      ],
+      "label_provenance_tier": {
+        "positive_minimum": "tier_A_mcsa_curated for M-CSA anchors and tier_B_external_curated for external tail positives",
+        "hard_negative_minimum": "tier_A_mcsa_curated or tier_D_control_only",
+        "tier_C_use": "allowed only as targeted sourcing requests for missing tails"
+      },
+      "successful_router_model_result": [
+        "parent metal hydrolase anchors remain routable when metal-water chemistry is explicit",
+        "phosphatase/nuclease, MBL-like, FGly/sulfatase, NTPase, and carbonic-anhydrase tails are separated or cleanly abstained rather than merged by metal presence",
+        "serine hydrolase and glycoside hard negatives route away from metal hydrolase despite hydrolase wording",
+        "tail-specific positives are not counted unless active-site and ligand evidence is complete in a future review-only packet"
+      ]
+    },
+    {
+      "panel_id": "plp_child_mechanisms",
+      "panel_name": "PLP Child Mechanisms",
+      "panel_type": "m_csa_plus_external",
+      "priority": 3,
+      "hypothesis": "The router should recognize PLP as a shared cofactor while separating aminotransferase, decarboxylase, racemase/epimerase, lyase/eliminase, and coupled PLP plus B12 aminomutase mechanisms.",
+      "candidate_positives": [
+        {
+          "slice_id": "aminotransferase",
+          "expected_router_result": "plp_dependent_enzyme_or_review_only_aminotransferase_child",
+          "example_rows": [
+            {
+              "id": "m_csa:66",
+              "name": "D-alanine transaminase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:249",
+              "name": "adenosylmethionine--8-amino-7-oxononanoate transaminase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:854",
+              "name": "4-aminobutyrate transaminase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            }
+          ],
+          "required_positive_evidence": [
+            "PLP internal/external aldimine support",
+            "amino-group transfer with donor/acceptor substrate context",
+            "quinonoid or ketimine/aldimine chemistry consistent with transamination"
+          ]
+        },
+        {
+          "slice_id": "decarboxylase",
+          "expected_router_result": "plp_dependent_enzyme_or_review_only_decarboxylase_child",
+          "example_rows": [
+            {
+              "id": "m_csa:482",
+              "name": "2,2-dialkylglycine decarboxylase (pyruvate)",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:860",
+              "name": "ornithine decarboxylase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:937",
+              "name": "ornithine decarboxylase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            }
+          ],
+          "required_positive_evidence": [
+            "PLP-stabilized carbanion/quinonoid after decarboxylation",
+            "carboxylate substrate orientation and CO2-loss chemistry"
+          ]
+        },
+        {
+          "slice_id": "racemase_epimerase",
+          "expected_router_result": "plp_dependent_enzyme_or_review_only_racemase_child",
+          "example_rows": [
+            {
+              "id": "m_csa:213",
+              "name": "alanine racemase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:330",
+              "name": "serine racemase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            }
+          ],
+          "required_positive_evidence": [
+            "PLP external aldimine",
+            "dual acid/base proton abstraction and reprotonation across substrate stereocenter"
+          ]
+        },
+        {
+          "slice_id": "lyase_eliminase",
+          "expected_router_result": "plp_dependent_enzyme_or_review_only_lyase_eliminase_child",
+          "example_rows": [
+            {
+              "id": "m_csa:186",
+              "name": "L-serine ammonia-lyase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:855",
+              "name": "cysteine desulfurase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "uniprot:Q96I15",
+              "name": "Selenocysteine lyase",
+              "source": "external_source:lyase pilot row",
+              "label_provenance_tier": "tier_C_external_incomplete"
+            }
+          ],
+          "required_positive_evidence": [
+            "PLP-mediated beta/gamma elimination or C-S/C-Se cleavage chemistry",
+            "leaving-group trajectory and catalytic acid/base residues"
+          ]
+        },
+        {
+          "slice_id": "plp_plus_b12_aminomutase",
+          "expected_router_result": "abstain_or_review_only_coupled_plp_adenosylcobalamin_aminomutase",
+          "example_rows": [
+            {
+              "id": "m_csa:737",
+              "name": "beta-lysine 5,6-aminomutase",
+              "source": "M-CSA coupled-cofactor schema decision artifact",
+              "label_provenance_tier": "tier_A_mcsa_curated_review_only"
+            }
+          ],
+          "required_positive_evidence": [
+            "PLP substrate aldimine chemistry",
+            "adenosylcobalamin radical chemistry in the same catalytic cycle",
+            "explicit rejection of plain PLP-only or plain cobalamin-only labels"
+          ]
+        }
+      ],
+      "near_family_hard_negatives": [
+        {
+          "id": "m_csa:205",
+          "name": "Glycogen phosphorylase",
+          "why_hard": "PLP is present but supports phosphorolysis rather than classic aminotransferase/decarboxylase/racemase/lyase chemistry.",
+          "expected_router_result": "plp_parent_or_child_abstain_not_aminotransferase",
+          "label_provenance_tier": "tier_A_mcsa_curated"
+        },
+        {
+          "id": "m_csa:358",
+          "name": "lysine 2,3-aminomutase",
+          "why_hard": "PLP plus SAM/Fe-S radical chemistry is a coupled-radical boundary, not a plain PLP child.",
+          "expected_router_result": "plp_parent_with_radical_boundary_or_abstain",
+          "label_provenance_tier": "tier_A_mcsa_curated"
+        },
+        {
+          "id": "uniprot:P06746",
+          "name": "DNA polymerase beta 5'-dRP lyase",
+          "why_hard": "Schiff-base lyase wording can mimic PLP lyase, but this row is not PLP-dependent.",
+          "expected_router_result": "non_plp_lyase_boundary_or_abstain",
+          "label_provenance_tier": "tier_D_control_only"
+        },
+        {
+          "id": "uniprot:Q9BXD5",
+          "name": "N-acetylneuraminate lyase",
+          "why_hard": "Aldolase/lyase chemistry may be Schiff-base mediated but needs direct PLP evidence before PLP routing.",
+          "expected_router_result": "abstain_until_cofactor_evidence_is_explicit",
+          "label_provenance_tier": "tier_C_external_incomplete"
+        }
+      ],
+      "oos_controls": [
+        "non-PLP racemases such as cysteine-dependent racemases",
+        "serine hydrolases and metal hydrolases with no PLP/LLP ligand evidence",
+        "NAD(P)-dependent epimerases such as O14756, which should not become PLP positives from epimerase wording",
+        "B12-only radical rearrangements that lack PLP substrate aldimine chemistry"
+      ],
+      "structure_availability_status": "M-CSA PLP anchors are numerous and graph-linked. External Q96I15 has PDB and AlphaFold IDs in the active-site evidence queue; Q9BXD5 has a PDB entry but remains cofactor-evidence incomplete for PLP routing. Coupled PLP plus B12 m_csa:737 has a review-only schema proposal and must not be forced into current production fingerprints.",
+      "cofactor_ligand_needs": [
+        "PLP or LLP ligand and covalent Lys linkage",
+        "external aldimine or substrate analog state when available",
+        "adenosylcobalamin and Co-C bond context for PLP plus B12 aminomutase",
+        "SAM/Fe-S context for radical PLP hard negatives",
+        "negative evidence for non-PLP Schiff-base lyase controls"
+      ],
+      "sequence_neighbor_check": {
+        "required": true,
+        "checks": [
+          "screen external PLP candidates against all current PLP M-CSA rows and against non-PLP lyase/racemase controls",
+          "separate exact or close M-CSA overlaps from external generalization rows",
+          "cluster child mechanisms before computing panel performance so aminotransferases do not dominate the PLP parent"
+        ],
+        "known_local_status": "External source sequence packets exist for pilot rows generally; a PLP-child-specific external sequence packet is not yet built."
+      },
+      "foldseek_neighbor_check": {
+        "required": true,
+        "checks": [
+          "compare PLP child candidates against current PLP anchors and non-PLP lyase/racemase folds",
+          "require local PLP geometry before accepting a Foldseek-neighbor PLP call",
+          "flag same fold with different child chemistry for manual review"
+        ],
+        "known_local_status": "No single Foldseek panel currently covers aminotransferase, decarboxylase, racemase, lyase, and PLP plus B12 boundaries together."
+      },
+      "active_site_evidence_extraction_needs": [
+        "PLP/LLP ligand identity, covalent Lys linkage, and Schiff-base state",
+        "substrate alpha-carbon, carboxylate, amino group, and leaving-group geometry",
+        "child-specific acid/base residue roles",
+        "B12 adenosyl group and PLP co-localization for coupled aminomutase",
+        "explicit no-PLP evidence for non-PLP Schiff-base controls"
+      ],
+      "label_provenance_tier": {
+        "positive_minimum": "tier_A_mcsa_curated for M-CSA child anchors and tier_B_external_curated for any external PLP positive",
+        "hard_negative_minimum": "tier_A_mcsa_curated, tier_C_external_incomplete as unresolved hard case, or tier_D_control_only",
+        "tier_C_use": "review backlog only; never a PLP positive"
+      },
+      "successful_router_model_result": [
+        "PLP parent is recognized from local PLP evidence, but child routes depend on reaction-center evidence",
+        "aminotransferase, decarboxylase, racemase/epimerase, and lyase/eliminase slices are not conflated by PLP presence alone",
+        "m_csa:737 abstains or routes to the review-only coupled PLP plus B12 proposal rather than plain PLP or plain cobalamin",
+        "non-PLP Schiff-base lyases and NAD(P)-epimerases route away from PLP"
+      ]
+    },
+    {
+      "panel_id": "heme_redox_boundaries",
+      "panel_name": "Heme Redox Boundaries",
+      "panel_type": "m_csa_plus_external",
+      "priority": 4,
+      "hypothesis": "The router should distinguish peroxidase/catalase-like heme chemistry, heme-copper terminal oxidases, and heme oxygenases/P450 oxygenases, while routing flavin and non-heme oxygenases away from heme positives.",
+      "candidate_positives": [
+        {
+          "slice_id": "peroxidase_catalase_like",
+          "expected_router_result": "heme_peroxidase_oxidase_or_review_only_peroxidase_child",
+          "example_rows": [
+            {
+              "id": "m_csa:239",
+              "name": "peroxidase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:250",
+              "name": "chloride peroxidase (heme dependent)",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:601",
+              "name": "myeloperoxidase",
+              "source": "M-CSA OOS/boundary row from local FMO hard-negative packet",
+              "label_provenance_tier": "tier_D_control_only"
+            }
+          ],
+          "required_positive_evidence": [
+            "heme iron and distal peroxidase acid/base residues",
+            "peroxide or compound-I-like oxidant chemistry",
+            "substrate oxidation rather than terminal O2 reduction"
+          ]
+        },
+        {
+          "slice_id": "heme_copper_terminal_oxidase",
+          "expected_router_result": "heme_peroxidase_oxidase_or_review_only_terminal_oxidase_child",
+          "example_rows": [
+            {
+              "id": "m_csa:124",
+              "name": "cytochrome-c oxidase (AA3 type)",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            }
+          ],
+          "required_positive_evidence": [
+            "heme-copper binuclear center",
+            "O2 reduction to water",
+            "proton/electron transfer residues and heme/copper ligand set"
+          ]
+        },
+        {
+          "slice_id": "heme_oxygenase_p450",
+          "expected_router_result": "heme_peroxidase_oxidase_or_review_only_heme_oxygenase_child",
+          "example_rows": [
+            {
+              "id": "m_csa:133",
+              "name": "camphor 5-monooxygenase",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:699",
+              "name": "cytochrome P450 (BM-3)",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            },
+            {
+              "id": "m_csa:795",
+              "name": "heme oxygenase (biliverdin-producing)",
+              "source": "M-CSA",
+              "label_provenance_tier": "tier_A_mcsa_curated"
+            }
+          ],
+          "required_positive_evidence": [
+            "heme-dependent oxygen activation locus",
+            "P450 Cys-ligated heme or heme oxygenase active-site context",
+            "oxygen insertion or heme degradation chemistry assigned to heme, not flavin"
+          ]
+        }
+      ],
+      "near_family_hard_negatives": [
+        {
+          "id": "m_csa:131",
+          "name": "4-hydroxybenzoate 3-monooxygenase",
+          "why_hard": "Oxygenase chemistry is flavin C4a-peroxy, not heme.",
+          "expected_router_result": "flavin_monooxygenase_not_heme",
+          "label_provenance_tier": "tier_A_mcsa_curated"
+        },
+        {
+          "id": "m_csa:132",
+          "name": "alkanal monooxygenase (FMN-linked)",
+          "why_hard": "FMN oxygenase chemistry should not be absorbed by heme oxygenase wording.",
+          "expected_router_result": "flavin_monooxygenase_not_heme",
+          "label_provenance_tier": "tier_A_mcsa_curated"
+        },
+        {
+          "id": "m_csa:497",
+          "name": "nitric-oxide reductase (FMN)",
+          "why_hard": "Small-molecule redox and metal center chemistry can resemble terminal oxidase text but lacks heme-copper terminal oxidase evidence.",
+          "expected_router_result": "reject_or_abstain",
+          "label_provenance_tier": "tier_D_control_only"
+        }
+      ],
+      "oos_controls": [
+        "non-heme iron oxygenases and dioxygenases",
+        "pterin/non-heme iron hydroxylases",
+        "copper monooxygenases",
+        "flavin oxidases where O2 is an electron acceptor rather than heme chemistry",
+        "heme-binding proteins without catalytic peroxide, O2 reduction, or oxygenation evidence"
+      ],
+      "structure_availability_status": "Current M-CSA heme anchors are structure-linked and include peroxidase, P450/oxygenase, heme oxygenase, and terminal oxidase examples. External heme rows should be easy to source structurally, but active ligand state and heme/copper completeness must be checked before inclusion.",
+      "cofactor_ligand_needs": [
+        "heme type and axial ligand identity",
+        "heme iron oxidation/ligand state where available",
+        "peroxide/H2O2 or compound-I proxy for peroxidases",
+        "CuB and heme-copper center for terminal oxidases",
+        "O2/substrate analog and redox partner context for P450/oxygenase rows"
+      ],
+      "sequence_neighbor_check": {
+        "required": true,
+        "checks": [
+          "screen external heme candidates against current heme_peroxidase_oxidase rows and flavin/non-heme oxygenase controls",
+          "cluster peroxidase, terminal oxidase, P450, and heme oxygenase slices separately",
+          "keep heme homologs with conflicting ligand states as review-only controls"
+        ],
+        "known_local_status": "Current M-CSA anchors exist; a dedicated external heme boundary sequence packet remains future work."
+      },
+      "foldseek_neighbor_check": {
+        "required": true,
+        "checks": [
+          "compare heme candidates to current heme, flavin, and non-heme oxygenase structures",
+          "inspect high-TM same-fold heme rows for child-mechanism disagreement",
+          "require local heme ligand and O2/peroxide role before accepting heme child routes"
+        ],
+        "known_local_status": "Heme peroxidase deep-packet structures exist locally, but not as a three-child heme boundary holdout."
+      },
+      "active_site_evidence_extraction_needs": [
+        "heme ligand geometry and distal acid/base residues",
+        "heme-copper ligand set and proton/electron relay residues",
+        "P450 Cys ligand, substrate pocket, and oxygen activation state",
+        "peroxide/O2 role assignment",
+        "negative evidence for flavin C4a-peroxy and non-heme metal oxygenase loci"
+      ],
+      "label_provenance_tier": {
+        "positive_minimum": "tier_A_mcsa_curated for M-CSA anchors and tier_B_external_curated for future external positives",
+        "hard_negative_minimum": "tier_A_mcsa_curated or tier_D_control_only",
+        "tier_C_use": "structure/ligand sourcing only"
+      },
+      "successful_router_model_result": [
+        "peroxidase/catalase-like, heme-copper terminal oxidase, and heme oxygenase/P450 slices are correctly routed or child-abstained",
+        "flavin monooxygenases and non-heme oxygenases do not receive heme-positive calls",
+        "oxygenase wording and O2 use alone are insufficient for heme routing",
+        "model explanations name the oxygen activation locus and cofactor, not just the reaction class"
+      ]
+    },
+    {
+      "panel_id": "glycoside_carbohydrate_enzymes",
+      "panel_name": "Glycoside and Carbohydrate Enzymes",
+      "panel_type": "external_first_with_mcsa_oos_anchors",
+      "priority": 5,
+      "hypothesis": "The router should generalize to carbohydrate and glycoside chemistry without mapping every hydrolase or lyase word to the existing metal or serine hydrolase labels.",
+      "candidate_positives": [
+        {
+          "slice_id": "glycoside_hydrolase_acidic_dyad",
+          "expected_router_result": "abstain_or_review_only_glycoside_hydrolase_boundary",
+          "example_rows": [
+            {
+              "id": "uniprot:Q6NSJ0",
+              "name": "Alpha-galactosidase MYORG",
+              "source": "external_source:glycan_chemistry pilot row",
+              "label_provenance_tier": "tier_C_external_incomplete_currently; promote to tier_B only after active-site evidence and controls"
+            },
+            {
+              "id": "m_csa:19",
+              "name": "mannosyl-oligosaccharide 1,2-alpha-mannosidase",
+              "source": "M-CSA OOS glycosidase anchor",
+              "label_provenance_tier": "tier_D_control_only_for_current_universe"
+            },
+            {
+              "id": "m_csa:393",
+              "name": "glucan 1,4-alpha-glucosidase",
+              "source": "M-CSA OOS glycosidase anchor",
+              "label_provenance_tier": "tier_D_control_only_for_current_universe"
+            },
+            {
+              "id": "m_csa:400",
+              "name": "licheninase (glycosyl hydrolase 17 family)",
+              "source": "M-CSA OOS glycosidase anchor",
+              "label_provenance_tier": "tier_D_control_only_for_current_universe"
+            },
+            {
+              "id": "m_csa:436",
+              "name": "beta-amylase",
+              "source": "M-CSA OOS glycosidase anchor",
+              "label_provenance_tier": "tier_D_control_only_for_current_universe"
+            },
+            {
+              "id": "m_csa:475",
+              "name": "chitinase (GH19, Class II)",
+              "source": "M-CSA OOS glycosidase anchor",
+              "label_provenance_tier": "tier_D_control_only_for_current_universe"
+            }
+          ],
+          "required_positive_evidence": [
+            "acid/base Asp/Glu dyad or equivalent glycosidase residues",
+            "glycosidic bond substrate context and anomeric carbon geometry",
+            "absence of catalytic metal-water or Ser-His-Asp/Glu triad evidence when testing glycoside-versus-hydrolase boundary"
+          ]
+        },
+        {
+          "slice_id": "dna_or_nucleoside_glycosylase",
+          "expected_router_result": "abstain_or_review_only_glycosylase_boundary",
+          "example_rows": [
+            {
+              "id": "uniprot:P29372",
+              "name": "DNA-3-methyladenine glycosylase",
+              "source": "external_source:glycan_chemistry",
+              "label_provenance_tier": "tier_C_external_incomplete"
+            },
+            {
+              "id": "m_csa:471",
+              "name": "inosine, adenosine, and guanine nucleoside hydrolase",
+              "source": "M-CSA OOS glycoside/nucleoside hydrolase anchor",
+              "label_provenance_tier": "tier_D_control_only_for_current_universe"
+            }
+          ],
+          "required_positive_evidence": [
+            "N-glycosidic bond cleavage evidence",
+            "base/ribose or DNA-lesion substrate context",
+            "distinction from metal nuclease phosphodiester cleavage"
+          ]
+        },
+        {
+          "slice_id": "sugar_phosphate_isomerase_and_carbohydrate_lyase",
+          "expected_router_result": "abstain_or_review_only_carbohydrate_isomerase_lyase_boundary",
+          "example_rows": [
+            {
+              "id": "uniprot:P34949",
+              "name": "Mannose-6-phosphate isomerase",
+              "source": "external_source:isomerase pilot row",
+              "label_provenance_tier": "tier_C_external_incomplete_currently"
+            },
+            {
+              "id": "uniprot:P33025",
+              "name": "Pseudouridine-5'-phosphate glycosidase",
+              "source": "external_source:glycan_chemistry",
+              "label_provenance_tier": "tier_C_external_incomplete"
+            },
+            {
+              "id": "uniprot:P60174",
+              "name": "Triosephosphate isomerase",
+              "source": "external_source:isomerase",
+              "label_provenance_tier": "tier_D_control_only_if_near_duplicate_or_conflict_remains"
+            }
+          ],
+          "required_positive_evidence": [
+            "sugar or sugar-phosphate pocket and catalytic acid/base residues",
+            "isomerase/lyase reaction-center evidence rather than generic carbohydrate binding"
+          ]
+        }
+      ],
+      "near_family_hard_negatives": [
+        {
+          "id": "uniprot:O60568",
+          "name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3",
+          "why_hard": "Glycosyltransferase and dioxygenase domains include carbohydrate/glycan terms but are not glycoside hydrolase positives.",
+          "expected_router_result": "route_away_or_abstain",
+          "label_provenance_tier": "tier_C_external_incomplete"
+        },
+        {
+          "id": "uniprot:P06746",
+          "name": "DNA polymerase beta 5'-dRP lyase",
+          "why_hard": "DNA lyase and polymerase context can share sugar/phosphate chemistry but is not glycoside hydrolase/isomerase.",
+          "expected_router_result": "dna_pol_x_lyase_boundary_or_abstain",
+          "label_provenance_tier": "tier_D_control_only"
+        },
+        {
+          "id": "m_csa:11",
+          "name": "deoxyribonuclease IV (phage-T4-induced)",
+          "why_hard": "Metal nuclease phosphodiester hydrolysis can be confused with DNA glycosylase/nucleoside hydrolase chemistry.",
+          "expected_router_result": "metal_dependent_hydrolase_not_glycoside",
+          "label_provenance_tier": "tier_A_mcsa_curated"
+        },
+        {
+          "id": "m_csa:169",
+          "name": "dipeptidyl-peptidase IV",
+          "why_hard": "Hydrolase fold/text should not override carbohydrate active-site evidence.",
+          "expected_router_result": "ser_his_acid_hydrolase_not_glycoside",
+          "label_provenance_tier": "tier_A_mcsa_curated"
+        }
+      ],
+      "oos_controls": [
+        "current M-CSA glycosidases that are intentionally OOS under the current 8-fingerprint universe",
+        "external glycan-chemistry rows with active-site feature gaps",
+        "metal hydrolases and serine hydrolases with no glycosidic bond chemistry",
+        "pure glycosyltransferases or oxygenases with glycan terms but no glycoside cleavage/isomerization"
+      ],
+      "structure_availability_status": "External glycan candidates have strong local structure coverage: Q6NSJ0 has PDB IDs 7QQF/7QQG/7QQH, P29372 has multiple PDB IDs, P33025 has PDB IDs 4GIJ-4GIM, and O60568 has many PDB IDs. P34949 is AlphaFold-only in the active-site queue. M-CSA glycosidase anchors are graph-linked but remain OOS under the current universe.",
+      "cofactor_ligand_needs": [
+        "sugar, glycan, sugar-phosphate, nucleoside, or DNA-lesion substrate analog",
+        "Asp/Glu nucleophile and acid/base positions for glycoside hydrolases",
+        "metal absence or noncatalytic metal role for glycoside-versus-metal controls",
+        "Schiff-base or lyase-specific evidence only when the carbohydrate row truly uses that chemistry",
+        "explicit separation of glycosyltransferase donor/acceptor chemistry from glycoside cleavage"
+      ],
+      "sequence_neighbor_check": {
+        "required": true,
+        "checks": [
+          "reuse existing external all-vs-all sequence search as a baseline but add UniRef-wide near-duplicate search before any external positive interpretation",
+          "keep O15527 and other exact M-CSA overlaps as holdout controls",
+          "screen glycoside candidates against metal hydrolase, serine hydrolase, DNA lyase, and glycosyltransferase neighbors",
+          "cluster glycoside hydrolase, nucleoside hydrolase/glycosylase, sugar-phosphate isomerase, and carbohydrate lyase slices separately"
+        ],
+        "known_local_status": "Existing external sequence artifacts report 0 external all-vs-all near-duplicate pairs for the 30-row pilot and exact holdouts for O15527/P42126, but UniRef-wide search remains a blocker."
+      },
+      "foldseek_neighbor_check": {
+        "required": true,
+        "checks": [
+          "screen external glycoside/carbohydrate rows against current metal hydrolase and serine hydrolase structures to detect hydrolase collapse",
+          "screen against M-CSA OOS glycosidase anchors to distinguish useful generalization from exact structural reuse",
+          "inspect same-fold glycosyltransferase and lyase hard negatives before accepting a glycoside route"
+        ],
+        "known_local_status": "Q6NSJ0 and P34949 have review-only boundary controls, but a full glycoside/carbohydrate Foldseek panel is not assembled yet."
+      },
+      "active_site_evidence_extraction_needs": [
+        "Asp/Glu acidic dyad or equivalent glycosidase catalytic residues",
+        "anomeric carbon and glycosidic bond geometry",
+        "retaining versus inverting mechanism cues",
+        "sugar-phosphate pocket and isomerase acid/base roles",
+        "metal-ligand absence or noncatalytic role evidence",
+        "glycosyltransferase donor/acceptor separation for O60568-like hard negatives"
+      ],
+      "label_provenance_tier": {
+        "positive_minimum": "tier_B_external_curated for true external positives; M-CSA glycosidase anchors are tier_D controls under the current universe",
+        "hard_negative_minimum": "tier_A_mcsa_curated or tier_D_control_only",
+        "tier_C_use": "candidate sourcing and evidence-gap queue only"
+      },
+      "successful_router_model_result": [
+        "glycoside/carbohydrate rows are routed by glycosidic bond, acidic dyad, sugar-pocket, and mechanism evidence rather than by hydrolase text",
+        "metal hydrolase and serine hydrolase collapse is reduced or explicitly abstained",
+        "external Q6NSJ0-like rows remain review-only until active-site, sequence, Foldseek, and terminal-review blockers are complete",
+        "OOS M-CSA glycosidase anchors help validate generalization but do not become labels from this roadmap"
+      ]
+    }
+  ],
+  "recommended_execution_order": [
+    {
+      "step": 1,
+      "action": "Freeze panel manifests with explicit row IDs and no-decision status.",
+      "blocked_by": []
+    },
+    {
+      "step": 2,
+      "action": "Run sequence-neighbor screens, including current-reference, external all-vs-all, and UniRef90/50 or UniRef-wide duplicate controls.",
+      "blocked_by": [
+        "external candidate FASTA completion for any newly sourced rows"
+      ]
+    },
+    {
+      "step": 3,
+      "action": "Materialize or select active-state structures and run Foldseek-neighbor checks against current countable and OOS controls.",
+      "blocked_by": [
+        "structure selection for external clean-FMO, carbonic anhydrase, NTPase, and any PLP child external rows"
+      ]
+    },
+    {
+      "step": 4,
+      "action": "Build source-free active-site evidence extractors or review packets for each panel slice.",
+      "blocked_by": [
+        "FGly/sulfatase extractor design",
+        "PLP child reaction-center extraction",
+        "glycoside anomeric-carbon/dyad extraction",
+        "heme oxygen-locus child extraction",
+        "flavin peroxyflavin versus hydride extraction"
+      ]
+    },
+    {
+      "step": 5,
+      "action": "Run the evidence router in review-only validation mode and report correct-route, abstention, and hard-negative regression outcomes.",
+      "blocked_by": [
+        "terminal no-decision review packets for every external row",
+        "explicit non-import gate"
+      ]
+    }
+  ],
+  "non_claims": [
+    "This artifact does not add or edit labels, ontologies, thresholds, imports, production scoring, or model outputs.",
+    "This artifact does not promote any new production fingerprint or child mechanism.",
+    "This artifact does not assert that tier_C external candidates are positives.",
+    "This artifact does not remove the existing external-source blockers around active-site gaps, representation conflicts, UniRef-wide duplicate search, or full label-factory gates."
+  ]
+}
