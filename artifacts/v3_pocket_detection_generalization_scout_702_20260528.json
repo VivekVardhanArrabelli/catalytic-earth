@@ -1,0 +1,277 @@
+{
+  "artifact_id": "v3_pocket_detection_generalization_scout_702_20260528",
+  "schema_version": "pocket_detection_generalization_scout.v1",
+  "created_utc": "2026-05-28T00:00:00Z",
+  "automation_id": "pocket-detection-generalization-scout",
+  "review_only": true,
+  "scope_guardrails": {
+    "label_registry_edited": false,
+    "mechanism_registry_edited": false,
+    "ontology_edited": false,
+    "thresholds_edited": false,
+    "production_scoring_edited": false,
+    "imports_edited": false,
+    "model_outputs_edited": false,
+    "large_downloads_performed": false,
+    "pocket_prediction_smoke_run_performed": false,
+    "reason_smoke_not_run": "No P2Rank/fpocket executable was available in PATH, BioPython and RDKit were unavailable in the active Python environment, and local disk was already below the requested 10 GiB safety floor before this scout started."
+  },
+  "disk_safety": {
+    "requested_min_available_gib": 10.0,
+    "observed_available_gib_before_outputs": 4.7,
+    "status": "below_floor_before_run",
+    "action": "No downloads or pocket predictor execution; only small report artifacts were written."
+  },
+  "local_tool_inventory": {
+    "p2rank": {
+      "available_on_path": false,
+      "checked_commands": [
+        "p2rank",
+        "prank"
+      ],
+      "minimum_future_requirement": "P2Rank release 2.5.1 or newer portable binary; Java 17 or later; run `prank predict -threads 1 -o <outdir> -f <local.cif>`."
+    },
+    "fpocket": {
+      "available_on_path": false,
+      "checked_commands": [
+        "fpocket"
+      ],
+      "minimum_future_requirement": "fpocket installed from conda-forge or built from source; run on a converted local PDB input unless the chosen fpocket build supports the input format directly."
+    },
+    "biopython": {
+      "python_import_available": false,
+      "import_name": "Bio",
+      "minimum_future_requirement": "`python -m pip install biopython` or equivalent locked environment entry for mmCIF/PDB parsing and optional format conversion."
+    },
+    "rdkit": {
+      "python_import_available": false,
+      "import_name": "rdkit",
+      "minimum_future_requirement": "`python -m pip install rdkit` or conda-forge RDKit if ligand chemistry normalization is needed; not required for simple residue-recall scoring."
+    },
+    "foldseek": {
+      "available_on_path": false,
+      "local_artifacts_present": true,
+      "local_artifact_examples": [
+        "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json",
+        "artifacts/v3_foldseek_coordinates_1000/",
+        "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_targeted_packet1_tm_pairs5000_20260527.json"
+      ],
+      "interpretation": "Foldseek coordinate and TM-score artifacts exist, but they are not predicted pocket sidecars."
+    },
+    "existing_pocket_sidecars": {
+      "general_predicted_pocket_sidecars_present": false,
+      "review_only_proxy_artifacts_present": [
+        "artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_extractor_test_20260522.json",
+        "artifacts/v3_metal_phosphatase_phosphate_pocket_proxy_modern_baseline_benchmark_20260522.json",
+        "artifacts/v3_sdr_nadp_pocket_proxy_pressure_test_post_blocker_20260522.json"
+      ],
+      "current_geometry_pocket_context_present": true,
+      "current_geometry_pocket_context_definition": "Existing pocket_context is an 8 A neighborhood around known catalytic residues from M-CSA coordinates, not an independent pocket prediction."
+    }
+  },
+  "local_data_inventory": {
+    "current_label_count": 702,
+    "foldseek_readiness_rows": 702,
+    "foldseek_local_structure_count": 692,
+    "local_structure_files_under_artifacts": 1186,
+    "geometry_entries_in_v3_geometry_features_700": 699,
+    "current_rows_with_pocket_descriptors": 698,
+    "encoder_ready_minimal_rows": 679,
+    "encoder_ready_minimal_heldout_rows": 135,
+    "known_not_ready_counts": {
+      "missing_active_site_coordinates": 2,
+      "missing_active_site_roles": 4,
+      "missing_geometry_entry": 4,
+      "partial_single_residue_or_no_pairs": 13
+    },
+    "source_artifacts": [
+      "data/registries/curated_mechanism_labels.json",
+      "artifacts/v3_geometry_features_700.json",
+      "artifacts/v3_active_site_encoder_feature_spec_702_20260528.json",
+      "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json"
+    ]
+  },
+  "safe_smoke_sample_design": {
+    "sample_status": "defined_not_executed",
+    "selection_rule": "Use current702 rows with status ok, >=2 resolved catalytic residues, local CIF path, and family diversity; hold out all results from production scoring.",
+    "sample_rows": [
+      {
+        "entry_id": "m_csa:3",
+        "entry_name": "NAD(P)H dehydrogenase (quinone)",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "split": "heldout",
+        "selected_structure": "1D4A",
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D4A.cif",
+        "resolved_catalytic_residue_count": 3,
+        "local_cofactor_families": [
+          "flavin"
+        ]
+      },
+      {
+        "entry_id": "m_csa:11",
+        "entry_name": "deoxyribonuclease IV (phage-T4-induced)",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "split": "in_distribution",
+        "selected_structure": "1QUM",
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1QUM.cif",
+        "resolved_catalytic_residue_count": 11,
+        "local_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      {
+        "entry_id": "m_csa:37",
+        "entry_name": "prostaglandin-endoperoxide synthase",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "split": "in_distribution",
+        "selected_structure": "5COX",
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_5COX.cif",
+        "resolved_catalytic_residue_count": 7,
+        "local_cofactor_families": [
+          "heme"
+        ]
+      },
+      {
+        "entry_id": "m_csa:66",
+        "entry_name": "D-alanine transaminase",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "split": "in_distribution",
+        "selected_structure": "1DAA",
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DAA.cif",
+        "resolved_catalytic_residue_count": 4,
+        "local_cofactor_families": [
+          "plp"
+        ]
+      },
+      {
+        "entry_id": "m_csa:131",
+        "entry_name": "4-hydroxybenzoate 3-monooxygenase",
+        "fingerprint_id": "flavin_monooxygenase",
+        "split": "heldout",
+        "selected_structure": "1DOC",
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DOC.cif",
+        "resolved_catalytic_residue_count": 5,
+        "local_cofactor_families": [
+          "flavin"
+        ]
+      }
+    ]
+  },
+  "protocol": {
+    "prediction_inputs": "Use only local structure coordinates and predictor outputs generated from those coordinates; do not use M-CSA catalytic residue coordinates as predictor inputs.",
+    "predictors": [
+      "P2Rank primary because it accepts mmCIF and emits ranked pocket CSV files.",
+      "fpocket optional comparator after CIF-to-PDB conversion or with a verified format-capable build."
+    ],
+    "top_k": [
+      1,
+      3,
+      5
+    ],
+    "neighborhood_extraction": {
+      "pocket_center_source": "Predictor pocket center or constituent pocket atoms/points.",
+      "radii_angstrom": [
+        8,
+        10,
+        12
+      ],
+      "primary_radius_angstrom": 10,
+      "residue_inclusion_rule": "Any heavy atom within radius of pocket center or any predictor pocket point; report CA/centroid fallback separately."
+    },
+    "catalytic_residue_recall": {
+      "gold_source_for_evaluation_only": "Existing M-CSA catalytic residue coordinates from geometry artifacts.",
+      "contains_site_rule": "A predicted pocket contains the site if at least one catalytic residue is in the pocket neighborhood.",
+      "strict_site_rule": "Strict recall additionally reports fraction of catalytic residues captured and all-residue capture."
+    },
+    "cofactor_ligand_inclusion": {
+      "local_rule": "Use HETATM ligand/cofactor sites from the selected structure; count a cofactor captured if any ligand atom is inside the same pocket neighborhood.",
+      "families": [
+        "flavin",
+        "heme",
+        "metal_ion",
+        "nad",
+        "plp",
+        "sam",
+        "cobalamin",
+        "fe_s_cluster"
+      ]
+    },
+    "failure_classes": [
+      "no_local_structure",
+      "predictor_unavailable",
+      "predictor_parse_failure",
+      "no_pockets_returned",
+      "top1_misses_all_catalytic_residues",
+      "top3_misses_all_catalytic_residues",
+      "captures_ligand_but_not_catalytic_residues",
+      "captures_catalytic_residues_but_misses_required_cofactor",
+      "multimer_or_chain_mismatch",
+      "apo_or_missing_ligand_context",
+      "diffuse_surface_false_positive",
+      "active_site_split_across_multiple_pockets",
+      "single_residue_gold_site_not_informative"
+    ]
+  },
+  "future_large_run_metrics": {
+    "primary": [
+      "top1_any_catalytic_residue_recall",
+      "top3_any_catalytic_residue_recall",
+      "top1_fraction_catalytic_residues_captured",
+      "top3_fraction_catalytic_residues_captured",
+      "top1_all_catalytic_residues_captured",
+      "top3_all_catalytic_residues_captured"
+    ],
+    "cofactor_ligand": [
+      "top1_required_cofactor_capture",
+      "top3_required_cofactor_capture",
+      "ligand_capture_without_catalytic_residue_rate",
+      "catalytic_residue_capture_without_required_cofactor_rate"
+    ],
+    "false_positive_controls": [
+      "mean_extra_pocket_residue_count",
+      "median_extra_pocket_residue_count",
+      "diffuse_surface_false_positive_rate",
+      "noncanonical_ligand_or_buffer_capture_rate",
+      "chain_mismatch_rate"
+    ],
+    "active_site_encoder_effect": [
+      "rows_recovered_without_MCSA_coordinates",
+      "active_site_encoder_feature_completeness_delta",
+      "pocket_neighborhood_descriptor_shift_vs_MCSA_neighborhood",
+      "heldout_macro_f1_delta_in_review_only_ablation",
+      "oos_false_non_abstention_delta",
+      "cofactor_feature_availability_delta"
+    ]
+  },
+  "install_and_run_requirements": {
+    "minimum_disk_before_start_gib": 10,
+    "expected_incremental_disk_tiny_smoke_mb": "20-200 depending on P2Rank package/output retention and whether fpocket source/build artifacts are kept.",
+    "expected_incremental_disk_current702_mb": "500-2000 if retaining predictor outputs and converted PDB sidecars; more if duplicating all CIFs or predictor installs inside the repo.",
+    "expected_compute_tiny_smoke": "Single CPU, 1-4 threads, usually minutes for 5 local structures after tools are installed.",
+    "expected_compute_current702": "CPU batch, 8-16 threads recommended; likely hours not days, dominated by predictor runtime and format conversion.",
+    "commands_after_install": [
+      "prank predict -threads 1 -o artifacts/pocket_smoke/p2rank_m_csa3 -f artifacts/v3_foldseek_coordinates_1000/pdb_1D4A.cif",
+      "fpocket -f work/pocket_smoke/pdb_1D4A.pdb",
+      "PYTHONPATH=src python scripts_or_future_cli_score_pockets.py --geometry artifacts/v3_geometry_features_700.json --predictions artifacts/pocket_smoke --out artifacts/v3_pocket_detection_smoke_702_<date>.json"
+    ],
+    "external_docs_consulted": [
+      "https://github.com/rdk/p2rank",
+      "https://github.com/Discngine/fpocket",
+      "https://biopython.org/wiki/Download",
+      "https://www.rdkit.org/docs/Install.html"
+    ]
+  },
+  "no_go_conditions_for_scaling": [
+    "Available disk is below 10 GiB before installing tools or writing predictor sidecars.",
+    "Pocket predictor is not pinned and reproducible, or predictor outputs are not retained with version/provenance.",
+    "The evaluation uses M-CSA catalytic coordinates as predictor inputs instead of gold labels only.",
+    "More than 5 percent of sampled local structures fail parsing under the chosen predictor.",
+    "Top-3 any-catalytic-residue recall is below 0.80 on the current702 smoke/validation subset.",
+    "Required cofactor capture is below 0.70 for holo rows with local cofactor evidence.",
+    "False positive pocket neighborhoods inflate active-site encoder feature coverage without improving heldout diagnostics.",
+    "Chain/entity mismatches exceed 2 percent or cannot be automatically diagnosed.",
+    "Apo selected structures dominate failures and no holo structure-selection policy is approved.",
+    "Any proposed pocket-derived feature would require label, ontology, threshold, import, production scoring, or model-output edits before review."
+  ],
+  "bottom_line": "Catalytic Earth has enough local current702 structures and gold active-site coordinates to evaluate a pocket-detection replacement path, but this run found no installed independent pocket predictor or general predicted-pocket sidecars. Scaling is premature until disk headroom is restored, P2Rank/fpocket are installed in a pinned environment, and a tiny predictor smoke run shows top-k catalytic-residue and cofactor capture against the existing M-CSA-coordinate gold labels."
+}
