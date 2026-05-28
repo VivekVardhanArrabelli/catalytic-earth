@@ -1,0 +1,5253 @@
+{
+  "artifact_id": "v3_embedding_precompute_feasibility_20260528",
+  "automation_id": "embedding-precompute-feasibility",
+  "blocked_downloads_or_backend_work": [
+    {
+      "action_this_run": "skipped_missing_cache_no_automatic_model_download",
+      "all_weight_format_bytes_if_unfiltered": 93048033,
+      "all_weight_format_gib_if_unfiltered": 0.0867,
+      "current_free_gib": 19.5032,
+      "exact_metadata_or_download_command": "python - <<'PY'\nfrom huggingface_hub import snapshot_download\nsnapshot_download('facebook/esm2_t6_8M_UR50D', allow_patterns=['model.safetensors', 'config.json', 'tokenizer*', 'vocab.txt'], local_files_only=False)\nPY",
+      "model": "facebook/esm2_t6_8M_UR50D",
+      "primary_weight_bytes": 31384292,
+      "primary_weight_file": "model.safetensors",
+      "primary_weight_gib": 0.0292,
+      "projected_free_after_primary_weight_gib": 19.474,
+      "would_violate_10gib_floor": false
+    },
+    {
+      "action_this_run": "skipped_missing_cache_no_automatic_model_download",
+      "all_weight_format_bytes_if_unfiltered": 406420991,
+      "all_weight_format_gib_if_unfiltered": 0.3785,
+      "current_free_gib": 19.5032,
+      "exact_metadata_or_download_command": "python - <<'PY'\nfrom huggingface_hub import snapshot_download\nsnapshot_download('facebook/esm2_t12_35M_UR50D', allow_patterns=['model.safetensors', 'config.json', 'tokenizer*', 'vocab.txt'], local_files_only=False)\nPY",
+      "model": "facebook/esm2_t12_35M_UR50D",
+      "primary_weight_bytes": 136008798,
+      "primary_weight_file": "model.safetensors",
+      "primary_weight_gib": 0.1267,
+      "projected_free_after_primary_weight_gib": 19.3766,
+      "would_violate_10gib_floor": false
+    },
+    {
+      "action_this_run": "skipped_missing_cache_no_automatic_model_download",
+      "all_weight_format_bytes_if_unfiltered": 1783976919,
+      "all_weight_format_gib_if_unfiltered": 1.6615,
+      "current_free_gib": 19.5032,
+      "exact_metadata_or_download_command": "python - <<'PY'\nfrom huggingface_hub import snapshot_download\nsnapshot_download('facebook/esm2_t30_150M_UR50D', allow_patterns=['model.safetensors', 'config.json', 'tokenizer*', 'vocab.txt'], local_files_only=False)\nPY",
+      "model": "facebook/esm2_t30_150M_UR50D",
+      "primary_weight_bytes": 595257706,
+      "primary_weight_file": "model.safetensors",
+      "primary_weight_gib": 0.5544,
+      "projected_free_after_primary_weight_gib": 18.9489,
+      "would_violate_10gib_floor": false
+    },
+    {
+      "action_this_run": "skipped_missing_cache_no_automatic_model_download",
+      "all_weight_format_bytes_if_unfiltered": 7824237983,
+      "all_weight_format_gib_if_unfiltered": 7.2869,
+      "current_free_gib": 19.5032,
+      "exact_metadata_or_download_command": "python - <<'PY'\nfrom huggingface_hub import snapshot_download\nsnapshot_download('facebook/esm2_t33_650M_UR50D', allow_patterns=['model.safetensors', 'config.json', 'tokenizer*', 'vocab.txt'], local_files_only=False)\nPY",
+      "model": "facebook/esm2_t33_650M_UR50D",
+      "primary_weight_bytes": 2609506392,
+      "primary_weight_file": "model.safetensors",
+      "primary_weight_gib": 2.4303,
+      "projected_free_after_primary_weight_gib": 17.0729,
+      "would_violate_10gib_floor": false
+    },
+    {
+      "action_this_run": "skipped_missing_cache_no_automatic_model_download",
+      "all_weight_format_bytes_if_unfiltered": 1332095738,
+      "all_weight_format_gib_if_unfiltered": 1.2406,
+      "current_free_gib": 19.5032,
+      "exact_metadata_or_download_command": "python - <<'PY'\nfrom huggingface_hub import snapshot_download\nsnapshot_download('EvolutionaryScale/esmc-300m-2024-12', allow_patterns=['data/weights/esmc_300m_2024_12_v0.pth', 'config.json', 'tokenizer*', 'vocab.txt'], local_files_only=False)\nPY",
+      "model": "EvolutionaryScale/esmc-300m-2024-12",
+      "primary_weight_bytes": 1332095738,
+      "primary_weight_file": "data/weights/esmc_300m_2024_12_v0.pth",
+      "primary_weight_gib": 1.2406,
+      "projected_free_after_primary_weight_gib": 18.2626,
+      "would_violate_10gib_floor": false
+    },
+    {
+      "action_this_run": "skipped_missing_cache_no_automatic_model_download",
+      "all_weight_format_bytes_if_unfiltered": 2416373051,
+      "all_weight_format_gib_if_unfiltered": 2.2504,
+      "current_free_gib": 19.5032,
+      "exact_metadata_or_download_command": "python - <<'PY'\nfrom huggingface_hub import snapshot_download\nsnapshot_download('Rostlab/prot_t5_xl_half_uniref50-enc', allow_patterns=['pytorch_model.bin', 'config.json', 'tokenizer*', 'vocab.txt'], local_files_only=False)\nPY",
+      "model": "Rostlab/prot_t5_xl_half_uniref50-enc",
+      "primary_weight_bytes": 2416373051,
+      "primary_weight_file": "pytorch_model.bin",
+      "primary_weight_gib": 2.2504,
+      "projected_free_after_primary_weight_gib": 17.2528,
+      "would_violate_10gib_floor": false
+    },
+    {
+      "action_this_run": "skipped_missing_cache_no_automatic_model_download",
+      "all_weight_format_bytes_if_unfiltered": 33826687956,
+      "all_weight_format_gib_if_unfiltered": 31.5036,
+      "current_free_gib": 19.5032,
+      "exact_metadata_or_download_command": "python - <<'PY'\nfrom huggingface_hub import snapshot_download\nsnapshot_download('Rostlab/prot_t5_xl_uniref50', allow_patterns=['pytorch_model.bin', 'config.json', 'tokenizer*', 'vocab.txt'], local_files_only=False)\nPY",
+      "model": "Rostlab/prot_t5_xl_uniref50",
+      "primary_weight_bytes": 11275562724,
+      "primary_weight_file": "pytorch_model.bin",
+      "primary_weight_gib": 10.5012,
+      "projected_free_after_primary_weight_gib": 9.002,
+      "would_violate_10gib_floor": true
+    },
+    {
+      "action_this_run": "skipped_missing_cache_no_automatic_model_download",
+      "all_weight_format_bytes_if_unfiltered": 271730018,
+      "all_weight_format_gib_if_unfiltered": 0.2531,
+      "current_free_gib": 19.5032,
+      "exact_metadata_or_download_command": "python - <<'PY'\nfrom huggingface_hub import snapshot_download\nsnapshot_download('westlake-repl/SaProt_35M_AF2', allow_patterns=['SaProt_35M_AF2.pt', 'config.json', 'tokenizer*', 'vocab.txt'], local_files_only=False)\nPY",
+      "model": "westlake-repl/SaProt_35M_AF2",
+      "primary_weight_bytes": 134867957,
+      "primary_weight_file": "SaProt_35M_AF2.pt",
+      "primary_weight_gib": 0.1256,
+      "projected_free_after_primary_weight_gib": 19.3776,
+      "would_violate_10gib_floor": false
+    }
+  ],
+  "cache_inventory": [
+    {
+      "current_local_weight_cache": null,
+      "model_or_artifact": "facebook/esm2_t30_150M_UR50D",
+      "raw_embedding_sidecar_available_for_union": false,
+      "representative_missing_rows": {
+        "count": 36,
+        "truncated": false,
+        "values": [
+          "m_csa:1",
+          "m_csa:10",
+          "m_csa:11",
+          "m_csa:110",
+          "m_csa:12",
+          "m_csa:123",
+          "m_csa:124",
+          "m_csa:128",
+          "m_csa:129",
+          "m_csa:13",
+          "m_csa:130",
+          "m_csa:131",
+          "m_csa:132",
+          "m_csa:133",
+          "m_csa:134",
+          "m_csa:135",
+          "m_csa:14",
+          "m_csa:141",
+          "m_csa:147",
+          "m_csa:148",
+          "m_csa:15",
+          "m_csa:16",
+          "m_csa:169",
+          "m_csa:17",
+          "m_csa:18",
+          "m_csa:184",
+          "m_csa:19",
+          "m_csa:2",
+          "m_csa:20",
+          "m_csa:3",
+          "m_csa:4",
+          "m_csa:5",
+          "m_csa:6",
+          "m_csa:7",
+          "m_csa:8",
+          "m_csa:9"
+        ]
+      },
+      "rows_missing_raw_embedding_sidecar": 959,
+      "safe_to_run_now": "no_model_weights_not_cached",
+      "standardized_prediction_export_available": true,
+      "track": "esm2_150m"
+    },
+    {
+      "current_local_weight_cache": "not_found_by_local_inventory",
+      "model_or_artifact": "EvolutionaryScale/esmc-300m-2024-12 (candidate model id; repo has no local ESM-C embedding command)",
+      "raw_embedding_sidecar_available_for_union": false,
+      "rows_missing_raw_embedding_sidecar": 959,
+      "safe_to_run_now": "no_backend_command_and_weights_not_cached",
+      "standardized_prediction_export_available": true,
+      "track": "esm_c_corrected"
+    },
+    {
+      "current_local_weight_cache": "not_found_by_local_inventory",
+      "model_or_artifact": "Rostlab/prot_t5_xl_half_uniref50-enc / historical Swiss-Prot H5 track",
+      "raw_embedding_sidecar_available_for_union": false,
+      "rows_missing_raw_embedding_sidecar": 959,
+      "safe_to_run_now": "no_h5_sidecar_or_model_weights_cached",
+      "standardized_prediction_export_available": true,
+      "track": "prott5"
+    },
+    {
+      "current_local_weight_cache": "not_found_by_local_inventory",
+      "model_or_artifact": "westlake-repl/SaProt_35M_AF2",
+      "raw_embedding_sidecar_available_for_union": false,
+      "rows_missing_raw_embedding_sidecar": 959,
+      "safe_to_run_now": "no_saprot_weight_or_structure_token_sidecar_for_union_cached",
+      "standardized_prediction_export_available": true,
+      "track": "saprot_35m_structure_tokens"
+    },
+    {
+      "coordinate_cache_current702": {
+        "path": "artifacts/v3_foldseek_coordinates_1000",
+        "size_bytes": 622243650
+      },
+      "foldseek_binary_available": true,
+      "model_or_artifact": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+      "raw_embedding_sidecar_available_for_union": false,
+      "safe_to_run_now": "partial_structural_caches_exist_but_full_union_3di_pocket_precompute_not_cached",
+      "standardized_prediction_export_available": true,
+      "track": "foldseek_3di_and_structural"
+    },
+    {
+      "model_or_artifact": "not standardized locally",
+      "raw_embedding_sidecar_available_for_union": false,
+      "safe_to_run_now": "no_standardized_pocket_export_or_command_present",
+      "standardized_prediction_export_available": false,
+      "track": "foldseek_pocket"
+    }
+  ],
+  "candidate_inventory": {
+    "amr_family_examples": {
+      "count": 63,
+      "truncated": true,
+      "values": [
+        "AAC(2')",
+        "AAC(3)",
+        "AAC(6')",
+        "ACC",
+        "ACT/MIR",
+        "ADC",
+        "ANT(2'')",
+        "ANT(3'')",
+        "ANT(4')",
+        "ANT(6)",
+        "APH(2'')",
+        "APH(3'')",
+        "APH(3')",
+        "APH(6)",
+        "BlaC",
+        "CMY/LAT/MOX",
+        "CTX-M",
+        "DHA",
+        "EreA",
+        "EreB",
+        "EreD",
+        "EstT",
+        "FOX",
+        "FosA-like",
+        "FosB-like",
+        "FosC-like",
+        "FosX-like",
+        "GES",
+        "GIM",
+        "GOB",
+        "IMP",
+        "KPC",
+        "L1",
+        "LNU-like",
+        "NDM",
+        "OXA-like families",
+        "PDC",
+        "SAT-like",
+        "SHV",
+        "SIM",
+        "SME",
+        "SPM",
+        "TEM",
+        "VIM",
+        "Vat-like streptogramin acetyltransferases",
+        "catA/catB-like CAT families",
+        "cell-wall precursor modification enzymes",
+        "chloramphenicol phosphotransferase family records",
+        "mphA",
+        "mphB",
+        "mphC",
+        "mphF",
+        "mphG",
+        "mphL",
+        "mphM",
+        "rRNA methyltransferase-like AMR enzymes",
+        "rifampin ADP-ribosyltransferase-like",
+        "rifampin glycosyltransferase-like",
+        "rifampin monooxygenase-like",
+        "rifampin phosphotransferase-like"
+      ]
+    },
+    "amr_positive_class_count": 18,
+    "amr_sequence_addressable_candidate_count": 0,
+    "current702_entry_count": 702,
+    "current702_sequence_record_count": 764,
+    "current702_total_sequence_residue_count": 320623,
+    "current702_unique_accession_count": 760,
+    "external_candidate_row_count": 259,
+    "external_sequence_addressable_candidate_count": 257,
+    "external_uniprot_candidate_count": 143,
+    "union_accession_count_estimate_for_vector_storage": 826,
+    "union_sequence_like_id_count": 849
+  },
+  "created_utc": "2026-05-28T08:04:26Z",
+  "decision": {
+    "benchmark_contamination_risk": "avoided_no_predictions_or_labels_changed",
+    "can_compute_be_safely_used_now": "no",
+    "precompute_executed": false,
+    "reason": "Required model weights/raw embedding sidecars are not present in the current local cache; running would require downloads or new backend execution outside the already-cached/disk-safe condition."
+  },
+  "disk_guardrail": {
+    "free_bytes_at_inventory": 20941434880,
+    "free_gib_at_inventory": 19.5032,
+    "minimum_required_free_gib_after_any_download": 10.0,
+    "status": "free_space_above_floor_but_model_downloads_not_allowed_unless_explicitly_justified"
+  },
+  "embedding_storage_estimates": {
+    "all_four_vector_tracks_float32_bytes": 10255616,
+    "all_four_vector_tracks_float32_mib": 9.781,
+    "candidate_accession_count_used_for_estimate": 826,
+    "esm2_150m_640d_float32_bytes": 2114560,
+    "esm2_150m_640d_float32_mib": 2.017,
+    "esm_c_300m_assumed_960d_float32_bytes": 3171840,
+    "esm_c_300m_assumed_960d_float32_mib": 3.025,
+    "note": "Vector bytes only for one mean-pooled vector per accession, float32; excludes tokenizer/model cache and container/index overhead.",
+    "prott5_1024d_float32_bytes": 3383296,
+    "prott5_1024d_float32_mib": 3.227,
+    "saprot_35m_assumed_480d_float32_bytes": 1585920,
+    "saprot_35m_assumed_480d_float32_mib": 1.512
+  },
+  "existing_external_embedding_samples": [
+    {
+      "backend": "esm2_t6_8m_ur50d",
+      "path": "artifacts/v3_external_source_representation_backend_sample_1025.json",
+      "raw_vectors_persisted": false,
+      "row_count": 12
+    },
+    {
+      "computed_backend": "esm2_t30_150m_ur50d",
+      "path": "artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+      "raw_vectors_persisted": false,
+      "requested_backend": "esm2_t33_650m_ur50d",
+      "row_count": 12
+    },
+    {
+      "backend": "esm2_t6_8m_ur50d",
+      "path": "artifacts/v3_external_source_pilot_representation_backend_sample_1025.json",
+      "raw_vectors_persisted": false,
+      "row_count": 10
+    },
+    {
+      "computed_backend": "esm2_t30_150m_ur50d",
+      "path": "artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+      "raw_vectors_persisted": false,
+      "requested_backend": "esm2_t33_650m_ur50d",
+      "row_count": 10
+    }
+  ],
+  "external_candidate_rows": [
+    {
+      "candidate_id": "external_sourcing:carbonic_anhydrase",
+      "names": [
+        "external carbonic anhydrase rows with Zn-bound water/CO2-bicarbonate context"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": false,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "external_sourcing:ntpase_nucleotide_hydrolase",
+      "names": [
+        "external ATP/GTP/nucleotide hydrolase rows with explicit Mg/nucleotide active states"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": false,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:1",
+      "names": [
+        "glutamate racemase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:11",
+      "names": [
+        "deoxyribonuclease IV (phage-T4-induced)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:110",
+      "names": [
+        "D-amino-acid oxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:123",
+      "names": [
+        "adenylyl-sulfate reductase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:124",
+      "names": [
+        "cytochrome-c oxidase (AA3 type)",
+        "cytochrome-c oxidase AA3"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive_child_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:128",
+      "names": [
+        "Photinus luciferin monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:129",
+      "names": [
+        "taurine dioxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:130",
+      "names": [
+        "naphthalene 1,2-dioxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:131",
+      "names": [
+        "4-hydroxybenzoate 3-monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "near_family_hard_negatives",
+        "oos_hard_negative_for_heme_panel"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:132",
+      "names": [
+        "alkanal monooxygenase (FMN-linked)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:133",
+      "names": [
+        "P450cam camphor monooxygenase",
+        "camphor 5-monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_hard_negative_for_peroxidase_terminal_oxidase",
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:134",
+      "names": [
+        "tyrosine 3-monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:135",
+      "names": [
+        "peptidylglycine monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:141",
+      "names": [
+        "4-cresol dehydrogenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:147",
+      "names": [
+        "serine hydroxymethyltransferase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:148",
+      "names": [
+        "transaldolase (type I)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:15",
+      "names": [
+        "beta-lactamase (Class B1)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:16",
+      "names": [
+        "beta-lactamase (Class B1)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:169",
+      "names": [
+        "dipeptidyl-peptidase IV"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:184",
+      "names": [
+        "pectate lyase L"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:186",
+      "names": [
+        "L-serine ammonia-lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:19",
+      "names": [
+        "mannosyl-oligosaccharide 1,2-alpha-mannosidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:195",
+      "names": [
+        "glutamate-1-semialdehyde 2,1-aminomutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:203",
+      "names": [
+        "lysozyme GH22"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "mcsa_positive_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:205",
+      "names": [
+        "Glycogen phosphorylase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative",
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:208",
+      "names": [
+        "ubiquinol-cytochrome-c reductase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:213",
+      "names": [
+        "alanine racemase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:222",
+      "names": [
+        "fructose-bisphosphate aldolase (Class I)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:230",
+      "names": [
+        "porphobilinogen synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:239",
+      "names": [
+        "peroxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive_child_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:243",
+      "names": [
+        "pyridoxine 5'-phosphate synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:245",
+      "names": [
+        "tyrosine 2,3-aminomutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:249",
+      "names": [
+        "adenosylmethionine--8-amino-7-oxononanoate transaminase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:250",
+      "names": [
+        "chloride peroxidase",
+        "chloride peroxidase (heme dependent)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive_child_anchor_and_wrong_foldseek_diagnostic"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:267",
+      "names": [
+        "dihydrodipicolinate synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:286",
+      "names": [
+        "O-phospho-L-seryl-tRNASec:L-selenocysteinyl-tRNA synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:3",
+      "names": [
+        "NAD(P)H dehydrogenase (quinone)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:305",
+      "names": [
+        "aminodeoxychorismate lyase (class IV)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:324",
+      "names": [
+        "triosephosphate isomerase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:328",
+      "names": [
+        "phosphoribosylanthranilate isomerase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:330",
+      "names": [
+        "serine racemase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:358",
+      "names": [
+        "lysine 2,3-aminomutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative",
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:37",
+      "names": [
+        "prostaglandin-endoperoxide synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_boundary"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:383",
+      "names": [
+        "tryptophan synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:393",
+      "names": [
+        "glucan 1,4-alpha-glucosidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:397",
+      "names": [
+        "alpha-amylase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "mcsa_positive_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:399",
+      "names": [
+        "L-ascorbate peroxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:400",
+      "names": [
+        "licheninase (glycosyl hydrolase 17 family)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:410",
+      "names": [
+        "tryptophanase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:411",
+      "names": [
+        "aromatic-amino-acid transaminase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:418",
+      "names": [
+        "1-aminocyclopropane-1-carboxylate synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:419",
+      "names": [
+        "3-amino-5-hydroxybenzoate synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:422",
+      "names": [
+        "beta-galactosidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "mcsa_positive_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:424",
+      "names": [
+        "phosphoserine transaminase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:428",
+      "names": [
+        "mannan endo-1,4-beta-mannosidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "packet1_fold_conflict_anchor_with_TIM_caveat"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:430",
+      "names": [
+        "8-amino-7-oxononanoate synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:431",
+      "names": [
+        "acetylxylan esterase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:432",
+      "names": [
+        "endo-1,4-beta-xylanase GH11"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "mcsa_positive_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:436",
+      "names": [
+        "beta-amylase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:439",
+      "names": [
+        "hyaluronate lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:440",
+      "names": [
+        "cellulose 1,4-beta-cellobiosidase non-reducing end"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "packet1_router_abstention_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:441",
+      "names": [
+        "chondroitin AC lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:442",
+      "names": [
+        "beta-glucosidase GH1"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "mcsa_positive_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:449",
+      "names": [
+        "cystathionine beta-lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:471",
+      "names": [
+        "inosine, adenosine, and guanine nucleoside hydrolase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:473",
+      "names": [
+        "P450nor nitric oxide reductase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:475",
+      "names": [
+        "chitinase (GH19, Class II)",
+        "chitinase GH19 class II"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "mcsa_positive_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:478",
+      "names": [
+        "chitinase GH18 class II"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "mcsa_positive_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:482",
+      "names": [
+        "2,2-dialkylglycine decarboxylase (pyruvate)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:497",
+      "names": [
+        "flavodiiron nitric oxide reductase",
+        "nitric-oxide reductase (FMN)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negatives",
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:52",
+      "names": [
+        "fructose-bisphosphate aldolase class II"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:54",
+      "names": [
+        "3-dehydroquinate dehydratase (type I)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:547",
+      "names": [
+        "homogentisate 1,2-dioxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:550",
+      "names": [
+        "2-dehydro-3-deoxy-phosphogluconate aldolase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:551",
+      "names": [
+        "phenol 2-monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "oos_hard_negative_for_heme_panel"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:559",
+      "names": [
+        "cellulase GH9"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "mcsa_positive_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:573",
+      "names": [
+        "catalase HPII"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:581",
+      "names": [
+        "hydroxylamine oxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:6",
+      "names": [
+        "glutathione-disulfide reductase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:601",
+      "names": [
+        "myeloperoxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:62",
+      "names": [
+        "methylmalonyl-CoA mutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:63",
+      "names": [
+        "methylaspartate mutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:66",
+      "names": [
+        "D-alanine transaminase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:661",
+      "names": [
+        "arylsulfatase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:681",
+      "names": [
+        "pectinesterase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:694",
+      "names": [
+        "6-deoxyerythronolide B hydroxylase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_hard_negative_for_peroxidase_terminal_oxidase"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:699",
+      "names": [
+        "cytochrome P450 (BM-3)",
+        "cytochrome P450 BM-3"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_hard_negative_for_peroxidase_terminal_oxidase",
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:705",
+      "names": [
+        "rhamnogalacturonan acetylesterase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:709",
+      "names": [
+        "cytochrome-c peroxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:714",
+      "names": [
+        "ubiquinol oxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_verification"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:735",
+      "names": [
+        "cytochrome-c oxidase BA3"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor_and_misleading_fold_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:736",
+      "names": [
+        "mannose-6-phosphate isomerase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:737",
+      "names": [
+        "beta-lysine 5,6-aminomutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_positive_review_only",
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:742",
+      "names": [
+        "kynureninase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:750",
+      "names": [
+        "4-hydroxybutanoyl-CoA dehydratase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:758",
+      "names": [
+        "hydroperoxide dehydratase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:759",
+      "names": [
+        "cystathionine gamma-synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:762",
+      "names": [
+        "glycine C-acetyltransferase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:795",
+      "names": [
+        "heme oxygenase",
+        "heme oxygenase (biliverdin-producing)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_hard_negative_for_peroxidase_terminal_oxidase",
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:83",
+      "names": [
+        "phospholipase A2 (group IB)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:854",
+      "names": [
+        "4-aminobutyrate transaminase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:855",
+      "names": [
+        "cysteine desulfurase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:860",
+      "names": [
+        "ornithine decarboxylase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:865",
+      "names": [
+        "cysteine synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:903",
+      "names": [
+        "cytochrome cd1 nitrite reductase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:933",
+      "names": [
+        "tyrosine phenol-lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:935",
+      "names": [
+        "nitric-oxide synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_hard_negative_for_peroxidase_terminal_oxidase"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:937",
+      "names": [
+        "ornithine decarboxylase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:944",
+      "names": [
+        "lactoperoxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:956",
+      "names": [
+        "L-serine ammonia-lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:97",
+      "names": [
+        "cytidine deaminase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:973",
+      "names": [
+        "DszC protein"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "oos_hard_negative_for_heme_panel"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:98",
+      "names": [
+        "peptide deformylase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "m_csa:990",
+      "names": [
+        "7-hydroxymethyl chlorophyll A reductase (HCAR)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:A0A0C6DRW4",
+      "names": [
+        "DszC protein"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative_for_heme_panel"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:A5JUY8",
+      "names": [
+        "lactoperoxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:C5G6D7",
+      "names": [
+        "Chondroitin sulfate ABC exolyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:E3PRJ4",
+      "names": [
+        "beta-lysine 5,6-aminomutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_positive_review_only"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:E3PRJ5",
+      "names": [
+        "beta-lysine 5,6-aminomutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_positive_review_only"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:H3JQW0",
+      "names": [
+        "2-oxo-Delta(3)-4,5,5-trimethylcyclopentenylacetyl-CoA monooxygenase",
+        "OTEMO"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hold",
+        "source_boundary_hold"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_fmo_external_source_evidence_acquisition_702_20260528.json",
+        "artifacts/v3_fmo_external_structure_geometry_materialization_702_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:I2DBY1",
+      "names": [
+        "AauDyP"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "silver_positive_lead_or_hold"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:K7N5M8",
+      "names": [
+        "Amycolatopsis DyP2"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "silver_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:O15229",
+      "names": [
+        "Kynurenine 3-monooxygenase",
+        "kynurenine 3-monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hold",
+        "source_boundary_hold"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_fmo_external_source_evidence_acquisition_702_20260528.json",
+        "artifacts/v3_fmo_external_structure_geometry_materialization_702_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:O15527",
+      "names": [
+        "Human OGG1 N-glycosylase/DNA lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "sequence_holdout_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:O16025",
+      "names": [
+        "hydroperoxide dehydratase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:O42807",
+      "names": [
+        "Aspergillus feruloyl esterase A"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:O52552",
+      "names": [
+        "3-amino-5-hydroxybenzoate synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:O59791",
+      "names": [
+        "L-serine ammonia-lyase",
+        "serine racemase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:O60568",
+      "names": [
+        "Human LH3 procollagen glycosyltransferase/hydroxylase",
+        "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative",
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P00163",
+      "names": [
+        "ubiquinol-cytochrome-c reductase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P00183",
+      "names": [
+        "P450cam camphor monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_hard_negative_for_peroxidase_terminal_oxidase"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P00396",
+      "names": [
+        "cytochrome-c oxidase AA3"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P00431",
+      "names": [
+        "cytochrome-c peroxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P00433",
+      "names": [
+        "peroxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P00489",
+      "names": [
+        "Glycogen phosphorylase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P00860",
+      "names": [
+        "ornithine decarboxylase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P00883",
+      "names": [
+        "fructose-bisphosphate aldolase (Class I)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P00929",
+      "names": [
+        "tryptophan synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P00935",
+      "names": [
+        "cystathionine gamma-synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P04040",
+      "names": [
+        "human catalase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "silver_positive_lead_or_duplicate_hold"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P04177",
+      "names": [
+        "tyrosine 3-monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P04963",
+      "names": [
+        "chloride peroxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor_and_wrong_foldseek_diagnostic"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P06181",
+      "names": [
+        "ligninase H8"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "family_hold"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P06276",
+      "names": [
+        "Human cholinesterase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P06721",
+      "names": [
+        "cystathionine beta-lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P06744",
+      "names": [
+        "Human glucose-6-phosphate isomerase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P06746",
+      "names": [
+        "DNA polymerase beta 5'-dRP lyase",
+        "DNA polymerase beta 5-dRP lyase",
+        "DNA polymerase beta with 5-dRP lyase activity"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_hard_negative_review_only",
+        "near_family_hard_negative",
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P07511",
+      "names": [
+        "serine hydroxymethyltransferase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P08659",
+      "names": [
+        "Photinus luciferin monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P09367",
+      "names": [
+        "L-serine ammonia-lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P09787",
+      "names": [
+        "4-cresol dehydrogenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P0A110",
+      "names": [
+        "naphthalene 1,2-dioxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P0A1E3",
+      "names": [
+        "cysteine synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P0A2K1",
+      "names": [
+        "tryptophan synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P0A6L2",
+      "names": [
+        "dihydrodipicolinate synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P0A794",
+      "names": [
+        "pyridoxine 5'-phosphate synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P0A7Z0",
+      "names": [
+        "E. coli ribose-5-phosphate isomerase A"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P0A870",
+      "names": [
+        "transaldolase (type I)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P0AB77",
+      "names": [
+        "glycine C-acetyltransferase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P0ABI8",
+      "names": [
+        "ubiquinol oxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_verification"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P0C1A9",
+      "names": [
+        "Dickeya pectinesterase A"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P0CZ00",
+      "names": [
+        "Hyaluronate lyase HylB"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P0DUB6",
+      "names": [
+        "Human alpha-amylase 1A"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P10724",
+      "names": [
+        "alanine racemase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P11652",
+      "names": [
+        "methylmalonyl-CoA mutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P11653",
+      "names": [
+        "methylmalonyl-CoA mutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P11678",
+      "names": [
+        "human eosinophil peroxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "silver_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P12015",
+      "names": [
+        "Cyclohexanone monooxygenase",
+        "cyclohexanone monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hold",
+        "source_clean_for_geometry"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_fmo_external_source_evidence_acquisition_702_20260528.json",
+        "artifacts/v3_fmo_external_structure_geometry_materialization_702_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P12995",
+      "names": [
+        "adenosylmethionine--8-amino-7-oxononanoate transaminase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P12998",
+      "names": [
+        "8-amino-7-oxononanoate synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P13029",
+      "names": [
+        "E. coli KatG catalase-peroxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "silver_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P14280",
+      "names": [
+        "Tomato pectinesterase 1"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P14532",
+      "names": [
+        "Pseudomonas cytochrome c551 peroxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "silver_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P14779",
+      "names": [
+        "cytochrome P450 BM-3"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_hard_negative_for_peroxidase_terminal_oxidase"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P14925",
+      "names": [
+        "peptidylglycine monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P15245",
+      "names": [
+        "phenol 2-monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative_for_heme_panel"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P16932",
+      "names": [
+        "2,2-dialkylglycine decarboxylase (pyruvate)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P19938",
+      "names": [
+        "D-alanine transaminase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P20586",
+      "names": [
+        "4-hydroxybenzoate 3-monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative_for_heme_panel"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P21179",
+      "names": [
+        "catalase HPII"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P23262",
+      "names": [
+        "Salicylate hydroxylase / salicylate 1-monooxygenase",
+        "salicylate 1-monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hold",
+        "source_boundary_hold"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_fmo_external_source_evidence_acquisition_702_20260528.json",
+        "artifacts/v3_fmo_external_structure_geometry_materialization_702_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P23295",
+      "names": [
+        "P450nor nitric oxide reductase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P23721",
+      "names": [
+        "phosphoserine transaminase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P23872",
+      "names": [
+        "E. coli acetyl esterase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P24474",
+      "names": [
+        "cytochrome cd1 nitrite reductase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P24630",
+      "names": [
+        "glutamate-1-semialdehyde 2,1-aminomutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P24670",
+      "names": [
+        "3-dehydroquinate dehydratase (type I)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P28305",
+      "names": [
+        "aminodeoxychorismate lyase (class IV)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P28796",
+      "names": [
+        "tryptophanase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P29372",
+      "names": [
+        "DNA-3-methyladenine glycosylase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P29474",
+      "names": [
+        "nitric-oxide synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_hard_negative_for_peroxidase_terminal_oxidase"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P30176",
+      "names": [
+        "N-glycosidase YbiA"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_lead_incomplete"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P31013",
+      "names": [
+        "tyrosine phenol-lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P31545",
+      "names": [
+        "E. coli EfeB"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "silver_boundary_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P32140",
+      "names": [
+        "E. coli sulfoquinovose isomerase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P33025",
+      "names": [
+        "Pseudouridine-5'-phosphate glycosidase",
+        "Pseudouridine-5-phosphate glycosidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P34949",
+      "names": [
+        "Human mannose-6-phosphate isomerase",
+        "Mannose-6-phosphate isomerase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P35573",
+      "names": [
+        "Glycogen debranching enzyme"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P37351",
+      "names": [
+        "E. coli ribose-5-phosphate isomerase B"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P37610",
+      "names": [
+        "taurine dioxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P37821",
+      "names": [
+        "1-aminocyclopropane-1-carboxylate synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P38567",
+      "names": [
+        "Hyaluronidase PH-20"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P39116",
+      "names": [
+        "Bacillus subtilis pectate lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P39597",
+      "names": [
+        "Bacillus EfeB"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "silver_boundary_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P43099",
+      "names": [
+        "ornithine decarboxylase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P48534",
+      "names": [
+        "L-ascorbate peroxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P49012",
+      "names": [
+        "ligninase LG2"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "duplicate_hold_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P50457",
+      "names": [
+        "4-aminobutyrate aminotransferase PuuE (EC 2.6.1.19) (GABA aminotransferase) (GABA-AT) (Gamma-amino-N-butyrate transaminase) (GABA transaminase) (Glutamate:succinic semialdehyde transaminase)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_like_terminal_duplicate_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P53555",
+      "names": [
+        "L-Lysine--8-amino-7-oxononanoate transaminase (EC 2.6.1.105) (7,8-diamino-pelargonic acid aminotransferase) (DAPA AT) (DAPA aminotransferase) (7,8-diaminononanoate synthase) (DANS) (Diaminopelargonic acid synthase) (L-Lysine--8-amino-7-oxononanoate aminotransferase)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_like_terminal_duplicate_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P56868",
+      "names": [
+        "glutamate racemase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P60174",
+      "names": [
+        "Human triosephosphate isomerase",
+        "Triosephosphate isomerase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative",
+        "candidate_positives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P69922",
+      "names": [
+        "E. coli L-fucose isomerase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P71119",
+      "names": [
+        "heme oxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_hard_negative_for_peroxidase_terminal_oxidase"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P77444",
+      "names": [
+        "cysteine desulfurase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P80077",
+      "names": [
+        "methylaspartate mutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P80078",
+      "names": [
+        "methylaspartate mutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P80147",
+      "names": [
+        "4-aminobutyrate transaminase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P82543",
+      "names": [
+        "cytochrome-c oxidase BA3"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive_child_anchor_and_misleading_fold_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P83218",
+      "names": [
+        "Carrot pectinesterase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P83788",
+      "names": [
+        "kynureninase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P95468",
+      "names": [
+        "aromatic-amino-acid transaminase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:P96060",
+      "names": [
+        "2-aminoethylphosphonate--pyruvate transaminase (EC 2.6.1.37) (2-aminoethylphosphonate aminotransferase) (AEP transaminase) (AEPT)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_like_insufficient_evidence_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q00441",
+      "names": [
+        "6-deoxyerythronolide B hydroxylase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "boundary_hard_negative_for_peroxidase_terminal_oxidase"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q00704",
+      "names": [
+        "Non-sulfated chondroitin lyase E66"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q01740",
+      "names": [
+        "Flavin-containing monooxygenase 1",
+        "human FMO1"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hold",
+        "source_clean_for_geometry"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_fmo_external_source_evidence_acquisition_702_20260528.json",
+        "artifacts/v3_fmo_external_structure_geometry_materialization_702_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q02567",
+      "names": [
+        "manganese peroxidase 1"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "silver_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q05769",
+      "names": [
+        "prostaglandin-endoperoxide synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_boundary"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q09LX1",
+      "names": [
+        "Geobacillus acetylxylan esterase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q13231",
+      "names": [
+        "Chitotriosidase-1"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q13907",
+      "names": [
+        "Human isopentenyl-diphosphate isomerase 1"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q39034",
+      "names": [
+        "Arabidopsis peroxidase 59"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "duplicate_hold_or_silver_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q47KB1",
+      "names": [
+        "Thermobifida DyP"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "duplicate_hold_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q50925",
+      "names": [
+        "hydroxylamine oxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q59643",
+      "names": [
+        "porphobilinogen synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q6LZM9",
+      "names": [
+        "O-phospho-L-seryl-tRNASec:L-selenocysteinyl-tRNA synthase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "positive"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q6NSJ0",
+      "names": [
+        "Alpha-galactosidase MYORG"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "external_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q72LL6",
+      "names": [
+        "2-aminoadipate transaminase (EC 2.6.1.39) (2-aminoadipate aminotransferase) (Alpha-aminoadipate aminotransferase) (AAA-AT) (AadAT)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_like_terminal_duplicate_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q86W56",
+      "names": [
+        "Poly(ADP-ribose) glycohydrolase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q8GMG0",
+      "names": [
+        "tyrosine 2,3-aminomutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q8TD30",
+      "names": [
+        "Alanine aminotransferase 2 (ALT2) (EC 2.6.1.2) (Glutamate pyruvate transaminase 2) (GPT 2) (Glutamic--alanine transaminase 2) (Glutamic--pyruvic transaminase 2)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_like_terminal_duplicate_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q93099",
+      "names": [
+        "homogentisate 1,2-dioxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q939D2",
+      "names": [
+        "Burkholderia KatG"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "duplicate_hold_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q93TJ5",
+      "names": [
+        "4-hydroxyacetophenone monooxygenase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "hold",
+        "source_clean_for_geometry"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_fmo_external_source_evidence_acquisition_702_20260528.json",
+        "artifacts/v3_fmo_external_structure_geometry_materialization_702_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q96I15",
+      "names": [
+        "Selenocysteine lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "candidate_positives",
+        "external_lead_missing_evidence"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q99034",
+      "names": [
+        "Hypocrea acetylxylan esterase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q9AQS0",
+      "names": [
+        "Xanthan lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q9BV20",
+      "names": [
+        "Human methylthioribose-1-phosphate isomerase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q9BXD5",
+      "names": [
+        "N-acetylneuraminate lyase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_hard_negative_review_only",
+        "near_family_hard_negatives"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+        "artifacts/v3_external_stress_panel_roadmap_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q9BXS1",
+      "names": [
+        "Human isopentenyl-diphosphate isomerase 2"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q9BZP6",
+      "names": [
+        "Acidic mammalian chitinase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q9FDN7",
+      "names": [
+        "flavodiiron nitric oxide reductase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "oos_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q9H227",
+      "names": [
+        "Cytosolic beta-glucosidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q9L9D7",
+      "names": [
+        "Rhodococcus cocaine esterase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "OOS_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q9UR19",
+      "names": [
+        "Pleurotus versatile peroxidase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "silver_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q9XBQ8",
+      "names": [
+        "lysine 2,3-aminomutase"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "near_family_hard_negative"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q9Y3R4",
+      "names": [
+        "Sialidase-2"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_lead"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json"
+      ]
+    },
+    {
+      "candidate_id": "uniprot:Q9Y617",
+      "names": [
+        "Phosphoserine aminotransferase (EC 2.6.1.52) (Phosphohydroxythreonine aminotransferase) (PSAT)"
+      ],
+      "raw_embedding_available_locally": false,
+      "roles": [
+        "external_positive_like_terminal_duplicate_control"
+      ],
+      "sequence_addressable": true,
+      "source_artifacts": [
+        "artifacts/v3_external_plp_child_mechanism_panel_20260528.json"
+      ]
+    }
+  ],
+  "guardrails": {
+    "embedding_precompute_performed": false,
+    "imports_changed": false,
+    "labels_changed": false,
+    "large_model_downloads_performed": false,
+    "model_outputs_changed": false,
+    "model_training_triggered": false,
+    "ontologies_changed": false,
+    "production_scoring_changed": false,
+    "registries_changed": false,
+    "thresholds_changed": false
+  },
+  "missing_embedding_manifest": {
+    "amr_missing_status": "no sequence-addressable AMR candidates are frozen yet; first required step is source-access/version manifest and exact candidate sequence manifest.",
+    "current702_missing_entry_ids": [
+      "m_csa:1",
+      "m_csa:2",
+      "m_csa:3",
+      "m_csa:4",
+      "m_csa:5",
+      "m_csa:6",
+      "m_csa:7",
+      "m_csa:8",
+      "m_csa:9",
+      "m_csa:10",
+      "m_csa:11",
+      "m_csa:12",
+      "m_csa:13",
+      "m_csa:14",
+      "m_csa:15",
+      "m_csa:16",
+      "m_csa:17",
+      "m_csa:18",
+      "m_csa:19",
+      "m_csa:20",
+      "m_csa:21",
+      "m_csa:22",
+      "m_csa:23",
+      "m_csa:24",
+      "m_csa:25",
+      "m_csa:26",
+      "m_csa:27",
+      "m_csa:28",
+      "m_csa:29",
+      "m_csa:30",
+      "m_csa:31",
+      "m_csa:32",
+      "m_csa:33",
+      "m_csa:34",
+      "m_csa:35",
+      "m_csa:36",
+      "m_csa:37",
+      "m_csa:38",
+      "m_csa:39",
+      "m_csa:40",
+      "m_csa:41",
+      "m_csa:42",
+      "m_csa:43",
+      "m_csa:44",
+      "m_csa:45",
+      "m_csa:46",
+      "m_csa:47",
+      "m_csa:48",
+      "m_csa:49",
+      "m_csa:50",
+      "m_csa:51",
+      "m_csa:52",
+      "m_csa:53",
+      "m_csa:54",
+      "m_csa:55",
+      "m_csa:56",
+      "m_csa:57",
+      "m_csa:58",
+      "m_csa:59",
+      "m_csa:60",
+      "m_csa:61",
+      "m_csa:62",
+      "m_csa:63",
+      "m_csa:64",
+      "m_csa:65",
+      "m_csa:66",
+      "m_csa:67",
+      "m_csa:68",
+      "m_csa:69",
+      "m_csa:70",
+      "m_csa:71",
+      "m_csa:72",
+      "m_csa:73",
+      "m_csa:74",
+      "m_csa:75",
+      "m_csa:76",
+      "m_csa:77",
+      "m_csa:78",
+      "m_csa:79",
+      "m_csa:80",
+      "m_csa:81",
+      "m_csa:82",
+      "m_csa:83",
+      "m_csa:84",
+      "m_csa:85",
+      "m_csa:86",
+      "m_csa:87",
+      "m_csa:88",
+      "m_csa:89",
+      "m_csa:90",
+      "m_csa:91",
+      "m_csa:92",
+      "m_csa:93",
+      "m_csa:94",
+      "m_csa:95",
+      "m_csa:96",
+      "m_csa:97",
+      "m_csa:98",
+      "m_csa:99",
+      "m_csa:100",
+      "m_csa:101",
+      "m_csa:102",
+      "m_csa:103",
+      "m_csa:104",
+      "m_csa:105",
+      "m_csa:106",
+      "m_csa:107",
+      "m_csa:108",
+      "m_csa:109",
+      "m_csa:110",
+      "m_csa:111",
+      "m_csa:112",
+      "m_csa:113",
+      "m_csa:114",
+      "m_csa:115",
+      "m_csa:116",
+      "m_csa:117",
+      "m_csa:118",
+      "m_csa:119",
+      "m_csa:120",
+      "m_csa:121",
+      "m_csa:122",
+      "m_csa:123",
+      "m_csa:124",
+      "m_csa:125",
+      "m_csa:126",
+      "m_csa:127",
+      "m_csa:128",
+      "m_csa:129",
+      "m_csa:130",
+      "m_csa:131",
+      "m_csa:132",
+      "m_csa:133",
+      "m_csa:134",
+      "m_csa:135",
+      "m_csa:136",
+      "m_csa:137",
+      "m_csa:138",
+      "m_csa:139",
+      "m_csa:140",
+      "m_csa:141",
+      "m_csa:142",
+      "m_csa:143",
+      "m_csa:144",
+      "m_csa:145",
+      "m_csa:146",
+      "m_csa:147",
+      "m_csa:148",
+      "m_csa:149",
+      "m_csa:150",
+      "m_csa:151",
+      "m_csa:152",
+      "m_csa:153",
+      "m_csa:154",
+      "m_csa:155",
+      "m_csa:156",
+      "m_csa:157",
+      "m_csa:158",
+      "m_csa:159",
+      "m_csa:160",
+      "m_csa:161",
+      "m_csa:162",
+      "m_csa:163",
+      "m_csa:164",
+      "m_csa:165",
+      "m_csa:166",
+      "m_csa:167",
+      "m_csa:168",
+      "m_csa:169",
+      "m_csa:170",
+      "m_csa:171",
+      "m_csa:172",
+      "m_csa:173",
+      "m_csa:174",
+      "m_csa:175",
+      "m_csa:176",
+      "m_csa:177",
+      "m_csa:178",
+      "m_csa:179",
+      "m_csa:180",
+      "m_csa:181",
+      "m_csa:182",
+      "m_csa:183",
+      "m_csa:184",
+      "m_csa:185",
+      "m_csa:186",
+      "m_csa:187",
+      "m_csa:188",
+      "m_csa:189",
+      "m_csa:190",
+      "m_csa:191",
+      "m_csa:192",
+      "m_csa:193",
+      "m_csa:194",
+      "m_csa:195",
+      "m_csa:196",
+      "m_csa:197",
+      "m_csa:198",
+      "m_csa:199",
+      "m_csa:200",
+      "m_csa:201",
+      "m_csa:202",
+      "m_csa:203",
+      "m_csa:204",
+      "m_csa:205",
+      "m_csa:206",
+      "m_csa:207",
+      "m_csa:208",
+      "m_csa:209",
+      "m_csa:210",
+      "m_csa:211",
+      "m_csa:212",
+      "m_csa:213",
+      "m_csa:214",
+      "m_csa:215",
+      "m_csa:216",
+      "m_csa:217",
+      "m_csa:218",
+      "m_csa:219",
+      "m_csa:220",
+      "m_csa:221",
+      "m_csa:222",
+      "m_csa:223",
+      "m_csa:224",
+      "m_csa:225",
+      "m_csa:226",
+      "m_csa:227",
+      "m_csa:228",
+      "m_csa:229",
+      "m_csa:230",
+      "m_csa:231",
+      "m_csa:232",
+      "m_csa:233",
+      "m_csa:234",
+      "m_csa:235",
+      "m_csa:236",
+      "m_csa:237",
+      "m_csa:238",
+      "m_csa:239",
+      "m_csa:240",
+      "m_csa:241",
+      "m_csa:242",
+      "m_csa:243",
+      "m_csa:244",
+      "m_csa:245",
+      "m_csa:246",
+      "m_csa:247",
+      "m_csa:248",
+      "m_csa:249",
+      "m_csa:250",
+      "m_csa:251",
+      "m_csa:252",
+      "m_csa:253",
+      "m_csa:254",
+      "m_csa:255",
+      "m_csa:256",
+      "m_csa:257",
+      "m_csa:258",
+      "m_csa:259",
+      "m_csa:260",
+      "m_csa:261",
+      "m_csa:262",
+      "m_csa:263",
+      "m_csa:264",
+      "m_csa:265",
+      "m_csa:266",
+      "m_csa:267",
+      "m_csa:268",
+      "m_csa:269",
+      "m_csa:270",
+      "m_csa:271",
+      "m_csa:272",
+      "m_csa:273",
+      "m_csa:274",
+      "m_csa:275",
+      "m_csa:276",
+      "m_csa:277",
+      "m_csa:278",
+      "m_csa:279",
+      "m_csa:280",
+      "m_csa:281",
+      "m_csa:282",
+      "m_csa:283",
+      "m_csa:284",
+      "m_csa:285",
+      "m_csa:286",
+      "m_csa:287",
+      "m_csa:288",
+      "m_csa:289",
+      "m_csa:290",
+      "m_csa:291",
+      "m_csa:292",
+      "m_csa:293",
+      "m_csa:294",
+      "m_csa:295",
+      "m_csa:296",
+      "m_csa:297",
+      "m_csa:298",
+      "m_csa:299",
+      "m_csa:300",
+      "m_csa:301",
+      "m_csa:302",
+      "m_csa:303",
+      "m_csa:304",
+      "m_csa:305",
+      "m_csa:306",
+      "m_csa:307",
+      "m_csa:308",
+      "m_csa:309",
+      "m_csa:310",
+      "m_csa:311",
+      "m_csa:312",
+      "m_csa:313",
+      "m_csa:314",
+      "m_csa:315",
+      "m_csa:316",
+      "m_csa:317",
+      "m_csa:318",
+      "m_csa:319",
+      "m_csa:320",
+      "m_csa:321",
+      "m_csa:322",
+      "m_csa:323",
+      "m_csa:324",
+      "m_csa:325",
+      "m_csa:326",
+      "m_csa:327",
+      "m_csa:328",
+      "m_csa:329",
+      "m_csa:330",
+      "m_csa:331",
+      "m_csa:332",
+      "m_csa:333",
+      "m_csa:334",
+      "m_csa:335",
+      "m_csa:336",
+      "m_csa:337",
+      "m_csa:338",
+      "m_csa:339",
+      "m_csa:340",
+      "m_csa:341",
+      "m_csa:342",
+      "m_csa:343",
+      "m_csa:344",
+      "m_csa:345",
+      "m_csa:346",
+      "m_csa:347",
+      "m_csa:348",
+      "m_csa:349",
+      "m_csa:350",
+      "m_csa:351",
+      "m_csa:352",
+      "m_csa:353",
+      "m_csa:354",
+      "m_csa:355",
+      "m_csa:356",
+      "m_csa:357",
+      "m_csa:358",
+      "m_csa:359",
+      "m_csa:360",
+      "m_csa:361",
+      "m_csa:362",
+      "m_csa:363",
+      "m_csa:364",
+      "m_csa:365",
+      "m_csa:366",
+      "m_csa:367",
+      "m_csa:368",
+      "m_csa:369",
+      "m_csa:370",
+      "m_csa:371",
+      "m_csa:372",
+      "m_csa:373",
+      "m_csa:374",
+      "m_csa:375",
+      "m_csa:376",
+      "m_csa:377",
+      "m_csa:378",
+      "m_csa:379",
+      "m_csa:380",
+      "m_csa:381",
+      "m_csa:382",
+      "m_csa:383",
+      "m_csa:384",
+      "m_csa:385",
+      "m_csa:386",
+      "m_csa:387",
+      "m_csa:388",
+      "m_csa:389",
+      "m_csa:390",
+      "m_csa:391",
+      "m_csa:392",
+      "m_csa:393",
+      "m_csa:394",
+      "m_csa:395",
+      "m_csa:396",
+      "m_csa:397",
+      "m_csa:398",
+      "m_csa:399",
+      "m_csa:400",
+      "m_csa:401",
+      "m_csa:402",
+      "m_csa:403",
+      "m_csa:404",
+      "m_csa:405",
+      "m_csa:406",
+      "m_csa:407",
+      "m_csa:408",
+      "m_csa:409",
+      "m_csa:410",
+      "m_csa:411",
+      "m_csa:412",
+      "m_csa:413",
+      "m_csa:414",
+      "m_csa:415",
+      "m_csa:416",
+      "m_csa:417",
+      "m_csa:418",
+      "m_csa:419",
+      "m_csa:420",
+      "m_csa:421",
+      "m_csa:422",
+      "m_csa:423",
+      "m_csa:424",
+      "m_csa:425",
+      "m_csa:426",
+      "m_csa:427",
+      "m_csa:428",
+      "m_csa:429",
+      "m_csa:430",
+      "m_csa:431",
+      "m_csa:432",
+      "m_csa:433",
+      "m_csa:434",
+      "m_csa:435",
+      "m_csa:436",
+      "m_csa:437",
+      "m_csa:438",
+      "m_csa:439",
+      "m_csa:440",
+      "m_csa:441",
+      "m_csa:442",
+      "m_csa:443",
+      "m_csa:444",
+      "m_csa:445",
+      "m_csa:446",
+      "m_csa:447",
+      "m_csa:448",
+      "m_csa:449",
+      "m_csa:450",
+      "m_csa:451",
+      "m_csa:453",
+      "m_csa:454",
+      "m_csa:455",
+      "m_csa:456",
+      "m_csa:457",
+      "m_csa:458",
+      "m_csa:459",
+      "m_csa:460",
+      "m_csa:461",
+      "m_csa:462",
+      "m_csa:463",
+      "m_csa:464",
+      "m_csa:465",
+      "m_csa:466",
+      "m_csa:467",
+      "m_csa:468",
+      "m_csa:469",
+      "m_csa:470",
+      "m_csa:471",
+      "m_csa:472",
+      "m_csa:473",
+      "m_csa:474",
+      "m_csa:475",
+      "m_csa:476",
+      "m_csa:477",
+      "m_csa:478",
+      "m_csa:479",
+      "m_csa:480",
+      "m_csa:481",
+      "m_csa:482",
+      "m_csa:483",
+      "m_csa:484",
+      "m_csa:485",
+      "m_csa:486",
+      "m_csa:487",
+      "m_csa:488",
+      "m_csa:490",
+      "m_csa:491",
+      "m_csa:492",
+      "m_csa:493",
+      "m_csa:495",
+      "m_csa:496",
+      "m_csa:497",
+      "m_csa:498",
+      "m_csa:499",
+      "m_csa:500",
+      "m_csa:501",
+      "m_csa:502",
+      "m_csa:503",
+      "m_csa:504",
+      "m_csa:505",
+      "m_csa:506",
+      "m_csa:507",
+      "m_csa:508",
+      "m_csa:509",
+      "m_csa:511",
+      "m_csa:512",
+      "m_csa:513",
+      "m_csa:514",
+      "m_csa:515",
+      "m_csa:516",
+      "m_csa:517",
+      "m_csa:518",
+      "m_csa:519",
+      "m_csa:520",
+      "m_csa:521",
+      "m_csa:522",
+      "m_csa:523",
+      "m_csa:524",
+      "m_csa:525",
+      "m_csa:526",
+      "m_csa:527",
+      "m_csa:528",
+      "m_csa:530",
+      "m_csa:531",
+      "m_csa:532",
+      "m_csa:533",
+      "m_csa:535",
+      "m_csa:536",
+      "m_csa:537",
+      "m_csa:538",
+      "m_csa:539",
+      "m_csa:540",
+      "m_csa:541",
+      "m_csa:542",
+      "m_csa:543",
+      "m_csa:544",
+      "m_csa:545",
+      "m_csa:546",
+      "m_csa:547",
+      "m_csa:548",
+      "m_csa:549",
+      "m_csa:550",
+      "m_csa:551",
+      "m_csa:552",
+      "m_csa:554",
+      "m_csa:555",
+      "m_csa:556",
+      "m_csa:557",
+      "m_csa:560",
+      "m_csa:561",
+      "m_csa:562",
+      "m_csa:563",
+      "m_csa:565",
+      "m_csa:566",
+      "m_csa:569",
+      "m_csa:570",
+      "m_csa:571",
+      "m_csa:573",
+      "m_csa:574",
+      "m_csa:575",
+      "m_csa:576",
+      "m_csa:577",
+      "m_csa:579",
+      "m_csa:580",
+      "m_csa:581",
+      "m_csa:582",
+      "m_csa:583",
+      "m_csa:584",
+      "m_csa:585",
+      "m_csa:586",
+      "m_csa:587",
+      "m_csa:588",
+      "m_csa:589",
+      "m_csa:590",
+      "m_csa:593",
+      "m_csa:594",
+      "m_csa:595",
+      "m_csa:596",
+      "m_csa:599",
+      "m_csa:601",
+      "m_csa:603",
+      "m_csa:604",
+      "m_csa:605",
+      "m_csa:606",
+      "m_csa:607",
+      "m_csa:608",
+      "m_csa:609",
+      "m_csa:610",
+      "m_csa:612",
+      "m_csa:613",
+      "m_csa:614",
+      "m_csa:615",
+      "m_csa:616",
+      "m_csa:617",
+      "m_csa:618",
+      "m_csa:619",
+      "m_csa:620",
+      "m_csa:621",
+      "m_csa:622",
+      "m_csa:623",
+      "m_csa:625",
+      "m_csa:626",
+      "m_csa:627",
+      "m_csa:628",
+      "m_csa:629",
+      "m_csa:630",
+      "m_csa:631",
+      "m_csa:633",
+      "m_csa:634",
+      "m_csa:635",
+      "m_csa:636",
+      "m_csa:637",
+      "m_csa:638",
+      "m_csa:639",
+      "m_csa:640",
+      "m_csa:641",
+      "m_csa:645",
+      "m_csa:646",
+      "m_csa:647",
+      "m_csa:648",
+      "m_csa:649",
+      "m_csa:651",
+      "m_csa:652",
+      "m_csa:666",
+      "m_csa:668",
+      "m_csa:686",
+      "m_csa:688",
+      "m_csa:694",
+      "m_csa:697",
+      "m_csa:699",
+      "m_csa:705",
+      "m_csa:706",
+      "m_csa:709",
+      "m_csa:710",
+      "m_csa:714",
+      "m_csa:716",
+      "m_csa:720",
+      "m_csa:723",
+      "m_csa:727",
+      "m_csa:728",
+      "m_csa:733",
+      "m_csa:735",
+      "m_csa:739",
+      "m_csa:740",
+      "m_csa:742",
+      "m_csa:750",
+      "m_csa:754",
+      "m_csa:758",
+      "m_csa:759",
+      "m_csa:762",
+      "m_csa:771",
+      "m_csa:776",
+      "m_csa:786",
+      "m_csa:791",
+      "m_csa:795",
+      "m_csa:798",
+      "m_csa:800",
+      "m_csa:808",
+      "m_csa:812",
+      "m_csa:822",
+      "m_csa:823",
+      "m_csa:837",
+      "m_csa:838",
+      "m_csa:839",
+      "m_csa:852",
+      "m_csa:853",
+      "m_csa:854",
+      "m_csa:855",
+      "m_csa:856",
+      "m_csa:860",
+      "m_csa:862",
+      "m_csa:865",
+      "m_csa:866",
+      "m_csa:879",
+      "m_csa:892",
+      "m_csa:895",
+      "m_csa:897",
+      "m_csa:900",
+      "m_csa:901",
+      "m_csa:903",
+      "m_csa:912",
+      "m_csa:916",
+      "m_csa:917",
+      "m_csa:922",
+      "m_csa:933",
+      "m_csa:935",
+      "m_csa:937",
+      "m_csa:941",
+      "m_csa:942",
+      "m_csa:944",
+      "m_csa:956",
+      "m_csa:973",
+      "m_csa:978",
+      "m_csa:988",
+      "m_csa:990",
+      "m_csa:994",
+      "m_csa:998",
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "external_missing_candidate_ids": [
+      "m_csa:1",
+      "m_csa:11",
+      "m_csa:110",
+      "m_csa:123",
+      "m_csa:124",
+      "m_csa:128",
+      "m_csa:129",
+      "m_csa:130",
+      "m_csa:131",
+      "m_csa:132",
+      "m_csa:133",
+      "m_csa:134",
+      "m_csa:135",
+      "m_csa:141",
+      "m_csa:147",
+      "m_csa:148",
+      "m_csa:15",
+      "m_csa:16",
+      "m_csa:169",
+      "m_csa:184",
+      "m_csa:186",
+      "m_csa:19",
+      "m_csa:195",
+      "m_csa:203",
+      "m_csa:205",
+      "m_csa:208",
+      "m_csa:213",
+      "m_csa:222",
+      "m_csa:230",
+      "m_csa:239",
+      "m_csa:243",
+      "m_csa:245",
+      "m_csa:249",
+      "m_csa:250",
+      "m_csa:267",
+      "m_csa:286",
+      "m_csa:3",
+      "m_csa:305",
+      "m_csa:324",
+      "m_csa:328",
+      "m_csa:330",
+      "m_csa:358",
+      "m_csa:37",
+      "m_csa:383",
+      "m_csa:393",
+      "m_csa:397",
+      "m_csa:399",
+      "m_csa:400",
+      "m_csa:410",
+      "m_csa:411",
+      "m_csa:418",
+      "m_csa:419",
+      "m_csa:422",
+      "m_csa:424",
+      "m_csa:428",
+      "m_csa:430",
+      "m_csa:431",
+      "m_csa:432",
+      "m_csa:436",
+      "m_csa:439",
+      "m_csa:440",
+      "m_csa:441",
+      "m_csa:442",
+      "m_csa:449",
+      "m_csa:471",
+      "m_csa:473",
+      "m_csa:475",
+      "m_csa:478",
+      "m_csa:482",
+      "m_csa:497",
+      "m_csa:52",
+      "m_csa:54",
+      "m_csa:547",
+      "m_csa:550",
+      "m_csa:551",
+      "m_csa:559",
+      "m_csa:573",
+      "m_csa:581",
+      "m_csa:6",
+      "m_csa:601",
+      "m_csa:62",
+      "m_csa:63",
+      "m_csa:66",
+      "m_csa:661",
+      "m_csa:681",
+      "m_csa:694",
+      "m_csa:699",
+      "m_csa:705",
+      "m_csa:709",
+      "m_csa:714",
+      "m_csa:735",
+      "m_csa:736",
+      "m_csa:737",
+      "m_csa:742",
+      "m_csa:750",
+      "m_csa:758",
+      "m_csa:759",
+      "m_csa:762",
+      "m_csa:795",
+      "m_csa:83",
+      "m_csa:854",
+      "m_csa:855",
+      "m_csa:860",
+      "m_csa:865",
+      "m_csa:903",
+      "m_csa:933",
+      "m_csa:935",
+      "m_csa:937",
+      "m_csa:944",
+      "m_csa:956",
+      "m_csa:97",
+      "m_csa:973",
+      "m_csa:98",
+      "m_csa:990",
+      "uniprot:A0A0C6DRW4",
+      "uniprot:A5JUY8",
+      "uniprot:C5G6D7",
+      "uniprot:E3PRJ4",
+      "uniprot:E3PRJ5",
+      "uniprot:H3JQW0",
+      "uniprot:I2DBY1",
+      "uniprot:K7N5M8",
+      "uniprot:O15229",
+      "uniprot:O15527",
+      "uniprot:O16025",
+      "uniprot:O42807",
+      "uniprot:O52552",
+      "uniprot:O59791",
+      "uniprot:O60568",
+      "uniprot:P00163",
+      "uniprot:P00183",
+      "uniprot:P00396",
+      "uniprot:P00431",
+      "uniprot:P00433",
+      "uniprot:P00489",
+      "uniprot:P00860",
+      "uniprot:P00883",
+      "uniprot:P00929",
+      "uniprot:P00935",
+      "uniprot:P04040",
+      "uniprot:P04177",
+      "uniprot:P04963",
+      "uniprot:P06181",
+      "uniprot:P06276",
+      "uniprot:P06721",
+      "uniprot:P06744",
+      "uniprot:P06746",
+      "uniprot:P07511",
+      "uniprot:P08659",
+      "uniprot:P09367",
+      "uniprot:P09787",
+      "uniprot:P0A110",
+      "uniprot:P0A1E3",
+      "uniprot:P0A2K1",
+      "uniprot:P0A6L2",
+      "uniprot:P0A794",
+      "uniprot:P0A7Z0",
+      "uniprot:P0A870",
+      "uniprot:P0AB77",
+      "uniprot:P0ABI8",
+      "uniprot:P0C1A9",
+      "uniprot:P0CZ00",
+      "uniprot:P0DUB6",
+      "uniprot:P10724",
+      "uniprot:P11652",
+      "uniprot:P11653",
+      "uniprot:P11678",
+      "uniprot:P12015",
+      "uniprot:P12995",
+      "uniprot:P12998",
+      "uniprot:P13029",
+      "uniprot:P14280",
+      "uniprot:P14532",
+      "uniprot:P14779",
+      "uniprot:P14925",
+      "uniprot:P15245",
+      "uniprot:P16932",
+      "uniprot:P19938",
+      "uniprot:P20586",
+      "uniprot:P21179",
+      "uniprot:P23262",
+      "uniprot:P23295",
+      "uniprot:P23721",
+      "uniprot:P23872",
+      "uniprot:P24474",
+      "uniprot:P24630",
+      "uniprot:P24670",
+      "uniprot:P28305",
+      "uniprot:P28796",
+      "uniprot:P29372",
+      "uniprot:P29474",
+      "uniprot:P30176",
+      "uniprot:P31013",
+      "uniprot:P31545",
+      "uniprot:P32140",
+      "uniprot:P33025",
+      "uniprot:P34949",
+      "uniprot:P35573",
+      "uniprot:P37351",
+      "uniprot:P37610",
+      "uniprot:P37821",
+      "uniprot:P38567",
+      "uniprot:P39116",
+      "uniprot:P39597",
+      "uniprot:P43099",
+      "uniprot:P48534",
+      "uniprot:P49012",
+      "uniprot:P50457",
+      "uniprot:P53555",
+      "uniprot:P56868",
+      "uniprot:P60174",
+      "uniprot:P69922",
+      "uniprot:P71119",
+      "uniprot:P77444",
+      "uniprot:P80077",
+      "uniprot:P80078",
+      "uniprot:P80147",
+      "uniprot:P82543",
+      "uniprot:P83218",
+      "uniprot:P83788",
+      "uniprot:P95468",
+      "uniprot:P96060",
+      "uniprot:Q00441",
+      "uniprot:Q00704",
+      "uniprot:Q01740",
+      "uniprot:Q02567",
+      "uniprot:Q05769",
+      "uniprot:Q09LX1",
+      "uniprot:Q13231",
+      "uniprot:Q13907",
+      "uniprot:Q39034",
+      "uniprot:Q47KB1",
+      "uniprot:Q50925",
+      "uniprot:Q59643",
+      "uniprot:Q6LZM9",
+      "uniprot:Q6NSJ0",
+      "uniprot:Q72LL6",
+      "uniprot:Q86W56",
+      "uniprot:Q8GMG0",
+      "uniprot:Q8TD30",
+      "uniprot:Q93099",
+      "uniprot:Q939D2",
+      "uniprot:Q93TJ5",
+      "uniprot:Q96I15",
+      "uniprot:Q99034",
+      "uniprot:Q9AQS0",
+      "uniprot:Q9BV20",
+      "uniprot:Q9BXD5",
+      "uniprot:Q9BXS1",
+      "uniprot:Q9BZP6",
+      "uniprot:Q9FDN7",
+      "uniprot:Q9H227",
+      "uniprot:Q9L9D7",
+      "uniprot:Q9UR19",
+      "uniprot:Q9XBQ8",
+      "uniprot:Q9Y3R4",
+      "uniprot:Q9Y617"
+    ],
+    "note": "Because precompute was not safe to run, this is an availability inventory, not a new embedding manifest."
+  },
+  "model_weight_size_inventory": {
+    "models": {
+      "EvolutionaryScale/esmc-300m-2024-12": {
+        "all_weight_format_bytes": 1332095738,
+        "primary_weight_bytes": 1332095738,
+        "primary_weight_file": "data/weights/esmc_300m_2024_12_v0.pth"
+      },
+      "Rostlab/prot_t5_xl_half_uniref50-enc": {
+        "all_weight_format_bytes": 2416373051,
+        "primary_weight_bytes": 2416373051,
+        "primary_weight_file": "pytorch_model.bin"
+      },
+      "Rostlab/prot_t5_xl_uniref50": {
+        "all_weight_format_bytes": 33826687956,
+        "primary_weight_bytes": 11275562724,
+        "primary_weight_file": "pytorch_model.bin"
+      },
+      "facebook/esm2_t12_35M_UR50D": {
+        "all_weight_format_bytes": 406420991,
+        "primary_weight_bytes": 136008798,
+        "primary_weight_file": "model.safetensors"
+      },
+      "facebook/esm2_t30_150M_UR50D": {
+        "all_weight_format_bytes": 1783976919,
+        "primary_weight_bytes": 595257706,
+        "primary_weight_file": "model.safetensors"
+      },
+      "facebook/esm2_t33_650M_UR50D": {
+        "all_weight_format_bytes": 7824237983,
+        "primary_weight_bytes": 2609506392,
+        "primary_weight_file": "model.safetensors"
+      },
+      "facebook/esm2_t6_8M_UR50D": {
+        "all_weight_format_bytes": 93048033,
+        "primary_weight_bytes": 31384292,
+        "primary_weight_file": "model.safetensors"
+      },
+      "westlake-repl/SaProt_35M_AF2": {
+        "all_weight_format_bytes": 271730018,
+        "primary_weight_bytes": 134867957,
+        "primary_weight_file": "SaProt_35M_AF2.pt"
+      }
+    },
+    "source": "Hugging Face Hub model file metadata queried without downloading weights; sizes are bytes for named files as of this run."
+  },
+  "next_commands": [
+    {
+      "command": "df -h . && python - <<'PY'\nimport shutil\nfree=shutil.disk_usage('.').free\nraise SystemExit(0 if free >= 10*1024**3 else 1)\nPY",
+      "purpose": "reconfirm local disk guardrail before any compute"
+    },
+    {
+      "command": "PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-backend-sample --representation-backend-plan artifacts/v3_external_source_representation_backend_plan_1025.json --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json --max-rows 100 --top-k 3 --embedding-backend esm2_t30_150m_ur50d --model-name facebook/esm2_t30_150M_UR50D --local-files-only --out artifacts/v3_external_source_representation_backend_esm2_t30_150m_ur50d_sample_1025.json",
+      "leakage_controls": "sequence embeddings only; identifiers/labels/EC/source text remain review context and are not predictive inputs",
+      "purpose": "ESM-2 150M external sample only, local cache required, review-only output; do not use for labels"
+    },
+    {
+      "command": "Implement a read-only sidecar builder that consumes artifacts/v3_sequence_manifest_current702_repaired_20260525.json and writes only new artifacts/*embedding_sidecar*.jsonl or external storage; forbid label/registry/model-output writes; run with --local-files-only.",
+      "leakage_controls": "split and evaluation labels may join only after vectors are materialized; heldout labels must not enter embedding generation",
+      "purpose": "full current702 sidecar remains implementation work, not available as a CLI in this repo"
+    },
+    {
+      "command": "PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk-signal --slice-id 1000_current702_wave1 --readiness artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek --chunk-index 0 --chunk-size 24 --threads 4 --max-runtime-seconds 900 --max-reported-pairs 5000 --out artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_query_chunk_000_20260528.json",
+      "leakage_controls": "structure-only query chunks; no label import or threshold tuning; aggregate only after all chunks are complete and deterministic",
+      "purpose": "Foldseek full-current structural cache only with runtime cap; already has prior blocker for unbounded direct run"
+    },
+    {
+      "command": "Create artifacts/v3_amr_public_source_access_manifest_20260529.json, then an exact non-mutation enzyme candidate sequence manifest; do not download full AMR databases until license/version/size are recorded.",
+      "leakage_controls": "AMR class/family names are source context for candidate selection, not predictive embedding features",
+      "purpose": "AMR prerequisite before embeddings"
+    }
+  ],
+  "review_only": true,
+  "schema_version": "embedding_precompute_feasibility.v1",
+  "source_inventory": [
+    {
+      "path": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+      "sha256": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b",
+      "size_bytes": 576754
+    },
+    {
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151",
+      "size_bytes": 1005735
+    },
+    {
+      "path": "artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json",
+      "sha256": "388533742b51fb78f98b257cd9231a497dee7b6016be3e6cea11b7e44e8511b8",
+      "size_bytes": 945177
+    },
+    {
+      "path": "artifacts/v3_wave1_representation_shootout_result_card_20260526.json",
+      "sha256": "7a33fec362cbc3f5a7e672785cecc265919b4ba6920c3c138e28d0b507998f0b",
+      "size_bytes": 46818
+    },
+    {
+      "path": "artifacts/v3_wave1_representation_shootout_result_card_702_20260527_addendum.json",
+      "sha256": "61277aedbcb9f3c463e2b303408640690d008fecd5c47d29f56b642fc9f7217e",
+      "size_bytes": 5699
+    },
+    {
+      "path": "artifacts/v3_wave1_1_diagnostic_benchmark_result_702_20260527.json",
+      "sha256": "f55b2cc7edf96149ad08ebb76b05fab74373304eb9ab9ded4f253fe82ce2cf0b",
+      "size_bytes": 67579
+    },
+    {
+      "path": "artifacts/v3_wave1_1_model_by_cell_report_702_20260528.json",
+      "sha256": "7c896872a8ae167ca475a6db2702c1ff3805b93acca595ea40e39ed5a0d49be4",
+      "size_bytes": 66823
+    },
+    {
+      "path": "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json",
+      "sha256": "27e4359fde6371cea1c4957542a167124daa6edce23cf62c579a7a60877e98d3",
+      "size_bytes": 887776
+    },
+    {
+      "path": "artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json",
+      "sha256": "bd2fd16bd57f0a472ac6c5d90a4b89587bbc9498fef14dc4bb08ceceeb6e4ebe",
+      "size_bytes": 851181
+    },
+    {
+      "path": "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json",
+      "sha256": "316a97f98b1c2e8242f7bd3e4783a70ba132a571a49a1cea11b27f6cb004cf25",
+      "size_bytes": 508595
+    },
+    {
+      "path": "artifacts/v3_external_structural_cluster_index_1025.json",
+      "sha256": "3264bce5c857c50bba5ca02fd62e9406ee1a85c26f0f2932460635146b873585",
+      "size_bytes": 28369
+    },
+    {
+      "path": "artifacts/v3_external_structural_cluster_index_1025_all30.json",
+      "sha256": "88f67f528a880ca5538466acdc4e6e2987868ff4b2cdc57b44969bf4129ec928",
+      "size_bytes": 161078
+    },
+    {
+      "path": "artifacts/v3_external_source_representation_backend_sample_1025.json",
+      "sha256": "c9d069765f1ba5d1d10c521232441f3086c7d99041003838fc6671c7e6e5081c",
+      "size_bytes": 50052
+    },
+    {
+      "path": "artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+      "sha256": "194c13e6c83d12427ea3acd62c8fbce7d342aeee0db1dfffe3885edab511641e",
+      "size_bytes": 60600
+    },
+    {
+      "path": "artifacts/v3_external_source_pilot_representation_backend_sample_1025.json",
+      "sha256": "414a7eb25fa81a973fef5310c90edefa13eaefb0411d921976fc6044d9075317",
+      "size_bytes": 40050
+    },
+    {
+      "path": "artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+      "sha256": "20006e4e952b520b526011b992126f6ca72cecb81a7524965bebd82859f2d3dd",
+      "size_bytes": 48933
+    },
+    {
+      "path": "artifacts/v3_amr_enzyme_only_poc_scope_and_queue_20260528.json",
+      "sha256": "3da530329d17af505e3c7262e5cb957d8149a3c114ec0587aab4ef96100c2fad",
+      "size_bytes": 44670
+    },
+    {
+      "path": "artifacts/v3_external_stress_panel_roadmap_20260528.json",
+      "sha256": "42271026337b0363189652031b745b8e5eed61d4ee9649f4a6bc05fd7a164ff3",
+      "size_bytes": 52917
+    },
+    {
+      "path": "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
+      "sha256": "762986059e3e72ee8c25279a034b0f17c74e4451d322683a21cb37f69dbfc8c7",
+      "size_bytes": 199342
+    },
+    {
+      "path": "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
+      "sha256": "5fd73c1a47a68047433476e5b04ffd94062117d8710139b8616e8ac38872e20a",
+      "size_bytes": 117846
+    },
+    {
+      "path": "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
+      "sha256": "de7af786060617d183ba45cad89095ed7393da6c11e3027b90f740013676b3a8",
+      "size_bytes": 81877
+    },
+    {
+      "path": "artifacts/v3_fmo_external_source_evidence_acquisition_702_20260528.json",
+      "sha256": "12fd85cadaa4835b21a25bdfaa6ce68d54b1918958357657bc2ba1aef93bc1aa",
+      "size_bytes": 37657
+    },
+    {
+      "path": "artifacts/v3_fmo_external_structure_geometry_materialization_702_20260528.json",
+      "sha256": "13253822515cdb6e44f47f3180075f8fdd0ee3810bd1fd998d648396151c12be",
+      "size_bytes": 40792
+    }
+  ],
+  "standardized_wave1_exports": {
+    "foldseek_all_materializable_tm_signal": "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json",
+    "foldseek_current702_coordinate_readiness": "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json",
+    "learned_retrieval_manifest_current702_full_interface_only": "artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json",
+    "sequence_manifest_current702_repaired": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    "wave1_1_diagnostic_benchmark_result_current702": "artifacts/v3_wave1_1_diagnostic_benchmark_result_702_20260527.json",
+    "wave1_1_model_by_cell_report_current702": "artifacts/v3_wave1_1_model_by_cell_report_702_20260528.json",
+    "wave1_representation_shootout_result_card": "artifacts/v3_wave1_representation_shootout_result_card_20260526.json"
+  },
+  "status": "blocked_no_embedding_precompute_run"
+}
