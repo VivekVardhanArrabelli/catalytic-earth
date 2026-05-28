@@ -1,0 +1,534 @@
+{
+  "artifact_id": "v3_router_queue_leakage_canary_audit_20260528",
+  "canary_counts": {
+    "clean_near_orphan_anchor": 5,
+    "external_boundary_hard_negative": 5,
+    "fold_conflict_anchor": 3,
+    "oos_router_control": 5,
+    "parent_positive_control": 5
+  },
+  "created_utc": "2026-05-28T09:17:29.454382Z",
+  "duplicate_panel_check": {
+    "conflicting_candidates": [
+      {
+        "candidate_id": "m_csa:131",
+        "classification": "conflicting_positive_and_hard_negative_roles_review_required",
+        "display_name": "4-hydroxybenzoate 3-monooxygenase",
+        "panel_roles": [
+          "flavin_monooxygenase",
+          "oos_hard_negative_for_heme_panel",
+          "positive"
+        ],
+        "routes": [
+          "flavin_monooxygenase",
+          "flavin_monooxygenase_c4a_peroxy_oxygen_transfer"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:497",
+        "classification": "conflicting_positive_and_hard_negative_roles_review_required",
+        "display_name": "nitric-oxide reductase (FMN)",
+        "panel_roles": [
+          "non_heme_diiron_redox",
+          "oos_hard_negative",
+          "positive_future_child"
+        ],
+        "routes": [
+          "flavodiiron_no_reductase",
+          "non_heme_diiron_redox"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:551",
+        "classification": "conflicting_positive_and_hard_negative_roles_review_required",
+        "display_name": "phenol 2-monooxygenase",
+        "panel_roles": [
+          "flavin_monooxygenase_future_support",
+          "oos_hard_negative_for_heme_panel",
+          "positive_review_support"
+        ],
+        "routes": [
+          "flavin_monooxygenase_c4a_peroxy_oxygen_transfer",
+          "flavin_monooxygenase_future_support"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:973",
+        "classification": "conflicting_positive_and_hard_negative_roles_review_required",
+        "display_name": "DszC protein",
+        "panel_roles": [
+          "oos_hard_negative_for_heme_panel",
+          "positive_review_support",
+          "two_component_fmnh2_monooxygenase"
+        ],
+        "routes": [
+          "flavin_monooxygenase_c4a_peroxy_oxygen_transfer",
+          "two_component_fmnh2_monooxygenase"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      }
+    ],
+    "conflicting_duplicate_count": 4,
+    "multi_panel_candidate_count": 14,
+    "sample_multi_panel_candidates": [
+      {
+        "candidate_id": "m_csa:128",
+        "classification": "benign_multi_panel_evidence",
+        "display_name": "Photinus-luciferin 4-monooxygenase (ATP-hydrolysing)",
+        "panel_roles": [
+          "luciferase_atp_oxygenase",
+          "oos_hard_negative",
+          "out_of_scope_control"
+        ],
+        "routes": [
+          "luciferase_atp_oxygenase",
+          "nonflavin_oxygenase_hard_negative"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:129",
+        "classification": "benign_multi_panel_evidence",
+        "display_name": "taurine dioxygenase",
+        "panel_roles": [
+          "non_heme_iron_oxygenase",
+          "oos_hard_negative",
+          "out_of_scope_control"
+        ],
+        "routes": [
+          "non_heme_iron_oxygenase",
+          "nonflavin_oxygenase_hard_negative"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:130",
+        "classification": "benign_multi_panel_evidence",
+        "display_name": "naphthalene 1,2-dioxygenase",
+        "panel_roles": [
+          "oos_hard_negative",
+          "out_of_scope_control",
+          "rieske_non_heme_iron_oxygenase"
+        ],
+        "routes": [
+          "nonflavin_oxygenase_hard_negative",
+          "rieske_non_heme_iron_oxygenase"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:131",
+        "classification": "conflicting_positive_and_hard_negative_roles_review_required",
+        "display_name": "4-hydroxybenzoate 3-monooxygenase",
+        "panel_roles": [
+          "flavin_monooxygenase",
+          "oos_hard_negative_for_heme_panel",
+          "positive"
+        ],
+        "routes": [
+          "flavin_monooxygenase",
+          "flavin_monooxygenase_c4a_peroxy_oxygen_transfer"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:133",
+        "classification": "benign_multi_panel_evidence",
+        "display_name": "camphor 5-monooxygenase",
+        "panel_roles": [
+          "boundary_hard_negative_for_peroxidase_terminal_oxidase",
+          "out_of_scope_control",
+          "p450_boundary"
+        ],
+        "routes": [
+          "nonflavin_oxygenase_hard_negative",
+          "p450_boundary"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:134",
+        "classification": "benign_multi_panel_evidence",
+        "display_name": "tyrosine 3-monooxygenase",
+        "panel_roles": [
+          "oos_hard_negative",
+          "out_of_scope_control",
+          "pterin_non_heme_iron_monooxygenase"
+        ],
+        "routes": [
+          "nonflavin_oxygenase_hard_negative",
+          "pterin_non_heme_iron_monooxygenase"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:135",
+        "classification": "benign_multi_panel_evidence",
+        "display_name": "peptidylglycine monooxygenase",
+        "panel_roles": [
+          "copper_oxygenase",
+          "oos_hard_negative",
+          "out_of_scope_control"
+        ],
+        "routes": [
+          "copper_oxygenase",
+          "nonflavin_oxygenase_hard_negative"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:141",
+        "classification": "benign_multi_panel_evidence",
+        "display_name": "4-cresol dehydrogenase (hydroxylating)",
+        "panel_roles": [
+          "heme_plus_flavin_electron_transfer",
+          "near_family_hard_negative"
+        ],
+        "routes": [
+          "flavin_heme_hydroxylating_boundary",
+          "heme_plus_flavin_electron_transfer"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:497",
+        "classification": "conflicting_positive_and_hard_negative_roles_review_required",
+        "display_name": "nitric-oxide reductase (FMN)",
+        "panel_roles": [
+          "non_heme_diiron_redox",
+          "oos_hard_negative",
+          "positive_future_child"
+        ],
+        "routes": [
+          "flavodiiron_no_reductase",
+          "non_heme_diiron_redox"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:551",
+        "classification": "conflicting_positive_and_hard_negative_roles_review_required",
+        "display_name": "phenol 2-monooxygenase",
+        "panel_roles": [
+          "flavin_monooxygenase_future_support",
+          "oos_hard_negative_for_heme_panel",
+          "positive_review_support"
+        ],
+        "routes": [
+          "flavin_monooxygenase_c4a_peroxy_oxygen_transfer",
+          "flavin_monooxygenase_future_support"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:699",
+        "classification": "benign_multi_panel_evidence",
+        "display_name": "cytochrome P450 (BM-3)",
+        "panel_roles": [
+          "boundary_hard_negative_for_peroxidase_terminal_oxidase",
+          "out_of_scope_control",
+          "p450_boundary"
+        ],
+        "routes": [
+          "nonflavin_oxygenase_hard_negative",
+          "p450_boundary"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:795",
+        "classification": "benign_multi_panel_evidence",
+        "display_name": "heme oxygenase (biliverdin-producing)",
+        "panel_roles": [
+          "boundary_hard_negative_for_peroxidase_terminal_oxidase",
+          "heme_oxygenase_boundary",
+          "out_of_scope_control"
+        ],
+        "routes": [
+          "heme_oxygenase_boundary",
+          "nonflavin_oxygenase_hard_negative"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "m_csa:973",
+        "classification": "conflicting_positive_and_hard_negative_roles_review_required",
+        "display_name": "DszC protein",
+        "panel_roles": [
+          "oos_hard_negative_for_heme_panel",
+          "positive_review_support",
+          "two_component_fmnh2_monooxygenase"
+        ],
+        "routes": [
+          "flavin_monooxygenase_c4a_peroxy_oxygen_transfer",
+          "two_component_fmnh2_monooxygenase"
+        ],
+        "source_panels": [
+          "flavin_redox",
+          "heme_redox_boundary"
+        ]
+      },
+      {
+        "candidate_id": "uniprot:P06746",
+        "classification": "benign_multi_panel_evidence",
+        "display_name": "DNA polymerase beta with 5-dRP lyase activity",
+        "panel_roles": [
+          "external_hard_negative_review_only",
+          "near_family_hard_negative"
+        ],
+        "routes": [
+          "dna_lyase_boundary",
+          "non_plp_schiff_base_hard_negative"
+        ],
+        "source_panels": [
+          "glycoside_carbohydrate",
+          "plp_child_mechanism"
+        ]
+      }
+    ]
+  },
+  "forbidden_predictive_metadata_fields": [
+    "display_name",
+    "entry_name",
+    "evidence_summary",
+    "expected_router_behavior",
+    "mechanism_evidence",
+    "name",
+    "provenance",
+    "raw_panel_refs",
+    "reference_uniprot",
+    "sequence_foldseek_neighbor_expectation",
+    "source_refs"
+  ],
+  "gate": {
+    "canary_gate_passed": true,
+    "leakage_gate_passed": true,
+    "next_action": "Use canary table for manual sanity checks only; do not train or retune thresholds from this audit."
+  },
+  "guardrails": {
+    "labels_changed": false,
+    "model_outputs_changed": false,
+    "registries_changed": false,
+    "thresholds_changed": false,
+    "training_executed": false
+  },
+  "manual_canary_table": [
+    {
+      "candidate_id": "m_csa:97",
+      "display_name": "cytidine deaminase",
+      "group": "clean_near_orphan_anchor",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:211",
+      "display_name": "oxygen insensitive NAD(P)H nitroreductase",
+      "group": "clean_near_orphan_anchor",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:250",
+      "display_name": "chloride peroxidase (heme dependent)",
+      "group": "clean_near_orphan_anchor",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:517",
+      "display_name": "carbonate dehydratase (beta class)",
+      "group": "clean_near_orphan_anchor",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:686",
+      "display_name": "diisopropyl-fluorophosphatase",
+      "group": "clean_near_orphan_anchor",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:217",
+      "display_name": "(S)-hydroxynitrile lyase",
+      "group": "fold_conflict_anchor",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:428",
+      "display_name": "mannan endo-1,4-beta-mannosidase",
+      "group": "fold_conflict_anchor",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:477",
+      "display_name": "picornain 3C",
+      "group": "fold_conflict_anchor",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:10",
+      "display_name": "3-hydroxydecanoyl-[acyl-carrier-protein] dehydratase",
+      "group": "oos_router_control",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:30",
+      "display_name": "formate C-acetyltransferase",
+      "group": "oos_router_control",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:31",
+      "display_name": "thymidylate synthase",
+      "group": "oos_router_control",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:116",
+      "display_name": "NAD(P)+ transhydrogenase (AB-specific)",
+      "group": "oos_router_control",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:191",
+      "display_name": "protein disulfide-isomerase (eukaryotic)",
+      "group": "oos_router_control",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:1",
+      "display_name": "glutamate racemase",
+      "group": "external_boundary_hard_negative",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:108",
+      "display_name": "2,4-dienoyl-CoA reductase (NADPH)",
+      "group": "external_boundary_hard_negative",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:109",
+      "display_name": "dihydroorotate oxidase (class II)",
+      "group": "external_boundary_hard_negative",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:110",
+      "display_name": "D-amino-acid oxidase",
+      "group": "external_boundary_hard_negative",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:113",
+      "display_name": "sarcosine oxidase",
+      "group": "external_boundary_hard_negative",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:249",
+      "display_name": "adenosylmethionine--8-amino-7-oxononanoate transaminase",
+      "group": "parent_positive_control",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:411",
+      "display_name": "aromatic-amino-acid transaminase",
+      "group": "parent_positive_control",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:424",
+      "display_name": "phosphoserine transaminase",
+      "group": "parent_positive_control",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:66",
+      "display_name": "D-alanine transaminase",
+      "group": "parent_positive_control",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    },
+    {
+      "candidate_id": "m_csa:854",
+      "display_name": "4-aminobutyrate transaminase",
+      "group": "parent_positive_control",
+      "reason": "frozen manual-inspection canary; review-only, not a training label"
+    }
+  ],
+  "quarantine_check": {
+    "note": "Quarantined rows may appear as review/materialization leads, but not as clean metric anchors, import-ready rows, or predictive-use rows.",
+    "passed": true,
+    "quarantined_ids": [
+      "m_csa:403",
+      "m_csa:497",
+      "m_csa:714",
+      "m_csa:723",
+      "m_csa:735",
+      "m_csa:750",
+      "m_csa:994"
+    ],
+    "violations": []
+  },
+  "review_only": true,
+  "schema_version": "v3_router_queue_leakage_canary_audit_v1",
+  "scope": "leakage_duplicate_and_canary_safety_audit_for_wave1_2_and_external_router_queue",
+  "source_artifacts": [
+    "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+    "artifacts/v3_external_panel_router_queue_20260528.json",
+    "artifacts/v3_bronze_label_mismatch_and_full_tm_audit_702_20260528.json",
+    "artifacts/v3_overnight_decision_dashboard_20260528.json"
+  ],
+  "source_prose_policy": {
+    "passed": true,
+    "policy": "These fields are allowed only for discovery/review provenance and must be stripped from predictive tensors/features."
+  },
+  "status": "completed_review_only_leakage_and_canary_audit"
+}
