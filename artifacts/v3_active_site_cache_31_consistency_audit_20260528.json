@@ -1,0 +1,141 @@
+{
+  "artifact_id": "v3_active_site_cache_31_consistency_audit_20260528",
+  "created_utc": "2026-05-28T10:06:59Z",
+  "guardrails": {
+    "coordinate_fetches_performed": false,
+    "labels_changed": false,
+    "large_downloads_performed": false,
+    "ontologies_changed": false,
+    "production_scoring_changed": false,
+    "registries_changed": false,
+    "thresholds_changed": false,
+    "training_executed": false
+  },
+  "review_only": true,
+  "schema_version": "active_site_cache_consistency_audit.v1",
+  "smoke10": {
+    "active_site_residue_count_distribution": {
+      "count": 10,
+      "max": 7,
+      "mean": 5,
+      "min": 3
+    },
+    "cofactor_family_counts": {
+      "fe_s_cluster": 1,
+      "flavin": 2,
+      "heme": 1,
+      "metal_ion": 5,
+      "none_observed": 3
+    },
+    "distance_bin_counts": {
+      "0_3": 1,
+      "12_16": 22,
+      "16_24": 10,
+      "3_4_5": 4,
+      "4_5_6": 14,
+      "6_8": 12,
+      "8_12": 44
+    },
+    "edge_count_distribution": {
+      "count": 10,
+      "max": 21,
+      "mean": 10.7,
+      "min": 3
+    },
+    "node_count_distribution": {
+      "count": 10,
+      "max": 7,
+      "mean": 5,
+      "min": 3
+    },
+    "predictive_key_leakage_hits": [],
+    "predictive_value_leakage_hits": [],
+    "row_count": 10,
+    "row_level_anomalies": [],
+    "source_group_counts": {
+      "clean_near_orphan_anchor": 7,
+      "fold_conflict_reference_anchor": 3
+    },
+    "structure_cofactor_family_counts": {
+      "fe_s_cluster": 1,
+      "flavin": 2,
+      "heme": 1,
+      "metal_ion": 5,
+      "none_observed": 3
+    }
+  },
+  "source_artifacts": [
+    "artifacts/v3_active_site_encoder_cache_smoke_20260528.jsonl",
+    "artifacts/v3_active_site_encoder_cache_smoke_summary_20260528.json",
+    "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+    "artifacts/v3_active_site_encoder_cache_wave1_2_31_summary_20260528.json"
+  ],
+  "status": "complete_read_only_cache_audit",
+  "summary": {
+    "cache_sufficient_for_future_active_site_encoder_smoke": true,
+    "claim_boundary": "Feature extraction smoke only; not a trained model, not label import, not benchmark claim.",
+    "critical_shape_anomaly_count": 0,
+    "predictive_leakage_hit_count": 0,
+    "smoke10_row_count": 10,
+    "summary10_forbidden_inputs_used": [],
+    "summary31_forbidden_inputs_used": [],
+    "wave1_2_31_row_count": 31
+  },
+  "wave1_2_31": {
+    "active_site_residue_count_distribution": {
+      "count": 31,
+      "max": 12,
+      "mean": 5.258,
+      "min": 3
+    },
+    "cofactor_family_counts": {
+      "fe_s_cluster": 2,
+      "flavin": 6,
+      "heme": 5,
+      "metal_ion": 8,
+      "nad": 1,
+      "none_observed": 13
+    },
+    "distance_bin_counts": {
+      "0_3": 2,
+      "12_16": 85,
+      "16_24": 65,
+      "24_40": 24,
+      "3_4_5": 21,
+      "40_plus": 1,
+      "4_5_6": 37,
+      "6_8": 33,
+      "8_12": 119
+    },
+    "edge_count_distribution": {
+      "count": 31,
+      "max": 66,
+      "mean": 12.484,
+      "min": 3
+    },
+    "node_count_distribution": {
+      "count": 31,
+      "max": 12,
+      "mean": 5.226,
+      "min": 3
+    },
+    "predictive_key_leakage_hits": [],
+    "predictive_value_leakage_hits": [],
+    "row_count": 31,
+    "row_level_anomalies": [],
+    "source_group_counts": {
+      "clean_near_orphan_anchor": 7,
+      "external_router_priority": 12,
+      "fold_conflict_reference_anchor": 3,
+      "oos_router_control": 9
+    },
+    "structure_cofactor_family_counts": {
+      "fe_s_cluster": 2,
+      "flavin": 6,
+      "heme": 5,
+      "metal_ion": 8,
+      "nad": 1,
+      "none_observed": 13
+    }
+  }
+}

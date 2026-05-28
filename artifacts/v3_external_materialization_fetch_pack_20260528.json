@@ -1,0 +1,412 @@
+{
+  "artifact_id": "v3_external_materialization_fetch_pack_20260528",
+  "created_utc": "2026-05-28T10:06:59Z",
+  "guardrails": {
+    "commands_are_for_future_approval_only": true,
+    "coordinate_fetches_performed": false,
+    "labels_changed": false,
+    "large_downloads_performed": false,
+    "ontologies_changed": false,
+    "production_scoring_changed": false,
+    "registries_changed": false,
+    "thresholds_changed": false,
+    "training_executed": false
+  },
+  "next_gate": {
+    "after_fetch": "run label-blind coordinate/pocket extraction and cache consistency audit before any representation experiment",
+    "do_not_do": "do not import labels or train a model from this pack alone",
+    "requires_user_approval_before_fetch": true
+  },
+  "review_only": true,
+  "rows": [
+    {
+      "blocker_to_clear_before_materialization": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_064",
+      "coordinate_plan": {
+        "expected_output_path": "artifacts/external_coordinates_20260528/pdb_3PG4.cif",
+        "fallback_afdb_command_after_approval": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-C7C422-F1-model_v4.cif -o artifacts/external_coordinates_20260528/AF-C7C422-F1-model_v4.cif",
+        "future_command_after_approval": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 3PG4 --candidate-id mh_064 --out-dir artifacts/external_coordinates_20260528",
+        "preferred_coordinate_id": "3PG4"
+      },
+      "display_name": "Metallo-beta-lactamase NDM-1",
+      "identifier_resolution": {
+        "alphafold_id": "C7C422",
+        "best_coordinate_id": "3PG4",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "3PG4",
+          "3RKJ",
+          "3RKK",
+          "3SBL",
+          "3SFP",
+          "3SPU"
+        ],
+        "source_accession": "uniprot:C7C422",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/3PG4",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/C7C422.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/C7C422/entry"
+        },
+        "uniprot_id": "C7C422"
+      },
+      "ligand_or_cofactor_state_caveats": [
+        "verify Zn occupancy and beta-lactam/analog state; AMR enzyme-only stress, not AMR label import"
+      ],
+      "materialization_class": "external_requires_approval",
+      "predictive_use_allowed": false,
+      "ready_for_label_import": false,
+      "reason": "external NDM-1 MBL positive-like lead; AMR enzyme-only relevance without importing AMR labels",
+      "review_only": true,
+      "tranche_rank": 1
+    },
+    {
+      "blocker_to_clear_before_materialization": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_065",
+      "coordinate_plan": {
+        "expected_output_path": "artifacts/external_coordinates_20260528/pdb_1DDK.cif",
+        "fallback_afdb_command_after_approval": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-Q79MP6-F1-model_v4.cif -o artifacts/external_coordinates_20260528/AF-Q79MP6-F1-model_v4.cif",
+        "future_command_after_approval": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 1DDK --candidate-id mh_065 --out-dir artifacts/external_coordinates_20260528",
+        "preferred_coordinate_id": "1DDK"
+      },
+      "display_name": "Metallo-beta-lactamase VIM-like enzyme",
+      "identifier_resolution": {
+        "alphafold_id": "Q79MP6",
+        "best_coordinate_id": "1DDK",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1DDK",
+          "1JJE",
+          "1JJT",
+          "3WXC",
+          "4F6H",
+          "4F6Z"
+        ],
+        "source_accession": "uniprot:Q79MP6",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1DDK",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/Q79MP6.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/Q79MP6/entry"
+        },
+        "uniprot_id": "Q79MP6"
+      },
+      "ligand_or_cofactor_state_caveats": [
+        "verify Zn occupancy and beta-lactam/analog state; AMR enzyme-only stress, not AMR label import"
+      ],
+      "materialization_class": "external_requires_approval",
+      "predictive_use_allowed": false,
+      "ready_for_label_import": false,
+      "reason": "external VIM-like MBL diversity lead; AMR enzyme-only relevance",
+      "review_only": true,
+      "tranche_rank": 2
+    },
+    {
+      "blocker_to_clear_before_materialization": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_067",
+      "coordinate_plan": {
+        "expected_output_path": "artifacts/external_coordinates_20260528/pdb_12CA.cif",
+        "fallback_afdb_command_after_approval": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P00918-F1-model_v4.cif -o artifacts/external_coordinates_20260528/AF-P00918-F1-model_v4.cif",
+        "future_command_after_approval": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 12CA --candidate-id mh_067 --out-dir artifacts/external_coordinates_20260528",
+        "preferred_coordinate_id": "12CA"
+      },
+      "display_name": "Carbonic anhydrase 2",
+      "identifier_resolution": {
+        "alphafold_id": "P00918",
+        "best_coordinate_id": "12CA",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "12CA",
+          "1A42",
+          "1AM6",
+          "1AVN",
+          "1BCD",
+          "1BIC"
+        ],
+        "source_accession": "uniprot:P00918",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/12CA",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P00918.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P00918/entry"
+        },
+        "uniprot_id": "P00918"
+      },
+      "ligand_or_cofactor_state_caveats": [
+        "verify Zn-water/hydroxide pocket; carbonate dehydratase boundary"
+      ],
+      "materialization_class": "external_requires_approval",
+      "predictive_use_allowed": false,
+      "ready_for_label_import": false,
+      "reason": "external carbonic anhydrase boundary positive; tests metal hydrolase child boundary",
+      "review_only": true,
+      "tranche_rank": 3
+    },
+    {
+      "blocker_to_clear_before_materialization": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_068",
+      "coordinate_plan": {
+        "expected_output_path": "artifacts/external_coordinates_20260528/pdb_1AUK.cif",
+        "fallback_afdb_command_after_approval": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P15289-F1-model_v4.cif -o artifacts/external_coordinates_20260528/AF-P15289-F1-model_v4.cif",
+        "future_command_after_approval": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 1AUK --candidate-id mh_068 --out-dir artifacts/external_coordinates_20260528",
+        "preferred_coordinate_id": "1AUK"
+      },
+      "display_name": "Arylsulfatase A",
+      "identifier_resolution": {
+        "alphafold_id": "P15289",
+        "best_coordinate_id": "1AUK",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1AUK",
+          "1E1Z",
+          "1E2S",
+          "1E33",
+          "1E3C",
+          "1N2K"
+        ],
+        "source_accession": "uniprot:P15289",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1AUK",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P15289.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P15289/entry"
+        },
+        "uniprot_id": "P15289"
+      },
+      "ligand_or_cofactor_state_caveats": [
+        "verify FGly/PTM and Ca/Mg state; sulfatase child/offramp boundary"
+      ],
+      "materialization_class": "external_requires_approval",
+      "predictive_use_allowed": false,
+      "ready_for_label_import": false,
+      "reason": "external FGly sulfatase boundary; tests broad metal hydrolase vs sulfatase child/offramp",
+      "review_only": true,
+      "tranche_rank": 4
+    },
+    {
+      "blocker_to_clear_before_materialization": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_072",
+      "coordinate_plan": {
+        "expected_output_path": "artifacts/external_coordinates_20260528/pdb_1E9I.cif",
+        "fallback_afdb_command_after_approval": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P0A6P9-F1-model_v4.cif -o artifacts/external_coordinates_20260528/AF-P0A6P9-F1-model_v4.cif",
+        "future_command_after_approval": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 1E9I --candidate-id mh_072 --out-dir artifacts/external_coordinates_20260528",
+        "preferred_coordinate_id": "1E9I"
+      },
+      "display_name": "Enolase",
+      "identifier_resolution": {
+        "alphafold_id": "P0A6P9",
+        "best_coordinate_id": "1E9I",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1E9I",
+          "2FYM",
+          "3H8A",
+          "5OHG",
+          "6BFY",
+          "6BFZ"
+        ],
+        "source_accession": "uniprot:P0A6P9",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1E9I",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P0A6P9.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P0A6P9/entry"
+        },
+        "uniprot_id": "P0A6P9"
+      },
+      "ligand_or_cofactor_state_caveats": [
+        "hard negative/control: metal or nucleotide context must not become parent hydrolase claim"
+      ],
+      "materialization_class": "external_requires_approval",
+      "predictive_use_allowed": false,
+      "ready_for_label_import": false,
+      "reason": "external enolase hard negative; metal-assisted dehydration not hydrolysis",
+      "review_only": true,
+      "tranche_rank": 5
+    },
+    {
+      "blocker_to_clear_before_materialization": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_073",
+      "coordinate_plan": {
+        "expected_output_path": "artifacts/external_coordinates_20260528/pdb_121P.cif",
+        "fallback_afdb_command_after_approval": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P01112-F1-model_v4.cif -o artifacts/external_coordinates_20260528/AF-P01112-F1-model_v4.cif",
+        "future_command_after_approval": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 121P --candidate-id mh_073 --out-dir artifacts/external_coordinates_20260528",
+        "preferred_coordinate_id": "121P"
+      },
+      "display_name": "GTPase HRas",
+      "identifier_resolution": {
+        "alphafold_id": "P01112",
+        "best_coordinate_id": "121P",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "121P",
+          "1AA9",
+          "1AGP",
+          "1BKD",
+          "1CLU",
+          "1CRP"
+        ],
+        "source_accession": "uniprot:P01112",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/121P",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P01112.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P01112/entry"
+        },
+        "uniprot_id": "P01112"
+      },
+      "ligand_or_cofactor_state_caveats": [
+        "hard negative/control: metal or nucleotide context must not become parent hydrolase claim"
+      ],
+      "materialization_class": "external_requires_approval",
+      "predictive_use_allowed": false,
+      "ready_for_label_import": false,
+      "reason": "external HRas hard negative; Mg/nucleotide leakage control",
+      "review_only": true,
+      "tranche_rank": 6
+    },
+    {
+      "blocker_to_clear_before_materialization": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_035",
+      "coordinate_plan": {
+        "expected_output_path": "artifacts/external_coordinates_20260528/pdb_1ZNB.cif",
+        "fallback_afdb_command_after_approval": null,
+        "future_command_after_approval": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 1ZNB --candidate-id mh_035 --out-dir artifacts/external_coordinates_20260528",
+        "preferred_coordinate_id": "1ZNB"
+      },
+      "display_name": "beta-lactamase (Class B1)",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1ZNB",
+        "m_csa_id": "m_csa:15",
+        "pdb_ids": [
+          "1ZNB"
+        ],
+        "source_accession": "m_csa:15",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=15",
+          "rcsb_structure": "https://www.rcsb.org/structure/1ZNB"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_caveats": [],
+      "materialization_class": "already_local_no_fetch",
+      "predictive_use_allowed": false,
+      "ready_for_label_import": false,
+      "reason": "local M-CSA B1 MBL anchor for external MBL comparison",
+      "review_only": true,
+      "tranche_rank": 7
+    },
+    {
+      "blocker_to_clear_before_materialization": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_037",
+      "coordinate_plan": {
+        "expected_output_path": "artifacts/external_coordinates_20260528/pdb_1AUK.cif",
+        "fallback_afdb_command_after_approval": null,
+        "future_command_after_approval": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 1AUK --candidate-id mh_037 --out-dir artifacts/external_coordinates_20260528",
+        "preferred_coordinate_id": "1AUK"
+      },
+      "display_name": "cerebroside-sulfatase",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1AUK",
+        "m_csa_id": "m_csa:158",
+        "pdb_ids": [
+          "1AUK"
+        ],
+        "source_accession": "m_csa:158",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=158",
+          "rcsb_structure": "https://www.rcsb.org/structure/1AUK"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_caveats": [
+        "verify FGly/PTM and Ca/Mg state; sulfatase child/offramp boundary"
+      ],
+      "materialization_class": "already_local_no_fetch",
+      "predictive_use_allowed": false,
+      "ready_for_label_import": false,
+      "reason": "local M-CSA sulfatase/FGly anchor for external sulfatase comparison",
+      "review_only": true,
+      "tranche_rank": 8
+    },
+    {
+      "blocker_to_clear_before_materialization": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_048",
+      "coordinate_plan": {
+        "expected_output_path": "artifacts/external_coordinates_20260528/pdb_1CA2.cif",
+        "fallback_afdb_command_after_approval": null,
+        "future_command_after_approval": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 1CA2 --candidate-id mh_048 --out-dir artifacts/external_coordinates_20260528",
+        "preferred_coordinate_id": "1CA2"
+      },
+      "display_name": "carbonate dehydratase (alpha class)",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1CA2",
+        "m_csa_id": "m_csa:216",
+        "pdb_ids": [
+          "1CA2"
+        ],
+        "source_accession": "m_csa:216",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=216",
+          "rcsb_structure": "https://www.rcsb.org/structure/1CA2"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_caveats": [
+        "hard negative/control: metal or nucleotide context must not become parent hydrolase claim"
+      ],
+      "materialization_class": "already_local_no_fetch",
+      "predictive_use_allowed": false,
+      "ready_for_label_import": false,
+      "reason": "local M-CSA alpha carbonic anhydrase anchor for external CA comparison",
+      "review_only": true,
+      "tranche_rank": 9
+    },
+    {
+      "blocker_to_clear_before_materialization": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_054",
+      "coordinate_plan": {
+        "expected_output_path": "artifacts/external_coordinates_20260528/pdb_1U8V.cif",
+        "fallback_afdb_command_after_approval": null,
+        "future_command_after_approval": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 1U8V --candidate-id mh_054 --out-dir artifacts/external_coordinates_20260528",
+        "preferred_coordinate_id": "1U8V"
+      },
+      "display_name": "4-hydroxybutanoyl-CoA dehydratase",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1U8V",
+        "m_csa_id": "m_csa:750",
+        "pdb_ids": [
+          "1U8V"
+        ],
+        "source_accession": "m_csa:750",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=750",
+          "rcsb_structure": "https://www.rcsb.org/structure/1U8V"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_caveats": [
+        "hard negative/control: metal or nucleotide context must not become parent hydrolase claim"
+      ],
+      "materialization_class": "already_local_no_fetch",
+      "predictive_use_allowed": false,
+      "ready_for_label_import": false,
+      "reason": "local radical FAD/Fe-S dehydratase hard negative already relabeled OOS",
+      "review_only": true,
+      "tranche_rank": 10
+    }
+  ],
+  "schema_version": "external_materialization_fetch_pack.v1",
+  "source_artifacts": [
+    "artifacts/v3_external_identifier_resolution_scout_20260528.json"
+  ],
+  "status": "complete_no_fetch_command_pack",
+  "summary": {
+    "already_local_rows": 4,
+    "amr_enzyme_only_rows": [
+      "mh_064",
+      "mh_065"
+    ],
+    "amr_scope_note": "NDM-1/VIM are enzyme mechanism stress rows for metallo-beta-lactamase geometry and router behavior; this is not an AMR label vertical or AMR phenotype model.",
+    "external_rows_requiring_fetch_if_approved": 6,
+    "first_tranche_rows": 10
+  }
+}
