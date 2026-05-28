@@ -1,0 +1,486 @@
+{
+  "artifact_id": "v3_fmo_source_evidence_scout_702_20260527",
+  "automation_id": "fmo-source-evidence-scout",
+  "created_utc": "2026-05-28T01:38:56Z",
+  "review_only": true,
+  "schema_version": "source_evidence_scout.v1",
+  "status": "complete",
+  "guardrails": {
+    "curated_label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "imports_written": false,
+    "model_outputs_or_production_scores_used": false,
+    "ontology_registry_edited": false,
+    "source_text_used_as_predictive_features": false,
+    "thresholds_changed": false
+  },
+  "local_artifacts_inspected": [
+    {
+      "path": "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+      "status": "not_present"
+    },
+    {
+      "path": "artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json",
+      "sha256": "863a44bc76f3f2f58db4b4b3289a108edef7bb84cecc9db721d892548cff16be"
+    },
+    {
+      "path": "artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+      "sha256": "9d2059f7a7c8d8f4ca939258cae366b4376c41c4e447fec16220674d0feb6500"
+    },
+    {
+      "path": "artifacts/v1_graph_1025.json",
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    {
+      "path": "artifacts/v2_benchmark_1025.json",
+      "sha256": "a69c0d77f0040cf65b6cd48e767839ed26b1e7fd7975158db14e6bc296b722d0"
+    },
+    {
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    }
+  ],
+  "source_review_policy": {
+    "local_first": true,
+    "network_use": "UniProt, Rhea, PubMed, PMC, and author/publisher pages were used only where local M-CSA artifacts lacked named-family evidence.",
+    "paraphrase_only": true,
+    "label_or_import_decision_changed": false
+  },
+  "candidate_packets": [
+    {
+      "entry_id_or_candidate_id": "m_csa:131",
+      "candidate_theme": "salicylate_or_aromatic_hydroxylase_boundary",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "M-CSA:131",
+        "artifacts/v1_graph_1025.json#m_csa:131:mechanism:1",
+        "data/registries/curated_mechanism_labels.json#m_csa:131",
+        "https://www.uniprot.org/uniprotkb/P20586/entry",
+        "https://pubmed.ncbi.nlm.nih.gov/11805318/"
+      ],
+      "enzyme_name": "4-hydroxybenzoate 3-monooxygenase",
+      "ec": "1.14.13.2",
+      "organism": "Pseudomonas aeruginosa PAO1",
+      "mechanism_summary_paraphrase": "NADPH reduces enzyme-bound FAD, O2 reacts with the reduced flavin to generate a C4a-peroxy or hydroperoxy FAD species, and the activated oxygen hydroxylates 4-hydroxybenzoate to 3,4-dihydroxybenzoate before water elimination regenerates FAD.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "The local M-CSA mechanism explicitly routes reduced FAD plus O2 through an FAD-peroxo adduct before aromatic hydroxylation. UniProt/Rhea gives an NADPH/O2/FAD-dependent monooxygenase reaction, and the primary PHBH literature describes the reduced-flavin oxygenation step as a C4a-hydroperoxide that transfers hydroxyl to substrate.",
+      "evidence_for_nadph_reductive_activation": "Local M-CSA records hydride transfer from NADP(H) to FAD before O2 activation; UniProt P20586 records the NADPH-consuming reaction and FAD cofactor.",
+      "evidence_against_generic_dehydrogenase_reductase": "The chemistry is not substrate oxidation to a carrier; the reduced flavin is an oxygen-activating intermediate that transfers oxygen to an aromatic substrate.",
+      "evidence_against_other_families": "No heme, copper, pterin, or diiron oxygenase chemistry is invoked in local or UniProt evidence; the active redox cofactor is FAD.",
+      "source_review_confidence": "high",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": []
+    },
+    {
+      "entry_id_or_candidate_id": "m_csa:132",
+      "candidate_theme": "Baeyer_Villiger_like_FMN_luciferase_boundary",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "M-CSA:132",
+        "artifacts/v1_graph_1025.json#m_csa:132:mechanism:2",
+        "artifacts/v1_graph_1025.json#m_csa:132:mechanism:3",
+        "artifacts/v1_graph_1025.json#m_csa:132:mechanism:4",
+        "https://www.uniprot.org/uniprotkb/P07740/entry",
+        "https://www.uniprot.org/uniprotkb/P07739/entry"
+      ],
+      "enzyme_name": "alkanal monooxygenase (FMN-linked)",
+      "ec": "1.14.14.3",
+      "organism": "Vibrio harveyi",
+      "mechanism_summary_paraphrase": "The bacterial luciferase oxygenase uses reduced FMN and O2 to form flavin-peroxo or C4a-peroxyhemiacetal intermediates that oxidize a long-chain aldehyde to acid while emitting light and regenerating FMN.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "M-CSA mechanism alternatives all route O2 activation through FMN-peroxo/C4a-peroxy flavin intermediates before aldehyde oxygenation. UniProt records the FMNH2/O2-dependent alkanal monooxygenase reaction.",
+      "evidence_for_nadph_reductive_activation": "Not intrinsic to the oxygenase subunits; reduced FMN is supplied by a separate flavin reductase system in vivo.",
+      "evidence_against_generic_dehydrogenase_reductase": "The candidate consumes reduced FMN as the oxygenating co-substrate and performs aldehyde oxygenation/light emission rather than hydride transfer from substrate to flavin as the terminal chemistry.",
+      "evidence_against_other_families": "The packet is FMN-linked and lacks heme, copper, pterin, or diiron evidence, but it should be kept as a luciferase-like boundary rather than merged blindly with single-component NADPH/FAD FMOs.",
+      "source_review_confidence": "medium",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": [
+        "Boundary wording should preserve two-component/reduced-FMN luciferase chemistry distinct from class B NADPH/FAD FMOs."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "m_csa:551",
+      "candidate_theme": "phenol_or_aromatic_hydroxylase",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "M-CSA:551",
+        "artifacts/v1_graph_1025.json#m_csa:551:mechanism:1",
+        "artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json#m_csa:551",
+        "https://www.uniprot.org/uniprotkb/P15245/entry",
+        "https://pubmed.ncbi.nlm.nih.gov/6470002/"
+      ],
+      "enzyme_name": "phenol 2-monooxygenase",
+      "ec": "1.14.13.7",
+      "organism": "Cutaneotrichosporon cutaneum",
+      "mechanism_summary_paraphrase": "The enzyme binds FAD, NADPH, O2, and phenol. NADPH first reduces FAD, the reduced flavin reacts with O2 to form C4a-hydroperoxyflavin, and that oxygenating species hydroxylates phenol ortho to the phenolic group before C4a-hydroxyflavin dehydrates back to FAD.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "M-CSA explicitly names C4a-hydroperoxyflavin and C4a-peroxyflavin as the species used for phenol hydroxylation; UniProt P15245 records an FAD-dependent NADPH/O2 phenol monooxygenase reaction; rapid-reaction literature reports flavin-oxygen intermediates for phenol hydroxylase.",
+      "evidence_for_nadph_reductive_activation": "M-CSA says the flavin is reduced by NADPH before NADP(+) release and oxygen addition; UniProt records NADPH in the catalytic reaction.",
+      "evidence_against_generic_dehydrogenase_reductase": "Although the current registry label is flavin_dehydrogenase_reductase, the sourced chemistry uses NADPH only to prime an oxygenating FAD species; the product is catechol from oxygen transfer, not a simple substrate dehydrogenation product.",
+      "evidence_against_other_families": "No local or UniProt evidence supports heme/P450, copper, pterin, or diiron catalysis; the named cofactor is FAD.",
+      "source_review_confidence": "high",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": [
+        "Current curated label is flavin_dehydrogenase_reductase, so any relabel must be expert-reviewed rather than automated."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "m_csa:973",
+      "candidate_theme": "DszC_dibenzothiophene_sulfur_monooxygenase",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "M-CSA:973",
+        "artifacts/v1_graph_1025.json#m_csa:973:mechanism:1",
+        "artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json#m_csa:973",
+        "https://www.uniprot.org/uniprotkb/A0A0C6DRW4/entry",
+        "https://pubs.acs.org/doi/10.1021/acscatal.8b01877",
+        "https://pubmed.ncbi.nlm.nih.gov/25627402/"
+      ],
+      "enzyme_name": "Dibenzothiophene monooxygenase DszC",
+      "ec": "1.14.14.21",
+      "organism": "Rhodococcus erythropolis",
+      "mechanism_summary_paraphrase": "DszC receives reduced FMN, activates O2 to a C4a-hydroperoxyflavin intermediate, and transfers the distal oxygen to dibenzothiophene sulfur in two sequential sulfur oxidation steps, regenerating FMN.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "M-CSA explicitly names C4a-hydroperoxyflavin and sulfur attack on its distal oxygen. UniProt records FMNH2/O2-dependent DBT sulfoxide/sulfone reactions, and the mechanistic ACS Catalysis source describes C4aOOH formation and sulfur oxygen transfer.",
+      "evidence_for_nadph_reductive_activation": "NADPH reduction is upstream and carried by a partner flavin reductase; the DszC oxygenase component itself consumes FMNH2 rather than directly binding NADPH as the reducing substrate.",
+      "evidence_against_generic_dehydrogenase_reductase": "The source-reviewed catalytic role of DszC is oxygen transfer to sulfur from activated reduced flavin; flavin reduction is a separate partner activity.",
+      "evidence_against_other_families": "The evidence is FMN oxygenase chemistry and does not invoke P450 heme, copper, pterin, or non-heme iron oxygenation.",
+      "source_review_confidence": "high",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": [
+        "Current curated label is flavin_dehydrogenase_reductase, so label migration should be explicit expert review only."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "m_csa:141",
+      "candidate_theme": "hydroxylating_dehydrogenase_control",
+      "classification": "ordinary_flavin_dehydrogenase_reductase",
+      "source_ids_or_urls": [
+        "M-CSA:141",
+        "artifacts/v1_graph_1025.json#m_csa:141:mechanism:1",
+        "data/registries/curated_mechanism_labels.json#m_csa:141",
+        "https://www.uniprot.org/uniprotkb/P09788/entry",
+        "https://www.uniprot.org/uniprotkb/P09787/entry"
+      ],
+      "enzyme_name": "4-cresol dehydrogenase (hydroxylating)",
+      "ec": "1.17.9.1",
+      "organism": "Pseudomonas putida",
+      "mechanism_summary_paraphrase": "The flavoprotein subunit oxidizes p-cresol by substrate hydride transfer to FAD and uses water as the source of the introduced oxygen; the cytochrome/azurin electron-transfer context carries redox equivalents away.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "No source-reviewed C4a-peroxyflavin oxygen-transfer step was found; local M-CSA instead identifies water-derived oxygen and hydride transfer to FAD.",
+      "evidence_for_nadph_reductive_activation": "None for the hydroxylation step; UniProt records an oxidized azurin electron acceptor rather than NADPH/O2 reductive activation.",
+      "evidence_against_generic_dehydrogenase_reductase": "This is positive evidence for generic flavin dehydrogenase/reductase behavior: substrate hydride transfer to covalent FAD and electron transfer to carrier proteins.",
+      "evidence_against_other_families": "The flavoprotein/cytochrome system is not P450, copper, pterin, or diiron oxygenase, but it is also not a flavin C4a-peroxy monooxygenase.",
+      "source_review_confidence": "high",
+      "admissible_for_label_review_packet": false,
+      "remaining_source_blockers": [
+        "Keep as flavin_dehydrogenase_reductase control; do not use as clean FMO evidence."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "m_csa:128",
+      "candidate_theme": "ATP_luciferase_control",
+      "classification": "another_family_or_boundary",
+      "source_ids_or_urls": [
+        "M-CSA:128",
+        "artifacts/v1_graph_1025.json#m_csa:128:mechanism:1",
+        "data/registries/curated_mechanism_labels.json#m_csa:128",
+        "https://www.uniprot.org/uniprotkb/P08659/entry"
+      ],
+      "enzyme_name": "Photinus-luciferin 4-monooxygenase (ATP-hydrolysing)",
+      "ec": "1.13.12.7",
+      "organism": "Photinus pyralis",
+      "mechanism_summary_paraphrase": "Firefly luciferase chemistry proceeds through luciferyl-adenylate/ATP-linked oxygenation to excited oxyluciferin, with conformational control of adenylation and light emission.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "No local M-CSA or registry evidence supports flavin C4a-peroxide chemistry.",
+      "evidence_for_nadph_reductive_activation": "None; local evidence emphasizes ATP and luciferyl-adenylate chemistry.",
+      "evidence_against_generic_dehydrogenase_reductase": "It is not a simple flavin dehydrogenase/reductase either; the local packet places it outside current flavin and heme oxygenation seed fingerprints.",
+      "evidence_against_other_families": "Positive evidence favors ATP-dependent luciferase oxygenation rather than flavin monooxygenase.",
+      "source_review_confidence": "high",
+      "admissible_for_label_review_packet": false,
+      "remaining_source_blockers": [
+        "Treat as out-of-scope monooxygenase-named negative control."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:P12015",
+      "candidate_theme": "Baeyer_Villiger_monooxygenase_CHMO",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "https://www.uniprot.org/uniprotkb/P12015/entry",
+        "Rhea:RHEA:24068",
+        "https://pubmed.ncbi.nlm.nih.gov/30030997/",
+        "https://pubmed.ncbi.nlm.nih.gov/22506764/"
+      ],
+      "enzyme_name": "cyclohexanone monooxygenase",
+      "ec": "1.14.13.22",
+      "organism": "Acinetobacter johnsonii",
+      "mechanism_summary_paraphrase": "CHMO is a FAD/NADPH Baeyer-Villiger monooxygenase that converts cyclohexanone to epsilon-caprolactone with O2 and NADPH; BVMO mechanism sources support a C4a-peroxyflavin/Criegee oxygen-transfer cycle.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "UniProt/Rhea records lactone-forming oxygen insertion from O2. Primary CHMO/BVMO studies report reaction of C4a-peroxyflavin with cyclohexanone and a substrate-bound conformation poised over the flavin-peroxide adduct.",
+      "evidence_for_nadph_reductive_activation": "UniProt records NADPH and FAD; BVMO sources describe NADPH reduction of bound flavin before oxygen activation.",
+      "evidence_against_generic_dehydrogenase_reductase": "The product is a lactone from Baeyer-Villiger oxygen insertion, not an alcohol/ketone redox pair or carrier-reducing dehydrogenase product.",
+      "evidence_against_other_families": "The authoritative sources identify a FAD/NADPH BVMO, not P450, copper, pterin, or diiron oxygenase.",
+      "source_review_confidence": "high",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": [
+        "No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:Q93TJ5",
+      "candidate_theme": "HAPMO_4_hydroxyacetophenone_monooxygenase",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "https://www.uniprot.org/uniprotkb/Q93TJ5/entry",
+        "Rhea:RHEA:22916",
+        "https://pubmed.ncbi.nlm.nih.gov/11322873/",
+        "https://pubmed.ncbi.nlm.nih.gov/16049018/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC152415/"
+      ],
+      "enzyme_name": "4-hydroxyacetophenone monooxygenase",
+      "ec": "1.14.13.84",
+      "organism": "Pseudomonas fluorescens",
+      "mechanism_summary_paraphrase": "HAPMO is a FAD-containing, NADPH-dependent Baeyer-Villiger monooxygenase that oxidizes 4-hydroxyacetophenone to an ester product through peroxyflavin attack on the carbonyl substrate.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "UniProt/Rhea records NADPH/O2-dependent ester formation. Primary HAPMO literature identifies the enzyme as a Baeyer-Villiger-type FAD monooxygenase and describes a peroxyflavin intermediate generated from reduced flavin and O2 for carbonyl oxygenation.",
+      "evidence_for_nadph_reductive_activation": "UniProt Q93TJ5 records NADPH in the catalytic reaction and FAD cofactor; HAPMO studies describe NADPH-dependent catalysis and coenzyme binding during turnover.",
+      "evidence_against_generic_dehydrogenase_reductase": "The hallmark product is an oxygen-inserted ester rather than a dehydrogenation product; the flavin is reduced to activate O2 for oxygen transfer.",
+      "evidence_against_other_families": "The sources identify a FAD/NADPH BVMO and do not support heme, copper, pterin, or diiron catalysis.",
+      "source_review_confidence": "high",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": [
+        "No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:P23262",
+      "candidate_theme": "salicylate_1_monooxygenase",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "https://www.uniprot.org/uniprotkb/P23262/entry",
+        "Rhea:RHEA:11004",
+        "https://pubmed.ncbi.nlm.nih.gov/34965488/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8824312/"
+      ],
+      "enzyme_name": "salicylate hydroxylase / salicylate 1-monooxygenase",
+      "ec": "1.14.13.1",
+      "organism": "Pseudomonas putida",
+      "mechanism_summary_paraphrase": "NahG uses FAD and NADH to activate O2 and carries out oxidative decarboxylation of salicylate to catechol via a C4a-hydroperoxyflavin intermediate.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "UniProt/Rhea records salicylate plus NADH/O2 conversion to catechol and CO2 with FAD cofactor. A recent mechanistic study explicitly assigns salicylate oxidative decarboxylation to a C4a-hydroperoxyflavin intermediate.",
+      "evidence_for_nadph_reductive_activation": "The reviewed Pseudomonas entry uses NADH rather than NADPH; reductive activation of FAD is still nicotinamide-dependent and precedes oxygen activation.",
+      "evidence_against_generic_dehydrogenase_reductase": "The substrate is oxygenated and decarboxylated to catechol; O2 is the oxygen source and the reduced flavin is an oxygenating species rather than just an electron sink.",
+      "evidence_against_other_families": "No evidence for heme/P450, copper, pterin, or diiron chemistry; the cofactor is FAD.",
+      "source_review_confidence": "high",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": [
+        "No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:P11295",
+      "candidate_theme": "IucD_like_lysine_N6_hydroxylase",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "https://www.uniprot.org/uniprotkb/P11295/entry",
+        "Rhea:RHEA:23228",
+        "https://pubmed.ncbi.nlm.nih.gov/2935523/",
+        "https://pubmed.ncbi.nlm.nih.gov/10839627/"
+      ],
+      "enzyme_name": "L-lysine N6-monooxygenase / IucD",
+      "ec": "1.14.13.59",
+      "organism": "Escherichia coli",
+      "mechanism_summary_paraphrase": "IucD-class enzymes hydroxylate the N6 amino group of L-lysine using FAD, O2, and NADPH to produce N6-hydroxy-L-lysine in siderophore biosynthesis.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "UniProt/Rhea records direct N-hydroxylation with O2 and FAD cofactor. The primary IucD stability/ligand source supports FAD and NADPH as required for monooxygenase function, but this scout did not find a candidate-specific local C4a-intermediate description.",
+      "evidence_for_nadph_reductive_activation": "UniProt records an NADPH-consuming reaction; PubMed 10839627 reports recombinant IucD requires FAD and NADPH for catalytic monooxygenase function.",
+      "evidence_against_generic_dehydrogenase_reductase": "The sourced product is an N-hydroxylated lysine, not substrate dehydrogenation or carrier reduction.",
+      "evidence_against_other_families": "Local lysine-name hits were transferase/aminomutase/demethylase false matches, while P11295 is specifically FAD/NADPH lysine N6-monooxygenase.",
+      "source_review_confidence": "medium",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": [
+        "Add a candidate-specific C4a-hydroperoxyflavin mechanistic source if the review packet requires explicit intermediate evidence."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:Q01740",
+      "candidate_theme": "FMO_family_and_dimethylaniline_monooxygenase",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "https://www.uniprot.org/uniprotkb/Q01740/entry",
+        "Rhea:RHEA:24468",
+        "Rhea:RHEA:31979",
+        "https://pubmed.ncbi.nlm.nih.gov/7217103/",
+        "https://pubmed.ncbi.nlm.nih.gov/18443301/"
+      ],
+      "enzyme_name": "flavin-containing monooxygenase 1 / dimethylaniline monooxygenase",
+      "ec": "1.14.13.148; 1.14.13.8",
+      "organism": "Homo sapiens",
+      "mechanism_summary_paraphrase": "Human FMO1 is a class B FAD/NADPH monooxygenase that oxidizes soft nucleophiles such as trimethylamine and N,N-dimethylaniline through a reduced-FAD/O2 C4a-hydroperoxyflavin oxygenating species.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "UniProt/Rhea records N,N-dimethylaniline N-oxide and trimethylamine N-oxide reactions with NADPH and O2. Classic FMO oxidative-half-reaction work and later structural FMO work support formation of a C4a-hydroperoxyflavin intermediate.",
+      "evidence_for_nadph_reductive_activation": "UniProt Q01740 records NADPH in the catalytic reaction and FAD as cofactor; FMO literature describes NADPH-reduced flavin reacting with O2.",
+      "evidence_against_generic_dehydrogenase_reductase": "The chemistry is substrate oxygenation/N-oxidation, not substrate dehydrogenation; NADPH is a reductant used to activate oxygen at FAD.",
+      "evidence_against_other_families": "The enzyme is explicitly FMO/FAD/NADPH, distinct from P450 heme monooxygenases and other metal oxygenase families.",
+      "source_review_confidence": "high",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": [
+        "No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:P06617",
+      "candidate_theme": "tryptophan_2_monooxygenase_boundary",
+      "classification": "another_family_or_boundary",
+      "source_ids_or_urls": [
+        "https://www.uniprot.org/uniprotkb/P06617/entry",
+        "Rhea:RHEA:16165",
+        "https://pubmed.ncbi.nlm.nih.gov/23521653/"
+      ],
+      "enzyme_name": "tryptophan 2-monooxygenase",
+      "ec": "1.13.12.3",
+      "organism": "Pseudomonas savastanoi",
+      "mechanism_summary_paraphrase": "The enzyme converts L-tryptophan and O2 to indole-3-acetamide, CO2, and water with bound FMN; reviewed annotation also links it to L-amino-acid oxidase activity.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "UniProt records FMN and an O2-dependent monooxygenase reaction, but this scout did not find explicit source evidence for a C4a-peroxyflavin oxygen-transfer mechanism or NAD(P)H-primed reduced-flavin cycle.",
+      "evidence_for_nadph_reductive_activation": "None in the reviewed entry; the reaction consumes substrate and O2 without NADPH or NADH as co-substrate.",
+      "evidence_against_generic_dehydrogenase_reductase": "It is not a plain carrier-reducing dehydrogenase because O2 and decarboxylation are part of the annotated reaction.",
+      "evidence_against_other_families": "The lack of NADPH/NADH reductive activation and the L-amino-acid oxidase annotation argue against using this as clean FAD/NADPH FMO evidence.",
+      "source_review_confidence": "medium",
+      "admissible_for_label_review_packet": false,
+      "remaining_source_blockers": [
+        "Needs candidate-specific C4a-peroxyflavin or oxygen-transfer mechanism evidence before it could support the FMO label lane."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:O15229",
+      "candidate_theme": "kynurenine_3_monooxygenase_prior_external_candidate",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_decision_packet_20260521.json#uniprot:O15229",
+        "https://www.uniprot.org/uniprotkb/O15229/entry",
+        "Rhea:RHEA:20545",
+        "https://pubmed.ncbi.nlm.nih.gov/9237672/",
+        "https://pubmed.ncbi.nlm.nih.gov/10672018/",
+        "https://pubmed.ncbi.nlm.nih.gov/29429898/"
+      ],
+      "enzyme_name": "kynurenine 3-monooxygenase",
+      "ec": "1.14.13.9",
+      "organism": "Homo sapiens",
+      "mechanism_summary_paraphrase": "KMO is an FAD-dependent NADPH/O2 monooxygenase that hydroxylates L-kynurenine to 3-hydroxy-L-kynurenine.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "UniProt/Rhea records a monooxygenase hydroxylation reaction with FAD, NADPH, and O2. The local prior external packet already flags source EC/flavin/PDB context, but not enough process evidence for import.",
+      "evidence_for_nadph_reductive_activation": "UniProt O15229 records NADPH in the reaction and FAD as cofactor with experimental references.",
+      "evidence_against_generic_dehydrogenase_reductase": "The annotated product is hydroxylated kynurenine and the co-substrate is O2, not a simple electron-acceptor reduction.",
+      "evidence_against_other_families": "No heme/copper/pterin/diiron evidence in the reviewed source context; the cofactor is FAD.",
+      "source_review_confidence": "high",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": [
+        "Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:P25535",
+      "candidate_theme": "aromatic_hydroxylase_prior_external_candidate",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_decision_packet_20260521.json#uniprot:P25535",
+        "https://www.uniprot.org/uniprotkb/P25535/entry",
+        "Rhea:RHEA:27790",
+        "https://pubmed.ncbi.nlm.nih.gov/23709220/"
+      ],
+      "enzyme_name": "2-octaprenylphenol hydroxylase / UbiI",
+      "ec": "1.14.13.240",
+      "organism": "Escherichia coli K-12",
+      "mechanism_summary_paraphrase": "UbiI is a FAD-dependent NADPH/O2 hydroxylase that converts polyprenylphenol to a catechol-like ubiquinone-pathway intermediate.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "UniProt/Rhea records aromatic hydroxylation with NADPH and O2, and the reviewed entry records FAD cofactor support.",
+      "evidence_for_nadph_reductive_activation": "UniProt P25535 records NADPH in both octaprenylphenol/polyprenylphenol hydroxylation reactions.",
+      "evidence_against_generic_dehydrogenase_reductase": "The sourced chemistry is aromatic hydroxylation using O2, not only substrate oxidation to reduce flavin.",
+      "evidence_against_other_families": "No metal oxygenase family evidence was found in reviewed source context; FAD is the annotated cofactor.",
+      "source_review_confidence": "medium",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": [
+        "Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete.",
+        "Add explicit C4a-peroxyflavin mechanism source if the review packet requires intermediate-level evidence."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:H3JQW0",
+      "candidate_theme": "BVMO_OTEMO_prior_external_candidate",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_decision_packet_20260521.json#uniprot:H3JQW0",
+        "https://www.uniprot.org/uniprotkb/H3JQW0/entry",
+        "Rhea:RHEA:33015",
+        "https://pubmed.ncbi.nlm.nih.gov/22267661/",
+        "https://pubmed.ncbi.nlm.nih.gov/22286514/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC3302634/"
+      ],
+      "enzyme_name": "2-oxo-Delta(3)-4,5,5-trimethylcyclopentenylacetyl-CoA monooxygenase / OTEMO",
+      "ec": "1.14.13.160",
+      "organism": "Pseudomonas putida",
+      "mechanism_summary_paraphrase": "OTEMO is a camphor-pathway FAD/NADPH Baeyer-Villiger monooxygenase that oxygen-inserts into an oxocyclopentenylacetyl-CoA substrate to form a lactone-like product.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "UniProt/Rhea records an NADPH/O2 monooxygenase reaction, FAD cofactor, and PDB structures. The OTEMO/BVMO structural paper discusses conservation of residues implicated in stabilizing flavin-peroxide or Criegee intermediates.",
+      "evidence_for_nadph_reductive_activation": "UniProt H3JQW0 records NADPH in the reaction and FAD cofactor with experimental support.",
+      "evidence_against_generic_dehydrogenase_reductase": "The product is formed by Baeyer-Villiger oxygen insertion rather than dehydrogenation; FAD is used to activate oxygen.",
+      "evidence_against_other_families": "The authoritative sources place it in FAD/NADPH BVMO chemistry, not heme, copper, pterin, or diiron oxygenase chemistry.",
+      "source_review_confidence": "high",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": [
+        "Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:Q6F4M8",
+      "candidate_theme": "nitrophenol_or_nitrocatechol_monooxygenase_prior_external_candidate",
+      "classification": "true_flavin_monooxygenase_or_oxygenase",
+      "source_ids_or_urls": [
+        "artifacts/v3_prospective_external_flavin_monooxygenase_minicampaign_decision_packet_20260521.json#uniprot:Q6F4M8",
+        "https://www.uniprot.org/uniprotkb/Q6F4M8/entry",
+        "Rhea:RHEA:12568",
+        "Rhea:RHEA:34307",
+        "Rhea:RHEA:34311",
+        "https://pubmed.ncbi.nlm.nih.gov/9647818/"
+      ],
+      "enzyme_name": "4-nitrophenol 4-monooxygenase / 4-nitrocatechol 2-monooxygenase oxygenase component",
+      "ec": "1.14.13.166; 1.14.13.29",
+      "organism": "Rhodococcus opacus",
+      "mechanism_summary_paraphrase": "This FAD enzyme hydroxylates 4-nitrophenol and oxidatively denitrates 4-nitrocatechol with O2 and NADH or NADPH depending on the reaction.",
+      "evidence_for_flavin_c4a_peroxide_or_oxygen_transfer": "UniProt/Rhea records O2-dependent hydroxylation/denitration reactions with FAD cofactor. The local prior external packet flags source EC/flavin/PDB context but does not itself supply a source-free import decision.",
+      "evidence_for_nadph_reductive_activation": "The reviewed entry records NADH for 4-nitrophenol hydroxylation and NADPH or NADH for 4-nitrocatechol monooxygenase activity.",
+      "evidence_against_generic_dehydrogenase_reductase": "The sourced reactions are oxygenase reactions with O2 and hydroxylated/oxidatively denitrated products, not simple carrier-reducing dehydrogenase reactions.",
+      "evidence_against_other_families": "The reviewed source context identifies FAD cofactor and monooxygenase activity, with no heme/copper/pterin/diiron family evidence.",
+      "source_review_confidence": "medium",
+      "admissible_for_label_review_packet": true,
+      "remaining_source_blockers": [
+        "Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete.",
+        "Add explicit C4a-peroxyflavin mechanism source if the review packet requires intermediate-level evidence."
+      ]
+    }
+  ],
+  "screened_out_local_context": [
+    {
+      "entry_id": "m_csa:133",
+      "enzyme_name": "camphor 5-monooxygenase",
+      "reason": "cytochrome P450 heme monooxygenase, not flavin monooxygenase"
+    },
+    {
+      "entry_id": "m_csa:134",
+      "enzyme_name": "tyrosine 3-monooxygenase",
+      "reason": "tetrahydrobiopterin/non-heme iron hydroxylase"
+    },
+    {
+      "entry_id": "m_csa:135",
+      "enzyme_name": "peptidylglycine monooxygenase",
+      "reason": "copper-dependent monooxygenase"
+    },
+    {
+      "entry_id": "m_csa:600",
+      "enzyme_name": "methane monooxygenase (soluble)",
+      "reason": "diiron methane monooxygenase chemistry"
+    },
+    {
+      "entry_id": "m_csa:768",
+      "enzyme_name": "Renilla-luciferin 2-monooxygenase",
+      "reason": "coelenterazine/peroxy-substrate luminescence without clean flavin C4a-peroxy support"
+    }
+  ],
+  "summary": {
+    "true_fmo_or_oxygenase_packets": 13,
+    "ordinary_flavin_dehydrogenase_reductase_packets": 1,
+    "another_family_or_boundary_packets": 2,
+    "admissible_for_label_review_packet_count": 13,
+    "primary_source_blockers": [
+      "IucD P11295, UbiI P25535, and NPCA Q6F4M8 have strong FAD/nicotinamide/O2 monooxygenase source support but would benefit from candidate-specific C4a intermediate citations if the review standard requires intermediate-level evidence.",
+      "All external non-M-CSA candidates still need source-free geometry, duplicate/leakage, terminal review, and factory/import gates before label import."
+    ]
+  }
+}
