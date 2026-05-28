@@ -1,0 +1,239 @@
+{
+  "artifact_id": "v3_foldseek_geometry_atlas_feature_prep_20260528",
+  "schema_version": "1.0",
+  "created_utc": "2026-05-28T12:51:02Z",
+  "status": "complete_read_only_feature_prep_no_label_or_model_changes",
+  "review_only": true,
+  "purpose": "Define the next Foldseek-plus-geometry atlas feature lane for weak-Foldseek, near-orphan, fold-conflict, and OOS-router diagnostics before any larger representation model scaling.",
+  "source_artifacts": [
+    {
+      "path": "artifacts/v3_wave1_1_model_by_cell_report_702_20260528.json",
+      "sha256": "7c896872a8ae167ca475a6db2702c1ff3805b93acca595ea40e39ed5a0d49be4"
+    },
+    {
+      "path": "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+      "sha256": "a7fe5fcbb2f4c24c8c1e87a38c626c25cda009215dd1fc25cbfd13b7656118a7"
+    },
+    {
+      "path": "artifacts/v3_active_site_cache_41_unsupervised_router_stress_20260528.json",
+      "sha256": "47611eabd636d5566727692aee4d4d49126ea83cb84b91ee57db34f02212fc94"
+    },
+    {
+      "path": "artifacts/v3_active_site_train_cal_leakage_audit_20260528.json",
+      "sha256": "a721feb5f552a6571985cd462c90c8bd207fd775995f0eb0d22be0323589b791"
+    },
+    {
+      "path": "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_targeted_packet1_tm_pairs5000_20260527.json",
+      "sha256": "cbb7e552ae75e533d3a0bb8f9983c748290eb44c3f06a6557fca53fe3cde3e68"
+    }
+  ],
+  "guardrails": {
+    "labels_changed": false,
+    "registries_changed": false,
+    "ontologies_changed": false,
+    "thresholds_changed": false,
+    "production_scoring_changed": false,
+    "imports_changed": false,
+    "model_outputs_changed": false,
+    "training_executed": false,
+    "heldout_rows_used_for_training": false,
+    "coordinate_fetches_performed": false,
+    "third_party_advice_treated_as_permission": false
+  },
+  "decision_context": {
+    "wave1_1_answer": "limited_not_decision_grade",
+    "decision_gate": "prioritize Foldseek-plus-geometry atlas/features and external/child-label acquisition before larger representation model scaling",
+    "basis": [
+      "Near-orphan geometry rescue favored geometry: geometry 17/17, Foldseek 13/17 with 4 abstentions, ESM-2 150M 9/17 with 8 abstentions.",
+      "Wrong-Foldseek-transfer was the only cell with learned rescue signal: corrected ESM-C rescued 2/4, but geometry rescued 4/4.",
+      "Child-label and mixed-chemistry cells lack row-aligned child-label prediction exports, so model scaling would mostly test parent-bucket interpolation.",
+      "The active-site train/cal leakage audit passes, but supervised training remains blocked without explicit user approval."
+    ]
+  },
+  "row_sets": {
+    "clean_near_orphan_anchor": {
+      "count": 7,
+      "entry_ids": [
+        "m_csa:97",
+        "m_csa:211",
+        "m_csa:250",
+        "m_csa:517",
+        "m_csa:686",
+        "m_csa:916",
+        "m_csa:990"
+      ],
+      "use": "Review-only geometry-rescue anchor set for rows with weak or absent same-fingerprint structural neighborhood."
+    },
+    "fold_conflict_reference_anchor": {
+      "count": 3,
+      "entry_ids": [
+        "m_csa:217",
+        "m_csa:428",
+        "m_csa:477"
+      ],
+      "use": "Review-only Foldseek wrong-transfer reference set; 217 and 477 are strongest verified anchors, 428 is partial/mixed-neighborhood."
+    },
+    "oos_router_control": {
+      "count": 9,
+      "entry_ids": [
+        "m_csa:10",
+        "m_csa:30",
+        "m_csa:31",
+        "m_csa:116",
+        "m_csa:191",
+        "m_csa:369",
+        "m_csa:440",
+        "m_csa:634",
+        "m_csa:651"
+      ],
+      "use": "OOS abstention/router control set, including router-correct OOS-neighbor rows and weak-Foldseek noise rows."
+    },
+    "local_tail_extension": {
+      "count": 10,
+      "entry_ids_source": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+      "use": "Label-blind local-tail stress rows; canary diagnostics only, not performance evidence."
+    },
+    "external_router_priority": {
+      "count": 12,
+      "entry_ids_source": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "use": "External/router-priority active-site cache rows for source-diversity and OOD stress only."
+    },
+    "quarantine_before_model_claim": {
+      "count": 7,
+      "entry_ids": [
+        "m_csa:403",
+        "m_csa:497",
+        "m_csa:714",
+        "m_csa:723",
+        "m_csa:735",
+        "m_csa:750",
+        "m_csa:994"
+      ],
+      "use": "Excluded from metric anchoring until label/coordinate/mechanism questions are resolved."
+    }
+  },
+  "proposed_engine": {
+    "stage_1_foldseek_neighborhood": {
+      "description": "Compute structural neighborhood context without treating the nearest structure as ground truth.",
+      "features": [
+        "nearest_train_entry_id",
+        "nearest_train_fingerprint_id",
+        "nearest_train_label_type",
+        "max_tm_score",
+        "max_foldseek_probability",
+        "max_foldseek_bits",
+        "same_fingerprint_neighbor_count_at_tm_ge_0_70",
+        "different_fingerprint_neighbor_count_at_tm_ge_0_70",
+        "oos_neighbor_count_at_tm_ge_0_70",
+        "no_reliable_neighbor_flag",
+        "fold_conflict_candidate_flag",
+        "partial_fold_conflict_flag",
+        "oos_router_correct_neighbor_flag"
+      ]
+    },
+    "stage_2_source_free_geometry": {
+      "description": "Summarize the local catalytic evidence that can rescue or reject structural-neighbor transfer without mechanism text leakage.",
+      "features": [
+        "active_site_residue_count",
+        "active_site_residue_types",
+        "resolved_catalytic_residue_count",
+        "missing_catalytic_residue_count",
+        "pairwise_distance_summary",
+        "compactness_bins",
+        "local_cofactor_families",
+        "structure_cofactor_families",
+        "proximal_ligand_residue_names",
+        "metal_locality_flags",
+        "flavin_locality_flags",
+        "heme_locality_flags",
+        "plp_locality_flags",
+        "pocket_residue_composition",
+        "pocket_charge_aromatic_sulfur_counts"
+      ]
+    },
+    "stage_3_policy_router": {
+      "description": "Route rows into review-only diagnostic cells before any benchmark claim or production use.",
+      "routes": [
+        {
+          "route_id": "geometry_supported_primary_anchor",
+          "condition": "local geometry supports assigned parent mechanism and row is not quarantined",
+          "allowed_use": "review-only diagnostic anchor"
+        },
+        {
+          "route_id": "foldseek_wrong_transfer_candidate",
+          "condition": "nearest structural neighbor points to a different primary fingerprint and geometry supports the row label or OOS status",
+          "allowed_use": "fold-conflict diagnostic only"
+        },
+        {
+          "route_id": "oos_router_control",
+          "condition": "row is OOS and nearest useful structural neighbor is OOS or Foldseek evidence is weak/noisy",
+          "allowed_use": "OOS abstention/router diagnostic"
+        },
+        {
+          "route_id": "local_tail_canary",
+          "condition": "row is external/local-tail stress without countable label support",
+          "allowed_use": "canary-only source-diversity stress"
+        },
+        {
+          "route_id": "quarantine_or_hold",
+          "condition": "label, coordinate, mechanism, or cofactor interpretation is unresolved",
+          "allowed_use": "manual dossier only; no metric anchoring"
+        }
+      ]
+    },
+    "stage_4_evidence_dossier": {
+      "description": "Emit a per-row human-readable dossier that explains why a row is anchor, control, canary, or quarantine.",
+      "fields": [
+        "entry_id",
+        "true_or_current_fingerprint_id",
+        "row_use_status",
+        "foldseek_nearest_neighbor_summary",
+        "tm_pair_verification_summary",
+        "geometry_feature_summary",
+        "cofactor_and_ligand_summary",
+        "policy_route",
+        "unsafe_failure_mode_if_used_directly",
+        "next_action"
+      ]
+    }
+  },
+  "diagnostic_metrics_only": {
+    "near_orphan_geometry_rescue": {
+      "reference_from_wave1_1": "geometry 17/17, Foldseek 13/17, ESM-2 150M 9/17",
+      "metric": "count rows where local geometry provides the correct parent-v1 route when Foldseek has no reliable same-fingerprint neighbor",
+      "claim_status": "review_only_not_benchmark_claim"
+    },
+    "wrong_foldseek_transfer_rescue": {
+      "reference_from_wave1_1": "geometry 4/4, corrected ESM-C 2/4, Foldseek 0/4",
+      "metric": "count rows where nearest structural transfer would be wrong but geometry routes correctly or abstains",
+      "claim_status": "review_only_not_benchmark_claim"
+    },
+    "oos_unsafe_nonabstention": {
+      "metric": "count OOS control rows where a router would emit an in-scope primary prediction without sufficient geometry support",
+      "claim_status": "safety_diagnostic"
+    },
+    "local_tail_expected_pattern_failure": {
+      "reference_from_active_site_cache_41": "0 failures across 10 local-tail extension rows",
+      "metric": "count local-tail canaries that violate expected source-diversity/router behavior",
+      "claim_status": "canary_only"
+    }
+  },
+  "implementation_notes": {
+    "recommended_next_artifact": "v3_foldseek_geometry_atlas_dossier_compiler_20260528",
+    "recommended_next_code_scope": "read-only dossier compiler that joins existing Foldseek/TM, active-site cache, geometry summaries, and slice-contract row-use status",
+    "not_recommended_now": [
+      "larger model leaderboard runs before child-label exports exist",
+      "threshold tuning on heldout diagnostics",
+      "registry or ontology edits from diagnostic rows",
+      "using quarantined rows as performance anchors",
+      "supervised active-site smoke without explicit user approval"
+    ],
+    "why_this_is_next": "The current evidence says Foldseek-plus-local-geometry is the only decision-grade path in weak-Foldseek cells; learned representations remain secondary until child labels and external panels exist."
+  },
+  "next_allowed_actions": [
+    "Build a read-only Foldseek+geometry per-row dossier compiler.",
+    "Build the external/v2 acquisition priority pack for child labels and external stress panels.",
+    "Keep the supervised active-site smoke scaffold idle until user approval.",
+    "Use this artifact as planning input only; do not import, relabel, or tune thresholds from it."
+  ]
+}
