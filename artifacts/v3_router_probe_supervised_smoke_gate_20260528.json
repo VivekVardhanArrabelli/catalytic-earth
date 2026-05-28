@@ -1,0 +1,399 @@
+{
+  "artifact_id": "v3_router_probe_supervised_smoke_gate_20260528",
+  "created_utc": "2026-05-28T11:24:16Z",
+  "evidence_summary": {
+    "cache31_summary": {
+      "interpretation": "The cache is structurally valid for a future encoder smoke, but unsupervised nearest-neighbor behavior should be treated as a diagnostic only, not evidence of model performance.",
+      "mean_nearest_distance_by_source_group": {
+        "clean_near_orphan_anchor": 8.696,
+        "external_router_priority": 10.8078,
+        "fold_conflict_reference_anchor": 10.1189,
+        "oos_router_control": 11.2286
+      },
+      "nearest_neighbor_cross_source_group_count": 13,
+      "nearest_neighbor_cross_source_group_rate": 0.4194,
+      "row_count": 31,
+      "source_group_counts": {
+        "clean_near_orphan_anchor": 7,
+        "external_router_priority": 12,
+        "fold_conflict_reference_anchor": 3,
+        "oos_router_control": 9
+      },
+      "sufficient_for_future_supervised_smoke": true
+    },
+    "cache41_summary": {
+      "input_cache_counts": {
+        "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl": 10,
+        "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl": 31
+      },
+      "interpretation": "This is a label-blind unsupervised stress diagnostic, not performance evidence. The 41-row cache is ready for review-only router diagnostics; supervised claims still require a separate leakage-safe gate.",
+      "local_tail_expected_pattern_failure_count": 0,
+      "local_tail_expected_pattern_pass_count": 10,
+      "local_tail_nearest_neighbor_fingerprint_metadata_counts": {
+        "None": 6,
+        "flavin_dehydrogenase_reductase": 1,
+        "metal_dependent_hydrolase": 3
+      },
+      "local_tail_nearest_neighbor_source_group_counts": {
+        "clean_near_orphan_anchor": 2,
+        "current702_local_tail_extension": 5,
+        "external_router_priority": 3
+      },
+      "local_tail_row_count": 10,
+      "mean_nearest_distance_by_source_group": {
+        "clean_near_orphan_anchor": 20.2209,
+        "current702_local_tail_extension": 28.7425,
+        "external_router_priority": 29.4933,
+        "fold_conflict_reference_anchor": 25.8785,
+        "oos_router_control": 24.8089
+      },
+      "nearest_neighbor_cross_source_group_count": 31,
+      "nearest_neighbor_cross_source_group_rate": 0.7561,
+      "row_count": 41,
+      "source_group_counts": {
+        "clean_near_orphan_anchor": 7,
+        "current702_local_tail_extension": 10,
+        "external_router_priority": 12,
+        "fold_conflict_reference_anchor": 3,
+        "oos_router_control": 9
+      }
+    },
+    "current_cache_fingerprint_metadata_counts": {
+      "None": 22,
+      "flavin_dehydrogenase_reductase": 5,
+      "flavin_monooxygenase": 1,
+      "heme_peroxidase_oxidase": 4,
+      "metal_dependent_hydrolase": 9
+    },
+    "current_cache_split_counts": {
+      "heldout": 22,
+      "in_distribution": 9,
+      "review_only_not_training": 10
+    },
+    "eval_contract_primary_fingerprints": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "geometry_ok_by_partition": {
+      "heldout": 135,
+      "in_distribution": 547
+    },
+    "heldout_geometry_ok_by_fingerprint": {
+      "None": 88,
+      "cobalamin_radical_rearrangement": 1,
+      "flavin_dehydrogenase_reductase": 10,
+      "flavin_monooxygenase": 1,
+      "heme_peroxidase_oxidase": 4,
+      "metal_dependent_hydrolase": 17,
+      "plp_dependent_enzyme": 6,
+      "ser_his_acid_hydrolase": 8
+    },
+    "in_distribution_geometry_ok_by_fingerprint": {
+      "None": 363,
+      "cobalamin_radical_rearrangement": 2,
+      "flavin_dehydrogenase_reductase": 40,
+      "flavin_monooxygenase": 1,
+      "heme_peroxidase_oxidase": 16,
+      "metal_dependent_hydrolase": 66,
+      "plp_dependent_enzyme": 25,
+      "ser_his_acid_hydrolase": 34
+    },
+    "sequence_split_partition_counts": {
+      "heldout": 140,
+      "in_distribution": 562
+    },
+    "wave1_1_decision_gate": {
+      "decision": "prioritize_external_panels_features_and_labels_over_running_larger_models_now",
+      "next_priority": [
+        "Build the Foldseek-plus-geometry atlas/features for near-orphan and wrong-transfer diagnostics.",
+        "Acquire external panels and targeted labels for v2 child strata, unresolved buckets, and mixed chemistry splits.",
+        "Only run larger models after row-aligned standardized exports and child-label targets exist, without threshold tuning."
+      ],
+      "rationale": [
+        "The strongest learned improvement is confined to 2/4 wrong-Foldseek-transfer rescues by ESM-C, while geometry resolves 4/4.",
+        "Near-orphan coverage favors geometry and still favors Foldseek over learned reps on correct parent-v1 calls.",
+        "Child-level and mixed-chemistry questions are label/feature-definition limited, not model-size limited, in the current exports."
+      ],
+      "run_larger_models_now": false
+    },
+    "wave1_1_explicit_answer": {
+      "answer": "limited_not_decision_grade",
+      "basis": [
+        "In the 17-row near-orphan geometry-rescue cell, Foldseek full-structure NN is 13 correct / 0 wrong / 4 abstain, geometry is 17/17, and the best learned channel, ESM-2 150M, is 9 correct / 0 wrong / 8 abstain. Learned reps do not add over Foldseek or geometry there.",
+        "In the 4-row wrong-Foldseek-transfer cell, Foldseek is 0 correct / 4 wrong, while ESM-C corrected logistic is 2 correct / 0 wrong / 2 abstain and ESM-2 plus ESM-C cosine are 1 correct / 0 wrong / 3 abstain. That is real but small rescue signal where Foldseek is actively wrong.",
+        "Geometry rescues all 4 wrong-transfer rows and all 17 near-orphan rows, so the learned-representation signal is secondary to geometry and not enough to justify scaling larger models first.",
+        "Packet 3 child strata, unresolved buckets, and canary/mixed-chemistry cells lack child-label prediction exports; parent projections cannot support a child-label value claim."
+      ],
+      "question": "Do learned representations add value specifically where Foldseek is weak?",
+      "weak_foldseek_cell_summary": {
+        "near_orphan_geometry_rescue": {
+          "esm2_150m": {
+            "abstain": 8,
+            "adds_value_over_foldseek": "no",
+            "adds_value_over_geometry": "no",
+            "correct": 9,
+            "missing": 0,
+            "wrong": 0
+          },
+          "esm_c_300m": {
+            "abstain": 10,
+            "adds_value_over_foldseek": "no",
+            "adds_value_over_geometry": "no",
+            "correct": 5,
+            "missing": 0,
+            "wrong": 2
+          },
+          "esm_c_cosine_nn": {
+            "abstain": 12,
+            "adds_value_over_foldseek": "no",
+            "adds_value_over_geometry": "no",
+            "correct": 1,
+            "missing": 0,
+            "wrong": 4
+          },
+          "foldseek_structural_nn": {
+            "abstain": 4,
+            "adds_value_over_foldseek": "reference",
+            "adds_value_over_geometry": "compare-to-geometry",
+            "correct": 13,
+            "missing": 0,
+            "wrong": 0
+          },
+          "geometry_baseline": {
+            "abstain": 0,
+            "adds_value_over_foldseek": "yes",
+            "adds_value_over_geometry": "reference",
+            "correct": 17,
+            "missing": 0,
+            "wrong": 0
+          },
+          "prostt5_3di": {
+            "abstain": null,
+            "adds_value_over_foldseek": "unavailable",
+            "adds_value_over_geometry": "unavailable",
+            "correct": null,
+            "missing": 17,
+            "wrong": null
+          },
+          "prott5": {
+            "abstain": 7,
+            "adds_value_over_foldseek": "no",
+            "adds_value_over_geometry": "no",
+            "correct": 7,
+            "missing": 0,
+            "wrong": 3
+          },
+          "saprot": {
+            "abstain": 7,
+            "adds_value_over_foldseek": "no",
+            "adds_value_over_geometry": "no",
+            "correct": 6,
+            "missing": 0,
+            "wrong": 4
+          }
+        },
+        "wrong_foldseek_transfer": {
+          "esm2_150m": {
+            "abstain": 3,
+            "adds_value_over_foldseek": "yes",
+            "adds_value_over_geometry": "no",
+            "correct": 1,
+            "missing": 0,
+            "wrong": 0
+          },
+          "esm_c_300m": {
+            "abstain": 2,
+            "adds_value_over_foldseek": "yes",
+            "adds_value_over_geometry": "no",
+            "correct": 2,
+            "missing": 0,
+            "wrong": 0
+          },
+          "esm_c_cosine_nn": {
+            "abstain": 3,
+            "adds_value_over_foldseek": "yes",
+            "adds_value_over_geometry": "no",
+            "correct": 1,
+            "missing": 0,
+            "wrong": 0
+          },
+          "foldseek_structural_nn": {
+            "abstain": 0,
+            "adds_value_over_foldseek": "reference",
+            "adds_value_over_geometry": "compare-to-geometry",
+            "correct": 0,
+            "missing": 0,
+            "wrong": 4
+          },
+          "geometry_baseline": {
+            "abstain": 0,
+            "adds_value_over_foldseek": "yes",
+            "adds_value_over_geometry": "reference",
+            "correct": 4,
+            "missing": 0,
+            "wrong": 0
+          },
+          "prostt5_3di": {
+            "abstain": null,
+            "adds_value_over_foldseek": "unavailable",
+            "adds_value_over_geometry": "unavailable",
+            "correct": null,
+            "missing": 4,
+            "wrong": null
+          },
+          "prott5": {
+            "abstain": 3,
+            "adds_value_over_foldseek": "safer_not_more_correct",
+            "adds_value_over_geometry": "no",
+            "correct": 0,
+            "missing": 0,
+            "wrong": 1
+          },
+          "saprot": {
+            "abstain": 3,
+            "adds_value_over_foldseek": "safer_not_more_correct",
+            "adds_value_over_geometry": "no",
+            "correct": 0,
+            "missing": 0,
+            "wrong": 1
+          }
+        }
+      }
+    },
+    "wave1_2_row_use_summary": {
+      "by_use_status": {
+        "clean_near_orphan_anchor": 7,
+        "coordinate_or_tm_uncertainty_hold": 5,
+        "fold_conflict_candidate_needs_review": 2,
+        "fold_conflict_reference_anchor": 3,
+        "mixed_high_tm_review_candidate": 4,
+        "near_orphan_candidate_from_retained_hits": 37,
+        "not_primary_due_same_neighbor": 17,
+        "oos_fold_conflict_hard_negative_candidate": 11,
+        "oos_router_control": 9,
+        "quarantine_do_not_anchor_metric": 7
+      },
+      "clean_near_orphan_anchor_ids": [
+        "m_csa:97",
+        "m_csa:211",
+        "m_csa:250",
+        "m_csa:517",
+        "m_csa:686",
+        "m_csa:916",
+        "m_csa:990"
+      ],
+      "fold_conflict_reference_anchor_ids": [
+        "m_csa:217",
+        "m_csa:428",
+        "m_csa:477"
+      ],
+      "metric_anchor_allowed_count": 88,
+      "oos_router_control_ids": [
+        "m_csa:10",
+        "m_csa:30",
+        "m_csa:31",
+        "m_csa:116",
+        "m_csa:191",
+        "m_csa:369",
+        "m_csa:440",
+        "m_csa:634",
+        "m_csa:651"
+      ],
+      "quarantine_before_model_claim_ids": [
+        "m_csa:403",
+        "m_csa:497",
+        "m_csa:714",
+        "m_csa:723",
+        "m_csa:735",
+        "m_csa:750",
+        "m_csa:994"
+      ],
+      "quarantine_or_hold_count": 14,
+      "row_count": 102
+    }
+  },
+  "gate_decision": {
+    "decision_grade_claim_allowed_after_smoke": false,
+    "is_supervised_active_site_encoder_smoke_scientifically_justified_now": "yes_with_strict_preconditions",
+    "is_training_allowed_from_current_41_row_cache": "no",
+    "minimum_safe_next_step": "Build a full in-distribution train/calibration active-site cache from current702 geometry-ok rows, then run any supervised smoke only against frozen diagnostic cells. This gate itself does not train.",
+    "why_not_current_41_cache": "The 41-row cache contains 22 heldout rows, 10 review_only_not_training rows, and only 9 in_distribution rows. Training directly on it would either be underpowered or create heldout leakage."
+  },
+  "guardrails": {
+    "coordinate_fetches_performed": false,
+    "heldout_rows_used_for_training": false,
+    "labels_changed": false,
+    "model_outputs_changed": false,
+    "ontologies_changed": false,
+    "production_scoring_changed": false,
+    "registries_changed": false,
+    "thresholds_changed": false,
+    "training_executed": false
+  },
+  "recommended_next_automation": {
+    "id_suggestion": "active-site-train-cal-cache-feasibility",
+    "run_training_after_this_gate": false,
+    "task": "Build the exact in-distribution train/calibration cache feasibility artifact and optional label-blind cache, without training. Use the 547 geometry-ok in_distribution rows as the candidate pool and report per-fingerprint support before any model run."
+  },
+  "review_only": true,
+  "schema_version": "router_probe_supervised_smoke_gate.v1",
+  "smallest_leakage_safe_experiment_contract": {
+    "calibration_rule": "Split only within in_distribution train pool by sequence cluster where possible; use calibration to choose abstention threshold. Never tune on heldout, near-orphan, fold-conflict, OOS router controls, or local-tail diagnostic rows.",
+    "evaluation_cells": [
+      "clean_near_orphan_anchor",
+      "fold_conflict_reference_anchor",
+      "oos_router_control",
+      "current702_local_tail_extension",
+      "secondary_ood_probe rows where present"
+    ],
+    "excluded_from_train": [
+      "partition == heldout",
+      "split_assignment == review_only_not_training",
+      "external_router_priority rows without approved train partition",
+      "quarantined rows",
+      "m_csa:497",
+      "m_csa:750",
+      "any row marked canary-only or OOS diagnostic-only"
+    ],
+    "non_claims": [
+      "no production metric",
+      "no label promotion",
+      "no ontology update",
+      "no threshold update",
+      "no claim that learned reps beat Foldseek/geometry from this smoke alone"
+    ],
+    "phase_0_required_before_training": "Build and validate a train/calibration cache from in_distribution current702 rows only.",
+    "required_metrics": [
+      "coverage",
+      "risk on non-abstained predictions",
+      "OOS false-positive rate by cell",
+      "wrong-Foldseek-transfer rescue count",
+      "near-orphan rescue count",
+      "canary failures",
+      "ECE only if n>=50 for the evaluated bin"
+    ],
+    "stop_conditions": [
+      "any heldout row appears in train/calibration",
+      "any target label or entry/source id appears in predictive_features",
+      "OOS false-positive rate exceeds geometry/Foldseek reference in the same cell",
+      "canary failure on quarantined rows",
+      "disk below 10 GiB",
+      "metric generated without row-aligned prediction export"
+    ],
+    "target_policy": "Use frozen parent-v1 primary fingerprints plus explicit OOS/none target only for training-smoke diagnostics; secondary OOD probes and proposed child labels are evaluation/canary-only until separately approved.",
+    "train_pool_rule": "partition == in_distribution AND geometry status ok AND local coordinate/materialized geometry available AND label/fingerprint IDs metadata-only until target extraction."
+  },
+  "source_artifacts": [
+    "artifacts/v3_active_site_cache_31_unsupervised_router_probe_20260528.json",
+    "artifacts/v3_active_site_cache_41_unsupervised_router_stress_20260528.json",
+    "artifacts/v3_wave1_1_model_by_cell_report_702_20260528.json",
+    "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+    "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+    "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "artifacts/v3_geometry_features_1025.json"
+  ],
+  "status": "complete_gate_decision_no_training"
+}
