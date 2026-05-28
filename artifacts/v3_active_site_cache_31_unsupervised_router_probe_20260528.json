@@ -1,0 +1,1255 @@
+{
+  "artifact_id": "v3_active_site_cache_31_unsupervised_router_probe_20260528",
+  "created_utc": "2026-05-28T10:21:59Z",
+  "feature_contract": {
+    "feature_count": 106,
+    "metadata_use": "diagnostic grouping after distances only",
+    "predictive_inputs": "predictive_features only"
+  },
+  "guardrails": {
+    "coordinate_fetches_performed": false,
+    "labels_changed": false,
+    "metadata_used_as_predictive_input": false,
+    "ontologies_changed": false,
+    "production_scoring_changed": false,
+    "registries_changed": false,
+    "thresholds_changed": false,
+    "training_executed": false
+  },
+  "review_only": true,
+  "rows": [
+    {
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:97",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 5.7716,
+          "entry_id": "m_csa:517",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 7.0805,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 7.298,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 9.4829,
+          "entry_id": "m_csa:973",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 9.7662,
+          "entry_id": "m_csa:916",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:517",
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:211",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 7.7946,
+          "entry_id": "m_csa:551",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 8.4186,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 8.5101,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 8.8626,
+          "entry_id": "m_csa:651",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 9.8139,
+          "entry_id": "m_csa:990",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+      "entry_id": "m_csa:250",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 9.8256,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 9.9919,
+          "entry_id": "m_csa:217",
+          "source_group": "fold_conflict_reference_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 10.215,
+          "entry_id": "m_csa:517",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 10.4542,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.6273,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:517",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 5.7716,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 6.9943,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 7.983,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 8.8817,
+          "entry_id": "m_csa:916",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 9.3124,
+          "entry_id": "m_csa:217",
+          "source_group": "fold_conflict_reference_anchor"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:97",
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:686",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 13.013,
+          "entry_id": "m_csa:517",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 13.4261,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 13.8215,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 14.0432,
+          "entry_id": "m_csa:916",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 14.2496,
+          "entry_id": "m_csa:634",
+          "source_group": "oos_router_control"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:517",
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:916",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 8.8817,
+          "entry_id": "m_csa:517",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 9.4591,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 9.7662,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.0476,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 10.6831,
+          "entry_id": "m_csa:973",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:517",
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:990",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 9.8139,
+          "entry_id": "m_csa:211",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 9.8916,
+          "entry_id": "m_csa:551",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.3271,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 10.8153,
+          "entry_id": "m_csa:973",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.2308,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:211",
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:217",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 9.3124,
+          "entry_id": "m_csa:517",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 9.4788,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 9.6792,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 9.7424,
+          "entry_id": "m_csa:973",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+          "distance": 9.9919,
+          "entry_id": "m_csa:250",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "fold_conflict_reference_anchor"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:428",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.5265,
+          "entry_id": "m_csa:477",
+          "source_group": "fold_conflict_reference_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.797,
+          "entry_id": "m_csa:440",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.3437,
+          "entry_id": "m_csa:10",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 11.667,
+          "entry_id": "m_csa:973",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.7179,
+          "entry_id": "m_csa:651",
+          "source_group": "oos_router_control"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:477",
+      "source_group": "fold_conflict_reference_anchor"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:477",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 10.5178,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.5265,
+          "entry_id": "m_csa:428",
+          "source_group": "fold_conflict_reference_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.5388,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.0544,
+          "entry_id": "m_csa:10",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 11.2618,
+          "entry_id": "m_csa:517",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "fold_conflict_reference_anchor"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:10",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 9.918,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.1497,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 10.1975,
+          "entry_id": "m_csa:517",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.2903,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.4259,
+          "entry_id": "m_csa:651",
+          "source_group": "oos_router_control"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "oos_router_control"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:30",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 16.4009,
+          "entry_id": "m_csa:651",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 16.5416,
+          "entry_id": "m_csa:10",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 16.6453,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 16.8099,
+          "entry_id": "m_csa:634",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 16.8257,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:651",
+      "source_group": "oos_router_control"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:31",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.2524,
+          "entry_id": "m_csa:217",
+          "source_group": "fold_conflict_reference_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.5125,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.5938,
+          "entry_id": "m_csa:369",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.6897,
+          "entry_id": "m_csa:634",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+          "distance": 12.1227,
+          "entry_id": "m_csa:250",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "oos_router_control"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:116",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 13.9836,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 14.1409,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 14.359,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 14.5087,
+          "entry_id": "m_csa:551",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 14.5137,
+          "entry_id": "m_csa:651",
+          "source_group": "oos_router_control"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "oos_router_control"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:191",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.2383,
+          "entry_id": "m_csa:634",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 12.07,
+          "entry_id": "m_csa:10",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 12.1618,
+          "entry_id": "m_csa:517",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 12.458,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 12.5509,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:634",
+      "source_group": "oos_router_control"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:369",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.5938,
+          "entry_id": "m_csa:31",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.6832,
+          "entry_id": "m_csa:217",
+          "source_group": "fold_conflict_reference_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 11.9418,
+          "entry_id": "m_csa:973",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 12.1548,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 12.1587,
+          "entry_id": "m_csa:651",
+          "source_group": "oos_router_control"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:31",
+      "source_group": "oos_router_control"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:440",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.4174,
+          "entry_id": "m_csa:651",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.6761,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.797,
+          "entry_id": "m_csa:428",
+          "source_group": "fold_conflict_reference_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.9365,
+          "entry_id": "m_csa:217",
+          "source_group": "fold_conflict_reference_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.0971,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:651",
+      "source_group": "oos_router_control"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:634",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 8.3463,
+          "entry_id": "m_csa:651",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 8.8529,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 10.5913,
+          "entry_id": "m_csa:211",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 10.7535,
+          "entry_id": "m_csa:973",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.8559,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:651",
+      "source_group": "oos_router_control"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:651",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 7.9067,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 8.3463,
+          "entry_id": "m_csa:634",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 8.8626,
+          "entry_id": "m_csa:211",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 9.2999,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 9.7588,
+          "entry_id": "m_csa:551",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "oos_router_control"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "flavin_monooxygenase",
+      "entry_id": "m_csa:131",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 8.7594,
+          "entry_id": "m_csa:551",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 10.385,
+          "entry_id": "m_csa:973",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 10.7073,
+          "entry_id": "m_csa:211",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.4979,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 12.1565,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:551",
+      "source_group": "external_router_priority"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:551",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 7.7946,
+          "entry_id": "m_csa:211",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 8.3468,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_monooxygenase",
+          "distance": 8.7594,
+          "entry_id": "m_csa:131",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 9.4127,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 9.665,
+          "entry_id": "m_csa:973",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "external_router_priority"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:973",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 9.0759,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 9.3066,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 9.4829,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 9.665,
+          "entry_id": "m_csa:551",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 9.7424,
+          "entry_id": "m_csa:217",
+          "source_group": "fold_conflict_reference_anchor"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:129",
+      "source_group": "external_router_priority"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:141",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 21.7948,
+          "entry_id": "m_csa:135",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+          "distance": 21.952,
+          "entry_id": "m_csa:133",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 21.9974,
+          "entry_id": "m_csa:369",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 22.0506,
+          "entry_id": "m_csa:973",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+          "distance": 22.3759,
+          "entry_id": "m_csa:795",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:135",
+      "source_group": "external_router_priority"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:128",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 13.5518,
+          "entry_id": "m_csa:477",
+          "source_group": "fold_conflict_reference_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 13.6121,
+          "entry_id": "m_csa:369",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 13.9161,
+          "entry_id": "m_csa:217",
+          "source_group": "fold_conflict_reference_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 14.3193,
+          "entry_id": "m_csa:651",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 14.3502,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "external_router_priority"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:129",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 7.0805,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 7.7294,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 7.9067,
+          "entry_id": "m_csa:651",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 7.983,
+          "entry_id": "m_csa:517",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 8.3468,
+          "entry_id": "m_csa:551",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "external_router_priority"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:130",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.6007,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.9398,
+          "entry_id": "m_csa:135",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.125,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 11.292,
+          "entry_id": "m_csa:517",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 11.7803,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:134",
+      "source_group": "external_router_priority"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+      "entry_id": "m_csa:133",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.3663,
+          "entry_id": "m_csa:217",
+          "source_group": "fold_conflict_reference_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+          "distance": 11.4007,
+          "entry_id": "m_csa:250",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 11.5804,
+          "entry_id": "m_csa:973",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.6432,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+          "distance": 11.7151,
+          "entry_id": "m_csa:795",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "external_router_priority"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:134",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 6.9943,
+          "entry_id": "m_csa:517",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 7.298,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 7.7294,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 8.4186,
+          "entry_id": "m_csa:211",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 9.2999,
+          "entry_id": "m_csa:651",
+          "source_group": "oos_router_control"
+        }
+      ],
+      "nearest_same_source_group": null,
+      "source_group": "external_router_priority"
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:135",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.9398,
+          "entry_id": "m_csa:130",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 11.3878,
+          "entry_id": "m_csa:517",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.4939,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 11.5549,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 11.5899,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:130",
+      "source_group": "external_router_priority"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+      "entry_id": "m_csa:699",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.0201,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 10.1346,
+          "entry_id": "m_csa:97",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 10.9601,
+          "entry_id": "m_csa:134",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 11.0033,
+          "entry_id": "m_csa:551",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 11.1237,
+          "entry_id": "m_csa:211",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:129",
+      "source_group": "external_router_priority"
+    },
+    {
+      "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+      "entry_id": "m_csa:795",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbors": [
+        {
+          "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+          "distance": 11.7151,
+          "entry_id": "m_csa:133",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 11.7377,
+          "entry_id": "m_csa:973",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 12.0753,
+          "entry_id": "m_csa:129",
+          "source_group": "external_router_priority"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 12.0904,
+          "entry_id": "m_csa:10",
+          "source_group": "oos_router_control"
+        },
+        {
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 12.2492,
+          "entry_id": "m_csa:217",
+          "source_group": "fold_conflict_reference_anchor"
+        }
+      ],
+      "nearest_same_source_group": "m_csa:133",
+      "source_group": "external_router_priority"
+    }
+  ],
+  "schema_version": "active_site_cache_unsupervised_router_probe.v1",
+  "source_artifacts": [
+    "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl"
+  ],
+  "status": "complete_read_only_unsupervised_probe",
+  "summary": {
+    "interpretation": "The cache is structurally valid for a future encoder smoke, but unsupervised nearest-neighbor behavior should be treated as a diagnostic only, not evidence of model performance.",
+    "mean_nearest_distance_by_source_group": {
+      "clean_near_orphan_anchor": 8.696,
+      "external_router_priority": 10.8078,
+      "fold_conflict_reference_anchor": 10.1189,
+      "oos_router_control": 11.2286
+    },
+    "nearest_neighbor_cross_source_group_count": 13,
+    "nearest_neighbor_cross_source_group_rate": 0.4194,
+    "row_count": 31,
+    "source_group_counts": {
+      "clean_near_orphan_anchor": 7,
+      "external_router_priority": 12,
+      "fold_conflict_reference_anchor": 3,
+      "oos_router_control": 9
+    },
+    "sufficient_for_future_supervised_smoke": true
+  }
+}
