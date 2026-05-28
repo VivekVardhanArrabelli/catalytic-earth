@@ -1,0 +1,669 @@
+{
+  "artifact_id": "v3_fmo_mcsa_candidate_scout_702_20260527",
+  "candidate_rows": [
+    {
+      "candidate_disposition": "clean_candidate",
+      "current_label_status": "current702:seed_fingerprint:flavin_dehydrogenase_reductase; confidence=high; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.14.13.7"
+      ],
+      "entry_id": "m_csa:551",
+      "enzyme_name": "phenol 2-monooxygenase",
+      "flavin_cofactor_evidence": "M-CSA mechanism names FAD, NADPH, molecular oxygen, and reduced flavin; current label rationale reports ligand-supported cofactor context.",
+      "fmo_candidate_type": "clean_FAD_aromatic_hydroxylase",
+      "known_confounds": "Currently labeled flavin_dehydrogenase_reductase; mechanism is compared with p-hydroxybenzoate hydroxylase but described as operating differently.",
+      "next_action": "Expert review for future FMO acquisition; run duplicate/leakage and hard-negative separation before any primary promotion.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Reduced FAD reacts with oxygen to form C4a-hydroperoxyflavin/C4a-peroxoflavin before product release.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json; artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json; artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+      "substrate_oxygenation_evidence": "Phenol or derivatives are hydroxylated at the ortho position.",
+      "why_not_dehydrogenase_reductase": "NADPH reduces FAD, but the discriminating chemistry is C4a-peroxyflavin substrate hydroxylation rather than terminal hydride/electron transfer to an acceptor.",
+      "why_not_generic_oos": "Curated M-CSA active-site/mechanism row with EC 1.14.13.7 and explicit flavin oxygenation; it is not an untyped oxygenase mention."
+    },
+    {
+      "candidate_disposition": "clean_candidate",
+      "current_label_status": "current702:seed_fingerprint:flavin_dehydrogenase_reductase; confidence=high; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.14.14.21"
+      ],
+      "entry_id": "m_csa:973",
+      "enzyme_name": "DszC protein",
+      "flavin_cofactor_evidence": "M-CSA mechanism uses FMNH2/FMNH2-derived chemistry and current label rationale reports ligand-supported cofactor context.",
+      "fmo_candidate_type": "clean_FMN_sulfur_monooxygenase",
+      "known_confounds": "Currently labeled flavin_dehydrogenase_reductase; DszC sulfur oxygenation should stay secondary/future until expert review and support gates are complete.",
+      "next_action": "Expert review for future FMO acquisition; check duplicate/family leakage and pair with hard-negative flavin reductases.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "FMNH2 transfers reducing equivalents to dioxygen to form a C4a-hydroperoxyflavin/C4aOOH intermediate.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json; artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json; artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+      "substrate_oxygenation_evidence": "Dibenzothiophene sulfur attacks the distal oxygen of C4aOOH to form DBT sulfoxide.",
+      "why_not_dehydrogenase_reductase": "The mechanism uses reduced flavin for dioxygen activation and oxygen atom transfer to sulfur, not only substrate hydride transfer into a flavin/redox acceptor chain.",
+      "why_not_generic_oos": "Curated M-CSA mechanism gives explicit FMN, dioxygen activation, and sulfur oxygenation; EC 1.14.14.21 is monooxygenase chemistry."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:seed_fingerprint:flavin_dehydrogenase_reductase; confidence=medium; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.17.9.1"
+      ],
+      "entry_id": "m_csa:141",
+      "enzyme_name": "4-cresol dehydrogenase (hydroxylating)",
+      "flavin_cofactor_evidence": "Mechanism has FAD and current registry labels the row as flavin_dehydrogenase_reductase.",
+      "fmo_candidate_type": "hydroxylating_dehydrogenase_boundary",
+      "known_confounds": "Hydroxylating name and FAD cofactor can look FMO-like without C4a-peroxy oxygen transfer.",
+      "next_action": "Use as a hard-negative separator against clean C4a-peroxy FMO rows.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "No local C4a-peroxyflavin or dioxygen-activation evidence; M-CSA states the inserted oxygen is water-derived.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json; artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json; artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+      "substrate_oxygenation_evidence": "p-Cresol is converted to p-hydroxybenzyl alcohol, but via water attack after hydride transfer.",
+      "why_not_dehydrogenase_reductase": "It is the dehydrogenase/reductase case: hydride transfers from substrate methyl to FAD N5 and water supplies oxygen.",
+      "why_not_generic_oos": "Mechanistically informative flavin hard negative, not generic OOS, because it is a close FAD hydroxylating-name confound."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:out_of_scope:none; confidence=medium; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.13.12.7"
+      ],
+      "entry_id": "m_csa:128",
+      "enzyme_name": "Photinus-luciferin 4-monooxygenase (ATP-hydrolysing)",
+      "flavin_cofactor_evidence": "No local flavin cofactor evidence in the M-CSA mechanism or current out-of-scope label.",
+      "fmo_candidate_type": "ATP_luciferin_monooxygenase_nonflavin",
+      "known_confounds": "Name contains monooxygenase but mechanism is ATP/luciferyl-adenylate bioluminescence.",
+      "next_action": "Retain as name-only monooxygenase negative; do not count for FMO support.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "No flavin C4a-peroxy/C4a-hydroperoxy intermediate; chemistry proceeds through luciferyl adenylation/bioluminescent oxidation.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json; artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json; artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+      "substrate_oxygenation_evidence": "Oxidative luciferin chemistry yields excited oxyluciferin rather than flavin-mediated substrate hydroxylation.",
+      "why_not_dehydrogenase_reductase": "No FAD/FMN hydride-transfer reductase chemistry is present.",
+      "why_not_generic_oos": "Keep as named monooxygenase false positive for FMO text filters."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:seed_fingerprint:heme_peroxidase_oxidase; confidence=medium; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.14.15.1"
+      ],
+      "entry_id": "m_csa:133",
+      "enzyme_name": "camphor 5-monooxygenase",
+      "flavin_cofactor_evidence": "No catalytic flavin cofactor; current registry labels heme_peroxidase_oxidase.",
+      "fmo_candidate_type": "heme_P450_monooxygenase_negative",
+      "known_confounds": "Monooxygenase name and NADPH electron supply can be mistaken for FMO without cofactor typing.",
+      "next_action": "Retain as heme monooxygenase hard negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Dioxygen activation occurs at heme iron/peroxo/ferryl intermediates, not flavin C4a.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json; artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json; artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+      "substrate_oxygenation_evidence": "Camphor is hydroxylated to 5-hydroxycamphor through P450 rebound chemistry.",
+      "why_not_dehydrogenase_reductase": "The oxygenating center is heme iron rather than flavin redox chemistry.",
+      "why_not_generic_oos": "It is a named P450 monooxygenase hard negative for separating heme oxygenation from FMO."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:out_of_scope:none; confidence=medium; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.14.16.2"
+      ],
+      "entry_id": "m_csa:134",
+      "enzyme_name": "tyrosine 3-monooxygenase",
+      "flavin_cofactor_evidence": "No FAD/FMN evidence; current label is out_of_scope.",
+      "fmo_candidate_type": "biopterin_nonheme_iron_monooxygenase_negative",
+      "known_confounds": "Aromatic hydroxylase target family but tetrahydrobiopterin/non-heme iron chemistry.",
+      "next_action": "Retain as nonflavin hydroxylase negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Oxygen activation uses Fe(II), pterin electron transfer, peroxypterin, and Fe(IV)=O chemistry.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json; artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json; artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+      "substrate_oxygenation_evidence": "Tyrosine aromatic ring is hydroxylated.",
+      "why_not_dehydrogenase_reductase": "No flavin reductase/dehydrogenase center is implicated.",
+      "why_not_generic_oos": "Named monooxygenase boundary row useful for nonflavin aromatic hydroxylase separation."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:out_of_scope:none; confidence=medium; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.14.17.3"
+      ],
+      "entry_id": "m_csa:135",
+      "enzyme_name": "peptidylglycine monooxygenase",
+      "flavin_cofactor_evidence": "No FAD/FMN evidence; current label is out_of_scope.",
+      "fmo_candidate_type": "copper_monooxygenase_negative",
+      "known_confounds": "Monooxygenase name and multiple oxygen activation proposals, all copper based.",
+      "next_action": "Retain as copper monooxygenase hard negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Oxygen activation proceeds through copper-superoxo/hydroperoxo/oxo proposals, not flavin C4a.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json; artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json; artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+      "substrate_oxygenation_evidence": "Peptidylglycine substrate is hydroxylated/amidation-associated through copper chemistry.",
+      "why_not_dehydrogenase_reductase": "Ascorbate-reduced copper centers, not a flavin dehydrogenase/reductase, drive the reaction.",
+      "why_not_generic_oos": "Named monooxygenase row is a useful copper oxygenase negative control."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "not_present_in_current702_registry",
+      "ec": [
+        "1.14.13.25"
+      ],
+      "entry_id": "m_csa:600",
+      "enzyme_name": "methane monooxygenase (soluble)",
+      "flavin_cofactor_evidence": "No local flavin cofactor evidence in the M-CSA row.",
+      "fmo_candidate_type": "diiron_methane_monooxygenase_negative",
+      "known_confounds": "Monooxygenase name and NADH reductase coupling without flavin C4a oxygen transfer.",
+      "next_action": "Retain as metal monooxygenase hard negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Reduced MMOH reacts with O2 to form diiron peroxo P and Q intermediates, not flavin C4a-peroxy species.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json; artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json; artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+      "substrate_oxygenation_evidence": "Methane is hydroxylated to methanol through diiron oxygenation.",
+      "why_not_dehydrogenase_reductase": "Electron delivery is reductase-coupled, but the substrate oxygenating center is diiron MMOH.",
+      "why_not_generic_oos": "Important soluble methane monooxygenase metal hard negative for oxygenase boundaries."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "not_present_in_current702_registry",
+      "ec": [
+        "1.13.12.5"
+      ],
+      "entry_id": "m_csa:768",
+      "enzyme_name": "Renilla-luciferin 2-monooxygenase",
+      "flavin_cofactor_evidence": "No local flavin cofactor evidence.",
+      "fmo_candidate_type": "luciferin_monooxygenase_nonflavin_negative",
+      "known_confounds": "Monooxygenase name, but no clean flavin C4a-peroxy support in local labels.",
+      "next_action": "Retain as name-only monooxygenase negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "No molecular-oxygen flavin C4a-peroxy step; oxygen is described as coming from substrate peroxy substitution.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json; artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json; artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+      "substrate_oxygenation_evidence": "Coelenterazine-derived bioluminescent oxidation produces excited coelenteramide rather than flavin-mediated oxygenation.",
+      "why_not_dehydrogenase_reductase": "No FAD/FMN hydride transfer or reductase cycle is present.",
+      "why_not_generic_oos": "Named monooxygenase false positive; preserve for text-based leakage checks."
+    },
+    {
+      "candidate_disposition": "blocked_wrong_chemistry",
+      "current_label_status": "not_present_in_current702_registry",
+      "ec": [
+        "1.14.19.9"
+      ],
+      "entry_id": "m_csa:977",
+      "enzyme_name": "tryptophan 7-halogenase",
+      "flavin_cofactor_evidence": "M-CSA mechanism states FADH2 reacts with molecular oxygen in the FAD binding site.",
+      "fmo_candidate_type": "flavin_halogenase_tryptophan_boundary",
+      "known_confounds": "Tryptophan target-family name hit; prior visual decision rejected an unrelated target and routed to an unrepresented mechanism family.",
+      "next_action": "Preserve as flavin-halogenase negative; source true tryptophan monooxygenase separately if needed.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Local mechanism routes FADH2/O2/chlorine to HOCl; it does not document a substrate-oxygenating flavin C4a-peroxy intermediate.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json; artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json; artifacts/v3_imported_labels_batch_925.json",
+      "substrate_oxygenation_evidence": "The substrate product is 7-chlorotryptophan; oxygen is not installed into tryptophan.",
+      "why_not_dehydrogenase_reductase": "It is not a simple dehydrogenase, but the chemistry is halogenation via HOCl/chloramine rather than monooxygenation.",
+      "why_not_generic_oos": "Flavin/O2 activation makes it a targeted boundary negative, not a generic out-of-scope row."
+    },
+    {
+      "candidate_disposition": "blocked_wrong_chemistry",
+      "current_label_status": "not_present_in_current702_registry",
+      "ec": [
+        "2.3.2.10"
+      ],
+      "entry_id": "m_csa:781",
+      "enzyme_name": "UDP-N-acetylmuramoylpentapeptide-lysine N6-alanyltransferase",
+      "flavin_cofactor_evidence": "No FAD/FMN evidence; imported-label preview notes absent flavin context.",
+      "fmo_candidate_type": "IucD_lysine_N6_name_false_positive",
+      "known_confounds": "Lysine N6 wording, but transferase EC 2.3.2.10 rather than N6-hydroxylase.",
+      "next_action": "Do not count; source a true IucD-class FAD-dependent lysine N6-hydroxylase row externally/local if available.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "No dioxygen activation or C4a intermediate; mechanism is aminoacyl transfer from Ala-tRNA.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json; artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json; artifacts/v3_imported_labels_batch_925.json",
+      "substrate_oxygenation_evidence": "No substrate oxygenation; lysine N6 participates in alanyl transfer.",
+      "why_not_dehydrogenase_reductase": "No flavin hydride/electron-transfer chemistry is present.",
+      "why_not_generic_oos": "Preserve because it is the only local lysine N6 string hit and can leak into IucD-class searches."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:out_of_scope:none; confidence=medium; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.14.12.12"
+      ],
+      "entry_id": "m_csa:130",
+      "enzyme_name": "naphthalene 1,2-dioxygenase",
+      "flavin_cofactor_evidence": "Mechanism includes NAD hydride transfer to FAD and electron relay through iron-sulfur clusters.",
+      "fmo_candidate_type": "FAD_reductase_to_Rieske_nonheme_iron_dioxygenase_boundary",
+      "known_confounds": "FAD and oxygenase appear in the same system but not as flavin C4a monooxygenation.",
+      "next_action": "Retain as flavin reductase/dioxygenase-system negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Dioxygen activation occurs at a Rieske/non-heme iron center, not at flavin C4a.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Naphthalene is converted to cis-dihydronaphthalene diol via dioxygenase chemistry.",
+      "why_not_dehydrogenase_reductase": "The FAD portion is a reductase relay, while substrate oxygenation is iron-center dioxygenation.",
+      "why_not_generic_oos": "Close flavin-plus-oxygenase architecture hard negative for separating reductase components from FMO active sites."
+    },
+    {
+      "candidate_disposition": "needs_structure_check",
+      "current_label_status": "not_present_in_current702_registry",
+      "ec": [
+        "1.14.12.7"
+      ],
+      "entry_id": "m_csa:930",
+      "enzyme_name": "phthalate dioxygenase system",
+      "flavin_cofactor_evidence": "Phthalate dioxygenase reductase transfers electrons from NADH through FMN and a Rieske center.",
+      "fmo_candidate_type": "FMN_reductase_to_phthalate_dioxygenase_boundary",
+      "known_confounds": "M-CSA notes little mechanistic information and no crystal structure for the PDO portion.",
+      "next_action": "Keep out of clean FMO support; use only after structural/source review as a negative-control system.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "PDO oxygenation is supplied by Rieske/mononuclear-center chemistry; no flavin C4a-peroxy evidence is provided.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Phthalate dioxygenase system oxygenates phthalate, but mechanism details are limited locally.",
+      "why_not_dehydrogenase_reductase": "FMN is in the reductase component; the oxygenase component is separate and not structurally resolved in the row.",
+      "why_not_generic_oos": "Useful boundary row because FMN/reductase and oxygenase terms co-occur."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:seed_fingerprint:heme_peroxidase_oxidase; confidence=high; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.14.14.1"
+      ],
+      "entry_id": "m_csa:699",
+      "enzyme_name": "cytochrome P450 (BM-3)",
+      "flavin_cofactor_evidence": "P450 BM3 has a covalently bound FAD/FMN-dependent NADPH-cytochrome P450 oxidoreductase domain.",
+      "fmo_candidate_type": "dual_flavin_P450_heme_boundary",
+      "known_confounds": "Contains both FAD and FMN in a monooxygenase enzyme name/context.",
+      "next_action": "Retain as dual-flavin/heme oxygenase separator.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Oxygen activation and rebound occur at P450 heme/ferryl intermediates, not flavin C4a.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "P450 substrate oxygenation forms an alcohol group through heme rebound chemistry.",
+      "why_not_dehydrogenase_reductase": "The flavins are electron-transfer cofactors reducing heme; substrate oxygenation is heme-catalyzed.",
+      "why_not_generic_oos": "High-risk flavin-domain oxygenase confound; preserve as hard negative."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:seed_fingerprint:heme_peroxidase_oxidase; confidence=high; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.14.13.39"
+      ],
+      "entry_id": "m_csa:935",
+      "enzyme_name": "nitric-oxide synthase",
+      "flavin_cofactor_evidence": "NOSred contains FNR and FMN modules similar to NADPH-utilizing dual-flavin oxidoreductases.",
+      "fmo_candidate_type": "dual_flavin_NOS_heme_boundary",
+      "known_confounds": "Dual-flavin reductase domain can mimic FMO cofactor evidence if domain context is ignored.",
+      "next_action": "Retain as NOS flavin-domain/heme oxygenase separator.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "The oxygenase domain is heme/BH4-dependent; no flavin C4a substrate oxygenation step is local evidence.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "L-Arg is converted to N-hydroxy-L-arginine and then nitric oxide/citrulline at the heme oxygenase domain.",
+      "why_not_dehydrogenase_reductase": "Flavins are reductase-domain electron relays, while oxygenation occurs near heme/BH4.",
+      "why_not_generic_oos": "Important flavin-domain oxygenase boundary negative."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:seed_fingerprint:flavin_dehydrogenase_reductase; confidence=medium; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.3.5.2"
+      ],
+      "entry_id": "m_csa:109",
+      "enzyme_name": "dihydroorotate oxidase (class II)",
+      "flavin_cofactor_evidence": "Mechanisms transfer hydride to FMN/FMNH species and current registry labels flavin_dehydrogenase_reductase.",
+      "fmo_candidate_type": "FMN_dehydrogenase_oxidase_boundary",
+      "known_confounds": "Mechanism fingerprint audit listed it as boundary monooxygenase-like review-needed, but local chemistry is oxidase/dehydrogenase.",
+      "next_action": "Use as flavin hydride-transfer negative against FMO rows.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "No dioxygen/C4a-peroxy activation; electrons are passed to ubiquinone.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Dihydroorotate is oxidized, not oxygenated.",
+      "why_not_dehydrogenase_reductase": "It is a direct flavin dehydrogenase/reductase example with hydride transfer to FMN.",
+      "why_not_generic_oos": "Close flavin boundary row useful as a hard negative."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "not_present_in_current702_registry",
+      "ec": [
+        "1.5.3.14"
+      ],
+      "entry_id": "m_csa:809",
+      "enzyme_name": "polyamine oxidase (propane-1,3-diamine-forming)",
+      "flavin_cofactor_evidence": "Mechanism names FAD and a C4a covalent adduct.",
+      "fmo_candidate_type": "FAD_C4a_adduct_oxidase_boundary",
+      "known_confounds": "C4a/FAD language without O2 activation or substrate oxygenation.",
+      "next_action": "Retain as C4a-adduct non-monooxygenase negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "C4a is involved in substrate amine adduct formation, not dioxygen-derived C4a-peroxyflavin.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Reaction forms an imine; no oxygen atom is inserted into substrate.",
+      "why_not_dehydrogenase_reductase": "The row is oxidase-like flavin chemistry rather than monooxygenase oxygen transfer.",
+      "why_not_generic_oos": "C4a keyword hard negative prevents mistaking any C4a-flavin text for FMO."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:seed_fingerprint:flavin_dehydrogenase_reductase; confidence=high; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.4.99.6"
+      ],
+      "entry_id": "m_csa:978",
+      "enzyme_name": "D-arginine dehydrogenase",
+      "flavin_cofactor_evidence": "Mechanisms discuss hydride transfer to flavin N5 and possible N5/C4a flavin adducts; current registry labels flavin_dehydrogenase_reductase.",
+      "fmo_candidate_type": "flavin_dehydrogenase_C4a_proposal_boundary",
+      "known_confounds": "C4a-flavin adduct proposal appears in a non-oxygenating dehydrogenase mechanism.",
+      "next_action": "Retain as flavin dehydrogenase hard negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "No dioxygen-derived C4a-peroxyflavin; C4a adduct is a substrate amine proposal.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Substrate is dehydrogenated/hydrolyzed to keto acid and ammonia; no oxygen insertion.",
+      "why_not_dehydrogenase_reductase": "It is explicitly a dehydrogenase with hydride-transfer support.",
+      "why_not_generic_oos": "Close C4a/flavin text negative for dehydrogenase-vs-FMO separation."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:out_of_scope:none; confidence=medium; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.14.11.17"
+      ],
+      "entry_id": "m_csa:129",
+      "enzyme_name": "taurine dioxygenase",
+      "flavin_cofactor_evidence": "No FAD/FMN evidence; current registry labels out_of_scope.",
+      "fmo_candidate_type": "nonheme_iron_alphaKG_dioxygenase_negative",
+      "known_confounds": "Oxygenase name and substrate hydroxylation without flavin.",
+      "next_action": "Retain as nonheme iron oxygenase negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Fe(II)/2-oxoglutarate binds dioxygen and forms Fe(IV)=O chemistry.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Taurine is oxygenated by non-heme iron dioxygenase chemistry.",
+      "why_not_dehydrogenase_reductase": "No flavin redox cycle; alpha-ketoglutarate/iron activates oxygen.",
+      "why_not_generic_oos": "Named dioxygenase negative control for oxygenase-boundary separation."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:out_of_scope:none; confidence=medium; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.13.11.2"
+      ],
+      "entry_id": "m_csa:34",
+      "enzyme_name": "catechol 2,3-dioxygenase",
+      "flavin_cofactor_evidence": "No FAD/FMN evidence; current registry labels out_of_scope.",
+      "fmo_candidate_type": "nonheme_iron_dioxygenase_negative",
+      "known_confounds": "Oxygenase name and O2 chemistry without flavin.",
+      "next_action": "Retain as nonheme iron dioxygenase negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Catechol coordinates Fe(II); oxygen chemistry occurs at the iron/substrate complex.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Catechol ring cleavage by dioxygenase chemistry, not flavin-mediated monooxygenation.",
+      "why_not_dehydrogenase_reductase": "No flavin reductase/dehydrogenase cofactor participates.",
+      "why_not_generic_oos": "Useful dioxygenase boundary hard negative."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:seed_fingerprint:heme_peroxidase_oxidase; confidence=medium; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.14.99.1"
+      ],
+      "entry_id": "m_csa:37",
+      "enzyme_name": "prostaglandin-endoperoxide synthase",
+      "flavin_cofactor_evidence": "No FAD/FMN evidence; current registry labels heme_peroxidase_oxidase.",
+      "fmo_candidate_type": "heme_cyclooxygenase_peroxidase_negative",
+      "known_confounds": "Oxygenase/oxidase group name but heme-dependent.",
+      "next_action": "Retain as heme oxygenase/peroxidase negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Peroxide/tyrosyl radical/heme chemistry, not flavin C4a-peroxy chemistry.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Cyclooxygenase/peroxidase pathway oxygenates fatty-acid substrate through heme-linked radical chemistry.",
+      "why_not_dehydrogenase_reductase": "No flavin redox cycle drives the oxygenation.",
+      "why_not_generic_oos": "Heme oxygenase-family hard negative for oxygenase-boundary separation."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:out_of_scope:none; confidence=medium; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.13.11.5"
+      ],
+      "entry_id": "m_csa:547",
+      "enzyme_name": "homogentisate 1,2-dioxygenase",
+      "flavin_cofactor_evidence": "No FAD/FMN evidence; current registry labels out_of_scope.",
+      "fmo_candidate_type": "iron_dioxygenase_negative",
+      "known_confounds": "Peroxo wording but metal-centered, not flavin C4a.",
+      "next_action": "Retain as iron dioxygenase negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Molecular oxygen binds an Fe(II)-substrate complex and forms a peroxo-bridged iron intermediate.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Homogentisate ring cleavage/oxygenation occurs at iron.",
+      "why_not_dehydrogenase_reductase": "No flavin cofactor accepts hydride/electrons.",
+      "why_not_generic_oos": "Metal redox ligand-context negative control."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:out_of_scope:none; confidence=medium; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.13.11.58"
+      ],
+      "entry_id": "m_csa:583",
+      "enzyme_name": "linoleate 9S-lipoxygenase",
+      "flavin_cofactor_evidence": "No FAD/FMN evidence; current registry labels out_of_scope.",
+      "fmo_candidate_type": "iron_lipoxygenase_negative",
+      "known_confounds": "Molecular oxygen and peroxy radical without flavin.",
+      "next_action": "Retain as lipoxygenase negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Substrate radical combines with molecular oxygen; iron transfers electron/proton to peroxy radical.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Linoleate oxygenation proceeds through lipoxygenase radical chemistry.",
+      "why_not_dehydrogenase_reductase": "No flavin redox cofactor or dehydrogenase/reductase cycle.",
+      "why_not_generic_oos": "Oxygenase-boundary hard negative for radical oxygenation."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "not_present_in_current702_registry",
+      "ec": [
+        "1.13.11.8"
+      ],
+      "entry_id": "m_csa:672",
+      "enzyme_name": "protocatechuate 4,5-dioxygenase",
+      "flavin_cofactor_evidence": "No local FAD/FMN evidence.",
+      "fmo_candidate_type": "extradiol_nonheme_iron_dioxygenase_negative",
+      "known_confounds": "Oxygenase and O2 activation language without flavin.",
+      "next_action": "Retain as nonheme iron dioxygenase negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Fe(II)-catecholate chemistry binds O2 to form Fe(III)-superoxide/peroxide-like intermediates.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Protocatechuate ring cleavage by dioxygenase chemistry.",
+      "why_not_dehydrogenase_reductase": "No flavin redox cycle; oxygenation is iron/substrate-centered.",
+      "why_not_generic_oos": "Dioxygenase boundary negative, useful despite absent current label."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "not_present_in_current702_registry",
+      "ec": [
+        "1.13.11.24"
+      ],
+      "entry_id": "m_csa:743",
+      "enzyme_name": "quercetin 2,3-dioxygenase",
+      "flavin_cofactor_evidence": "No local FAD/FMN evidence.",
+      "fmo_candidate_type": "copper_dioxygenase_negative",
+      "known_confounds": "Dioxygenase name and peroxide oxygen but copper-centered.",
+      "next_action": "Retain as copper dioxygenase negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Cu(II)/substrate radical binds dioxygen; oxygenation occurs through copper/substrate radical intermediates.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Quercetin 2,3-dioxygenation forms C-O bonds through dioxygenase chemistry.",
+      "why_not_dehydrogenase_reductase": "No flavin hydride or reductase cycle participates.",
+      "why_not_generic_oos": "Copper dioxygenase boundary negative."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "current702:seed_fingerprint:heme_peroxidase_oxidase; confidence=high; review_status=automation_curated; tier=bronze",
+      "ec": [
+        "1.14.14.18"
+      ],
+      "entry_id": "m_csa:795",
+      "enzyme_name": "heme oxygenase (biliverdin-producing)",
+      "flavin_cofactor_evidence": "No catalytic FAD/FMN evidence; current registry labels heme_peroxidase_oxidase.",
+      "fmo_candidate_type": "heme_oxygenase_negative",
+      "known_confounds": "Oxygenase name and O2 activation but heme substrate/cofactor chemistry.",
+      "next_action": "Retain as heme oxygenase negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Dioxygen binds heme iron and forms Fe-OOH/iron intermediates, not flavin C4a.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Heme is oxygenated to biliverdin through heme-iron chemistry.",
+      "why_not_dehydrogenase_reductase": "No flavin dehydrogenase/reductase is the catalytic oxygenation center.",
+      "why_not_generic_oos": "Named heme oxygenase hard negative."
+    },
+    {
+      "candidate_disposition": "hard_negative_control",
+      "current_label_status": "not_present_in_current702_registry",
+      "ec": [
+        "1.13.11.3"
+      ],
+      "entry_id": "m_csa:936",
+      "enzyme_name": "protocatechuate 3,4-dioxygenase",
+      "flavin_cofactor_evidence": "No local FAD/FMN evidence.",
+      "fmo_candidate_type": "intradiol_iron_dioxygenase_negative",
+      "known_confounds": "Aromatic oxygenase chemistry but iron-centered.",
+      "next_action": "Retain as iron dioxygenase negative.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Catalytic iron chelates catechol hydroxyls and supports molecular oxygen addition.",
+      "source_artifact": "artifacts/v1_graph_1025.json; data/registries/curated_mechanism_labels.json",
+      "substrate_oxygenation_evidence": "Protocatechuate 3,4-dioxygenase cleaves/oxygenates the catechol ring.",
+      "why_not_dehydrogenase_reductase": "No flavin hydride/electron-transfer cofactor is present.",
+      "why_not_generic_oos": "Dioxygenase boundary negative, useful despite absent current label."
+    }
+  ],
+  "created_utc": "2026-05-28T01:44:34.739414Z",
+  "disposition_counts": {
+    "blocked_wrong_chemistry": 2,
+    "clean_candidate": 2,
+    "hard_negative_control": 22,
+    "needs_structure_check": 1
+  },
+  "guardrails": [
+    "No label imports performed.",
+    "No canonical registry edits performed.",
+    "No ontology edits, thresholds, or model training performed.",
+    "Rejected candidates are preserved as review signal and hard-negative candidates."
+  ],
+  "named_target_family_search": [
+    {
+      "confounds_seen": [
+        "m_csa:132 baseline has Baeyer-Villiger-like FMN-peroxo language but is already current FMO support and is not cyclohexanone/BVMO"
+      ],
+      "decision": "blocked_needs_source",
+      "local_hits": [],
+      "next_action": "Source a reviewed/PDB-backed BVMO row outside current local M-CSA if available, then run source-free geometry and duplicate/leakage checks.",
+      "target_family": "cyclohexanone_monooxygenase_or_classic_BVMO"
+    },
+    {
+      "confounds_seen": [],
+      "decision": "blocked_needs_source",
+      "local_hits": [],
+      "next_action": "Source HAPMO externally/local if a reviewed structure-backed row exists; no current local M-CSA hit.",
+      "target_family": "4_hydroxyacetophenone_monooxygenase_HAPMO"
+    },
+    {
+      "confounds_seen": [
+        "m_csa:781 is lysine N6-alanyltransferase, not N6-hydroxylase"
+      ],
+      "decision": "blocked_wrong_chemistry",
+      "local_hits": [
+        "m_csa:781"
+      ],
+      "next_action": "Do not count local lysine N6 string hit; source true FAD-dependent N-hydroxylase/IucD row.",
+      "target_family": "IucD_class_lysine_N6_hydroxylase"
+    },
+    {
+      "confounds_seen": [
+        "m_csa:977 is FADH2/O2 tryptophan 7-halogenase producing chlorotryptophan, not substrate oxygenation"
+      ],
+      "decision": "blocked_wrong_chemistry",
+      "local_hits": [
+        "m_csa:977"
+      ],
+      "next_action": "Preserve halogenase as negative; source true tryptophan monooxygenase separately.",
+      "target_family": "tryptophan_monooxygenase"
+    },
+    {
+      "confounds_seen": [],
+      "decision": "blocked_needs_source",
+      "local_hits": [],
+      "next_action": "Source salicylate hydroxylase if a clean flavin C4a-peroxy reviewed row is available.",
+      "target_family": "salicylate_1_monooxygenase_or_aromatic_hydroxylase"
+    },
+    {
+      "confounds_seen": [],
+      "decision": "blocked_needs_source",
+      "local_hits": [],
+      "next_action": "Source mammalian FMO/dimethylaniline monooxygenase rows with explicit FAD/NADPH oxygenation and structure support.",
+      "target_family": "FMO1_FMO3_FMO5_or_dimethylaniline_monooxygenase"
+    },
+    {
+      "confounds_seen": [
+        "Both are currently labeled flavin_dehydrogenase_reductase and must remain review-only until expert gate"
+      ],
+      "decision": "clean_candidates_found",
+      "local_hits": [
+        "m_csa:551",
+        "m_csa:973"
+      ],
+      "next_action": "Expert-review both as future FMO support and pair with hard negatives before promotion reconsideration.",
+      "target_family": "local_non_target_clean_FMO"
+    }
+  ],
+  "next_actions": [
+    "Expert-review m_csa:551 and m_csa:973 for future FMO support without automatic relabeling.",
+    "Source at least two more clean, reviewed, structure-backed flavin C4a-peroxy monooxygenase rows, preferably BVMO/HAPMO/IucD/salicylate/FMO-family rows.",
+    "Use m_csa:141, m_csa:977, dual-flavin heme systems, and nonflavin oxygenases as hard-negative separation checks before promotion reconsideration."
+  ],
+  "review_only": true,
+  "schema_version": "1.0.0",
+  "scope": {
+    "automation": "FMO M-CSA Candidate Scout",
+    "baseline_current_fmo_count": 2,
+    "baseline_current_fmo_rows": [
+      "m_csa:131",
+      "m_csa:132"
+    ],
+    "current_label_count": 702,
+    "goal_support_before_primary_promotion_reconsideration": 6,
+    "local_m_csa_entry_count": 1003,
+    "source_review_policy": "Source/mechanism review is used only for evidence/adjudication and must not become a predictive feature."
+  },
+  "search_method": {
+    "local_keyword_hit_counts": {
+      "c4a": 5,
+      "fad": 52,
+      "flavin": 22,
+      "fmn": 22,
+      "hydroperoxyflavin": 2,
+      "monooxygenase_name_or_text": 9,
+      "oxygenase_name_or_text": 21
+    },
+    "local_sources": [
+      "artifacts/v1_graph_1025.json",
+      "data/registries/curated_mechanism_labels.json",
+      "specified FMO closure/packet artifacts"
+    ],
+    "text_terms_checked": [
+      "monooxygenase",
+      "oxygenase",
+      "hydroxylase",
+      "Baeyer",
+      "Villiger",
+      "cyclohexanone",
+      "salicylate",
+      "lysine N6",
+      "IucD",
+      "dimethylaniline",
+      "hydroxyacetophenone",
+      "tryptophan",
+      "FAD",
+      "FMN",
+      "flavin",
+      "C4a",
+      "hydroperoxyflavin",
+      "peroxyflavin",
+      "peroxo"
+    ]
+  },
+  "source_artifacts": {
+    "artifacts/mcsa_sample.json": {
+      "sha256": "dcc40d0129c1327a47453979f754acaaeacd4cc461688d2d507db7d6f9e1c87d"
+    },
+    "artifacts/v1_graph_1025.json": {
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json": {
+      "sha256": "863a44bc76f3f2f58db4b4b3289a108edef7bb84cecc9db721d892548cff16be"
+    },
+    "artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json": {
+      "sha256": "9d2059f7a7c8d8f4ca939258cae366b4376c41c4e447fec16220674d0feb6500"
+    },
+    "artifacts/v3_imported_labels_batch_925.json": {
+      "sha256": "aa63de991a754be4a292988e41163d34a415b72b891ee7447a1b5ae457afa0e4"
+    },
+    "artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json": {
+      "sha256": "82b264b9bb5a2270f47742591ecdd320e629e267596d6720f527f393cf8dcfb5"
+    },
+    "artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json": {
+      "sha256": "afc80e7fa4f6f4db5521388803cae8fda24ec7cca9fbafa723cf3c1234ce951b"
+    },
+    "artifacts/v3_packet3_v2_sublabel_decision_closure_702_20260527.json": {
+      "sha256": "c0c6c5d8bb9b3898093f993e096b5d14a9982e95ffe24a8d71cf3df8e807ec0d"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    }
+  },
+  "status": "completed_no_registry_edits",
+  "summary": {
+    "clean_candidate_count_this_scout": 2,
+    "clean_candidates_beyond_current_131_132": [
+      "m_csa:551",
+      "m_csa:973"
+    ],
+    "clean_support_if_551_973_are_expert_accepted_with_131_132": 4,
+    "named_target_family_clean_local_hits": [],
+    "new_clean_candidates_beyond_prior_fmo_closure": [],
+    "primary_promotion_ready_now": false,
+    "reason": "Local M-CSA/current702 evidence supports m_csa:551 and m_csa:973 as clean FMO candidates, but no additional named-family clean rows were found; support remains below n>=6 and hard-negative separation is still pending.",
+    "remaining_clean_rows_needed_to_n6_after_551_973": 2
+  }
+}
