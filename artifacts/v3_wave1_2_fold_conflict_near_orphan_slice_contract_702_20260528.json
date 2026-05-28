@@ -1,0 +1,3701 @@
+{
+  "artifact_id": "v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528",
+  "created_utc": "2026-05-28T09:03:33.112231Z",
+  "decision_gate_from_wave1_1": {
+    "decision": "prioritize_external_panels_features_and_labels_over_running_larger_models_now",
+    "next_priority": [
+      "Build the Foldseek-plus-geometry atlas/features for near-orphan and wrong-transfer diagnostics.",
+      "Acquire external panels and targeted labels for v2 child strata, unresolved buckets, and mixed chemistry splits.",
+      "Only run larger models after row-aligned standardized exports and child-label targets exist, without threshold tuning."
+    ],
+    "rationale": [
+      "The strongest learned improvement is confined to 2/4 wrong-Foldseek-transfer rescues by ESM-C, while geometry resolves 4/4.",
+      "Near-orphan coverage favors geometry and still favors Foldseek over learned reps on correct parent-v1 calls.",
+      "Child-level and mixed-chemistry questions are label/feature-definition limited, not model-size limited, in the current exports."
+    ],
+    "run_larger_models_now": false
+  },
+  "explicit_answer_from_wave1_1": {
+    "answer": "limited_not_decision_grade",
+    "basis": [
+      "In the 17-row near-orphan geometry-rescue cell, Foldseek full-structure NN is 13 correct / 0 wrong / 4 abstain, geometry is 17/17, and the best learned channel, ESM-2 150M, is 9 correct / 0 wrong / 8 abstain. Learned reps do not add over Foldseek or geometry there.",
+      "In the 4-row wrong-Foldseek-transfer cell, Foldseek is 0 correct / 4 wrong, while ESM-C corrected logistic is 2 correct / 0 wrong / 2 abstain and ESM-2 plus ESM-C cosine are 1 correct / 0 wrong / 3 abstain. That is real but small rescue signal where Foldseek is actively wrong.",
+      "Geometry rescues all 4 wrong-transfer rows and all 17 near-orphan rows, so the learned-representation signal is secondary to geometry and not enough to justify scaling larger models first.",
+      "Packet 3 child strata, unresolved buckets, and canary/mixed-chemistry cells lack child-label prediction exports; parent projections cannot support a child-label value claim."
+    ],
+    "question": "Do learned representations add value specifically where Foldseek is weak?",
+    "weak_foldseek_cell_summary": {
+      "near_orphan_geometry_rescue": {
+        "esm2_150m": {
+          "abstain": 8,
+          "adds_value_over_foldseek": "no",
+          "adds_value_over_geometry": "no",
+          "correct": 9,
+          "missing": 0,
+          "wrong": 0
+        },
+        "esm_c_300m": {
+          "abstain": 10,
+          "adds_value_over_foldseek": "no",
+          "adds_value_over_geometry": "no",
+          "correct": 5,
+          "missing": 0,
+          "wrong": 2
+        },
+        "esm_c_cosine_nn": {
+          "abstain": 12,
+          "adds_value_over_foldseek": "no",
+          "adds_value_over_geometry": "no",
+          "correct": 1,
+          "missing": 0,
+          "wrong": 4
+        },
+        "foldseek_structural_nn": {
+          "abstain": 4,
+          "adds_value_over_foldseek": "reference",
+          "adds_value_over_geometry": "compare-to-geometry",
+          "correct": 13,
+          "missing": 0,
+          "wrong": 0
+        },
+        "geometry_baseline": {
+          "abstain": 0,
+          "adds_value_over_foldseek": "yes",
+          "adds_value_over_geometry": "reference",
+          "correct": 17,
+          "missing": 0,
+          "wrong": 0
+        },
+        "prostt5_3di": {
+          "abstain": null,
+          "adds_value_over_foldseek": "unavailable",
+          "adds_value_over_geometry": "unavailable",
+          "correct": null,
+          "missing": 17,
+          "wrong": null
+        },
+        "prott5": {
+          "abstain": 7,
+          "adds_value_over_foldseek": "no",
+          "adds_value_over_geometry": "no",
+          "correct": 7,
+          "missing": 0,
+          "wrong": 3
+        },
+        "saprot": {
+          "abstain": 7,
+          "adds_value_over_foldseek": "no",
+          "adds_value_over_geometry": "no",
+          "correct": 6,
+          "missing": 0,
+          "wrong": 4
+        }
+      },
+      "wrong_foldseek_transfer": {
+        "esm2_150m": {
+          "abstain": 3,
+          "adds_value_over_foldseek": "yes",
+          "adds_value_over_geometry": "no",
+          "correct": 1,
+          "missing": 0,
+          "wrong": 0
+        },
+        "esm_c_300m": {
+          "abstain": 2,
+          "adds_value_over_foldseek": "yes",
+          "adds_value_over_geometry": "no",
+          "correct": 2,
+          "missing": 0,
+          "wrong": 0
+        },
+        "esm_c_cosine_nn": {
+          "abstain": 3,
+          "adds_value_over_foldseek": "yes",
+          "adds_value_over_geometry": "no",
+          "correct": 1,
+          "missing": 0,
+          "wrong": 0
+        },
+        "foldseek_structural_nn": {
+          "abstain": 0,
+          "adds_value_over_foldseek": "reference",
+          "adds_value_over_geometry": "compare-to-geometry",
+          "correct": 0,
+          "missing": 0,
+          "wrong": 4
+        },
+        "geometry_baseline": {
+          "abstain": 0,
+          "adds_value_over_foldseek": "yes",
+          "adds_value_over_geometry": "reference",
+          "correct": 4,
+          "missing": 0,
+          "wrong": 0
+        },
+        "prostt5_3di": {
+          "abstain": null,
+          "adds_value_over_foldseek": "unavailable",
+          "adds_value_over_geometry": "unavailable",
+          "correct": null,
+          "missing": 4,
+          "wrong": null
+        },
+        "prott5": {
+          "abstain": 3,
+          "adds_value_over_foldseek": "safer_not_more_correct",
+          "adds_value_over_geometry": "no",
+          "correct": 0,
+          "missing": 0,
+          "wrong": 1
+        },
+        "saprot": {
+          "abstain": 3,
+          "adds_value_over_foldseek": "safer_not_more_correct",
+          "adds_value_over_geometry": "no",
+          "correct": 0,
+          "missing": 0,
+          "wrong": 1
+        }
+      }
+    }
+  },
+  "guardrails": {
+    "countable_metric_claim_allowed": false,
+    "labels_changed": false,
+    "model_outputs_changed": false,
+    "purpose": "freeze row-use status for diagnostic review; not a new benchmark score",
+    "registries_changed": false,
+    "thresholds_changed": false
+  },
+  "metric_claim_policy": {
+    "allowed_now": "review_only_row_slicing_and_canary_selection_only",
+    "next_clean_eval_cells": [
+      "clean_near_orphan_anchor",
+      "fold_conflict_reference_anchor",
+      "oos_router_control"
+    ],
+    "not_allowed_now": [
+      "new leaderboard claim",
+      "threshold retuning",
+      "label promotion",
+      "using quarantined rows as clean canaries",
+      "training larger models because of this artifact"
+    ],
+    "underpowered_or_review_cells": [
+      "mixed_high_tm_review_candidate",
+      "fold_conflict_candidate_needs_review",
+      "near_orphan_candidate_from_retained_hits"
+    ]
+  },
+  "review_only": true,
+  "row_use_summary": {
+    "by_use_status": {
+      "clean_near_orphan_anchor": 7,
+      "coordinate_or_tm_uncertainty_hold": 5,
+      "fold_conflict_candidate_needs_review": 2,
+      "fold_conflict_reference_anchor": 3,
+      "mixed_high_tm_review_candidate": 4,
+      "near_orphan_candidate_from_retained_hits": 37,
+      "not_primary_due_same_neighbor": 17,
+      "oos_fold_conflict_hard_negative_candidate": 11,
+      "oos_router_control": 9,
+      "quarantine_do_not_anchor_metric": 7
+    },
+    "clean_near_orphan_anchor_ids": [
+      "m_csa:97",
+      "m_csa:211",
+      "m_csa:250",
+      "m_csa:517",
+      "m_csa:686",
+      "m_csa:916",
+      "m_csa:990"
+    ],
+    "fold_conflict_reference_anchor_ids": [
+      "m_csa:217",
+      "m_csa:428",
+      "m_csa:477"
+    ],
+    "metric_anchor_allowed_count": 88,
+    "oos_router_control_ids": [
+      "m_csa:10",
+      "m_csa:30",
+      "m_csa:31",
+      "m_csa:116",
+      "m_csa:191",
+      "m_csa:369",
+      "m_csa:440",
+      "m_csa:634",
+      "m_csa:651"
+    ],
+    "quarantine_before_model_claim_ids": [
+      "m_csa:403",
+      "m_csa:497",
+      "m_csa:714",
+      "m_csa:723",
+      "m_csa:735",
+      "m_csa:750",
+      "m_csa:994"
+    ],
+    "quarantine_or_hold_count": 14,
+    "row_count": 102
+  },
+  "rows": [
+    {
+      "bronze_review_use": "mixed_neighborhood_review_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 1,
+        "max_pair_tm_score": 0.7392,
+        "retained_train_hit_count_observed": 330,
+        "same_family_high_tm_neighbor_structure_count": 1,
+        "tm_ge_0_70_neighbor_structure_count": 2
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_group": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:3",
+      "entry_name": "NAD(P)H dehydrogenase (quinone)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:63"
+        ],
+        "fingerprints_or_label_families": [
+          "cobalamin_radical_rearrangement"
+        ],
+        "max_pair_tm_score": 0.7392,
+        "structure_key": "pdb:1CB7"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6311,
+        "retained_train_hit_count_observed": 171,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:9",
+      "entry_name": "methionine adenosyltransferase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:61"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6311,
+        "structure_key": "pdb:1BJP"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6061,
+        "retained_train_hit_count_observed": 160,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:10",
+      "entry_name": "3-hydroxydecanoyl-[acyl-carrier-protein] dehydratase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:461"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6061,
+        "structure_key": "pdb:1S9C"
+      },
+      "oos_router_control_flag": true,
+      "queue_role": "OOS_router_control",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_router_control"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6057,
+        "retained_train_hit_count_observed": 175,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:14",
+      "entry_name": "chloride peroxidase (vanadate dependent)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:507"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6057,
+        "structure_key": "pdb:1C17"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "dense_same_family_transfer_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.8755,
+        "retained_train_hit_count_observed": 301,
+        "same_family_high_tm_neighbor_structure_count": 3,
+        "tm_ge_0_70_neighbor_structure_count": 3
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_group": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:20",
+      "entry_name": "fumarate reductase (quinol)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:739"
+        ],
+        "fingerprints_or_label_families": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "max_pair_tm_score": 0.8755,
+        "structure_key": "pdb:1KNP"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "dense_same_family_transfer_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.7722,
+        "retained_train_hit_count_observed": 222,
+        "same_family_high_tm_neighbor_structure_count": 1,
+        "tm_ge_0_70_neighbor_structure_count": 1
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:30",
+      "entry_name": "formate C-acetyltransferase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:416"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.7722,
+        "structure_key": "pdb:1H7A"
+      },
+      "oos_router_control_flag": true,
+      "queue_role": "OOS_router_control",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "oos_router_control"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5127,
+        "retained_train_hit_count_observed": 89,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:31",
+      "entry_name": "thymidylate synthase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:189"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.5127,
+        "structure_key": "pdb:1M9C"
+      },
+      "oos_router_control_flag": true,
+      "queue_role": "OOS_router_control",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "oos_router_control"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6062,
+        "retained_train_hit_count_observed": 340,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:43",
+      "entry_name": "purple acid phosphatase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:472"
+        ],
+        "fingerprints_or_label_families": [
+          "metal_dependent_hydrolase"
+        ],
+        "max_pair_tm_score": 0.6062,
+        "structure_key": "pdb:1S95"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6171,
+        "retained_train_hit_count_observed": 319,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:44",
+      "entry_name": "alkaline phosphatase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:411"
+        ],
+        "fingerprints_or_label_families": [
+          "plp_dependent_enzyme"
+        ],
+        "max_pair_tm_score": 0.6171,
+        "structure_key": "pdb:1AY4"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6917,
+        "retained_train_hit_count_observed": 251,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:46",
+      "entry_name": "site-specific DNA-methyltransferase (adenine-specific)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:23"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6917,
+        "structure_key": "pdb:1XVA"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5041,
+        "retained_train_hit_count_observed": 171,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:56",
+      "entry_name": "tRNA-pseudouridine synthase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:538"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.5041,
+        "structure_key": "pdb:1BIB"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6783,
+        "retained_train_hit_count_observed": 259,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:67",
+      "entry_name": "alanine dehydrogenase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:90"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6783,
+        "structure_key": "pdb:1B3R"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.584,
+        "retained_train_hit_count_observed": 230,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:71",
+      "entry_name": "uridine nucleosidase (family I)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:208"
+        ],
+        "fingerprints_or_label_families": [
+          "heme_peroxidase_oxidase"
+        ],
+        "max_pair_tm_score": 0.584,
+        "structure_key": "pdb:1EZV"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6475,
+        "retained_train_hit_count_observed": 309,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:79",
+      "entry_name": "nicotinate-nucleotide-dimethylbenzimidazole phosphoribosyltransferase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:63"
+        ],
+        "fingerprints_or_label_families": [
+          "cobalamin_radical_rearrangement"
+        ],
+        "max_pair_tm_score": 0.6475,
+        "structure_key": "pdb:1CB7"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5721,
+        "retained_train_hit_count_observed": 172,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:86",
+      "entry_name": "arginine kinase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:537"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.5721,
+        "structure_key": "pdb:2BVC"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5508,
+        "retained_train_hit_count_observed": 76,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:97",
+      "entry_name": "cytidine deaminase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:251"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.5508,
+        "structure_key": "pdb:1EH6"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "verified_true_near_orphan",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "clean_near_orphan_anchor"
+    },
+    {
+      "bronze_review_use": "mixed_neighborhood_review_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 13,
+        "max_pair_tm_score": 0.8081,
+        "retained_train_hit_count_observed": 318,
+        "same_family_high_tm_neighbor_structure_count": 4,
+        "tm_ge_0_70_neighbor_structure_count": 17
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_group": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:109",
+      "entry_name": "dihydroorotate oxidase (class II)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:236"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.8081,
+        "structure_key": "pdb:1Q6L"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "mixed_neighborhood_review_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 1,
+        "max_pair_tm_score": 0.7827,
+        "retained_train_hit_count_observed": 95,
+        "same_family_high_tm_neighbor_structure_count": 4,
+        "tm_ge_0_70_neighbor_structure_count": 5
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_group": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:115",
+      "entry_name": "cytokinin dehydrogenase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:103"
+        ],
+        "fingerprints_or_label_families": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "max_pair_tm_score": 0.7827,
+        "structure_key": "pdb:1VAO"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "dense_same_family_transfer_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.9826,
+        "retained_train_hit_count_observed": 349,
+        "same_family_high_tm_neighbor_structure_count": 3,
+        "tm_ge_0_70_neighbor_structure_count": 3
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:116",
+      "entry_name": "NAD(P)+ transhydrogenase (AB-specific)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:496"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.9826,
+        "structure_key": "pdb:1DJL"
+      },
+      "oos_router_control_flag": true,
+      "queue_role": "OOS_router_control",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_router_control"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 1,
+        "max_pair_tm_score": 0.8007,
+        "retained_train_hit_count_observed": 70,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 1
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:118",
+      "entry_name": "urate oxidase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:38"
+        ],
+        "fingerprints_or_label_families": [
+          "metal_dependent_hydrolase"
+        ],
+        "max_pair_tm_score": 0.8007,
+        "structure_key": "pdb:1FBX"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "oos_fold_conflict_hard_negative_candidate"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6509,
+        "retained_train_hit_count_observed": 130,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:121",
+      "entry_name": "sulfite oxidase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:208"
+        ],
+        "fingerprints_or_label_families": [
+          "heme_peroxidase_oxidase"
+        ],
+        "max_pair_tm_score": 0.6509,
+        "structure_key": "pdb:1EZV"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.4894,
+        "retained_train_hit_count_observed": 189,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:125",
+      "entry_name": "catechol oxidase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:124"
+        ],
+        "fingerprints_or_label_families": [
+          "heme_peroxidase_oxidase"
+        ],
+        "max_pair_tm_score": 0.4894,
+        "structure_key": "pdb:1V54"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5574,
+        "retained_train_hit_count_observed": 160,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:129",
+      "entry_name": "taurine dioxygenase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:329"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.5574,
+        "structure_key": "pdb:2IXJ"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "fold_conflict_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 6,
+        "max_pair_tm_score": 0.783,
+        "retained_train_hit_count_observed": 269,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 6
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "flavin_monooxygenase",
+      "current_label_group": "flavin_monooxygenase",
+      "entry_id": "m_csa:131",
+      "entry_name": "4-hydroxybenzoate 3-monooxygenase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:281"
+        ],
+        "fingerprints_or_label_families": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "max_pair_tm_score": 0.783,
+        "structure_key": "pdb:2GMH"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+      "use_reason": "Nearest train structure is a primary/different-fingerprint neighbor under high Foldseek bits/prob proxy.",
+      "use_status": "fold_conflict_candidate_needs_review"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 1,
+        "max_pair_tm_score": 0.8809,
+        "retained_train_hit_count_observed": 406,
+        "same_family_high_tm_neighbor_structure_count": 4,
+        "tm_ge_0_70_neighbor_structure_count": 5
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:144",
+      "entry_name": "arsenite oxidase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:562"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.8809,
+        "structure_key": "pdb:1AA6"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_fold_conflict_hard_negative_candidate"
+    },
+    {
+      "bronze_review_use": "mixed_neighborhood_review_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 6,
+        "max_pair_tm_score": 0.752,
+        "retained_train_hit_count_observed": 334,
+        "same_family_high_tm_neighbor_structure_count": 3,
+        "tm_ge_0_70_neighbor_structure_count": 9
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:159",
+      "entry_name": "aryldialkylphosphatase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:328"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.752,
+        "structure_key": "pdb:1LBM"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5994,
+        "retained_train_hit_count_observed": 181,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:163",
+      "entry_name": "ribonuclease HI",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:61"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.5994,
+        "structure_key": "pdb:1BJP"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6657,
+        "retained_train_hit_count_observed": 268,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:171",
+      "entry_name": "carboxypeptidase A",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:167"
+        ],
+        "fingerprints_or_label_families": [
+          "metal_dependent_hydrolase"
+        ],
+        "max_pair_tm_score": 0.6657,
+        "structure_key": "pdb:1LOK"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5027,
+        "retained_train_hit_count_observed": 124,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:180",
+      "entry_name": "fumarylacetoacetase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:735"
+        ],
+        "fingerprints_or_label_families": [
+          "heme_peroxidase_oxidase"
+        ],
+        "max_pair_tm_score": 0.5027,
+        "structure_key": "pdb:1EHK"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.4748,
+        "retained_train_hit_count_observed": 219,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:185",
+      "entry_name": "8-oxoguanine DNA-glycosylase (type-1 OGG1 family)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:233"
+        ],
+        "fingerprints_or_label_families": [
+          "metal_dependent_hydrolase"
+        ],
+        "max_pair_tm_score": 0.4748,
+        "structure_key": "pdb:1G9Z"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 1,
+        "max_pair_tm_score": 0.9029,
+        "retained_train_hit_count_observed": 339,
+        "same_family_high_tm_neighbor_structure_count": 8,
+        "tm_ge_0_70_neighbor_structure_count": 9
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:188",
+      "entry_name": "UDP-glucose 4-epimerase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:557"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.9029,
+        "structure_key": "pdb:1EQ2"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_fold_conflict_hard_negative_candidate"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6591,
+        "retained_train_hit_count_observed": 310,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:191",
+      "entry_name": "protein disulfide-isomerase (eukaryotic)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:512"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6591,
+        "structure_key": "pdb:1EEJ"
+      },
+      "oos_router_control_flag": true,
+      "queue_role": "OOS_router_control",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "oos_router_control"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6277,
+        "retained_train_hit_count_observed": 222,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:192",
+      "entry_name": "prostaglandin-E synthase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:514"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6277,
+        "structure_key": "pdb:1E2A"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6848,
+        "retained_train_hit_count_observed": 203,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:193",
+      "entry_name": "precorrin-8X methylmutase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:733"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.6848,
+        "structure_key": "pdb:1ZOI"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.648,
+        "retained_train_hit_count_observed": 144,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_group": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:211",
+      "entry_name": "oxygen insensitive NAD(P)H nitroreductase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:101"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.648,
+        "structure_key": "pdb:5FIT"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "verified_true_near_orphan",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "clean_near_orphan_anchor"
+    },
+    {
+      "bronze_review_use": "fold_conflict_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 5,
+        "max_pair_tm_score": 0.7337,
+        "retained_train_hit_count_observed": 371,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 5
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "plp_dependent_enzyme",
+      "current_label_group": "plp_dependent_enzyme",
+      "entry_id": "m_csa:213",
+      "entry_name": "alanine racemase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:550"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.7337,
+        "structure_key": "pdb:1FQ0"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 9,
+        "max_pair_tm_score": 0.7976,
+        "retained_train_hit_count_observed": 321,
+        "same_family_high_tm_neighbor_structure_count": 2,
+        "tm_ge_0_70_neighbor_structure_count": 11
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:217",
+      "entry_name": "(S)-hydroxynitrile lyase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:248"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.7976,
+        "structure_key": "pdb:1A7U"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "fold_conflict_reference_only",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+      "use_reason": "Nearest train structure is a primary/different-fingerprint neighbor under high Foldseek bits/prob proxy.",
+      "use_status": "fold_conflict_reference_anchor"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 2,
+        "max_pair_tm_score": 0.9307,
+        "retained_train_hit_count_observed": 253,
+        "same_family_high_tm_neighbor_structure_count": 8,
+        "tm_ge_0_70_neighbor_structure_count": 10
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:220",
+      "entry_name": "benzoylformate decarboxylase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:298"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.9307,
+        "structure_key": "pdb:2PAN"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_fold_conflict_hard_negative_candidate"
+    },
+    {
+      "bronze_review_use": "mixed_neighborhood_review_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 10,
+        "max_pair_tm_score": 0.7621,
+        "retained_train_hit_count_observed": 363,
+        "same_family_high_tm_neighbor_structure_count": 1,
+        "tm_ge_0_70_neighbor_structure_count": 11
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:242",
+      "entry_name": "sphingomyelin phosphodiesterase D (Class I)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:236"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.7621,
+        "structure_key": "pdb:1Q6L"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5047,
+        "retained_train_hit_count_observed": 110,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "heme_peroxidase_oxidase",
+      "current_label_group": "heme_peroxidase_oxidase",
+      "entry_id": "m_csa:250",
+      "entry_name": "chloride peroxidase (heme dependent)",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:406"
+        ],
+        "fingerprints_or_label_families": [
+          "metal_dependent_hydrolase"
+        ],
+        "max_pair_tm_score": 0.5047,
+        "structure_key": "pdb:1AUI"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "verified_true_near_orphan",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "clean_near_orphan_anchor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.626,
+        "retained_train_hit_count_observed": 160,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:254",
+      "entry_name": "squalene-hopene cyclase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:439"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.626,
+        "structure_key": "pdb:1C82"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 2,
+        "max_pair_tm_score": 0.8318,
+        "retained_train_hit_count_observed": 323,
+        "same_family_high_tm_neighbor_structure_count": 6,
+        "tm_ge_0_70_neighbor_structure_count": 8
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:255",
+      "entry_name": "alcohol dehydrogenase (SDR type)",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:237"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.8318,
+        "structure_key": "pdb:2C7V"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_fold_conflict_hard_negative_candidate"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 8,
+        "max_pair_tm_score": 0.7841,
+        "retained_train_hit_count_observed": 334,
+        "same_family_high_tm_neighbor_structure_count": 19,
+        "tm_ge_0_70_neighbor_structure_count": 27
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:267",
+      "entry_name": "dihydrodipicolinate synthase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:550"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.7841,
+        "structure_key": "pdb:1FQ0"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_fold_conflict_hard_negative_candidate"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5867,
+        "retained_train_hit_count_observed": 222,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:297",
+      "entry_name": "alkylmercury lyase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:922"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.5867,
+        "structure_key": "pdb:1MAH"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.4862,
+        "retained_train_hit_count_observed": 241,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:313",
+      "entry_name": "DNA-3-methyladenine glycosylase II",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:412"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.4862,
+        "structure_key": "pdb:1AZW"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "dense_same_family_transfer_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.7541,
+        "retained_train_hit_count_observed": 113,
+        "same_family_high_tm_neighbor_structure_count": 1,
+        "tm_ge_0_70_neighbor_structure_count": 1
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:321",
+      "entry_name": "ribonuclease D",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:754"
+        ],
+        "fingerprints_or_label_families": [
+          "metal_dependent_hydrolase"
+        ],
+        "max_pair_tm_score": 0.7541,
+        "structure_key": "pdb:1J53"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 1,
+        "max_pair_tm_score": 0.9073,
+        "retained_train_hit_count_observed": 337,
+        "same_family_high_tm_neighbor_structure_count": 4,
+        "tm_ge_0_70_neighbor_structure_count": 5
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:333",
+      "entry_name": "1-deoxy-D-xylulose 5-phosphate synthase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:280"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.9073,
+        "structure_key": "pdb:1DTW"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_fold_conflict_hard_negative_candidate"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.4676,
+        "retained_train_hit_count_observed": 154,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:334",
+      "entry_name": "diaminopimelate epimerase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:111"
+        ],
+        "fingerprints_or_label_families": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "max_pair_tm_score": 0.4676,
+        "structure_key": "pdb:1OFD"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 1,
+        "max_pair_tm_score": 0.9306,
+        "retained_train_hit_count_observed": 299,
+        "same_family_high_tm_neighbor_structure_count": 11,
+        "tm_ge_0_70_neighbor_structure_count": 12
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:346",
+      "entry_name": "1,4-dihydroxy-2-naphthoyl-CoA synthase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:70"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.9306,
+        "structure_key": "pdb:1EF8"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_fold_conflict_hard_negative_candidate"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.685,
+        "retained_train_hit_count_observed": 192,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:355",
+      "entry_name": "naringenin-chalcone synthase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:574"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.685,
+        "structure_key": "pdb:1KAS"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6482,
+        "retained_train_hit_count_observed": 261,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:356",
+      "entry_name": "alpha-1,3-galactosetransferase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:570"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6482,
+        "structure_key": "pdb:1FR8"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6953,
+        "retained_train_hit_count_observed": 322,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:363",
+      "entry_name": "glycinamide ribonucleotide transformylase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:862"
+        ],
+        "fingerprints_or_label_families": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "max_pair_tm_score": 0.6953,
+        "structure_key": "pdb:1NDH"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "dense_same_family_transfer_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.8608,
+        "retained_train_hit_count_observed": 197,
+        "same_family_high_tm_neighbor_structure_count": 1,
+        "tm_ge_0_70_neighbor_structure_count": 1
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:369",
+      "entry_name": "UDP-N-acetylglucosamine enolpyruvyl transferase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:457"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.8608,
+        "structure_key": "pdb:1G6T"
+      },
+      "oos_router_control_flag": true,
+      "queue_role": "OOS_router_control",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_router_control"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.563,
+        "retained_train_hit_count_observed": 135,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:370",
+      "entry_name": "lysine-specific [histone H3] demethylase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:278"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.563,
+        "structure_key": "pdb:2B3I"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6439,
+        "retained_train_hit_count_observed": 255,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:392",
+      "entry_name": "protein-glutamate O-methyltransferase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:405"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6439,
+        "structure_key": "pdb:1AT1"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6421,
+        "retained_train_hit_count_observed": 83,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:403",
+      "entry_name": "astacin",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:535"
+        ],
+        "fingerprints_or_label_families": [
+          "metal_dependent_hydrolase"
+        ],
+        "max_pair_tm_score": 0.6421,
+        "structure_key": "pdb:4PC7"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "label_contested_hold",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "prior full-TM signal marked label_contested_do_not_anchor_metrics; keep out of canary/test claims until reviewed",
+      "use_status": "quarantine_do_not_anchor_metric"
+    },
+    {
+      "bronze_review_use": "mixed_neighborhood_review_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 1,
+        "max_pair_tm_score": 0.8041,
+        "retained_train_hit_count_observed": 319,
+        "same_family_high_tm_neighbor_structure_count": 12,
+        "tm_ge_0_70_neighbor_structure_count": 13
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "ser_his_acid_hydrolase",
+      "current_label_group": "ser_his_acid_hydrolase",
+      "entry_id": "m_csa:407",
+      "entry_name": "carboxylesterase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:518"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.8041,
+        "structure_key": "pdb:1R4Z"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "dense_same_mechanism_structural_neighborhood",
+      "use_reason": "Nearest train structure shares the true fingerprint and has high Foldseek bits/prob proxy.",
+      "use_status": "mixed_high_tm_review_candidate"
+    },
+    {
+      "bronze_review_use": "mixed_neighborhood_review_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 1,
+        "max_pair_tm_score": 0.8202,
+        "retained_train_hit_count_observed": 282,
+        "same_family_high_tm_neighbor_structure_count": 14,
+        "tm_ge_0_70_neighbor_structure_count": 15
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "plp_dependent_enzyme",
+      "current_label_group": "plp_dependent_enzyme",
+      "entry_id": "m_csa:424",
+      "entry_name": "phosphoserine transaminase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:855"
+        ],
+        "fingerprints_or_label_families": [
+          "plp_dependent_enzyme"
+        ],
+        "max_pair_tm_score": 0.8202,
+        "structure_key": "pdb:1I29"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 2,
+        "max_pair_tm_score": 0.8059,
+        "retained_train_hit_count_observed": 308,
+        "same_family_high_tm_neighbor_structure_count": 24,
+        "tm_ge_0_70_neighbor_structure_count": 26
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:428",
+      "entry_name": "mannan endo-1,4-beta-mannosidase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:328"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.8059,
+        "structure_key": "pdb:1LBM"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "fold_conflict_reference_only",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+      "use_reason": "Nearest train structure is a primary/different-fingerprint neighbor under high Foldseek bits/prob proxy.",
+      "use_status": "fold_conflict_reference_anchor"
+    },
+    {
+      "bronze_review_use": "mixed_neighborhood_review_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 2,
+        "max_pair_tm_score": 0.8557,
+        "retained_train_hit_count_observed": 288,
+        "same_family_high_tm_neighbor_structure_count": 2,
+        "tm_ge_0_70_neighbor_structure_count": 4
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "ser_his_acid_hydrolase",
+      "current_label_group": "ser_his_acid_hydrolase",
+      "entry_id": "m_csa:431",
+      "entry_name": "acetylxylan esterase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:631"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.8557,
+        "structure_key": "pdb:1AGY"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "dense_same_mechanism_structural_neighborhood",
+      "use_reason": "Nearest train structure shares the true fingerprint and has high Foldseek bits/prob proxy.",
+      "use_status": "mixed_high_tm_review_candidate"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5518,
+        "retained_train_hit_count_observed": 293,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:438",
+      "entry_name": "HECT-type E3 ubiquitin transferase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:459"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.5518,
+        "structure_key": "pdb:1PYL"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6855,
+        "retained_train_hit_count_observed": 337,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:440",
+      "entry_name": "cellulose 1,4-beta-cellobiosidase (non-reducing end)",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:548"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6855,
+        "structure_key": "pdb:1EXP"
+      },
+      "oos_router_control_flag": true,
+      "queue_role": "OOS_router_control",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+      "use_reason": "Nearest train structure is a primary/different-fingerprint neighbor under high Foldseek bits/prob proxy.",
+      "use_status": "oos_router_control"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5552,
+        "retained_train_hit_count_observed": 97,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:444",
+      "entry_name": "cellulose 1,4-beta-cellobiosidase (non-reducing end)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:329"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.5552,
+        "structure_key": "pdb:2IXJ"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.4933,
+        "retained_train_hit_count_observed": 70,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:448",
+      "entry_name": "chitosanase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:203"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.4933,
+        "structure_key": "pdb:1DPX"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "mixed_neighborhood_review_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 2,
+        "max_pair_tm_score": 0.8155,
+        "retained_train_hit_count_observed": 361,
+        "same_family_high_tm_neighbor_structure_count": 10,
+        "tm_ge_0_70_neighbor_structure_count": 12
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "ser_his_acid_hydrolase",
+      "current_label_group": "ser_his_acid_hydrolase",
+      "entry_id": "m_csa:453",
+      "entry_name": "Brefeldin A esterase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:518"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.8155,
+        "structure_key": "pdb:1R4Z"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "dense_same_mechanism_structural_neighborhood",
+      "use_reason": "Nearest train structure shares the true fingerprint and has high Foldseek bits/prob proxy.",
+      "use_status": "mixed_high_tm_review_candidate"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6899,
+        "retained_train_hit_count_observed": 160,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:474",
+      "entry_name": "chorismate mutase (AroH)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:5"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.6899,
+        "structure_key": "pdb:1WHS"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 5,
+        "max_pair_tm_score": 0.8043,
+        "retained_train_hit_count_observed": 101,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 5
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:477",
+      "entry_name": "picornain 3C",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:608"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.8043,
+        "structure_key": "pdb:1DS2"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "fold_conflict_reference_only",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "high_structure_similarity_different_fingerprint",
+      "use_reason": "Nearest train structure is a primary/different-fingerprint neighbor under high Foldseek bits/prob proxy.",
+      "use_status": "fold_conflict_reference_anchor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6533,
+        "retained_train_hit_count_observed": 170,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:484",
+      "entry_name": "protein farnesyltransferase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:439"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6533,
+        "structure_key": "pdb:1C82"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5585,
+        "retained_train_hit_count_observed": 104,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:493",
+      "entry_name": "tRNA pseudouridine38-40 synthase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:405"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.5585,
+        "structure_key": "pdb:1AT1"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 4,
+        "max_pair_tm_score": 0.848,
+        "retained_train_hit_count_observed": 381,
+        "same_family_high_tm_neighbor_structure_count": 3,
+        "tm_ge_0_70_neighbor_structure_count": 7
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:497",
+      "entry_name": "nitric-oxide reductase (FMN)",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:16"
+        ],
+        "fingerprints_or_label_families": [
+          "metal_dependent_hydrolase"
+        ],
+        "max_pair_tm_score": 0.848,
+        "structure_key": "pdb:1BC2"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "label_contested_hold",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "already-resolved label-quality blocker from provisional label_factory_review_import population",
+      "use_status": "quarantine_do_not_anchor_metric"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6756,
+        "retained_train_hit_count_observed": 104,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:509",
+      "entry_name": "pectate lyase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:19"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6756,
+        "structure_key": "pdb:1DL2"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5853,
+        "retained_train_hit_count_observed": 181,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:511",
+      "entry_name": "peptidylprolyl isomerase (PpiC-type)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:246"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.5853,
+        "structure_key": "pdb:1IR3"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6304,
+        "retained_train_hit_count_observed": 230,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:517",
+      "entry_name": "carbonate dehydratase (beta class)",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:63"
+        ],
+        "fingerprints_or_label_families": [
+          "cobalamin_radical_rearrangement"
+        ],
+        "max_pair_tm_score": 0.6304,
+        "structure_key": "pdb:1CB7"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "verified_true_near_orphan",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "clean_near_orphan_anchor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5673,
+        "retained_train_hit_count_observed": 214,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:536",
+      "entry_name": "magnesium chelatase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:294"
+        ],
+        "fingerprints_or_label_families": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "max_pair_tm_score": 0.5673,
+        "structure_key": "pdb:1YQ4"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6903,
+        "retained_train_hit_count_observed": 316,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:549",
+      "entry_name": "exodeoxyribonuclease (lambda-induced)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:507"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6903,
+        "structure_key": "pdb:1C17"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "dense_same_family_transfer_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.7433,
+        "retained_train_hit_count_observed": 348,
+        "same_family_high_tm_neighbor_structure_count": 1,
+        "tm_ge_0_70_neighbor_structure_count": 1
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_group": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:551",
+      "entry_name": "phenol 2-monooxygenase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:281"
+        ],
+        "fingerprints_or_label_families": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "max_pair_tm_score": 0.7433,
+        "structure_key": "pdb:2GMH"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": null,
+      "bronze_tm_summary": null,
+      "coordinate_status": "materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [],
+        "fingerprints_or_label_families": [],
+        "max_pair_tm_score": {
+          "bits": null,
+          "evalue": null,
+          "fident": null,
+          "lddt": null,
+          "prob": null,
+          "qcov": null,
+          "tcov": null
+        },
+        "structure_key": null
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "no_reliable_structure",
+      "use_reason": "No coordinate available for full-structure Foldseek.",
+      "use_status": "coordinate_or_tm_uncertainty_hold"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6432,
+        "retained_train_hit_count_observed": 34,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:590",
+      "entry_name": "pectin lyase A (polysaccharide lyase 1 family)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:184"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6432,
+        "structure_key": "pdb:1RU4"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.672,
+        "retained_train_hit_count_observed": 165,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:594",
+      "entry_name": "protein-arginine deiminase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:735"
+        ],
+        "fingerprints_or_label_families": [
+          "heme_peroxidase_oxidase"
+        ],
+        "max_pair_tm_score": 0.672,
+        "structure_key": "pdb:1EHK"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": null,
+      "bronze_tm_summary": null,
+      "coordinate_status": "materialized",
+      "current_fingerprint_id": "ser_his_acid_hydrolase",
+      "current_label_group": "ser_his_acid_hydrolase",
+      "entry_id": "m_csa:599",
+      "entry_name": "dipeptidase E",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [],
+        "fingerprints_or_label_families": [],
+        "max_pair_tm_score": {
+          "bits": null,
+          "evalue": null,
+          "fident": null,
+          "lddt": null,
+          "prob": null,
+          "qcov": null,
+          "tcov": null
+        },
+        "structure_key": null
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "no_reliable_structure",
+      "use_reason": "No coordinate available for full-structure Foldseek.",
+      "use_status": "coordinate_or_tm_uncertainty_hold"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 2,
+        "max_pair_tm_score": 0.873,
+        "retained_train_hit_count_observed": 383,
+        "same_family_high_tm_neighbor_structure_count": 7,
+        "tm_ge_0_70_neighbor_structure_count": 9
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:606",
+      "entry_name": "enoyl-[acyl-carrier-protein] reductase (NADH)",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:470"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.873,
+        "structure_key": "pdb:1GZ6"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_fold_conflict_hard_negative_candidate"
+    },
+    {
+      "bronze_review_use": "dense_same_family_transfer_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.9362,
+        "retained_train_hit_count_observed": 73,
+        "same_family_high_tm_neighbor_structure_count": 4,
+        "tm_ge_0_70_neighbor_structure_count": 4
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "ser_his_acid_hydrolase",
+      "current_label_group": "ser_his_acid_hydrolase",
+      "entry_id": "m_csa:609",
+      "entry_name": "alpha-lytic endopeptidase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:608"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.9362,
+        "structure_key": "pdb:1DS2"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 9,
+        "max_pair_tm_score": 0.8047,
+        "retained_train_hit_count_observed": 333,
+        "same_family_high_tm_neighbor_structure_count": 22,
+        "tm_ge_0_70_neighbor_structure_count": 31
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:614",
+      "entry_name": "3-deoxy-8-phosphooctulonate synthase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:328"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.8047,
+        "structure_key": "pdb:1LBM"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_fold_conflict_hard_negative_candidate"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6317,
+        "retained_train_hit_count_observed": 106,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:627",
+      "entry_name": "protein-disulfide reductase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:278"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6317,
+        "structure_key": "pdb:2B3I"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 3,
+        "max_pair_tm_score": 0.9127,
+        "retained_train_hit_count_observed": 321,
+        "same_family_high_tm_neighbor_structure_count": 6,
+        "tm_ge_0_70_neighbor_structure_count": 9
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:628",
+      "entry_name": "small GTPase superfamily, ARF type",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:533"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.9127,
+        "structure_key": "pdb:1BH2"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "oos_fold_conflict_hard_negative_candidate"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5758,
+        "retained_train_hit_count_observed": 324,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:634",
+      "entry_name": "phospholipase D",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:63"
+        ],
+        "fingerprints_or_label_families": [
+          "cobalamin_radical_rearrangement"
+        ],
+        "max_pair_tm_score": 0.5758,
+        "structure_key": "pdb:1CB7"
+      },
+      "oos_router_control_flag": true,
+      "queue_role": "OOS_router_control",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "oos_router_control"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6543,
+        "retained_train_hit_count_observed": 193,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:647",
+      "entry_name": "kanamycin nucleotidyltransferase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:124"
+        ],
+        "fingerprints_or_label_families": [
+          "heme_peroxidase_oxidase"
+        ],
+        "max_pair_tm_score": 0.6543,
+        "structure_key": "pdb:1V54"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "near_orphan_candidate_from_retained_hits"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6002,
+        "retained_train_hit_count_observed": 269,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": null,
+      "current_label_group": "out_of_scope",
+      "entry_id": "m_csa:651",
+      "entry_name": "hexokinase (type II)",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:514"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6002,
+        "structure_key": "pdb:1E2A"
+      },
+      "oos_router_control_flag": true,
+      "queue_role": "OOS_router_control",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Non-primary row has weak structural-neighbor signal; useful for abstention diagnostics only.",
+      "use_status": "oos_router_control"
+    },
+    {
+      "bronze_review_use": "mixed_neighborhood_review_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 6,
+        "max_pair_tm_score": 0.8245,
+        "retained_train_hit_count_observed": 108,
+        "same_family_high_tm_neighbor_structure_count": 1,
+        "tm_ge_0_70_neighbor_structure_count": 7
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:686",
+      "entry_name": "diisopropyl-fluorophosphatase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:360"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.8245,
+        "structure_key": "pdb:2FP8"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "verified_true_near_orphan",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "clean_near_orphan_anchor"
+    },
+    {
+      "bronze_review_use": "dense_same_family_transfer_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.8486,
+        "retained_train_hit_count_observed": 336,
+        "same_family_high_tm_neighbor_structure_count": 6,
+        "tm_ge_0_70_neighbor_structure_count": 6
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "ser_his_acid_hydrolase",
+      "current_label_group": "ser_his_acid_hydrolase",
+      "entry_id": "m_csa:688",
+      "entry_name": "classical-complement-pathway C3/C5 convertase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:387"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.8486,
+        "structure_key": "pdb:1YPH"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "not_primary_due_same_neighbor"
+    },
+    {
+      "bronze_review_use": null,
+      "bronze_tm_summary": null,
+      "coordinate_status": "materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:710",
+      "entry_name": "cytosine deaminase (bacterial)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [],
+        "fingerprints_or_label_families": [],
+        "max_pair_tm_score": {
+          "bits": null,
+          "evalue": null,
+          "fident": null,
+          "lddt": null,
+          "prob": null,
+          "qcov": null,
+          "tcov": null
+        },
+        "structure_key": null
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "no_reliable_structure",
+      "use_reason": "No coordinate available for full-structure Foldseek.",
+      "use_status": "coordinate_or_tm_uncertainty_hold"
+    },
+    {
+      "bronze_review_use": "mixed_neighborhood_review_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 2,
+        "max_pair_tm_score": 0.972,
+        "retained_train_hit_count_observed": 264,
+        "same_family_high_tm_neighbor_structure_count": 2,
+        "tm_ge_0_70_neighbor_structure_count": 4
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "heme_peroxidase_oxidase",
+      "current_label_group": "heme_peroxidase_oxidase",
+      "entry_id": "m_csa:714",
+      "entry_name": "ubiquinol oxidase (H+-transporting)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:124"
+        ],
+        "fingerprints_or_label_families": [
+          "heme_peroxidase_oxidase"
+        ],
+        "max_pair_tm_score": 0.972,
+        "structure_key": "pdb:1V54"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "future-family/subfamily boundary blocker; do not use as a clean seed-fingerprint canary until policy exists",
+      "use_status": "quarantine_do_not_anchor_metric"
+    },
+    {
+      "bronze_review_use": "fold_conflict_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 2,
+        "max_pair_tm_score": 0.8425,
+        "retained_train_hit_count_observed": 270,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 2
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "ser_his_acid_hydrolase",
+      "current_label_group": "ser_his_acid_hydrolase",
+      "entry_id": "m_csa:723",
+      "entry_name": "subtilisin",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:380"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.8425,
+        "structure_key": "pdb:1NLU"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "label_contested_hold",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "prior full-TM signal marked label_contested_do_not_anchor_metrics; keep out of canary/test claims until reviewed",
+      "use_status": "quarantine_do_not_anchor_metric"
+    },
+    {
+      "bronze_review_use": null,
+      "bronze_tm_summary": null,
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "heme_peroxidase_oxidase",
+      "current_label_group": "heme_peroxidase_oxidase",
+      "entry_id": "m_csa:735",
+      "entry_name": "cytochrome-c oxidase (BA3 type)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [],
+        "fingerprints_or_label_families": [],
+        "max_pair_tm_score": null,
+        "structure_key": null
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "in_distribution",
+      "structural_neighborhood_bin": null,
+      "use_reason": "future-family/subfamily boundary blocker; do not use as a clean seed-fingerprint canary until policy exists",
+      "use_status": "quarantine_do_not_anchor_metric"
+    },
+    {
+      "bronze_review_use": "oos_fold_conflict_hard_negative_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 2,
+        "max_pair_tm_score": 0.8117,
+        "retained_train_hit_count_observed": 241,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 2
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_group": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:750",
+      "entry_name": "4-hydroxybutanoyl-CoA dehydratase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:68"
+        ],
+        "fingerprints_or_label_families": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "max_pair_tm_score": 0.8117,
+        "structure_key": "pdb:1IVH"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "label_contested_hold",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "already-resolved label-quality blocker from provisional label_factory_review_import population",
+      "use_status": "quarantine_do_not_anchor_metric"
+    },
+    {
+      "bronze_review_use": "fold_conflict_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 1,
+        "max_pair_tm_score": 0.7585,
+        "retained_train_hit_count_observed": 308,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 1
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "cobalamin_radical_rearrangement",
+      "current_label_group": "cobalamin_radical_rearrangement",
+      "entry_id": "m_csa:853",
+      "entry_name": "cob(I)yrinic acid a,c-diamide adenosyltransferase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:178"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.7585,
+        "structure_key": "pdb:1BMF"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "use_reason": "Structure exists, but same/different mechanism support is ambiguous under audit-only heuristics.",
+      "use_status": "fold_conflict_candidate_needs_review"
+    },
+    {
+      "bronze_review_use": "mixed_neighborhood_review_candidate",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 2,
+        "max_pair_tm_score": 0.7863,
+        "retained_train_hit_count_observed": 339,
+        "same_family_high_tm_neighbor_structure_count": 14,
+        "tm_ge_0_70_neighbor_structure_count": 16
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "ser_his_acid_hydrolase",
+      "current_label_group": "ser_his_acid_hydrolase",
+      "entry_id": "m_csa:866",
+      "entry_name": "cephalosporin-C deacetylase",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:518"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.7863,
+        "structure_key": "pdb:1R4Z"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": null,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "dense_same_mechanism_structural_neighborhood",
+      "use_reason": "Nearest train structure shares the true fingerprint and has high Foldseek bits/prob proxy.",
+      "use_status": "mixed_high_tm_review_candidate"
+    },
+    {
+      "bronze_review_use": null,
+      "bronze_tm_summary": null,
+      "coordinate_status": "materialized",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_group": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:892",
+      "entry_name": "dihydroorotate dehydrogenase (fumarate)",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [],
+        "fingerprints_or_label_families": [],
+        "max_pair_tm_score": {
+          "bits": null,
+          "evalue": null,
+          "fident": null,
+          "lddt": null,
+          "prob": null,
+          "qcov": null,
+          "tcov": null
+        },
+        "structure_key": null
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "no_reliable_structure",
+      "use_reason": "No coordinate available for full-structure Foldseek.",
+      "use_status": "coordinate_or_tm_uncertainty_hold"
+    },
+    {
+      "bronze_review_use": null,
+      "bronze_tm_summary": null,
+      "coordinate_status": "materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:897",
+      "entry_name": "type II site-specific deoxyribonuclease PvuII",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [],
+        "fingerprints_or_label_families": [],
+        "max_pair_tm_score": {
+          "bits": null,
+          "evalue": null,
+          "fident": null,
+          "lddt": null,
+          "prob": null,
+          "qcov": null,
+          "tcov": null
+        },
+        "structure_key": null
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "candidate_needs_tm_or_sequence_verification",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "no_reliable_structure",
+      "use_reason": "No coordinate available for full-structure Foldseek.",
+      "use_status": "coordinate_or_tm_uncertainty_hold"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.4682,
+        "retained_train_hit_count_observed": 85,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:916",
+      "entry_name": "inorganic diphosphatase",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:278"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.4682,
+        "structure_key": "pdb:2B3I"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "verified_true_near_orphan",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "clean_near_orphan_anchor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.5915,
+        "retained_train_hit_count_observed": 391,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "current_label_group": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:990",
+      "entry_name": "7-hydroxymethyl chlorophyll A reductase (HCAR)",
+      "fold_conflict_flag": true,
+      "metric_anchor_allowed": true,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:294"
+        ],
+        "fingerprints_or_label_families": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "max_pair_tm_score": 0.5915,
+        "structure_key": "pdb:1YQ4"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "verified_true_near_orphan",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "Prior orphan-design artifact: no retained same-fingerprint train neighbor at TM >= 0.70.",
+      "use_status": "clean_near_orphan_anchor"
+    },
+    {
+      "bronze_review_use": "near_orphan_candidate_from_retained_hits",
+      "bronze_tm_summary": {
+        "different_family_high_tm_neighbor_structure_count": 0,
+        "max_pair_tm_score": 0.6439,
+        "retained_train_hit_count_observed": 252,
+        "same_family_high_tm_neighbor_structure_count": 0,
+        "tm_ge_0_70_neighbor_structure_count": 0
+      },
+      "coordinate_status": "already_materialized",
+      "current_fingerprint_id": "metal_dependent_hydrolase",
+      "current_label_group": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:994",
+      "entry_name": "deoxynucleoside triphosphate triphosphohydrolase SAMHD1",
+      "fold_conflict_flag": false,
+      "metric_anchor_allowed": false,
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:507"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6439,
+        "structure_key": "pdb:1C17"
+      },
+      "oos_router_control_flag": false,
+      "queue_role": "label_contested_hold",
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "low_structure_neighborhood_near_orphan",
+      "use_reason": "prior full-TM signal marked label_contested_do_not_anchor_metrics; keep out of canary/test claims until reviewed",
+      "use_status": "quarantine_do_not_anchor_metric"
+    }
+  ],
+  "schema_version": "v3_wave1_2_fold_conflict_near_orphan_slice_contract_v1",
+  "scope": "current702_wave1_2_fold_conflict_near_orphan_and_router_diagnostic_contract",
+  "source_artifacts": [
+    "artifacts/v3_wave1_1_model_by_cell_report_702_20260528.json",
+    "artifacts/v3_full_tm_structural_signal_702_20260528.json",
+    "artifacts/v3_bronze_label_mismatch_and_full_tm_audit_702_20260528.json",
+    "artifacts/v3_sequence_failure_benchmark_queue_702_20260528.json"
+  ],
+  "status": "review_only_slice_contract_compiled_no_label_or_model_changes"
+}
