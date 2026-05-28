@@ -1,0 +1,579 @@
+{
+  "artifact_id": "v3_fmo_external_homologous_coordinate_policy_and_queue_702_20260528",
+  "schema_version": "1.0",
+  "automation_id": "catalytic-earth-work-loop",
+  "created_utc": "2026-05-28T05:42:51Z",
+  "status": "review_only_decision_artifact",
+  "review_only": true,
+  "scope": {
+    "label_count_context": 702,
+    "objective": "Decide the project-safe path after exact-coordinate geometry found zero clean non-duplicate import-ready external FMO rows.",
+    "decision_surface": "homologous ligand-bound coordinates may be used for scalable review and stress diagnostics, but not for gold/countable import."
+  },
+  "source_inputs": [
+    "artifacts/v3_fmo_external_source_evidence_acquisition_702_20260528.json",
+    "artifacts/v3_fmo_external_hard_negative_duplicate_gate_702_20260528.json",
+    "artifacts/v3_fmo_external_structure_geometry_materialization_702_20260528.json",
+    "artifacts/v3_fmo_local_candidate_adjudication_551_973_702_20260528.json",
+    "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json"
+  ],
+  "public_database_checks": {
+    "performed_utc": "2026-05-28T05:42:51Z",
+    "systems": [
+      "UniProt REST FASTA",
+      "RCSB Search API sequence search",
+      "RCSB Data API entry/polymer/nonpolymer metadata",
+      "RCSB mmCIF coordinate downloads parsed in temporary workspace"
+    ],
+    "local_similarity_method": "Smith-Waterman style local protein alignment with match=2, mismatch=-1, linear gap=-2; values are review-tier estimates and not production scoring.",
+    "coordinate_geometry_method": "Temporary mmCIF atom_site parsing for FAD C4X/N5 proximity to nonbuffer substrate, product, O2, or analog ligands; no project geometry code, thresholds, production scoring, labels, registries, ontology files, imports, or model outputs were changed."
+  },
+  "guardrails": {
+    "labels_edited": false,
+    "registries_edited": false,
+    "ontology_files_edited": false,
+    "thresholds_changed": false,
+    "production_scoring_changed": false,
+    "imports_added": false,
+    "model_outputs_changed": false,
+    "countable_gold_labels_added": false,
+    "duplicate_holds_promoted": false
+  },
+  "summary": {
+    "clean_non_duplicate_import_ready_external_rows": 0,
+    "new_gold_labels_from_this_artifact": 0,
+    "silver_review_candidates_with_useful_homolog_coordinates": [
+      "uniprot:P12015",
+      "uniprot:Q01740"
+    ],
+    "silver_review_candidates_with_limited_broad_homolog_coordinates": [
+      "uniprot:Q93TJ5"
+    ],
+    "bronze_source_only_leads": [
+      "uniprot:P12015",
+      "uniprot:Q93TJ5",
+      "uniprot:Q01740"
+    ],
+    "preserved_duplicate_or_family_holds": [
+      "uniprot:H3JQW0",
+      "uniprot:O15229",
+      "uniprot:P23262"
+    ],
+    "bottom_line": "Keep exact UniProt/PDB ligand-bearing coordinates as the gold/countable import rule. Use homologous ligand-bound coordinates only as silver/review evidence, active-site representation diagnostics, acquisition targeting, and Wave 1.1 flavin-redox stress panels."
+  },
+  "policy_decision": {
+    "gold_countable_import_rule": "Exact UniProt/PDB ligand-bearing coordinates remain required for gold/countable label import. Exact means the source accession itself, or a defensible exact same-sequence/source construct explicitly accepted by review, not a homolog from a different UniProt accession.",
+    "minimum_gold_coordinate_content": [
+      "source accession must have an exact experimental coordinate, not only an AlphaFold protein-only model",
+      "coordinate must contain flavin cofactor geometry, preferably with NAD(P)(H) or an accepted structural-state rationale for its absence",
+      "coordinate must contain candidate-specific substrate, product, or a chemically justified analog close enough to evaluate C4a/FAD oxygen-transfer geometry",
+      "duplicate/leakage gates and human import gates must pass"
+    ],
+    "silver_review_only_rule": "Homologous ligand-bound coordinates may only be used as silver/review-only evidence, active-site representation diagnostics, acquisition targeting, or learned-representation stress panels. They must be excluded from gold benchmark counts, primary supervised metrics, threshold tuning, production scoring, label imports, and registry/ontology edits.",
+    "bronze_source_only_rule": "Source-clean biochemical evidence without exact ligand-bearing geometry remains bronze/source-only. Bronze leads can prioritize acquisition and review, but they cannot enter countable labels.",
+    "duplicate_hold_rule": "Prior duplicate, leakage, or same-family holds remain controlling unless a new exact, non-duplicate, candidate-specific coordinate and terminal duplicate/leakage review explicitly reopens the decision.",
+    "wave_1_1_rule": "Wave 1.1 and external flavin-redox panels may consume homologous coordinates only with tier metadata such as silver_review_only, homolog_not_gold, and excluded_from_gold_benchmark. Panel conclusions must not feed production scoring or corrupt the gold benchmark."
+  },
+  "evidence_tiers": {
+    "gold_labels": {
+      "new_external_gold_import_ready_rows": [],
+      "status": "no_change",
+      "note": "No external FMO row from this pass has exact source-accession ligand-bearing geometry plus non-duplicate import readiness."
+    },
+    "silver_review_only_evidence": [
+      {
+        "source_accession": "uniprot:P12015",
+        "candidate": "cyclohexanone monooxygenase / CHMO",
+        "silver_verdict": "strong_bvmo_silver_review_only",
+        "why_silver_not_gold": "The useful ligand-bearing coordinates map to homolog accession C0STX7 or other non-P12015 accessions, not exact UniProt P12015.",
+        "usable_for": [
+          "BVMO active-site representation diagnostics",
+          "C4a/FAD substrate/product proximity sanity checks",
+          "exact-coordinate acquisition targeting",
+          "Wave 1.1 flavin-redox stress panels"
+        ]
+      },
+      {
+        "source_accession": "uniprot:Q01740",
+        "candidate": "human flavin-containing monooxygenase 1 / FMO1",
+        "silver_verdict": "strong_class_b_fmo_fold_silver_review_only",
+        "why_silver_not_gold": "The closest ligand-bearing coordinate is an ancestral mammalian FMO1 construct without exact Q01740 UniProt mapping and without candidate substrate/product ligand.",
+        "usable_for": [
+          "class B FMO FAD/NADP pocket diagnostics",
+          "mammalian FMO representation stress testing",
+          "exact-coordinate acquisition targeting",
+          "Wave 1.1 flavin-redox stress panels"
+        ]
+      },
+      {
+        "source_accession": "uniprot:Q93TJ5",
+        "candidate": "4-hydroxyacetophenone monooxygenase / HAPMO",
+        "silver_verdict": "limited_broad_bvmo_silver_review_only",
+        "why_silver_not_gold": "Available ligand-bound homologs are broad BVMO relatives with partial local sequence coverage and no HAPMO-specific 4-hydroxyacetophenone/product coordinate.",
+        "usable_for": [
+          "broad BVMO family stress panels",
+          "FAD/NADP cofactor-pocket diagnostics",
+          "acquisition targeting for exact HAPMO coordinates"
+        ]
+      }
+    ],
+    "bronze_source_only_leads": [
+      {
+        "source_accession": "uniprot:P12015",
+        "reason": "Source-clean CHMO/BVMO evidence remains non-countable until exact P12015 ligand-bearing geometry is found and import gates clear."
+      },
+      {
+        "source_accession": "uniprot:Q93TJ5",
+        "reason": "Source-clean HAPMO evidence remains non-countable until exact Q93TJ5 ligand-bearing geometry is found and import gates clear."
+      },
+      {
+        "source_accession": "uniprot:Q01740",
+        "reason": "Source-clean human FMO1 evidence remains non-countable until exact Q01740 ligand-bearing geometry is found and import gates clear."
+      }
+    ],
+    "hard_negative_controls": [
+      {
+        "control_group": "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "representatives": [
+          "m_csa:3",
+          "m_csa:6",
+          "m_csa:353",
+          "m_csa:381",
+          "m_csa:506",
+          "m_csa:892"
+        ],
+        "panel_role": "Prevent FAD/NAD(P)H binding from being treated as sufficient FMO evidence."
+      },
+      {
+        "control_group": "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "representatives": [
+          "m_csa:109",
+          "m_csa:110",
+          "m_csa:113",
+          "m_csa:354",
+          "m_csa:822",
+          "m_csa:852",
+          "m_csa:895"
+        ],
+        "panel_role": "Separate O2 terminal-acceptor or peroxide-producing flavoproteins from substrate oxygen insertion."
+      },
+      {
+        "control_group": "flavin_fe_s_relay_hcar_like",
+        "representatives": [
+          "m_csa:990",
+          "m_csa:108",
+          "m_csa:114",
+          "m_csa:142",
+          "m_csa:294",
+          "m_csa:800"
+        ],
+        "panel_role": "Protect against overabsorbing flavin plus Fe-S electron relay proteins into FMO."
+      },
+      {
+        "control_group": "flavodiiron_no_reductase",
+        "representatives": [
+          "m_csa:497"
+        ],
+        "panel_role": "Hard reject non-heme di-iron NO reduction despite flavin involvement."
+      },
+      {
+        "control_group": "radical_flavin_fe_s_dehydratase",
+        "representatives": [
+          "m_csa:750"
+        ],
+        "panel_role": "Hard reject radical dehydration and Fe-S radical chemistry as FMO."
+      },
+      {
+        "control_group": "covalent_fad_adduct_aps_reductase_like",
+        "representatives": [
+          "m_csa:123"
+        ],
+        "panel_role": "Prevent covalent FAD-substrate sulfur-oxygen chemistry from being treated as C4a-peroxy monooxygenation."
+      },
+      {
+        "control_group": "heme_oxygenases_p450_peroxidases_not_fmo",
+        "representatives": [
+          "m_csa:133",
+          "m_csa:699",
+          "m_csa:795",
+          "m_csa:601"
+        ],
+        "panel_role": "Route heme-centered oxygen activation away from FMO even when reaction names include oxygenase or monooxygenase."
+      },
+      {
+        "control_group": "pterin_nonheme_iron_copper_or_other_nonflavin_oxygenases",
+        "representatives": [
+          "m_csa:128",
+          "m_csa:129",
+          "m_csa:130",
+          "m_csa:134",
+          "m_csa:135",
+          "m_csa:600",
+          "m_csa:768"
+        ],
+        "panel_role": "Keep non-flavin oxygen activation and ATP/luciferyl-adenylate oxygenations out of FMO."
+      }
+    ]
+  },
+  "candidate_records": [
+    {
+      "source_accession": "uniprot:P12015",
+      "source_entry_name": "cyclohexanone monooxygenase / CHMO",
+      "source_disposition_from_inputs": "hard_negative_gate_pass_bronze_source_only",
+      "exact_coordinate_status_from_materialization": "AlphaFold:AF-P12015-F1 protein-only model; no exact experimental P12015 PDB cross-reference in the 2026-05-28 acquisition/materialization pass.",
+      "homologous_ligand_bound_coordinates_exist": true,
+      "close_enough_for_silver_review": true,
+      "best_homologous_coordinates": [
+        {
+          "homolog_pdb": "pdb:3UCL",
+          "homolog_accession": "uniprot:C0STX7",
+          "homolog_description": "Rhodococcus sp. HI-31 cyclohexanone monooxygenase, cyclohexanone-bound rotated conformation",
+          "sequence_similarity_local": {
+            "identity_pct": 58.4,
+            "alignment_length": 507,
+            "query_coverage": 0.934,
+            "subject_coverage": 0.885,
+            "query_span": "8-514",
+            "subject_span": "43-549"
+          },
+          "ligand_cofactor_state": "FAD and NADP present",
+          "substrate_analog_product_state": "cyclohexanone substrate present as CYH",
+          "c4a_fad_oxygen_transfer_geometry_support": {
+            "supports_review_only_geometry": true,
+            "nearest_distances_angstrom": [
+              {
+                "from": "FAD:C4X",
+                "to": "CYH:O1",
+                "distance": 3.008
+              },
+              {
+                "from": "FAD:N5",
+                "to": "CYH:O1",
+                "distance": 3.029
+              }
+            ],
+            "interpretation": "Strong silver evidence for a BVMO substrate pose near the flavin reactive face, but it is homolog-derived and not exact P12015 evidence."
+          }
+        },
+        {
+          "homolog_pdb": "pdb:4RG3",
+          "homolog_accession": "uniprot:C0STX7",
+          "homolog_description": "Rhodococcus sp. HI-31 cyclohexanone monooxygenase, epsilon-caprolactone-bound tight conformation",
+          "sequence_similarity_local": {
+            "identity_pct": 58.4,
+            "alignment_length": 507,
+            "query_coverage": 0.934,
+            "subject_coverage": 0.925,
+            "query_span": "8-514",
+            "subject_span": "18-524"
+          },
+          "ligand_cofactor_state": "FAD and NADP present",
+          "substrate_analog_product_state": "epsilon-caprolactone product present as ECE",
+          "c4a_fad_oxygen_transfer_geometry_support": {
+            "supports_review_only_geometry": true,
+            "nearest_distances_angstrom": [
+              {
+                "from": "FAD:C4X",
+                "to": "ECE:O",
+                "distance": 3.529
+              },
+              {
+                "from": "FAD:N5",
+                "to": "ECE:O",
+                "distance": 4.074
+              }
+            ],
+            "interpretation": "Useful silver product-state geometry for CHMO-like BVMO review and stress testing."
+          }
+        },
+        {
+          "homolog_pdb": "pdb:8YU0",
+          "homolog_accession": "uniprot:A0A0A8XFY0",
+          "homolog_description": "Acinetobacter calcoaceticus cyclohexanone monooxygenase mutant",
+          "sequence_similarity_local": {
+            "identity_pct": 69.7,
+            "alignment_length": 512,
+            "query_coverage": 0.943,
+            "subject_coverage": 0.934,
+            "query_span": "3-514",
+            "subject_span": "9-520"
+          },
+          "ligand_cofactor_state": "FAD and reduced NADPH analog/code NDP present",
+          "substrate_analog_product_state": "no substrate, analog, or product ligand detected",
+          "c4a_fad_oxygen_transfer_geometry_support": {
+            "supports_review_only_geometry": "cofactor_only",
+            "interpretation": "Closer sequence homolog for cofactor/conformation review, but no substrate/product geometry."
+          }
+        }
+      ],
+      "exact_blocker_to_gold_import": "No exact P12015 experimental ligand-bearing coordinate with FAD plus cyclohexanone/caprolactone or justified analog was found. Homolog accessions C0STX7 and A0A0A8XFY0 cannot satisfy the gold source-accession rule.",
+      "project_safe_path": "Keep P12015 as the top exact-coordinate acquisition target and use 3UCL/4RG3/4RG4/8YU0 only as silver CHMO/BVMO review and Wave 1.1 stress material."
+    },
+    {
+      "source_accession": "uniprot:Q93TJ5",
+      "source_entry_name": "4-hydroxyacetophenone monooxygenase / HAPMO",
+      "source_disposition_from_inputs": "hard_negative_gate_pass_bronze_source_only",
+      "exact_coordinate_status_from_materialization": "AlphaFold:AF-Q93TJ5-F1 protein-only model; no exact experimental Q93TJ5 PDB cross-reference in the 2026-05-28 acquisition/materialization pass.",
+      "homologous_ligand_bound_coordinates_exist": true,
+      "close_enough_for_silver_review": "limited_broad_family_only",
+      "best_homologous_coordinates": [
+        {
+          "homolog_pdb": "pdb:4AP3",
+          "homolog_accession": "uniprot:O50641",
+          "homolog_description": "Rhodococcus rhodochrous steroid monooxygenase, oxidized enzyme bound to NADP",
+          "sequence_similarity_local": {
+            "identity_pct": 41.1,
+            "alignment_length": 202,
+            "query_coverage": 0.306,
+            "subject_coverage": 0.362,
+            "query_span": "144-339",
+            "subject_span": "24-222"
+          },
+          "ligand_cofactor_state": "FAD and NADP present",
+          "substrate_analog_product_state": "no HAPMO substrate, analog, or product ligand detected",
+          "c4a_fad_oxygen_transfer_geometry_support": {
+            "supports_review_only_geometry": "cofactor_only",
+            "interpretation": "Useful only as broad BVMO FAD/NADP pocket context; not enough for HAPMO substrate geometry."
+          }
+        },
+        {
+          "homolog_pdb": "pdb:2YM1",
+          "homolog_accession": "uniprot:Q47PU3",
+          "homolog_description": "Thermobifida fusca phenylacetone monooxygenase Arg337Lys mutant with NADP and O2 ligand",
+          "sequence_similarity_local": {
+            "identity_pct": 54.3,
+            "alignment_length": 70,
+            "query_coverage": 0.108,
+            "subject_coverage": 0.129,
+            "query_span": "272-340",
+            "subject_span": "149-218"
+          },
+          "ligand_cofactor_state": "FAD, NADP, and OXY present",
+          "substrate_analog_product_state": "no 4-hydroxyacetophenone, 4-acetoxyphenol, or HAPMO-specific analog/product ligand detected",
+          "c4a_fad_oxygen_transfer_geometry_support": {
+            "supports_review_only_geometry": "oxygen_pocket_stress_only",
+            "nearest_distances_angstrom": [
+              {
+                "from": "FAD:C4X",
+                "to": "OXY:O2",
+                "distance": 3.485
+              },
+              {
+                "from": "FAD:N5",
+                "to": "OXY:O2",
+                "distance": 3.952
+              }
+            ],
+            "interpretation": "Useful as a broad BVMO oxygen-activation stress example, but too partial and non-HAPMO to support candidate-specific silver substrate geometry."
+          }
+        },
+        {
+          "homolog_pdb": "pdb:3UOY",
+          "homolog_accession": "uniprot:H3JQW0",
+          "homolog_description": "Pseudomonas putida OTEMO FAD/NADP complex",
+          "sequence_similarity_local": {
+            "identity_pct": 43.2,
+            "alignment_length": 213,
+            "query_coverage": 0.312,
+            "subject_coverage": 0.382,
+            "query_span": "144-343",
+            "subject_span": "13-220"
+          },
+          "ligand_cofactor_state": "FAD and NADP present",
+          "substrate_analog_product_state": "no substrate, analog, or product ligand detected",
+          "c4a_fad_oxygen_transfer_geometry_support": {
+            "supports_review_only_geometry": "cofactor_only_with_duplicate_hold_caveat",
+            "interpretation": "Do not use this homolog to promote HAPMO; H3JQW0 itself remains a duplicate hold."
+          }
+        }
+      ],
+      "exact_blocker_to_gold_import": "No exact Q93TJ5 experimental ligand-bearing coordinate with FAD plus 4-hydroxyacetophenone/4-acetoxyphenol or a justified analog was found. Homologs are different BVMO accessions and provide only broad family context.",
+      "project_safe_path": "Keep Q93TJ5 as bronze/source-only and prioritize exact HAPMO coordinate acquisition. Use homologs only for broad BVMO stress panels, not candidate-specific silver geometry claims."
+    },
+    {
+      "source_accession": "uniprot:Q01740",
+      "source_entry_name": "human flavin-containing monooxygenase 1 / FMO1",
+      "source_disposition_from_inputs": "hard_negative_gate_pass_bronze_source_only",
+      "exact_coordinate_status_from_materialization": "AlphaFold:AF-Q01740-F1 protein-only model; no exact experimental Q01740 PDB cross-reference in the 2026-05-28 acquisition/materialization pass.",
+      "homologous_ligand_bound_coordinates_exist": true,
+      "close_enough_for_silver_review": true,
+      "best_homologous_coordinates": [
+        {
+          "homolog_pdb": "pdb:7AL4",
+          "homolog_accession": "ancestral_mammalian_FMO1_construct_no_uniprot_mapping",
+          "homolog_description": "Ancestral mammalian flavin-containing monooxygenase 1",
+          "sequence_similarity_local": {
+            "identity_pct": 90.3,
+            "alignment_length": 526,
+            "query_coverage": 0.989,
+            "subject_coverage": 0.991,
+            "query_span": "1-526",
+            "subject_span": "1-526"
+          },
+          "ligand_cofactor_state": "FAD and NADP present",
+          "substrate_analog_product_state": "no dimethylaniline, trimethylamine, hypotaurine, taurine, or other candidate-specific substrate/product ligand detected",
+          "c4a_fad_oxygen_transfer_geometry_support": {
+            "supports_review_only_geometry": "cofactor_only",
+            "interpretation": "Very strong class B FMO fold/cofactor silver evidence for review, but no substrate/product geometry and no exact Q01740 mapping."
+          }
+        },
+        {
+          "homolog_pdb": "pdb:6SE3",
+          "homolog_accession": "ancestral_FMO3_6_construct_no_uniprot_mapping",
+          "homolog_description": "Ancestral flavin-containing monooxygenase FMO3-6 with O2 ligand",
+          "sequence_similarity_local": {
+            "identity_pct": 56.8,
+            "alignment_length": 533,
+            "query_coverage": 0.998,
+            "subject_coverage": 0.998,
+            "query_span": "1-531",
+            "subject_span": "1-531"
+          },
+          "ligand_cofactor_state": "FAD, NADP, and OXY present",
+          "substrate_analog_product_state": "no candidate-specific substrate, analog, or product ligand detected",
+          "c4a_fad_oxygen_transfer_geometry_support": {
+            "supports_review_only_geometry": "oxygen_pocket_stress_only",
+            "nearest_distances_angstrom": [
+              {
+                "from": "FAD:C4X",
+                "to": "OXY:O2",
+                "distance_range": [
+                  5.181,
+                  5.838
+                ]
+              },
+              {
+                "from": "FAD:N5",
+                "to": "OXY:O2",
+                "example_distance": 6.071
+              }
+            ],
+            "interpretation": "Useful as O2-pocket stress evidence for class B FMO representation, not as substrate oxygen-transfer geometry."
+          }
+        }
+      ],
+      "exact_blocker_to_gold_import": "No exact Q01740 experimental ligand-bearing coordinate exists in the consumed acquisition/materialization state. Ancestral constructs are homolog/synthetic coordinates and lack candidate-specific substrate/product geometry.",
+      "project_safe_path": "Use 7AL4 as strong silver class B FMO review evidence and 6SE3 as an O2-pocket stress panel item; keep Q01740 bronze/source-only until exact human FMO1 ligand-bearing coordinates exist."
+    }
+  ],
+  "duplicate_holds_preserved": [
+    {
+      "source_accession": "uniprot:H3JQW0",
+      "candidate": "OTEMO",
+      "hold_status": "duplicate_hold_preserved",
+      "reason": "Prior terminal duplicate/leakage and same-BVMO-lane redundancy remain controlling. Exact FAD/NADP PDB coordinates exist but lack substrate/analog/product and do not reopen promotion.",
+      "allowed_future_use": "hard-negative or boundary/stress control only unless an explicit future review reopens duplicate/leakage with new exact non-duplicate evidence"
+    },
+    {
+      "source_accession": "uniprot:O15229",
+      "candidate": "kynurenine 3-monooxygenase / KMO",
+      "hold_status": "duplicate_hold_preserved",
+      "reason": "Prior high-TM duplicate/leakage against m_csa:131 and aromatic hydroxylase family overlap remain controlling. Exact human KMO FAD coordinate lacks substrate/analog/product.",
+      "allowed_future_use": "hard-negative or aromatic-hydroxylase redundancy control only unless new non-duplicate evidence is explicitly discovered and reviewed"
+    },
+    {
+      "source_accession": "uniprot:P23262",
+      "candidate": "salicylate 1-monooxygenase",
+      "hold_status": "duplicate_hold_preserved",
+      "reason": "Exact PDB coordinate is apo/no-flavin in this pass and the row overlaps the aromatic hydroxylase lane represented by m_csa:131/m_csa:551.",
+      "allowed_future_use": "same-family aromatic-hydroxylase control or source corroboration only; do not promote"
+    }
+  ],
+  "next_action_queue": {
+    "exact_coordinate_acquisition_targets": [
+      {
+        "priority": 1,
+        "target": "uniprot:P12015 CHMO",
+        "needed_evidence": "Exact P12015 experimental coordinate with FAD plus cyclohexanone, caprolactone, or a justified substrate/product analog near FAD C4X/N5.",
+        "acceptance_gate": "exact accession or accepted exact same-sequence construct; duplicate/leakage and import gates still required"
+      },
+      {
+        "priority": 2,
+        "target": "uniprot:Q01740 human FMO1",
+        "needed_evidence": "Exact human FMO1 experimental coordinate with FAD/NADP(H) and dimethylaniline, trimethylamine, hypotaurine/taurine, or justified analog/product geometry.",
+        "acceptance_gate": "exact Q01740 mapping; no homolog/ancestral construct promotion"
+      },
+      {
+        "priority": 3,
+        "target": "uniprot:Q93TJ5 HAPMO",
+        "needed_evidence": "Exact Q93TJ5 experimental coordinate with FAD/NADP(H) and 4-hydroxyacetophenone, 4-acetoxyphenol, or justified aryl-ketone/product analog geometry.",
+        "acceptance_gate": "exact Q93TJ5 mapping; broad BVMO homologs are not enough"
+      }
+    ],
+    "homolog_silver_review_targets": [
+      {
+        "priority": 1,
+        "target": "P12015 silver CHMO/BVMO review panel",
+        "homologs": [
+          "pdb:3UCL / uniprot:C0STX7",
+          "pdb:4RG3 / uniprot:C0STX7",
+          "pdb:4RG4 / uniprot:C0STX7",
+          "pdb:8YU0 / uniprot:A0A0A8XFY0"
+        ],
+        "use": "review-only substrate/product and cofactor geometry; exact P12015 acquisition targeting"
+      },
+      {
+        "priority": 2,
+        "target": "Q01740 silver class B FMO review panel",
+        "homologs": [
+          "pdb:7AL4 / ancestral mammalian FMO1",
+          "pdb:6SE3 / ancestral FMO3-6"
+        ],
+        "use": "review-only FAD/NADP pocket and O2-pocket stress; exact Q01740 acquisition targeting"
+      },
+      {
+        "priority": 3,
+        "target": "Q93TJ5 broad BVMO stress panel",
+        "homologs": [
+          "pdb:4AP3 / uniprot:O50641",
+          "pdb:2YM1 / uniprot:Q47PU3"
+        ],
+        "use": "broad BVMO cofactor/O2 stress only; not candidate-specific HAPMO silver geometry"
+      }
+    ],
+    "hard_negative_controls_for_fmo_redox_panel": [
+      "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+      "flavin_oxidase_o2_acceptor_not_monooxygenase",
+      "flavin_fe_s_relay_hcar_like",
+      "flavodiiron_no_reductase_m_csa497",
+      "radical_flavin_fe_s_dehydratase_m_csa750",
+      "covalent_fad_adduct_aps_reductase_like",
+      "heme_oxygenases_p450_peroxidases_not_fmo",
+      "pterin_nonheme_iron_copper_or_other_nonflavin_oxygenases",
+      "luciferase_or_atp_dependent_nonflavin_oxygenations",
+      "name_only_monooxygenase_hits"
+    ]
+  },
+  "wave_1_1_and_external_stress_panel_feed": {
+    "gold_benchmark": {
+      "include_new_external_rows": false,
+      "policy": "Do not add homolog-derived positives to countable gold labels, primary metrics, threshold tuning, production scoring, or model-output comparisons."
+    },
+    "silver_review_panel": {
+      "include": [
+        "P12015 homolog CHMO substrate/product geometry",
+        "Q01740 ancestral class B FMO FAD/NADP and O2-pocket coordinates",
+        "Q93TJ5 broad BVMO homolog cofactor/O2 examples with low candidate-specific weight"
+      ],
+      "required_metadata": [
+        "tier=silver_review_only",
+        "homolog_not_gold=true",
+        "source_accession_exact=false",
+        "excluded_from_gold_benchmark=true",
+        "excluded_from_threshold_tuning=true",
+        "excluded_from_production_scoring=true"
+      ]
+    },
+    "bronze_acquisition_backlog": {
+      "include": [
+        "uniprot:P12015",
+        "uniprot:Q93TJ5",
+        "uniprot:Q01740"
+      ],
+      "policy": "Use source-clean bronze leads to target exact coordinates and literature/structure review, not to count labels."
+    },
+    "hard_negative_pairing": {
+      "policy": "Every silver homolog panel should be paired with ordinary flavin redox, flavin oxidase, Fe-S flavoprotein, heme/P450, pterin/metal oxygenase, and name-only oxygenase controls so learned representations cannot pass by recognizing flavin, NAD(P)H, O2, or oxygenase vocabulary alone."
+    }
+  }
+}
