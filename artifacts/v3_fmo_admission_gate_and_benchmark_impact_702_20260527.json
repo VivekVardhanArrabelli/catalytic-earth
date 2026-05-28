@@ -1,193 +1,890 @@
 {
   "artifact_id": "v3_fmo_admission_gate_and_benchmark_impact_702_20260527",
-  "created_utc": "2026-05-28T01:38:56Z",
-  "method": "fmo_admission_gate_and_benchmark_impact_waiting_blocker",
-  "status": "blocked_missing_parallel_fmo_artifacts",
+  "created_utc": "2026-05-28T01:49:21Z",
+  "schema_version": "v3_fmo_admission_gate_and_benchmark_impact.v2",
+  "method": "fmo_admission_gate_and_benchmark_impact_review_only",
+  "status": "complete_review_only_no_imports",
   "review_only": true,
   "import_run": false,
-  "candidate_count_seen_from_available_inputs": 2,
-  "candidate_count_evaluable_for_full_gate": 0,
-  "ready_for_human_review_packet_count": 0,
+  "all_requested_inputs_present": true,
   "source_inputs": [
     {
       "path": "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
-      "present": false,
-      "required": true,
-      "role": "candidate_inventory_and_candidate_level_claims"
+      "present": true,
+      "artifact_id": "v3_fmo_mcsa_candidate_scout_702_20260527"
     },
     {
       "path": "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
-      "present": false,
-      "required": true,
-      "role": "candidate_geometry_support_and_geometry_failure_modes"
+      "present": true,
+      "artifact_id": "v3_fmo_structure_geometry_audit_702_20260527"
     },
     {
       "path": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
-      "present": false,
-      "required": true,
-      "role": "source_evidence_and_source_transfer_risk"
+      "present": true,
+      "artifact_id": "v3_fmo_source_evidence_scout_702_20260527"
     },
     {
       "path": "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json",
-      "present": false,
-      "required": true,
-      "role": "hard_negative_counteraxis_and_required_controls"
+      "present": true,
+      "artifact_id": "v3_fmo_hard_negative_counteraxis_702_20260527"
     },
     {
       "path": "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json",
       "present": true,
-      "required": true,
-      "role": "future_v2_fingerprint_or_pilot_design_context"
+      "artifact_id": "v3_fmo_v2_fingerprint_design_proposal_702_20260527"
     },
     {
       "path": "artifacts/v3_wave1_1_diagnostic_benchmark_result_702_20260527.json",
       "present": true,
-      "required": true,
-      "role": "wave1_1_diagnostic_benchmark_context_only"
+      "artifact_id": "v3_wave1_1_diagnostic_benchmark_result_702_20260527"
     }
   ],
-  "missing_required_inputs": [
-    "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
-    "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
-    "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
-    "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
-  ],
-  "available_inputs": [
-    "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json",
-    "artifacts/v3_wave1_1_diagnostic_benchmark_result_702_20260527.json"
-  ],
-  "blocker": {
-    "blocked_reason": "The FMO candidate scout, structure-geometry audit, source-evidence scout, and hard-negative counteraxis artifacts are absent. The v2 fingerprint proposal is present and names two context candidates, but it is proposal-only and does not supply the missing admission-gate evidence.",
-    "resolution_required": [
-      "Generate or provide the FMO candidate scout artifact before evaluating ready_for_human_review_packet.",
-      "Generate or provide the FMO structure geometry audit before evaluating clean geometry support.",
-      "Generate or provide the FMO source evidence scout before evaluating source-backed evidence and source-transfer risk.",
-      "Generate or provide the FMO hard negative counteraxis artifact before listing candidate-specific hard negative controls."
-    ]
+  "candidate_inventory": {
+    "candidate_scout_rows": 27,
+    "candidate_scout_disposition_counts": {
+      "blocked_wrong_chemistry": 2,
+      "clean_candidate": 2,
+      "hard_negative_control": 22,
+      "needs_structure_check": 1
+    },
+    "clean_local_mcsa_candidates": [
+      "m_csa:551",
+      "m_csa:973"
+    ],
+    "current_canonical_fmo_rows": [
+      {
+        "entry_id": "m_csa:131",
+        "entry_name": "4-hydroxybenzoate 3-monooxygenase",
+        "label_type": "seed_fingerprint",
+        "fingerprint_id": "flavin_monooxygenase"
+      },
+      {
+        "entry_id": "m_csa:132",
+        "entry_name": "alkanal monooxygenase (FMN-linked)",
+        "label_type": "seed_fingerprint",
+        "fingerprint_id": "flavin_monooxygenase"
+      }
+    ],
+    "source_admissible_packet_count": 13,
+    "source_only_external_admissible_candidate_count": 9,
+    "hard_negative_control_group_count": 8
   },
-  "candidate_classification_schema": {
-    "ready_for_human_review_packet": "boolean_or_blocked",
-    "blocked_reason": "string_or_null",
-    "would_increase_clean_fmo_support_count": "boolean_or_unknown",
-    "would_remain_secondary_or_pilot_only": "boolean_or_unknown",
-    "benchmark_impact_if_later_approved": "string_or_unknown",
-    "hard_negative_controls_required": "array_or_unknown"
+  "aggregate_admission_decision": {
+    "ready_for_human_review_packet_count": 2,
+    "ready_for_human_review_packet_ids": [
+      "m_csa:551",
+      "m_csa:973"
+    ],
+    "import_ready_candidate_count": 0,
+    "registry_edit_allowed": false,
+    "primary_promotion_ready_now": false,
+    "proposed_candidates_remain_requires_human_approval_before_registry_edit": true,
+    "decision": "m_csa:551 and m_csa:973 are ready for a human review packet only. They are not import-ready and cannot change canonical labels without human approval."
   },
   "candidate_classifications": [
     {
       "entry_id": "m_csa:551",
       "entry_name": "phenol 2-monooxygenase",
-      "classification_source": "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json",
-      "classification_scope": "v2_context_candidate_not_full_candidate_scout",
-      "ready_for_human_review_packet": false,
-      "blocked_reason": "The v2 proposal identifies this as clean FMO context, but the candidate scout, structure-geometry audit, source-evidence scout, and hard-negative counteraxis artifacts are missing. The proposal also states the row remains unrelabelled and below support gates.",
-      "would_increase_clean_fmo_support_count": "conditional_if_later_expert_accepted_and_missing_evidence_gates_pass",
-      "would_increase_clean_fmo_support_count_basis": "The v2 proposal says the two canonical FMO rows plus m_csa:551 and m_csa:973 would make four clean rows if the future candidates are expert accepted.",
+      "candidate_disposition": "clean_candidate",
+      "current_label_status": "current702:seed_fingerprint:flavin_dehydrogenase_reductase; confidence=high; review_status=automation_curated; tier=bronze",
+      "source_review_confidence": "high",
+      "source_evidence_admissible_for_label_review_packet": true,
+      "geometry_support": "supports_fmo",
+      "geometry_packet_decision": "clean_FMO_secondary_or_future_row",
+      "ready_for_human_review_packet": true,
+      "blocked_reason": null,
+      "packet_caveats": [
+        "Still requires human approval before any registry edit or canonical relabel.",
+        "Current curated label is flavin_dehydrogenase_reductase, so any relabel must be expert-reviewed rather than automated.",
+        "No NADPH/NADP ligand is present in the selected coordinate.",
+        "No C4a-hydroperoxy/peroxide flavin state is present in the selected coordinate.",
+        "Mapped-chain FAD C4X to phenol/IPH nearest distance is 7.10 A; shorter ligand pose exists in other coordinate copies and needs structure review."
+      ],
+      "would_increase_clean_fmo_support_count": true,
+      "would_increase_clean_fmo_support_count_basis": "If human-approved with the other local clean candidate, current clean FMO support would rise from the two canonical rows m_csa:131/m_csa:132 to four rows total.",
       "would_remain_secondary_or_pilot_only": true,
-      "benchmark_impact_if_later_approved": "Would help raise clean FMO support toward four rows, still below the proposed n>=6 floor. No Wave 1.1 import or primary supervised metric would result; future v2 use would remain secondary OOD, acquisition-target, or later pilot-only after expert approval and controls.",
+      "benchmark_impact_if_later_approved": "Would improve FMO acquisition support but would not change Wave 1.1 metrics or permit primary v2 promotion. With both local clean candidates approved, clean support would be 4, still below the proposed n>=6 floor; future use remains secondary OOD, acquisition-target, or later pilot-only after expert approval.",
       "hard_negative_controls_required": [
-        "ordinary flavin dehydrogenase/reductase/oxidase hydride-transfer controls such as m_csa:141",
-        "flavin Fe-S electron-relay controls",
-        "radical flavin or flavin Fe-S enzyme controls",
-        "heme oxygenase or P450 controls such as m_csa:133",
-        "non-flavin oxygenase controls such as m_csa:134, m_csa:135, and m_csa:600",
-        "non-flavin luciferase or ATP-adenylate oxygenation controls such as m_csa:128 and m_csa:768",
-        "name-only monooxygenase or hydroxylase false-positive controls",
-        "candidate-specific controls from the missing hard-negative counteraxis artifact"
+        {
+          "control_group_id": "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+          "representative_entry_ids": [
+            "m_csa:3",
+            "m_csa:6",
+            "m_csa:353",
+            "m_csa:381",
+            "m_csa:506",
+            "m_csa:892"
+          ],
+          "expected_policy_behavior": "route_other_family",
+          "recommended_regression_gate": "An FMO route is a regression for this group unless mechanism evidence explicitly shows flavin-dependent O2 activation to a C4a-(hydro)peroxyflavin and substrate oxygen insertion. Otherwise route to flavin_dehydrogenase_reductase."
+        },
+        {
+          "control_group_id": "flavin_oxidase_o2_acceptor_not_monooxygenase",
+          "representative_entry_ids": [
+            "m_csa:109",
+            "m_csa:110",
+            "m_csa:113",
+            "m_csa:354",
+            "m_csa:822",
+            "m_csa:852",
+            "m_csa:895"
+          ],
+          "expected_policy_behavior": "route_other_family",
+          "recommended_regression_gate": "Rows with O2 as terminal acceptor, peroxide detoxification, or oxidase naming must not pass the FMO gate without explicit C4a-peroxy oxygen-transfer evidence."
+        },
+        {
+          "control_group_id": "flavin_fe_s_relay_hcar_like",
+          "representative_entry_ids": [
+            "m_csa:990",
+            "m_csa:108",
+            "m_csa:114",
+            "m_csa:142",
+            "m_csa:294",
+            "m_csa:800"
+          ],
+          "expected_policy_behavior": "route_other_family",
+          "recommended_regression_gate": "For Fe-S plus flavin rows, require explicit flavin peroxy oxygenating chemistry before any FMO route. If Fe-S is an electron relay and the flavin role is substrate reduction or electron transfer, route to flavin_dehydrogenase_reductase with cofactor_complexity diagnostics."
+        },
+        {
+          "control_group_id": "flavodiiron_no_reductase_m_csa497",
+          "representative_entry_ids": [
+            "m_csa:497"
+          ],
+          "expected_policy_behavior": "reject",
+          "recommended_regression_gate": "m_csa:497 must fail any FMO positive gate. A non-abstaining FMO call on this row is a hard regression; preferred behavior is reject as OOS until a dedicated flavodiiron NO reductase family exists."
+        },
+        {
+          "control_group_id": "radical_flavin_fe_s_dehydratase_m_csa750",
+          "representative_entry_ids": [
+            "m_csa:750"
+          ],
+          "expected_policy_behavior": "reject",
+          "recommended_regression_gate": "m_csa:750 must fail any FMO positive gate. If FAD semiquinone plus Fe-S radical dehydration evidence is present, reject as OOS/future radical-flavin-Fe-S dehydratase rather than route to FMO or ordinary flavin reductase."
+        },
+        {
+          "control_group_id": "covalent_fad_adduct_aps_reductase_like",
+          "representative_entry_ids": [
+            "m_csa:123"
+          ],
+          "expected_policy_behavior": "route_other_family",
+          "recommended_regression_gate": "m_csa:123 and APS-reductase-like covalent FAD-adduct rows must not route to FMO. Route to flavin_dehydrogenase_reductase with boundary metadata or abstain in child-label settings unless a dedicated covalent-FAD-adduct stratum exists."
+        },
+        {
+          "control_group_id": "heme_oxygenases_p450_peroxidases_not_fmo",
+          "representative_entry_ids": [
+            "m_csa:133",
+            "m_csa:699",
+            "m_csa:795",
+            "m_csa:601"
+          ],
+          "expected_policy_behavior": "route_other_family",
+          "recommended_regression_gate": "Heme ligation, P450/peroxidase/heme oxygenase mechanism evidence, or compound-I-like oxygen activation must route away from FMO even when the row is an oxygenase or monooxygenase."
+        },
+        {
+          "control_group_id": "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo",
+          "representative_entry_ids": [
+            "m_csa:128",
+            "m_csa:129",
+            "m_csa:130",
+            "m_csa:134",
+            "m_csa:135",
+            "m_csa:600",
+            "m_csa:768"
+          ],
+          "expected_policy_behavior": "reject",
+          "recommended_regression_gate": "Non-flavin oxygenases, dioxygenases, luciferase oxygenations, pterin/non-heme iron hydroxylases, copper monooxygenases, and soluble methane monooxygenase-like metal systems must reject as FMO unless flavin C4a-peroxy evidence is directly present."
+        }
       ],
       "requires_human_approval_before_registry_edit": true
     },
     {
       "entry_id": "m_csa:973",
       "entry_name": "DszC protein",
-      "classification_source": "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json",
-      "classification_scope": "v2_context_candidate_not_full_candidate_scout",
-      "ready_for_human_review_packet": false,
-      "blocked_reason": "The v2 proposal identifies this as clean FMO context, but the candidate scout, structure-geometry audit, source-evidence scout, and hard-negative counteraxis artifacts are missing. The proposal also states the row remains unrelabelled and below support gates.",
-      "would_increase_clean_fmo_support_count": "conditional_if_later_expert_accepted_and_missing_evidence_gates_pass",
-      "would_increase_clean_fmo_support_count_basis": "The v2 proposal says the two canonical FMO rows plus m_csa:551 and m_csa:973 would make four clean rows if the future candidates are expert accepted.",
+      "candidate_disposition": "clean_candidate",
+      "current_label_status": "current702:seed_fingerprint:flavin_dehydrogenase_reductase; confidence=high; review_status=automation_curated; tier=bronze",
+      "source_review_confidence": "high",
+      "source_evidence_admissible_for_label_review_packet": true,
+      "geometry_support": "ambiguous",
+      "geometry_packet_decision": "clean_FMO_secondary_or_future_row",
+      "ready_for_human_review_packet": true,
+      "blocked_reason": null,
+      "packet_caveats": [
+        "Still requires human approval before any registry edit or canonical relabel.",
+        "Current curated label is flavin_dehydrogenase_reductase, so label migration should be explicit expert review only.",
+        "No substrate or substrate analog is present in the selected coordinate.",
+        "No NADPH/NADP ligand is present in the selected coordinate.",
+        "No C4a-hydroperoxy/peroxide flavin state is present in the selected coordinate."
+      ],
+      "would_increase_clean_fmo_support_count": true,
+      "would_increase_clean_fmo_support_count_basis": "If human-approved with the other local clean candidate, current clean FMO support would rise from the two canonical rows m_csa:131/m_csa:132 to four rows total.",
       "would_remain_secondary_or_pilot_only": true,
-      "benchmark_impact_if_later_approved": "Would help raise clean FMO support toward four rows, still below the proposed n>=6 floor. No Wave 1.1 import or primary supervised metric would result; future v2 use would remain secondary OOD, acquisition-target, or later pilot-only after expert approval and controls.",
+      "benchmark_impact_if_later_approved": "Would improve FMO acquisition support but would not change Wave 1.1 metrics or permit primary v2 promotion. With both local clean candidates approved, clean support would be 4, still below the proposed n>=6 floor; future use remains secondary OOD, acquisition-target, or later pilot-only after expert approval.",
       "hard_negative_controls_required": [
-        "ordinary flavin dehydrogenase/reductase/oxidase hydride-transfer controls such as m_csa:141",
-        "flavin Fe-S electron-relay controls",
-        "radical flavin or flavin Fe-S enzyme controls",
-        "heme oxygenase or P450 controls such as m_csa:133",
-        "non-flavin oxygenase controls such as m_csa:134, m_csa:135, and m_csa:600",
-        "non-flavin luciferase or ATP-adenylate oxygenation controls such as m_csa:128 and m_csa:768",
-        "name-only monooxygenase or hydroxylase false-positive controls",
-        "candidate-specific controls from the missing hard-negative counteraxis artifact"
+        {
+          "control_group_id": "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+          "representative_entry_ids": [
+            "m_csa:3",
+            "m_csa:6",
+            "m_csa:353",
+            "m_csa:381",
+            "m_csa:506",
+            "m_csa:892"
+          ],
+          "expected_policy_behavior": "route_other_family",
+          "recommended_regression_gate": "An FMO route is a regression for this group unless mechanism evidence explicitly shows flavin-dependent O2 activation to a C4a-(hydro)peroxyflavin and substrate oxygen insertion. Otherwise route to flavin_dehydrogenase_reductase."
+        },
+        {
+          "control_group_id": "flavin_oxidase_o2_acceptor_not_monooxygenase",
+          "representative_entry_ids": [
+            "m_csa:109",
+            "m_csa:110",
+            "m_csa:113",
+            "m_csa:354",
+            "m_csa:822",
+            "m_csa:852",
+            "m_csa:895"
+          ],
+          "expected_policy_behavior": "route_other_family",
+          "recommended_regression_gate": "Rows with O2 as terminal acceptor, peroxide detoxification, or oxidase naming must not pass the FMO gate without explicit C4a-peroxy oxygen-transfer evidence."
+        },
+        {
+          "control_group_id": "flavin_fe_s_relay_hcar_like",
+          "representative_entry_ids": [
+            "m_csa:990",
+            "m_csa:108",
+            "m_csa:114",
+            "m_csa:142",
+            "m_csa:294",
+            "m_csa:800"
+          ],
+          "expected_policy_behavior": "route_other_family",
+          "recommended_regression_gate": "For Fe-S plus flavin rows, require explicit flavin peroxy oxygenating chemistry before any FMO route. If Fe-S is an electron relay and the flavin role is substrate reduction or electron transfer, route to flavin_dehydrogenase_reductase with cofactor_complexity diagnostics."
+        },
+        {
+          "control_group_id": "flavodiiron_no_reductase_m_csa497",
+          "representative_entry_ids": [
+            "m_csa:497"
+          ],
+          "expected_policy_behavior": "reject",
+          "recommended_regression_gate": "m_csa:497 must fail any FMO positive gate. A non-abstaining FMO call on this row is a hard regression; preferred behavior is reject as OOS until a dedicated flavodiiron NO reductase family exists."
+        },
+        {
+          "control_group_id": "radical_flavin_fe_s_dehydratase_m_csa750",
+          "representative_entry_ids": [
+            "m_csa:750"
+          ],
+          "expected_policy_behavior": "reject",
+          "recommended_regression_gate": "m_csa:750 must fail any FMO positive gate. If FAD semiquinone plus Fe-S radical dehydration evidence is present, reject as OOS/future radical-flavin-Fe-S dehydratase rather than route to FMO or ordinary flavin reductase."
+        },
+        {
+          "control_group_id": "covalent_fad_adduct_aps_reductase_like",
+          "representative_entry_ids": [
+            "m_csa:123"
+          ],
+          "expected_policy_behavior": "route_other_family",
+          "recommended_regression_gate": "m_csa:123 and APS-reductase-like covalent FAD-adduct rows must not route to FMO. Route to flavin_dehydrogenase_reductase with boundary metadata or abstain in child-label settings unless a dedicated covalent-FAD-adduct stratum exists."
+        },
+        {
+          "control_group_id": "heme_oxygenases_p450_peroxidases_not_fmo",
+          "representative_entry_ids": [
+            "m_csa:133",
+            "m_csa:699",
+            "m_csa:795",
+            "m_csa:601"
+          ],
+          "expected_policy_behavior": "route_other_family",
+          "recommended_regression_gate": "Heme ligation, P450/peroxidase/heme oxygenase mechanism evidence, or compound-I-like oxygen activation must route away from FMO even when the row is an oxygenase or monooxygenase."
+        },
+        {
+          "control_group_id": "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo",
+          "representative_entry_ids": [
+            "m_csa:128",
+            "m_csa:129",
+            "m_csa:130",
+            "m_csa:134",
+            "m_csa:135",
+            "m_csa:600",
+            "m_csa:768"
+          ],
+          "expected_policy_behavior": "reject",
+          "recommended_regression_gate": "Non-flavin oxygenases, dioxygenases, luciferase oxygenations, pterin/non-heme iron hydroxylases, copper monooxygenases, and soluble methane monooxygenase-like metal systems must reject as FMO unless flavin C4a-peroxy evidence is directly present."
+        }
       ],
       "requires_human_approval_before_registry_edit": true
     }
   ],
-  "aggregate_admission_decision": {
-    "can_determine_full_candidate_inventory": false,
-    "can_determine_ready_candidates": false,
-    "ready_candidate_ids": [],
-    "blocked_candidate_count": 2,
-    "unknown_candidate_count": 0,
-    "blocked_reason": "The present v2 proposal names m_csa:551 and m_csa:973 as future context candidates, but no full candidate scout or candidate-level geometry/source/control evidence is available.",
-    "proposed_candidates_remain_requires_human_approval_before_registry_edit": true
-  },
-  "v2_context_from_present_proposal": {
-    "artifact_id": "v3_fmo_v2_fingerprint_design_proposal_702_20260527",
-    "recommended_current_status": "secondary_ood_probe_and_future_acquisition_target",
-    "primary_promotion_status": "blocked_until_minimum_support_and_hard_negative_controls",
-    "canonical_count": 2,
-    "clean_count_if_future_candidates_are_expert_accepted": 4,
-    "minimum_clean_count_before_primary_reconsideration": 6,
-    "remaining_clean_count_needed_after_current_candidates": 2,
-    "hard_negative_separation_available_now": false,
-    "allowed_now": [
-      "secondary OOD probe",
-      "canary for generic flavin reductase over-absorption",
-      "proposal-only evidence contract"
+  "source_only_external_candidate_classifications": [
+    {
+      "entry_id_or_candidate_id": "uniprot:P12015",
+      "entry_name": "cyclohexanone monooxygenase",
+      "source_review_confidence": "high",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "Source-evidence packet is admissible, but the candidate is source-only for this gate and lacks local candidate-scout, geometry, duplicate/leakage, and import-gate closure.",
+      "would_increase_clean_fmo_support_count": "potential_after_full_acquisition_and_human_approval",
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "Could help fill the remaining FMO support gap for future v2 only after full acquisition gates. It has no Wave 1.1 impact now and remains secondary/pilot-only until approved.",
+      "hard_negative_controls_required": [
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "flavin_fe_s_relay_hcar_like",
+        "flavodiiron_no_reductase_m_csa497",
+        "radical_flavin_fe_s_dehydratase_m_csa750",
+        "covalent_fad_adduct_aps_reductase_like",
+        "heme_oxygenases_p450_peroxidases_not_fmo",
+        "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+      ],
+      "requires_human_approval_before_registry_edit": true,
+      "remaining_blockers": [
+        "No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import.",
+        "Not present as a local M-CSA candidate scout row in this gate; requires source-free geometry, duplicate/leakage screening, terminal review, and factory/import gates before any label import or countable support use."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:Q93TJ5",
+      "entry_name": "4-hydroxyacetophenone monooxygenase",
+      "source_review_confidence": "high",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "Source-evidence packet is admissible, but the candidate is source-only for this gate and lacks local candidate-scout, geometry, duplicate/leakage, and import-gate closure.",
+      "would_increase_clean_fmo_support_count": "potential_after_full_acquisition_and_human_approval",
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "Could help fill the remaining FMO support gap for future v2 only after full acquisition gates. It has no Wave 1.1 impact now and remains secondary/pilot-only until approved.",
+      "hard_negative_controls_required": [
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "flavin_fe_s_relay_hcar_like",
+        "flavodiiron_no_reductase_m_csa497",
+        "radical_flavin_fe_s_dehydratase_m_csa750",
+        "covalent_fad_adduct_aps_reductase_like",
+        "heme_oxygenases_p450_peroxidases_not_fmo",
+        "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+      ],
+      "requires_human_approval_before_registry_edit": true,
+      "remaining_blockers": [
+        "No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import.",
+        "Not present as a local M-CSA candidate scout row in this gate; requires source-free geometry, duplicate/leakage screening, terminal review, and factory/import gates before any label import or countable support use."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:P23262",
+      "entry_name": "salicylate hydroxylase / salicylate 1-monooxygenase",
+      "source_review_confidence": "high",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "Source-evidence packet is admissible, but the candidate is source-only for this gate and lacks local candidate-scout, geometry, duplicate/leakage, and import-gate closure.",
+      "would_increase_clean_fmo_support_count": "potential_after_full_acquisition_and_human_approval",
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "Could help fill the remaining FMO support gap for future v2 only after full acquisition gates. It has no Wave 1.1 impact now and remains secondary/pilot-only until approved.",
+      "hard_negative_controls_required": [
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "flavin_fe_s_relay_hcar_like",
+        "flavodiiron_no_reductase_m_csa497",
+        "radical_flavin_fe_s_dehydratase_m_csa750",
+        "covalent_fad_adduct_aps_reductase_like",
+        "heme_oxygenases_p450_peroxidases_not_fmo",
+        "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+      ],
+      "requires_human_approval_before_registry_edit": true,
+      "remaining_blockers": [
+        "No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import.",
+        "Not present as a local M-CSA candidate scout row in this gate; requires source-free geometry, duplicate/leakage screening, terminal review, and factory/import gates before any label import or countable support use."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:P11295",
+      "entry_name": "L-lysine N6-monooxygenase / IucD",
+      "source_review_confidence": "medium",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "Source-evidence packet is admissible, but the candidate is source-only for this gate and lacks local candidate-scout, geometry, duplicate/leakage, and import-gate closure.",
+      "would_increase_clean_fmo_support_count": "potential_after_full_acquisition_and_human_approval",
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "Could help fill the remaining FMO support gap for future v2 only after full acquisition gates. It has no Wave 1.1 impact now and remains secondary/pilot-only until approved.",
+      "hard_negative_controls_required": [
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "flavin_fe_s_relay_hcar_like",
+        "flavodiiron_no_reductase_m_csa497",
+        "radical_flavin_fe_s_dehydratase_m_csa750",
+        "covalent_fad_adduct_aps_reductase_like",
+        "heme_oxygenases_p450_peroxidases_not_fmo",
+        "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+      ],
+      "requires_human_approval_before_registry_edit": true,
+      "remaining_blockers": [
+        "Add a candidate-specific C4a-hydroperoxyflavin mechanistic source if the review packet requires explicit intermediate evidence.",
+        "Not present as a local M-CSA candidate scout row in this gate; requires source-free geometry, duplicate/leakage screening, terminal review, and factory/import gates before any label import or countable support use."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:Q01740",
+      "entry_name": "flavin-containing monooxygenase 1 / dimethylaniline monooxygenase",
+      "source_review_confidence": "high",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "Source-evidence packet is admissible, but the candidate is source-only for this gate and lacks local candidate-scout, geometry, duplicate/leakage, and import-gate closure.",
+      "would_increase_clean_fmo_support_count": "potential_after_full_acquisition_and_human_approval",
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "Could help fill the remaining FMO support gap for future v2 only after full acquisition gates. It has no Wave 1.1 impact now and remains secondary/pilot-only until approved.",
+      "hard_negative_controls_required": [
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "flavin_fe_s_relay_hcar_like",
+        "flavodiiron_no_reductase_m_csa497",
+        "radical_flavin_fe_s_dehydratase_m_csa750",
+        "covalent_fad_adduct_aps_reductase_like",
+        "heme_oxygenases_p450_peroxidases_not_fmo",
+        "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+      ],
+      "requires_human_approval_before_registry_edit": true,
+      "remaining_blockers": [
+        "No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import.",
+        "Not present as a local M-CSA candidate scout row in this gate; requires source-free geometry, duplicate/leakage screening, terminal review, and factory/import gates before any label import or countable support use."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:O15229",
+      "entry_name": "kynurenine 3-monooxygenase",
+      "source_review_confidence": "high",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "Source-evidence packet is admissible, but the candidate is source-only for this gate and lacks local candidate-scout, geometry, duplicate/leakage, and import-gate closure.",
+      "would_increase_clean_fmo_support_count": "potential_after_full_acquisition_and_human_approval",
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "Could help fill the remaining FMO support gap for future v2 only after full acquisition gates. It has no Wave 1.1 impact now and remains secondary/pilot-only until approved.",
+      "hard_negative_controls_required": [
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "flavin_fe_s_relay_hcar_like",
+        "flavodiiron_no_reductase_m_csa497",
+        "radical_flavin_fe_s_dehydratase_m_csa750",
+        "covalent_fad_adduct_aps_reductase_like",
+        "heme_oxygenases_p450_peroxidases_not_fmo",
+        "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+      ],
+      "requires_human_approval_before_registry_edit": true,
+      "remaining_blockers": [
+        "Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete.",
+        "Not present as a local M-CSA candidate scout row in this gate; requires source-free geometry, duplicate/leakage screening, terminal review, and factory/import gates before any label import or countable support use."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:P25535",
+      "entry_name": "2-octaprenylphenol hydroxylase / UbiI",
+      "source_review_confidence": "medium",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "Source-evidence packet is admissible, but the candidate is source-only for this gate and lacks local candidate-scout, geometry, duplicate/leakage, and import-gate closure.",
+      "would_increase_clean_fmo_support_count": "potential_after_full_acquisition_and_human_approval",
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "Could help fill the remaining FMO support gap for future v2 only after full acquisition gates. It has no Wave 1.1 impact now and remains secondary/pilot-only until approved.",
+      "hard_negative_controls_required": [
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "flavin_fe_s_relay_hcar_like",
+        "flavodiiron_no_reductase_m_csa497",
+        "radical_flavin_fe_s_dehydratase_m_csa750",
+        "covalent_fad_adduct_aps_reductase_like",
+        "heme_oxygenases_p450_peroxidases_not_fmo",
+        "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+      ],
+      "requires_human_approval_before_registry_edit": true,
+      "remaining_blockers": [
+        "Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete.",
+        "Add explicit C4a-peroxyflavin mechanism source if the review packet requires intermediate-level evidence.",
+        "Not present as a local M-CSA candidate scout row in this gate; requires source-free geometry, duplicate/leakage screening, terminal review, and factory/import gates before any label import or countable support use."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:H3JQW0",
+      "entry_name": "2-oxo-Delta(3)-4,5,5-trimethylcyclopentenylacetyl-CoA monooxygenase / OTEMO",
+      "source_review_confidence": "high",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "Source-evidence packet is admissible, but the candidate is source-only for this gate and lacks local candidate-scout, geometry, duplicate/leakage, and import-gate closure.",
+      "would_increase_clean_fmo_support_count": "potential_after_full_acquisition_and_human_approval",
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "Could help fill the remaining FMO support gap for future v2 only after full acquisition gates. It has no Wave 1.1 impact now and remains secondary/pilot-only until approved.",
+      "hard_negative_controls_required": [
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "flavin_fe_s_relay_hcar_like",
+        "flavodiiron_no_reductase_m_csa497",
+        "radical_flavin_fe_s_dehydratase_m_csa750",
+        "covalent_fad_adduct_aps_reductase_like",
+        "heme_oxygenases_p450_peroxidases_not_fmo",
+        "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+      ],
+      "requires_human_approval_before_registry_edit": true,
+      "remaining_blockers": [
+        "Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete.",
+        "Not present as a local M-CSA candidate scout row in this gate; requires source-free geometry, duplicate/leakage screening, terminal review, and factory/import gates before any label import or countable support use."
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:Q6F4M8",
+      "entry_name": "4-nitrophenol 4-monooxygenase / 4-nitrocatechol 2-monooxygenase oxygenase component",
+      "source_review_confidence": "medium",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "Source-evidence packet is admissible, but the candidate is source-only for this gate and lacks local candidate-scout, geometry, duplicate/leakage, and import-gate closure.",
+      "would_increase_clean_fmo_support_count": "potential_after_full_acquisition_and_human_approval",
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "Could help fill the remaining FMO support gap for future v2 only after full acquisition gates. It has no Wave 1.1 impact now and remains secondary/pilot-only until approved.",
+      "hard_negative_controls_required": [
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "flavin_fe_s_relay_hcar_like",
+        "flavodiiron_no_reductase_m_csa497",
+        "radical_flavin_fe_s_dehydratase_m_csa750",
+        "covalent_fad_adduct_aps_reductase_like",
+        "heme_oxygenases_p450_peroxidases_not_fmo",
+        "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+      ],
+      "requires_human_approval_before_registry_edit": true,
+      "remaining_blockers": [
+        "Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete.",
+        "Add explicit C4a-peroxyflavin mechanism source if the review packet requires intermediate-level evidence.",
+        "Not present as a local M-CSA candidate scout row in this gate; requires source-free geometry, duplicate/leakage screening, terminal review, and factory/import gates before any label import or countable support use."
+      ]
+    }
+  ],
+  "source_rejected_or_boundary_packets": [
+    {
+      "entry_id_or_candidate_id": "m_csa:141",
+      "entry_name": "4-cresol dehydrogenase (hydroxylating)",
+      "classification": "ordinary_flavin_dehydrogenase_reductase",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "Keep as flavin_dehydrogenase_reductase control; do not use as clean FMO evidence.",
+      "would_increase_clean_fmo_support_count": false,
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "No positive FMO benchmark impact unless a future source review overturns the boundary/control classification.",
+      "hard_negative_controls_required": [
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "flavin_fe_s_relay_hcar_like",
+        "flavodiiron_no_reductase_m_csa497",
+        "radical_flavin_fe_s_dehydratase_m_csa750",
+        "covalent_fad_adduct_aps_reductase_like",
+        "heme_oxygenases_p450_peroxidases_not_fmo",
+        "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "m_csa:128",
+      "entry_name": "Photinus-luciferin 4-monooxygenase (ATP-hydrolysing)",
+      "classification": "another_family_or_boundary",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "Treat as out-of-scope monooxygenase-named negative control.",
+      "would_increase_clean_fmo_support_count": false,
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "No positive FMO benchmark impact unless a future source review overturns the boundary/control classification.",
+      "hard_negative_controls_required": [
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "flavin_fe_s_relay_hcar_like",
+        "flavodiiron_no_reductase_m_csa497",
+        "radical_flavin_fe_s_dehydratase_m_csa750",
+        "covalent_fad_adduct_aps_reductase_like",
+        "heme_oxygenases_p450_peroxidases_not_fmo",
+        "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+      ]
+    },
+    {
+      "entry_id_or_candidate_id": "uniprot:P06617",
+      "entry_name": "tryptophan 2-monooxygenase",
+      "classification": "another_family_or_boundary",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "Needs candidate-specific C4a-peroxyflavin or oxygen-transfer mechanism evidence before it could support the FMO label lane.",
+      "would_increase_clean_fmo_support_count": false,
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "No positive FMO benchmark impact unless a future source review overturns the boundary/control classification.",
+      "hard_negative_controls_required": [
+        "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "flavin_fe_s_relay_hcar_like",
+        "flavodiiron_no_reductase_m_csa497",
+        "radical_flavin_fe_s_dehydratase_m_csa750",
+        "covalent_fad_adduct_aps_reductase_like",
+        "heme_oxygenases_p450_peroxidases_not_fmo",
+        "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo"
+      ]
+    }
+  ],
+  "candidate_scout_nonclean_rows_by_disposition": {
+    "hard_negative_control": [
+      {
+        "entry_id": "m_csa:141",
+        "entry_name": "4-cresol dehydrogenase (hydroxylating)",
+        "fmo_candidate_type": "hydroxylating_dehydrogenase_boundary"
+      },
+      {
+        "entry_id": "m_csa:128",
+        "entry_name": "Photinus-luciferin 4-monooxygenase (ATP-hydrolysing)",
+        "fmo_candidate_type": "ATP_luciferin_monooxygenase_nonflavin"
+      },
+      {
+        "entry_id": "m_csa:133",
+        "entry_name": "camphor 5-monooxygenase",
+        "fmo_candidate_type": "heme_P450_monooxygenase_negative"
+      },
+      {
+        "entry_id": "m_csa:134",
+        "entry_name": "tyrosine 3-monooxygenase",
+        "fmo_candidate_type": "biopterin_nonheme_iron_monooxygenase_negative"
+      },
+      {
+        "entry_id": "m_csa:135",
+        "entry_name": "peptidylglycine monooxygenase",
+        "fmo_candidate_type": "copper_monooxygenase_negative"
+      },
+      {
+        "entry_id": "m_csa:600",
+        "entry_name": "methane monooxygenase (soluble)",
+        "fmo_candidate_type": "diiron_methane_monooxygenase_negative"
+      },
+      {
+        "entry_id": "m_csa:768",
+        "entry_name": "Renilla-luciferin 2-monooxygenase",
+        "fmo_candidate_type": "luciferin_monooxygenase_nonflavin_negative"
+      },
+      {
+        "entry_id": "m_csa:130",
+        "entry_name": "naphthalene 1,2-dioxygenase",
+        "fmo_candidate_type": "FAD_reductase_to_Rieske_nonheme_iron_dioxygenase_boundary"
+      },
+      {
+        "entry_id": "m_csa:699",
+        "entry_name": "cytochrome P450 (BM-3)",
+        "fmo_candidate_type": "dual_flavin_P450_heme_boundary"
+      },
+      {
+        "entry_id": "m_csa:935",
+        "entry_name": "nitric-oxide synthase",
+        "fmo_candidate_type": "dual_flavin_NOS_heme_boundary"
+      },
+      {
+        "entry_id": "m_csa:109",
+        "entry_name": "dihydroorotate oxidase (class II)",
+        "fmo_candidate_type": "FMN_dehydrogenase_oxidase_boundary"
+      },
+      {
+        "entry_id": "m_csa:809",
+        "entry_name": "polyamine oxidase (propane-1,3-diamine-forming)",
+        "fmo_candidate_type": "FAD_C4a_adduct_oxidase_boundary"
+      },
+      {
+        "entry_id": "m_csa:978",
+        "entry_name": "D-arginine dehydrogenase",
+        "fmo_candidate_type": "flavin_dehydrogenase_C4a_proposal_boundary"
+      },
+      {
+        "entry_id": "m_csa:129",
+        "entry_name": "taurine dioxygenase",
+        "fmo_candidate_type": "nonheme_iron_alphaKG_dioxygenase_negative"
+      },
+      {
+        "entry_id": "m_csa:34",
+        "entry_name": "catechol 2,3-dioxygenase",
+        "fmo_candidate_type": "nonheme_iron_dioxygenase_negative"
+      },
+      {
+        "entry_id": "m_csa:37",
+        "entry_name": "prostaglandin-endoperoxide synthase",
+        "fmo_candidate_type": "heme_cyclooxygenase_peroxidase_negative"
+      },
+      {
+        "entry_id": "m_csa:547",
+        "entry_name": "homogentisate 1,2-dioxygenase",
+        "fmo_candidate_type": "iron_dioxygenase_negative"
+      },
+      {
+        "entry_id": "m_csa:583",
+        "entry_name": "linoleate 9S-lipoxygenase",
+        "fmo_candidate_type": "iron_lipoxygenase_negative"
+      },
+      {
+        "entry_id": "m_csa:672",
+        "entry_name": "protocatechuate 4,5-dioxygenase",
+        "fmo_candidate_type": "extradiol_nonheme_iron_dioxygenase_negative"
+      },
+      {
+        "entry_id": "m_csa:743",
+        "entry_name": "quercetin 2,3-dioxygenase",
+        "fmo_candidate_type": "copper_dioxygenase_negative"
+      },
+      {
+        "entry_id": "m_csa:795",
+        "entry_name": "heme oxygenase (biliverdin-producing)",
+        "fmo_candidate_type": "heme_oxygenase_negative"
+      },
+      {
+        "entry_id": "m_csa:936",
+        "entry_name": "protocatechuate 3,4-dioxygenase",
+        "fmo_candidate_type": "intradiol_iron_dioxygenase_negative"
+      }
     ],
-    "not_allowed_now": [
-      "primary supervised metric",
-      "production scoring",
-      "label import",
-      "threshold tuning",
-      "canonical child registry entry"
+    "blocked_wrong_chemistry": [
+      {
+        "entry_id": "m_csa:977",
+        "entry_name": "tryptophan 7-halogenase",
+        "fmo_candidate_type": "flavin_halogenase_tryptophan_boundary"
+      },
+      {
+        "entry_id": "m_csa:781",
+        "entry_name": "UDP-N-acetylmuramoylpentapeptide-lysine N6-alanyltransferase",
+        "fmo_candidate_type": "IucD_lysine_N6_name_false_positive"
+      }
+    ],
+    "needs_structure_check": [
+      {
+        "entry_id": "m_csa:930",
+        "entry_name": "phthalate dioxygenase system",
+        "fmo_candidate_type": "FMN_reductase_to_phthalate_dioxygenase_boundary"
+      }
     ]
   },
-  "benchmark_context_from_present_wave1_1": {
-    "artifact_id": "v3_wave1_1_diagnostic_benchmark_result_702_20260527",
-    "recommended_next_move": "targeted_hybrid_foldseek_geometry_atlas_engine_plus_fingerprint_v2_label_acquisition",
-    "diagnostic_cell_count": 6,
-    "countable_metric_created": false,
-    "summary": "The available Wave 1.1 result is review-only diagnostic context: geometry resolves near-orphan and wrong-Foldseek-transfer slices, while child-label and mixed-chemistry cells remain underpowered or blocked."
+  "hard_negative_counteraxis": {
+    "status": "review_only_counteraxis_complete",
+    "positive_fmo_axis_not_negative_controls": {
+      "canonical_rows": [
+        "m_csa:131",
+        "m_csa:132"
+      ],
+      "secondary_or_future_clean_local_candidates": [
+        "m_csa:551",
+        "m_csa:973"
+      ],
+      "axis_definition": "Clean FMO requires flavin-dependent O2 activation to a C4a-(hydro)peroxyflavin or equivalent flavin peroxy oxygenating intermediate, followed by substrate oxygen insertion/oxygenation.",
+      "policy_note": "m_csa:551 and m_csa:973 are not hard negatives; the acquisition closure treats them as clean FMO secondary/future rows while blocking primary promotion until n>=6 and hard-negative separation are satisfied."
+    },
+    "control_groups": [
+      {
+        "control_group_id": "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "representative_entry_ids": [
+          "m_csa:3",
+          "m_csa:6",
+          "m_csa:353",
+          "m_csa:381",
+          "m_csa:506",
+          "m_csa:892"
+        ],
+        "expected_policy_behavior": "route_other_family",
+        "recommended_regression_gate": "An FMO route is a regression for this group unless mechanism evidence explicitly shows flavin-dependent O2 activation to a C4a-(hydro)peroxyflavin and substrate oxygen insertion. Otherwise route to flavin_dehydrogenase_reductase."
+      },
+      {
+        "control_group_id": "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "representative_entry_ids": [
+          "m_csa:109",
+          "m_csa:110",
+          "m_csa:113",
+          "m_csa:354",
+          "m_csa:822",
+          "m_csa:852",
+          "m_csa:895"
+        ],
+        "expected_policy_behavior": "route_other_family",
+        "recommended_regression_gate": "Rows with O2 as terminal acceptor, peroxide detoxification, or oxidase naming must not pass the FMO gate without explicit C4a-peroxy oxygen-transfer evidence."
+      },
+      {
+        "control_group_id": "flavin_fe_s_relay_hcar_like",
+        "representative_entry_ids": [
+          "m_csa:990",
+          "m_csa:108",
+          "m_csa:114",
+          "m_csa:142",
+          "m_csa:294",
+          "m_csa:800"
+        ],
+        "expected_policy_behavior": "route_other_family",
+        "recommended_regression_gate": "For Fe-S plus flavin rows, require explicit flavin peroxy oxygenating chemistry before any FMO route. If Fe-S is an electron relay and the flavin role is substrate reduction or electron transfer, route to flavin_dehydrogenase_reductase with cofactor_complexity diagnostics."
+      },
+      {
+        "control_group_id": "flavodiiron_no_reductase_m_csa497",
+        "representative_entry_ids": [
+          "m_csa:497"
+        ],
+        "expected_policy_behavior": "reject",
+        "recommended_regression_gate": "m_csa:497 must fail any FMO positive gate. A non-abstaining FMO call on this row is a hard regression; preferred behavior is reject as OOS until a dedicated flavodiiron NO reductase family exists."
+      },
+      {
+        "control_group_id": "radical_flavin_fe_s_dehydratase_m_csa750",
+        "representative_entry_ids": [
+          "m_csa:750"
+        ],
+        "expected_policy_behavior": "reject",
+        "recommended_regression_gate": "m_csa:750 must fail any FMO positive gate. If FAD semiquinone plus Fe-S radical dehydration evidence is present, reject as OOS/future radical-flavin-Fe-S dehydratase rather than route to FMO or ordinary flavin reductase."
+      },
+      {
+        "control_group_id": "covalent_fad_adduct_aps_reductase_like",
+        "representative_entry_ids": [
+          "m_csa:123"
+        ],
+        "expected_policy_behavior": "route_other_family",
+        "recommended_regression_gate": "m_csa:123 and APS-reductase-like covalent FAD-adduct rows must not route to FMO. Route to flavin_dehydrogenase_reductase with boundary metadata or abstain in child-label settings unless a dedicated covalent-FAD-adduct stratum exists."
+      },
+      {
+        "control_group_id": "heme_oxygenases_p450_peroxidases_not_fmo",
+        "representative_entry_ids": [
+          "m_csa:133",
+          "m_csa:699",
+          "m_csa:795",
+          "m_csa:601"
+        ],
+        "expected_policy_behavior": "route_other_family",
+        "recommended_regression_gate": "Heme ligation, P450/peroxidase/heme oxygenase mechanism evidence, or compound-I-like oxygen activation must route away from FMO even when the row is an oxygenase or monooxygenase."
+      },
+      {
+        "control_group_id": "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo",
+        "representative_entry_ids": [
+          "m_csa:128",
+          "m_csa:129",
+          "m_csa:130",
+          "m_csa:134",
+          "m_csa:135",
+          "m_csa:600",
+          "m_csa:768"
+        ],
+        "expected_policy_behavior": "reject",
+        "recommended_regression_gate": "Non-flavin oxygenases, dioxygenases, luciferase oxygenations, pterin/non-heme iron hydroxylases, copper monooxygenases, and soluble methane monooxygenase-like metal systems must reject as FMO unless flavin C4a-peroxy evidence is directly present."
+      }
+    ],
+    "recommended_global_regression_gates": [
+      "Do not treat FAD/FMN, NAD(P)H, O2, Fe-S, or oxygenase naming as sufficient for FMO.",
+      "Require explicit flavin-dependent O2 activation to a C4a-(hydro)peroxyflavin or equivalent flavin peroxy oxygenating intermediate plus substrate oxygen insertion for FMO.",
+      "Route ordinary flavin hydride-transfer, flavin oxidase, and Fe-S relay rows to flavin_dehydrogenase_reductase, carrying cofactor_complexity and mechanism_class diagnostics where available.",
+      "Reject current OOS relabel controls m_csa:497 and m_csa:750 for FMO; do not count them in primary flavin metrics.",
+      "Keep covalent FAD-adduct chemistry out of FMO and out of the blocked hydride-transfer child metric until a dedicated stratum is acquired.",
+      "Route heme oxygenases/P450/peroxidases to heme_peroxidase_oxidase when that family is available; reject non-flavin oxygenases that have no current target family.",
+      "Preserve m_csa:551 and m_csa:973 as clean secondary/future FMO acquisition candidates, not hard-negative controls, until n>=6 and hard-negative separation are met."
+    ]
   },
   "benchmark_impact_assessment": {
-    "can_estimate_if_later_approved": "partial_from_v2_proposal_only",
-    "would_increase_clean_fmo_support_count": "m_csa:551_and_m_csa:973_would_raise_clean_context_count_to_4_if_expert_accepted_and_evidence_gates_pass",
+    "wave1_1_immediate_impact": "none_review_only_no_imports_no_metric_changes",
+    "would_increase_clean_fmo_support_count_if_local_candidates_later_approved": true,
+    "clean_support_count_now": 2,
+    "clean_support_count_if_551_973_are_expert_accepted": 4,
+    "minimum_clean_count_before_primary_reconsideration": 6,
+    "remaining_clean_rows_needed_after_551_973": 2,
     "would_remain_secondary_or_pilot_only": true,
-    "benchmark_impact_if_later_approved": "No Wave 1.1 import or primary metric impact now. Even if both context candidates were later approved, clean FMO support would be four rows, below the proposed n>=6 floor and still missing hard-negative separation, so future v2 use would remain secondary, acquisition-target, or pilot-only after human approval.",
-    "blocked_reason": "Candidate scout, source evidence, geometry support, and hard-negative counteraxis inputs are unavailable.",
-    "non_guessing_constraints": [
-      "Do not infer clean FMO support count changes from the Wave 1.1 benchmark alone.",
-      "Do not promote v2 proposal context candidates without the missing candidate, source, geometry, and hard-negative artifacts.",
-      "Do not estimate future v2 diagnostic impact without candidate-specific control axes."
-    ]
-  },
-  "hard_negative_controls_required": {
-    "can_identify_candidate_specific_controls": false,
-    "blocked_reason": "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json is missing.",
-    "class_level_controls_from_v2_proposal": [
-      "ordinary flavin dehydrogenase/reductase/oxidase hydride transfer",
-      "flavin Fe-S electron relay",
-      "radical flavin or flavin Fe-S enzyme",
-      "heme oxygenase or P450",
-      "non-flavin oxygenase",
-      "non-flavin luciferase or ATP-adenylate oxygenation",
-      "name-only monooxygenase/hydroxylase false positives"
-    ],
-    "minimum_required_before_packet": [
-      "Candidate-specific hard negative controls from the FMO hard negative counteraxis artifact.",
-      "Geometry failure-mode controls from the FMO structure geometry audit.",
-      "Source-transfer or source-ambiguity controls from the FMO source evidence scout."
-    ]
+    "benchmark_impact_if_later_approved": "Approval of m_csa:551 and m_csa:973 would strengthen future FMO acquisition and v2 pilot design but would not alter Wave 1.1 diagnostics, primary metrics, thresholds, model training, or production scoring. Clean support would reach four rows, still below n>=6, so FMO remains secondary OOD/acquisition-target or later pilot-only.",
+    "wave1_1_context": {
+      "artifact_id": "v3_wave1_1_diagnostic_benchmark_result_702_20260527",
+      "recommended_next_move": "targeted_hybrid_foldseek_geometry_atlas_engine_plus_fingerprint_v2_label_acquisition",
+      "geometry_value_answer": "yes",
+      "foldseek_dense_neighbor_answer": "yes",
+      "representation_track_answer": "limited_and_underpowered"
+    },
+    "v2_policy_context": {
+      "now": "secondary_ood_probe_and_acquisition_target_only",
+      "allowed_now": [
+        "secondary OOD probe",
+        "canary for generic flavin reductase over-absorption",
+        "proposal-only evidence contract"
+      ],
+      "not_allowed_now": [
+        "primary supervised metric",
+        "production scoring",
+        "label import",
+        "threshold tuning",
+        "canonical child registry entry"
+      ],
+      "after_n6_and_controls": "pilot-only child evaluation may be designed after expert approval; still not production scoring.",
+      "future_primary_path": "Future primary reconsideration only after n>=6 clean rows, hard-negative separation, duplicate/leakage review, and expert sign-off."
+    }
   },
   "guardrails_observed": {
     "canonical_label_changes": false,
@@ -197,6 +894,7 @@
     "model_training": false,
     "production_scoring": false,
     "registry_edits": false,
+    "countable_metric_created": false,
     "proposed_candidates_remain_requires_human_approval_before_registry_edit": true
   }
 }
