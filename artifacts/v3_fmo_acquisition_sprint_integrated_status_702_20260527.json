@@ -1,8 +1,8 @@
 {
   "artifact_id": "v3_fmo_acquisition_sprint_integrated_status_702_20260527",
-  "created_utc": "2026-05-28T01:37:14Z",
+  "created_utc": "2026-05-28T02:40:26Z",
   "schema_version": "v3_fmo_acquisition_sprint_integrated_status.v1",
-  "status": "integrated_status_complete_more_acquisition_needed",
+  "status": "integrated_status_complete_human_review_packet_ready_more_acquisition_needed",
   "review_only": true,
   "scope": "Integrated FMO acquisition sprint status for m_csa:702-era Packet 1/Wave 1 follow-through. This artifact coordinates available FMO candidate evidence, structure/cofactor checks, hard negatives, source review, v2 design state, and benchmark impact without changing registries, imports, thresholds, production scoring, model outputs, or migration state.",
   "parallel_agent_outputs": {
@@ -37,6 +37,11 @@
         "path": "artifacts/v3_fmo_admission_gate_and_benchmark_impact_702_20260527.json",
         "role": "admission_gate_and_benchmark_impact",
         "status": "complete_review_only_no_imports"
+      },
+      {
+        "path": "artifacts/v3_wave1_1_diagnostic_benchmark_result_702_20260527.json",
+        "role": "wave1_1_diagnostic_benchmark",
+        "status": "present"
       }
     ],
     "missing_parallel_agent_lanes": [],
@@ -111,7 +116,7 @@
       "reason": "The sprint supports m_csa:551 and m_csa:973 beyond existing m_csa:131 and m_csa:132. The source scout identified additional external source-reviewed FMO candidates, but those rows remain source-only until source-free structure/geometry, duplicate/leakage, hard-negative, terminal review, and import gates clear."
     },
     "exact_next_decision": {
-      "decision": "import_review_packet_for_local_candidates_only",
+      "decision": "human_review_packet",
       "review_packet_ready_entry_ids": [
         "m_csa:551",
         "m_csa:973"
@@ -120,7 +125,9 @@
       "external_candidates_need_more_acquisition": "Source-reviewed external candidates remain source-only acquisition leads because they still lack source-free geometry, duplicate/leakage, terminal review, and import-gate review.",
       "not_v2_split_now": "The FMO boundary and flavin hydride/oxidase split is still underpowered and contains conflicting row-level assignments; v2 split should wait for more clean FMO rows plus explicit hard-negative controls.",
       "not_no_go": "Two clean additional candidates are supportable as review-only proposals, so the family is not closed.",
-      "next_action": "Assemble a human review/import-review packet for m_csa:551 and m_csa:973 with both rows marked proposed_candidate_requires_human_approval. Continue acquisition for at least two more clean gated rows before primary promotion or v2-metric decisions."
+      "next_action": "Assemble a human review/import-review packet for m_csa:551 and m_csa:973 with both rows marked proposed_candidate_requires_human_approval. Continue acquisition for at least two more clean gated rows before primary promotion or v2-metric decisions.",
+      "immediate_action": "Assemble a human review/import-review packet for m_csa:551 and m_csa:973 only; both stay proposed_candidate_requires_human_approval and no import or canonical relabel is allowed in this run.",
+      "next_acquisition_lane_after_or_in_parallel": "Materialize and source-free geometry-check external source-only candidates in priority order: uniprot:P12015, uniprot:H3JQW0, uniprot:Q93TJ5, uniprot:Q01740, uniprot:O15229, uniprot:P23262, then medium-confidence uniprot:P11295, uniprot:P25535, and uniprot:Q6F4M8 after source-strengthening where needed."
     }
   },
   "counts": {
@@ -150,6 +157,14 @@
       "uniprot:P25535",
       "uniprot:H3JQW0",
       "uniprot:Q6F4M8"
+    ],
+    "human_review_packet_ready_count": 2,
+    "human_review_packet_ready_rows": [
+      "m_csa:551",
+      "m_csa:973"
+    ],
+    "external_boundary_source_signal_not_counted": [
+      "uniprot:P06617"
     ]
   },
   "row_level_fmo_signal": [
@@ -925,7 +940,7 @@
       "sha256": "f8fba8af84defae1dd8716ef9d84c804ad3a084dba56177c4dc0f254ab137dc6"
     },
     "artifacts/v3_fmo_source_evidence_scout_702_20260527.json": {
-      "sha256": "edf4abd812a840401067c7ca7ab4c3c5e1ddd9a20e24248ca270bbd257b6e583"
+      "sha256": "7065d5fd005dde1002e8a011f6278d9f36383a185a91f6564fc04e70e569c0a7"
     },
     "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json": {
       "sha256": "b15d239b831f8dcc31262d1812890d7c11a4f46d59835c336af85b5f645667cd"
@@ -934,7 +949,7 @@
       "sha256": "84783ac3d3650daf8b218aabfa3c950ea3c18b11d1f2655ed5232e1bd211bdbb"
     },
     "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json": {
-      "sha256": "0e4cf3d6534c0b51b999128b3813f20af27b89b03a8035d4bf91bab2aa166b86"
+      "sha256": "3afe1006d1d4c6e75f6aebcd1944108a4e34cfc4874da8d8393f2e7e4d6d1253"
     },
     "artifacts/v3_fmo_admission_gate_and_benchmark_impact_702_20260527.json": {
       "sha256": "b1bdfc43b50dbfb54c7a6cbab4cbc0bc5579d95c20004e0661cecd69a4f14825"
@@ -942,5 +957,367 @@
     "data/registries/curated_mechanism_labels.json": {
       "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
     }
-  }
+  },
+  "all_requested_inputs_present_current_rerun": true,
+  "requested_input_status_current_rerun": [
+    {
+      "path": "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+      "role": "local_mcsa_candidate_and_control_scout",
+      "present": true,
+      "sha256": "f8fba8af84defae1dd8716ef9d84c804ad3a084dba56177c4dc0f254ab137dc6"
+    },
+    {
+      "path": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "role": "source_evidence_scout",
+      "present": true,
+      "sha256": "7065d5fd005dde1002e8a011f6278d9f36383a185a91f6564fc04e70e569c0a7"
+    },
+    {
+      "path": "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
+      "role": "structure_and_cofactor_geometry_audit",
+      "present": true,
+      "sha256": "84783ac3d3650daf8b218aabfa3c950ea3c18b11d1f2655ed5232e1bd211bdbb"
+    },
+    {
+      "path": "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json",
+      "role": "hard_negative_counteraxis",
+      "present": true,
+      "sha256": "b15d239b831f8dcc31262d1812890d7c11a4f46d59835c336af85b5f645667cd"
+    },
+    {
+      "path": "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json",
+      "role": "v2_fingerprint_design_proposal",
+      "present": true,
+      "sha256": "3afe1006d1d4c6e75f6aebcd1944108a4e34cfc4874da8d8393f2e7e4d6d1253"
+    },
+    {
+      "path": "artifacts/v3_fmo_admission_gate_and_benchmark_impact_702_20260527.json",
+      "role": "admission_gate_and_benchmark_impact",
+      "present": true,
+      "sha256": "b1bdfc43b50dbfb54c7a6cbab4cbc0bc5579d95c20004e0661cecd69a4f14825"
+    },
+    {
+      "path": "artifacts/v3_wave1_1_diagnostic_benchmark_result_702_20260527.json",
+      "role": "wave1_1_diagnostic_benchmark",
+      "present": true,
+      "sha256": "f55b2cc7edf96149ad08ebb76b05fab74373304eb9ab9ded4f253fe82ce2cf0b"
+    }
+  ],
+  "evidence_lane_reconciliation_notes": [
+    "All requested FMO evidence lanes are present in this rerun, including candidate scout, source evidence, geometry audit, hard-negative counteraxis, v2 proposal, admission gate, and Wave 1.1 diagnostic benchmark.",
+    "Some upstream lane artifacts were produced before all sibling lanes landed and may contain local missing-artifact notes; this integrated status uses current filesystem presence and source_artifact hashes as the controlling lane status.",
+    "No canonical registries, ontology IDs, fingerprint IDs, thresholds, production scoring, imports, model outputs, representation artifacts, artifact migration state, or artifact storage state were changed."
+  ],
+  "direct_answers_current_rerun": {
+    "how_many_clean_fmo_candidates_currently_supportable": {
+      "answer": 4,
+      "scope": "review-supportable FMO signals only, not new import-ready labels",
+      "rows": [
+        "m_csa:131",
+        "m_csa:132",
+        "m_csa:551",
+        "m_csa:973"
+      ],
+      "canonical_current_rows": [
+        "m_csa:131",
+        "m_csa:132"
+      ],
+      "local_proposed_human_review_rows": [
+        "m_csa:551",
+        "m_csa:973"
+      ],
+      "new_countable_or_import_ready_rows": 0
+    },
+    "which_rows_count_toward_support_vs_external_source_only": {
+      "support_rows_for_readiness_only": [
+        "m_csa:131",
+        "m_csa:132",
+        "m_csa:551",
+        "m_csa:973"
+      ],
+      "canonical_rows_already_labeled_fmo": [
+        "m_csa:131",
+        "m_csa:132"
+      ],
+      "proposed_local_rows_ready_for_human_review_but_not_import": [
+        "m_csa:551",
+        "m_csa:973"
+      ],
+      "external_source_only_candidates_not_counted": [
+        "uniprot:P12015",
+        "uniprot:H3JQW0",
+        "uniprot:Q93TJ5",
+        "uniprot:Q01740",
+        "uniprot:O15229",
+        "uniprot:P23262",
+        "uniprot:P11295",
+        "uniprot:P25535",
+        "uniprot:Q6F4M8"
+      ],
+      "external_boundary_not_counted": [
+        "uniprot:P06617"
+      ]
+    },
+    "did_we_reach_n_ge_6_clean_support": {
+      "answer": false,
+      "observed_review_supportable_clean_rows": 4,
+      "required_clean_rows": 6,
+      "exact_gap": "Need two additional non-duplicate clean FMO rows that clear source-free materialization/geometry, duplicate/leakage, hard-negative, terminal review, and human/import-gate checks."
+    },
+    "m_csa_551_and_m_csa_973_packet_status": {
+      "answer": "ready_for_human_review_packet_only_not_import_ready",
+      "m_csa:551": {
+        "packet_ready": true,
+        "still_blocked_for_import": true,
+        "import_blockers": [
+          "requires_human_expert_approval",
+          "currently_canonical_flavin_dehydrogenase_reductase",
+          "family_target_clean_count_not_met",
+          "hard_negative_separation_not_completed",
+          "structure review still needs mapped-chain/substrate-pose adjudication"
+        ]
+      },
+      "m_csa:973": {
+        "packet_ready": true,
+        "still_blocked_for_import": true,
+        "import_blockers": [
+          "requires_human_expert_approval",
+          "currently_canonical_flavin_dehydrogenase_reductase",
+          "family_target_clean_count_not_met",
+          "hard_negative_separation_not_completed",
+          "v2_sublabel_conflict_requires_adjudication",
+          "structure is compatible but lacks substrate/analog, NADPH/NADP, and C4a-peroxy state"
+        ]
+      }
+    },
+    "external_candidates_to_materialize_or_geometry_check_next": [
+      {
+        "row_id": "uniprot:P12015",
+        "entry_name": "cyclohexanone monooxygenase",
+        "candidate_family": "cyclohexanone_monooxygenase_CHMO",
+        "source_review_confidence": "high",
+        "recommended_materialization_priority": 1
+      },
+      {
+        "row_id": "uniprot:H3JQW0",
+        "entry_name": "OTEMO",
+        "candidate_family": "OTEMO_BVMO",
+        "source_review_confidence": "high",
+        "recommended_materialization_priority": 2
+      },
+      {
+        "row_id": "uniprot:Q93TJ5",
+        "entry_name": "4-hydroxyacetophenone monooxygenase",
+        "candidate_family": "HAPMO_4_hydroxyacetophenone_monooxygenase",
+        "source_review_confidence": "high",
+        "recommended_materialization_priority": 3
+      },
+      {
+        "row_id": "uniprot:Q01740",
+        "entry_name": "FMO1 / dimethylaniline monooxygenase",
+        "candidate_family": "class_B_FMO_N_or_S_oxygenation",
+        "source_review_confidence": "high",
+        "recommended_materialization_priority": 4
+      },
+      {
+        "row_id": "uniprot:O15229",
+        "entry_name": "kynurenine 3-monooxygenase",
+        "candidate_family": "kynurenine_3_monooxygenase_KMO",
+        "source_review_confidence": "high",
+        "recommended_materialization_priority": 5
+      },
+      {
+        "row_id": "uniprot:P23262",
+        "entry_name": "salicylate hydroxylase / salicylate 1-monooxygenase",
+        "candidate_family": "salicylate_1_monooxygenase",
+        "source_review_confidence": "high",
+        "recommended_materialization_priority": 6
+      },
+      {
+        "row_id": "uniprot:P11295",
+        "entry_name": "L-lysine N6-monooxygenase / IucD",
+        "candidate_family": "IucD_class_lysine_N6_hydroxylase",
+        "source_review_confidence": "medium",
+        "recommended_materialization_priority": 7
+      },
+      {
+        "row_id": "uniprot:P25535",
+        "entry_name": "2-octaprenylphenol hydroxylase / UbiI",
+        "candidate_family": "UbiI_aromatic_hydroxylase",
+        "source_review_confidence": "medium",
+        "recommended_materialization_priority": 8
+      },
+      {
+        "row_id": "uniprot:Q6F4M8",
+        "entry_name": "4-nitrophenol / 4-nitrocatechol monooxygenase oxygenase component",
+        "candidate_family": "nitrophenol_or_nitrocatechol_monooxygenase",
+        "source_review_confidence": "medium",
+        "recommended_materialization_priority": 9
+      }
+    ],
+    "hard_negative_controls_protecting_false_fmo_calls": [
+      {
+        "control_group_id": "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+        "representative_rows": [
+          "m_csa:3",
+          "m_csa:6",
+          "m_csa:353",
+          "m_csa:381",
+          "m_csa:506",
+          "m_csa:892",
+          "m_csa:141"
+        ]
+      },
+      {
+        "control_group_id": "flavin_oxidase_o2_acceptor_not_monooxygenase",
+        "representative_rows": [
+          "m_csa:109",
+          "m_csa:110",
+          "m_csa:113",
+          "m_csa:354",
+          "m_csa:822",
+          "m_csa:852",
+          "m_csa:895"
+        ]
+      },
+      {
+        "control_group_id": "flavin_fe_s_relay_hcar_like",
+        "representative_rows": [
+          "m_csa:990",
+          "m_csa:108",
+          "m_csa:114",
+          "m_csa:142",
+          "m_csa:294",
+          "m_csa:800"
+        ]
+      },
+      {
+        "control_group_id": "flavodiiron_no_reductase",
+        "representative_rows": [
+          "m_csa:497"
+        ]
+      },
+      {
+        "control_group_id": "radical_flavin_fe_s_dehydratase",
+        "representative_rows": [
+          "m_csa:750"
+        ]
+      },
+      {
+        "control_group_id": "covalent_fad_adduct_aps_reductase_like",
+        "representative_rows": [
+          "m_csa:123"
+        ]
+      },
+      {
+        "control_group_id": "heme_oxygenases_p450_peroxidases_not_fmo",
+        "representative_rows": [
+          "m_csa:133",
+          "m_csa:699",
+          "m_csa:795",
+          "m_csa:601"
+        ]
+      },
+      {
+        "control_group_id": "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo",
+        "representative_rows": [
+          "m_csa:128",
+          "m_csa:129",
+          "m_csa:130",
+          "m_csa:134",
+          "m_csa:135",
+          "m_csa:600",
+          "m_csa:768",
+          "m_csa:977",
+          "m_csa:781",
+          "m_csa:930"
+        ]
+      }
+    ],
+    "exact_next_action": {
+      "decision": "human_review_packet",
+      "immediate_action": "Assemble the human review/import-review packet for m_csa:551 and m_csa:973, preserving both as proposed_candidate_requires_human_approval and making no registry/import changes.",
+      "next_acquisition_lane_after_or_in_parallel": "Materialize and geometry-check the highest-priority external source-only candidates, starting with BVMO/CHMO/HAPMO rows uniprot:P12015, uniprot:H3JQW0, and uniprot:Q93TJ5, then uniprot:Q01740, uniprot:O15229, and uniprot:P23262.",
+      "not_selected": [
+        "primary_promotion",
+        "v2_split",
+        "no_go",
+        "automatic_import"
+      ]
+    }
+  },
+  "external_source_only_materialization_priority_current_rerun": [
+    {
+      "row_id": "uniprot:P12015",
+      "entry_name": "cyclohexanone monooxygenase",
+      "candidate_family": "cyclohexanone_monooxygenase_CHMO",
+      "source_review_confidence": "high",
+      "recommended_materialization_priority": 1
+    },
+    {
+      "row_id": "uniprot:H3JQW0",
+      "entry_name": "OTEMO",
+      "candidate_family": "OTEMO_BVMO",
+      "source_review_confidence": "high",
+      "recommended_materialization_priority": 2
+    },
+    {
+      "row_id": "uniprot:Q93TJ5",
+      "entry_name": "4-hydroxyacetophenone monooxygenase",
+      "candidate_family": "HAPMO_4_hydroxyacetophenone_monooxygenase",
+      "source_review_confidence": "high",
+      "recommended_materialization_priority": 3
+    },
+    {
+      "row_id": "uniprot:Q01740",
+      "entry_name": "FMO1 / dimethylaniline monooxygenase",
+      "candidate_family": "class_B_FMO_N_or_S_oxygenation",
+      "source_review_confidence": "high",
+      "recommended_materialization_priority": 4
+    },
+    {
+      "row_id": "uniprot:O15229",
+      "entry_name": "kynurenine 3-monooxygenase",
+      "candidate_family": "kynurenine_3_monooxygenase_KMO",
+      "source_review_confidence": "high",
+      "recommended_materialization_priority": 5
+    },
+    {
+      "row_id": "uniprot:P23262",
+      "entry_name": "salicylate hydroxylase / salicylate 1-monooxygenase",
+      "candidate_family": "salicylate_1_monooxygenase",
+      "source_review_confidence": "high",
+      "recommended_materialization_priority": 6
+    },
+    {
+      "row_id": "uniprot:P11295",
+      "entry_name": "L-lysine N6-monooxygenase / IucD",
+      "candidate_family": "IucD_class_lysine_N6_hydroxylase",
+      "source_review_confidence": "medium",
+      "recommended_materialization_priority": 7
+    },
+    {
+      "row_id": "uniprot:P25535",
+      "entry_name": "2-octaprenylphenol hydroxylase / UbiI",
+      "candidate_family": "UbiI_aromatic_hydroxylase",
+      "source_review_confidence": "medium",
+      "recommended_materialization_priority": 8
+    },
+    {
+      "row_id": "uniprot:Q6F4M8",
+      "entry_name": "4-nitrophenol / 4-nitrocatechol monooxygenase oxygenase component",
+      "candidate_family": "nitrophenol_or_nitrocatechol_monooxygenase",
+      "source_review_confidence": "medium",
+      "recommended_materialization_priority": 9
+    }
+  ],
+  "external_boundary_source_signals_not_clean_current_rerun": [
+    {
+      "row_id": "uniprot:P06617",
+      "entry_name": "tryptophan 2-monooxygenase",
+      "candidate_family": "tryptophan_2_monooxygenase_boundary",
+      "counting_disposition": "not_clean_fmo_packet_now",
+      "reason": "FMN and O2 source support exist, but this scout did not find NAD(P)H reductive activation or explicit C4a oxygen-transfer mechanism evidence."
+    }
+  ]
 }
