@@ -1,0 +1,456 @@
+{
+  "artifact_id": "v3_bulk_weak_label_feasibility_20260528",
+  "automation_id": "bulk-weak-label-feasibility",
+  "schema_version": "bulk_weak_label_feasibility.v1",
+  "created_utc": "2026-05-28T07:18:11Z",
+  "status": "feasibility_artifact_complete_no_ingestion_no_imports",
+  "mode": "read_only_local_inventory_and_design",
+  "guardrails": {
+    "label_registry_edited": false,
+    "source_registry_edited": false,
+    "ontology_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "thresholds_edited": false,
+    "production_scoring_edited": false,
+    "imports_edited": false,
+    "model_outputs_edited": false,
+    "network_bulk_downloads_performed": false,
+    "large_database_downloads_performed": false,
+    "disk_guardrail": {
+      "minimum_required_free_gib": 10,
+      "observed_free_gib_before_work": 2,
+      "status": "already_below_guardrail",
+      "action": "No source download or bulk ingestion was attempted; this artifact uses existing local metadata only."
+    }
+  },
+  "bottom_line": {
+    "decision": "conditionally_feasible_for_bronze_training_signal_only",
+    "summary": "Swiss-Prot/UniProt EC/Rhea, Rhea reaction mappings, CARD/AMRFinder-style AMR enzyme classes, and CAZy/BRENDA-like family or reaction annotations can plausibly seed bronze retrieval/training labels, but the current repo does not contain bulk local source mirrors. M-CSA and external expert panels must remain gold/silver evaluation surfaces.",
+    "not_supported": [
+      "No full-source scale claim is supported from this run.",
+      "No label import or registry promotion is authorized.",
+      "No source prose, protein names, EC labels, Rhea identifiers, CARD family names, AMRFinder classes, BRENDA text, or CAZy family names may be used as predictive features for gold/silver performance claims."
+    ]
+  },
+  "local_inventory": {
+    "source_registry": {
+      "path": "data/registries/source_registry.json",
+      "registered_sources_relevant_to_bulk_weak_labels": [
+        "uniprot",
+        "rhea",
+        "brenda",
+        "cazy",
+        "pdb",
+        "alphafold_db"
+      ],
+      "notes": [
+        "BRENDA and CAZy are present as registered source definitions, not as local bulk data mirrors.",
+        "CARD and AMRFinderPlus are not in source_registry.json, but local scout artifacts exist for AMR enzyme-only benchmark design."
+      ]
+    },
+    "rhea_sample": {
+      "path": "artifacts/rhea_sample.json",
+      "record_count": 10,
+      "mapped_record_count": 7,
+      "unmapped_record_count": 3,
+      "mapped_enzyme_count_sum_in_sample": 6722,
+      "scope": "small fetched sample artifact only; not a complete Rhea mirror"
+    },
+    "source_graph_1025": {
+      "path": "artifacts/v1_graph_1025.json",
+      "node_count": 33755,
+      "edge_count": 34690,
+      "m_csa_entry_nodes": 1003,
+      "ec_number_nodes": 874,
+      "rhea_reaction_nodes": 1945,
+      "protein_nodes": 1084,
+      "structure_nodes": 22440,
+      "rhea_query_count": 874,
+      "scope": "local M-CSA-centered graph with Rhea/EC/protein/structure context"
+    },
+    "current_sequence_manifest": {
+      "path": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+      "current_label_count": 702,
+      "sequence_covered_label_count": 702,
+      "current702_fasta_record_count": 760,
+      "source_fasta_record_count": 734,
+      "historical_fasta_entry_count_at_least": 676,
+      "missing_sequence_entry_count": 0,
+      "scope": "current M-CSA/external evaluation sequence coverage, not a bulk Swiss-Prot source mirror"
+    },
+    "learned_retrieval_manifest": {
+      "path": "artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json",
+      "rows": 698,
+      "eligible_entry_count": 635,
+      "embedding_status": "not_computed_interface_only",
+      "scope": "interface manifest for local labeled entries; not bulk weak-label ingestion"
+    },
+    "geometry_features": {
+      "path": "artifacts/v3_geometry_features_1025.json",
+      "entry_count": 1002,
+      "entries_with_pairwise_geometry": 963,
+      "entries_with_pocket_context": 998,
+      "entries_with_proximal_ligands": 694,
+      "scope": "M-CSA-derived coordinate features for current local surface"
+    },
+    "swiss_prot_or_prott5_sidecars": {
+      "status": "no_bulk_local_swiss_prot_index_found",
+      "local_references": [
+        "src/catalytic_earth/adapters.py normalizes UniProt reviewed status and EC fields",
+        "artifacts/v3_wave1_representation_shootout_result_card_20260526.json references a ProtT5 Swiss-Prot H5 cosine NN track",
+        "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json points to external absolute paths outside this worktree"
+      ],
+      "scale_claim": "not_locally_verifiable"
+    },
+    "card_and_amrfinder_style": {
+      "paths": [
+        "artifacts/v3_amr_enzyme_only_poc_scope_and_queue_20260528.json",
+        "work/amr_enzyme_only_poc_scope_and_queue_20260528.md",
+        "artifacts/v3_mcsa_card_enzyme_crossmap_scout_20260528.json",
+        "work/mcsa_card_enzyme_crossmap_scout_20260528.md"
+      ],
+      "amr_positive_classes_in_poc_vocabulary": 18,
+      "card_crossmap_candidate_records": 9,
+      "card_crossmap_current702_members": 8,
+      "card_crossmap_seed_fingerprint_members": 3,
+      "card_crossmap_out_of_scope_members": 5,
+      "scope": "review-only scout metadata and M-CSA crossmap; no CARD sequence/model download and no AMRFinderPlus baseline run"
+    },
+    "brenda_like": {
+      "status": "registered_source_no_local_bulk_mapping_found",
+      "registered_primary_fields": [
+        "ec",
+        "organism",
+        "substrate",
+        "product",
+        "km",
+        "kcat",
+        "ph",
+        "temperature",
+        "literature"
+      ],
+      "scale_claim": "not_locally_verifiable"
+    },
+    "cazy_like": {
+      "status": "registered_source_no_local_bulk_mapping_found",
+      "registered_primary_fields": [
+        "family",
+        "activity",
+        "organism",
+        "sequence_links",
+        "structure_links"
+      ],
+      "scale_claim": "not_locally_verifiable"
+    }
+  },
+  "bronze_label_schema": {
+    "purpose": "Represent source-derived labels as weak training/retrieval signal with explicit provenance, leakage controls, and abstention handling.",
+    "required_fields": [
+      {
+        "field": "bronze_label_id",
+        "type": "string",
+        "description": "Stable id derived from source, source release/version, source record id, entity id, and normalized label target."
+      },
+      {
+        "field": "source",
+        "type": "enum",
+        "allowed_values": [
+          "uniprot_swissprot",
+          "uniprot_trembl",
+          "rhea",
+          "brenda",
+          "card",
+          "amrfinderplus",
+          "cazy",
+          "pdb",
+          "alphafold_db",
+          "other_reviewed_metadata"
+        ]
+      },
+      {
+        "field": "source_release",
+        "type": "string_or_null",
+        "description": "Exact release, db_version, retrieval date, or immutable digest. Missing release blocks count claims."
+      },
+      {
+        "field": "source_record_id",
+        "type": "string",
+        "description": "UniProt accession, Rhea id, EC record, CARD ARO id, AMRFinder family id, CAZy family, BRENDA EC/organism key, or source-native record id."
+      },
+      {
+        "field": "entity_id",
+        "type": "string_or_null",
+        "description": "Protein, sequence, structure, family, or reaction entity the weak label attaches to."
+      },
+      {
+        "field": "evidence_code_or_curation_level",
+        "type": "object",
+        "description": "Reviewed/unreviewed, UniProt evidence codes, CARD/AMRFinder model type, BRENDA literature/kinetic provenance, CAZy curated family assignment, or Rhea reaction-record provenance."
+      },
+      {
+        "field": "ec_mapping",
+        "type": "object_or_null",
+        "description": "Normalized EC number, depth, partial-EC flag, and whether the EC was direct source evidence or inferred through a crosswalk."
+      },
+      {
+        "field": "rhea_mapping",
+        "type": "object_or_null",
+        "description": "Rhea id, direction, equation hash, participant normalization status, and EC/Rhea crosswalk method."
+      },
+      {
+        "field": "reaction_mapping",
+        "type": "object_or_null",
+        "description": "Substrate/product/cofactor class labels, ChEBI-normalized participants if available, and mapping confidence."
+      },
+      {
+        "field": "structure_availability",
+        "type": "object",
+        "description": "Experimental PDB, predicted AlphaFold, no structure, ligand/cofactor/metal context, residue mapping status, and coordinate quality notes."
+      },
+      {
+        "field": "sequence_availability",
+        "type": "object",
+        "description": "Sequence present locally, source accession, reviewed status, length, canonical/isoform handling, and cluster ids."
+      },
+      {
+        "field": "family_or_fingerprint_mapping",
+        "type": "object",
+        "description": "Mechanism family/fingerprint candidate, mapping rule id, direct/indirect mapping, confidence, counterevidence, and review-only flags."
+      },
+      {
+        "field": "leakage_risk",
+        "type": "object",
+        "description": "Overlap with M-CSA/gold rows, external panels, source prose/name/EC leakage flags, sequence/structure/family cluster overlap, and split eligibility."
+      },
+      {
+        "field": "label_use",
+        "type": "enum",
+        "allowed_values": [
+          "train_only",
+          "retrieval_index_only",
+          "train_or_retrieval_only",
+          "review_prior_only",
+          "blocked",
+          "unknown_abstain"
+        ]
+      },
+      {
+        "field": "oos_unknown_handling",
+        "type": "object",
+        "description": "Positive, near_negative, out_of_scope, unknown, ambiguous_family, partial_ec_only, no_sequence, no_structure, or source_conflict."
+      }
+    ],
+    "minimum_acceptance_for_bronze_train_or_retrieval": [
+      "source_release or immutable digest recorded",
+      "entity id and source record id are stable",
+      "sequence availability is known or explicitly not required for the task",
+      "any EC/Rhea/family mapping is marked direct vs inferred",
+      "M-CSA/gold/silver overlap and family-cluster overlap are checked before split assignment",
+      "source text/name/prose/EC/Rhea/family strings are stored as labels/provenance, not predictive features for gold/silver claims",
+      "unknown and out-of-scope records are preserved rather than silently dropped"
+    ]
+  },
+  "scale_estimates": {
+    "policy": "Only counts verified from local committed artifacts are reported as numeric counts. Full-source scale is marked not_locally_verifiable.",
+    "verified_local_counts": {
+      "m_csa_source_graph_entries": 1003,
+      "source_graph_ec_number_nodes": 874,
+      "source_graph_rhea_reaction_nodes": 1945,
+      "source_graph_protein_nodes": 1084,
+      "rhea_sample_records": 10,
+      "rhea_sample_mapped_records": 7,
+      "current_sequence_manifest_labels": 702,
+      "current_sequence_manifest_sequence_covered_labels": 702,
+      "geometry_feature_entries": 1002,
+      "amr_poc_positive_classes": 18,
+      "mcsa_card_crossmap_candidate_records": 9
+    },
+    "by_source": [
+      {
+        "source": "uniprot_swissprot",
+        "local_scale_status": "not_locally_verifiable",
+        "local_evidence": "UniProt adapter supports reviewed status and EC/Rhea fields; current702 sequence manifests exist; no bulk Swiss-Prot source index was found in this worktree.",
+        "bronze_feasibility": "high_if_release_index_available",
+        "family_scale_status": "unknown_until_source_indexed"
+      },
+      {
+        "source": "rhea",
+        "local_scale_status": "partially_verifiable",
+        "verified_counts": {
+          "small_sample_records": 10,
+          "source_graph_rhea_reaction_nodes": 1945,
+          "source_graph_rhea_query_count": 874
+        },
+        "bronze_feasibility": "high_for_reaction_and_ec_crosswalk_train_retrieval_labels",
+        "family_scale_status": "requires EC/Rhea-to-mechanism mapping audit"
+      },
+      {
+        "source": "brenda",
+        "local_scale_status": "not_locally_verifiable",
+        "local_evidence": "BRENDA is registered as a priority-2 enzyme knowledgebase source only.",
+        "bronze_feasibility": "medium_if_license_terms_and_ec_substrate_mapping_are_resolved",
+        "family_scale_status": "unknown_until_terms_and_metadata_indexing"
+      },
+      {
+        "source": "card",
+        "local_scale_status": "scout_only",
+        "verified_counts": {
+          "amr_poc_positive_classes": 18,
+          "mcsa_card_crossmap_candidate_records": 9,
+          "current702_crossmap_members": 8
+        },
+        "bronze_feasibility": "medium_high_for_known_public_enzyme_class_training_signal",
+        "family_scale_status": "beta_lactamase_strongest_locally; non_beta_lactamase_sparse_locally"
+      },
+      {
+        "source": "amrfinderplus",
+        "local_scale_status": "metadata_observed_in_prior_scout_no_local_download",
+        "local_evidence": "Prior AMR scout recorded small metadata file names and large files not downloaded; no local AMRFinderPlus data files found.",
+        "bronze_feasibility": "medium_for_family_hierarchy_if_small_metadata_is_manifested",
+        "family_scale_status": "unknown_until_metadata_files_are_cached_and_deduplicated"
+      },
+      {
+        "source": "cazy",
+        "local_scale_status": "not_locally_verifiable",
+        "local_evidence": "CAZy is registered as a priority-2 carbohydrate enzyme family source only.",
+        "bronze_feasibility": "medium_for_family_level_carbohydrate_labels_after_terms_check",
+        "family_scale_status": "unknown_until_family_table_or_small_metadata_is_available"
+      }
+    ],
+    "by_current_family_from_registry": {
+      "flavin_dehydrogenase_reductase": 48,
+      "ser_his_acid_hydrolase": 42,
+      "metal_dependent_hydrolase": 83,
+      "heme_peroxidase_oxidase": 20,
+      "cobalamin_radical_rearrangement": 3,
+      "plp_dependent_enzyme": 31,
+      "flavin_monooxygenase": 2,
+      "radical_sam_enzyme": 1
+    },
+    "scale_unknowns_to_resolve_next": [
+      "Exact UniProtKB/Swiss-Prot release counts by EC/Rhea/family after a small metadata-only index is available.",
+      "Exact Rhea full-release reaction-to-UniProt mapping counts by EC and target family.",
+      "BRENDA redistribution/license and whether a metadata-only EC/substrate index can be stored.",
+      "CARD/AMRFinderPlus enzyme-only class counts after safe small metadata caching and non-enzyme filtering.",
+      "CAZy family table availability, terms, and sequence/structure cross-links by carbohydrate-active family."
+    ]
+  },
+  "train_eval_separation": {
+    "gold_eval": [
+      "M-CSA expert/curated mechanism labels and exact local active-site evidence remain gold for mechanism evaluation.",
+      "Human/expert-reviewed external panels remain gold/silver only when preregistered and source-independent."
+    ],
+    "silver_eval": [
+      "External panels with frozen source-free geometry, duplicate screening, UniRef/current-reference screening, and explicit human review can be silver evaluation.",
+      "Silver rows cannot be selected using the same source labels being evaluated."
+    ],
+    "bronze_train_or_retrieval": [
+      "Swiss-Prot/UniProt EC/Rhea, Rhea reaction mappings, BRENDA-like EC/substrate records, CARD/AMRFinder family labels, and CAZy family labels may train weak models or populate retrieval indexes only after release/version/digest capture.",
+      "Bronze labels cannot be included in primary gold/silver test metrics."
+    ],
+    "feature_exclusions_for_gold_claims": [
+      "source prose",
+      "protein names",
+      "EC numbers",
+      "Rhea identifiers",
+      "reaction equations as text",
+      "CARD family names",
+      "AMRFinder class/subclass names",
+      "BRENDA text fields",
+      "CAZy family names",
+      "curated mechanism prose",
+      "target labels or label ids"
+    ],
+    "allowed_predictive_features_for_gold_claims": [
+      "sequence-derived features that do not expose source labels or names",
+      "structure-derived coordinates and geometry",
+      "ligand/cofactor/metal context from coordinates under preregistered rules",
+      "learned embeddings if split leakage checks and source-label ablations pass"
+    ],
+    "split_requirements": [
+      "Deduplicate by exact entity id, canonical sequence, structure id, and source cross-reference before splitting.",
+      "Hold out M-CSA/gold/silver entities from all bronze training labels and retrieval indexes used for evaluation, unless the bronze index is explicitly declared train-only and not queried at eval time.",
+      "Use UniRef or equivalent sequence-cluster separation where available; otherwise mark split as weak and qualitative.",
+      "Use structure-neighborhood or Foldseek/TM cluster checks for structure-based claims.",
+      "Family/fingerprint holdout must be defined before source ingestion when measuring generalization beyond known families.",
+      "Run source-label ablations: performance claims must survive removal of EC/Rhea/CARD/AMRFinder/BRENDA/CAZy text identifiers from features."
+    ],
+    "oos_unknown_policy": [
+      "Unknown source labels remain unknown_abstain, not negative.",
+      "Partial EC, broad CAZy family, or ambiguous CARD/AMRFinder hierarchy labels stay review_prior_only unless a direct mechanism mapping exists.",
+      "Out-of-scope and near-negative lanes are preserved for abstention calibration."
+    ]
+  },
+  "next_run_queue": [
+    {
+      "queue_id": "bulk_weak_label_source_access_manifest_20260529",
+      "target_artifact": "artifacts/v3_bulk_weak_label_source_access_manifest_20260529.json",
+      "target_report": "work/bulk_weak_label_source_access_manifest_20260529.md",
+      "goal": "Record exact source releases, licenses/terms, file sizes, expected disk use, and allowed metadata-only retrieval plan for UniProt/Swiss-Prot, Rhea, BRENDA, CARD, AMRFinderPlus, and CAZy.",
+      "disk_requirement": "Start only when filesystem has at least 10 GiB free after projected downloads and temporary files.",
+      "network_requirement": "Metadata HEAD/range checks only unless a source file is proven small enough to preserve the disk guardrail.",
+      "no_go_conditions": [
+        "free disk below 10 GiB",
+        "undocumented license or click-through requirement",
+        "need to edit labels, registries, ontologies, scoring, thresholds, imports, or model outputs",
+        "need for a full source database mirror before a manifest is reviewed"
+      ]
+    },
+    {
+      "queue_id": "bulk_weak_label_metadata_index_probe_20260529",
+      "target_artifact": "artifacts/v3_bulk_weak_label_metadata_index_probe_20260529.json",
+      "target_report": "work/bulk_weak_label_metadata_index_probe_20260529.md",
+      "goal": "Build or locate small metadata-only indexes with release ids and hashes; do not store full sequences or coordinates unless already cached.",
+      "candidate_inputs": [
+        "UniProt/Swiss-Prot accession, reviewed, EC, Rhea, xref PDB/AlphaFold fields",
+        "Rhea reaction-to-EC and reaction-to-UniProt mapping tables",
+        "AMRFinderPlus small hierarchy/catalog metadata",
+        "CARD/ARO ontology metadata without sequence/model downloads",
+        "CAZy family/activity table if terms permit",
+        "BRENDA EC/substrate/product metadata if terms permit"
+      ],
+      "no_go_conditions": [
+        "metadata cannot be versioned and hashed",
+        "source terms prohibit local storage",
+        "file sizes would violate disk guardrail",
+        "source requires account-specific or non-redistributable content that cannot be represented safely"
+      ]
+    },
+    {
+      "queue_id": "bulk_weak_label_dedup_and_leakage_audit_20260529",
+      "target_artifact": "artifacts/v3_bulk_weak_label_dedup_and_leakage_audit_20260529.json",
+      "target_report": "work/bulk_weak_label_dedup_and_leakage_audit_20260529.md",
+      "goal": "Define exact dedup keys and leakage flags across M-CSA, external panels, UniProt accessions, Rhea/EC mappings, source families, sequence clusters, and structure clusters.",
+      "required_outputs": [
+        "bronze train/retrieval eligible counts",
+        "blocked overlap counts",
+        "unknown/abstain counts",
+        "counts by source and family only when locally verifiable",
+        "source text/name/EC feature exclusion manifest"
+      ],
+      "no_go_conditions": [
+        "gold/silver rows cannot be excluded from bronze training/retrieval",
+        "sequence or structure cluster overlap cannot be measured or conservatively approximated",
+        "dedup rules require modifying production imports or labels"
+      ]
+    },
+    {
+      "queue_id": "bulk_weak_label_bronze_schema_fixture_20260529",
+      "target_artifact": "artifacts/v3_bulk_weak_label_bronze_schema_fixture_20260529.json",
+      "target_report": "work/bulk_weak_label_bronze_schema_fixture_20260529.md",
+      "goal": "Emit a tiny synthetic/local fixture proving the bronze schema, validation rules, OOS/unknown handling, and no-leakage feature manifest without importing labels.",
+      "disk_requirement": "Tiny artifact only.",
+      "no_go_conditions": [
+        "fixture would be mistaken for production labels",
+        "fixture requires editing registries or model outputs",
+        "validation cannot distinguish label/provenance fields from predictive features"
+      ]
+    }
+  ],
+  "verification": {
+    "json_parse_required": true,
+    "repo_validate_required": true,
+    "git_diff_check_required": true,
+    "artifact_is_review_only": true
+  }
+}
