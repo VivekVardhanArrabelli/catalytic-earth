@@ -1,11 +1,57 @@
 {
   "artifact_id": "v3_fmo_structure_geometry_audit_702_20260527",
-  "created_utc": "2026-05-28T01:41:32Z",
-  "interpretation_guardrail": "Do not treat these rows as label imports or countable FMO positives. C4a/peroxide chemistry is only reported as review-only proxy evidence where the coordinate lacks the hydroperoxy state.",
-  "missing_source_artifacts": [
-    "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json"
-  ],
+  "schema_version": 2,
+  "created_utc": "2026-05-28T02:45:17Z",
   "review_only": true,
+  "interpretation_guardrail": "Do not treat these rows as label imports or countable FMO positives. C4a/peroxide chemistry is only reported as review-only proxy evidence where the coordinate lacks the hydroperoxy state.",
+  "scope": {
+    "goal": "focused FMO structure/cofactor geometry audit using existing local structures and artifacts only",
+    "local_only": true,
+    "downloaded_new_coordinates": false,
+    "downloaded_new_plm_embeddings": false,
+    "trained_models": false,
+    "new_model_outputs": false,
+    "registry_edits": false,
+    "label_imports": false,
+    "threshold_or_ontology_edits": false,
+    "countable_label_claims_created": false
+  },
+  "candidate_scout_review_scope": {
+    "candidate_scout_artifact_present": true,
+    "clean_fmo_candidate_rows_with_local_structure_audited": [
+      "m_csa:551",
+      "m_csa:973"
+    ],
+    "flavin_redox_boundary_rows_with_local_structure_audited": [
+      "m_csa:141",
+      "m_csa:109",
+      "m_csa:978"
+    ],
+    "structure_artifact_only_boundary_rows_needing_materialized_coordinate": [
+      "m_csa:977"
+    ],
+    "nonflavin_name_only_control_retained_from_acquisition_packet": [
+      "m_csa:128"
+    ],
+    "rationale": "The detailed row set follows the acquisition packet plus scout-identified flavin redox/halogenase boundary controls most relevant to separating FMO oxygenation from generic flavin redox chemistry."
+  },
+  "missing_source_artifacts": [],
+  "source_artifacts": [
+    "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+    "artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+    "artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json",
+    "artifacts/v3_packet3_v2_sublabel_decision_closure_702_20260527.json",
+    "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json",
+    "artifacts/v3_geometry_features_1000_selected_pdb_override.json",
+    "artifacts/v3_cofactor_coverage_1000_selected_pdb_override.json",
+    "artifacts/v3_geometry_retrieval_1000_selected_pdb_override.json",
+    "artifacts/v3_foldseek_coordinates_1000/pdb_1FOH.cif",
+    "artifacts/v3_foldseek_coordinates_1000/pdb_3X0Y.cif",
+    "artifacts/v3_foldseek_coordinates_1000/pdb_1DII.cif",
+    "artifacts/v3_foldseek_coordinates_1000/pdb_1D3G.cif",
+    "artifacts/v3_foldseek_coordinates_1000/pdb_3NYE.cif",
+    "artifacts/v3_foldseek_coordinates_1000/pdb_1BA3.cif"
+  ],
   "rows": [
     {
       "active_site_residue_summary": "Chain A: Asp54 electrostatic stabiliser; Arg281 electrostatic stabiliser; Tyr289 steric role; Pro364 activator/electrostatic stabiliser.",
@@ -227,6 +273,218 @@
       "substrate_or_analog_present": false
     },
     {
+      "entry_id": "m_csa:109",
+      "entry_name": "dihydroorotate oxidase (class II)",
+      "candidate_packet_decision": "hard_negative_control_from_candidate_scout",
+      "selected_structure": "pdb:1D3G",
+      "coordinate_available": true,
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1D3G.cif",
+      "local_coordinate_title": "HUMAN DIHYDROOROTATE DEHYDROGENASE COMPLEXED WITH BREQUINAR ANALOG",
+      "flavin_ligand_codes_present": [
+        "FMN"
+      ],
+      "nadph_or_nadp_codes_present": [],
+      "nadph_or_nadp_context_present": false,
+      "substrate_or_analog_codes_present": [
+        "ORO"
+      ],
+      "substrate_or_analog_present": true,
+      "other_nonwater_ligand_codes_present": [
+        "ACT",
+        "BRE",
+        "DDQ",
+        "SO4"
+      ],
+      "flavin_reactive_atom_context_summary": "Mapped chain A FMN C4A is 3.38 A from ORO C4 and 3.50 A from ORO C5; FMN N5 is 3.64 A from ORO C6 and 3.71 A from ORO N1. The nearest matched active-site residue contacts around C4A/N5 are Asn255, Lys226, Asn116, and Phe120 at roughly 4.9-6.5 A. This is close substrate/product-to-flavin redox geometry, not a C4a-peroxy oxygenation pose.",
+      "flavin_reactive_atom_measurements": {
+        "selected_mapped_chain": "A",
+        "reactive_atom_proxies": [
+          "FMN:C4A",
+          "FMN:N5"
+        ],
+        "nearest_substrate_or_analog_contacts_angstrom": [
+          {
+            "reactive_atom_proxy": "FMN:C4A",
+            "ligand": "ORO",
+            "atom": "C4",
+            "distance": 3.384
+          },
+          {
+            "reactive_atom_proxy": "FMN:C4A",
+            "ligand": "ORO",
+            "atom": "C5",
+            "distance": 3.495
+          },
+          {
+            "reactive_atom_proxy": "FMN:N5",
+            "ligand": "ORO",
+            "atom": "C6",
+            "distance": 3.636
+          },
+          {
+            "reactive_atom_proxy": "FMN:N5",
+            "ligand": "ORO",
+            "atom": "N1",
+            "distance": 3.705
+          }
+        ],
+        "nearest_active_site_contacts_angstrom": [
+          {
+            "reactive_atom_proxy": "FMN:C4A",
+            "residue": "Asn255",
+            "atom": "OD1",
+            "distance": 5.259
+          },
+          {
+            "reactive_atom_proxy": "FMN:C4A",
+            "residue": "Lys226",
+            "atom": "NZ",
+            "distance": 5.371
+          },
+          {
+            "reactive_atom_proxy": "FMN:C4A",
+            "residue": "Asn116",
+            "atom": "OD1",
+            "distance": 5.774
+          },
+          {
+            "reactive_atom_proxy": "FMN:N5",
+            "residue": "Asn116",
+            "atom": "OD1",
+            "distance": 4.904
+          }
+        ]
+      },
+      "oxygenation_pocket_or_c4a_proxy_evidence": "No oxygenation pocket or C4a-hydroperoxy proxy is present in the coordinate. The local structure has FMN with ORO/product-state redox geometry and quinone/inhibitor-like ligands, which supports generic flavin oxidase/dehydrogenase chemistry rather than flavin monooxygenation.",
+      "active_site_residue_summary": "Chain A: Asn255, Asn188, and Asn116 electrostatic stabilisers; Thr189 activator/electrostatic stabiliser; Phe120 activator/electrostatic/polar-nonpolar role; Lys226 hydrogen-bond donor/electrostatic stabiliser; Ser186 proton relay and hydrogen-bonding residue.",
+      "cofactor_geometry_support": "supports_generic_flavin_redox",
+      "geometry_blockers": [
+        "No C4a-hydroperoxy/peroxide flavin state is present in the selected coordinate.",
+        "The proximal ligand context is FMN plus ORO/product-state redox geometry rather than substrate oxygen insertion.",
+        "No NADPH/NADP ligand is present in the selected coordinate."
+      ],
+      "pymol_or_structure_review_packet_needed": false
+    },
+    {
+      "entry_id": "m_csa:978",
+      "entry_name": "D-arginine dehydrogenase",
+      "candidate_packet_decision": "hard_negative_control_from_candidate_scout",
+      "selected_structure": "pdb:3NYE",
+      "coordinate_available": true,
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_3NYE.cif",
+      "local_coordinate_title": "Crystal Structure of Pseudomonas aeruginosa D-Arginine Dehydrogenase in Complex with Imino-Arginine",
+      "flavin_ligand_codes_present": [
+        "FAD"
+      ],
+      "nadph_or_nadp_codes_present": [],
+      "nadph_or_nadp_context_present": false,
+      "substrate_or_analog_codes_present": [
+        "IAR"
+      ],
+      "substrate_or_analog_present": true,
+      "other_nonwater_ligand_codes_present": [],
+      "flavin_reactive_atom_context_summary": "Mapped chain A FAD C4X is 3.16 A from IAR N and FAD N5 is 2.97 A from IAR C/O. FAD C4X/N5 are also near Ser51/Ala52/Tyr255 active-site contacts. This close substrate-imine/flavin contact supports dehydrogenase/redox or covalent-adduct boundary chemistry, not monooxygenase oxygen atom transfer.",
+      "flavin_reactive_atom_measurements": {
+        "selected_mapped_chain": "A",
+        "reactive_atom_proxies": [
+          "FAD:C4X",
+          "FAD:N5"
+        ],
+        "nearest_substrate_or_analog_contacts_angstrom": [
+          {
+            "reactive_atom_proxy": "FAD:C4X",
+            "ligand": "IAR",
+            "atom": "N",
+            "distance": 3.164
+          },
+          {
+            "reactive_atom_proxy": "FAD:C4X",
+            "ligand": "IAR",
+            "atom": "OXT",
+            "distance": 3.666
+          },
+          {
+            "reactive_atom_proxy": "FAD:N5",
+            "ligand": "IAR",
+            "atom": "C",
+            "distance": 2.97
+          },
+          {
+            "reactive_atom_proxy": "FAD:N5",
+            "ligand": "IAR",
+            "atom": "O",
+            "distance": 2.974
+          }
+        ],
+        "nearest_active_site_contacts_angstrom": [
+          {
+            "reactive_atom_proxy": "FAD:C4X",
+            "residue": "Ser51",
+            "atom": "CB",
+            "distance": 3.665
+          },
+          {
+            "reactive_atom_proxy": "FAD:C4X",
+            "residue": "Ala52",
+            "atom": "N",
+            "distance": 3.752
+          },
+          {
+            "reactive_atom_proxy": "FAD:N5",
+            "residue": "Ala52",
+            "atom": "N",
+            "distance": 3.138
+          },
+          {
+            "reactive_atom_proxy": "FAD:N5",
+            "residue": "Tyr255",
+            "atom": "OH",
+            "distance": 4.441
+          }
+        ]
+      },
+      "oxygenation_pocket_or_c4a_proxy_evidence": "No oxygenation pocket, O2/peroxide ligand, or hydroperoxyflavin state is present. The coordinate instead places imino-arginine directly against FAD C4X/N5, matching flavin redox/adduct chemistry and blocking an FMO interpretation.",
+      "active_site_residue_summary": "Chain A: Tyr59 and Tyr255 transition-state stabilisers; Glu93 electrostatic stabiliser; His54 acidity-tuning residue; Ser51 and Ala52 steric roles near the flavin/substrate interface.",
+      "cofactor_geometry_support": "supports_generic_flavin_redox",
+      "geometry_blockers": [
+        "No C4a-hydroperoxy/peroxide flavin state is present in the selected coordinate.",
+        "The local substrate analog is positioned for flavin redox/adduct chemistry, not oxygen atom transfer.",
+        "No NADPH/NADP ligand is present in the selected coordinate."
+      ],
+      "pymol_or_structure_review_packet_needed": false
+    },
+    {
+      "entry_id": "m_csa:977",
+      "entry_name": "tryptophan 7-halogenase",
+      "candidate_packet_decision": "blocked_wrong_chemistry_from_candidate_scout",
+      "selected_structure": "pdb:2AR8",
+      "coordinate_available": false,
+      "coordinate_path": null,
+      "local_coordinate_title": null,
+      "flavin_ligand_codes_present": [
+        "FAD"
+      ],
+      "nadph_or_nadp_codes_present": [],
+      "nadph_or_nadp_context_present": false,
+      "substrate_or_analog_codes_present": [
+        "CTE",
+        "CL"
+      ],
+      "substrate_or_analog_present": true,
+      "other_nonwater_ligand_codes_present": [],
+      "flavin_reactive_atom_context_summary": "Not computable from a local coordinate file. The existing selected-PDB geometry artifact reports FAD in pdb:2AR8, but FAD is not proximal to the listed active-site residues under the 6 A ligand cutoff; CTE is the proximal ligand in the artifact.",
+      "flavin_reactive_atom_measurements": null,
+      "oxygenation_pocket_or_c4a_proxy_evidence": "Review-only artifact evidence supports flavin halogenase chemistry, not substrate oxygenation: FADH2/O2 chemistry generates a halogenating species routed to tryptophan, so the structure should be treated as a boundary/negative until coordinates are materialized and reviewed.",
+      "active_site_residue_summary": "Chain A: Lys79 activator/hydrogen-bond donor/proton donor; Glu346 proton acceptor.",
+      "cofactor_geometry_support": "unavailable",
+      "geometry_blockers": [
+        "Local coordinate file artifacts/v3_foldseek_coordinates_1000/pdb_2AR8.cif is not present.",
+        "Candidate scout marks this as blocked_wrong_chemistry: flavin halogenase, not tryptophan monooxygenase.",
+        "No C4a-hydroperoxy/peroxide flavin geometry can be reviewed from local coordinates in this run."
+      ],
+      "pymol_or_structure_review_packet_needed": true
+    },
+    {
       "active_site_residue_summary": "Chain A: Arg218, Thr343, Lys529, Thr343 duplicate role row, Lys443, and His245 are mapped as electrostatic or hydrogen-bonding residues for ATP/luciferin chemistry.",
       "candidate_packet_decision": "not_FMO",
       "cofactor_geometry_support": "unavailable",
@@ -255,28 +513,9 @@
       "substrate_or_analog_present": false
     }
   ],
-  "schema_version": 1,
-  "scope": {
-    "countable_label_claims_created": false,
-    "downloaded_new_coordinates": false,
-    "downloaded_new_plm_embeddings": false,
-    "goal": "focused FMO structure/cofactor geometry audit using existing local structures only",
-    "label_imports": false,
-    "local_only": true,
-    "new_model_outputs": false,
-    "registry_edits": false,
-    "threshold_or_ontology_edits": false,
-    "trained_models": false
-  },
-  "source_artifacts": [
-    "artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
-    "artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json",
-    "artifacts/v3_packet3_v2_sublabel_decision_closure_702_20260527.json",
-    "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json",
-    "artifacts/v3_geometry_features_1025.json",
-    "artifacts/v3_foldseek_coordinates_1000/pdb_1FOH.cif",
-    "artifacts/v3_foldseek_coordinates_1000/pdb_3X0Y.cif",
-    "artifacts/v3_foldseek_coordinates_1000/pdb_1DII.cif",
-    "artifacts/v3_foldseek_coordinates_1000/pdb_1BA3.cif"
-  ]
+  "bottom_line": {
+    "structure_level_support_for_clean_fmo": "m_csa:551 has the strongest local structure support because FAD and phenol/IPH are both present near the mapped active-site context; m_csa:973 has FMN plus an FMO-like residue cluster but lacks substrate/analog and peroxyflavin state.",
+    "structure_level_support_for_generic_flavin_redox": "m_csa:141, m_csa:109, and m_csa:978 provide local structure-backed flavin redox controls with FAD/FMN contexts that do not support C4a-peroxy substrate oxygenation.",
+    "review_needed": "m_csa:551 and m_csa:973 still need structure/PyMOL review before any C4a/peroxide chemistry is claimed; m_csa:977 needs coordinate materialization before geometry review."
+  }
 }
