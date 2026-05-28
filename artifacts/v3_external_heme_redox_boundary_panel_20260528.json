@@ -1,0 +1,1843 @@
+{
+  "artifact_id": "v3_external_heme_redox_boundary_panel_20260528",
+  "automation_id": "heme-redox-boundary-panel",
+  "candidate_rows": [
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Arg68/His72/Asn100 distal peroxide pocket",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxide activation",
+        "proximal_ligand_or_metal_site": "His200 proximal heme ligand"
+      },
+      "candidate_group": "classical_peroxidase",
+      "current_parent_state": "current_v1_positive_broad_parent",
+      "data_needed_for_benchmark_or_silver": [
+        "expert child approval",
+        "distal His/Arg/Asn extractor"
+      ],
+      "intended_panel_role": "positive_child_anchor",
+      "name": "peroxidase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:239",
+      "sequence_foldseek_neighbor_expectation": "Current anchor; use to define child evidence, not external breadth.",
+      "source_refs": [
+        "m_csa:239",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P00433/entry",
+        "https://www.rcsb.org/structure/7ATJ"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "7ATJ"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 compound I/II cycle",
+        "substrate_or_electron_donor": "phenolic/electron donor"
+      },
+      "why_in_panel": "Classical peroxidase anchor for heme/peroxide chemistry."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Glu204/His126/Asp127 peroxide relay",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "thiolate heme peroxide activation",
+        "proximal_ligand_or_metal_site": "Cys50 proximal heme ligand"
+      },
+      "candidate_group": "classical_peroxidase_haloperoxidase",
+      "current_parent_state": "current_v1_positive_broad_parent",
+      "data_needed_for_benchmark_or_silver": [
+        "expert child approval",
+        "keep as wrong-Foldseek diagnostic"
+      ],
+      "intended_panel_role": "positive_child_anchor_and_wrong_foldseek_diagnostic",
+      "name": "chloride peroxidase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:250",
+      "sequence_foldseek_neighbor_expectation": "Sequence queue: no same-fingerprint sequence neighbor; Foldseek nearest is wrong metal hydrolase.",
+      "source_refs": [
+        "m_csa:250",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P04963/entry",
+        "https://www.rcsb.org/structure/2CPO"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "2CPO"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 haloperoxidase compound I",
+        "substrate_or_electron_donor": "halide and organic acceptor"
+      },
+      "why_in_panel": "Tests learned/site value beyond sequence and Foldseek."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "ascorbate peroxidase distal His/Arg pocket needs extraction",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxide activation",
+        "proximal_ligand_or_metal_site": "proximal histidine expected"
+      },
+      "candidate_group": "classical_peroxidase",
+      "current_parent_state": "current_v1_positive_broad_parent",
+      "data_needed_for_benchmark_or_silver": [
+        "extract exact proximal/distal residues"
+      ],
+      "intended_panel_role": "positive_child_anchor",
+      "name": "L-ascorbate peroxidase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:399",
+      "sequence_foldseek_neighbor_expectation": "Current anchor and common structural duplicate target.",
+      "source_refs": [
+        "m_csa:399",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P48534/entry",
+        "https://www.rcsb.org/structure/1APX"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1APX"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 compound I/II cycle",
+        "substrate_or_electron_donor": "L-ascorbate"
+      },
+      "why_in_panel": "Peroxidase benchmark anchor and leakage-control target."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "protein-radical/electron-transfer residues need extraction",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxide activation plus electron relay",
+        "proximal_ligand_or_metal_site": "proximal heme ligand present in M-CSA context"
+      },
+      "candidate_group": "classical_peroxidase_cytochrome_c",
+      "current_parent_state": "current_v1_positive_broad_parent",
+      "data_needed_for_benchmark_or_silver": [
+        "radical-relay residue confirmation"
+      ],
+      "intended_panel_role": "positive_child_anchor",
+      "name": "cytochrome-c peroxidase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:709",
+      "sequence_foldseek_neighbor_expectation": "Exact current-reference duplicate for external P00431.",
+      "source_refs": [
+        "m_csa:709",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P00431/entry",
+        "https://www.rcsb.org/structure/1A2F"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1A2F"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 compound I and radical relay",
+        "substrate_or_electron_donor": "reduced cytochrome c"
+      },
+      "why_in_panel": "Cytochrome-c peroxidase anchor and duplicate-control exemplar."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Gln222 and distal peroxidase residues",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "covalently linked heme peroxide activation",
+        "proximal_ligand_or_metal_site": "His468 heme ligand plus covalent heme-link context"
+      },
+      "candidate_group": "mammalian_peroxidase",
+      "current_parent_state": "current_v1_positive_broad_parent",
+      "data_needed_for_benchmark_or_silver": [
+        "covalent-heme child policy"
+      ],
+      "intended_panel_role": "positive_child_anchor",
+      "name": "lactoperoxidase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:944",
+      "sequence_foldseek_neighbor_expectation": "Current anchor; covalent mammalian peroxidase may need subtype metadata.",
+      "source_refs": [
+        "m_csa:944",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/A5JUY8/entry",
+        "https://www.rcsb.org/structure/3FNL"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "3FNL"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 compound I cycle",
+        "substrate_or_electron_donor": "thiocyanate/halide donors"
+      },
+      "why_in_panel": "Checks whether covalent peroxidases collapse into generic heme."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "separate radical/oxygenase channel",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxidase site coupled to cyclooxygenase site",
+        "proximal_ligand_or_metal_site": "heme active site present"
+      },
+      "candidate_group": "heme_peroxidase_plus_cyclooxygenase",
+      "current_parent_state": "current_v1_positive_broad_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "multi-locus routing policy"
+      ],
+      "intended_panel_role": "near_family_boundary",
+      "name": "prostaglandin-endoperoxide synthase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:37",
+      "sequence_foldseek_neighbor_expectation": "Mechanistically mixed current parent row.",
+      "source_refs": [
+        "m_csa:37",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/Q05769/entry",
+        "https://www.rcsb.org/structure/5COX"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "5COX"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "peroxide tone plus O2 insertion elsewhere",
+        "substrate_or_electron_donor": "arachidonate/endoperoxide"
+      },
+      "why_in_panel": "Heme cofactor hides a second oxygenation route."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "His128/Asn201/His392 catalase residues",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme H2O2 disproportionation",
+        "proximal_ligand_or_metal_site": "heme catalase proximal ligand needs extraction"
+      },
+      "candidate_group": "catalase",
+      "current_parent_state": "current_v1_positive_broad_parent",
+      "data_needed_for_benchmark_or_silver": [
+        "separate catalase from peroxidase donor oxidation"
+      ],
+      "intended_panel_role": "positive_child_anchor",
+      "name": "catalase HPII",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:573",
+      "sequence_foldseek_neighbor_expectation": "Exact current-reference duplicate for external P21179.",
+      "source_refs": [
+        "m_csa:573",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P21179/entry",
+        "https://www.rcsb.org/structure/1IPH"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1IPH"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 as oxidant and reductant; O2 product",
+        "substrate_or_electron_donor": "H2O2"
+      },
+      "why_in_panel": "Core catalase child boundary."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Asn137/Thr66/His67 electrostatic acid-base residues",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme-like hydroperoxide substrate transformation",
+        "proximal_ligand_or_metal_site": "Tyr353 metal ligand in M-CSA"
+      },
+      "candidate_group": "hydroperoxide_boundary",
+      "current_parent_state": "current_v1_positive_broad_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "expert classify as separate child or hard negative"
+      ],
+      "intended_panel_role": "near_family_hard_negative",
+      "name": "hydroperoxide dehydratase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:758",
+      "sequence_foldseek_neighbor_expectation": "Peroxide words may over-route to peroxidase/catalase.",
+      "source_refs": [
+        "m_csa:758",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/O16025/entry",
+        "https://www.rcsb.org/structure/1U5U"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1U5U"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "internal hydroperoxide dehydration/isomerization",
+        "substrate_or_electron_donor": "fatty-acid hydroperoxide"
+      },
+      "why_in_panel": "Tests peroxide-substrate versus peroxide-oxidant evidence."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Tyr244 and proton-channel residues Asp91/Glu242/Arg438",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme-Cu terminal O2 reduction",
+        "proximal_ligand_or_metal_site": "His heme/Cu ligands including His240 binuclear motif"
+      },
+      "candidate_group": "heme_copper_terminal_oxidase",
+      "current_parent_state": "current_v1_positive_broad_parent",
+      "data_needed_for_benchmark_or_silver": [
+        "heme-Cu ligand extraction",
+        "proton-channel evidence"
+      ],
+      "intended_panel_role": "positive_child_anchor",
+      "name": "cytochrome-c oxidase AA3",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:124",
+      "sequence_foldseek_neighbor_expectation": "Terminal oxidase anchor; same-family Foldseek neighbor for m_csa:714.",
+      "source_refs": [
+        "m_csa:124",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P00396/entry",
+        "https://www.rcsb.org/structure/1V54"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1V54"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2-to-water terminal acceptor chemistry",
+        "substrate_or_electron_donor": "reduced cytochrome c"
+      },
+      "why_in_panel": "Defines terminal oxidase child, not peroxide chemistry."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "proton-pumping network expected",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme-Cu terminal O2 reduction",
+        "proximal_ligand_or_metal_site": "heme-Cu active-site ligands expected"
+      },
+      "candidate_group": "heme_copper_terminal_oxidase",
+      "current_parent_state": "current_v1_positive_broad_parent",
+      "data_needed_for_benchmark_or_silver": [
+        "complex/subunit residue mapping"
+      ],
+      "intended_panel_role": "positive_child_verification",
+      "name": "ubiquinol oxidase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:714",
+      "sequence_foldseek_neighbor_expectation": "Sequence queue: same-fingerprint support to m_csa:124, Foldseek lddt 0.785.",
+      "source_refs": [
+        "m_csa:714",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P0ABI8/entry",
+        "https://www.rcsb.org/structure/1FFT"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1FFT"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2-to-water with proton transport",
+        "substrate_or_electron_donor": "ubiquinol"
+      },
+      "why_in_panel": "Validates terminal oxidase same-child Foldseek behavior."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "proton channel and binuclear-site residues expected",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme-Cu terminal O2 reduction",
+        "proximal_ligand_or_metal_site": "heme-Cu metal ligands expected"
+      },
+      "candidate_group": "heme_copper_terminal_oxidase",
+      "current_parent_state": "current_v1_positive_broad_parent",
+      "data_needed_for_benchmark_or_silver": [
+        "confirm selected subunit and heme-Cu geometry"
+      ],
+      "intended_panel_role": "positive_child_anchor_and_misleading_fold_control",
+      "name": "cytochrome-c oxidase BA3",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:735",
+      "sequence_foldseek_neighbor_expectation": "External DyP Q47KB1 hits this structurally despite different chemistry.",
+      "source_refs": [
+        "m_csa:735",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P82543/entry",
+        "https://www.rcsb.org/structure/1EHK"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1EHK"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2-to-water terminal oxidase",
+        "substrate_or_electron_donor": "reduced cytochrome c"
+      },
+      "why_in_panel": "Terminal oxidase anchor and broad-Foldseek warning."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "quinol oxidation and electron-transfer residues",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme electron transfer, not O2/peroxide activation",
+        "proximal_ligand_or_metal_site": "heme/cytochrome redox centers"
+      },
+      "candidate_group": "heme_electron_transfer",
+      "current_parent_state": "current_v1_positive_broad_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "expert route-away policy for electron-transfer hemes"
+      ],
+      "intended_panel_role": "near_family_hard_negative",
+      "name": "ubiquinol-cytochrome-c reductase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:208",
+      "sequence_foldseek_neighbor_expectation": "Current broad parent but child hard negative.",
+      "source_refs": [
+        "m_csa:208",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P00163/entry",
+        "https://www.rcsb.org/structure/1EZV"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1EZV"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "electron transfer to cytochrome c",
+        "substrate_or_electron_donor": "ubiquinol"
+      },
+      "why_in_panel": "Cofactor-only heme shortcut would be wrong."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Asp252/Thr253/Arg187 proton-relay residues",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme-thiolate O2 insertion",
+        "proximal_ligand_or_metal_site": "Cys358 thiolate ligand"
+      },
+      "candidate_group": "p450_boundary",
+      "current_parent_state": "current_v1_positive_broad_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "decide P450 child vs parent-only boundary"
+      ],
+      "intended_panel_role": "boundary_hard_negative_for_peroxidase_terminal_oxidase",
+      "name": "P450cam camphor monooxygenase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:133",
+      "sequence_foldseek_neighbor_expectation": "Current broad parent but child boundary.",
+      "source_refs": [
+        "m_csa:133",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P00183/entry",
+        "https://www.rcsb.org/structure/1YRC"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1YRC"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2 plus redox partner; P450 compound I hydroxylation",
+        "substrate_or_electron_donor": "camphor"
+      },
+      "why_in_panel": "Same heme, different O2 activation route."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Ala241/Glu244/Ser246/Glu360 pocket residues",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme-thiolate O2 insertion",
+        "proximal_ligand_or_metal_site": "Cys351 thiolate ligand"
+      },
+      "candidate_group": "p450_boundary",
+      "current_parent_state": "current_v1_positive_broad_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "substrate-state confirmation"
+      ],
+      "intended_panel_role": "boundary_hard_negative_for_peroxidase_terminal_oxidase",
+      "name": "6-deoxyerythronolide B hydroxylase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:694",
+      "sequence_foldseek_neighbor_expectation": "P450 fold should route away from peroxidase.",
+      "source_refs": [
+        "m_csa:694",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/Q00441/entry",
+        "https://www.rcsb.org/structure/1OXA"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1OXA"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2-dependent P450 hydroxylation",
+        "substrate_or_electron_donor": "macrolide substrate"
+      },
+      "why_in_panel": "P450 substrate hydroxylation boundary."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Thr269/Phe394 oxygenation pocket",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme-thiolate O2 insertion",
+        "proximal_ligand_or_metal_site": "Cys401 thiolate ligand"
+      },
+      "candidate_group": "p450_boundary",
+      "current_parent_state": "current_v1_positive_broad_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "route by heme-thiolate locus, not reductase cofactors"
+      ],
+      "intended_panel_role": "boundary_hard_negative_for_peroxidase_terminal_oxidase",
+      "name": "cytochrome P450 BM-3",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:699",
+      "sequence_foldseek_neighbor_expectation": "Heme plus flavin reductase domain can confuse cofactor routing.",
+      "source_refs": [
+        "m_csa:699",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P14779/entry",
+        "https://www.rcsb.org/structure/1BU7"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1BU7"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2 plus NADPH-derived electrons",
+        "substrate_or_electron_donor": "fatty acid substrate"
+      },
+      "why_in_panel": "Cross-cofactor hard boundary."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Tyr53/Arg132/Gly140 orient heme substrate",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme-as-substrate O2 oxygenase",
+        "proximal_ligand_or_metal_site": "His25 ligand to substrate heme"
+      },
+      "candidate_group": "heme_oxygenase_boundary",
+      "current_parent_state": "current_v1_positive_broad_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "heme-as-substrate extraction"
+      ],
+      "intended_panel_role": "boundary_hard_negative_for_peroxidase_terminal_oxidase",
+      "name": "heme oxygenase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:795",
+      "sequence_foldseek_neighbor_expectation": "Heme cofactor and substrate roles must be separated.",
+      "source_refs": [
+        "m_csa:795",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P71119/entry",
+        "https://www.rcsb.org/structure/1WNW"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1WNW"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2 plus reductant; biliverdin/CO/Fe products",
+        "substrate_or_electron_donor": "heme"
+      },
+      "why_in_panel": "Cofactor-only shortcut is especially risky."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "tetrahydrobiopterin and arginine pocket needs confirmation",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme/pterin O2 activation",
+        "proximal_ligand_or_metal_site": "heme-thiolate/P450-like site expected"
+      },
+      "candidate_group": "p450_like_heme_oxygenase_boundary",
+      "current_parent_state": "current_v1_positive_broad_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "pterin/substrate-pocket source evidence"
+      ],
+      "intended_panel_role": "boundary_hard_negative_for_peroxidase_terminal_oxidase",
+      "name": "nitric-oxide synthase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:935",
+      "sequence_foldseek_neighbor_expectation": "OOS m_csa:31 has false-positive sequence neighbor to this row.",
+      "source_refs": [
+        "m_csa:935",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P29474/entry",
+        "https://www.rcsb.org/structure/1NOD"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1NOD"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2 plus NADPH/pterin; NO product",
+        "substrate_or_electron_donor": "L-arginine"
+      },
+      "why_in_panel": "Separates NOS O2 activation from peroxidase/terminal oxidase."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "His352/His394 electrostatic residues",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme nitrite reduction",
+        "proximal_ligand_or_metal_site": "His/Met heme ligands plus covalent Cys motifs"
+      },
+      "candidate_group": "heme_reductase_boundary",
+      "current_parent_state": "current_v1_positive_broad_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "reductase route-away policy"
+      ],
+      "intended_panel_role": "near_family_hard_negative",
+      "name": "cytochrome cd1 nitrite reductase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:903",
+      "sequence_foldseek_neighbor_expectation": "Current broad parent but should route away from peroxidase/oxidase children.",
+      "source_refs": [
+        "m_csa:903",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P24474/entry",
+        "https://www.rcsb.org/structure/1NIR"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1NIR"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "nitrite reduction, not O2/peroxide activation",
+        "substrate_or_electron_donor": "nitrite"
+      },
+      "why_in_panel": "Heme redox without peroxide/O2 oxygen activation."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Asp393/Ser286 proton-shuttle residues",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme NO reduction",
+        "proximal_ligand_or_metal_site": "Cys352 heme ligand"
+      },
+      "candidate_group": "heme_no_reductase_boundary",
+      "current_parent_state": "current_v1_positive_broad_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "P450 oxygenase vs P450nor policy"
+      ],
+      "intended_panel_role": "near_family_hard_negative",
+      "name": "P450nor nitric oxide reductase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:473",
+      "sequence_foldseek_neighbor_expectation": "P450-like fold but reductase state.",
+      "source_refs": [
+        "m_csa:473",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P23295/entry",
+        "https://www.rcsb.org/structure/1XQD"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1XQD"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "NO-to-N2O reductase chemistry",
+        "substrate_or_electron_donor": "nitric oxide"
+      },
+      "why_in_panel": "Separates heme-thiolate reductase from oxygenases."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "His257/Asp/His/Tyr residues from M-CSA",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "multiheme hydroxylamine oxidation",
+        "proximal_ligand_or_metal_site": "multiheme/cytochrome site with Tyr491 covalent activator"
+      },
+      "candidate_group": "multiheme_redox_boundary",
+      "current_parent_state": "current_v1_positive_broad_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "heme P460/electron acceptor evidence"
+      ],
+      "intended_panel_role": "near_family_hard_negative",
+      "name": "hydroxylamine oxidase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:581",
+      "sequence_foldseek_neighbor_expectation": "Multiheme abundance may trigger cofactor shortcut.",
+      "source_refs": [
+        "m_csa:581",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/Q50925/entry",
+        "https://www.rcsb.org/structure/1FGJ"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1FGJ"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "multi-electron oxidation through heme network",
+        "substrate_or_electron_donor": "hydroxylamine"
+      },
+      "why_in_panel": "Multiheme redox but not peroxidase/terminal oxidase."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "distal peroxidase residues/covalent heme links pending",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxide activation",
+        "proximal_ligand_or_metal_site": "mammalian peroxidase heme site present; exact residues pending"
+      },
+      "candidate_group": "external_classical_peroxidase",
+      "current_parent_state": "external_review_only_needs_import_gates",
+      "data_needed_for_benchmark_or_silver": [
+        "exact PDB residue extraction",
+        "full duplicate screen"
+      ],
+      "intended_panel_role": "silver_positive_lead",
+      "name": "human eosinophil peroxidase",
+      "provenance_tier": "tier_B_external_curated",
+      "row_id": "uniprot:P11678",
+      "sequence_foldseek_neighbor_expectation": "Second packet maps 9 active/heme features and top1 heme score 0.7138.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/P11678/entry",
+        "https://www.rcsb.org/structure/8OGI",
+        "artifacts/v3_heme_peroxidase_second_deep_packet_geometry_scores_20260521.json"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "8OGI"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 compound I cycle",
+        "substrate_or_electron_donor": "halide/thiocyanate donors"
+      },
+      "why_in_panel": "External mammalian peroxidase positive lead."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "His/Asn catalase distal residues expected",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme H2O2 disproportionation",
+        "proximal_ligand_or_metal_site": "catalase heme site present"
+      },
+      "candidate_group": "external_catalase",
+      "current_parent_state": "external_review_only_duplicate_risk",
+      "data_needed_for_benchmark_or_silver": [
+        "non-duplicate confirmation",
+        "exact heme pocket extraction"
+      ],
+      "intended_panel_role": "silver_positive_lead_or_duplicate_hold",
+      "name": "human catalase",
+      "provenance_tier": "tier_C_external_incomplete",
+      "row_id": "uniprot:P04040",
+      "sequence_foldseek_neighbor_expectation": "External catalase lead but duplicate risk against current catalase controls.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/P04040/entry",
+        "https://www.rcsb.org/structure/1DGB"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1DGB",
+          "1DGF",
+          "1QQW"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 disproportionation",
+        "substrate_or_electron_donor": "H2O2"
+      },
+      "why_in_panel": "Catalase positive lead, not benchmark-ready."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "KatG distal/covalent adduct evidence pending",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxide activation/disproportionation",
+        "proximal_ligand_or_metal_site": "KatG heme site expected"
+      },
+      "candidate_group": "external_catalase_peroxidase",
+      "current_parent_state": "external_review_only_needs_duplicate_gates",
+      "data_needed_for_benchmark_or_silver": [
+        "KatG-specific residue evidence",
+        "duplicate screen"
+      ],
+      "intended_panel_role": "silver_positive_lead",
+      "name": "E. coli KatG catalase-peroxidase",
+      "provenance_tier": "tier_C_external_incomplete",
+      "row_id": "uniprot:P13029",
+      "sequence_foldseek_neighbor_expectation": "Family overlap with Q939D2 likely; needs duplicate screen.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/P13029/entry",
+        "https://www.rcsb.org/structure/1U2J"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1U2J",
+          "1U2K"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "dual catalase/peroxidase peroxide cycle",
+        "substrate_or_electron_donor": "H2O2 and donor substrates"
+      },
+      "why_in_panel": "Dual-function catalase-peroxidase boundary."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "His92 active-site acid/base mapped",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxide activation/disproportionation",
+        "proximal_ligand_or_metal_site": "His259 heme ligand mapped"
+      },
+      "candidate_group": "external_catalase_peroxidase",
+      "current_parent_state": "external_terminal_duplicate_or_leakage",
+      "data_needed_for_benchmark_or_silver": [
+        "none; control only"
+      ],
+      "intended_panel_role": "duplicate_hold_control",
+      "name": "Burkholderia KatG",
+      "provenance_tier": "tier_D_control_only",
+      "row_id": "uniprot:Q939D2",
+      "sequence_foldseek_neighbor_expectation": "Terminal duplicate/leakage: current heme structural duplicate signal to m_csa:399/1APX.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/Q939D2/entry",
+        "https://www.rcsb.org/structure/5L02",
+        "artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "5L02",
+          "5SW4"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "KatG peroxide cycle",
+        "substrate_or_electron_donor": "H2O2"
+      },
+      "why_in_panel": "Good chemistry but not new validation breadth."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "12 source-free residues; acid-base/electron-transfer/heme-ligand contacts",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxide activation",
+        "proximal_ligand_or_metal_site": "two HEC ligands in exact PDB context"
+      },
+      "candidate_group": "external_cytochrome_c_peroxidase",
+      "current_parent_state": "external_mechanism_match_review_ready_no_import",
+      "data_needed_for_benchmark_or_silver": [
+        "label-policy and human-review gates",
+        "child residue contract"
+      ],
+      "intended_panel_role": "silver_positive_lead",
+      "name": "Pseudomonas cytochrome c551 peroxidase",
+      "provenance_tier": "tier_B_external_curated",
+      "row_id": "uniprot:P14532",
+      "sequence_foldseek_neighbor_expectation": "Redox third blocker: score 0.8605 top1 heme, duplicate screen clear.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/P14532/entry",
+        "https://www.rcsb.org/structure/1EB7",
+        "artifacts/v3_external_redox_third_blocker_source_free_geometry_scores_20260522.json",
+        "artifacts/v3_external_redox_third_blocker_deep_terminal_decision_packet_after_source_free_geometry_and_targeted_lane_screen_20260522.json"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1EB7",
+          "2VHD"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 peroxidase cycle",
+        "substrate_or_electron_donor": "cytochrome c/electron donor"
+      },
+      "why_in_panel": "Best local external heme-positive lead."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Asp/Glu-rich DyP active-site residues",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "DyP heme peroxide activation",
+        "proximal_ligand_or_metal_site": "His heme-ligand residue among mapped features"
+      },
+      "candidate_group": "external_dyp_peroxidase",
+      "current_parent_state": "external_mechanism_match_review_ready_no_import",
+      "data_needed_for_benchmark_or_silver": [
+        "exact ligand-bearing PDB extraction",
+        "external all-vs-all duplicate screen"
+      ],
+      "intended_panel_role": "silver_positive_lead",
+      "name": "Amycolatopsis DyP2",
+      "provenance_tier": "tier_B_external_curated",
+      "row_id": "uniprot:K7N5M8",
+      "sequence_foldseek_neighbor_expectation": "Second packet: heme score 0.6899; no current countable structural duplicate signal.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/K7N5M8/entry",
+        "https://www.rcsb.org/structure/4G2C",
+        "artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "4G2C"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 DyP peroxide cycle",
+        "substrate_or_electron_donor": "dye/lignin-like donors"
+      },
+      "why_in_panel": "External DyP chemistry adds useful heme-peroxidase diversity."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "distal acid-base residues pending",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "DyP heme peroxide activation",
+        "proximal_ligand_or_metal_site": "DyP heme pocket expected"
+      },
+      "candidate_group": "external_dyp_peroxidase",
+      "current_parent_state": "external_review_only_unclosed_duplicate_gates",
+      "data_needed_for_benchmark_or_silver": [
+        "complete duplicate/leakage closure",
+        "source-free heme geometry"
+      ],
+      "intended_panel_role": "silver_positive_lead_or_hold",
+      "name": "AauDyP",
+      "provenance_tier": "tier_C_external_incomplete",
+      "row_id": "uniprot:I2DBY1",
+      "sequence_foldseek_neighbor_expectation": "Prior scope kept I2DBY1 blocked pending subchunk duplicate screening.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/I2DBY1/entry",
+        "https://www.rcsb.org/structure/4AU9",
+        "work/scope.md"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "4AU9",
+          "4UZI"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 DyP peroxide cycle",
+        "substrate_or_electron_donor": "dye/lignin donors"
+      },
+      "why_in_panel": "DyP breadth candidate with unresolved blocker history."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "two mapped active/heme residues",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "DyP heme peroxide activation if source-positive",
+        "proximal_ligand_or_metal_site": "Asp/His mapped; heme ligand status weak"
+      },
+      "candidate_group": "external_dyp_peroxidase",
+      "current_parent_state": "external_terminal_duplicate_or_leakage",
+      "data_needed_for_benchmark_or_silver": [
+        "none; control only"
+      ],
+      "intended_panel_role": "duplicate_hold_control",
+      "name": "Thermobifida DyP",
+      "provenance_tier": "tier_D_control_only",
+      "row_id": "uniprot:Q47KB1",
+      "sequence_foldseek_neighbor_expectation": "Targeted heme screen hit m_csa:735 terminal oxidase at TM>=0.7.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/Q47KB1/entry",
+        "https://www.rcsb.org/structure/5FW4",
+        "artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "5FW4"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2",
+        "substrate_or_electron_donor": "dye/peroxidase donor"
+      },
+      "why_in_panel": "Heme Foldseek/cofactor can connect unrelated DyP and oxidase rows."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Mn/peroxidase donor residues need extraction",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxide activation",
+        "proximal_ligand_or_metal_site": "ligninolytic peroxidase proximal His expected"
+      },
+      "candidate_group": "external_ligninolytic_peroxidase",
+      "current_parent_state": "external_review_only_needs_duplicate_gates",
+      "data_needed_for_benchmark_or_silver": [
+        "exact heme/Mn-site extraction",
+        "external duplicate screen"
+      ],
+      "intended_panel_role": "silver_positive_lead",
+      "name": "Pleurotus versatile peroxidase",
+      "provenance_tier": "tier_C_external_incomplete",
+      "row_id": "uniprot:Q9UR19",
+      "sequence_foldseek_neighbor_expectation": "First deep packet selected; no import-ready claim.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/Q9UR19/entry",
+        "https://www.rcsb.org/structure/4BLK",
+        "artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "4BLK",
+          "4BLL"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 compound I/II cycle",
+        "substrate_or_electron_donor": "Mn(II), lignin/phenolic donors"
+      },
+      "why_in_panel": "Tests heme plus metal-assisted donor-site subrouting."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "distal peroxide residues plus Mn-site acidic ligands pending",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxide activation plus Mn donor site",
+        "proximal_ligand_or_metal_site": "heme proximal ligand expected"
+      },
+      "candidate_group": "external_ligninolytic_peroxidase",
+      "current_parent_state": "external_review_only_needs_duplicate_gates",
+      "data_needed_for_benchmark_or_silver": [
+        "map heme and Mn-site separately",
+        "screen lignin peroxidase family"
+      ],
+      "intended_panel_role": "silver_positive_lead",
+      "name": "manganese peroxidase 1",
+      "provenance_tier": "tier_C_external_incomplete",
+      "row_id": "uniprot:Q02567",
+      "sequence_foldseek_neighbor_expectation": "First deep packet selected; needs duplicate and subtype evidence.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/Q02567/entry",
+        "https://www.rcsb.org/structure/1MNP"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1MNP",
+          "1MN1"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 compound I oxidizes Mn/donors",
+        "substrate_or_electron_donor": "Mn(II) and donors"
+      },
+      "why_in_panel": "Heme plus non-heme donor-site context can confuse routing."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "distal His/Arg and substrate oxidation site pending",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxide activation",
+        "proximal_ligand_or_metal_site": "lignin peroxidase proximal ligand expected"
+      },
+      "candidate_group": "external_ligninolytic_peroxidase",
+      "current_parent_state": "external_review_only_needs_duplicate_gates",
+      "data_needed_for_benchmark_or_silver": [
+        "deduplicate lignin peroxidase representatives"
+      ],
+      "intended_panel_role": "family_hold",
+      "name": "ligninase H8",
+      "provenance_tier": "tier_C_external_incomplete",
+      "row_id": "uniprot:P06181",
+      "sequence_foldseek_neighbor_expectation": "Likely same family lane as other lignin peroxidases.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/P06181/entry",
+        "https://www.rcsb.org/structure/1B80"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1B80",
+          "1B82"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 compound I/II cycle",
+        "substrate_or_electron_donor": "lignin aromatic donors"
+      },
+      "why_in_panel": "Potential positive but likely same-family support."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "11 mapped active/heme residues",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxide activation",
+        "proximal_ligand_or_metal_site": "His/Asp/Ser/Thr mapped peroxidase features"
+      },
+      "candidate_group": "external_ligninolytic_peroxidase",
+      "current_parent_state": "external_terminal_duplicate_or_leakage",
+      "data_needed_for_benchmark_or_silver": [
+        "none; control only"
+      ],
+      "intended_panel_role": "duplicate_hold_control",
+      "name": "ligninase LG2",
+      "provenance_tier": "tier_D_control_only",
+      "row_id": "uniprot:P49012",
+      "sequence_foldseek_neighbor_expectation": "Second terminal decision: current heme structural duplicate to m_csa:399/1APX.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/P49012/entry",
+        "https://www.rcsb.org/structure/1LGA",
+        "artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1LGA",
+          "1LLP"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2",
+        "substrate_or_electron_donor": "lignin aromatic donors"
+      },
+      "why_in_panel": "Good chemistry but not new validation breadth."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "peroxidase/deferrochelatase split pending",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "DyP/deferrochelatase heme context",
+        "proximal_ligand_or_metal_site": "heme context present; exact residues pending"
+      },
+      "candidate_group": "external_dyp_deferrochelatase_boundary",
+      "current_parent_state": "external_review_only_needs_duplicate_gates",
+      "data_needed_for_benchmark_or_silver": [
+        "dual-function policy",
+        "source-free heme geometry"
+      ],
+      "intended_panel_role": "silver_boundary_lead",
+      "name": "Bacillus EfeB",
+      "provenance_tier": "tier_C_external_incomplete",
+      "row_id": "uniprot:P39597",
+      "sequence_foldseek_neighbor_expectation": "Mixed EC 1.11.1.- and 4.98.1.1; second packet selected.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/P39597/entry",
+        "https://www.rcsb.org/structure/6KMM"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "6KMM",
+          "7DLK"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "mixed peroxide/heme-remodeling context",
+        "substrate_or_electron_donor": "dye/peroxide or deferrochelatase substrate"
+      },
+      "why_in_panel": "Tests peroxidase naming in mixed-function heme proteins."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "peroxidase/deferrochelatase split pending",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "DyP/deferrochelatase heme context",
+        "proximal_ligand_or_metal_site": "heme context present; exact residues pending"
+      },
+      "candidate_group": "external_dyp_deferrochelatase_boundary",
+      "current_parent_state": "external_review_only_needs_duplicate_gates",
+      "data_needed_for_benchmark_or_silver": [
+        "deduplicate EfeB pair",
+        "dual-function policy"
+      ],
+      "intended_panel_role": "silver_boundary_lead",
+      "name": "E. coli EfeB",
+      "provenance_tier": "tier_C_external_incomplete",
+      "row_id": "uniprot:P31545",
+      "sequence_foldseek_neighbor_expectation": "Mixed EC and likely overlap with P39597.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/P31545/entry",
+        "https://www.rcsb.org/structure/2Y4D"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "2Y4D",
+          "2Y4E"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "mixed peroxide/heme-remodeling context",
+        "substrate_or_electron_donor": "dye/peroxide or deferrochelatase substrate"
+      },
+      "why_in_panel": "Boundary lead against name-only peroxidase routing."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "13 active/heme features; exact distal roles pending",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "heme peroxide activation",
+        "proximal_ligand_or_metal_site": "plant peroxidase heme features mapped"
+      },
+      "candidate_group": "external_plant_peroxidase",
+      "current_parent_state": "external_review_only_duplicate_risk",
+      "data_needed_for_benchmark_or_silver": [
+        "use as duplicate/family control unless reviewer needs plant subtype"
+      ],
+      "intended_panel_role": "duplicate_hold_or_silver_lead",
+      "name": "Arabidopsis peroxidase 59",
+      "provenance_tier": "tier_C_external_incomplete",
+      "row_id": "uniprot:Q39034",
+      "sequence_foldseek_neighbor_expectation": "Second packet: heme top1 above floor but targeted current heme duplicate signal.",
+      "source_refs": [
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_freeze_20260521.json",
+        "artifacts/v3_prospective_external_heme_peroxidase_minicampaign_decision_packet_20260521.json",
+        "https://www.uniprot.org/uniprotkb/Q39034/entry",
+        "https://www.rcsb.org/structure/1QGJ",
+        "artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1QGJ"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "H2O2 compound I/II cycle",
+        "substrate_or_electron_donor": "phenolic donors"
+      },
+      "why_in_panel": "Plant peroxidase source-free coverage and duplicate-control candidate."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "2OG/taurine pocket",
+        "heme_or_metal_present": false,
+        "oxygen_activation_locus": "non-heme Fe(II)/2OG oxygenation",
+        "proximal_ligand_or_metal_site": "non-heme iron facial triad, not heme"
+      },
+      "candidate_group": "non_heme_iron_oxygenase",
+      "current_parent_state": "current_oos_control",
+      "data_needed_for_benchmark_or_silver": [
+        "non-heme iron extractor"
+      ],
+      "intended_panel_role": "oos_hard_negative",
+      "name": "taurine dioxygenase",
+      "provenance_tier": "tier_D_control_only",
+      "row_id": "m_csa:129",
+      "sequence_foldseek_neighbor_expectation": "Current OOS; should reject heme despite O2/oxygenase.",
+      "source_refs": [
+        "m_csa:129",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P37610/entry",
+        "https://www.rcsb.org/structure/1GY9"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1GY9"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2; Fe(IV)-oxo hydroxylation",
+        "substrate_or_electron_donor": "taurine + 2-oxoglutarate"
+      },
+      "why_in_panel": "Direct hard negative for heme oxygenase/P450 wording."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Rieske electron relay and substrate pocket",
+        "heme_or_metal_present": false,
+        "oxygen_activation_locus": "Rieske plus non-heme iron oxygenation",
+        "proximal_ligand_or_metal_site": "non-heme mononuclear iron, not heme"
+      },
+      "candidate_group": "rieske_non_heme_iron_oxygenase",
+      "current_parent_state": "current_oos_control",
+      "data_needed_for_benchmark_or_silver": [
+        "Rieske and non-heme iron-site extraction"
+      ],
+      "intended_panel_role": "oos_hard_negative",
+      "name": "naphthalene 1,2-dioxygenase",
+      "provenance_tier": "tier_D_control_only",
+      "row_id": "m_csa:130",
+      "sequence_foldseek_neighbor_expectation": "Current OOS; oxygenase/O2 words should not route heme.",
+      "source_refs": [
+        "m_csa:130",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P0A110/entry",
+        "https://www.rcsb.org/structure/1O7G"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1O7G"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2 cis-dihydroxylation",
+        "substrate_or_electron_donor": "naphthalene"
+      },
+      "why_in_panel": "Non-heme iron O2 chemistry hard negative."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "pterin/tyrosine pocket",
+        "heme_or_metal_present": false,
+        "oxygen_activation_locus": "non-heme iron plus tetrahydrobiopterin",
+        "proximal_ligand_or_metal_site": "non-heme iron ligands"
+      },
+      "candidate_group": "pterin_non_heme_iron_monooxygenase",
+      "current_parent_state": "current_oos_control",
+      "data_needed_for_benchmark_or_silver": [
+        "pterin and non-heme iron extraction"
+      ],
+      "intended_panel_role": "oos_hard_negative",
+      "name": "tyrosine 3-monooxygenase",
+      "provenance_tier": "tier_D_control_only",
+      "row_id": "m_csa:134",
+      "sequence_foldseek_neighbor_expectation": "Current OOS hard negative for monooxygenase vocabulary.",
+      "source_refs": [
+        "m_csa:134",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P04177/entry",
+        "https://www.rcsb.org/structure/1TOH"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1TOH"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2 pterin/iron hydroxylation",
+        "substrate_or_electron_donor": "L-tyrosine + BH4"
+      },
+      "why_in_panel": "Shared monooxygenase wording without heme."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "homogentisate pocket",
+        "heme_or_metal_present": false,
+        "oxygen_activation_locus": "non-heme iron ring-cleavage dioxygenase",
+        "proximal_ligand_or_metal_site": "non-heme iron ligands"
+      },
+      "candidate_group": "non_heme_iron_dioxygenase",
+      "current_parent_state": "current_oos_control",
+      "data_needed_for_benchmark_or_silver": [
+        "confirm selected PDB/Fe-site if benchmarked"
+      ],
+      "intended_panel_role": "oos_hard_negative",
+      "name": "homogentisate 1,2-dioxygenase",
+      "provenance_tier": "tier_D_control_only",
+      "row_id": "m_csa:547",
+      "sequence_foldseek_neighbor_expectation": "Current OOS; retrieval below floor and counterevidence blocks shortcut.",
+      "source_refs": [
+        "m_csa:547",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/Q93099/entry",
+        "https://www.rcsb.org/structure/1EY2"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1EY2"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2 ring-cleavage dioxygenase",
+        "substrate_or_electron_donor": "homogentisate"
+      },
+      "why_in_panel": "Non-heme iron O2 chemistry hard negative."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "FMNH2 electron donor context",
+        "heme_or_metal_present": false,
+        "oxygen_activation_locus": "non-heme diiron NO reduction",
+        "proximal_ligand_or_metal_site": "diiron carboxylate/histidine site"
+      },
+      "candidate_group": "non_heme_diiron_redox",
+      "current_parent_state": "current_oos_control",
+      "data_needed_for_benchmark_or_silver": [
+        "none; preserve expert OOS"
+      ],
+      "intended_panel_role": "oos_hard_negative",
+      "name": "flavodiiron nitric oxide reductase",
+      "provenance_tier": "tier_D_control_only",
+      "row_id": "m_csa:497",
+      "sequence_foldseek_neighbor_expectation": "Expert OOS; Packet 2 label-quality blocker excluded from primary metrics.",
+      "source_refs": [
+        "m_csa:497",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/Q9FDN7/entry",
+        "https://www.rcsb.org/structure/1YCF",
+        "artifacts/v3_packet1_tm_and_497_expert_disposition_702_20260527.json"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1YCF"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "NO reduction, not O2/peroxide",
+        "substrate_or_electron_donor": "nitric oxide"
+      },
+      "why_in_panel": "Separates non-heme metal redox from heme/FMO shortcuts."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "electron-transfer residues; no peroxy state",
+        "heme_or_metal_present": true,
+        "oxygen_activation_locus": "FAD plus heme C electron transfer",
+        "proximal_ligand_or_metal_site": "heme C/HEC context plus covalent FAD-Tyr linkage"
+      },
+      "candidate_group": "heme_plus_flavin_electron_transfer",
+      "current_parent_state": "current_flavin_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "exact heme/FAD pocket extraction if benchmarked"
+      ],
+      "intended_panel_role": "near_family_hard_negative",
+      "name": "4-cresol dehydrogenase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:141",
+      "sequence_foldseek_neighbor_expectation": "FMO audit: flavin/heme redox, not oxygenation.",
+      "source_refs": [
+        "m_csa:141",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P09787/entry",
+        "https://www.rcsb.org/structure/1DII",
+        "artifacts/v3_fmo_fingerprint_definition_audit_702_20260528.json"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1DII"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "electron-transfer redox",
+        "substrate_or_electron_donor": "4-cresol"
+      },
+      "why_in_panel": "Heme cofactor alone is misleading."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "substrate pocket near flavin C4a",
+        "heme_or_metal_present": false,
+        "oxygen_activation_locus": "flavin C4a-peroxy oxygenation",
+        "proximal_ligand_or_metal_site": "FAD/FMN active site; no heme"
+      },
+      "candidate_group": "flavin_monooxygenase",
+      "current_parent_state": "current_fmo_secondary_positive_not_heme",
+      "data_needed_for_benchmark_or_silver": [
+        "none beyond existing FMO control metadata"
+      ],
+      "intended_panel_role": "oos_hard_negative_for_heme_panel",
+      "name": "4-hydroxybenzoate 3-monooxygenase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "row_id": "m_csa:131",
+      "sequence_foldseek_neighbor_expectation": "Canonical FMO row should route away from heme.",
+      "source_refs": [
+        "m_csa:131",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P20586/entry",
+        "https://www.rcsb.org/structure/1DOC",
+        "artifacts/v3_fmo_fingerprint_definition_audit_702_20260528.json"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1DOC"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2 + NADPH; C4a-hydroperoxyflavin",
+        "substrate_or_electron_donor": "4-hydroxybenzoate"
+      },
+      "why_in_panel": "Positive oxygenase but not heme."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "substrate near FAD C4a in author chains C/D",
+        "heme_or_metal_present": false,
+        "oxygen_activation_locus": "flavin C4a-peroxy aromatic hydroxylase",
+        "proximal_ligand_or_metal_site": "FAD/IPH context; no heme"
+      },
+      "candidate_group": "flavin_monooxygenase_future_support",
+      "current_parent_state": "current_flavin_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "FMO gate completion if benchmarked"
+      ],
+      "intended_panel_role": "oos_hard_negative_for_heme_panel",
+      "name": "phenol 2-monooxygenase",
+      "provenance_tier": "tier_C_external_incomplete",
+      "row_id": "m_csa:551",
+      "sequence_foldseek_neighbor_expectation": "Mechanism-clean FMO support but not heme.",
+      "source_refs": [
+        "m_csa:551",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P15245/entry",
+        "https://www.rcsb.org/structure/1FOH",
+        "work/fmo_local_candidate_adjudication_551_973_20260528.md"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1FOH"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2 plus reduced flavin",
+        "substrate_or_electron_donor": "phenol"
+      },
+      "why_in_panel": "Prevents oxygenase-name leakage into heme parent."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "Tyr96/Ser163/His391 around FMN; substrate missing",
+        "heme_or_metal_present": false,
+        "oxygen_activation_locus": "partner-supplied reduced FMN oxygenation",
+        "proximal_ligand_or_metal_site": "FMN active site; no heme"
+      },
+      "candidate_group": "two_component_fmnh2_monooxygenase",
+      "current_parent_state": "current_flavin_parent_boundary",
+      "data_needed_for_benchmark_or_silver": [
+        "substrate/peroxyflavin coordinate for FMO benchmark"
+      ],
+      "intended_panel_role": "oos_hard_negative_for_heme_panel",
+      "name": "DszC protein",
+      "provenance_tier": "tier_C_external_incomplete",
+      "row_id": "m_csa:973",
+      "sequence_foldseek_neighbor_expectation": "FMO audit: mechanism-clean two-component FMNH2 oxygenase.",
+      "source_refs": [
+        "m_csa:973",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/A0A0C6DRW4/entry",
+        "https://www.rcsb.org/structure/3X0Y",
+        "artifacts/v3_fmo_fingerprint_definition_audit_702_20260528.json"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "3X0Y"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2 + reduced FMNH2",
+        "substrate_or_electron_donor": "dibenzothiophene-family sulfur substrate"
+      },
+      "why_in_panel": "Keys oxygen activation locus rather than oxygenase words."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "ascorbate/copper oxygenation context",
+        "heme_or_metal_present": false,
+        "oxygen_activation_locus": "copper-dependent oxygenation",
+        "proximal_ligand_or_metal_site": "copper ligands, no heme"
+      },
+      "candidate_group": "copper_oxygenase",
+      "current_parent_state": "current_oos_control",
+      "data_needed_for_benchmark_or_silver": [
+        "copper-site extraction if benchmarked"
+      ],
+      "intended_panel_role": "oos_hard_negative",
+      "name": "peptidylglycine monooxygenase",
+      "provenance_tier": "tier_D_control_only",
+      "row_id": "m_csa:135",
+      "sequence_foldseek_neighbor_expectation": "Current OOS; oxygenase word but copper locus.",
+      "source_refs": [
+        "m_csa:135",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P14925/entry",
+        "https://www.rcsb.org/structure/1SDW"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1SDW"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2 plus ascorbate/reductant",
+        "substrate_or_electron_donor": "peptidylglycine"
+      },
+      "why_in_panel": "Non-heme O2 enzyme hard negative."
+    },
+    {
+      "active_site_evidence": {
+        "distal_or_partner_residue_evidence": "luciferyl adenylate pocket",
+        "heme_or_metal_present": false,
+        "oxygen_activation_locus": "ATP/luciferyl adenylate oxygenation",
+        "proximal_ligand_or_metal_site": "no heme/flavin in selected coordinate"
+      },
+      "candidate_group": "luciferase_atp_oxygenase",
+      "current_parent_state": "current_oos_control",
+      "data_needed_for_benchmark_or_silver": [
+        "none unless luciferase OOS benchmark needed"
+      ],
+      "intended_panel_role": "oos_hard_negative",
+      "name": "Photinus luciferin monooxygenase",
+      "provenance_tier": "tier_D_control_only",
+      "row_id": "m_csa:128",
+      "sequence_foldseek_neighbor_expectation": "FMO audit: no flavin ligand; current OOS.",
+      "source_refs": [
+        "m_csa:128",
+        "artifacts/v1_graph_1025.json",
+        "data/registries/curated_mechanism_labels.json",
+        "https://www.uniprot.org/uniprotkb/P08659/entry",
+        "https://www.rcsb.org/structure/1BA3",
+        "work/fmo_structure_geometry_audit_20260527.md"
+      ],
+      "structure_availability": {
+        "representative_structures": [
+          "1BA3"
+        ],
+        "status": "available_or_locally_referenced"
+      },
+      "substrate_peroxide_o2_state": {
+        "oxidant_or_state": "O2 luciferyl oxygenation",
+        "substrate_or_electron_donor": "luciferin + ATP"
+      },
+      "why_in_panel": "O2 vocabulary without heme/flavin/metal redox locus."
+    }
+  ],
+  "child_stratum_readiness": [
+    {
+      "benchmark_readiness": "not_benchmark_ready",
+      "child_stratum": "heme.peroxidase_catalase_like",
+      "current_state": "Packet 3 calls this a review-only v2 pilot candidate with 20 support rows but expert approval required before metric or registry use.",
+      "data_needed": [
+        "expert-approved child definition",
+        "source-free proximal/distal residue extraction",
+        "peroxide/H2O2 state evidence",
+        "duplicate clearance for external rows"
+      ],
+      "silver_review_readiness": "selected tier_A anchors plus tier_B P14532/K7N5M8 are review-ready only"
+    },
+    {
+      "benchmark_readiness": "not_benchmark_ready",
+      "child_stratum": "heme.catalase_disproportionation",
+      "current_state": "Catalase rows are inside broad parent but need separation from donor-oxidizing peroxidases.",
+      "data_needed": [
+        "H2O2-as-substrate-and-reductant evidence",
+        "KatG dual-function/covalent-adduct policy",
+        "non-duplicate external catalase breadth"
+      ],
+      "silver_review_readiness": "review-only using m_csa:573 plus catalase/KatG leads"
+    },
+    {
+      "benchmark_readiness": "not_benchmark_ready_until child reopened",
+      "child_stratum": "heme_copper_terminal_oxidase",
+      "current_state": "Strong M-CSA anchors exist, but Packet 3 heme.oxidase_oxygenase_like was no-use due no explicit support assignment.",
+      "data_needed": [
+        "heme-Cu binuclear ligand extraction",
+        "proton-channel residues",
+        "terminal O2-to-water state",
+        "external oxidase candidates with complex/subunit mapping"
+      ],
+      "silver_review_readiness": "good internal review panel; needs external breadth"
+    },
+    {
+      "benchmark_readiness": "review_only_boundary_now",
+      "child_stratum": "p450_heme_monooxygenase_and_heme_oxygenase_boundary",
+      "current_state": "Current broad-parent rows but hard negatives for peroxidase/catalase and terminal-oxidase child calls.",
+      "data_needed": [
+        "inside/outside parent policy",
+        "heme-thiolate vs heme-as-substrate extraction",
+        "O2/electron donor state"
+      ],
+      "silver_review_readiness": "ready as boundary controls from M-CSA"
+    },
+    {
+      "benchmark_readiness": "hard_negative_review_only",
+      "child_stratum": "heme_electron_transfer_reductase_boundary",
+      "current_state": "Rows such as m_csa:208, 473, 581, 903 demonstrate broad heme redox without peroxide/O2 activation equivalence.",
+      "data_needed": [
+        "electron-transfer/reductase evidence",
+        "negative evidence for peroxide or terminal O2 activation",
+        "expert route-away policy"
+      ],
+      "silver_review_readiness": "usable as abstention/route-away controls"
+    },
+    {
+      "benchmark_readiness": "usable after extractor can name non-heme locus",
+      "child_stratum": "non_heme_o2_oxygenase_hard_negatives",
+      "current_state": "Current OOS controls exist for non-heme Fe, pterin, copper, flavin, and luciferase oxygenation.",
+      "data_needed": [
+        "non-heme metal/flavin/copper/pterin/luciferase locus extraction",
+        "frozen route-away or abstention behavior"
+      ],
+      "silver_review_readiness": "ready as review-only hard-negative controls"
+    }
+  ],
+  "created_utc": "2026-05-28T07:28:13Z",
+  "disk_policy": {
+    "free_space_observed_gib": 5.5,
+    "requested_floor_gib": 10,
+    "status": "below_requested_floor_before_run_so_no_downloads_performed_and_only_small_text_json_written"
+  },
+  "guardrails": {
+    "artifact_use": "candidate panel only; not benchmark, not silver labels, not import-ready labels",
+    "canonical_label_registry_changed": false,
+    "fingerprint_registry_changed": false,
+    "imports_changed": false,
+    "large_downloads_performed": false,
+    "model_outputs_changed": false,
+    "model_training_triggered": false,
+    "ontology_ids_changed": false,
+    "production_scoring_changed": false,
+    "thresholds_changed": false
+  },
+  "learned_rep_value_add_criteria": {
+    "cofactor_shortcut_failure": [
+      "Any heme-containing row becomes child-positive without naming peroxide, terminal O2, or oxygenase/reductase locus.",
+      "P450/heme oxygenase/electron-transfer heme rows collapse into classical peroxidase or catalase because heme is present.",
+      "Non-heme O2 enzymes route to heme because O2/oxygenase words or oxidoreductase folds are present.",
+      "External duplicate-hold rows are treated as new benchmark support because source chemistry is positive."
+    ],
+    "value_add_signal": [
+      "Route m_csa:250 to heme peroxidase despite wrong Foldseek nearest neighbor and low sequence support.",
+      "Separate m_csa:124/714/735 terminal oxidases from peroxidases by heme-Cu/proton-channel/O2-to-water evidence.",
+      "Route P450 and heme oxygenase rows away from peroxidase/catalase despite heme and O2 language.",
+      "Reject non-heme Fe, copper, flavin, and luciferase oxygenases despite oxygenase/O2 vocabulary.",
+      "Preserve duplicate holds as controls rather than inflating external support."
+    ]
+  },
+  "non_claims": [
+    "No labels, registries, ontologies, thresholds, imports, model outputs, production scoring, or model-training artifacts were changed.",
+    "This artifact does not authorize countable benchmark use.",
+    "Public source URLs are provenance pointers; no large downloads or coordinate fetches were performed."
+  ],
+  "panel_summary": {
+    "candidate_row_count": 46,
+    "primary_observation": "The current parent is chemically over-broad: peroxidase/catalase, heme-copper terminal oxidase, P450/heme oxygenase, heme reductase/electron-transfer, and non-heme O2 enzymes need separate route evidence."
+  },
+  "provenance_tier_definitions": {
+    "tier_A_mcsa_curated": "M-CSA/current registry row with curated mechanism/residue evidence.",
+    "tier_B_external_curated": "External row with exact/source-free active-site evidence plus duplicate-screen support; review-ready only.",
+    "tier_C_external_incomplete": "External/source row with credible chemistry and structure availability but missing duplicate, active-site, or child-stratum gates.",
+    "tier_D_control_only": "Duplicate hold, OOS, near-family hard negative, or leakage-control row."
+  },
+  "review_only": true,
+  "schema_version": "v3_external_heme_redox_boundary_panel.v1",
+  "scope": {
+    "allowed_work": "validation-panel design and source/evidence scouting only",
+    "forbidden_changes_respected": true,
+    "question": "Whether broad v1 heme_peroxidase_oxidase hides incompatible heme chemistries and whether a router can separate peroxidase/catalase/oxidase/oxygenase boundaries."
+  },
+  "source_artifacts": [
+    "data/registries/curated_mechanism_labels.json",
+    "data/registries/mechanism_fingerprints.json",
+    "artifacts/v1_graph_1025.json",
+    "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    "artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json",
+    "artifacts/v3_external_stress_panel_roadmap_20260528.json",
+    "artifacts/v3_sequence_failure_benchmark_queue_702_20260528.json",
+    "artifacts/v3_packet3_v2_sublabel_decision_closure_702_20260527.json",
+    "artifacts/v3_heme_peroxidase_deep_packet_selection_20260521.json",
+    "artifacts/v3_heme_peroxidase_deep_packet_geometry_scores_20260521.json",
+    "artifacts/v3_heme_peroxidase_deep_terminal_decision_packet_after_chunked_duplicate_screen_20260521.json",
+    "artifacts/v3_heme_peroxidase_second_deep_packet_selection_20260521.json",
+    "artifacts/v3_heme_peroxidase_second_deep_packet_geometry_scores_20260521.json",
+    "artifacts/v3_heme_peroxidase_second_deep_terminal_decision_packet_after_full_current_screen_20260521.json",
+    "artifacts/v3_heme_peroxidase_third_deep_terminal_decision_packet_sequence_duplicate_closure_20260522.json",
+    "artifacts/v3_external_redox_third_blocker_coordinate_materialization_20260522.json",
+    "artifacts/v3_external_redox_third_blocker_source_free_geometry_scores_20260522.json",
+    "artifacts/v3_external_redox_third_blocker_deep_terminal_decision_packet_after_source_free_geometry_and_targeted_lane_screen_20260522.json",
+    "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json",
+    "artifacts/v3_fmo_fingerprint_definition_audit_702_20260528.json",
+    "work/external_stress_panel_roadmap_20260528.md",
+    "work/sequence_failure_benchmark_queue_20260528.md",
+    "work/packet2_near_orphan_geometry_support_closure_20260527.md",
+    "work/packet3_v2_sublabel_closure_20260527.md",
+    "work/fmo_hard_negative_counteraxis_20260527.md",
+    "work/fmo_fingerprint_definition_audit_20260528.md",
+    "work/scope.md"
+  ],
+  "status": "review_only_candidate_manifest_complete_no_imports"
+}
