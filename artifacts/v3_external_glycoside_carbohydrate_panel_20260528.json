@@ -1,0 +1,2915 @@
+{
+  "schema_version": "glycoside_carbohydrate_external_panel.v1",
+  "artifact_id": "v3_external_glycoside_carbohydrate_panel_20260528",
+  "created_utc": "2026-05-28T07:20:03+00:00",
+  "automation_id": "glycoside-carbohydrate-panel",
+  "status": "candidate_manifest_no_decision_review_only",
+  "review_only": true,
+  "purpose": "Stress-test evidence routing outside the current five broad v1 families with carbohydrate-active enzymes that expose same-fold/different-mechanism, acid/base geometry, lyase/isomerase, carbohydrate esterase, and TIM-barrel collision failures.",
+  "guardrails": {
+    "labels_edited": false,
+    "registries_edited": false,
+    "ontologies_edited": false,
+    "thresholds_edited": false,
+    "production_scoring_edited": false,
+    "imports_or_model_outputs_edited": false,
+    "coordinate_downloads_performed": false,
+    "ready_for_label_import_any_row": false,
+    "countable_label_candidate_count": 0
+  },
+  "source_artifacts": {
+    "external_stress_panel_roadmap": "artifacts/v3_external_stress_panel_roadmap_20260528.json",
+    "glycoside_control_preregistration": "artifacts/v3_glycoside_hydrolase_control_tranche_preregistration_20260520.json",
+    "glycoside_axis_decisions": "artifacts/v3_glycoside_hydrolase_control_tranche_axis_decisions_20260520.json",
+    "glycoside_baseline_comparison": "artifacts/v3_glycoside_hydrolase_control_tranche_baseline_comparison_20260520.json",
+    "glycoside_boundary_control": "artifacts/v3_external_source_pilot_glycoside_hydrolase_boundary_control_1025.json",
+    "pilot_active_site_evidence": "artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json",
+    "import_readiness_audit": "artifacts/v3_external_source_import_readiness_audit_1025.json",
+    "packet1_tm_disposition": "work/packet1_tm_and_497_expert_disposition_20260527.md",
+    "sequence_failure_benchmark_queue": "work/sequence_failure_benchmark_queue_20260528.md",
+    "mcsa_geometry_features": "artifacts/v3_geometry_features_875.json",
+    "foldseek_m_csa428_targeted_chunk": "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa428_query_chunk_423_20260527.json",
+    "foldseek_m_csa440_targeted_chunk": "artifacts/v3_foldseek_tm_score_signal_1000_current702_wave1_target_m_csa440_query_chunk_435_20260527.json"
+  },
+  "external_metadata_scout": {
+    "source": "UniProtKB REST metadata scout on 2026-05-28; PDB identifiers recorded only, no coordinate downloads.",
+    "source_urls": [
+      "https://rest.uniprot.org/uniprotkb/search",
+      "https://www.uniprot.org/",
+      "https://www.rcsb.org/"
+    ],
+    "download_policy": "metadata_only_no_coordinate_downloads"
+  },
+  "provenance_tier_definitions": {
+    "tier_A_mcsa_curated": "M-CSA/local curated mechanism and active-site row used as anchor/control only.",
+    "tier_B_external_curated": "External UniProt/PDB lead with reviewed entry, structure availability, and active-site/binding annotations sufficient for review-only routing design.",
+    "tier_C_external_incomplete": "External lead with useful structure/reaction context but missing one or more residue-role, duplicate, substrate-state, or terminal-review blockers.",
+    "tier_D_control_only": "Hard negative, sequence holdout, exact/near duplicate, non-carbohydrate TIM/esterase/isomerase, or other row that must never be imported as a glycoside positive."
+  },
+  "panel_assessment": {
+    "is_good_first_non_mcsa_heavy_external_generalization_panel": "qualified_yes_for_review_only_validation_design",
+    "not_ready_for_import_or_production_scoring": true,
+    "rationale": [
+      "The row mix is external-heavy enough for a first router validation design: 39 external UniProt/PDB leads and 21 M-CSA anchors/controls.",
+      "The local pilot already exposes the intended failure mode: Q6NSJ0 has a sourced acidic dyad and glycan pocket but heuristic routing collapsed to metal_dependent_hydrolase.",
+      "Sourcing is not too sparse for a no-decision validation manifest, but it is too sparse for label import because many external leads still need current-reference sequence screens, Foldseek screens, substrate-state inspection, and terminal review."
+    ],
+    "first_executable_subset": [
+      "Q6NSJ0",
+      "P0DUB6",
+      "Q9H227",
+      "P39116",
+      "Q00704",
+      "P14280",
+      "Q09LX1",
+      "P60174",
+      "P06744",
+      "m_csa:428",
+      "m_csa:440",
+      "m_csa:397",
+      "m_csa:681",
+      "m_csa:324"
+    ]
+  },
+  "success_criteria": {
+    "foldseek_success": [
+      "Retaining/inverting glycoside hydrolases may find CAZy/TIM-barrel structural neighbors, but fold alone must not promote non-carbohydrate TIM barrels or carbohydrate esterases.",
+      "m_csa:428 should be reported as a caveated fold collision, not a clean glycosidase-positive structural proof; m_csa:440 should remain a near-orphan abstention diagnostic.",
+      "External lyase/isomerase/esterase hard negatives should either cluster with their own mechanism families or abstain; a generic metal/serine hydrolase or GH promotion is failure."
+    ],
+    "geometry_rescue": [
+      "Retaining GH rescue requires two correctly role-assigned acidic residues in glycosidic C1 geometry: nucleophile plus acid/base or proton donor/acceptor.",
+      "Inverting GH rescue requires acid plus water-activating base geometry and should not require a covalent glycosyl-enzyme nucleophile.",
+      "Substrate-assisted GH18 chitinases must be rescued by acid/base plus N-acetyl substrate assistance rather than rejected for missing enzyme nucleophile.",
+      "Carbohydrate esterases must be separated by ester carbonyl/acyl-enzyme or Asp-nucleophile geometry, not by carbohydrate substrate words."
+    ],
+    "learned_representation_value_add": [
+      "Adds value if it separates Q6NSJ0/P0DUB6/Q9H227 glycosidase leads from P60174/Q9BV20/P06744 TIM/isomerase controls when sequence/Foldseek is ambiguous.",
+      "Adds value if carbohydrate esterases group closer to serine/aspartate esterase controls than retaining glycosidases despite glycan substrate context.",
+      "Does not add value if it merely reproduces EC/name keywords or pulls all TIM-barrels together."
+    ],
+    "correct_abstention": [
+      "Abstain on tier_C rows missing explicit residue-role evidence or current duplicate screens.",
+      "Abstain or reject exact/near sequence holdouts such as O15527 rather than treating them as external generalization positives.",
+      "Abstain on non-carbohydrate TIM barrels, glycosyltransferases, and metabolic isomerases if no supported non-v1 family route exists."
+    ]
+  },
+  "counts": {
+    "row_count": 60,
+    "external_row_count": 39,
+    "mcsa_anchor_or_control_count": 21,
+    "by_lane": {
+      "carbohydrate_esterase_overlap": 9,
+      "dna_glycosylase_boundary": 1,
+      "dna_glycosylase_lyase_boundary": 1,
+      "dna_lyase_boundary": 1,
+      "glycosidase_lyase_boundary": 1,
+      "glycoside_hydrolase_acid_base_variant": 1,
+      "glycosyltransferase_and_metal_hydroxylase_boundary": 1,
+      "inverting_glycoside_hydrolase": 3,
+      "inverting_or_single_acid_glycoside_hydrolase": 1,
+      "n_glycosidase_boundary": 1,
+      "non_carbohydrate_TIM_barrel_hard_negative": 5,
+      "non_carbohydrate_esterase_hard_negative": 3,
+      "non_carbohydrate_isomerase_hard_negative": 2,
+      "non_carbohydrate_metabolic_hard_negative": 1,
+      "non_glycan_glycosidic_hydrolase_boundary": 1,
+      "polysaccharide_lyase_hard_boundary": 8,
+      "retaining_glycoside_hydrolase_two_carboxylates": 8,
+      "substrate_assisted_glycoside_hydrolase": 3,
+      "sugar_isomerase_hard_boundary": 7,
+      "tim_barrel_glycosidase_collision_positive": 2
+    },
+    "by_provenance_tier": {
+      "tier_A_mcsa_curated": 21,
+      "tier_B_external_curated": 19,
+      "tier_C_external_incomplete": 7,
+      "tier_D_control_only": 13
+    },
+    "by_candidate_role": {
+      "OOS_hard_negative": 13,
+      "external_lead_incomplete": 1,
+      "external_positive_lead": 8,
+      "mcsa_positive_anchor": 8,
+      "near_family_hard_negative": 27,
+      "packet1_fold_conflict_anchor_with_TIM_caveat": 1,
+      "packet1_router_abstention_anchor": 1,
+      "sequence_holdout_control": 1
+    }
+  },
+  "rows": [
+    {
+      "row_id": "uniprot:Q6NSJ0",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q6NSJ0",
+      "name": "Alpha-galactosidase MYORG",
+      "lane": "retaining_glycoside_hydrolase_two_carboxylates",
+      "candidate_role": "external_positive_lead",
+      "expected_router_behavior": "route_to_review_only_glycoside_hydrolase_candidate_not_generic_metal_hydrolase",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "7QQF",
+          "7QQG",
+          "7QQH"
+        ],
+        "alphafold_id": "Q6NSJ0"
+      },
+      "catalytic_residue_evidence": "UniProt active sites D463 nucleophile and D520 proton donor/acceptor; local pilot cites PubMed 36129849 and alpha-D-galactoside binding sites.",
+      "substrate_or_analog_state": "holo/analog state available: alpha-D-galactoside binding annotations and PDB structures.",
+      "sequence_neighbor_expectation": "existing bounded current-reference screen: no_near_duplicate_signal; external all-vs-all sequence no near duplicate",
+      "foldseek_neighbor_expectation": "existing external all-vs-all nearest P60174 at TM 0.5931, below external structural threshold; current-countable Foldseek screen still required",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q6NSJ0/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/7QQF"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/7QQG"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/7QQH"
+        }
+      ],
+      "notes": [
+        "Existing pilot rejected import because heuristic collapsed to metal_dependent_hydrolase and representation boundary needs glycoside split."
+      ],
+      "remaining_blockers": [
+        "heuristic_metal_hydrolase_collapse",
+        "representation_boundary_requires_glycoside_split",
+        "broader_duplicate_screen_required"
+      ],
+      "panel_rank": 1,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P0DUB6",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P0DUB6",
+      "name": "Human alpha-amylase 1A",
+      "lane": "tim_barrel_glycosidase_collision_positive",
+      "candidate_role": "external_positive_lead",
+      "expected_router_behavior": "route_to_review_only_retaining_glycosidase_TIM_barrel_candidate",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1C8Q",
+          "1JXJ",
+          "1JXK"
+        ],
+        "alphafold_id": "P0DUB6"
+      },
+      "catalytic_residue_evidence": "UniProt active sites D212 nucleophile and E248 proton donor; chloride/Ca binding context present.",
+      "substrate_or_analog_state": "starch/glycan substrate family with multiple inhibitor/oligosaccharide PDB states expected.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P0DUB6/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1C8Q"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1JXJ"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1JXK"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 2,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q9H227",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q9H227",
+      "name": "Cytosolic beta-glucosidase",
+      "lane": "retaining_glycoside_hydrolase_two_carboxylates",
+      "candidate_role": "external_positive_lead",
+      "expected_router_behavior": "route_to_review_only_retaining_beta_glucosidase_candidate",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "2E9L",
+          "2E9M",
+          "2JFE"
+        ],
+        "alphafold_id": "Q9H227"
+      },
+      "catalytic_residue_evidence": "UniProt active sites E165 proton donor and E373 nucleophile; multiple substrate binding features.",
+      "substrate_or_analog_state": "substrate-bound or inhibitor-bound glucoside PDB states available.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q9H227/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2E9L"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2E9M"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2JFE"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 3,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q9Y3R4",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q9Y3R4",
+      "name": "Sialidase-2",
+      "lane": "glycoside_hydrolase_acid_base_variant",
+      "candidate_role": "external_positive_lead",
+      "expected_router_behavior": "route_to_review_only_sialidase_glycosidase_candidate_with_no_generic_hydrolase_import",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1SNT",
+          "1SO7",
+          "1VCU"
+        ],
+        "alphafold_id": "Q9Y3R4"
+      },
+      "catalytic_residue_evidence": "UniProt active sites D46 proton acceptor, D334 nucleophile, Y355 annotated active site; substrate binding positions present.",
+      "substrate_or_analog_state": "sialic-acid substrate/analog binding context recorded in PDB/UniProt.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q9Y3R4/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1SNT"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1SO7"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1VCU"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 4,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q9BZP6",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q9BZP6",
+      "name": "Acidic mammalian chitinase",
+      "lane": "substrate_assisted_glycoside_hydrolase",
+      "candidate_role": "external_positive_lead",
+      "expected_router_behavior": "route_to_review_only_chitinase_candidate_with_substrate_assisted_geometry_check",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "2YBT",
+          "2YBU",
+          "3FXY"
+        ],
+        "alphafold_id": "Q9BZP6"
+      },
+      "catalytic_residue_evidence": "UniProt active site E140 proton donor and chitin binding sites; GH18 substrate-assisted mechanism should not require a second enzyme nucleophile.",
+      "substrate_or_analog_state": "chitin oligosaccharide binding states available.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q9BZP6/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2YBT"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2YBU"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/3FXY"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 5,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q13231",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q13231",
+      "name": "Chitotriosidase-1",
+      "lane": "substrate_assisted_glycoside_hydrolase",
+      "candidate_role": "external_positive_lead",
+      "expected_router_behavior": "route_to_review_only_chitinase_candidate_with_substrate_assisted_geometry_check",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1GUV",
+          "1HKI",
+          "1HKJ"
+        ],
+        "alphafold_id": "Q13231"
+      },
+      "catalytic_residue_evidence": "UniProt active site E140 proton donor and chitin binding sites.",
+      "substrate_or_analog_state": "chitin oligosaccharide/inhibitor structures available.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q13231/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1GUV"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1HKI"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1HKJ"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 6,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P38567",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P38567",
+      "name": "Hyaluronidase PH-20",
+      "lane": "inverting_or_single_acid_glycoside_hydrolase",
+      "candidate_role": "external_positive_lead",
+      "expected_router_behavior": "route_to_review_only_hyaluronidase_candidate_or_abstain_if_geometry_not_supported",
+      "provenance_tier": "tier_C_external_incomplete",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "9JUB"
+        ],
+        "alphafold_id": "P38567"
+      },
+      "catalytic_residue_evidence": "UniProt active site D148 proton donor; only one catalytic feature surfaced in scout, so acid/base geometry is incomplete.",
+      "substrate_or_analog_state": "glycosaminoglycan substrate context expected; explicit analog state needs PDB inspection.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P38567/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/9JUB"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 7,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P35573",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P35573",
+      "name": "Glycogen debranching enzyme",
+      "lane": "retaining_glycoside_hydrolase_two_carboxylates",
+      "candidate_role": "external_positive_lead",
+      "expected_router_behavior": "route_to_review_only_debranching_glycosidase_candidate_after_domain_disambiguation",
+      "provenance_tier": "tier_C_external_incomplete",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "8ZEQ"
+        ],
+        "alphafold_id": "P35573"
+      },
+      "catalytic_residue_evidence": "UniProt active site features at D526, D529, D627 without role text in scout; needs domain-specific residue-role confirmation.",
+      "substrate_or_analog_state": "glycogen/oligosaccharide substrate family; analog state not yet inspected.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P35573/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/8ZEQ"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 8,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q86W56",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q86W56",
+      "name": "Poly(ADP-ribose) glycohydrolase",
+      "lane": "non_glycan_glycosidic_hydrolase_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "abstain_or_route_to_ADP_ribose_glycohydrolase_review_only_not_glycan_GH",
+      "provenance_tier": "tier_C_external_incomplete",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "4A0D",
+          "4B1G",
+          "4B1H"
+        ],
+        "alphafold_id": "Q86W56"
+      },
+      "catalytic_residue_evidence": "UniProt active sites E737/E755/E756 charge relay/proton donor; substrate binding sites for poly(ADP-ribose).",
+      "substrate_or_analog_state": "ADP-ribose analog/product states available in PDB; not a carbohydrate glycan hydrolase.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q86W56/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4A0D"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4B1G"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4B1H"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 9,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P30176",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P30176",
+      "name": "N-glycosidase YbiA",
+      "lane": "n_glycosidase_boundary",
+      "candidate_role": "external_lead_incomplete",
+      "expected_router_behavior": "abstain_until_active_site_roles_are_sourced",
+      "provenance_tier": "tier_C_external_incomplete",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "2B3W"
+        ],
+        "alphafold_id": "P30176"
+      },
+      "catalytic_residue_evidence": "Existing manifest has EC/name/structure only; active-site evidence not sampled locally.",
+      "substrate_or_analog_state": "riboflavin biosynthesis intermediate N-glycosidase; substrate analog state not yet inspected.",
+      "sequence_neighbor_expectation": "existing bounded current-reference screen: no_near_duplicate_signal",
+      "foldseek_neighbor_expectation": "existing external nearest O15247 at TM 0.4245, below external structural threshold",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P30176/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2B3W"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 10,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P29372",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P29372",
+      "name": "DNA-3-methyladenine glycosylase",
+      "lane": "dna_glycosylase_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "abstain_or_route_to_DNA_glycosylase_not_glycan_GH",
+      "provenance_tier": "tier_C_external_incomplete",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1BNK",
+          "1EWN",
+          "1F4R"
+        ],
+        "alphafold_id": "P29372"
+      },
+      "catalytic_residue_evidence": "Local readiness audit has reaction context but no sourced active-site positions; structures exist.",
+      "substrate_or_analog_state": "DNA/base lesion substrate states available; not glycan hydrolase.",
+      "sequence_neighbor_expectation": "existing bounded current-reference screen: no_near_duplicate_signal",
+      "foldseek_neighbor_expectation": "existing external nearest Q969G6 at TM 0.4322, below external structural threshold",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P29372/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1BNK"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1EWN"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1F4R"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 11,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P33025",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P33025",
+      "name": "Pseudouridine-5-phosphate glycosidase",
+      "lane": "glycosidase_lyase_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_current_duplicate_or_abstain_as_metal_assisted_glycosidase_boundary",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "4GIJ",
+          "4GIK",
+          "4GIL"
+        ],
+        "alphafold_id": "P33025"
+      },
+      "catalytic_residue_evidence": "Local axis records source-traced active-site positions 31 and 166 plus Mn/substrate context; exact role labels need review.",
+      "substrate_or_analog_state": "substrate and Mn(2+) binding context; current-countable structural duplicate signal already blocks import.",
+      "sequence_neighbor_expectation": "existing bounded current-reference screen: no_near_duplicate_signal",
+      "foldseek_neighbor_expectation": "existing current-countable structural duplicate signal; external nearest Q9Y5N5 at TM 0.5061",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P33025/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4GIJ"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4GIK"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4GIL"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 12,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:O15527",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "O15527",
+      "name": "Human OGG1 N-glycosylase/DNA lyase",
+      "lane": "dna_glycosylase_lyase_boundary",
+      "candidate_role": "sequence_holdout_control",
+      "expected_router_behavior": "keep_as_exact_reference_holdout_or_abstain_not_external_positive",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1EBM",
+          "1FN7",
+          "1HU0"
+        ],
+        "alphafold_id": "O15527"
+      },
+      "catalytic_residue_evidence": "Existing import readiness says active-site evidence not sampled in external pilot; M-CSA analogs exist for bifunctional DNA glycosylase/lyase.",
+      "substrate_or_analog_state": "DNA lesion/AP lyase substrate states available; exact reference holdout blocks use as external positive.",
+      "sequence_neighbor_expectation": "existing import readiness: exact_reference_holdout / sequence_alignment_near_duplicate_candidate_holdout",
+      "foldseek_neighbor_expectation": "do_not_use_as_external_fold_generalization_positive",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/O15527/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1EBM"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1FN7"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1HU0"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 13,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P06746",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P06746",
+      "name": "DNA polymerase beta 5-dRP lyase",
+      "lane": "dna_lyase_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "route_to_DNA_lyase_review_only_or_abstain_not_glycoside_hydrolase",
+      "provenance_tier": "tier_C_external_incomplete",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1BPX",
+          "1BPY",
+          "1BPZ"
+        ],
+        "alphafold_id": "P06746"
+      },
+      "catalytic_residue_evidence": "UniProt/local pilot active site K72 nucleophile for 5-dRP lyase Schiff-base intermediate with DNA; PubMed 9572863.",
+      "substrate_or_analog_state": "DNA/AP-site substrate context; lyase chemistry rather than glycosidic hydrolysis.",
+      "sequence_neighbor_expectation": "existing bounded current-reference screen: no_near_duplicate_signal",
+      "foldseek_neighbor_expectation": "requires broader current-countable Foldseek duplicate screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P06746/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1BPX"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1BPY"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1BPZ"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 14,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P39116",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P39116",
+      "name": "Bacillus subtilis pectate lyase",
+      "lane": "polysaccharide_lyase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_polysaccharide_lyase_beta_elimination_not_GH_hydrolysis",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1BN8",
+          "2BSP",
+          "2NZM"
+        ],
+        "alphafold_id": "P39116"
+      },
+      "catalytic_residue_evidence": "UniProt active site K300 and Ca(2+) binding sites 205/244/248; pectate lyase eliminative cleavage.",
+      "substrate_or_analog_state": "Ca-bound pectate/polysaccharide lyase structures available.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P39116/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1BN8"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2BSP"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2NZM"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 15,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q00704",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q00704",
+      "name": "Non-sulfated chondroitin lyase E66",
+      "lane": "polysaccharide_lyase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_chondroitin_lyase_not_GH_hydrolysis",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "3VSM",
+          "3VSN"
+        ],
+        "alphafold_id": "Q00704"
+      },
+      "catalytic_residue_evidence": "UniProt active sites H236/H291 proton acceptors and Y299 proton donor.",
+      "substrate_or_analog_state": "chondroitin substrate/product analog states expected.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q00704/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/3VSM"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/3VSN"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 16,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q9AQS0",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q9AQS0",
+      "name": "Xanthan lyase",
+      "lane": "polysaccharide_lyase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_xanthan_lyase_beta_elimination_not_GH_hydrolysis",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1J0M",
+          "1J0N",
+          "1X1H"
+        ],
+        "alphafold_id": "Q9AQS0"
+      },
+      "catalytic_residue_evidence": "UniProt active site D255 proton donor/acceptor; xanthan and Ca binding sites.",
+      "substrate_or_analog_state": "xanthan substrate binding context present.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q9AQS0/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1J0M"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1J0N"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1X1H"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 17,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:C5G6D7",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "C5G6D7",
+      "name": "Chondroitin sulfate ABC exolyase",
+      "lane": "polysaccharide_lyase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_chondroitin_lyase_not_GH_hydrolysis",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "2Q1F"
+        ],
+        "alphafold_id": "C5G6D7"
+      },
+      "catalytic_residue_evidence": "UniProt active sites H345/H454 proton acceptors and Y461 proton donor; Ca sites present.",
+      "substrate_or_analog_state": "chondroitin sulfate lyase substrate context; not glycosidic hydrolysis.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/C5G6D7/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2Q1F"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 18,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P0CZ00",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P0CZ00",
+      "name": "Hyaluronate lyase HylB",
+      "lane": "polysaccharide_lyase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_hyaluronate_lyase_not_GH_hydrolysis",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "8FNX",
+          "8G0O"
+        ],
+        "alphafold_id": "P0CZ00"
+      },
+      "catalytic_residue_evidence": "UniProt active sites H222, Y272, Y281.",
+      "substrate_or_analog_state": "hyaluronan lyase substrate/analog state likely in recent PDB entries.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P0CZ00/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/8FNX"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/8G0O"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 19,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P34949",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P34949",
+      "name": "Human mannose-6-phosphate isomerase",
+      "lane": "sugar_isomerase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_or_abstain_as_isomerase_not_glycoside_hydrolase",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [],
+        "alphafold_id": "P34949"
+      },
+      "catalytic_residue_evidence": "Local active-site evidence from UniProt homology: active site 295; explicit residue role needs source follow-up.",
+      "substrate_or_analog_state": "mannose-6-phosphate/fructose-6-phosphate reaction; no PDB in existing manifest, AlphaFold only.",
+      "sequence_neighbor_expectation": "existing bounded current-reference screen: no_near_duplicate_signal",
+      "foldseek_neighbor_expectation": "existing heuristic scope top1 mismatch to flavin_dehydrogenase_reductase; needs Foldseek screen if structure selected",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P34949/entry"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 20,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P60174",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P60174",
+      "name": "Human triosephosphate isomerase",
+      "lane": "non_carbohydrate_TIM_barrel_hard_negative",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_TIM_barrel_metabolic_isomerase_not_glycosidase",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1HTI",
+          "1KLG",
+          "1KLU"
+        ],
+        "alphafold_id": "P60174"
+      },
+      "catalytic_residue_evidence": "UniProt active sites H96 electrophile and E166 proton acceptor; substrate binding sites 12/14.",
+      "substrate_or_analog_state": "small-molecule triose-phosphate isomerase substrate/product states available.",
+      "sequence_neighbor_expectation": "existing bounded current-reference screen: no_near_duplicate_signal",
+      "foldseek_neighbor_expectation": "expected TIM-barrel Foldseek neighbors including glycosidase TIM barrels; router must not use fold alone",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P60174/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1HTI"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1KLG"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1KLU"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 21,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P06744",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P06744",
+      "name": "Human glucose-6-phosphate isomerase",
+      "lane": "sugar_isomerase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_sugar_phosphate_isomerase_not_glycosidase",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1IAT",
+          "1IRI",
+          "1JIQ"
+        ],
+        "alphafold_id": "P06744"
+      },
+      "catalytic_residue_evidence": "UniProt active sites H358 proton donor, E389, K519; glucose-6-phosphate binding sites.",
+      "substrate_or_analog_state": "glucose-6-phosphate/fructose-6-phosphate analog states available.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P06744/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1IAT"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1IRI"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1JIQ"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 22,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q9BV20",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q9BV20",
+      "name": "Human methylthioribose-1-phosphate isomerase",
+      "lane": "non_carbohydrate_TIM_barrel_hard_negative",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_isomerase_TIM_like_fold_not_glycosidase",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "4LDQ",
+          "4LDR"
+        ],
+        "alphafold_id": "Q9BV20"
+      },
+      "catalytic_residue_evidence": "UniProt active site E248 proton donor.",
+      "substrate_or_analog_state": "methylthioribose-1-phosphate substrate analog state likely available.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q9BV20/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4LDQ"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4LDR"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 23,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P32140",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P32140",
+      "name": "E. coli sulfoquinovose isomerase",
+      "lane": "sugar_isomerase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_sugar_isomerase_not_glycosidase",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "2RGK"
+        ],
+        "alphafold_id": "P32140"
+      },
+      "catalytic_residue_evidence": "UniProt active sites E248/E383 proton donor/acceptor and sulfoquinovose binding sites.",
+      "substrate_or_analog_state": "6-sulfo-beta-D-quinovose binding context.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P32140/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2RGK"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 24,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P0A7Z0",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P0A7Z0",
+      "name": "E. coli ribose-5-phosphate isomerase A",
+      "lane": "sugar_isomerase_hard_boundary",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_ribose_phosphate_isomerase_not_GH",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1KS2",
+          "1LKZ",
+          "1O8B"
+        ],
+        "alphafold_id": "P0A7Z0"
+      },
+      "catalytic_residue_evidence": "UniProt active site D103 proton acceptor; substrate binding sites.",
+      "substrate_or_analog_state": "ribose/ribulose phosphate substrate analog states.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P0A7Z0/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1KS2"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1LKZ"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1O8B"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 25,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P37351",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P37351",
+      "name": "E. coli ribose-5-phosphate isomerase B",
+      "lane": "sugar_isomerase_hard_boundary",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_ribose_phosphate_isomerase_not_GH",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1NN4",
+          "2VVR"
+        ],
+        "alphafold_id": "P37351"
+      },
+      "catalytic_residue_evidence": "UniProt active sites C66 proton acceptor and H99 proton donor; ribulose-5-phosphate binding sites.",
+      "substrate_or_analog_state": "D-ribulose-5-phosphate binding context.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P37351/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1NN4"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2VVR"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 26,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P69922",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P69922",
+      "name": "E. coli L-fucose isomerase",
+      "lane": "sugar_isomerase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_metal_sugar_isomerase_not_GH",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1FUI"
+        ],
+        "alphafold_id": "P69922"
+      },
+      "catalytic_residue_evidence": "UniProt active sites E337/E361 proton acceptors and Mn(2+) binding.",
+      "substrate_or_analog_state": "fucose/fructose sugar isomerization with metal context.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P69922/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1FUI"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 27,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P14280",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P14280",
+      "name": "Tomato pectinesterase 1",
+      "lane": "carbohydrate_esterase_overlap",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "route_to_serine_or_aspartate_esterase_boundary_not_glycosidase",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1XG2"
+        ],
+        "alphafold_id": "P14280"
+      },
+      "catalytic_residue_evidence": "UniProt active sites D361 proton donor and D382 nucleophile; pectin substrate binding sites.",
+      "substrate_or_analog_state": "pectin methyl ester substrate context; ester hydrolysis, not glycosidic bond cleavage.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P14280/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1XG2"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 28,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P0C1A9",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P0C1A9",
+      "name": "Dickeya pectinesterase A",
+      "lane": "carbohydrate_esterase_overlap",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "route_to_carbohydrate_esterase_boundary_not_GH",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "2NSP",
+          "2NST",
+          "2NT6"
+        ],
+        "alphafold_id": "P0C1A9"
+      },
+      "catalytic_residue_evidence": "UniProt active sites D178 proton donor and D199 nucleophile; substrate binding positions.",
+      "substrate_or_analog_state": "pectin methyl ester substrate analog states available.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P0C1A9/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2NSP"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2NST"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2NT6"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 29,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q09LX1",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q09LX1",
+      "name": "Geobacillus acetylxylan esterase",
+      "lane": "carbohydrate_esterase_overlap",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "route_to_ser_his_acid_hydrolase_or_abstain_not_GH",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "3W7V",
+          "4JHL",
+          "4JJ4"
+        ],
+        "alphafold_id": "Q09LX1"
+      },
+      "catalytic_residue_evidence": "UniProt active site S15 nucleophile plus D191/H194 charge relay.",
+      "substrate_or_analog_state": "xylan acetyl ester substrate context; alpha/beta hydrolase-like triad expected.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q09LX1/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/3W7V"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4JHL"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4JJ4"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 30,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:O42807",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "O42807",
+      "name": "Aspergillus feruloyl esterase A",
+      "lane": "carbohydrate_esterase_overlap",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "route_to_ser_his_acid_hydrolase_or_abstain_not_GH",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1USW",
+          "1UWC",
+          "1UZA"
+        ],
+        "alphafold_id": "O42807"
+      },
+      "catalytic_residue_evidence": "UniProt active site S154 nucleophile plus D215/H268 charge relay; substrate binding positions.",
+      "substrate_or_analog_state": "feruloylated carbohydrate ester analog context.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/O42807/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1USW"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1UWC"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1UZA"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 31,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P83218",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P83218",
+      "name": "Carrot pectinesterase",
+      "lane": "carbohydrate_esterase_overlap",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "route_to_pectinesterase_boundary_not_GH",
+      "provenance_tier": "tier_B_external_curated",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1GQ8"
+        ],
+        "alphafold_id": "P83218"
+      },
+      "catalytic_residue_evidence": "UniProt active sites D136 proton donor and D157 nucleophile; substrate binding sites.",
+      "substrate_or_analog_state": "pectin methyl ester substrate context.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P83218/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1GQ8"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 32,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q99034",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q99034",
+      "name": "Hypocrea acetylxylan esterase",
+      "lane": "carbohydrate_esterase_overlap",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "abstain_until_full_ser_his_acid_triad_confirmed",
+      "provenance_tier": "tier_C_external_incomplete",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1QOZ"
+        ],
+        "alphafold_id": "Q99034"
+      },
+      "catalytic_residue_evidence": "UniProt active site S121 surfaced in scout; charge relay positions need source completion.",
+      "substrate_or_analog_state": "acetylxylan esterase substrate context expected.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q99034/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1QOZ"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 33,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:O60568",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "O60568",
+      "name": "Human LH3 procollagen glycosyltransferase/hydroxylase",
+      "lane": "glycosyltransferase_and_metal_hydroxylase_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_or_abstain_as_transferase/hydroxylase_not_GH",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "6FXK",
+          "6FXM",
+          "6FXR"
+        ],
+        "alphafold_id": "O60568"
+      },
+      "catalytic_residue_evidence": "Existing pilot has binding context only: UDP, Mn/Fe, 2-oxoglutarate; explicit active-site residues absent.",
+      "substrate_or_analog_state": "UDP-sugar/metal/2-oxoglutarate binding context; transferase/hydroxylase multifunctional row.",
+      "sequence_neighbor_expectation": "existing bounded current-reference screen: no_near_duplicate_signal",
+      "foldseek_neighbor_expectation": "existing external nearest Q9Y5N5 at TM 0.4844; no external structural neighbor above threshold",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/O60568/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/6FXK"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/6FXM"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/6FXR"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 34,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P23872",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P23872",
+      "name": "E. coli acetyl esterase",
+      "lane": "non_carbohydrate_esterase_hard_negative",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_generic_esterase_not_carbohydrate_GH",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "4KRX",
+          "4KRY"
+        ],
+        "alphafold_id": "P23872"
+      },
+      "catalytic_residue_evidence": "UniProt active site triad positions S165/D262/H292 surfaced without role text.",
+      "substrate_or_analog_state": "acetyl ester hydrolysis; not glycan or glycosidic bond.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P23872/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4KRX"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4KRY"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 35,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:P06276",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "P06276",
+      "name": "Human cholinesterase",
+      "lane": "non_carbohydrate_esterase_hard_negative",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_serine_esterase_not_carbohydrate_GH",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1P0I",
+          "1P0M",
+          "1P0P"
+        ],
+        "alphafold_id": "P06276"
+      },
+      "catalytic_residue_evidence": "UniProt active sites S226 acyl-ester intermediate, E353/H466 charge relay.",
+      "substrate_or_analog_state": "small-molecule ester substrate/inhibitor states; hard negative for carbohydrate esterase overlap.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P06276/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1P0I"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1P0M"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1P0P"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 36,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q9L9D7",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q9L9D7",
+      "name": "Rhodococcus cocaine esterase",
+      "lane": "non_carbohydrate_esterase_hard_negative",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_serine_esterase_not_carbohydrate_GH",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "1JU3",
+          "1JU4",
+          "1L7Q"
+        ],
+        "alphafold_id": "Q9L9D7"
+      },
+      "catalytic_residue_evidence": "UniProt active sites S117 acyl-ester intermediate, D259/H287 charge relay.",
+      "substrate_or_analog_state": "small-molecule ester substrate analogs; non-carbohydrate hydrolase hard negative.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q9L9D7/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1JU3"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1JU4"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1L7Q"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 37,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q13907",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q13907",
+      "name": "Human isopentenyl-diphosphate isomerase 1",
+      "lane": "non_carbohydrate_isomerase_hard_negative",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_non_carbohydrate_isomerase",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "2DHO",
+          "2I6K",
+          "2ICJ"
+        ],
+        "alphafold_id": "Q13907"
+      },
+      "catalytic_residue_evidence": "Current external manifest structure lead; catalytic residue details not sourced in this panel.",
+      "substrate_or_analog_state": "isoprenoid diphosphate isomerization; no carbohydrate substrate.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q13907/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2DHO"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2I6K"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2ICJ"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 38,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "uniprot:Q9BXS1",
+      "source_type": "external_uniprot_pdb_lead",
+      "accession": "Q9BXS1",
+      "name": "Human isopentenyl-diphosphate isomerase 2",
+      "lane": "non_carbohydrate_isomerase_hard_negative",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_non_carbohydrate_isomerase",
+      "provenance_tier": "tier_D_control_only",
+      "structure_availability": {
+        "status": "pdb_or_alphafold_available",
+        "pdb_ids": [
+          "2PNY"
+        ],
+        "alphafold_id": "Q9BXS1"
+      },
+      "catalytic_residue_evidence": "Current external manifest structure lead; catalytic residue details not sourced in this panel.",
+      "substrate_or_analog_state": "isoprenoid diphosphate isomerization; no carbohydrate substrate.",
+      "sequence_neighbor_expectation": "not_yet_screened_against_current_reference_for_this_new_panel",
+      "foldseek_neighbor_expectation": "requires_current_countable_Foldseek_neighbor_screen",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q9BXS1/entry"
+        },
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/2PNY"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "current_reference_sequence_screen_required",
+        "current_countable_Foldseek_screen_required",
+        "review_only_terminal_decision_required"
+      ],
+      "panel_rank": 39,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:428",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:428",
+      "name": "mannan endo-1,4-beta-mannosidase",
+      "lane": "retaining_glycoside_hydrolase_two_carboxylates",
+      "candidate_role": "packet1_fold_conflict_anchor_with_TIM_caveat",
+      "expected_router_behavior": "route_to_OOS_review_only_glycosidase_boundary_not_current_v1_hydrolase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1BQC"
+        ],
+        "selected_structure_id": "1BQC"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: E128 proton donor and E225 nucleophile; retaining mannanase double-displacement glycosyl-enzyme chemistry.",
+      "substrate_or_analog_state": "mannan/glycan substrate context; local selected PDB 1BQC.",
+      "sequence_neighbor_expectation": "Packet 1 sequence queue: OOS abstention/no seed neighbor; nearest m_csa:421 OOS J=0.0584.",
+      "foldseek_neighbor_expectation": "Targeted Foldseek chunk: partial fold-conflict with incidental primary TIM-barrel hits, including max pair TM >0.70; use as caveated TIM-barrel collision.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1BQC"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:428"
+        }
+      ],
+      "notes": [
+        "Existing curated registry row is out_of_scope; not a new label."
+      ],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 40,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:440",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:440",
+      "name": "cellulose 1,4-beta-cellobiosidase non-reducing end",
+      "lane": "inverting_glycoside_hydrolase",
+      "candidate_role": "packet1_router_abstention_anchor",
+      "expected_router_behavior": "route_to_OOS_review_only_inverting_glycosidase_or_correct_abstention",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1QK2"
+        ],
+        "selected_structure_id": "1QK2"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: Asp-assisted water attack and proton transfer; inverting glycosidase with Asp/Glu acid-base water geometry.",
+      "substrate_or_analog_state": "cellulose/cellobiose substrate context; selected PDB 1QK2.",
+      "sequence_neighbor_expectation": "Packet 1 sequence queue: OOS abstention/no seed neighbor; nearest m_csa:421 OOS J=0.0854.",
+      "foldseek_neighbor_expectation": "Targeted Foldseek: zero TM-pair hits in Packet 1 run; should be near-orphan abstention diagnostic.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1QK2"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:440"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 41,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:397",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:397",
+      "name": "alpha-amylase",
+      "lane": "tim_barrel_glycosidase_collision_positive",
+      "candidate_role": "mcsa_positive_anchor",
+      "expected_router_behavior": "route_to_review_only_retaining_alpha_amylase_candidate_not_generic_TIM",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1AMY"
+        ],
+        "selected_structure_id": "1AMY"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: D179 nucleophile, E204 acid/base, D289 stabilizer; retaining double displacement.",
+      "substrate_or_analog_state": "starch/glycan substrate analog context in PDB family.",
+      "sequence_neighbor_expectation": "Likely same-CAZy sequence neighbors; should not match current v1 hydrolase by sequence alone.",
+      "foldseek_neighbor_expectation": "Expected Foldseek neighbors include TIM-barrel glycosidases and unrelated TIM barrels; success requires residue-role rescue.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1AMY"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:397"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 42,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:422",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:422",
+      "name": "beta-galactosidase",
+      "lane": "retaining_glycoside_hydrolase_two_carboxylates",
+      "candidate_role": "mcsa_positive_anchor",
+      "expected_router_behavior": "route_to_review_only_retaining_beta_galactosidase_candidate",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "4V40"
+        ],
+        "selected_structure_id": "4V40"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: E537 nucleophile and E461 catalytic water/acid-base; retaining glycosyl-enzyme chemistry.",
+      "substrate_or_analog_state": "galactoside substrate/product analog context; selected PDB 4V40.",
+      "sequence_neighbor_expectation": "Expect GH2 sequence neighbors, not current v1 seed-family support.",
+      "foldseek_neighbor_expectation": "Foldseek may collide with TIM-barrel/glycosidase folds; acid/base roles should disambiguate.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/4V40"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:422"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 43,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:442",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:442",
+      "name": "beta-glucosidase GH1",
+      "lane": "retaining_glycoside_hydrolase_two_carboxylates",
+      "candidate_role": "mcsa_positive_anchor",
+      "expected_router_behavior": "route_to_review_only_retaining_beta_glucosidase_candidate",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1CBG"
+        ],
+        "selected_structure_id": "1CBG"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: E397 nucleophile and E183 acid catalyst; retaining glucosidase.",
+      "substrate_or_analog_state": "glucoside substrate context; selected PDB 1CBG.",
+      "sequence_neighbor_expectation": "Expected GH1 sequence neighbors; OOS relative to current five v1 families.",
+      "foldseek_neighbor_expectation": "Foldseek should find glycosidase barrel neighbors; not generic hydrolase import.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1CBG"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:442"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 44,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:432",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:432",
+      "name": "endo-1,4-beta-xylanase GH11",
+      "lane": "retaining_glycoside_hydrolase_two_carboxylates",
+      "candidate_role": "mcsa_positive_anchor",
+      "expected_router_behavior": "route_to_review_only_retaining_xylanase_candidate",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1BVV"
+        ],
+        "selected_structure_id": "1BVV"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: E172 acid/base and E78 nucleophile in glycosyl-enzyme mechanism.",
+      "substrate_or_analog_state": "xylan substrate context; selected PDB 1BVV.",
+      "sequence_neighbor_expectation": "Expected GH11 sequence/fold neighbors; not v1 seed positive.",
+      "foldseek_neighbor_expectation": "Foldseek should cluster with xylanases rather than serine/metal hydrolases.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1BVV"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:432"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 45,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:475",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:475",
+      "name": "chitinase GH19 class II",
+      "lane": "inverting_glycoside_hydrolase",
+      "candidate_role": "mcsa_positive_anchor",
+      "expected_router_behavior": "route_to_review_only_inverting_chitinase_candidate",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1CNS"
+        ],
+        "selected_structure_id": "1CNS"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: E67/E89 acidic pair; mechanism notes distinguish GH19 from hen-egg lysozyme-like proposal.",
+      "substrate_or_analog_state": "chitin substrate context; selected PDB 1CNS.",
+      "sequence_neighbor_expectation": "Expected GH19 neighbors; not current v1 hydrolase.",
+      "foldseek_neighbor_expectation": "Foldseek may not recover same fold broadly; geometry acid/base evidence should drive route.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1CNS"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:475"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 46,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:478",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:478",
+      "name": "chitinase GH18 class II",
+      "lane": "substrate_assisted_glycoside_hydrolase",
+      "candidate_role": "mcsa_positive_anchor",
+      "expected_router_behavior": "route_to_review_only_substrate_assisted_chitinase_candidate",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1CTN"
+        ],
+        "selected_structure_id": "1CTN"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: D288/D290/E292 and Y367; substrate-assisted retention through N-acetyl participation.",
+      "substrate_or_analog_state": "chitin/N-acetylglucosamine substrate context; selected PDB 1CTN.",
+      "sequence_neighbor_expectation": "Expected GH18 sequence/fold neighbors.",
+      "foldseek_neighbor_expectation": "Foldseek success is same GH18/substrate-assisted neighborhood without confusing missing enzyme nucleophile for negative evidence.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1CTN"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:478"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 47,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:203",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:203",
+      "name": "lysozyme GH22",
+      "lane": "retaining_glycoside_hydrolase_two_carboxylates",
+      "candidate_role": "mcsa_positive_anchor",
+      "expected_router_behavior": "route_to_review_only_lysozyme_candidate",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1DPX"
+        ],
+        "selected_structure_id": "1DPX"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: D52 nucleophile and E35 acid/base; classic retaining lysozyme mechanism plus obsolete alternative noted.",
+      "substrate_or_analog_state": "peptidoglycan substrate context; selected PDB 1DPX.",
+      "sequence_neighbor_expectation": "Expected lysozyme sequence/fold neighbors.",
+      "foldseek_neighbor_expectation": "Foldseek may collide with other lysozyme-like folds; acid/base pair and glycan pocket should rescue.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1DPX"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:203"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 48,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:559",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:559",
+      "name": "cellulase GH9",
+      "lane": "inverting_glycoside_hydrolase",
+      "candidate_role": "mcsa_positive_anchor",
+      "expected_router_behavior": "route_to_review_only_inverting_cellulase_candidate",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1JS4"
+        ],
+        "selected_structure_id": "1JS4"
+      },
+      "catalytic_residue_evidence": "M-CSA/local text: acid protonates glycosidic oxygen and base extracts nucleophilic water; Glu470 noted in local export text.",
+      "substrate_or_analog_state": "cellulose substrate context; selected PDB 1JS4.",
+      "sequence_neighbor_expectation": "Expected cellulase sequence/fold neighbors.",
+      "foldseek_neighbor_expectation": "Should not require retaining glycosyl-enzyme geometry; success is inverting acid/base water geometry.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1JS4"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:559"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 49,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:681",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:681",
+      "name": "pectinesterase",
+      "lane": "carbohydrate_esterase_overlap",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "route_to_carbohydrate_esterase_boundary_not_glycoside_hydrolase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1GQ8"
+        ],
+        "selected_structure_id": "1GQ8"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: pectin methylesterase uses nucleophilic Asp157/Asp acid-base ester hydrolysis, not glycosidic C1 hydrolysis.",
+      "substrate_or_analog_state": "methylated galacturonan ester substrate context; selected PDB 1GQ8.",
+      "sequence_neighbor_expectation": "May have carbohydrate-binding sequence context but should not become GH positive.",
+      "foldseek_neighbor_expectation": "Foldseek may prefer carbohydrate-active beta-helix/esterase neighbors; bond-type must reject GH route.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1GQ8"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:681"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 50,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:431",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:431",
+      "name": "acetylxylan esterase",
+      "lane": "carbohydrate_esterase_overlap",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "route_to_ser_his_acid_hydrolase_or_carbohydrate_esterase_boundary_not_GH",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1BS9"
+        ],
+        "selected_structure_id": "1BS9"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: classical Ser-His-Asp nucleophilic substitution with S90 acyl enzyme and oxyanion hole.",
+      "substrate_or_analog_state": "acetylated xylan ester context; selected PDB 1BS9.",
+      "sequence_neighbor_expectation": "Carbohydrate substrate words likely but sequence/fold should not imply GH.",
+      "foldseek_neighbor_expectation": "Correct router behavior is serine-esterase boundary or abstention, never glycosidase.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1BS9"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:431"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 51,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:705",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:705",
+      "name": "rhamnogalacturonan acetylesterase",
+      "lane": "carbohydrate_esterase_overlap",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "route_to_ser_his_acid_hydrolase_boundary_not_GH",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1PP4"
+        ],
+        "selected_structure_id": "1PP4"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: S9 nucleophile with D192/H195 charge relay; acylation/deacylation ester hydrolysis.",
+      "substrate_or_analog_state": "rhamnogalacturonan acetyl ester substrate context; selected PDB 1PP4.",
+      "sequence_neighbor_expectation": "May be close to serine hydrolase sequence/fold, not GH.",
+      "foldseek_neighbor_expectation": "Success is bond-type boundary: ester hydrolysis versus glycosidic hydrolysis.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1PP4"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:705"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 52,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:184",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:184",
+      "name": "pectate lyase L",
+      "lane": "polysaccharide_lyase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_polysaccharide_lyase_beta_elimination_not_GH",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1RU4"
+        ],
+        "selected_structure_id": "1RU4"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: K248 base/Asn243 and Ca-assisted E1cb/E2 beta-elimination; no hydrolytic acid/base pair.",
+      "substrate_or_analog_state": "pectate substrate context; selected PDB 1RU4.",
+      "sequence_neighbor_expectation": "Sequence may look carbohydrate-active; should be OOS for GH.",
+      "foldseek_neighbor_expectation": "Foldseek may hit polysaccharide lyase beta-helix neighbors; elimination chemistry should hard-boundary reject.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1RU4"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:184"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 53,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:439",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:439",
+      "name": "hyaluronate lyase",
+      "lane": "polysaccharide_lyase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_hyaluronate_lyase_beta_elimination_not_GH",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1C82"
+        ],
+        "selected_structure_id": "1C82"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: H232/Y241/Asn182/Arg295 support beta-elimination in positive glycan cleft.",
+      "substrate_or_analog_state": "hyaluronan substrate context; selected PDB 1C82.",
+      "sequence_neighbor_expectation": "Carbohydrate sequence/fold context expected but no hydrolysis.",
+      "foldseek_neighbor_expectation": "Router should use reaction center/bond chemistry, not glycan pocket alone.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1C82"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:439"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 54,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:441",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:441",
+      "name": "chondroitin AC lyase",
+      "lane": "polysaccharide_lyase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_chondroitin_lyase_beta_elimination_not_GH",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1CB8"
+        ],
+        "selected_structure_id": "1CB8"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: Y212/H203/Arg266/Glu349/Asn153; general base abstracts uronic acid C5 proton.",
+      "substrate_or_analog_state": "chondroitin substrate context; selected PDB 1CB8.",
+      "sequence_neighbor_expectation": "Carbohydrate active sequence/fold expected; must remain lyase boundary.",
+      "foldseek_neighbor_expectation": "Foldseek success is same lyase neighborhood with no GH promotion.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1CB8"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:441"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 55,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:736",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:736",
+      "name": "mannose-6-phosphate isomerase",
+      "lane": "sugar_isomerase_hard_boundary",
+      "candidate_role": "near_family_hard_negative",
+      "expected_router_behavior": "reject_as_mannose_phosphate_isomerase_not_GH",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1X9H"
+        ],
+        "selected_structure_id": "1X9H"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: E203/R135/H219/K298; ring opening and isomerization rather than glycosidic hydrolysis.",
+      "substrate_or_analog_state": "mannose-6-phosphate substrate context; selected PDB 1X9H.",
+      "sequence_neighbor_expectation": "May sequence/fold near sugar isomerases, not GH.",
+      "foldseek_neighbor_expectation": "Correct behavior is hard boundary or abstention.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1X9H"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:736"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 56,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:324",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:324",
+      "name": "triosephosphate isomerase",
+      "lane": "non_carbohydrate_TIM_barrel_hard_negative",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_TIM_barrel_isomerase_not_glycosidase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1TPH"
+        ],
+        "selected_structure_id": "1TPH"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: E164 catalytic base, H94 electrophile, loop closure residues; small-molecule isomerization.",
+      "substrate_or_analog_state": "DHAP/GAP substrate context; selected PDB 1TPH.",
+      "sequence_neighbor_expectation": "TIM sequence family, no glycosidase sequence expectation.",
+      "foldseek_neighbor_expectation": "Hard Foldseek collision control for TIM-barrel glycosidases: fold alone must fail.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1TPH"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:324"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 57,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:328",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:328",
+      "name": "phosphoribosylanthranilate isomerase",
+      "lane": "non_carbohydrate_TIM_barrel_hard_negative",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_TIM_barrel_metabolic_isomerase_not_glycosidase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1LBM"
+        ],
+        "selected_structure_id": "1LBM"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: C7 protonates ribosyl ring oxygen and D126 deprotonates C2 in Amadori rearrangement.",
+      "substrate_or_analog_state": "phosphoribosylanthranilate substrate context; selected PDB 1LBM.",
+      "sequence_neighbor_expectation": "TIM-barrel metabolic sequence/fold neighbors expected.",
+      "foldseek_neighbor_expectation": "Should collide structurally with m_csa:428-like TIM barrels but abstain/reject.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1LBM"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:328"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 58,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:550",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:550",
+      "name": "2-dehydro-3-deoxy-phosphogluconate aldolase",
+      "lane": "non_carbohydrate_TIM_barrel_hard_negative",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_aldolase_not_glycosidase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1FQ0"
+        ],
+        "selected_structure_id": "1FQ0"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: K133 Schiff-base nucleophile, E45 general base, R49 substrate stabilization.",
+      "substrate_or_analog_state": "KDPG aldolase substrate context; selected PDB 1FQ0.",
+      "sequence_neighbor_expectation": "TIM/aldolase-like sequence/fold expected, no GH.",
+      "foldseek_neighbor_expectation": "Foldseek may return TIM-barrel neighbors; learned/geometry route must reject.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1FQ0"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:550"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 59,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    },
+    {
+      "row_id": "m_csa:52",
+      "source_type": "existing_mcsa_anchor_or_control",
+      "entry_id": "m_csa:52",
+      "name": "fructose-bisphosphate aldolase class II",
+      "lane": "non_carbohydrate_metabolic_hard_negative",
+      "candidate_role": "OOS_hard_negative",
+      "expected_router_behavior": "reject_as_metal_aldolase_not_glycosidase",
+      "provenance_tier": "tier_A_mcsa_curated",
+      "structure_availability": {
+        "status": "local_geometry_row_available",
+        "pdb_ids": [
+          "1B57"
+        ],
+        "selected_structure_id": "1B57"
+      },
+      "catalytic_residue_evidence": "M-CSA/local geometry: Zn/His/Glu/Asp catalytic environment for aldol condensation/cleavage.",
+      "substrate_or_analog_state": "FBP/DHAP/G3P substrate context; selected PDB 1B57.",
+      "sequence_neighbor_expectation": "Metabolic aldolase sequence/fold expected.",
+      "foldseek_neighbor_expectation": "Hard negative for carbohydrate words and phosphate sugar substrate without glycosidic bond.",
+      "ready_for_label_import": false,
+      "countable_label_candidate": false,
+      "evidence_sources": [
+        {
+          "source": "RCSB PDB",
+          "url": "https://www.rcsb.org/structure/1B57"
+        },
+        {
+          "source": "M-CSA local geometry export",
+          "path": "artifacts/v3_geometry_features_875.json",
+          "entry_id": "m_csa:52"
+        }
+      ],
+      "notes": [],
+      "remaining_blockers": [
+        "review_only_panel_member_do_not_import",
+        "not_a_new_label_candidate"
+      ],
+      "panel_rank": 60,
+      "selection_frozen_before_scoring": true,
+      "predictive_use_allowed": false
+    }
+  ]
+}
