@@ -1,0 +1,971 @@
+{
+  "artifact_id": "v3_amr_enzyme_only_poc_scope_and_queue_20260528",
+  "automation_id": "amr-enzyme-poc-scout",
+  "schema_version": "amr_enzyme_poc_scope_queue.v1",
+  "created_utc": "2026-05-28T06:50:29Z",
+  "review_only": true,
+  "status": "scout_complete_no_imports",
+  "scope": {
+    "target_output": "AMR enzyme resistance mechanism class for known public enzymes",
+    "not_target_output": [
+      "clinical resistant or susceptible phenotype",
+      "MIC prediction",
+      "strain-level treatment guidance",
+      "variant design or resistance optimization",
+      "wet-lab protocol"
+    ],
+    "included_first_pass": [
+      "enzyme-mediated antibiotic inactivation mechanisms",
+      "known public enzyme families in CARD and AMRFinderPlus",
+      "OOS and near-negative controls for benchmark calibration"
+    ],
+    "excluded_from_geometry_claims": [
+      "efflux pumps and efflux components",
+      "regulators of AMR gene expression",
+      "porin loss or permeability mechanisms",
+      "target-protection proteins without catalytic active sites",
+      "resistance-associated point mutations in housekeeping targets",
+      "clinical phenotype labels"
+    ],
+    "files_intentionally_not_modified": [
+      "data/registries/mechanism_fingerprints.json",
+      "data/registries/mechanism_ontology.json",
+      "data/registries/source_registry.json",
+      "data/registries/curated_mechanism_labels.json",
+      "src/catalytic_earth/labels.py",
+      "src/catalytic_earth/ontology.py",
+      "src/catalytic_earth/fingerprints.py",
+      "production scoring, imports, or thresholds"
+    ]
+  },
+  "safety_notes": {
+    "classification_only": "This artifact is limited to benchmark design for detecting and classifying known public enzyme mechanism classes.",
+    "no_sequences_or_mutations": "No AMR sequences, engineered variants, mutational suggestions, active-site optimization advice, synthesis instructions, or wet-lab protocols are provided.",
+    "known_public_sources_only": "Candidate class names and family examples are restricted to known public AMR database terms and literature-indexed public resources.",
+    "evidence_language": "Use candidate, mechanism class, benchmark panel, source-derived, and review-only. Do not describe computational outputs as validated experimental resistance."
+  },
+  "public_source_access": [
+    {
+      "source": "CARD / Antibiotic Resistance Ontology",
+      "status": "accessible_for_browse_and_ontology_reference",
+      "checked_utc": "2026-05-28T06:50:29Z",
+      "urls": [
+        "https://card.mcmaster.ca/browse",
+        "https://github.com/arpcard/aro",
+        "https://card.mcmaster.ca/ontology/36696",
+        "https://card.mcmaster.ca/ontology/36013"
+      ],
+      "usable_for_next_run": [
+        "AMR Gene Family tags",
+        "Drug Class tags",
+        "Resistance Mechanism tags",
+        "enzyme-vs-non-enzyme scope filtering"
+      ],
+      "blockers": [
+        "Full CARD sequence/model downloads were not pulled in this scout; next run should record license/click-through constraints before local mirroring."
+      ],
+      "notes": "CARD exposes ARO pages for antibiotic inactivation enzyme, beta-lactamase subclasses, aminoglycoside modifying enzymes, macrolide inactivation enzymes, tetracycline inactivation enzymes, and related families."
+    },
+    {
+      "source": "NCBI AMRFinderPlus reference data",
+      "status": "accessible_public_ftp",
+      "checked_utc": "2026-05-28T06:50:29Z",
+      "urls": [
+        "https://www.ncbi.nlm.nih.gov/pathogens/antimicrobial-resistance/AMRFinder/",
+        "https://ftp.ncbi.nlm.nih.gov/pathogen/Antimicrobial_resistance/AMRFinderPlus/database/latest/"
+      ],
+      "observed_latest_database_timestamp": "2026-05-19 15:29",
+      "observed_small_metadata_files": [
+        "ReferenceGeneCatalog.txt 2.2M",
+        "ReferenceGeneHierarchy.txt 1.2M",
+        "fam.tsv 332K",
+        "version.txt 13B"
+      ],
+      "large_files_not_downloaded": [
+        "AMR.LIB 102M",
+        "AMR_CDS.fa 11M",
+        "AMRProt.fa 4.4M"
+      ],
+      "usable_for_next_run": [
+        "homology baseline labels",
+        "protein family hierarchy",
+        "AMR class/subclass metadata",
+        "core AMR enzyme reference accessions"
+      ],
+      "notes": "A byte-range check of ReferenceGeneCatalog.txt showed columns for allele, gene_family, product_name, scope, type, subtype, class, subclass, accessions, references, hierarchy_node, and db_version."
+    },
+    {
+      "source": "ResFinder",
+      "status": "application_repo_accessible_database_not_pulled",
+      "checked_utc": "2026-05-28T06:50:29Z",
+      "urls": [
+        "https://github.com/genomicepidemiology/resfinder"
+      ],
+      "usable_for_next_run": [
+        "optional acquired-gene cross-check by antibiotic class",
+        "sequence-NN reference comparison if database install is acceptable"
+      ],
+      "blockers": [
+        "The repository documentation says current installs use separate application and database packages and warns against cloning the historical repository because of size; do not pull until the next run decides whether the database is necessary."
+      ],
+      "notes": "Treat as optional crosswalk after CARD and AMRFinderPlus, not as the primary enzyme-mechanism authority."
+    },
+    {
+      "source": "MEGARes",
+      "status": "website_accessible_sequence_archive_not_pulled",
+      "checked_utc": "2026-05-28T06:50:29Z",
+      "urls": [
+        "https://www.meglab.org/megares/"
+      ],
+      "usable_for_next_run": [
+        "optional hierarchical mechanism/class crosswalk",
+        "negative-control vocabulary comparison"
+      ],
+      "blockers": [
+        "MEGARes is optimized for high-throughput population/metagenomic profiling and includes biocide and metal determinants; use only after enzyme-only filters are explicit."
+      ],
+      "notes": "MEGARes V3 reports nearly 9000 hand-curated resistance genes and a hierarchy of type, class, mechanism, and group."
+    },
+    {
+      "source": "RCSB PDB CARD browser",
+      "status": "accessible_for_structure_availability_scouting",
+      "checked_utc": "2026-05-28T06:50:29Z",
+      "urls": [
+        "https://www.rcsb.org/docs/search-and-browse/browse-options/card"
+      ],
+      "usable_for_next_run": [
+        "PDB structures annotated by CARD ARO family",
+        "structure availability probes by family",
+        "known PDB-vs-CARD sequence coverage caveat recording"
+      ],
+      "notes": "RCSB states CARD annotations are assigned to PDB sequences meeting CARD reference similarity/coverage criteria; computed structure models are not assigned CARD annotations."
+    }
+  ],
+  "amr_enzyme_fingerprint_v0": {
+    "purpose": "A review-only vocabulary for classifying known public AMR enzymes by resistance mechanism class, with near-negative and OOS controls for benchmark design.",
+    "label_granularity": "mechanism_class",
+    "positive_class_policy": [
+      "Use AMR enzyme family membership from public databases only as seed evidence.",
+      "Classify by enzyme mechanism class rather than drug phenotype.",
+      "Do not infer clinical resistance for an isolate, sample, or patient.",
+      "Do not create countable Catalytic Earth labels in this pass."
+    ],
+    "positive_classes": [
+      {
+        "fingerprint_id": "amr_serine_beta_lactamase_ambler_a",
+        "display_name": "Ambler A serine beta-lactamase",
+        "mechanism_class": "serine beta-lactam antibiotic hydrolysis",
+        "public_db_anchors": [
+          "CARD class A beta-lactamase",
+          "CARD hydrolysis of beta-lactam antibiotic by serine beta-lactamase",
+          "AMRFinderPlus beta-lactamase families with class/subclass beta-lactam metadata"
+        ],
+        "positive_family_examples": [
+          "TEM",
+          "SHV",
+          "CTX-M",
+          "KPC",
+          "GES",
+          "SME",
+          "BlaC"
+        ],
+        "near_negatives": [
+          "Ambler C serine beta-lactamases",
+          "Ambler D serine beta-lactamases",
+          "penicillin-binding proteins and DD-peptidases",
+          "non-AMR serine hydrolases"
+        ],
+        "oos_non_enzyme_controls": [
+          "beta-lactam efflux pumps",
+          "porin loss or permeability determinants",
+          "beta-lactamase regulators such as AmpR/BlaR-like systems"
+        ],
+        "structure_availability_expectation": "high for many canonical families in PDB/RCSB CARD; AlphaFold models can fill review-only coverage gaps but should not replace holo or substrate-state evidence when geometry is claimed.",
+        "geometry_claims_allowed": "yes_for_class_level_role_geometry_only",
+        "safety_notes": "Do not enumerate sequence changes, activity-enhancing substitutions, inhibitor evasion, or expression guidance."
+      },
+      {
+        "fingerprint_id": "amr_serine_beta_lactamase_ambler_c",
+        "display_name": "Ambler C serine beta-lactamase / AmpC-like",
+        "mechanism_class": "serine beta-lactam antibiotic hydrolysis",
+        "public_db_anchors": [
+          "CARD class C beta-lactamase ARO:3000076",
+          "CARD AmpC beta-lactamase synonym",
+          "AMRFinderPlus beta-lactamase class/subclass metadata"
+        ],
+        "positive_family_examples": [
+          "CMY/LAT/MOX",
+          "DHA",
+          "ACC",
+          "ACT/MIR",
+          "ADC",
+          "PDC",
+          "FOX"
+        ],
+        "near_negatives": [
+          "Ambler A serine beta-lactamases",
+          "Ambler D serine beta-lactamases",
+          "DD-peptidases",
+          "non-AMR amidases or esterases"
+        ],
+        "oos_non_enzyme_controls": [
+          "AmpC induction regulators",
+          "porin/permeability controls",
+          "efflux-only beta-lactam resistance records"
+        ],
+        "structure_availability_expectation": "high for representative AmpC-like enzymes; holo context is less central than residue-role geometry but ligand state and annotation quality still need review.",
+        "geometry_claims_allowed": "yes_for_class_level_role_geometry_only",
+        "safety_notes": "Do not discuss variant-level spectrum expansion or inhibitor escape."
+      },
+      {
+        "fingerprint_id": "amr_serine_beta_lactamase_ambler_d",
+        "display_name": "Ambler D serine beta-lactamase / OXA-like",
+        "mechanism_class": "serine beta-lactam antibiotic hydrolysis",
+        "public_db_anchors": [
+          "CARD class D beta-lactamase",
+          "CARD OXA beta-lactamase AMR Gene Family terms",
+          "AMRFinderPlus OXA-like beta-lactamase families"
+        ],
+        "positive_family_examples": [
+          "OXA-like families"
+        ],
+        "near_negatives": [
+          "Ambler A serine beta-lactamases",
+          "Ambler C serine beta-lactamases",
+          "non-AMR serine hydrolases",
+          "carboxylesterases with unrelated substrate biology"
+        ],
+        "oos_non_enzyme_controls": [
+          "efflux pumps",
+          "porin loss",
+          "regulatory beta-lactamase operon components"
+        ],
+        "structure_availability_expectation": "medium to high for OXA representatives, but family diversity and oligomer/ligand state should be audited before active-site geometry claims.",
+        "geometry_claims_allowed": "yes_for_class_level_role_geometry_only",
+        "safety_notes": "Keep analysis at family/class recognition; no variant or substrate-spectrum optimization."
+      },
+      {
+        "fingerprint_id": "amr_metallo_beta_lactamase_ambler_b",
+        "display_name": "Ambler B metallo-beta-lactamase",
+        "mechanism_class": "zinc-dependent beta-lactam antibiotic hydrolysis",
+        "public_db_anchors": [
+          "CARD class B (metallo-) beta-lactamase ARO:3000004",
+          "CARD hydrolysis of beta-lactam antibiotic by metallo-beta-lactamase",
+          "AMRFinderPlus metallo-beta-lactamase families"
+        ],
+        "positive_family_examples": [
+          "NDM",
+          "VIM",
+          "IMP",
+          "SPM",
+          "GIM",
+          "SIM",
+          "GOB",
+          "L1"
+        ],
+        "near_negatives": [
+          "metallo-beta-lactamase fold hydrolases without AMR beta-lactamase annotation",
+          "zinc metalloproteases",
+          "Ambler A/C/D serine beta-lactamases",
+          "metal-binding proteins without hydrolase active-site context"
+        ],
+        "oos_non_enzyme_controls": [
+          "efflux-only carbapenem resistance records",
+          "porin loss records",
+          "carbapenemase expression regulators"
+        ],
+        "structure_availability_expectation": "high for several major public families, but apo/metal-substituted structures must be flagged because metal occupancy drives geometry interpretation.",
+        "geometry_claims_allowed": "yes_for_metal_context_and_class_level_role_geometry_only",
+        "safety_notes": "Do not discuss inhibitor evasion, metal tuning, or altered activity design."
+      },
+      {
+        "fingerprint_id": "amr_aminoglycoside_acetyltransferase",
+        "display_name": "Aminoglycoside acetyltransferase",
+        "mechanism_class": "acylation of antibiotic conferring resistance",
+        "public_db_anchors": [
+          "CARD aminoglycoside acetyltransferase (AAC)",
+          "CARD aminoglycoside modifying enzyme",
+          "AMRFinderPlus aac gene families"
+        ],
+        "positive_family_examples": [
+          "AAC(2')",
+          "AAC(3)",
+          "AAC(6')"
+        ],
+        "near_negatives": [
+          "non-AMR GNAT acetyltransferases",
+          "aminoglycoside phosphotransferases",
+          "aminoglycoside nucleotidyltransferases",
+          "fluoroquinolone-modifying AAC(6')-Ib-cr-like records requiring careful class labeling"
+        ],
+        "oos_non_enzyme_controls": [
+          "aminoglycoside efflux systems",
+          "ribosomal protein or rRNA mutation records"
+        ],
+        "structure_availability_expectation": "medium; representative structures exist for some AAC families, but many public records may rely on sequence homology or AlphaFold-only coverage.",
+        "geometry_claims_allowed": "yes_after_cofactor_context_review",
+        "safety_notes": "No substrate-scope improvement or dual-activity variant analysis."
+      },
+      {
+        "fingerprint_id": "amr_aminoglycoside_phosphotransferase",
+        "display_name": "Aminoglycoside phosphotransferase",
+        "mechanism_class": "phosphorylation of antibiotic conferring resistance",
+        "public_db_anchors": [
+          "CARD aminoglycoside phosphotransferase (APH)",
+          "CARD aminoglycoside modifying enzyme",
+          "AMRFinderPlus aph gene families"
+        ],
+        "positive_family_examples": [
+          "APH(2'')",
+          "APH(3')",
+          "APH(3'')",
+          "APH(6)"
+        ],
+        "near_negatives": [
+          "protein kinases",
+          "small-molecule kinases not annotated as AMR",
+          "aminoglycoside acetyltransferases",
+          "aminoglycoside nucleotidyltransferases"
+        ],
+        "oos_non_enzyme_controls": [
+          "aminoglycoside efflux",
+          "target mutation records",
+          "regulatory records"
+        ],
+        "structure_availability_expectation": "medium to high for selected APH families; ATP/ADP or analog state should be recorded only as context, not as a thresholded production feature.",
+        "geometry_claims_allowed": "yes_after_nucleotide_context_review",
+        "safety_notes": "Do not provide phosphorylation-site optimization or activity-enhancement guidance."
+      },
+      {
+        "fingerprint_id": "amr_aminoglycoside_nucleotidyltransferase",
+        "display_name": "Aminoglycoside nucleotidyltransferase",
+        "mechanism_class": "nucleotidylation of antibiotic conferring resistance",
+        "public_db_anchors": [
+          "CARD aminoglycoside nucleotidyltransferase (ANT)",
+          "CARD aminoglycoside modifying enzyme",
+          "AMRFinderPlus ant/aad gene families"
+        ],
+        "positive_family_examples": [
+          "ANT(2'')",
+          "ANT(3'')",
+          "ANT(4')",
+          "ANT(6)"
+        ],
+        "near_negatives": [
+          "DNA/RNA nucleotidyltransferases",
+          "non-AMR nucleotide transferases",
+          "aminoglycoside acetyltransferases",
+          "aminoglycoside phosphotransferases"
+        ],
+        "oos_non_enzyme_controls": [
+          "aminoglycoside efflux systems",
+          "ribosomal mutation records"
+        ],
+        "structure_availability_expectation": "medium; public structure coverage is expected to be less uniform than beta-lactamases and should be audited before geometry use.",
+        "geometry_claims_allowed": "yes_after_nucleotide_context_review",
+        "safety_notes": "Keep to classification of known public families; no substrate expansion guidance."
+      },
+      {
+        "fingerprint_id": "amr_chloramphenicol_acetyltransferase",
+        "display_name": "Chloramphenicol acetyltransferase",
+        "mechanism_class": "acylation of phenicol antibiotic conferring resistance",
+        "public_db_anchors": [
+          "CARD chloramphenicol acetyltransferase (CAT)",
+          "CARD acylation of antibiotic conferring resistance",
+          "AMRFinderPlus cat gene families"
+        ],
+        "positive_family_examples": [
+          "catA/catB-like CAT families"
+        ],
+        "near_negatives": [
+          "aminoglycoside acetyltransferases",
+          "non-AMR acetyltransferases",
+          "chloramphenicol exporters"
+        ],
+        "oos_non_enzyme_controls": [
+          "chloramphenicol efflux/exporter proteins",
+          "regulatory attenuation records"
+        ],
+        "structure_availability_expectation": "high for canonical CAT scaffolds, with many historical structures; still require family-level source confirmation.",
+        "geometry_claims_allowed": "yes_after_acetyl_donor_context_review",
+        "safety_notes": "Do not discuss activity tuning or expression context."
+      },
+      {
+        "fingerprint_id": "amr_chloramphenicol_phosphotransferase",
+        "display_name": "Chloramphenicol phosphotransferase",
+        "mechanism_class": "phosphorylation of phenicol antibiotic conferring resistance",
+        "public_db_anchors": [
+          "CARD chloramphenicol phosphotransferase",
+          "CARD antibiotic inactivation enzyme"
+        ],
+        "positive_family_examples": [
+          "chloramphenicol phosphotransferase family records"
+        ],
+        "near_negatives": [
+          "chloramphenicol acetyltransferases",
+          "non-AMR kinases",
+          "aminoglycoside phosphotransferases"
+        ],
+        "oos_non_enzyme_controls": [
+          "phenicol efflux/exporter records"
+        ],
+        "structure_availability_expectation": "low to medium; likely needs source-first and model-first scouting before geometry claims.",
+        "geometry_claims_allowed": "defer_until_structure_availability_audit",
+        "safety_notes": "Treat as lower-priority POC extension."
+      },
+      {
+        "fingerprint_id": "amr_macrolide_esterase",
+        "display_name": "Macrolide esterase",
+        "mechanism_class": "hydrolysis of macrolide macrocycle lactone ring",
+        "public_db_anchors": [
+          "CARD macrolide esterase ARO:3000320",
+          "CARD hydrolysis of antibiotic conferring resistance",
+          "CARD macrolide inactivation enzyme"
+        ],
+        "positive_family_examples": [
+          "EreA",
+          "EreB",
+          "EreD",
+          "EstT"
+        ],
+        "near_negatives": [
+          "non-AMR esterases",
+          "macrolide phosphotransferases",
+          "macrolide efflux pumps",
+          "rRNA methyltransferases"
+        ],
+        "oos_non_enzyme_controls": [
+          "macrolide efflux systems",
+          "ribosomal methylation target-protection labels if no enzyme active-site benchmark is defined"
+        ],
+        "structure_availability_expectation": "medium; representative structures/literature exist, but class diversity should be audited.",
+        "geometry_claims_allowed": "yes_after_lactone_hydrolase_context_review",
+        "safety_notes": "Do not include protocol or substrate optimization content."
+      },
+      {
+        "fingerprint_id": "amr_macrolide_phosphotransferase",
+        "display_name": "Macrolide phosphotransferase",
+        "mechanism_class": "phosphorylation of macrolide antibiotic conferring resistance",
+        "public_db_anchors": [
+          "CARD macrolide phosphotransferase (MPH)",
+          "CARD macrolide inactivation enzyme",
+          "CARD phosphorylation of antibiotic conferring resistance"
+        ],
+        "positive_family_examples": [
+          "mphA",
+          "mphB",
+          "mphC",
+          "mphF",
+          "mphG",
+          "mphL",
+          "mphM"
+        ],
+        "near_negatives": [
+          "non-AMR kinases",
+          "aminoglycoside phosphotransferases",
+          "macrolide esterases",
+          "macrolide efflux pumps"
+        ],
+        "oos_non_enzyme_controls": [
+          "macrolide efflux systems",
+          "target methylation records unless explicitly admitted as enzyme target-modification positives"
+        ],
+        "structure_availability_expectation": "medium; selected MPH structures should be available, but family coverage and nucleotide-state context require audit.",
+        "geometry_claims_allowed": "yes_after_nucleotide_context_review",
+        "safety_notes": "Do not propose altered specificity or activity changes."
+      },
+      {
+        "fingerprint_id": "amr_tetracycline_destructase_flavin_monooxygenase",
+        "display_name": "Tetracycline inactivation flavoenzyme / tetracycline destructase",
+        "mechanism_class": "hydroxylation of tetracycline antibiotic conferring resistance",
+        "public_db_anchors": [
+          "CARD tetracycline inactivation enzyme ARO:3000036",
+          "CARD tet(X) ARO:3000205",
+          "CARD hydroxylation of antibiotic conferring resistance"
+        ],
+        "positive_family_examples": [
+          "tet(X)-like",
+          "tet(37)-like",
+          "tet(55)-like"
+        ],
+        "near_negatives": [
+          "flavin monooxygenases unrelated to AMR",
+          "tetracycline efflux pumps",
+          "ribosomal protection proteins",
+          "non-enzymatic target protection records"
+        ],
+        "oos_non_enzyme_controls": [
+          "TetA-like efflux",
+          "TetM/TetO-like ribosomal protection",
+          "tetracycline target mutation records"
+        ],
+        "structure_availability_expectation": "medium; at least some representative structures exist, but broad variant coverage may require AlphaFold model triage and strict source checks.",
+        "geometry_claims_allowed": "yes_after_flavin_context_review",
+        "safety_notes": "Do not provide sequence-level or variant-level resistance expansion guidance."
+      },
+      {
+        "fingerprint_id": "amr_fosfomycin_inactivation_enzyme",
+        "display_name": "Fosfomycin inactivation enzyme",
+        "mechanism_class": "antibiotic inactivation by enzymatic modification or ring opening",
+        "public_db_anchors": [
+          "CARD fosfomycin inactivation enzyme",
+          "CARD antibiotic inactivation enzyme"
+        ],
+        "positive_family_examples": [
+          "FosA-like",
+          "FosB-like",
+          "FosC-like",
+          "FosX-like"
+        ],
+        "near_negatives": [
+          "non-AMR transferases",
+          "metal-dependent enzymes with unrelated chemistry",
+          "fosfomycin target mutation records"
+        ],
+        "oos_non_enzyme_controls": [
+          "MurA target variants",
+          "transport/permeability records"
+        ],
+        "structure_availability_expectation": "medium; representative structures are expected for some families, but mechanism heterogeneity makes this a second-wave class after beta-lactamases and AMEs.",
+        "geometry_claims_allowed": "defer_until_family_specific_subclassing",
+        "safety_notes": "Do not discuss ways to broaden fosfomycin inactivation."
+      },
+      {
+        "fingerprint_id": "amr_rifampin_inactivation_enzyme",
+        "display_name": "Rifampin inactivation enzyme",
+        "mechanism_class": "enzymatic modification of rifamycin antibiotic conferring resistance",
+        "public_db_anchors": [
+          "CARD rifampin inactivation enzyme",
+          "CARD hydroxylation of antibiotic conferring resistance",
+          "CARD antibiotic inactivation enzyme"
+        ],
+        "positive_family_examples": [
+          "rifampin monooxygenase-like",
+          "rifampin ADP-ribosyltransferase-like",
+          "rifampin glycosyltransferase-like",
+          "rifampin phosphotransferase-like"
+        ],
+        "near_negatives": [
+          "non-AMR flavin monooxygenases",
+          "generic glycosyltransferases",
+          "RNA polymerase target mutation records"
+        ],
+        "oos_non_enzyme_controls": [
+          "rpoB mutation phenotype records",
+          "efflux-mediated rifamycin resistance"
+        ],
+        "structure_availability_expectation": "low to medium and family-dependent; use source-first class indexing before geometry.",
+        "geometry_claims_allowed": "defer_until_subclass_specific_panel",
+        "safety_notes": "Avoid any substrate-scope or activity-change discussion."
+      },
+      {
+        "fingerprint_id": "amr_lincosamide_nucleotidyltransferase",
+        "display_name": "Lincosamide nucleotidyltransferase",
+        "mechanism_class": "nucleotidylation of lincosamide antibiotic conferring resistance",
+        "public_db_anchors": [
+          "CARD lincosamide nucleotidyltransferase (LNU)",
+          "CARD antibiotic inactivation enzyme"
+        ],
+        "positive_family_examples": [
+          "LNU-like"
+        ],
+        "near_negatives": [
+          "non-AMR nucleotidyltransferases",
+          "macrolide phosphotransferases",
+          "rRNA methyltransferases"
+        ],
+        "oos_non_enzyme_controls": [
+          "lincosamide efflux",
+          "target methylation records if not admitted as enzyme target-modification positives"
+        ],
+        "structure_availability_expectation": "low to medium; likely a second-wave source-first class.",
+        "geometry_claims_allowed": "defer_until_structure_availability_audit",
+        "safety_notes": "Classification only."
+      },
+      {
+        "fingerprint_id": "amr_streptogramin_acetyltransferase",
+        "display_name": "Streptogramin acetyltransferase",
+        "mechanism_class": "acylation of streptogramin antibiotic conferring resistance",
+        "public_db_anchors": [
+          "CARD streptogramin inactivation enzyme",
+          "CARD antibiotic inactivation enzyme"
+        ],
+        "positive_family_examples": [
+          "Vat-like streptogramin acetyltransferases"
+        ],
+        "near_negatives": [
+          "non-AMR acetyltransferases",
+          "chloramphenicol acetyltransferases",
+          "streptogramin lyase-like enzymes"
+        ],
+        "oos_non_enzyme_controls": [
+          "streptogramin efflux",
+          "target methylation records"
+        ],
+        "structure_availability_expectation": "medium for representative families; source and fold diversity review required.",
+        "geometry_claims_allowed": "defer_until_acetyl_donor_context_review",
+        "safety_notes": "Do not include activity tuning."
+      },
+      {
+        "fingerprint_id": "amr_streptothricin_acetyltransferase",
+        "display_name": "Streptothricin acetyltransferase",
+        "mechanism_class": "acylation of streptothricin antibiotic conferring resistance",
+        "public_db_anchors": [
+          "CARD streptothricin acetyltransferase (SAT)",
+          "CARD antibiotic inactivation enzyme"
+        ],
+        "positive_family_examples": [
+          "SAT-like"
+        ],
+        "near_negatives": [
+          "non-AMR acetyltransferases",
+          "aminoglycoside acetyltransferases",
+          "chloramphenicol acetyltransferases"
+        ],
+        "oos_non_enzyme_controls": [
+          "non-enzyme streptothricin resistance records"
+        ],
+        "structure_availability_expectation": "low to medium; second-wave class after higher-coverage mechanisms.",
+        "geometry_claims_allowed": "defer_until_structure_availability_audit",
+        "safety_notes": "Classification only."
+      },
+      {
+        "fingerprint_id": "amr_enzyme_target_modification_deferred",
+        "display_name": "Enzyme-mediated target modification AMR, deferred",
+        "mechanism_class": "enzymatic modification of cellular target rather than antibiotic molecule",
+        "public_db_anchors": [
+          "CARD antibiotic target alteration enzyme families where active-site evidence exists"
+        ],
+        "positive_family_examples": [
+          "rRNA methyltransferase-like AMR enzymes",
+          "cell-wall precursor modification enzymes"
+        ],
+        "near_negatives": [
+          "target-protection proteins without active-site chemistry",
+          "housekeeping target point mutations",
+          "regulatory proteins"
+        ],
+        "oos_non_enzyme_controls": [
+          "Qnr-like target protection",
+          "TetM/TetO-like ribosomal protection",
+          "gyrA/parC/rpoB point mutation records"
+        ],
+        "structure_availability_expectation": "family-dependent; do not mix with antibiotic-inactivation enzyme POC until target-substrate context is separately defined.",
+        "geometry_claims_allowed": "defer_for_v0",
+        "safety_notes": "This bucket prevents scope creep; it is not a first benchmark positive class."
+      }
+    ],
+    "global_near_negative_policy": [
+      "Same fold but non-AMR enzyme",
+      "Same chemistry but different antibiotic class",
+      "Same antibiotic class but different resistance mechanism",
+      "Public AMR family with ambiguous enzyme activity or missing active-site context"
+    ],
+    "global_oos_controls": [
+      "efflux pump components",
+      "efflux regulators",
+      "porin loss or permeability mechanisms",
+      "target protection proteins without catalytic active sites",
+      "resistance-associated SNP-only records",
+      "clinical phenotype-only records",
+      "AMR gene regulators",
+      "mobile element annotations without enzyme products"
+    ]
+  },
+  "beta_lactamase_first_benchmark_panel": {
+    "benchmark_id": "amr_beta_lactamase_ambler_serine_vs_metallo_v0",
+    "target_classes": [
+      "amr_serine_beta_lactamase_ambler_a",
+      "amr_serine_beta_lactamase_ambler_c",
+      "amr_serine_beta_lactamase_ambler_d",
+      "amr_metallo_beta_lactamase_ambler_b"
+    ],
+    "panel_goal": "Separate Ambler A/C/D serine beta-lactamases from Ambler B metallo-beta-lactamases, and then test whether A, C, and D are separable without using clinical phenotype labels.",
+    "source_seed_policy": [
+      "Use CARD ARO beta-lactamase class/family pages and AMRFinderPlus ReferenceGeneCatalog/Hierarchy metadata as independent source seeds.",
+      "Keep only public known enzymes with source database support.",
+      "Hold out by family when evaluating generalization; do not split near-identical alleles across train/test.",
+      "Record PDB/AlphaFold availability separately from source membership."
+    ],
+    "positive_family_lanes": [
+      {
+        "class": "Ambler A",
+        "seed_families": [
+          "TEM",
+          "SHV",
+          "CTX-M",
+          "KPC",
+          "GES",
+          "SME",
+          "BlaC"
+        ],
+        "notes": "Use as family-level public examples only; no allele optimization or phenotype ranking."
+      },
+      {
+        "class": "Ambler C",
+        "seed_families": [
+          "CMY/LAT/MOX",
+          "DHA",
+          "ACC",
+          "ACT/MIR",
+          "ADC",
+          "PDC",
+          "FOX"
+        ],
+        "notes": "AmpC-like lane; separate gene-family identity from mechanism-class label."
+      },
+      {
+        "class": "Ambler D",
+        "seed_families": [
+          "OXA-like families"
+        ],
+        "notes": "Do not use carbapenemase phenotype claims as the benchmark target."
+      },
+      {
+        "class": "Ambler B",
+        "seed_families": [
+          "NDM",
+          "VIM",
+          "IMP",
+          "SPM",
+          "GIM",
+          "SIM",
+          "GOB",
+          "L1"
+        ],
+        "notes": "Metallo-beta-lactamase lane; require metal-context audit before geometry features."
+      }
+    ],
+    "negative_and_control_lanes": [
+      {
+        "lane": "near_negative_same_fold_or_same_chemistry",
+        "examples": [
+          "penicillin-binding proteins and DD-peptidases",
+          "non-AMR serine hydrolases",
+          "metallo-beta-lactamase fold hydrolases without AMR beta-lactamase annotation",
+          "zinc hydrolases or metalloproteases that are not beta-lactamases"
+        ]
+      },
+      {
+        "lane": "oos_non_enzyme_or_non_geometry_controls",
+        "examples": [
+          "AcrAB/TolC-like efflux systems",
+          "Mex-like efflux systems",
+          "porin/permeability mechanisms",
+          "AmpR/BlaR-like regulatory records",
+          "PBP target alteration records",
+          "SNP-only beta-lactam resistance records"
+        ]
+      }
+    ],
+    "foldseek_tests": [
+      "Can structure search separate Ambler B metallo-beta-lactamase fold neighborhoods from Ambler A/C/D serine beta-lactamase neighborhoods?",
+      "Within serine beta-lactamases, does fold similarity alone confuse A, C, and D families, especially against DD-peptidase/PBP near negatives?",
+      "For metallo-beta-lactamases, does fold similarity alone over-call non-AMR MBL-fold hydrolases?",
+      "Report retrieval ranks and confusion matrices only after artifacts exist; this pass makes no performance claim."
+    ],
+    "active_site_geometry_tests": [
+      "Serine beta-lactamase lane: test whether role-level nucleophile/base/acid and oxyanion-support geometry distinguishes A/C/D serine enzyme context from non-AMR serine hydrolases and PBPs.",
+      "Metallo-beta-lactamase lane: test whether metal-binding geometry and water/hydroxide activation context distinguishes class B from serine beta-lactamases and non-AMR MBL-fold hydrolases.",
+      "Cross-lane abstention: require missing active-site residues, missing metal context, or ambiguous chain/ligand mapping to produce review-only abstention rather than forced class assignment.",
+      "No numeric thresholds are set or edited in this artifact."
+    ],
+    "metal_and_cofactor_context_tests": [
+      "Ambler B positives should carry explicit metal-context evidence when geometry is claimed; apo or metal-substituted structures are flagged as uncertain.",
+      "Ambler A/C/D positives should not require zinc for the primary mechanism-class call; incidental ions must not override serine-mechanism evidence.",
+      "Coordinates, ligand state, and biological assembly are recorded as metadata, not used to make production claims in this pass."
+    ],
+    "learned_representation_tests": [
+      "Sequence embeddings: compare nearest-neighbor class retrieval under family-level holdout.",
+      "Structure/sequence learned reps: test whether embeddings recover Ambler class without database names leaking into labels.",
+      "Calibration: report abstention behavior on OOS efflux/regulatory/permeability controls.",
+      "No claim of outperforming CARD, AMRFinderPlus, Foldseek, or geometry baselines until benchmark artifacts are produced."
+    ],
+    "leakage_controls": [
+      "No train/test split by allele when alleles are near duplicates.",
+      "No clinical phenotype labels in targets.",
+      "No sequence mutation annotations as predictive targets.",
+      "No use of database family names inside model input text for learned-representation experiments."
+    ]
+  },
+  "conceptual_baseline_comparison": [
+    {
+      "baseline": "CARD/RGI or CARD-derived homology",
+      "expected_strengths": [
+        "Strong known-family precision when query is close to curated public references",
+        "Direct mapping to ARO gene family, drug class, and resistance mechanism tags"
+      ],
+      "expected_failure_modes": [
+        "Limited novelty/generalization beyond curated detection models",
+        "May conflate family and mechanism if benchmark target is not explicit",
+        "Does not directly test active-site geometry"
+      ],
+      "claim_status": "reference_baseline_only_no_outperformance_claim"
+    },
+    {
+      "baseline": "AMRFinderPlus homology/HMM reference catalog",
+      "expected_strengths": [
+        "Curated reference catalog and hierarchy with public FTP metadata",
+        "Good operational baseline for known AMR genes and families"
+      ],
+      "expected_failure_modes": [
+        "Designed for gene detection rather than geometry mechanism tests",
+        "Contains non-enzyme, point-mutation, virulence, and stress records that require filtering"
+      ],
+      "claim_status": "reference_baseline_only_no_outperformance_claim"
+    },
+    {
+      "baseline": "sequence nearest neighbor",
+      "expected_strengths": [
+        "Simple, reproducible, and useful for checking if the POC is just family memorization",
+        "Can run against CARD/AMRFinderPlus references after source ingestion"
+      ],
+      "expected_failure_modes": [
+        "Sensitive to split leakage",
+        "May miss remote structural convergence",
+        "No active-site or metal-state awareness"
+      ],
+      "claim_status": "comparison_baseline_no_outperformance_claim"
+    },
+    {
+      "baseline": "Foldseek structural retrieval",
+      "expected_strengths": [
+        "Can test fold-level separation between serine beta-lactamases and metallo-beta-lactamases",
+        "Useful for finding same-fold near negatives and structure availability gaps"
+      ],
+      "expected_failure_modes": [
+        "Fold similarity is not function proof",
+        "May over-call non-AMR hydrolases or PBPs",
+        "Requires coordinate selection and ligand/metal-state audit"
+      ],
+      "claim_status": "comparison_baseline_no_outperformance_claim"
+    },
+    {
+      "baseline": "active-site geometry",
+      "expected_strengths": [
+        "Mechanism-oriented and testable against near negatives",
+        "Can explicitly encode serine-vs-metal context for beta-lactamases"
+      ],
+      "expected_failure_modes": [
+        "Requires reliable residue, metal, ligand, and assembly mapping",
+        "Coverage may be low for classes without structures",
+        "Thresholds must be pre-registered in a later artifact and not tuned here"
+      ],
+      "claim_status": "design_only_no_thresholds"
+    },
+    {
+      "baseline": "learned sequence or structure representations",
+      "expected_strengths": [
+        "Can capture remote similarity and support retrieval under family holdout",
+        "Useful as an orthogonal signal after leakage controls"
+      ],
+      "expected_failure_modes": [
+        "Opaque mechanism basis",
+        "Can leak database naming or phylogeny if splits are weak",
+        "Requires calibration on OOS controls"
+      ],
+      "claim_status": "comparison_baseline_no_outperformance_claim"
+    }
+  ],
+  "next_run_queue": {
+    "queue_id": "amr_enzyme_ingestion_baselines_20260529",
+    "principles": [
+      "Read source metadata before sequence or structure downloads.",
+      "Prefer CARD and AMRFinderPlus first; treat ResFinder and MEGARes as optional crosswalks.",
+      "Do not import labels or edit registries.",
+      "Produce review-only artifacts and benchmark contracts before any scoring code change."
+    ],
+    "tasks": [
+      {
+        "rank": 1,
+        "task_id": "source_access_manifest",
+        "description": "Create a source-access manifest from CARD/ARO, AMRFinderPlus latest FTP metadata, optional ResFinder database availability, and optional MEGARes crosswalk availability.",
+        "exact_artifact": "artifacts/v3_amr_public_source_access_manifest_20260529.json",
+        "exact_report": "work/amr_public_source_access_manifest_20260529.md",
+        "success_checks": [
+          "Records version/date/URL/license or blocker for each source",
+          "Does not download AMR.LIB or full sequence archives unless explicitly justified",
+          "Separates enzyme, non-enzyme, mutation, virulence, stress, and biocide/metal records"
+        ]
+      },
+      {
+        "rank": 2,
+        "task_id": "enzyme_class_index",
+        "description": "Build a review-only class index mapping CARD ARO and AMRFinderPlus family/hierarchy records into amr_enzyme_fingerprint_v0 classes.",
+        "exact_artifact": "artifacts/v3_amr_enzyme_public_db_class_index_20260529.json",
+        "exact_report": "work/amr_enzyme_public_db_class_index_20260529.md",
+        "success_checks": [
+          "Includes positives, near negatives, and OOS controls",
+          "Marks enzyme target-modification classes as deferred unless active-site scope is explicit",
+          "No countable Catalytic Earth label import"
+        ]
+      },
+      {
+        "rank": 3,
+        "task_id": "structure_availability_probe",
+        "description": "Probe RCSB CARD browser/API and AlphaFold cross-references for representative structure availability by class and family.",
+        "exact_artifact": "artifacts/v3_amr_enzyme_structure_availability_probe_20260529.json",
+        "exact_report": "work/amr_enzyme_structure_availability_probe_20260529.md",
+        "success_checks": [
+          "Reports PDB count, representative IDs, holo/apo/metal/cofactor caveats, and AlphaFold-only gaps",
+          "Does not materialize bulk coordinate downloads",
+          "Flags classes unsuitable for geometry claims"
+        ]
+      },
+      {
+        "rank": 4,
+        "task_id": "beta_lactamase_panel_v0",
+        "description": "Create the beta-lactamase Ambler A/C/D/B benchmark panel contract with source seeds, split policy, leakage controls, and OOS lanes.",
+        "exact_artifact": "artifacts/v3_amr_beta_lactamase_panel_v0_20260529.json",
+        "exact_report": "work/amr_beta_lactamase_panel_v0_20260529.md",
+        "success_checks": [
+          "Separates mechanism class from clinical phenotype",
+          "Uses family-level holdout language",
+          "Includes DD-peptidase/PBP and MBL-fold non-AMR near negatives"
+        ]
+      },
+      {
+        "rank": 5,
+        "task_id": "homology_and_sequence_nn_baseline_contract",
+        "description": "Define CARD/AMRFinderPlus homology and sequence-nearest-neighbor baseline inputs and expected outputs without running production scoring.",
+        "exact_artifact": "artifacts/v3_amr_homology_sequence_nn_baseline_contract_20260529.json",
+        "exact_report": "work/amr_homology_sequence_nn_baseline_contract_20260529.md",
+        "success_checks": [
+          "Uses source database IDs and mechanism-class labels only",
+          "Prevents family/allele leakage in split design",
+          "Reports no performance claims"
+        ]
+      },
+      {
+        "rank": 6,
+        "task_id": "foldseek_geometry_baseline_contract",
+        "description": "Define Foldseek and active-site-geometry baseline contracts for the beta-lactamase panel.",
+        "exact_artifact": "artifacts/v3_amr_beta_lactamase_foldseek_geometry_contract_20260529.json",
+        "exact_report": "work/amr_beta_lactamase_foldseek_geometry_contract_20260529.md",
+        "success_checks": [
+          "No threshold edits",
+          "No production scoring edits",
+          "Metal-context handling and abstention rules are review-only"
+        ]
+      },
+      {
+        "rank": 7,
+        "task_id": "learned_representation_contract",
+        "description": "Define learned-representation comparison requirements after source and panel artifacts exist.",
+        "exact_artifact": "artifacts/v3_amr_learned_representation_baseline_contract_20260529.json",
+        "exact_report": "work/amr_learned_representation_baseline_contract_20260529.md",
+        "success_checks": [
+          "Requires source/panel artifacts from ranks 1-4",
+          "Defines leakage checks and OOS abstention reporting",
+          "Makes no outperforming claim"
+        ]
+      }
+    ],
+    "stop_conditions": [
+      "Any source terms require license acceptance not already documented.",
+      "A requested source requires a huge download not justified by a source manifest.",
+      "A step would require editing labels, registries, ontology files, production scoring, imports, or thresholds.",
+      "A step drifts into wet-lab protocols, variant suggestions, or AMR improvement guidance."
+    ]
+  }
+}
