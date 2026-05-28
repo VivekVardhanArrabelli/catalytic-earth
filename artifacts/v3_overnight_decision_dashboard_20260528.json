@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_overnight_decision_dashboard_20260528",
   "schema_version": "overnight_decision_dashboard.v1",
-  "generated_utc": "2026-05-28T07:27:17Z",
+  "generated_utc": "2026-05-28T07:31:35Z",
   "automation_id": "overnight-decision-dashboard",
   "scope": {
     "project": "Catalytic Earth",
@@ -19,9 +19,9 @@
   },
   "source_inputs": {
     "automation_toml_root": "/Users/vivekvardhanarrabelli/.codex/automations",
-    "repo_head": "2ce154188efd428eaee7294e6dc2bea169e0f31f",
-    "origin_main": "2ce154188efd428eaee7294e6dc2bea169e0f31f",
-    "git_status_at_start": "detached HEAD at origin/main/main; clean before dashboard artifact writes",
+    "repo_head": "9ab257e_pre_amend_dashboard_commit",
+    "origin_main": "9ab257e_pre_amend_dashboard_commit",
+    "git_status_at_start": "detached HEAD on origin/main; concurrent full-TM and heme panel commits were incorporated before final dashboard push",
     "completed_cutoff_utc": "2026-05-28T06:00:00Z",
     "disk": {
       "available_gib": 21,
@@ -35,12 +35,12 @@
   },
   "summary": {
     "lane_count": 34,
-    "running_lane_count": 6,
-    "completed_lane_count": 22,
+    "running_lane_count": 5,
+    "completed_lane_count": 23,
     "paused_lane_count": 5,
     "blocked_lane_count": 1,
-    "needs_retarget_count": 2,
-    "main_decision": "Continue review-only/scout lanes, integrate full-TM branch output, and wait for bronze/TM and disk-safe embedding gates before launching heavier compute."
+    "needs_retarget_count": 1,
+    "main_decision": "Continue review-only/scout lanes, consume the now-main full-TM and heme outputs, and wait for bronze/TM plus disk-safe embedding gates before launching heavier compute."
   },
   "lanes": [
     {
@@ -107,24 +107,16 @@
       "lane_id": "full-tm-structural-signal",
       "automation_id": "full-tm-structural-signal",
       "status": "completed",
-      "decision_answered": "Fuller structural-neighborhood signal was produced, but only on the automation branch so main cannot consume it yet.",
+      "decision_answered": "Fuller structural-neighborhood signal is now present on main and ready as review-only input for downstream gates.",
       "artifact_produced": [
-        {
-          "path": "artifacts/v3_full_tm_structural_signal_702_20260528.json",
-          "present_in_current_checkout": false,
-          "source": "origin/automation/full-tm-structural-signal-20260528"
-        },
-        {
-          "path": "work/full_tm_structural_signal_20260528.md",
-          "present_in_current_checkout": false,
-          "source": "origin/automation/full-tm-structural-signal-20260528"
-        }
+        "artifacts/v3_full_tm_structural_signal_702_20260528.json",
+        "work/full_tm_structural_signal_20260528.md"
       ],
-      "latest_commit": "77a46ec",
-      "next_action": "launch dependent job",
+      "latest_commit": "71f86fb",
+      "next_action": "wait for gate",
       "compute_cost": {
-        "class": "medium",
-        "disk_guardrail_risk": "no new risk now; branch already contains artifacts"
+        "class": "none",
+        "disk_guardrail_risk": "no; completed artifact is already on main"
       },
       "benchmark_safety": "review-only; safe to merge/read if diff stays artifact/report only",
       "user_decision_needed": {
@@ -345,19 +337,19 @@
     {
       "lane_id": "heme-redox-boundary-panel",
       "automation_id": "heme-redox-boundary-panel",
-      "status": "running",
-      "decision_answered": "Pending: heme boundary panel must separate peroxidase/catalase/terminal oxidase/P450/non-heme controls.",
+      "status": "completed",
+      "decision_answered": "Heme redox boundary panel is complete with 46 review-only candidates/leads and no import-ready rows.",
       "artifact_produced": [
         "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
         "work/external_heme_redox_boundary_panel_20260528.md"
       ],
-      "latest_commit": null,
-      "next_action": "continue",
+      "latest_commit": "a0aeddd",
+      "next_action": "wait for gate",
       "compute_cost": {
-        "class": "small",
-        "disk_guardrail_risk": "no if metadata/source scouting only"
+        "class": "none",
+        "disk_guardrail_risk": "no; no downloads were performed and artifact is already on main"
       },
-      "benchmark_safety": "review-only; blocker if it mutates labels or thresholds",
+      "benchmark_safety": "review-only; no labels, registries, ontologies, thresholds, scoring, imports, model outputs, or training changed",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -777,11 +769,11 @@
     },
     {
       "rank": 2,
-      "gate": "Full-TM branch integration",
+      "gate": "Full-TM evidence consumption",
       "state": "active",
-      "decision": "Make the completed full-TM artifact usable by main/orchestration.",
+      "decision": "Use the completed full-TM structural signal on main as review-only evidence for near-orphan/fold-conflict decisions.",
       "owner_lane": "full-tm-structural-signal",
-      "clear_condition": "Artifact/report from commit 77a46ec are merged or otherwise consumed as review-only inputs with no forbidden file edits."
+      "clear_condition": "Downstream jobs consume artifacts/v3_full_tm_structural_signal_702_20260528.json without changing thresholds, labels, or scoring."
     },
     {
       "rank": 3,
@@ -795,9 +787,9 @@
       "rank": 4,
       "gate": "External panel completion",
       "state": "active",
-      "decision": "Complete flavin/redox, metal hydrolase, and heme panels so router/benchmark tests use all planned boundary families.",
-      "owner_lane": "flavin-redox-external-panel, metal-hydrolase-tail-panel, heme-redox-boundary-panel",
-      "clear_condition": "Each panel emits review-only artifact/report with candidate counts, hard negatives, provenance tiers, and 0 import-ready labels."
+      "decision": "Complete flavin/redox and metal hydrolase panels so router/benchmark tests use all planned boundary families; heme is now complete.",
+      "owner_lane": "flavin-redox-external-panel, metal-hydrolase-tail-panel",
+      "clear_condition": "Remaining panels emit review-only artifact/report with candidate counts, hard negatives, provenance tiers, and 0 import-ready labels."
     },
     {
       "rank": 5,
@@ -937,21 +929,24 @@
     },
     {
       "completed_utc": "2026-05-28T07:24:58Z",
-      "commit": "77a46ec",
-      "branch": "origin/automation/full-tm-structural-signal-20260528",
+      "commit": "71f86fb",
+      "branch": "origin/main",
       "artifact_paths": [
         "artifacts/v3_full_tm_structural_signal_702_20260528.json",
         "work/full_tm_structural_signal_20260528.md"
       ]
+    },
+    {
+      "completed_utc": "2026-05-28T07:29:17Z",
+      "commit": "a0aeddd",
+      "branch": "origin/main",
+      "artifact_paths": [
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
+        "work/external_heme_redox_boundary_panel_20260528.md"
+      ]
     }
   ],
   "blocked_stale_agents_and_retarget_prompts": [
-    {
-      "automation_id": "full-tm-structural-signal",
-      "status": "needs_retarget",
-      "blocker": "Completed artifacts are on origin/automation/full-tm-structural-signal-20260528, not current origin/main.",
-      "retarget_prompt": "Integrate commit 77a46ec full-TM artifact/report into main only if diff is limited to artifacts/v3_full_tm_structural_signal_702_20260528.json and work/full_tm_structural_signal_20260528.md; validate JSON, cli validate, git diff --check; do not edit labels, registries, ontologies, thresholds, scoring, imports, or model outputs."
-    },
     {
       "automation_id": "embedding-precompute-feasibility",
       "status": "running",
@@ -971,21 +966,21 @@
       "retarget_prompt": "Do not run full ProstT5. Use existing Foldseek 3Di token export only, or wait for explicit user approval plus disk/accelerator plan."
     },
     {
-      "automation_id": "flavin-redox-external-panel / metal-hydrolase-tail-panel / heme-redox-boundary-panel",
+      "automation_id": "flavin-redox-external-panel / metal-hydrolase-tail-panel",
       "status": "running",
-      "blocker": "Prompt-only active panels have not produced artifacts yet.",
-      "retarget_prompt": "Complete each panel as metadata/source scouting only with 30-80 candidates, provenance tiers, hard negatives, no coordinate/model downloads unless disk-safe, and 0 import-ready labels."
+      "blocker": "Remaining prompt-only active panels have not produced artifacts yet; heme is complete on main.",
+      "retarget_prompt": "Complete each remaining panel as metadata/source scouting only with 30-80 candidates, provenance tiers, hard negatives, no coordinate/model downloads unless disk-safe, and 0 import-ready labels."
     }
   ],
   "safe_next_compute_launches_if_gates_clear": [
     {
-      "launch": "Merge/consume full-TM structural signal",
+      "launch": "Consume full-TM structural signal",
       "requires_gates": [
-        "Full-TM branch integration"
+        "Full-TM evidence consumption"
       ],
       "compute_cost": "small",
-      "safe_command_shape": "git show/check artifact branch, integrate artifact/report only, validate",
-      "why_safe": "Uses already-produced review-only outputs; no new compute."
+      "safe_command_shape": "read existing main artifacts and produce downstream review-only summaries",
+      "why_safe": "Uses already-produced review-only outputs on main; no new compute."
     },
     {
       "launch": "Embedding cache availability manifest",
