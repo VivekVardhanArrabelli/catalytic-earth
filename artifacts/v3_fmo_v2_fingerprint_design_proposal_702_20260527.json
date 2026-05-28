@@ -1,6 +1,6 @@
 {
   "artifact_id": "v3_fmo_v2_fingerprint_design_proposal_702_20260527",
-  "created_utc": "2026-05-28T01:37:34Z",
+  "created_utc": "2026-05-28T02:37:47Z",
   "schema_version": "v3_fmo_v2_fingerprint_design_proposal.v1",
   "review_only": true,
   "status": "proposal_only_no_registry_or_scoring_changes",
@@ -8,42 +8,47 @@
     "target_question": "What evidence would make flavin_monooxygenase coherent as a future primary fingerprint, secondary OOD probe, or v2 child family, and how should it separate from generic flavin dehydrogenase/reductase chemistry?",
     "candidate_rows_are_context_not_metrics": true,
     "evidence_requirements_defined_before_future_metrics": true,
+    "current_run_artifact_inventory": {
+      "all_requested_inputs_present": true,
+      "candidate_source_geometry_control_artifacts_present": true,
+      "note": "This refresh treats all same-day v3_fmo candidate, source, geometry, control, admission, and integrated-status artifacts as inspection inputs. Candidate rows remain context only and are not used to set thresholds or production metrics."
+    },
     "new_v3_fmo_candidate_source_geometry_control_artifacts_present": [
       {
         "path": "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
         "artifact_class": "candidate",
-        "status": "review_only_post_inventory",
+        "status": "review_only_present",
         "design_relevance": "Confirms m_csa:551 and m_csa:973 are the only clean local candidates beyond m_csa:131 and m_csa:132; no additional clean named-target-family local rows were found."
       },
       {
         "path": "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
         "artifact_class": "structure_geometry",
-        "status": "review_only_post_inventory",
-        "design_relevance": "Adds structural-state caveats for m_csa:551, m_csa:973, m_csa:141, and m_csa:128 without creating countable positives or imports."
+        "status": "review_only_present",
+        "design_relevance": "Adds structural-state caveats for m_csa:551, m_csa:973, m_csa:141, and m_csa:128 without creating countable positives or imports. Its own missing-source note is generation-time context only; the current run found the candidate scout present."
       },
       {
         "path": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
         "artifact_class": "source",
-        "status": "review_only_post_inventory",
+        "status": "review_only_present",
         "design_relevance": "Names source-admissible external FMO candidates for future packets while preserving source-free geometry, duplicate/leakage, terminal review, and import gates."
       },
       {
         "path": "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json",
         "artifact_class": "control",
-        "status": "review_only_post_inventory",
+        "status": "review_only_present",
         "design_relevance": "Defines hard-negative control groups for ordinary flavin hydride transfer, flavin oxidase, Fe-S relay, flavodiiron, radical flavin/Fe-S, covalent FAD-adduct, heme oxygenase, and non-flavin oxygenase boundaries."
       }
     ],
-    "additional_v3_fmo_artifacts_seen_after_initial_inventory": [
+    "additional_v3_fmo_artifacts_present": [
       {
         "path": "artifacts/v3_fmo_acquisition_sprint_integrated_status_702_20260527.json",
-        "status": "post_inventory_integrated_status_context",
-        "role": "Reports four review-supportable FMO signals, zero import-ready rows, missing named-family lanes, and no available parallel v3_fmo candidate/source/geometry/control outputs at its integration time."
+        "status": "review_only_integrated_status_context",
+        "role": "Reports four review-supportable FMO signals, zero import-ready rows, missing named-family lanes, source-only external candidates, and no production benchmark impact."
       },
       {
         "path": "artifacts/v3_fmo_admission_gate_and_benchmark_impact_702_20260527.json",
-        "status": "post_inventory_waiting_blocker_context",
-        "role": "Confirms the requested candidate, source-evidence, structure-geometry, and hard-negative FMO artifacts are absent; it does not add candidate-level evidence."
+        "status": "review_only_admission_context",
+        "role": "Confirms all requested FMO inputs are present for its gate, m_csa:551 and m_csa:973 are ready for human review packet only, import-ready count is zero, and primary promotion is not ready."
       }
     ],
     "inspected_artifacts": [
@@ -53,7 +58,9 @@
       "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
       "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
       "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
-      "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
+      "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json",
+      "artifacts/v3_fmo_admission_gate_and_benchmark_impact_702_20260527.json",
+      "artifacts/v3_fmo_acquisition_sprint_integrated_status_702_20260527.json"
     ]
   },
   "guardrails": {
@@ -517,6 +524,30 @@
     "artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json": {
       "role": "candidate_and_source_context",
       "sha256": "9d2059f7a7c8d8f4ca939258cae366b4376c41c4e447fec16220674d0feb6500"
+    },
+    "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json": {
+      "role": "local_candidate_and_negative_scout",
+      "sha256": "f8fba8af84defae1dd8716ef9d84c804ad3a084dba56177c4dc0f254ab137dc6"
+    },
+    "artifacts/v3_fmo_source_evidence_scout_702_20260527.json": {
+      "role": "external_source_candidate_context",
+      "sha256": "7065d5fd005dde1002e8a011f6278d9f36383a185a91f6564fc04e70e569c0a7"
+    },
+    "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json": {
+      "role": "structure_geometry_caveats",
+      "sha256": "84783ac3d3650daf8b218aabfa3c950ea3c18b11d1f2655ed5232e1bd211bdbb"
+    },
+    "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json": {
+      "role": "hard_negative_control_axis",
+      "sha256": "b15d239b831f8dcc31262d1812890d7c11a4f46d59835c336af85b5f645667cd"
+    },
+    "artifacts/v3_fmo_admission_gate_and_benchmark_impact_702_20260527.json": {
+      "role": "admission_gate_and_benchmark_policy_context",
+      "sha256": "b1bdfc43b50dbfb54c7a6cbab4cbc0bc5579d95c20004e0661cecd69a4f14825"
+    },
+    "artifacts/v3_fmo_acquisition_sprint_integrated_status_702_20260527.json": {
+      "role": "integrated_status_and_next_decision_context",
+      "sha256": "ee0537e109149a369e107ae2fe8ff69f5f7b2295a54342465702f377ba3aa175"
     }
   }
 }
