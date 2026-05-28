@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_fmo_source_evidence_scout_702_20260527",
   "automation_id": "fmo-source-evidence-scout",
-  "created_utc": "2026-05-28T01:38:56Z",
+  "created_utc": "2026-05-28T02:37:34Z",
   "review_only": true,
   "schema_version": "source_evidence_scout.v1",
   "status": "complete",
@@ -17,7 +17,7 @@
   "local_artifacts_inspected": [
     {
       "path": "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
-      "status": "not_present"
+      "sha256": "f8fba8af84defae1dd8716ef9d84c804ad3a084dba56177c4dc0f254ab137dc6"
     },
     {
       "path": "artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json",
@@ -40,6 +40,19 @@
       "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
     }
   ],
+  "candidate_scout_local_review": {
+    "clean_candidate_count": 2,
+    "clean_candidates": [
+      "m_csa:551",
+      "m_csa:973"
+    ],
+    "hard_negative_control_count": 22,
+    "blocked_wrong_chemistry_count": 2,
+    "needs_structure_check_count": 1,
+    "named_target_family_clean_local_hits": [],
+    "primary_promotion_ready_now": false,
+    "note": "The local M-CSA candidate scout corroborates m_csa:551 and m_csa:973 as clean future FMO candidates, but no additional named-family clean local row was found beyond the existing packet set."
+  },
   "source_review_policy": {
     "local_first": true,
     "network_use": "UniProt, Rhea, PubMed, PMC, and author/publisher pages were used only where local M-CSA artifacts lacked named-family evidence.",

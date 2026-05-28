@@ -1,12 +1,12 @@
 # FMO Source Evidence Scout
 
-Run time: 2026-05-28T01:38:56Z
+Run time: 2026-05-28T02:37:34Z
 
 Scope: focused source-review only for flavin monooxygenase and oxygenase-boundary candidates. No registry edits, imports, ontology edits, threshold changes, model outputs, or production scoring were performed. Source text was paraphrased and was not used as predictive feature input.
 
 ## Local Artifacts
 
-- `artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json`: not present.
+- `artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json`: found and inspected. It corroborates `m_csa:551` and `m_csa:973` as clean future FMO candidates, with 22 hard-negative controls, 2 wrong-chemistry blockers, and 1 structure-check boundary row.
 - `artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json`: found `m_csa:551` and `m_csa:973` as clean FMO candidates, with `m_csa:141` and `m_csa:128` as non-clean controls.
 - `artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json`: confirmed four local clean signals total: `m_csa:131`, `m_csa:132`, `m_csa:551`, and `m_csa:973`.
 - `artifacts/v1_graph_1025.json` and `artifacts/v2_benchmark_1025.json`: supplied local M-CSA mechanism text/provenance for close review.
@@ -39,4 +39,3 @@ Admissible for label-review evidence packet now: `m_csa:131`, `m_csa:132`, `m_cs
 Not admissible as clean FMO support in this packet: `m_csa:141`, `m_csa:128`, and `uniprot:P06617`.
 
 External non-M-CSA candidates remain source-reviewed only. They still need source-free structure/geometry checks, duplicate/leakage screening, terminal review, and factory/import gates before any label import.
-
