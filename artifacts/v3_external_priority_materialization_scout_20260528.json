@@ -1,0 +1,1159 @@
+{
+  "artifact_id": "v3_external_priority_materialization_scout_20260528",
+  "created_utc": "2026-05-28T09:31:30.286639Z",
+  "guardrails": {
+    "coordinate_fetches_performed": false,
+    "labels_changed": false,
+    "large_downloads_performed": false,
+    "model_outputs_changed": false,
+    "registries_changed": false,
+    "thresholds_changed": false,
+    "training_executed": false
+  },
+  "next_gate": {
+    "can_import_labels_now": false,
+    "can_train_now": false,
+    "recommended_action": "Materialize only bounded external rows after identifier resolution; use current702 local rows only as review-only stress/canary evidence."
+  },
+  "ranked_rows": [
+    {
+      "blocker_type": "quarantined_review_only_boundary_not_clean_canary",
+      "candidate_id": "m_csa:497",
+      "clean_canary_allowed": false,
+      "display_name": "nitric-oxide reductase (FMN)",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1YCF.cif",
+      "quarantined_before_model_claims": true,
+      "rank": 1,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "flavodiiron_no_reductase",
+        "non_heme_diiron_redox"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_m_csa_structure_available"
+      ]
+    },
+    {
+      "blocker_type": "none_local_current702_coordinate_available",
+      "candidate_id": "m_csa:131",
+      "clean_canary_allowed": true,
+      "display_name": "4-hydroxybenzoate 3-monooxygenase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DOC.cif",
+      "quarantined_before_model_claims": false,
+      "rank": 2,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "flavin_monooxygenase",
+        "flavin_monooxygenase_c4a_peroxy_oxygen_transfer"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_m_csa_structure_available"
+      ]
+    },
+    {
+      "blocker_type": "none_local_current702_coordinate_available",
+      "candidate_id": "m_csa:551",
+      "clean_canary_allowed": true,
+      "display_name": "phenol 2-monooxygenase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1FOH.cif",
+      "quarantined_before_model_claims": false,
+      "rank": 3,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "flavin_monooxygenase_c4a_peroxy_oxygen_transfer",
+        "flavin_monooxygenase_future_support"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_coordinate_fix_available"
+      ]
+    },
+    {
+      "blocker_type": "none_local_current702_coordinate_available",
+      "candidate_id": "m_csa:973",
+      "clean_canary_allowed": true,
+      "display_name": "DszC protein",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_3X0Y.cif",
+      "quarantined_before_model_claims": false,
+      "rank": 4,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "flavin_monooxygenase_c4a_peroxy_oxygen_transfer",
+        "two_component_fmnh2_monooxygenase"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_m_csa_structure_available_with_caveat"
+      ]
+    },
+    {
+      "blocker_type": "none_local_current702_coordinate_available",
+      "candidate_id": "m_csa:141",
+      "clean_canary_allowed": true,
+      "display_name": "4-cresol dehydrogenase (hydroxylating)",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DII.cif",
+      "quarantined_before_model_claims": false,
+      "rank": 5,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "flavin_heme_hydroxylating_boundary",
+        "heme_plus_flavin_electron_transfer"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_m_csa_structure_available"
+      ]
+    },
+    {
+      "blocker_type": "none_local_current702_coordinate_available",
+      "candidate_id": "m_csa:128",
+      "clean_canary_allowed": true,
+      "display_name": "Photinus-luciferin 4-monooxygenase (ATP-hydrolysing)",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BA3.cif",
+      "quarantined_before_model_claims": false,
+      "rank": 6,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "luciferase_atp_oxygenase",
+        "nonflavin_oxygenase_hard_negative"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_m_csa_structure_available"
+      ]
+    },
+    {
+      "blocker_type": "none_local_current702_coordinate_available",
+      "candidate_id": "m_csa:129",
+      "clean_canary_allowed": true,
+      "display_name": "taurine dioxygenase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OS7.cif",
+      "quarantined_before_model_claims": false,
+      "rank": 7,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "non_heme_iron_oxygenase",
+        "nonflavin_oxygenase_hard_negative"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_m_csa_structure_available"
+      ]
+    },
+    {
+      "blocker_type": "none_local_current702_coordinate_available",
+      "candidate_id": "m_csa:130",
+      "clean_canary_allowed": true,
+      "display_name": "naphthalene 1,2-dioxygenase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1NDO.cif",
+      "quarantined_before_model_claims": false,
+      "rank": 8,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "nonflavin_oxygenase_hard_negative",
+        "rieske_non_heme_iron_oxygenase"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_m_csa_structure_available"
+      ]
+    },
+    {
+      "blocker_type": "none_local_current702_coordinate_available",
+      "candidate_id": "m_csa:133",
+      "clean_canary_allowed": true,
+      "display_name": "camphor 5-monooxygenase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1YRC.cif",
+      "quarantined_before_model_claims": false,
+      "rank": 9,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "nonflavin_oxygenase_hard_negative",
+        "p450_boundary"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_m_csa_structure_available"
+      ]
+    },
+    {
+      "blocker_type": "none_local_current702_coordinate_available",
+      "candidate_id": "m_csa:134",
+      "clean_canary_allowed": true,
+      "display_name": "tyrosine 3-monooxygenase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2TOH.cif",
+      "quarantined_before_model_claims": false,
+      "rank": 10,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "nonflavin_oxygenase_hard_negative",
+        "pterin_non_heme_iron_monooxygenase"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_m_csa_structure_available"
+      ]
+    },
+    {
+      "blocker_type": "none_local_current702_coordinate_available",
+      "candidate_id": "m_csa:135",
+      "clean_canary_allowed": true,
+      "display_name": "peptidylglycine monooxygenase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1SDW.cif",
+      "quarantined_before_model_claims": false,
+      "rank": 11,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "copper_oxygenase",
+        "nonflavin_oxygenase_hard_negative"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_m_csa_structure_available"
+      ]
+    },
+    {
+      "blocker_type": "none_local_current702_coordinate_available",
+      "candidate_id": "m_csa:699",
+      "clean_canary_allowed": true,
+      "display_name": "cytochrome P450 (BM-3)",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BU7.cif",
+      "quarantined_before_model_claims": false,
+      "rank": 12,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "nonflavin_oxygenase_hard_negative",
+        "p450_boundary"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_m_csa_structure_available"
+      ]
+    },
+    {
+      "blocker_type": "none_local_current702_coordinate_available",
+      "candidate_id": "m_csa:795",
+      "clean_canary_allowed": true,
+      "display_name": "heme oxygenase (biliverdin-producing)",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": true,
+      "local_coordinate_exists": true,
+      "local_coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1WNW.cif",
+      "quarantined_before_model_claims": false,
+      "rank": 13,
+      "recommended_next_action": "use_as_review_only_boundary/current702 coordinate row; do not import or clean-canary if quarantined",
+      "routes": [
+        "heme_oxygenase_boundary",
+        "nonflavin_oxygenase_hard_negative"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "artifacts/v3_external_heme_redox_boundary_panel_20260528.json"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_identifier_statuses": [
+        "available_or_locally_referenced",
+        "local_m_csa_structure_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_035",
+      "clean_canary_allowed": false,
+      "display_name": "beta-lactamase (Class B1)",
+      "expected_router_value": "parent/child positive or external breadth evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 14,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "metallo_beta_lactamase_like",
+        "seed_fingerprint:metal_dependent_hydrolase"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_036",
+      "clean_canary_allowed": false,
+      "display_name": "beta-lactamase (Class B1)",
+      "expected_router_value": "parent/child positive or external breadth evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 15,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "metallo_beta_lactamase_like",
+        "seed_fingerprint:metal_dependent_hydrolase"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_037",
+      "clean_canary_allowed": false,
+      "display_name": "cerebroside-sulfatase",
+      "expected_router_value": "parent/child positive or external breadth evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 16,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "seed_fingerprint:metal_dependent_hydrolase",
+        "sulfatase_fgly_metal_boundary"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_040",
+      "clean_canary_allowed": false,
+      "display_name": "H+-transporting two-sector ATPase (F-type, mitochondrial)",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 17,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "ntpase_nucleotide_hydrolase_boundary",
+        "out_of_scope"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_041",
+      "clean_canary_allowed": false,
+      "display_name": "chaperonin ATPase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 18,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "ntpase_nucleotide_hydrolase_boundary",
+        "out_of_scope"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_042",
+      "clean_canary_allowed": false,
+      "display_name": "G-protein alpha subunit, group I (GTPase)",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 19,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "ntpase_nucleotide_hydrolase_boundary",
+        "out_of_scope"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_043",
+      "clean_canary_allowed": false,
+      "display_name": "myosin ATPase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 20,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "ntpase_nucleotide_hydrolase_boundary",
+        "reviewed_or_candidate_control_no_current_parent_label"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_048",
+      "clean_canary_allowed": false,
+      "display_name": "carbonate dehydratase (alpha class)",
+      "expected_router_value": "parent/child positive or external breadth evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 21,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "seed_fingerprint:metal_dependent_hydrolase"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_049",
+      "clean_canary_allowed": false,
+      "display_name": "carbonate dehydratase (gamma class)",
+      "expected_router_value": "parent/child positive or external breadth evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 22,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "seed_fingerprint:metal_dependent_hydrolase"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_050",
+      "clean_canary_allowed": false,
+      "display_name": "carbonate dehydratase (beta class)",
+      "expected_router_value": "parent/child positive or external breadth evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 23,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "seed_fingerprint:metal_dependent_hydrolase"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_051",
+      "clean_canary_allowed": false,
+      "display_name": "3-dehydroquinate dehydratase (type I)",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 24,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "out_of_scope"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_052",
+      "clean_canary_allowed": false,
+      "display_name": "3-dehydroquinate dehydratase (type II)",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 25,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "out_of_scope"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_053",
+      "clean_canary_allowed": false,
+      "display_name": "aldoxime dehydratase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 26,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "out_of_scope"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_054",
+      "clean_canary_allowed": false,
+      "display_name": "4-hydroxybutanoyl-CoA dehydratase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 27,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "out_of_scope"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_055",
+      "clean_canary_allowed": false,
+      "display_name": "nitrile hydratase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 28,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "metal_dependent_nonhydrolytic_negative",
+        "out_of_scope"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_056",
+      "clean_canary_allowed": false,
+      "display_name": "oxalate oxidase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 29,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "metal_dependent_nonhydrolytic_negative",
+        "reviewed_or_candidate_control_no_current_parent_label"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_057",
+      "clean_canary_allowed": false,
+      "display_name": "Nitrate reductase [NADH]",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 30,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "metal_dependent_nonhydrolytic_negative",
+        "reviewed_or_candidate_control_no_current_parent_label"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_058",
+      "clean_canary_allowed": false,
+      "display_name": "protocatechuate 3,4-dioxygenase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 31,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "metal_dependent_nonhydrolytic_negative",
+        "reviewed_or_candidate_control_no_current_parent_label"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_059",
+      "clean_canary_allowed": false,
+      "display_name": "lanthanide-dependent methanol dehydrogenase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 32,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "metal_dependent_nonhydrolytic_negative",
+        "reviewed_or_candidate_control_no_current_parent_label"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "local_geometry_row_available"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_064",
+      "clean_canary_allowed": false,
+      "display_name": "Metallo-beta-lactamase NDM-1",
+      "expected_router_value": "parent/child positive or external breadth evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 33,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "external_no_decision_review_only",
+        "metallo_beta_lactamase_like"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "pdb_and_alphafold_available_from_uniprot_spot_check"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_065",
+      "clean_canary_allowed": false,
+      "display_name": "Metallo-beta-lactamase VIM-like enzyme",
+      "expected_router_value": "parent/child positive or external breadth evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 34,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "external_no_decision_review_only",
+        "metallo_beta_lactamase_like"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "pdb_and_alphafold_available_from_uniprot_spot_check"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_066",
+      "clean_canary_allowed": false,
+      "display_name": "Metallo-beta-lactamase IMP-1",
+      "expected_router_value": "parent/child positive or external breadth evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 35,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "external_no_decision_review_only",
+        "metallo_beta_lactamase_like"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "pdb_and_alphafold_available_from_uniprot_spot_check"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_067",
+      "clean_canary_allowed": false,
+      "display_name": "Carbonic anhydrase 2",
+      "expected_router_value": "parent/child positive or external breadth evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 36,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "external_no_decision_review_only"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "pdb_and_alphafold_available_from_uniprot_spot_check"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_068",
+      "clean_canary_allowed": false,
+      "display_name": "Arylsulfatase A",
+      "expected_router_value": "parent/child positive or external breadth evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 37,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "external_no_decision_review_only",
+        "sulfatase_fgly_metal_boundary"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "pdb_and_alphafold_available_from_uniprot_spot_check"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_069",
+      "clean_canary_allowed": false,
+      "display_name": "Iduronate 2-sulfatase",
+      "expected_router_value": "parent/child positive or external breadth evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 38,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "external_no_decision_review_only",
+        "sulfatase_fgly_metal_boundary"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "pdb_and_alphafold_available_from_uniprot_spot_check"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_072",
+      "clean_canary_allowed": false,
+      "display_name": "Enolase",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 39,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "external_no_decision_review_only",
+        "metal_dependent_nonhydrolytic_negative"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "pdb_and_alphafold_available_from_uniprot_spot_check"
+      ]
+    },
+    {
+      "blocker_type": "external_identifier_or_coordinate_mapping_needed",
+      "candidate_id": "mh_073",
+      "clean_canary_allowed": false,
+      "display_name": "GTPase HRas",
+      "expected_router_value": "boundary/hard-negative stress evidence",
+      "human_or_source_review_needed_before_claim": true,
+      "is_current702_mcsa_row": false,
+      "local_coordinate_exists": false,
+      "local_coordinate_path": null,
+      "quarantined_before_model_claims": false,
+      "rank": 40,
+      "recommended_next_action": "resolve PDB/UniProt/AFDB identifier from source artifact, then materialize bounded coordinate if approved",
+      "routes": [
+        "external_no_decision_review_only",
+        "ntpase_nucleotide_hydrolase_boundary"
+      ],
+      "source_artifact_refs": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "structure_identifier_statuses": [
+        "pdb_and_alphafold_available_from_uniprot_spot_check"
+      ]
+    }
+  ],
+  "review_only": true,
+  "schema_version": "v3_external_priority_materialization_scout_v1",
+  "scope": "top_external_router_priority_materialization_and_mapping_scout",
+  "source_artifacts": [
+    "artifacts/v3_external_panel_router_queue_20260528.json",
+    "artifacts/v3_router_queue_leakage_canary_audit_20260528.json"
+  ],
+  "status": "completed_review_only_materialization_scout_no_fetches",
+  "summary": {
+    "blocker_counts": {
+      "external_identifier_or_coordinate_mapping_needed": 27,
+      "none_local_current702_coordinate_available": 12,
+      "quarantined_review_only_boundary_not_clean_canary": 1
+    },
+    "clean_canary_allowed_count": 12,
+    "current702_rows_with_local_coordinates": 13,
+    "external_rows_needing_mapping": 27,
+    "priority_rows_scanned": 40,
+    "quarantined_review_only_boundary_rows": 1
+  }
+}

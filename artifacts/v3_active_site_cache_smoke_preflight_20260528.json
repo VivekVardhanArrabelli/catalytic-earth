@@ -1,0 +1,349 @@
+{
+  "artifact_id": "v3_active_site_cache_smoke_preflight_20260528",
+  "cli_probe": {
+    "decision": "implement_or_expose_tiny_cache_cli_before_extraction",
+    "relevant_cli_tokens": [
+      "build-external-source-active-site-evidence-queue",
+      "build-external-source-active-site-evidence-sample",
+      "build-external-source-active-site-gap-source-requests",
+      "build-external-source-active-site-sourcing-export",
+      "build-external-source-active-site-sourcing-queue",
+      "build-external-source-active-site-sourcing-resolution",
+      "build-external-source-pilot-active-site-evidence-decisions"
+    ],
+    "safe_cache_cli_present": false
+  },
+  "created_utc": "2026-05-28T09:31:30.286639Z",
+  "forbidden_field_policy": {
+    "passed": true,
+    "predictive_fields_excluded": [
+      "EC numbers",
+      "mechanism text",
+      "entry/protein/reaction names",
+      "expert notes",
+      "review rationales",
+      "source IDs including entry_id/PDB/UniProt as categorical features",
+      "post-hoc repair flags",
+      "target labels or child-label IDs"
+    ]
+  },
+  "guardrails": {
+    "labels_changed": false,
+    "large_downloads_performed": false,
+    "model_outputs_changed": false,
+    "registries_changed": false,
+    "tensor_cache_written": false,
+    "thresholds_changed": false,
+    "training_executed": false
+  },
+  "next_gate": {
+    "can_train_now": false,
+    "can_write_large_tensor_cache_now": false,
+    "recommended_next_action": "CLI implementation/preflight only: add or expose a small label-blind active-site cache writer, then run on these 10 rows. Do not train yet."
+  },
+  "review_only": true,
+  "schema_version": "v3_active_site_cache_smoke_preflight_v1",
+  "scope": "active_site_feature_cache_smoke_preflight_for_31_ready_rows",
+  "smoke_rows": [
+    {
+      "active_site_residue_count": 4,
+      "allowed_feature_metadata_only": [
+        "row_id not predictive",
+        "split only for evaluation",
+        "source_group only for audit"
+      ],
+      "candidate_id": "m_csa:97",
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1CTT.cif",
+      "coordinate_path_exists": true,
+      "forbidden_predictive_fields_excluded": [
+        "EC numbers",
+        "mechanism text",
+        "entry/protein/reaction names",
+        "expert notes",
+        "review rationales",
+        "source IDs including entry_id/PDB/UniProt as categorical features",
+        "post-hoc repair flags",
+        "target labels or child-label IDs"
+      ],
+      "local_cofactor_family_available": true,
+      "pairwise_distance_count": 6,
+      "pocket_descriptor_available": true,
+      "resolved_residue_count": 4,
+      "role_annotated_residue_count": 4,
+      "smoke_status": "contract_ready_cli_missing_or_path_missing",
+      "source_group": "clean_near_orphan_anchor",
+      "structure_cofactor_family_available": true
+    },
+    {
+      "active_site_residue_count": 3,
+      "allowed_feature_metadata_only": [
+        "row_id not predictive",
+        "split only for evaluation",
+        "source_group only for audit"
+      ],
+      "candidate_id": "m_csa:211",
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IDT.cif",
+      "coordinate_path_exists": true,
+      "forbidden_predictive_fields_excluded": [
+        "EC numbers",
+        "mechanism text",
+        "entry/protein/reaction names",
+        "expert notes",
+        "review rationales",
+        "source IDs including entry_id/PDB/UniProt as categorical features",
+        "post-hoc repair flags",
+        "target labels or child-label IDs"
+      ],
+      "local_cofactor_family_available": true,
+      "pairwise_distance_count": 3,
+      "pocket_descriptor_available": true,
+      "resolved_residue_count": 3,
+      "role_annotated_residue_count": 3,
+      "smoke_status": "contract_ready_cli_missing_or_path_missing",
+      "source_group": "clean_near_orphan_anchor",
+      "structure_cofactor_family_available": true
+    },
+    {
+      "active_site_residue_count": 4,
+      "allowed_feature_metadata_only": [
+        "row_id not predictive",
+        "split only for evaluation",
+        "source_group only for audit"
+      ],
+      "candidate_id": "m_csa:250",
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2CPO.cif",
+      "coordinate_path_exists": true,
+      "forbidden_predictive_fields_excluded": [
+        "EC numbers",
+        "mechanism text",
+        "entry/protein/reaction names",
+        "expert notes",
+        "review rationales",
+        "source IDs including entry_id/PDB/UniProt as categorical features",
+        "post-hoc repair flags",
+        "target labels or child-label IDs"
+      ],
+      "local_cofactor_family_available": true,
+      "pairwise_distance_count": 6,
+      "pocket_descriptor_available": true,
+      "resolved_residue_count": 4,
+      "role_annotated_residue_count": 4,
+      "smoke_status": "contract_ready_cli_missing_or_path_missing",
+      "source_group": "clean_near_orphan_anchor",
+      "structure_cofactor_family_available": true
+    },
+    {
+      "active_site_residue_count": 5,
+      "allowed_feature_metadata_only": [
+        "row_id not predictive",
+        "split only for evaluation",
+        "source_group only for audit"
+      ],
+      "candidate_id": "m_csa:517",
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1I6P.cif",
+      "coordinate_path_exists": true,
+      "forbidden_predictive_fields_excluded": [
+        "EC numbers",
+        "mechanism text",
+        "entry/protein/reaction names",
+        "expert notes",
+        "review rationales",
+        "source IDs including entry_id/PDB/UniProt as categorical features",
+        "post-hoc repair flags",
+        "target labels or child-label IDs"
+      ],
+      "local_cofactor_family_available": true,
+      "pairwise_distance_count": 10,
+      "pocket_descriptor_available": true,
+      "resolved_residue_count": 5,
+      "role_annotated_residue_count": 5,
+      "smoke_status": "contract_ready_cli_missing_or_path_missing",
+      "source_group": "clean_near_orphan_anchor",
+      "structure_cofactor_family_available": true
+    },
+    {
+      "active_site_residue_count": 6,
+      "allowed_feature_metadata_only": [
+        "row_id not predictive",
+        "split only for evaluation",
+        "source_group only for audit"
+      ],
+      "candidate_id": "m_csa:686",
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1E1A.cif",
+      "coordinate_path_exists": true,
+      "forbidden_predictive_fields_excluded": [
+        "EC numbers",
+        "mechanism text",
+        "entry/protein/reaction names",
+        "expert notes",
+        "review rationales",
+        "source IDs including entry_id/PDB/UniProt as categorical features",
+        "post-hoc repair flags",
+        "target labels or child-label IDs"
+      ],
+      "local_cofactor_family_available": true,
+      "pairwise_distance_count": 15,
+      "pocket_descriptor_available": true,
+      "resolved_residue_count": 6,
+      "role_annotated_residue_count": 6,
+      "smoke_status": "contract_ready_cli_missing_or_path_missing",
+      "source_group": "clean_near_orphan_anchor",
+      "structure_cofactor_family_available": true
+    },
+    {
+      "active_site_residue_count": 6,
+      "allowed_feature_metadata_only": [
+        "row_id not predictive",
+        "split only for evaluation",
+        "source_group only for audit"
+      ],
+      "candidate_id": "m_csa:916",
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_4Z71.cif",
+      "coordinate_path_exists": true,
+      "forbidden_predictive_fields_excluded": [
+        "EC numbers",
+        "mechanism text",
+        "entry/protein/reaction names",
+        "expert notes",
+        "review rationales",
+        "source IDs including entry_id/PDB/UniProt as categorical features",
+        "post-hoc repair flags",
+        "target labels or child-label IDs"
+      ],
+      "local_cofactor_family_available": true,
+      "pairwise_distance_count": 15,
+      "pocket_descriptor_available": true,
+      "resolved_residue_count": 6,
+      "role_annotated_residue_count": 5,
+      "smoke_status": "contract_ready_cli_missing_or_path_missing",
+      "source_group": "clean_near_orphan_anchor",
+      "structure_cofactor_family_available": true
+    },
+    {
+      "active_site_residue_count": 4,
+      "allowed_feature_metadata_only": [
+        "row_id not predictive",
+        "split only for evaluation",
+        "source_group only for audit"
+      ],
+      "candidate_id": "m_csa:990",
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_5DQR.cif",
+      "coordinate_path_exists": true,
+      "forbidden_predictive_fields_excluded": [
+        "EC numbers",
+        "mechanism text",
+        "entry/protein/reaction names",
+        "expert notes",
+        "review rationales",
+        "source IDs including entry_id/PDB/UniProt as categorical features",
+        "post-hoc repair flags",
+        "target labels or child-label IDs"
+      ],
+      "local_cofactor_family_available": true,
+      "pairwise_distance_count": 6,
+      "pocket_descriptor_available": true,
+      "resolved_residue_count": 4,
+      "role_annotated_residue_count": 4,
+      "smoke_status": "contract_ready_cli_missing_or_path_missing",
+      "source_group": "clean_near_orphan_anchor",
+      "structure_cofactor_family_available": true
+    },
+    {
+      "active_site_residue_count": 6,
+      "allowed_feature_metadata_only": [
+        "row_id not predictive",
+        "split only for evaluation",
+        "source_group only for audit"
+      ],
+      "candidate_id": "m_csa:217",
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1SC9.cif",
+      "coordinate_path_exists": true,
+      "forbidden_predictive_fields_excluded": [
+        "EC numbers",
+        "mechanism text",
+        "entry/protein/reaction names",
+        "expert notes",
+        "review rationales",
+        "source IDs including entry_id/PDB/UniProt as categorical features",
+        "post-hoc repair flags",
+        "target labels or child-label IDs"
+      ],
+      "local_cofactor_family_available": false,
+      "pairwise_distance_count": 15,
+      "pocket_descriptor_available": true,
+      "resolved_residue_count": 6,
+      "role_annotated_residue_count": 6,
+      "smoke_status": "contract_ready_cli_missing_or_path_missing",
+      "source_group": "fold_conflict_reference_anchor",
+      "structure_cofactor_family_available": false
+    },
+    {
+      "active_site_residue_count": 7,
+      "allowed_feature_metadata_only": [
+        "row_id not predictive",
+        "split only for evaluation",
+        "source_group only for audit"
+      ],
+      "candidate_id": "m_csa:428",
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BQC.cif",
+      "coordinate_path_exists": true,
+      "forbidden_predictive_fields_excluded": [
+        "EC numbers",
+        "mechanism text",
+        "entry/protein/reaction names",
+        "expert notes",
+        "review rationales",
+        "source IDs including entry_id/PDB/UniProt as categorical features",
+        "post-hoc repair flags",
+        "target labels or child-label IDs"
+      ],
+      "local_cofactor_family_available": false,
+      "pairwise_distance_count": 21,
+      "pocket_descriptor_available": true,
+      "resolved_residue_count": 7,
+      "role_annotated_residue_count": 7,
+      "smoke_status": "contract_ready_cli_missing_or_path_missing",
+      "source_group": "fold_conflict_reference_anchor",
+      "structure_cofactor_family_available": false
+    },
+    {
+      "active_site_residue_count": 5,
+      "allowed_feature_metadata_only": [
+        "row_id not predictive",
+        "split only for evaluation",
+        "source_group only for audit"
+      ],
+      "candidate_id": "m_csa:477",
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1CQQ.cif",
+      "coordinate_path_exists": true,
+      "forbidden_predictive_fields_excluded": [
+        "EC numbers",
+        "mechanism text",
+        "entry/protein/reaction names",
+        "expert notes",
+        "review rationales",
+        "source IDs including entry_id/PDB/UniProt as categorical features",
+        "post-hoc repair flags",
+        "target labels or child-label IDs"
+      ],
+      "local_cofactor_family_available": false,
+      "pairwise_distance_count": 10,
+      "pocket_descriptor_available": true,
+      "resolved_residue_count": 5,
+      "role_annotated_residue_count": 5,
+      "smoke_status": "contract_ready_cli_missing_or_path_missing",
+      "source_group": "fold_conflict_reference_anchor",
+      "structure_cofactor_family_available": false
+    }
+  ],
+  "smoke_subset_policy": {
+    "max_rows": 10,
+    "selected_from_ready_count": 31,
+    "selection": "first ten label_blind_feature_extraction_smoke_ready rows from frozen readiness matrix"
+  },
+  "source_artifacts": [
+    "artifacts/v3_active_site_encoder_readiness_matrix_20260528.json",
+    "artifacts/v3_active_site_encoder_feature_spec_702_20260528.json"
+  ],
+  "status": "completed_read_only_preflight_no_cache_written"
+}
