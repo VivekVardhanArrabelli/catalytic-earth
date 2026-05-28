@@ -1,0 +1,1466 @@
+{
+  "artifact_id": "v3_wave1_1_diagnostic_benchmark_result_702_20260527",
+  "created_utc": "2026-05-27T00:00:00Z",
+  "decision_summary": {
+    "do_existing_plm_or_representation_tracks_add_value_beyond_foldseek_or_sequence": {
+      "answer": "limited_and_underpowered",
+      "basis": "ESM-2 is the strongest available learned comparator in these cells, with 9/17 near-orphan and 1/4 wrong-transfer support. ProtT5 and SaProt add sporadic parent-v1 support but no child-label readout; ProstT5-3Di row-level exports and Foldseek-pocket are unavailable."
+    },
+    "does_foldseek_remain_best_only_in_dense_neighbor_or_broad_bucket_settings": {
+      "answer": "yes",
+      "basis": "Foldseek remains strong in the existing aggregate readthrough and dense-neighborhood Wave 1 card, but in closed Packet 2 diagnostics it supports 13/17 near-orphan rows and makes 4/4 unsafe wrong-transfer calls."
+    },
+    "does_geometry_add_value_in_near_orphan_or_wrong_transfer_settings": {
+      "answer": "yes",
+      "basis": "Geometry supports 17/17 near-orphan rows and rescues 4/4 wrong-Foldseek-transfer rows."
+    },
+    "recommended_next_move": {
+      "decision": "targeted_hybrid_foldseek_geometry_atlas_engine_plus_fingerprint_v2_label_acquisition",
+      "why": [
+        "Build the Foldseek+geometry atlas engine because geometry resolves the exact near-orphan and wrong-transfer failures exposed here.",
+        "Keep representation scaling secondary until row-aligned exports exist for all intended tracks and child-label prediction targets are defined.",
+        "Use fingerprint v2/label acquisition for blocked mixed-chemistry and underpowered child cells before any v2 metric claim."
+      ]
+    }
+  },
+  "diagnostic_cells": [
+    {
+      "cell_id": "primary_v1_metrics_after_m_csa497_m_csa750_readthrough",
+      "countable_metric": false,
+      "diagnostic_use": "review_only_diagnostic_summary_only",
+      "entry_ids_excluded_from_primary_metrics": [
+        "m_csa:497",
+        "m_csa:750"
+      ],
+      "method_results": [
+        {
+          "abstention_or_review_only_behavior_count": 0,
+          "available_behavior_scope": "primary_v1_readthrough_aggregate",
+          "correct_or_expected_behavior_count": 27,
+          "display_name": "Foldseek full-structure nearest neighbor",
+          "m_csa497_prediction": "metal_dependent_hydrolase",
+          "m_csa750_prediction": "flavin_dehydrogenase_reductase",
+          "method_available": true,
+          "method_id": "foldseek_structural_nn",
+          "oos_or_secondary_false_positive_rate_review_only": 0.1134020619,
+          "oos_or_secondary_support_count": 97,
+          "primary_accuracy_review_only": 0.6279069767,
+          "qualitative_interpretation": "After excluding m_csa:497 and m_csa:750 from primary flavin metrics, the aggregate readthrough has 27/43 primary-support calls and 2/2 unsafe predictions on the excluded boundary rows.",
+          "row_count_evaluable": 43,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 2
+        },
+        {
+          "abstention_or_review_only_behavior_count": 1,
+          "available_behavior_scope": "primary_v1_readthrough_aggregate",
+          "correct_or_expected_behavior_count": 38,
+          "display_name": "Active-site geometry baseline/router",
+          "m_csa497_prediction": null,
+          "m_csa750_prediction": "flavin_dehydrogenase_reductase",
+          "method_available": true,
+          "method_id": "geometry_baseline",
+          "oos_or_secondary_false_positive_rate_review_only": 1.0,
+          "oos_or_secondary_support_count": 97,
+          "primary_accuracy_review_only": 1.0,
+          "qualitative_interpretation": "After excluding m_csa:497 and m_csa:750 from primary flavin metrics, the aggregate readthrough has 38/38 primary-support calls and 1/2 unsafe predictions on the excluded boundary rows.",
+          "row_count_evaluable": 38,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 1
+        },
+        {
+          "abstention_or_review_only_behavior_count": 2,
+          "available_behavior_scope": "primary_v1_readthrough_aggregate",
+          "correct_or_expected_behavior_count": 7,
+          "display_name": "Sequence-NN 3-mer Jaccard",
+          "m_csa497_prediction": "out_of_scope",
+          "m_csa750_prediction": "out_of_scope",
+          "method_available": true,
+          "method_id": "sequence_nn",
+          "oos_or_secondary_false_positive_rate_review_only": 0.2783505155,
+          "oos_or_secondary_support_count": 97,
+          "primary_accuracy_review_only": 0.1627906977,
+          "qualitative_interpretation": "After excluding m_csa:497 and m_csa:750 from primary flavin metrics, the aggregate readthrough has 7/43 primary-support calls and 0/2 unsafe predictions on the excluded boundary rows.",
+          "row_count_evaluable": 43,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 2,
+          "available_behavior_scope": "primary_v1_readthrough_aggregate",
+          "correct_or_expected_behavior_count": 26,
+          "display_name": "ESM-2 150M logistic",
+          "m_csa497_prediction": "out_of_scope",
+          "m_csa750_prediction": "out_of_scope",
+          "method_available": true,
+          "method_id": "esm2_150m",
+          "oos_or_secondary_false_positive_rate_review_only": 0.1649484536,
+          "oos_or_secondary_support_count": 97,
+          "primary_accuracy_review_only": 0.6046511628,
+          "qualitative_interpretation": "After excluding m_csa:497 and m_csa:750 from primary flavin metrics, the aggregate readthrough has 26/43 primary-support calls and 0/2 unsafe predictions on the excluded boundary rows.",
+          "row_count_evaluable": 43,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 1,
+          "available_behavior_scope": "primary_v1_readthrough_aggregate",
+          "correct_or_expected_behavior_count": 17,
+          "display_name": "ESM-C corrected logistic",
+          "m_csa497_prediction": "metal_dependent_hydrolase",
+          "m_csa750_prediction": "out_of_scope",
+          "method_available": true,
+          "method_id": "esm_c",
+          "oos_or_secondary_false_positive_rate_review_only": 0.175257732,
+          "oos_or_secondary_support_count": 97,
+          "primary_accuracy_review_only": 0.3953488372,
+          "qualitative_interpretation": "After excluding m_csa:497 and m_csa:750 from primary flavin metrics, the aggregate readthrough has 17/43 primary-support calls and 1/2 unsafe predictions on the excluded boundary rows.",
+          "row_count_evaluable": 43,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 1
+        },
+        {
+          "abstention_or_review_only_behavior_count": 1,
+          "available_behavior_scope": "primary_v1_readthrough_aggregate",
+          "correct_or_expected_behavior_count": 17,
+          "display_name": "ProtT5 Swiss-Prot H5 cosine NN",
+          "m_csa497_prediction": "metal_dependent_hydrolase",
+          "m_csa750_prediction": "out_of_scope",
+          "method_available": true,
+          "method_id": "prott5",
+          "oos_or_secondary_false_positive_rate_review_only": 0.2527472527,
+          "oos_or_secondary_support_count": 91,
+          "primary_accuracy_review_only": 0.4146341463,
+          "qualitative_interpretation": "After excluding m_csa:497 and m_csa:750 from primary flavin metrics, the aggregate readthrough has 17/41 primary-support calls and 1/2 unsafe predictions on the excluded boundary rows.",
+          "row_count_evaluable": 41,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 1
+        },
+        {
+          "abstention_or_review_only_behavior_count": 1,
+          "available_behavior_scope": "primary_v1_readthrough_aggregate",
+          "correct_or_expected_behavior_count": 15,
+          "display_name": "SaProt 35M structure-token NN",
+          "m_csa497_prediction": "out_of_scope",
+          "m_csa750_prediction": "cobalamin_radical_rearrangement",
+          "method_available": true,
+          "method_id": "saprot",
+          "oos_or_secondary_false_positive_rate_review_only": 0.206185567,
+          "oos_or_secondary_support_count": 97,
+          "primary_accuracy_review_only": 0.3488372093,
+          "qualitative_interpretation": "After excluding m_csa:497 and m_csa:750 from primary flavin metrics, the aggregate readthrough has 15/43 primary-support calls and 1/2 unsafe predictions on the excluded boundary rows.",
+          "row_count_evaluable": 43,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 1
+        },
+        {
+          "abstention_or_review_only_behavior_count": 2,
+          "available_behavior_scope": "primary_v1_readthrough_aggregate",
+          "correct_or_expected_behavior_count": 8,
+          "display_name": "ProstT5-3Di",
+          "m_csa497_prediction": "out_of_scope",
+          "m_csa750_prediction": "out_of_scope",
+          "method_available": true,
+          "method_id": "prostt5_3di",
+          "oos_or_secondary_false_positive_rate_review_only": 0.1875,
+          "oos_or_secondary_support_count": 96,
+          "primary_accuracy_review_only": 0.1860465116,
+          "qualitative_interpretation": "After excluding m_csa:497 and m_csa:750 from primary flavin metrics, the aggregate readthrough has 8/43 primary-support calls and 0/2 unsafe predictions on the excluded boundary rows.",
+          "row_count_evaluable": 43,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": null,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "Foldseek-pocket",
+          "method_available": false,
+          "method_id": "foldseek_pocket",
+          "qualitative_interpretation": "Unavailable for this diagnostic cell.",
+          "row_count_evaluable": 0,
+          "unavailable_reason": "No Foldseek-pocket aggregate or per-row track is present in the Wave 1 readthrough artifacts.",
+          "unsafe_nonabstention_count": null
+        }
+      ],
+      "requested_item": "primary v1 metrics after m_csa:497 / m_csa:750 read-through",
+      "rows_removed_from_primary_metrics": 2,
+      "rows_retained_as_oos_or_boundary_negative": 2
+    },
+    {
+      "cell_id": "packet2_near_orphan_geometry_rescue_behavior",
+      "countable_metric": false,
+      "diagnostic_use": "review_only_diagnostic_slice_only",
+      "method_results": [
+        {
+          "abstention_or_review_only_behavior_count": 4,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 13,
+          "display_name": "Foldseek full-structure nearest neighbor",
+          "method_available": true,
+          "method_id": "foldseek_structural_nn",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 3,
+            "heme_peroxidase_oxidase": 1,
+            "metal_dependent_hydrolase": 6,
+            "out_of_scope": 4,
+            "plp_dependent_enzyme": 2,
+            "ser_his_acid_hydrolase": 1
+          },
+          "qualitative_interpretation": "Foldseek is safe but incomplete in near-orphans: 13/17 same-family transfers with 4 abstentions and 0 wrong nonabstentions.",
+          "row_count_evaluable": 17,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 0,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 17,
+          "display_name": "Active-site geometry baseline/router",
+          "method_available": true,
+          "method_id": "geometry_baseline",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 4,
+            "heme_peroxidase_oxidase": 1,
+            "metal_dependent_hydrolase": 9,
+            "plp_dependent_enzyme": 2,
+            "ser_his_acid_hydrolase": 1
+          },
+          "qualitative_interpretation": "Geometry supports the expected v1 family on 17/17 near-orphan rows, the clearest rescue signal in this cell.",
+          "row_count_evaluable": 17,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 11,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 4,
+          "display_name": "Sequence-NN 3-mer Jaccard",
+          "method_available": true,
+          "method_id": "sequence_nn",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 2,
+            "heme_peroxidase_oxidase": 1,
+            "metal_dependent_hydrolase": 1,
+            "out_of_scope": 11,
+            "ser_his_acid_hydrolase": 2
+          },
+          "qualitative_interpretation": "Available as a row-aligned comparison, but it supports only 4/17 near-orphan rows and leaves 11 abstentions.",
+          "row_count_evaluable": 17,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 2
+        },
+        {
+          "abstention_or_review_only_behavior_count": 8,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 9,
+          "display_name": "ESM-2 150M logistic",
+          "method_available": true,
+          "method_id": "esm2_150m",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 1,
+            "heme_peroxidase_oxidase": 1,
+            "metal_dependent_hydrolase": 5,
+            "out_of_scope": 8,
+            "plp_dependent_enzyme": 1,
+            "ser_his_acid_hydrolase": 1
+          },
+          "qualitative_interpretation": "Available as a row-aligned comparison, but it supports only 9/17 near-orphan rows and leaves 8 abstentions.",
+          "row_count_evaluable": 17,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 10,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 5,
+          "display_name": "ESM-C corrected logistic",
+          "method_available": true,
+          "method_id": "esm_c",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 1,
+            "metal_dependent_hydrolase": 3,
+            "out_of_scope": 10,
+            "ser_his_acid_hydrolase": 3
+          },
+          "qualitative_interpretation": "Available as a row-aligned comparison, but it supports only 5/17 near-orphan rows and leaves 10 abstentions.",
+          "row_count_evaluable": 17,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 2
+        },
+        {
+          "abstention_or_review_only_behavior_count": 7,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 7,
+          "display_name": "ProtT5 Swiss-Prot H5 cosine NN",
+          "method_available": true,
+          "method_id": "prott5",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 2,
+            "heme_peroxidase_oxidase": 1,
+            "metal_dependent_hydrolase": 2,
+            "out_of_scope": 7,
+            "plp_dependent_enzyme": 1,
+            "ser_his_acid_hydrolase": 4
+          },
+          "qualitative_interpretation": "Available as a row-aligned comparison, but it supports only 7/17 near-orphan rows and leaves 7 abstentions.",
+          "row_count_evaluable": 17,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 3
+        },
+        {
+          "abstention_or_review_only_behavior_count": 7,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 6,
+          "display_name": "SaProt 35M structure-token NN",
+          "method_available": true,
+          "method_id": "saprot",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 3,
+            "heme_peroxidase_oxidase": 1,
+            "metal_dependent_hydrolase": 1,
+            "out_of_scope": 7,
+            "plp_dependent_enzyme": 2,
+            "ser_his_acid_hydrolase": 3
+          },
+          "qualitative_interpretation": "Available as a row-aligned comparison, but it supports only 6/17 near-orphan rows and leaves 7 abstentions.",
+          "row_count_evaluable": 17,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 4
+        },
+        {
+          "abstention_or_review_only_behavior_count": null,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "ProstT5-3Di",
+          "method_available": false,
+          "method_id": "prostt5_3di",
+          "qualitative_interpretation": "Unavailable for this diagnostic cell.",
+          "row_count_evaluable": 0,
+          "unavailable_reason": "No row-aligned ProstT5-3Di prediction track is present in the structure-neighborhood audit or artifacts/representation_tracks.",
+          "unsafe_nonabstention_count": null
+        },
+        {
+          "abstention_or_review_only_behavior_count": null,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "Foldseek-pocket",
+          "method_available": false,
+          "method_id": "foldseek_pocket",
+          "qualitative_interpretation": "Unavailable for this diagnostic cell.",
+          "row_count_evaluable": 0,
+          "unavailable_reason": "No standardized Foldseek-pocket per-row prediction export is present locally.",
+          "unsafe_nonabstention_count": null
+        }
+      ],
+      "missing_entry_ids": [],
+      "requested_item": "Packet 2 near-orphan geometry-rescue behavior",
+      "row_count_mapped_to_audit": 17,
+      "row_count_requested": 17
+    },
+    {
+      "cell_id": "packet2_wrong_foldseek_transfer_diagnostic_behavior",
+      "countable_metric": false,
+      "diagnostic_use": "review_only_diagnostic_slice_only",
+      "method_results": [
+        {
+          "abstention_or_review_only_behavior_count": 0,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 0,
+          "display_name": "Foldseek full-structure nearest neighbor",
+          "method_available": true,
+          "method_id": "foldseek_structural_nn",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 1,
+            "metal_dependent_hydrolase": 1,
+            "plp_dependent_enzyme": 1,
+            "ser_his_acid_hydrolase": 1
+          },
+          "qualitative_interpretation": "This is the Foldseek failure slice: 4/4 rows are wrong nonabstentions.",
+          "row_count_evaluable": 4,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 4
+        },
+        {
+          "abstention_or_review_only_behavior_count": 0,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 4,
+          "display_name": "Active-site geometry baseline/router",
+          "method_available": true,
+          "method_id": "geometry_baseline",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 1,
+            "heme_peroxidase_oxidase": 1,
+            "metal_dependent_hydrolase": 2
+          },
+          "qualitative_interpretation": "Geometry rescues the true v1 family on 4/4 wrong-transfer rows.",
+          "row_count_evaluable": 4,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 4,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 0,
+          "display_name": "Sequence-NN 3-mer Jaccard",
+          "method_available": true,
+          "method_id": "sequence_nn",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "out_of_scope": 4
+          },
+          "qualitative_interpretation": "Comparison track only: 0/4 true-family calls, 4 abstentions, and 0 wrong nonabstentions.",
+          "row_count_evaluable": 4,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 3,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 1,
+          "display_name": "ESM-2 150M logistic",
+          "method_available": true,
+          "method_id": "esm2_150m",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 1,
+            "out_of_scope": 3
+          },
+          "qualitative_interpretation": "Comparison track only: 1/4 true-family calls, 3 abstentions, and 0 wrong nonabstentions.",
+          "row_count_evaluable": 4,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 2,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 2,
+          "display_name": "ESM-C corrected logistic",
+          "method_available": true,
+          "method_id": "esm_c",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 1,
+            "metal_dependent_hydrolase": 1,
+            "out_of_scope": 2
+          },
+          "qualitative_interpretation": "Comparison track only: 2/4 true-family calls, 2 abstentions, and 0 wrong nonabstentions.",
+          "row_count_evaluable": 4,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 3,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 0,
+          "display_name": "ProtT5 Swiss-Prot H5 cosine NN",
+          "method_available": true,
+          "method_id": "prott5",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "metal_dependent_hydrolase": 1,
+            "out_of_scope": 3
+          },
+          "qualitative_interpretation": "Comparison track only: 0/4 true-family calls, 3 abstentions, and 1 wrong nonabstentions.",
+          "row_count_evaluable": 4,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 1
+        },
+        {
+          "abstention_or_review_only_behavior_count": 3,
+          "available_behavior_scope": "parent_v1_fingerprint",
+          "correct_or_expected_behavior_count": 0,
+          "display_name": "SaProt 35M structure-token NN",
+          "method_available": true,
+          "method_id": "saprot",
+          "missing_or_unavailable_entry_count": 0,
+          "predicted_label_group_counts": {
+            "out_of_scope": 3,
+            "plp_dependent_enzyme": 1
+          },
+          "qualitative_interpretation": "Comparison track only: 0/4 true-family calls, 3 abstentions, and 1 wrong nonabstentions.",
+          "row_count_evaluable": 4,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 1
+        },
+        {
+          "abstention_or_review_only_behavior_count": null,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "ProstT5-3Di",
+          "method_available": false,
+          "method_id": "prostt5_3di",
+          "qualitative_interpretation": "Unavailable for this diagnostic cell.",
+          "row_count_evaluable": 0,
+          "unavailable_reason": "No row-aligned ProstT5-3Di prediction track is present in the structure-neighborhood audit or artifacts/representation_tracks.",
+          "unsafe_nonabstention_count": null
+        },
+        {
+          "abstention_or_review_only_behavior_count": null,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "Foldseek-pocket",
+          "method_available": false,
+          "method_id": "foldseek_pocket",
+          "qualitative_interpretation": "Unavailable for this diagnostic cell.",
+          "row_count_evaluable": 0,
+          "unavailable_reason": "No standardized Foldseek-pocket per-row prediction export is present locally.",
+          "unsafe_nonabstention_count": null
+        }
+      ],
+      "missing_entry_ids": [],
+      "requested_item": "Packet 2 wrong-Foldseek-transfer diagnostic behavior",
+      "row_count_mapped_to_audit": 4,
+      "row_count_requested": 4
+    },
+    {
+      "cell_id": "packet3_eight_pilot_only_child_stratum_readout",
+      "child_label_count": 8,
+      "child_label_ids": [
+        "ser_his_acid.lipase_esterase_cutinase_like",
+        "ser_his_acid.serine_protease_peptidase_like",
+        "metal_hydrolase.amidohydrolase_deaminase_like",
+        "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like",
+        "metal_hydrolase.zinc_metalloprotease_or_metallopeptidase_like",
+        "plp.lyase_eliminase_synthase",
+        "plp.transaminase_aminotransferase",
+        "heme.peroxidase_catalase_like"
+      ],
+      "child_label_metric_created": false,
+      "child_label_prediction_available": false,
+      "countable_metric": false,
+      "diagnostic_use": "pilot_only_review_slice_not_canonical_metric",
+      "method_results": [
+        {
+          "abstention_or_review_only_behavior_count": 3,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": 15,
+          "display_name": "Foldseek full-structure nearest neighbor",
+          "method_available": true,
+          "method_id": "foldseek_structural_nn",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 3,
+          "parent_fingerprint_support_count": 15,
+          "parent_wrong_nonabstention_count": 1,
+          "predicted_label_group_counts": {
+            "heme_peroxidase_oxidase": 3,
+            "metal_dependent_hydrolase": 5,
+            "out_of_scope": 3,
+            "plp_dependent_enzyme": 4,
+            "ser_his_acid_hydrolase": 4
+          },
+          "qualitative_interpretation": "Parent-v1 projection only: 15/19 mapped representative rows support the parent family. This is not a child-label metric.",
+          "row_count_evaluable": 19,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 1
+        },
+        {
+          "abstention_or_review_only_behavior_count": 0,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": 18,
+          "display_name": "Active-site geometry baseline/router",
+          "method_available": true,
+          "method_id": "geometry_baseline",
+          "missing_or_unavailable_representative_count": 1,
+          "parent_abstention_count": 0,
+          "parent_fingerprint_support_count": 18,
+          "parent_wrong_nonabstention_count": 0,
+          "predicted_label_group_counts": {
+            "heme_peroxidase_oxidase": 4,
+            "metal_dependent_hydrolase": 6,
+            "plp_dependent_enzyme": 4,
+            "ser_his_acid_hydrolase": 4
+          },
+          "qualitative_interpretation": "Parent-v1 projection only: 18/18 mapped representative rows support the parent family. This is not a child-label metric.",
+          "row_count_evaluable": 18,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 12,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": 5,
+          "display_name": "Sequence-NN 3-mer Jaccard",
+          "method_available": true,
+          "method_id": "sequence_nn",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 12,
+          "parent_fingerprint_support_count": 5,
+          "parent_wrong_nonabstention_count": 2,
+          "predicted_label_group_counts": {
+            "cobalamin_radical_rearrangement": 1,
+            "heme_peroxidase_oxidase": 1,
+            "metal_dependent_hydrolase": 2,
+            "out_of_scope": 12,
+            "ser_his_acid_hydrolase": 3
+          },
+          "qualitative_interpretation": "Parent-v1 projection only: 5/19 mapped representative rows support the parent family. This is not a child-label metric.",
+          "row_count_evaluable": 19,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 2
+        },
+        {
+          "abstention_or_review_only_behavior_count": 5,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": 14,
+          "display_name": "ESM-2 150M logistic",
+          "method_available": true,
+          "method_id": "esm2_150m",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 5,
+          "parent_fingerprint_support_count": 14,
+          "parent_wrong_nonabstention_count": 0,
+          "predicted_label_group_counts": {
+            "heme_peroxidase_oxidase": 1,
+            "metal_dependent_hydrolase": 5,
+            "out_of_scope": 5,
+            "plp_dependent_enzyme": 4,
+            "ser_his_acid_hydrolase": 4
+          },
+          "qualitative_interpretation": "Parent-v1 projection only: 14/19 mapped representative rows support the parent family. This is not a child-label metric.",
+          "row_count_evaluable": 19,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 11,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": 6,
+          "display_name": "ESM-C corrected logistic",
+          "method_available": true,
+          "method_id": "esm_c",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 11,
+          "parent_fingerprint_support_count": 6,
+          "parent_wrong_nonabstention_count": 2,
+          "predicted_label_group_counts": {
+            "heme_peroxidase_oxidase": 1,
+            "metal_dependent_hydrolase": 2,
+            "out_of_scope": 11,
+            "plp_dependent_enzyme": 1,
+            "ser_his_acid_hydrolase": 4
+          },
+          "qualitative_interpretation": "Parent-v1 projection only: 6/19 mapped representative rows support the parent family. This is not a child-label metric.",
+          "row_count_evaluable": 19,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 2
+        },
+        {
+          "abstention_or_review_only_behavior_count": 5,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": 10,
+          "display_name": "ProtT5 Swiss-Prot H5 cosine NN",
+          "method_available": true,
+          "method_id": "prott5",
+          "missing_or_unavailable_representative_count": 1,
+          "parent_abstention_count": 5,
+          "parent_fingerprint_support_count": 10,
+          "parent_wrong_nonabstention_count": 3,
+          "predicted_label_group_counts": {
+            "heme_peroxidase_oxidase": 3,
+            "metal_dependent_hydrolase": 3,
+            "out_of_scope": 5,
+            "plp_dependent_enzyme": 3,
+            "ser_his_acid_hydrolase": 4
+          },
+          "qualitative_interpretation": "Parent-v1 projection only: 10/18 mapped representative rows support the parent family. This is not a child-label metric.",
+          "row_count_evaluable": 18,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 3
+        },
+        {
+          "abstention_or_review_only_behavior_count": 10,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": 7,
+          "display_name": "SaProt 35M structure-token NN",
+          "method_available": true,
+          "method_id": "saprot",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 10,
+          "parent_fingerprint_support_count": 7,
+          "parent_wrong_nonabstention_count": 2,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 1,
+            "heme_peroxidase_oxidase": 2,
+            "out_of_scope": 10,
+            "plp_dependent_enzyme": 4,
+            "ser_his_acid_hydrolase": 2
+          },
+          "qualitative_interpretation": "Parent-v1 projection only: 7/19 mapped representative rows support the parent family. This is not a child-label metric.",
+          "row_count_evaluable": 19,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 2
+        },
+        {
+          "abstention_or_review_only_behavior_count": null,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "ProstT5-3Di",
+          "method_available": false,
+          "method_id": "prostt5_3di",
+          "qualitative_interpretation": "Unavailable for this diagnostic cell.",
+          "row_count_evaluable": 0,
+          "unavailable_reason": "No row-aligned ProstT5-3Di prediction track is present in the structure-neighborhood audit or artifacts/representation_tracks.",
+          "unsafe_nonabstention_count": null
+        },
+        {
+          "abstention_or_review_only_behavior_count": null,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "Foldseek-pocket",
+          "method_available": false,
+          "method_id": "foldseek_pocket",
+          "qualitative_interpretation": "Unavailable for this diagnostic cell.",
+          "row_count_evaluable": 0,
+          "unavailable_reason": "No standardized Foldseek-pocket per-row prediction export is present locally.",
+          "unsafe_nonabstention_count": null
+        }
+      ],
+      "missing_representative_entry_ids": [
+        "m_csa:94",
+        "m_csa:218",
+        "m_csa:337",
+        "m_csa:401",
+        "m_csa:465",
+        "m_csa:518",
+        "m_csa:5",
+        "m_csa:169",
+        "m_csa:238",
+        "m_csa:387",
+        "m_csa:412",
+        "m_csa:425",
+        "m_csa:808",
+        "m_csa:87",
+        "m_csa:376",
+        "m_csa:636",
+        "m_csa:716",
+        "m_csa:720",
+        "m_csa:11",
+        "m_csa:27",
+        "m_csa:28",
+        "m_csa:41",
+        "m_csa:42",
+        "m_csa:160",
+        "m_csa:161",
+        "m_csa:165",
+        "m_csa:167",
+        "m_csa:168",
+        "m_csa:170",
+        "m_csa:172",
+        "m_csa:176",
+        "m_csa:379",
+        "m_csa:447",
+        "m_csa:186",
+        "m_csa:286",
+        "m_csa:305",
+        "m_csa:383",
+        "m_csa:410",
+        "m_csa:449",
+        "m_csa:66",
+        "m_csa:249",
+        "m_csa:411",
+        "m_csa:37",
+        "m_csa:124",
+        "m_csa:133",
+        "m_csa:208",
+        "m_csa:399",
+        "m_csa:473"
+      ],
+      "parent_fingerprint_by_child_label": {
+        "heme.peroxidase_catalase_like": "heme_peroxidase_oxidase",
+        "metal_hydrolase.amidohydrolase_deaminase_like": "metal_dependent_hydrolase",
+        "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like": "metal_dependent_hydrolase",
+        "metal_hydrolase.zinc_metalloprotease_or_metallopeptidase_like": "metal_dependent_hydrolase",
+        "plp.lyase_eliminase_synthase": "plp_dependent_enzyme",
+        "plp.transaminase_aminotransferase": "plp_dependent_enzyme",
+        "ser_his_acid.lipase_esterase_cutinase_like": "ser_his_acid_hydrolase",
+        "ser_his_acid.serine_protease_peptidase_like": "ser_his_acid_hydrolase"
+      },
+      "representative_entry_count": 67,
+      "representative_entry_count_mapped_to_audit": 19,
+      "requested_item": "Packet 3 eight pilot-only child-stratum readout",
+      "support_count_by_child_label": {
+        "heme.peroxidase_catalase_like": 20,
+        "metal_hydrolase.amidohydrolase_deaminase_like": 7,
+        "metal_hydrolase.phosphoesterase_nuclease_or_phosphatase_like": 35,
+        "metal_hydrolase.zinc_metalloprotease_or_metallopeptidase_like": 13,
+        "plp.lyase_eliminase_synthase": 11,
+        "plp.transaminase_aminotransferase": 5,
+        "ser_his_acid.lipase_esterase_cutinase_like": 19,
+        "ser_his_acid.serine_protease_peptidase_like": 10
+      },
+      "support_count_total": 120
+    },
+    {
+      "cell_id": "abstention_behavior_on_unresolved_or_underpowered_child_buckets",
+      "child_label_count": 3,
+      "child_label_ids": [
+        "ser_his_acid.unresolved_acyl_enzyme_hydrolase",
+        "metal_hydrolase.unresolved_metal_water_hydrolase",
+        "plp.unresolved_plp_chemistry"
+      ],
+      "child_label_metric_created": false,
+      "child_label_prediction_available": false,
+      "countable_metric": false,
+      "diagnostic_use": "abstention_probe_only_not_accuracy_metric",
+      "method_results": [
+        {
+          "abstention_or_review_only_behavior_count": 9,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "Foldseek full-structure nearest neighbor",
+          "method_available": true,
+          "method_id": "foldseek_structural_nn",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 5,
+          "parent_fingerprint_support_count": 4,
+          "parent_wrong_nonabstention_count": 0,
+          "predicted_label_group_counts": {
+            "metal_dependent_hydrolase": 1,
+            "out_of_scope": 5,
+            "plp_dependent_enzyme": 1,
+            "ser_his_acid_hydrolase": 2
+          },
+          "qualitative_interpretation": "No child-label predictions are present, so true unresolved-child abstention is unavailable; the parent projection has 5 parent abstentions and 0 wrong parent nonabstentions.",
+          "row_count_evaluable": 9,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 6,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "Active-site geometry baseline/router",
+          "method_available": true,
+          "method_id": "geometry_baseline",
+          "missing_or_unavailable_representative_count": 3,
+          "parent_abstention_count": 0,
+          "parent_fingerprint_support_count": 6,
+          "parent_wrong_nonabstention_count": 0,
+          "predicted_label_group_counts": {
+            "metal_dependent_hydrolase": 2,
+            "plp_dependent_enzyme": 1,
+            "ser_his_acid_hydrolase": 3
+          },
+          "qualitative_interpretation": "No child-label predictions are present, so true unresolved-child abstention is unavailable; the parent projection has 0 parent abstentions and 0 wrong parent nonabstentions.",
+          "row_count_evaluable": 6,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 9,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "Sequence-NN 3-mer Jaccard",
+          "method_available": true,
+          "method_id": "sequence_nn",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 8,
+          "parent_fingerprint_support_count": 0,
+          "parent_wrong_nonabstention_count": 1,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 1,
+            "out_of_scope": 8
+          },
+          "qualitative_interpretation": "No child-label predictions are present, so true unresolved-child abstention is unavailable; the parent projection has 8 parent abstentions and 1 wrong parent nonabstentions.",
+          "row_count_evaluable": 9,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 9,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "ESM-2 150M logistic",
+          "method_available": true,
+          "method_id": "esm2_150m",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 3,
+          "parent_fingerprint_support_count": 6,
+          "parent_wrong_nonabstention_count": 0,
+          "predicted_label_group_counts": {
+            "metal_dependent_hydrolase": 3,
+            "out_of_scope": 3,
+            "plp_dependent_enzyme": 1,
+            "ser_his_acid_hydrolase": 2
+          },
+          "qualitative_interpretation": "No child-label predictions are present, so true unresolved-child abstention is unavailable; the parent projection has 3 parent abstentions and 0 wrong parent nonabstentions.",
+          "row_count_evaluable": 9,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 9,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "ESM-C corrected logistic",
+          "method_available": true,
+          "method_id": "esm_c",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 4,
+          "parent_fingerprint_support_count": 4,
+          "parent_wrong_nonabstention_count": 1,
+          "predicted_label_group_counts": {
+            "metal_dependent_hydrolase": 3,
+            "out_of_scope": 4,
+            "ser_his_acid_hydrolase": 2
+          },
+          "qualitative_interpretation": "No child-label predictions are present, so true unresolved-child abstention is unavailable; the parent projection has 4 parent abstentions and 1 wrong parent nonabstentions.",
+          "row_count_evaluable": 9,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 8,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "ProtT5 Swiss-Prot H5 cosine NN",
+          "method_available": true,
+          "method_id": "prott5",
+          "missing_or_unavailable_representative_count": 1,
+          "parent_abstention_count": 3,
+          "parent_fingerprint_support_count": 3,
+          "parent_wrong_nonabstention_count": 2,
+          "predicted_label_group_counts": {
+            "metal_dependent_hydrolase": 2,
+            "out_of_scope": 3,
+            "plp_dependent_enzyme": 2,
+            "ser_his_acid_hydrolase": 1
+          },
+          "qualitative_interpretation": "No child-label predictions are present, so true unresolved-child abstention is unavailable; the parent projection has 3 parent abstentions and 2 wrong parent nonabstentions.",
+          "row_count_evaluable": 8,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 9,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "SaProt 35M structure-token NN",
+          "method_available": true,
+          "method_id": "saprot",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 5,
+          "parent_fingerprint_support_count": 3,
+          "parent_wrong_nonabstention_count": 1,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 1,
+            "metal_dependent_hydrolase": 1,
+            "out_of_scope": 5,
+            "ser_his_acid_hydrolase": 2
+          },
+          "qualitative_interpretation": "No child-label predictions are present, so true unresolved-child abstention is unavailable; the parent projection has 5 parent abstentions and 1 wrong parent nonabstentions.",
+          "row_count_evaluable": 9,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": null,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "ProstT5-3Di",
+          "method_available": false,
+          "method_id": "prostt5_3di",
+          "qualitative_interpretation": "Unavailable for this diagnostic cell.",
+          "row_count_evaluable": 0,
+          "unavailable_reason": "No row-aligned ProstT5-3Di prediction track is present in the structure-neighborhood audit or artifacts/representation_tracks.",
+          "unsafe_nonabstention_count": null
+        },
+        {
+          "abstention_or_review_only_behavior_count": null,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "Foldseek-pocket",
+          "method_available": false,
+          "method_id": "foldseek_pocket",
+          "qualitative_interpretation": "Unavailable for this diagnostic cell.",
+          "row_count_evaluable": 0,
+          "unavailable_reason": "No standardized Foldseek-pocket per-row prediction export is present locally.",
+          "unsafe_nonabstention_count": null
+        }
+      ],
+      "missing_representative_entry_ids": [
+        "m_csa:173",
+        "m_csa:437",
+        "m_csa:522",
+        "m_csa:523",
+        "m_csa:608",
+        "m_csa:38",
+        "m_csa:83",
+        "m_csa:98",
+        "m_csa:157",
+        "m_csa:166",
+        "m_csa:181",
+        "m_csa:445",
+        "m_csa:528",
+        "m_csa:147",
+        "m_csa:742",
+        "m_csa:762",
+        "m_csa:855",
+        "m_csa:865"
+      ],
+      "parent_fingerprint_by_child_label": {
+        "metal_hydrolase.unresolved_metal_water_hydrolase": "metal_dependent_hydrolase",
+        "plp.unresolved_plp_chemistry": "plp_dependent_enzyme",
+        "ser_his_acid.unresolved_acyl_enzyme_hydrolase": "ser_his_acid_hydrolase"
+      },
+      "representative_entry_count": 27,
+      "representative_entry_count_mapped_to_audit": 9,
+      "requested_item": "abstention behavior on unresolved/underpowered child buckets",
+      "support_count_by_child_label": {
+        "metal_hydrolase.unresolved_metal_water_hydrolase": 20,
+        "plp.unresolved_plp_chemistry": 6,
+        "ser_his_acid.unresolved_acyl_enzyme_hydrolase": 12
+      },
+      "support_count_total": 38
+    },
+    {
+      "blocked_child_label_ids": [
+        "flavin.dehydrogenase_oxidase_hydride_transfer",
+        "heme.oxidase_oxygenase_like"
+      ],
+      "cell_id": "canary_behavior_for_underpowered_or_mixed_chemistry_cells",
+      "child_label_count": 8,
+      "child_label_ids": [
+        "ser_his_acid.perhydrolase_haloperoxidase_caveat",
+        "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+        "metal_hydrolase.metallo_beta_lactamase_like",
+        "plp.coupled_plp_radical_or_cobalamin_boundary",
+        "plp.decarboxylase",
+        "plp.phosphorylase_acid_catalysis_caveat",
+        "plp.racemase_epimerase",
+        "flavin.dehydrogenase_oxidase_hydride_transfer"
+      ],
+      "child_label_metric_created": false,
+      "child_label_prediction_available": false,
+      "countable_metric": false,
+      "diagnostic_use": "canary_only_or_do_not_use_not_countable_metric",
+      "m_csa750_removed_from_canary_use": true,
+      "method_results": [
+        {
+          "abstention_or_review_only_behavior_count": 5,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "Foldseek full-structure nearest neighbor",
+          "method_available": true,
+          "method_id": "foldseek_structural_nn",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 0,
+          "parent_fingerprint_support_count": 4,
+          "parent_wrong_nonabstention_count": 1,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 3,
+            "plp_dependent_enzyme": 1,
+            "ser_his_acid_hydrolase": 1
+          },
+          "qualitative_interpretation": "Canary/mixed-chemistry behavior is parent-projection only; blocked child labels remain no-use regardless of 4/5 parent-family calls.",
+          "row_count_evaluable": 5,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 5,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "Active-site geometry baseline/router",
+          "method_available": true,
+          "method_id": "geometry_baseline",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 0,
+          "parent_fingerprint_support_count": 5,
+          "parent_wrong_nonabstention_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 3,
+            "metal_dependent_hydrolase": 1,
+            "plp_dependent_enzyme": 1
+          },
+          "qualitative_interpretation": "Canary/mixed-chemistry behavior is parent-projection only; blocked child labels remain no-use regardless of 5/5 parent-family calls.",
+          "row_count_evaluable": 5,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 5,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "Sequence-NN 3-mer Jaccard",
+          "method_available": true,
+          "method_id": "sequence_nn",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 4,
+          "parent_fingerprint_support_count": 1,
+          "parent_wrong_nonabstention_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 1,
+            "out_of_scope": 4
+          },
+          "qualitative_interpretation": "Canary/mixed-chemistry behavior is parent-projection only; blocked child labels remain no-use regardless of 1/5 parent-family calls.",
+          "row_count_evaluable": 5,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 5,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "ESM-2 150M logistic",
+          "method_available": true,
+          "method_id": "esm2_150m",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 4,
+          "parent_fingerprint_support_count": 1,
+          "parent_wrong_nonabstention_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 1,
+            "out_of_scope": 4
+          },
+          "qualitative_interpretation": "Canary/mixed-chemistry behavior is parent-projection only; blocked child labels remain no-use regardless of 1/5 parent-family calls.",
+          "row_count_evaluable": 5,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 5,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "ESM-C corrected logistic",
+          "method_available": true,
+          "method_id": "esm_c",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 4,
+          "parent_fingerprint_support_count": 1,
+          "parent_wrong_nonabstention_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 1,
+            "out_of_scope": 4
+          },
+          "qualitative_interpretation": "Canary/mixed-chemistry behavior is parent-projection only; blocked child labels remain no-use regardless of 1/5 parent-family calls.",
+          "row_count_evaluable": 5,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 5,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "ProtT5 Swiss-Prot H5 cosine NN",
+          "method_available": true,
+          "method_id": "prott5",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 3,
+          "parent_fingerprint_support_count": 2,
+          "parent_wrong_nonabstention_count": 0,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 2,
+            "out_of_scope": 3
+          },
+          "qualitative_interpretation": "Canary/mixed-chemistry behavior is parent-projection only; blocked child labels remain no-use regardless of 2/5 parent-family calls.",
+          "row_count_evaluable": 5,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": 5,
+          "available_behavior_scope": "parent_v1_fingerprint_projection_only",
+          "child_label_prediction_available": false,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "SaProt 35M structure-token NN",
+          "method_available": true,
+          "method_id": "saprot",
+          "missing_or_unavailable_representative_count": 0,
+          "parent_abstention_count": 1,
+          "parent_fingerprint_support_count": 3,
+          "parent_wrong_nonabstention_count": 1,
+          "predicted_label_group_counts": {
+            "flavin_dehydrogenase_reductase": 2,
+            "metal_dependent_hydrolase": 1,
+            "out_of_scope": 1,
+            "plp_dependent_enzyme": 1
+          },
+          "qualitative_interpretation": "Canary/mixed-chemistry behavior is parent-projection only; blocked child labels remain no-use regardless of 3/5 parent-family calls.",
+          "row_count_evaluable": 5,
+          "unavailable_reason": null,
+          "unsafe_nonabstention_count": 0
+        },
+        {
+          "abstention_or_review_only_behavior_count": null,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "ProstT5-3Di",
+          "method_available": false,
+          "method_id": "prostt5_3di",
+          "qualitative_interpretation": "Unavailable for this diagnostic cell.",
+          "row_count_evaluable": 0,
+          "unavailable_reason": "No row-aligned ProstT5-3Di prediction track is present in the structure-neighborhood audit or artifacts/representation_tracks.",
+          "unsafe_nonabstention_count": null
+        },
+        {
+          "abstention_or_review_only_behavior_count": null,
+          "correct_or_expected_behavior_count": null,
+          "display_name": "Foldseek-pocket",
+          "method_available": false,
+          "method_id": "foldseek_pocket",
+          "qualitative_interpretation": "Unavailable for this diagnostic cell.",
+          "row_count_evaluable": 0,
+          "unavailable_reason": "No standardized Foldseek-pocket per-row prediction export is present locally.",
+          "unsafe_nonabstention_count": null
+        }
+      ],
+      "missing_representative_entry_ids": [
+        "m_csa:248",
+        "m_csa:216",
+        "m_csa:516",
+        "m_csa:15",
+        "m_csa:16",
+        "m_csa:258",
+        "m_csa:195",
+        "m_csa:358",
+        "m_csa:430",
+        "m_csa:482",
+        "m_csa:860",
+        "m_csa:937",
+        "m_csa:205",
+        "m_csa:330",
+        "m_csa:6",
+        "m_csa:68",
+        "m_csa:102",
+        "m_csa:103",
+        "m_csa:108",
+        "m_csa:110",
+        "m_csa:111",
+        "m_csa:113",
+        "m_csa:114"
+      ],
+      "mixed_chemistry_blocked_child_label_ids": [
+        "flavin.dehydrogenase_oxidase_hydride_transfer"
+      ],
+      "other_terminal_no_use_child_label_ids": [
+        "heme.oxidase_oxygenase_like"
+      ],
+      "parent_fingerprint_by_child_label": {
+        "flavin.dehydrogenase_oxidase_hydride_transfer": "flavin_dehydrogenase_reductase",
+        "metal_hydrolase.carbonic_anhydrase_dehydratase_like": "metal_dependent_hydrolase",
+        "metal_hydrolase.metallo_beta_lactamase_like": "metal_dependent_hydrolase",
+        "plp.coupled_plp_radical_or_cobalamin_boundary": "plp_dependent_enzyme",
+        "plp.decarboxylase": "plp_dependent_enzyme",
+        "plp.phosphorylase_acid_catalysis_caveat": "plp_dependent_enzyme",
+        "plp.racemase_epimerase": "plp_dependent_enzyme",
+        "ser_his_acid.perhydrolase_haloperoxidase_caveat": "ser_his_acid_hydrolase"
+      },
+      "representative_entry_count": 28,
+      "representative_entry_count_mapped_to_audit": 5,
+      "requested_item": "canary behavior for underpowered or mixed-chemistry cells",
+      "support_count_by_child_label": {
+        "flavin.dehydrogenase_oxidase_hydride_transfer": 47,
+        "metal_hydrolase.carbonic_anhydrase_dehydratase_like": 3,
+        "metal_hydrolase.metallo_beta_lactamase_like": 3,
+        "plp.coupled_plp_radical_or_cobalamin_boundary": 2,
+        "plp.decarboxylase": 4,
+        "plp.phosphorylase_acid_catalysis_caveat": 1,
+        "plp.racemase_epimerase": 2,
+        "ser_his_acid.perhydrolase_haloperoxidase_caveat": 1
+      },
+      "support_count_total": 63,
+      "underpowered_canary_child_label_ids": [
+        "ser_his_acid.perhydrolase_haloperoxidase_caveat",
+        "metal_hydrolase.carbonic_anhydrase_dehydratase_like",
+        "metal_hydrolase.metallo_beta_lactamase_like",
+        "plp.coupled_plp_radical_or_cobalamin_boundary",
+        "plp.decarboxylase",
+        "plp.phosphorylase_acid_catalysis_caveat",
+        "plp.racemase_epimerase"
+      ]
+    }
+  ],
+  "diagnostic_summary": {
+    "all_counts_are_diagnostic_not_validation_metrics": true,
+    "diagnostic_cell_count": 6,
+    "mixed_chemistry_blocked_child_label_ids": [
+      "flavin.dehydrogenase_oxidase_hydride_transfer"
+    ],
+    "new_countable_metric_count": 0,
+    "packet2_near_orphan_row_count": 17,
+    "packet2_wrong_foldseek_transfer_row_count": 4,
+    "packet3_abstention_probe_child_label_count": 3,
+    "packet3_canary_child_label_count": 8,
+    "packet3_pilot_only_child_label_count": 8,
+    "primary_readthrough_excluded_entry_ids": [
+      "m_csa:497",
+      "m_csa:750"
+    ]
+  },
+  "guardrails": {
+    "artifact_migration_state_changed": false,
+    "canonical_label_registry_changed": false,
+    "canonical_v2_child_labels_created": false,
+    "child_label_metrics_created": false,
+    "fingerprint_registry_changed": false,
+    "imports_changed": false,
+    "model_outputs_changed": false,
+    "new_countable_metrics_created": false,
+    "new_external_model_inference_run": false,
+    "new_models_trained": false,
+    "ontology_ids_changed": false,
+    "production_scoring_changed": false,
+    "representation_model_artifacts_changed": false,
+    "thresholds_changed": false
+  },
+  "method_catalog": [
+    {
+      "display_name": "Foldseek full-structure nearest neighbor",
+      "family": "structure_neighborhood",
+      "method_id": "foldseek_structural_nn",
+      "primary_readthrough_track_id": "foldseek_structural",
+      "row_aligned_track_available": true,
+      "row_track_id": "foldseek_structural_nn",
+      "unavailable_reason": null,
+      "uses_existing_artifacts_only": true
+    },
+    {
+      "display_name": "Active-site geometry baseline/router",
+      "family": "geometry_router",
+      "method_id": "geometry_baseline",
+      "primary_readthrough_track_id": "geometry_baseline",
+      "row_aligned_track_available": true,
+      "row_track_id": "geometry_baseline",
+      "unavailable_reason": null,
+      "uses_existing_artifacts_only": true
+    },
+    {
+      "display_name": "Sequence-NN 3-mer Jaccard",
+      "family": "sequence_baseline",
+      "method_id": "sequence_nn",
+      "primary_readthrough_track_id": "sequence_nn",
+      "row_aligned_track_available": true,
+      "row_track_id": "sequence_nn",
+      "unavailable_reason": null,
+      "uses_existing_artifacts_only": true
+    },
+    {
+      "display_name": "ESM-2 150M logistic",
+      "family": "learned_sequence_representation",
+      "method_id": "esm2_150m",
+      "primary_readthrough_track_id": "esm2_150m",
+      "row_aligned_track_available": true,
+      "row_track_id": "esm2_150m",
+      "unavailable_reason": null,
+      "uses_existing_artifacts_only": true
+    },
+    {
+      "display_name": "ESM-C corrected logistic",
+      "family": "learned_sequence_representation",
+      "method_id": "esm_c",
+      "primary_readthrough_track_id": "esm_c_300m",
+      "row_aligned_track_available": true,
+      "row_track_id": "esm_c_corrected_logistic",
+      "unavailable_reason": null,
+      "uses_existing_artifacts_only": true
+    },
+    {
+      "display_name": "ProtT5 Swiss-Prot H5 cosine NN",
+      "family": "learned_sequence_representation",
+      "method_id": "prott5",
+      "primary_readthrough_track_id": "prott5",
+      "row_aligned_track_available": true,
+      "row_track_id": "prott5_swissprot_h5_knn",
+      "unavailable_reason": null,
+      "uses_existing_artifacts_only": true
+    },
+    {
+      "display_name": "SaProt 35M structure-token NN",
+      "family": "learned_structure_aware_representation",
+      "method_id": "saprot",
+      "primary_readthrough_track_id": "saprot",
+      "row_aligned_track_available": true,
+      "row_track_id": "saprot_35m_structure_tokens",
+      "unavailable_reason": null,
+      "uses_existing_artifacts_only": true
+    },
+    {
+      "display_name": "ProstT5-3Di",
+      "family": "learned_structure_aware_representation",
+      "method_id": "prostt5_3di",
+      "primary_readthrough_track_id": "prostt5_3di",
+      "row_aligned_track_available": false,
+      "row_track_id": null,
+      "unavailable_reason": "No row-aligned ProstT5-3Di prediction track is present in the structure-neighborhood audit or artifacts/representation_tracks.",
+      "uses_existing_artifacts_only": true
+    },
+    {
+      "display_name": "Foldseek-pocket",
+      "family": "pocket_structure_representation",
+      "method_id": "foldseek_pocket",
+      "primary_readthrough_track_id": null,
+      "row_aligned_track_available": false,
+      "row_track_id": null,
+      "unavailable_reason": "No standardized Foldseek-pocket per-row prediction export is present locally.",
+      "uses_existing_artifacts_only": true
+    },
+    {
+      "display_name": "artifacts/representation_tracks scan",
+      "family": "availability_audit",
+      "file_count": 0,
+      "files": [],
+      "method_id": "representation_tracks_directory_scan",
+      "path": "artifacts/representation_tracks"
+    }
+  ],
+  "non_claims": [
+    "No production scoring threshold, ontology, fingerprint, label registry, import, or model-output artifact was changed.",
+    "Packet 2 rows remain review-only diagnostics and do not become countable validation labels.",
+    "Packet 3 child labels remain proposal-only or blocked; no child-label metric is created.",
+    "m_csa:497 and m_csa:750 remain excluded from primary v1 flavin metrics and retained only as OOS/boundary/future-acquisition signals.",
+    "flavin.dehydrogenase_oxidase_hydride_transfer remains blocked as mixed chemistry and is not used as a v2 metric."
+  ],
+  "review_only": true,
+  "schema_version": "v3_wave1_1_diagnostic_benchmark_result.v1",
+  "scope": "review_only_wave1_1_diagnostic_benchmark_readout_existing_artifacts_only",
+  "source_artifacts": {
+    "artifacts/v3_packet2_near_orphan_geometry_support_decision_closure_702_20260527.json": {
+      "sha256": "f6f7c237b7df213f05a9f8b17b5084e57e42eebd2d5c15f3db2f0fced93df633"
+    },
+    "artifacts/v3_packet3_v2_sublabel_decision_closure_702_20260527.json": {
+      "sha256": "c0c6c5d8bb9b3898093f993e096b5d14a9982e95ffe24a8d71cf3df8e807ec0d"
+    },
+    "artifacts/v3_packets2_3_northstar_review_backlog_closure_summary_702_20260527.json": {
+      "sha256": "c1136a9aa8809870f398a20f864eaf3be0b582ade738b8626c5000452c8d6a69"
+    },
+    "artifacts/v3_sequence_nn_metrics_current702_20260525.json": {
+      "sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26"
+    },
+    "artifacts/v3_sequence_nn_predictions_current702_20260525.jsonl": {
+      "sha256": "700d032e393f6dcd1e4202e050ab0d7f1dd8e269641d575caa211308e91f431a"
+    },
+    "artifacts/v3_wave1_1_review_only_diagnostic_readout_702_20260527.json": {
+      "sha256": "ce10466e1506b7a53ae4e5da85c7d7dcb0750c1e8f456985f96b1583de889091"
+    },
+    "artifacts/v3_wave1_representation_shootout_result_card_20260526.json": {
+      "sha256": "7a33fec362cbc3f5a7e672785cecc265919b4ba6920c3c138e28d0b507998f0b"
+    },
+    "artifacts/v3_wave1_representation_shootout_result_card_702_20260527_addendum.json": {
+      "sha256": "61277aedbcb9f3c463e2b303408640690d008fecd5c47d29f56b642fc9f7217e"
+    },
+    "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json": {
+      "sha256": "8383074a7bb586cbff8219c8f903068e265b30a5f3596a50fa12444083c3a156"
+    }
+  },
+  "status": "computed_review_only_diagnostic_benchmark"
+}

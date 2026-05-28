@@ -17157,6 +17157,147 @@ class AutomationSmallWinArtifactsTest(unittest.TestCase):
             ]["removed_from_canary_use"]
         )
 
+    def test_wave1_1_diagnostic_benchmark_result_stays_review_only(self) -> None:
+        result = _load_json(
+            ARTIFACTS / "v3_wave1_1_diagnostic_benchmark_result_702_20260527.json"
+        )
+
+        self.assertTrue(result["review_only"])
+        guardrails = result["guardrails"]
+        self.assertFalse(guardrails["canonical_label_registry_changed"])
+        self.assertFalse(guardrails["ontology_ids_changed"])
+        self.assertFalse(guardrails["fingerprint_registry_changed"])
+        self.assertFalse(guardrails["thresholds_changed"])
+        self.assertFalse(guardrails["production_scoring_changed"])
+        self.assertFalse(guardrails["imports_changed"])
+        self.assertFalse(guardrails["model_outputs_changed"])
+        self.assertFalse(guardrails["representation_model_artifacts_changed"])
+        self.assertFalse(guardrails["new_models_trained"])
+        self.assertFalse(guardrails["new_countable_metrics_created"])
+        self.assertFalse(guardrails["canonical_v2_child_labels_created"])
+        self.assertFalse(guardrails["child_label_metrics_created"])
+
+        summary = result["diagnostic_summary"]
+        self.assertEqual(summary["diagnostic_cell_count"], 6)
+        self.assertEqual(summary["new_countable_metric_count"], 0)
+        self.assertTrue(summary["all_counts_are_diagnostic_not_validation_metrics"])
+        self.assertEqual(
+            summary["primary_readthrough_excluded_entry_ids"],
+            ["m_csa:497", "m_csa:750"],
+        )
+        self.assertEqual(summary["packet2_near_orphan_row_count"], 17)
+        self.assertEqual(summary["packet2_wrong_foldseek_transfer_row_count"], 4)
+        self.assertEqual(summary["packet3_pilot_only_child_label_count"], 8)
+        self.assertEqual(summary["packet3_abstention_probe_child_label_count"], 3)
+        self.assertEqual(summary["packet3_canary_child_label_count"], 8)
+        self.assertEqual(
+            summary["mixed_chemistry_blocked_child_label_ids"],
+            ["flavin.dehydrogenase_oxidase_hydride_transfer"],
+        )
+
+        cells = {cell["cell_id"]: cell for cell in result["diagnostic_cells"]}
+        near = {
+            row["method_id"]: row
+            for row in cells["packet2_near_orphan_geometry_rescue_behavior"][
+                "method_results"
+            ]
+        }
+        self.assertEqual(near["geometry_baseline"]["row_count_evaluable"], 17)
+        self.assertEqual(
+            near["geometry_baseline"]["correct_or_expected_behavior_count"], 17
+        )
+        self.assertEqual(near["geometry_baseline"]["unsafe_nonabstention_count"], 0)
+        self.assertEqual(
+            near["foldseek_structural_nn"]["correct_or_expected_behavior_count"], 13
+        )
+        self.assertEqual(
+            near["foldseek_structural_nn"][
+                "abstention_or_review_only_behavior_count"
+            ],
+            4,
+        )
+
+        wrong = {
+            row["method_id"]: row
+            for row in cells["packet2_wrong_foldseek_transfer_diagnostic_behavior"][
+                "method_results"
+            ]
+        }
+        self.assertEqual(
+            wrong["foldseek_structural_nn"]["unsafe_nonabstention_count"], 4
+        )
+        self.assertEqual(
+            wrong["geometry_baseline"]["correct_or_expected_behavior_count"], 4
+        )
+        self.assertEqual(wrong["geometry_baseline"]["unsafe_nonabstention_count"], 0)
+
+        primary = {
+            row["method_id"]: row
+            for row in cells[
+                "primary_v1_metrics_after_m_csa497_m_csa750_readthrough"
+            ]["method_results"]
+        }
+        self.assertEqual(primary["foldseek_structural_nn"]["row_count_evaluable"], 43)
+        self.assertEqual(primary["foldseek_structural_nn"]["unsafe_nonabstention_count"], 2)
+        self.assertEqual(primary["sequence_nn"]["unsafe_nonabstention_count"], 0)
+
+        pilot = cells["packet3_eight_pilot_only_child_stratum_readout"]
+        self.assertFalse(pilot["child_label_prediction_available"])
+        self.assertFalse(pilot["child_label_metric_created"])
+        pilot_methods = {row["method_id"]: row for row in pilot["method_results"]}
+        self.assertEqual(
+            pilot_methods["geometry_baseline"]["available_behavior_scope"],
+            "parent_v1_fingerprint_projection_only",
+        )
+        self.assertEqual(
+            pilot_methods["geometry_baseline"]["correct_or_expected_behavior_count"],
+            18,
+        )
+
+        abstention = cells[
+            "abstention_behavior_on_unresolved_or_underpowered_child_buckets"
+        ]
+        abstention_methods = {
+            row["method_id"]: row for row in abstention["method_results"]
+        }
+        self.assertIsNone(
+            abstention_methods["foldseek_structural_nn"][
+                "correct_or_expected_behavior_count"
+            ]
+        )
+        self.assertEqual(
+            abstention_methods["foldseek_structural_nn"][
+                "abstention_or_review_only_behavior_count"
+            ],
+            9,
+        )
+
+        canary = cells["canary_behavior_for_underpowered_or_mixed_chemistry_cells"]
+        self.assertIn(
+            "flavin.dehydrogenase_oxidase_hydride_transfer",
+            canary["blocked_child_label_ids"],
+        )
+        self.assertTrue(canary["m_csa750_removed_from_canary_use"])
+        canary_methods = {row["method_id"]: row for row in canary["method_results"]}
+        self.assertIsNone(
+            canary_methods["geometry_baseline"][
+                "correct_or_expected_behavior_count"
+            ]
+        )
+
+        method_catalog = {
+            row["method_id"]: row for row in result["method_catalog"]
+        }
+        self.assertFalse(method_catalog["foldseek_pocket"]["row_aligned_track_available"])
+        self.assertFalse(method_catalog["prostt5_3di"]["row_aligned_track_available"])
+        self.assertEqual(
+            method_catalog["representation_tracks_directory_scan"]["file_count"], 0
+        )
+        self.assertEqual(
+            result["decision_summary"]["recommended_next_move"]["decision"],
+            "targeted_hybrid_foldseek_geometry_atlas_engine_plus_fingerprint_v2_label_acquisition",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
