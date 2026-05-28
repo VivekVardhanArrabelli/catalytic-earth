@@ -1,0 +1,914 @@
+{
+  "artifact_id": "v3_evidence_router_v0_design_20260528",
+  "schema_version": "v3_evidence_router_v0_design.v0",
+  "created_utc": "2026-05-28T07:16:45Z",
+  "status": "interface_design_only_no_scoring_change",
+  "review_only": true,
+  "purpose": "Define the benchmark-safe evidence-router v0 contract that combines Foldseek, sequence similarity, geometry, cofactor/ligand evidence, learned representations, evidence tier policy, and abstention without changing production scoring or labels.",
+  "scope": {
+    "label_count_context": {
+      "wave1_1_registry_context": "current702 review-only diagnostics",
+      "external_transfer_context": "1025-slice external-source review-only surface"
+    },
+    "allowed_now": [
+      "define an interface contract",
+      "define review-only state assignment semantics",
+      "define result-card-compatible output fields",
+      "define benchmark and panel evaluation plan"
+    ],
+    "not_allowed_now": [
+      "edit curated mechanism labels",
+      "edit source registries",
+      "edit mechanism ontologies",
+      "edit mechanism fingerprint registries",
+      "change abstention thresholds",
+      "change production scoring",
+      "run or rewrite model outputs",
+      "import labels",
+      "promote review-only rows into metrics"
+    ],
+    "guardrails": {
+      "canonical_label_registry_changed": false,
+      "source_registry_changed": false,
+      "ontology_ids_changed": false,
+      "fingerprint_registry_changed": false,
+      "thresholds_changed": false,
+      "imports_changed": false,
+      "production_scoring_changed": false,
+      "model_outputs_changed": false,
+      "new_countable_metrics_created": false,
+      "artifact_use": "design_and_interface_only"
+    }
+  },
+  "source_artifacts": {
+    "wave1_1_review_only_readout": {
+      "path": "artifacts/v3_wave1_1_review_only_diagnostic_readout_702_20260527.json",
+      "sha256": "ce10466e1506b7a53ae4e5da85c7d7dcb0750c1e8f456985f96b1583de889091",
+      "role": "non-countable Wave 1.1 cell contract"
+    },
+    "wave1_1_diagnostic_benchmark_result": {
+      "path": "artifacts/v3_wave1_1_diagnostic_benchmark_result_702_20260527.json",
+      "sha256": "f55b2cc7edf96149ad08ebb76b05fab74373304eb9ab9ded4f253fe82ce2cf0b",
+      "role": "existing method-by-cell review-only counts"
+    },
+    "wave1_1_model_by_cell_report": {
+      "path": "artifacts/v3_wave1_1_model_by_cell_report_702_20260528.json",
+      "sha256": "7c896872a8ae167ca475a6db2702c1ff3805b93acca595ea40e39ed5a0d49be4",
+      "role": "existing row-aligned channel comparison readout"
+    },
+    "diagnostic_router_pilot": {
+      "path": "artifacts/v3_foldseek_geometry_diagnostic_router_pilot_702_20260526.json",
+      "sha256": "f02868f95393fb53f783c04a4d95d228ba5007488cbb6bdd405e665cfe2d0a1d",
+      "role": "prior Foldseek plus geometry diagnostic router prototype"
+    },
+    "wave1_structure_neighborhood_audit": {
+      "path": "artifacts/v3_wave1_structure_neighborhood_audit_20260526.json",
+      "sha256": "8383074a7bb586cbff8219c8f903068e265b30a5f3596a50fa12444083c3a156",
+      "role": "joined Wave 1 row evidence and representation tracks"
+    },
+    "foldseek_coordinate_readiness": {
+      "path": "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json",
+      "sha256": "27e4359fde6371cea1c4957542a167124daa6edce23cf62c579a7a60877e98d3",
+      "role": "Foldseek coordinate availability and readiness limits"
+    },
+    "geometry_retrieval": {
+      "path": "artifacts/v3_geometry_retrieval_1025.json",
+      "sha256": "27d7b73d7ab31a3ffd329ea2c9c5f76d48e265fc74d30069e9c7d8f3d39fad6a",
+      "role": "geometry-aware retrieval metadata and leakage policy"
+    },
+    "cofactor_coverage": {
+      "path": "artifacts/v3_cofactor_coverage_1025.json",
+      "sha256": "687d9d7128498bfbcbc5e353075791e7d593d7b87a91a7e5960a7d0fbc0507d2",
+      "role": "cofactor support, absence, and evidence-limited abstention inventory"
+    },
+    "cofactor_policy": {
+      "path": "artifacts/v3_cofactor_policy_1025.json",
+      "sha256": "906601efad78047e97fb5a75c0dcf54c138debbc3691c67f7b190e12b3562e6a",
+      "role": "audit-only cofactor policy sweep and recommendation"
+    },
+    "learned_retrieval_manifest": {
+      "path": "artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json",
+      "sha256": "388533742b51fb78f98b257cd9231a497dee7b6016be3e6cea11b7e44e8511b8",
+      "role": "learned-retrieval interface eligibility and review-only training-label rule"
+    },
+    "external_source_transfer_manifest": {
+      "path": "artifacts/v3_external_source_transfer_manifest_1025.json",
+      "sha256": "d04613204771fa48f0be6620c064c99ebfcec15fff90d868783d22d6578f17e2",
+      "role": "external-source transfer scope and blockers"
+    },
+    "external_source_transfer_gate_check": {
+      "path": "artifacts/v3_external_source_transfer_gate_check_1025.json",
+      "sha256": "dd1081bdefc0d4dbbafa806cce8dfcd9ba78eab24d5cb76f84fcc088ce915863",
+      "role": "external-source gate state and artifact lineage"
+    },
+    "external_source_transfer_blocker_matrix": {
+      "path": "artifacts/v3_external_source_transfer_blocker_matrix_1025.json",
+      "sha256": "4aa729a3e3da5c5511ce776046159496708f87545f16f49d603b998fa56f9778",
+      "role": "external candidate blocker taxonomy"
+    },
+    "external_representation_control_manifest": {
+      "path": "artifacts/v3_external_source_representation_control_manifest_1025.json",
+      "sha256": "2bc1004f780d00e0d5fa2bd0a6e4ec1cb8a6d480da9856d115d32df0d867cc05",
+      "role": "external representation-control interface"
+    },
+    "external_representation_control_comparison": {
+      "path": "artifacts/v3_external_source_representation_control_comparison_1025.json",
+      "sha256": "f7a47828a3333e771330e865e383156b96771d2b0c1eb1367cbd63c9fe3439aa",
+      "role": "external feature-proxy representation control readout"
+    },
+    "external_stress_panel_roadmap": {
+      "path": "artifacts/v3_external_stress_panel_roadmap_20260528.json",
+      "sha256": "42271026337b0363189652031b745b8e5eed61d4ee9649f4a6bc05fd7a164ff3",
+      "role": "external panel admission rules and target families"
+    },
+    "fmo_external_hard_negative_duplicate_gate": {
+      "path": "artifacts/v3_fmo_external_hard_negative_duplicate_gate_702_20260528.json",
+      "sha256": "f44a4395b55c3295c38ff40aa2eba96521b049789b9f139fc65fa0a59dddb2a5",
+      "role": "FMO hard-negative duplicate and admission guardrails"
+    },
+    "geometry_features_doc": {
+      "path": "docs/geometry_features.md",
+      "sha256": "b666b76b0eb32f49f0fed4d9b5e5100e490964f19226a74621291c9994e4c9d5",
+      "role": "geometry feature and abstention documentation"
+    },
+    "external_source_transfer_doc": {
+      "path": "docs/external_source_transfer.md",
+      "sha256": "bc939b915d0648787361195159b75d52108ff4c91929db06b099c27b962f6dd0",
+      "role": "external transfer methodology documentation"
+    },
+    "wave1_representation_shootout_doc": {
+      "path": "docs/wave1_representation_shootout.md",
+      "sha256": "a28d3495bcb3c0a99b20c58a663a96510ee41796aaee6f3af1c996bc5b2a84dd",
+      "role": "representation shootout interpretation and caveats"
+    }
+  },
+  "design_summary": {
+    "router_contract": "A row-level state router that consumes frozen channel outputs and emits a card-compatible route, abstention, and metric policy without producing a new mechanism score.",
+    "primary_design_choice": "The router chooses a primary router_state_id plus optional secondary flags, because cofactor mismatch, acquisition needs, and expert review can overlap with structural-transfer states.",
+    "evidence_combination_rule": "Channels are normalized to support, conflict, abstain, missing, or review-only signals; state assignment is deterministic and precedence-based, not threshold-tuned in this artifact.",
+    "known_wave1_1_findings_used": [
+      "Foldseek is strong in dense same-mechanism neighborhoods.",
+      "Foldseek makes unsafe transfers in close-structure different-mechanism rows.",
+      "Geometry resolves the existing near-orphan and wrong-Foldseek-transfer diagnostic slices.",
+      "Learned representations add limited signal in wrong-transfer cells but do not replace geometry or Foldseek.",
+      "No row-aligned Foldseek-pocket export is available locally.",
+      "Review-only and child-label cells are not countable metrics."
+    ]
+  },
+  "universal_router_state_schema": {
+    "state_field": "router_state_id",
+    "state_selection": {
+      "primary_state_required": true,
+      "secondary_flags_allowed": true,
+      "state_assignment_inputs": [
+        "input_channels.*.channel_status",
+        "input_channels.*.predicted_or_supported_family_id",
+        "input_channels.*.abstained",
+        "input_channels.*.conflict_reason",
+        "metric_policy.evidence_tier",
+        "metric_policy.review_status"
+      ],
+      "must_not_use_at_prediction_time": [
+        "true_fingerprint_id",
+        "future_label",
+        "expert_answer",
+        "metric outcome",
+        "row membership in a handpicked success or failure list except as pre-frozen review-only evaluation context"
+      ],
+      "precedence_order": [
+        "oos_or_hard_negative",
+        "acquisition_needed",
+        "no_reliable_structure",
+        "close_structure_different_mechanism_conflict",
+        "cofactor_ligand_mismatch",
+        "broad_family_child_unresolved",
+        "true_near_orphan_active_site_supported",
+        "close_same_mechanism_structural_transfer",
+        "expert_review_needed"
+      ]
+    },
+    "states": [
+      {
+        "state_id": "close_same_mechanism_structural_transfer",
+        "display_name": "Close Same-Mechanism Structural Transfer",
+        "definition": "A row has a close Foldseek or structural-neighborhood neighbor whose frozen label family is consistent with active-site geometry and cofactor/ligand evidence.",
+        "required_signals": [
+          "foldseek_structure.channel_status=supports_candidate",
+          "foldseek_structure.nearest_neighbor_scope=same_mechanism_or_same_parent_family",
+          "geometry_active_site.channel_status in [supports_candidate, unavailable_nonblocking]",
+          "cofactor_ligand.channel_status not in [conflicts_candidate, evidence_limited_blocker]"
+        ],
+        "result_contract": {
+          "route_decision": "transfer_supported",
+          "abstained": false,
+          "claim_scope": "parent_fingerprint_unless_child_target_is_predefined_and_countable",
+          "metric_use": "countable only if the target row and source label are already countable under the frozen split"
+        },
+        "wave1_1_reference": "Dense same-mechanism structural-neighborhood rows where Foldseek and geometry agree."
+      },
+      {
+        "state_id": "close_structure_different_mechanism_conflict",
+        "display_name": "Close-Structure Different-Mechanism Conflict",
+        "definition": "A row has a close structural neighbor, but the structural transfer crosses a primary-family, OOS, secondary-boundary, or cofactor-locus boundary and conflicts with geometry or cofactor evidence.",
+        "required_signals": [
+          "foldseek_structure.channel_status=supports_candidate",
+          "foldseek_structure.nearest_neighbor_scope in [different_primary_family, secondary_boundary, oos_boundary]",
+          "geometry_active_site.channel_status in [supports_different_candidate, supports_true_local_locus, conflicts_foldseek]",
+          "or cofactor_ligand.channel_status=conflicts_candidate"
+        ],
+        "result_contract": {
+          "route_decision": "abstain_or_review",
+          "abstained": true,
+          "claim_scope": "no_positive_transfer_claim",
+          "metric_use": "unsafe_nonabstention diagnostic on pre-frozen Wave 1.1 conflict slices only"
+        },
+        "wave1_1_reference": "Packet 2 wrong-Foldseek-transfer behavior: Foldseek 0/4 correct with 4/4 unsafe nonabstentions, geometry 4/4 rescue."
+      },
+      {
+        "state_id": "true_near_orphan_active_site_supported",
+        "display_name": "True Near-Orphan With Active-Site Support",
+        "definition": "A row lacks a reliable close same-mechanism structural neighbor, but source-free active-site geometry and cofactor/ligand evidence support a parent mechanism family.",
+        "required_signals": [
+          "foldseek_structure.channel_status in [abstained, weak_same_family, no_close_same_mechanism_neighbor]",
+          "geometry_active_site.channel_status=supports_candidate",
+          "geometry_active_site.support_basis includes local_active_site_residue_or_role_signal",
+          "cofactor_ligand.channel_status in [supports_candidate, not_required, unavailable_nonblocking]"
+        ],
+        "result_contract": {
+          "route_decision": "geometry_supported_candidate_or_abstain_pending_tier",
+          "abstained": false,
+          "claim_scope": "diagnostic parent-family support unless evidence tier permits countable use",
+          "metric_use": "review-only near-orphan rescue slice unless the row was countable before split freeze"
+        },
+        "wave1_1_reference": "Packet 2 near-orphan geometry-rescue behavior: geometry supports 17/17, Foldseek supports 13/17 with 4 abstentions."
+      },
+      {
+        "state_id": "no_reliable_structure",
+        "display_name": "No Reliable Structure",
+        "definition": "The row lacks a supported selected PDB or AlphaFold structure, has failed or excluded coordinate materialization, or cannot join to Foldseek/geometry channels.",
+        "required_signals": [
+          "foldseek_structure.channel_status in [missing, unavailable]",
+          "geometry_active_site.channel_status in [missing, unavailable]",
+          "structure_context.reliable_structure=false"
+        ],
+        "result_contract": {
+          "route_decision": "acquisition_needed",
+          "abstained": true,
+          "claim_scope": "no_structure_based_mechanism_claim",
+          "metric_use": "coverage denominator and acquisition backlog; not a positive or negative route metric"
+        },
+        "wave1_1_reference": "No reliable structure rows in the diagnostic router pilot and Foldseek readiness exclusions."
+      },
+      {
+        "state_id": "cofactor_ligand_mismatch",
+        "display_name": "Cofactor/Ligand Mismatch",
+        "definition": "The candidate mechanism requires a local cofactor, metal, ligand, substrate analog, or ligand state that is absent, structure-wide only, incompatible, or routed to the wrong catalytic locus.",
+        "required_signals": [
+          "cofactor_ligand.channel_status in [conflicts_candidate, evidence_limited_blocker]",
+          "cofactor_ligand.evidence_level in [absent, structure_only, mismatched_locus, wrong_ligand_state]",
+          "candidate_family.expected_cofactor_families is nonempty"
+        ],
+        "result_contract": {
+          "route_decision": "abstain_or_acquire_active_state",
+          "abstained": true,
+          "claim_scope": "no positive mechanism claim until local cofactor or ligand-state support is resolved",
+          "metric_use": "separate evidence-limited stratum; do not tune penalties from this artifact"
+        },
+        "wave1_1_reference": "Cofactor coverage and policy artifacts recommend audit-only handling of evidence-limited retained positives."
+      },
+      {
+        "state_id": "broad_family_child_unresolved",
+        "display_name": "Broad-Family Child Unresolved",
+        "definition": "The router can support a broad parent fingerprint but the child mechanism, sublabel, or mixed-chemistry split is not countable, underpowered, proposal-only, blocked, or absent from the production ontology.",
+        "required_signals": [
+          "parent_family_support.channel_status=supports_candidate",
+          "child_target.status in [proposal_only, blocked, unresolved, underpowered, not_in_production]",
+          "metric_policy.child_metric_allowed=false"
+        ],
+        "result_contract": {
+          "route_decision": "parent_support_only_child_abstain",
+          "abstained": true,
+          "claim_scope": "parent projection only; no child-label accuracy claim",
+          "metric_use": "pilot-only or abstention-probe slice, never canonical child metric in v0"
+        },
+        "wave1_1_reference": "Packet 3 child strata, unresolved buckets, canaries, and mixed-chemistry blocked cells."
+      },
+      {
+        "state_id": "oos_or_hard_negative",
+        "display_name": "OOS/Hard Negative",
+        "definition": "The row is outside the frozen mechanism universe or is a pre-registered hard negative where a positive route would be a regression.",
+        "required_signals": [
+          "metric_policy.label_type in [out_of_scope, hard_negative_control]",
+          "or review_source_context.external_panel_role in [hard_negative, oos_control, duplicate_or_leakage_control]",
+          "positive route would cross the frozen admission rules"
+        ],
+        "result_contract": {
+          "route_decision": "reject_or_abstain",
+          "abstained": true,
+          "claim_scope": "negative control or OOS boundary only",
+          "metric_use": "hard-negative or OOS regression only when pre-registered and countable; otherwise review-only"
+        },
+        "wave1_1_reference": "OOS boundary abstention rows, m_csa:497 and m_csa:750 read-through handling, FMO hard-negative gates, and external hard-negative threshold policy."
+      },
+      {
+        "state_id": "acquisition_needed",
+        "display_name": "Acquisition Needed",
+        "definition": "A row could become evaluable only after missing structure, sequence, active-site residue, ligand-state, cofactor, Foldseek, representation, duplicate-screen, or expert-source evidence is acquired.",
+        "required_signals": [
+          "one_or_more_required_channels.channel_status in [missing, incomplete, stale, review_only_incomplete]",
+          "missing evidence is resolvable by a defined acquisition task",
+          "current evidence is insufficient for a safe positive or negative route"
+        ],
+        "result_contract": {
+          "route_decision": "acquire_evidence_then_reroute",
+          "abstained": true,
+          "claim_scope": "no mechanism claim",
+          "metric_use": "coverage and backlog metric only"
+        },
+        "wave1_1_reference": "External transfer blocker matrix and Foldseek coordinate readiness blockers."
+      },
+      {
+        "state_id": "expert_review_needed",
+        "display_name": "Expert Review Needed",
+        "definition": "The machine-readable evidence is complete enough to show a decision point, but admissibility, child assignment, boundary interpretation, or external transfer requires human review before any countable use.",
+        "required_signals": [
+          "review_status in [needs_expert_review, proposal_only, review_ready]",
+          "or metric_policy.evidence_tier=review_only",
+          "or route_decision would alter benchmark semantics without a frozen expert decision"
+        ],
+        "result_contract": {
+          "route_decision": "expert_review_queue",
+          "abstained": true,
+          "claim_scope": "review packet only",
+          "metric_use": "excluded from countable metrics until a future pre-registered expert-reviewed import path permits use"
+        },
+        "wave1_1_reference": "Packet 3 proposal-only sublabels and external mechanism-match review-ready rows."
+      }
+    ],
+    "secondary_flags": [
+      "foldseek_geometry_disagreement",
+      "sequence_near_duplicate",
+      "foldseek_near_duplicate",
+      "cofactor_absent",
+      "cofactor_structure_only",
+      "ligand_state_unresolved",
+      "learned_representation_missing",
+      "learned_representation_supports_review_only",
+      "child_label_missing",
+      "external_transfer_blocked",
+      "expert_review_blocked",
+      "acquisition_task_available"
+    ]
+  },
+  "input_channel_contract": {
+    "row_identity": {
+      "required_fields": [
+        "entry_id",
+        "router_input_version",
+        "split_assignment_or_panel_id",
+        "source_artifact_refs"
+      ],
+      "predictive_use": "identity fields are join keys only and must not add positive score or select a mechanism."
+    },
+    "channels": [
+      {
+        "channel_id": "foldseek_structure",
+        "purpose": "Capture full-structure nearest-neighbor and structural-neighborhood evidence.",
+        "required_interface_fields": [
+          "available",
+          "abstained",
+          "nearest_neighbor_entry_id",
+          "nearest_neighbor_label_group",
+          "nearest_neighbor_scope",
+          "tm_score_or_foldseek_score",
+          "alignment_coverage",
+          "structural_neighborhood_bin",
+          "channel_status",
+          "conflict_reason"
+        ],
+        "allowed_predictive_features": [
+          "Foldseek or TM-align similarity values from a frozen run",
+          "alignment coverage and chain mapping completeness",
+          "structural-neighborhood bin from frozen policy",
+          "nearest-neighbor label group from the frozen training split"
+        ],
+        "prohibited_predictive_features": [
+          "protein or enzyme names",
+          "EC labels",
+          "mechanism prose",
+          "expert notes",
+          "post-hoc neighbor cherry-picking",
+          "candidate-specific threshold changes"
+        ]
+      },
+      {
+        "channel_id": "sequence_similarity",
+        "purpose": "Capture exact duplicate, near-duplicate, and sequence-nearest-neighbor evidence.",
+        "required_interface_fields": [
+          "available",
+          "sequence_coverage",
+          "nearest_neighbor_entry_id",
+          "nearest_neighbor_label_group",
+          "identity_or_similarity",
+          "alignment_coverage",
+          "duplicate_status",
+          "channel_status",
+          "conflict_reason"
+        ],
+        "allowed_predictive_features": [
+          "sequence identity or similarity",
+          "alignment coverage",
+          "k-mer or frozen sequence-NN outputs",
+          "duplicate or near-duplicate flags",
+          "current-reference overlap flags"
+        ],
+        "prohibited_predictive_features": [
+          "accession semantics",
+          "source database identity as a mechanism feature",
+          "UniProt names or comments",
+          "EC/Rhea text",
+          "curator rationale"
+        ]
+      },
+      {
+        "channel_id": "geometry_active_site",
+        "purpose": "Capture source-free active-site geometry, residue-role, and pocket evidence.",
+        "required_interface_fields": [
+          "available",
+          "selected_structure_id",
+          "residue_signature",
+          "role_signature",
+          "distance_summary",
+          "compactness_bucket",
+          "pocket_descriptor_summary",
+          "predicted_or_supported_family_id",
+          "abstained",
+          "channel_status",
+          "support_basis",
+          "counterevidence_policy_hits"
+        ],
+        "allowed_predictive_features": [
+          "catalytic residue identities",
+          "catalytic residue roles",
+          "coordinate-derived distances",
+          "active-site compactness",
+          "substrate-pocket descriptors from nearby atoms",
+          "source-free counterevidence hits marked predictive"
+        ],
+        "prohibited_predictive_features": [
+          "mechanism text boosts",
+          "entry names",
+          "target labels except as frozen supervised labels in train split",
+          "source ids as evidence",
+          "review-only text counterevidence as positive support"
+        ]
+      },
+      {
+        "channel_id": "cofactor_ligand",
+        "purpose": "Separate local cofactor and ligand-state support from structure-wide or absent evidence.",
+        "required_interface_fields": [
+          "available",
+          "expected_cofactor_families",
+          "local_cofactor_families",
+          "structure_wide_cofactor_families",
+          "ligand_state_flags",
+          "cofactor_evidence_level",
+          "mismatch_reason",
+          "channel_status"
+        ],
+        "allowed_predictive_features": [
+          "local non-polymer ligand comp IDs",
+          "metal and cofactor family inference from local coordinates",
+          "structure-wide cofactor inventory as a blocker or evidence-limited flag",
+          "ligand-state compatibility when derived from coordinates or preregistered extractors"
+        ],
+        "prohibited_predictive_features": [
+          "cofactor names in protein names",
+          "EC text implying a cofactor",
+          "mechanism prose as positive evidence",
+          "structure-wide cofactor as local active-site support"
+        ]
+      },
+      {
+        "channel_id": "learned_representation",
+        "purpose": "Carry frozen row-aligned learned-model outputs as comparison or auxiliary evidence.",
+        "required_interface_fields": [
+          "available",
+          "model_id",
+          "embedding_status",
+          "row_aligned_export_id",
+          "predicted_or_supported_family_id",
+          "abstained",
+          "channel_status",
+          "missing_reason"
+        ],
+        "allowed_predictive_features": [
+          "precomputed row-aligned model predictions",
+          "precomputed embedding-neighbor outputs",
+          "embedding availability and missingness",
+          "frozen model confidence fields when already emitted"
+        ],
+        "prohibited_predictive_features": [
+          "new inference in the router",
+          "larger-model reruns for this v0 contract",
+          "post-hoc threshold fitting",
+          "review-only labels as training labels",
+          "using missing model output as positive mechanism evidence"
+        ]
+      },
+      {
+        "channel_id": "evidence_tier",
+        "purpose": "Gate metric eligibility and review actions without acting as positive mechanism evidence.",
+        "required_interface_fields": [
+          "label_type",
+          "label_tier",
+          "review_status",
+          "external_provenance_tier",
+          "countable_before_split",
+          "review_only",
+          "metric_eligibility"
+        ],
+        "allowed_predictive_features": [
+          "none; this channel is a gate and metric policy channel"
+        ],
+        "allowed_gating_features": [
+          "gold/silver/bronze/review-only tier",
+          "expert-reviewed versus automation-curated status",
+          "external provenance tier A/B/C/D",
+          "countable-before-split flag"
+        ],
+        "prohibited_predictive_features": [
+          "treating high tier as mechanism evidence",
+          "using review status to choose a positive family",
+          "using expert rationale text as a score feature"
+        ]
+      },
+      {
+        "channel_id": "abstention",
+        "purpose": "Carry frozen abstention decisions and reasons from each channel into the router card.",
+        "required_interface_fields": [
+          "frozen_policy_id",
+          "threshold_id_or_artifact_ref",
+          "channel_abstentions",
+          "router_abstained",
+          "abstention_reason",
+          "review_or_acquisition_next_step"
+        ],
+        "allowed_predictive_features": [
+          "precomputed abstain booleans",
+          "precomputed score margins from frozen artifacts for explanation only",
+          "hard-negative and OOS gate flags from pre-registered policies"
+        ],
+        "prohibited_predictive_features": [
+          "new threshold tuning",
+          "candidate-specific abstention floors",
+          "using review-only outcomes to fit abstention"
+        ]
+      }
+    ],
+    "review_source_context": {
+      "purpose": "Carry provenance and human-readable context for audit, expert review, and source acquisition only.",
+      "fields_allowed_for_context_only": [
+        "entry_name",
+        "EC identifiers",
+        "Rhea identifiers",
+        "M-CSA or UniProt source identifiers",
+        "curated mechanism prose",
+        "source citations",
+        "expert notes",
+        "review rationale",
+        "proposal-only child labels",
+        "artifact lineage",
+        "panel row names"
+      ],
+      "policy": "Review/source context may explain or queue a row, but it must not add positive route support, tune thresholds, or create countable labels."
+    }
+  },
+  "evidence_tier_metric_policy": {
+    "tier_definitions": [
+      {
+        "tier_id": "gold",
+        "definition": "Expert-reviewed countable label with direct admissible rationale under the frozen ontology.",
+        "metric_policy": "Eligible for countable evaluation or calibration only when present before split freeze and not excluded by duplicate, leakage, or panel rules.",
+        "training_policy": "Eligible as high-quality supervised label if the future training plan permits it."
+      },
+      {
+        "tier_id": "silver",
+        "definition": "Expert-reviewed or strongly supported countable label that passes current label-factory evidence checks.",
+        "metric_policy": "Eligible for countable evaluation when present before split freeze; report separately from bronze in sensitive slices.",
+        "training_policy": "Eligible as supervised label under future frozen training plans."
+      },
+      {
+        "tier_id": "bronze",
+        "definition": "Automation-curated countable label with weaker evidence or default migrated status.",
+        "metric_policy": "Eligible only in already-frozen countable metrics; not sufficient by itself for new child metrics, external transfer claims, or gold/silver validation claims.",
+        "training_policy": "Weak supervision only unless a future plan promotes or stratifies it."
+      },
+      {
+        "tier_id": "review_only",
+        "definition": "Diagnostic, proposal-only, sourcing, no-decision, blocked, or expert-review-needed row.",
+        "metric_policy": "Excluded from countable accuracy, calibration, threshold selection, and training. It may appear only in review-only diagnostic slices, acquisition queues, hard-negative audits, and result-card explanations.",
+        "training_policy": "Not a training label."
+      }
+    ],
+    "external_provenance_tiers": [
+      {
+        "tier_id": "tier_A_mcsa_curated",
+        "metric_policy": "May be countable only if already in the canonical registry and not specifically marked review-only or control-only."
+      },
+      {
+        "tier_id": "tier_B_external_curated",
+        "metric_policy": "Future validation-only candidate after active-site evidence, sequence controls, Foldseek controls, terminal review, and non-import gates are frozen."
+      },
+      {
+        "tier_id": "tier_C_external_incomplete",
+        "metric_policy": "Sourcing backlog only; excluded from metrics and training."
+      },
+      {
+        "tier_id": "tier_D_control_only",
+        "metric_policy": "Hard-negative, OOS, exact-overlap, near-duplicate, or mismatch control. Count only in pre-registered rejection/abstention metrics; otherwise review-only."
+      }
+    ],
+    "metric_inclusion_rules": [
+      "Countable Wave 1 metrics may include only rows countable before split freeze under the existing metric contract.",
+      "Wave 1.1 Packet 2 and Packet 3 rows remain review-only unless an existing artifact already marks the source metric as countable.",
+      "Gold and silver anchors may be stratified as high-confidence evaluation rows, but this design does not create or import any.",
+      "Bronze rows may remain in existing frozen primary/OOS metrics, but they cannot define new child-label metrics.",
+      "Review-only rows are excluded from accuracy, macro-F1, threshold calibration, training, and production score claims.",
+      "External panel rows are validation contracts only until a future pre-registered packet marks a row as tier_B_external_curated or a countable control."
+    ],
+    "metric_exclusion_rules": [
+      "Do not count proposal-only child labels as correct child predictions.",
+      "Do not count acquisition-needed rows as false negatives unless they were already countable and evaluable in the frozen metric.",
+      "Do not use review-only external positives to tune thresholds or select model channels.",
+      "Do not treat exact M-CSA overlaps or near duplicates as external positives.",
+      "Do not aggregate OOS/hard-negative rejection success with positive-family accuracy without a separate denominator."
+    ]
+  },
+  "result_card_output_contract": {
+    "row_output_name": "evidence_router_v0_card",
+    "required_top_level_fields": [
+      "entry_id",
+      "router_schema_version",
+      "router_state_id",
+      "secondary_flags",
+      "route_decision",
+      "abstained",
+      "abstention_reason",
+      "candidate_mechanism",
+      "input_channels",
+      "metric_policy",
+      "review_source_context",
+      "source_artifacts"
+    ],
+    "field_contract": {
+      "entry_id": "Stable row identifier used only for joins and display.",
+      "router_state_id": "One value from universal_router_state_schema.states.",
+      "secondary_flags": "Zero or more non-primary blockers or diagnostics.",
+      "route_decision": "One of transfer_supported, geometry_supported_candidate_or_abstain_pending_tier, parent_support_only_child_abstain, reject_or_abstain, abstain_or_review, acquire_evidence_then_reroute, expert_review_queue, no_claim.",
+      "abstained": "True when no positive production-compatible mechanism claim is emitted.",
+      "abstention_reason": "Short machine-readable reason such as fold_conflict, oos_hard_negative, cofactor_mismatch, child_unresolved, no_reliable_structure, acquisition_needed, or review_only.",
+      "candidate_mechanism": "Parent fingerprint or child label candidate, with claim_scope and no_score fields. Null when no candidate is safe.",
+      "input_channels": "Normalized channel payloads defined by input_channel_contract.",
+      "metric_policy": "Countable/review-only decision, evidence tier, allowed metric slices, and exclusion reason.",
+      "review_source_context": "Human-readable source and review metadata excluded from positive route scoring.",
+      "source_artifacts": "Artifact refs and hashes needed to reproduce the card."
+    },
+    "candidate_mechanism_shape": {
+      "parent_fingerprint_id": "string or null",
+      "child_label_id": "string or null",
+      "claim_scope": "parent_fingerprint | child_label | oos_control | no_claim",
+      "supporting_channels": [
+        "foldseek_structure",
+        "sequence_similarity",
+        "geometry_active_site",
+        "cofactor_ligand",
+        "learned_representation"
+      ],
+      "conflicting_channels": [
+        "foldseek_structure",
+        "sequence_similarity",
+        "geometry_active_site",
+        "cofactor_ligand",
+        "learned_representation"
+      ],
+      "no_production_score_emitted": true
+    },
+    "metric_policy_shape": {
+      "countable_metric": "boolean",
+      "metric_use_allowed_now": "countable_existing_metric | review_only_diagnostic_slice | pilot_only_review_slice | abstention_probe_only | hard_negative_regression_only | coverage_only | excluded",
+      "evidence_tier": "gold | silver | bronze | review_only",
+      "external_provenance_tier": "tier_A_mcsa_curated | tier_B_external_curated | tier_C_external_incomplete | tier_D_control_only | null",
+      "inclusion_reason": "string or null",
+      "exclusion_reason": "string or null"
+    },
+    "aggregate_result_card_sections": [
+      "router_state_counts",
+      "abstention_reason_counts",
+      "unsafe_nonabstention_counts_by_state",
+      "near_orphan_rescue_counts",
+      "close_structure_conflict_counts",
+      "oos_hard_negative_regression_counts",
+      "cofactor_ligand_mismatch_counts",
+      "acquisition_needed_counts",
+      "expert_review_needed_counts",
+      "channel_availability_matrix",
+      "metric_inclusion_summary",
+      "non_claims",
+      "guardrails"
+    ]
+  },
+  "evaluation_contract": {
+    "wave1_1_evaluation": {
+      "mode": "review_only_replay",
+      "source_cells": [
+        {
+          "cell_id": "primary_v1_metrics_after_m_csa497_m_csa750_readthrough",
+          "router_states_expected": [
+            "close_same_mechanism_structural_transfer",
+            "oos_or_hard_negative",
+            "cofactor_ligand_mismatch",
+            "expert_review_needed"
+          ],
+          "metric_use": "review_only_diagnostic_summary_only"
+        },
+        {
+          "cell_id": "packet2_near_orphan_geometry_rescue_behavior",
+          "router_states_expected": [
+            "true_near_orphan_active_site_supported",
+            "no_reliable_structure",
+            "cofactor_ligand_mismatch"
+          ],
+          "metric_use": "review_only_diagnostic_slice_only"
+        },
+        {
+          "cell_id": "packet2_wrong_foldseek_transfer_diagnostic_behavior",
+          "router_states_expected": [
+            "close_structure_different_mechanism_conflict"
+          ],
+          "metric_use": "review_only_diagnostic_slice_only"
+        },
+        {
+          "cell_id": "packet3_eight_pilot_only_child_stratum_readout",
+          "router_states_expected": [
+            "broad_family_child_unresolved",
+            "expert_review_needed"
+          ],
+          "metric_use": "pilot_only_review_slice_not_canonical_metric"
+        },
+        {
+          "cell_id": "abstention_behavior_on_unresolved_or_underpowered_child_buckets",
+          "router_states_expected": [
+            "broad_family_child_unresolved",
+            "expert_review_needed"
+          ],
+          "metric_use": "abstention_probe_only_not_accuracy_metric"
+        },
+        {
+          "cell_id": "canary_behavior_for_underpowered_or_mixed_chemistry_cells",
+          "router_states_expected": [
+            "oos_or_hard_negative",
+            "broad_family_child_unresolved",
+            "expert_review_needed"
+          ],
+          "metric_use": "canary_only_or_do_not_use_not_countable_metric"
+        }
+      ],
+      "allowed_metrics": [
+        "router_state_counts",
+        "correct_route_or_abstention_count_by_review_only_cell",
+        "unsafe_nonabstention_count_by_cell",
+        "channel_availability_by_cell",
+        "acquisition_needed_count",
+        "metric_exclusion_count"
+      ],
+      "prohibited_metrics": [
+        "new production accuracy",
+        "new child-label accuracy",
+        "threshold-selected performance",
+        "learned-representation superiority claim",
+        "review-only rows counted as validation labels"
+      ]
+    },
+    "external_panel_evaluation": {
+      "mode": "pre_registered_review_only_panel_validation",
+      "panels_from_source": [
+        "flavin_redox_boundary",
+        "metal_hydrolase_tails",
+        "plp_child_mechanisms",
+        "heme_redox_boundaries",
+        "glycoside_carbohydrate_enzymes"
+      ],
+      "minimum_panel_inputs_before_routing": [
+        "explicit row IDs and panel role",
+        "sequence-neighbor screen against current countable references",
+        "external-external duplicate or near-duplicate screen",
+        "selected active-state structure or explicit no-structure status",
+        "Foldseek-neighbor check against current countable and OOS controls",
+        "source-free active-site and cofactor/ligand extraction where available",
+        "evidence tier and review-only/import status"
+      ],
+      "allowed_metrics": [
+        "hard_negative_positive_route_regressions",
+        "expected_abstention_count",
+        "acquisition_needed_count",
+        "expert_review_needed_count",
+        "correct_route_count_for_pre_registered_tier_B_or_countable_control_rows"
+      ],
+      "prohibited_metrics": [
+        "external positive accuracy before tier_B admission",
+        "import-readiness claims",
+        "threshold tuning from panel outcomes",
+        "promoting tier_C sourcing backlog into validation"
+      ],
+      "success_criteria": [
+        "hard negatives do not receive target positive routes because of shared fold, cofactor, ligand, metal, O2, PLP, heme, glycan, or name context",
+        "incomplete external rows route to acquisition_needed or expert_review_needed rather than positive claims",
+        "clean external positives are evaluated only after evidence tier, duplicate, sequence, Foldseek, active-site, and non-import gates are frozen",
+        "result cards preserve review/source context separately from predictive channel evidence"
+      ]
+    }
+  },
+  "implementation_plan_only": {
+    "principles": [
+      "Implement as a read-only artifact join first.",
+      "Use frozen artifacts and precomputed channel outputs.",
+      "Emit no production score and tune no threshold.",
+      "Keep review/source context physically separate from predictive channel payloads.",
+      "Version the schema before any future change to state precedence or metric eligibility."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "name": "Define typed JSON schema or dataclasses",
+        "deliverable": "RouterInputRow, RouterChannelPayload, RouterStateCard, and RouterAggregateCard interfaces.",
+        "blocked_by": []
+      },
+      {
+        "step": 2,
+        "name": "Build read-only channel adapters",
+        "deliverable": "Adapters for Wave 1.1 structure audit, Foldseek readiness, geometry retrieval, cofactor coverage/policy, sequence/learned tracks, and external panel manifests.",
+        "blocked_by": [
+          "row-aligned Foldseek-pocket export remains unavailable"
+        ]
+      },
+      {
+        "step": 3,
+        "name": "Implement deterministic state assignment",
+        "deliverable": "Precedence-based state mapping using channel_status values and metric_policy gates only.",
+        "blocked_by": []
+      },
+      {
+        "step": 4,
+        "name": "Emit review-only router cards",
+        "deliverable": "Per-row cards plus aggregate result-card sections for Wave 1.1 cells.",
+        "blocked_by": []
+      },
+      {
+        "step": 5,
+        "name": "Add leakage tests",
+        "deliverable": "Tests that names, EC/Rhea identifiers, source ids, mechanism prose, expert notes, and review rationale are absent from predictive channel payloads.",
+        "blocked_by": []
+      },
+      {
+        "step": 6,
+        "name": "Add metric-scope tests",
+        "deliverable": "Tests that review-only, proposal-only, external tier_C, and blocked child rows cannot become countable metrics through the router.",
+        "blocked_by": []
+      },
+      {
+        "step": 7,
+        "name": "Run Wave 1.1 replay",
+        "deliverable": "Review-only result card comparing state counts and unsafe nonabstentions to the existing model-by-cell report.",
+        "blocked_by": []
+      },
+      {
+        "step": 8,
+        "name": "Prepare external panel replay",
+        "deliverable": "Panel cards only after sequence, Foldseek, active-site, cofactor/ligand, evidence-tier, and duplicate-control inputs are complete.",
+        "blocked_by": [
+          "external active-site evidence gaps",
+          "external representation controls not computed for all lanes",
+          "terminal review decisions not complete for every external row"
+        ]
+      }
+    ],
+    "explicit_non_steps": [
+      "No label import.",
+      "No registry edit.",
+      "No ontology or fingerprint edit.",
+      "No threshold change.",
+      "No model retraining or inference.",
+      "No production scoring change.",
+      "No child-label metric creation."
+    ]
+  },
+  "non_claims": [
+    "This artifact is not a router implementation.",
+    "This artifact is not a production scoring policy.",
+    "This artifact does not change Foldseek, geometry, sequence, learned, or cofactor outputs.",
+    "This artifact does not claim learned representations outperform Foldseek or geometry.",
+    "This artifact does not make review-only rows countable.",
+    "This artifact does not authorize external label import."
+  ]
+}
