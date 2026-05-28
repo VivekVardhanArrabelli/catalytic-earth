@@ -1,0 +1,214 @@
+{
+  "abstention_policy": {
+    "confidence_definition": "max calibrated probability for logistic; normalized distance margin for centroid; margin-to-probability calibration fit on calibration only if needed",
+    "not_allowed": "no threshold tuning on heldout, 31/41 diagnostic rows, near-orphan, fold-conflict, local-tail, or OOS router controls",
+    "threshold_selection": "calibration only; sweep confidence thresholds and choose the highest-coverage threshold satisfying calibration risk <= 0.20 and calibration OOS false-positive rate <= 0.05. If no threshold satisfies both, use abstain-all."
+  },
+  "approval_status": {
+    "blocker_count_from_audit": 0,
+    "may_run_now_without_user_approval": false,
+    "training_preflight_status_from_audit": "pass",
+    "user_approval_required_before_training": true
+  },
+  "artifact_id": "v3_active_site_supervised_smoke_runbook_20260528",
+  "created_utc": "2026-05-28T12:07:48Z",
+  "dataset_contract": {
+    "calibration_rows": "metadata.split_assignment == in_distribution_train_cal_candidate and proposed_train_cal_split == calibration from feasibility artifact",
+    "canary_only_rows": "metadata.split_assignment == in_distribution_secondary_canary_only; never train/calibrate",
+    "diagnostic_eval_caches": [
+      "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl"
+    ],
+    "evaluation_only_rows": "all 31+10 diagnostic rows; never train/calibrate or tune threshold",
+    "excluded_rows": [
+      "m_csa:497",
+      "m_csa:750",
+      "all heldout rows",
+      "all review_only_not_training rows",
+      "all secondary OOD probe rows from train/calibration"
+    ],
+    "support_from_leakage_audit": [
+      {
+        "calibration": 73,
+        "target_group": "None",
+        "total": 363,
+        "train": 290
+      },
+      {
+        "calibration": 8,
+        "target_group": "flavin_dehydrogenase_reductase",
+        "total": 40,
+        "train": 32
+      },
+      {
+        "calibration": 3,
+        "target_group": "heme_peroxidase_oxidase",
+        "total": 16,
+        "train": 13
+      },
+      {
+        "calibration": 13,
+        "target_group": "metal_dependent_hydrolase",
+        "total": 66,
+        "train": 53
+      },
+      {
+        "calibration": 5,
+        "target_group": "plp_dependent_enzyme",
+        "total": 25,
+        "train": 20
+      },
+      {
+        "calibration": 7,
+        "target_group": "ser_his_acid_hydrolase",
+        "total": 34,
+        "train": 27
+      }
+    ],
+    "train_cal_cache": "artifacts/v3_active_site_encoder_cache_train_cal_547_20260528.jsonl",
+    "train_cal_feasibility": "artifacts/v3_active_site_train_cal_cache_feasibility_20260528.json",
+    "train_rows": "metadata.split_assignment == in_distribution_train_cal_candidate and proposed_train_cal_split == train from feasibility artifact"
+  },
+  "evaluation_contract": {
+    "diagnostic_cells": [
+      "calibration parent-v1/OOS",
+      "clean_near_orphan_anchor",
+      "fold_conflict_reference_anchor",
+      "oos_router_control",
+      "current702_local_tail_extension",
+      "external_router_priority",
+      "secondary OOD canaries"
+    ],
+    "metrics": [
+      "coverage",
+      "risk/error on non-abstained predictions",
+      "OOS false-positive rate",
+      "per-target precision/recall where n>=5",
+      "wrong-Foldseek-transfer rescue count",
+      "near-orphan rescue count",
+      "local-tail canary failures",
+      "confusion matrix for non-abstained rows"
+    ],
+    "non_claims": [
+      "not a production benchmark",
+      "not a claim learned reps beat Foldseek/geometry",
+      "not label promotion evidence",
+      "not threshold update evidence"
+    ],
+    "primary_outputs": [
+      "per-row prediction JSONL",
+      "aggregate JSON",
+      "markdown report"
+    ]
+  },
+  "exact_commands_after_user_approval": {
+    "implementation_entrypoint_to_create_or_use": "tools/research_lanes/active_site_supervised_smoke/run_active_site_supervised_smoke.py",
+    "post_run_validation": [
+      "python -m json.tool artifacts/v3_active_site_supervised_smoke_summary_20260528.json >/dev/null",
+      "PYTHONPATH=src python -m catalytic_earth.cli validate",
+      "git diff --check"
+    ],
+    "required_preflight": [
+      "PYTHONPATH=src python -m catalytic_earth.cli validate",
+      "python -m json.tool artifacts/v3_active_site_train_cal_leakage_audit_20260528.json >/dev/null",
+      "python - <<'PY'\nimport json\na=json.load(open(\"artifacts/v3_active_site_train_cal_leakage_audit_20260528.json\"))\nassert a[\"training_preflight_status\"] == \"pass\"\nassert a[\"summary\"][\"blocker_count\"] == 0\nPY"
+    ],
+    "smoke_command": "PYTHONPATH=src python tools/research_lanes/active_site_supervised_smoke/run_active_site_supervised_smoke.py --train-cal-cache artifacts/v3_active_site_encoder_cache_train_cal_547_20260528.jsonl --train-cal-feasibility artifacts/v3_active_site_train_cal_cache_feasibility_20260528.json --diagnostic-cache artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl --diagnostic-cache artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl --leakage-audit artifacts/v3_active_site_train_cal_leakage_audit_20260528.json --out artifacts/v3_active_site_supervised_smoke_predictions_20260528.jsonl --summary-out artifacts/v3_active_site_supervised_smoke_summary_20260528.json --report-out work/active_site_supervised_smoke_20260528.md --seed 20260528 --no-production-claims"
+  },
+  "feature_vectorization_contract": {
+    "flattening": "deterministically flatten numeric, boolean, categorical count, node, edge, cofactor/pocket features from predictive_features",
+    "forbidden_predictive_inputs": [
+      "entry_id",
+      "source_id",
+      "pdb_id",
+      "uniprot_id",
+      "entry_name",
+      "mechanism_text",
+      "expert_note",
+      "curator_rationale",
+      "label/fingerprint id as feature"
+    ],
+    "input_namespace": "active_site_encoder_cache_row.predictive_features only",
+    "metadata_allowed_only_for": "row id, split assignment, target extraction, diagnostic grouping after predictions",
+    "missing_features": "zero after train-fitted feature union; report feature sparsity",
+    "scaling": "fit z-score scaler on train rows only; apply to calibration and diagnostic rows"
+  },
+  "guardrails": {
+    "classifier_run": false,
+    "heldout_rows_used_for_training": false,
+    "labels_changed": false,
+    "model_outputs_changed": false,
+    "ontologies_changed": false,
+    "production_scoring_changed": false,
+    "registries_changed": false,
+    "thresholds_tuned": false,
+    "training_executed": false
+  },
+  "model_choices_for_tiny_smoke": [
+    {
+      "configuration": "multinomial logistic regression, L2 regularization, class_weight=balanced, max_iter=2000, deterministic seed 20260528",
+      "model_id": "logistic_l2_balanced",
+      "purpose": "primary tiny supervised smoke"
+    },
+    {
+      "configuration": "train-set class centroids in z-scored feature space; confidence from negative distance margin",
+      "model_id": "nearest_centroid_active_site",
+      "purpose": "nonparametric sanity baseline on same vectors"
+    },
+    {
+      "configuration": "closed-form ridge one-vs-rest on train matrix using numpy; calibration from margins",
+      "model_id": "ridge_one_vs_rest_fallback",
+      "purpose": "fallback if sklearn is unavailable"
+    }
+  ],
+  "next_recommended_automation": {
+    "id_suggestion": "active-site-supervised-smoke-scaffold",
+    "task": "Implement the run script and unit tests using toy data only; do not run it on real train/cal cache without user approval.",
+    "training_allowed": false
+  },
+  "review_only": true,
+  "risk_assessment": {
+    "main_risk": "The smoke may mostly rediscover the hand-built geometry features already known to work, so success is not automatically novel.",
+    "mitigation": "Compare only within the diagnostic report against Wave 1.1 geometry/Foldseek cells; treat the result as a routing/feature feasibility test, not a claim.",
+    "overfit_risk": "Moderate because train/cal comes from M-CSA and broad parent labels; controlled by heldout diagnostic cells and no threshold tuning outside calibration.",
+    "value_if_negative": "A negative or abstain-heavy result would justify focusing on external panels, v2 labels, and geometry/Foldseek engine rather than neural scaling."
+  },
+  "schema_version": "active_site_supervised_smoke_runbook.v1",
+  "source_artifacts": [
+    "artifacts/v3_active_site_train_cal_leakage_audit_20260528.json",
+    "artifacts/v3_active_site_train_cal_cache_feasibility_20260528.json",
+    "artifacts/v3_active_site_encoder_cache_train_cal_547_20260528.jsonl",
+    "artifacts/v3_active_site_cache_41_unsupervised_router_stress_20260528.json",
+    "artifacts/v3_wave1_1_model_by_cell_report_702_20260528.json",
+    "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json"
+  ],
+  "status": "complete_runbook_no_training",
+  "stop_conditions": [
+    "Any heldout or review_only_not_training row is selected for train/calibration.",
+    "Any forbidden metadata key appears under predictive_features or flattened feature names.",
+    "m_csa:497 or m_csa:750 appears in train/calibration.",
+    "Calibration threshold is selected using any diagnostic/heldout cell.",
+    "OOS false-positive rate on calibration cannot meet the predeclared gate without abstaining on all rows.",
+    "Disk falls below 10 GiB.",
+    "The run attempts to write labels, registries, thresholds, production scoring, imports, or ontology files."
+  ],
+  "target_extraction_policy": {
+    "class_balance": "use class_weight=balanced or inverse-frequency loss to prevent OOS dominance",
+    "secondary_targets": "cobalamin_radical_rearrangement and flavin_monooxygenase are canary-only, not trained classes",
+    "target_source": "metadata.current_fingerprint_id, mapping null/None to explicit OOS target None; used only as target, never predictive feature",
+    "trainable_targets": [
+      "None",
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ]
+  },
+  "why_this_smoke_is_still_useful": [
+    "Wave 1.1 showed learned representations are not decision-grade against Foldseek/geometry on current broad labels, but it did not test a feature set restricted to active-site geometry/cofactor/pocket descriptors.",
+    "The new 547-row cache gives an in-distribution train/cal pool that clears leakage preflight; this lets a tiny supervised smoke ask whether active-site-local features learn anything beyond the hand-built geometry scorer.",
+    "The 41-row diagnostic cache contains near-orphan, fold-conflict, OOS, external-priority, and local-tail stress rows that can be held out entirely from training and used only for qualitative diagnostics.",
+    "A negative result is valuable: if this active-site feature smoke fails, it argues for external label acquisition and geometry/Foldseek routing before spending compute on larger neural models."
+  ]
+}
