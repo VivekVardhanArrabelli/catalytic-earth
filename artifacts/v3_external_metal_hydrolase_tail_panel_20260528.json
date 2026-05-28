@@ -1,0 +1,3304 @@
+{
+  "artifact_id": "v3_external_metal_hydrolase_tail_panel_20260528",
+  "automation_id": "metal-hydrolase-tail-panel",
+  "candidate_rows": [
+    {
+      "accession": "m_csa:171",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "M-CSA zinc carboxypeptidase anchor for zincin-like single-metal peptide hydrolysis.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "peptide-bond hydrolysis; selected structure has Zn",
+      "metal_ligand_state": "single Zn metalloprotease active site; local Zn in selected structure",
+      "name": "carboxypeptidase A",
+      "observed_ligand_codes": [
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_001",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=171",
+        "rcsb_structure": "https://www.rcsb.org/structure/1M4L"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1M4L",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:176",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Thermolysin zinc metalloprotease anchor for HExxH/Glu water activation style chemistry.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "peptide substrate/inhibitor context; selected structure has Zn",
+      "metal_ligand_state": "single catalytic Zn in thermolysin active site",
+      "name": "thermolysin",
+      "observed_ligand_codes": [
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_002",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=176",
+        "rcsb_structure": "https://www.rcsb.org/structure/1KEI"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1KEI",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:596",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Accepted/current zincin metalloprotease; reused from 66 clean-likely/current registry decision.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "peptide hydrolysis; selected structure has Zn",
+      "metal_ligand_state": "Zn present; deuterolysin zincin geometry noted in current registry",
+      "name": "deuterolysin",
+      "observed_ligand_codes": [
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_003",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=596",
+        "rcsb_structure": "https://www.rcsb.org/structure/1EB6"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1EB6",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:623",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "22 trace: clean accepted/imported neprilysin zinc metalloprotease; selected 1R1J has Zn.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "peptide hydrolysis with inhibitor/substrate analog context",
+      "metal_ligand_state": "Zn present in selected 1R1J; clean imported prior decision",
+      "name": "neprilysin",
+      "observed_ligand_codes": [
+        "ZN",
+        "OIR"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "22 trace: clean accepted/imported neprilysin zinc metalloprotease; selected 1R1J has Zn.",
+      "row_id": "mh_004",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=623",
+        "rcsb_structure": "https://www.rcsb.org/structure/1R1J"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1R1J",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:626",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "66 triage/current registry: bontoxilysin retained as zincin metal hydrolase positive; local Zn present.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "peptide hydrolysis; selected structure has Zn/SO4",
+      "metal_ligand_state": "Zn present; botulinum neurotoxin zincin active-site motif",
+      "name": "bontoxilysin",
+      "observed_ligand_codes": [
+        "ZN",
+        "SO4"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "66 triage/current registry: bontoxilysin retained as zincin metal hydrolase positive; local Zn present.",
+      "row_id": "mh_005",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=626",
+        "rcsb_structure": "https://www.rcsb.org/structure/1EPW"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1EPW",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:668",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "66 triage/current registry: leishmanolysin retained as metalloprotease positive; local Zn present.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "peptide hydrolysis; selected structure has Zn",
+      "metal_ligand_state": "Zn present; leishmanolysin metalloprotease",
+      "name": "leishmanolysin",
+      "observed_ligand_codes": [
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "66 triage/current registry: leishmanolysin retained as metalloprotease positive; local Zn present.",
+      "row_id": "mh_006",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=668",
+        "rcsb_structure": "https://www.rcsb.org/structure/1LML"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1LML",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:641",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "22 trace: imported through holo override after selected apo 1PWV; prior override 1J7N supported metal hydrolase.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "apo_or_holo_override_geometry",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "peptide hydrolysis; use holo override evidence only as prior source, not new import",
+      "metal_ligand_state": "selected structure apo, prior holo override supported Zn metalloprotease",
+      "name": "anthrax lethal factor endopeptidase",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "22 trace: imported through holo override after selected apo 1PWV; prior override 1J7N supported metal hydrolase.",
+      "row_id": "mh_007",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=641",
+        "rcsb_structure": "https://www.rcsb.org/structure/1PWV"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1PWV",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:657",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "review_queue_or_no_current_registry_label",
+      "evidence_summary": "22 trace: MPP terminal hold; Zn is local to beta-subunit active site but acid/base plus metal-locality rule is untested.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "loose_or_acid_base_plus_metal_locality",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "mitochondrial presequence peptide processing; selected structure has Zn but geometry hold",
+      "metal_ligand_state": "Zn local to beta-subunit active site but direct residue-locality rule unresolved",
+      "name": "mitochondrial processing peptidase",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "22 trace: MPP terminal hold; Zn is local to beta-subunit active site but acid/base plus metal-locality rule is untested.",
+      "row_id": "mh_008",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=657",
+        "rcsb_structure": "https://www.rcsb.org/structure/1HR6"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1HR6",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:591",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "review_queue_or_no_current_registry_label",
+      "evidence_summary": "66 triage: stromelysin 1 needs expert biochemistry review before metal hydrolase use.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "tight_or_inhibitor_bound_review_needed",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "MMP/stromelysin peptide hydrolysis; needs expert biochemical review",
+      "metal_ligand_state": "Zn metalloprotease/inhibitor context present in selected structure",
+      "name": "stromelysin 1",
+      "observed_ligand_codes": [
+        "L04",
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "66 triage: stromelysin 1 needs expert biochemistry review before metal hydrolase use.",
+      "row_id": "mh_009",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=591",
+        "rcsb_structure": "https://www.rcsb.org/structure/1HFS"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1HFS",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:87",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Urease anchor for non-Zn binuclear metallohydrolase chemistry.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may group diverse TIM-barrel/amidohydrolase-like folds; valid signal requires two-metal or metal-water active-site context.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "binuclear_metallohydrolase_amidohydrolase",
+      "ligand_or_substrate_state": "urea hydrolysis; selected structure has Ni/KCX",
+      "metal_ligand_state": "binuclear Ni urease center with carbamylated lysine",
+      "name": "urease",
+      "observed_ligand_codes": [
+        "KCX",
+        "NI"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_010",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect amidohydrolase/metallopeptidase subfamily neighbors; binuclear-metal rows should not merge solely by EC3 or metal words.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=87",
+        "rcsb_structure": "https://www.rcsb.org/structure/1FWJ"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1FWJ",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:157",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Hydroxyacylglutathione hydrolase/glyoxalase II anchor for MBL-fold non-beta-lactam hydrolysis.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may group diverse TIM-barrel/amidohydrolase-like folds; valid signal requires two-metal or metal-water active-site context.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "binuclear_metallohydrolase_amidohydrolase",
+      "ligand_or_substrate_state": "thioester hydrolysis; selected structure has Zn/GSH",
+      "metal_ligand_state": "Zn metallohydrolase center in glyoxalase II/MBL fold",
+      "name": "hydroxyacylglutathione hydrolase",
+      "observed_ligand_codes": [
+        "ZN",
+        "GSH"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_011",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect amidohydrolase/metallopeptidase subfamily neighbors; binuclear-metal rows should not merge solely by EC3 or metal words.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=157",
+        "rcsb_structure": "https://www.rcsb.org/structure/1QH5"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1QH5",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:379",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Xaa-Pro aminopeptidase anchor for prolidase-like Mn metallopeptidase chemistry.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may group diverse TIM-barrel/amidohydrolase-like folds; valid signal requires two-metal or metal-water active-site context.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "binuclear_metallohydrolase_amidohydrolase",
+      "ligand_or_substrate_state": "proline-containing peptide hydrolysis; selected structure has Mn/Leu/Pro",
+      "metal_ligand_state": "Mn-bound Xaa-Pro aminopeptidase active site",
+      "name": "Xaa-Pro aminopeptidase",
+      "observed_ligand_codes": [
+        "LEU",
+        "MN",
+        "PRO"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_012",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect amidohydrolase/metallopeptidase subfamily neighbors; binuclear-metal rows should not merge solely by EC3 or metal words.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=379",
+        "rcsb_structure": "https://www.rcsb.org/structure/1A16"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1A16",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:447",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Glutamate carboxypeptidase anchor for binuclear/clustered Zn peptidase geometry.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may group diverse TIM-barrel/amidohydrolase-like folds; valid signal requires two-metal or metal-water active-site context.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "binuclear_metallohydrolase_amidohydrolase",
+      "ligand_or_substrate_state": "glutamate carboxypeptidase peptide/amide hydrolysis",
+      "metal_ligand_state": "Zn carboxypeptidase active site; current registry high confidence",
+      "name": "glutamate carboxypeptidase",
+      "observed_ligand_codes": [
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_013",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect amidohydrolase/metallopeptidase subfamily neighbors; binuclear-metal rows should not merge solely by EC3 or metal words.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=447",
+        "rcsb_structure": "https://www.rcsb.org/structure/1CG2"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1CG2",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:710",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "66 triage/current registry: cytosine deaminase accepted as amidohydrolase-superfamily Fe water-attack positive.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may group diverse TIM-barrel/amidohydrolase-like folds; valid signal requires two-metal or metal-water active-site context.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "binuclear_metallohydrolase_amidohydrolase",
+      "ligand_or_substrate_state": "cytosine deamination by hydrolytic water addition/elimination; selected structure has Fe/FPY",
+      "metal_ligand_state": "Fe amidohydrolase-superfamily deaminase; Fe-activated water attack",
+      "name": "cytosine deaminase (bacterial)",
+      "observed_ligand_codes": [
+        "FE",
+        "FPY"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "66 triage/current registry: cytosine deaminase accepted as amidohydrolase-superfamily Fe water-attack positive.",
+      "row_id": "mh_014",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect amidohydrolase/metallopeptidase subfamily neighbors; binuclear-metal rows should not merge solely by EC3 or metal words.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=710",
+        "rcsb_structure": "https://www.rcsb.org/structure/1RA0"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1RA0",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:720",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "66 triage/current registry: creatininase accepted as binuclear Zn amidohydrolase positive.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may group diverse TIM-barrel/amidohydrolase-like folds; valid signal requires two-metal or metal-water active-site context.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "binuclear_metallohydrolase_amidohydrolase",
+      "ligand_or_substrate_state": "creatinine hydrolysis; selected structure has Zn",
+      "metal_ligand_state": "binuclear Zn creatininase active site",
+      "name": "creatininase",
+      "observed_ligand_codes": [
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "66 triage/current registry: creatininase accepted as binuclear Zn amidohydrolase positive.",
+      "row_id": "mh_015",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect amidohydrolase/metallopeptidase subfamily neighbors; binuclear-metal rows should not merge solely by EC3 or metal words.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=720",
+        "rcsb_structure": "https://www.rcsb.org/structure/1J2U"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1J2U",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:917",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "22 trace: clean accepted/imported methionyl aminopeptidase with catalytic Co sites.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may group diverse TIM-barrel/amidohydrolase-like folds; valid signal requires two-metal or metal-water active-site context.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "binuclear_metallohydrolase_amidohydrolase",
+      "ligand_or_substrate_state": "methionine aminopeptidase amide hydrolysis",
+      "metal_ligand_state": "Co ions at catalytic sites in selected structure",
+      "name": "methionyl aminopeptidase",
+      "observed_ligand_codes": [
+        "CO"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "22 trace: clean accepted/imported methionyl aminopeptidase with catalytic Co sites.",
+      "row_id": "mh_016",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect amidohydrolase/metallopeptidase subfamily neighbors; binuclear-metal rows should not merge solely by EC3 or metal words.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=917",
+        "rcsb_structure": "https://www.rcsb.org/structure/1XGM"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1XGM",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:1001",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "review_queue_or_no_current_registry_label",
+      "evidence_summary": "22 trace: Prolidase terminal oligomer/open-geometry hold; selected 5M4G contains Mn but Asp271/Arg393 focus pair about 30 A apart.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek may group diverse TIM-barrel/amidohydrolase-like folds; valid signal requires two-metal or metal-water active-site context.",
+      "geometry_class": "loose_open_or_oligomer_geometry",
+      "lane": "binuclear_metallohydrolase_amidohydrolase",
+      "ligand_or_substrate_state": "Xaa-Pro dipeptide hydrolysis; assembly/oligomer mapping required",
+      "metal_ligand_state": "four Mn ions present but active-site role-pair locality unresolved",
+      "name": "Prolidase (Xaa-Pro dipeptidase)",
+      "observed_ligand_codes": [
+        "MN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "22 trace: Prolidase terminal oligomer/open-geometry hold; selected 5M4G contains Mn but Asp271/Arg393 focus pair about 30 A apart.",
+      "row_id": "mh_017",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect amidohydrolase/metallopeptidase subfamily neighbors; binuclear-metal rows should not merge solely by EC3 or metal words.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=1001",
+        "rcsb_structure": "https://www.rcsb.org/structure/5M4G"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "5M4G",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:43",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Purple acid phosphatase anchor for binuclear phosphomonoester hydrolysis.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should separate phosphatase scaffolds and abstain when selected holo/closed geometry is missing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "phosphatase_phosphoesterase",
+      "ligand_or_substrate_state": "phosphate ester hydrolysis; selected structure has PO4/Fe/Zn",
+      "metal_ligand_state": "mixed Fe/Zn purple acid phosphatase site",
+      "name": "purple acid phosphatase",
+      "observed_ligand_codes": [
+        "ZN",
+        "PO4",
+        "FE"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_018",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect phosphatase/phosphoesterase subfamily neighbors; phosphate wording alone must not collapse cysteine phosphatases or kinases.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=43",
+        "rcsb_structure": "https://www.rcsb.org/structure/4KBP"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "4KBP",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:44",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Alkaline phosphatase anchor; paired with external P00634 duplicate/generalization control.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should separate phosphatase scaffolds and abstain when selected holo/closed geometry is missing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "phosphatase_phosphoesterase",
+      "ligand_or_substrate_state": "phosphate monoester hydrolysis; selected structure has PO4/Zn/Mg",
+      "metal_ligand_state": "Zn/Mg alkaline phosphatase site",
+      "name": "alkaline phosphatase",
+      "observed_ligand_codes": [
+        "PO4",
+        "ZN",
+        "MG"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_019",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect phosphatase/phosphoesterase subfamily neighbors; phosphate wording alone must not collapse cysteine phosphatases or kinases.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=44",
+        "rcsb_structure": "https://www.rcsb.org/structure/1ALK"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1ALK",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:159",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Aryldialkylphosphatase/paraoxonase-like phosphoesterase positive anchor.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should separate phosphatase scaffolds and abstain when selected holo/closed geometry is missing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "phosphatase_phosphoesterase",
+      "ligand_or_substrate_state": "phosphoester hydrolysis; selected structure has Zn",
+      "metal_ligand_state": "Zn aryldialkylphosphatase site",
+      "name": "aryldialkylphosphatase",
+      "observed_ligand_codes": [
+        "FMT",
+        "ZN",
+        "EDO"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_020",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect phosphatase/phosphoesterase subfamily neighbors; phosphate wording alone must not collapse cysteine phosphatases or kinases.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=159",
+        "rcsb_structure": "https://www.rcsb.org/structure/1HZY"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1HZY",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:406",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Calcineurin/protein phosphatase 2B anchor for PPP-family binuclear phosphatases.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should separate phosphatase scaffolds and abstain when selected holo/closed geometry is missing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "phosphatase_phosphoesterase",
+      "ligand_or_substrate_state": "phosphoserine/phosphothreonine hydrolysis; selected structure has Fe/Zn",
+      "metal_ligand_state": "Fe/Zn protein phosphatase 2B active site",
+      "name": "protein phosphatase 2B",
+      "observed_ligand_codes": [
+        "ZN",
+        "FE"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_021",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect phosphatase/phosphoesterase subfamily neighbors; phosphate wording alone must not collapse cysteine phosphatases or kinases.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=406",
+        "rcsb_structure": "https://www.rcsb.org/structure/1AUI"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1AUI",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:472",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Serine/threonine protein phosphatase 5 anchor; current registry high-confidence metal hydrolase.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should separate phosphatase scaffolds and abstain when selected holo/closed geometry is missing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "phosphatase_phosphoesterase",
+      "ligand_or_substrate_state": "ser/thr protein phosphatase 5 hydrolysis",
+      "metal_ligand_state": "two Mn ions plus phosphate in selected structure",
+      "name": "serine/threonine-protein phosphatase 5",
+      "observed_ligand_codes": [
+        "MN",
+        "PO4"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_022",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect phosphatase/phosphoesterase subfamily neighbors; phosphate wording alone must not collapse cysteine phosphatases or kinases.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=472",
+        "rcsb_structure": "https://www.rcsb.org/structure/1S95"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1S95",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:577",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "22 trace: imported through holo override; selected 1IMA Gd/IPD context replaced by 1AWB in prior gate.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should separate phosphatase scaffolds and abstain when selected holo/closed geometry is missing.",
+      "geometry_class": "apo_or_holo_override_geometry",
+      "lane": "phosphatase_phosphoesterase",
+      "ligand_or_substrate_state": "inositol phosphate hydrolysis; use prior override evidence as provenance only",
+      "metal_ligand_state": "selected Gd/inhibitor context had prior holo override support",
+      "name": "inositol-phosphate phosphatase",
+      "observed_ligand_codes": [
+        "IPD",
+        "GD"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "22 trace: imported through holo override; selected 1IMA Gd/IPD context replaced by 1AWB in prior gate.",
+      "row_id": "mh_023",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect phosphatase/phosphoesterase subfamily neighbors; phosphate wording alone must not collapse cysteine phosphatases or kinases.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=577",
+        "rcsb_structure": "https://www.rcsb.org/structure/1IMA"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1IMA",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:611",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "review_queue_or_no_current_registry_label",
+      "evidence_summary": "22 trace: terminal hold for loose/open 5-prime nucleotidase conformation; Arg375/His217 focus pair about 40 A apart.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek should separate phosphatase scaffolds and abstain when selected holo/closed geometry is missing.",
+      "geometry_class": "loose_open_conformation",
+      "lane": "phosphatase_phosphoesterase",
+      "ligand_or_substrate_state": "5-prime nucleotidase phosphoester hydrolysis; needs closed-conformation alternate",
+      "metal_ligand_state": "Zn ions present but open-domain geometry made focus pair distant",
+      "name": "5'-nucleotidase (bacterial)",
+      "observed_ligand_codes": [
+        "ZN",
+        "CO3"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "22 trace: terminal hold for loose/open 5-prime nucleotidase conformation; Arg375/His217 focus pair about 40 A apart.",
+      "row_id": "mh_024",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect phosphatase/phosphoesterase subfamily neighbors; phosphate wording alone must not collapse cysteine phosphatases or kinases.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=611",
+        "rcsb_structure": "https://www.rcsb.org/structure/1USH"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1USH",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:812",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "22 trace: clean accepted/imported mitochondrial 5-prime nucleotidase with Mg/phosphate/DPB context.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should separate phosphatase scaffolds and abstain when selected holo/closed geometry is missing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "phosphatase_phosphoesterase",
+      "ligand_or_substrate_state": "mitochondrial 5-prime nucleotidase hydrolysis; clean accepted prior decision",
+      "metal_ligand_state": "Mg/phosphate/DPB context in selected structure",
+      "name": "5'-nucleotidase (mitochondrial)",
+      "observed_ligand_codes": [
+        "PO4",
+        "MG",
+        "DPB"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "22 trace: clean accepted/imported mitochondrial 5-prime nucleotidase with Mg/phosphate/DPB context.",
+      "row_id": "mh_025",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect phosphatase/phosphoesterase subfamily neighbors; phosphate wording alone must not collapse cysteine phosphatases or kinases.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=812",
+        "rcsb_structure": "https://www.rcsb.org/structure/1Q91"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1Q91",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:904",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "review_queue_or_no_current_registry_label",
+      "evidence_summary": "22 trace: terminal AMP/product-context blocker for 3(2),5-bisphosphate nucleotidase.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek should separate phosphatase scaffolds and abstain when selected holo/closed geometry is missing.",
+      "geometry_class": "product_context_confounded",
+      "lane": "phosphatase_phosphoesterase",
+      "ligand_or_substrate_state": "3(2),5-bisphosphate nucleotidase; needs product-context rule",
+      "metal_ligand_state": "Mg/phosphate/AMP/SO4 context but AMP product triggered nucleotide-transfer counterevidence",
+      "name": "3'(2'),5'-bisphosphate nucleotidase",
+      "observed_ligand_codes": [
+        "PO4",
+        "MG",
+        "AMP",
+        "SO4"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "22 trace: terminal AMP/product-context blocker for 3(2),5-bisphosphate nucleotidase.",
+      "row_id": "mh_026",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect phosphatase/phosphoesterase subfamily neighbors; phosphate wording alone must not collapse cysteine phosphatases or kinases.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=904",
+        "rcsb_structure": "https://www.rcsb.org/structure/1QGX"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1QGX",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:160",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Exodeoxyribonuclease III positive chemistry but selected local ligand context is sparse, so use as holo-state stress row.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may rescue nuclease fold neighbors, but Mg/Zn/Ca plus phosphodiester geometry and product-state handling are decisive.",
+      "geometry_class": "apo_or_missing_metal",
+      "lane": "nuclease_phosphoesterase",
+      "ligand_or_substrate_state": "DNA phosphodiester hydrolysis; needs holo-state caution",
+      "metal_ligand_state": "selected structure lacks local metal ligand codes despite M-CSA nuclease mechanism",
+      "name": "exodeoxyribonuclease III",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_027",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect nuclease-family sequence neighbors when available, with low sequence transfer across unrelated nuclease folds.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=160",
+        "rcsb_structure": "https://www.rcsb.org/structure/1AKO"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1AKO",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:163",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "RNase HI positive anchor for Mg-dependent inline phosphodiester hydrolysis.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may rescue nuclease fold neighbors, but Mg/Zn/Ca plus phosphodiester geometry and product-state handling are decisive.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "nuclease_phosphoesterase",
+      "ligand_or_substrate_state": "RNA/DNA hybrid phosphodiester hydrolysis",
+      "metal_ligand_state": "Mg RNase H active site in selected structure",
+      "name": "ribonuclease HI",
+      "observed_ligand_codes": [
+        "MG"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_028",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect nuclease-family sequence neighbors when available, with low sequence transfer across unrelated nuclease folds.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=163",
+        "rcsb_structure": "https://www.rcsb.org/structure/1RDD"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1RDD",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:395",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Nuclease P1 anchor for Zn phosphodiester/phosphomonoester hydrolysis.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may rescue nuclease fold neighbors, but Mg/Zn/Ca plus phosphodiester geometry and product-state handling are decisive.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "nuclease_phosphoesterase",
+      "ligand_or_substrate_state": "phosphoester cleavage; selected structure has Zn/THS",
+      "metal_ligand_state": "Zn nuclease P1 active site",
+      "name": "nuclease P1",
+      "observed_ligand_codes": [
+        "ZN",
+        "THS"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_029",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect nuclease-family sequence neighbors when available, with low sequence transfer across unrelated nuclease folds.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=395",
+        "rcsb_structure": "https://www.rcsb.org/structure/1AK0"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1AK0",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:791",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "66 triage/current registry: HNH nuclease/colicin-E9 retained as metal hydrolase with wide flanking-DNA residue geometry caveat.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek may rescue nuclease fold neighbors, but Mg/Zn/Ca plus phosphodiester geometry and product-state handling are decisive.",
+      "geometry_class": "tight_active_site_with_wide_substrate_flanking_residues",
+      "lane": "nuclease_phosphoesterase",
+      "ligand_or_substrate_state": "DNA phosphodiester hydrolysis; human review/gate still needed for review-only row",
+      "metal_ligand_state": "Zn HNH nuclease center; flanking DNA residues give wide CA-pair geometry",
+      "name": "colicin-E9",
+      "observed_ligand_codes": [
+        "PO4",
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "66 triage/current registry: HNH nuclease/colicin-E9 retained as metal hydrolase with wide flanking-DNA residue geometry caveat.",
+      "row_id": "mh_030",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect nuclease-family sequence neighbors when available, with low sequence transfer across unrelated nuclease folds.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=791",
+        "rcsb_structure": "https://www.rcsb.org/structure/1FR2"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1FR2",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:838",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "66 triage/current registry: HNH nuclease/colicin-E7 retained; Ni in crystal treated as divalent metal surrogate.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek may rescue nuclease fold neighbors, but Mg/Zn/Ca plus phosphodiester geometry and product-state handling are decisive.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "nuclease_phosphoesterase",
+      "ligand_or_substrate_state": "DNA phosphodiester hydrolysis; selected structure has Ni/PO4",
+      "metal_ligand_state": "Ni/Zn-surrogate HNH nuclease metal state",
+      "name": "Colicin-E7",
+      "observed_ligand_codes": [
+        "PO4",
+        "NI"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "66 triage/current registry: HNH nuclease/colicin-E7 retained; Ni in crystal treated as divalent metal surrogate.",
+      "row_id": "mh_031",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect nuclease-family sequence neighbors when available, with low sequence transfer across unrelated nuclease folds.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=838",
+        "rcsb_structure": "https://www.rcsb.org/structure/1ZNV"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1ZNV",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:836",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "review_queue_or_no_current_registry_label",
+      "evidence_summary": "22 trace: terminal apo/holo blocker for lambda exonuclease; selected 1AVQ lacks biological metal and alternates were not remapped.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek may rescue nuclease fold neighbors, but Mg/Zn/Ca plus phosphodiester geometry and product-state handling are decisive.",
+      "geometry_class": "apo_or_missing_metal",
+      "lane": "nuclease_phosphoesterase",
+      "ligand_or_substrate_state": "DNA exonuclease hydrolysis; holo remap required",
+      "metal_ligand_state": "selected lambda exonuclease structure lacks biological metal; alternates not remapped",
+      "name": "exodeoxyribonuclease (lambda-induced)",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "22 trace: terminal apo/holo blocker for lambda exonuclease; selected 1AVQ lacks biological metal and alternates were not remapped.",
+      "row_id": "mh_032",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect nuclease-family sequence neighbors when available, with low sequence transfer across unrelated nuclease folds.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=836",
+        "rcsb_structure": "https://www.rcsb.org/structure/1AVQ"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1AVQ",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:897",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "22 trace: imported through holo override for PvuII after selected apo 1PVI; prior override 1H56 supported two-Mg nuclease.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may rescue nuclease fold neighbors, but Mg/Zn/Ca plus phosphodiester geometry and product-state handling are decisive.",
+      "geometry_class": "apo_or_holo_override_geometry",
+      "lane": "nuclease_phosphoesterase",
+      "ligand_or_substrate_state": "restriction endonuclease phosphodiester hydrolysis",
+      "metal_ligand_state": "selected PvuII structure apo, prior two-Mg holo override supported positive",
+      "name": "type II site-specific deoxyribonuclease PvuII",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "22 trace: imported through holo override for PvuII after selected apo 1PVI; prior override 1H56 supported two-Mg nuclease.",
+      "row_id": "mh_033",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect nuclease-family sequence neighbors when available, with low sequence transfer across unrelated nuclease folds.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=897",
+        "rcsb_structure": "https://www.rcsb.org/structure/1PVI"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1PVI",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:927",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "review_queue_or_no_current_registry_label",
+      "evidence_summary": "66 triage placed FokI under needs-expert-biochemistry-review for metal hydrolase target.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek may rescue nuclease fold neighbors, but Mg/Zn/Ca plus phosphodiester geometry and product-state handling are decisive.",
+      "geometry_class": "apo_or_missing_metal",
+      "lane": "nuclease_phosphoesterase",
+      "ligand_or_substrate_state": "restriction endonuclease hydrolysis; needs expert biochemical/metal-state review",
+      "metal_ligand_state": "selected FokI geometry lacks local ligand codes in current feature row",
+      "name": "type II site-specific deoxyribonuclease FokI",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_034",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect nuclease-family sequence neighbors when available, with low sequence transfer across unrelated nuclease folds.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=927",
+        "rcsb_structure": "https://www.rcsb.org/structure/2FOK"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "2FOK",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:15",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Class B1 metallo-beta-lactamase seed anchor.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should recover B1/MBL fold neighbors and MBL-fold hydrolases, while child calls require lactam amide hydrolysis context.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "metallo_beta_lactamase_like",
+      "ligand_or_substrate_state": "beta-lactam amide hydrolysis; selected structure has Zn",
+      "metal_ligand_state": "Zn class B1 beta-lactamase active site",
+      "name": "beta-lactamase (Class B1)",
+      "observed_ligand_codes": [
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_035",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect metallo-beta-lactamase sequence or MBL-fold neighbors; must reject serine beta-lactamases despite shared beta-lactam substrate wording.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=15",
+        "rcsb_structure": "https://www.rcsb.org/structure/1ZNB"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1ZNB",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:258",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Second B1 metallo-beta-lactamase anchor for MBL fold/metal-state consistency.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should recover B1/MBL fold neighbors and MBL-fold hydrolases, while child calls require lactam amide hydrolysis context.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "metallo_beta_lactamase_like",
+      "ligand_or_substrate_state": "beta-lactam amide hydrolysis; selected structure has Zn",
+      "metal_ligand_state": "Zn class B1 beta-lactamase active site",
+      "name": "beta-lactamase (Class B1)",
+      "observed_ligand_codes": [
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_036",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect metallo-beta-lactamase sequence or MBL-fold neighbors; must reject serine beta-lactamases despite shared beta-lactam substrate wording.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=258",
+        "rcsb_structure": "https://www.rcsb.org/structure/1SML"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1SML",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:158",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Cerebroside/arylsulfatase A-like FGly sulfatase anchor; tests whether metal hydrolase needs a sulfatase child/offramp.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek should group sulfatase folds, but router must detect FGly/FGP/FGL plus sulfate ester context or abstain.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "sulfatase_fgly_metal_boundary",
+      "ligand_or_substrate_state": "sulfate ester hydrolysis through FGly gem-diol chemistry",
+      "metal_ligand_state": "FGly/FGL and Mg sulfatase state in selected structure",
+      "name": "cerebroside-sulfatase",
+      "observed_ligand_codes": [
+        "FGL",
+        "MG"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_037",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect sulfatase-family neighbors; FGly-formylglycine and gem-diol chemistry cannot be inferred from metal alone.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=158",
+        "rcsb_structure": "https://www.rcsb.org/structure/1AUK"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1AUK",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:661",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "review_queue_or_no_current_registry_label",
+      "evidence_summary": "66 triage: arylsulfatase clean-likely-positive but needs human biochemical/visual review; FGly/sulfatase treated as future boundary lane.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek should group sulfatase folds, but router must detect FGly/FGP/FGL plus sulfate ester context or abstain.",
+      "geometry_class": "wide_focus_pair_but_local_metal_context",
+      "lane": "sulfatase_fgly_metal_boundary",
+      "ligand_or_substrate_state": "sulfate ester hydrolysis; must confirm FGly/FGly-derived active site and metal stabilization",
+      "metal_ligand_state": "Ca/SO4 context with sulfatase chemistry but 66 queue kept review-only",
+      "name": "arylsulfatase",
+      "observed_ligand_codes": [
+        "DDZ",
+        "CA",
+        "SO4"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "66 triage: arylsulfatase clean-likely-positive but needs human biochemical/visual review; FGly/sulfatase treated as future boundary lane.",
+      "row_id": "mh_038",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect sulfatase-family neighbors; FGly-formylglycine and gem-diol chemistry cannot be inferred from metal alone.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=661",
+        "rcsb_structure": "https://www.rcsb.org/structure/1HDH"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1HDH",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:951",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "review_queue_or_no_current_registry_label",
+      "evidence_summary": "66 triage: N-sulfoglucosamine sulfohydrolase needs expert biochemistry review; FGly/calcium sulfatase boundary.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek should group sulfatase folds, but router must detect FGly/FGP/FGL plus sulfate ester context or abstain.",
+      "geometry_class": "tight_active_site_review_needed",
+      "lane": "sulfatase_fgly_metal_boundary",
+      "ligand_or_substrate_state": "N-sulfoglucosamine sulfohydrolase; FGly boundary needs expert review",
+      "metal_ligand_state": "FGP/Ca sulfatase state in selected structure",
+      "name": "N-sulfoglucosamine sulfohydrolase",
+      "observed_ligand_codes": [
+        "FGP",
+        "CA"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "66 triage: N-sulfoglucosamine sulfohydrolase needs expert biochemistry review; FGly/calcium sulfatase boundary.",
+      "row_id": "mh_039",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect sulfatase-family neighbors; FGly-formylglycine and gem-diol chemistry cannot be inferred from metal alone.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=951",
+        "rcsb_structure": "https://www.rcsb.org/structure/4MHX"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "4MHX",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:178",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "out_of_scope",
+      "evidence_summary": "Current registry OOS row; hard negative for Mg/ADP leakage into metal hydrolase.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek should expose nucleotide-protein fold families and enforce transferase/motor/conformational-cycle route-away or abstention.",
+      "geometry_class": "tight_nucleotide_active_site_not_hydrolytic_parent",
+      "lane": "ntpase_nucleotide_hydrolase_boundary",
+      "ligand_or_substrate_state": "ATP hydrolysis coupled to rotary proton transport, not generic metal hydrolase label",
+      "metal_ligand_state": "ADP/Mg F-type ATPase context",
+      "name": "H+-transporting two-sector ATPase (F-type, mitochondrial)",
+      "observed_ligand_codes": [
+        "ADP",
+        "MG"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_040",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect P-loop, AAA, GTPase, ATPase, or nucleotide-hydrolase neighbors; Mg/ATP/GTP alone must not become metal hydrolase positive evidence.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=178",
+        "rcsb_structure": "https://www.rcsb.org/structure/1BMF"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1BMF",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:179",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "out_of_scope",
+      "evidence_summary": "Current registry OOS row; hard negative for nucleotide/conformational ATPase false positives.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek should expose nucleotide-protein fold families and enforce transferase/motor/conformational-cycle route-away or abstention.",
+      "geometry_class": "tight_nucleotide_active_site_not_hydrolytic_parent",
+      "lane": "ntpase_nucleotide_hydrolase_boundary",
+      "ligand_or_substrate_state": "ATP-driven conformational cycling, not represented by current metal hydrolase seed",
+      "metal_ligand_state": "ADP chaperonin ATPase context",
+      "name": "chaperonin ATPase",
+      "observed_ligand_codes": [
+        "ADP"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_041",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect P-loop, AAA, GTPase, ATPase, or nucleotide-hydrolase neighbors; Mg/ATP/GTP alone must not become metal hydrolase positive evidence.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=179",
+        "rcsb_structure": "https://www.rcsb.org/structure/1Q3S"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1Q3S",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:533",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "out_of_scope",
+      "evidence_summary": "Current registry OOS G-protein alpha row; route-away control for Mg/GTP contexts.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek should expose nucleotide-protein fold families and enforce transferase/motor/conformational-cycle route-away or abstention.",
+      "geometry_class": "tight_nucleotide_active_site_not_hydrolytic_parent",
+      "lane": "ntpase_nucleotide_hydrolase_boundary",
+      "ligand_or_substrate_state": "GTP hydrolysis signaling switch; current OOS",
+      "metal_ligand_state": "GTPase switch context with GSP analog",
+      "name": "G-protein alpha subunit, group I (GTPase)",
+      "observed_ligand_codes": [
+        "GSP"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_042",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect P-loop, AAA, GTPase, ATPase, or nucleotide-hydrolase neighbors; Mg/ATP/GTP alone must not become metal hydrolase positive evidence.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=533",
+        "rcsb_structure": "https://www.rcsb.org/structure/1BH2"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1BH2",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:534",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "reviewed_or_candidate_control_no_current_parent_label",
+      "evidence_summary": "210 rejections: myosin ATPase rejected for current metal-dependent hydrolase target despite ADP/Mg/VO4 ligand context.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek should expose nucleotide-protein fold families and enforce transferase/motor/conformational-cycle route-away or abstention.",
+      "geometry_class": "tight_nucleotide_active_site_not_hydrolytic_parent",
+      "lane": "ntpase_nucleotide_hydrolase_boundary",
+      "ligand_or_substrate_state": "ATPase motor chemistry; 210 rejected current metal-hydrolase target",
+      "metal_ligand_state": "ADP/Mg/vanadate myosin ATPase context",
+      "name": "myosin ATPase",
+      "observed_ligand_codes": [
+        "VO4",
+        "ADP",
+        "MG"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "210 rejections: myosin ATPase rejected for current metal-dependent hydrolase target despite ADP/Mg/VO4 ligand context.",
+      "row_id": "mh_043",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect P-loop, AAA, GTPase, ATPase, or nucleotide-hydrolase neighbors; Mg/ATP/GTP alone must not become metal hydrolase positive evidence.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_vivek_reviewed_current_target_rejections_210_20260523.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=534",
+        "rcsb_structure": "https://www.rcsb.org/structure/1VOM"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1VOM",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:535",
+      "candidate_role": "near_family_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Current registry labels EF-Tu as metal_dependent_hydrolase, making it a deliberate broad-parent collision/false-positive stress row rather than a new import candidate.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase despite local family similarity or ligand overlap",
+      "foldseek_neighbor_expectation": "Foldseek should expose nucleotide-protein fold families and enforce transferase/motor/conformational-cycle route-away or abstention.",
+      "geometry_class": "tight_nucleotide_active_site_parent_collision",
+      "lane": "ntpase_nucleotide_hydrolase_boundary",
+      "ligand_or_substrate_state": "protein-synthesizing GTPase; should stress whether current broad parent is too permissive for NTPases",
+      "metal_ligand_state": "GNP/Mg EF-Tu context currently broad-parent positive",
+      "name": "protein-synthesizing GTPase (elongation factor Tu)",
+      "observed_ligand_codes": [
+        "GNP",
+        "MG"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_044",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect P-loop, AAA, GTPase, ATPase, or nucleotide-hydrolase neighbors; Mg/ATP/GTP alone must not become metal hydrolase positive evidence.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=535",
+        "rcsb_structure": "https://www.rcsb.org/structure/4PC7"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "4PC7",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:642",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "review_queue_or_no_current_registry_label",
+      "evidence_summary": "66 triage: vesicle-fusing ATPase marked loose/open or interdomain geometry boundary.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek should expose nucleotide-protein fold families and enforce transferase/motor/conformational-cycle route-away or abstention.",
+      "geometry_class": "loose_open_or_interdomain_geometry",
+      "lane": "ntpase_nucleotide_hydrolase_boundary",
+      "ligand_or_substrate_state": "AAA ATPase/conformational work; 66 queue marks loose/open boundary",
+      "metal_ligand_state": "ATP/Mg context in vesicle-fusing ATPase",
+      "name": "vesicle-fusing ATPase",
+      "observed_ligand_codes": [
+        "ATP",
+        "MG"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "66 triage: vesicle-fusing ATPase marked loose/open or interdomain geometry boundary.",
+      "row_id": "mh_045",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect P-loop, AAA, GTPase, ATPase, or nucleotide-hydrolase neighbors; Mg/ATP/GTP alone must not become metal hydrolase positive evidence.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=642",
+        "rcsb_structure": "https://www.rcsb.org/structure/1NSF"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1NSF",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:656",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "review_queue_or_no_current_registry_label",
+      "evidence_summary": "66 triage: adenosinetriphosphatase nucleotide-hydrolase boundary under metal target.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek should expose nucleotide-protein fold families and enforce transferase/motor/conformational-cycle route-away or abstention.",
+      "geometry_class": "nucleotide_context_review_needed",
+      "lane": "ntpase_nucleotide_hydrolase_boundary",
+      "ligand_or_substrate_state": "adenosinetriphosphatase boundary; no label/import action",
+      "metal_ligand_state": "K ion present; nucleotide hydrolase mechanism but selected ligand state sparse",
+      "name": "adenosinetriphosphatase",
+      "observed_ligand_codes": [
+        "K"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "66 triage: adenosinetriphosphatase nucleotide-hydrolase boundary under metal target.",
+      "row_id": "mh_046",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect P-loop, AAA, GTPase, ATPase, or nucleotide-hydrolase neighbors; Mg/ATP/GTP alone must not become metal hydrolase positive evidence.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=656",
+        "rcsb_structure": "https://www.rcsb.org/structure/1KAZ"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1KAZ",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:844",
+      "candidate_role": "review_only_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "review_queue_or_no_current_registry_label",
+      "evidence_summary": "66 triage: dUTP diphosphatase loose/open or interdomain geometry; target score below abstention floor and expected cofactor absent.",
+      "expected_router_behavior": "route_or_abstain_in_review_only_until missing geometry/holo/product-state evidence is resolved",
+      "foldseek_neighbor_expectation": "Foldseek should expose nucleotide-protein fold families and enforce transferase/motor/conformational-cycle route-away or abstention.",
+      "geometry_class": "loose_open_or_interdomain_geometry",
+      "lane": "ntpase_nucleotide_hydrolase_boundary",
+      "ligand_or_substrate_state": "dUTP diphosphatase; below abstention floor and open/interdomain geometry in 66 queue",
+      "metal_ligand_state": "expected cofactor absent in selected dUTPase structure",
+      "name": "dUTP diphosphatase",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "review-only",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "66 triage: dUTP diphosphatase loose/open or interdomain geometry; target score below abstention floor and expected cofactor absent.",
+      "row_id": "mh_047",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect P-loop, AAA, GTPase, ATPase, or nucleotide-hydrolase neighbors; Mg/ATP/GTP alone must not become metal hydrolase positive evidence.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=844",
+        "rcsb_structure": "https://www.rcsb.org/structure/1DUP"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1DUP",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:216",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Alpha carbonic anhydrase/carbonate dehydratase anchor; tests parent-vs-child boundary.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may group CA classes weakly; source-free geometry must distinguish Zn-water reversible CO2 hydration from ordinary hydrolysis and unrelated dehydration.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "carbonic_anhydrase_dehydratase_boundary",
+      "ligand_or_substrate_state": "reversible CO2 hydration/dehydration; not ordinary scissile-bond hydrolysis",
+      "metal_ligand_state": "Zn-bound water/hydroxide in alpha carbonic anhydrase",
+      "name": "carbonate dehydratase (alpha class)",
+      "observed_ligand_codes": [
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_048",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect carbonic anhydrase class-specific neighbors for positives and separate dehydratase families for negatives.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=216",
+        "rcsb_structure": "https://www.rcsb.org/structure/1CA2"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1CA2",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:516",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Gamma carbonate dehydratase anchor for CA-class diversity.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may group CA classes weakly; source-free geometry must distinguish Zn-water reversible CO2 hydration from ordinary hydrolysis and unrelated dehydration.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "carbonic_anhydrase_dehydratase_boundary",
+      "ligand_or_substrate_state": "CO2 hydration/dehydration; selected structure has Zn",
+      "metal_ligand_state": "Zn-bound gamma carbonic anhydrase site",
+      "name": "carbonate dehydratase (gamma class)",
+      "observed_ligand_codes": [
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_049",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect carbonic anhydrase class-specific neighbors for positives and separate dehydratase families for negatives.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=516",
+        "rcsb_structure": "https://www.rcsb.org/structure/1QRG"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1QRG",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:517",
+      "candidate_role": "positive_anchor",
+      "countable_label_candidate": false,
+      "current_v1_state": "seed_fingerprint:metal_dependent_hydrolase",
+      "evidence_summary": "Beta carbonate dehydratase anchor for CA-class diversity.",
+      "expected_router_behavior": "route_to_parent_metal_dependent_hydrolase_when metal-water and scissile-bond evidence are both present",
+      "foldseek_neighbor_expectation": "Foldseek may group CA classes weakly; source-free geometry must distinguish Zn-water reversible CO2 hydration from ordinary hydrolysis and unrelated dehydration.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "carbonic_anhydrase_dehydratase_boundary",
+      "ligand_or_substrate_state": "CO2 hydration/dehydration; selected structure has Zn",
+      "metal_ligand_state": "Zn-bound beta carbonic anhydrase site",
+      "name": "carbonate dehydratase (beta class)",
+      "observed_ligand_codes": [
+        "ZN"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_A_mcsa_curated",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_050",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect carbonic anhydrase class-specific neighbors for positives and separate dehydratase families for negatives.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=517",
+        "rcsb_structure": "https://www.rcsb.org/structure/1I6P"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1I6P",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:54",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "out_of_scope",
+      "evidence_summary": "Type I dehydroquinate dehydratase OOS control for dehydratase wording.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek may group CA classes weakly; source-free geometry must distinguish Zn-water reversible CO2 hydration from ordinary hydrolysis and unrelated dehydration.",
+      "geometry_class": "nonhydrolytic_dehydration_geometry",
+      "lane": "carbonic_anhydrase_dehydratase_boundary",
+      "ligand_or_substrate_state": "3-dehydroquinate dehydration, not metal-water hydrolysis",
+      "metal_ligand_state": "no metal hydrolase ligand state; Schiff-base/dehydration context",
+      "name": "3-dehydroquinate dehydratase (type I)",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_051",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect carbonic anhydrase class-specific neighbors for positives and separate dehydratase families for negatives.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=54",
+        "rcsb_structure": "https://www.rcsb.org/structure/1QFE"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1QFE",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:55",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "out_of_scope",
+      "evidence_summary": "Type II dehydroquinate dehydratase OOS control for dehydration versus hydrolysis.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek may group CA classes weakly; source-free geometry must distinguish Zn-water reversible CO2 hydration from ordinary hydrolysis and unrelated dehydration.",
+      "geometry_class": "nonhydrolytic_dehydration_geometry",
+      "lane": "carbonic_anhydrase_dehydratase_boundary",
+      "ligand_or_substrate_state": "type II dehydroquinate dehydration; selected FA1/GOL ligand context",
+      "metal_ligand_state": "acid/base dehydration context, no metal-water hydrolysis",
+      "name": "3-dehydroquinate dehydratase (type II)",
+      "observed_ligand_codes": [
+        "FA1",
+        "GOL"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_052",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect carbonic anhydrase class-specific neighbors for positives and separate dehydratase families for negatives.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=55",
+        "rcsb_structure": "https://www.rcsb.org/structure/1GU1"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1GU1",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:361",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "out_of_scope",
+      "evidence_summary": "Aldoxime dehydratase OOS control; should route to heme/dehydration boundary or abstain.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek may group CA classes weakly; source-free geometry must distinguish Zn-water reversible CO2 hydration from ordinary hydrolysis and unrelated dehydration.",
+      "geometry_class": "nonhydrolytic_dehydration_geometry",
+      "lane": "carbonic_anhydrase_dehydratase_boundary",
+      "ligand_or_substrate_state": "dehydration, not heme/metal hydrolase; selected structure has heme",
+      "metal_ligand_state": "heme aldoxime dehydratase active site",
+      "name": "aldoxime dehydratase",
+      "observed_ligand_codes": [
+        "HEM"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_053",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect carbonic anhydrase class-specific neighbors for positives and separate dehydratase families for negatives.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=361",
+        "rcsb_structure": "https://www.rcsb.org/structure/3A15"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "3A15",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:750",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "out_of_scope",
+      "evidence_summary": "Recent OOS decision: FAD semiquinone/Fe-S coupled dehydration, not ordinary hydrolase chemistry.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek may group CA classes weakly; source-free geometry must distinguish Zn-water reversible CO2 hydration from ordinary hydrolysis and unrelated dehydration.",
+      "geometry_class": "nonhydrolytic_dehydration_geometry",
+      "lane": "carbonic_anhydrase_dehydratase_boundary",
+      "ligand_or_substrate_state": "4-hydroxybutanoyl-CoA dehydration; current OOS high-confidence redox/dehydration control",
+      "metal_ligand_state": "FAD/Fe-S radical dehydratase state",
+      "name": "4-hydroxybutanoyl-CoA dehydratase",
+      "observed_ligand_codes": [
+        "SF4",
+        "FAD"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_054",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect carbonic anhydrase class-specific neighbors for positives and separate dehydratase families for negatives.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=750",
+        "rcsb_structure": "https://www.rcsb.org/structure/1U8V"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "1U8V",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:57",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "out_of_scope",
+      "evidence_summary": "Nitrile hydratase tests metal-water/hydration language against non-hydrolytic metal enzyme boundary.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek/geometry should route away when metal stabilizes redox, O2 activation, hydration, or elimination rather than water attack on a scissile bond.",
+      "geometry_class": "nonhydrolytic_metal_hydration_geometry",
+      "lane": "metal_dependent_nonhydrolytic_negative",
+      "ligand_or_substrate_state": "nitrile hydration, not hydrolysis of ester/amide/phosphate by metal-water",
+      "metal_ligand_state": "Fe nitrile hydratase with modified Cys ligands",
+      "name": "nitrile hydratase",
+      "observed_ligand_codes": [
+        "CSD",
+        "CSO",
+        "FE",
+        "NO",
+        "DIO"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_055",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect oxidase, reductase, dioxygenase, hydratase, or dehydratase neighbors rather than hydrolase positives.",
+      "source_refs": [
+        "data/registries/curated_mechanism_labels.json",
+        "artifacts/v3_geometry_features_1025.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=57",
+        "rcsb_structure": "https://www.rcsb.org/structure/2AHJ"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "2AHJ",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:995",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "reviewed_or_candidate_control_no_current_parent_label",
+      "evidence_summary": "210 rejections: oxalate oxidase rejected as metal-dependent nonhydrolytic oxidase boundary.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek/geometry should route away when metal stabilizes redox, O2 activation, hydration, or elimination rather than water attack on a scissile bond.",
+      "geometry_class": "nonhydrolytic_oxidase_geometry",
+      "lane": "metal_dependent_nonhydrolytic_negative",
+      "ligand_or_substrate_state": "oxalate oxidation/O2 chemistry; 210 rejected target collision",
+      "metal_ligand_state": "metal oxidase context, no scissile-bond hydrolysis",
+      "name": "oxalate oxidase",
+      "observed_ligand_codes": [
+        "GLV"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "210 rejections: oxalate oxidase rejected as metal-dependent nonhydrolytic oxidase boundary.",
+      "row_id": "mh_056",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect oxidase, reductase, dioxygenase, hydratase, or dehydratase neighbors rather than hydrolase positives.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_vivek_reviewed_current_target_rejections_210_20260523.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=995",
+        "rcsb_structure": "https://www.rcsb.org/structure/2ET1"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "2ET1",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:925",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "reviewed_or_candidate_control_no_current_parent_label",
+      "evidence_summary": "210 rejections: nitrate reductase rejected as metal-hydrolase target collision; redox chemistry not hydrolysis.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek/geometry should route away when metal stabilizes redox, O2 activation, hydration, or elimination rather than water attack on a scissile bond.",
+      "geometry_class": "nonhydrolytic_redox_geometry",
+      "lane": "metal_dependent_nonhydrolytic_negative",
+      "ligand_or_substrate_state": "nitrate redox chemistry, not hydrolysis",
+      "metal_ligand_state": "molybdopterin/redox nitrate reductase context",
+      "name": "Nitrate reductase [NADH]",
+      "observed_ligand_codes": [
+        "MTV"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "210 rejections: nitrate reductase rejected as metal-hydrolase target collision; redox chemistry not hydrolysis.",
+      "row_id": "mh_057",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect oxidase, reductase, dioxygenase, hydratase, or dehydratase neighbors rather than hydrolase positives.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_vivek_reviewed_current_target_rejections_210_20260523.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=925",
+        "rcsb_structure": "https://www.rcsb.org/structure/2BII"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "2BII",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:936",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "reviewed_or_candidate_control_no_current_parent_label",
+      "evidence_summary": "210 rejections: protocatechuate 3,4-dioxygenase rejected as nonhydrolytic metal/O2 chemistry.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek/geometry should route away when metal stabilizes redox, O2 activation, hydration, or elimination rather than water attack on a scissile bond.",
+      "geometry_class": "nonhydrolytic_dioxygenase_geometry",
+      "lane": "metal_dependent_nonhydrolytic_negative",
+      "ligand_or_substrate_state": "O2 insertion/ring cleavage, not metal-water hydrolysis",
+      "metal_ligand_state": "Fe/catechol dioxygenase context",
+      "name": "protocatechuate 3,4-dioxygenase",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "210 rejections: protocatechuate 3,4-dioxygenase rejected as nonhydrolytic metal/O2 chemistry.",
+      "row_id": "mh_058",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect oxidase, reductase, dioxygenase, hydratase, or dehydratase neighbors rather than hydrolase positives.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_vivek_reviewed_current_target_rejections_210_20260523.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=936",
+        "rcsb_structure": "https://www.rcsb.org/structure/3PCA"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "3PCA",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "m_csa:997",
+      "candidate_role": "oos_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "reviewed_or_candidate_control_no_current_parent_label",
+      "evidence_summary": "210 rejections: lanthanide methanol dehydrogenase rejected as metal-dependent redox boundary.",
+      "expected_router_behavior": "reject_or_abstain_from metal_dependent_hydrolase; use as route-away control",
+      "foldseek_neighbor_expectation": "Foldseek/geometry should route away when metal stabilizes redox, O2 activation, hydration, or elimination rather than water attack on a scissile bond.",
+      "geometry_class": "nonhydrolytic_redox_geometry",
+      "lane": "metal_dependent_nonhydrolytic_negative",
+      "ligand_or_substrate_state": "alcohol oxidation, not hydrolysis",
+      "metal_ligand_state": "lanthanide/PQQ methanol dehydrogenase active site",
+      "name": "lanthanide-dependent methanol dehydrogenase",
+      "observed_ligand_codes": [
+        "EU",
+        "PQQ"
+      ],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": "210 rejections: lanthanide methanol dehydrogenase rejected as metal-dependent redox boundary.",
+      "row_id": "mh_059",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect oxidase, reductase, dioxygenase, hydratase, or dehydratase neighbors rather than hydrolase positives.",
+      "source_refs": [
+        "artifacts/v3_geometry_features_1025.json",
+        "artifacts/v3_mcsa_vivek_reviewed_current_target_rejections_210_20260523.json"
+      ],
+      "source_type": "mcsa",
+      "source_urls": {
+        "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=997",
+        "rcsb_structure": "https://www.rcsb.org/structure/6FKW"
+      },
+      "structure_availability": {
+        "coordinate_downloaded_this_run": false,
+        "selected_structure_id": "6FKW",
+        "source": "artifacts/v3_geometry_features_1025.json",
+        "status": "local_geometry_row_available"
+      }
+    },
+    {
+      "accession": "uniprot:P12821",
+      "candidate_role": "external_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "review_only ACE zinc metalloprotease lead; should neighbor zincins but needs domain-specific active-site mapping",
+      "expected_router_behavior": "review_only external positive lead; no import or countable support until duplicate, Foldseek, and geometry gates pass",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "peptide/peptidyl-dipeptidase substrate; public inhibitor-bound PDBs available",
+      "metal_ligand_state": "two Zn-dependent peptidase domains; UniProt reviewed EC 3.4.15.1",
+      "name": "Angiotensin-converting enzyme",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_060",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/1O86",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P12821.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P12821/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P12821",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "1O86",
+          "1O8A",
+          "1UZE",
+          "1UZF",
+          "2C6F",
+          "2C6N"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:P08253",
+      "candidate_role": "external_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external MMP lead paired with M-CSA stromelysin/gelatinase holds",
+      "expected_router_behavior": "review_only external positive lead; no import or countable support until duplicate, Foldseek, and geometry gates pass",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "collagen/gelatin peptide substrate; many inhibitor-bound PDBs available",
+      "metal_ligand_state": "Zn metalloprotease with MMP catalytic domain and structural Zn/Ca sites",
+      "name": "72 kDa type IV collagenase / MMP2",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_061",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/1CK7",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P08253.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P08253/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P08253",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "1CK7",
+          "1CXW",
+          "1EAK",
+          "1GEN",
+          "1GXD",
+          "1HOV"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:P45452",
+      "candidate_role": "external_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external MMP diversity lead; should not count until current-countable duplicate screens pass",
+      "expected_router_behavior": "review_only external positive lead; no import or countable support until duplicate, Foldseek, and geometry gates pass",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "peptide substrate and inhibitor-bound structures available",
+      "metal_ligand_state": "Zn metalloprotease; UniProt reviewed MMP collagenase",
+      "name": "Collagenase 3 / MMP13",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_062",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/1EUB",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P45452.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P45452/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P45452",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "1EUB",
+          "1FLS",
+          "1FM1",
+          "1PEX",
+          "1XUC",
+          "1XUD"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:P00800",
+      "candidate_role": "external_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external same-family check against M-CSA thermolysin anchor; mostly duplicate/positive-control value",
+      "expected_router_behavior": "review_only external positive lead; no import or countable support until duplicate, Foldseek, and geometry gates pass",
+      "foldseek_neighbor_expectation": "Foldseek should find metalloprotease fold neighbors, but peptide substrate geometry and Zn ligand motif must be checked before parent-positive routing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "zinc_metalloprotease_zincin",
+      "ligand_or_substrate_state": "peptide substrate; many PDBs, often inhibitor-bound",
+      "metal_ligand_state": "Zn thermolysin metalloprotease; reviewed EC 3.4.24.27",
+      "name": "Thermolysin",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_063",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect zincin/metzincin or metallopeptidase sequence neighbors; generic EC3 hydrolase wording is insufficient.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/1FJ3",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P00800.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P00800/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P00800",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "1FJ3",
+          "1FJO",
+          "1FJQ",
+          "1FJT",
+          "1FJU",
+          "1FJV"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:C7C422",
+      "candidate_role": "external_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external MBL B1 lead for beyond-M-CSA generalization",
+      "expected_router_behavior": "review_only external positive lead; no import or countable support until duplicate, Foldseek, and geometry gates pass",
+      "foldseek_neighbor_expectation": "Foldseek should recover B1/MBL fold neighbors and MBL-fold hydrolases, while child calls require lactam amide hydrolysis context.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "metallo_beta_lactamase_like",
+      "ligand_or_substrate_state": "beta-lactam amide hydrolysis; public holo/inhibitor PDBs available",
+      "metal_ligand_state": "binuclear Zn metallo-beta-lactamase; reviewed EC 3.5.2.6",
+      "name": "Metallo-beta-lactamase NDM-1",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_064",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect metallo-beta-lactamase sequence or MBL-fold neighbors; must reject serine beta-lactamases despite shared beta-lactam substrate wording.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/3PG4",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/C7C422.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/C7C422/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "C7C422",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "3PG4",
+          "3RKJ",
+          "3RKK",
+          "3SBL",
+          "3SFP",
+          "3SPU"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:Q79MP6",
+      "candidate_role": "external_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external MBL-family diversity lead; child evidence must distinguish from serine beta-lactamases",
+      "expected_router_behavior": "review_only external positive lead; no import or countable support until duplicate, Foldseek, and geometry gates pass",
+      "foldseek_neighbor_expectation": "Foldseek should recover B1/MBL fold neighbors and MBL-fold hydrolases, while child calls require lactam amide hydrolysis context.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "metallo_beta_lactamase_like",
+      "ligand_or_substrate_state": "beta-lactam hydrolysis; public structures available",
+      "metal_ligand_state": "Zn metallo-beta-lactamase; reviewed EC 3.5.2.6",
+      "name": "Metallo-beta-lactamase VIM-like enzyme",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_065",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect metallo-beta-lactamase sequence or MBL-fold neighbors; must reject serine beta-lactamases despite shared beta-lactam substrate wording.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/1DDK",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/Q79MP6.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/Q79MP6/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "Q79MP6",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "1DDK",
+          "1JJE",
+          "1JJT",
+          "3WXC",
+          "4F6H",
+          "4F6Z"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:P52699",
+      "candidate_role": "external_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external MBL lead plus nuclease EC cross-reference warning in UniProt metadata",
+      "expected_router_behavior": "review_only external positive lead; no import or countable support until duplicate, Foldseek, and geometry gates pass",
+      "foldseek_neighbor_expectation": "Foldseek should recover B1/MBL fold neighbors and MBL-fold hydrolases, while child calls require lactam amide hydrolysis context.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "metallo_beta_lactamase_like",
+      "ligand_or_substrate_state": "beta-lactam hydrolysis; public structures available",
+      "metal_ligand_state": "Zn metallo-beta-lactamase IMP-1; reviewed EC 3.5.2.6",
+      "name": "Metallo-beta-lactamase IMP-1",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_066",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect metallo-beta-lactamase sequence or MBL-fold neighbors; must reject serine beta-lactamases despite shared beta-lactam substrate wording.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/1DD6",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P52699.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P52699/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P52699",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "1DD6",
+          "1VGN",
+          "1WUO",
+          "1WUP",
+          "2DOO",
+          "4C1F"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:P00918",
+      "candidate_role": "external_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external carbonic anhydrase boundary lead; should not force all CAs into generic hydrolase children",
+      "expected_router_behavior": "review_only external positive lead; no import or countable support until duplicate, Foldseek, and geometry gates pass",
+      "foldseek_neighbor_expectation": "Foldseek may group CA classes weakly; source-free geometry must distinguish Zn-water reversible CO2 hydration from ordinary hydrolysis and unrelated dehydration.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "carbonic_anhydrase_dehydratase_boundary",
+      "ligand_or_substrate_state": "CO2/bicarbonate hydration/dehydration, not generic bond hydrolysis",
+      "metal_ligand_state": "Zn-water reversible carbonate dehydratase; reviewed EC 4.2.1.1",
+      "name": "Carbonic anhydrase 2",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_067",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect carbonic anhydrase class-specific neighbors for positives and separate dehydratase families for negatives.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/12CA",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P00918.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P00918/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P00918",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "12CA",
+          "1A42",
+          "1AM6",
+          "1AVN",
+          "1BCD",
+          "1BIC"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:P15289",
+      "candidate_role": "external_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external sulfatase/FGly lead paired with M-CSA m_csa:158 and m_csa:661",
+      "expected_router_behavior": "review_only external positive lead; no import or countable support until duplicate, Foldseek, and geometry gates pass",
+      "foldseek_neighbor_expectation": "Foldseek should group sulfatase folds, but router must detect FGly/FGP/FGL plus sulfate ester context or abstain.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "sulfatase_fgly_metal_boundary",
+      "ligand_or_substrate_state": "sulfate ester hydrolysis; FGL/FGly state must be checked in structures",
+      "metal_ligand_state": "FGly/formylglycine sulfatase with metal stabilization; reviewed EC 3.1.6.8",
+      "name": "Arylsulfatase A",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_068",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect sulfatase-family neighbors; FGly-formylglycine and gem-diol chemistry cannot be inferred from metal alone.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/1AUK",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P15289.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P15289/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P15289",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "1AUK",
+          "1E1Z",
+          "1E2S",
+          "1E33",
+          "1E3C",
+          "1N2K"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:P22304",
+      "candidate_role": "external_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external lysosomal sulfatase boundary lead; needs FGly and ligand-state extraction",
+      "expected_router_behavior": "review_only external positive lead; no import or countable support until duplicate, Foldseek, and geometry gates pass",
+      "foldseek_neighbor_expectation": "Foldseek should group sulfatase folds, but router must detect FGly/FGP/FGL plus sulfate ester context or abstain.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "sulfatase_fgly_metal_boundary",
+      "ligand_or_substrate_state": "glycosaminoglycan sulfate ester hydrolysis; public structures available",
+      "metal_ligand_state": "FGly sulfatase family; reviewed EC 3.1.6.13",
+      "name": "Iduronate 2-sulfatase",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_069",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect sulfatase-family neighbors; FGly-formylglycine and gem-diol chemistry cannot be inferred from metal alone.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/5FQL",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P22304.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P22304/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P22304",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "5FQL",
+          "6IOZ"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:P00634",
+      "candidate_role": "external_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external phosphatase positive lead and duplicate check against m_csa:44",
+      "expected_router_behavior": "review_only external positive lead; no import or countable support until duplicate, Foldseek, and geometry gates pass",
+      "foldseek_neighbor_expectation": "Foldseek should separate phosphatase scaffolds and abstain when selected holo/closed geometry is missing.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "phosphatase_phosphoesterase",
+      "ligand_or_substrate_state": "phosphate monoester hydrolysis; many phosphate/inhibitor PDBs available",
+      "metal_ligand_state": "Zn/Mg alkaline phosphatase; reviewed EC 3.1.3.1",
+      "name": "Alkaline phosphatase",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_070",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect phosphatase/phosphoesterase subfamily neighbors; phosphate wording alone must not collapse cysteine phosphatases or kinases.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/1AJA",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P00634.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P00634/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P00634",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "1AJA",
+          "1AJB",
+          "1AJC",
+          "1AJD",
+          "1ALH",
+          "1ALI"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:P0A7Y4",
+      "candidate_role": "external_positive_lead",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external nuclease positive lead and duplicate check against m_csa:163",
+      "expected_router_behavior": "review_only external positive lead; no import or countable support until duplicate, Foldseek, and geometry gates pass",
+      "foldseek_neighbor_expectation": "Foldseek may rescue nuclease fold neighbors, but Mg/Zn/Ca plus phosphodiester geometry and product-state handling are decisive.",
+      "geometry_class": "tight_active_site_geometry",
+      "lane": "nuclease_phosphoesterase",
+      "ligand_or_substrate_state": "RNA/DNA hybrid phosphodiester cleavage; many Mg/DNA/RNA structures available",
+      "metal_ligand_state": "Mg-dependent RNase H phosphodiester hydrolysis; reviewed EC 3.1.26.4",
+      "name": "Ribonuclease HI",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_071",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect nuclease-family sequence neighbors when available, with low sequence transfer across unrelated nuclease folds.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/1F21",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P0A7Y4.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P0A7Y4/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P0A7Y4",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "1F21",
+          "1G15",
+          "1GOA",
+          "1GOB",
+          "1GOC",
+          "1JL1"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:P0A6P9",
+      "candidate_role": "external_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external metal-assisted dehydration hard negative",
+      "expected_router_behavior": "review_only external hard negative; no import and should route away or abstain",
+      "foldseek_neighbor_expectation": "Foldseek/geometry should route away when metal stabilizes redox, O2 activation, hydration, or elimination rather than water attack on a scissile bond.",
+      "geometry_class": "nonhydrolytic_active_site",
+      "lane": "metal_dependent_nonhydrolytic_negative",
+      "ligand_or_substrate_state": "2-phosphoglycerate dehydration; substrate/product analog structures available",
+      "metal_ligand_state": "Mg-dependent lyase/dehydratase, not hydrolysis; reviewed EC 4.2.1.11",
+      "name": "Enolase",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_072",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect oxidase, reductase, dioxygenase, hydratase, or dehydratase neighbors rather than hydrolase positives.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/1E9I",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P0A6P9.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P0A6P9/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P0A6P9",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "1E9I",
+          "2FYM",
+          "3H8A",
+          "5OHG",
+          "6BFY",
+          "6BFZ"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:P01112",
+      "candidate_role": "external_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external GTPase false-positive control against Mg/nucleotide leakage",
+      "expected_router_behavior": "review_only external hard negative; no import and should route away or abstain",
+      "foldseek_neighbor_expectation": "Foldseek should expose nucleotide-protein fold families and enforce transferase/motor/conformational-cycle route-away or abstention.",
+      "geometry_class": "tight_nucleotide_active_site_not_hydrolytic_parent",
+      "lane": "ntpase_nucleotide_hydrolase_boundary",
+      "ligand_or_substrate_state": "GTP hydrolysis coupled to conformational signaling; many GDP/GTP analog PDBs available",
+      "metal_ligand_state": "Mg/GTPase switch protein; reviewed EC 3.6.5.2",
+      "name": "GTPase HRas",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_073",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect P-loop, AAA, GTPase, ATPase, or nucleotide-hydrolase neighbors; Mg/ATP/GTP alone must not become metal hydrolase positive evidence.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/121P",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P01112.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P01112/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P01112",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "121P",
+          "1AA9",
+          "1AGP",
+          "1BKD",
+          "1CLU",
+          "1CRP"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    },
+    {
+      "accession": "uniprot:P61586",
+      "candidate_role": "external_hard_negative",
+      "countable_label_candidate": false,
+      "current_v1_state": "external_no_decision_review_only",
+      "evidence_summary": "external small-GTPase false-positive control against broad metal hydrolase parent",
+      "expected_router_behavior": "review_only external hard negative; no import and should route away or abstain",
+      "foldseek_neighbor_expectation": "Foldseek should expose nucleotide-protein fold families and enforce transferase/motor/conformational-cycle route-away or abstention.",
+      "geometry_class": "tight_nucleotide_active_site_not_hydrolytic_parent",
+      "lane": "ntpase_nucleotide_hydrolase_boundary",
+      "ligand_or_substrate_state": "GTP hydrolysis coupled to molecular switch function; many public structures available",
+      "metal_ligand_state": "Mg/GTPase switch protein; reviewed EC 3.6.5.2",
+      "name": "Transforming protein RhoA",
+      "observed_ligand_codes": [],
+      "predictive_use_allowed": false,
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "recent_decision_reuse": null,
+      "row_id": "mh_074",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect P-loop, AAA, GTPase, ATPase, or nucleotide-hydrolase neighbors; Mg/ATP/GTP alone must not become metal hydrolase positive evidence.",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_type": "external_uniprot",
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/1A2B",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P61586.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P61586/entry"
+      },
+      "structure_availability": {
+        "alphafold_id": "P61586",
+        "coordinate_downloaded_this_run": false,
+        "representative_pdb_ids": [
+          "1A2B",
+          "1CC0",
+          "1CXZ",
+          "1DPF",
+          "1FTN",
+          "1KMQ"
+        ],
+        "source": "UniProt REST metadata spot check, 2026-05-28",
+        "status": "pdb_and_alphafold_available_from_uniprot_spot_check"
+      }
+    }
+  ],
+  "counts": {
+    "by_candidate_role": {
+      "external_hard_negative": 3,
+      "external_positive_lead": 12,
+      "near_family_hard_negative": 1,
+      "oos_hard_negative": 13,
+      "positive_anchor": 29,
+      "review_only_positive_lead": 16
+    },
+    "by_geometry_class": {
+      "apo_or_holo_override_geometry": 3,
+      "apo_or_missing_metal": 3,
+      "loose_open_conformation": 1,
+      "loose_open_or_interdomain_geometry": 2,
+      "loose_open_or_oligomer_geometry": 1,
+      "loose_or_acid_base_plus_metal_locality": 1,
+      "nonhydrolytic_active_site": 1,
+      "nonhydrolytic_dehydration_geometry": 4,
+      "nonhydrolytic_dioxygenase_geometry": 1,
+      "nonhydrolytic_metal_hydration_geometry": 1,
+      "nonhydrolytic_oxidase_geometry": 1,
+      "nonhydrolytic_redox_geometry": 2,
+      "nucleotide_context_review_needed": 1,
+      "product_context_confounded": 1,
+      "tight_active_site_geometry": 40,
+      "tight_active_site_review_needed": 1,
+      "tight_active_site_with_wide_substrate_flanking_residues": 1,
+      "tight_nucleotide_active_site_not_hydrolytic_parent": 6,
+      "tight_nucleotide_active_site_parent_collision": 1,
+      "tight_or_inhibitor_bound_review_needed": 1,
+      "wide_focus_pair_but_local_metal_context": 1
+    },
+    "by_lane": {
+      "binuclear_metallohydrolase_amidohydrolase": 8,
+      "carbonic_anhydrase_dehydratase_boundary": 8,
+      "metal_dependent_nonhydrolytic_negative": 6,
+      "metallo_beta_lactamase_like": 5,
+      "ntpase_nucleotide_hydrolase_boundary": 10,
+      "nuclease_phosphoesterase": 9,
+      "phosphatase_phosphoesterase": 10,
+      "sulfatase_fgly_metal_boundary": 5,
+      "zinc_metalloprotease_zincin": 13
+    },
+    "by_provenance_tier": {
+      "tier_A_mcsa_curated": 45,
+      "tier_B_external_curated": 12,
+      "tier_D_control_only": 17
+    },
+    "by_readiness_tier": {
+      "gold": 38,
+      "review-only": 13,
+      "silver": 23
+    },
+    "total_rows": 74
+  },
+  "created_utc": "2026-05-28T08:15:32Z",
+  "decision_gates": {
+    "create_child_strata": [
+      "Create a child if a lane has at least six gold/silver positives across at least three sequence/Foldseek neighborhoods plus paired sibling hard negatives, and the child reaction-center evidence can be extracted source-free.",
+      "Candidate children to evaluate first: zincin_metalloprotease, binuclear_amidohydrolase, phosphatase/nuclease_phosphoesterase, metallo_beta_lactamase_like, sulfatase_FGly, and carbonic_anhydrase_dehydratase.",
+      "A child is required if broad parent routing is correct but sibling confusion exceeds 10 percent within gold/silver rows or if learned/geometry ablations show separable active-site evidence beyond metal presence.",
+      "NTPase/nucleotide hydrolase should start as a boundary/offramp, not a positive child, unless the ontology explicitly admits nucleotide hydrolysis as a separate child with motor/switch controls."
+    ],
+    "keep_broad_v1_parent": [
+      "Across gold/silver positive rows, source-free evidence must recover metal count, metal ligands, water/hydroxide activation, and scissile-bond atom class without relying on EC/name/cofactor text.",
+      "False-positive rate on NTPase/GTPase/ATPase, kinase, carbonic/dehydratase, and nonhydrolytic metal controls must remain at or below 5 percent, with all high-confidence controls rejecting or abstaining.",
+      "Loose/open, apo, and product-context rows must abstain or emit explicit evidence-blocker reasons rather than becoming confident parent positives.",
+      "External positives may support broad v1 only after current-reference sequence and Foldseek duplicate screens pass and at least three non-M-CSA external rows per major lane have extracted active-site geometry."
+    ],
+    "make_router_only_parent_bucket": [
+      "If broad parent evidence reliably detects metal-water chemistry but cannot decide attacked atom class or reaction family, keep metal_dependent_hydrolase as a router-only parent and require child/offramp decisions downstream.",
+      "If FGly/sulfatase, carbonic anhydrase, or NTPase rows need special rules that conflict with phosphatase/nuclease/zincin positives, do not use the parent as a terminal production label.",
+      "If external rows only pass because of metal/cofactor/name text and fail EC/name/cofactor ablations, freeze the parent as review-only routing evidence until child strata or negative offramps are specified."
+    ]
+  },
+  "disk_policy": {
+    "coordinate_downloads_performed": false,
+    "disk_floor_requested": "10 GiB",
+    "large_downloads_performed": false,
+    "notes": "This run wrote only small JSON/Markdown artifacts and used existing local geometry plus lightweight UniProt metadata already printed in the run log."
+  },
+  "external_metadata_spot_checks": {
+    "accessions_checked": [
+      "P12821",
+      "P08253",
+      "P45452",
+      "P00800",
+      "C7C422",
+      "Q79MP6",
+      "P52699",
+      "P00918",
+      "P15289",
+      "P22304",
+      "P00634",
+      "P0A7Y4",
+      "P0A6P9",
+      "P01112",
+      "P61586"
+    ],
+    "batch_query_template": "https://rest.uniprot.org/uniprotkb/accessions?accessions=<comma-separated-accessions>&fields=accession,reviewed,protein_name,gene_names,organism_name,ec,xref_pdb,xref_alphafolddb,cc_catalytic_activity,cc_cofactor,ft_act_site,ft_binding",
+    "downloads": "metadata only; no coordinate files downloaded",
+    "queried_at_utc": "2026-05-28T08:15:32Z",
+    "systems": [
+      "UniProt REST accessions endpoint",
+      "UniProt PDB cross-references",
+      "RCSB structure pages referenced by ID only"
+    ]
+  },
+  "guardrails": [
+    "No production label, registry, ontology, threshold, import, score, model output, or training change is authorized by this artifact.",
+    "All candidate rows are frozen for later review-only validation; ready_for_label_import and countable_label_candidate are false for every row in this artifact.",
+    "External rows require current-reference sequence screens, Foldseek/current-countable structure screens, and source-free active-site extraction before any silver/gold upgrade.",
+    "Loose/open, apo, product-context, or nucleotide-context rows are intended to force abstention or route-away behavior, not to justify imports."
+  ],
+  "learned_representation_test_requirements": [
+    "Mask EC, protein name, reaction prose, and cofactor-name features to test whether embeddings learn active-site/geometry evidence rather than vocabulary.",
+    "Use sequence-cluster and Foldseek/TM-neighborhood split preservation so zincin, MBL, nuclease, sulfatase, CA, and NTPase controls cannot leak through near duplicates.",
+    "Report parent route accuracy, child/offramp confusion matrix, OOS false-positive rate, loose/open abstention rate, and external-row duplicate-hold rate separately.",
+    "Treat any confident hit on NTPase/GTPase/ATPase or nonhydrolytic redox/dehydratase controls as a high-severity failure unless the route is explicitly a nucleotide-hydrolase boundary/offramp."
+  ],
+  "non_claims": [
+    "This artifact does not propose new production labels or child fingerprints.",
+    "This artifact does not change thresholds or scoring behavior.",
+    "This artifact does not assert external rows are countable labels.",
+    "This artifact does not download or validate new coordinates."
+  ],
+  "panel_summary": {
+    "primary_failure_modes": [
+      "zinc metalloprotease peptide hydrolysis collapses with phosphatase/nuclease chemistry",
+      "MBL fold and amidohydrolase superfamily rows merge despite different attacked atoms and metal counts",
+      "FGly/sulfatase and carbonic anhydrase require child/offramp evidence beyond generic metal-water wording",
+      "NTPases, GTPases, ATPases, and kinases false-positive from Mg/nucleotide context",
+      "metal-dependent nonhydrolytic redox/dehydration/oxygenase rows false-positive from metal cofactors"
+    ],
+    "purpose": "Stress-test whether broad v1 metal_dependent_hydrolase hides incompatible chemistries and whether sequence/Foldseek/geometry/router evidence generalizes beyond M-CSA.",
+    "used_prior_decisions": [
+      "22 positive expert/trace artifacts",
+      "66 remaining visual triage matrix/source manifest",
+      "210 current-target rejection artifact",
+      "recent MPP/prolidase/nuclease/product-context and sulfatase FGly review-only decisions"
+    ]
+  },
+  "provenance_tier_definitions": {
+    "tier_A_mcsa_curated": "M-CSA/current local curated row or prior local expert/review artifact; useful as anchor or review-hold row.",
+    "tier_B_external_curated": "External reviewed UniProt/PDB lead with public structure metadata; not countable until duplicate/Foldseek/geometry gates pass.",
+    "tier_C_external_incomplete": "External lead with one or more missing blockers; none are promoted to this tier in the frozen rows unless later evidence is added.",
+    "tier_D_control_only": "Hard negative, OOS, false-positive, or boundary control only."
+  },
+  "review_only": true,
+  "schema_version": "metal_hydrolase_tail_panel.v1",
+  "scope": "validation-panel design and source/evidence scouting only; no labels, registries, ontologies, thresholds, production scoring, imports, or model outputs were edited",
+  "source_artifacts": {
+    "artifacts/v3_external_stress_panel_roadmap_20260528.json": {
+      "sha256": "42271026337b0363189652031b745b8e5eed61d4ee9649f4a6bc05fd7a164ff3"
+    },
+    "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json": {
+      "sha256": "27e4359fde6371cea1c4957542a167124daa6edce23cf62c579a7a60877e98d3"
+    },
+    "artifacts/v3_geometry_features_1025.json": {
+      "sha256": "be7af8462397425062075ff8df5959cc9b68b165d07017692099deb66db1f8f6"
+    },
+    "artifacts/v3_learned_retrieval_manifest_1025_current702_full_20260525.json": {
+      "sha256": "388533742b51fb78f98b257cd9231a497dee7b6016be3e6cea11b7e44e8511b8"
+    },
+    "artifacts/v3_mcsa_ai_visual_remaining_66_source_manifest_20260524.json": {
+      "sha256": "60856233cb6efd9815a95a4b8a85891268adc3ae51d0d53475c8f6391f3ce2ba"
+    },
+    "artifacts/v3_mcsa_ai_visual_remaining_66_triage_matrix_20260524.json": {
+      "sha256": "66b53ff95fbcc1b548649f659fad807534d17dc8c128f2e2db918fb21104ff60"
+    },
+    "artifacts/v3_mcsa_positive_expert_packet_22_20260523.json": {
+      "sha256": "9b3fe43633dcb39ac8962845531f7bd13addcf9996a2213cb76aa8908478c670"
+    },
+    "artifacts/v3_mcsa_positive_post_clean9_decision_trace_22_20260524.json": {
+      "sha256": "e6344bfa8e465c05ea62622c805d51ab1a8b7a073da8159b6c24e98e46564ee6"
+    },
+    "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523.json": {
+      "sha256": "d672b85c75b4447a9b638eb1c1c4e83308d00cf8d3d80133805dfc72c84c0b34"
+    },
+    "artifacts/v3_mcsa_positive_vivek_expert_decision_batch_22_20260523_validation.json": {
+      "sha256": "3c8e05600c8ddeb44a5471a4b7f1530ae559ec0465889e080028e16c6dc0d32c"
+    },
+    "artifacts/v3_mcsa_vivek_reviewed_current_target_rejections_210_20260523.json": {
+      "sha256": "81b422a99d0f3550f3c05f0543718da5774e66367d0f2183b39ae34311b91cbd"
+    },
+    "artifacts/v3_mcsa_vivek_reviewed_current_target_rejections_210_20260523_validation.json": {
+      "sha256": "8f9adf26d0921c88adde72585fb2f092b3c0227756793abcab3bf7c72974ee03"
+    },
+    "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json": {
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "data/registries/mechanism_fingerprints.json": {
+      "sha256": "a1e7ae135adb97dc79d8cab91345bc3ed4720cf3371115737e05f10b629a2516"
+    },
+    "work/external_stress_panel_roadmap_20260528.md": {
+      "sha256": "729f7b0893f6598f3c1aa48e52b30078c46af4c2d25f8f49e62bc551b10e68f2"
+    }
+  },
+  "status": "review_only_candidate_manifest_frozen"
+}
