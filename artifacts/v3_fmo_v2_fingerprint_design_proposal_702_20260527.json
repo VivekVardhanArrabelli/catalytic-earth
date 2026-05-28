@@ -1,0 +1,414 @@
+{
+  "artifact_id": "v3_fmo_v2_fingerprint_design_proposal_702_20260527",
+  "created_utc": "2026-05-28T01:37:34Z",
+  "schema_version": "v3_fmo_v2_fingerprint_design_proposal.v1",
+  "review_only": true,
+  "status": "proposal_only_no_registry_or_scoring_changes",
+  "scope": {
+    "target_question": "What evidence would make flavin_monooxygenase coherent as a future primary fingerprint, secondary OOD probe, or v2 child family, and how should it separate from generic flavin dehydrogenase/reductase chemistry?",
+    "candidate_rows_are_context_not_metrics": true,
+    "evidence_requirements_defined_before_future_metrics": true,
+    "new_v3_fmo_candidate_source_geometry_control_artifacts_present": [
+      {
+        "path": "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
+        "artifact_class": "structure_geometry",
+        "status": "review_only_post_inventory",
+        "design_relevance": "Adds structural-state caveats for m_csa:551, m_csa:973, m_csa:141, and m_csa:128 without creating countable positives or imports."
+      }
+    ],
+    "additional_v3_fmo_artifacts_seen_after_initial_inventory": [
+      {
+        "path": "artifacts/v3_fmo_acquisition_sprint_integrated_status_702_20260527.json",
+        "status": "post_inventory_integrated_status_context",
+        "role": "Reports four review-supportable FMO signals, zero import-ready rows, missing named-family lanes, and no available parallel v3_fmo candidate/source/geometry/control outputs at its integration time."
+      },
+      {
+        "path": "artifacts/v3_fmo_admission_gate_and_benchmark_impact_702_20260527.json",
+        "status": "post_inventory_waiting_blocker_context",
+        "role": "Confirms the requested candidate, source-evidence, structure-geometry, and hard-negative FMO artifacts are absent; it does not add candidate-level evidence."
+      }
+    ],
+    "inspected_artifacts": [
+      "artifacts/v3_packet3_v2_sublabel_decision_closure_702_20260527.json",
+      "artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json",
+      "artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json",
+      "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json"
+    ]
+  },
+  "guardrails": {
+    "fingerprint_registry_changed": false,
+    "ontology_registry_changed": false,
+    "label_registry_changed": false,
+    "label_imports_performed": false,
+    "thresholds_changed": false,
+    "production_scoring_changed": false,
+    "model_retrained": false,
+    "primary_promotion_reconsidered_now": false
+  },
+  "proposed_identity": {
+    "proposed_family_id": "flavin_monooxygenase",
+    "recommended_current_status": "secondary_ood_probe_and_future_acquisition_target",
+    "primary_promotion_status": "blocked_until_minimum_support_and_hard_negative_controls",
+    "candidate_child_label_ids": [
+      {
+        "child_label_id": "flavin.monooxygenase_c4a_peroxy_oxygen_insertion",
+        "parent_context": "flavin_dehydrogenase_reductase_or_flavin_monooxygenase",
+        "intent": "Count only rows where reduced FAD or FMN activates O2 through C4a-hydroperoxyflavin or equivalent flavin-peroxy evidence and inserts oxygen into substrate."
+      },
+      {
+        "child_label_id": "flavin.monooxygenase_two_component_fmnh2_oxygenation",
+        "parent_context": "flavin_monooxygenase",
+        "intent": "Optional future split for FMNH2 supplied by a partner reductase, countable only when the monooxygenase subunit has substrate oxygen insertion evidence."
+      }
+    ],
+    "do_not_use_as": [
+      "catch_all_flavin_redox_bucket",
+      "generic_flavin_dehydrogenase_reductase_alias",
+      "out_of_scope_rescue_label",
+      "production_metric_label_before_expert_approval"
+    ]
+  },
+  "current_context_not_countable_metrics": {
+    "canonical_flavin_monooxygenase_rows": [
+      {
+        "entry_id": "m_csa:131",
+        "entry_name": "4-hydroxybenzoate 3-monooxygenase",
+        "current_use": "secondary_ood_probe_context"
+      },
+      {
+        "entry_id": "m_csa:132",
+        "entry_name": "alkanal monooxygenase (FMN-linked)",
+        "current_use": "secondary_ood_probe_context"
+      }
+    ],
+    "local_clean_future_candidates": [
+      {
+        "entry_id": "m_csa:551",
+        "entry_name": "phenol 2-monooxygenase",
+        "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "reason_not_countable_now": "candidate is clean FMO context but remains unrelabelled and below support gates"
+      },
+      {
+        "entry_id": "m_csa:973",
+        "entry_name": "DszC protein",
+        "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "reason_not_countable_now": "candidate is clean FMO context but remains unrelabelled and below support gates"
+      }
+    ],
+    "support_summary": {
+      "canonical_count": 2,
+      "clean_count_if_future_candidates_are_expert_accepted": 4,
+      "minimum_clean_count_before_primary_reconsideration": 6,
+      "remaining_clean_count_needed_after_current_candidates": 2,
+      "hard_negative_separation_available_now": false
+    }
+  },
+  "post_inventory_structure_geometry_caveats": [
+    {
+      "entry_id": "m_csa:551",
+      "entry_name": "phenol 2-monooxygenase",
+      "geometry_support": "supports_fmo_but_review_only",
+      "design_caveat": "Selected structure pdb:1FOH contains FAD and phenol/IPH context, but no NADPH/NADP ligand and no C4a-hydroperoxy/peroxide flavin state. The mapped-chain FAD C4X to phenol/IPH distance needs visual review because other coordinate copies have shorter ligand poses."
+    },
+    {
+      "entry_id": "m_csa:973",
+      "entry_name": "DszC protein",
+      "geometry_support": "ambiguous",
+      "design_caveat": "Selected structure pdb:3X0Y has FMN near Tyr96, Ser163, and His391, but lacks substrate/analog, NADPH/NADP, and C4a-hydroperoxy/peroxide state, so geometry alone does not separate FMO from generic FMN redox."
+    },
+    {
+      "entry_id": "m_csa:141",
+      "entry_name": "4-cresol dehydrogenase (hydroxylating)",
+      "geometry_support": "supports_generic_flavin_redox",
+      "design_caveat": "Selected structure pdb:1DII contains FAD plus heme C and a covalent FAD-Tyr redox linkage, supporting flavin/heme electron-transfer chemistry rather than FMO oxygenation."
+    },
+    {
+      "entry_id": "m_csa:128",
+      "entry_name": "Photinus-luciferin 4-monooxygenase (ATP-hydrolysing)",
+      "geometry_support": "unavailable_for_fmo",
+      "design_caveat": "Selected structure pdb:1BA3 contains no flavin ligand; it remains a non-FMO luciferyl-adenylate oxygenation control."
+    }
+  ],
+  "required_evidence_fields_for_future_countable_review": [
+    {
+      "field": "flavin_cofactor",
+      "required": true,
+      "countable_values": [
+        "FAD",
+        "FADH2",
+        "FMN",
+        "FMNH2"
+      ],
+      "evidence_requirement": "Ligand-supported structure, curated mechanism text, or source review must place the flavin in the oxygenating active-site chemistry rather than only in a remote electron-transfer partner.",
+      "negative_signal": "NADPH, NADH, heme, metal, pterin, copper, or ATP chemistry without active-site flavin oxygenation is not sufficient."
+    },
+    {
+      "field": "oxygen_activation_intermediate",
+      "required": true,
+      "countable_values": [
+        "C4a-hydroperoxyflavin",
+        "C4a-peroxyflavin",
+        "source-equivalent reduced-flavin plus O2 oxygenating intermediate"
+      ],
+      "evidence_requirement": "Source evidence must say or imply reduced flavin activates molecular oxygen to an oxygenating flavin-peroxy species before substrate oxygen transfer.",
+      "negative_signal": "Simple flavin hydride transfer, flavin reoxidation by O2 to peroxide, or water-derived oxygen does not count."
+    },
+    {
+      "field": "substrate_oxygen_insertion",
+      "required": true,
+      "countable_values": [
+        "aromatic hydroxylation",
+        "N-hydroxylation",
+        "S-oxygenation_or_sulfoxidation",
+        "Baeyer-Villiger_oxygen_insertion",
+        "aliphatic_hydroxylation_or_equivalent_fmo_product"
+      ],
+      "evidence_requirement": "Record substrate, product, and whether the inserted oxygen is O2-derived. Oxygen activation without substrate oxygen insertion is not enough.",
+      "negative_signal": "Substrate oxidation that produces reduced flavin, electron relay, or peroxide without oxygen insertion stays outside FMO."
+    },
+    {
+      "field": "reductive_activation_context",
+      "required": "required_when_relevant",
+      "countable_values": [
+        "NADPH_direct",
+        "NADH_direct",
+        "two_component_partner_reductase_supplies_FMNH2",
+        "pre-reduced_flavin_in_source_mechanism"
+      ],
+      "evidence_requirement": "Document how the flavin becomes reduced. For two-component systems, distinguish the reductase partner from the oxygenating monooxygenase component.",
+      "negative_signal": "A reductase-only subunit, generic NADPH binding, or flavin reduction without substrate oxygenation is not countable FMO evidence."
+    },
+    {
+      "field": "active_site_residues",
+      "required": "preferred_for_countable_rows_and_required_when_source_reports_roles",
+      "countable_values": [
+        "flavin_binding_residues",
+        "O2_or_peroxyflavin_stabilizing_residues",
+        "substrate_positioning_residues",
+        "acid_base_or_proton_relay_residues"
+      ],
+      "evidence_requirement": "Record residue identifiers and roles when known; do not use motif presence alone as a counting rule because FMO subclasses are not residue-identical.",
+      "known_current_examples": [
+        "m_csa:973 source context reports His92, Tyr96, Asn129, Ser163, and a residue-391 role; resolve His391/Cys391 discrepancy before counting active-site evidence.",
+        "m_csa:551 source context reports FAD motion coupled to conformational movement; record the structural state and residue range rather than treating it as a conserved motif."
+      ]
+    },
+    {
+      "field": "structural_state_caveats",
+      "required": true,
+      "countable_values": [
+        "holo_flavin_bound",
+        "substrate_or_product_or_analog_present",
+        "reduced_flavin_or_peroxyflavin_state_if_available",
+        "apo_or_open_state_flagged",
+        "two_component_or_partner_state_flagged"
+      ],
+      "evidence_requirement": "Record whether the selected structure actually captures the oxygenating active site. Transient C4a-peroxy states may be source-supported even when not crystallized, but apo or remote-partner-only structures remain review-only.",
+      "negative_signal": "Geometry from apo structures, missing flavin, missing substrate pocket, unresolved catalytic residues, or an isolated reductase partner cannot be used as clean countable support."
+    },
+    {
+      "field": "source_independence_and_leakage",
+      "required": true,
+      "countable_values": [
+        "mechanism_review_source_recorded",
+        "source_free_geometry_or_duplicate_screen_available",
+        "row_not_selected_by_name_or_EC_alone"
+      ],
+      "evidence_requirement": "Future metric rows must separate evidence used for curation from features allowed in prediction or scoring, and must pass duplicate/leakage review before benchmark use.",
+      "negative_signal": "Rows accepted only because the name contains monooxygenase, hydroxylase, FMO, or an EC class are not countable."
+    }
+  ],
+  "separation_and_exclusion_rules": [
+    {
+      "exclude_class": "ordinary_flavin_dehydrogenases_reductases_or_oxidases",
+      "rule": "Exclude hydride-transfer flavoproteins where substrate oxidation reduces FAD/FMN and O2 is only a terminal electron acceptor or produces peroxide, unless source evidence shows flavin-peroxy substrate oxygen insertion.",
+      "local_control_examples": [
+        "m_csa:141"
+      ]
+    },
+    {
+      "exclude_class": "flavin_FeS_electron_relay_flavoproteins",
+      "rule": "Exclude FAD/FMN plus Fe-S systems that relay electrons to another acceptor, metal center, heme, or radical chemistry without an oxygenating C4a-peroxyflavin active site."
+    },
+    {
+      "exclude_class": "radical_flavin_or_flavin_FeS_enzymes",
+      "rule": "Exclude radical dehydratases, radical SAM-like boundaries, covalent flavin adduct chemistry, or O2-independent radical rearrangements even when flavin is required."
+    },
+    {
+      "exclude_class": "heme_oxygenases_and_P450s",
+      "rule": "Exclude heme-centered oxygen activation and heme oxygen insertion even if the reaction is a monooxygenation.",
+      "local_control_examples": [
+        "m_csa:133"
+      ]
+    },
+    {
+      "exclude_class": "non_flavin_oxygenases",
+      "rule": "Exclude tetrahydrobiopterin, non-heme iron, copper, diiron methane monooxygenase, and other metal-only oxygenases without flavin C4a-peroxy chemistry.",
+      "local_control_examples": [
+        "m_csa:134",
+        "m_csa:135",
+        "m_csa:600"
+      ]
+    },
+    {
+      "exclude_class": "ATP_luciferyl_adenylate_or_nonflavin_luciferase_oxygenations",
+      "rule": "Exclude oxygenation driven through ATP/luciferyl-adenylate or other non-flavin activation unless explicit flavin C4a-peroxy substrate oxygenation is present.",
+      "local_control_examples": [
+        "m_csa:128",
+        "m_csa:768"
+      ]
+    },
+    {
+      "exclude_class": "name_only_monooxygenase_or_hydroxylase_hits",
+      "rule": "Exclude rows whose only support is entry name, EC class, or broad oxygenase annotation. Countable FMO support must satisfy the evidence fields above."
+    }
+  ],
+  "minimum_support_before_primary_promotion_reconsideration": {
+    "clean_positive_rows": "n>=6",
+    "row_requirements": [
+      "non-duplicate rows",
+      "source-reviewed reduced-flavin O2 activation",
+      "substrate oxygen insertion evidence",
+      "flavin cofactor evidence in the oxygenating site",
+      "structural-state caveats recorded",
+      "current registry labels reviewed without automatic relabel"
+    ],
+    "diversity_preference": "Prefer at least three mechanistic or substrate subclasses, such as aromatic hydroxylation, Baeyer-Villiger oxygen insertion, N/S oxygenation, and two-component FMNH2 systems.",
+    "hard_negative_controls_required": true,
+    "hard_negative_control_classes": [
+      "ordinary flavin dehydrogenase/reductase/oxidase hydride transfer",
+      "flavin Fe-S electron relay",
+      "radical flavin or flavin Fe-S enzyme",
+      "heme oxygenase or P450",
+      "non-flavin oxygenase",
+      "non-flavin luciferase or ATP-adenylate oxygenation",
+      "name-only monooxygenase/hydroxylase false positives"
+    ],
+    "primary_reconsideration_rule": "Do not reconsider primary promotion until clean positives reach n>=6 and the hard-negative control packet is explicitly reviewed."
+  },
+  "benchmark_use_policy": {
+    "now": "secondary_ood_probe_and_acquisition_target_only",
+    "allowed_now": [
+      "secondary OOD probe",
+      "canary for generic flavin reductase over-absorption",
+      "proposal-only evidence contract"
+    ],
+    "not_allowed_now": [
+      "primary supervised metric",
+      "production scoring",
+      "label import",
+      "threshold tuning",
+      "canonical child registry entry"
+    ],
+    "after_n6_and_controls": "pilot-only child evaluation may be designed after expert approval; still not production scoring.",
+    "future_primary_path": "Future primary reconsideration only after n>=6 clean rows, hard-negative separation, duplicate/leakage review, and expert sign-off."
+  },
+  "acquisition_priority_list": [
+    {
+      "priority": 1,
+      "target": "expert_review_local_m_csa_551_phenol_2_monooxygenase",
+      "why": "Local source context already reports FAD, NADPH, O2, C4a-hydroperoxyflavin, and phenol hydroxylation.",
+      "required_next_evidence": [
+        "confirm active-site flavin and structural state",
+        "record substrate and product oxygen insertion",
+        "keep no automatic relabel/import"
+      ]
+    },
+    {
+      "priority": 2,
+      "target": "expert_review_local_m_csa_973_DszC_dibenzothiophene_monooxygenase",
+      "why": "Local source context reports FMNH2 plus O2, C4a-hydroperoxyflavin, and sulfur oxygenation.",
+      "required_next_evidence": [
+        "resolve residue-391 source discrepancy",
+        "distinguish partner reductase from oxygenating monooxygenase",
+        "record active-site residues and structural state"
+      ]
+    },
+    {
+      "priority": 3,
+      "target": "cyclohexanone_monooxygenase_or_other_BVMO_rows",
+      "why": "Baeyer-Villiger oxygen insertion would broaden FMO chemistry beyond current aromatic and alkanal examples.",
+      "required_next_evidence": [
+        "explicit flavin-peroxy Baeyer-Villiger mechanism",
+        "PDB-backed or otherwise structure-reviewable row",
+        "source-free geometry and duplicate screen"
+      ]
+    },
+    {
+      "priority": 4,
+      "target": "HAPMO_and_related_aromatic_ketone_monooxygenases",
+      "why": "Adds a named missing family with clean FAD/NADPH oxygenation potential.",
+      "required_next_evidence": [
+        "explicit FAD/FMN oxygen activation",
+        "substrate oxygen insertion product",
+        "hard negatives against ordinary ketoreductases"
+      ]
+    },
+    {
+      "priority": 5,
+      "target": "IucD_class_lysine_N6_hydroxylase_and_other_N_hydroxylases",
+      "why": "Tests N-oxygenation boundary while avoiding PLP or metal-only hydroxylase leakage.",
+      "required_next_evidence": [
+        "flavin-dependent N-hydroxylation mechanism",
+        "reductive activation source",
+        "non-flavin hydroxylase controls"
+      ]
+    },
+    {
+      "priority": 6,
+      "target": "FMO1_FMO3_FMO5_or_dimethylaniline_monooxygenase_like_N_S_oxygenation",
+      "why": "Adds mammalian or xenobiotic FMO-like N/S oxygenation if structure and mechanism evidence are clean.",
+      "required_next_evidence": [
+        "FAD/NADPH active-site evidence",
+        "O2-derived N or S oxygen insertion",
+        "controls against heme and non-flavin oxygenases"
+      ]
+    },
+    {
+      "priority": 7,
+      "target": "salicylate_1_monooxygenase_tryptophan_2_monooxygenase_and_related_aromatic_hydroxylases",
+      "why": "Can add clean aromatic hydroxylation positives if explicit flavin C4a-peroxy evidence is present.",
+      "required_next_evidence": [
+        "avoid name-only hydroxylase acceptance",
+        "record substrate positioning and active-site residues where known",
+        "controls against P450 and pterin hydroxylases"
+      ]
+    },
+    {
+      "priority": 8,
+      "target": "prior_external_candidates_KMO_UBII_OTEMO_nitrophenol_or_nitrocatechol_monooxygenase",
+      "why": "Prior frozen candidates may be useful only after source-free geometry, duplicate/leakage, terminal review, and import gates.",
+      "required_next_evidence": [
+        "source-free geometry packet",
+        "duplicate and leakage screen",
+        "terminal expert review before any countable use"
+      ]
+    },
+    {
+      "priority": 9,
+      "target": "hard_negative_control_packet",
+      "why": "Primary or child-pilot reconsideration needs separation from generic flavin redox and non-flavin oxygenase chemistry.",
+      "required_next_evidence": [
+        "ordinary flavin hydride-transfer negatives",
+        "Fe-S electron-relay flavoprotein negatives",
+        "radical flavin or flavin Fe-S negatives",
+        "heme and non-flavin oxygenase negatives",
+        "name-only monooxygenase negatives"
+      ]
+    }
+  ],
+  "source_artifacts": {
+    "artifacts/v3_packet3_v2_sublabel_decision_closure_702_20260527.json": {
+      "role": "v2_sublabel_closure_context",
+      "sha256": "c0c6c5d8bb9b3898093f993e096b5d14a9982e95ffe24a8d71cf3df8e807ec0d"
+    },
+    "artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json": {
+      "role": "current_fmo_acquisition_closure",
+      "sha256": "863a44bc76f3f2f58db4b4b3289a108edef7bb84cecc9db721d892548cff16be"
+    },
+    "artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json": {
+      "role": "candidate_and_source_context",
+      "sha256": "9d2059f7a7c8d8f4ca939258cae366b4376c41c4e447fec16220674d0feb6500"
+    }
+  }
+}
