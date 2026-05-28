@@ -1,6 +1,6 @@
 # FMO External Hard-Negative Duplicate Gate - 2026-05-28
 
-Run time: 2026-05-28T04:12:00Z
+Run time: 2026-05-28T05:08:24Z
 
 Review-only gate for six external FMO acquisition candidates. No labels, registries, ontology files, thresholds, production scoring, model outputs, imports, or model-training artifacts were changed.
 

@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_fmo_external_hard_negative_duplicate_gate_702_20260528",
   "automation_id": "fmo-hard-negative-counteraxis",
-  "created_utc": "2026-05-28T04:12:00Z",
+  "created_utc": "2026-05-28T05:08:24Z",
   "schema_version": "1.0",
   "status": "complete_review_only_no_imports",
   "review_only": true,
