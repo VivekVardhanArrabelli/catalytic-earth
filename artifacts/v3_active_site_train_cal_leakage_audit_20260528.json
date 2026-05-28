@@ -1,0 +1,229 @@
+{
+  "artifact_id": "v3_active_site_train_cal_leakage_audit_20260528",
+  "blockers": [],
+  "checks": [
+    {
+      "check_id": "cache_rows_match_readiness_rows_exactly",
+      "details": {
+        "cache_count": 547,
+        "extra_in_cache": [],
+        "missing_from_cache": [],
+        "readiness_count": 547
+      },
+      "passed": true
+    },
+    {
+      "check_id": "feasibility_rows_match_readiness_rows_exactly",
+      "details": {
+        "feasibility_count": 547,
+        "readiness_count": 547
+      },
+      "passed": true
+    },
+    {
+      "check_id": "all_rows_are_in_distribution_in_sequence_split",
+      "details": {
+        "bad_count": 0,
+        "bad_rows": []
+      },
+      "passed": true
+    },
+    {
+      "check_id": "train_cal_eligible_rows_have_only_train_or_calibration_assignment",
+      "details": {
+        "bad_count": 0,
+        "bad_rows": []
+      },
+      "passed": true
+    },
+    {
+      "check_id": "excluded_rows_absent",
+      "details": {
+        "excluded_present": []
+      },
+      "passed": true
+    },
+    {
+      "check_id": "secondary_ood_probe_rows_are_canary_only",
+      "details": {
+        "bad_count": 0,
+        "bad_rows": []
+      },
+      "passed": true
+    },
+    {
+      "check_id": "predictive_features_have_no_forbidden_key_fragments",
+      "details": {
+        "hit_count": 0,
+        "sample_hits": []
+      },
+      "passed": true
+    },
+    {
+      "check_id": "cache_records_have_metadata_and_predictive_features_separated",
+      "details": {},
+      "passed": true
+    },
+    {
+      "check_id": "train_cal_split_is_sequence_cluster_consistent_within_target_group",
+      "details": {
+        "conflict_count": 0,
+        "conflicts": []
+      },
+      "passed": true
+    },
+    {
+      "check_id": "primary_and_oos_targets_have_train_and_calibration_support",
+      "details": {
+        "low_support": [],
+        "support_table": [
+          {
+            "calibration": 73,
+            "target_group": "None",
+            "total": 363,
+            "train": 290
+          },
+          {
+            "calibration": 8,
+            "target_group": "flavin_dehydrogenase_reductase",
+            "total": 40,
+            "train": 32
+          },
+          {
+            "calibration": 3,
+            "target_group": "heme_peroxidase_oxidase",
+            "total": 16,
+            "train": 13
+          },
+          {
+            "calibration": 13,
+            "target_group": "metal_dependent_hydrolase",
+            "total": 66,
+            "train": 53
+          },
+          {
+            "calibration": 5,
+            "target_group": "plp_dependent_enzyme",
+            "total": 25,
+            "train": 20
+          },
+          {
+            "calibration": 7,
+            "target_group": "ser_his_acid_hydrolase",
+            "total": 34,
+            "train": 27
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "check_id": "cache_summary_guardrails_zero",
+      "details": {
+        "artifact_id": "v3_active_site_encoder_cache_smoke_20260528",
+        "created_utc": "2026-05-28T11:37:25Z",
+        "emitted_row_count": 547,
+        "fingerprint_registry_changed": false,
+        "forbidden_inputs_used": [],
+        "label_blind": true,
+        "label_registry_changed": false,
+        "predictive_feature_contract": {
+          "entry_names_in_predictive_features": false,
+          "expert_notes_in_predictive_features": false,
+          "mechanism_text_in_predictive_features": false,
+          "row_identifiers_in_metadata_only": true,
+          "source_ids_in_predictive_features": false,
+          "target_labels_in_predictive_features": false
+        },
+        "predictive_feature_forbidden_key_hits": [],
+        "production_scoring_changed": false,
+        "requested_row_count": 547,
+        "review_only": true,
+        "schema_version": "active_site_encoder_cache.v1",
+        "skipped_rows": [],
+        "thresholds_changed": false,
+        "training_executed": false
+      },
+      "passed": true
+    }
+  ],
+  "created_utc": "2026-05-28T11:51:58Z",
+  "guardrails": {
+    "coordinate_fetches_performed": false,
+    "heldout_rows_used_for_training": false,
+    "labels_changed": false,
+    "model_outputs_changed": false,
+    "ontologies_changed": false,
+    "production_scoring_changed": false,
+    "registries_changed": false,
+    "thresholds_changed": false,
+    "training_executed": false
+  },
+  "next_allowed_step_if_user_approves": "Run a bounded supervised active-site encoder smoke using only train/cal eligible rows, with heldout diagnostic cells evaluation-only and no production claims.",
+  "next_not_allowed_without_user_approval": [
+    "start training",
+    "change labels",
+    "change thresholds",
+    "claim learned representations beat Foldseek/geometry"
+  ],
+  "review_only": true,
+  "schema_version": "active_site_train_cal_leakage_audit.v1",
+  "source_artifacts": [
+    "artifacts/v3_active_site_train_cal_cache_feasibility_20260528.json",
+    "artifacts/v3_active_site_encoder_readiness_matrix_train_cal_20260528.json",
+    "artifacts/v3_active_site_encoder_cache_train_cal_547_20260528.jsonl",
+    "artifacts/v3_active_site_encoder_cache_train_cal_547_summary_20260528.json",
+    "artifacts/v3_router_probe_supervised_smoke_gate_20260528.json",
+    "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json"
+  ],
+  "status": "complete_leakage_audit",
+  "summary": {
+    "blocker_count": 0,
+    "cache_row_count": 547,
+    "check_count": 11,
+    "interpretation": "Training preflight passes for leakage/data-separation guardrails, but this audit does not authorize training by itself; user approval is still required for any supervised run.",
+    "passed_check_count": 11,
+    "readiness_row_count": 547,
+    "secondary_canary_only_row_count": 3,
+    "support_table": [
+      {
+        "calibration": 73,
+        "target_group": "None",
+        "total": 363,
+        "train": 290
+      },
+      {
+        "calibration": 8,
+        "target_group": "flavin_dehydrogenase_reductase",
+        "total": 40,
+        "train": 32
+      },
+      {
+        "calibration": 3,
+        "target_group": "heme_peroxidase_oxidase",
+        "total": 16,
+        "train": 13
+      },
+      {
+        "calibration": 13,
+        "target_group": "metal_dependent_hydrolase",
+        "total": 66,
+        "train": 53
+      },
+      {
+        "calibration": 5,
+        "target_group": "plp_dependent_enzyme",
+        "total": 25,
+        "train": 20
+      },
+      {
+        "calibration": 7,
+        "target_group": "ser_his_acid_hydrolase",
+        "total": 34,
+        "train": 27
+      }
+    ],
+    "train_cal_eligible_row_count": 544
+  },
+  "training_preflight_status": "pass"
+}
