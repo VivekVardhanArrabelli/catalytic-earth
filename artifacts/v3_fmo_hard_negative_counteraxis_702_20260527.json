@@ -1,0 +1,561 @@
+{
+  "schema_version": "v3_fmo_hard_negative_counteraxis.v1",
+  "artifact_id": "v3_fmo_hard_negative_counteraxis_702_20260527",
+  "created_utc": "2026-05-28T01:41:27Z",
+  "status": "review_only_counteraxis_complete",
+  "review_only": true,
+  "scope": "Focused FMO hard-negative/counteraxis review over existing 702-label artifacts, current flavin_dehydrogenase_reductase rows, and relevant OOS/boundary rows.",
+  "guardrails": {
+    "canonical_label_registry_changed": false,
+    "fingerprint_registry_changed": false,
+    "ontology_ids_changed": false,
+    "imports_changed": false,
+    "thresholds_changed": false,
+    "model_training_triggered": false,
+    "model_outputs_changed": false,
+    "production_scoring_changed": false,
+    "control_use": "review_only_regression_signal"
+  },
+  "source_artifacts": {
+    "artifacts/v3_packet3_v2_sublabel_decision_closure_702_20260527.json": {
+      "sha256": "c0c6c5d8bb9b3898093f993e096b5d14a9982e95ffe24a8d71cf3df8e807ec0d"
+    },
+    "artifacts/v3_m_csa497_label_revision_702_20260527.json": {
+      "sha256": "4c2127a646b6436e09dce0f506a507f074e86381b2d6b04557bca586b24eb92d"
+    },
+    "artifacts/v3_m_csa750_label_revision_702_20260527.json": {
+      "sha256": "6d965d2b4d64ebe1ec1a6e704ac0b7824dbc53d1b79e489181569f452e07de6d"
+    },
+    "artifacts/v3_flavin_fe_s_population_expert_disposition_702_20260527.json": {
+      "sha256": "85953e774cb8d045fbf89bf59608f34f80cd189647645ce1272e7874bb79e3d4"
+    },
+    "artifacts/v3_wave1_1_diagnostic_benchmark_result_702_20260527.json": {
+      "sha256": "f55b2cc7edf96149ad08ebb76b05fab74373304eb9ab9ded4f253fe82ce2cf0b"
+    },
+    "artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json": {
+      "sha256": "863a44bc76f3f2f58db4b4b3289a108edef7bb84cecc9db721d892548cff16be"
+    },
+    "data/registries/curated_mechanism_labels.json": {
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "artifacts/v1_graph_1025.json": {
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    }
+  },
+  "current_registry_snapshot": {
+    "total_labels": 702,
+    "current_flavin_monooxygenase_count": 2,
+    "current_flavin_monooxygenase_rows": [
+      {
+        "entry_id": "m_csa:131",
+        "entry_name": "4-hydroxybenzoate 3-monooxygenase",
+        "label_type": "seed_fingerprint",
+        "fingerprint_id": "flavin_monooxygenase"
+      },
+      {
+        "entry_id": "m_csa:132",
+        "entry_name": "alkanal monooxygenase (FMN-linked)",
+        "label_type": "seed_fingerprint",
+        "fingerprint_id": "flavin_monooxygenase"
+      }
+    ],
+    "current_flavin_dehydrogenase_reductase_count": 48,
+    "current_flavin_dehydrogenase_reductase_entry_ids_inspected": [
+      "m_csa:3",
+      "m_csa:6",
+      "m_csa:20",
+      "m_csa:68",
+      "m_csa:102",
+      "m_csa:103",
+      "m_csa:108",
+      "m_csa:109",
+      "m_csa:110",
+      "m_csa:111",
+      "m_csa:113",
+      "m_csa:114",
+      "m_csa:115",
+      "m_csa:117",
+      "m_csa:120",
+      "m_csa:123",
+      "m_csa:141",
+      "m_csa:142",
+      "m_csa:183",
+      "m_csa:211",
+      "m_csa:274",
+      "m_csa:275",
+      "m_csa:277",
+      "m_csa:281",
+      "m_csa:294",
+      "m_csa:304",
+      "m_csa:319",
+      "m_csa:320",
+      "m_csa:353",
+      "m_csa:354",
+      "m_csa:378",
+      "m_csa:381",
+      "m_csa:506",
+      "m_csa:551",
+      "m_csa:697",
+      "m_csa:739",
+      "m_csa:800",
+      "m_csa:822",
+      "m_csa:852",
+      "m_csa:862",
+      "m_csa:879",
+      "m_csa:892",
+      "m_csa:895",
+      "m_csa:941",
+      "m_csa:942",
+      "m_csa:973",
+      "m_csa:978",
+      "m_csa:990"
+    ],
+    "current_out_of_scope_count": 472,
+    "selected_oos_or_boundary_rows_inspected": [
+      {
+        "entry_id": "m_csa:497",
+        "entry_name": "nitric-oxide reductase (FMN)",
+        "current_label_type": "out_of_scope",
+        "selection_reason": "expert-reviewed flavodiiron NO reductase relabel; flavin-cofactor leakage negative"
+      },
+      {
+        "entry_id": "m_csa:750",
+        "entry_name": "4-hydroxybutanoyl-CoA dehydratase",
+        "current_label_type": "out_of_scope",
+        "selection_reason": "expert-reviewed radical flavin/Fe-S dehydratase relabel"
+      },
+      {
+        "entry_id": "m_csa:128",
+        "entry_name": "Photinus-luciferin 4-monooxygenase (ATP-hydrolysing)",
+        "current_label_type": "out_of_scope",
+        "selection_reason": "oxygenase name without flavin C4a-peroxy support"
+      },
+      {
+        "entry_id": "m_csa:129",
+        "entry_name": "taurine dioxygenase",
+        "current_label_type": "out_of_scope",
+        "selection_reason": "non-flavin oxygenase"
+      },
+      {
+        "entry_id": "m_csa:130",
+        "entry_name": "naphthalene 1,2-dioxygenase",
+        "current_label_type": "out_of_scope",
+        "selection_reason": "non-flavin oxygenase"
+      },
+      {
+        "entry_id": "m_csa:134",
+        "entry_name": "tyrosine 3-monooxygenase",
+        "current_label_type": "out_of_scope",
+        "selection_reason": "tetrahydrobiopterin/non-heme iron hydroxylase"
+      },
+      {
+        "entry_id": "m_csa:135",
+        "entry_name": "peptidylglycine monooxygenase",
+        "current_label_type": "out_of_scope",
+        "selection_reason": "copper-dependent monooxygenase"
+      },
+      {
+        "entry_id": "m_csa:601",
+        "entry_name": "myeloperoxidase",
+        "current_label_type": "out_of_scope",
+        "selection_reason": "heme peroxidase-like oxygen chemistry outside FMO"
+      }
+    ]
+  },
+  "positive_fmo_axis_not_negative_controls": {
+    "canonical_rows": [
+      "m_csa:131",
+      "m_csa:132"
+    ],
+    "secondary_or_future_clean_local_candidates": [
+      "m_csa:551",
+      "m_csa:973"
+    ],
+    "axis_definition": "Clean FMO requires flavin-dependent O2 activation to a C4a-(hydro)peroxyflavin or equivalent flavin peroxy oxygenating intermediate, followed by substrate oxygen insertion/oxygenation.",
+    "policy_note": "m_csa:551 and m_csa:973 are not hard negatives; the acquisition closure treats them as clean FMO secondary/future rows while blocking primary promotion until n>=6 and hard-negative separation are satisfied."
+  },
+  "control_groups": [
+    {
+      "control_group_id": "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+      "representative_entry_ids": [
+        "m_csa:3",
+        "m_csa:6",
+        "m_csa:353",
+        "m_csa:381",
+        "m_csa:506",
+        "m_csa:892"
+      ],
+      "representative_entries": [
+        {
+          "entry_id": "m_csa:3",
+          "entry_name": "NAD(P)H dehydrogenase (quinone)",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        },
+        {
+          "entry_id": "m_csa:6",
+          "entry_name": "glutathione-disulfide reductase",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        },
+        {
+          "entry_id": "m_csa:353",
+          "entry_name": "UDP-N-acetylenolpyruvylglucosamine reductase (MurB)",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        },
+        {
+          "entry_id": "m_csa:381",
+          "entry_name": "Thioredoxin reductase",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        },
+        {
+          "entry_id": "m_csa:506",
+          "entry_name": "ferredoxin--NADP reductase",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        },
+        {
+          "entry_id": "m_csa:892",
+          "entry_name": "dihydroorotate dehydrogenase (fumarate)",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        }
+      ],
+      "why_it_is_not_fmo": "These rows use flavin for hydride or electron transfer between substrate, nicotinamide, quinone, disulfide, ferredoxin, or fumarate acceptor/donor partners. They do not use an activated flavin peroxy intermediate to insert oxygen into substrate.",
+      "shared_features_with_fmo": [
+        "FAD/FMN cofactor",
+        "NADH or NADPH in some rows",
+        "substrate oxidation or reduction",
+        "redox-active active site",
+        "flavin fold similarity"
+      ],
+      "disambiguating_evidence": [
+        "Current canonical labels place all representative rows in flavin_dehydrogenase_reductase, not flavin_monooxygenase.",
+        "Packet 3 demoted the broad flavin.dehydrogenase_oxidase_hydride_transfer child because it mixed multiple flavin chemistries and was unsafe for v2 metrics.",
+        "FMO acquisition closure defines clean FMO by C4a-peroxy flavin oxygenation, not by flavin or NADPH presence alone."
+      ],
+      "expected_policy_behavior": "route_other_family",
+      "recommended_regression_gate": "An FMO route is a regression for this group unless mechanism evidence explicitly shows flavin-dependent O2 activation to a C4a-(hydro)peroxyflavin and substrate oxygen insertion. Otherwise route to flavin_dehydrogenase_reductase."
+    },
+    {
+      "control_group_id": "flavin_oxidase_o2_acceptor_not_monooxygenase",
+      "representative_entry_ids": [
+        "m_csa:109",
+        "m_csa:110",
+        "m_csa:113",
+        "m_csa:354",
+        "m_csa:822",
+        "m_csa:852",
+        "m_csa:895"
+      ],
+      "representative_entries": [
+        {
+          "entry_id": "m_csa:109",
+          "entry_name": "dihydroorotate oxidase (class II)",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        },
+        {
+          "entry_id": "m_csa:110",
+          "entry_name": "D-amino-acid oxidase",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        },
+        {
+          "entry_id": "m_csa:113",
+          "entry_name": "sarcosine oxidase",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        },
+        {
+          "entry_id": "m_csa:354",
+          "entry_name": "cholesterol oxidase (GMC type)",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        },
+        {
+          "entry_id": "m_csa:822",
+          "entry_name": "cholesterol oxidase",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        },
+        {
+          "entry_id": "m_csa:852",
+          "entry_name": "(S)-2-hydroxy-acid oxidase",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        },
+        {
+          "entry_id": "m_csa:895",
+          "entry_name": "NADH peroxidase",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase"
+        }
+      ],
+      "why_it_is_not_fmo": "These rows may consume O2 or peroxide during flavin oxidase/peroxidase turnover, but O2 acts as an electron acceptor or peroxide partner rather than a flavin-derived oxygen atom inserted into substrate.",
+      "shared_features_with_fmo": [
+        "FAD/FMN cofactor",
+        "oxygen or peroxide language",
+        "substrate oxidation",
+        "redox-active flavin"
+      ],
+      "disambiguating_evidence": [
+        "The current FMO support pool is only m_csa:131 and m_csa:132 canonically, while these rows remain current flavin_dehydrogenase_reductase rows.",
+        "The acquisition closure flags m_csa:551 and m_csa:973 as clean FMO candidates because they form C4a-hydroperoxyflavin; ordinary oxidase rows lack that oxygen-insertion evidence.",
+        "Packet 3 explicitly preserves a separate FMO acquisition question rather than absorbing oxygen/oxidase flavins into FMO."
+      ],
+      "expected_policy_behavior": "route_other_family",
+      "recommended_regression_gate": "Rows with O2 as terminal acceptor, peroxide detoxification, or oxidase naming must not pass the FMO gate without explicit C4a-peroxy oxygen-transfer evidence."
+    },
+    {
+      "control_group_id": "flavin_fe_s_relay_hcar_like",
+      "representative_entry_ids": [
+        "m_csa:990",
+        "m_csa:108",
+        "m_csa:114",
+        "m_csa:142",
+        "m_csa:294",
+        "m_csa:800"
+      ],
+      "representative_entries": [
+        {
+          "entry_id": "m_csa:990",
+          "entry_name": "7-hydroxymethyl chlorophyll A reductase (HCAR)",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase; Fe-S plus flavin diagnostic flag"
+        },
+        {
+          "entry_id": "m_csa:108",
+          "entry_name": "2,4-dienoyl-CoA reductase (NADPH)",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase; Fe-S plus flavin population group I"
+        },
+        {
+          "entry_id": "m_csa:114",
+          "entry_name": "trimethylamine dehydrogenase",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase; Fe-S plus flavin population group I"
+        },
+        {
+          "entry_id": "m_csa:142",
+          "entry_name": "ferredoxin-NADP+ reductase (adrenodoxin-type)",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase; Fe-S plus flavin population group I"
+        },
+        {
+          "entry_id": "m_csa:294",
+          "entry_name": "succinate dehydrogenase (ubiquinone)",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase; Fe-S plus flavin population group I"
+        },
+        {
+          "entry_id": "m_csa:800",
+          "entry_name": "dihydropyrimidine dehydrogenase (NADP+)",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase; Fe-S plus flavin population group I"
+        }
+      ],
+      "why_it_is_not_fmo": "Fe-S plus flavin relay rows use Fe-S clusters for electron transfer or coupled substrate reduction chemistry. HCAR keeps FAD at the catalytic substrate-reduction locus with two 4Fe-4S clusters relaying electrons from ferredoxin; it is not flavin peroxy oxygen insertion.",
+      "shared_features_with_fmo": [
+        "FAD/FMN cofactor",
+        "NADPH or ferredoxin-linked reducing equivalents",
+        "Fe-S electron transfer",
+        "substrate redox chemistry"
+      ],
+      "disambiguating_evidence": [
+        "The Fe-S population review found 9 Fe-S plus flavin rows in the old v1 flavin bucket and separated clean hydride-transfer, electron-transfer-coupled, covalent-adduct, and radical classes.",
+        "m_csa:990 is explicitly kept as v1 flavin_dehydrogenase_reductase with cofactor_complexity=fe_s_plus_flavin and mechanism_class=coupled_dehydration_and_reduction.",
+        "Packet 3 blocks the mixed hydride-transfer child until cofactor-complexity and mechanism-class axes are carried in diagnostics."
+      ],
+      "expected_policy_behavior": "route_other_family",
+      "recommended_regression_gate": "For Fe-S plus flavin rows, require explicit flavin peroxy oxygenating chemistry before any FMO route. If Fe-S is an electron relay and the flavin role is substrate reduction or electron transfer, route to flavin_dehydrogenase_reductase with cofactor_complexity diagnostics."
+    },
+    {
+      "control_group_id": "flavodiiron_no_reductase_m_csa497",
+      "representative_entry_ids": [
+        "m_csa:497"
+      ],
+      "representative_entries": [
+        {
+          "entry_id": "m_csa:497",
+          "entry_name": "nitric-oxide reductase (FMN)",
+          "current_policy_state": "out_of_scope; expert_reviewed; future flavodiiron_nitric_oxide_reductase candidate"
+        }
+      ],
+      "why_it_is_not_fmo": "The catalytic locus is a non-heme Fe(II)Fe(II) carboxylate-bridged center that reduces nitric oxide. FMNH2 donates electrons to a di-iron nitrosyl complex, but flavin is not forming an oxygenating C4a-peroxy intermediate and is not the substrate oxygen-insertion locus.",
+      "shared_features_with_fmo": [
+        "FMN/FAD-family cofactor",
+        "reduced flavin electron donor",
+        "redox chemistry",
+        "nitrogen/oxygen small-molecule substrate context"
+      ],
+      "disambiguating_evidence": [
+        "The m_csa:497 label revision relabeled it from flavin_dehydrogenase_reductase to out_of_scope.",
+        "The decision basis names the mechanism locus as a non-heme Fe(II)Fe(II) carboxylate-bridged center.",
+        "Wave 1.1 excludes m_csa:497 from primary v1 flavin metrics and retains it only as OOS/boundary/future-acquisition signal."
+      ],
+      "expected_policy_behavior": "reject",
+      "recommended_regression_gate": "m_csa:497 must fail any FMO positive gate. A non-abstaining FMO call on this row is a hard regression; preferred behavior is reject as OOS until a dedicated flavodiiron NO reductase family exists."
+    },
+    {
+      "control_group_id": "radical_flavin_fe_s_dehydratase_m_csa750",
+      "representative_entry_ids": [
+        "m_csa:750"
+      ],
+      "representative_entries": [
+        {
+          "entry_id": "m_csa:750",
+          "entry_name": "4-hydroxybutanoyl-CoA dehydratase",
+          "current_policy_state": "out_of_scope; expert_reviewed; future radical_flavin_fe_s_dehydratase candidate"
+        }
+      ],
+      "why_it_is_not_fmo": "The mechanism is radical dehydration: FAD semiquinone radical anion abstracts a substrate C-H hydrogen, the substrate hydroxy group coordinates an Fe-S iron, and Fe-S participates in polarization/elimination. This is radical flavin/Fe-S chemistry, not flavin peroxy oxygen insertion.",
+      "shared_features_with_fmo": [
+        "FAD cofactor",
+        "reduced/semiquinone flavin states",
+        "Fe-S cluster",
+        "substrate redox and proton/electron transfers"
+      ],
+      "disambiguating_evidence": [
+        "The m_csa:750 label revision relabeled it from flavin_dehydrogenase_reductase to out_of_scope.",
+        "The decisive evidence lists FAD semiquinone C3 hydrogen abstraction, substrate hydroxy coordination to Fe-S iron, and Fe-S participation in elimination.",
+        "Wave 1.1 excludes m_csa:750 from primary v1 flavin metrics and from learned-representation canary use."
+      ],
+      "expected_policy_behavior": "reject",
+      "recommended_regression_gate": "m_csa:750 must fail any FMO positive gate. If FAD semiquinone plus Fe-S radical dehydration evidence is present, reject as OOS/future radical-flavin-Fe-S dehydratase rather than route to FMO or ordinary flavin reductase."
+    },
+    {
+      "control_group_id": "covalent_fad_adduct_aps_reductase_like",
+      "representative_entry_ids": [
+        "m_csa:123"
+      ],
+      "representative_entries": [
+        {
+          "entry_id": "m_csa:123",
+          "entry_name": "adenylyl-sulfate reductase",
+          "current_policy_state": "seed_fingerprint::flavin_dehydrogenase_reductase; boundary covalent FAD-substrate adduct"
+        }
+      ],
+      "why_it_is_not_fmo": "FAD is mechanistically central, but the defining chemistry is covalent FAD-substrate adduct formation and sulfur-oxygen bond cleavage/reduction, not O2 activation to a flavin peroxy intermediate followed by oxygen insertion into substrate.",
+      "shared_features_with_fmo": [
+        "FAD cofactor",
+        "sulfur/oxygen substrate context",
+        "redox chemistry",
+        "possible Fe-S/flavin context in broader APS reductase-like systems"
+      ],
+      "disambiguating_evidence": [
+        "The Fe-S/flavin population review keeps m_csa:123 as v1 flavin with boundary metadata.",
+        "The same review assigns mechanism_class=covalent_fad_substrate_adduct and defers the current hydride-transfer v2 sublabel.",
+        "Packet 3 demotes the broad flavin hydride child partly because covalent FAD-adduct chemistry would otherwise be conflated with ordinary hydride transfer and FMO-like flavin chemistry."
+      ],
+      "expected_policy_behavior": "route_other_family",
+      "recommended_regression_gate": "m_csa:123 and APS-reductase-like covalent FAD-adduct rows must not route to FMO. Route to flavin_dehydrogenase_reductase with boundary metadata or abstain in child-label settings unless a dedicated covalent-FAD-adduct stratum exists."
+    },
+    {
+      "control_group_id": "heme_oxygenases_p450_peroxidases_not_fmo",
+      "representative_entry_ids": [
+        "m_csa:133",
+        "m_csa:699",
+        "m_csa:795",
+        "m_csa:601"
+      ],
+      "representative_entries": [
+        {
+          "entry_id": "m_csa:133",
+          "entry_name": "camphor 5-monooxygenase",
+          "current_policy_state": "seed_fingerprint::heme_peroxidase_oxidase"
+        },
+        {
+          "entry_id": "m_csa:699",
+          "entry_name": "cytochrome P450 (BM-3)",
+          "current_policy_state": "seed_fingerprint::heme_peroxidase_oxidase"
+        },
+        {
+          "entry_id": "m_csa:795",
+          "entry_name": "heme oxygenase (biliverdin-producing)",
+          "current_policy_state": "seed_fingerprint::heme_peroxidase_oxidase"
+        },
+        {
+          "entry_id": "m_csa:601",
+          "entry_name": "myeloperoxidase",
+          "current_policy_state": "out_of_scope"
+        }
+      ],
+      "why_it_is_not_fmo": "These rows use heme iron or heme-derived oxidizing intermediates, not flavin C4a-peroxy chemistry. Oxygenase or monooxygenase naming is insufficient when the oxygen activation locus is heme.",
+      "shared_features_with_fmo": [
+        "O2 or peroxide chemistry",
+        "substrate oxygenation or oxidation",
+        "NADPH-linked electron supply in some systems",
+        "oxygenase names"
+      ],
+      "disambiguating_evidence": [
+        "m_csa:133, m_csa:699, and m_csa:795 are current heme_peroxidase_oxidase seed rows, not flavin_monooxygenase.",
+        "m_csa:601 is current out_of_scope and was retained outside current seed fingerprints.",
+        "The FMO acquisition closure screened out m_csa:133 as P450 heme monooxygenase, not flavin monooxygenase."
+      ],
+      "expected_policy_behavior": "route_other_family",
+      "recommended_regression_gate": "Heme ligation, P450/peroxidase/heme oxygenase mechanism evidence, or compound-I-like oxygen activation must route away from FMO even when the row is an oxygenase or monooxygenase."
+    },
+    {
+      "control_group_id": "nonflavin_oxygenases_luciferases_metal_pterin_copper_not_fmo",
+      "representative_entry_ids": [
+        "m_csa:128",
+        "m_csa:129",
+        "m_csa:130",
+        "m_csa:134",
+        "m_csa:135",
+        "m_csa:600",
+        "m_csa:768"
+      ],
+      "representative_entries": [
+        {
+          "entry_id": "m_csa:128",
+          "entry_name": "Photinus-luciferin 4-monooxygenase (ATP-hydrolysing)",
+          "current_policy_state": "out_of_scope"
+        },
+        {
+          "entry_id": "m_csa:129",
+          "entry_name": "taurine dioxygenase",
+          "current_policy_state": "out_of_scope"
+        },
+        {
+          "entry_id": "m_csa:130",
+          "entry_name": "naphthalene 1,2-dioxygenase",
+          "current_policy_state": "out_of_scope"
+        },
+        {
+          "entry_id": "m_csa:134",
+          "entry_name": "tyrosine 3-monooxygenase",
+          "current_policy_state": "out_of_scope"
+        },
+        {
+          "entry_id": "m_csa:135",
+          "entry_name": "peptidylglycine monooxygenase",
+          "current_policy_state": "out_of_scope"
+        },
+        {
+          "entry_id": "m_csa:600",
+          "entry_name": "methane monooxygenase (soluble)",
+          "current_policy_state": "screened_out_local_monooxygenase_row; no current 702-label row"
+        },
+        {
+          "entry_id": "m_csa:768",
+          "entry_name": "Renilla-luciferin 2-monooxygenase",
+          "current_policy_state": "screened_out_local_monooxygenase_row; no current 702-label row"
+        }
+      ],
+      "why_it_is_not_fmo": "These controls are oxygenases or luciferase-like oxygen-consuming enzymes whose oxygen activation depends on ATP/luciferyl-adenylate, non-flavin metal centers, pterin/non-heme iron, copper, or other non-flavin chemistry rather than flavin C4a-peroxy oxygenation.",
+      "shared_features_with_fmo": [
+        "O2 use",
+        "monooxygenase or dioxygenase naming",
+        "substrate oxygenation",
+        "small-molecule redox chemistry"
+      ],
+      "disambiguating_evidence": [
+        "The acquisition closure screened out m_csa:128, m_csa:134, m_csa:135, m_csa:600, and m_csa:768 as not clean flavin C4a-peroxy FMO rows.",
+        "m_csa:129 and m_csa:130 are current out_of_scope oxygenase rows in the 702-label registry.",
+        "The required FMO discriminator is flavin-dependent peroxy oxygenation; oxygenase naming and O2 consumption alone are insufficient."
+      ],
+      "expected_policy_behavior": "reject",
+      "recommended_regression_gate": "Non-flavin oxygenases, dioxygenases, luciferase oxygenations, pterin/non-heme iron hydroxylases, copper monooxygenases, and soluble methane monooxygenase-like metal systems must reject as FMO unless flavin C4a-peroxy evidence is directly present."
+    }
+  ],
+  "recommended_global_regression_gates": [
+    "Do not treat FAD/FMN, NAD(P)H, O2, Fe-S, or oxygenase naming as sufficient for FMO.",
+    "Require explicit flavin-dependent O2 activation to a C4a-(hydro)peroxyflavin or equivalent flavin peroxy oxygenating intermediate plus substrate oxygen insertion for FMO.",
+    "Route ordinary flavin hydride-transfer, flavin oxidase, and Fe-S relay rows to flavin_dehydrogenase_reductase, carrying cofactor_complexity and mechanism_class diagnostics where available.",
+    "Reject current OOS relabel controls m_csa:497 and m_csa:750 for FMO; do not count them in primary flavin metrics.",
+    "Keep covalent FAD-adduct chemistry out of FMO and out of the blocked hydride-transfer child metric until a dedicated stratum is acquired.",
+    "Route heme oxygenases/P450/peroxidases to heme_peroxidase_oxidase when that family is available; reject non-flavin oxygenases that have no current target family.",
+    "Preserve m_csa:551 and m_csa:973 as clean secondary/future FMO acquisition candidates, not hard-negative controls, until n>=6 and hard-negative separation are met."
+  ],
+  "non_claims": [
+    "This artifact imports no labels and edits no registries.",
+    "This artifact creates no thresholds, countable metrics, model outputs, model training jobs, or production scoring changes.",
+    "Control groups are review-only regression signals and should not be used as automatic label edits.",
+    "FMO primary promotion remains blocked by the existing acquisition closure until enough clean rows and hard-negative separation evidence exist."
+  ]
+}
