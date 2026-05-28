@@ -486,14 +486,196 @@
       "substrate_oxygenation_evidence": "Protocatechuate 3,4-dioxygenase cleaves/oxygenates the catechol ring.",
       "why_not_dehydrogenase_reductase": "No flavin hydride/electron-transfer cofactor is present.",
       "why_not_generic_oos": "Dioxygenase boundary negative, useful despite absent current label."
+    },
+    {
+      "entry_id": "uniprot:P12015",
+      "enzyme_name": "cyclohexanone monooxygenase",
+      "ec": [
+        "1.14.13.22"
+      ],
+      "source_artifact": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "current_label_status": "not_present_in_current702_registry; source_only_external_candidate; no canonical label",
+      "fmo_candidate_type": "source_only_BVMO_cyclohexanone_monooxygenase",
+      "flavin_cofactor_evidence": "UniProt records NADPH and FAD; BVMO sources describe NADPH reduction of bound flavin before oxygen activation.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "UniProt/Rhea records lactone-forming oxygen insertion from O2. Primary CHMO/BVMO studies report reaction of C4a-peroxyflavin with cyclohexanone and a substrate-bound conformation poised over the flavin-peroxide adduct.",
+      "substrate_oxygenation_evidence": "CHMO is a FAD/NADPH Baeyer-Villiger monooxygenase that converts cyclohexanone to epsilon-caprolactone with O2 and NADPH; BVMO mechanism sources support a C4a-peroxyflavin/Criegee oxygen-transfer cycle.",
+      "why_not_dehydrogenase_reductase": "The product is a lactone from Baeyer-Villiger oxygen insertion, not an alcohol/ketone redox pair or carrier-reducing dehydrogenase product.",
+      "why_not_generic_oos": "Source-reviewed enzyme/reaction packet with explicit EC, cofactor, O2, and product context; not used as a predictive feature and not countable until local source-free gates pass.",
+      "known_confounds": "Source-only candidate from local evidence scout; source_review_confidence=high. Remaining blockers: No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import.",
+      "candidate_disposition": "needs_structure_check",
+      "next_action": "Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count."
+    },
+    {
+      "entry_id": "uniprot:Q93TJ5",
+      "enzyme_name": "4-hydroxyacetophenone monooxygenase",
+      "ec": [
+        "1.14.13.84"
+      ],
+      "source_artifact": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "current_label_status": "not_present_in_current702_registry; source_only_external_candidate; no canonical label",
+      "fmo_candidate_type": "source_only_BVMO_HAPMO",
+      "flavin_cofactor_evidence": "UniProt Q93TJ5 records NADPH in the catalytic reaction and FAD cofactor; HAPMO studies describe NADPH-dependent catalysis and coenzyme binding during turnover.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "UniProt/Rhea records NADPH/O2-dependent ester formation. Primary HAPMO literature identifies the enzyme as a Baeyer-Villiger-type FAD monooxygenase and describes a peroxyflavin intermediate generated from reduced flavin and O2 for carbonyl oxygenation.",
+      "substrate_oxygenation_evidence": "HAPMO is a FAD-containing, NADPH-dependent Baeyer-Villiger monooxygenase that oxidizes 4-hydroxyacetophenone to an ester product through peroxyflavin attack on the carbonyl substrate.",
+      "why_not_dehydrogenase_reductase": "The hallmark product is an oxygen-inserted ester rather than a dehydrogenation product; the flavin is reduced to activate O2 for oxygen transfer.",
+      "why_not_generic_oos": "Source-reviewed enzyme/reaction packet with explicit EC, cofactor, O2, and product context; not used as a predictive feature and not countable until local source-free gates pass.",
+      "known_confounds": "Source-only candidate from local evidence scout; source_review_confidence=high. Remaining blockers: No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import.",
+      "candidate_disposition": "needs_structure_check",
+      "next_action": "Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count."
+    },
+    {
+      "entry_id": "uniprot:P23262",
+      "enzyme_name": "salicylate hydroxylase / salicylate 1-monooxygenase",
+      "ec": [
+        "1.14.13.1"
+      ],
+      "source_artifact": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "current_label_status": "not_present_in_current702_registry; source_only_external_candidate; no canonical label",
+      "fmo_candidate_type": "source_only_FAD_salicylate_hydroxylase",
+      "flavin_cofactor_evidence": "The reviewed Pseudomonas entry uses NADH rather than NADPH; reductive activation of FAD is still nicotinamide-dependent and precedes oxygen activation.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "UniProt/Rhea records salicylate plus NADH/O2 conversion to catechol and CO2 with FAD cofactor. A recent mechanistic study explicitly assigns salicylate oxidative decarboxylation to a C4a-hydroperoxyflavin intermediate.",
+      "substrate_oxygenation_evidence": "NahG uses FAD and NADH to activate O2 and carries out oxidative decarboxylation of salicylate to catechol via a C4a-hydroperoxyflavin intermediate.",
+      "why_not_dehydrogenase_reductase": "The substrate is oxygenated and decarboxylated to catechol; O2 is the oxygen source and the reduced flavin is an oxygenating species rather than just an electron sink.",
+      "why_not_generic_oos": "Source-reviewed enzyme/reaction packet with explicit EC, cofactor, O2, and product context; not used as a predictive feature and not countable until local source-free gates pass.",
+      "known_confounds": "Source-only candidate from local evidence scout; source_review_confidence=high. Remaining blockers: No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import.",
+      "candidate_disposition": "needs_structure_check",
+      "next_action": "Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count."
+    },
+    {
+      "entry_id": "uniprot:P11295",
+      "enzyme_name": "L-lysine N6-monooxygenase / IucD",
+      "ec": [
+        "1.14.13.59"
+      ],
+      "source_artifact": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "current_label_status": "not_present_in_current702_registry; source_only_external_candidate; no canonical label",
+      "fmo_candidate_type": "source_only_FAD_lysine_N6_hydroxylase_IucD",
+      "flavin_cofactor_evidence": "UniProt records an NADPH-consuming reaction; PubMed 10839627 reports recombinant IucD requires FAD and NADPH for catalytic monooxygenase function.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "UniProt/Rhea records direct N-hydroxylation with O2 and FAD cofactor. The primary IucD stability/ligand source supports FAD and NADPH as required for monooxygenase function, but this scout did not find a candidate-specific local C4a-intermediate description.",
+      "substrate_oxygenation_evidence": "IucD-class enzymes hydroxylate the N6 amino group of L-lysine using FAD, O2, and NADPH to produce N6-hydroxy-L-lysine in siderophore biosynthesis.",
+      "why_not_dehydrogenase_reductase": "The sourced product is an N-hydroxylated lysine, not substrate dehydrogenation or carrier reduction.",
+      "why_not_generic_oos": "Source-reviewed enzyme/reaction packet with explicit EC, cofactor, O2, and product context; not used as a predictive feature and not countable until local source-free gates pass.",
+      "known_confounds": "Source-only candidate from local evidence scout; source_review_confidence=medium. Remaining blockers: Add a candidate-specific C4a-hydroperoxyflavin mechanistic source if the review packet requires explicit intermediate evidence.",
+      "candidate_disposition": "needs_structure_check",
+      "next_action": "Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count."
+    },
+    {
+      "entry_id": "uniprot:Q01740",
+      "enzyme_name": "flavin-containing monooxygenase 1 / dimethylaniline monooxygenase",
+      "ec": [
+        "1.14.13.148",
+        "1.14.13.8"
+      ],
+      "source_artifact": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "current_label_status": "not_present_in_current702_registry; source_only_external_candidate; no canonical label",
+      "fmo_candidate_type": "source_only_class_B_FMO_dimethylaniline",
+      "flavin_cofactor_evidence": "UniProt Q01740 records NADPH in the catalytic reaction and FAD as cofactor; FMO literature describes NADPH-reduced flavin reacting with O2.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "UniProt/Rhea records N,N-dimethylaniline N-oxide and trimethylamine N-oxide reactions with NADPH and O2. Classic FMO oxidative-half-reaction work and later structural FMO work support formation of a C4a-hydroperoxyflavin intermediate.",
+      "substrate_oxygenation_evidence": "Human FMO1 is a class B FAD/NADPH monooxygenase that oxidizes soft nucleophiles such as trimethylamine and N,N-dimethylaniline through a reduced-FAD/O2 C4a-hydroperoxyflavin oxygenating species.",
+      "why_not_dehydrogenase_reductase": "The chemistry is substrate oxygenation/N-oxidation, not substrate dehydrogenation; NADPH is a reductant used to activate oxygen at FAD.",
+      "why_not_generic_oos": "Source-reviewed enzyme/reaction packet with explicit EC, cofactor, O2, and product context; not used as a predictive feature and not countable until local source-free gates pass.",
+      "known_confounds": "Source-only candidate from local evidence scout; source_review_confidence=high. Remaining blockers: No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import.",
+      "candidate_disposition": "needs_structure_check",
+      "next_action": "Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count."
+    },
+    {
+      "entry_id": "uniprot:P06617",
+      "enzyme_name": "tryptophan 2-monooxygenase",
+      "ec": [
+        "1.13.12.3"
+      ],
+      "source_artifact": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "current_label_status": "not_present_in_current702_registry; source_only_boundary_candidate; no canonical label",
+      "fmo_candidate_type": "tryptophan_2_monooxygenase_boundary_source_only",
+      "flavin_cofactor_evidence": "None in the reviewed entry; the reaction consumes substrate and O2 without NADPH or NADH as co-substrate.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "UniProt records FMN and an O2-dependent monooxygenase reaction, but this scout did not find explicit source evidence for a C4a-peroxyflavin oxygen-transfer mechanism or NAD(P)H-primed reduced-flavin cycle.",
+      "substrate_oxygenation_evidence": "The enzyme converts L-tryptophan and O2 to indole-3-acetamide, CO2, and water with bound FMN; reviewed annotation also links it to L-amino-acid oxidase activity.",
+      "why_not_dehydrogenase_reductase": "It is not a plain carrier-reducing dehydrogenase because O2 and decarboxylation are part of the annotated reaction.",
+      "why_not_generic_oos": "Preserved as a specific oxygenase-boundary row rather than generic OOS; current source packet lacks the reductive/C4a evidence needed for clean FMO support.",
+      "known_confounds": "Source-only candidate from local evidence scout; source_review_confidence=medium. Remaining blockers: Needs candidate-specific C4a-peroxyflavin or oxygen-transfer mechanism evidence before it could support the FMO label lane.",
+      "candidate_disposition": "blocked_wrong_chemistry",
+      "next_action": "Keep as boundary negative unless a future source packet finds explicit C4a-peroxyflavin oxygen-transfer and reductive activation evidence."
+    },
+    {
+      "entry_id": "uniprot:O15229",
+      "enzyme_name": "kynurenine 3-monooxygenase",
+      "ec": [
+        "1.14.13.9"
+      ],
+      "source_artifact": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "current_label_status": "not_present_in_current702_registry; source_only_external_candidate; no canonical label",
+      "fmo_candidate_type": "source_only_FAD_kynurenine_3_monooxygenase",
+      "flavin_cofactor_evidence": "UniProt O15229 records NADPH in the reaction and FAD as cofactor with experimental references.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "UniProt/Rhea records a monooxygenase hydroxylation reaction with FAD, NADPH, and O2. The local prior external packet already flags source EC/flavin/PDB context, but not enough process evidence for import.",
+      "substrate_oxygenation_evidence": "KMO is an FAD-dependent NADPH/O2 monooxygenase that hydroxylates L-kynurenine to 3-hydroxy-L-kynurenine.",
+      "why_not_dehydrogenase_reductase": "The annotated product is hydroxylated kynurenine and the co-substrate is O2, not a simple electron-acceptor reduction.",
+      "why_not_generic_oos": "Source-reviewed enzyme/reaction packet with explicit EC, cofactor, O2, and product context; not used as a predictive feature and not countable until local source-free gates pass.",
+      "known_confounds": "Source-only candidate from local evidence scout; source_review_confidence=high. Remaining blockers: Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete.",
+      "candidate_disposition": "needs_structure_check",
+      "next_action": "Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count."
+    },
+    {
+      "entry_id": "uniprot:P25535",
+      "enzyme_name": "2-octaprenylphenol hydroxylase / UbiI",
+      "ec": [
+        "1.14.13.240"
+      ],
+      "source_artifact": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "current_label_status": "not_present_in_current702_registry; source_only_external_candidate; no canonical label",
+      "fmo_candidate_type": "source_only_FAD_aromatic_hydroxylase_UbiI",
+      "flavin_cofactor_evidence": "UniProt P25535 records NADPH in both octaprenylphenol/polyprenylphenol hydroxylation reactions.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "UniProt/Rhea records aromatic hydroxylation with NADPH and O2, and the reviewed entry records FAD cofactor support.",
+      "substrate_oxygenation_evidence": "UbiI is a FAD-dependent NADPH/O2 hydroxylase that converts polyprenylphenol to a catechol-like ubiquinone-pathway intermediate.",
+      "why_not_dehydrogenase_reductase": "The sourced chemistry is aromatic hydroxylation using O2, not only substrate oxidation to reduce flavin.",
+      "why_not_generic_oos": "Source-reviewed enzyme/reaction packet with explicit EC, cofactor, O2, and product context; not used as a predictive feature and not countable until local source-free gates pass.",
+      "known_confounds": "Source-only candidate from local evidence scout; source_review_confidence=medium. Remaining blockers: Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete.; Add explicit C4a-peroxyflavin mechanism source if the review packet requires intermediate-level evidence.",
+      "candidate_disposition": "needs_structure_check",
+      "next_action": "Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count."
+    },
+    {
+      "entry_id": "uniprot:H3JQW0",
+      "enzyme_name": "2-oxo-Delta(3)-4,5,5-trimethylcyclopentenylacetyl-CoA monooxygenase / OTEMO",
+      "ec": [
+        "1.14.13.160"
+      ],
+      "source_artifact": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "current_label_status": "not_present_in_current702_registry; source_only_external_candidate; no canonical label",
+      "fmo_candidate_type": "source_only_BVMO_OTEMO",
+      "flavin_cofactor_evidence": "UniProt H3JQW0 records NADPH in the reaction and FAD cofactor with experimental support.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "UniProt/Rhea records an NADPH/O2 monooxygenase reaction, FAD cofactor, and PDB structures. The OTEMO/BVMO structural paper discusses conservation of residues implicated in stabilizing flavin-peroxide or Criegee intermediates.",
+      "substrate_oxygenation_evidence": "OTEMO is a camphor-pathway FAD/NADPH Baeyer-Villiger monooxygenase that oxygen-inserts into an oxocyclopentenylacetyl-CoA substrate to form a lactone-like product.",
+      "why_not_dehydrogenase_reductase": "The product is formed by Baeyer-Villiger oxygen insertion rather than dehydrogenation; FAD is used to activate oxygen.",
+      "why_not_generic_oos": "Source-reviewed enzyme/reaction packet with explicit EC, cofactor, O2, and product context; not used as a predictive feature and not countable until local source-free gates pass.",
+      "known_confounds": "Source-only candidate from local evidence scout; source_review_confidence=high. Remaining blockers: Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete.",
+      "candidate_disposition": "needs_structure_check",
+      "next_action": "Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count."
+    },
+    {
+      "entry_id": "uniprot:Q6F4M8",
+      "enzyme_name": "4-nitrophenol 4-monooxygenase / 4-nitrocatechol 2-monooxygenase oxygenase component",
+      "ec": [
+        "1.14.13.166",
+        "1.14.13.29"
+      ],
+      "source_artifact": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "current_label_status": "not_present_in_current702_registry; source_only_external_candidate; no canonical label",
+      "fmo_candidate_type": "source_only_FAD_nitrophenol_monooxygenase",
+      "flavin_cofactor_evidence": "The reviewed entry records NADH for 4-nitrophenol hydroxylation and NADPH or NADH for 4-nitrocatechol monooxygenase activity.",
+      "oxygen_activation_or_c4a_intermediate_evidence": "UniProt/Rhea records O2-dependent hydroxylation/denitration reactions with FAD cofactor. The local prior external packet flags source EC/flavin/PDB context but does not itself supply a source-free import decision.",
+      "substrate_oxygenation_evidence": "This FAD enzyme hydroxylates 4-nitrophenol and oxidatively denitrates 4-nitrocatechol with O2 and NADH or NADPH depending on the reaction.",
+      "why_not_dehydrogenase_reductase": "The sourced reactions are oxygenase reactions with O2 and hydroxylated/oxidatively denitrated products, not simple carrier-reducing dehydrogenase reactions.",
+      "why_not_generic_oos": "Source-reviewed enzyme/reaction packet with explicit EC, cofactor, O2, and product context; not used as a predictive feature and not countable until local source-free gates pass.",
+      "known_confounds": "Source-only candidate from local evidence scout; source_review_confidence=medium. Remaining blockers: Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete.; Add explicit C4a-peroxyflavin mechanism source if the review packet requires intermediate-level evidence.",
+      "candidate_disposition": "needs_structure_check",
+      "next_action": "Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count."
     }
   ],
-  "created_utc": "2026-05-28T01:44:34.739414Z",
+  "created_utc": "2026-05-28T02:43:21Z",
   "disposition_counts": {
-    "blocked_wrong_chemistry": 2,
+    "blocked_wrong_chemistry": 3,
     "clean_candidate": 2,
     "hard_negative_control": 22,
-    "needs_structure_check": 1
+    "needs_structure_check": 10
   },
   "guardrails": [
     "No label imports performed.",
@@ -503,77 +685,100 @@
   ],
   "named_target_family_search": [
     {
+      "target_family": "cyclohexanone_monooxygenase_or_classic_BVMO",
+      "local_hits": [],
+      "source_only_hits": [
+        "uniprot:P12015",
+        "uniprot:H3JQW0"
+      ],
       "confounds_seen": [
         "m_csa:132 baseline has Baeyer-Villiger-like FMN-peroxo language but is already current FMO support and is not cyclohexanone/BVMO"
       ],
-      "decision": "blocked_needs_source",
-      "local_hits": [],
-      "next_action": "Source a reviewed/PDB-backed BVMO row outside current local M-CSA if available, then run source-free geometry and duplicate/leakage checks.",
-      "target_family": "cyclohexanone_monooxygenase_or_classic_BVMO"
+      "decision": "source_only_needs_structure_check",
+      "next_action": "Run source-free geometry, duplicate/leakage, hard-negative, and terminal review for CHMO/OTEMO before any import or support count."
     },
     {
-      "confounds_seen": [],
-      "decision": "blocked_needs_source",
+      "target_family": "4_hydroxyacetophenone_monooxygenase_HAPMO",
       "local_hits": [],
-      "next_action": "Source HAPMO externally/local if a reviewed structure-backed row exists; no current local M-CSA hit.",
-      "target_family": "4_hydroxyacetophenone_monooxygenase_HAPMO"
-    },
-    {
-      "confounds_seen": [
-        "m_csa:781 is lysine N6-alanyltransferase, not N6-hydroxylase"
+      "source_only_hits": [
+        "uniprot:Q93TJ5"
       ],
-      "decision": "blocked_wrong_chemistry",
+      "confounds_seen": [],
+      "decision": "source_only_needs_structure_check",
+      "next_action": "Run source-free structure/geometry and duplicate/leakage gates for HAPMO before any import or support count."
+    },
+    {
+      "target_family": "IucD_class_lysine_N6_hydroxylase",
       "local_hits": [
         "m_csa:781"
       ],
-      "next_action": "Do not count local lysine N6 string hit; source true FAD-dependent N-hydroxylase/IucD row.",
-      "target_family": "IucD_class_lysine_N6_hydroxylase"
+      "source_only_hits": [
+        "uniprot:P11295"
+      ],
+      "confounds_seen": [
+        "m_csa:781 is lysine N6-alanyltransferase, not N6-hydroxylase"
+      ],
+      "decision": "local_false_positive_source_only_needs_structure_check",
+      "next_action": "Do not count the local lysine N6 string hit; use IucD only after candidate-specific source and source-free gates are complete."
     },
     {
-      "confounds_seen": [
-        "m_csa:977 is FADH2/O2 tryptophan 7-halogenase producing chlorotryptophan, not substrate oxygenation"
-      ],
-      "decision": "blocked_wrong_chemistry",
+      "target_family": "tryptophan_monooxygenase",
       "local_hits": [
         "m_csa:977"
       ],
-      "next_action": "Preserve halogenase as negative; source true tryptophan monooxygenase separately.",
-      "target_family": "tryptophan_monooxygenase"
-    },
-    {
-      "confounds_seen": [],
-      "decision": "blocked_needs_source",
-      "local_hits": [],
-      "next_action": "Source salicylate hydroxylase if a clean flavin C4a-peroxy reviewed row is available.",
-      "target_family": "salicylate_1_monooxygenase_or_aromatic_hydroxylase"
-    },
-    {
-      "confounds_seen": [],
-      "decision": "blocked_needs_source",
-      "local_hits": [],
-      "next_action": "Source mammalian FMO/dimethylaniline monooxygenase rows with explicit FAD/NADPH oxygenation and structure support.",
-      "target_family": "FMO1_FMO3_FMO5_or_dimethylaniline_monooxygenase"
-    },
-    {
-      "confounds_seen": [
-        "Both are currently labeled flavin_dehydrogenase_reductase and must remain review-only until expert gate"
+      "source_only_hits": [
+        "uniprot:P06617"
       ],
-      "decision": "clean_candidates_found",
+      "confounds_seen": [
+        "m_csa:977 is FADH2/O2 tryptophan 7-halogenase; uniprot:P06617 lacks NAD(P)H/C4a oxygen-transfer evidence in the local source scout"
+      ],
+      "decision": "blocked_wrong_chemistry",
+      "next_action": "Preserve both as boundary negatives unless explicit C4a-peroxyflavin oxygen-transfer evidence is sourced later."
+    },
+    {
+      "target_family": "salicylate_1_monooxygenase_or_aromatic_hydroxylase",
+      "local_hits": [],
+      "source_only_hits": [
+        "uniprot:P23262",
+        "uniprot:O15229",
+        "uniprot:P25535",
+        "uniprot:Q6F4M8"
+      ],
+      "confounds_seen": [],
+      "decision": "source_only_needs_structure_check",
+      "next_action": "Run source-free structure/geometry and hard-negative gates before counting salicylate/KMO/UbiI/nitrophenol lanes."
+    },
+    {
+      "target_family": "FMO1_FMO3_FMO5_or_dimethylaniline_monooxygenase",
+      "local_hits": [],
+      "source_only_hits": [
+        "uniprot:Q01740"
+      ],
+      "confounds_seen": [],
+      "decision": "source_only_needs_structure_check",
+      "next_action": "Run source-free structure/geometry and leakage checks for FMO1/dimethylaniline before any registry action."
+    },
+    {
+      "target_family": "local_non_target_clean_FMO",
       "local_hits": [
         "m_csa:551",
         "m_csa:973"
       ],
-      "next_action": "Expert-review both as future FMO support and pair with hard negatives before promotion reconsideration.",
-      "target_family": "local_non_target_clean_FMO"
+      "source_only_hits": [],
+      "confounds_seen": [
+        "Both are currently labeled flavin_dehydrogenase_reductase and must remain review-only until expert gate"
+      ],
+      "decision": "clean_candidates_found",
+      "next_action": "Expert-review both as future FMO support and pair with hard negatives before promotion reconsideration."
     }
   ],
   "next_actions": [
-    "Expert-review m_csa:551 and m_csa:973 for future FMO support without automatic relabeling.",
-    "Source at least two more clean, reviewed, structure-backed flavin C4a-peroxy monooxygenase rows, preferably BVMO/HAPMO/IucD/salicylate/FMO-family rows.",
-    "Use m_csa:141, m_csa:977, dual-flavin heme systems, and nonflavin oxygenases as hard-negative separation checks before promotion reconsideration."
+    "Expert-review m_csa:551 and m_csa:973 for future local FMO support without automatic relabeling.",
+    "Promote the source-only CHMO/HAPMO/salicylate/IucD/FMO/KMO/UbiI/OTEMO/NPCA lanes into source-free structure, duplicate/leakage, terminal-review, and import-gate checks; they are not countable now.",
+    "Keep m_csa:141, m_csa:977, uniprot:P06617, dual-flavin heme systems, and nonflavin oxygenases as hard-negative/boundary separation checks before promotion reconsideration."
   ],
   "review_only": true,
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "scope": {
     "automation": "FMO M-CSA Candidate Scout",
     "baseline_current_fmo_count": 2,
@@ -584,7 +789,9 @@
     "current_label_count": 702,
     "goal_support_before_primary_promotion_reconsideration": 6,
     "local_m_csa_entry_count": 1003,
-    "source_review_policy": "Source/mechanism review is used only for evidence/adjudication and must not become a predictive feature."
+    "source_review_policy": "Source/mechanism review is used only for evidence/adjudication and must not become a predictive feature.",
+    "source_only_external_candidate_count": 10,
+    "source_only_external_candidates_are_countable_now": false
   },
   "search_method": {
     "local_keyword_hit_counts": {
@@ -599,7 +806,8 @@
     "local_sources": [
       "artifacts/v1_graph_1025.json",
       "data/registries/curated_mechanism_labels.json",
-      "specified FMO closure/packet artifacts"
+      "specified FMO closure/packet artifacts",
+      "artifacts/v3_fmo_source_evidence_scout_702_20260527.json for source-only named-family lanes"
     ],
     "text_terms_checked": [
       "monooxygenase",
@@ -621,7 +829,31 @@
       "hydroperoxyflavin",
       "peroxyflavin",
       "peroxo"
-    ]
+    ],
+    "source_only_external_hits_from_local_artifact": {
+      "Baeyer_Villiger_or_CHMO": [
+        "uniprot:P12015",
+        "uniprot:H3JQW0"
+      ],
+      "HAPMO_4_hydroxyacetophenone_monooxygenase": [
+        "uniprot:Q93TJ5"
+      ],
+      "salicylate_or_aromatic_hydroxylase": [
+        "uniprot:P23262",
+        "uniprot:O15229",
+        "uniprot:P25535",
+        "uniprot:Q6F4M8"
+      ],
+      "IucD_lysine_N6_hydroxylase": [
+        "uniprot:P11295"
+      ],
+      "FMO_or_dimethylaniline_monooxygenase": [
+        "uniprot:Q01740"
+      ],
+      "tryptophan_2_monooxygenase_boundary": [
+        "uniprot:P06617"
+      ]
+    }
   },
   "source_artifacts": {
     "artifacts/mcsa_sample.json": {
@@ -650,9 +882,12 @@
     },
     "data/registries/curated_mechanism_labels.json": {
       "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "artifacts/v3_fmo_source_evidence_scout_702_20260527.json": {
+      "sha256": "7065d5fd005dde1002e8a011f6278d9f36383a185a91f6564fc04e70e569c0a7"
     }
   },
-  "status": "completed_no_registry_edits",
+  "status": "completed_source_only_lanes_added_no_registry_edits",
   "summary": {
     "clean_candidate_count_this_scout": 2,
     "clean_candidates_beyond_current_131_132": [
@@ -662,8 +897,22 @@
     "clean_support_if_551_973_are_expert_accepted_with_131_132": 4,
     "named_target_family_clean_local_hits": [],
     "new_clean_candidates_beyond_prior_fmo_closure": [],
+    "source_only_external_candidates_that_could_fill_remaining_n6_gap_after_gates": [
+      "uniprot:P12015",
+      "uniprot:Q93TJ5",
+      "uniprot:P23262",
+      "uniprot:P11295",
+      "uniprot:Q01740",
+      "uniprot:O15229",
+      "uniprot:P25535",
+      "uniprot:H3JQW0",
+      "uniprot:Q6F4M8"
+    ],
+    "source_only_external_boundary_or_rejected": [
+      "uniprot:P06617"
+    ],
     "primary_promotion_ready_now": false,
-    "reason": "Local M-CSA/current702 evidence supports m_csa:551 and m_csa:973 as clean FMO candidates, but no additional named-family clean rows were found; support remains below n>=6 and hard-negative separation is still pending.",
+    "reason": "Local M-CSA/current702 evidence still supports only m_csa:551 and m_csa:973 as additional clean local candidates. Source-only named-family lanes are now explicit but remain non-countable until structure, duplicate/leakage, terminal review, and import gates pass.",
     "remaining_clean_rows_needed_to_n6_after_551_973": 2
   }
 }

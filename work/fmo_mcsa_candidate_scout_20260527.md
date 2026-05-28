@@ -1,24 +1,27 @@
 # FMO M-CSA Candidate Scout 20260527
 
-Review-only scout over local M-CSA/current702 artifacts. No label imports, registry edits, ontology edits, threshold changes, or model training were performed.
+Run time: 2026-05-28T02:43:21Z
+
+Review-only scout over local M-CSA/current702 artifacts, with source-only named-family lanes folded in from the local source evidence scout. No label imports, registry edits, ontology edits, threshold changes, or model training were performed.
 
 ## Bottom line
 
 - Clean local FMO candidates beyond current `m_csa:131`/`m_csa:132`: `m_csa:551` phenol 2-monooxygenase and `m_csa:973` DszC protein.
-- No additional clean named-target-family rows were found beyond the prior FMO closure.
+- No additional clean local M-CSA/current702 rows were found beyond the prior FMO closure.
+- Source-only lanes that could fill the remaining n>=6 gap after gates: `uniprot:P12015`, `uniprot:Q93TJ5`, `uniprot:P23262`, `uniprot:P11295`, `uniprot:Q01740`, `uniprot:O15229`, `uniprot:P25535`, `uniprot:H3JQW0`, and `uniprot:Q6F4M8`.
 - If `m_csa:551` and `m_csa:973` are expert-accepted later, local clean support rises from 2 to 4; two more clean rows are still needed before n>=6 promotion reconsideration.
 
 ## Named Target Search
 
-| Target | Local hits | Decision | Next action |
-| --- | --- | --- | --- |
-| cyclohexanone_monooxygenase_or_classic_BVMO | none | blocked_needs_source | Source a reviewed/PDB-backed BVMO row outside current local M-CSA if available, then run source-free geometry and duplicate/leakage checks. |
-| 4_hydroxyacetophenone_monooxygenase_HAPMO | none | blocked_needs_source | Source HAPMO externally/local if a reviewed structure-backed row exists; no current local M-CSA hit. |
-| IucD_class_lysine_N6_hydroxylase | m_csa:781 | blocked_wrong_chemistry | Do not count local lysine N6 string hit; source true FAD-dependent N-hydroxylase/IucD row. |
-| tryptophan_monooxygenase | m_csa:977 | blocked_wrong_chemistry | Preserve halogenase as negative; source true tryptophan monooxygenase separately. |
-| salicylate_1_monooxygenase_or_aromatic_hydroxylase | none | blocked_needs_source | Source salicylate hydroxylase if a clean flavin C4a-peroxy reviewed row is available. |
-| FMO1_FMO3_FMO5_or_dimethylaniline_monooxygenase | none | blocked_needs_source | Source mammalian FMO/dimethylaniline monooxygenase rows with explicit FAD/NADPH oxygenation and structure support. |
-| local_non_target_clean_FMO | m_csa:551, m_csa:973 | clean_candidates_found | Expert-review both as future FMO support and pair with hard negatives before promotion reconsideration. |
+| Target | Local hits | Source-only hits | Decision | Next action |
+| --- | --- | --- | --- | --- |
+| cyclohexanone_monooxygenase_or_classic_BVMO | none | uniprot:P12015, uniprot:H3JQW0 | source_only_needs_structure_check | Run source-free geometry, duplicate/leakage, hard-negative, and terminal review for CHMO/OTEMO before any import or support count. |
+| 4_hydroxyacetophenone_monooxygenase_HAPMO | none | uniprot:Q93TJ5 | source_only_needs_structure_check | Run source-free structure/geometry and duplicate/leakage gates for HAPMO before any import or support count. |
+| IucD_class_lysine_N6_hydroxylase | m_csa:781 | uniprot:P11295 | local_false_positive_source_only_needs_structure_check | Do not count the local lysine N6 string hit; use IucD only after candidate-specific source and source-free gates are complete. |
+| tryptophan_monooxygenase | m_csa:977 | uniprot:P06617 | blocked_wrong_chemistry | Preserve both as boundary negatives unless explicit C4a-peroxyflavin oxygen-transfer evidence is sourced later. |
+| salicylate_1_monooxygenase_or_aromatic_hydroxylase | none | uniprot:P23262, uniprot:O15229, uniprot:P25535, uniprot:Q6F4M8 | source_only_needs_structure_check | Run source-free structure/geometry and hard-negative gates before counting salicylate/KMO/UbiI/nitrophenol lanes. |
+| FMO1_FMO3_FMO5_or_dimethylaniline_monooxygenase | none | uniprot:Q01740 | source_only_needs_structure_check | Run source-free structure/geometry and leakage checks for FMO1/dimethylaniline before any registry action. |
+| local_non_target_clean_FMO | m_csa:551, m_csa:973 | none | clean_candidates_found | Expert-review both as future FMO support and pair with hard negatives before promotion reconsideration. |
 
 ## Candidate Rows
 
@@ -51,8 +54,18 @@ Review-only scout over local M-CSA/current702 artifacts. No label imports, regis
 | `m_csa:743` | quercetin 2,3-dioxygenase | 1.13.11.24 | not_present_in_current702_registry | copper_dioxygenase_negative | hard_negative_control | Retain as copper dioxygenase negative. |
 | `m_csa:795` | heme oxygenase (biliverdin-producing) | 1.14.14.18 | current702:seed_fingerprint:heme_peroxidase_oxidase; confidence=high; review_status=automation_curated; tier=bronze | heme_oxygenase_negative | hard_negative_control | Retain as heme oxygenase negative. |
 | `m_csa:936` | protocatechuate 3,4-dioxygenase | 1.13.11.3 | not_present_in_current702_registry | intradiol_iron_dioxygenase_negative | hard_negative_control | Retain as iron dioxygenase negative. |
+| `uniprot:P12015` | cyclohexanone monooxygenase | 1.14.13.22 | not_present_in_current702_registry; source_only_external_candidate; no canonical label | source_only_BVMO_cyclohexanone_monooxygenase | needs_structure_check | Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count. |
+| `uniprot:Q93TJ5` | 4-hydroxyacetophenone monooxygenase | 1.14.13.84 | not_present_in_current702_registry; source_only_external_candidate; no canonical label | source_only_BVMO_HAPMO | needs_structure_check | Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count. |
+| `uniprot:P23262` | salicylate hydroxylase / salicylate 1-monooxygenase | 1.14.13.1 | not_present_in_current702_registry; source_only_external_candidate; no canonical label | source_only_FAD_salicylate_hydroxylase | needs_structure_check | Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count. |
+| `uniprot:P11295` | L-lysine N6-monooxygenase / IucD | 1.14.13.59 | not_present_in_current702_registry; source_only_external_candidate; no canonical label | source_only_FAD_lysine_N6_hydroxylase_IucD | needs_structure_check | Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count. |
+| `uniprot:Q01740` | flavin-containing monooxygenase 1 / dimethylaniline monooxygenase | 1.14.13.148, 1.14.13.8 | not_present_in_current702_registry; source_only_external_candidate; no canonical label | source_only_class_B_FMO_dimethylaniline | needs_structure_check | Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count. |
+| `uniprot:P06617` | tryptophan 2-monooxygenase | 1.13.12.3 | not_present_in_current702_registry; source_only_boundary_candidate; no canonical label | tryptophan_2_monooxygenase_boundary_source_only | blocked_wrong_chemistry | Keep as boundary negative unless a future source packet finds explicit C4a-peroxyflavin oxygen-transfer and reductive activation evidence. |
+| `uniprot:O15229` | kynurenine 3-monooxygenase | 1.14.13.9 | not_present_in_current702_registry; source_only_external_candidate; no canonical label | source_only_FAD_kynurenine_3_monooxygenase | needs_structure_check | Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count. |
+| `uniprot:P25535` | 2-octaprenylphenol hydroxylase / UbiI | 1.14.13.240 | not_present_in_current702_registry; source_only_external_candidate; no canonical label | source_only_FAD_aromatic_hydroxylase_UbiI | needs_structure_check | Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count. |
+| `uniprot:H3JQW0` | 2-oxo-Delta(3)-4,5,5-trimethylcyclopentenylacetyl-CoA monooxygenase / OTEMO | 1.14.13.160 | not_present_in_current702_registry; source_only_external_candidate; no canonical label | source_only_BVMO_OTEMO | needs_structure_check | Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count. |
+| `uniprot:Q6F4M8` | 4-nitrophenol 4-monooxygenase / 4-nitrocatechol 2-monooxygenase oxygenase component | 1.14.13.166, 1.14.13.29 | not_present_in_current702_registry; source_only_external_candidate; no canonical label | source_only_FAD_nitrophenol_monooxygenase | needs_structure_check | Run source-free structure/geometry, duplicate/leakage, terminal review, and hard-negative separation before any import or support count. |
 
-## Clean Candidate Evidence
+## Clean Local Candidate Evidence
 
 ### m_csa:551 phenol 2-monooxygenase
 
@@ -68,10 +81,27 @@ Review-only scout over local M-CSA/current702 artifacts. No label imports, regis
 - Substrate oxygenation: Dibenzothiophene sulfur attacks the distal oxygen of C4aOOH to form DBT sulfoxide.
 - Confounds: Currently labeled flavin_dehydrogenase_reductase; DszC sulfur oxygenation should stay secondary/future until expert review and support gates are complete.
 
+## Source-Only Lanes
+
+These are not clean local support and are not import-ready. They are retained because they map directly to the named target families and can potentially supply the two remaining clean rows after source-free gates.
+
+| Candidate | Disposition | Key blocker |
+| --- | --- | --- |
+| `uniprot:P12015` cyclohexanone monooxygenase | needs_structure_check | Source-only candidate from local evidence scout; source_review_confidence=high. Remaining blockers: No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import. |
+| `uniprot:Q93TJ5` 4-hydroxyacetophenone monooxygenase | needs_structure_check | Source-only candidate from local evidence scout; source_review_confidence=high. Remaining blockers: No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import. |
+| `uniprot:P23262` salicylate hydroxylase / salicylate 1-monooxygenase | needs_structure_check | Source-only candidate from local evidence scout; source_review_confidence=high. Remaining blockers: No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import. |
+| `uniprot:P11295` L-lysine N6-monooxygenase / IucD | needs_structure_check | Source-only candidate from local evidence scout; source_review_confidence=medium. Remaining blockers: Add a candidate-specific C4a-hydroperoxyflavin mechanistic source if the review packet requires explicit intermediate evidence. |
+| `uniprot:Q01740` flavin-containing monooxygenase 1 / dimethylaniline monooxygenase | needs_structure_check | Source-only candidate from local evidence scout; source_review_confidence=high. Remaining blockers: No local M-CSA row found in this scout; run source-free structure/duplicate/leakage gates before any import. |
+| `uniprot:P06617` tryptophan 2-monooxygenase | blocked_wrong_chemistry | Source-only candidate from local evidence scout; source_review_confidence=medium. Remaining blockers: Needs candidate-specific C4a-peroxyflavin or oxygen-transfer mechanism evidence before it could support the FMO label lane. |
+| `uniprot:O15229` kynurenine 3-monooxygenase | needs_structure_check | Source-only candidate from local evidence scout; source_review_confidence=high. Remaining blockers: Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete. |
+| `uniprot:P25535` 2-octaprenylphenol hydroxylase / UbiI | needs_structure_check | Source-only candidate from local evidence scout; source_review_confidence=medium. Remaining blockers: Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete.; Add explicit C4a-peroxyflavin mechanism source if the review packet requires intermediate-level evidence. |
+| `uniprot:H3JQW0` 2-oxo-Delta(3)-4,5,5-trimethylcyclopentenylacetyl-CoA monooxygenase / OTEMO | needs_structure_check | Source-only candidate from local evidence scout; source_review_confidence=high. Remaining blockers: Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete. |
+| `uniprot:Q6F4M8` 4-nitrophenol 4-monooxygenase / 4-nitrocatechol 2-monooxygenase oxygenase component | needs_structure_check | Source-only candidate from local evidence scout; source_review_confidence=medium. Remaining blockers: Prior local packet marks source-free external geometry, duplicate-screen completion, terminal review, and factory/import gates incomplete.; Add explicit C4a-peroxyflavin mechanism source if the review packet requires intermediate-level evidence. |
+
 ## Negative Signal To Preserve
 
 - `m_csa:141` is the closest flavin dehydrogenase boundary: FAD and hydroxylating language, but hydride transfer to FAD N5 and water-derived oxygen.
-- `m_csa:977` is a targeted tryptophan/FAD/O2 confound: halogenation to 7-chlorotryptophan, not substrate oxygenation.
+- `m_csa:977` and `uniprot:P06617` are targeted tryptophan/FAD/O2 confounds that are not clean reduced-flavin C4a oxygen-transfer support in this scout.
 - `m_csa:699` and `m_csa:935` contain flavin reductase domains but oxygenate at heme/BH4 oxygenase domains.
 - Nonflavin monooxygenases/dioxygenases in the table should be retained as hard negatives for future FMO separation checks.
 
@@ -81,6 +111,7 @@ Review-only scout over local M-CSA/current702 artifacts. No label imports, regis
 - `artifacts/v1_graph_1025.json` sha256 `efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25`
 - `artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json` sha256 `863a44bc76f3f2f58db4b4b3289a108edef7bb84cecc9db721d892548cff16be`
 - `artifacts/v3_flavin_monooxygenase_acquisition_packet_702_20260527.json` sha256 `9d2059f7a7c8d8f4ca939258cae366b4376c41c4e447fec16220674d0feb6500`
+- `artifacts/v3_fmo_source_evidence_scout_702_20260527.json` sha256 `7065d5fd005dde1002e8a011f6278d9f36383a185a91f6564fc04e70e569c0a7`
 - `artifacts/v3_imported_labels_batch_925.json` sha256 `aa63de991a754be4a292988e41163d34a415b72b891ee7447a1b5ae457afa0e4`
 - `artifacts/v3_mcsa_ai_visual_decisions_298_reaudited_bulk_r_safe_20260523.json` sha256 `82b264b9bb5a2270f47742591ecdd320e629e267596d6720f527f393cf8dcfb5`
 - `artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json` sha256 `afc80e7fa4f6f4db5521388803cae8fda24ec7cca9fbafa723cf3c1234ce951b`
