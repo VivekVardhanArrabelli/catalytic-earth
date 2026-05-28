@@ -1,11 +1,11 @@
 {
   "artifact_id": "v3_overnight_decision_dashboard_20260528",
-  "schema_version": "overnight_decision_dashboard.v1",
-  "generated_utc": "2026-05-28T07:31:35Z",
+  "schema_version": "overnight_decision_dashboard.v2",
+  "generated_utc": "2026-05-28T08:35:20Z",
   "automation_id": "overnight-decision-dashboard",
   "scope": {
     "project": "Catalytic Earth",
-    "purpose": "Aggregate active and completed overnight lanes into a single decision-grade control artifact.",
+    "purpose": "Aggregate active and completed overnight lanes into one project-control artifact that later heartbeats can use.",
     "guardrails": {
       "labels_edited": false,
       "registries_edited": false,
@@ -19,12 +19,12 @@
   },
   "source_inputs": {
     "automation_toml_root": "/Users/vivekvardhanarrabelli/.codex/automations",
-    "repo_head": "9ab257e_pre_amend_dashboard_commit",
-    "origin_main": "9ab257e_pre_amend_dashboard_commit",
-    "git_status_at_start": "detached HEAD on origin/main; concurrent full-TM and heme panel commits were incorporated before final dashboard push",
+    "repo_head_at_build_start": "4119ea5",
+    "origin_main_at_build_start": "4119ea5",
+    "git_status_at_start": "clean main tracking origin/main",
     "completed_cutoff_utc": "2026-05-28T06:00:00Z",
     "disk": {
-      "available_gib": 21,
+      "available_gib_at_build": 29,
       "guardrail_minimum_gib": 10,
       "status": "above_guardrail_at_dashboard_build"
     },
@@ -34,20 +34,21 @@
     ]
   },
   "summary": {
-    "lane_count": 34,
-    "running_lane_count": 5,
-    "completed_lane_count": 23,
+    "lane_count": 36,
+    "running_lane_count": 3,
+    "completed_lane_count": 26,
+    "blocked_lane_count": 2,
     "paused_lane_count": 5,
-    "blocked_lane_count": 1,
-    "needs_retarget_count": 1,
-    "main_decision": "Continue review-only/scout lanes, consume the now-main full-TM and heme outputs, and wait for bronze/TM plus disk-safe embedding gates before launching heavier compute."
+    "stale_lane_count": 0,
+    "needs_retarget_count": 0,
+    "main_decision": "Use the completed panel, full-TM, and bronze/TM artifacts to launch only review-only router queue and Wave 1.2 slice work; keep embedding/ProstT5 and any label/scoring changes behind explicit gates."
   },
   "lanes": [
     {
       "lane_id": "overnight-decision-dashboard",
       "automation_id": "overnight-decision-dashboard",
       "status": "completed",
-      "decision_answered": "Yes: active and completed overnight lanes are aggregated into this decision-control dashboard.",
+      "decision_answered": "Active and completed overnight lanes are aggregated into a single control dashboard for later heartbeats.",
       "artifact_produced": [
         "artifacts/v3_overnight_decision_dashboard_20260528.json",
         "work/overnight_decision_dashboard_20260528.md"
@@ -68,15 +69,51 @@
       "lane_id": "overnight-ce-orchestration-check",
       "automation_id": "overnight-ce-orchestration-check",
       "status": "running",
-      "decision_answered": "Heartbeat orchestration should use this dashboard as the control plane once committed.",
+      "decision_answered": "Pending: use this refreshed dashboard as the heartbeat control plane.",
       "artifact_produced": [],
       "latest_commit": null,
       "next_action": "continue",
       "compute_cost": {
         "class": "small",
-        "disk_guardrail_risk": "no; orchestration/read-only checks only unless it launches gated jobs"
+        "disk_guardrail_risk": "no unless it launches gated jobs"
       },
-      "benchmark_safety": "review-only; launch actions remain gate-controlled",
+      "benchmark_safety": "review-only orchestration; launches remain gate-controlled",
+      "user_decision_needed": {
+        "yes_no": "no",
+        "exact_decision": "none"
+      }
+    },
+    {
+      "lane_id": "external-panel-router-queue",
+      "automation_id": "external-panel-router-queue",
+      "status": "running",
+      "decision_answered": "Pending: normalize and deduplicate completed external panels into one router/evaluation queue.",
+      "artifact_produced": [],
+      "latest_commit": null,
+      "next_action": "continue",
+      "compute_cost": {
+        "class": "small",
+        "disk_guardrail_risk": "no; read existing panel artifacts and write queue/report only"
+      },
+      "benchmark_safety": "review-only; blocker if it promotes labels, trains, tunes thresholds, or edits scoring",
+      "user_decision_needed": {
+        "yes_no": "no",
+        "exact_decision": "none"
+      }
+    },
+    {
+      "lane_id": "wave1-2-slice-compiler",
+      "automation_id": "wave1-2-slice-compiler",
+      "status": "running",
+      "decision_answered": "Pending: compile a frozen Wave 1.2 diagnostic slice from Wave 1.1, full-TM, bronze/TM, and near-orphan artifacts.",
+      "artifact_produced": [],
+      "latest_commit": null,
+      "next_action": "continue",
+      "compute_cost": {
+        "class": "small",
+        "disk_guardrail_risk": "no; existing-artifact compilation only"
+      },
+      "benchmark_safety": "review-only; blocker if it makes metric claims before quarantines and leakage checks are honored",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -85,19 +122,19 @@
     {
       "lane_id": "bronze-label-and-tm-audit",
       "automation_id": "bronze-label-and-tm-audit",
-      "status": "running",
-      "decision_answered": "Pending: which provisional bronze rows or TM-neighborhood rows must be pulled before benchmark claims?",
+      "status": "completed",
+      "decision_answered": "Rows to pull or quarantine before model claims are identified: m_csa:403, 497, 714, 723, 735, 750, and 994.",
       "artifact_produced": [
         "artifacts/v3_bronze_label_mismatch_and_full_tm_audit_702_20260528.json",
         "work/bronze_label_mismatch_and_full_tm_audit_20260528.md"
       ],
-      "latest_commit": null,
-      "next_action": "continue",
+      "latest_commit": "7ed946a",
+      "next_action": "wait for gate",
       "compute_cost": {
-        "class": "medium",
-        "disk_guardrail_risk": "possible if full all-vs-all TM is rerun; keep no-download/local-cache policy and stop if projected free disk <10 GiB"
+        "class": "none",
+        "disk_guardrail_risk": "no; completed retained-hit audit is on main"
       },
-      "benchmark_safety": "review-only; blocker if it edits labels/thresholds or imports",
+      "benchmark_safety": "review-only; no mutation; full 134x538 exhaustive pair-row closure remains false, so no benchmark win claim is permitted",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -107,7 +144,7 @@
       "lane_id": "full-tm-structural-signal",
       "automation_id": "full-tm-structural-signal",
       "status": "completed",
-      "decision_answered": "Fuller structural-neighborhood signal is now present on main and ready as review-only input for downstream gates.",
+      "decision_answered": "Full-TM structural-neighborhood signal is available as review-only evidence for fold-conflict and near-orphan decisions.",
       "artifact_produced": [
         "artifacts/v3_full_tm_structural_signal_702_20260528.json",
         "work/full_tm_structural_signal_20260528.md"
@@ -116,9 +153,9 @@
       "next_action": "wait for gate",
       "compute_cost": {
         "class": "none",
-        "disk_guardrail_risk": "no; completed artifact is already on main"
+        "disk_guardrail_risk": "no; completed artifact is on main"
       },
-      "benchmark_safety": "review-only; safe to merge/read if diff stays artifact/report only",
+      "benchmark_safety": "review-only; safe to consume if downstream keeps thresholds/scoring fixed",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -128,7 +165,7 @@
       "lane_id": "wave-1-1-model-cell-report",
       "automation_id": "wave-1-1-model-cell-report",
       "status": "completed",
-      "decision_answered": "Learned representations are not decision-grade where Foldseek is weak; prioritize geometry/features/external panels over larger models now.",
+      "decision_answered": "Learned representations are not yet decision-grade where Foldseek is weak; prioritize diagnostic slices and review evidence.",
       "artifact_produced": [
         "artifacts/v3_wave1_1_model_by_cell_report_702_20260528.json",
         "work/wave1_1_model_by_cell_report_20260528.md"
@@ -149,7 +186,7 @@
       "lane_id": "active-site-encoder-feature-spec",
       "automation_id": "active-site-encoder-feature-spec",
       "status": "completed",
-      "decision_answered": "Active-site encoder v0 features are specified; 679/702 current rows are minimally encoder-ready.",
+      "decision_answered": "Active-site encoder v0 features are specified; 679/702 rows are minimally encoder-ready.",
       "artifact_produced": [
         "artifacts/v3_active_site_encoder_feature_spec_702_20260528.json",
         "work/active_site_encoder_feature_spec_20260528.md"
@@ -179,7 +216,7 @@
       "next_action": "wait for gate",
       "compute_cost": {
         "class": "small",
-        "disk_guardrail_risk": "no now; future tensor caches could be medium/heavy and must respect >10 GiB"
+        "disk_guardrail_risk": "no now; future tensor caches could be medium/heavy and must respect the 10 GiB floor"
       },
       "benchmark_safety": "safe prep artifact; no training executed",
       "user_decision_needed": {
@@ -190,29 +227,29 @@
     {
       "lane_id": "embedding-precompute-feasibility",
       "automation_id": "embedding-precompute-feasibility",
-      "status": "running",
-      "decision_answered": "Pending: can cached embeddings be inventoried or extended without multi-GB downloads and without dropping disk below 10 GiB?",
+      "status": "blocked",
+      "decision_answered": "Do not compute now: raw embedding sidecars and required model weights are not locally cached.",
       "artifact_produced": [
         "artifacts/v3_embedding_precompute_feasibility_20260528.json",
         "work/embedding_precompute_feasibility_20260528.md"
       ],
-      "latest_commit": null,
-      "next_action": "continue",
+      "latest_commit": "0600965",
+      "next_action": "wait for gate",
       "compute_cost": {
-        "class": "small",
-        "disk_guardrail_risk": "blocker if uncached model weights require multi-GB downloads; otherwise no"
+        "class": "heavy",
+        "disk_guardrail_risk": "yes for full ProtT5; some individual smaller downloads stay above 10 GiB but still require explicit authorization"
       },
-      "benchmark_safety": "review-only manifest only; blocker if it tunes/trains/changes predictions",
+      "benchmark_safety": "safe only as review-only feasibility; blocker if it downloads weights, trains, tunes, or writes new model outputs without approval",
       "user_decision_needed": {
-        "yes_no": "no",
-        "exact_decision": "none"
+        "yes_no": "yes",
+        "exact_decision": "Approve or reject explicit model-weight downloads for embedding precompute; default is no download."
       }
     },
     {
       "lane_id": "sequence-failure-benchmark-builder",
       "automation_id": "sequence-failure-benchmark-builder",
       "status": "completed",
-      "decision_answered": "True near-orphan review-only queue is defined; primary hard-split rows and uncertainty holds are separated.",
+      "decision_answered": "True near-orphan review-only queue is defined, separating clean hard-split rows from uncertainty holds.",
       "artifact_produced": [
         "artifacts/v3_sequence_failure_benchmark_queue_702_20260528.json",
         "work/sequence_failure_benchmark_queue_20260528.md"
@@ -254,7 +291,7 @@
       "lane_id": "evidence-router-v0-design",
       "automation_id": "evidence-router-v0-design",
       "status": "completed",
-      "decision_answered": "Router interface contract is defined; implementation remains gated and must not change production scoring.",
+      "decision_answered": "Router interface contract is defined; implementation remains gated and must not alter production scoring.",
       "artifact_produced": [
         "artifacts/v3_evidence_router_v0_design_20260528.json",
         "work/evidence_router_v0_design_20260528.md"
@@ -265,7 +302,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only design; no scoring change",
+      "benchmark_safety": "review-only design; implementation not launched here",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -286,7 +323,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only; no label import",
+      "benchmark_safety": "review-only roadmap",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -295,19 +332,19 @@
     {
       "lane_id": "flavin-redox-external-panel",
       "automation_id": "flavin-redox-external-panel",
-      "status": "running",
-      "decision_answered": "Pending: external flavin/redox panel must separate FMO/BVMO/flavodiiron/radical/oxidase/hard-negative chemistry.",
+      "status": "completed",
+      "decision_answered": "Flavin/redox panel is frozen with 48 review-only rows across hydride transfer, FMO, radical/Fe-S, covalent FAD, oxidase, and hard-negative strata.",
       "artifact_produced": [
         "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
         "work/external_flavin_redox_stress_panel_20260528.md"
       ],
-      "latest_commit": null,
-      "next_action": "continue",
+      "latest_commit": "48d332a",
+      "next_action": "launch dependent job",
       "compute_cost": {
-        "class": "small",
-        "disk_guardrail_risk": "no if metadata/source scouting only; blocker on coordinate/model downloads that threaten <10 GiB"
+        "class": "none",
+        "disk_guardrail_risk": "no; completed with no large downloads"
       },
-      "benchmark_safety": "review-only; blocker if it promotes labels or edits ontology",
+      "benchmark_safety": "review-only; no mutation and zero import-ready labels",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -316,19 +353,19 @@
     {
       "lane_id": "metal-hydrolase-tail-panel",
       "automation_id": "metal-hydrolase-tail-panel",
-      "status": "running",
-      "decision_answered": "Pending: metal hydrolase tail/boundary panel must distinguish hydrolysis subclasses and false-positive controls.",
+      "status": "completed",
+      "decision_answered": "Metal hydrolase tail/boundary panel is frozen with 74 non-countable rows covering zincins, amidohydrolases, phosphatase/nuclease, MBL, sulfatase, NTPase false positives, carbonic/dehydratase, and nonhydrolytic controls.",
       "artifact_produced": [
         "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
         "work/external_metal_hydrolase_tail_panel_20260528.md"
       ],
-      "latest_commit": null,
-      "next_action": "continue",
+      "latest_commit": "4119ea5",
+      "next_action": "launch dependent job",
       "compute_cost": {
-        "class": "small",
-        "disk_guardrail_risk": "no if metadata/source scouting only"
+        "class": "none",
+        "disk_guardrail_risk": "no; completed with no coordinate downloads"
       },
-      "benchmark_safety": "review-only; blocker if it imports labels or changes registry",
+      "benchmark_safety": "review-only; no mutation and zero import-ready/countable rows",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -344,12 +381,12 @@
         "work/external_heme_redox_boundary_panel_20260528.md"
       ],
       "latest_commit": "a0aeddd",
-      "next_action": "wait for gate",
+      "next_action": "launch dependent job",
       "compute_cost": {
         "class": "none",
-        "disk_guardrail_risk": "no; no downloads were performed and artifact is already on main"
+        "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only; no labels, registries, ontologies, thresholds, scoring, imports, model outputs, or training changed",
+      "benchmark_safety": "review-only; no downloads, no mutation",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -365,12 +402,12 @@
         "work/external_glycoside_carbohydrate_panel_20260528.md"
       ],
       "latest_commit": "3667ff8",
-      "next_action": "wait for gate",
+      "next_action": "launch dependent job",
       "compute_cost": {
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only; 0 countable/import-ready labels",
+      "benchmark_safety": "review-only; no mutation",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -386,12 +423,12 @@
         "work/external_plp_child_mechanism_panel_20260528.md"
       ],
       "latest_commit": "6ca362b",
-      "next_action": "wait for gate",
+      "next_action": "launch dependent job",
       "compute_cost": {
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only; 0 import-ready labels",
+      "benchmark_safety": "review-only; no mutation and zero import-ready labels",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -412,7 +449,7 @@
         "class": "small",
         "disk_guardrail_risk": "no now; future database mirrors need explicit license/disk gate"
       },
-      "benchmark_safety": "safe/review-only; excludes wet-lab protocols, variant design, and clinical guidance",
+      "benchmark_safety": "review-only; safe scoped POC, no import",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -433,7 +470,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only; no AMR import or production use",
+      "benchmark_safety": "review-only; no mutation",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -452,9 +489,9 @@
       "next_action": "wait for gate",
       "compute_cost": {
         "class": "none",
-        "disk_guardrail_risk": "no now; any future source mirror may be heavy and must pass disk/licensing gates"
+        "disk_guardrail_risk": "no now; future source mirror may be heavy"
       },
-      "benchmark_safety": "review-only; no ingestion/import",
+      "benchmark_safety": "review-only; no import or label promotion",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -475,7 +512,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only; human review required before any import",
+      "benchmark_safety": "review-only; no mutation",
       "user_decision_needed": {
         "yes_no": "yes",
         "exact_decision": "Decide whether to open a human review packet for m_csa:551 and m_csa:973 only."
@@ -517,7 +554,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only; exact-coordinate blocker controls import",
+      "benchmark_safety": "review-only; no import",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -538,7 +575,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only duplicate/leakage gate",
+      "benchmark_safety": "review-only; duplicate/leakage gate retained",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -548,7 +585,7 @@
       "lane_id": "fmo-fingerprint-definition-audit",
       "automation_id": "fmo-fingerprint-definition-audit",
       "status": "completed",
-      "decision_answered": "FMO definition audit says FMO remains secondary/review-only with proposed child strata; exact ligand-bearing coordinates remain the main blocker.",
+      "decision_answered": "FMO remains secondary/review-only with proposed child strata; exact ligand-bearing coordinates remain the main blocker.",
       "artifact_produced": [
         "artifacts/v3_fmo_fingerprint_definition_audit_702_20260528.json",
         "work/fmo_fingerprint_definition_audit_20260528.md"
@@ -559,7 +596,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only; no ontology/fingerprint registry edit",
+      "benchmark_safety": "review-only; no ontology/registry edits",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -580,7 +617,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only; import blocked until human/duplicate/geometry gates clear",
+      "benchmark_safety": "review-only; FMO remains below admission gate",
       "user_decision_needed": {
         "yes_no": "yes",
         "exact_decision": "Approve or reject human review packet creation for m_csa:551 and m_csa:973."
@@ -601,7 +638,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only proposal; no registry edit",
+      "benchmark_safety": "review-only proposal; no ontology/registry edits",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -622,7 +659,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only policy; no import",
+      "benchmark_safety": "review-only; no import promotion",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -634,8 +671,7 @@
       "status": "paused",
       "decision_answered": "Wave 1 standardized ESM-2 export already exists; no retarget until row-aligned downstream gate needs it.",
       "artifact_produced": [
-        "artifacts/representation_tracks/esm2_150m/esm2_150m_wave1_standardized_predictions_current702_20260526.jsonl",
-        "artifacts/representation_tracks/esm2_150m/esm2_150m_wave1_standardized_metrics_current702_20260526.json",
+        "artifacts/representation_tracks/esm2_150m/",
         "work/representation_tracks/esm2_150m_handoff.md"
       ],
       "latest_commit": "db0c709e8f38",
@@ -644,7 +680,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only model-output export already frozen",
+      "benchmark_safety": "safe completed representation export; no mutation",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -656,8 +692,7 @@
       "status": "paused",
       "decision_answered": "Corrected ESM-C standardized export exists; use as comparator, not as reason to run larger models now.",
       "artifact_produced": [
-        "artifacts/representation_tracks/esm_c/esm_c_300m_wave1_standardized_predictions_current702_20260526.jsonl",
-        "artifacts/representation_tracks/esm_c/esm_c_300m_wave1_standardized_metrics_current702_20260526.json",
+        "artifacts/representation_tracks/esm_c/",
         "work/representation_tracks/esm_c_handoff.md"
       ],
       "latest_commit": "33ea6689dd13",
@@ -666,7 +701,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only model-output export already frozen",
+      "benchmark_safety": "safe completed representation export; no mutation",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -678,8 +713,7 @@
       "status": "paused",
       "decision_answered": "ProtT5 standardized export exists with Swiss-Prot H5 coverage bias caveat.",
       "artifact_produced": [
-        "artifacts/representation_tracks/prott5/prott5_wave1_standardized_predictions_current702_20260526.jsonl",
-        "artifacts/representation_tracks/prott5/prott5_wave1_standardized_metrics_current702_20260526.json",
+        "artifacts/representation_tracks/prott5/",
         "work/representation_tracks/prott5_handoff.md"
       ],
       "latest_commit": "18f9807ba7f5",
@@ -688,7 +722,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only model-output export already frozen",
+      "benchmark_safety": "safe completed representation export; caveat documented",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -709,7 +743,7 @@
         "class": "none",
         "disk_guardrail_risk": "no"
       },
-      "benchmark_safety": "review-only model-output export already frozen",
+      "benchmark_safety": "safe completed representation export; no mutation",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -728,12 +762,12 @@
       "next_action": "pause",
       "compute_cost": {
         "class": "heavy",
-        "disk_guardrail_risk": "yes if full ProstT5 weights are downloaded; do not launch without explicit approval and disk plan"
+        "disk_guardrail_risk": "yes if full ProstT5 weights are downloaded; current embedding feasibility says full checkpoint would drop below 10 GiB"
       },
-      "benchmark_safety": "safe only for existing 3Di export; blocker for new full-model compute",
+      "benchmark_safety": "blocker if full ProstT5 launches without explicit approval and disk/accelerator plan",
       "user_decision_needed": {
-        "yes_no": "no",
-        "exact_decision": "none"
+        "yes_no": "yes",
+        "exact_decision": "Approve explicit full ProstT5 download/accelerator plan, or keep blocked."
       }
     },
     {
@@ -751,7 +785,7 @@
         "class": "medium",
         "disk_guardrail_risk": "possible if exact-TM rerun; use existing outputs first"
       },
-      "benchmark_safety": "review-only export; no threshold mutation",
+      "benchmark_safety": "safe if read-only; blocker if rerun consumes disk without gate",
       "user_decision_needed": {
         "yes_no": "no",
         "exact_decision": "none"
@@ -760,61 +794,51 @@
   ],
   "top_5_decision_gates_now_active": [
     {
-      "rank": 1,
-      "gate": "Bronze label mismatch plus full-TM audit",
-      "state": "active",
-      "decision": "Before further model claims, identify provisional bronze/Foldseek-neighborhood rows that must be pulled from canary/test slices.",
-      "owner_lane": "bronze-label-and-tm-audit",
-      "clear_condition": "Artifact/report parse cleanly and classify contested rows without label/threshold/import mutations."
+      "gate_id": "external_panel_router_queue_freeze",
+      "status": "active",
+      "decision": "Can completed flavin, metal, heme, PLP, glycoside, AMR, and FMO panels be normalized into one deduplicated review-only router queue?",
+      "clear_when": "Queue artifact/report parse cleanly, preserve panel memberships, mark all rows non-promoted, and identify a smallest next review/materialization set."
     },
     {
-      "rank": 2,
-      "gate": "Full-TM evidence consumption",
-      "state": "active",
-      "decision": "Use the completed full-TM structural signal on main as review-only evidence for near-orphan/fold-conflict decisions.",
-      "owner_lane": "full-tm-structural-signal",
-      "clear_condition": "Downstream jobs consume artifacts/v3_full_tm_structural_signal_702_20260528.json without changing thresholds, labels, or scoring."
+      "gate_id": "wave_1_2_diagnostic_slice_contract",
+      "status": "active",
+      "decision": "Which fold-conflict, near-orphan, dense-neighborhood, mixed-TM, OOS, and weak-Foldseek cells are safe as review-only Wave 1.2 diagnostics?",
+      "clear_when": "Slice contract excludes quarantined rows and answers learned-representation value only from existing artifacts without training/tuning."
     },
     {
-      "rank": 3,
-      "gate": "FMO admission and human review",
-      "state": "active",
-      "decision": "FMO remains below n>=6 and has zero new import-ready external rows; decide whether to packet only m_csa:551 and m_csa:973 for human review.",
-      "owner_lane": "fmo-admission-gate-impact",
-      "clear_condition": "Human review packet decision recorded; exact-coordinate, duplicate/leakage, and import gates remain explicit."
+      "gate_id": "benchmark_anchor_quarantine",
+      "status": "active",
+      "decision": "Which rows must be pulled or quarantined before any metric/model claim?",
+      "clear_when": "Downstream jobs honor m_csa:403, 497, 714, 723, 735, 750, and 994 as non-anchor/quarantine rows until expert/source review clears them."
     },
     {
-      "rank": 4,
-      "gate": "External panel completion",
-      "state": "active",
-      "decision": "Complete flavin/redox and metal hydrolase panels so router/benchmark tests use all planned boundary families; heme is now complete.",
-      "owner_lane": "flavin-redox-external-panel, metal-hydrolase-tail-panel",
-      "clear_condition": "Remaining panels emit review-only artifact/report with candidate counts, hard negatives, provenance tiers, and 0 import-ready labels."
+      "gate_id": "fmo_human_review_admission",
+      "status": "active",
+      "decision": "Should only m_csa:551 and m_csa:973 be packeted for human review despite FMO remaining below n>=6?",
+      "clear_when": "User approves/rejects the 551/973 packet; no FMO import/admission proceeds without exact-coordinate, duplicate/leakage, and support gates."
     },
     {
-      "rank": 5,
-      "gate": "Disk-safe embedding/encoder compute",
-      "state": "active",
-      "decision": "Only launch cached embedding inventories or encoder cache/sweep work if the >10 GiB disk guardrail and target/freeze gates hold.",
-      "owner_lane": "embedding-precompute-feasibility, encoder-architecture-sweep-prep",
-      "clear_condition": "No uncached multi-GB downloads; projected free disk stays >10 GiB; no training or threshold tuning before benchmark gates."
+      "gate_id": "disk_safe_embedding_and_large_model_compute",
+      "status": "active",
+      "decision": "Can any embedding or representation compute run without uncached model downloads, benchmark contamination, or dropping below the 10 GiB disk floor?",
+      "clear_when": "Explicit approval exists for any model-weight download; local-files-only commands pass; full ProtT5 remains blocked unless disk/accelerator plan is approved."
     }
   ],
   "completed_artifacts_since_2026_05_28T06_00Z": [
     {
       "completed_utc": "2026-05-28T06:54:13Z",
       "commit": "a1baea9",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add active-site encoder feature spec",
+      "artifacts": [
         "artifacts/v3_active_site_encoder_feature_spec_702_20260528.json",
         "work/active_site_encoder_feature_spec_20260528.md"
       ]
     },
     {
-      "completed_utc": "2026-05-28T06:54:41Z",
+      "completed_utc": "2026-05-28T06:55:04Z",
       "commit": "e31ea72",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add Wave 1.1 model-by-cell report",
+      "artifacts": [
         "artifacts/v3_wave1_1_model_by_cell_report_702_20260528.json",
         "work/wave1_1_model_by_cell_report_20260528.md"
       ]
@@ -822,35 +846,35 @@
     {
       "completed_utc": "2026-05-28T06:55:55Z",
       "commit": "171d4f3",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add AMR enzyme-only POC scout",
+      "artifacts": [
         "artifacts/v3_amr_enzyme_only_poc_scope_and_queue_20260528.json",
         "work/amr_enzyme_only_poc_scope_and_queue_20260528.md"
       ]
     },
     {
-      "completed_utc": "2026-05-28T06:56:57Z",
+      "completed_utc": "2026-05-28T06:57:03Z",
       "commit": "ed699fb",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add sequence failure benchmark queue",
+      "artifacts": [
         "artifacts/v3_sequence_failure_benchmark_queue_702_20260528.json",
         "work/sequence_failure_benchmark_queue_20260528.md"
       ]
     },
     {
-      "completed_utc": "2026-05-28T06:57:33Z",
+      "completed_utc": "2026-05-28T06:57:49Z",
       "commit": "f6d8d21",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add external stress panel roadmap",
+      "artifacts": [
         "artifacts/v3_external_stress_panel_roadmap_20260528.json",
         "work/external_stress_panel_roadmap_20260528.md"
       ]
     },
     {
-      "completed_utc": "2026-05-28T07:01:57Z",
+      "completed_utc": "2026-05-28T07:02:14Z",
       "commit": "b186ddc",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add FMO fingerprint definition audit",
+      "artifacts": [
         "artifacts/v3_fmo_fingerprint_definition_audit_702_20260528.json",
         "work/fmo_fingerprint_definition_audit_20260528.md"
       ]
@@ -858,17 +882,17 @@
     {
       "completed_utc": "2026-05-28T07:02:54Z",
       "commit": "718031c",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add M-CSA CARD enzyme crossmap scout",
+      "artifacts": [
         "artifacts/v3_mcsa_card_enzyme_crossmap_scout_20260528.json",
         "work/mcsa_card_enzyme_crossmap_scout_20260528.md"
       ]
     },
     {
-      "completed_utc": "2026-05-28T07:03:39Z",
+      "completed_utc": "2026-05-28T07:03:51Z",
       "commit": "787cac0",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Correct FMO audit timestamp",
+      "artifacts": [
         "artifacts/v3_fmo_fingerprint_definition_audit_702_20260528.json",
         "work/fmo_fingerprint_definition_audit_20260528.md"
       ]
@@ -876,35 +900,35 @@
     {
       "completed_utc": "2026-05-28T07:16:13Z",
       "commit": "7ce1537",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add pocket detection generalization scout",
+      "artifacts": [
         "artifacts/v3_pocket_detection_generalization_scout_702_20260528.json",
         "work/pocket_detection_generalization_scout_20260528.md"
       ]
     },
     {
-      "completed_utc": "2026-05-28T07:18:38Z",
+      "completed_utc": "2026-05-28T07:18:58Z",
       "commit": "74596b1",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add bulk weak-label feasibility artifact",
+      "artifacts": [
         "artifacts/v3_bulk_weak_label_feasibility_20260528.json",
         "work/bulk_weak_label_feasibility_20260528.md"
       ]
     },
     {
-      "completed_utc": "2026-05-28T07:20:41Z",
+      "completed_utc": "2026-05-28T07:22:44Z",
       "commit": "3667ff8",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add glycoside carbohydrate stress panel",
+      "artifacts": [
         "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
         "work/external_glycoside_carbohydrate_panel_20260528.md"
       ]
     },
     {
-      "completed_utc": "2026-05-28T07:21:47Z",
+      "completed_utc": "2026-05-28T07:22:44Z",
       "commit": "8bba51e",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add evidence router v0 design",
+      "artifacts": [
         "artifacts/v3_evidence_router_v0_design_20260528.json",
         "work/evidence_router_v0_design_20260528.md"
       ]
@@ -912,8 +936,8 @@
     {
       "completed_utc": "2026-05-28T07:23:33Z",
       "commit": "6ca362b",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add PLP child mechanism stress panel",
+      "artifacts": [
         "artifacts/v3_external_plp_child_mechanism_panel_20260528.json",
         "work/external_plp_child_mechanism_panel_20260528.md"
       ]
@@ -921,104 +945,154 @@
     {
       "completed_utc": "2026-05-28T07:24:28Z",
       "commit": "2ce1541",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add encoder architecture sweep prep",
+      "artifacts": [
         "artifacts/v3_encoder_architecture_sweep_prep_702_20260528.json",
         "work/encoder_architecture_sweep_prep_20260528.md"
       ]
     },
     {
-      "completed_utc": "2026-05-28T07:24:58Z",
+      "completed_utc": "2026-05-28T07:26:50Z",
       "commit": "71f86fb",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add full TM structural signal artifact",
+      "artifacts": [
         "artifacts/v3_full_tm_structural_signal_702_20260528.json",
         "work/full_tm_structural_signal_20260528.md"
       ]
     },
     {
-      "completed_utc": "2026-05-28T07:29:17Z",
+      "completed_utc": "2026-05-28T07:29:31Z",
       "commit": "a0aeddd",
-      "branch": "origin/main",
-      "artifact_paths": [
+      "summary": "Add heme redox boundary panel",
+      "artifacts": [
         "artifacts/v3_external_heme_redox_boundary_panel_20260528.json",
         "work/external_heme_redox_boundary_panel_20260528.md"
       ]
-    }
-  ],
-  "blocked_stale_agents_and_retarget_prompts": [
-    {
-      "automation_id": "embedding-precompute-feasibility",
-      "status": "running",
-      "blocker": "No output/memory yet; risk is accidental multi-GB model download.",
-      "retarget_prompt": "Produce cached-embedding feasibility only: inventory local caches and emit missing-row manifest/commands; skip all uncached model downloads and stop if projected free disk would fall below 10 GiB."
     },
     {
-      "automation_id": "bronze-label-and-tm-audit",
-      "status": "running",
-      "blocker": "No output/memory yet; benchmark claims should wait for its shortlist.",
-      "retarget_prompt": "Finish the review-only bronze mismatch and full-TM audit using existing local inputs; shortlist rows to pull from canaries/test slices; do not edit labels, thresholds, registries, imports, scoring, or model outputs."
+      "completed_utc": "2026-05-28T07:30:51Z",
+      "commit": "9ab257e",
+      "summary": "Add overnight decision dashboard",
+      "artifacts": [
+        "artifacts/v3_overnight_decision_dashboard_20260528.json",
+        "work/overnight_decision_dashboard_20260528.md"
+      ]
+    },
+    {
+      "completed_utc": "2026-05-28T07:32:40Z",
+      "commit": "9f4dbdf",
+      "summary": "Refresh overnight decision dashboard",
+      "artifacts": [
+        "artifacts/v3_overnight_decision_dashboard_20260528.json",
+        "work/overnight_decision_dashboard_20260528.md"
+      ]
+    },
+    {
+      "completed_utc": "2026-05-28T08:14:49Z",
+      "commit": "7ed946a",
+      "summary": "Add bronze label and TM audit",
+      "artifacts": [
+        "artifacts/v3_bronze_label_mismatch_and_full_tm_audit_702_20260528.json",
+        "work/bronze_label_mismatch_and_full_tm_audit_20260528.md"
+      ]
+    },
+    {
+      "completed_utc": "2026-05-28T08:16:22Z",
+      "commit": "0600965",
+      "summary": "Add embedding precompute feasibility report",
+      "artifacts": [
+        "artifacts/v3_embedding_precompute_feasibility_20260528.json",
+        "work/embedding_precompute_feasibility_20260528.md"
+      ]
+    },
+    {
+      "completed_utc": "2026-05-28T08:19:16Z",
+      "commit": "48d332a",
+      "summary": "Add flavin redox external stress panel",
+      "artifacts": [
+        "artifacts/v3_external_flavin_redox_stress_panel_20260528.json",
+        "work/external_flavin_redox_stress_panel_20260528.md"
+      ]
+    },
+    {
+      "completed_utc": "2026-05-28T08:19:16Z",
+      "commit": "4119ea5",
+      "summary": "Add metal hydrolase tail panel artifact",
+      "artifacts": [
+        "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+        "work/external_metal_hydrolase_tail_panel_20260528.md"
+      ]
+    }
+  ],
+  "blocked_or_stale_agents_and_retarget_prompts": [
+    {
+      "automation_id": "embedding-precompute-feasibility",
+      "status": "blocked",
+      "blocker": "No local raw embedding sidecars or required model weights for the union surface; full ProtT5 would violate the 10 GiB floor.",
+      "retarget_prompt": "Do not precompute embeddings. If retargeted, run only local-files-only cache inventory/sample commands and emit missing-row manifests; skip downloads unless the user approves exact model, size, and disk plan."
     },
     {
       "automation_id": "representation-track-prostt5-3di",
       "status": "blocked",
-      "blocker": "Full ProstT5 is blocked by uncached multi-GB weights and no accelerator.",
-      "retarget_prompt": "Do not run full ProstT5. Use existing Foldseek 3Di token export only, or wait for explicit user approval plus disk/accelerator plan."
+      "blocker": "Full ProstT5 remains blocked by uncached multi-GB weights and no accelerator plan.",
+      "retarget_prompt": "Use existing Foldseek 3Di token export only. Do not run full ProstT5 until explicit user approval plus disk and accelerator plan are recorded."
     },
     {
-      "automation_id": "flavin-redox-external-panel / metal-hydrolase-tail-panel",
-      "status": "running",
-      "blocker": "Remaining prompt-only active panels have not produced artifacts yet; heme is complete on main.",
-      "retarget_prompt": "Complete each remaining panel as metadata/source scouting only with 30-80 candidates, provenance tiers, hard negatives, no coordinate/model downloads unless disk-safe, and 0 import-ready labels."
+      "automation_id": "external-panel-router-queue",
+      "status": "running_watchpoint",
+      "blocker": "No memory/output yet in this worktree; active automation should be watched for timely artifact emission.",
+      "retarget_prompt": "If stale, compile only from completed panel artifacts into artifacts/v3_external_panel_router_queue_20260528.json and work/external_panel_router_queue_20260528.md; no labels, thresholds, imports, scoring, or training."
+    },
+    {
+      "automation_id": "wave1-2-slice-compiler",
+      "status": "running_watchpoint",
+      "blocker": "No memory/output yet in this worktree; active automation should be watched for timely artifact emission.",
+      "retarget_prompt": "If stale, compile the Wave 1.2 diagnostic slice from existing Wave 1.1/full-TM/bronze/TM/near-orphan artifacts and quarantine m_csa:403,497,714,723,735,750,994 before any metric claim."
     }
   ],
   "safe_next_compute_launches_if_gates_clear": [
     {
-      "launch": "Consume full-TM structural signal",
-      "requires_gates": [
-        "Full-TM evidence consumption"
-      ],
+      "launch": "External panel router queue finalization",
       "compute_cost": "small",
-      "safe_command_shape": "read existing main artifacts and produce downstream review-only summaries",
-      "why_safe": "Uses already-produced review-only outputs on main; no new compute."
+      "gates_required": [
+        "external_panel_router_queue_freeze"
+      ],
+      "safe_shape": "Read completed panel artifacts, normalize/deduplicate candidates, write review-only queue/report, no promotions."
     },
     {
-      "launch": "Embedding cache availability manifest",
-      "requires_gates": [
-        "Disk-safe embedding/encoder compute"
-      ],
+      "launch": "Wave 1.2 fold-conflict/near-orphan slice compiler",
       "compute_cost": "small",
-      "safe_command_shape": "inventory local embedding caches and write missing-row manifest only",
-      "why_safe": "Read-only and skips uncached multi-GB downloads."
+      "gates_required": [
+        "wave_1_2_diagnostic_slice_contract",
+        "benchmark_anchor_quarantine"
+      ],
+      "safe_shape": "Compile from existing artifacts only; mark use_status and reason per row; no training, tuning, or threshold changes."
     },
     {
-      "launch": "Evidence-router review-only dry run on completed glycoside and PLP panels",
-      "requires_gates": [
-        "External panel completion",
-        "Bronze label mismatch plus full-TM audit"
-      ],
+      "launch": "Evidence-router review-only dry run on frozen external queue",
       "compute_cost": "small",
-      "safe_command_shape": "produce result card without production scoring or threshold changes",
-      "why_safe": "Uses frozen artifacts and review-only panels; no label promotion."
+      "gates_required": [
+        "external_panel_router_queue_freeze",
+        "benchmark_anchor_quarantine"
+      ],
+      "safe_shape": "Produce result cards and failure modes without production scoring or threshold changes."
     },
     {
-      "launch": "Active-site encoder cache-builder dry manifest",
-      "requires_gates": [
-        "Disk-safe embedding/encoder compute",
-        "Bronze label mismatch plus full-TM audit"
+      "launch": "Full-TM evidence consumption summaries",
+      "compute_cost": "small",
+      "gates_required": [
+        "benchmark_anchor_quarantine"
       ],
+      "safe_shape": "Consume artifacts/v3_full_tm_structural_signal_702_20260528.json and bronze/TM audit to annotate review-only cells."
+    },
+    {
+      "launch": "Active-site encoder dry cache manifest",
       "compute_cost": "medium",
-      "safe_command_shape": "materialize small structured feature cache only after row exclusion/freeze gates; no training",
-      "why_safe": "Feature-cache-only path can be aborted before heavy tensors/training."
-    },
-    {
-      "launch": "External panel metadata scouts for flavin/metal/heme",
-      "requires_gates": [
-        "External panel completion"
+      "gates_required": [
+        "wave_1_2_diagnostic_slice_contract",
+        "disk_safe_embedding_and_large_model_compute"
       ],
-      "compute_cost": "small",
-      "safe_command_shape": "metadata/source-only scouting; no bulk coordinates unless explicitly disk-safe",
-      "why_safe": "Decision-grade panel manifests can be built without large downloads."
+      "safe_shape": "Materialize only small structured feature-cache manifests after row exclusions/freeze gates; no model training."
     }
   ],
   "no_go_conditions_for_stopping_expensive_compute": [
@@ -1026,13 +1100,14 @@
     "Stop if a job would download uncached multi-GB model weights or source mirrors without explicit approval and recorded size plan.",
     "Stop if any lane needs to edit labels, source registries, mechanism ontologies, fingerprint registries, thresholds, production scoring, imports, or existing model outputs.",
     "Stop if heldout/test/canary rows would be used for tuning, threshold selection, training, or label promotion.",
-    "Stop if duplicate/leakage/human-review gates are unresolved for a row proposed as countable/import-ready.",
-    "Stop if a lane cannot produce JSON-parseable artifacts plus cli validation and git diff whitespace checks."
+    "Stop if quarantined rows m_csa:403, 497, 714, 723, 735, 750, or 994 would anchor clean metric claims before review clearance.",
+    "Stop if duplicate/leakage/human-review gates are unresolved for any row proposed as countable or import-ready.",
+    "Stop if a lane cannot produce JSON-parseable artifacts plus CLI validation and git diff whitespace checks."
   ],
   "excluded_non_catalytic_earth_automations": [
     {
       "automation_id": "paper-trade-and-review-randomtrader",
-      "reason": "Active but outside Catalytic Earth; not part of this dashboard's project-control surface."
+      "reason": "Active but outside Catalytic Earth."
     },
     {
       "automation_id": "evening-improve-randomtrader",
