@@ -26,6 +26,7 @@ from .artifact_storage import (
     restore_artifacts_from_manifest,
     validate_artifact_migration_manifest,
 )
+from .active_site_encoder_cache import write_active_site_encoder_cache
 from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
@@ -373,6 +374,13 @@ def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
         for row in rows:
             json.dump(row, handle, sort_keys=True)
             handle.write("\n")
+
+
+def _parse_csv(value: str | None) -> list[str] | None:
+    if value is None:
+        return None
+    rows = [item.strip() for item in value.split(",") if item.strip()]
+    return rows or None
 
 
 def read_json_object(path: Path) -> dict[str, Any]:
@@ -9597,6 +9605,24 @@ def cmd_build_representation_baseline_shootout_plan(args: argparse.Namespace) ->
     print(
         "Wrote representation baseline shootout plan to "
         f"{args.out} ({plan['metadata']['current_label_registry_count']} labels)"
+    )
+    return 0
+
+
+def cmd_build_active_site_encoder_cache(args: argparse.Namespace) -> int:
+    include_rows = _parse_csv(args.include_rows)
+    summary = write_active_site_encoder_cache(
+        readiness_matrix_path=Path(args.readiness_matrix),
+        geometry_features_path=Path(args.geometry),
+        out_path=Path(args.out),
+        summary_path=Path(args.summary_out),
+        report_path=Path(args.report_out) if args.report_out else None,
+        include_rows=include_rows,
+        max_rows=args.max_rows,
+    )
+    print(
+        "Wrote active-site encoder cache to "
+        f"{args.out} ({summary['emitted_row_count']} rows)"
     )
     return 0
 
@@ -19852,6 +19878,38 @@ def build_parser() -> argparse.ArgumentParser:
     representation_baseline.set_defaults(
         func=cmd_build_representation_baseline_shootout_plan
     )
+
+    active_site_encoder_cache = subparsers.add_parser(
+        "build-active-site-encoder-cache",
+        help="write a label-blind active-site feature JSONL cache",
+    )
+    active_site_encoder_cache.add_argument(
+        "--readiness-matrix",
+        default="artifacts/v3_active_site_encoder_readiness_matrix_20260528.json",
+    )
+    active_site_encoder_cache.add_argument(
+        "--geometry",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    active_site_encoder_cache.add_argument(
+        "--include-rows",
+        default=None,
+        help="comma-separated entry ids to include",
+    )
+    active_site_encoder_cache.add_argument("--max-rows", type=int, default=None)
+    active_site_encoder_cache.add_argument(
+        "--out",
+        default="artifacts/v3_active_site_encoder_cache_smoke_20260528.jsonl",
+    )
+    active_site_encoder_cache.add_argument(
+        "--summary-out",
+        default="artifacts/v3_active_site_encoder_cache_smoke_summary_20260528.json",
+    )
+    active_site_encoder_cache.add_argument(
+        "--report-out",
+        default="work/active_site_encoder_cache_smoke_20260528.md",
+    )
+    active_site_encoder_cache.set_defaults(func=cmd_build_active_site_encoder_cache)
 
     mechanism_prediction_contract = subparsers.add_parser(
         "build-mechanism-prediction-oos-diversity-eval-contract",

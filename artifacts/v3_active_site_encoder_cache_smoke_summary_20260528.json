@@ -1,0 +1,25 @@
+{
+  "artifact_id": "v3_active_site_encoder_cache_smoke_20260528",
+  "created_utc": "2026-05-28T09:55:48Z",
+  "emitted_row_count": 10,
+  "fingerprint_registry_changed": false,
+  "forbidden_inputs_used": [],
+  "label_blind": true,
+  "label_registry_changed": false,
+  "predictive_feature_contract": {
+    "entry_names_in_predictive_features": false,
+    "expert_notes_in_predictive_features": false,
+    "mechanism_text_in_predictive_features": false,
+    "row_identifiers_in_metadata_only": true,
+    "source_ids_in_predictive_features": false,
+    "target_labels_in_predictive_features": false
+  },
+  "predictive_feature_forbidden_key_hits": [],
+  "production_scoring_changed": false,
+  "requested_row_count": 10,
+  "review_only": true,
+  "schema_version": "active_site_encoder_cache.v1",
+  "skipped_rows": [],
+  "thresholds_changed": false,
+  "training_executed": false
+}
