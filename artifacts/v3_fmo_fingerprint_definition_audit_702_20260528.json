@@ -1,0 +1,408 @@
+{
+  "artifact_id": "v3_fmo_fingerprint_definition_audit_702_20260528",
+  "automation_id": "fmo-fingerprint-definition-audit",
+  "created_utc": "2026-05-28T07:05:00Z",
+  "schema_version": "1.0",
+  "status": "review_only_definition_audit_complete",
+  "review_only": true,
+  "scope": {
+    "question": "Audit whether current flavin_monooxygenase/FMO evidence is overfit to PHBH-like geometry or whether BVMO/HAPMO/FMO1 represent genuinely separate FMO subtypes.",
+    "forbidden_changes_respected": [
+      "labels",
+      "registries",
+      "ontology_files",
+      "thresholds",
+      "production_scoring",
+      "imports",
+      "model_outputs"
+    ],
+    "network_and_disk_policy": "No large downloads were performed. This audit uses existing local artifacts/caches and prior small metadata lookup artifacts as review context."
+  },
+  "guardrails": {
+    "canonical_label_registry_changed": false,
+    "fingerprint_registry_changed": false,
+    "ontology_registry_changed": false,
+    "thresholds_changed": false,
+    "production_scoring_changed": false,
+    "imports_written": false,
+    "model_outputs_changed": false,
+    "canonical_promotion_recommended": false
+  },
+  "source_artifacts_reviewed": [
+    "data/registries/mechanism_fingerprints.json",
+    "data/registries/mechanism_ontology.json",
+    "src/catalytic_earth/geometry_retrieval.py",
+    "src/catalytic_earth/redox_active_site.py",
+    "tests/test_geometry_retrieval.py",
+    "artifacts/v3_flavin_monooxygenase_deep_packet_geometry_scores_20260521.json",
+    "artifacts/v3_flavin_monooxygenase_acquisition_closure_702_20260527.json",
+    "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+    "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+    "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
+    "artifacts/v3_fmo_local_candidate_adjudication_551_973_702_20260528.json",
+    "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json",
+    "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json",
+    "artifacts/v3_fmo_external_hard_negative_duplicate_gate_702_20260528.json",
+    "artifacts/v3_fmo_external_structure_geometry_materialization_702_20260528.json",
+    "artifacts/v3_fmo_external_homologous_coordinate_policy_and_queue_702_20260528.json"
+  ],
+  "current_definition_assumptions": {
+    "registry_level": {
+      "fingerprint_id": "flavin_monooxygenase",
+      "declared_enzyme_space": [
+        "monooxygenases",
+        "Baeyer-Villiger monooxygenases",
+        "hydroxylases"
+      ],
+      "declared_cofactors": [
+        "FAD",
+        "FMN",
+        "NADPH"
+      ],
+      "declared_reaction_center": "flavin peroxide oxygen transfer",
+      "declared_substrate_constraints": [
+        "oxidizable substrate near flavin C4a",
+        "oxygen access",
+        "redox-compatible pocket"
+      ],
+      "declared_evidence_features": [
+        "flavin-binding motif",
+        "flavin-proximal substrate pocket",
+        "NADPH-binding context",
+        "oxygenase family fold"
+      ],
+      "declared_seed_examples": [
+        "Baeyer-Villiger monooxygenases",
+        "aromatic hydroxylases",
+        "flavin-containing monooxygenases"
+      ],
+      "interpretation": "The registry wording is broad enough for BVMO, aromatic hydroxylase, and class B FMO chemistry, but it is a single parent lane with no subtype axes."
+    },
+    "source_free_geometry_and_counterevidence": {
+      "flavin_site_extractor": "Source-free flavin extraction accepts FAD, FMN, or RBF and requires nearby generic flavin-binder, redox/acid-base, and electron-transfer residues using 4.2 A and 5.0 A contact cutoffs.",
+      "cofactor_scoring": "FAD/FMN ligand family support is scored as generic flavin context; NAD(P) ligand family support is scored separately.",
+      "substrate_pocket_scoring": "FMO pocket scoring favors a hydrophobic fraction near 0.4 plus aromatic and polar content; it does not directly score Baeyer-Villiger, N/S oxygenation, or two-component FMNH2 chemistry.",
+      "phbh_like_special_cases": [
+        "PHB and BR are the only explicit flavin_monooxygenase substrate ligand codes in the counterevidence rules.",
+        "FAD/FMN without NAD-family ligand is penalized for flavin_monooxygenase unless PHB/BR substrate context is present.",
+        "flavin_dehydrogenase_reductase is penalized when PHB/BR substrate context appears without electron-transfer residue context."
+      ],
+      "observed_prior_screen_behavior": "In the 2026-05-21 FMO deep packet, all seven source-free geometry rows scored top1 as flavin_dehydrogenase_reductase. The FMO lane was never top1; only H3JQW0 reached the FMO floor because it had FAD plus NADP.",
+      "interpretation": "The active source-free scorer is not a clean C4a oxygen-transfer detector. It is biased toward generic flavin redox unless a PHBH-like substrate exception or NAD(P) ligand is present."
+    },
+    "local_coordinate_assumptions_from_fmo_like_artifacts": [
+      {
+        "entry_id": "m_csa:131",
+        "subtype_context": "PHBH-like aromatic hydroxylase",
+        "status": "canonical_current_fmo_context",
+        "review_assumption": "FAD/NADPH, reduced flavin plus O2, C4a-peroxy or C4a-hydroperoxy FAD, aromatic hydroxylation of 4-hydroxybenzoate.",
+        "geometry_role_in_current_system": "This is the dominant clean aromatic-hydroxylase reference lane and anchors the PHB/BR special-case substrate context."
+      },
+      {
+        "entry_id": "m_csa:132",
+        "subtype_context": "two-component or reduced-FMNH2 oxygenase boundary",
+        "status": "canonical_current_fmo_context",
+        "review_assumption": "Reduced FMN is supplied to the oxygenase; FMN-peroxo/C4a-peroxy chemistry oxygenates aldehyde substrate.",
+        "geometry_role_in_current_system": "Valid FMO-like oxygenation, but its reductant/partner logic differs from single-component FAD/NADPH enzymes."
+      },
+      {
+        "entry_id": "m_csa:551",
+        "subtype_context": "phenol/PHBH-like aromatic hydroxylase",
+        "status": "mechanism-clean secondary/future support, not import-ready",
+        "flavin_state": "FAD present; no C4a-hydroperoxy/peroxide state in selected coordinate.",
+        "substrate_or_analog": "IPH present. Prior mapped chain A FAD C4X-to-IPH O1 distance is 7.10 A; local adjudication found productive author chain C at 4.582 A and chain D at 4.649 A.",
+        "active_site_residues": [
+          "Asp54",
+          "Arg281",
+          "Tyr289",
+          "Pro364"
+        ],
+        "reductant_or_partner_assumption": "NADPH/NADP absent from 1FOH is a structural-state caveat, not a chemistry rejection.",
+        "interpretation": "This row supports the aromatic hydroxylase stratum but also shows that chain/materialization choice can dominate the apparent geometry gate."
+      },
+      {
+        "entry_id": "m_csa:973",
+        "subtype_context": "DszC two-component FMNH2 sulfur monooxygenase",
+        "status": "mechanism-clean secondary/future support, coordinate-clean false",
+        "flavin_state": "FMN present; no C4a-hydroperoxy/peroxide state in selected coordinate.",
+        "substrate_or_analog": "No substrate or substrate analog present in selected 3X0Y coordinate.",
+        "active_site_residues_and_distances": [
+          "FMN C4A to Tyr96 OH: 3.37 A",
+          "FMN C4A to Ser163 OG: 3.69 A",
+          "FMN C4A to His391 NE2: 4.23 A"
+        ],
+        "reductant_or_partner_assumption": "NADPH/NADP absence is not a blocker because reduced FMNH2 is supplied by a partner reductase.",
+        "interpretation": "This row is valid subtype diversity and should not be failed by a single-component NADPH-ligand requirement."
+      }
+    ],
+    "external_exact_coordinate_materialization_assumptions": {
+      "clean_non_duplicate_geometry_supported_rows_found": 0,
+      "P12015_CHMO": "Exact coordinate in the current pass is AlphaFold protein-only with no FAD, NAD(P), substrate, analog, or product; homolog ligand-bound CHMO structures exist but are not exact P12015 support.",
+      "Q93TJ5_HAPMO": "Exact coordinate in the current pass is AlphaFold protein-only with no FAD, NAD(P), substrate, analog, or product.",
+      "Q01740_FMO1": "Exact coordinate in the current pass is AlphaFold protein-only with no FAD, NAD(P), substrate, analog, or product.",
+      "H3JQW0_OTEMO": "Exact PDB 3UOY has FAD and NADP but no substrate/analog/product and remains a duplicate/family hold.",
+      "O15229_KMO": "Exact PDB 5X68 has FAD but no substrate/analog/product and remains a duplicate/leakage hold against m_csa:131.",
+      "P23262_salicylate": "Exact PDB 6BZ5 is apo/no-flavin for this geometry pass and remains same-family aromatic hydroxylase support."
+    }
+  },
+  "subtype_comparison": [
+    {
+      "subtype": "PHBH_like_aromatic_hydroxylase",
+      "representatives": [
+        "m_csa:131",
+        "m_csa:551",
+        "uniprot:P23262",
+        "uniprot:O15229"
+      ],
+      "chemistry": "Single-component FAD/NAD(P)H aromatic hydroxylation or oxidative decarboxylating hydroxylation through reduced flavin plus O2 and C4a-hydroperoxyflavin chemistry.",
+      "relationship_to_current_gate": "Best represented by current artifacts; PHB/BR special-case ligand logic makes this the most natural fit.",
+      "decision": "In scope, but KMO and salicylate are mostly duplicate or family-overlap support under current acquisition policy."
+    },
+    {
+      "subtype": "BVMO_CHMO_HAPMO_OTEMO",
+      "representatives": [
+        "uniprot:P12015",
+        "uniprot:Q93TJ5",
+        "uniprot:H3JQW0"
+      ],
+      "chemistry": "FAD/NADPH Baeyer-Villiger oxygen insertion into carbonyl substrates, forming lactone or ester products through peroxyflavin oxygen transfer.",
+      "relationship_to_current_gate": "Registry scope includes BVMOs, but current source-free geometry lacks a BVMO-specific substrate/product geometry feature and tends to collapse FAD/NAD(P) context into generic flavin_dehydrogenase_reductase.",
+      "decision": "Genuine FMO subtype diversity. CHMO and HAPMO are non-duplicate source-clean acquisition leads, but current exact-coordinate materialization is missing."
+    },
+    {
+      "subtype": "class_B_mammalian_FMO",
+      "representatives": [
+        "uniprot:Q01740"
+      ],
+      "chemistry": "Single-chain FAD/NADPH FMO forms a relatively stable C4a-hydroperoxyflavin oxygenating species for N- and S-oxygenation of soft nucleophiles.",
+      "relationship_to_current_gate": "Not PHBH-like: substrate classes, active-site residues, and product chemistry differ from aromatic hydroxylases and BVMOs. A NADPH/FAD-only geometry gate will over-absorb it into generic flavin redox if substrate/peroxy evidence is absent.",
+      "decision": "Genuine separate FMO subtype. The blocker is lack of exact ligand-bearing FMO1 coordinate materialization, not out-of-scope chemistry."
+    },
+    {
+      "subtype": "two_component_FMNH2_oxygenase",
+      "representatives": [
+        "m_csa:132",
+        "m_csa:973"
+      ],
+      "chemistry": "Reduced FMNH2 is supplied by a partner or reductase context, then the oxygenase component uses C4a-peroxy or C4a-hydroperoxy FMN chemistry for aldehyde or sulfur oxygenation.",
+      "relationship_to_current_gate": "A mandatory local NADP(H) ligand assumption is inappropriate. Partner-supplied reduced flavin must be represented as a separate reductant-context axis.",
+      "decision": "Genuine separate subtype or child stratum. DszC is in scope but needs substrate/peroxy coordinate materialization for coordinate-clean status."
+    },
+    {
+      "subtype": "hard_negative_or_out_of_scope_oxygenase_like_rows",
+      "representatives": [
+        "m_csa:141",
+        "m_csa:109",
+        "m_csa:978",
+        "m_csa:977",
+        "m_csa:128",
+        "m_csa:497",
+        "m_csa:750"
+      ],
+      "chemistry": "Ordinary flavin hydride/electron transfer, oxidase O2 acceptor chemistry, halogenase chemistry, ATP/luciferyl oxygenation, flavodiiron NO reduction, radical flavin/Fe-S dehydration, or covalent FAD-adduct chemistry.",
+      "relationship_to_current_gate": "These share flavin, oxygenase names, O2, or redox language but lack flavin-peroxy substrate oxygen insertion at the FMO locus.",
+      "decision": "True out-of-scope or hard-negative controls, not evidence to narrow the FMO parent definition."
+    }
+  ],
+  "blocker_decision": {
+    "primary_blocker": "missing_coordinate_materialization",
+    "secondary_blocker": "valid_subtype_diversity_requiring_v2_child_strata",
+    "tertiary_blocker": "review_silver_gate_is_phbh_biased_and_under_specified",
+    "not_primary_blocker": "true_out_of_scope_chemistry_for_CHMO_HAPMO_FMO1",
+    "rationale": [
+      "The semantic registry definition is broad enough for BVMO, aromatic hydroxylase, and class B FMO chemistry.",
+      "The implemented source-free gate is PHBH-leaning because PHB/BR are the only explicit FMO substrate exceptions and because FAD-only coordinates are penalized without local NAD(P) ligand.",
+      "The current external clean-row failure is dominated by exact coordinate absence for P12015, Q93TJ5, and Q01740, plus duplicate/family holds for H3JQW0, O15229, and P23262.",
+      "BVMO/HAPMO/FMO1 are valid FMO subtype diversity and should be separated in review panels before any canonical child promotion."
+    ]
+  },
+  "recommended_policy": {
+    "top_line": "Keep flavin_monooxygenase secondary-only; create review-only subtype panels and revise the silver/review evidence gate. Do not promote canonically.",
+    "canonical_promotion": "blocked",
+    "primary_metric_use": "not_allowed",
+    "review_silver_gate_revision": [
+      "Require explicit review evidence for reduced FAD/FMN plus O2 forming C4a-hydroperoxyflavin, C4a-peroxyflavin, or equivalent flavin-peroxy oxygenating chemistry.",
+      "Require substrate oxygen insertion or oxygenation context: aromatic hydroxylation, oxidative decarboxylation, N-oxygenation, S-oxygenation, Baeyer-Villiger insertion, or aldehyde oxygenation as appropriate to subtype.",
+      "Treat local NADP(H) ligand absence as a coordinate-state caveat, not an automatic failure, when the source context supports partner-supplied FMNH2 or missing nicotinamide in an otherwise relevant structure.",
+      "Do not rely on PHB/BR ligand codes as the only FMO-positive substrate exceptions.",
+      "Tier exact ligand-bearing coordinates as gold/countable candidates only after duplicate/leakage and import gates; tier homologous ligand-bearing coordinates as silver/review-only diagnostics with source_accession_exact=false."
+    ],
+    "review_only_subtype_panels": [
+      {
+        "panel_id": "fmo_aromatic_hydroxylase_c4a_peroxy",
+        "representatives": [
+          "m_csa:131",
+          "m_csa:551",
+          "uniprot:O15229",
+          "uniprot:P23262"
+        ],
+        "use_now": "review-only panel and duplicate/family-overlap control"
+      },
+      {
+        "panel_id": "fmo_baeyer_villiger_bvmo",
+        "representatives": [
+          "uniprot:P12015",
+          "uniprot:Q93TJ5",
+          "uniprot:H3JQW0"
+        ],
+        "use_now": "review-only acquisition panel; CHMO/HAPMO are best non-duplicate exact-coordinate targets"
+      },
+      {
+        "panel_id": "fmo_class_b_n_s_oxygenation",
+        "representatives": [
+          "uniprot:Q01740"
+        ],
+        "use_now": "review-only acquisition panel and silver homolog diagnostic"
+      },
+      {
+        "panel_id": "fmo_two_component_fmnh2_oxygenation",
+        "representatives": [
+          "m_csa:132",
+          "m_csa:973"
+        ],
+        "use_now": "review-only partner-reductase/reduced-FMN panel"
+      }
+    ]
+  },
+  "next_acquisition_targets": {
+    "exact_ligand_bearing_coordinate_targets": [
+      {
+        "priority": 1,
+        "target": "uniprot:P12015 CHMO",
+        "needed_coordinate": "Exact experimental coordinate with FAD plus NADP(H) and cyclohexanone, caprolactone, or close substrate/product analog in the BVMO active site.",
+        "why": "Clean non-duplicate BVMO/lactone oxygen-insertion axis; current exact support is AlphaFold protein-only."
+      },
+      {
+        "priority": 2,
+        "target": "uniprot:Q01740 human FMO1",
+        "needed_coordinate": "Exact ligand-bearing FAD/NADP(H) coordinate with dimethylaniline, trimethylamine, hypotaurine/taurine, or product/analog geometry.",
+        "why": "Unique class B mammalian FMO N/S oxygenation subtype; current exact support is AlphaFold protein-only."
+      },
+      {
+        "priority": 3,
+        "target": "uniprot:Q93TJ5 HAPMO",
+        "needed_coordinate": "Exact experimental FAD/NADP(H) coordinate with 4-hydroxyacetophenone, 4-acetoxyphenol, or close substrate/product analog.",
+        "why": "Source-clean HAPMO/aryl-ketone BVMO row; current exact support is AlphaFold protein-only."
+      },
+      {
+        "priority": 4,
+        "target": "m_csa:973 DszC",
+        "needed_coordinate": "FMN-bound DszC coordinate with dibenzothiophene-family substrate, sulfoxide/sulfone product, or substrate analog near FMN C4A, ideally with partner/reduced-FMN state context.",
+        "why": "Mechanism-clean two-component FMNH2 sulfur monooxygenase, but current coordinate lacks substrate/analog and peroxy state."
+      },
+      {
+        "priority": 5,
+        "target": "m_csa:551 phenol 2-monooxygenase",
+        "needed_coordinate": "Use pdb:1FOH author chain C as the productive local copy for future pocket extraction; chain D is corroborating only.",
+        "why": "Repairs a materialization/chain-choice issue in the local aromatic hydroxylase support row without changing labels or imports."
+      }
+    ],
+    "silver_homolog_review_targets_not_countable": [
+      {
+        "target": "CHMO/BVMO homologs",
+        "structures": [
+          "3UCL",
+          "4RG3",
+          "4RG4",
+          "8YU0"
+        ],
+        "known_useful_geometry": [
+          "3UCL has FAD + NADP + cyclohexanone with FAD C4X to CYH O1 at 3.008 A.",
+          "4RG3 has FAD + NADP + caprolactone with FAD C4X to ECE O at 3.529 A."
+        ]
+      },
+      {
+        "target": "class B FMO homologs",
+        "structures": [
+          "7AL4",
+          "6SE3"
+        ],
+        "known_useful_geometry": [
+          "7AL4 provides high-identity FAD + NADP cofactor/fold review context.",
+          "6SE3 provides FAD + NADP + O2 oxygen-pocket context with O2 about 5.18-5.84 A from FAD C4X."
+        ]
+      },
+      {
+        "target": "broad HAPMO/BVMO stress homologs",
+        "structures": [
+          "4AP3",
+          "2YM1"
+        ],
+        "known_useful_geometry": [
+          "2YM1 provides broad BVMO FAD + NADP + O2 context with O2 near FAD C4X at 3.485 A."
+        ]
+      }
+    ]
+  },
+  "hard_negative_targets": [
+    {
+      "class": "ordinary_flavin_hydride_transfer_dehydrogenase_reductase",
+      "representatives": [
+        "m_csa:3",
+        "m_csa:6",
+        "m_csa:353",
+        "m_csa:381",
+        "m_csa:506",
+        "m_csa:892"
+      ]
+    },
+    {
+      "class": "flavin_oxidase_o2_acceptor_not_monooxygenase",
+      "representatives": [
+        "m_csa:109",
+        "m_csa:110",
+        "m_csa:113",
+        "m_csa:354",
+        "m_csa:822",
+        "m_csa:852",
+        "m_csa:895"
+      ]
+    },
+    {
+      "class": "flavin_fe_s_relay_or_hcar_like",
+      "representatives": [
+        "m_csa:990",
+        "m_csa:108",
+        "m_csa:114",
+        "m_csa:142",
+        "m_csa:294",
+        "m_csa:800"
+      ]
+    },
+    {
+      "class": "explicit_oos_flavin_redox_controls",
+      "representatives": [
+        "m_csa:497",
+        "m_csa:750"
+      ]
+    },
+    {
+      "class": "covalent_fad_adduct_boundary",
+      "representatives": [
+        "m_csa:123"
+      ]
+    },
+    {
+      "class": "heme_p450_peroxidase_or_heme_oxygenase_not_fmo",
+      "representatives": [
+        "m_csa:133",
+        "m_csa:699",
+        "m_csa:795",
+        "m_csa:601"
+      ]
+    },
+    {
+      "class": "nonflavin_oxygenase_or_luciferase_not_fmo",
+      "representatives": [
+        "m_csa:128",
+        "m_csa:129",
+        "m_csa:130",
+        "m_csa:134",
+        "m_csa:135",
+        "m_csa:600",
+        "m_csa:768"
+      ]
+    }
+  ],
+  "bottom_line": "The current FMO artifact stack is not simply rejecting BVMO/HAPMO/FMO1 because they are out of scope. The registry definition is broad, but the active source-free geometry/counterevidence gate is PHBH-leaning and generic-flavin-redox-prone, while the current external pass is chiefly blocked by missing exact ligand-bearing coordinates. Keep FMO secondary-only, split review/silver evidence into subtype panels, revise the silver gate, and do not promote canonically."
+}
