@@ -1,0 +1,2947 @@
+{
+  "artifact_id": "v3_active_site_cache_41_unsupervised_router_stress_20260528",
+  "canary_failures": [],
+  "created_utc": "2026-05-28T11:07:00Z",
+  "feature_contract": {
+    "feature_count": 752,
+    "metadata_use": "Entry IDs, source groups, selected structures, and current fingerprint IDs were used only after distance scoring for diagnostics.",
+    "metadata_used_as_predictive_input": false,
+    "normalization": "per-feature z-score across the 41-row stress set",
+    "predictive_inputs": "Only active_site_encoder_cache_row.predictive_features were vectorized for distances."
+  },
+  "guardrails": {
+    "coordinate_fetches_performed": false,
+    "labels_changed": false,
+    "metadata_used_as_predictive_input": false,
+    "ontologies_changed": false,
+    "production_scoring_changed": false,
+    "registries_changed": false,
+    "thresholds_changed": false,
+    "training_executed": false
+  },
+  "local_tail_expected_pattern_checks": [
+    {
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:15",
+      "expected_pattern": "positive_tail_has_metal_hydrolase_neighbor_in_top5",
+      "passed": true,
+      "top5_neighbor_fingerprints_metadata_only": [
+        "metal_dependent_hydrolase",
+        "metal_dependent_hydrolase",
+        "None",
+        "None",
+        "metal_dependent_hydrolase"
+      ]
+    },
+    {
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:258",
+      "expected_pattern": "positive_tail_has_metal_hydrolase_neighbor_in_top5",
+      "passed": true,
+      "top5_neighbor_fingerprints_metadata_only": [
+        "None",
+        "metal_dependent_hydrolase",
+        "None",
+        "metal_dependent_hydrolase",
+        "None"
+      ]
+    },
+    {
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:158",
+      "expected_pattern": "positive_tail_has_metal_hydrolase_neighbor_in_top5",
+      "passed": true,
+      "top5_neighbor_fingerprints_metadata_only": [
+        "metal_dependent_hydrolase",
+        "None",
+        "None",
+        "None",
+        "None"
+      ]
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:178",
+      "expected_pattern": "oos_tail_not_exclusively_primary_metal_in_top5",
+      "passed": true,
+      "top5_neighbor_fingerprints_metadata_only": [
+        "None",
+        "metal_dependent_hydrolase",
+        "None",
+        "None",
+        "flavin_dehydrogenase_reductase"
+      ]
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:179",
+      "expected_pattern": "oos_tail_not_exclusively_primary_metal_in_top5",
+      "passed": true,
+      "top5_neighbor_fingerprints_metadata_only": [
+        "None",
+        "None",
+        "None",
+        "None",
+        "metal_dependent_hydrolase"
+      ]
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:533",
+      "expected_pattern": "oos_tail_not_exclusively_primary_metal_in_top5",
+      "passed": true,
+      "top5_neighbor_fingerprints_metadata_only": [
+        "None",
+        "None",
+        "None",
+        "flavin_dehydrogenase_reductase",
+        "None"
+      ]
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:534",
+      "expected_pattern": "oos_tail_not_exclusively_primary_metal_in_top5",
+      "passed": true,
+      "top5_neighbor_fingerprints_metadata_only": [
+        "None",
+        "None",
+        "metal_dependent_hydrolase",
+        "None",
+        "None"
+      ]
+    },
+    {
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:216",
+      "expected_pattern": "positive_tail_has_metal_hydrolase_neighbor_in_top5",
+      "passed": true,
+      "top5_neighbor_fingerprints_metadata_only": [
+        "None",
+        "None",
+        "None",
+        "metal_dependent_hydrolase",
+        "None"
+      ]
+    },
+    {
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:516",
+      "expected_pattern": "positive_tail_has_metal_hydrolase_neighbor_in_top5",
+      "passed": true,
+      "top5_neighbor_fingerprints_metadata_only": [
+        "metal_dependent_hydrolase",
+        "None",
+        "None",
+        "metal_dependent_hydrolase",
+        "None"
+      ]
+    },
+    {
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:54",
+      "expected_pattern": "oos_tail_not_exclusively_primary_metal_in_top5",
+      "passed": true,
+      "top5_neighbor_fingerprints_metadata_only": [
+        "flavin_dehydrogenase_reductase",
+        "None",
+        "metal_dependent_hydrolase",
+        "None",
+        "None"
+      ]
+    }
+  ],
+  "review_only": true,
+  "rows": [
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:97",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 13.7075,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 15.8941,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 17.0254,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 18.1986,
+          "entry_id": "m_csa:517",
+          "selected_structure": "pdb:1I6P",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 18.8512,
+          "entry_id": "m_csa:211",
+          "selected_structure": "pdb:1IDT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 19.0208,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 19.4109,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "selected_structure": "pdb:1CTT",
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:211",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 16.8588,
+          "entry_id": "m_csa:651",
+          "selected_structure": "pdb:1IG8",
+          "source_group": "oos_router_control"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 17.563,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 18.1499,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 18.7703,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 18.8512,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+          "distance": 19.173,
+          "entry_id": "m_csa:699",
+          "selected_structure": "pdb:1BU7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 19.5669,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "selected_structure": "pdb:1IDT",
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+      "entry_id": "m_csa:250",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 20.3325,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 20.8214,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 21.1604,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 21.338,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 21.4904,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 22.4885,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 22.7771,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        }
+      ],
+      "selected_structure": "pdb:2CPO",
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:517",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 18.1986,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 20.2457,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 20.4834,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 20.78,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 21.4497,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 22.1635,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.0736,
+          "entry_id": "m_csa:651",
+          "selected_structure": "pdb:1IG8",
+          "source_group": "oos_router_control"
+        }
+      ],
+      "selected_structure": "pdb:1I6P",
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:686",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 29.7953,
+          "entry_id": "m_csa:216",
+          "selected_structure": "pdb:1CA2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.5197,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 30.7413,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.8391,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 30.9586,
+          "entry_id": "m_csa:517",
+          "selected_structure": "pdb:1I6P",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 31.0685,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 31.2864,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        }
+      ],
+      "selected_structure": "pdb:1E1A",
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:916",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.2897,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.3105,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.5341,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 24.185,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 24.2799,
+          "entry_id": "m_csa:216",
+          "selected_structure": "pdb:1CA2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 24.6253,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 24.86,
+          "entry_id": "m_csa:517",
+          "selected_structure": "pdb:1I6P",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:4Z71",
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:990",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 19.3636,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 19.4411,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 19.876,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 20.1065,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 20.1568,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 20.652,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 20.8431,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        }
+      ],
+      "selected_structure": "pdb:5DQR",
+      "source_group": "clean_near_orphan_anchor"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:217",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.6615,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.8933,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 26.2967,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 26.4622,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 26.9513,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+          "distance": 26.9573,
+          "entry_id": "m_csa:250",
+          "selected_structure": "pdb:2CPO",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 27.0869,
+          "entry_id": "m_csa:216",
+          "selected_structure": "pdb:1CA2",
+          "source_group": "current702_local_tail_extension"
+        }
+      ],
+      "selected_structure": "pdb:1SC9",
+      "source_group": "fold_conflict_reference_anchor"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:428",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.3778,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 30.6175,
+          "entry_id": "m_csa:258",
+          "selected_structure": "pdb:1SML",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.6482,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.7792,
+          "entry_id": "m_csa:477",
+          "selected_structure": "pdb:1CQQ",
+          "source_group": "fold_conflict_reference_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.801,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.9798,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 31.0148,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:1BQC",
+      "source_group": "fold_conflict_reference_anchor"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:477",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 21.5961,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 22.0634,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 22.486,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.3039,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.343,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 24.1614,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 24.2819,
+          "entry_id": "m_csa:517",
+          "selected_structure": "pdb:1I6P",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:1CQQ",
+      "source_group": "fold_conflict_reference_anchor"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:10",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 21.758,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 22.6648,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 22.8402,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.0459,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.1213,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.2587,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 24.3356,
+          "entry_id": "m_csa:517",
+          "selected_structure": "pdb:1I6P",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:1MKB",
+      "source_group": "oos_router_control"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:30",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 32.358,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 32.4573,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 32.683,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 33.1537,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 33.3545,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 33.6203,
+          "entry_id": "m_csa:651",
+          "selected_structure": "pdb:1IG8",
+          "source_group": "oos_router_control"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 33.9595,
+          "entry_id": "m_csa:211",
+          "selected_structure": "pdb:1IDT",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:2PFL",
+      "source_group": "oos_router_control"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:31",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 29.6417,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 29.6824,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 30.5387,
+          "entry_id": "m_csa:916",
+          "selected_structure": "pdb:4Z71",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 30.6475,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 30.6704,
+          "entry_id": "m_csa:216",
+          "selected_structure": "pdb:1CA2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.8508,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.9544,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "selected_structure": "pdb:1LCB",
+      "source_group": "oos_router_control"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:116",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.7541,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.3059,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.4681,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.6338,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 25.8263,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 25.8462,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 26.4782,
+          "entry_id": "m_csa:517",
+          "selected_structure": "pdb:1I6P",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:1HZZ",
+      "source_group": "oos_router_control"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:191",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 22.2925,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.2966,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.8467,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 24.0369,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 24.8029,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 24.9648,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.4234,
+          "entry_id": "m_csa:651",
+          "selected_structure": "pdb:1IG8",
+          "source_group": "oos_router_control"
+        }
+      ],
+      "selected_structure": "pdb:1MEK",
+      "source_group": "oos_router_control"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:369",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 29.6008,
+          "entry_id": "m_csa:973",
+          "selected_structure": "pdb:3X0Y",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.0143,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.3275,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.5623,
+          "entry_id": "m_csa:10",
+          "selected_structure": "pdb:1MKB",
+          "source_group": "oos_router_control"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.7076,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 30.7871,
+          "entry_id": "m_csa:216",
+          "selected_structure": "pdb:1CA2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.8941,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        }
+      ],
+      "selected_structure": "pdb:1DLG",
+      "source_group": "oos_router_control"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:440",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.2456,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 26.1817,
+          "entry_id": "m_csa:651",
+          "selected_structure": "pdb:1IG8",
+          "source_group": "oos_router_control"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 26.3865,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 26.3994,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 26.7788,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 27.1641,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 27.2828,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:1QK2",
+      "source_group": "oos_router_control"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:634",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 21.7703,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 22.574,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 22.6123,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 22.9704,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 23.0923,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.5768,
+          "entry_id": "m_csa:651",
+          "selected_structure": "pdb:1IG8",
+          "source_group": "oos_router_control"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.7241,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        }
+      ],
+      "selected_structure": "pdb:1V0Y",
+      "source_group": "oos_router_control"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:651",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 16.8588,
+          "entry_id": "m_csa:211",
+          "selected_structure": "pdb:1IDT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 18.1599,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+          "distance": 19.023,
+          "entry_id": "m_csa:699",
+          "selected_structure": "pdb:1BU7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 19.1234,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 19.667,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 19.8278,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 19.9283,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "selected_structure": "pdb:1IG8",
+      "source_group": "oos_router_control"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "flavin_monooxygenase",
+      "entry_id": "m_csa:131",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 26.6787,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 26.9924,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 27.0149,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 27.0706,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 27.0754,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 27.0969,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 27.4589,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "selected_structure": "pdb:1DOC",
+      "source_group": "external_router_priority"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:551",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 17.2651,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 18.1194,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 18.8257,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 19.4109,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 19.4574,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 19.5669,
+          "entry_id": "m_csa:211",
+          "selected_structure": "pdb:1IDT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 19.8278,
+          "entry_id": "m_csa:651",
+          "selected_structure": "pdb:1IG8",
+          "source_group": "oos_router_control"
+        }
+      ],
+      "selected_structure": "pdb:1FOH",
+      "source_group": "external_router_priority"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:973",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 23.9755,
+          "entry_id": "m_csa:216",
+          "selected_structure": "pdb:1CA2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 24.6686,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 24.715,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 24.8665,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 24.9172,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.0173,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 25.4852,
+          "entry_id": "m_csa:916",
+          "selected_structure": "pdb:4Z71",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:3X0Y",
+      "source_group": "external_router_priority"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:141",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 93.8664,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 93.9969,
+          "entry_id": "m_csa:973",
+          "selected_structure": "pdb:3X0Y",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 94.0134,
+          "entry_id": "m_csa:916",
+          "selected_structure": "pdb:4Z71",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 94.0862,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 94.1346,
+          "entry_id": "m_csa:516",
+          "selected_structure": "pdb:1QRG",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+          "distance": 94.1931,
+          "entry_id": "m_csa:133",
+          "selected_structure": "pdb:1YRC",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 94.2234,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "selected_structure": "pdb:1DII",
+      "source_group": "external_router_priority"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:128",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 28.8896,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 29.2335,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.0066,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.0496,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 30.5104,
+          "entry_id": "m_csa:211",
+          "selected_structure": "pdb:1IDT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 30.708,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.8762,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "selected_structure": "pdb:1BA3",
+      "source_group": "external_router_priority"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:129",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 15.8941,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 16.1362,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 16.5918,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 17.2651,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 17.7918,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 18.1599,
+          "entry_id": "m_csa:651",
+          "selected_structure": "pdb:1IG8",
+          "source_group": "oos_router_control"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 18.7415,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        }
+      ],
+      "selected_structure": "pdb:1OS7",
+      "source_group": "external_router_priority"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:130",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 24.0979,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 24.4149,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.0683,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.0858,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 25.3677,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 25.5353,
+          "entry_id": "m_csa:517",
+          "selected_structure": "pdb:1I6P",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 26.0434,
+          "entry_id": "m_csa:990",
+          "selected_structure": "pdb:5DQR",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:1NDO",
+      "source_group": "external_router_priority"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+      "entry_id": "m_csa:133",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 28.1524,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 29.223,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 29.2944,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 29.3112,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+          "distance": 29.6676,
+          "entry_id": "m_csa:250",
+          "selected_structure": "pdb:2CPO",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 29.7514,
+          "entry_id": "m_csa:973",
+          "selected_structure": "pdb:3X0Y",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 29.7936,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:1YRC",
+      "source_group": "external_router_priority"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:134",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 13.7075,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 16.1362,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 17.097,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 18.1194,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 18.1499,
+          "entry_id": "m_csa:211",
+          "selected_structure": "pdb:1IDT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 18.8104,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 19.4411,
+          "entry_id": "m_csa:990",
+          "selected_structure": "pdb:5DQR",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:2TOH",
+      "source_group": "external_router_priority"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:135",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 30.1368,
+          "entry_id": "m_csa:258",
+          "selected_structure": "pdb:1SML",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 30.1921,
+          "entry_id": "m_csa:130",
+          "selected_structure": "pdb:1NDO",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 31.3924,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 31.405,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 31.4115,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 31.6454,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 32.7808,
+          "entry_id": "m_csa:216",
+          "selected_structure": "pdb:1CA2",
+          "source_group": "current702_local_tail_extension"
+        }
+      ],
+      "selected_structure": "pdb:1SDW",
+      "source_group": "external_router_priority"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+      "entry_id": "m_csa:699",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 19.023,
+          "entry_id": "m_csa:651",
+          "selected_structure": "pdb:1IG8",
+          "source_group": "oos_router_control"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 19.173,
+          "entry_id": "m_csa:211",
+          "selected_structure": "pdb:1IDT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 20.5919,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 20.9703,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 21.0197,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 21.1664,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 21.2007,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        }
+      ],
+      "selected_structure": "pdb:1BU7",
+      "source_group": "external_router_priority"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "heme_peroxidase_oxidase",
+      "entry_id": "m_csa:795",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 32.2331,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 32.5548,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 32.5647,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 32.8864,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 32.9277,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 33.1334,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 33.876,
+          "entry_id": "m_csa:10",
+          "selected_structure": "pdb:1MKB",
+          "source_group": "oos_router_control"
+        }
+      ],
+      "selected_structure": "pdb:1WNW",
+      "source_group": "external_router_priority"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:15",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 36.8779,
+          "entry_id": "m_csa:258",
+          "selected_structure": "pdb:1SML",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 38.936,
+          "entry_id": "m_csa:216",
+          "selected_structure": "pdb:1CA2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 39.2088,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 39.3765,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 39.4268,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 39.4296,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 39.5371,
+          "entry_id": "m_csa:517",
+          "selected_structure": "pdb:1I6P",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:1ZNB",
+      "source_group": "current702_local_tail_extension"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:258",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.5359,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 26.7533,
+          "entry_id": "m_csa:216",
+          "selected_structure": "pdb:1CA2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 26.9557,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 27.5529,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 27.9051,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 28.0442,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 28.0645,
+          "entry_id": "m_csa:517",
+          "selected_structure": "pdb:1I6P",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:1SML",
+      "source_group": "current702_local_tail_extension"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:158",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 59.9301,
+          "entry_id": "m_csa:258",
+          "selected_structure": "pdb:1SML",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 60.0875,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 60.1844,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 60.421,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 60.4996,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 60.5523,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 60.5848,
+          "entry_id": "m_csa:916",
+          "selected_structure": "pdb:4Z71",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:1AUK",
+      "source_group": "current702_local_tail_extension"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:178",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 16.5918,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 17.0254,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 17.097,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 17.1315,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 17.563,
+          "entry_id": "m_csa:211",
+          "selected_structure": "pdb:1IDT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 17.6944,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 18.8257,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        }
+      ],
+      "selected_structure": "pdb:1BMF",
+      "source_group": "current702_local_tail_extension"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:179",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 17.6944,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 17.7918,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 18.8104,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 18.8468,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 19.0208,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 20.0333,
+          "entry_id": "m_csa:211",
+          "selected_structure": "pdb:1IDT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 20.1241,
+          "entry_id": "m_csa:651",
+          "selected_structure": "pdb:1IG8",
+          "source_group": "oos_router_control"
+        }
+      ],
+      "selected_structure": "pdb:1Q3S",
+      "source_group": "current702_local_tail_extension"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:533",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 17.1315,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 18.7415,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 18.8468,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 19.4574,
+          "entry_id": "m_csa:551",
+          "selected_structure": "pdb:1FOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 19.4714,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 19.6059,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 20.6134,
+          "entry_id": "m_csa:651",
+          "selected_structure": "pdb:1IG8",
+          "source_group": "oos_router_control"
+        }
+      ],
+      "selected_structure": "pdb:1BH2",
+      "source_group": "current702_local_tail_extension"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:534",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 37.9008,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 38.6186,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 38.6754,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 38.8479,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 38.9304,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 39.0642,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 39.6399,
+          "entry_id": "m_csa:517",
+          "selected_structure": "pdb:1I6P",
+          "source_group": "clean_near_orphan_anchor"
+        }
+      ],
+      "selected_structure": "pdb:1VOM",
+      "source_group": "current702_local_tail_extension"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:216",
+      "nearest_neighbor_cross_source_group": false,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 21.7278,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.0867,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.1716,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 23.2158,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.2173,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 23.9755,
+          "entry_id": "m_csa:973",
+          "selected_structure": "pdb:3X0Y",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 24.2795,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        }
+      ],
+      "selected_structure": "pdb:1CA2",
+      "source_group": "current702_local_tail_extension"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+      "entry_id": "m_csa:516",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": true,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 32.6178,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 32.8224,
+          "entry_id": "m_csa:533",
+          "selected_structure": "pdb:1BH2",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 32.929,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 33.0162,
+          "entry_id": "m_csa:258",
+          "selected_structure": "pdb:1SML",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 33.9331,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 33.9795,
+          "entry_id": "m_csa:916",
+          "selected_structure": "pdb:4Z71",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 34.0682,
+          "entry_id": "m_csa:216",
+          "selected_structure": "pdb:1CA2",
+          "source_group": "current702_local_tail_extension"
+        }
+      ],
+      "selected_structure": "pdb:1QRG",
+      "source_group": "current702_local_tail_extension"
+    },
+    {
+      "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+      "current_fingerprint_id_metadata_only": null,
+      "entry_id": "m_csa:54",
+      "nearest_neighbor_cross_source_group": true,
+      "nearest_neighbor_same_fingerprint_metadata_only": false,
+      "nearest_neighbors": [
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "flavin_dehydrogenase_reductase",
+          "distance": 21.4174,
+          "entry_id": "m_csa:211",
+          "selected_structure": "pdb:1IDT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 23.4651,
+          "entry_id": "m_csa:651",
+          "selected_structure": "pdb:1IG8",
+          "source_group": "oos_router_control"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": "metal_dependent_hydrolase",
+          "distance": 24.4132,
+          "entry_id": "m_csa:97",
+          "selected_structure": "pdb:1CTT",
+          "source_group": "clean_near_orphan_anchor"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 24.6358,
+          "entry_id": "m_csa:179",
+          "selected_structure": "pdb:1Q3S",
+          "source_group": "current702_local_tail_extension"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.2037,
+          "entry_id": "m_csa:129",
+          "selected_structure": "pdb:1OS7",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.2113,
+          "entry_id": "m_csa:134",
+          "selected_structure": "pdb:2TOH",
+          "source_group": "external_router_priority"
+        },
+        {
+          "cache_artifact": "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl",
+          "current_fingerprint_id_metadata_only": null,
+          "distance": 25.6118,
+          "entry_id": "m_csa:178",
+          "selected_structure": "pdb:1BMF",
+          "source_group": "current702_local_tail_extension"
+        }
+      ],
+      "selected_structure": "pdb:1QFE",
+      "source_group": "current702_local_tail_extension"
+    }
+  ],
+  "schema_version": "active_site_cache_unsupervised_router_stress.v1",
+  "source_artifacts": [
+    "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl",
+    "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl"
+  ],
+  "status": "complete_read_only_unsupervised_stress",
+  "summary": {
+    "input_cache_counts": {
+      "artifacts/v3_active_site_encoder_cache_local_tail_extension_10_20260528.jsonl": 10,
+      "artifacts/v3_active_site_encoder_cache_wave1_2_31_20260528.jsonl": 31
+    },
+    "interpretation": "This is a label-blind unsupervised stress diagnostic, not performance evidence. The 41-row cache is ready for review-only router diagnostics; supervised claims still require a separate leakage-safe gate.",
+    "local_tail_expected_pattern_failure_count": 0,
+    "local_tail_expected_pattern_pass_count": 10,
+    "local_tail_nearest_neighbor_fingerprint_metadata_counts": {
+      "None": 6,
+      "flavin_dehydrogenase_reductase": 1,
+      "metal_dependent_hydrolase": 3
+    },
+    "local_tail_nearest_neighbor_source_group_counts": {
+      "clean_near_orphan_anchor": 2,
+      "current702_local_tail_extension": 5,
+      "external_router_priority": 3
+    },
+    "local_tail_row_count": 10,
+    "mean_nearest_distance_by_source_group": {
+      "clean_near_orphan_anchor": 20.2209,
+      "current702_local_tail_extension": 28.7425,
+      "external_router_priority": 29.4933,
+      "fold_conflict_reference_anchor": 25.8785,
+      "oos_router_control": 24.8089
+    },
+    "nearest_neighbor_cross_source_group_count": 31,
+    "nearest_neighbor_cross_source_group_rate": 0.7561,
+    "row_count": 41,
+    "source_group_counts": {
+      "clean_near_orphan_anchor": 7,
+      "current702_local_tail_extension": 10,
+      "external_router_priority": 12,
+      "fold_conflict_reference_anchor": 3,
+      "oos_router_control": 9
+    }
+  }
+}
