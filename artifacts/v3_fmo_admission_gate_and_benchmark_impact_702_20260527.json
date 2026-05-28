@@ -1,0 +1,202 @@
+{
+  "artifact_id": "v3_fmo_admission_gate_and_benchmark_impact_702_20260527",
+  "created_utc": "2026-05-28T01:38:56Z",
+  "method": "fmo_admission_gate_and_benchmark_impact_waiting_blocker",
+  "status": "blocked_missing_parallel_fmo_artifacts",
+  "review_only": true,
+  "import_run": false,
+  "candidate_count_seen_from_available_inputs": 2,
+  "candidate_count_evaluable_for_full_gate": 0,
+  "ready_for_human_review_packet_count": 0,
+  "source_inputs": [
+    {
+      "path": "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+      "present": false,
+      "required": true,
+      "role": "candidate_inventory_and_candidate_level_claims"
+    },
+    {
+      "path": "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
+      "present": false,
+      "required": true,
+      "role": "candidate_geometry_support_and_geometry_failure_modes"
+    },
+    {
+      "path": "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+      "present": false,
+      "required": true,
+      "role": "source_evidence_and_source_transfer_risk"
+    },
+    {
+      "path": "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json",
+      "present": false,
+      "required": true,
+      "role": "hard_negative_counteraxis_and_required_controls"
+    },
+    {
+      "path": "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json",
+      "present": true,
+      "required": true,
+      "role": "future_v2_fingerprint_or_pilot_design_context"
+    },
+    {
+      "path": "artifacts/v3_wave1_1_diagnostic_benchmark_result_702_20260527.json",
+      "present": true,
+      "required": true,
+      "role": "wave1_1_diagnostic_benchmark_context_only"
+    }
+  ],
+  "missing_required_inputs": [
+    "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+    "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
+    "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+    "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
+  ],
+  "available_inputs": [
+    "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json",
+    "artifacts/v3_wave1_1_diagnostic_benchmark_result_702_20260527.json"
+  ],
+  "blocker": {
+    "blocked_reason": "The FMO candidate scout, structure-geometry audit, source-evidence scout, and hard-negative counteraxis artifacts are absent. The v2 fingerprint proposal is present and names two context candidates, but it is proposal-only and does not supply the missing admission-gate evidence.",
+    "resolution_required": [
+      "Generate or provide the FMO candidate scout artifact before evaluating ready_for_human_review_packet.",
+      "Generate or provide the FMO structure geometry audit before evaluating clean geometry support.",
+      "Generate or provide the FMO source evidence scout before evaluating source-backed evidence and source-transfer risk.",
+      "Generate or provide the FMO hard negative counteraxis artifact before listing candidate-specific hard negative controls."
+    ]
+  },
+  "candidate_classification_schema": {
+    "ready_for_human_review_packet": "boolean_or_blocked",
+    "blocked_reason": "string_or_null",
+    "would_increase_clean_fmo_support_count": "boolean_or_unknown",
+    "would_remain_secondary_or_pilot_only": "boolean_or_unknown",
+    "benchmark_impact_if_later_approved": "string_or_unknown",
+    "hard_negative_controls_required": "array_or_unknown"
+  },
+  "candidate_classifications": [
+    {
+      "entry_id": "m_csa:551",
+      "entry_name": "phenol 2-monooxygenase",
+      "classification_source": "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json",
+      "classification_scope": "v2_context_candidate_not_full_candidate_scout",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "The v2 proposal identifies this as clean FMO context, but the candidate scout, structure-geometry audit, source-evidence scout, and hard-negative counteraxis artifacts are missing. The proposal also states the row remains unrelabelled and below support gates.",
+      "would_increase_clean_fmo_support_count": "conditional_if_later_expert_accepted_and_missing_evidence_gates_pass",
+      "would_increase_clean_fmo_support_count_basis": "The v2 proposal says the two canonical FMO rows plus m_csa:551 and m_csa:973 would make four clean rows if the future candidates are expert accepted.",
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "Would help raise clean FMO support toward four rows, still below the proposed n>=6 floor. No Wave 1.1 import or primary supervised metric would result; future v2 use would remain secondary OOD, acquisition-target, or later pilot-only after expert approval and controls.",
+      "hard_negative_controls_required": [
+        "ordinary flavin dehydrogenase/reductase/oxidase hydride-transfer controls such as m_csa:141",
+        "flavin Fe-S electron-relay controls",
+        "radical flavin or flavin Fe-S enzyme controls",
+        "heme oxygenase or P450 controls such as m_csa:133",
+        "non-flavin oxygenase controls such as m_csa:134, m_csa:135, and m_csa:600",
+        "non-flavin luciferase or ATP-adenylate oxygenation controls such as m_csa:128 and m_csa:768",
+        "name-only monooxygenase or hydroxylase false-positive controls",
+        "candidate-specific controls from the missing hard-negative counteraxis artifact"
+      ],
+      "requires_human_approval_before_registry_edit": true
+    },
+    {
+      "entry_id": "m_csa:973",
+      "entry_name": "DszC protein",
+      "classification_source": "artifacts/v3_fmo_v2_fingerprint_design_proposal_702_20260527.json",
+      "classification_scope": "v2_context_candidate_not_full_candidate_scout",
+      "ready_for_human_review_packet": false,
+      "blocked_reason": "The v2 proposal identifies this as clean FMO context, but the candidate scout, structure-geometry audit, source-evidence scout, and hard-negative counteraxis artifacts are missing. The proposal also states the row remains unrelabelled and below support gates.",
+      "would_increase_clean_fmo_support_count": "conditional_if_later_expert_accepted_and_missing_evidence_gates_pass",
+      "would_increase_clean_fmo_support_count_basis": "The v2 proposal says the two canonical FMO rows plus m_csa:551 and m_csa:973 would make four clean rows if the future candidates are expert accepted.",
+      "would_remain_secondary_or_pilot_only": true,
+      "benchmark_impact_if_later_approved": "Would help raise clean FMO support toward four rows, still below the proposed n>=6 floor. No Wave 1.1 import or primary supervised metric would result; future v2 use would remain secondary OOD, acquisition-target, or later pilot-only after expert approval and controls.",
+      "hard_negative_controls_required": [
+        "ordinary flavin dehydrogenase/reductase/oxidase hydride-transfer controls such as m_csa:141",
+        "flavin Fe-S electron-relay controls",
+        "radical flavin or flavin Fe-S enzyme controls",
+        "heme oxygenase or P450 controls such as m_csa:133",
+        "non-flavin oxygenase controls such as m_csa:134, m_csa:135, and m_csa:600",
+        "non-flavin luciferase or ATP-adenylate oxygenation controls such as m_csa:128 and m_csa:768",
+        "name-only monooxygenase or hydroxylase false-positive controls",
+        "candidate-specific controls from the missing hard-negative counteraxis artifact"
+      ],
+      "requires_human_approval_before_registry_edit": true
+    }
+  ],
+  "aggregate_admission_decision": {
+    "can_determine_full_candidate_inventory": false,
+    "can_determine_ready_candidates": false,
+    "ready_candidate_ids": [],
+    "blocked_candidate_count": 2,
+    "unknown_candidate_count": 0,
+    "blocked_reason": "The present v2 proposal names m_csa:551 and m_csa:973 as future context candidates, but no full candidate scout or candidate-level geometry/source/control evidence is available.",
+    "proposed_candidates_remain_requires_human_approval_before_registry_edit": true
+  },
+  "v2_context_from_present_proposal": {
+    "artifact_id": "v3_fmo_v2_fingerprint_design_proposal_702_20260527",
+    "recommended_current_status": "secondary_ood_probe_and_future_acquisition_target",
+    "primary_promotion_status": "blocked_until_minimum_support_and_hard_negative_controls",
+    "canonical_count": 2,
+    "clean_count_if_future_candidates_are_expert_accepted": 4,
+    "minimum_clean_count_before_primary_reconsideration": 6,
+    "remaining_clean_count_needed_after_current_candidates": 2,
+    "hard_negative_separation_available_now": false,
+    "allowed_now": [
+      "secondary OOD probe",
+      "canary for generic flavin reductase over-absorption",
+      "proposal-only evidence contract"
+    ],
+    "not_allowed_now": [
+      "primary supervised metric",
+      "production scoring",
+      "label import",
+      "threshold tuning",
+      "canonical child registry entry"
+    ]
+  },
+  "benchmark_context_from_present_wave1_1": {
+    "artifact_id": "v3_wave1_1_diagnostic_benchmark_result_702_20260527",
+    "recommended_next_move": "targeted_hybrid_foldseek_geometry_atlas_engine_plus_fingerprint_v2_label_acquisition",
+    "diagnostic_cell_count": 6,
+    "countable_metric_created": false,
+    "summary": "The available Wave 1.1 result is review-only diagnostic context: geometry resolves near-orphan and wrong-Foldseek-transfer slices, while child-label and mixed-chemistry cells remain underpowered or blocked."
+  },
+  "benchmark_impact_assessment": {
+    "can_estimate_if_later_approved": "partial_from_v2_proposal_only",
+    "would_increase_clean_fmo_support_count": "m_csa:551_and_m_csa:973_would_raise_clean_context_count_to_4_if_expert_accepted_and_evidence_gates_pass",
+    "would_remain_secondary_or_pilot_only": true,
+    "benchmark_impact_if_later_approved": "No Wave 1.1 import or primary metric impact now. Even if both context candidates were later approved, clean FMO support would be four rows, below the proposed n>=6 floor and still missing hard-negative separation, so future v2 use would remain secondary, acquisition-target, or pilot-only after human approval.",
+    "blocked_reason": "Candidate scout, source evidence, geometry support, and hard-negative counteraxis inputs are unavailable.",
+    "non_guessing_constraints": [
+      "Do not infer clean FMO support count changes from the Wave 1.1 benchmark alone.",
+      "Do not promote v2 proposal context candidates without the missing candidate, source, geometry, and hard-negative artifacts.",
+      "Do not estimate future v2 diagnostic impact without candidate-specific control axes."
+    ]
+  },
+  "hard_negative_controls_required": {
+    "can_identify_candidate_specific_controls": false,
+    "blocked_reason": "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json is missing.",
+    "class_level_controls_from_v2_proposal": [
+      "ordinary flavin dehydrogenase/reductase/oxidase hydride transfer",
+      "flavin Fe-S electron relay",
+      "radical flavin or flavin Fe-S enzyme",
+      "heme oxygenase or P450",
+      "non-flavin oxygenase",
+      "non-flavin luciferase or ATP-adenylate oxygenation",
+      "name-only monooxygenase/hydroxylase false positives"
+    ],
+    "minimum_required_before_packet": [
+      "Candidate-specific hard negative controls from the FMO hard negative counteraxis artifact.",
+      "Geometry failure-mode controls from the FMO structure geometry audit.",
+      "Source-transfer or source-ambiguity controls from the FMO source evidence scout."
+    ]
+  },
+  "guardrails_observed": {
+    "canonical_label_changes": false,
+    "imports": false,
+    "ontology_edits": false,
+    "thresholds": false,
+    "model_training": false,
+    "production_scoring": false,
+    "registry_edits": false,
+    "proposed_candidates_remain_requires_human_approval_before_registry_edit": true
+  }
+}
