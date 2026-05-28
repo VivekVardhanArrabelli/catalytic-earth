@@ -1,0 +1,558 @@
+{
+  "schema_version": "encoder_architecture_sweep_prep.v1",
+  "artifact_id": "v3_encoder_architecture_sweep_prep_702_20260528",
+  "created_utc": "2026-05-28T07:18:30Z",
+  "scope": {
+    "purpose": "Prepare runnable contracts for a small active-site encoder architecture sweep after the active-site feature spec and target-granularity gate freeze.",
+    "training_executed": false,
+    "model_outputs_created": false,
+    "existing_model_outputs_changed": false,
+    "label_registry_changed": false,
+    "fingerprint_registry_changed": false,
+    "ontology_registry_changed": false,
+    "thresholds_changed": false,
+    "production_scoring_changed": false,
+    "imports_changed": false,
+    "large_downloads_performed": false,
+    "new_artifact_type": "prep_contract_only"
+  },
+  "source_artifacts": {
+    "active_site_encoder_feature_spec_report": {
+      "path": "work/active_site_encoder_feature_spec_20260528.md",
+      "role": "human-readable feature spec and readiness report"
+    },
+    "active_site_encoder_feature_spec_artifact": {
+      "path": "artifacts/v3_active_site_encoder_feature_spec_702_20260528.json",
+      "sha256": "31c337e5a67a8803ffd3b9f1f684e1b2fd87ce6723efb368ac8a024ccb6857de",
+      "role": "frozen v0 active-site feature spec and cheap local cache manifest"
+    },
+    "sequence_nn_label_manifest": {
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151",
+      "role": "current702 row manifest and Wave 1 split assignment source"
+    },
+    "eval_contract": {
+      "path": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+      "sha256": "731b94ebd3b4f7ae483a3cca75d2b8c3b88242024ecd9c364d70bdfcda6624ee",
+      "role": "OOS, diversity, support, abstention, canary, and pooling policy"
+    },
+    "split_assignment": {
+      "path": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+      "sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425",
+      "role": "repaired Wave 1 in-distribution versus heldout partition"
+    },
+    "foldseek_coordinate_readiness": {
+      "path": "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json",
+      "sha256": "27e4359fde6371cea1c4957542a167124daa6edce23cf62c579a7a60877e98d3",
+      "role": "selected structure and local coordinate materialization status"
+    },
+    "wave1_1_diagnostic_result": {
+      "path": "artifacts/v3_wave1_1_diagnostic_benchmark_result_702_20260527.json",
+      "sha256": "f55b2cc7edf96149ad08ebb76b05fab74373304eb9ab9ded4f253fe82ce2cf0b",
+      "role": "review-only Wave 1.1 diagnostic cells and method result shape"
+    },
+    "wave1_representation_result_card": {
+      "path": "artifacts/v3_wave1_representation_shootout_result_card_20260526.json",
+      "sha256": "7a33fec362cbc3f5a7e672785cecc265919b4ba6920c3c138e28d0b507998f0b",
+      "role": "Wave 1 representation comparator card"
+    },
+    "wave1_representation_result_card_addendum": {
+      "path": "artifacts/v3_wave1_representation_shootout_result_card_702_20260527_addendum.json",
+      "sha256": "61277aedbcb9f3c463e2b303408640690d008fecd5c47d29f56b642fc9f7217e",
+      "role": "current702 addendum for Wave 1 representation result interpretation"
+    },
+    "v2_sublabel_audit": {
+      "path": "artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json",
+      "sha256": "afc80e7fa4f6f4db5521388803cae8fda24ec7cca9fbafa723cf3c1234ce951b",
+      "role": "proposal-only v2 auxiliary target source; not canonical labels"
+    },
+    "wave1_tm_pair_signal_expansion": {
+      "path": "artifacts/v3_wave1_tm_pair_signal_expansion_result_702_20260527.json",
+      "sha256": "92f671c740a8779fed0882dc1ff78b89614cb99a167d74329354a9ef51e00016",
+      "role": "partial Foldseek/TM pair retention signal and limitations"
+    }
+  },
+  "environment_probe": {
+    "disk_available_kib_after_safe_cleanup_attempt": 5722256,
+    "disk_floor_status": "below_requested_10_gib_floor_before_artifact_write; no training, downloads, or tensor cache materialization performed",
+    "safe_cleanup_performed": [
+      "removed regenerable Codex temp/runtime caches",
+      "removed two clean non-current Codex worktrees through git worktree remove",
+      "requested local snapshot thinning through tmutil"
+    ],
+    "personal_files_deleted": false,
+    "dependency_probe": {
+      "torch": true,
+      "torch_geometric": false,
+      "gvp": false,
+      "e3nn": false,
+      "se3_transformer": false,
+      "escnn": false
+    },
+    "dependency_interpretation": "Only torch is present in this prep environment. GVP-GNN and SE3/equivariant contracts are launch-gated on the compute environment providing torch_geometric/gvp or e3nn/se3-transformer equivalents; no packages were installed here."
+  },
+  "frozen_inputs_and_readiness": {
+    "current_label_count": 702,
+    "wave1_split_counts": {
+      "in_distribution": 562,
+      "heldout": 140
+    },
+    "encoder_ready_minimal_counts": {
+      "in_distribution": 544,
+      "heldout": 135,
+      "all_rows": 679
+    },
+    "not_ready_counts": {
+      "missing_geometry_entry": 4,
+      "missing_active_site_coordinates": 2,
+      "missing_active_site_roles": 4,
+      "partial_single_residue_or_no_pairs": 13
+    },
+    "heldout_denominator_policy": "All 140 Wave 1 heldout rows remain in coverage denominators; unavailable rows are emitted with not_evaluable reasons.",
+    "minimal_encoder_ready_rule": "geometry entry present, status ok, at least two resolved active-site residues, at least one role-annotated active-site residue, and at least one pairwise active-site distance",
+    "feature_spec_status": "prepared_by_prior_automation; do not launch until active-site feature spec is explicitly frozen",
+    "target_granularity_gate_status": "not_frozen_by_this_prep; do not launch until gate decides v1-only versus v1-plus-proposal-v2 auxiliary"
+  },
+  "global_leakage_exclusions": {
+    "forbidden_predictive_inputs": [
+      "EC numbers",
+      "entry names",
+      "protein names",
+      "reaction names",
+      "mechanism prose",
+      "expert notes",
+      "curator rationales",
+      "review decision text",
+      "entry_id, PDB id, UniProt id, source path, or source artifact name as categorical features",
+      "post-hoc repair flags",
+      "target labels or child-label ids in predictive tensors",
+      "heldout-derived role vocabulary, scalers, thresholds, validation choices, or hyperparameters"
+    ],
+    "allowed_manifest_only_fields": [
+      "entry_id",
+      "split_assignment",
+      "label_type",
+      "fingerprint_id",
+      "review_status",
+      "tier",
+      "source_artifact_paths",
+      "source_artifact_hashes",
+      "unavailable_reason"
+    ],
+    "fit_policy": "Role vocabularies, normalization statistics, calibration thresholds, and validation-based hyperparameter choices must be fit from in-distribution training folds only; heldout is read exactly once for final reporting.",
+    "audit_requirement": "Every row prediction must include forbidden_inputs_used, and every valid run must have forbidden_inputs_used equal to an empty list for all rows."
+  },
+  "split_and_evaluation_contract": {
+    "split_artifact": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    "split_assignment_source": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "immutable_test_split": "Wave 1 heldout partition, 140 rows",
+    "train_val_source": "Wave 1 in-distribution partition only, 562 rows total and 544 encoder-ready minimal rows",
+    "validation_policy": "For each seed, create a deterministic stratified validation fold from in-distribution rows only using label_group and OOS tier where available; never move heldout rows into validation or training.",
+    "random_seeds": [
+      11,
+      23,
+      37,
+      53,
+      71
+    ],
+    "primary_metric_scope": "Parent v1 label-group readout with result-card-compatible heldout accuracy, macro F1, OOS false non-abstention rate, unavailable counts, and mean/std over five seeds.",
+    "v1_target_contract": {
+      "model_head_classes": [
+        "ser_his_acid_hydrolase",
+        "metal_dependent_hydrolase",
+        "plp_dependent_enzyme",
+        "flavin_dehydrogenase_reductase",
+        "heme_peroxidase_oxidase",
+        "cobalamin_radical_rearrangement",
+        "flavin_monooxygenase",
+        "radical_sam_enzyme",
+        "out_of_scope"
+      ],
+      "headline_primary_metric_classes": [
+        "ser_his_acid_hydrolase",
+        "metal_dependent_hydrolase",
+        "plp_dependent_enzyme",
+        "flavin_dehydrogenase_reductase",
+        "heme_peroxidase_oxidase"
+      ],
+      "secondary_probe_policy": "cobalamin_radical_rearrangement, flavin_monooxygenase, and radical_sam_enzyme remain secondary OOD/probe rows unless a future frozen contract promotes them."
+    },
+    "v2_auxiliary_target_contract": {
+      "source_artifact": "artifacts/v3_mechanism_fingerprint_v2_sublabel_audit_702_20260525.json",
+      "status": "proposal_only",
+      "recommended_default": "enabled with low auxiliary loss weight after target-granularity gate freezes proposal-v2 use",
+      "ready_candidate_count": 9,
+      "review_needed_candidate_count": 14,
+      "forbidden_claims": [
+        "no canonical child-label metric",
+        "no child-label import",
+        "no ontology or fingerprint registry edit",
+        "no production scoring change"
+      ],
+      "loss_mask_policy": "Compute v2 auxiliary loss only for rows with proposal-ready v2 assignments; mask all unresolved/review-needed candidates."
+    },
+    "diagnostic_cells_to_report": [
+      "full heldout current702 coverage",
+      "near-orphan geometry rescue behavior",
+      "wrong-Foldseek-transfer behavior",
+      "dense same-mechanism structural neighborhood",
+      "high-structure-similarity different-fingerprint contrast",
+      "no reliable structure rows",
+      "canary or mixed-chemistry cells as review-only"
+    ],
+    "comparators": {
+      "foldseek_full_structure_nn": {
+        "heldout_primary_accuracy": 0.622,
+        "heldout_primary_macro_f1": 0.765,
+        "heldout_oos_false_nonabstention_rate": 0.087,
+        "heldout_rows_joined": "140/140"
+      },
+      "esm2_150m_logistic": {
+        "heldout_primary_accuracy": 0.578,
+        "heldout_primary_macro_f1": 0.696,
+        "heldout_oos_false_nonabstention_rate": 0.168,
+        "heldout_rows_joined": "140/140"
+      },
+      "active_site_geometry_baseline": {
+        "heldout_rows_joined": "135/140",
+        "diagnostic_strength": "17/17 near-orphan rows and 4/4 wrong-Foldseek-transfer rows supported in Wave 1.1 diagnostics; aggregate result-card accuracy is not standardized"
+      },
+      "sequence_nn_3mer_jaccard": {
+        "heldout_primary_accuracy": 0.156,
+        "heldout_oos_false_nonabstention_rate": 0.272,
+        "heldout_rows_joined": "140/140"
+      }
+    }
+  },
+  "shared_output_contract": {
+    "no_existing_outputs_overwritten": true,
+    "run_directory_template": "work/encoder_architecture_sweep_${FREEZE_TAG}/${architecture_id}",
+    "summary_json_template": "artifacts/v3_encoder_architecture_sweep_${architecture_id}_summary_702_${FREEZE_TAG}.json",
+    "row_predictions_jsonl_template": "artifacts/v3_encoder_architecture_sweep_${architecture_id}_predictions_702_${FREEZE_TAG}.jsonl",
+    "aggregate_result_card_template": "artifacts/v3_encoder_architecture_sweep_result_card_702_${FREEZE_TAG}.json",
+    "required_summary_fields": [
+      "artifact_id",
+      "created_utc",
+      "git_sha",
+      "contract_sha256",
+      "source_artifact_hashes",
+      "architecture_id",
+      "dependency_manifest",
+      "hyperparameters",
+      "random_seed",
+      "split_counts",
+      "available_counts",
+      "heldout_primary_accuracy",
+      "heldout_primary_macro_f1",
+      "heldout_oos_false_nonabstention_rate",
+      "diagnostic_cell_metrics",
+      "mean_and_std_over_5_seeds",
+      "forbidden_inputs_used_count",
+      "model_training_performed"
+    ],
+    "required_row_fields": [
+      "entry_id",
+      "split_assignment",
+      "architecture_id",
+      "seed",
+      "available",
+      "unavailable_reason",
+      "true_label_group",
+      "true_fingerprint_id",
+      "predicted_label_group",
+      "predicted_fingerprint_id",
+      "abstained",
+      "score_or_probability",
+      "v2_auxiliary_prediction",
+      "v2_auxiliary_available",
+      "forbidden_inputs_used",
+      "predictive_inputs"
+    ],
+    "checkpoint_policy": "Do not commit model checkpoints by default. If checkpoints are needed for reproducibility, store under the run directory, cap each architecture at 250 MiB, and commit only summary/row artifacts after review."
+  },
+  "architecture_contracts": [
+    {
+      "architecture_id": "active_site_mlp_pooled_v0",
+      "launch_priority": 1,
+      "status": "ready_after_cache_and_gate_freeze",
+      "purpose": "Fast non-equivariant baseline over pooled active-site-local features; isolates value of the frozen feature spec before graph complexity.",
+      "input_contract": {
+        "primary_inputs": [
+          "pooled residue type counts from active-site residues",
+          "pooled role multihot counts with role_other for unseen roles",
+          "distance-bin histograms over active-site residue pairs",
+          "pocket descriptor vector",
+          "local cofactor family and metal distance bins",
+          "coordinate quality and missingness masks"
+        ],
+        "optional_inputs": [
+          "node-only pooled features for 13 single-residue/no-pair rows as an ablation only"
+        ],
+        "excluded_inputs": [
+          "raw entry identifiers",
+          "source names",
+          "EC/mechanism text",
+          "expert notes",
+          "target labels",
+          "post-hoc repair flags"
+        ]
+      },
+      "split_discipline": "Train and tune only on in-distribution encoder-ready rows; heldout is final-only. Keep unavailable heldout rows in denominator.",
+      "target_heads": {
+        "parent_v1": "9-way parent head for eight seed fingerprints plus out_of_scope, reported under primary-v1 result-card policy",
+        "in_scope_calibration": "binary in_scope versus out_of_scope head for abstention/OOS false non-abstention tracking",
+        "v2_proposal_auxiliary": "masked proposal-only head enabled only if target-granularity gate freezes v2 auxiliary use"
+      },
+      "ablations": [
+        "full pooled feature vector",
+        "no cofactor or metal features",
+        "no role features",
+        "no pocket descriptors",
+        "distance histograms only",
+        "residue and role counts only",
+        "node-only inclusion of 13 single-residue/no-pair rows",
+        "v1-only heads versus v1 plus masked v2 auxiliary head"
+      ],
+      "expected_runtime": "5 seeds in less than 15 minutes on CPU, or less than 5 minutes on one small GPU.",
+      "gpu_needs": "GPU optional; CPU is acceptable.",
+      "output_format": "shared_output_contract with one summary JSON and one row-prediction JSONL for this architecture.",
+      "pass_fail_criterion": {
+        "minimum_sanity_pass": "Beats Sequence-NN 3-mer accuracy 0.156 and OOS false non-abstention rate 0.272 while using no forbidden inputs.",
+        "promotion_pass": "Mean heldout primary macro F1 >= 0.696 or mean heldout primary accuracy >= 0.578, OOS false non-abstention <= 0.168, and no regression in coverage versus 135 encoder-ready heldout rows.",
+        "strong_pass": "Matches or exceeds Foldseek macro F1 0.765 or accuracy 0.622 with OOS false non-abstention <= 0.087.",
+        "fail": "Does not beat sequence-only sanity baseline, uses forbidden inputs, or improves primary accuracy only by raising OOS false non-abstention above ESM-2."
+      },
+      "launch_command_after_freeze": "PYTHONPATH=src python -m catalytic_earth.cli run-active-site-encoder-experiment --contract artifacts/v3_encoder_architecture_sweep_prep_702_20260528.json --architecture active_site_mlp_pooled_v0 --cache artifacts/v3_active_site_encoder_cache_current702_${FREEZE_TAG}.jsonl --out-dir work/encoder_architecture_sweep_${FREEZE_TAG}/active_site_mlp_pooled_v0 --seeds 11,23,37,53,71"
+    },
+    {
+      "architecture_id": "active_site_vanilla_graph_gnn_v0",
+      "launch_priority": 2,
+      "status": "ready_after_cache_and_gate_freeze",
+      "purpose": "Small non-equivariant message-passing graph over active-site residues, with CA/local atom evidence when available.",
+      "input_contract": {
+        "primary_inputs": [
+          "active-site residue nodes with residue type, role multihot, coordinate flags, and atom-count bucket",
+          "complete graph or radius graph edges among resolved active-site residues",
+          "CA distance bins and centroid/side-chain proxy distance bins",
+          "global pocket/cofactor/metal summary features concatenated after graph pooling"
+        ],
+        "optional_inputs": [
+          "local atom graph side channel for side-chain atoms parsed from already staged local mmCIF files",
+          "ligand/metal pseudo-nodes only when derived from local coordinate context and not source identifiers"
+        ],
+        "excluded_inputs": [
+          "full-protein graph outside active-site/local atom scope",
+          "PDB/UniProt/source ids as node features",
+          "mechanism prose, EC labels, expert notes, target labels, post-hoc repair flags"
+        ]
+      },
+      "split_discipline": "Use the same in-distribution train/val folds and heldout final-only discipline. Fit graph feature vocabularies and scalers from train folds only.",
+      "target_heads": {
+        "parent_v1": "9-way graph-pooled parent head",
+        "in_scope_calibration": "binary calibration head from graph pooled representation",
+        "v2_proposal_auxiliary": "masked proposal-v2 auxiliary head after target gate approval"
+      },
+      "ablations": [
+        "complete active-site graph versus 12 A radius graph",
+        "CA distances only versus centroid/proxy distances",
+        "remove edge distance features",
+        "remove global pocket/cofactor/metal features",
+        "residue graph only versus residue plus local atom side channel",
+        "coordinate jitter robustness check on train/val only",
+        "v1-only heads versus v1 plus masked v2 auxiliary head"
+      ],
+      "expected_runtime": "5 seeds in 30-60 minutes on one small GPU; CPU fallback may take 2-4 hours.",
+      "gpu_needs": "One GPU with 4 GiB memory is sufficient if torch graph batching is implemented without heavyweight dependencies.",
+      "output_format": "shared_output_contract with graph-specific hyperparameters, edge policy, and local atom feature availability.",
+      "pass_fail_criterion": {
+        "minimum_sanity_pass": "Beats active_site_mlp_pooled_v0 mean macro F1 by at least 0.02 or matches it with lower OOS false non-abstention.",
+        "promotion_pass": "Meets or beats ESM-2 macro F1 0.696 and OOS false non-abstention 0.168, and supports at least 15/17 near-orphan geometry rescue rows when evaluable.",
+        "strong_pass": "Closes at least 3/4 wrong-Foldseek-transfer diagnostic rows and matches Foldseek OOS false non-abstention <= 0.087.",
+        "fail": "Graph complexity adds no heldout value over MLP or creates unsafe OOS non-abstentions."
+      },
+      "launch_command_after_freeze": "PYTHONPATH=src python -m catalytic_earth.cli run-active-site-encoder-experiment --contract artifacts/v3_encoder_architecture_sweep_prep_702_20260528.json --architecture active_site_vanilla_graph_gnn_v0 --cache artifacts/v3_active_site_encoder_cache_current702_${FREEZE_TAG}.jsonl --out-dir work/encoder_architecture_sweep_${FREEZE_TAG}/active_site_vanilla_graph_gnn_v0 --seeds 11,23,37,53,71"
+    },
+    {
+      "architecture_id": "active_site_gvp_gnn_v0",
+      "launch_priority": 3,
+      "status": "dependency_gated_ready_after_cache_and_gate_freeze",
+      "purpose": "Small vector-aware active-site residue model that can test whether local coordinate directions add value beyond distance bins.",
+      "input_contract": {
+        "primary_inputs": [
+          "scalar node features from frozen v0 spec",
+          "3D CA or centroid coordinates for resolved active-site residues",
+          "relative direction vectors on active-site residue edges",
+          "distance radial features",
+          "coordinate masks and source flags",
+          "global pocket/cofactor/metal summary features after graph pooling"
+        ],
+        "optional_inputs": [
+          "side-chain anchor vectors when local atom side-chain anchors are available from staged coordinates"
+        ],
+        "excluded_inputs": [
+          "full protein backbone outside active-site residues",
+          "global fold or Foldseek scores as predictive inputs",
+          "source identifiers, mechanism prose, EC labels, expert notes, target labels"
+        ]
+      },
+      "split_discipline": "Same Wave 1 split, train-only scaler/vocabulary fitting, and heldout final-only reporting. Random rotations may be used as train-only augmentation if predictions are rotation-invariant at evaluation.",
+      "target_heads": {
+        "parent_v1": "GVP-pooled 9-way parent head",
+        "in_scope_calibration": "binary OOS calibration head",
+        "v2_proposal_auxiliary": "masked proposal-v2 auxiliary head, disabled if target gate rejects v2"
+      },
+      "ablations": [
+        "full scalar plus vector GVP",
+        "scalar-only message passing with same topology",
+        "distance-only edge features without direction vectors",
+        "CA coordinates versus centroid fallback coordinates",
+        "no pocket/cofactor/metal global features",
+        "random-rotation consistency check",
+        "v1-only heads versus v1 plus masked v2 auxiliary head"
+      ],
+      "expected_runtime": "5 seeds in 45-90 minutes on one GPU for current702-scale graphs.",
+      "gpu_needs": "One GPU with 6-8 GiB memory recommended. Current prep environment lacks torch_geometric/gvp; compute environment must provide the implementation or use an in-repo lightweight GVP runner.",
+      "output_format": "shared_output_contract with coordinate source, vector feature policy, and rotation-consistency diagnostics.",
+      "pass_fail_criterion": {
+        "minimum_sanity_pass": "Matches or beats vanilla_graph_gnn_v0 with no increase in OOS false non-abstention and no rotation-consistency failures.",
+        "promotion_pass": "Mean heldout macro F1 >= 0.696, OOS false non-abstention <= 0.168, and at least 16/17 near-orphan geometry rescue rows supported when evaluable.",
+        "strong_pass": "Matches or exceeds Foldseek macro F1 0.765 or closes 4/4 wrong-Foldseek-transfer rows while maintaining OOS false non-abstention <= 0.087.",
+        "fail": "Vector model underperforms scalar graph/MLP or depends on unavailable coordinates in a way that drops below 135/140 heldout coverage."
+      },
+      "launch_command_after_freeze": "PYTHONPATH=src python -m catalytic_earth.cli run-active-site-encoder-experiment --contract artifacts/v3_encoder_architecture_sweep_prep_702_20260528.json --architecture active_site_gvp_gnn_v0 --cache artifacts/v3_active_site_encoder_cache_current702_${FREEZE_TAG}.jsonl --out-dir work/encoder_architecture_sweep_${FREEZE_TAG}/active_site_gvp_gnn_v0 --seeds 11,23,37,53,71"
+    },
+    {
+      "architecture_id": "active_site_small_se3_equivariant_v0",
+      "launch_priority": 4,
+      "status": "optional_dependency_gated",
+      "purpose": "Small SE(3)/equivariant local-structure model only if the compute environment already has e3nn, se3-transformer, or an equivalent lightweight equivariant stack.",
+      "input_contract": {
+        "primary_inputs": [
+          "active-site residue coordinates and scalar features",
+          "relative position vectors and radial basis distances",
+          "coordinate masks",
+          "global pocket/cofactor/metal summaries after equivariant pooling"
+        ],
+        "optional_inputs": [
+          "type-1 vector features from CA-to-centroid or CA-to-side-chain anchor when available"
+        ],
+        "excluded_inputs": [
+          "Foldseek or TM scores as predictive inputs",
+          "full-protein graph outside local active-site scope",
+          "source identifiers, EC/mechanism text, expert notes, labels, post-hoc flags"
+        ]
+      },
+      "split_discipline": "Same Wave 1 train/val/heldout discipline. Skip this architecture rather than installing large dependencies or downloading models during launch.",
+      "target_heads": {
+        "parent_v1": "equivariant-pooled scalar invariant 9-way parent head",
+        "in_scope_calibration": "binary OOS calibration head",
+        "v2_proposal_auxiliary": "masked proposal-v2 auxiliary head if gate allows"
+      },
+      "ablations": [
+        "l=0 scalar-only equivariant stack",
+        "l=0/l=1 small irreps stack",
+        "no global pocket/cofactor/metal features",
+        "distance-only radial model matched to vanilla graph",
+        "random-rotation and translation consistency check",
+        "v1-only heads versus v1 plus masked v2 auxiliary head"
+      ],
+      "expected_runtime": "5 seeds in 1-3 hours on one GPU if dependencies are already present; otherwise skip without blocking the sweep.",
+      "gpu_needs": "One GPU with 8-16 GiB memory. Do not install large equivariant stacks in the prep or first compute launch unless disk is comfortably above the floor.",
+      "output_format": "shared_output_contract with dependency manifest and equivariance-consistency diagnostics.",
+      "pass_fail_criterion": {
+        "minimum_sanity_pass": "Matches active_site_gvp_gnn_v0 or active_site_vanilla_graph_gnn_v0 within 0.02 macro F1 while preserving OOS safety.",
+        "promotion_pass": "Beats GVP/vanilla graph by at least 0.02 macro F1 or uniquely fixes wrong-Foldseek-transfer rows without raising OOS false non-abstention above 0.087.",
+        "strong_pass": "Exceeds Foldseek primary macro F1 0.765 with OOS false non-abstention <= 0.087 and no equivariance-consistency failures.",
+        "fail": "Requires dependency installation, has unstable equivariance checks, or underperforms cheaper graph baselines."
+      },
+      "launch_command_after_freeze": "PYTHONPATH=src python -m catalytic_earth.cli run-active-site-encoder-experiment --contract artifacts/v3_encoder_architecture_sweep_prep_702_20260528.json --architecture active_site_small_se3_equivariant_v0 --cache artifacts/v3_active_site_encoder_cache_current702_${FREEZE_TAG}.jsonl --out-dir work/encoder_architecture_sweep_${FREEZE_TAG}/active_site_small_se3_equivariant_v0 --seeds 11,23,37,53,71 --skip-if-dependencies-missing"
+    },
+    {
+      "architecture_id": "sequence_window_only_baseline_v0",
+      "launch_priority": 1,
+      "status": "ready_after_gate_freeze",
+      "purpose": "Leakage-audited sequence/window-only control to separate active-site-local structural gains from residue sequence context.",
+      "input_contract": {
+        "primary_inputs": [
+          "amino acid sequence tokens only",
+          "whole-sequence k-mer or compact trainable sequence encoder features",
+          "known active-site +/-64 residue windows as a controlled ablation only",
+          "window coverage and unavailable masks"
+        ],
+        "optional_inputs": [
+          "merged active-site windows from allowed residue positions with overlap merging"
+        ],
+        "excluded_inputs": [
+          "ESM-2 embeddings recomputation unless explicitly comparing to existing ESM-2 track",
+          "EC labels",
+          "names",
+          "mechanism prose",
+          "source identifiers",
+          "structure, coordinate, Foldseek, or geometry features",
+          "expert notes and target labels"
+        ]
+      },
+      "split_discipline": "Use identical Wave 1 train/val/heldout rows. Whole-sequence mode is the fair primary comparator; active-site window mode is reported as known_active_site_window_ablation, not as a primary evidence-budget peer to whole-sequence PLM tracks.",
+      "target_heads": {
+        "parent_v1": "9-way sequence-only parent head",
+        "in_scope_calibration": "binary OOS calibration head",
+        "v2_proposal_auxiliary": "masked proposal-v2 auxiliary head only if target gate allows"
+      },
+      "ablations": [
+        "whole-sequence k-mer/logistic or tiny CNN baseline",
+        "+/-64 active-site window k-mer/logistic ablation",
+        "active-site residue multiset with order removed",
+        "shuffled-window negative control",
+        "v1-only heads versus v1 plus masked v2 auxiliary head"
+      ],
+      "expected_runtime": "5 seeds in 10-30 minutes on CPU; GPU optional for a tiny CNN.",
+      "gpu_needs": "None required.",
+      "output_format": "shared_output_contract with pooling_mode set to whole_sequence or known_active_site_window_ablation.",
+      "pass_fail_criterion": {
+        "minimum_sanity_pass": "Beats existing Sequence-NN 3-mer accuracy 0.156 or lowers OOS false non-abstention below 0.272 while using sequence-only inputs.",
+        "promotion_pass": "If whole-sequence mode approaches ESM-2 macro F1 0.696, retain as a cheap baseline. Window mode must not be compared as equal evidence budget to whole-sequence ESM-2.",
+        "strong_pass": "Matches ESM-2 accuracy 0.578 and OOS false non-abstention <= 0.168 without pretrained embeddings.",
+        "fail": "Window mode appears strong only because active-site annotations leak target granularity or because heldout was used for token/vocab tuning."
+      },
+      "launch_command_after_freeze": "PYTHONPATH=src python -m catalytic_earth.cli run-active-site-encoder-experiment --contract artifacts/v3_encoder_architecture_sweep_prep_702_20260528.json --architecture sequence_window_only_baseline_v0 --cache artifacts/v3_active_site_encoder_cache_current702_${FREEZE_TAG}.jsonl --out-dir work/encoder_architecture_sweep_${FREEZE_TAG}/sequence_window_only_baseline_v0 --seeds 11,23,37,53,71"
+    }
+  ],
+  "parallel_launch_plan_after_freeze": {
+    "freeze_tag_recommendation": "20260528_target_gate_frozen",
+    "preflight_requirements": [
+      "available disk strictly greater than 10 GiB, preferably greater than 20 GiB before cache/run output",
+      "active-site feature spec explicitly frozen",
+      "target-granularity gate explicitly frozen",
+      "runner supports this contract schema and refuses forbidden predictive fields",
+      "all source artifact SHA-256 values match this prep artifact or a new prep artifact is written"
+    ],
+    "step_0_preflight": [
+      "df -k .",
+      "PYTHONPATH=src python -m catalytic_earth.cli validate",
+      "PYTHONPATH=src python -m catalytic_earth.cli validate-active-site-encoder-contract --contract artifacts/v3_encoder_architecture_sweep_prep_702_20260528.json"
+    ],
+    "step_1_cache": [
+      "PYTHONPATH=src python -m catalytic_earth.cli build-active-site-encoder-cache --labels data/registries/curated_mechanism_labels.json --geometry artifacts/v3_geometry_features_1025.json --split artifacts/v3_sequence_nn_label_manifest_current702_20260525.json --foldseek-readiness artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json --coordinate-dir artifacts/v3_foldseek_coordinates_1000 --out artifacts/v3_active_site_encoder_cache_current702_${FREEZE_TAG}.jsonl"
+    ],
+    "step_2_parallel_cpu": [
+      "active_site_mlp_pooled_v0",
+      "sequence_window_only_baseline_v0"
+    ],
+    "step_3_parallel_gpu": [
+      "active_site_vanilla_graph_gnn_v0",
+      "active_site_gvp_gnn_v0"
+    ],
+    "step_4_optional_gpu": [
+      "active_site_small_se3_equivariant_v0 only if dependencies are already present"
+    ],
+    "step_5_aggregate": [
+      "PYTHONPATH=src python -m catalytic_earth.cli aggregate-active-site-encoder-sweep --contract artifacts/v3_encoder_architecture_sweep_prep_702_20260528.json --run-dir work/encoder_architecture_sweep_${FREEZE_TAG} --out artifacts/v3_encoder_architecture_sweep_result_card_702_${FREEZE_TAG}.json"
+    ]
+  },
+  "do_not_launch_now": [
+    "Do not start training in this prep run.",
+    "Do not materialize tensor caches while disk is below 10 GiB.",
+    "Do not install torch_geometric, gvp, e3nn, se3-transformer, or other large dependencies in this prep run.",
+    "Do not change labels, registries, ontologies, thresholds, production scoring, imports, or existing model outputs."
+  ]
+}
