@@ -1,0 +1,779 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "v3_fmo_external_structure_geometry_materialization_702_20260528",
+  "automation_id": "fmo-structure-geometry-auditor",
+  "created_utc": "2026-05-28T05:20:00Z",
+  "review_only": true,
+  "status": "completed_blockers_identified",
+  "scope": {
+    "candidate_priority_order": [
+      "uniprot:P12015",
+      "uniprot:H3JQW0",
+      "uniprot:Q93TJ5",
+      "uniprot:Q01740",
+      "uniprot:O15229",
+      "uniprot:P23262"
+    ],
+    "top_candidates_only": true,
+    "forbidden_changes_respected": [
+      "labels",
+      "registries",
+      "ontology_files",
+      "thresholds",
+      "production_scoring",
+      "model_outputs",
+      "imports"
+    ]
+  },
+  "source_inputs": [
+    "artifacts/v3_fmo_local_candidate_adjudication_551_973_702_20260528.json",
+    "artifacts/v3_fmo_acquisition_sprint_integrated_status_702_20260527.json",
+    "artifacts/v3_fmo_source_evidence_scout_702_20260527.json",
+    "artifacts/v3_fmo_structure_geometry_audit_702_20260527.json",
+    "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json",
+    "artifacts/v3_fmo_external_hard_negative_duplicate_gate_702_20260528.json",
+    "UniProt REST API exact PDB/AlphaFold cross-reference checks on 2026-05-28",
+    "RCSB PDB coordinate downloads for exact cross-referenced PDB entries",
+    "AlphaFold DB coordinate downloads for exact predicted models"
+  ],
+  "materialized_coordinate_directory": "artifacts/v3_fmo_external_structure_coordinates_20260528",
+  "interpretation_rules_applied": [
+    "Absence of NADPH/NADP is not treated as automatically fatal, especially for transient reductant states or two-component systems.",
+    "Absence of captured C4a-peroxy flavin is retained as a coordinate-state caveat and is not treated as automatically fatal.",
+    "Name-only monooxygenase or generic flavin binding is not treated as FMO support.",
+    "No promotion/import/counting decision is made from this artifact."
+  ],
+  "summary": {
+    "clean_non_duplicate_geometry_supported_review_rows_found": 0,
+    "minimum_goal_met": false,
+    "exact_blockers": [
+      "No high-priority non-duplicate candidate has an exact experimental coordinate with both flavin and substrate/analog/product geometry.",
+      "P12015, Q93TJ5, and Q01740 are non-duplicate/source-admissible leads but exact coordinates available in this pass are AlphaFold protein-only models with no ligand geometry.",
+      "H3JQW0 and O15229 have exact FAD-bearing PDB coordinates, but both are duplicate/family holds under prior terminal evidence; neither can become a clean non-duplicate review row in this pass.",
+      "P23262 has an exact PDB coordinate, but it is apo/no-flavin for this geometry pass and also overlaps the aromatic hydroxylase lane represented by m_csa:131/m_csa:551."
+    ],
+    "best_next_candidates_if_policy_allows_homologous_coordinates": [
+      "P12015 CHMO has ligand-bound homologous CHMO PDBs (for example 3UCL/4RG3/4RG4) but these map to other UniProt accessions, so they were not used as exact P12015 support here.",
+      "Q93TJ5 HAPMO needs an exact experimental or accepted homolog-policy coordinate before source-free flavin/substrate geometry can be claimed.",
+      "Q01740 FMO1 needs an exact ligand-bearing structure; current exact public coordinate is AlphaFold only."
+    ]
+  },
+  "candidate_rows": [
+    {
+      "priority": 1,
+      "candidate_id": "uniprot:P12015",
+      "accession": "P12015",
+      "entry_name": "cyclohexanone monooxygenase",
+      "selected_structure_source": {
+        "source_type": "AlphaFold",
+        "selected_structure": "AlphaFold:AF-P12015-F1",
+        "coordinate_path": "artifacts/v3_fmo_external_structure_coordinates_20260528/afdb_P12015.cif",
+        "provenance_url": "https://alphafold.ebi.ac.uk/entry/P12015",
+        "coordinate_url": "https://alphafold.ebi.ac.uk/files/AF-P12015-F1-model_v6.cif",
+        "sha256": "812a0a04f5019131efa223aa9df09b113d07a43004f3751c68d56524171c4d8e",
+        "structure_title": "AlphaFold DB model AF-P12015-F1 for cyclohexanone 1,2-monooxygenase",
+        "exact_accession_status": "UniProt P12015 had no exact PDB cross-reference in the 2026-05-28 API check; exact public coordinate selected was AlphaFold v6."
+      },
+      "coordinate_state": "predicted_model_no_ligand",
+      "flavin_ligand_present": false,
+      "flavin_ligand_codes_present": [],
+      "flavin_state_interpretation": "absent",
+      "nadph_or_nadp_ligand_codes_present": [],
+      "substrate_analog_product_ligands_present": [],
+      "substrate_analog_product_absence_statement": "No candidate-specific substrate, analog, or product ligand was detected in the selected coordinate.",
+      "other_nonwater_ligand_codes_present": [],
+      "active_site_residue_mapping_used_for_pocket_extraction": "No ligand-centered pocket extracted; exact model has no FAD, NADP(H), substrate, analog, or product coordinates.",
+      "source_free_geometry": {
+        "method": "Parsed local mmCIF atom_site records only; no labels, names, registry fields, ontology files, thresholds, production scoring, model outputs, or imports were edited or used as geometry features.",
+        "atom_count": 4290,
+        "protein_atom_count": 4290,
+        "flavin_reactive_atom_geometry": [],
+        "substrate_or_analog_geometry": "not measured because no candidate-specific substrate/analog/product ligand is present"
+      },
+      "geometry_clean": false,
+      "geometry_clean_reason": "Exact candidate coordinate is a predicted protein-only model, so source-free C4a/C4X/N5 and substrate geometry cannot be measured. Homologous ligand-bound CHMO PDBs exist but map to other UniProt accessions and were not used as exact P12015 evidence.",
+      "duplicate_leakage_risk": {
+        "against_m_csa_131_132_551_973": {
+          "m_csa:131": "no duplicate; CHMO is carbonyl Baeyer-Villiger oxygen insertion, not aromatic hydroxylation",
+          "m_csa:132": "no duplicate; CHMO is FAD/NADPH BVMO, not FMN-linked alkanal monooxygenase",
+          "m_csa:551": "no duplicate; CHMO is lactone-forming BVMO, not phenol aromatic hydroxylase",
+          "m_csa:973": "no duplicate; CHMO is single-component FAD/NADPH BVMO, not two-component FMNH2 sulfur monooxygenase",
+          "external_candidate_family_overlap": "highest-priority BVMO representative; overlaps broadly with HAPMO and OTEMO as BVMO chemistry but not with current canonical/proposed FMO rows"
+        },
+        "same_family_candidate_risk": "highest-priority BVMO representative; overlaps broadly with HAPMO and OTEMO as BVMO chemistry but not with current canonical/proposed FMO rows",
+        "prior_duplicate_leakage_evidence": null,
+        "gate_disposition_from_prior_hard_negative_duplicate_artifact": "hard_negative_gate_pass"
+      },
+      "human_review_packet_decision": "hold",
+      "ready_for_human_review_packet": false,
+      "review_packet_decision_reason": "no coordinate flavin ligand; exact coordinate is AlphaFold/predicted protein-only; no substrate/analog/product ligand in selected coordinate; no exact experimental PDB with bound flavin/substrate found in local+UniProt/RCSB cross-reference review",
+      "non_promotion_guardrail": "Review/materialization support only; no labels, registries, ontology files, thresholds, production scoring, model outputs, imports, or canonical FMO counts were changed."
+    },
+    {
+      "priority": 2,
+      "candidate_id": "uniprot:H3JQW0",
+      "accession": "H3JQW0",
+      "entry_name": "OTEMO",
+      "selected_structure_source": {
+        "source_type": "PDB",
+        "selected_structure": "pdb:3UOY",
+        "coordinate_path": "artifacts/v3_fmo_external_structure_coordinates_20260528/pdb_3UOY.cif",
+        "provenance_url": "https://www.rcsb.org/structure/3UOY",
+        "coordinate_url": "https://files.rcsb.org/download/3UOY.cif",
+        "sha256": "da10dc642948fec3a9350306ef1d2556c3fe534f1f0fa30fbf0c91a79b4e53e2",
+        "structure_title": "Crystal Structure of OTEMO complex with FAD and NADP (form 1)",
+        "exact_accession_status": "Exact UniProt H3JQW0 PDB cross-reference; selected among 3UOY/3UOZ/3UP4/3UP5 NADP-containing structures because it has 2.00 A resolution."
+      },
+      "coordinate_state": "flavin_only_holo",
+      "flavin_ligand_present": true,
+      "flavin_ligand_codes_present": [
+        "FAD"
+      ],
+      "flavin_state_interpretation": "oxidized_or_resting_FAD_no_reduced_or_peroxy_code_detected",
+      "nadph_or_nadp_ligand_codes_present": [
+        "NAP"
+      ],
+      "substrate_analog_product_ligands_present": [],
+      "substrate_analog_product_absence_statement": "No candidate-specific substrate, analog, or product ligand was detected in the selected coordinate.",
+      "other_nonwater_ligand_codes_present": [
+        "NA"
+      ],
+      "active_site_residue_mapping_used_for_pocket_extraction": "Pocket extraction uses chain A FAD 551 reactive proxy C4X/N5 and source-free nearest-residue contacts: Trp48, Arg57, Leu58, Asp59, Thr60, Tyr65, Arg337.",
+      "source_free_geometry": {
+        "method": "Parsed local mmCIF atom_site records only; no labels, names, registry fields, ontology files, thresholds, production scoring, model outputs, or imports were edited or used as geometry features.",
+        "atom_count": 9485,
+        "protein_atom_count": 8533,
+        "flavin_reactive_atom_geometry": [
+          {
+            "flavin": "FAD",
+            "chain": "A",
+            "auth_seq_id": "551",
+            "label_asym_id": "C",
+            "reactive_atom_proxy": "C4X",
+            "reactive_atoms_present": [
+              "C4X",
+              "N5"
+            ],
+            "c4_proxy_to_n5_intramolecular_distance_angstrom": 1.388,
+            "reactive_atom_geometry": [
+              {
+                "atom": "C4X",
+                "distance_to_nearest_protein_residues_angstrom": [
+                  {
+                    "residue": "ASP59",
+                    "chain": "A",
+                    "atom": "OD1",
+                    "distance_angstrom": 4.126
+                  },
+                  {
+                    "residue": "TRP48",
+                    "chain": "A",
+                    "atom": "CZ2",
+                    "distance_angstrom": 4.184
+                  },
+                  {
+                    "residue": "ARG337",
+                    "chain": "A",
+                    "atom": "NH1",
+                    "distance_angstrom": 4.44
+                  },
+                  {
+                    "residue": "TYR65",
+                    "chain": "A",
+                    "atom": "CE1",
+                    "distance_angstrom": 4.51
+                  },
+                  {
+                    "residue": "LEU58",
+                    "chain": "A",
+                    "atom": "CD2",
+                    "distance_angstrom": 4.553
+                  },
+                  {
+                    "residue": "THR60",
+                    "chain": "A",
+                    "atom": "OG1",
+                    "distance_angstrom": 5.052
+                  },
+                  {
+                    "residue": "ARG57",
+                    "chain": "A",
+                    "atom": "O",
+                    "distance_angstrom": 5.739
+                  },
+                  {
+                    "residue": "THR47",
+                    "chain": "A",
+                    "atom": "CG2",
+                    "distance_angstrom": 5.836
+                  }
+                ],
+                "distance_to_nearest_nonwater_nonflavin_ligands_angstrom": [
+                  {
+                    "ligand": "NAP",
+                    "chain": "A",
+                    "auth_seq_id": "552",
+                    "label_asym_id": "D",
+                    "atom": "N7N",
+                    "distance_angstrom": 3.783
+                  },
+                  {
+                    "ligand": "NA",
+                    "chain": "A",
+                    "auth_seq_id": "546",
+                    "label_asym_id": "E",
+                    "atom": "NA",
+                    "distance_angstrom": 29.58
+                  },
+                  {
+                    "ligand": "FAD",
+                    "chain": "B",
+                    "auth_seq_id": "551",
+                    "label_asym_id": "F",
+                    "atom": "O2",
+                    "distance_angstrom": 42.065
+                  },
+                  {
+                    "ligand": "NAP",
+                    "chain": "B",
+                    "auth_seq_id": "552",
+                    "label_asym_id": "G",
+                    "atom": "O2D",
+                    "distance_angstrom": 48.071
+                  },
+                  {
+                    "ligand": "NA",
+                    "chain": "B",
+                    "auth_seq_id": "546",
+                    "label_asym_id": "H",
+                    "atom": "NA",
+                    "distance_angstrom": 71.864
+                  }
+                ]
+              },
+              {
+                "atom": "N5",
+                "distance_to_nearest_protein_residues_angstrom": [
+                  {
+                    "residue": "TRP48",
+                    "chain": "A",
+                    "atom": "CH2",
+                    "distance_angstrom": 3.602
+                  },
+                  {
+                    "residue": "ASP59",
+                    "chain": "A",
+                    "atom": "N",
+                    "distance_angstrom": 4.582
+                  },
+                  {
+                    "residue": "LEU58",
+                    "chain": "A",
+                    "atom": "CA",
+                    "distance_angstrom": 4.637
+                  },
+                  {
+                    "residue": "ARG57",
+                    "chain": "A",
+                    "atom": "O",
+                    "distance_angstrom": 4.694
+                  },
+                  {
+                    "residue": "THR47",
+                    "chain": "A",
+                    "atom": "CG2",
+                    "distance_angstrom": 5.227
+                  },
+                  {
+                    "residue": "ARG337",
+                    "chain": "A",
+                    "atom": "NH1",
+                    "distance_angstrom": 5.505
+                  },
+                  {
+                    "residue": "TYR65",
+                    "chain": "A",
+                    "atom": "CE1",
+                    "distance_angstrom": 5.512
+                  },
+                  {
+                    "residue": "THR60",
+                    "chain": "A",
+                    "atom": "N",
+                    "distance_angstrom": 6.079
+                  }
+                ],
+                "distance_to_nearest_nonwater_nonflavin_ligands_angstrom": [
+                  {
+                    "ligand": "NAP",
+                    "chain": "A",
+                    "auth_seq_id": "552",
+                    "label_asym_id": "D",
+                    "atom": "N7N",
+                    "distance_angstrom": 2.905
+                  },
+                  {
+                    "ligand": "NA",
+                    "chain": "A",
+                    "auth_seq_id": "546",
+                    "label_asym_id": "E",
+                    "atom": "NA",
+                    "distance_angstrom": 28.529
+                  },
+                  {
+                    "ligand": "FAD",
+                    "chain": "B",
+                    "auth_seq_id": "551",
+                    "label_asym_id": "F",
+                    "atom": "O2",
+                    "distance_angstrom": 43.427
+                  },
+                  {
+                    "ligand": "NAP",
+                    "chain": "B",
+                    "auth_seq_id": "552",
+                    "label_asym_id": "G",
+                    "atom": "O2D",
+                    "distance_angstrom": 49.438
+                  },
+                  {
+                    "ligand": "NA",
+                    "chain": "B",
+                    "auth_seq_id": "546",
+                    "label_asym_id": "H",
+                    "atom": "NA",
+                    "distance_angstrom": 73.25
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "substrate_or_analog_geometry": "not measured because no candidate-specific substrate/analog/product ligand is present"
+      },
+      "geometry_clean": false,
+      "geometry_clean_reason": "Flavin/NADP site geometry is resolved, but the coordinate lacks substrate/analog/product and remains a duplicate/family hold from prior terminal evidence; peroxy absence is retained only as a coordinate-state caveat.",
+      "duplicate_leakage_risk": {
+        "against_m_csa_131_132_551_973": {
+          "m_csa:131": "no direct chemistry duplicate; OTEMO is BVMO oxygen insertion rather than aromatic hydroxylation",
+          "m_csa:132": "no direct chemistry duplicate; OTEMO is FAD/NADPH BVMO rather than FMN-linked alkanal monooxygenase",
+          "m_csa:551": "no direct chemistry duplicate; OTEMO is BVMO rather than phenol hydroxylase",
+          "m_csa:973": "no direct chemistry duplicate; OTEMO is not two-component sulfur monooxygenase",
+          "external_candidate_family_overlap": "same broad BVMO lane as P12015 and Q93TJ5; lower priority than P12015 for non-duplicate acquisition diversity"
+        },
+        "same_family_candidate_risk": "same broad BVMO lane as P12015 and Q93TJ5; lower priority than P12015 for non-duplicate acquisition diversity",
+        "prior_duplicate_leakage_evidence": {
+          "source_artifact": "artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk002_rescue_20260521.json",
+          "terminal_decision": "terminal_rejection_duplicate_or_leakage",
+          "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+          "current_countable_high_tm_hit_count": 2,
+          "nearest_current_countable_hit": {
+            "target_entry_ids": [
+              "m_csa:246"
+            ],
+            "target_label_types": [
+              "out_of_scope"
+            ],
+            "target_structure_key": "pdb:1IR3",
+            "raw_query_name": "afdb_H3JQW0",
+            "raw_target_name": "pdb_1IR3_B",
+            "max_pair_tm_score": 0.7646,
+            "alntmscore": 0.7646,
+            "ttmscore": 0.6372,
+            "qtmscore": 0.011
+          },
+          "geometry_score_summary": {
+            "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "top1_score": 0.6461,
+            "target_lane": "flavin_monooxygenase",
+            "target_lane_score": 0.4127,
+            "target_lane_rank": 2
+          }
+        },
+        "gate_disposition_from_prior_hard_negative_duplicate_artifact": "duplicate_hold"
+      },
+      "human_review_packet_decision": "hold",
+      "ready_for_human_review_packet": false,
+      "review_packet_decision_reason": "no substrate/analog/product ligand in selected coordinate; duplicate/family hold from prior gate",
+      "non_promotion_guardrail": "Review/materialization support only; no labels, registries, ontology files, thresholds, production scoring, model outputs, imports, or canonical FMO counts were changed."
+    },
+    {
+      "priority": 3,
+      "candidate_id": "uniprot:Q93TJ5",
+      "accession": "Q93TJ5",
+      "entry_name": "4-hydroxyacetophenone monooxygenase",
+      "selected_structure_source": {
+        "source_type": "AlphaFold",
+        "selected_structure": "AlphaFold:AF-Q93TJ5-F1",
+        "coordinate_path": "artifacts/v3_fmo_external_structure_coordinates_20260528/afdb_Q93TJ5.cif",
+        "provenance_url": "https://alphafold.ebi.ac.uk/entry/Q93TJ5",
+        "coordinate_url": "https://alphafold.ebi.ac.uk/files/AF-Q93TJ5-F1-model_v6.cif",
+        "sha256": "63f93156234cb2734c39106fa45467b81312008b4dff7d4e4c403525507ad63f",
+        "structure_title": "AlphaFold DB model AF-Q93TJ5-F1 for 4-hydroxyacetophenone monooxygenase",
+        "exact_accession_status": "UniProt Q93TJ5 had no exact PDB cross-reference in the 2026-05-28 API check; misleading RCSB full-text hit 2GQ8 maps to Q8EEC8 OYE/FMNH2 oxidoreductase and was not selected."
+      },
+      "coordinate_state": "predicted_model_no_ligand",
+      "flavin_ligand_present": false,
+      "flavin_ligand_codes_present": [],
+      "flavin_state_interpretation": "absent",
+      "nadph_or_nadp_ligand_codes_present": [],
+      "substrate_analog_product_ligands_present": [],
+      "substrate_analog_product_absence_statement": "No candidate-specific substrate, analog, or product ligand was detected in the selected coordinate.",
+      "other_nonwater_ligand_codes_present": [],
+      "active_site_residue_mapping_used_for_pocket_extraction": "No ligand-centered pocket extracted; exact model has no FAD, NADP(H), 4-hydroxyacetophenone, analog, or product coordinates.",
+      "source_free_geometry": {
+        "method": "Parsed local mmCIF atom_site records only; no labels, names, registry fields, ontology files, thresholds, production scoring, model outputs, or imports were edited or used as geometry features.",
+        "atom_count": 5076,
+        "protein_atom_count": 5076,
+        "flavin_reactive_atom_geometry": [],
+        "substrate_or_analog_geometry": "not measured because no candidate-specific substrate/analog/product ligand is present"
+      },
+      "geometry_clean": false,
+      "geometry_clean_reason": "Exact candidate coordinate is a predicted protein-only model, so source-free C4a/C4X/N5 and substrate geometry cannot be measured.",
+      "duplicate_leakage_risk": {
+        "against_m_csa_131_132_551_973": {
+          "m_csa:131": "no duplicate; HAPMO is aryl ketone Baeyer-Villiger oxygen insertion, not aromatic ring hydroxylation",
+          "m_csa:132": "no duplicate; HAPMO is FAD/NADPH BVMO, not FMN-linked alkanal monooxygenase",
+          "m_csa:551": "no duplicate; HAPMO is carbonyl oxygen insertion, not phenol ortho hydroxylation",
+          "m_csa:973": "no duplicate; HAPMO is not two-component sulfur monooxygenase",
+          "external_candidate_family_overlap": "same broad BVMO class as P12015, but a distinct aryl-ketone/HAPMO substrate lane; should not be counted as a separate diversity axis from BVMO by itself"
+        },
+        "same_family_candidate_risk": "same broad BVMO class as P12015, but a distinct aryl-ketone/HAPMO substrate lane; should not be counted as a separate diversity axis from BVMO by itself",
+        "prior_duplicate_leakage_evidence": null,
+        "gate_disposition_from_prior_hard_negative_duplicate_artifact": "hard_negative_gate_pass"
+      },
+      "human_review_packet_decision": "hold",
+      "ready_for_human_review_packet": false,
+      "review_packet_decision_reason": "no coordinate flavin ligand; exact coordinate is AlphaFold/predicted protein-only; no substrate/analog/product ligand in selected coordinate; no exact experimental PDB with bound flavin/substrate found in local+UniProt/RCSB cross-reference review",
+      "non_promotion_guardrail": "Review/materialization support only; no labels, registries, ontology files, thresholds, production scoring, model outputs, imports, or canonical FMO counts were changed."
+    },
+    {
+      "priority": 4,
+      "candidate_id": "uniprot:Q01740",
+      "accession": "Q01740",
+      "entry_name": "human FMO1",
+      "selected_structure_source": {
+        "source_type": "AlphaFold",
+        "selected_structure": "AlphaFold:AF-Q01740-F1",
+        "coordinate_path": "artifacts/v3_fmo_external_structure_coordinates_20260528/afdb_Q01740.cif",
+        "provenance_url": "https://alphafold.ebi.ac.uk/entry/Q01740",
+        "coordinate_url": "https://alphafold.ebi.ac.uk/files/AF-Q01740-F1-model_v6.cif",
+        "sha256": "0e1152bc44e76ebfb5f3fc25133569908b5f669cc13939c05fe25ad39ec402b9",
+        "structure_title": "AlphaFold DB model AF-Q01740-F1 for flavin-containing monooxygenase 1",
+        "exact_accession_status": "UniProt Q01740 had no exact PDB cross-reference in the 2026-05-28 API check; RCSB text hits were other human monooxygenase families and were not selected."
+      },
+      "coordinate_state": "predicted_model_no_ligand",
+      "flavin_ligand_present": false,
+      "flavin_ligand_codes_present": [],
+      "flavin_state_interpretation": "absent",
+      "nadph_or_nadp_ligand_codes_present": [],
+      "substrate_analog_product_ligands_present": [],
+      "substrate_analog_product_absence_statement": "No candidate-specific substrate, analog, or product ligand was detected in the selected coordinate.",
+      "other_nonwater_ligand_codes_present": [],
+      "active_site_residue_mapping_used_for_pocket_extraction": "No ligand-centered pocket extracted; exact model has no FAD, NADP(H), dimethylaniline/trimethylamine, analog, or product coordinates.",
+      "source_free_geometry": {
+        "method": "Parsed local mmCIF atom_site records only; no labels, names, registry fields, ontology files, thresholds, production scoring, model outputs, or imports were edited or used as geometry features.",
+        "atom_count": 4253,
+        "protein_atom_count": 4253,
+        "flavin_reactive_atom_geometry": [],
+        "substrate_or_analog_geometry": "not measured because no candidate-specific substrate/analog/product ligand is present"
+      },
+      "geometry_clean": false,
+      "geometry_clean_reason": "Exact candidate coordinate is a predicted protein-only model, so source-free C4a/C4X/N5 and substrate geometry cannot be measured.",
+      "duplicate_leakage_risk": {
+        "against_m_csa_131_132_551_973": {
+          "m_csa:131": "no duplicate; FMO1 N/S oxygenation is distinct from aromatic hydroxylation",
+          "m_csa:132": "no duplicate; FMO1 is class B FAD/NADPH xenobiotic FMO rather than FMN-linked alkanal monooxygenase",
+          "m_csa:551": "no duplicate; FMO1 is not phenol aromatic hydroxylase",
+          "m_csa:973": "partial chemistry overlap in sulfur oxygenation, but not duplicate: FMO1 is single-chain class B FAD/NADPH N/S oxygenation, while DszC is two-component FMNH2 sulfur monooxygenase",
+          "external_candidate_family_overlap": "unique class B mammalian FMO lane among current external candidates"
+        },
+        "same_family_candidate_risk": "unique class B mammalian FMO lane among current external candidates",
+        "prior_duplicate_leakage_evidence": null,
+        "gate_disposition_from_prior_hard_negative_duplicate_artifact": "hard_negative_gate_pass"
+      },
+      "human_review_packet_decision": "hold",
+      "ready_for_human_review_packet": false,
+      "review_packet_decision_reason": "no coordinate flavin ligand; exact coordinate is AlphaFold/predicted protein-only; no substrate/analog/product ligand in selected coordinate; no exact experimental PDB with bound flavin/substrate found in local+UniProt/RCSB cross-reference review",
+      "non_promotion_guardrail": "Review/materialization support only; no labels, registries, ontology files, thresholds, production scoring, model outputs, imports, or canonical FMO counts were changed."
+    },
+    {
+      "priority": 5,
+      "candidate_id": "uniprot:O15229",
+      "accession": "O15229",
+      "entry_name": "kynurenine 3-monooxygenase",
+      "selected_structure_source": {
+        "source_type": "PDB",
+        "selected_structure": "pdb:5X68",
+        "coordinate_path": "artifacts/v3_fmo_external_structure_coordinates_20260528/pdb_5X68.cif",
+        "provenance_url": "https://www.rcsb.org/structure/5X68",
+        "coordinate_url": "https://files.rcsb.org/download/5X68.cif",
+        "sha256": "ca83c13ce16a520d69f25b1d38f9f312ec38fe7e24d590f60c3ffd376923d2d2",
+        "structure_title": "Crystal Structure of Human KMO",
+        "exact_accession_status": "Exact UniProt O15229 PDB cross-reference; selected because it is the exact human KMO PDB cross-reference at 2.10 A."
+      },
+      "coordinate_state": "flavin_only_holo",
+      "flavin_ligand_present": true,
+      "flavin_ligand_codes_present": [
+        "FAD"
+      ],
+      "flavin_state_interpretation": "oxidized_or_resting_FAD_no_reduced_or_peroxy_code_detected",
+      "nadph_or_nadp_ligand_codes_present": [],
+      "substrate_analog_product_ligands_present": [],
+      "substrate_analog_product_absence_statement": "No candidate-specific substrate, analog, or product ligand was detected in the selected coordinate.",
+      "other_nonwater_ligand_codes_present": [],
+      "active_site_residue_mapping_used_for_pocket_extraction": "Pocket extraction uses chain A FAD 401 reactive proxy C4X/N5 and source-free nearest-residue contacts: Ser53, Asn55, Leu56, Ala57, Arg111, Pro311, Gln315, Gly316, Met317.",
+      "source_free_geometry": {
+        "method": "Parsed local mmCIF atom_site records only; no labels, names, registry fields, ontology files, thresholds, production scoring, model outputs, or imports were edited or used as geometry features.",
+        "atom_count": 5908,
+        "protein_atom_count": 5671,
+        "flavin_reactive_atom_geometry": [
+          {
+            "flavin": "FAD",
+            "chain": "A",
+            "auth_seq_id": "401",
+            "label_asym_id": "C",
+            "reactive_atom_proxy": "C4X",
+            "reactive_atoms_present": [
+              "C4X",
+              "N5"
+            ],
+            "c4_proxy_to_n5_intramolecular_distance_angstrom": 1.306,
+            "reactive_atom_geometry": [
+              {
+                "atom": "C4X",
+                "distance_to_nearest_protein_residues_angstrom": [
+                  {
+                    "residue": "LEU56",
+                    "chain": "A",
+                    "atom": "CD2",
+                    "distance_angstrom": 3.595
+                  },
+                  {
+                    "residue": "ALA57",
+                    "chain": "A",
+                    "atom": "N",
+                    "distance_angstrom": 4.804
+                  },
+                  {
+                    "residue": "GLN315",
+                    "chain": "A",
+                    "atom": "NE2",
+                    "distance_angstrom": 4.929
+                  },
+                  {
+                    "residue": "GLY316",
+                    "chain": "A",
+                    "atom": "N",
+                    "distance_angstrom": 5.122
+                  },
+                  {
+                    "residue": "ASN55",
+                    "chain": "A",
+                    "atom": "O",
+                    "distance_angstrom": 5.202
+                  },
+                  {
+                    "residue": "PRO311",
+                    "chain": "A",
+                    "atom": "CG",
+                    "distance_angstrom": 5.288
+                  },
+                  {
+                    "residue": "MET317",
+                    "chain": "A",
+                    "atom": "N",
+                    "distance_angstrom": 5.415
+                  },
+                  {
+                    "residue": "ARG111",
+                    "chain": "A",
+                    "atom": "NH1",
+                    "distance_angstrom": 5.652
+                  }
+                ],
+                "distance_to_nearest_nonwater_nonflavin_ligands_angstrom": [
+                  {
+                    "ligand": "FAD",
+                    "chain": "B",
+                    "auth_seq_id": "401",
+                    "label_asym_id": "D",
+                    "atom": "O2",
+                    "distance_angstrom": 27.644
+                  }
+                ]
+              },
+              {
+                "atom": "N5",
+                "distance_to_nearest_protein_residues_angstrom": [
+                  {
+                    "residue": "LEU56",
+                    "chain": "A",
+                    "atom": "CD2",
+                    "distance_angstrom": 4.204
+                  },
+                  {
+                    "residue": "ASN55",
+                    "chain": "A",
+                    "atom": "O",
+                    "distance_angstrom": 4.658
+                  },
+                  {
+                    "residue": "PRO311",
+                    "chain": "A",
+                    "atom": "CG",
+                    "distance_angstrom": 4.658
+                  },
+                  {
+                    "residue": "SER53",
+                    "chain": "A",
+                    "atom": "OG",
+                    "distance_angstrom": 4.87
+                  },
+                  {
+                    "residue": "ALA57",
+                    "chain": "A",
+                    "atom": "N",
+                    "distance_angstrom": 5.226
+                  },
+                  {
+                    "residue": "ARG111",
+                    "chain": "A",
+                    "atom": "NH1",
+                    "distance_angstrom": 5.282
+                  },
+                  {
+                    "residue": "GLN315",
+                    "chain": "A",
+                    "atom": "NE2",
+                    "distance_angstrom": 5.779
+                  },
+                  {
+                    "residue": "GLY316",
+                    "chain": "A",
+                    "atom": "N",
+                    "distance_angstrom": 6.13
+                  }
+                ],
+                "distance_to_nearest_nonwater_nonflavin_ligands_angstrom": [
+                  {
+                    "ligand": "FAD",
+                    "chain": "B",
+                    "auth_seq_id": "401",
+                    "label_asym_id": "D",
+                    "atom": "N1",
+                    "distance_angstrom": 27.932
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "substrate_or_analog_geometry": "not measured because no candidate-specific substrate/analog/product ligand is present"
+      },
+      "geometry_clean": false,
+      "geometry_clean_reason": "FAD site geometry is resolved, but the coordinate lacks substrate/analog/product and prior terminal evidence marks KMO as duplicate/leakage against m_csa:131; peroxy and NADPH absence are retained as coordinate-state caveats, not sole blockers.",
+      "duplicate_leakage_risk": {
+        "against_m_csa_131_132_551_973": {
+          "m_csa:131": "strong duplicate/leakage risk: prior targeted current-FMO rescue screen found high-TM structural hit to pdb:1DOC / m_csa:131",
+          "m_csa:132": "no meaningful structural overlap in prior current-FMO rescue screen",
+          "m_csa:551": "family overlap: KMO and phenol 2-monooxygenase both support FAD/NAD(P)H aromatic hydroxylation-like FMO chemistry",
+          "m_csa:973": "no duplicate; KMO aromatic hydroxylation is distinct from two-component sulfur monooxygenation",
+          "external_candidate_family_overlap": "same broad aromatic hydroxylase source lane as P23262 and current m_csa:131/m_csa:551 support"
+        },
+        "same_family_candidate_risk": "same broad aromatic hydroxylase source lane as P23262 and current m_csa:131/m_csa:551 support",
+        "prior_duplicate_leakage_evidence": {
+          "source_artifact": "artifacts/v3_flavin_monooxygenase_deep_terminal_decision_packet_after_chunk002_rescue_20260521.json",
+          "terminal_decision": "terminal_rejection_duplicate_or_leakage",
+          "targeted_current_fmo_structural_screen_status": "current_fmo_target_duplicate_signal",
+          "current_countable_structural_screen_status": "current_countable_structural_duplicate_signal",
+          "nearest_current_countable_hit": {
+            "target_entry_ids": [
+              "m_csa:131"
+            ],
+            "target_fingerprint_ids": [
+              "flavin_monooxygenase"
+            ],
+            "target_label_types": [
+              "seed_fingerprint"
+            ],
+            "target_structure_key": "pdb:1DOC",
+            "raw_query_name": "afdb_O15229",
+            "raw_target_name": "pdb_1DOC",
+            "max_pair_tm_score": 0.8122,
+            "alntmscore": 0.8196,
+            "ttmscore": 0.8122,
+            "qtmscore": 0.6713
+          },
+          "geometry_score_summary": {
+            "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "top1_score": 0.6498,
+            "target_lane": "flavin_monooxygenase",
+            "target_lane_score": 0.2674,
+            "target_lane_rank": 4
+          }
+        },
+        "gate_disposition_from_prior_hard_negative_duplicate_artifact": "duplicate_hold"
+      },
+      "human_review_packet_decision": "hold",
+      "ready_for_human_review_packet": false,
+      "review_packet_decision_reason": "no substrate/analog/product ligand in selected coordinate; duplicate/family hold from prior gate; prior high-TM duplicate/leakage against m_csa:131",
+      "non_promotion_guardrail": "Review/materialization support only; no labels, registries, ontology files, thresholds, production scoring, model outputs, imports, or canonical FMO counts were changed."
+    },
+    {
+      "priority": 6,
+      "candidate_id": "uniprot:P23262",
+      "accession": "P23262",
+      "entry_name": "salicylate 1-monooxygenase",
+      "selected_structure_source": {
+        "source_type": "PDB",
+        "selected_structure": "pdb:6BZ5",
+        "coordinate_path": "artifacts/v3_fmo_external_structure_coordinates_20260528/pdb_6BZ5.cif",
+        "provenance_url": "https://www.rcsb.org/structure/6BZ5",
+        "coordinate_url": "https://files.rcsb.org/download/6BZ5.cif",
+        "sha256": "50d395af45c32afdd07713a1998663d5cb821381a2e234bacf2c8045acbc74c4",
+        "structure_title": "Structure and mechanism of salicylate hydroxylase from Pseudomonas putida G7",
+        "exact_accession_status": "Exact UniProt P23262 PDB cross-reference; selected exact coordinate has no FAD/FMN despite source evidence for FAD-dependent catalysis."
+      },
+      "coordinate_state": "apo_or_no_flavin",
+      "flavin_ligand_present": false,
+      "flavin_ligand_codes_present": [],
+      "flavin_state_interpretation": "absent",
+      "nadph_or_nadp_ligand_codes_present": [],
+      "substrate_analog_product_ligands_present": [],
+      "substrate_analog_product_absence_statement": "No candidate-specific substrate, analog, or product ligand was detected in the selected coordinate.",
+      "other_nonwater_ligand_codes_present": [
+        "EDO",
+        "GOL",
+        "IOD",
+        "SO4"
+      ],
+      "active_site_residue_mapping_used_for_pocket_extraction": "No flavin-centered pocket extracted; exact PDB contains buffer/ion ligands but no FAD/FMN and no salicylate/catechol ligand.",
+      "source_free_geometry": {
+        "method": "Parsed local mmCIF atom_site records only; no labels, names, registry fields, ontology files, thresholds, production scoring, model outputs, or imports were edited or used as geometry features.",
+        "atom_count": 7032,
+        "protein_atom_count": 6434,
+        "flavin_reactive_atom_geometry": [],
+        "substrate_or_analog_geometry": "not measured because no candidate-specific substrate/analog/product ligand is present"
+      },
+      "geometry_clean": false,
+      "geometry_clean_reason": "Exact coordinate lacks flavin and substrate/product ligands, so C4a/C4X/N5 geometry cannot be measured; same-family aromatic hydroxylase overlap with m_csa:131/m_csa:551 remains a duplicate-risk blocker.",
+      "duplicate_leakage_risk": {
+        "against_m_csa_131_132_551_973": {
+          "m_csa:131": "family overlap: both are FAD-dependent aromatic hydroxylase/decarboxylating hydroxylase-like rows using reduced flavin plus O2",
+          "m_csa:132": "no duplicate; salicylate 1-monooxygenase is FAD/NADH aromatic hydroxylation/decarboxylation, not FMN alkanal monooxygenase",
+          "m_csa:551": "family overlap: both support FAD-dependent phenolic/aromatic hydroxylation through C4a-hydroperoxyflavin chemistry",
+          "m_csa:973": "no duplicate; salicylate hydroxylation/decarboxylation is distinct from two-component sulfur oxygenation",
+          "external_candidate_family_overlap": "same broad aromatic hydroxylase lane as O15229 and current m_csa:131/m_csa:551 support"
+        },
+        "same_family_candidate_risk": "same broad aromatic hydroxylase lane as O15229 and current m_csa:131/m_csa:551 support",
+        "prior_duplicate_leakage_evidence": null,
+        "gate_disposition_from_prior_hard_negative_duplicate_artifact": "duplicate_hold"
+      },
+      "human_review_packet_decision": "hold",
+      "ready_for_human_review_packet": false,
+      "review_packet_decision_reason": "no coordinate flavin ligand; no substrate/analog/product ligand in selected coordinate; duplicate/family hold from prior gate; same-family aromatic hydroxylase overlap with m_csa:131/m_csa:551",
+      "non_promotion_guardrail": "Review/materialization support only; no labels, registries, ontology files, thresholds, production scoring, model outputs, imports, or canonical FMO counts were changed."
+    }
+  ]
+}
