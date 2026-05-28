@@ -1,6 +1,6 @@
 # FMO External Structure Geometry Materialization - 2026-05-28
 
-Run time: 2026-05-28T05:20:00Z
+Run time: 2026-05-28T05:17:35Z
 
 Review-only external structure/materialization pass for the six requested FMO candidates. No labels, registries, ontology files, thresholds, production scoring, model outputs, or imports were changed.
 

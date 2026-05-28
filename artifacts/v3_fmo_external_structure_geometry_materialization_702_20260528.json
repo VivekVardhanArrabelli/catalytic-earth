@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "artifact_id": "v3_fmo_external_structure_geometry_materialization_702_20260528",
   "automation_id": "fmo-structure-geometry-auditor",
-  "created_utc": "2026-05-28T05:20:00Z",
+  "created_utc": "2026-05-28T05:17:35Z",
   "review_only": true,
   "status": "completed_blockers_identified",
   "scope": {
