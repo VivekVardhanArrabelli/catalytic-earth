@@ -1,0 +1,1596 @@
+{
+  "artifact_id": "v3_external_identifier_resolution_scout_20260528",
+  "created_utc": "2026-05-28T10:01:03Z",
+  "first_materialization_tranche": [
+    {
+      "blocker_to_clear_before_materialization": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_064",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "display_name": "Metallo-beta-lactamase NDM-1",
+      "identifier_resolution": {
+        "alphafold_id": "C7C422",
+        "best_coordinate_id": "3PG4",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "3PG4",
+          "3RKJ",
+          "3RKK",
+          "3SBL",
+          "3SFP",
+          "3SPU"
+        ],
+        "source_accession": "uniprot:C7C422",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/3PG4",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/C7C422.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/C7C422/entry"
+        },
+        "uniprot_id": "C7C422"
+      },
+      "reason": "external NDM-1 MBL positive-like lead; AMR enzyme-only relevance without importing AMR labels",
+      "tranche_rank": 1
+    },
+    {
+      "blocker_to_clear_before_materialization": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_065",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "display_name": "Metallo-beta-lactamase VIM-like enzyme",
+      "identifier_resolution": {
+        "alphafold_id": "Q79MP6",
+        "best_coordinate_id": "1DDK",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1DDK",
+          "1JJE",
+          "1JJT",
+          "3WXC",
+          "4F6H",
+          "4F6Z"
+        ],
+        "source_accession": "uniprot:Q79MP6",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1DDK",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/Q79MP6.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/Q79MP6/entry"
+        },
+        "uniprot_id": "Q79MP6"
+      },
+      "reason": "external VIM-like MBL diversity lead; AMR enzyme-only relevance",
+      "tranche_rank": 2
+    },
+    {
+      "blocker_to_clear_before_materialization": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_067",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "display_name": "Carbonic anhydrase 2",
+      "identifier_resolution": {
+        "alphafold_id": "P00918",
+        "best_coordinate_id": "12CA",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "12CA",
+          "1A42",
+          "1AM6",
+          "1AVN",
+          "1BCD",
+          "1BIC"
+        ],
+        "source_accession": "uniprot:P00918",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/12CA",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P00918.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P00918/entry"
+        },
+        "uniprot_id": "P00918"
+      },
+      "reason": "external carbonic anhydrase boundary positive; tests metal hydrolase child boundary",
+      "tranche_rank": 3
+    },
+    {
+      "blocker_to_clear_before_materialization": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_068",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "display_name": "Arylsulfatase A",
+      "identifier_resolution": {
+        "alphafold_id": "P15289",
+        "best_coordinate_id": "1AUK",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1AUK",
+          "1E1Z",
+          "1E2S",
+          "1E33",
+          "1E3C",
+          "1N2K"
+        ],
+        "source_accession": "uniprot:P15289",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1AUK",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P15289.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P15289/entry"
+        },
+        "uniprot_id": "P15289"
+      },
+      "reason": "external FGly sulfatase boundary; tests broad metal hydrolase vs sulfatase child/offramp",
+      "tranche_rank": 4
+    },
+    {
+      "blocker_to_clear_before_materialization": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_072",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "display_name": "Enolase",
+      "identifier_resolution": {
+        "alphafold_id": "P0A6P9",
+        "best_coordinate_id": "1E9I",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1E9I",
+          "2FYM",
+          "3H8A",
+          "5OHG",
+          "6BFY",
+          "6BFZ"
+        ],
+        "source_accession": "uniprot:P0A6P9",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1E9I",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P0A6P9.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P0A6P9/entry"
+        },
+        "uniprot_id": "P0A6P9"
+      },
+      "reason": "external enolase hard negative; metal-assisted dehydration not hydrolysis",
+      "tranche_rank": 5
+    },
+    {
+      "blocker_to_clear_before_materialization": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_073",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "display_name": "GTPase HRas",
+      "identifier_resolution": {
+        "alphafold_id": "P01112",
+        "best_coordinate_id": "121P",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "121P",
+          "1AA9",
+          "1AGP",
+          "1BKD",
+          "1CLU",
+          "1CRP"
+        ],
+        "source_accession": "uniprot:P01112",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/121P",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P01112.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P01112/entry"
+        },
+        "uniprot_id": "P01112"
+      },
+      "reason": "external HRas hard negative; Mg/nucleotide leakage control",
+      "tranche_rank": 6
+    },
+    {
+      "blocker_to_clear_before_materialization": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_035",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "display_name": "beta-lactamase (Class B1)",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1ZNB",
+        "m_csa_id": "m_csa:15",
+        "pdb_ids": [
+          "1ZNB"
+        ],
+        "source_accession": "m_csa:15",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=15",
+          "rcsb_structure": "https://www.rcsb.org/structure/1ZNB"
+        },
+        "uniprot_id": null
+      },
+      "reason": "local M-CSA B1 MBL anchor for external MBL comparison",
+      "tranche_rank": 7
+    },
+    {
+      "blocker_to_clear_before_materialization": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_037",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "display_name": "cerebroside-sulfatase",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1AUK",
+        "m_csa_id": "m_csa:158",
+        "pdb_ids": [
+          "1AUK"
+        ],
+        "source_accession": "m_csa:158",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=158",
+          "rcsb_structure": "https://www.rcsb.org/structure/1AUK"
+        },
+        "uniprot_id": null
+      },
+      "reason": "local M-CSA sulfatase/FGly anchor for external sulfatase comparison",
+      "tranche_rank": 8
+    },
+    {
+      "blocker_to_clear_before_materialization": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_048",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "display_name": "carbonate dehydratase (alpha class)",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1CA2",
+        "m_csa_id": "m_csa:216",
+        "pdb_ids": [
+          "1CA2"
+        ],
+        "source_accession": "m_csa:216",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=216",
+          "rcsb_structure": "https://www.rcsb.org/structure/1CA2"
+        },
+        "uniprot_id": null
+      },
+      "reason": "local M-CSA alpha carbonic anhydrase anchor for external CA comparison",
+      "tranche_rank": 9
+    },
+    {
+      "blocker_to_clear_before_materialization": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_054",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "display_name": "4-hydroxybutanoyl-CoA dehydratase",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1U8V",
+        "m_csa_id": "m_csa:750",
+        "pdb_ids": [
+          "1U8V"
+        ],
+        "source_accession": "m_csa:750",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=750",
+          "rcsb_structure": "https://www.rcsb.org/structure/1U8V"
+        },
+        "uniprot_id": null
+      },
+      "reason": "local radical FAD/Fe-S dehydratase hard negative already relabeled OOS",
+      "tranche_rank": 10
+    }
+  ],
+  "guardrails": {
+    "coordinate_fetches_performed": false,
+    "labels_changed": false,
+    "large_downloads_performed": false,
+    "ontologies_changed": false,
+    "predictive_use_allowed": false,
+    "production_scoring_changed": false,
+    "registries_changed": false,
+    "thresholds_changed": false,
+    "training_executed": false
+  },
+  "mapping_rows": [
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_035",
+      "candidate_role": "positive_anchor",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "beta-lactamase (Class B1)",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1ZNB",
+        "m_csa_id": "m_csa:15",
+        "pdb_ids": [
+          "1ZNB"
+        ],
+        "source_accession": "m_csa:15",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=15",
+          "rcsb_structure": "https://www.rcsb.org/structure/1ZNB"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "beta-lactam amide hydrolysis; selected structure has Zn",
+        "metal_ligand_state": "Zn class B1 beta-lactamase active site",
+        "observed_ligand_codes": [
+          "ZN"
+        ]
+      },
+      "panel_lane": "metallo_beta_lactamase_like",
+      "predictive_use_allowed": false,
+      "rank": 14,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "metallo_beta_lactamase_like",
+        "seed_fingerprint:metal_dependent_hydrolase"
+      ],
+      "scope": "current702_anchor_or_boundary",
+      "source_evidence_summary": "Class B1 metallo-beta-lactamase seed anchor.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_036",
+      "candidate_role": "positive_anchor",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "beta-lactamase (Class B1)",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1SML",
+        "m_csa_id": "m_csa:258",
+        "pdb_ids": [
+          "1SML"
+        ],
+        "source_accession": "m_csa:258",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=258",
+          "rcsb_structure": "https://www.rcsb.org/structure/1SML"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "beta-lactam amide hydrolysis; selected structure has Zn",
+        "metal_ligand_state": "Zn class B1 beta-lactamase active site",
+        "observed_ligand_codes": [
+          "ZN"
+        ]
+      },
+      "panel_lane": "metallo_beta_lactamase_like",
+      "predictive_use_allowed": false,
+      "rank": 15,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "metallo_beta_lactamase_like",
+        "seed_fingerprint:metal_dependent_hydrolase"
+      ],
+      "scope": "current702_anchor_or_boundary",
+      "source_evidence_summary": "Second B1 metallo-beta-lactamase anchor for MBL fold/metal-state consistency.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_037",
+      "candidate_role": "positive_anchor",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "cerebroside-sulfatase",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1AUK",
+        "m_csa_id": "m_csa:158",
+        "pdb_ids": [
+          "1AUK"
+        ],
+        "source_accession": "m_csa:158",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=158",
+          "rcsb_structure": "https://www.rcsb.org/structure/1AUK"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "sulfate ester hydrolysis through FGly gem-diol chemistry",
+        "metal_ligand_state": "FGly/FGL and Mg sulfatase state in selected structure",
+        "observed_ligand_codes": [
+          "FGL",
+          "MG"
+        ]
+      },
+      "panel_lane": "sulfatase_fgly_metal_boundary",
+      "predictive_use_allowed": false,
+      "rank": 16,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "seed_fingerprint:metal_dependent_hydrolase",
+        "sulfatase_fgly_metal_boundary"
+      ],
+      "scope": "current702_anchor_or_boundary",
+      "source_evidence_summary": "Cerebroside/arylsulfatase A-like FGly sulfatase anchor; tests whether metal hydrolase needs a sulfatase child/offramp.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_040",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "H+-transporting two-sector ATPase (F-type, mitochondrial)",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1BMF",
+        "m_csa_id": "m_csa:178",
+        "pdb_ids": [
+          "1BMF"
+        ],
+        "source_accession": "m_csa:178",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=178",
+          "rcsb_structure": "https://www.rcsb.org/structure/1BMF"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "ATP hydrolysis coupled to rotary proton transport, not generic metal hydrolase label",
+        "metal_ligand_state": "ADP/Mg F-type ATPase context",
+        "observed_ligand_codes": [
+          "ADP",
+          "MG"
+        ]
+      },
+      "panel_lane": "ntpase_nucleotide_hydrolase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 17,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "ntpase_nucleotide_hydrolase_boundary",
+        "out_of_scope"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "Current registry OOS row; hard negative for Mg/ADP leakage into metal hydrolase.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_041",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "chaperonin ATPase",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1Q3S",
+        "m_csa_id": "m_csa:179",
+        "pdb_ids": [
+          "1Q3S"
+        ],
+        "source_accession": "m_csa:179",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=179",
+          "rcsb_structure": "https://www.rcsb.org/structure/1Q3S"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "ATP-driven conformational cycling, not represented by current metal hydrolase seed",
+        "metal_ligand_state": "ADP chaperonin ATPase context",
+        "observed_ligand_codes": [
+          "ADP"
+        ]
+      },
+      "panel_lane": "ntpase_nucleotide_hydrolase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 18,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "ntpase_nucleotide_hydrolase_boundary",
+        "out_of_scope"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "Current registry OOS row; hard negative for nucleotide/conformational ATPase false positives.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_042",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "G-protein alpha subunit, group I (GTPase)",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1BH2",
+        "m_csa_id": "m_csa:533",
+        "pdb_ids": [
+          "1BH2"
+        ],
+        "source_accession": "m_csa:533",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=533",
+          "rcsb_structure": "https://www.rcsb.org/structure/1BH2"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "GTP hydrolysis signaling switch; current OOS",
+        "metal_ligand_state": "GTPase switch context with GSP analog",
+        "observed_ligand_codes": [
+          "GSP"
+        ]
+      },
+      "panel_lane": "ntpase_nucleotide_hydrolase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 19,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "ntpase_nucleotide_hydrolase_boundary",
+        "out_of_scope"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "Current registry OOS G-protein alpha row; route-away control for Mg/GTP contexts.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_043",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "myosin ATPase",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1VOM",
+        "m_csa_id": "m_csa:534",
+        "pdb_ids": [
+          "1VOM"
+        ],
+        "source_accession": "m_csa:534",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=534",
+          "rcsb_structure": "https://www.rcsb.org/structure/1VOM"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "ATPase motor chemistry; 210 rejected current metal-hydrolase target",
+        "metal_ligand_state": "ADP/Mg/vanadate myosin ATPase context",
+        "observed_ligand_codes": [
+          "VO4",
+          "ADP",
+          "MG"
+        ]
+      },
+      "panel_lane": "ntpase_nucleotide_hydrolase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 20,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "ntpase_nucleotide_hydrolase_boundary",
+        "reviewed_or_candidate_control_no_current_parent_label"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "210 rejections: myosin ATPase rejected for current metal-dependent hydrolase target despite ADP/Mg/VO4 ligand context.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_048",
+      "candidate_role": "positive_anchor",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "carbonate dehydratase (alpha class)",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1CA2",
+        "m_csa_id": "m_csa:216",
+        "pdb_ids": [
+          "1CA2"
+        ],
+        "source_accession": "m_csa:216",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=216",
+          "rcsb_structure": "https://www.rcsb.org/structure/1CA2"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "reversible CO2 hydration/dehydration; not ordinary scissile-bond hydrolysis",
+        "metal_ligand_state": "Zn-bound water/hydroxide in alpha carbonic anhydrase",
+        "observed_ligand_codes": [
+          "ZN"
+        ]
+      },
+      "panel_lane": "carbonic_anhydrase_dehydratase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 21,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "seed_fingerprint:metal_dependent_hydrolase"
+      ],
+      "scope": "current702_anchor_or_boundary",
+      "source_evidence_summary": "Alpha carbonic anhydrase/carbonate dehydratase anchor; tests parent-vs-child boundary.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_049",
+      "candidate_role": "positive_anchor",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "carbonate dehydratase (gamma class)",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1QRG",
+        "m_csa_id": "m_csa:516",
+        "pdb_ids": [
+          "1QRG"
+        ],
+        "source_accession": "m_csa:516",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=516",
+          "rcsb_structure": "https://www.rcsb.org/structure/1QRG"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "CO2 hydration/dehydration; selected structure has Zn",
+        "metal_ligand_state": "Zn-bound gamma carbonic anhydrase site",
+        "observed_ligand_codes": [
+          "ZN"
+        ]
+      },
+      "panel_lane": "carbonic_anhydrase_dehydratase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 22,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "seed_fingerprint:metal_dependent_hydrolase"
+      ],
+      "scope": "current702_anchor_or_boundary",
+      "source_evidence_summary": "Gamma carbonate dehydratase anchor for CA-class diversity.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_050",
+      "candidate_role": "positive_anchor",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "carbonate dehydratase (beta class)",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1I6P",
+        "m_csa_id": "m_csa:517",
+        "pdb_ids": [
+          "1I6P"
+        ],
+        "source_accession": "m_csa:517",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=517",
+          "rcsb_structure": "https://www.rcsb.org/structure/1I6P"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "CO2 hydration/dehydration; selected structure has Zn",
+        "metal_ligand_state": "Zn-bound beta carbonic anhydrase site",
+        "observed_ligand_codes": [
+          "ZN"
+        ]
+      },
+      "panel_lane": "carbonic_anhydrase_dehydratase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 23,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "seed_fingerprint:metal_dependent_hydrolase"
+      ],
+      "scope": "current702_anchor_or_boundary",
+      "source_evidence_summary": "Beta carbonate dehydratase anchor for CA-class diversity.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_051",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "3-dehydroquinate dehydratase (type I)",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1QFE",
+        "m_csa_id": "m_csa:54",
+        "pdb_ids": [
+          "1QFE"
+        ],
+        "source_accession": "m_csa:54",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=54",
+          "rcsb_structure": "https://www.rcsb.org/structure/1QFE"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "3-dehydroquinate dehydration, not metal-water hydrolysis",
+        "metal_ligand_state": "no metal hydrolase ligand state; Schiff-base/dehydration context",
+        "observed_ligand_codes": []
+      },
+      "panel_lane": "carbonic_anhydrase_dehydratase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 24,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "out_of_scope"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "Type I dehydroquinate dehydratase OOS control for dehydratase wording.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_052",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "3-dehydroquinate dehydratase (type II)",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1GU1",
+        "m_csa_id": "m_csa:55",
+        "pdb_ids": [
+          "1GU1"
+        ],
+        "source_accession": "m_csa:55",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=55",
+          "rcsb_structure": "https://www.rcsb.org/structure/1GU1"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "type II dehydroquinate dehydration; selected FA1/GOL ligand context",
+        "metal_ligand_state": "acid/base dehydration context, no metal-water hydrolysis",
+        "observed_ligand_codes": [
+          "FA1",
+          "GOL"
+        ]
+      },
+      "panel_lane": "carbonic_anhydrase_dehydratase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 25,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "out_of_scope"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "Type II dehydroquinate dehydratase OOS control for dehydration versus hydrolysis.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_053",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "aldoxime dehydratase",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "3A15",
+        "m_csa_id": "m_csa:361",
+        "pdb_ids": [
+          "3A15"
+        ],
+        "source_accession": "m_csa:361",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=361",
+          "rcsb_structure": "https://www.rcsb.org/structure/3A15"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "dehydration, not heme/metal hydrolase; selected structure has heme",
+        "metal_ligand_state": "heme aldoxime dehydratase active site",
+        "observed_ligand_codes": [
+          "HEM"
+        ]
+      },
+      "panel_lane": "carbonic_anhydrase_dehydratase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 26,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "out_of_scope"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "Aldoxime dehydratase OOS control; should route to heme/dehydration boundary or abstain.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_054",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "4-hydroxybutanoyl-CoA dehydratase",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1U8V",
+        "m_csa_id": "m_csa:750",
+        "pdb_ids": [
+          "1U8V"
+        ],
+        "source_accession": "m_csa:750",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=750",
+          "rcsb_structure": "https://www.rcsb.org/structure/1U8V"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "4-hydroxybutanoyl-CoA dehydration; current OOS high-confidence redox/dehydration control",
+        "metal_ligand_state": "FAD/Fe-S radical dehydratase state",
+        "observed_ligand_codes": [
+          "SF4",
+          "FAD"
+        ]
+      },
+      "panel_lane": "carbonic_anhydrase_dehydratase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 27,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "out_of_scope"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "Recent OOS decision: FAD semiquinone/Fe-S coupled dehydration, not ordinary hydrolase chemistry.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_055",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "nitrile hydratase",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "2AHJ",
+        "m_csa_id": "m_csa:57",
+        "pdb_ids": [
+          "2AHJ"
+        ],
+        "source_accession": "m_csa:57",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=57",
+          "rcsb_structure": "https://www.rcsb.org/structure/2AHJ"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "nitrile hydration, not hydrolysis of ester/amide/phosphate by metal-water",
+        "metal_ligand_state": "Fe nitrile hydratase with modified Cys ligands",
+        "observed_ligand_codes": [
+          "CSD",
+          "CSO",
+          "FE",
+          "NO",
+          "DIO"
+        ]
+      },
+      "panel_lane": "metal_dependent_nonhydrolytic_negative",
+      "predictive_use_allowed": false,
+      "rank": 28,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "metal_dependent_nonhydrolytic_negative",
+        "out_of_scope"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "Nitrile hydratase tests metal-water/hydration language against non-hydrolytic metal enzyme boundary.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_056",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "oxalate oxidase",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "2ET1",
+        "m_csa_id": "m_csa:995",
+        "pdb_ids": [
+          "2ET1"
+        ],
+        "source_accession": "m_csa:995",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=995",
+          "rcsb_structure": "https://www.rcsb.org/structure/2ET1"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "oxalate oxidation/O2 chemistry; 210 rejected target collision",
+        "metal_ligand_state": "metal oxidase context, no scissile-bond hydrolysis",
+        "observed_ligand_codes": [
+          "GLV"
+        ]
+      },
+      "panel_lane": "metal_dependent_nonhydrolytic_negative",
+      "predictive_use_allowed": false,
+      "rank": 29,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "metal_dependent_nonhydrolytic_negative",
+        "reviewed_or_candidate_control_no_current_parent_label"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "210 rejections: oxalate oxidase rejected as metal-dependent nonhydrolytic oxidase boundary.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_057",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "Nitrate reductase [NADH]",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "2BII",
+        "m_csa_id": "m_csa:925",
+        "pdb_ids": [
+          "2BII"
+        ],
+        "source_accession": "m_csa:925",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=925",
+          "rcsb_structure": "https://www.rcsb.org/structure/2BII"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "nitrate redox chemistry, not hydrolysis",
+        "metal_ligand_state": "molybdopterin/redox nitrate reductase context",
+        "observed_ligand_codes": [
+          "MTV"
+        ]
+      },
+      "panel_lane": "metal_dependent_nonhydrolytic_negative",
+      "predictive_use_allowed": false,
+      "rank": 30,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "metal_dependent_nonhydrolytic_negative",
+        "reviewed_or_candidate_control_no_current_parent_label"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "210 rejections: nitrate reductase rejected as metal-hydrolase target collision; redox chemistry not hydrolysis.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_058",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "protocatechuate 3,4-dioxygenase",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "3PCA",
+        "m_csa_id": "m_csa:936",
+        "pdb_ids": [
+          "3PCA"
+        ],
+        "source_accession": "m_csa:936",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=936",
+          "rcsb_structure": "https://www.rcsb.org/structure/3PCA"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "O2 insertion/ring cleavage, not metal-water hydrolysis",
+        "metal_ligand_state": "Fe/catechol dioxygenase context",
+        "observed_ligand_codes": []
+      },
+      "panel_lane": "metal_dependent_nonhydrolytic_negative",
+      "predictive_use_allowed": false,
+      "rank": 31,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "metal_dependent_nonhydrolytic_negative",
+        "reviewed_or_candidate_control_no_current_parent_label"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "210 rejections: protocatechuate 3,4-dioxygenase rejected as nonhydrolytic metal/O2 chemistry.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "coordinate_already_local_in_geometry_artifact; materialization blocker is stale for this row",
+      "candidate_id": "mh_059",
+      "candidate_role": "oos_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "no_fetch_needed_existing_local_geometry_row",
+      "coordinate_materialization_status": "local_geometry_row_available",
+      "display_name": "lanthanide-dependent methanol dehydrogenase",
+      "identifier_confidence": "high_local_mcsa_geometry_reference",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "6FKW",
+        "m_csa_id": "m_csa:997",
+        "pdb_ids": [
+          "6FKW"
+        ],
+        "source_accession": "m_csa:997",
+        "source_urls": {
+          "mcsa_api": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=997",
+          "rcsb_structure": "https://www.rcsb.org/structure/6FKW"
+        },
+        "uniprot_id": null
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "alcohol oxidation, not hydrolysis",
+        "metal_ligand_state": "lanthanide/PQQ methanol dehydrogenase active site",
+        "observed_ligand_codes": [
+          "EU",
+          "PQQ"
+        ]
+      },
+      "panel_lane": "metal_dependent_nonhydrolytic_negative",
+      "predictive_use_allowed": false,
+      "rank": 32,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "metal_dependent_nonhydrolytic_negative",
+        "reviewed_or_candidate_control_no_current_parent_label"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "210 rejections: lanthanide methanol dehydrogenase rejected as metal-dependent redox boundary.",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_064",
+      "candidate_role": "external_positive_lead",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "coordinate_materialization_status": "pdb_and_alphafold_available_from_uniprot_spot_check",
+      "display_name": "Metallo-beta-lactamase NDM-1",
+      "identifier_confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+      "identifier_resolution": {
+        "alphafold_id": "C7C422",
+        "best_coordinate_id": "3PG4",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "3PG4",
+          "3RKJ",
+          "3RKK",
+          "3SBL",
+          "3SFP",
+          "3SPU"
+        ],
+        "source_accession": "uniprot:C7C422",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/3PG4",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/C7C422.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/C7C422/entry"
+        },
+        "uniprot_id": "C7C422"
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "beta-lactam amide hydrolysis; public holo/inhibitor PDBs available",
+        "metal_ligand_state": "binuclear Zn metallo-beta-lactamase; reviewed EC 3.5.2.6",
+        "observed_ligand_codes": []
+      },
+      "panel_lane": "metallo_beta_lactamase_like",
+      "predictive_use_allowed": false,
+      "rank": 33,
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "external_no_decision_review_only",
+        "metallo_beta_lactamase_like"
+      ],
+      "scope": "external_review_only_candidate",
+      "source_evidence_summary": "external MBL B1 lead for beyond-M-CSA generalization",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_065",
+      "candidate_role": "external_positive_lead",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "coordinate_materialization_status": "pdb_and_alphafold_available_from_uniprot_spot_check",
+      "display_name": "Metallo-beta-lactamase VIM-like enzyme",
+      "identifier_confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+      "identifier_resolution": {
+        "alphafold_id": "Q79MP6",
+        "best_coordinate_id": "1DDK",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1DDK",
+          "1JJE",
+          "1JJT",
+          "3WXC",
+          "4F6H",
+          "4F6Z"
+        ],
+        "source_accession": "uniprot:Q79MP6",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1DDK",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/Q79MP6.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/Q79MP6/entry"
+        },
+        "uniprot_id": "Q79MP6"
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "beta-lactam hydrolysis; public structures available",
+        "metal_ligand_state": "Zn metallo-beta-lactamase; reviewed EC 3.5.2.6",
+        "observed_ligand_codes": []
+      },
+      "panel_lane": "metallo_beta_lactamase_like",
+      "predictive_use_allowed": false,
+      "rank": 34,
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "external_no_decision_review_only",
+        "metallo_beta_lactamase_like"
+      ],
+      "scope": "external_review_only_candidate",
+      "source_evidence_summary": "external MBL-family diversity lead; child evidence must distinguish from serine beta-lactamases",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_066",
+      "candidate_role": "external_positive_lead",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "coordinate_materialization_status": "pdb_and_alphafold_available_from_uniprot_spot_check",
+      "display_name": "Metallo-beta-lactamase IMP-1",
+      "identifier_confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+      "identifier_resolution": {
+        "alphafold_id": "P52699",
+        "best_coordinate_id": "1DD6",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1DD6",
+          "1VGN",
+          "1WUO",
+          "1WUP",
+          "2DOO",
+          "4C1F"
+        ],
+        "source_accession": "uniprot:P52699",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1DD6",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P52699.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P52699/entry"
+        },
+        "uniprot_id": "P52699"
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "beta-lactam hydrolysis; public structures available",
+        "metal_ligand_state": "Zn metallo-beta-lactamase IMP-1; reviewed EC 3.5.2.6",
+        "observed_ligand_codes": []
+      },
+      "panel_lane": "metallo_beta_lactamase_like",
+      "predictive_use_allowed": false,
+      "rank": 35,
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "external_no_decision_review_only",
+        "metallo_beta_lactamase_like"
+      ],
+      "scope": "external_review_only_candidate",
+      "source_evidence_summary": "external MBL lead plus nuclease EC cross-reference warning in UniProt metadata",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_067",
+      "candidate_role": "external_positive_lead",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "coordinate_materialization_status": "pdb_and_alphafold_available_from_uniprot_spot_check",
+      "display_name": "Carbonic anhydrase 2",
+      "identifier_confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+      "identifier_resolution": {
+        "alphafold_id": "P00918",
+        "best_coordinate_id": "12CA",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "12CA",
+          "1A42",
+          "1AM6",
+          "1AVN",
+          "1BCD",
+          "1BIC"
+        ],
+        "source_accession": "uniprot:P00918",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/12CA",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P00918.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P00918/entry"
+        },
+        "uniprot_id": "P00918"
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "CO2/bicarbonate hydration/dehydration, not generic bond hydrolysis",
+        "metal_ligand_state": "Zn-water reversible carbonate dehydratase; reviewed EC 4.2.1.1",
+        "observed_ligand_codes": []
+      },
+      "panel_lane": "carbonic_anhydrase_dehydratase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 36,
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "external_no_decision_review_only"
+      ],
+      "scope": "external_review_only_candidate",
+      "source_evidence_summary": "external carbonic anhydrase boundary lead; should not force all CAs into generic hydrolase children",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_068",
+      "candidate_role": "external_positive_lead",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "coordinate_materialization_status": "pdb_and_alphafold_available_from_uniprot_spot_check",
+      "display_name": "Arylsulfatase A",
+      "identifier_confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+      "identifier_resolution": {
+        "alphafold_id": "P15289",
+        "best_coordinate_id": "1AUK",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1AUK",
+          "1E1Z",
+          "1E2S",
+          "1E33",
+          "1E3C",
+          "1N2K"
+        ],
+        "source_accession": "uniprot:P15289",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1AUK",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P15289.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P15289/entry"
+        },
+        "uniprot_id": "P15289"
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "sulfate ester hydrolysis; FGL/FGly state must be checked in structures",
+        "metal_ligand_state": "FGly/formylglycine sulfatase with metal stabilization; reviewed EC 3.1.6.8",
+        "observed_ligand_codes": []
+      },
+      "panel_lane": "sulfatase_fgly_metal_boundary",
+      "predictive_use_allowed": false,
+      "rank": 37,
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "external_no_decision_review_only",
+        "sulfatase_fgly_metal_boundary"
+      ],
+      "scope": "external_review_only_candidate",
+      "source_evidence_summary": "external sulfatase/FGly lead paired with M-CSA m_csa:158 and m_csa:661",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_069",
+      "candidate_role": "external_positive_lead",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "coordinate_materialization_status": "pdb_and_alphafold_available_from_uniprot_spot_check",
+      "display_name": "Iduronate 2-sulfatase",
+      "identifier_confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+      "identifier_resolution": {
+        "alphafold_id": "P22304",
+        "best_coordinate_id": "5FQL",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "5FQL",
+          "6IOZ"
+        ],
+        "source_accession": "uniprot:P22304",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/5FQL",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P22304.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P22304/entry"
+        },
+        "uniprot_id": "P22304"
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "glycosaminoglycan sulfate ester hydrolysis; public structures available",
+        "metal_ligand_state": "FGly sulfatase family; reviewed EC 3.1.6.13",
+        "observed_ligand_codes": []
+      },
+      "panel_lane": "sulfatase_fgly_metal_boundary",
+      "predictive_use_allowed": false,
+      "rank": 38,
+      "readiness_tier": "silver",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "external_no_decision_review_only",
+        "sulfatase_fgly_metal_boundary"
+      ],
+      "scope": "external_review_only_candidate",
+      "source_evidence_summary": "external lysosomal sulfatase boundary lead; needs FGly and ligand-state extraction",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_072",
+      "candidate_role": "external_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "coordinate_materialization_status": "pdb_and_alphafold_available_from_uniprot_spot_check",
+      "display_name": "Enolase",
+      "identifier_confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+      "identifier_resolution": {
+        "alphafold_id": "P0A6P9",
+        "best_coordinate_id": "1E9I",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1E9I",
+          "2FYM",
+          "3H8A",
+          "5OHG",
+          "6BFY",
+          "6BFZ"
+        ],
+        "source_accession": "uniprot:P0A6P9",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1E9I",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P0A6P9.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P0A6P9/entry"
+        },
+        "uniprot_id": "P0A6P9"
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "2-phosphoglycerate dehydration; substrate/product analog structures available",
+        "metal_ligand_state": "Mg-dependent lyase/dehydratase, not hydrolysis; reviewed EC 4.2.1.11",
+        "observed_ligand_codes": []
+      },
+      "panel_lane": "metal_dependent_nonhydrolytic_negative",
+      "predictive_use_allowed": false,
+      "rank": 39,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "external_no_decision_review_only",
+        "metal_dependent_nonhydrolytic_negative"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "external metal-assisted dehydration hard negative",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    },
+    {
+      "blocker": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+      "candidate_id": "mh_073",
+      "candidate_role": "external_hard_negative",
+      "coordinate_fetch_size_or_risk_estimate": "bounded_small_pdb_or_afdb_fetch_after_approval",
+      "coordinate_materialization_status": "pdb_and_alphafold_available_from_uniprot_spot_check",
+      "display_name": "GTPase HRas",
+      "identifier_confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+      "identifier_resolution": {
+        "alphafold_id": "P01112",
+        "best_coordinate_id": "121P",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "121P",
+          "1AA9",
+          "1AGP",
+          "1BKD",
+          "1CLU",
+          "1CRP"
+        ],
+        "source_accession": "uniprot:P01112",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/121P",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P01112.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P01112/entry"
+        },
+        "uniprot_id": "P01112"
+      },
+      "ligand_or_cofactor_state_hints": {
+        "ligand_or_substrate_state": "GTP hydrolysis coupled to conformational signaling; many GDP/GTP analog PDBs available",
+        "metal_ligand_state": "Mg/GTPase switch protein; reviewed EC 3.6.5.2",
+        "observed_ligand_codes": []
+      },
+      "panel_lane": "ntpase_nucleotide_hydrolase_boundary",
+      "predictive_use_allowed": false,
+      "rank": 40,
+      "readiness_tier": "gold",
+      "ready_for_label_import": false,
+      "review_only": true,
+      "router_queue_mentions": 1,
+      "routes": [
+        "external_no_decision_review_only",
+        "ntpase_nucleotide_hydrolase_boundary"
+      ],
+      "scope": "hard_negative_or_oos_control",
+      "source_evidence_summary": "external GTPase false-positive control against Mg/nucleotide leakage",
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ]
+    }
+  ],
+  "next_gate": {
+    "action": "If approved, materialize only the external rows in the first tranche that are not already local, then run label-blind pocket extraction; do not import labels.",
+    "external_rows_requiring_fetch_if_approved": [
+      "mh_064",
+      "mh_065",
+      "mh_067",
+      "mh_068",
+      "mh_072",
+      "mh_073"
+    ],
+    "local_rows_ready_without_fetch": [
+      "mh_035",
+      "mh_037",
+      "mh_048",
+      "mh_054"
+    ]
+  },
+  "review_only": true,
+  "schema_version": "external_identifier_resolution_scout.v1",
+  "source_artifacts": [
+    "artifacts/v3_external_priority_materialization_scout_20260528.json",
+    "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+    "artifacts/v3_external_panel_router_queue_20260528.json"
+  ],
+  "status": "complete_read_only_identifier_resolution",
+  "summary": {
+    "coordinate_risk_counts": {
+      "bounded_small_pdb_or_afdb_fetch_after_approval": 8,
+      "no_fetch_needed_existing_local_geometry_row": 19
+    },
+    "first_materialization_tranche_count": 10,
+    "identifier_confidence_counts": {
+      "high_local_mcsa_geometry_reference": 19,
+      "high_uniprot_spot_check_with_pdb_and_afdb": 8
+    },
+    "important_caveat": "The 27 blocked rows in this scout are all sourced from the metal_hydrolase_tail panel; flavin/FMO, heme, PLP, and glycoside stress rows in the 40-row priority set already had local current702 coordinates or were not in this blocker bucket.",
+    "input_rows_marked_external_identifier_or_coordinate_mapping_needed": 27,
+    "mapping_rows_emitted": 27,
+    "scope_counts": {
+      "current702_anchor_or_boundary": 6,
+      "external_review_only_candidate": 6,
+      "hard_negative_or_oos_control": 15
+    }
+  }
+}
