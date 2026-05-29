@@ -56,6 +56,12 @@ artifacts first.
 - Hand-scored active-site geometry remains the current first router. The
   geometry-feature logistic probe is useful but weaker on the audit: 66.7%
   canonical primary accuracy and 4.2% OOS/secondary false-positive rate.
+- The clean experimental-coordinate geometry result is not deployment-ready by
+  itself. The AlphaFoldDB predicted-geometry audit drops the hand router from
+  45/45 to 23/45 primary heldout correct, with 17 primary abstentions, 5 wrong
+  non-abstained primary calls, and a 12.3% OOS/secondary false-positive rate.
+  This makes robustness to predicted active-site geometry degradation a learned
+  model job description, not a raw clean-M-CSA accuracy contest.
 - Learned-representation results are diagnostic, not decision-grade. ESM-2
   logistic is the strongest local learned comparator in the Wave 1.2 table but
   does not displace geometry. ESM-C logistic versus ESM-C cosine shows decoder
@@ -72,6 +78,10 @@ artifacts first.
 - Fair ProtT5/SaProt logistic-head comparison needs local raw embedding or
   structure-token sidecars and an ESM-2-style train/cal-only head. Existing
   local exports are not equivalent decoders.
+- Sequence-to-deployment geometry is blocked by predicted-structure active-site
+  degradation: AlphaFoldDB has no proximal ligands and perturbs the hand
+  geometry evidence enough to introduce primary wrong calls and OOS false
+  positives. ESMFold is not locally available without staging runtime/weights.
 - FMO primary promotion is blocked by missing or unsuitable exact coordinate
   materialization for key external subtype rows, subtype/child-stratum
   definition work, PHBH-leaning gate behavior, hard-negative separation, and
@@ -86,10 +96,11 @@ artifacts first.
 
 ## Next Gates
 
-1. Freeze a geometry-router contract before more encoder or family-expansion
-   claims.
+1. Freeze a geometry-router contract that separates clean experimental
+   coordinate use from predicted-geometry deployment claims.
 2. If representation work resumes, produce row-aligned local sidecars first,
-   then train heads on train/cal rows only and evaluate heldout once.
+   then train heads on train/cal rows only and evaluate heldout once, including
+   a predicted-geometry robustness cell.
 3. For FMO, revise the review/silver evidence gate into subtype panels, finish
    coordinate/materialization blockers, and keep candidate rows review-only.
 4. For label growth, require explicit expert decision, no-import safety checks

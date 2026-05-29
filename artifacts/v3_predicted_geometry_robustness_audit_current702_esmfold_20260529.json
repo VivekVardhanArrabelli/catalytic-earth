@@ -1,0 +1,22 @@
+{
+  "artifact_id": "v3_predicted_geometry_robustness_audit_current702_20260529",
+  "blocker": "local_esmfold_runtime_or_weights_unavailable",
+  "created_utc": "2026-05-29T14:36:36Z",
+  "detail": "ESMFold inference is not run by this audit unless a local runtime and weights are already staged. No model-weight download was attempted. Stage ESMFold PDB/mmCIF files keyed by current702 sequence_id/accession, or install a local esmfold runtime, then add that backend as a coordinate supplier.",
+  "guardrails": {
+    "fingerprint_registry_edited": false,
+    "global_threshold_changed": false,
+    "heldout_labels_used_for_fit_or_threshold": false,
+    "label_registry_edited": false,
+    "large_model_downloads_performed": false,
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false
+  },
+  "schema_version": "predicted_geometry_robustness_audit.v1",
+  "scope": {
+    "backend": "esmfold",
+    "label_manifest_row_count": 702,
+    "split_assignment": "heldout"
+  },
+  "status": "blocked"
+}

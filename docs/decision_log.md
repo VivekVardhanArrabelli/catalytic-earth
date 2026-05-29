@@ -114,6 +114,26 @@ References:
 - `work/wave1_2_decoder_join_confound_audit_702_20260528.md`
 - `work/northstar_wave1_to_engine_handoff_20260526.md`
 
+## 2026-05-29: Predicted Geometry Is Not Deployment-Ready
+
+Decision: do not interpret the clean experimental-coordinate 45/45 hand-router
+result as bare-sequence deployment readiness.
+
+Rationale: when current702 heldout M-CSA rows with experimental geometry and
+sequence-position mappings are re-scored on AlphaFoldDB predicted coordinates,
+the hand router drops to 23/45 canonical primary correct, with 17 primary
+abstentions, 5 wrong non-abstained primary calls, and a 12.3% OOS/secondary
+false-positive rate. The OOS-aware geometry MLP trained on experimental
+geometry stays disciplined on OOS but reaches only 16/45 primary correct via
+abstention. The learned-model job is now explicitly robustness to predicted
+active-site geometry degradation, not beating clean M-CSA geometry in isolation.
+
+References:
+
+- `artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json`
+- `work/predicted_geometry_robustness_audit_current702_20260529.md`
+- `artifacts/v3_predicted_geometry_robustness_audit_current702_esmfold_20260529.json`
+
 ## 2026-05-29: Review And Import Posture
 
 Decision: review artifacts are not imports. Countable label changes require a
