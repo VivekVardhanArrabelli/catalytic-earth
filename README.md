@@ -43,12 +43,17 @@ enzymes, and not a production biological design system.
   registry edit, threshold change, production scoring change, or import is
   currently authorized.
 
-Read the current project memory first:
+## Start Here
 
-- `docs/project_state.md`
-- `docs/decision_log.md`
-- `docs/artifact_index.md`
-- `docs/agent_runbook.md`
+Read these files in order before interpreting older reports or starting an
+agent run:
+
+| File | Use it for |
+| --- | --- |
+| `docs/project_state.md` | Current state, trusted results, blockers, and next gates |
+| `docs/decision_log.md` | Dated decisions that override older artifact wording |
+| `docs/artifact_index.md` | Which artifact answers which question, and what is deprecated |
+| `docs/agent_runbook.md` | Safe edit boundaries, validation, and output locations |
 
 ## Key Commands
 
@@ -98,9 +103,9 @@ entry points are:
 - `docs/label_factory.md`
 - `docs/artifact_storage.md`
 
-Older Wave 1 representation summaries are useful historical context, but they
-must be read through the Wave 1.2 audit because geometry join policy and decoder
-choice were confounded.
+Older Wave 1 representation summaries are useful historical context, not the
+current gate. Read them through the Wave 1.2 audit because geometry join policy
+and decoder choice were confounded.
 
 ## Benchmark Caveats
 

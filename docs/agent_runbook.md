@@ -89,6 +89,11 @@ whose output should be verified.
    `git diff --check`.
 7. Commit and push only if the task requests it and verification passes.
 
+If the worktree is already dirty, identify which files are unrelated before
+editing. Do not revert or stage unrelated user changes. If a tracked file is
+already modified and affects the requested command, work with it and call out
+the residual risk in the final status.
+
 ## Leakage Rules
 
 - Train or calibrate only on in-distribution train/cal rows.

@@ -6,6 +6,13 @@ This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
 artifacts.
 
+Read order for a fresh run:
+
+1. `docs/project_state.md`
+2. `docs/decision_log.md`
+3. `docs/artifact_index.md`
+4. `docs/agent_runbook.md`
+
 ## North Star
 
 Catalytic Earth is a mechanism-first enzyme atlas scaffold. The objective is a
@@ -33,6 +40,10 @@ artifact-backed mechanism diagnostics.
   - canonical mask: 45 primary rows, 92 pure OOS rows, 3 secondary-probe rows;
   - Wave 1 readthrough mask after excluding `m_csa:497` and `m_csa:750` from
     primary metrics: 43 primary rows and 97 nonprimary/OOS rows.
+
+When a report predates 2026-05-27 row-level revisions, do not copy its primary
+flavin counts directly. Check the decision log and the row-level revision
+artifacts first.
 
 ## Trusted Results
 
@@ -84,6 +95,15 @@ artifact-backed mechanism diagnostics.
 4. For label growth, require explicit expert decision, no-import safety checks
    where applicable, label-factory gate pass, batch acceptance, and registry
    summary refresh before any countable import.
+
+## Maintenance Notes
+
+- Keep this file short enough to scan. Put detailed historical reasoning in the
+  decision log or the specific artifact report.
+- Refresh this file only when the current gate, trusted result set, blockers, or
+  source-of-truth order changes.
+- If a run only validates existing outputs, update automation memory rather than
+  inflating this file.
 
 ## Primary References
 

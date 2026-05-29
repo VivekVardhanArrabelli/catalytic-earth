@@ -3,6 +3,14 @@
 This index maps important artifacts to the question they answer. It also marks
 artifacts that are historical, superseded, or confounded for current decisions.
 
+Status terms:
+
+- Current gate: use for the next decision unless a newer decision log entry says
+  otherwise.
+- Trusted contract: source-of-truth constraints or benchmark definitions.
+- Diagnostic: useful for analysis, but not enough alone for a gate decision.
+- Historical/superseded/confounded: read only through the caveat stated here.
+
 ## Start Here
 
 | Artifact | Answers | Status |
