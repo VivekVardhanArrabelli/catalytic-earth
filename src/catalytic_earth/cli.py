@@ -29,6 +29,7 @@ from .artifact_storage import (
 from .active_site_encoder_cache import write_active_site_encoder_cache
 from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
 from .bin_targeted_expansion import write_bin_targeted_expansion_plan
+from .cofactor_channel_probe import write_sequence_cofactor_channel_probe
 from .embedding_sidecar import write_sequence_embedding_sidecar
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
@@ -2124,6 +2125,32 @@ def cmd_build_predicted_geometry_distillation_audit(args: argparse.Namespace) ->
         "Wrote predicted geometry distillation audit to "
         f"{args.out} ({audit.get('status')}; "
         f"mlp_primary={answer.get('mlp_32_oos_aware_predicted_primary_accuracy_available')})"
+    )
+    return 0
+
+
+def cmd_build_sequence_cofactor_channel_probe(args: argparse.Namespace) -> int:
+    audit = write_sequence_cofactor_channel_probe(
+        label_manifest_path=Path(args.label_manifest),
+        geometry_features_path=Path(args.geometry_features),
+        kmer_sidecar_path=Path(args.kmer_sidecar),
+        kmer_sidecar_summary_path=Path(args.kmer_sidecar_summary),
+        esm2_sidecar_summary_path=(
+            Path(args.esm2_sidecar_summary) if args.esm2_sidecar_summary else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        min_train_positive=args.min_train_positive,
+        min_heldout_positive=args.min_heldout_positive,
+        random_state=args.random_state,
+    )
+    answer = audit.get("answer", {})
+    support = answer.get("core_presence_support_train_heldout", {})
+    print(
+        "Wrote sequence cofactor-channel probe to "
+        f"{args.out} ({audit.get('status')}; "
+        f"label_readiness={answer.get('label_readiness')}; "
+        f"heme_presence={support.get('heme')})"
     )
     return 0
 
@@ -12329,6 +12356,49 @@ def build_parser() -> argparse.ArgumentParser:
     predicted_geometry_distillation.set_defaults(
         func=cmd_build_predicted_geometry_distillation_audit
     )
+
+    cofactor_channel_probe = subparsers.add_parser(
+        "build-sequence-cofactor-channel-probe",
+        help="audit cofactor-class labels and run a local sequence cofactor probe",
+    )
+    cofactor_channel_probe.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    cofactor_channel_probe.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    cofactor_channel_probe.add_argument(
+        "--kmer-sidecar",
+        default="artifacts/v3_sequence_embedding_sidecar_current702_kmer_20260529.jsonl",
+    )
+    cofactor_channel_probe.add_argument(
+        "--kmer-sidecar-summary",
+        default=(
+            "artifacts/"
+            "v3_sequence_embedding_sidecar_current702_kmer_20260529_summary.json"
+        ),
+    )
+    cofactor_channel_probe.add_argument(
+        "--esm2-sidecar-summary",
+        default=(
+            "artifacts/"
+            "v3_sequence_embedding_sidecar_current702_esm2_t6_8m_20260529_summary.json"
+        ),
+    )
+    cofactor_channel_probe.add_argument("--min-train-positive", type=int, default=10)
+    cofactor_channel_probe.add_argument("--min-heldout-positive", type=int, default=5)
+    cofactor_channel_probe.add_argument("--random-state", type=int, default=702)
+    cofactor_channel_probe.add_argument(
+        "--out",
+        default="artifacts/v3_sequence_cofactor_channel_probe_current702_20260529.json",
+    )
+    cofactor_channel_probe.add_argument(
+        "--report",
+        default="work/sequence_cofactor_channel_probe_current702_20260529.md",
+    )
+    cofactor_channel_probe.set_defaults(func=cmd_build_sequence_cofactor_channel_probe)
 
     embedding_sidecar = subparsers.add_parser(
         "build-sequence-embedding-sidecar",

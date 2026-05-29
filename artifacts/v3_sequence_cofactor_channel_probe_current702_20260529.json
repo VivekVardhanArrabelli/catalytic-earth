@@ -1,0 +1,315 @@
+{
+  "answer": {
+    "core_exact_support_train_heldout": {
+      "flavin": {
+        "heldout": 9,
+        "train": 37
+      },
+      "heme": {
+        "heldout": 3,
+        "train": 13
+      },
+      "metal_ion": {
+        "heldout": 25,
+        "train": 136
+      },
+      "none": {
+        "heldout": 80,
+        "train": 297
+      },
+      "plp": {
+        "heldout": 6,
+        "train": 21
+      }
+    },
+    "core_presence_support_train_heldout": {
+      "flavin": {
+        "heldout": 11,
+        "train": 40
+      },
+      "heme": {
+        "heldout": 5,
+        "train": 18
+      },
+      "metal_ion": {
+        "heldout": 29,
+        "train": 146
+      },
+      "plp": {
+        "heldout": 6,
+        "train": 24
+      }
+    },
+    "esm2_probe_runnable_now": false,
+    "exact_multiclass_runnable_now": false,
+    "kmer_control_interpretation": "kmer_control_has_some_signal_but_is_not_the_target_model",
+    "label_readiness": "presence_probe_runnable_now",
+    "recommendation": "Run the real sequence cofactor-channel probe next with local ESM-2/ProtT5 or Pfam/motif features using one-vs-rest cofactor presence labels; do not clean labels by mechanism fingerprint cofactors because that is circular with the mechanism target.",
+    "short_answer": "Yes for one-vs-rest cofactor class-presence labels on metal/flavin/PLP/heme; not yet for a clean exact single-label multiclass probe including heme."
+  },
+  "artifact_id": "v3_sequence_cofactor_channel_probe_current702_20260529",
+  "created_utc": "2026-05-29T20:28:51Z",
+  "guardrails": {
+    "fingerprint_registry_edited": false,
+    "global_threshold_changed": false,
+    "heldout_labels_used_for_fit_or_threshold": false,
+    "label_registry_edited": false,
+    "large_downloads_performed": false,
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false
+  },
+  "label_balance": {
+    "class_presence_by_split": {
+      "heldout": {
+        "cobalamin": 1,
+        "fe_s_cluster": 4,
+        "flavin": 11,
+        "heme": 5,
+        "metal_ion": 29,
+        "nad": 2,
+        "none": 80,
+        "plp": 6,
+        "sam": 3
+      },
+      "in_distribution": {
+        "cobalamin": 3,
+        "fe_s_cluster": 13,
+        "flavin": 40,
+        "heme": 18,
+        "metal_ion": 146,
+        "nad": 17,
+        "none": 297,
+        "plp": 24,
+        "sam": 5
+      }
+    },
+    "clean_geometry_ok_row_count": 682,
+    "exact_core_multiclass_readiness": {
+      "blockers": [
+        {
+          "class": "heme",
+          "heldout": 3,
+          "train": 13
+        }
+      ],
+      "class_support": {
+        "flavin": {
+          "heldout": 9,
+          "meets_min_support": true,
+          "train": 37
+        },
+        "heme": {
+          "heldout": 3,
+          "meets_min_support": false,
+          "train": 13
+        },
+        "metal_ion": {
+          "heldout": 25,
+          "meets_min_support": true,
+          "train": 136
+        },
+        "none": {
+          "heldout": 80,
+          "meets_min_support": true,
+          "train": 297
+        },
+        "plp": {
+          "heldout": 6,
+          "meets_min_support": true,
+          "train": 21
+        }
+      },
+      "runnable_now": false
+    },
+    "exact_single_class_by_split": {
+      "heldout": {
+        "fe_s_cluster": 2,
+        "flavin": 9,
+        "heme": 3,
+        "metal_ion": 25,
+        "multi": 6,
+        "nad": 2,
+        "none": 80,
+        "plp": 6,
+        "sam": 2
+      },
+      "in_distribution": {
+        "cobalamin": 3,
+        "fe_s_cluster": 7,
+        "flavin": 37,
+        "heme": 13,
+        "metal_ion": 136,
+        "multi": 15,
+        "nad": 14,
+        "none": 297,
+        "plp": 21,
+        "sam": 4
+      }
+    },
+    "label_status_by_split": {
+      "heldout": {
+        "clean_geometry_ok": 135,
+        "geometry_insufficient_resolved_residues": 4,
+        "geometry_no_structure_positions": 1
+      },
+      "in_distribution": {
+        "clean_geometry_ok": 547,
+        "geometry_insufficient_resolved_residues": 10,
+        "geometry_no_structure_positions": 1,
+        "missing_geometry_row": 4
+      }
+    },
+    "mechanism_fingerprint_derived_balance": {
+      "class_presence_by_split": {
+        "heldout": {
+          "cobalamin": 1,
+          "fe_s_cluster": 1,
+          "flavin": 11,
+          "heme": 4,
+          "metal_ion": 28,
+          "nad": 1,
+          "none_or_unlabeled": 100,
+          "plp": 6,
+          "sam": 1
+        },
+        "in_distribution": {
+          "cobalamin": 2,
+          "flavin": 41,
+          "heme": 16,
+          "metal_ion": 107,
+          "nad": 1,
+          "none_or_unlabeled": 412,
+          "plp": 25
+        }
+      },
+      "source": "mechanism_fingerprints.cofactors joined through curated mechanism labels; reported only as a circular/tangled upper-support reference"
+    },
+    "minimum_support_policy": {
+      "min_heldout_positive": 5,
+      "min_train_positive": 10
+    },
+    "row_count": 702,
+    "runnable_presence_classes": [
+      "metal_ion",
+      "flavin",
+      "plp",
+      "heme"
+    ]
+  },
+  "label_policy": {
+    "clean_row_policy": "only geometry rows with status=ok are counted as clean; empty cofactor_families means no local cofactor family observed in the selected experimental structure, not a guaranteed biological apo/no-cofactor assertion",
+    "mechanism_derived_labels_are_tangled": true,
+    "presence_probe_policy": "one-vs-rest class-presence labels allow multi-cofactor rows; exact multiclass labels exclude multi-cofactor rows",
+    "primary_label_source": "experimental selected-PDB active-site ligand context from v3_geometry_features_1025 ligand_context.cofactor_families",
+    "raw_mcsa_compound_identity_labels_retained_in_graph": false,
+    "raw_mcsa_compound_identity_note": "v1_graph_1025 m_csa_entry nodes retain compound_count but not raw M-CSA compound identities; independent labels here come from experimental structure ligand context"
+  },
+  "schema_version": "sequence_cofactor_channel_probe.v1",
+  "sequence_probe": {
+    "esm2_sidecar_status": {
+      "computed_embedding_backend": null,
+      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_failure_count": 702,
+      "emitted_row_count": 0,
+      "raw_embedding_vectors_retained": false,
+      "status": "blocked_no_embeddings_emitted",
+      "warnings": [
+        "ESM-2 backend could not be loaded locally: OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'."
+      ]
+    },
+    "kmer_logistic_presence_probe": {
+      "class_results": {
+        "flavin": {
+          "accuracy": 0.540741,
+          "average_precision": 0.082814,
+          "balanced_accuracy": 0.460044,
+          "f1": 0.114286,
+          "fn": 7,
+          "fp": 55,
+          "heldout_negative_count": 124,
+          "heldout_positive_count": 11,
+          "precision": 0.067797,
+          "recall": 0.363636,
+          "roc_auc": 0.470674,
+          "tn": 69,
+          "tp": 4,
+          "train_positive_count": 40
+        },
+        "heme": {
+          "accuracy": 0.740741,
+          "average_precision": 0.16128,
+          "balanced_accuracy": 0.673077,
+          "f1": 0.146341,
+          "fn": 2,
+          "fp": 33,
+          "heldout_negative_count": 130,
+          "heldout_positive_count": 5,
+          "precision": 0.083333,
+          "recall": 0.6,
+          "roc_auc": 0.807692,
+          "tn": 97,
+          "tp": 3,
+          "train_positive_count": 18
+        },
+        "metal_ion": {
+          "accuracy": 0.518519,
+          "average_precision": 0.234538,
+          "balanced_accuracy": 0.518055,
+          "f1": 0.315789,
+          "fn": 14,
+          "fp": 51,
+          "heldout_negative_count": 106,
+          "heldout_positive_count": 29,
+          "precision": 0.227273,
+          "recall": 0.517241,
+          "roc_auc": 0.481457,
+          "tn": 55,
+          "tp": 15,
+          "train_positive_count": 146
+        },
+        "plp": {
+          "accuracy": 0.651852,
+          "average_precision": 0.088167,
+          "balanced_accuracy": 0.5,
+          "f1": 0.078431,
+          "fn": 4,
+          "fp": 43,
+          "heldout_negative_count": 129,
+          "heldout_positive_count": 6,
+          "precision": 0.044444,
+          "recall": 0.333333,
+          "roc_auc": 0.613695,
+          "tn": 86,
+          "tp": 2,
+          "train_positive_count": 24
+        }
+      },
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "heldout_row_count": 135,
+      "joined_clean_row_count": 682,
+      "model": "DictVectorizer + class_weight=balanced LogisticRegression(liblinear)",
+      "status": "complete",
+      "threshold_policy": "fixed sklearn class prediction threshold; no heldout tuning",
+      "train_row_count": 547
+    },
+    "kmer_sidecar_status": {
+      "computed_embedding_backend": null,
+      "embedding_backend": "deterministic_sequence_kmer_control",
+      "embedding_failure_count": 0,
+      "emitted_row_count": 702,
+      "raw_embedding_vectors_retained": true,
+      "status": "complete",
+      "warnings": [
+        "the deterministic k-mer backend is a computed baseline control, not a learned representation model"
+      ]
+    }
+  },
+  "source_artifacts": {
+    "esm2_sidecar_summary": "artifacts/v3_sequence_embedding_sidecar_current702_esm2_t6_8m_20260529_summary.json",
+    "geometry_features": "artifacts/v3_geometry_features_1025.json",
+    "kmer_sidecar": "artifacts/v3_sequence_embedding_sidecar_current702_kmer_20260529.jsonl",
+    "kmer_sidecar_summary": "artifacts/v3_sequence_embedding_sidecar_current702_kmer_20260529_summary.json",
+    "label_manifest": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json"
+  },
+  "status": "complete"
+}
