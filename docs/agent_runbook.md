@@ -105,6 +105,17 @@ the residual risk in the final status.
 - Treat review packets as provenance and triage context, never as direct model
   inputs.
 
+## Common Interpretation Traps
+
+- Wave 1.2 clean experimental-coordinate geometry is the current router gate,
+  but it is not a deployment claim. Read
+  `artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json`
+  before making sequence-to-predicted-structure claims.
+- A row in a review packet, scout, or PyMOL queue is not countable label
+  support until it passes explicit import and label-factory gates.
+- Existing ProtT5 and SaProt exports are not fair logistic-head peers for
+  ESM-2/ESM-C until row-aligned local sidecars or local weights exist.
+
 ## Output Locations
 
 - Machine-readable audit: `artifacts/v3_<topic>_<scope>_<date>.json`

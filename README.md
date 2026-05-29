@@ -36,6 +36,10 @@ enzymes, and not a production biological design system.
   on the standardized heldout rows, joined 140/140 rows, and reported 45/45
   canonical primary accuracy with 0/92 pure-OOS false positives under the
   existing geometry abstention threshold.
+- Deployment caveat: that clean experimental-coordinate result is not a
+  bare-sequence deployment claim. The AlphaFoldDB predicted-geometry robustness
+  audit drops the hand router to 23/45 canonical primary heldout correct, so
+  predicted active-site degradation is now an explicit next-gate problem.
 - Learned representation results are diagnostic. ESM-C logistic versus ESM-C
   cosine shows decoder choice is confounded; ProtT5 and SaProt matched logistic
   reruns are blocked until raw local sidecars or weights exist.
@@ -112,6 +116,9 @@ and decoder choice were confounded.
 - The 2026-05-25 current702 sequence manifest predates the later OOS revisions
   for `m_csa:497` and `m_csa:750`. Use the readthrough/addendum artifacts
   before interpreting old primary flavin metrics.
+- Clean M-CSA geometry and predicted-structure geometry are different
+  benchmark surfaces. Use `artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json`
+  before claiming sequence-to-structure deployment readiness.
 - Do not tune abstention thresholds on heldout/test rows.
 - Do not use EC/name/source prose/mechanism text/expert notes/review reasons as
   predictive features.
