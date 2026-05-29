@@ -4,6 +4,7 @@ import unittest
 
 from catalytic_earth.predicted_geometry_robustness import (
     build_alphafold_predicted_geometry_features,
+    build_predicted_geometry_distillation_audit,
     build_predicted_geometry_robustness_audit,
 )
 
@@ -125,6 +126,24 @@ class PredictedGeometryRobustnessTests(unittest.TestCase):
         )
         self.assertEqual(audit["status"], "blocked")
         self.assertEqual(audit["blocker"], "local_esmfold_runtime_or_weights_unavailable")
+        self.assertFalse(audit["guardrails"]["large_model_downloads_performed"])
+
+    def test_distillation_esmfold_backend_is_precise_blocker(self) -> None:
+        audit = build_predicted_geometry_distillation_audit(
+            label_manifest={"rows": []},
+            graph={"nodes": []},
+            experimental_geometry_features={"entries": []},
+            wave1_audit={},
+            backend="esmfold",
+        )
+        self.assertEqual(audit["status"], "blocked")
+        self.assertEqual(
+            audit["artifact_id"],
+            "v3_predicted_geometry_distillation_audit_current702_20260529",
+        )
+        self.assertEqual(
+            audit["blocker"], "local_esmfold_runtime_or_weights_unavailable"
+        )
         self.assertFalse(audit["guardrails"]["large_model_downloads_performed"])
 
 

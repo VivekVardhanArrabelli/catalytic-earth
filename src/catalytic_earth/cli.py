@@ -35,7 +35,10 @@ from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_grap
 from .geometry_retrieval import write_geometry_retrieval
 from .geometry_reports import write_geometry_slice_summary
 from .geometry_head import write_geometry_nonlinear_head_audit
-from .predicted_geometry_robustness import write_predicted_geometry_robustness_audit
+from .predicted_geometry_robustness import (
+    write_predicted_geometry_distillation_audit,
+    write_predicted_geometry_robustness_audit,
+)
 from .generalization import (
     aggregate_foldseek_tm_score_query_chunks,
     audit_foldseek_tm_score_split_repair,
@@ -2097,6 +2100,30 @@ def cmd_build_predicted_geometry_robustness_audit(args: argparse.Namespace) -> i
         f"{args.out} ({audit.get('status')}; "
         f"hand_primary={headline.get('predicted_hand_router_primary_correct_count')}/"
         f"{headline.get('predicted_hand_router_primary_support_count')})"
+    )
+    return 0
+
+
+def cmd_build_predicted_geometry_distillation_audit(args: argparse.Namespace) -> int:
+    audit = write_predicted_geometry_distillation_audit(
+        label_manifest_path=Path(args.label_manifest),
+        graph_path=Path(args.graph),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        wave1_audit_path=Path(args.wave1_audit),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        backend=args.backend,
+        alphafold_version=args.alphafold_version,
+        random_state=args.random_state,
+        cal_fraction=args.cal_fraction,
+        hidden_layer_size=args.hidden_layer_size,
+        max_rows=args.max_rows,
+    )
+    answer = audit.get("distillation_answer", {})
+    print(
+        "Wrote predicted geometry distillation audit to "
+        f"{args.out} ({audit.get('status')}; "
+        f"mlp_primary={answer.get('mlp_32_oos_aware_predicted_primary_accuracy_available')})"
     )
     return 0
 
@@ -12256,6 +12283,51 @@ def build_parser() -> argparse.ArgumentParser:
     )
     predicted_geometry_robustness.set_defaults(
         func=cmd_build_predicted_geometry_robustness_audit
+    )
+
+    predicted_geometry_distillation = subparsers.add_parser(
+        "build-predicted-geometry-distillation-audit",
+        help="train geometry heads on AlphaFoldDB predicted geometry and evaluate heldout",
+    )
+    predicted_geometry_distillation.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    predicted_geometry_distillation.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1025.json",
+    )
+    predicted_geometry_distillation.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    predicted_geometry_distillation.add_argument(
+        "--wave1-audit",
+        default="artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json",
+    )
+    predicted_geometry_distillation.add_argument(
+        "--backend",
+        default="alphafold_db",
+        choices=("alphafold_db", "esmfold"),
+    )
+    predicted_geometry_distillation.add_argument("--alphafold-version", default="auto")
+    predicted_geometry_distillation.add_argument("--random-state", type=int, default=702)
+    predicted_geometry_distillation.add_argument("--cal-fraction", type=float, default=0.2)
+    predicted_geometry_distillation.add_argument("--hidden-layer-size", type=int, default=32)
+    predicted_geometry_distillation.add_argument("--max-rows", type=int, default=0)
+    predicted_geometry_distillation.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_predicted_geometry_distillation_audit_current702_20260529.json"
+        ),
+    )
+    predicted_geometry_distillation.add_argument(
+        "--report",
+        default="work/predicted_geometry_distillation_audit_current702_20260529.md",
+    )
+    predicted_geometry_distillation.set_defaults(
+        func=cmd_build_predicted_geometry_distillation_audit
     )
 
     embedding_sidecar = subparsers.add_parser(

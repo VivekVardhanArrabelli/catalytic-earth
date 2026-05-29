@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import math
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -20,6 +19,7 @@ from .geometry_head import (
     _wave_masks_by_entry,
 )
 from .geometry_retrieval import run_geometry_retrieval
+from .fingerprints import load_fingerprints
 from .labels import load_labels
 from .structure import (
     atom_position,
@@ -203,6 +203,176 @@ def build_predicted_geometry_robustness_audit(
             "source": "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json",
         },
         "headline": headline,
+    }
+
+
+def build_predicted_geometry_distillation_audit(
+    *,
+    label_manifest: dict[str, Any],
+    graph: dict[str, Any],
+    experimental_geometry_features: dict[str, Any],
+    wave1_audit: dict[str, Any],
+    backend: str = "alphafold_db",
+    alphafold_version: str = "auto",
+    random_state: int = 702,
+    cal_fraction: float = 0.2,
+    hidden_layer_size: int = 32,
+    max_rows: int = 0,
+    fetcher: Any | None = None,
+) -> dict[str, Any]:
+    """Train/calibrate heads on predicted geometry and evaluate heldout once."""
+    if backend == "esmfold":
+        return _blocked_audit(
+            blocker="local_esmfold_runtime_or_weights_unavailable",
+            detail=(
+                "ESMFold inference is not run by this audit unless a local "
+                "runtime and weights are already staged. No model-weight "
+                "download was attempted."
+            ),
+            label_manifest=label_manifest,
+            split_assignment="all",
+            backend=backend,
+            artifact_id="v3_predicted_geometry_distillation_audit_current702_20260529",
+            schema_version="predicted_geometry_distillation_audit.v1",
+        )
+    if backend != "alphafold_db":
+        return _blocked_audit(
+            blocker="unsupported_predicted_structure_backend",
+            detail=f"backend={backend!r}; only alphafold_db is implemented",
+            label_manifest=label_manifest,
+            split_assignment="all",
+            backend=backend,
+            artifact_id="v3_predicted_geometry_distillation_audit_current702_20260529",
+            schema_version="predicted_geometry_distillation_audit.v1",
+        )
+
+    target_rows, excluded_rows = _target_manifest_row_selection(
+        label_manifest=label_manifest,
+        graph=graph,
+        experimental_geometry_features=experimental_geometry_features,
+        split_assignment=None,
+        max_rows=max_rows,
+    )
+    predicted_geometry = build_alphafold_predicted_geometry_features(
+        label_manifest_rows=target_rows,
+        graph=graph,
+        experimental_geometry_features=experimental_geometry_features,
+        alphafold_version=alphafold_version,
+        fetcher=fetcher,
+    )
+    predicted_retrieval = run_geometry_retrieval(predicted_geometry)
+    heldout_target_rows = [
+        row for row in target_rows if row.get("split_assignment") == "heldout"
+    ]
+    hand_rows = _hand_router_rows(
+        target_rows=heldout_target_rows,
+        predicted_geometry=predicted_geometry,
+        predicted_retrieval=predicted_retrieval,
+        wave1_audit=wave1_audit,
+        threshold=HAND_ROUTER_THRESHOLD,
+    )
+    hand_metrics = _metrics_with_missing(hand_rows, mask_mode="canonical")
+    wrong_rows = _classified_wrong_hand_router_rows(hand_rows)
+    head_results = _geometry_head_predicted_train_results(
+        label_manifest=label_manifest,
+        predicted_geometry_features=predicted_geometry,
+        predicted_geometry_retrieval=predicted_retrieval,
+        wave1_audit=wave1_audit,
+        random_state=random_state,
+        cal_fraction=cal_fraction,
+        hidden_layer_size=hidden_layer_size,
+    )
+    return {
+        "artifact_id": "v3_predicted_geometry_distillation_audit_current702_20260529",
+        "schema_version": "predicted_geometry_distillation_audit.v1",
+        "created_utc": _utc_now_iso(),
+        "status": "complete",
+        "guardrails": {
+            "label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "ontology_registry_edited": False,
+            "production_scoring_changed": False,
+            "global_threshold_changed": False,
+            "heldout_labels_used_for_fit_or_threshold": False,
+            "large_model_downloads_performed": False,
+            "coordinate_download_scope": (
+                "AlphaFoldDB mmCIF coordinate files fetched transiently by "
+                "UniProt accession; raw coordinates are not committed"
+            ),
+        },
+        "scope": {
+            "backend": backend,
+            "alphafold_version": alphafold_version,
+            "label_manifest_row_count": len(
+                [row for row in label_manifest.get("rows", []) if isinstance(row, dict)]
+            ),
+            "target_row_count": len(target_rows),
+            "target_split_counts": dict(
+                sorted(Counter(str(row.get("split_assignment")) for row in target_rows).items())
+            ),
+            "excluded_row_count": len(excluded_rows),
+            "excluded_split_counts": dict(
+                sorted(
+                    Counter(str(row.get("split_assignment")) for row in excluded_rows).items()
+                )
+            ),
+            "excluded_role_counts": dict(
+                sorted(
+                    Counter(
+                        str(row.get("benchmark_role") or "unknown")
+                        for row in excluded_rows
+                    ).items()
+                )
+            ),
+            "excluded_rows": excluded_rows,
+            "target_definition": (
+                "current702 M-CSA rows with existing experimental geometry evidence "
+                "and accession-compatible sequence-position mappings; train/cal and "
+                "heldout all use AlphaFoldDB predicted geometry as input"
+            ),
+        },
+        "source_artifacts": {
+            "label_manifest": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+            "graph": "artifacts/v1_graph_1025.json",
+            "experimental_geometry_features": "artifacts/v3_geometry_features_1025.json",
+            "wave1_2_audit": "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json",
+        },
+        "predicted_geometry_summary": {
+            "metadata": predicted_geometry["metadata"],
+            "status_counts": dict(
+                sorted(
+                    Counter(str(entry.get("status")) for entry in predicted_geometry["entries"]).items()
+                )
+            ),
+            "split_status_counts": _split_status_counts(predicted_geometry["entries"]),
+            "lightweight_rows": _lightweight_predicted_geometry_rows(
+                predicted_geometry["entries"]
+            ),
+        },
+        "wrong_hand_router_rows": {
+            "summary": {
+                "wrong_nonabstained_primary_count": len(wrong_rows),
+                "true_mechanism_channel_counts": dict(
+                    sorted(Counter(row["true_mechanism_channel"] for row in wrong_rows).items())
+                ),
+                "called_mechanism_channel_counts": dict(
+                    sorted(Counter(row["called_mechanism_channel"] for row in wrong_rows).items())
+                ),
+            },
+            "rows": wrong_rows,
+        },
+        "hand_router_on_predicted_heldout_geometry": {
+            "threshold": HAND_ROUTER_THRESHOLD,
+            "metrics_canonical_masks": hand_metrics,
+            "per_bin_results": _per_bin_metrics_with_missing(hand_rows),
+            "rows": hand_rows,
+        },
+        "predicted_geometry_distillation_heads": head_results,
+        "distillation_answer": _distillation_answer(
+            hand_metrics=hand_metrics,
+            head_results=head_results,
+            wrong_rows=wrong_rows,
+        ),
     }
 
 
@@ -397,12 +567,55 @@ def write_predicted_geometry_robustness_audit(
     return audit
 
 
+def write_predicted_geometry_distillation_audit(
+    *,
+    label_manifest_path: Path,
+    graph_path: Path,
+    experimental_geometry_features_path: Path,
+    wave1_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    backend: str = "alphafold_db",
+    alphafold_version: str = "auto",
+    random_state: int = 702,
+    cal_fraction: float = 0.2,
+    hidden_layer_size: int = 32,
+    max_rows: int = 0,
+) -> dict[str, Any]:
+    with label_manifest_path.open("r", encoding="utf-8") as handle:
+        label_manifest = json.load(handle)
+    with graph_path.open("r", encoding="utf-8") as handle:
+        graph = json.load(handle)
+    with experimental_geometry_features_path.open("r", encoding="utf-8") as handle:
+        experimental_geometry_features = json.load(handle)
+    with wave1_audit_path.open("r", encoding="utf-8") as handle:
+        wave1_audit = json.load(handle)
+    audit = build_predicted_geometry_distillation_audit(
+        label_manifest=label_manifest,
+        graph=graph,
+        experimental_geometry_features=experimental_geometry_features,
+        wave1_audit=wave1_audit,
+        backend=backend,
+        alphafold_version=alphafold_version,
+        random_state=random_state,
+        cal_fraction=cal_fraction,
+        hidden_layer_size=hidden_layer_size,
+        max_rows=max_rows,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(_distillation_markdown_report(audit), encoding="utf-8")
+    return audit
+
+
 def _target_manifest_row_selection(
     *,
     label_manifest: dict[str, Any],
     graph: dict[str, Any],
     experimental_geometry_features: dict[str, Any],
-    split_assignment: str,
+    split_assignment: str | None,
     max_rows: int,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     residues_by_entry = _residue_nodes_by_entry(graph)
@@ -417,7 +630,7 @@ def _target_manifest_row_selection(
         if not isinstance(row, dict):
             continue
         entry_id = str(row.get("entry_id") or "")
-        if row.get("split_assignment") != split_assignment:
+        if split_assignment is not None and row.get("split_assignment") != split_assignment:
             continue
         if not entry_id.startswith("m_csa:"):
             excluded_rows.append(_excluded_target_row(row, "not_m_csa_entry"))
@@ -448,6 +661,7 @@ def _excluded_target_row(row: dict[str, Any], reason: str) -> dict[str, Any]:
     return {
         "entry_id": row.get("entry_id"),
         "accession": row.get("accession"),
+        "split_assignment": row.get("split_assignment"),
         "benchmark_role": row.get("benchmark_role"),
         "fingerprint_id": row.get("fingerprint_id")
         or row.get("mechanism_fingerprint_id"),
@@ -809,6 +1023,296 @@ def _geometry_head_transfer_results(
     }
 
 
+def _geometry_head_predicted_train_results(
+    *,
+    label_manifest: dict[str, Any],
+    predicted_geometry_features: dict[str, Any],
+    predicted_geometry_retrieval: dict[str, Any],
+    wave1_audit: dict[str, Any],
+    random_state: int,
+    cal_fraction: float,
+    hidden_layer_size: int,
+) -> dict[str, Any]:
+    try:
+        from sklearn.exceptions import ConvergenceWarning
+        from sklearn.feature_extraction import DictVectorizer
+        from sklearn.linear_model import LogisticRegression
+        from sklearn.model_selection import train_test_split
+        from sklearn.neural_network import MLPClassifier
+        from sklearn.pipeline import make_pipeline
+        from sklearn.preprocessing import StandardScaler
+    except Exception as exc:  # pragma: no cover - environment dependent
+        return {
+            "status": "blocked",
+            "blocker": "sklearn_unavailable",
+            "detail": f"{type(exc).__name__}: {exc}",
+        }
+
+    import warnings
+
+    predicted_rows, predicted_missing = _model_rows(
+        label_manifest=label_manifest,
+        geometry_features=predicted_geometry_features,
+        geometry_retrieval=predicted_geometry_retrieval,
+        wave1_audit=wave1_audit,
+    )
+    train_source = [
+        row
+        for row in predicted_rows
+        if row.get("split_assignment") == "in_distribution"
+        and row.get("geometry_status") == "ok"
+    ]
+    heldout = [
+        row
+        for row in predicted_rows
+        if row.get("split_assignment") == "heldout" and row.get("geometry_status") == "ok"
+    ]
+    train_all, cal_rows = _split_train_cal(
+        train_source,
+        cal_fraction=cal_fraction,
+        random_state=random_state,
+        train_test_split=train_test_split,
+    )
+    train_primary = [row for row in train_all if _is_primary_role(row["benchmark_role"])]
+    if not train_primary or not cal_rows or not heldout:
+        return {
+            "status": "blocked",
+            "blocker": "insufficient_rows_for_predicted_geometry_distillation",
+            "detail": (
+                f"train_primary={len(train_primary)} cal={len(cal_rows)} "
+                f"heldout={len(heldout)}"
+            ),
+            "predicted_missing_rows": predicted_missing,
+        }
+
+    logistic = make_pipeline(
+        DictVectorizer(sparse=False),
+        StandardScaler(),
+        LogisticRegression(max_iter=2000, random_state=random_state),
+    )
+    mlp = make_pipeline(
+        DictVectorizer(sparse=False),
+        StandardScaler(),
+        MLPClassifier(
+            hidden_layer_sizes=(hidden_layer_size,),
+            activation="relu",
+            alpha=0.001,
+            max_iter=2000,
+            random_state=random_state,
+        ),
+    )
+    mlp_oos_aware = make_pipeline(
+        DictVectorizer(sparse=False),
+        StandardScaler(),
+        MLPClassifier(
+            hidden_layer_sizes=(hidden_layer_size,),
+            activation="relu",
+            alpha=0.001,
+            max_iter=2000,
+            random_state=random_state,
+        ),
+    )
+    train_x = [row["features"] for row in train_primary]
+    train_y = [str(row["true_fingerprint_id"]) for row in train_primary]
+    train_all_x = [row["features"] for row in train_all]
+    train_all_y = [_training_label_with_none(row) for row in train_all]
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", ConvergenceWarning)
+        logistic.fit(train_x, train_y)
+        mlp.fit(train_x, train_y)
+        mlp_oos_aware.fit(train_all_x, train_all_y)
+
+    wave_masks = _wave_masks_by_entry(wave1_audit)
+    logistic_result = _evaluate_head(
+        track_id="geometry_feature_logistic_predicted_train_predicted_eval",
+        display_name="Geometry-feature logistic predicted-train predicted-eval",
+        model=logistic,
+        cal_rows=cal_rows,
+        heldout_rows=heldout,
+        wave_masks=wave_masks,
+    )
+    mlp_result = _evaluate_head(
+        track_id="geometry_feature_mlp_32_predicted_train_predicted_eval",
+        display_name=f"Geometry-feature MLP-{hidden_layer_size} predicted-train predicted-eval",
+        model=mlp,
+        cal_rows=cal_rows,
+        heldout_rows=heldout,
+        wave_masks=wave_masks,
+    )
+    mlp_oos_aware_result = _evaluate_head(
+        track_id="geometry_feature_mlp_32_oos_aware_predicted_train_predicted_eval",
+        display_name=(
+            f"Geometry-feature OOS-aware MLP-{hidden_layer_size} "
+            "predicted-train predicted-eval"
+        ),
+        model=mlp_oos_aware,
+        cal_rows=cal_rows,
+        heldout_rows=heldout,
+        wave_masks=wave_masks,
+        abstain_class="__none_of_above__",
+    )
+    return {
+        "status": "complete",
+        "protocol": {
+            "train_coordinates": "AlphaFoldDB predicted geometry",
+            "calibration_coordinates": "AlphaFoldDB predicted in-distribution geometry only",
+            "evaluation_coordinates": "AlphaFoldDB predicted heldout geometry only",
+            "supervision": "current M-CSA/current702 mechanism labels",
+            "threshold_policy": (
+                "lowest max-probability threshold with zero nonprimary/OOS "
+                "false positives on predicted-geometry calibration rows; no "
+                "heldout tuning"
+            ),
+            "random_state": random_state,
+            "cal_fraction": cal_fraction,
+            "hidden_layer_size": hidden_layer_size,
+        },
+        "row_counts": {
+            "predicted_feature_rows": len(predicted_rows),
+            "predicted_missing_rows": predicted_missing,
+            "train_source_row_count": len(train_source),
+            "train_all_row_count": len(train_all),
+            "train_primary_row_count": len(train_primary),
+            "cal_row_count": len(cal_rows),
+            "heldout_available_row_count": len(heldout),
+            "train_primary_class_counts": dict(
+                sorted(Counter(train_y).items())
+            ),
+        },
+        "models": {
+            "logistic_predicted_train_predicted_eval": logistic_result,
+            "mlp_32_predicted_train_predicted_eval": mlp_result,
+            "mlp_32_oos_aware_predicted_train_predicted_eval": mlp_oos_aware_result,
+        },
+    }
+
+
+def _classified_wrong_hand_router_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    fingerprints = {fingerprint.id: fingerprint.to_dict() for fingerprint in load_fingerprints()}
+    wrong_rows: list[dict[str, Any]] = []
+    for row in rows:
+        if not row.get("canonical_primary_support_mask"):
+            continue
+        if not row.get("predicted_geometry_joined") or row.get("abstained"):
+            continue
+        if row.get("called_fingerprint_id") == row.get("true_fingerprint_id"):
+            continue
+        true_fp = fingerprints.get(str(row.get("true_fingerprint_id")), {})
+        called_fp = fingerprints.get(str(row.get("called_fingerprint_id")), {})
+        true_cofactors = true_fp.get("cofactors", []) or []
+        called_cofactors = called_fp.get("cofactors", []) or []
+        wrong_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "sequence_id": row.get("sequence_id"),
+                "structural_neighborhood_bin": row.get("structural_neighborhood_bin"),
+                "true_fingerprint_id": row.get("true_fingerprint_id"),
+                "true_cofactors": true_cofactors,
+                "true_mechanism_channel": (
+                    "cofactor_defined" if true_cofactors else "cofactor_independent"
+                ),
+                "called_fingerprint_id": row.get("called_fingerprint_id"),
+                "called_cofactors": called_cofactors,
+                "called_mechanism_channel": (
+                    "cofactor_defined" if called_cofactors else "cofactor_independent"
+                ),
+                "top1_score": row.get("top1_score"),
+                "experimental_pdb_id": row.get("experimental_pdb_id"),
+                "predicted_pdb_id": row.get("predicted_pdb_id"),
+                "predicted_resolved_residue_count": row.get(
+                    "predicted_resolved_residue_count"
+                ),
+                "predicted_missing_positions": row.get("predicted_missing_positions"),
+            }
+        )
+    return wrong_rows
+
+
+def _split_status_counts(entries: list[dict[str, Any]]) -> dict[str, dict[str, int]]:
+    split_counts: dict[str, Counter[str]] = defaultdict(Counter)
+    for entry in entries:
+        split_counts[str(entry.get("split_assignment"))][str(entry.get("status"))] += 1
+    return {
+        split: dict(sorted(counter.items()))
+        for split, counter in sorted(split_counts.items())
+    }
+
+
+def _lightweight_predicted_geometry_rows(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [
+        {
+            "entry_id": entry.get("entry_id"),
+            "accession": entry.get("accession"),
+            "split_assignment": entry.get("split_assignment"),
+            "benchmark_role": entry.get("benchmark_role"),
+            "status": entry.get("status"),
+            "experimental_pdb_id": entry.get("experimental_pdb_id"),
+            "predicted_pdb_id": entry.get("pdb_id"),
+            "resolved_residue_count": entry.get("resolved_residue_count"),
+            "missing_positions": entry.get("missing_positions"),
+            "proximal_ligand_count": len(
+                entry.get("ligand_context", {}).get("proximal_ligands", []) or []
+            ),
+            "nearby_residue_count": entry.get("pocket_context", {}).get(
+                "nearby_residue_count"
+            ),
+        }
+        for entry in sorted(entries, key=lambda item: _entry_sort_key(str(item.get("entry_id"))))
+    ]
+
+
+def _distillation_answer(
+    *,
+    hand_metrics: dict[str, Any],
+    head_results: dict[str, Any],
+    wrong_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    if head_results.get("status") != "complete":
+        return {
+            "status": "blocked",
+            "interpretation": head_results.get("blocker", "head_results_unavailable"),
+        }
+    mlp_oos = head_results["models"]["mlp_32_oos_aware_predicted_train_predicted_eval"][
+        "heldout_metrics"
+    ]
+    logistic = head_results["models"]["logistic_predicted_train_predicted_eval"][
+        "heldout_metrics"
+    ]
+    hand_primary = hand_metrics.get("primary_accuracy_available")
+    mlp_primary = mlp_oos.get("primary_accuracy_available")
+    if (
+        mlp_oos.get("primary_wrong_nonabstained_count", 0) == 0
+        and mlp_oos.get("primary_abstention_count", 0) > 0
+    ):
+        interpretation = (
+            "predicted_geometry_distillation_stays_disciplined_but_is_abstention_limited"
+        )
+    elif mlp_primary is not None and hand_primary is not None and mlp_primary > hand_primary:
+        interpretation = "predicted_geometry_distillation_recovers_beyond_hand_router"
+    else:
+        interpretation = "predicted_geometry_distillation_does_not_recover_clean_geometry"
+    return {
+        "status": "complete",
+        "hand_router_predicted_primary_accuracy_available": hand_primary,
+        "logistic_predicted_primary_accuracy_available": logistic.get(
+            "primary_accuracy_available"
+        ),
+        "mlp_32_oos_aware_predicted_primary_accuracy_available": mlp_primary,
+        "mlp_32_oos_aware_oos_or_secondary_false_positive_rate_available": (
+            mlp_oos.get("oos_or_secondary_false_positive_rate_available")
+        ),
+        "mlp_minus_hand_primary_accuracy": (
+            round(float(mlp_primary) - float(hand_primary), 6)
+            if mlp_primary is not None and hand_primary is not None
+            else None
+        ),
+        "wrong_hand_router_true_channel_counts": dict(
+            sorted(Counter(row["true_mechanism_channel"] for row in wrong_rows).items())
+        ),
+        "interpretation": interpretation,
+    }
+
+
 def _model_rows(
     *,
     label_manifest: dict[str, Any],
@@ -1148,10 +1652,12 @@ def _blocked_audit(
     label_manifest: dict[str, Any],
     split_assignment: str,
     backend: str,
+    artifact_id: str = "v3_predicted_geometry_robustness_audit_current702_20260529",
+    schema_version: str = "predicted_geometry_robustness_audit.v1",
 ) -> dict[str, Any]:
     return {
-        "artifact_id": "v3_predicted_geometry_robustness_audit_current702_20260529",
-        "schema_version": "predicted_geometry_robustness_audit.v1",
+        "artifact_id": artifact_id,
+        "schema_version": schema_version,
         "created_utc": _utc_now_iso(),
         "status": "blocked",
         "blocker": blocker,
@@ -1243,6 +1749,90 @@ def _markdown_report(audit: dict[str, Any]) -> str:
             + " |"
         )
     lines.append("")
+    return "\n".join(lines)
+
+
+def _distillation_markdown_report(audit: dict[str, Any]) -> str:
+    if audit.get("status") != "complete":
+        return (
+            "# Predicted Geometry Distillation Audit\n\n"
+            f"Status: `{audit.get('status')}`\n\n"
+            f"Blocker: `{audit.get('blocker')}`\n\n"
+            f"Detail: {audit.get('detail')}\n"
+        )
+    scope = audit["scope"]
+    predicted_meta = audit["predicted_geometry_summary"]["metadata"]
+    hand = audit["hand_router_on_predicted_heldout_geometry"][
+        "metrics_canonical_masks"
+    ]
+    wrong = audit["wrong_hand_router_rows"]
+    answer = audit["distillation_answer"]
+    heads = audit["predicted_geometry_distillation_heads"]
+    lines = [
+        "# Predicted Geometry Distillation Audit",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        "This trains/calibrates geometry heads on AlphaFoldDB-predicted in-distribution geometry and evaluates AlphaFoldDB-predicted heldout geometry once. Current M-CSA/current702 labels are the teacher labels. No labels, registries, ontologies, production scoring, imports, or global thresholds were edited.",
+        "",
+        "## Cheap Error-Mode Fork",
+        "",
+        f"- Wrong non-abstained hand-router primary rows: {wrong['summary']['wrong_nonabstained_primary_count']}.",
+        f"- True-channel counts: {wrong['summary']['true_mechanism_channel_counts']}.",
+        f"- Called-channel counts: {wrong['summary']['called_mechanism_channel_counts']}.",
+        "",
+        "| Entry | True fingerprint | True channel | Called fingerprint | Score |",
+        "| --- | --- | --- | --- | ---: |",
+    ]
+    for row in wrong["rows"]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    str(row["entry_id"]),
+                    str(row["true_fingerprint_id"]),
+                    str(row["true_mechanism_channel"]),
+                    str(row["called_fingerprint_id"]),
+                    str(row["top1_score"]),
+                ]
+            )
+            + " |"
+        )
+    lines.extend(
+        [
+            "",
+            "## Distillation Result",
+            "",
+            f"- Target rows: {scope['target_row_count']}/{scope['label_manifest_row_count']} current702 rows; split counts {scope['target_split_counts']}.",
+            f"- AlphaFoldDB geometry availability: {predicted_meta['ok_entry_count']}/{predicted_meta['entry_count']} ok; {predicted_meta['fetch_failure_count']} fetch failures; {predicted_meta['entries_with_proximal_ligands']} rows with proximal ligands.",
+            f"- Hand router on predicted heldout geometry: {hand['primary_correct_count']}/{hand['primary_support_count']} primary correct, {hand['primary_abstention_count']} abstained, {hand['primary_wrong_nonabstained_count']} wrong nonabstained; OOS/sec FP rate {hand['oos_or_secondary_false_positive_rate_available']}.",
+        ]
+    )
+    if heads.get("status") == "complete":
+        for key, label in [
+            ("logistic_predicted_train_predicted_eval", "Logistic"),
+            ("mlp_32_predicted_train_predicted_eval", "MLP-32"),
+            ("mlp_32_oos_aware_predicted_train_predicted_eval", "OOS-aware MLP-32"),
+        ]:
+            metrics = heads["models"][key]["heldout_metrics"]
+            lines.append(
+                f"- {label}: {metrics['primary_correct_count']}/{metrics['primary_support_count']} "
+                f"primary correct, {metrics['primary_abstention_count']} abstained, "
+                f"{metrics['primary_wrong_nonabstained_count']} wrong nonabstained; "
+                f"OOS/sec FP rate {metrics['oos_or_secondary_false_positive_rate_available']}."
+            )
+    else:
+        lines.append(f"- Head training blocked: {heads.get('blocker')}.")
+    lines.extend(
+        [
+            f"- Interpretation: {answer['interpretation']}.",
+            "",
+            "## Caveat",
+            "",
+            "This is still an active-site-position-known experiment: M-CSA catalytic residue identities, roles, and sequence positions are used to extract predicted geometry. It tests degraded-coordinate robustness, not active-site localization from raw sequence.",
+            "",
+        ]
+    )
     return "\n".join(lines)
 
 
