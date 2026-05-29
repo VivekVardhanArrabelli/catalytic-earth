@@ -28,10 +28,13 @@ from .artifact_storage import (
 )
 from .active_site_encoder_cache import write_active_site_encoder_cache
 from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
+from .bin_targeted_expansion import write_bin_targeted_expansion_plan
+from .embedding_sidecar import write_sequence_embedding_sidecar
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
 from .geometry_reports import write_geometry_slice_summary
+from .geometry_head import write_geometry_nonlinear_head_audit
 from .generalization import (
     aggregate_foldseek_tm_score_query_chunks,
     audit_foldseek_tm_score_split_repair,
@@ -2046,6 +2049,61 @@ def cmd_build_external_source_representation_backend_sample(
     print(
         "Wrote external source representation backend sample to "
         f"{args.out} ({sample['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_geometry_nonlinear_head_audit(args: argparse.Namespace) -> int:
+    audit = write_geometry_nonlinear_head_audit(
+        label_manifest_path=Path(args.label_manifest),
+        geometry_features_path=Path(args.geometry_features),
+        geometry_retrieval_path=Path(args.geometry_retrieval),
+        wave1_audit_path=Path(args.wave1_audit),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        random_state=args.random_state,
+        cal_fraction=args.cal_fraction,
+        hidden_layer_size=args.hidden_layer_size,
+    )
+    print(
+        "Wrote geometry nonlinear head audit to "
+        f"{args.out} ({audit.get('status')})"
+    )
+    return 0
+
+
+def cmd_build_sequence_embedding_sidecar(args: argparse.Namespace) -> int:
+    summary = write_sequence_embedding_sidecar(
+        sequence_manifest_path=Path(args.sequence_manifest),
+        fasta_path=Path(args.fasta),
+        out_path=Path(args.out),
+        summary_path=Path(args.summary),
+        embedding_backend=args.embedding_backend,
+        model_name=args.model_name,
+        local_files_only=args.local_files_only,
+        max_rows=args.max_rows,
+        fallback_to_largest_local_esm2=not args.no_fallback_to_largest_local_esm2,
+    )
+    print(
+        "Wrote sequence embedding sidecar to "
+        f"{args.out} ({summary.get('emitted_row_count')} rows)"
+    )
+    return 0
+
+
+def cmd_build_bin_targeted_expansion_plan(args: argparse.Namespace) -> int:
+    plan = write_bin_targeted_expansion_plan(
+        wave1_audit_path=Path(args.wave1_audit),
+        slice_contract_path=Path(args.slice_contract),
+        readiness_matrix_path=Path(args.readiness_matrix),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        target_primary_n=args.target_primary_n,
+        target_oos_n=args.target_oos_n,
+    )
+    print(
+        "Wrote bin-targeted expansion plan to "
+        f"{args.out} ({plan['queue_summary']['candidate_count']} candidates)"
     )
     return 0
 
@@ -12081,6 +12139,127 @@ def build_parser() -> argparse.ArgumentParser:
     external_representation_backend_sample.set_defaults(
         func=cmd_build_external_source_representation_backend_sample
     )
+
+    geometry_nonlinear_head = subparsers.add_parser(
+        "build-geometry-nonlinear-head-audit",
+        help="train a fixed small nonlinear geometry head on the frozen split",
+    )
+    geometry_nonlinear_head.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    geometry_nonlinear_head.add_argument(
+        "--geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    geometry_nonlinear_head.add_argument(
+        "--geometry-retrieval",
+        default="artifacts/v3_geometry_retrieval_1025.json",
+    )
+    geometry_nonlinear_head.add_argument(
+        "--wave1-audit",
+        default="artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json",
+    )
+    geometry_nonlinear_head.add_argument("--random-state", type=int, default=702)
+    geometry_nonlinear_head.add_argument("--cal-fraction", type=float, default=0.2)
+    geometry_nonlinear_head.add_argument("--hidden-layer-size", type=int, default=32)
+    geometry_nonlinear_head.add_argument(
+        "--out",
+        default="artifacts/v3_geometry_nonlinear_head_audit_702_20260529.json",
+    )
+    geometry_nonlinear_head.add_argument(
+        "--report",
+        default="work/geometry_nonlinear_head_audit_702_20260529.md",
+    )
+    geometry_nonlinear_head.set_defaults(
+        func=cmd_build_geometry_nonlinear_head_audit
+    )
+
+    embedding_sidecar = subparsers.add_parser(
+        "build-sequence-embedding-sidecar",
+        help="write raw sequence embedding vectors to a label-free sidecar",
+    )
+    embedding_sidecar.add_argument(
+        "--sequence-manifest",
+        default="artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    )
+    embedding_sidecar.add_argument(
+        "--fasta",
+        default=(
+            "artifacts/"
+            "v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta"
+        ),
+    )
+    embedding_sidecar.add_argument(
+        "--embedding-backend",
+        default="deterministic_sequence_kmer_control",
+        choices=(
+            "deterministic_sequence_kmer_control",
+            "esm2",
+            "esm2_t6_8m_ur50d",
+            "esm2_t12_35m_ur50d",
+            "esm2_t30_150m_ur50d",
+            "esm2_t33_650m_ur50d",
+        ),
+    )
+    embedding_sidecar.add_argument(
+        "--model-name",
+        default="facebook/esm2_t6_8M_UR50D",
+    )
+    embedding_sidecar.add_argument(
+        "--local-files-only",
+        action="store_true",
+        help="only use locally cached model files; do not download model weights",
+    )
+    embedding_sidecar.add_argument("--max-rows", type=int, default=0)
+    embedding_sidecar.add_argument(
+        "--no-fallback-to-largest-local-esm2",
+        action="store_true",
+        help="fail the requested ESM-2 backend instead of using a local fallback",
+    )
+    embedding_sidecar.add_argument(
+        "--out",
+        default="artifacts/v3_sequence_embedding_sidecar_current702_20260529.jsonl",
+    )
+    embedding_sidecar.add_argument(
+        "--summary",
+        default=(
+            "artifacts/"
+            "v3_sequence_embedding_sidecar_current702_20260529_summary.json"
+        ),
+    )
+    embedding_sidecar.set_defaults(func=cmd_build_sequence_embedding_sidecar)
+
+    bin_expansion = subparsers.add_parser(
+        "build-bin-targeted-expansion-plan",
+        help="build a review-only plan to lift sparse Wave 1.2 bins",
+    )
+    bin_expansion.add_argument(
+        "--wave1-audit",
+        default="artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json",
+    )
+    bin_expansion.add_argument(
+        "--slice-contract",
+        default=(
+            "artifacts/"
+            "v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json"
+        ),
+    )
+    bin_expansion.add_argument(
+        "--readiness-matrix",
+        default="artifacts/v3_active_site_encoder_readiness_matrix_20260528.json",
+    )
+    bin_expansion.add_argument("--target-primary-n", type=int, default=30)
+    bin_expansion.add_argument("--target-oos-n", type=int, default=10)
+    bin_expansion.add_argument(
+        "--out",
+        default="artifacts/v3_bin_targeted_expansion_plan_702_20260529.json",
+    )
+    bin_expansion.add_argument(
+        "--report",
+        default="work/bin_targeted_expansion_plan_702_20260529.md",
+    )
+    bin_expansion.set_defaults(func=cmd_build_bin_targeted_expansion_plan)
 
     external_representation_backend_sample_audit = subparsers.add_parser(
         "audit-external-source-representation-backend-sample",
