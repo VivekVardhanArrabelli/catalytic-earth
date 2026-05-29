@@ -1,0 +1,457 @@
+{
+  "artifact_id": "v3_cofactor_channel_completion_summary_current702_20260529",
+  "borrowed_mionic_metal_eval": {
+    "average_precision": 0.567376,
+    "expected_row_count": 135,
+    "heldout_metal_negative_count": 106,
+    "heldout_metal_positive_count": 29,
+    "roc_auc": 0.781067,
+    "scored_row_count": 135,
+    "status": "complete"
+  },
+  "bottom_line": {
+    "definition_of_done_fully_met": false,
+    "five_named_failures_recovered": true,
+    "raw_fusion_cuts_abstentions_but_fp_leaks": true,
+    "remaining_gap": "need a deployable route policy that keeps the five rescues and low OOS/sec FP while reducing, not increasing, abstentions",
+    "sequence_supported_suppression_holds_fp_down_but_abstains_more": true
+  },
+  "esm_sidecars": {
+    "esm2_t12_35m": {
+      "computed_embedding_backend": "esm2_t12_35m_ur50d",
+      "embedding_backend": "esm2_t12_35m_ur50d",
+      "embedding_vector_dimension": 480,
+      "emitted_row_count": 702,
+      "record_count_loaded": 702,
+      "summary_status": "complete"
+    },
+    "esm2_t6_8m": {
+      "computed_embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_backend": "esm2_t6_8m_ur50d",
+      "embedding_vector_dimension": 320,
+      "emitted_row_count": 702,
+      "record_count_loaded": 702,
+      "summary_status": "complete"
+    }
+  },
+  "frozen_label_set": {
+    "class_presence_counts_by_split": {
+      "heldout": {
+        "flavin": 11,
+        "heme": 5,
+        "metal_ion": 29,
+        "none": 80,
+        "plp": 6
+      },
+      "in_distribution": {
+        "flavin": 40,
+        "heme": 18,
+        "metal_ion": 146,
+        "none": 297,
+        "plp": 24
+      }
+    },
+    "row_count": 682,
+    "split_counts": {
+      "heldout": 135,
+      "in_distribution": 547
+    }
+  },
+  "kmer_metal_baseline": {
+    "accuracy": 0.518519,
+    "average_precision": 0.234538,
+    "balanced_accuracy": 0.518055,
+    "f1": 0.315789,
+    "fn": 14,
+    "fp": 51,
+    "heldout_negative_count": 106,
+    "heldout_positive_count": 29,
+    "precision": 0.227273,
+    "recall": 0.517241,
+    "roc_auc": 0.481457,
+    "tn": 55,
+    "tp": 15,
+    "train_positive_count": 146
+  },
+  "schema_version": "cofactor_channel_completion_summary.v1",
+  "selected_channel_sources": {
+    "flavin": {
+      "average_precision": 0.732961,
+      "roc_auc": 0.918622,
+      "source": "trained:esm2_t12_35m"
+    },
+    "heme": {
+      "average_precision": 0.525794,
+      "roc_auc": 0.866154,
+      "source": "trained:esm2_t6_8m"
+    },
+    "metal_ion": {
+      "average_precision": 0.567376,
+      "roc_auc": 0.781067,
+      "source": "borrowed:mionic"
+    },
+    "plp": {
+      "average_precision": 0.876623,
+      "roc_auc": 0.990956,
+      "source": "trained:esm2_t6_8m"
+    }
+  },
+  "target_failure_recovery": {
+    "raw_fused_geometry_metrics": {
+      "interpretation": "Naive cofactor injection recovers the named failures and cuts abstentions, but over-opens OOS/secondary rows.",
+      "metrics_canonical_masks": {
+        "abstention_count": 36,
+        "abstention_rate_available": 0.285714,
+        "available_count": 126,
+        "exact_label_accuracy_available": 0.515873,
+        "exact_label_match_count": 65,
+        "missing_count": 2,
+        "oos_or_secondary_abstention_count": 35,
+        "oos_or_secondary_available_count": 81,
+        "oos_or_secondary_false_positive_count": 46,
+        "oos_or_secondary_false_positive_rate_available": 0.567901,
+        "oos_or_secondary_missing_count": 2,
+        "oos_or_secondary_support_count": 83,
+        "primary_abstention_count": 1,
+        "primary_accuracy_all_rows": 0.688889,
+        "primary_accuracy_available": 0.688889,
+        "primary_available_count": 45,
+        "primary_correct_count": 31,
+        "primary_missing_count": 0,
+        "primary_support_count": 45,
+        "primary_wrong_nonabstained_count": 13,
+        "pure_oos_false_positive_count": 45,
+        "pure_oos_false_positive_rate_available": 0.56962,
+        "pure_oos_support_count": 79,
+        "row_count": 128,
+        "secondary_probe_exact_count": 0,
+        "secondary_probe_nonabstained_count": 1,
+        "secondary_probe_support_count": 2
+      },
+      "target_failure_rows": [
+        {
+          "abstained": false,
+          "called_fingerprint_id": "metal_dependent_hydrolase",
+          "entry_id": "m_csa:44",
+          "exact_label_match": true,
+          "top1_score": 0.5973,
+          "true_fingerprint_id": "metal_dependent_hydrolase"
+        },
+        {
+          "abstained": false,
+          "called_fingerprint_id": "heme_peroxidase_oxidase",
+          "entry_id": "m_csa:239",
+          "exact_label_match": true,
+          "top1_score": 0.7209,
+          "true_fingerprint_id": "heme_peroxidase_oxidase"
+        },
+        {
+          "abstained": false,
+          "called_fingerprint_id": "heme_peroxidase_oxidase",
+          "entry_id": "m_csa:250",
+          "exact_label_match": true,
+          "top1_score": 0.7104,
+          "true_fingerprint_id": "heme_peroxidase_oxidase"
+        },
+        {
+          "abstained": false,
+          "called_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "entry_id": "m_csa:497",
+          "exact_label_match": true,
+          "top1_score": 0.6729,
+          "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+        },
+        {
+          "abstained": false,
+          "called_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "entry_id": "m_csa:990",
+          "exact_label_match": true,
+          "top1_score": 0.7329,
+          "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+        }
+      ]
+    },
+    "sequence_supported_suppression_metrics": {
+      "interpretation": "Diagnostic target switches plus a sequence-support suppression gate. This recovers the five named failures and reduces OOS/sec FP substantially, at the cost of more abstentions.",
+      "metrics_canonical_masks": {
+        "abstention_count": 108,
+        "abstention_rate_available": 0.857143,
+        "available_count": 126,
+        "exact_label_accuracy_available": 0.738095,
+        "exact_label_match_count": 93,
+        "missing_count": 2,
+        "oos_or_secondary_abstention_count": 79,
+        "oos_or_secondary_available_count": 81,
+        "oos_or_secondary_false_positive_count": 2,
+        "oos_or_secondary_false_positive_rate_available": 0.024691,
+        "oos_or_secondary_missing_count": 2,
+        "oos_or_secondary_support_count": 83,
+        "primary_abstention_count": 29,
+        "primary_accuracy_all_rows": 0.355556,
+        "primary_accuracy_available": 0.355556,
+        "primary_available_count": 45,
+        "primary_correct_count": 16,
+        "primary_missing_count": 0,
+        "primary_support_count": 45,
+        "primary_wrong_nonabstained_count": 0,
+        "pure_oos_false_positive_count": 2,
+        "pure_oos_false_positive_rate_available": 0.025316,
+        "pure_oos_support_count": 79,
+        "row_count": 128,
+        "secondary_probe_exact_count": 0,
+        "secondary_probe_nonabstained_count": 0,
+        "secondary_probe_support_count": 2
+      },
+      "target_failure_rows": [
+        {
+          "abstained": false,
+          "called_fingerprint_id": "metal_dependent_hydrolase",
+          "entry_id": "m_csa:44",
+          "exact_label_match": true,
+          "top1_score": 0.5973,
+          "true_fingerprint_id": "metal_dependent_hydrolase"
+        },
+        {
+          "abstained": false,
+          "called_fingerprint_id": "heme_peroxidase_oxidase",
+          "entry_id": "m_csa:239",
+          "exact_label_match": true,
+          "top1_score": 0.7209,
+          "true_fingerprint_id": "heme_peroxidase_oxidase"
+        },
+        {
+          "abstained": false,
+          "called_fingerprint_id": "heme_peroxidase_oxidase",
+          "entry_id": "m_csa:250",
+          "exact_label_match": true,
+          "top1_score": 0.7104,
+          "true_fingerprint_id": "heme_peroxidase_oxidase"
+        },
+        {
+          "abstained": false,
+          "called_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "entry_id": "m_csa:497",
+          "exact_label_match": true,
+          "top1_score": 0.6729,
+          "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+        },
+        {
+          "abstained": false,
+          "called_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "entry_id": "m_csa:990",
+          "exact_label_match": true,
+          "top1_score": 0.7329,
+          "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+        }
+      ]
+    },
+    "target_failure_diagnostic_metrics": {
+      "interpretation": "Diagnostic readout for the five named known failures only; not a deployable routing policy, but it verifies the missing cofactor channel can flip the exact intended calls without changing OOS route volume.",
+      "metrics_canonical_masks": {
+        "abstention_count": 88,
+        "abstention_rate_available": 0.698413,
+        "available_count": 126,
+        "exact_label_accuracy_available": 0.769841,
+        "exact_label_match_count": 97,
+        "missing_count": 2,
+        "oos_or_secondary_abstention_count": 71,
+        "oos_or_secondary_available_count": 81,
+        "oos_or_secondary_false_positive_count": 10,
+        "oos_or_secondary_false_positive_rate_available": 0.123457,
+        "oos_or_secondary_missing_count": 2,
+        "oos_or_secondary_support_count": 83,
+        "primary_abstention_count": 17,
+        "primary_accuracy_all_rows": 0.622222,
+        "primary_accuracy_available": 0.622222,
+        "primary_available_count": 45,
+        "primary_correct_count": 28,
+        "primary_missing_count": 0,
+        "primary_support_count": 45,
+        "primary_wrong_nonabstained_count": 0,
+        "pure_oos_false_positive_count": 10,
+        "pure_oos_false_positive_rate_available": 0.126582,
+        "pure_oos_support_count": 79,
+        "row_count": 128,
+        "secondary_probe_exact_count": 0,
+        "secondary_probe_nonabstained_count": 0,
+        "secondary_probe_support_count": 2
+      },
+      "target_failure_rows": [
+        {
+          "abstained": false,
+          "called_fingerprint_id": "metal_dependent_hydrolase",
+          "entry_id": "m_csa:44",
+          "exact_label_match": true,
+          "top1_score": 0.5973,
+          "true_fingerprint_id": "metal_dependent_hydrolase"
+        },
+        {
+          "abstained": false,
+          "called_fingerprint_id": "heme_peroxidase_oxidase",
+          "entry_id": "m_csa:239",
+          "exact_label_match": true,
+          "top1_score": 0.7209,
+          "true_fingerprint_id": "heme_peroxidase_oxidase"
+        },
+        {
+          "abstained": false,
+          "called_fingerprint_id": "heme_peroxidase_oxidase",
+          "entry_id": "m_csa:250",
+          "exact_label_match": true,
+          "top1_score": 0.7104,
+          "true_fingerprint_id": "heme_peroxidase_oxidase"
+        },
+        {
+          "abstained": false,
+          "called_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "entry_id": "m_csa:497",
+          "exact_label_match": true,
+          "top1_score": 0.6729,
+          "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+        },
+        {
+          "abstained": false,
+          "called_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "entry_id": "m_csa:990",
+          "exact_label_match": true,
+          "top1_score": 0.7329,
+          "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+        }
+      ]
+    }
+  },
+  "trained_head_metrics": {
+    "esm2_t12_35m": {
+      "flavin": {
+        "accuracy": 0.933333,
+        "average_precision": 0.732961,
+        "balanced_accuracy": 0.798021,
+        "f1": 0.608696,
+        "fn": 4,
+        "fp": 5,
+        "heldout_negative_count": 124,
+        "heldout_positive_count": 11,
+        "precision": 0.583333,
+        "recall": 0.636364,
+        "roc_auc": 0.918622,
+        "tn": 119,
+        "tp": 7,
+        "train_positive_count": 40
+      },
+      "heme": {
+        "accuracy": 0.933333,
+        "average_precision": 0.38405,
+        "balanced_accuracy": 0.580769,
+        "f1": 0.181818,
+        "fn": 4,
+        "fp": 5,
+        "heldout_negative_count": 130,
+        "heldout_positive_count": 5,
+        "precision": 0.166667,
+        "recall": 0.2,
+        "roc_auc": 0.764615,
+        "tn": 125,
+        "tp": 1,
+        "train_positive_count": 18
+      },
+      "metal_ion": {
+        "accuracy": 0.681481,
+        "average_precision": 0.364756,
+        "balanced_accuracy": 0.596779,
+        "f1": 0.376812,
+        "fn": 16,
+        "fp": 27,
+        "heldout_negative_count": 106,
+        "heldout_positive_count": 29,
+        "precision": 0.325,
+        "recall": 0.448276,
+        "roc_auc": 0.673715,
+        "tn": 79,
+        "tp": 13,
+        "train_positive_count": 146
+      },
+      "plp": {
+        "accuracy": 0.97037,
+        "average_precision": 0.883333,
+        "balanced_accuracy": 0.905039,
+        "f1": 0.714286,
+        "fn": 1,
+        "fp": 3,
+        "heldout_negative_count": 129,
+        "heldout_positive_count": 6,
+        "precision": 0.625,
+        "recall": 0.833333,
+        "roc_auc": 0.981912,
+        "tn": 126,
+        "tp": 5,
+        "train_positive_count": 24
+      }
+    },
+    "esm2_t6_8m": {
+      "flavin": {
+        "accuracy": 0.925926,
+        "average_precision": 0.635522,
+        "balanced_accuracy": 0.752566,
+        "f1": 0.545455,
+        "fn": 5,
+        "fp": 5,
+        "heldout_negative_count": 124,
+        "heldout_positive_count": 11,
+        "precision": 0.545455,
+        "recall": 0.545455,
+        "roc_auc": 0.874633,
+        "tn": 119,
+        "tp": 6,
+        "train_positive_count": 40
+      },
+      "heme": {
+        "accuracy": 0.948148,
+        "average_precision": 0.525794,
+        "balanced_accuracy": 0.780769,
+        "f1": 0.461538,
+        "fn": 2,
+        "fp": 5,
+        "heldout_negative_count": 130,
+        "heldout_positive_count": 5,
+        "precision": 0.375,
+        "recall": 0.6,
+        "roc_auc": 0.866154,
+        "tn": 125,
+        "tp": 3,
+        "train_positive_count": 18
+      },
+      "metal_ion": {
+        "accuracy": 0.614815,
+        "average_precision": 0.307283,
+        "balanced_accuracy": 0.541802,
+        "f1": 0.315789,
+        "fn": 17,
+        "fp": 35,
+        "heldout_negative_count": 106,
+        "heldout_positive_count": 29,
+        "precision": 0.255319,
+        "recall": 0.413793,
+        "roc_auc": 0.607027,
+        "tn": 71,
+        "tp": 12,
+        "train_positive_count": 146
+      },
+      "plp": {
+        "accuracy": 0.97037,
+        "average_precision": 0.876623,
+        "balanced_accuracy": 0.905039,
+        "f1": 0.714286,
+        "fn": 1,
+        "fp": 3,
+        "heldout_negative_count": 129,
+        "heldout_positive_count": 6,
+        "precision": 0.625,
+        "recall": 0.833333,
+        "roc_auc": 0.990956,
+        "tn": 126,
+        "tp": 5,
+        "train_positive_count": 24
+      }
+    }
+  }
+}
