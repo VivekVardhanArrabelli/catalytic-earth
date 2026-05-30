@@ -1,0 +1,1459 @@
+{
+  "canary_predictions": {
+    "canary_count": 42,
+    "reported_canary_count": 12,
+    "rows": [
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:5",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for ser_his_acid_hydrolase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:173",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for ser_his_acid_hydrolase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:218",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for ser_his_acid_hydrolase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:248",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for ser_his_acid_hydrolase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "entry_id": "m_csa:387",
+        "expected_behavior": "predict ser_his_acid_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for ser_his_acid_hydrolase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:15",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:43",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "oos_tier": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_label_group_probability": 0.58865,
+        "prediction_status": "reported",
+        "reason": "Coherence-audit representative for metal_dependent_hydrolase",
+        "split_assignment": "heldout",
+        "top1_correct": false
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:87",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": false,
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:171",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "oos_tier": null,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "predicted_label_group_probability": 0.888516,
+        "prediction_status": "reported",
+        "reason": "Coherence-audit representative for metal_dependent_hydrolase",
+        "split_assignment": "heldout",
+        "top1_correct": true
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:376",
+        "expected_behavior": "predict metal_dependent_hydrolase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for metal_dependent_hydrolase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:66",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for plp_dependent_enzyme",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:147",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for plp_dependent_enzyme",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:186",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for plp_dependent_enzyme",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:205",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for plp_dependent_enzyme",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:213",
+        "expected_behavior": "predict plp_dependent_enzyme without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "oos_tier": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_label_group_probability": 0.905603,
+        "prediction_status": "reported",
+        "reason": "Coherence-audit representative for plp_dependent_enzyme",
+        "split_assignment": "heldout",
+        "top1_correct": false
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:3",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "oos_tier": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_label_group_probability": 0.994842,
+        "prediction_status": "reported",
+        "reason": "Coherence-audit representative for flavin_dehydrogenase_reductase",
+        "split_assignment": "heldout",
+        "top1_correct": false
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:6",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for flavin_dehydrogenase_reductase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:68",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for flavin_dehydrogenase_reductase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:110",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for flavin_dehydrogenase_reductase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "entry_id": "m_csa:117",
+        "expected_behavior": "predict flavin_dehydrogenase_reductase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for flavin_dehydrogenase_reductase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:37",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for heme_peroxidase_oxidase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:124",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for heme_peroxidase_oxidase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:133",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for heme_peroxidase_oxidase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:239",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "oos_tier": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_label_group_probability": 0.938135,
+        "prediction_status": "reported",
+        "reason": "Coherence-audit representative for heme_peroxidase_oxidase",
+        "split_assignment": "heldout",
+        "top1_correct": false
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "entry_id": "m_csa:573",
+        "expected_behavior": "predict heme_peroxidase_oxidase without abstention; also report the row in its diversity bin",
+        "expected_eval_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+        "oos_tier": null,
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Coherence-audit representative for heme_peroxidase_oxidase",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+        "entry_id": "m_csa:372",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate far_oos_tail_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::radical_sam_enzyme",
+        "oos_tier": "far_oos",
+        "predicted_label_group": "out_of_scope",
+        "predicted_label_group_probability": 0.880992,
+        "prediction_status": "reported",
+        "reason": "far-OOD/tail diagnostic; exclude from primary supervised metrics until additional radical SAM coverage exists",
+        "split_assignment": "heldout",
+        "top1_correct": false
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "entry_id": "m_csa:62",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate ontology_boundary_mixed_ood_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "oos_tier": "boundary_oos",
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "ontology-boundary/mixed OOD diagnostic; exclude from primary supervised metrics until split or re-review",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "entry_id": "m_csa:63",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate ontology_boundary_mixed_ood_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "oos_tier": "boundary_oos",
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "ontology-boundary/mixed OOD diagnostic; exclude from primary supervised metrics until split or re-review",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "entry_id": "m_csa:853",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate ontology_boundary_mixed_ood_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+        "oos_tier": "boundary_oos",
+        "predicted_label_group": "out_of_scope",
+        "predicted_label_group_probability": 0.941953,
+        "prediction_status": "reported",
+        "reason": "ontology-boundary/mixed OOD diagnostic; exclude from primary supervised metrics until split or re-review",
+        "split_assignment": "heldout",
+        "top1_correct": false
+      },
+      {
+        "abstained": false,
+        "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+        "entry_id": "m_csa:131",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate near_oos_against_flavin_redox_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::flavin_monooxygenase",
+        "oos_tier": "near_oos",
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_label_group_probability": 0.929806,
+        "prediction_status": "reported",
+        "reason": "near-OOD diagnostic against flavin_dehydrogenase_reductase; exclude from primary supervised metrics",
+        "split_assignment": "heldout",
+        "top1_correct": false
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+        "entry_id": "m_csa:132",
+        "expected_behavior": "exclude from primary supervised metrics; evaluate near_oos_against_flavin_redox_diagnostic abstention behavior",
+        "expected_eval_role": "secondary_ood_probe::flavin_monooxygenase",
+        "oos_tier": "near_oos",
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "near-OOD diagnostic against flavin_dehydrogenase_reductase; exclude from primary supervised metrics",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "oos_tier::far_oos",
+        "entry_id": "m_csa:1",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::far_oos",
+        "oos_tier": "far_oos",
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Glutamate racemase uses cysteine acid-base racemization chemistry, which is not represented by the current seed fingerprints.",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "oos_tier::far_oos",
+        "entry_id": "m_csa:12",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::far_oos",
+        "oos_tier": "far_oos",
+        "predicted_label_group": "out_of_scope",
+        "predicted_label_group_probability": 0.992833,
+        "prediction_status": "reported",
+        "reason": "Ornithine carbamoyltransferase performs carbamoyl transfer chemistry outside the current seed fingerprints.",
+        "split_assignment": "heldout",
+        "top1_correct": true
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "oos_tier::far_oos",
+        "entry_id": "m_csa:23",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::far_oos",
+        "oos_tier": "far_oos",
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Glycine N-methyltransferase is a methyltransferase outside the current seed fingerprints.",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": false,
+        "benchmark_role": "oos_tier::near_oos",
+        "entry_id": "m_csa:14",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::near_oos",
+        "oos_tier": "near_oos",
+        "predicted_label_group": "heme_peroxidase_oxidase",
+        "predicted_label_group_probability": 0.479808,
+        "prediction_status": "reported",
+        "reason": "Vanadate-dependent chloride peroxidase is peroxidase chemistry but not the heme-dependent peroxidase or oxidase seed fingerprint.",
+        "split_assignment": "heldout",
+        "top1_correct": false
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "oos_tier::near_oos",
+        "entry_id": "m_csa:32",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::near_oos",
+        "oos_tier": "near_oos",
+        "predicted_label_group": "out_of_scope",
+        "predicted_label_group_probability": 0.990055,
+        "prediction_status": "reported",
+        "reason": "Lactoylglutathione lyase uses metal-assisted lyase/isomerization chemistry rather than metal-activated hydrolysis.",
+        "split_assignment": "heldout",
+        "top1_correct": true
+      },
+      {
+        "abstained": true,
+        "benchmark_role": "oos_tier::near_oos",
+        "entry_id": "m_csa:34",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::near_oos",
+        "oos_tier": "near_oos",
+        "predicted_label_group": "out_of_scope",
+        "predicted_label_group_probability": 0.948143,
+        "prediction_status": "reported",
+        "reason": "Catechol 2,3-dioxygenase is a non-heme iron dioxygenase and does not match the current flavin or heme oxygenase seeds.",
+        "split_assignment": "heldout",
+        "top1_correct": true
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "oos_tier::boundary_oos",
+        "entry_id": "m_csa:2",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::boundary_oos",
+        "oos_tier": "boundary_oos",
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Class A beta-lactamase is a serine beta-lactamase but not the Ser-His-Asp/Glu triad hydrolase fingerprint currently defined.",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "oos_tier::boundary_oos",
+        "entry_id": "m_csa:19",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::boundary_oos",
+        "oos_tier": "boundary_oos",
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Alpha-mannosidase is a glycosidase but its acid-base glycoside hydrolysis mechanism is not represented by the current seed fingerprints.",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "oos_tier::boundary_oos",
+        "entry_id": "m_csa:39",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::boundary_oos",
+        "oos_tier": "boundary_oos",
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Inosine-uridine nucleoside hydrolase cleaves a glycosidic bond through nucleoside hydrolase chemistry, outside the current metal-dependent hydrolase seed scope.",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:25",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::unknown_oos",
+        "oos_tier": "unknown_oos",
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "N-carbamoylsarcosine amidase is not confidently mapped to a current seed fingerprint without a more specific amidase fingerprint.",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      },
+      {
+        "abstained": null,
+        "benchmark_role": "oos_tier::unknown_oos",
+        "entry_id": "m_csa:96",
+        "expected_behavior": "abstain or predict none_of_above; any primary fingerprint prediction is a tiered false-positive diagnostic",
+        "expected_eval_role": "oos_tier::unknown_oos",
+        "oos_tier": "unknown_oos",
+        "predicted_label_group": null,
+        "predicted_label_group_probability": null,
+        "prediction_status": "not_heldout",
+        "reason": "Creatinase hydrolysis is not confidently mapped to the current metal-dependent or Ser-His-Asp/Glu hydrolase seeds from available geometry context.",
+        "split_assignment": "in_distribution",
+        "top1_correct": null
+      }
+    ],
+    "status": "computed"
+  },
+  "diversity_stratified_accuracy": {
+    "by_fingerprint": {
+      "flavin_dehydrogenase_reductase": {
+        "accuracy_or_recall_by_diversity_bin": {
+          "close": 0.666667,
+          "far": 0.4,
+          "medium": 0.0
+        },
+        "eval_row_sample": [
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:3",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.967921,
+            "nearest_train_entry_id": "m_csa:114",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:20",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.970633,
+            "nearest_train_entry_id": "m_csa:378",
+            "predicted_label_group": "flavin_dehydrogenase_reductase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:109",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.971029,
+            "nearest_train_entry_id": "m_csa:852",
+            "predicted_label_group": "flavin_dehydrogenase_reductase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:115",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.969829,
+            "nearest_train_entry_id": "m_csa:822",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:211",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.965059,
+            "nearest_train_entry_id": "m_csa:319",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:497",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.978219,
+            "nearest_train_entry_id": "m_csa:275",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "close",
+            "entry_id": "m_csa:551",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.983062,
+            "nearest_train_entry_id": "m_csa:102",
+            "predicted_label_group": "flavin_dehydrogenase_reductase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:750",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.974292,
+            "nearest_train_entry_id": "m_csa:114",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "close",
+            "entry_id": "m_csa:892",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.979371,
+            "nearest_train_entry_id": "m_csa:108",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "close",
+            "entry_id": "m_csa:990",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.985188,
+            "nearest_train_entry_id": "m_csa:304",
+            "predicted_label_group": "flavin_dehydrogenase_reductase",
+            "top1_correct": true
+          }
+        ],
+        "macro_F1_contribution_by_bin_when_powered": {
+          "close": "underpowered_or_not_computed",
+          "far": "underpowered_or_not_computed",
+          "medium": "underpowered_or_not_computed"
+        },
+        "qualitative_only_cell_flags_accuracy_or_recall_min_n_30": [
+          "far",
+          "medium",
+          "close"
+        ],
+        "row_count_by_diversity_bin": {
+          "close": 3,
+          "far": 5,
+          "medium": 2
+        },
+        "subfamily_count_train_vs_eval": {
+          "eval": 10,
+          "train": 36
+        },
+        "train_only_similarity_thresholds": {
+          "close_threshold": 0.978613,
+          "far_threshold": 0.973548,
+          "status": "computed",
+          "train_similarity_count": 40
+        },
+        "underpowered_cell_flags_macro_f1_min_n_5": [
+          "medium",
+          "close"
+        ]
+      },
+      "heme_peroxidase_oxidase": {
+        "accuracy_or_recall_by_diversity_bin": {
+          "close": 1.0,
+          "far": 0.0,
+          "medium": 0.0
+        },
+        "eval_row_sample": [
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:239",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.951843,
+            "nearest_train_entry_id": "m_csa:399",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:250",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.965639,
+            "nearest_train_entry_id": "m_csa:573",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:709",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.979632,
+            "nearest_train_entry_id": "m_csa:399",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "close",
+            "entry_id": "m_csa:714",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.992431,
+            "nearest_train_entry_id": "m_csa:124",
+            "predicted_label_group": "heme_peroxidase_oxidase",
+            "top1_correct": true
+          }
+        ],
+        "macro_F1_contribution_by_bin_when_powered": {
+          "close": "underpowered_or_not_computed",
+          "far": "underpowered_or_not_computed",
+          "medium": "underpowered_or_not_computed"
+        },
+        "qualitative_only_cell_flags_accuracy_or_recall_min_n_30": [
+          "far",
+          "medium",
+          "close"
+        ],
+        "row_count_by_diversity_bin": {
+          "close": 1,
+          "far": 1,
+          "medium": 2
+        },
+        "subfamily_count_train_vs_eval": {
+          "eval": 4,
+          "train": 15
+        },
+        "train_only_similarity_thresholds": {
+          "close_threshold": 0.981946,
+          "far_threshold": 0.960949,
+          "status": "computed",
+          "train_similarity_count": 16
+        },
+        "underpowered_cell_flags_macro_f1_min_n_5": [
+          "far",
+          "medium",
+          "close"
+        ]
+      },
+      "metal_dependent_hydrolase": {
+        "accuracy_or_recall_by_diversity_bin": {
+          "close": 0.6,
+          "far": 0.5,
+          "medium": 0.666667
+        },
+        "eval_row_sample": [
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:43",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.951853,
+            "nearest_train_entry_id": "m_csa:740",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:44",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.96271,
+            "nearest_train_entry_id": "m_csa:447",
+            "predicted_label_group": "metal_dependent_hydrolase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "close",
+            "entry_id": "m_csa:97",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.968431,
+            "nearest_train_entry_id": "m_csa:630",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "close",
+            "entry_id": "m_csa:159",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.976677,
+            "nearest_train_entry_id": "m_csa:720",
+            "predicted_label_group": "metal_dependent_hydrolase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:163",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.89886,
+            "nearest_train_entry_id": "m_csa:472",
+            "predicted_label_group": "metal_dependent_hydrolase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:171",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.959028,
+            "nearest_train_entry_id": "m_csa:623",
+            "predicted_label_group": "metal_dependent_hydrolase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:180",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.955619,
+            "nearest_train_entry_id": "m_csa:856",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "close",
+            "entry_id": "m_csa:242",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.974239,
+            "nearest_train_entry_id": "m_csa:27",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "close",
+            "entry_id": "m_csa:321",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.969515,
+            "nearest_train_entry_id": "m_csa:338",
+            "predicted_label_group": "metal_dependent_hydrolase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:403",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.94369,
+            "nearest_train_entry_id": "m_csa:786",
+            "predicted_label_group": "metal_dependent_hydrolase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "close",
+            "entry_id": "m_csa:517",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.977884,
+            "nearest_train_entry_id": "m_csa:38",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "close",
+            "entry_id": "m_csa:577",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.96707,
+            "nearest_train_entry_id": "m_csa:376",
+            "predicted_label_group": "metal_dependent_hydrolase",
+            "top1_correct": true
+          }
+        ],
+        "macro_F1_contribution_by_bin_when_powered": {
+          "close": "underpowered_or_not_computed",
+          "far": "underpowered_or_not_computed",
+          "medium": "underpowered_or_not_computed"
+        },
+        "qualitative_only_cell_flags_accuracy_or_recall_min_n_30": [
+          "far",
+          "medium",
+          "close"
+        ],
+        "row_count_by_diversity_bin": {
+          "close": 10,
+          "far": 4,
+          "medium": 3
+        },
+        "subfamily_count_train_vs_eval": {
+          "eval": 17,
+          "train": 64
+        },
+        "train_only_similarity_thresholds": {
+          "close_threshold": 0.966112,
+          "far_threshold": 0.957226,
+          "status": "computed",
+          "train_similarity_count": 66
+        },
+        "underpowered_cell_flags_macro_f1_min_n_5": [
+          "far",
+          "medium"
+        ]
+      },
+      "plp_dependent_enzyme": {
+        "accuracy_or_recall_by_diversity_bin": {
+          "close": 1.0,
+          "far": 1.0,
+          "medium": 0.666667
+        },
+        "eval_row_sample": [
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:213",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.970059,
+            "nearest_train_entry_id": "m_csa:383",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:418",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.960915,
+            "nearest_train_entry_id": "m_csa:937",
+            "predicted_label_group": "plp_dependent_enzyme",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:419",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.980417,
+            "nearest_train_entry_id": "m_csa:482",
+            "predicted_label_group": "plp_dependent_enzyme",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:424",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.978027,
+            "nearest_train_entry_id": "m_csa:449",
+            "predicted_label_group": "plp_dependent_enzyme",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "close",
+            "entry_id": "m_csa:545",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.984922,
+            "nearest_train_entry_id": "m_csa:865",
+            "predicted_label_group": "plp_dependent_enzyme",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:854",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.954078,
+            "nearest_train_entry_id": "m_csa:937",
+            "predicted_label_group": "plp_dependent_enzyme",
+            "top1_correct": true
+          }
+        ],
+        "macro_F1_contribution_by_bin_when_powered": {
+          "close": "underpowered_or_not_computed",
+          "far": "underpowered_or_not_computed",
+          "medium": "underpowered_or_not_computed"
+        },
+        "qualitative_only_cell_flags_accuracy_or_recall_min_n_30": [
+          "far",
+          "medium",
+          "close"
+        ],
+        "row_count_by_diversity_bin": {
+          "close": 1,
+          "far": 2,
+          "medium": 3
+        },
+        "subfamily_count_train_vs_eval": {
+          "eval": 6,
+          "train": 21
+        },
+        "train_only_similarity_thresholds": {
+          "close_threshold": 0.981074,
+          "far_threshold": 0.967276,
+          "status": "computed",
+          "train_similarity_count": 25
+        },
+        "underpowered_cell_flags_macro_f1_min_n_5": [
+          "far",
+          "medium",
+          "close"
+        ]
+      },
+      "ser_his_acid_hydrolase": {
+        "accuracy_or_recall_by_diversity_bin": {
+          "close": 1.0,
+          "far": 1.0,
+          "medium": 0.5
+        },
+        "eval_row_sample": [
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:407",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.948289,
+            "nearest_train_entry_id": "m_csa:401",
+            "predicted_label_group": "ser_his_acid_hydrolase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:431",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.953005,
+            "nearest_train_entry_id": "m_csa:631",
+            "predicted_label_group": "ser_his_acid_hydrolase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:453",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.965347,
+            "nearest_train_entry_id": "m_csa:248",
+            "predicted_label_group": "ser_his_acid_hydrolase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:599",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.966208,
+            "nearest_train_entry_id": "m_csa:437",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          },
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:609",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.962517,
+            "nearest_train_entry_id": "m_csa:608",
+            "predicted_label_group": "ser_his_acid_hydrolase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "close",
+            "entry_id": "m_csa:688",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.981004,
+            "nearest_train_entry_id": "m_csa:798",
+            "predicted_label_group": "ser_his_acid_hydrolase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "far",
+            "entry_id": "m_csa:723",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.915982,
+            "nearest_train_entry_id": "m_csa:518",
+            "predicted_label_group": "ser_his_acid_hydrolase",
+            "top1_correct": true
+          },
+          {
+            "diversity_bin": "medium",
+            "entry_id": "m_csa:866",
+            "nearest_same_fingerprint_different_subfamily_cosine": 0.972915,
+            "nearest_train_entry_id": "m_csa:900",
+            "predicted_label_group": "out_of_scope",
+            "top1_correct": false
+          }
+        ],
+        "macro_F1_contribution_by_bin_when_powered": {
+          "close": "underpowered_or_not_computed",
+          "far": "underpowered_or_not_computed",
+          "medium": "underpowered_or_not_computed"
+        },
+        "qualitative_only_cell_flags_accuracy_or_recall_min_n_30": [
+          "far",
+          "medium",
+          "close"
+        ],
+        "row_count_by_diversity_bin": {
+          "close": 1,
+          "far": 3,
+          "medium": 4
+        },
+        "subfamily_count_train_vs_eval": {
+          "eval": 8,
+          "train": 28
+        },
+        "train_only_similarity_thresholds": {
+          "close_threshold": 0.973522,
+          "far_threshold": 0.954086,
+          "status": "computed",
+          "train_similarity_count": 34
+        },
+        "underpowered_cell_flags_macro_f1_min_n_5": [
+          "far",
+          "medium",
+          "close"
+        ]
+      }
+    },
+    "required_axis": "nearest_same_fingerprint_different_subfamily_train_example",
+    "status": "computed"
+  },
+  "headline_metrics": {
+    "exact_label_accuracy_all_heldout": 0.735714,
+    "heldout_prediction_count": 140,
+    "oos_false_positive_non_abstention_rate": 0.168421,
+    "oos_primary_fingerprint_false_positive_rate": 0.168421,
+    "primary_accuracy": 0.577778,
+    "primary_macro_f1": 0.695681,
+    "primary_support_count": 45,
+    "sequence_nn_baseline_oos_false_positive_rate_no_threshold": 0.2717,
+    "sequence_nn_baseline_primary_accuracy": 0.1556
+  },
+  "limitations": [
+    "The classifier is a small sklearn logistic regression trained on frozen ESM-2 embeddings; this is not large-model training.",
+    "No heldout-tuned confidence threshold is used; abstention occurs only through the learned out_of_scope class.",
+    "The eval contract only freezes representative OOS tiers; unassigned out_of_scope heldout rows are reported as unknown_oos pending a full tier artifact.",
+    "Long sequences are represented by non-overlapping whole-sequence windows because the ESM-2 positional limit is shorter than some current702 proteins.",
+    "The benchmark is a representation baseline, not a validated enzyme-function claim."
+  ],
+  "metadata": {
+    "abstention_rule": "abstain_only_when_multiclass_classifier_predicts_out_of_scope; no heldout-tuned confidence threshold",
+    "artifact_id": "esm2_150m_whole_sequence_current702_20260525_metrics",
+    "classifier_classes": [
+      "cobalamin_radical_rearrangement",
+      "flavin_dehydrogenase_reductase",
+      "flavin_monooxygenase",
+      "heme_peroxidase_oxidase",
+      "metal_dependent_hydrolase",
+      "out_of_scope",
+      "plp_dependent_enzyme",
+      "ser_his_acid_hydrolase"
+    ],
+    "embeddings_jsonl_artifact": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+    "embeddings_jsonl_sha256": "e7e5ee1ec329b084182e7b957c24f14a282f08bf61a6d2191dd639752ffd9617",
+    "embeddings_manifest_artifact": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_manifest_current702_20260525.json",
+    "embeddings_manifest_sha256": "61b9a4d53fa5c3ca05b9943094dd7cc9f035f2dbf977ea80441e376422aea225",
+    "eval_contract_artifact": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+    "eval_contract_sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
+    "fingerprint_registry_edited": false,
+    "forbidden_inputs_used": [],
+    "frozen_embeddings_only": true,
+    "generated_at": "2026-05-25T16:23:44.538684+00:00",
+    "heldout_sequence_count": 140,
+    "input_leakage_contract": "amino_acid_sequence_only; no EC/name/prose/expert-note/curator-rationale/review-decision/source-id semantic features",
+    "label_registry_edited": false,
+    "large_model_training_performed": false,
+    "model_id": "facebook/esm2_t30_150M_UR50D",
+    "ontology_registry_edited": false,
+    "oos_abstention_diagnostics_status": "computed",
+    "pooling_method": "mean_last_hidden_state_residue_tokens_weighted_across_nonoverlapping_sequence_windows",
+    "pooling_mode": "whole_sequence",
+    "prediction_count": 140,
+    "predictions_artifact": "artifacts/representation_tracks/esm2_150m/esm2_150m_predictions_current702_20260525.jsonl",
+    "predictions_sha256": "5ef109653f49f4c1f84522819f76c83c474cccd6ff52dcedc673a78a1a007b99",
+    "predictive_inputs": [
+      "amino_acid_sequence_only"
+    ],
+    "production_scoring_changed": false,
+    "schema_version": "esm2_150m_metrics.v1",
+    "sequence_manifest_artifact": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    "sequence_manifest_sha256": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b",
+    "sequence_nn_headline_metrics": {
+      "exact_label_accuracy_all": 0.5286,
+      "exact_label_accuracy_in_scope": 0.1458,
+      "max_nearest_jaccard_similarity": 0.1664,
+      "mean_nearest_jaccard_similarity": 0.076,
+      "out_of_scope_false_positive_rate_no_threshold": 0.2717,
+      "primary_supervised_accuracy": 0.1556
+    },
+    "sequence_nn_metrics_artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+    "sequence_nn_metrics_sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "split_artifact_sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425",
+    "status": "computed_current702_esm2_150m_whole_sequence_benchmark",
+    "train_sequence_count": 562,
+    "training_mode": "frozen_esm2_embeddings_plus_sklearn_logistic_regression_on_in_distribution_split"
+  },
+  "oos_abstention_diagnostics": {
+    "abstention_rule": "predicted out_of_scope class only; no heldout-tuned confidence threshold",
+    "by_oos_tier": {
+      "boundary_oos": {
+        "abstention_count": 1,
+        "abstention_rate": 1.0,
+        "confidence_distribution_on_oos_rows": {
+          "count": 1,
+          "max": 0.941953,
+          "mean": 0.941953,
+          "median": 0.941953,
+          "min": 0.941953,
+          "q25": 0.941953,
+          "q75": 0.941953
+        },
+        "false_positive_non_abstention_count": 0,
+        "false_positive_non_abstention_rate": 0.0,
+        "false_positive_rate_by_predicted_primary_fingerprint": {},
+        "primary_fingerprint_false_positive_count": 0,
+        "primary_fingerprint_false_positive_rate": 0.0,
+        "row_count": 1,
+        "underpowered_oos_tier_cell": true
+      },
+      "far_oos": {
+        "abstention_count": 2,
+        "abstention_rate": 1.0,
+        "confidence_distribution_on_oos_rows": {
+          "count": 2,
+          "max": 0.992833,
+          "mean": 0.936913,
+          "median": 0.936913,
+          "min": 0.880992,
+          "q25": 0.908952,
+          "q75": 0.964873
+        },
+        "false_positive_non_abstention_count": 0,
+        "false_positive_non_abstention_rate": 0.0,
+        "false_positive_rate_by_predicted_primary_fingerprint": {},
+        "primary_fingerprint_false_positive_count": 0,
+        "primary_fingerprint_false_positive_rate": 0.0,
+        "row_count": 2,
+        "underpowered_oos_tier_cell": true
+      },
+      "near_oos": {
+        "abstention_count": 2,
+        "abstention_rate": 0.5,
+        "confidence_distribution_on_oos_rows": {
+          "count": 4,
+          "max": 0.990055,
+          "mean": 0.836953,
+          "median": 0.938975,
+          "min": 0.479808,
+          "q25": 0.817307,
+          "q75": 0.958621
+        },
+        "false_positive_non_abstention_count": 2,
+        "false_positive_non_abstention_rate": 0.5,
+        "false_positive_rate_by_predicted_primary_fingerprint": {
+          "flavin_dehydrogenase_reductase": 1,
+          "heme_peroxidase_oxidase": 1
+        },
+        "primary_fingerprint_false_positive_count": 2,
+        "primary_fingerprint_false_positive_rate": 0.5,
+        "row_count": 4,
+        "underpowered_oos_tier_cell": true
+      },
+      "unknown_oos": {
+        "abstention_count": 74,
+        "abstention_rate": 0.840909,
+        "confidence_distribution_on_oos_rows": {
+          "count": 88,
+          "max": 0.99958,
+          "mean": 0.873723,
+          "median": 0.9349,
+          "min": 0.357519,
+          "q25": 0.818629,
+          "q75": 0.992349
+        },
+        "false_positive_non_abstention_count": 14,
+        "false_positive_non_abstention_rate": 0.159091,
+        "false_positive_rate_by_predicted_primary_fingerprint": {
+          "flavin_dehydrogenase_reductase": 3,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 9
+        },
+        "primary_fingerprint_false_positive_count": 14,
+        "primary_fingerprint_false_positive_rate": 0.159091,
+        "row_count": 88,
+        "underpowered_oos_tier_cell": false
+      }
+    },
+    "confidence_distribution_on_correctly_classified_in_scope_rows": {
+      "count": 26,
+      "max": 0.99977,
+      "mean": 0.857747,
+      "median": 0.931845,
+      "min": 0.513,
+      "q25": 0.739528,
+      "q75": 0.976199
+    },
+    "confidence_distribution_on_oos_rows": {
+      "count": 95,
+      "max": 0.99958,
+      "mean": 0.874223,
+      "median": 0.936416,
+      "min": 0.357519,
+      "q25": 0.833373,
+      "q75": 0.992222
+    },
+    "false_positive_non_abstention_count": 16,
+    "false_positive_non_abstention_rate": 0.168421,
+    "out_of_scope_label_heldout_count": 92,
+    "out_of_scope_or_secondary_probe_heldout_count": 95,
+    "overlap_diagnostic_for_any_threshold_separating_oos_from_in_scope": {
+      "max_oos_confidence": 0.99958,
+      "min_correct_in_scope_confidence": 0.513,
+      "strictly_separable_by_confidence": false
+    },
+    "primary_fingerprint_false_positive_count": 16,
+    "primary_fingerprint_false_positive_rate": 0.168421,
+    "secondary_probe_heldout_count": 3,
+    "status": "computed"
+  },
+  "per_fingerprint_metrics": {
+    "flavin_dehydrogenase_reductase": {
+      "correct_count": 4,
+      "f1": 0.571429,
+      "heldout_row_count": 10,
+      "precision": 1.0,
+      "qualitative_only_accuracy_or_recall_contract_threshold": true,
+      "recall": 0.4,
+      "status": "computed",
+      "top1_accuracy": 0.4,
+      "underpowered_macro_f1_class": false
+    },
+    "heme_peroxidase_oxidase": {
+      "correct_count": 1,
+      "f1": 0.4,
+      "heldout_row_count": 4,
+      "precision": 1.0,
+      "qualitative_only_accuracy_or_recall_contract_threshold": true,
+      "recall": 0.25,
+      "status": "computed",
+      "top1_accuracy": 0.25,
+      "underpowered_macro_f1_class": true
+    },
+    "metal_dependent_hydrolase": {
+      "correct_count": 10,
+      "f1": 0.740741,
+      "heldout_row_count": 17,
+      "precision": 1.0,
+      "qualitative_only_accuracy_or_recall_contract_threshold": true,
+      "recall": 0.588235,
+      "status": "computed",
+      "top1_accuracy": 0.588235,
+      "underpowered_macro_f1_class": false
+    },
+    "plp_dependent_enzyme": {
+      "correct_count": 5,
+      "f1": 0.909091,
+      "heldout_row_count": 6,
+      "precision": 1.0,
+      "qualitative_only_accuracy_or_recall_contract_threshold": true,
+      "recall": 0.833333,
+      "status": "computed",
+      "top1_accuracy": 0.833333,
+      "underpowered_macro_f1_class": false
+    },
+    "ser_his_acid_hydrolase": {
+      "correct_count": 6,
+      "f1": 0.857143,
+      "heldout_row_count": 8,
+      "precision": 1.0,
+      "qualitative_only_accuracy_or_recall_contract_threshold": true,
+      "recall": 0.75,
+      "status": "computed",
+      "top1_accuracy": 0.75,
+      "underpowered_macro_f1_class": false
+    }
+  },
+  "primary_seed_metrics": {
+    "accuracy": 0.577778,
+    "fingerprint_ids": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "macro_f1": 0.695681,
+    "status": "computed",
+    "support_count": 45
+  },
+  "underpowered_cell_flags": {
+    "diversity_bins_accuracy_or_recall_min_n_30": {
+      "flavin_dehydrogenase_reductase": [
+        "far",
+        "medium",
+        "close"
+      ],
+      "heme_peroxidase_oxidase": [
+        "far",
+        "medium",
+        "close"
+      ],
+      "metal_dependent_hydrolase": [
+        "far",
+        "medium",
+        "close"
+      ],
+      "plp_dependent_enzyme": [
+        "far",
+        "medium",
+        "close"
+      ],
+      "ser_his_acid_hydrolase": [
+        "far",
+        "medium",
+        "close"
+      ]
+    },
+    "diversity_bins_macro_f1_min_n_5": {
+      "flavin_dehydrogenase_reductase": [
+        "medium",
+        "close"
+      ],
+      "heme_peroxidase_oxidase": [
+        "far",
+        "medium",
+        "close"
+      ],
+      "metal_dependent_hydrolase": [
+        "far",
+        "medium"
+      ],
+      "plp_dependent_enzyme": [
+        "far",
+        "medium",
+        "close"
+      ],
+      "ser_his_acid_hydrolase": [
+        "far",
+        "medium",
+        "close"
+      ]
+    },
+    "oos_tiers_accuracy_or_recall_min_n_30": {
+      "boundary_oos": true,
+      "far_oos": true,
+      "near_oos": true,
+      "unknown_oos": false
+    },
+    "per_fingerprint_accuracy_or_recall_min_n_30": {
+      "flavin_dehydrogenase_reductase": true,
+      "heme_peroxidase_oxidase": true,
+      "metal_dependent_hydrolase": true,
+      "plp_dependent_enzyme": true,
+      "ser_his_acid_hydrolase": true
+    },
+    "per_fingerprint_macro_f1_min_n_5": {
+      "flavin_dehydrogenase_reductase": false,
+      "heme_peroxidase_oxidase": true,
+      "metal_dependent_hydrolase": false,
+      "plp_dependent_enzyme": false,
+      "ser_his_acid_hydrolase": false
+    }
+  }
+}

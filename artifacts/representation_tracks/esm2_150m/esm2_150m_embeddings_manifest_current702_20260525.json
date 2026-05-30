@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "artifact_id": "esm2_150m_whole_sequence_current702_20260525_embeddings_manifest",
+    "device": "cpu",
+    "embedding_dim": 640,
+    "embeddings_jsonl": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+    "entry_embedding_count": 702,
+    "eval_contract_artifact": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+    "eval_contract_sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
+    "forbidden_inputs_used": [],
+    "generated_at": "2026-05-25T16:23:44.538684+00:00",
+    "input_leakage_contract": "amino_acid_sequence_only; no EC/name/prose/expert-note/curator-rationale/review-decision/source-id semantic features",
+    "long_sequence_entry_count": 26,
+    "max_residues_per_window": 1022,
+    "model_id": "facebook/esm2_t30_150M_UR50D",
+    "pooling_method": "mean_last_hidden_state_residue_tokens_weighted_across_nonoverlapping_sequence_windows",
+    "pooling_mode": "whole_sequence",
+    "schema_version": "esm2_150m_embeddings_manifest.v1",
+    "sequence_manifest_artifact": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    "sequence_manifest_sha256": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b",
+    "sequence_nn_metrics_artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+    "sequence_nn_metrics_sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "split_artifact_sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425",
+    "status": "computed",
+    "window_count": 729
+  },
+  "source_artifact_sha256": {
+    "eval_contract": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
+    "fingerprint_audit": "cf9d5d3b17fa95d51374d244497ceba52414e60b8bdaefa12304ba3372cab734",
+    "sequence_fasta": "f151bcf8e3e9b7ca7adfd6bbf1da119e3d486228f3dad19f92dc4b9f20c42a3e",
+    "sequence_manifest": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b",
+    "sequence_nn_metrics": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26",
+    "split": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425"
+  },
+  "windowing_notes": [
+    "Whole-sequence pooling is computed across all residues by splitting sequences longer than the ESM positional limit into non-overlapping windows.",
+    "The final entry vector is the residue-count-weighted mean of last hidden states across all windows.",
+    "No known active-site positions, EC labels, entry names, mechanism prose, expert notes, or source identifiers are model inputs."
+  ]
+}
