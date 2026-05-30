@@ -1,0 +1,1599 @@
+{
+  "diagnosis": {
+    "corrected_result_emitted": true,
+    "corrected_result_scope": "scoring-aligned train-only logistic head over existing frozen ESM-C embeddings; not a new embedding run and not an overwrite of the original anomaly artifact",
+    "embedding_quality_issue_found": false,
+    "pooling_or_truncation_issue_found": false,
+    "primary_failure_mode": "The anomalous ESM-C result is reproduced exactly under the original cosine 1-NN head; the major gap is scoring-head mismatch versus the successful ESM-2 150M logistic track, plus weaker ESM-C class separation than ESM-2 under the same 1-NN diagnostic.",
+    "remaining_model_conclusion": "ESM-C 300M is not suspiciously broken under this setup after scoring alignment, but it still underperforms the ESM-2 150M logistic benchmark on primary accuracy and macro-F1.",
+    "row_alignment_issue_found": false
+  },
+  "lineage_and_backend": {
+    "esm2_150m": {
+      "embedding_dim": 640,
+      "model_id": "facebook/esm2_t30_150M_UR50D",
+      "pooling_method": "mean_last_hidden_state_residue_tokens_weighted_across_nonoverlapping_sequence_windows",
+      "torch_version": "2.7.1",
+      "transformers_model_class": "EsmModel"
+    },
+    "esm_c": {
+      "embedding_dim": 960,
+      "model_family": "ESM-C",
+      "model_id": "esmc_300m",
+      "package_versions": {
+        "esm": "3.2.3",
+        "huggingface_hub": "0.33.4",
+        "numpy": "2.3.1",
+        "python": "3.12.9",
+        "torch": "2.7.1",
+        "transformers": "4.48.1"
+      },
+      "repo_requested": "EvolutionaryScale/esmc-300m-2024-12",
+      "repo_resolved": "biohub/esmc-300m-2024-12",
+      "repo_sha": "c309e1f43e775c1a513826dba9f1fe04622e96a1",
+      "tokenizer": "EsmSequenceTokenizer; <cls> BOS id 0, <eos> EOS id 2, <pad> id 1, <unk> id 3, <mask> id 32; vocab size 33",
+      "weight_sha256": "323dff9fbf3fef297a74f4f18b6528e6f2e599b0bcf72b6927516804015becea"
+    }
+  },
+  "metadata": {
+    "artifact_id": "esm_c_300m_pipeline_comparison_to_esm2_current702_20260526",
+    "esm2_metrics_artifact": "/Users/vivekvardhanarrabelli/Documents/Codex/2026-05-08/check-out-careflly-u-can-use-2/catalytic-earth-repr-esm2-150m/artifacts/representation_tracks/esm2_150m/esm2_150m_metrics_current702_20260525.json",
+    "esm_c_alternative_heads_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_alternative_heads_current702_20260526.json",
+    "esm_c_original_metrics_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_cosine_nn_metrics_current702_20260525.json",
+    "esm_c_scoring_aligned_metrics_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_scoring_aligned_logistic_metrics_current702_20260526.json",
+    "forbidden_inputs_used": [],
+    "generated_at_utc": "2026-05-26T03:25:02Z",
+    "predictive_inputs": [
+      "amino_acid_sequence_only"
+    ],
+    "schema_version": "esm_c_pipeline_comparison_to_esm2.v1",
+    "status": "completed"
+  },
+  "preprocessing_and_pooling_comparison": {
+    "esm2_150m": {
+      "input_records": "702 entry embeddings, one per label row; multi-record entries use first repaired sequence record in the artifact",
+      "pooling_method": "mean_last_hidden_state_residue_tokens_weighted_across_nonoverlapping_sequence_windows",
+      "residue_format": "raw amino-acid sequence input to transformers EsmModel tokenizer",
+      "scoring_head": "reported benchmark uses train-split sklearn logistic regression on frozen embeddings",
+      "windowing_or_truncation": "non-overlapping windows up to 1022 residues, residue-count-weighted into one entry vector"
+    },
+    "esm_c": {
+      "bos_eos_handling": "tokenizer adds <cls> and <eos>; pooling excludes BOS/EOS and means residue token embeddings",
+      "entry_embedding_policies_checked": [
+        "first_sequence",
+        "mean_all_sequence_records"
+      ],
+      "input_records": "760 repaired FASTA sequence records embedded independently; label rows use first repaired sequence record for scoring, matching the original ESM-C 1-NN predictions 140/140.",
+      "mean_all_sequence_records_effect": "mean-all record aggregation changed 9/140 original 1-NN heldout predictions and did not materially repair the anomaly",
+      "residue_format": "raw uppercase amino-acid strings, no residue spacing; tokenizer handles one residue per token plus special tokens",
+      "windowing_or_truncation": "none observed; longest repaired sequence length 3011 encoded to 3013 tokens with BOS/EOS in cached offline tokenizer probe"
+    }
+  },
+  "same_row_metric_comparison": {
+    "esm2_150m_reported_logistic_artifact_headline": {
+      "exact_label_accuracy_all_heldout": 0.735714,
+      "heldout_prediction_count": 140,
+      "oos_false_positive_non_abstention_rate": 0.168421,
+      "oos_primary_fingerprint_false_positive_rate": 0.168421,
+      "primary_accuracy": 0.577778,
+      "primary_macro_f1": 0.695681,
+      "primary_support_count": 45,
+      "sequence_nn_baseline_oos_false_positive_rate_no_threshold": 0.2717,
+      "sequence_nn_baseline_primary_accuracy": 0.1556
+    },
+    "esm2_150m_reported_logistic_recomputed_from_predictions": {
+      "exact_label_accuracy_all_heldout": 0.735714,
+      "heldout_prediction_count": 140,
+      "oos_or_secondary_abstention_count": 79,
+      "oos_or_secondary_abstention_rate": 0.831579,
+      "oos_or_secondary_count": 95,
+      "oos_or_secondary_false_positive_count": 16,
+      "oos_or_secondary_false_positive_rate": 0.168421,
+      "out_of_scope_label_abstention_count": 77,
+      "out_of_scope_label_abstention_rate": 0.836957,
+      "out_of_scope_label_count": 92,
+      "out_of_scope_label_false_positive_count": 15,
+      "out_of_scope_label_false_positive_rate": 0.163043,
+      "primary_accuracy": 0.577778,
+      "primary_macro_f1": 0.695681,
+      "primary_support_count": 45
+    },
+    "esm2_150m_same_cosine_1nn_head": {
+      "exact_label_accuracy_all_heldout": 0.585714,
+      "heldout_prediction_count": 140,
+      "oos_or_secondary_abstention_count": 74,
+      "oos_or_secondary_abstention_rate": 0.778947,
+      "oos_or_secondary_count": 95,
+      "oos_or_secondary_false_positive_count": 21,
+      "oos_or_secondary_false_positive_rate": 0.221053,
+      "out_of_scope_label_abstention_count": 72,
+      "out_of_scope_label_abstention_rate": 0.782609,
+      "out_of_scope_label_count": 92,
+      "out_of_scope_label_false_positive_count": 20,
+      "out_of_scope_label_false_positive_rate": 0.217391,
+      "primary_accuracy": 0.222222,
+      "primary_macro_f1": 0.367903,
+      "primary_support_count": 45
+    },
+    "esm_c_cosine_1nn_recomputed_first_sequence": {
+      "exact_label_accuracy_all_heldout": 0.464286,
+      "heldout_prediction_count": 140,
+      "oos_or_secondary_abstention_count": 62,
+      "oos_or_secondary_abstention_rate": 0.652632,
+      "oos_or_secondary_count": 95,
+      "oos_or_secondary_false_positive_count": 33,
+      "oos_or_secondary_false_positive_rate": 0.347368,
+      "out_of_scope_label_abstention_count": 61,
+      "out_of_scope_label_abstention_rate": 0.663043,
+      "out_of_scope_label_count": 92,
+      "out_of_scope_label_false_positive_count": 31,
+      "out_of_scope_label_false_positive_rate": 0.336957,
+      "primary_accuracy": 0.088889,
+      "primary_macro_f1": 0.149258,
+      "primary_support_count": 45
+    },
+    "esm_c_cosine_3nn_first_sequence": {
+      "exact_label_accuracy_all_heldout": 0.578571,
+      "heldout_prediction_count": 140,
+      "oos_or_secondary_abstention_count": 76,
+      "oos_or_secondary_abstention_rate": 0.8,
+      "oos_or_secondary_count": 95,
+      "oos_or_secondary_false_positive_count": 19,
+      "oos_or_secondary_false_positive_rate": 0.2,
+      "out_of_scope_label_abstention_count": 75,
+      "out_of_scope_label_abstention_rate": 0.815217,
+      "out_of_scope_label_count": 92,
+      "out_of_scope_label_false_positive_count": 17,
+      "out_of_scope_label_false_positive_rate": 0.184783,
+      "primary_accuracy": 0.133333,
+      "primary_macro_f1": 0.196032,
+      "primary_support_count": 45
+    },
+    "esm_c_cosine_5nn_first_sequence": {
+      "exact_label_accuracy_all_heldout": 0.607143,
+      "heldout_prediction_count": 140,
+      "oos_or_secondary_abstention_count": 83,
+      "oos_or_secondary_abstention_rate": 0.873684,
+      "oos_or_secondary_count": 95,
+      "oos_or_secondary_false_positive_count": 12,
+      "oos_or_secondary_false_positive_rate": 0.126316,
+      "out_of_scope_label_abstention_count": 82,
+      "out_of_scope_label_abstention_rate": 0.891304,
+      "out_of_scope_label_count": 92,
+      "out_of_scope_label_false_positive_count": 10,
+      "out_of_scope_label_false_positive_rate": 0.108696,
+      "primary_accuracy": 0.066667,
+      "primary_macro_f1": 0.109091,
+      "primary_support_count": 45
+    },
+    "esm_c_original_cosine_1nn_reported": {
+      "exact_label_accuracy_all": 0.4643,
+      "exact_label_accuracy_in_scope": 0.0833,
+      "max_nearest_cosine_similarity": 0.975364,
+      "mean_nearest_cosine_similarity": 0.94,
+      "out_of_scope_false_positive_rate_no_threshold": 0.337,
+      "primary_accuracy": 0.0889,
+      "primary_macro_f1": 0.1493,
+      "primary_support_count": 45
+    },
+    "esm_c_scoring_aligned_logistic": {
+      "exact_label_accuracy_all_heldout": 0.671429,
+      "heldout_prediction_count": 140,
+      "oos_or_secondary_abstention_count": 79,
+      "oos_or_secondary_abstention_rate": 0.831579,
+      "oos_or_secondary_count": 95,
+      "oos_or_secondary_false_positive_count": 16,
+      "oos_or_secondary_false_positive_rate": 0.168421,
+      "out_of_scope_label_abstention_count": 77,
+      "out_of_scope_label_abstention_rate": 0.836957,
+      "out_of_scope_label_count": 92,
+      "out_of_scope_label_false_positive_count": 15,
+      "out_of_scope_label_false_positive_rate": 0.163043,
+      "primary_accuracy": 0.377778,
+      "primary_macro_f1": 0.46022,
+      "primary_support_count": 45
+    },
+    "sequence_nn_baseline": {
+      "exact_label_accuracy_all": 0.5286,
+      "exact_label_accuracy_in_scope": 0.1458,
+      "max_nearest_jaccard_similarity": 0.1664,
+      "mean_nearest_jaccard_similarity": 0.076,
+      "out_of_scope_false_positive_rate_no_threshold": 0.2717,
+      "primary_supervised_accuracy": 0.1556
+    }
+  },
+  "shared_row_diagnostics": [
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:3",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": false,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.994842,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.994842
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.002075
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.00134
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.978753,
+        "nearest_train_entry_id": "m_csa:17",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.953086,
+        "nearest_train_entry_id": "m_csa:629",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": false,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.96206,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.96206
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.020355
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.014301
+          }
+        ]
+      },
+      "sequence_id": "P15559",
+      "sequence_sha256": "f7316e90f68b60994d35f7513e4b9b781c43b6ab0a099325aa3dbf8890800df5",
+      "true_label_group": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "entry_id": "m_csa:43",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": false,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.58865,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.58865
+          },
+          {
+            "label_group": "ser_his_acid_hydrolase",
+            "probability": 0.370329
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.04082
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.960703,
+        "nearest_train_entry_id": "m_csa:442",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.943646,
+        "nearest_train_entry_id": "m_csa:555",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": false,
+        "predicted_label_group": "ser_his_acid_hydrolase",
+        "predicted_probability": 0.792428,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "ser_his_acid_hydrolase",
+            "probability": 0.792428
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.110068
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.086632
+          }
+        ]
+      },
+      "sequence_id": "P80366",
+      "sequence_sha256": "d36de04624dbb1f00e0f59431c029988f4f2b65b734f58b20f40a24632f4b1ef",
+      "true_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "entry_id": "m_csa:171",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "predicted_probability": 0.888516,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.888516
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.063857
+          },
+          {
+            "label_group": "ser_his_acid_hydrolase",
+            "probability": 0.044418
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.970147,
+        "nearest_train_entry_id": "m_csa:520",
+        "nearest_train_label_group": "ser_his_acid_hydrolase",
+        "predicted_label_group": "ser_his_acid_hydrolase"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.929722,
+        "nearest_train_entry_id": "m_csa:139",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": false,
+        "predicted_label_group": "ser_his_acid_hydrolase",
+        "predicted_probability": 0.918141,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "ser_his_acid_hydrolase",
+            "probability": 0.918141
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.059345
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.02247
+          }
+        ]
+      },
+      "sequence_id": "P00730",
+      "sequence_sha256": "839bdd6d36bcfbefd0f6dc9e11684246ae72111529469bea2d21913371b3c6d3",
+      "true_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+      "entry_id": "m_csa:213",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": false,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.905603,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.905603
+          },
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.052032
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.039359
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.971471,
+        "nearest_train_entry_id": "m_csa:485",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.926232,
+        "nearest_train_entry_id": "m_csa:633",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": false,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.946934,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.946934
+          },
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.052313
+          },
+          {
+            "label_group": "ser_his_acid_hydrolase",
+            "probability": 0.0005
+          }
+        ]
+      },
+      "sequence_id": "P10724",
+      "sequence_sha256": "d33cabf0ffae6e4b28e5eb1a8d36cc557bf094928658d29f7f15d159aa4a7ec8",
+      "true_label_group": "plp_dependent_enzyme"
+    },
+    {
+      "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+      "entry_id": "m_csa:131",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_probability": 0.929806,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.929806
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.065312
+          },
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.003633
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.976169,
+        "nearest_train_entry_id": "m_csa:437",
+        "nearest_train_label_group": "ser_his_acid_hydrolase",
+        "predicted_label_group": "ser_his_acid_hydrolase"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": null,
+        "cosine_similarity": 0.955374,
+        "nearest_train_entry_id": "m_csa:108",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_label_group": "flavin_dehydrogenase_reductase"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "plp_dependent_enzyme",
+        "predicted_probability": 0.426426,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.426426
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.348271
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.116689
+          }
+        ]
+      },
+      "sequence_id": "P20586",
+      "sequence_sha256": "a279a5e4be6af89c712adc5a790ae4235157452835f94bd21de78182f466d371",
+      "true_label_group": "flavin_monooxygenase"
+    },
+    {
+      "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+      "entry_id": "m_csa:372",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.880992,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.880992
+          },
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.107537
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.004382
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.982115,
+        "nearest_train_entry_id": "m_csa:463",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": null,
+        "cosine_similarity": 0.962941,
+        "nearest_train_entry_id": "m_csa:137",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.5441,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.5441
+          },
+          {
+            "label_group": "ser_his_acid_hydrolase",
+            "probability": 0.393589
+          },
+          {
+            "label_group": "flavin_monooxygenase",
+            "probability": 0.028529
+          }
+        ]
+      },
+      "sequence_id": "Q712I6",
+      "sequence_sha256": "f20317325651bd29bc3554e48a4ce4ec57d29ede973731b0ae2db1630b63cb22",
+      "true_label_group": "radical_sam_enzyme"
+    },
+    {
+      "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+      "entry_id": "m_csa:853",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.941953,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.941953
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.055377
+          },
+          {
+            "label_group": "ser_his_acid_hydrolase",
+            "probability": 0.002095
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.984435,
+        "nearest_train_entry_id": "m_csa:268",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": null,
+        "cosine_similarity": 0.937499,
+        "nearest_train_entry_id": "m_csa:978",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_label_group": "flavin_dehydrogenase_reductase"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.945,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.945
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.031878
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.022573
+          }
+        ]
+      },
+      "sequence_id": "P31570",
+      "sequence_sha256": "da33717e591e9e86f50ca5da9b377e4a7786eda7c6419271bd77720ee1af90e2",
+      "true_label_group": "cobalamin_radical_rearrangement"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:20",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_probability": 0.973445,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.973445
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.014797
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.008479
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.977056,
+        "nearest_train_entry_id": "m_csa:127",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.939302,
+        "nearest_train_entry_id": "m_csa:478",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_probability": 0.488384,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.488384
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.474589
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.032933
+          }
+        ]
+      },
+      "sequence_id": "Q07WU7",
+      "sequence_sha256": "389dccabef8ab6815f77770000d8a8398cf3b74e2e9379863347c620d0958742",
+      "true_label_group": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:109",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_probability": 0.973493,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.973493
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.021905
+          },
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.003265
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.975848,
+        "nearest_train_entry_id": "m_csa:498",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.935651,
+        "nearest_train_entry_id": "m_csa:147",
+        "nearest_train_label_group": "plp_dependent_enzyme",
+        "predicted_label_group": "plp_dependent_enzyme"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_probability": 0.982671,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.982671
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.0086
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.006595
+          }
+        ]
+      },
+      "sequence_id": "Q02127",
+      "sequence_sha256": "e3d665dad3dbf6901bc5aeccd28ef9d87f5be7797ab459a04aa59f95824cf051",
+      "true_label_group": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "entry_id": "m_csa:180",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": false,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.646325,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.646325
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.210013
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.14261
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.966158,
+        "nearest_train_entry_id": "m_csa:110",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_label_group": "flavin_dehydrogenase_reductase"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.949578,
+        "nearest_train_entry_id": "uniprot:P06744",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "predicted_probability": 0.524085,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.524085
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.196937
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.145929
+          }
+        ]
+      },
+      "sequence_id": "P35505",
+      "sequence_sha256": "443ca3955edaea110f927e546155016a042bdc91f2dd4ab29c0cae9cf6df8c48",
+      "true_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "entry_id": "m_csa:242",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": false,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.745542,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.745542
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.250896
+          },
+          {
+            "label_group": "ser_his_acid_hydrolase",
+            "probability": 0.001657
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.976816,
+        "nearest_train_entry_id": "m_csa:555",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.962114,
+        "nearest_train_entry_id": "m_csa:758",
+        "nearest_train_label_group": "heme_peroxidase_oxidase",
+        "predicted_label_group": "heme_peroxidase_oxidase"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "predicted_probability": 0.919163,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.919163
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.076577
+          },
+          {
+            "label_group": "ser_his_acid_hydrolase",
+            "probability": 0.002575
+          }
+        ]
+      },
+      "sequence_id": "Q8I914",
+      "sequence_sha256": "d442b0a1b6344865b64455ba53c6e083c2214e220f68c08521f088dcc58a924c",
+      "true_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "entry_id": "m_csa:321",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "predicted_probability": 0.813503,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.813503
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.174477
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.006194
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.969515,
+        "nearest_train_entry_id": "m_csa:338",
+        "nearest_train_label_group": "metal_dependent_hydrolase",
+        "predicted_label_group": "metal_dependent_hydrolase"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.932026,
+        "nearest_train_entry_id": "m_csa:183",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_label_group": "flavin_dehydrogenase_reductase"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "predicted_probability": 0.924185,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.924185
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.062899
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.009223
+          }
+        ]
+      },
+      "sequence_id": "P09155",
+      "sequence_sha256": "c3c00ba9a9169593e38f832061445016146264c228e215bd7f739926879da397",
+      "true_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:551",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_probability": 0.88409,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.88409
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.09661
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.01422
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.983062,
+        "nearest_train_entry_id": "m_csa:102",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_label_group": "flavin_dehydrogenase_reductase"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.961883,
+        "nearest_train_entry_id": "m_csa:508",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_probability": 0.957045,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.957045
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.041229
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.000783
+          }
+        ]
+      },
+      "sequence_id": "P15245",
+      "sequence_sha256": "e00ce116b80e34190a162a5ebea76b4e92a27a72e3b8af692a8e1fd9a5bd19a8",
+      "true_label_group": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "entry_id": "m_csa:577",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "predicted_probability": 0.971742,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.971742
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.028105
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 8.8e-05
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.972501,
+        "nearest_train_entry_id": "m_csa:48",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.943438,
+        "nearest_train_entry_id": "m_csa:244",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "predicted_probability": 0.991951,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.991951
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.007903
+          },
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.000113
+          }
+        ]
+      },
+      "sequence_id": "P29218",
+      "sequence_sha256": "8dfa317b0c2b7bd7a20857e127c506e04e100a0b3cd0045d906de2ee961ac21f",
+      "true_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+      "entry_id": "m_csa:609",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "ser_his_acid_hydrolase",
+        "predicted_probability": 0.987278,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "ser_his_acid_hydrolase",
+            "probability": 0.987278
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.012258
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.000453
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.962517,
+        "nearest_train_entry_id": "m_csa:608",
+        "nearest_train_label_group": "ser_his_acid_hydrolase",
+        "predicted_label_group": "ser_his_acid_hydrolase"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.93304,
+        "nearest_train_entry_id": "m_csa:585",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "ser_his_acid_hydrolase",
+        "predicted_probability": 0.640898,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "ser_his_acid_hydrolase",
+            "probability": 0.640898
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.35888
+          },
+          {
+            "label_group": "cobalamin_radical_rearrangement",
+            "probability": 0.000128
+          }
+        ]
+      },
+      "sequence_id": "P00778",
+      "sequence_sha256": "8bf257bd97719a860fa8c5f5c91f2fc099ae9282065339d7f1eccbb506104707",
+      "true_label_group": "ser_his_acid_hydrolase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+      "entry_id": "m_csa:709",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": false,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.533172,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.533172
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.437402
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.027382
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.979632,
+        "nearest_train_entry_id": "m_csa:399",
+        "nearest_train_label_group": "heme_peroxidase_oxidase",
+        "predicted_label_group": "heme_peroxidase_oxidase"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.949865,
+        "nearest_train_entry_id": "m_csa:240",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "heme_peroxidase_oxidase",
+        "predicted_probability": 0.833711,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.833711
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.165685
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.000415
+          }
+        ]
+      },
+      "sequence_id": "P00431",
+      "sequence_sha256": "69015ce85d2df834dc2396f20eec97c17ee81981532b7dcc6fc1c4174933c028",
+      "true_label_group": "heme_peroxidase_oxidase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "entry_id": "m_csa:710",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "predicted_probability": 0.929244,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.929244
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.031237
+          },
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.02896
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.979247,
+        "nearest_train_entry_id": "m_csa:172",
+        "nearest_train_label_group": "metal_dependent_hydrolase",
+        "predicted_label_group": "metal_dependent_hydrolase"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.962029,
+        "nearest_train_entry_id": "m_csa:108",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_label_group": "flavin_dehydrogenase_reductase"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "predicted_probability": 0.788075,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.788075
+          },
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.087496
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.086929
+          }
+        ]
+      },
+      "sequence_id": "P25524",
+      "sequence_sha256": "f7149c5de913f994b2017125451d0fcef157f37e5cf185e61b5259a33d791489",
+      "true_label_group": "metal_dependent_hydrolase"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+      "entry_id": "m_csa:854",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "plp_dependent_enzyme",
+        "predicted_probability": 0.99977,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.99977
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 8.4e-05
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 8.1e-05
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.954635,
+        "nearest_train_entry_id": "m_csa:472",
+        "nearest_train_label_group": "metal_dependent_hydrolase",
+        "predicted_label_group": "metal_dependent_hydrolase"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": false,
+        "cosine_similarity": 0.959054,
+        "nearest_train_entry_id": "m_csa:139",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": true,
+        "predicted_label_group": "plp_dependent_enzyme",
+        "predicted_probability": 0.917986,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.917986
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.053443
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.027901
+          }
+        ]
+      },
+      "sequence_id": "P80147",
+      "sequence_sha256": "a29ccaa70b908203a9dc4dfb1cffb18defbe90186789ba2e7dd01cb0e702153d",
+      "true_label_group": "plp_dependent_enzyme"
+    },
+    {
+      "benchmark_role": "oos_tier::near_oos",
+      "entry_id": "m_csa:14",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "heme_peroxidase_oxidase",
+        "predicted_probability": 0.479808,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.479808
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.440229
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.077255
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.97444,
+        "nearest_train_entry_id": "m_csa:304",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_label_group": "flavin_dehydrogenase_reductase"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": null,
+        "cosine_similarity": 0.965142,
+        "nearest_train_entry_id": "m_csa:373",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "heme_peroxidase_oxidase",
+        "predicted_probability": 0.79062,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.79062
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.157306
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.048659
+          }
+        ]
+      },
+      "sequence_id": "P49053",
+      "sequence_sha256": "291e22a931b361280619cf5f94b491ef1e75a4e34623ecf123738fb098eafff5",
+      "true_label_group": "out_of_scope"
+    },
+    {
+      "benchmark_role": "oos_tier::near_oos",
+      "entry_id": "m_csa:34",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.948143,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.948143
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.021276
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.015393
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.983722,
+        "nearest_train_entry_id": "m_csa:33",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": null,
+        "cosine_similarity": 0.932749,
+        "nearest_train_entry_id": "m_csa:114",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_label_group": "flavin_dehydrogenase_reductase"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.963837,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.963837
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.012913
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.012406
+          }
+        ]
+      },
+      "sequence_id": "P06622",
+      "sequence_sha256": "9b7abb0c36ee625d32bc070c68e1e53d42198dca4bc7d749f98607ad1906a10f",
+      "true_label_group": "out_of_scope"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:46",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.97617,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.97617
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.014839
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.0064
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.968613,
+        "nearest_train_entry_id": "m_csa:318",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": null,
+        "cosine_similarity": 0.883588,
+        "nearest_train_entry_id": "m_csa:808",
+        "nearest_train_label_group": "ser_his_acid_hydrolase",
+        "predicted_label_group": "ser_his_acid_hydrolase"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.998959,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.998959
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.000521
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 0.000428
+          }
+        ]
+      },
+      "sequence_id": "P14385",
+      "sequence_sha256": "f2cc958bb7c9d402a621139bd7b862cd0a8ebb4c1712907afb3abb3de28913ec",
+      "true_label_group": "out_of_scope"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:67",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.561551,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.561551
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.424578
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.011562
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.971828,
+        "nearest_train_entry_id": "m_csa:405",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": null,
+        "cosine_similarity": 0.948973,
+        "nearest_train_entry_id": "m_csa:855",
+        "nearest_train_label_group": "plp_dependent_enzyme",
+        "predicted_label_group": "plp_dependent_enzyme"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.927554,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.927554
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.072194
+          },
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 8.1e-05
+          }
+        ]
+      },
+      "sequence_id": "O52942",
+      "sequence_sha256": "4f74904ccec4bcfe0e13146d743405988d2e90046bd57a80b41567c262a1e199",
+      "true_label_group": "out_of_scope"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:71",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "metal_dependent_hydrolase",
+        "predicted_probability": 0.902008,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.902008
+          },
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.091924
+          },
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.004769
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.970608,
+        "nearest_train_entry_id": "m_csa:622",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": null,
+        "cosine_similarity": 0.931738,
+        "nearest_train_entry_id": "m_csa:273",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "plp_dependent_enzyme",
+        "predicted_probability": 0.569138,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "plp_dependent_enzyme",
+            "probability": 0.569138
+          },
+          {
+            "label_group": "ser_his_acid_hydrolase",
+            "probability": 0.328555
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.040115
+          }
+        ]
+      },
+      "sequence_id": "P12295",
+      "sequence_sha256": "da41f8bf6987c101744ef9efd90b9d917e323c784ebb512d387e343611ee401d",
+      "true_label_group": "out_of_scope"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:73",
+      "esm2_150m_reported_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.995305,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.995305
+          },
+          {
+            "label_group": "metal_dependent_hydrolase",
+            "probability": 0.004578
+          },
+          {
+            "label_group": "heme_peroxidase_oxidase",
+            "probability": 7.4e-05
+          }
+        ]
+      },
+      "esm2_150m_same_cosine_1nn_head": {
+        "cosine_similarity": 0.970819,
+        "nearest_train_entry_id": "m_csa:64",
+        "nearest_train_label_group": "out_of_scope",
+        "predicted_label_group": "out_of_scope"
+      },
+      "esm_c_original_1nn": {
+        "correct_on_primary_metric": null,
+        "cosine_similarity": 0.904615,
+        "nearest_train_entry_id": "m_csa:862",
+        "nearest_train_label_group": "flavin_dehydrogenase_reductase",
+        "predicted_label_group": "flavin_dehydrogenase_reductase"
+      },
+      "esm_c_scoring_aligned_logistic": {
+        "correct_on_primary_metric": null,
+        "predicted_label_group": "out_of_scope",
+        "predicted_probability": 0.999781,
+        "top_label_group_probabilities": [
+          {
+            "label_group": "out_of_scope",
+            "probability": 0.999781
+          },
+          {
+            "label_group": "flavin_dehydrogenase_reductase",
+            "probability": 0.000153
+          },
+          {
+            "label_group": "flavin_monooxygenase",
+            "probability": 2.7e-05
+          }
+        ]
+      },
+      "sequence_id": "P61459",
+      "sequence_sha256": "cf1f213aba8456cec5fbf5f0a9ec004133274cbd8535e040c2f21252e7253e56",
+      "true_label_group": "out_of_scope"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "bounded_commands": {
+    "model_download": "HF_HOME=/private/tmp/esm_c_hf_home_20260525 HUGGINGFACE_HUB_CACHE=/private/tmp/esm_c_hf_home_20260525/hub /private/tmp/esmc_runtime_20260525/bin/python - <<'PY' snapshot_download(repo_id='EvolutionaryScale/esmc-300m-2024-12', allow_patterns=[...]) PY",
+    "model_load": "from esm import pretrained; pretrained.ESMC_300M_202412(device='cpu', use_flash_attn=False)",
+    "package_install": "PIP_CACHE_DIR=/private/tmp/esm_c_pip_cache /private/tmp/esmc_runtime_20260525/bin/python -m pip install 'esm==3.2.3' 'transformers<4.48.2'",
+    "venv_create": "python -m venv --system-site-packages /private/tmp/esmc_runtime_20260525"
+  },
+  "embedding_run": {
+    "batch_count": 89,
+    "embedding_forward_seconds": 947.441,
+    "record_count": 760,
+    "runtime_seconds_total": 971.088,
+    "status": "completed",
+    "total_amino_acids": 318251
+  },
+  "metadata": {
+    "artifact_id": "esm_c_300m_backend_setup_current702_20260525",
+    "generated_at_utc": "2026-05-25T18:41:07Z",
+    "hf_cache_size_bytes_after_download": 3996517080,
+    "hf_cache_size_bytes_final": 2664197182,
+    "hf_home": "/private/tmp/esm_c_hf_home_20260525",
+    "hf_hub_cache_size_bytes_after_download": 2664197181,
+    "hf_hub_cache_size_bytes_final": 2664197181,
+    "hf_xet_cache_cleanup_performed": true,
+    "hf_xet_cache_size_bytes_after_download": 1332319898,
+    "hf_xet_cache_size_bytes_final": 0,
+    "hf_xet_cache_size_bytes_removed_after_download": 1332319898,
+    "huggingface_hub_cache": "/private/tmp/esm_c_hf_home_20260525/hub",
+    "model_family": "ESM-C",
+    "model_id": "esmc_300m",
+    "model_parameter_count": "300M",
+    "pip_cache_path": "/private/tmp/esm_c_pip_cache",
+    "pip_cache_size_bytes": 102310229,
+    "remote_api_used": false,
+    "runtime_path": "/private/tmp/esmc_runtime_20260525",
+    "runtime_size_bytes": 360248821,
+    "schema_version": "esm_c_backend_setup.v1",
+    "six_b_or_api_used": false,
+    "status": "backend_setup_and_smoke_passed"
+  },
+  "model_checkpoint": {
+    "hf_metadata_lfs_blob_id": "f86851ea1c05360f615c42d397d72ee3a2009e3a",
+    "repo_requested": "EvolutionaryScale/esmc-300m-2024-12",
+    "repo_resolved": "biohub/esmc-300m-2024-12",
+    "repo_sha": "c309e1f43e775c1a513826dba9f1fe04622e96a1",
+    "weight_local_path": "/private/tmp/esm_c_hf_home_20260525/hub/models--EvolutionaryScale--esmc-300m-2024-12/snapshots/c309e1f43e775c1a513826dba9f1fe04622e96a1/data/weights/esmc_300m_2024_12_v0.pth",
+    "weight_real_path": "/private/tmp/esm_c_hf_home_20260525/hub/models--EvolutionaryScale--esmc-300m-2024-12/blobs/323dff9fbf3fef297a74f4f18b6528e6f2e599b0bcf72b6927516804015becea",
+    "weight_relative_path": "data/weights/esmc_300m_2024_12_v0.pth",
+    "weight_sha256": "323dff9fbf3fef297a74f4f18b6528e6f2e599b0bcf72b6927516804015becea",
+    "weight_size_bytes": 1332095738
+  },
+  "package_versions": {
+    "esm": "3.2.3",
+    "huggingface_hub": "0.33.4",
+    "numpy": "2.3.1",
+    "python": "3.12.9",
+    "torch": "2.7.1",
+    "transformers": "4.48.1"
+  },
+  "smoke_result": {
+    "device": "cpu",
+    "embedding_dim": 960,
+    "model_load_seconds": 3.202,
+    "smoke_record_count": 2,
+    "status": "passed_before_full_embedding_run"
+  }
+}

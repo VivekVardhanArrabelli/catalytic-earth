@@ -1,0 +1,167 @@
+{
+  "classifier_classes": [
+    "cobalamin_radical_rearrangement",
+    "flavin_dehydrogenase_reductase",
+    "flavin_monooxygenase",
+    "heme_peroxidase_oxidase",
+    "metal_dependent_hydrolase",
+    "out_of_scope",
+    "plp_dependent_enzyme",
+    "ser_his_acid_hydrolase"
+  ],
+  "direct_comparison": {
+    "esm2_150m_reported_logistic": {
+      "exact_label_accuracy_all_heldout": 0.735714,
+      "heldout_prediction_count": 140,
+      "oos_false_positive_non_abstention_rate": 0.168421,
+      "oos_primary_fingerprint_false_positive_rate": 0.168421,
+      "primary_accuracy": 0.577778,
+      "primary_macro_f1": 0.695681,
+      "primary_support_count": 45,
+      "sequence_nn_baseline_oos_false_positive_rate_no_threshold": 0.2717,
+      "sequence_nn_baseline_primary_accuracy": 0.1556
+    },
+    "original_esm_c_cosine_1nn": {
+      "exact_label_accuracy_all": 0.4643,
+      "exact_label_accuracy_in_scope": 0.0833,
+      "max_nearest_cosine_similarity": 0.975364,
+      "mean_nearest_cosine_similarity": 0.94,
+      "out_of_scope_false_positive_rate_no_threshold": 0.337,
+      "primary_accuracy": 0.0889,
+      "primary_macro_f1": 0.1493,
+      "primary_support_count": 45
+    },
+    "sequence_nn_baseline": {
+      "exact_label_accuracy_all": 0.5286,
+      "exact_label_accuracy_in_scope": 0.1458,
+      "max_nearest_jaccard_similarity": 0.1664,
+      "mean_nearest_jaccard_similarity": 0.076,
+      "out_of_scope_false_positive_rate_no_threshold": 0.2717,
+      "primary_supervised_accuracy": 0.1556
+    }
+  },
+  "headline_metrics": {
+    "exact_label_accuracy_all_heldout": 0.671429,
+    "heldout_prediction_count": 140,
+    "oos_or_secondary_abstention_count": 79,
+    "oos_or_secondary_abstention_rate": 0.831579,
+    "oos_or_secondary_count": 95,
+    "oos_or_secondary_false_positive_count": 16,
+    "oos_or_secondary_false_positive_rate": 0.168421,
+    "out_of_scope_label_abstention_count": 77,
+    "out_of_scope_label_abstention_rate": 0.836957,
+    "out_of_scope_label_count": 92,
+    "out_of_scope_label_false_positive_count": 15,
+    "out_of_scope_label_false_positive_rate": 0.163043,
+    "primary_accuracy": 0.377778,
+    "primary_macro_f1": 0.46022,
+    "primary_support_count": 45
+  },
+  "interpretation": "Changing only the frozen-embedding scoring head materially improves the anomalous ESM-C result, but ESM-C still trails the ESM-2 150M logistic benchmark on primary accuracy and macro-F1.",
+  "linear_probe_config": "L2 normalization and StandardScaler fit on train embeddings, then multinomial logistic regression with class_weight=balanced, C=1.0.",
+  "macro_f1_details": {
+    "by_class": {
+      "flavin_dehydrogenase_reductase": {
+        "f1": 0.571429,
+        "false_negative_count": 6,
+        "false_positive_count_on_primary_rows": 0,
+        "precision": 1.0,
+        "predicted_count_on_primary_rows": 4,
+        "recall": 0.4,
+        "true_positive_count": 4,
+        "true_support_count": 10,
+        "underpowered": false
+      },
+      "heme_peroxidase_oxidase": {
+        "f1": 0.4,
+        "false_negative_count": 3,
+        "false_positive_count_on_primary_rows": 0,
+        "precision": 1.0,
+        "predicted_count_on_primary_rows": 1,
+        "recall": 0.25,
+        "true_positive_count": 1,
+        "true_support_count": 4,
+        "underpowered": true
+      },
+      "metal_dependent_hydrolase": {
+        "f1": 0.615385,
+        "false_negative_count": 9,
+        "false_positive_count_on_primary_rows": 1,
+        "precision": 0.888889,
+        "predicted_count_on_primary_rows": 9,
+        "recall": 0.470588,
+        "true_positive_count": 8,
+        "true_support_count": 17,
+        "underpowered": false
+      },
+      "plp_dependent_enzyme": {
+        "f1": 0.285714,
+        "false_negative_count": 5,
+        "false_positive_count_on_primary_rows": 0,
+        "precision": 1.0,
+        "predicted_count_on_primary_rows": 1,
+        "recall": 0.166667,
+        "true_positive_count": 1,
+        "true_support_count": 6,
+        "underpowered": false
+      },
+      "ser_his_acid_hydrolase": {
+        "f1": 0.428571,
+        "false_negative_count": 5,
+        "false_positive_count_on_primary_rows": 3,
+        "precision": 0.5,
+        "predicted_count_on_primary_rows": 6,
+        "recall": 0.375,
+        "true_positive_count": 3,
+        "true_support_count": 8,
+        "underpowered": false
+      }
+    },
+    "class_count_in_macro": 5,
+    "macro_f1": 0.46022
+  },
+  "metadata": {
+    "artifact_id": "esm_c_300m_scoring_aligned_logistic_metrics_current702_20260526",
+    "calibration_or_threshold_tuning": "none; no heldout-tuned threshold; abstention is predicted out_of_scope class",
+    "embedding_index_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_index_current702_20260525.jsonl",
+    "embedding_npz_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz",
+    "entry_embedding_policy": "first repaired sequence record per label row; this reproduces the original ESM-C 1-NN predictions exactly before changing the head",
+    "fingerprint_registry_edited": false,
+    "forbidden_inputs_used": [],
+    "generated_at_utc": "2026-05-26T03:25:02Z",
+    "label_registry_edited": false,
+    "large_model_training_performed": false,
+    "model_family": "ESM-C",
+    "model_id": "esmc_300m",
+    "model_repo_requested": "EvolutionaryScale/esmc-300m-2024-12",
+    "model_repo_resolved": "biohub/esmc-300m-2024-12",
+    "model_repo_sha": "c309e1f43e775c1a513826dba9f1fe04622e96a1",
+    "model_training_performed": "small_train_split_linear_probe_only",
+    "ontology_registry_edited": false,
+    "original_anomaly_metrics_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_cosine_nn_metrics_current702_20260525.json",
+    "prediction_head": "logistic_l2_then_standardized_balanced_C1_first_sequence_raw",
+    "predictions_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_scoring_aligned_logistic_predictions_current702_20260526.jsonl",
+    "predictions_sha256": "80a53302658a27f7dfb70ee8609e4866da1be0d133e05ede984e884413805afd",
+    "predictive_inputs": [
+      "amino_acid_sequence_only"
+    ],
+    "production_scoring_changed": false,
+    "schema_version": "esm_c_scoring_aligned_logistic_metrics.v1",
+    "status": "computed_corrected_scoring_aligned_head_not_overwriting_original_1nn_anomaly",
+    "training_mode": "frozen_esm_c_embeddings_plus_train_split_logistic_regression",
+    "weight_sha256": "323dff9fbf3fef297a74f4f18b6528e6f2e599b0bcf72b6927516804015becea"
+  },
+  "primary_seed_metrics": {
+    "accuracy": 0.377778,
+    "fingerprint_ids": [
+      "ser_his_acid_hydrolase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase"
+    ],
+    "macro_f1": 0.46022,
+    "status": "computed",
+    "support_count": 45
+  }
+}
