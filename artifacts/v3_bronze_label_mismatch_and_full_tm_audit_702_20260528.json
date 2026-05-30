@@ -1,28 +1,35 @@
 {
   "artifact_id": "v3_bronze_label_mismatch_and_full_tm_audit_702_20260528",
-  "created_utc": "2026-05-28T08:12:51Z",
+  "created_utc": "2026-05-28T00:00:00Z",
   "full_tm_structural_neighborhood_signal": {
     "metadata": {
-      "all_134_heldout_queries_completed": true,
+      "all_134_heldout_queries_attempted": true,
+      "all_query_fast_inf_attempt_status": "failed_sigterm_before_repo_artifact",
+      "chunk_fast_inf_attempt_status": "failed_sigterm_before_repo_artifact",
       "classification_counts": {
         "dense_same_family_structural_neighborhood": 46,
         "fold_conflict_structural_neighborhood": 7,
         "mixed_high_tm_structural_neighborhood": 25,
         "near_orphan_no_retained_tm_ge_0_70_hit": 56
       },
-      "completed_query_chunk_count": 134,
+      "completed_or_reused_query_chunk_count": 134,
       "completed_query_structure_count_with_retained_hits": 134,
       "countable_label_candidate_count": 0,
+      "exact_tm_attempt_status": "failed_sigterm_before_repo_artifact",
       "expected_unique_heldout_train_structure_pair_count": 72092,
+      "failed_query_chunk_count": 0,
+      "failed_query_chunks": [],
+      "fallback_reason": "large exact/fast all-pair invocations were SIGTERM; single-query default Foldseek hit-retention completed or reused available chunks across heldout rows",
       "foldseek_binary_available": true,
       "foldseek_binary_requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
-      "foldseek_run_status": "available_chunks_parsed",
+      "foldseek_command_template": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search <single_query_dir> /private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/target_train <chunk_out.tsv> <chunk_tmp> --format-output query,target,qtmscore,ttmscore,alntmscore --exhaustive-search 1 --alignment-type 1 --tmalign-fast 1 --threads 2 -v 1",
+      "foldseek_run_status": "completed",
       "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+      "foldseek_workdir": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528",
       "full_134x538_pair_ceiling_closed": false,
       "full_tm_score_holdout_claim_blockers": [
         "review-only structural-neighborhood signal; not a canonical TM-diverse split repair",
-        "single-query fallback parses Foldseek retained hits, not exhaustive 134x538 pair-row retention",
-        "all heldout query chunks have retained-hit TSVs",
+        "single-query fallback uses Foldseek default retained hits, not exhaustive 134x538 pair-row retention",
         "computed retained heldout/train TM-score target <0.7 is violated for at least one pair"
       ],
       "full_tm_score_holdout_claim_permitted": false,
@@ -30,19 +37,14 @@
       "heldout_rows_without_retained_tm_ge_0_70_neighbor_count": 56,
       "heldout_unique_structure_count": 134,
       "import_ready_row_count": 0,
-      "local_chunk_directory": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks",
-      "local_chunk_directory_fingerprint": "53f14bbb38ff7b94540f1f8081875b454b8206cca97b7f05cfd1d75236246f66",
       "mapped_cross_partition_retained_hit_row_count": 144412,
       "max_observed_retained_heldout_train_tm_score": 0.9826,
-      "method": "heldout_vs_train_single_query_foldseek_retained_hit_signal",
-      "missing_query_chunk_count": 0,
-      "missing_query_chunk_indices": [],
-      "missing_query_chunks": [],
+      "method": "heldout_vs_train_single_query_foldseek_tm_hit_signal",
       "missing_unique_pair_rows_under_exhaustive_134x538_ceiling": 39484,
       "observed_unique_retained_heldout_train_structure_pair_count": 32608,
       "parse_error_count": 0,
       "query_chunk_count": 134,
-      "query_structure_count_without_retained_hits_or_chunk": 0,
+      "query_structure_count_without_retained_hits": 0,
       "raw_foldseek_retained_hit_row_count": 144412,
       "raw_name_mapping_alias_collision_count": 0,
       "raw_name_mapping_alias_collisions": [],
@@ -71,9 +73,8 @@
           "m_csa:3"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/000_pdb_1D4A.tsv",
-        "query_chunk_index": 0,
         "row_count": 2586,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1D4A"
       },
       {
@@ -81,9 +82,8 @@
           "m_csa:9"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/001_pdb_5A1I.tsv",
-        "query_chunk_index": 1,
         "row_count": 378,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:5A1I"
       },
       {
@@ -91,9 +91,8 @@
           "m_csa:10"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/002_pdb_1MKB.tsv",
-        "query_chunk_index": 2,
         "row_count": 659,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1MKB"
       },
       {
@@ -101,9 +100,8 @@
           "m_csa:12"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/003_pdb_1OTH.tsv",
-        "query_chunk_index": 3,
         "row_count": 690,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1OTH"
       },
       {
@@ -111,9 +109,8 @@
           "m_csa:14"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/004_pdb_1VNC.tsv",
-        "query_chunk_index": 4,
         "row_count": 326,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1VNC"
       },
       {
@@ -121,9 +118,8 @@
           "m_csa:20"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/005_pdb_1QJD.tsv",
-        "query_chunk_index": 5,
         "row_count": 614,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1QJD"
       },
       {
@@ -131,9 +127,8 @@
           "m_csa:30"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/006_pdb_2PFL.tsv",
-        "query_chunk_index": 6,
         "row_count": 737,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:2PFL"
       },
       {
@@ -141,9 +136,8 @@
           "m_csa:31"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/007_pdb_1LCB.tsv",
-        "query_chunk_index": 7,
         "row_count": 145,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1LCB"
       },
       {
@@ -151,9 +145,8 @@
           "m_csa:32"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/008_pdb_1QIN.tsv",
-        "query_chunk_index": 8,
         "row_count": 375,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1QIN"
       },
       {
@@ -161,9 +154,8 @@
           "m_csa:34"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/009_pdb_1MPY.tsv",
-        "query_chunk_index": 9,
         "row_count": 1337,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1MPY"
       },
       {
@@ -171,9 +163,8 @@
           "m_csa:43"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/010_pdb_4KBP.tsv",
-        "query_chunk_index": 10,
         "row_count": 2332,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:4KBP"
       },
       {
@@ -181,9 +172,8 @@
           "m_csa:44"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/011_pdb_1ALK.tsv",
-        "query_chunk_index": 11,
         "row_count": 1099,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1ALK"
       },
       {
@@ -191,9 +181,8 @@
           "m_csa:45"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/012_pdb_1CDG.tsv",
-        "query_chunk_index": 12,
         "row_count": 632,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1CDG"
       },
       {
@@ -201,9 +190,8 @@
           "m_csa:46"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/013_pdb_2ADM.tsv",
-        "query_chunk_index": 13,
         "row_count": 946,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:2ADM"
       },
       {
@@ -211,9 +199,8 @@
           "m_csa:56"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/014_pdb_1ZE1.tsv",
-        "query_chunk_index": 14,
         "row_count": 817,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1ZE1"
       },
       {
@@ -221,9 +208,8 @@
           "m_csa:67"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/015_pdb_1PJB.tsv",
-        "query_chunk_index": 15,
         "row_count": 583,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1PJB"
       },
       {
@@ -231,9 +217,8 @@
           "m_csa:71"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/016_pdb_1EUG.tsv",
-        "query_chunk_index": 16,
         "row_count": 509,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1EUG"
       },
       {
@@ -241,9 +226,8 @@
           "m_csa:73"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/017_pdb_1DCO.tsv",
-        "query_chunk_index": 17,
         "row_count": 1448,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1DCO"
       },
       {
@@ -251,9 +235,8 @@
           "m_csa:79"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/018_pdb_1D0S.tsv",
-        "query_chunk_index": 18,
         "row_count": 656,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1D0S"
       },
       {
@@ -261,9 +244,8 @@
           "m_csa:80"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/019_pdb_1C3C.tsv",
-        "query_chunk_index": 19,
         "row_count": 560,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1C3C"
       },
       {
@@ -271,9 +253,8 @@
           "m_csa:86"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/020_pdb_1BG0.tsv",
-        "query_chunk_index": 20,
         "row_count": 379,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1BG0"
       },
       {
@@ -281,9 +262,8 @@
           "m_csa:97"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/021_pdb_1CTT.tsv",
-        "query_chunk_index": 21,
         "row_count": 159,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1CTT"
       },
       {
@@ -291,9 +271,8 @@
           "m_csa:109"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/022_pdb_1D3G.tsv",
-        "query_chunk_index": 22,
         "row_count": 701,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1D3G"
       },
       {
@@ -301,9 +280,8 @@
           "m_csa:115"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/023_pdb_1W1O.tsv",
-        "query_chunk_index": 23,
         "row_count": 213,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1W1O"
       },
       {
@@ -311,9 +289,8 @@
           "m_csa:116"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/024_pdb_1HZZ.tsv",
-        "query_chunk_index": 24,
         "row_count": 1924,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1HZZ"
       },
       {
@@ -321,9 +298,8 @@
           "m_csa:118"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/025_pdb_1WRR.tsv",
-        "query_chunk_index": 25,
         "row_count": 158,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1WRR"
       },
       {
@@ -331,9 +307,8 @@
           "m_csa:121"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/026_pdb_1SOX.tsv",
-        "query_chunk_index": 26,
         "row_count": 455,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1SOX"
       },
       {
@@ -341,9 +316,8 @@
           "m_csa:125"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/027_pdb_1BT3.tsv",
-        "query_chunk_index": 27,
         "row_count": 330,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1BT3"
       },
       {
@@ -351,9 +325,8 @@
           "m_csa:129"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/028_pdb_1OS7.tsv",
-        "query_chunk_index": 28,
         "row_count": 751,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1OS7"
       },
       {
@@ -361,9 +334,8 @@
           "m_csa:131"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/029_pdb_1DOC.tsv",
-        "query_chunk_index": 29,
         "row_count": 578,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1DOC"
       },
       {
@@ -371,9 +343,8 @@
           "m_csa:144"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/030_pdb_1G8K.tsv",
-        "query_chunk_index": 30,
         "row_count": 3410,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1G8K"
       },
       {
@@ -381,9 +352,8 @@
           "m_csa:155"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/031_pdb_1T4C.tsv",
-        "query_chunk_index": 31,
         "row_count": 1320,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1T4C"
       },
       {
@@ -391,9 +361,8 @@
           "m_csa:159"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/032_pdb_1HZY.tsv",
-        "query_chunk_index": 32,
         "row_count": 1470,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1HZY"
       },
       {
@@ -401,9 +370,8 @@
           "m_csa:163"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/033_pdb_1RDD.tsv",
-        "query_chunk_index": 33,
         "row_count": 395,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1RDD"
       },
       {
@@ -411,9 +379,8 @@
           "m_csa:171"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/034_pdb_1M4L.tsv",
-        "query_chunk_index": 34,
         "row_count": 534,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1M4L"
       },
       {
@@ -421,9 +388,8 @@
           "m_csa:180"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/035_pdb_1HYO.tsv",
-        "query_chunk_index": 35,
         "row_count": 511,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1HYO"
       },
       {
@@ -431,9 +397,8 @@
           "m_csa:185"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/036_pdb_1LWY.tsv",
-        "query_chunk_index": 36,
         "row_count": 451,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1LWY"
       },
       {
@@ -441,9 +406,8 @@
           "m_csa:188"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/037_pdb_1XEL.tsv",
-        "query_chunk_index": 37,
         "row_count": 759,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1XEL"
       },
       {
@@ -451,9 +415,8 @@
           "m_csa:191"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/038_pdb_1MEK.tsv",
-        "query_chunk_index": 38,
         "row_count": 5643,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1MEK"
       },
       {
@@ -461,9 +424,8 @@
           "m_csa:192"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/039_pdb_1Z9H.tsv",
-        "query_chunk_index": 39,
         "row_count": 1525,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1Z9H"
       },
       {
@@ -471,9 +433,8 @@
           "m_csa:193"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/040_pdb_1F2V.tsv",
-        "query_chunk_index": 40,
         "row_count": 434,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1F2V"
       },
       {
@@ -481,9 +442,8 @@
           "m_csa:197"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/041_pdb_2TS1.tsv",
-        "query_chunk_index": 41,
         "row_count": 572,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:2TS1"
       },
       {
@@ -491,9 +451,8 @@
           "m_csa:198"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/042_pdb_1V25.tsv",
-        "query_chunk_index": 42,
         "row_count": 1429,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1V25"
       },
       {
@@ -501,9 +460,8 @@
           "m_csa:199"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/043_pdb_1GSA.tsv",
-        "query_chunk_index": 43,
         "row_count": 518,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1GSA"
       },
       {
@@ -511,9 +469,8 @@
           "m_csa:201"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/044_pdb_1XNY.tsv",
-        "query_chunk_index": 44,
         "row_count": 1078,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1XNY"
       },
       {
@@ -521,9 +478,8 @@
           "m_csa:211"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/045_pdb_1IDT.tsv",
-        "query_chunk_index": 45,
         "row_count": 416,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1IDT"
       },
       {
@@ -531,9 +487,8 @@
           "m_csa:213"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/046_pdb_1L6G.tsv",
-        "query_chunk_index": 46,
         "row_count": 1610,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1L6G"
       },
       {
@@ -541,9 +496,8 @@
           "m_csa:217"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/047_pdb_1SC9.tsv",
-        "query_chunk_index": 47,
         "row_count": 722,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1SC9"
       },
       {
@@ -551,9 +505,8 @@
           "m_csa:219"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/048_pdb_1TRK.tsv",
-        "query_chunk_index": 48,
         "row_count": 995,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1TRK"
       },
       {
@@ -561,9 +514,8 @@
           "m_csa:220"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/049_pdb_1MCZ.tsv",
-        "query_chunk_index": 49,
         "row_count": 6552,
-        "status": "parsed_completed_tsv",
+        "status": "completed",
         "structure_key": "pdb:1MCZ"
       },
       {
@@ -571,9 +523,8 @@
           "m_csa:225"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/050_pdb_1VR7.tsv",
-        "query_chunk_index": 50,
         "row_count": 791,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1VR7"
       },
       {
@@ -581,9 +532,8 @@
           "m_csa:230"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/051_pdb_1GZG.tsv",
-        "query_chunk_index": 51,
         "row_count": 1578,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1GZG"
       },
       {
@@ -591,9 +541,8 @@
           "m_csa:239"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/052_pdb_7ATJ.tsv",
-        "query_chunk_index": 52,
         "row_count": 275,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:7ATJ"
       },
       {
@@ -601,9 +550,8 @@
           "m_csa:242"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/053_pdb_2F9R.tsv",
-        "query_chunk_index": 53,
         "row_count": 2419,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:2F9R"
       },
       {
@@ -611,9 +559,8 @@
           "m_csa:250"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/054_pdb_2CPO.tsv",
-        "query_chunk_index": 54,
         "row_count": 175,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:2CPO"
       },
       {
@@ -621,9 +568,8 @@
           "m_csa:254"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/055_pdb_1H3B.tsv",
-        "query_chunk_index": 55,
         "row_count": 716,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1H3B"
       },
       {
@@ -631,9 +577,8 @@
           "m_csa:255"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/056_pdb_1MG5.tsv",
-        "query_chunk_index": 56,
         "row_count": 1333,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1MG5"
       },
       {
@@ -641,9 +586,8 @@
           "m_csa:267"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/057_pdb_1DHP.tsv",
-        "query_chunk_index": 57,
         "row_count": 1448,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1DHP"
       },
       {
@@ -651,9 +595,8 @@
           "m_csa:297"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/058_pdb_1S6L.tsv",
-        "query_chunk_index": 58,
         "row_count": 2707,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1S6L"
       },
       {
@@ -661,9 +604,8 @@
           "m_csa:311"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/059_pdb_7ENL.tsv",
-        "query_chunk_index": 59,
         "row_count": 573,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:7ENL"
       },
       {
@@ -671,9 +613,8 @@
           "m_csa:313"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/060_pdb_1DIZ.tsv",
-        "query_chunk_index": 60,
         "row_count": 879,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1DIZ"
       },
       {
@@ -681,9 +622,8 @@
           "m_csa:321"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/061_pdb_1YT3.tsv",
-        "query_chunk_index": 61,
         "row_count": 205,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1YT3"
       },
       {
@@ -691,9 +631,8 @@
           "m_csa:323"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/062_pdb_2AKJ.tsv",
-        "query_chunk_index": 62,
         "row_count": 312,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:2AKJ"
       },
       {
@@ -701,9 +640,8 @@
           "m_csa:333"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/063_pdb_2O1X.tsv",
-        "query_chunk_index": 63,
         "row_count": 2171,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:2O1X"
       },
       {
@@ -711,9 +649,8 @@
           "m_csa:334"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/064_pdb_1BWZ.tsv",
-        "query_chunk_index": 64,
         "row_count": 317,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1BWZ"
       },
       {
@@ -721,9 +658,8 @@
           "m_csa:346"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/065_pdb_1Q51.tsv",
-        "query_chunk_index": 65,
         "row_count": 5703,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1Q51"
       },
       {
@@ -731,9 +667,8 @@
           "m_csa:352"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/066_pdb_3PMG.tsv",
-        "query_chunk_index": 66,
         "row_count": 1205,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:3PMG"
       },
       {
@@ -741,9 +676,8 @@
           "m_csa:355"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/067_pdb_1CGK.tsv",
-        "query_chunk_index": 67,
         "row_count": 397,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1CGK"
       },
       {
@@ -751,9 +685,8 @@
           "m_csa:356"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/068_pdb_1VZX.tsv",
-        "query_chunk_index": 68,
         "row_count": 939,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1VZX"
       },
       {
@@ -761,9 +694,8 @@
           "m_csa:363"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/069_pdb_1GRC.tsv",
-        "query_chunk_index": 69,
         "row_count": 1281,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1GRC"
       },
       {
@@ -771,9 +703,8 @@
           "m_csa:369"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/070_pdb_1DLG.tsv",
-        "query_chunk_index": 70,
         "row_count": 541,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1DLG"
       },
       {
@@ -781,9 +712,8 @@
           "m_csa:370"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/071_pdb_2YBP.tsv",
-        "query_chunk_index": 71,
         "row_count": 467,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:2YBP"
       },
       {
@@ -791,9 +721,8 @@
           "m_csa:375"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/072_pdb_4TS9.tsv",
-        "query_chunk_index": 72,
         "row_count": 2002,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:4TS9"
       },
       {
@@ -801,9 +730,8 @@
           "m_csa:384"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/073_pdb_1A8H.tsv",
-        "query_chunk_index": 73,
         "row_count": 484,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1A8H"
       },
       {
@@ -811,9 +739,8 @@
           "m_csa:388"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/074_pdb_5HRC.tsv",
-        "query_chunk_index": 74,
         "row_count": 1174,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:5HRC"
       },
       {
@@ -821,9 +748,8 @@
           "m_csa:392"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/075_pdb_1AF7.tsv",
-        "query_chunk_index": 75,
         "row_count": 543,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1AF7"
       },
       {
@@ -831,9 +757,8 @@
           "m_csa:396"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/076_pdb_1AM5.tsv",
-        "query_chunk_index": 76,
         "row_count": 250,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1AM5"
       },
       {
@@ -841,9 +766,8 @@
           "m_csa:397"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/077_pdb_1AMY.tsv",
-        "query_chunk_index": 77,
         "row_count": 731,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1AMY"
       },
       {
@@ -851,9 +775,8 @@
           "m_csa:402"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/078_pdb_1ARZ.tsv",
-        "query_chunk_index": 78,
         "row_count": 2540,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1ARZ"
       },
       {
@@ -861,9 +784,8 @@
           "m_csa:403"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/079_pdb_1AST.tsv",
-        "query_chunk_index": 79,
         "row_count": 130,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1AST"
       },
       {
@@ -871,9 +793,8 @@
           "m_csa:407"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/080_pdb_2O7R.tsv",
-        "query_chunk_index": 80,
         "row_count": 710,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:2O7R"
       },
       {
@@ -881,9 +802,8 @@
           "m_csa:409"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/081_pdb_1AW8.tsv",
-        "query_chunk_index": 81,
         "row_count": 234,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1AW8"
       },
       {
@@ -891,9 +811,8 @@
           "m_csa:418"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/082_pdb_1B8G.tsv",
-        "query_chunk_index": 82,
         "row_count": 1622,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1B8G"
       },
       {
@@ -901,9 +820,8 @@
           "m_csa:419"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/083_pdb_1B9H.tsv",
-        "query_chunk_index": 83,
         "row_count": 750,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1B9H"
       },
       {
@@ -911,9 +829,8 @@
           "m_csa:423"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/084_pdb_1BHG.tsv",
-        "query_chunk_index": 84,
         "row_count": 1362,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1BHG"
       },
       {
@@ -921,9 +838,8 @@
           "m_csa:424"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/085_pdb_1BJO.tsv",
-        "query_chunk_index": 85,
         "row_count": 1026,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1BJO"
       },
       {
@@ -931,9 +847,8 @@
           "m_csa:428"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/086_pdb_1BQC.tsv",
-        "query_chunk_index": 86,
         "row_count": 702,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1BQC"
       },
       {
@@ -941,9 +856,8 @@
           "m_csa:431"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/087_pdb_1BS9.tsv",
-        "query_chunk_index": 87,
         "row_count": 650,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1BS9"
       },
       {
@@ -951,9 +865,8 @@
           "m_csa:438"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/088_pdb_1C4Z.tsv",
-        "query_chunk_index": 88,
         "row_count": 974,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1C4Z"
       },
       {
@@ -961,9 +874,8 @@
           "m_csa:440"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/089_pdb_1QK2.tsv",
-        "query_chunk_index": 89,
         "row_count": 1379,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1QK2"
       },
       {
@@ -971,9 +883,8 @@
           "m_csa:444"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/090_pdb_1CEL.tsv",
-        "query_chunk_index": 90,
         "row_count": 340,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1CEL"
       },
       {
@@ -981,9 +892,8 @@
           "m_csa:448"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/091_pdb_1CHK.tsv",
-        "query_chunk_index": 91,
         "row_count": 144,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1CHK"
       },
       {
@@ -991,9 +901,8 @@
           "m_csa:453"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/092_pdb_1JKM.tsv",
-        "query_chunk_index": 92,
         "row_count": 1473,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1JKM"
       },
       {
@@ -1001,9 +910,8 @@
           "m_csa:474"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/093_pdb_3ZO8.tsv",
-        "query_chunk_index": 93,
         "row_count": 1040,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:3ZO8"
       },
       {
@@ -1011,9 +919,8 @@
           "m_csa:477"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/094_pdb_1CQQ.tsv",
-        "query_chunk_index": 94,
         "row_count": 204,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1CQQ"
       },
       {
@@ -1021,9 +928,8 @@
           "m_csa:480"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/095_pdb_1CZF.tsv",
-        "query_chunk_index": 95,
         "row_count": 16,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1CZF"
       },
       {
@@ -1031,9 +937,8 @@
           "m_csa:484"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/096_pdb_1D8D.tsv",
-        "query_chunk_index": 96,
         "row_count": 355,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1D8D"
       },
       {
@@ -1041,9 +946,8 @@
           "m_csa:493"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/097_pdb_1DJ0.tsv",
-        "query_chunk_index": 97,
         "row_count": 339,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1DJ0"
       },
       {
@@ -1051,9 +955,8 @@
           "m_csa:497"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/098_pdb_1YCF.tsv",
-        "query_chunk_index": 98,
         "row_count": 2776,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1YCF"
       },
       {
@@ -1061,9 +964,8 @@
           "m_csa:509"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/099_pdb_1R76.tsv",
-        "query_chunk_index": 99,
         "row_count": 162,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1R76"
       },
       {
@@ -1071,9 +973,8 @@
           "m_csa:511"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/100_pdb_1NMW.tsv",
-        "query_chunk_index": 100,
         "row_count": 1129,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1NMW"
       },
       {
@@ -1081,9 +982,8 @@
           "m_csa:517"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/101_pdb_1I6P.tsv",
-        "query_chunk_index": 101,
         "row_count": 463,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1I6P"
       },
       {
@@ -1091,9 +991,8 @@
           "m_csa:526"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/102_pdb_4MDH.tsv",
-        "query_chunk_index": 102,
         "row_count": 1350,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:4MDH"
       },
       {
@@ -1101,9 +1000,8 @@
           "m_csa:536"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/103_pdb_1G8P.tsv",
-        "query_chunk_index": 103,
         "row_count": 428,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1G8P"
       },
       {
@@ -1111,9 +1009,8 @@
           "m_csa:541"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/104_pdb_1U3F.tsv",
-        "query_chunk_index": 104,
         "row_count": 854,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1U3F"
       },
       {
@@ -1121,9 +1018,8 @@
           "m_csa:545"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/105_pdb_1F2D.tsv",
-        "query_chunk_index": 105,
         "row_count": 3032,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1F2D"
       },
       {
@@ -1131,9 +1027,8 @@
           "m_csa:549"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/106_pdb_1EXN.tsv",
-        "query_chunk_index": 106,
         "row_count": 1205,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1EXN"
       },
       {
@@ -1141,9 +1036,8 @@
           "m_csa:551"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/107_pdb_1FOH.tsv",
-        "query_chunk_index": 107,
         "row_count": 2181,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1FOH"
       },
       {
@@ -1151,9 +1045,8 @@
           "m_csa:563"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/108_pdb_1KQF.tsv",
-        "query_chunk_index": 108,
         "row_count": 935,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1KQF"
       },
       {
@@ -1161,9 +1054,8 @@
           "m_csa:566"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/109_pdb_1GCU.tsv",
-        "query_chunk_index": 109,
         "row_count": 851,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1GCU"
       },
       {
@@ -1171,9 +1063,8 @@
           "m_csa:590"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/110_pdb_1IDJ.tsv",
-        "query_chunk_index": 110,
         "row_count": 110,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1IDJ"
       },
       {
@@ -1181,9 +1072,8 @@
           "m_csa:594"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/111_pdb_1WD8.tsv",
-        "query_chunk_index": 111,
         "row_count": 344,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1WD8"
       },
       {
@@ -1191,9 +1081,8 @@
           "m_csa:606"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/112_pdb_1QSG.tsv",
-        "query_chunk_index": 112,
         "row_count": 6044,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1QSG"
       },
       {
@@ -1201,9 +1090,8 @@
           "m_csa:609"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/113_pdb_1SSX.tsv",
-        "query_chunk_index": 113,
         "row_count": 158,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1SSX"
       },
       {
@@ -1211,9 +1099,8 @@
           "m_csa:614"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/114_pdb_1Q3N.tsv",
-        "query_chunk_index": 114,
         "row_count": 772,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1Q3N"
       },
       {
@@ -1221,9 +1108,8 @@
           "m_csa:617"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/115_pdb_1BG6.tsv",
-        "query_chunk_index": 115,
         "row_count": 567,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1BG6"
       },
       {
@@ -1231,9 +1117,8 @@
           "m_csa:620"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/116_pdb_1GUF.tsv",
-        "query_chunk_index": 116,
         "row_count": 1608,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1GUF"
       },
       {
@@ -1241,9 +1126,8 @@
           "m_csa:627"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/117_pdb_1L6P.tsv",
-        "query_chunk_index": 117,
         "row_count": 208,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1L6P"
       },
       {
@@ -1251,9 +1135,8 @@
           "m_csa:628"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/118_pdb_1KSJ.tsv",
-        "query_chunk_index": 118,
         "row_count": 762,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1KSJ"
       },
       {
@@ -1261,9 +1144,8 @@
           "m_csa:634"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/119_pdb_1V0Y.tsv",
-        "query_chunk_index": 119,
         "row_count": 693,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1V0Y"
       },
       {
@@ -1271,9 +1153,8 @@
           "m_csa:647"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/120_pdb_1KNY.tsv",
-        "query_chunk_index": 120,
         "row_count": 546,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1KNY"
       },
       {
@@ -1281,9 +1162,8 @@
           "m_csa:651"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/121_pdb_1IG8.tsv",
-        "query_chunk_index": 121,
         "row_count": 561,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1IG8"
       },
       {
@@ -1291,9 +1171,8 @@
           "m_csa:686"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/122_pdb_1E1A.tsv",
-        "query_chunk_index": 122,
         "row_count": 229,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1E1A"
       },
       {
@@ -1301,9 +1180,8 @@
           "m_csa:688"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/123_pdb_2ODQ.tsv",
-        "query_chunk_index": 123,
         "row_count": 729,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:2ODQ"
       },
       {
@@ -1311,9 +1189,8 @@
           "m_csa:709"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/124_pdb_1DJ1.tsv",
-        "query_chunk_index": 124,
         "row_count": 342,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1DJ1"
       },
       {
@@ -1321,9 +1198,8 @@
           "m_csa:714"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/125_pdb_1FFT.tsv",
-        "query_chunk_index": 125,
         "row_count": 1277,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1FFT"
       },
       {
@@ -1331,9 +1207,8 @@
           "m_csa:723"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/126_pdb_1S01.tsv",
-        "query_chunk_index": 126,
         "row_count": 621,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1S01"
       },
       {
@@ -1341,9 +1216,8 @@
           "m_csa:750"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/127_pdb_1U8V.tsv",
-        "query_chunk_index": 127,
         "row_count": 1498,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1U8V"
       },
       {
@@ -1351,9 +1225,8 @@
           "m_csa:853"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/128_pdb_1G64.tsv",
-        "query_chunk_index": 128,
         "row_count": 1254,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1G64"
       },
       {
@@ -1361,9 +1234,8 @@
           "m_csa:854"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/129_pdb_1OHV.tsv",
-        "query_chunk_index": 129,
         "row_count": 3046,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1OHV"
       },
       {
@@ -1371,9 +1243,8 @@
           "m_csa:866"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/130_pdb_1L7A.tsv",
-        "query_chunk_index": 130,
         "row_count": 1439,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:1L7A"
       },
       {
@@ -1381,9 +1252,8 @@
           "m_csa:916"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/131_pdb_4Z71.tsv",
-        "query_chunk_index": 131,
         "row_count": 300,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:4Z71"
       },
       {
@@ -1391,9 +1261,8 @@
           "m_csa:990"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/132_pdb_5DQR.tsv",
-        "query_chunk_index": 132,
         "row_count": 3441,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:5DQR"
       },
       {
@@ -1401,9 +1270,8 @@
           "m_csa:994"
         ],
         "output": "/private/tmp/catalytic-earth-heldout-vs-train-single-query-702-20260528/chunks/133_pdb_4BZC.tsv",
-        "query_chunk_index": 133,
         "row_count": 1470,
-        "status": "parsed_completed_tsv",
+        "status": "reused",
         "structure_key": "pdb:4BZC"
       }
     ],
@@ -38469,8 +38337,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 0,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 330,
         "review_use": "mixed_neighborhood_review_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -38516,8 +38382,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 1,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 171,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -38557,8 +38421,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 2,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 160,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -38598,8 +38460,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 3,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 301,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -38645,8 +38505,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 4,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 175,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -38686,8 +38544,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 5,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 301,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 3,
@@ -38733,8 +38589,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 6,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 222,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -38778,8 +38632,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 7,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 89,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -38819,8 +38671,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 8,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 107,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -38865,8 +38715,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 9,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 217,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -38911,8 +38759,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 10,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 340,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -38952,8 +38798,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 11,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 319,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -38993,8 +38837,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 12,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 305,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 17,
@@ -39047,8 +38889,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 13,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 251,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39088,8 +38928,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 14,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 171,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39129,8 +38967,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 15,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 259,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39170,8 +39006,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 16,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 230,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39211,8 +39045,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 17,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 162,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -39257,8 +39089,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 18,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 309,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39298,8 +39128,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 19,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 160,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -39344,8 +39172,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 20,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 172,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39385,8 +39211,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 21,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 76,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39426,8 +39250,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 22,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 318,
         "review_use": "mixed_neighborhood_review_candidate",
         "same_family_high_tm_neighbor_structure_count": 4,
@@ -39481,8 +39303,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 23,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 95,
         "review_use": "mixed_neighborhood_review_candidate",
         "same_family_high_tm_neighbor_structure_count": 4,
@@ -39531,8 +39351,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 24,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 349,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 3,
@@ -39578,8 +39396,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 25,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 70,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39623,8 +39439,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 26,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 130,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39664,8 +39478,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 27,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 189,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39705,8 +39517,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 28,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 160,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39746,8 +39556,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 29,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 269,
         "review_use": "fold_conflict_candidate",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39797,8 +39605,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 30,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 406,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 4,
@@ -39847,8 +39653,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 31,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 346,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -39892,8 +39696,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 32,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 334,
         "review_use": "mixed_neighborhood_review_candidate",
         "same_family_high_tm_neighbor_structure_count": 3,
@@ -39946,8 +39748,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 33,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 181,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -39987,8 +39787,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 34,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 268,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -40028,8 +39826,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 35,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 124,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -40069,8 +39865,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 36,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 219,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -40110,8 +39904,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 37,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 339,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 8,
@@ -40164,8 +39956,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 38,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 310,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -40205,8 +39995,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 39,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 222,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -40246,8 +40034,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 40,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 203,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -40287,8 +40073,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 41,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 270,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 4,
@@ -40335,8 +40119,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 42,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 350,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -40380,8 +40162,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 43,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 236,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 4,
@@ -40428,8 +40208,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 44,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 283,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -40473,8 +40251,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 45,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 144,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -40514,8 +40290,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 46,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 371,
         "review_use": "fold_conflict_candidate",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -40563,8 +40337,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 47,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 321,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -40619,8 +40391,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 48,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 261,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -40665,8 +40435,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 49,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 253,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 8,
@@ -40720,8 +40488,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 50,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 185,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -40765,8 +40531,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 51,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 369,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 17,
@@ -40819,8 +40583,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 52,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 148,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -40864,8 +40626,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 53,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 363,
         "review_use": "mixed_neighborhood_review_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -40920,8 +40680,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 54,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 110,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -40961,8 +40719,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 55,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 160,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -41002,8 +40758,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 56,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 323,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 6,
@@ -41056,8 +40810,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 57,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 334,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 19,
@@ -41113,8 +40865,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 58,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 222,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -41154,8 +40904,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 59,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 268,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 11,
@@ -41208,8 +40956,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 60,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 241,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -41249,8 +40995,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 61,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 113,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -41294,8 +41038,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 62,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 166,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -41339,8 +41081,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 63,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 337,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 4,
@@ -41389,8 +41129,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 64,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 154,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -41430,8 +41168,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 65,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 299,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 11,
@@ -41485,8 +41221,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 66,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 327,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -41530,8 +41264,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 67,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 192,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -41571,8 +41303,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 68,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 261,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -41612,8 +41342,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 69,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 322,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -41653,8 +41381,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 70,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 197,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -41698,8 +41424,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 71,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 135,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -41739,8 +41463,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 72,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 363,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 4,
@@ -41787,8 +41509,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 73,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 248,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -41833,8 +41553,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 74,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 304,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -41879,8 +41597,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 75,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 255,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -41920,8 +41636,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 76,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 111,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -41965,8 +41679,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 77,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 340,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 15,
@@ -42019,8 +41731,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 78,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 373,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -42063,10 +41773,8 @@
           "target_structure_key": "pdb:4PC7",
           "violates_target": false
         },
-        "pull_from_canaries_or_test_slices_before_model_claims": true,
-        "pull_reason": "prior_full_tm_label_contested_do_not_anchor_metrics",
-        "query_chunk_index": 79,
-        "query_chunk_status": "parsed_completed_tsv",
+        "pull_from_canaries_or_test_slices_before_model_claims": false,
+        "pull_reason": null,
         "retained_train_hit_count_observed": 83,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -42106,8 +41814,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 80,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 319,
         "review_use": "mixed_neighborhood_review_candidate",
         "same_family_high_tm_neighbor_structure_count": 12,
@@ -42161,8 +41867,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 81,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 63,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -42207,8 +41911,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 82,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 362,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 9,
@@ -42260,8 +41962,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 83,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 316,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 15,
@@ -42314,8 +42014,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 84,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 368,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 10,
@@ -42368,8 +42066,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 85,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 282,
         "review_use": "mixed_neighborhood_review_candidate",
         "same_family_high_tm_neighbor_structure_count": 14,
@@ -42423,8 +42119,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 86,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 308,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 24,
@@ -42478,8 +42172,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 87,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 288,
         "review_use": "mixed_neighborhood_review_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -42528,8 +42220,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 88,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 293,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -42569,8 +42259,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 89,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 337,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -42610,8 +42298,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 90,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 97,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -42651,8 +42337,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 91,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 70,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -42692,8 +42376,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 92,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 361,
         "review_use": "mixed_neighborhood_review_candidate",
         "same_family_high_tm_neighbor_structure_count": 10,
@@ -42748,8 +42430,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 93,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 160,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -42789,8 +42469,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 94,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 101,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -42838,8 +42516,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 95,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 11,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -42883,8 +42559,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 96,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 170,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -42924,8 +42598,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 97,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 104,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -42965,8 +42637,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": true,
         "pull_reason": "label_quality_revision_already_relabels_provisional_bronze_row_out_of_scope",
-        "query_chunk_index": 98,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 381,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 3,
@@ -43017,8 +42687,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 99,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 104,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -43058,8 +42726,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 100,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 181,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -43099,8 +42765,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 101,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 230,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -43140,8 +42804,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 102,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 369,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -43186,8 +42848,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 103,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 214,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -43227,8 +42887,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 104,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 227,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -43274,8 +42932,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 105,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 381,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 3,
@@ -43322,8 +42978,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 106,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 316,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -43363,8 +43017,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 107,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 348,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -43408,8 +43060,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 108,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 355,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 3,
@@ -43455,8 +43105,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 109,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 353,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 3,
@@ -43502,8 +43150,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 110,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 34,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -43543,8 +43189,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 111,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 165,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -43584,8 +43228,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 112,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 383,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 7,
@@ -43639,8 +43281,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 113,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 73,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 4,
@@ -43687,8 +43327,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 114,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 333,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 22,
@@ -43745,8 +43383,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 115,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 280,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -43790,8 +43426,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 116,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 351,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 3,
@@ -43837,8 +43471,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 117,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 106,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -43878,8 +43510,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 118,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 321,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 6,
@@ -43933,8 +43563,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 119,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 324,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -43974,8 +43602,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 120,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 193,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -44015,8 +43641,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 121,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 269,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -44056,8 +43680,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 122,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 108,
         "review_use": "mixed_neighborhood_review_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -44109,8 +43731,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 123,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 336,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 6,
@@ -44159,8 +43779,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 124,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 184,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 1,
@@ -44204,8 +43822,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": true,
         "pull_reason": "future_family_boundary_blocker_quarantine_from_clean_canaries_until_policy_exists",
-        "query_chunk_index": 125,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 264,
         "review_use": "mixed_neighborhood_review_candidate",
         "same_family_high_tm_neighbor_structure_count": 2,
@@ -44251,10 +43867,8 @@
           "target_structure_key": "pdb:1NLU",
           "violates_target": true
         },
-        "pull_from_canaries_or_test_slices_before_model_claims": true,
-        "pull_reason": "prior_full_tm_label_contested_do_not_anchor_metrics",
-        "query_chunk_index": 126,
-        "query_chunk_status": "parsed_completed_tsv",
+        "pull_from_canaries_or_test_slices_before_model_claims": false,
+        "pull_reason": null,
         "retained_train_hit_count_observed": 270,
         "review_use": "fold_conflict_candidate",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -44299,8 +43913,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": true,
         "pull_reason": "label_quality_revision_already_relabels_provisional_bronze_row_out_of_scope",
-        "query_chunk_index": 127,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 241,
         "review_use": "oos_fold_conflict_hard_negative_candidate",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -44345,8 +43957,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 128,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 308,
         "review_use": "fold_conflict_candidate",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -44390,8 +44000,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 129,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 378,
         "review_use": "dense_same_family_transfer_candidate",
         "same_family_high_tm_neighbor_structure_count": 13,
@@ -44444,8 +44052,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 130,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 339,
         "review_use": "mixed_neighborhood_review_candidate",
         "same_family_high_tm_neighbor_structure_count": 14,
@@ -44499,8 +44105,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 131,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 85,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -44540,8 +44144,6 @@
         },
         "pull_from_canaries_or_test_slices_before_model_claims": false,
         "pull_reason": null,
-        "query_chunk_index": 132,
-        "query_chunk_status": "parsed_completed_tsv",
         "retained_train_hit_count_observed": 391,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -44579,10 +44181,8 @@
           "target_structure_key": "pdb:1C17",
           "violates_target": false
         },
-        "pull_from_canaries_or_test_slices_before_model_claims": true,
-        "pull_reason": "prior_full_tm_label_contested_do_not_anchor_metrics",
-        "query_chunk_index": 133,
-        "query_chunk_status": "parsed_completed_tsv",
+        "pull_from_canaries_or_test_slices_before_model_claims": false,
+        "pull_reason": null,
         "retained_train_hit_count_observed": 252,
         "review_use": "near_orphan_candidate_from_retained_hits",
         "same_family_high_tm_neighbor_structure_count": 0,
@@ -44610,62 +44210,31 @@
   "integrated_review_policy": {
     "non_pull_shortlist_rows": [
       {
-        "entry_id": "m_csa:486",
-        "entry_name": "polynucleotide 5'-phosphatase",
-        "prior_close_read_disposition": null,
-        "reason_not_pulled_by_this_audit": "prior close-read kept current label or current hit is retained as review note only"
-      },
-      {
         "entry_id": "m_csa:506",
         "entry_name": "ferredoxin--NADP reductase",
         "prior_close_read_disposition": "keep_current_label",
-        "reason_not_pulled_by_this_audit": "prior close-read kept current label or current hit is retained as review note only"
-      },
-      {
-        "entry_id": "m_csa:535",
-        "entry_name": "protein-synthesizing GTPase (elongation factor Tu)",
-        "prior_close_read_disposition": null,
-        "reason_not_pulled_by_this_audit": "prior close-read kept current label or current hit is retained as review note only"
-      },
-      {
-        "entry_id": "m_csa:854",
-        "entry_name": "4-aminobutyrate transaminase",
-        "prior_close_read_disposition": null,
-        "reason_not_pulled_by_this_audit": "prior close-read kept current label or current hit is retained as review note only"
+        "reason_not_pulled_by_this_audit": "prior close-read kept current label; heuristic hit is retained as review note only"
       },
       {
         "entry_id": "m_csa:855",
         "entry_name": "cysteine desulfurase",
         "prior_close_read_disposition": "keep_current_label",
-        "reason_not_pulled_by_this_audit": "prior close-read kept current label or current hit is retained as review note only"
+        "reason_not_pulled_by_this_audit": "prior close-read kept current label; heuristic hit is retained as review note only"
       },
       {
         "entry_id": "m_csa:862",
         "entry_name": "cytochrome-b5 reductase",
         "prior_close_read_disposition": "keep_current_label",
-        "reason_not_pulled_by_this_audit": "prior close-read kept current label or current hit is retained as review note only"
-      },
-      {
-        "entry_id": "m_csa:935",
-        "entry_name": "nitric-oxide synthase",
-        "prior_close_read_disposition": null,
-        "reason_not_pulled_by_this_audit": "prior close-read kept current label or current hit is retained as review note only"
+        "reason_not_pulled_by_this_audit": "prior close-read kept current label; heuristic hit is retained as review note only"
       },
       {
         "entry_id": "m_csa:978",
         "entry_name": "D-arginine dehydrogenase",
         "prior_close_read_disposition": "keep_current_label",
-        "reason_not_pulled_by_this_audit": "prior close-read kept current label or current hit is retained as review note only"
+        "reason_not_pulled_by_this_audit": "prior close-read kept current label; heuristic hit is retained as review note only"
       }
     ],
     "rows_to_pull_or_quarantine_before_model_claims": [
-      {
-        "entry_id": "m_csa:403",
-        "entry_name": "astacin",
-        "pull_class": "must_pull_from_metric_anchor_slices",
-        "reason": "prior full-TM signal marked label_contested_do_not_anchor_metrics; keep out of canary/test claims until reviewed",
-        "source": "artifacts/v3_full_tm_structural_signal_702_20260528.json"
-      },
       {
         "entry_id": "m_csa:497",
         "entry_name": "nitric-oxide reductase (FMN)",
@@ -44681,13 +44250,6 @@
         "source": "artifacts/v3_label_factory_review_import_mechanism_mismatch_close_read_702_20260527.json"
       },
       {
-        "entry_id": "m_csa:723",
-        "entry_name": "subtilisin",
-        "pull_class": "must_pull_from_metric_anchor_slices",
-        "reason": "prior full-TM signal marked label_contested_do_not_anchor_metrics; keep out of canary/test claims until reviewed",
-        "source": "artifacts/v3_full_tm_structural_signal_702_20260528.json"
-      },
-      {
         "entry_id": "m_csa:735",
         "entry_name": "cytochrome-c oxidase (BA3 type)",
         "pull_class": "quarantine_from_clean_canaries",
@@ -44700,20 +44262,12 @@
         "pull_class": "must_pull_or_keep_pulled",
         "reason": "already-resolved label-quality blocker from provisional label_factory_review_import population",
         "source": "artifacts/v3_m_csa750_label_revision_702_20260527.json"
-      },
-      {
-        "entry_id": "m_csa:994",
-        "entry_name": "deoxynucleoside triphosphate triphosphohydrolase SAMHD1",
-        "pull_class": "must_pull_from_metric_anchor_slices",
-        "reason": "prior full-TM signal marked label_contested_do_not_anchor_metrics; keep out of canary/test claims until reviewed",
-        "source": "artifacts/v3_full_tm_structural_signal_702_20260528.json"
       }
     ],
     "summary": {
-      "must_pull_from_metric_anchor_slices_count": 3,
       "must_pull_or_keep_pulled_count": 2,
       "quarantine_from_clean_canaries_count": 2,
-      "rows_requiring_pull_or_quarantine_before_model_claims": 7,
+      "rows_requiring_pull_or_quarantine_before_model_claims": 4,
       "structural_neighborhood_rows_classified": 134
     }
   },
@@ -44816,62 +44370,76 @@
     "rules": [
       {
         "applies_to_fingerprint": "flavin_dehydrogenase_reductase",
-        "description": "Flag flavin-dehydrogenase/reductase provisional rows with di-iron/non-heme/NO-reductase/Fe-S/radical/semiquinone language.",
-        "patterns": [
-          "flavodiiron",
+        "rule_id": "flavin_metal_radical_conflict",
+        "terms": [
           "di-iron",
+          "diiron",
           "diferrous",
           "non-heme",
+          "nonheme",
+          "nitric oxide reductase",
+          "nitric-oxide reductase",
           "NO reductase",
           "Fe-S",
-          "ketyl radical",
-          "enoxy radical",
+          "iron-sulfur",
           "radical",
-          "semiquinone"
-        ],
-        "rule_id": "flavin_metal_radical_conflict"
+          "semiquinone",
+          "ketyl"
+        ]
       },
       {
         "applies_to_fingerprint": "ser_his_acid_hydrolase",
-        "description": "Flag Ser-His-Asp/Glu hydrolase provisional rows if Cys/thiolate appears as the nucleophile.",
-        "patterns": [
-          "Cys nucleophile"
-        ],
-        "rule_id": "ser_his_cys_nucleophile_conflict"
+        "rule_id": "ser_his_cys_nucleophile_conflict",
+        "terms": [
+          "cys",
+          "cysteine",
+          "thiolate",
+          "nucleophile"
+        ]
       },
       {
         "applies_to_fingerprint": "heme_peroxidase_oxidase",
-        "description": "Flag heme peroxidase/oxidase provisional rows with non-heme or mixed-metal terminal oxidase boundary language.",
-        "patterns": [
+        "rule_id": "heme_nonheme_or_mixed_metal_oxidase_signal",
+        "terms": [
           "non-heme",
-          "di-iron",
+          "nonheme",
           "copper",
-          "manganese",
-          "molybdenum",
-          "pterin",
-          "terminal oxidase"
-        ],
-        "rule_id": "heme_nonheme_or_mixed_metal_oxidase_signal"
+          "CuA",
+          "CuB",
+          "heme-Cu",
+          "haem-Cu",
+          "terminal oxidase",
+          "binuclear centre"
+        ]
       },
       {
         "applies_to_fingerprint": "metal_dependent_hydrolase",
-        "description": "Flag metal-dependent hydrolase provisional rows at FGly/sulfatase or nucleotide/NTPase boundary lanes.",
-        "patterns": [
+        "rule_id": "metal_dependent_hydrolase_boundary_signal",
+        "terms": [
           "FGly",
+          "formylglycine",
           "sulfatase",
-          "nucleotide hydrolase"
-        ],
-        "rule_id": "metal_sulfatase_or_nucleotide_boundary"
+          "sulphatase",
+          "sulfate ester",
+          "sulphate ester",
+          "nucleotide",
+          "nucleotidase",
+          "phosphodiesterase",
+          "ATP",
+          "GTP"
+        ]
       },
       {
         "applies_to_fingerprint": "plp_dependent_enzyme",
-        "description": "Flag PLP provisional rows with coupled B12/cobalamin/radical/Fe-S language.",
-        "patterns": [
-          "cobalamin/B12",
+        "rule_id": "plp_cobalamin_radical_coupling_conflict",
+        "terms": [
+          "cobalamin",
+          "B12",
+          "adenosylcobalamin",
+          "radical",
           "Fe-S",
-          "radical"
-        ],
-        "rule_id": "plp_b12_or_radical_boundary"
+          "iron-sulfur"
+        ]
       }
     ],
     "shortlist_rows": [
@@ -44888,10 +44456,10 @@
         "entry_name": "polynucleotide 5'-phosphatase",
         "heuristic_priority": "medium",
         "matched_signals": [
-          "nucleotide hydrolase"
+          "nucleotide"
         ],
-        "mechanism_excerpt": "m_csa:486 polynucleotide 5'-phosphatase polynucleotide 5'-phosphatase is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.5051 clears the 0.4115 floor and the review context reports role_inferred cofactor evidence. polynucleotide 5'-phosphatase is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.5051 clears the 0.4115 floor and the review context reports role_inferred cofactor evidence. polynucleotide 5'-phosphatase The 5'-phosphopolynucleotide substrate is hydrolysed int",
-        "rule_id": "metal_sulfatase_or_nucleotide_boundary"
+        "mechanism_excerpt": "polynucleotide 5'-phosphatase is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.5051 clears the 0.4115 floor and the review context reports role_inferred cofactor evidence. The 5'-phosphopolynucleotide substrat",
+        "rule_id": "metal_dependent_hydrolase_boundary_signal"
       },
       {
         "action": "expert_review_shortlist_only_no_automatic_relabel",
@@ -44908,7 +44476,7 @@
         "matched_signals": [
           "semiquinone"
         ],
-        "mechanism_excerpt": "tion of the reduction potential at the FAD. Ferredoxin (Fd) transfers an electron to FAD via the pi-system of Phe65 of Fd. A proton is transferred from the hydroxyl group of Fd S54, through Glu312 and Ser96, to the isoalloxazine N5 position to produce neutral semiquinone. A second molecule of Fd transfers an electron to the semiquinone to produce anionic hydroquinone. A hydride is transferred from the N5 position of the hydroquinone to the C4 position of NADP+ to produce FAD and NADPH. alter redox potential electro",
+        "mechanism_excerpt": "l at the FAD. Ferredoxin (Fd) transfers an electron to FAD via the pi-system of Phe65 of Fd. A proton is transferred from the hydroxyl group of Fd S54, through Glu312 and Ser96, to the isoalloxazine N5 position to produce neutral semiquinone. A second molecule of Fd transfers an electron to the semiquinone to produce anionic hydroquinone. A hydride is transferred from the N5 position of the hydroquinone to the C4 position of NADP+ to produce FAD and NADPH.",
         "prior_close_read_disposition": "keep_current_label",
         "prior_close_read_rationale": "Semiquinone is an on-path FAD redox intermediate; the mechanism ends in hydride transfer from FAD hydroquinone to NADP+, fitting the v1 flavin dehydrogenase/reductase fingerprint.",
         "rule_id": "flavin_metal_radical_conflict"
@@ -44926,10 +44494,10 @@
         "entry_name": "protein-synthesizing GTPase (elongation factor Tu)",
         "heuristic_priority": "medium",
         "matched_signals": [
-          "nucleotide hydrolase"
+          "GTP"
         ],
-        "mechanism_excerpt": "m_csa:535 protein-synthesizing GTPase (elongation factor Tu) protein-synthesizing GTPase (elongation factor Tu) is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.6017 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence. protein-synthesizing GTPase (elongation factor Tu) is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.6017 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence. protein-synthesiz",
-        "rule_id": "metal_sulfatase_or_nucleotide_boundary"
+        "mechanism_excerpt": "protein-synthesizing GTPase (elongation factor Tu) is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.6017 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence. The reaction of the GTPase of",
+        "rule_id": "metal_dependent_hydrolase_boundary_signal"
       },
       {
         "action": "expert_review_shortlist_only_no_automatic_relabel",
@@ -44945,9 +44513,10 @@
         "heuristic_priority": "medium",
         "matched_signals": [
           "copper",
-          "terminal oxidase"
+          "CuB",
+          "binuclear centre"
         ],
-        "mechanism_excerpt": "view context reports ligand_supported cofactor evidence. ubiquinol oxidase (H+-transporting) The bo3 ubiquinol oxidase has a tightly bound ubiquinol at the QH (high affinity) site, low-spin protoheme b (heme b) and a redox active binuclear centre comprising a copper ion (CuB) and an O-type heme (heme o3). Tyr 288 is near CuB and heme o3, and has a low pKa due to a covalent bond with His 284. In the resting (oxidised or O) state, the heme o3 contains Fe(III) and CuB is Cu(II). A hydroxide ion is bound by Fe and CuB.",
+        "mechanism_excerpt": "3 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence. The bo3 ubiquinol oxidase has a tightly bound ubiquinol at the QH (high affinity) site, low-spin protoheme b (heme b) and a redox active binuclear centre comprising a copper ion (CuB) and an O-type heme (heme o3). Tyr 288 is near CuB and heme o3, and has a low pKa due to a covalent bond with His 284. In the resting (oxidised or O) state, the heme o3 contains Fe(III",
         "prior_close_read_disposition": "move_to_secondary_or_future_family_blocker",
         "prior_close_read_rationale": "Mixed heme-Cu terminal oxidase/proton-pumping chemistry is broader than the seed examples, but heme-mediated O2 reduction remains close enough that OOS relabel is not fail-closed. Exact blocker: need a heme_copper_terminal_oxidase subfamily policy before separating it from heme_peroxidase_oxidase.",
         "rule_id": "heme_nonheme_or_mixed_metal_oxidase_signal"
@@ -44966,30 +44535,14 @@
         "heuristic_priority": "medium",
         "matched_signals": [
           "copper",
-          "terminal oxidase"
+          "CuA",
+          "CuB",
+          "binuclear centre"
         ],
-        "mechanism_excerpt": "nce. cytochrome-c oxidase (BA3 type) is provisionally assigned to heme_peroxidase_oxidase: retrieval score 0.7008 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence. cytochrome-c oxidase (BA3 type) The ba3-type COX has a copper CuA centre (comprising two copper ions), a haem b, and a redox active binuclear centre comprising CuB and a haem As3 iron. Tyr 237 is near CuB and haem As3, and has a low pKa due to a covalent bond with His 233. In the resting (oxidised or O) state, the",
+        "mechanism_excerpt": "cytochrome-c oxidase (BA3 type) is provisionally assigned to heme_peroxidase_oxidase: retrieval score 0.7008 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence. The ba3-type COX has a copper CuA centre (comprising two copper ions), a haem b, and a redox active binuclear centre comprising CuB and a haem As3 iron. Tyr 237 is near CuB and haem As3, and has a low pKa due to a covalent bond with His 233. In the rest",
         "prior_close_read_disposition": "move_to_secondary_or_future_family_blocker",
         "prior_close_read_rationale": "BA3 cytochrome-c oxidase has heme/Cu binuclear terminal oxidase chemistry. It should be reviewed with m_csa:714 if a heme_copper_terminal_oxidase future family is opened; current evidence is not strong enough for OOS relabel.",
         "rule_id": "heme_nonheme_or_mixed_metal_oxidase_signal"
-      },
-      {
-        "action": "expert_review_shortlist_only_no_automatic_relabel",
-        "current_label_state": {
-          "fingerprint_id": "plp_dependent_enzyme",
-          "label_family": "plp_dependent_enzyme",
-          "label_type": "seed_fingerprint",
-          "review_status": "automation_curated",
-          "tier": "bronze"
-        },
-        "entry_id": "m_csa:854",
-        "entry_name": "4-aminobutyrate transaminase",
-        "heuristic_priority": "medium",
-        "matched_signals": [
-          "Fe-S"
-        ],
-        "mechanism_excerpt": "m_csa:854 4-aminobutyrate transaminase 4-aminobutyrate transaminase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5151 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence. 4-aminobutyrate transaminase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5151 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence. 4-aminobutyrate transaminase The catalytic mechanism of GABA-AT is usually divided into two p",
-        "rule_id": "plp_b12_or_radical_boundary"
       },
       {
         "action": "expert_review_shortlist_only_no_automatic_relabel",
@@ -45006,10 +44559,10 @@
         "matched_signals": [
           "Fe-S"
         ],
-        "mechanism_excerpt": "tes occurs. Finally, the reverse transimination reaction takes place via aldimine and a tetrahedral geminal diamine intermediate restore the cofactor for catalysis. The reduced Cys364 is used in numerous sulphur containing reactions such as in biosynthesis of Fe-S clusters, biotin and thio-tRNA-nucleosides. Out of the two proposed mechanisms, this is favoured due to clear evidence ruling out Lys226 and the cysteine substrate acting as general bases. That being said, more work is needed to be done to identify exactl",
+        "mechanism_excerpt": "se transimination reaction takes place via aldimine and a tetrahedral geminal diamine intermediate restore the cofactor for catalysis. The reduced Cys364 is used in numerous sulphur containing reactions such as in biosynthesis of Fe-S clusters, biotin and thio-tRNA-nucleosides. Out of the two proposed mechanisms, this is favoured due to clear evidence ruling out Lys226 and the cysteine substrate acting as general bases. That being said, more work is needed",
         "prior_close_read_disposition": "keep_current_label",
         "prior_close_read_rationale": "Fe-S appears as downstream sulfur-transfer/biogenesis context; the catalytic mechanism is PLP internal/external aldimine and enzyme-persulfide chemistry, fitting the PLP seed.",
-        "rule_id": "plp_b12_or_radical_boundary"
+        "rule_id": "plp_cobalamin_radical_coupling_conflict"
       },
       {
         "action": "expert_review_shortlist_only_no_automatic_relabel",
@@ -45026,28 +44579,10 @@
         "matched_signals": [
           "semiquinone"
         ],
-        "mechanism_excerpt": "domain motion. Thr66 moves close to the N5 atom of FAD upon domain orientation rearrangement and forms a hydrogen-bonding network from N5 to His49. This pathway is essential for the rapid proton emission from FAD and in the conversion from the blue to the red semiquinone forms. In the first step of the reaction, a hydride is transferred from NADH to the flavin cofactor. A single electron is then transferred to the b5 substrate (probably via the Thr66-His49 pathway). The product proton is then lost from the flavin,",
+        "mechanism_excerpt": "se to the N5 atom of FAD upon domain orientation rearrangement and forms a hydrogen-bonding network from N5 to His49. This pathway is essential for the rapid proton emission from FAD and in the conversion from the blue to the red semiquinone forms. In the first step of the reaction, a hydride is transferred from NADH to the flavin cofactor. A single electron is then transferred to the b5 substrate (probably via the Thr66-His49 pathway). The product proton",
         "prior_close_read_disposition": "keep_current_label",
         "prior_close_read_rationale": "Semiquinone is part of the FAD redox cycle following NADH hydride transfer and single-electron transfer to cytochrome b5; this is in-scope flavin reductase chemistry.",
         "rule_id": "flavin_metal_radical_conflict"
-      },
-      {
-        "action": "expert_review_shortlist_only_no_automatic_relabel",
-        "current_label_state": {
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "label_family": "heme_peroxidase_oxidase",
-          "label_type": "seed_fingerprint",
-          "review_status": "automation_curated",
-          "tier": "bronze"
-        },
-        "entry_id": "m_csa:935",
-        "entry_name": "nitric-oxide synthase",
-        "heuristic_priority": "medium",
-        "matched_signals": [
-          "pterin"
-        ],
-        "mechanism_excerpt": "ass of heme-thiolate proteins and is not structurally related to cyt P450s, and a C-terminal flavin-containing reductase domain (NOSred), which is structurally similar to P450 reductase. The L-Arg substrate and an essential cofactor, (6R)-5,6,7,8-tetrahydrobiopterin, both bind near the heme centre in the oxygenase domain, where the catalytic production of NO takes place. NOSred contains ferredoxin-NADP+-reductase (FNR) and FMN modules and is similar to other NADPH-utilizing dual flavin oxidoreductases. NOSred catal",
-        "rule_id": "heme_nonheme_or_mixed_metal_oxidase_signal"
       },
       {
         "action": "expert_review_shortlist_only_no_automatic_relabel",
@@ -45064,46 +44599,23 @@
         "matched_signals": [
           "radical"
         ],
-        "mechanism_excerpt": "d_supported cofactor evidence. D-arginine dehydrogenase Hydride transfer mechanism supported by kinetic studies. In principle, transfer of an electron and a hydrogen atom from the substrate to the flavin is possible, but there is no evidence for presence of a radical as of yet. Deprotonation of the substrate \u03b1-amine occurs first, triggering CH bond cleavage through hydride transfer to the flavin N5 atom. Subsequent hydrolysis forms 5-guanidino-2-oxopentanoic acid and ammonia. A strong active site base abstracts the",
+        "mechanism_excerpt": "ported cofactor evidence. Hydride transfer mechanism supported by kinetic studies. In principle, transfer of an electron and a hydrogen atom from the substrate to the flavin is possible, but there is no evidence for presence of a radical as of yet. Deprotonation of the substrate \u03b1-amine occurs first, triggering CH bond cleavage through hydride transfer to the flavin N5 atom. Subsequent hydrolysis forms 5-guanidino-2-oxopentanoic acid and ammonia. A strong",
         "prior_close_read_disposition": "keep_current_label",
         "prior_close_read_rationale": "Mechanism text explicitly supports hydride transfer to flavin N5 and states there is no evidence for a radical; heuristic radical match is a false positive.",
         "rule_id": "flavin_metal_radical_conflict"
-      },
-      {
-        "action": "expert_review_shortlist_only_no_automatic_relabel",
-        "current_label_state": {
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "label_family": "metal_dependent_hydrolase",
-          "label_type": "seed_fingerprint",
-          "review_status": "automation_curated",
-          "tier": "bronze"
-        },
-        "entry_id": "m_csa:994",
-        "entry_name": "deoxynucleoside triphosphate triphosphohydrolase SAMHD1",
-        "heuristic_priority": "medium",
-        "matched_signals": [
-          "nucleotide hydrolase"
-        ],
-        "mechanism_excerpt": "m_csa:994 deoxynucleoside triphosphate triphosphohydrolase SAMHD1 deoxynucleoside triphosphate triphosphohydrolase SAMHD1 is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.5716 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence. deoxynucleoside triphosphate triphosphohydrolase SAMHD1 is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.5716 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence. de",
-        "rule_id": "metal_sulfatase_or_nucleotide_boundary"
       }
     ],
     "shortlist_summary": {
-      "metric_anchor_pull_entry_ids": [
-        "m_csa:403",
-        "m_csa:723",
-        "m_csa:994"
-      ],
       "must_pull_or_keep_pulled_entry_ids": [
         "m_csa:497",
         "m_csa:750"
       ],
-      "open_shortlist_count": 11,
+      "open_shortlist_count": 8,
       "open_shortlist_counts_by_rule": {
         "flavin_metal_radical_conflict": 3,
-        "heme_nonheme_or_mixed_metal_oxidase_signal": 3,
-        "metal_sulfatase_or_nucleotide_boundary": 3,
-        "plp_b12_or_radical_boundary": 2
+        "heme_nonheme_or_mixed_metal_oxidase_signal": 2,
+        "metal_dependent_hydrolase_boundary_signal": 2,
+        "plp_cobalamin_radical_coupling_conflict": 1
       },
       "quarantine_from_clean_canary_entry_ids": [
         "m_csa:714",
@@ -45124,49 +44636,26 @@
   },
   "source_artifacts": {
     "artifacts/v1_graph_1025.json": {
-      "bytes": 23871866,
       "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
     },
-    "artifacts/v2_benchmark_1025.json": {
-      "bytes": 1832378,
-      "sha256": "a69c0d77f0040cf65b6cd48e767839ed26b1e7fd7975158db14e6bc296b722d0"
-    },
     "artifacts/v3_foldseek_coordinate_readiness_1000_current702_wave1_20260527.json": {
-      "bytes": 887776,
       "sha256": "27e4359fde6371cea1c4957542a167124daa6edce23cf62c579a7a60877e98d3"
     },
-    "artifacts/v3_full_tm_structural_signal_702_20260528.json": {
-      "bytes": 2017426,
-      "sha256": "75e6d9e466d9008170941c4167d7a9c3dfffadfc31255d886bf78a4251130404"
-    },
-    "artifacts/v3_geometry_label_eval_1000_selected_pdb_override.json": {
-      "bytes": 1296233,
-      "sha256": "466c8006bfbe596f7654c2cfb99e1e66accd421de9862b315e481cd3cc386760"
-    },
-    "artifacts/v3_label_factory_audit_1025_preview_batch.json": {
-      "bytes": 1900381,
-      "sha256": "daa5475a6266fb12214acfe04757e7f11c7e3151535659a057d06210eb54461e"
-    },
     "artifacts/v3_label_factory_review_import_mechanism_mismatch_audit_702_20260527.json": {
-      "bytes": 10482,
       "sha256": "a94c5a3519cda54805a196b8e79f67b3a96b84580f358ca3d418800670e8d8a4"
     },
     "artifacts/v3_label_factory_review_import_mechanism_mismatch_close_read_702_20260527.json": {
-      "bytes": 5030,
       "sha256": "60587d64de0fbef9b1183f779b30269e4ca295c7797fea69f56c2f7ed65f19dc"
     },
     "artifacts/v3_m_csa497_label_revision_702_20260527.json": {
-      "bytes": 1874,
       "sha256": "4c2127a646b6436e09dce0f506a507f074e86381b2d6b04557bca586b24eb92d"
     },
     "artifacts/v3_m_csa750_label_revision_702_20260527.json": {
-      "bytes": 3913,
       "sha256": "6d965d2b4d64ebe1ec1a6e704ac0b7824dbc53d1b79e489181569f452e07de6d"
     },
     "data/registries/curated_mechanism_labels.json": {
-      "bytes": 508366,
       "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
     }
   },
-  "status": "completed_review_only_heuristic_and_available_single_query_tm_hit_signal"
+  "status": "completed_review_only_heuristic_and_single_query_tm_hit_signal"
 }
