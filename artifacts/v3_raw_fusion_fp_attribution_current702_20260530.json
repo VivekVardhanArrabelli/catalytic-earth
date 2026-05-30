@@ -1,0 +1,62 @@
+{
+  "artifact_id": "v3_raw_fusion_fp_attribution_current702_20260530",
+  "schema_version": "raw_fusion_fp_attribution.v1",
+  "status": "complete",
+  "question": "Does the raw-fusion false-positive leak on the predicted-geometry heldout skew toward OOS rows or toward wrong primary calls?",
+  "method": "Read-only re-derivation from two persisted audits. No channel rebuild, no new scoring run, no threshold/label/registry change. Canonical masks: 45 primary rows, 83 OOS/secondary rows.",
+  "source_artifacts": {
+    "raw_fusion_metrics": "artifacts/v3_cofactor_channel_completion_summary_current702_20260529.json#target_failure_recovery.raw_fused_geometry_metrics.metrics_canonical_masks",
+    "original_hand_router_metrics": "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json#hand_router_on_predicted_geometry.metrics_canonical_masks"
+  },
+  "raw_fusion": {
+    "primary_support": 45,
+    "primary_correct": 31,
+    "primary_abstained": 1,
+    "primary_wrong_nonabstained": 13,
+    "oos_or_secondary_support": 83,
+    "oos_or_secondary_false_positive": 46,
+    "oos_or_secondary_false_positive_rate_available": 0.567901,
+    "pure_oos_false_positive": 45,
+    "pure_oos_support": 79,
+    "secondary_probe_nonabstained": 1,
+    "secondary_probe_support": 2
+  },
+  "original_hand_router": {
+    "primary_support": 45,
+    "primary_correct": 23,
+    "primary_abstained": 17,
+    "primary_wrong_nonabstained": 5,
+    "oos_or_secondary_support": 83,
+    "oos_or_secondary_false_positive": 10,
+    "oos_or_secondary_false_positive_rate_available": 0.123457,
+    "pure_oos_false_positive": 10
+  },
+  "attribution": {
+    "raw_fusion_total_confident_wrong": 59,
+    "oos_row_false_positive": 46,
+    "wrong_primary_false_positive": 13,
+    "oos_share_of_confident_wrong": 0.7797,
+    "wrong_primary_share_of_confident_wrong": 0.2203,
+    "incremental_vs_original_hand_router": {
+      "primary_correct_recovered": 8,
+      "new_wrong_primary": 8,
+      "new_oos_false_positive": 36,
+      "oos_share_of_incremental_leak": 0.8182
+    }
+  },
+  "verdict": {
+    "leak_is_oos_concentrated": true,
+    "headline": "46/59 (78%) of raw-fusion confident-wrong calls are OOS-row false positives; 13/59 (22%) are wrong-primary calls. Of the marginal leak fusion introduced over the original hand router (+44 confident-wrong for +8 correct recoveries), 36/44 (82%) is OOS-row FP.",
+    "fork": "OOS-concentrated -> channel concordance gating is the indicated fix: require the geometry channel (residue/role/pocket, which survives on predicted backbone) to second a cofactor fire before a primary call. OOS rows match no fingerprint skeleton well, so geometry will not corroborate a lone cofactor fire, which should collapse the OOS leak while preserving the corroborated recoveries. A residual 8-row (incremental) wrong-primary leak remains the target for class-conditional cofactor trust: lean on metal (M-Ionic AUC 0.781), discount weak organic-cofactor calls (heme from 18 training examples, AP 0.53)."
+  },
+  "limitations": {
+    "per_fingerprint_attribution_unavailable": "The full per-row raw_fused route is not persisted (only the five named target rows plus aggregate canonical-mask counts are). A per-fingerprint breakdown of the 46 OOS / 13 wrong-primary FP cannot be re-derived without rebuilding the cofactor channel and re-running the fusion route.",
+    "channel_rebuild_blocked_in_this_environment": "numpy/scipy/sklearn are absent and the ESM-2 embedding sidecars are not persisted in the repo, so the sequence-cofactor channel cannot be rebuilt here without a large model download disallowed by the disk / no-large-download guardrail."
+  },
+  "guardrails": {
+    "production_scoring_changed": false,
+    "global_threshold_changed": false,
+    "labels_or_registry_changed": false,
+    "read_only_rederivation": true
+  }
+}
