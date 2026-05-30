@@ -1,0 +1,908 @@
+{
+  "coverage_summary": {
+    "cross_partition_duplicate_selected_pdb_count": 0,
+    "cross_partition_duplicate_selected_structure_count": 0,
+    "current_label_count": 702,
+    "duplicate_selected_pdb_count": 3,
+    "duplicate_selected_structure_count": 3,
+    "foldseek_raw_record_count": 1875,
+    "foldseek_unique_pdb_token_count": 692,
+    "heldout_row_count": 140,
+    "heldout_tokenized_row_count": 139,
+    "heldout_untokenized_row_count": 1,
+    "heldout_untokenized_rows": [
+      {
+        "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+        "blocker": "missing_supported_selected_coordinate_structure",
+        "entry_id": "m_csa:372",
+        "fingerprint_id": "radical_sam_enzyme",
+        "label_type": "seed_fingerprint",
+        "oos_tier": "far_oos",
+        "selected_structure_proxy_id": "missing_selected_structure",
+        "split_assignment": "heldout",
+        "structure_source": "not_supported_or_missing_selected_structure",
+        "token_length": 0,
+        "tokenization_status": "not_tokenized"
+      }
+    ],
+    "in_distribution_tokenized_row_count": 557,
+    "multi_record_selected_pdb_count": 423,
+    "multi_record_selected_pdb_sample": [
+      {
+        "chosen_foldseek_record_id": "pdb_12AS_A",
+        "chosen_token_length": 327,
+        "foldseek_record_count": 2,
+        "other_token_lengths": [
+          327
+        ],
+        "selected_structure_proxy_id": "pdb:12AS"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_13PK_A",
+        "chosen_token_length": 415,
+        "foldseek_record_count": 4,
+        "other_token_lengths": [
+          415,
+          415,
+          415
+        ],
+        "selected_structure_proxy_id": "pdb:13PK"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1A05_A",
+        "chosen_token_length": 357,
+        "foldseek_record_count": 2,
+        "other_token_lengths": [
+          357
+        ],
+        "selected_structure_proxy_id": "pdb:1A05"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1A30_A",
+        "chosen_token_length": 99,
+        "foldseek_record_count": 2,
+        "other_token_lengths": [
+          99
+        ],
+        "selected_structure_proxy_id": "pdb:1A30"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1A4I_B",
+        "chosen_token_length": 295,
+        "foldseek_record_count": 2,
+        "other_token_lengths": [
+          285
+        ],
+        "selected_structure_proxy_id": "pdb:1A4I"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1A4L_A",
+        "chosen_token_length": 349,
+        "foldseek_record_count": 4,
+        "other_token_lengths": [
+          349,
+          349,
+          349
+        ],
+        "selected_structure_proxy_id": "pdb:1A4L"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1A4S_A",
+        "chosen_token_length": 503,
+        "foldseek_record_count": 4,
+        "other_token_lengths": [
+          503,
+          503,
+          503
+        ],
+        "selected_structure_proxy_id": "pdb:1A4S"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1A50_B",
+        "chosen_token_length": 390,
+        "foldseek_record_count": 2,
+        "other_token_lengths": [
+          260
+        ],
+        "selected_structure_proxy_id": "pdb:1A50"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1A79_A",
+        "chosen_token_length": 171,
+        "foldseek_record_count": 4,
+        "other_token_lengths": [
+          171,
+          171,
+          171
+        ],
+        "selected_structure_proxy_id": "pdb:1A79"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1A7U_A",
+        "chosen_token_length": 277,
+        "foldseek_record_count": 2,
+        "other_token_lengths": [
+          277
+        ],
+        "selected_structure_proxy_id": "pdb:1A7U"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1A95_B",
+        "chosen_token_length": 150,
+        "foldseek_record_count": 4,
+        "other_token_lengths": [
+          150,
+          145,
+          145
+        ],
+        "selected_structure_proxy_id": "pdb:1A95"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1ADN_MODEL_10_A",
+        "chosen_token_length": 92,
+        "foldseek_record_count": 14,
+        "other_token_lengths": [
+          92,
+          92,
+          92,
+          92,
+          92,
+          92,
+          92,
+          92,
+          92,
+          92,
+          92,
+          92,
+          92
+        ],
+        "selected_structure_proxy_id": "pdb:1ADN"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1AFR_A",
+        "chosen_token_length": 345,
+        "foldseek_record_count": 6,
+        "other_token_lengths": [
+          345,
+          345,
+          345,
+          345,
+          345
+        ],
+        "selected_structure_proxy_id": "pdb:1AFR"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1AFW_B",
+        "chosen_token_length": 393,
+        "foldseek_record_count": 2,
+        "other_token_lengths": [
+          390
+        ],
+        "selected_structure_proxy_id": "pdb:1AFW"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1ALK_A",
+        "chosen_token_length": 449,
+        "foldseek_record_count": 2,
+        "other_token_lengths": [
+          449
+        ],
+        "selected_structure_proxy_id": "pdb:1ALK"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1AMO_A",
+        "chosen_token_length": 601,
+        "foldseek_record_count": 2,
+        "other_token_lengths": [
+          601
+        ],
+        "selected_structure_proxy_id": "pdb:1AMO"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1APX_A",
+        "chosen_token_length": 249,
+        "foldseek_record_count": 4,
+        "other_token_lengths": [
+          249,
+          249,
+          249
+        ],
+        "selected_structure_proxy_id": "pdb:1APX"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1APY_A",
+        "chosen_token_length": 161,
+        "foldseek_record_count": 4,
+        "other_token_lengths": [
+          161,
+          141,
+          141
+        ],
+        "selected_structure_proxy_id": "pdb:1APY"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1AQ0_A",
+        "chosen_token_length": 306,
+        "foldseek_record_count": 2,
+        "other_token_lengths": [
+          306
+        ],
+        "selected_structure_proxy_id": "pdb:1AQ0"
+      },
+      {
+        "chosen_foldseek_record_id": "pdb_1AQL_A",
+        "chosen_token_length": 532,
+        "foldseek_record_count": 2,
+        "other_token_lengths": [
+          532
+        ],
+        "selected_structure_proxy_id": "pdb:1AQL"
+      }
+    ],
+    "selected_pdb_coordinate_file_count": 692,
+    "selected_pdb_row_count": 696,
+    "selected_pdb_unique_count": 692,
+    "source_directory_counts": {
+      "artifacts/v3_foldseek_coordinates_1000": 672,
+      "artifacts/v3_mcsa_pymol_eighth_materialized_coordinates_20260522": 1,
+      "artifacts/v3_mcsa_pymol_eleventh_materialized_coordinates_20260522": 7,
+      "artifacts/v3_mcsa_pymol_ninth_materialized_coordinates_20260522": 1,
+      "artifacts/v3_mcsa_pymol_seventh_materialized_coordinates_20260522": 1,
+      "artifacts/v3_mcsa_pymol_third_materialized_coordinates_20260522": 1,
+      "artifacts/v3_mcsa_pymol_twelfth_materialized_coordinates_20260522": 9
+    },
+    "tokenized_label_row_count": 696,
+    "tokenized_label_row_fraction": 0.9915,
+    "untokenized_label_row_count": 6,
+    "untokenized_label_row_ids": [
+      "m_csa:204",
+      "m_csa:372",
+      "m_csa:501",
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ]
+  },
+  "metadata": {
+    "artifact_id": "current702_selected_structure_3di_feasibility_20260525",
+    "coherence_audit_artifact": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json",
+    "coherence_audit_sha256": "cf9d5d3b17fa95d51374d244497ceba52414e60b8bdaefa12304ba3372cab734",
+    "downloads_performed": false,
+    "eval_contract_artifact": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+    "eval_contract_sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
+    "fingerprint_registry_edited": false,
+    "generated_at": "2026-05-25T16:22:42.241294+00:00",
+    "input_leakage_contract": "3Di tokens are derived only from selected coordinate files; EC/name/prose/expert-note fields are not predictive inputs",
+    "label_registry_edited": false,
+    "large_model_training_performed": false,
+    "model_tool_id": "foldseek_createdb_3di:718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "ontology_registry_edited": false,
+    "oos_abstention_diagnostics_artifact": "artifacts/representation_tracks/prostt5_3di/current702_3di_nn_smoke_metrics_20260525.json",
+    "pooling_mode": "whole_selected_structure_longest_foldseek_3di_record",
+    "prior_foldseek_coordinate_readiness_artifact": "artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json",
+    "prior_foldseek_coordinate_readiness_sha256": "bd2fd16bd57f0a472ac6c5d90a4b89587bbc9498fef14dc4bb08ceceeb6e4ebe",
+    "prior_foldseek_tm_signal_artifact": "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json",
+    "prior_foldseek_tm_signal_sha256": "316a97f98b1c2e8242f7bd3e4783a70ba132a571a49a1cea11b27f6cb004cf25",
+    "production_scoring_changed": false,
+    "prostt5_weights_cache_path": null,
+    "prostt5_weights_downloaded": false,
+    "schema_version": "prostt5_3di_feasibility.v1",
+    "sequence_manifest_artifact": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    "sequence_manifest_sha256": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b",
+    "sequence_nn_metrics_artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+    "sequence_nn_metrics_sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26",
+    "smoke_metrics_artifact": "artifacts/representation_tracks/prostt5_3di/current702_3di_nn_smoke_metrics_20260525.json",
+    "smoke_predictions_artifact": "artifacts/representation_tracks/prostt5_3di/current702_3di_nn_smoke_predictions_20260525.jsonl",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "split_artifact_sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425",
+    "status": "foldseek_3di_tokenization_feasible_with_structure_coverage_gaps",
+    "structure_3di_fasta": "artifacts/representation_tracks/prostt5_3di/current702_selected_structures_3di_20260525.fasta",
+    "structure_3di_fasta_sha256": "f2eef9ebf50c2221a7a2590b0323ed6d5a74f1d84dd1d5f19a43a787280904fb",
+    "structure_source": "current702 selected PDB mmCIF sidecars from existing repo artifacts; no coordinate downloads",
+    "track": "representation_tracks/prostt5_3di"
+  },
+  "next_steps": [
+    "Use current702_selected_structures_3di_20260525.fasta as the bounded 3Di token sidecar for future ProstT5/Foldseek 3Di experiments.",
+    "Do not use this artifact to reopen M-CSA TM<0.7 split repair; keep the frozen sequence-hard split for comparability.",
+    "A learned ProstT5 embedding pass would require an explicit bounded model-cache decision because no ProstT5 weights are currently cached."
+  ],
+  "non_tokenized_rows": [
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": "missing_supported_selected_coordinate_structure",
+      "entry_id": "m_csa:204",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "not_evaluated",
+      "split_assignment": "in_distribution",
+      "structure_source": "not_supported_or_missing_selected_structure",
+      "token_length": 0,
+      "tokenization_status": "not_tokenized"
+    },
+    {
+      "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+      "blocker": "missing_supported_selected_coordinate_structure",
+      "entry_id": "m_csa:372",
+      "fingerprint_id": "radical_sam_enzyme",
+      "label_type": "seed_fingerprint",
+      "oos_tier": "far_oos",
+      "selected_structure_proxy_id": "missing_selected_structure",
+      "split_assignment": "heldout",
+      "structure_source": "not_supported_or_missing_selected_structure",
+      "token_length": 0,
+      "tokenization_status": "not_tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": "missing_supported_selected_coordinate_structure",
+      "entry_id": "m_csa:501",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "missing_selected_structure",
+      "split_assignment": "in_distribution",
+      "structure_source": "not_supported_or_missing_selected_structure",
+      "token_length": 0,
+      "tokenization_status": "not_tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": "missing_supported_selected_coordinate_structure",
+      "entry_id": "uniprot:P06744",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "not_evaluated",
+      "split_assignment": "in_distribution",
+      "structure_source": "not_supported_or_missing_selected_structure",
+      "token_length": 0,
+      "tokenization_status": "not_tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": "missing_supported_selected_coordinate_structure",
+      "entry_id": "uniprot:P78549",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "not_evaluated",
+      "split_assignment": "in_distribution",
+      "structure_source": "not_supported_or_missing_selected_structure",
+      "token_length": 0,
+      "tokenization_status": "not_tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": "missing_supported_selected_coordinate_structure",
+      "entry_id": "uniprot:Q3LXA3",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "not_evaluated",
+      "split_assignment": "in_distribution",
+      "structure_source": "not_supported_or_missing_selected_structure",
+      "token_length": 0,
+      "tokenization_status": "not_tokenized"
+    }
+  ],
+  "row_coverage_sample": [
+    {
+      "benchmark_role": "oos_tier::far_oos",
+      "blocker": null,
+      "entry_id": "m_csa:1",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "far_oos",
+      "selected_structure_proxy_id": "pdb:1B73",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 252,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::boundary_oos",
+      "blocker": null,
+      "entry_id": "m_csa:2",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "boundary_oos",
+      "selected_structure_proxy_id": "pdb:1BTL",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 263,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "blocker": null,
+      "entry_id": "m_csa:3",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1D4A",
+      "split_assignment": "heldout",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 273,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": null,
+      "entry_id": "m_csa:4",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1NIA",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 333,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+      "blocker": null,
+      "entry_id": "m_csa:5",
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1WHS",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 255,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "blocker": null,
+      "entry_id": "m_csa:6",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:2GH5",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 461,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": null,
+      "entry_id": "m_csa:7",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:5ICD",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 414,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": null,
+      "entry_id": "m_csa:8",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1QPR",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 284,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": null,
+      "entry_id": "m_csa:9",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:5A1I",
+      "split_assignment": "heldout",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 381,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": null,
+      "entry_id": "m_csa:10",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1MKB",
+      "split_assignment": "heldout",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 171,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blocker": null,
+      "entry_id": "m_csa:11",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1QUM",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 279,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::far_oos",
+      "blocker": null,
+      "entry_id": "m_csa:12",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "far_oos",
+      "selected_structure_proxy_id": "pdb:1OTH",
+      "split_assignment": "heldout",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 321,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": null,
+      "entry_id": "m_csa:13",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:2BBK",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 355,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::near_oos",
+      "blocker": null,
+      "entry_id": "m_csa:14",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "near_oos",
+      "selected_structure_proxy_id": "pdb:1VNC",
+      "split_assignment": "heldout",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 576,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blocker": null,
+      "entry_id": "m_csa:15",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1ZNB",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 230,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blocker": null,
+      "entry_id": "m_csa:16",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1BC2",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 216,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": null,
+      "entry_id": "m_csa:17",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1RR6",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 282,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": null,
+      "entry_id": "m_csa:18",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1JDW",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 360,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::boundary_oos",
+      "blocker": null,
+      "entry_id": "m_csa:19",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "boundary_oos",
+      "selected_structure_proxy_id": "pdb:1DL2",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 510,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "blocker": null,
+      "entry_id": "m_csa:20",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1QJD",
+      "split_assignment": "heldout",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 568,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": null,
+      "entry_id": "m_csa:21",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1DO8",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 553,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": null,
+      "entry_id": "m_csa:22",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1B6B",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 168,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::far_oos",
+      "blocker": null,
+      "entry_id": "m_csa:23",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "far_oos",
+      "selected_structure_proxy_id": "pdb:1XVA",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 292,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": null,
+      "entry_id": "m_csa:24",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1NZY",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 269,
+      "tokenization_status": "tokenized"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker": null,
+      "entry_id": "m_csa:25",
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1NBA",
+      "split_assignment": "in_distribution",
+      "structure_source": "pdb_mmcif_selected_structure",
+      "token_length": 253,
+      "tokenization_status": "tokenized"
+    }
+  ],
+  "source_structure_rows_sample": [
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_12AS.cif",
+      "selected_structure_proxy_id": "pdb:12AS",
+      "structure_3di_sha256": "81e0adf698935af56a9635215edcf80cf003c28a38a51a7152740220b8c3928a",
+      "token_length": 327
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_13PK.cif",
+      "selected_structure_proxy_id": "pdb:13PK",
+      "structure_3di_sha256": "a561c9011e6b6750d542a4c15cea5fb31846d1883b10125756544116572ecc4b",
+      "token_length": 415
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A05.cif",
+      "selected_structure_proxy_id": "pdb:1A05",
+      "structure_3di_sha256": "fb6a66decfeec4cdb28ca8644c9d59f874305730f7698ad06dbcb4d5b0d698c2",
+      "token_length": 357
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A0I.cif",
+      "selected_structure_proxy_id": "pdb:1A0I",
+      "structure_3di_sha256": "14661001f55a8fcd4a3d3295a6c53bcdec48388fdfe929c05b02e126150bc789",
+      "token_length": 332
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A16.cif",
+      "selected_structure_proxy_id": "pdb:1A16",
+      "structure_3di_sha256": "92fcf0a9c22fa3c12cbb1013f459d541740fde795c6f1aa119cfe1e804e5ff26",
+      "token_length": 439
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A26.cif",
+      "selected_structure_proxy_id": "pdb:1A26",
+      "structure_3di_sha256": "ee4dc3f68ff2f6f4b9fc52cc05eac0de55170fc4de1cf45a567cae1e8e145d79",
+      "token_length": 351
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A30.cif",
+      "selected_structure_proxy_id": "pdb:1A30",
+      "structure_3di_sha256": "451d68ad27b579364fef65063e26b9471d0cf595cb476c4d06fe0bfeaf7c1ba6",
+      "token_length": 99
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A41.cif",
+      "selected_structure_proxy_id": "pdb:1A41",
+      "structure_3di_sha256": "dd48c09697d009650dc42dc83235c6693ed9c3d9468aaf14ae5ad8f327980dd7",
+      "token_length": 221
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A4I.cif",
+      "selected_structure_proxy_id": "pdb:1A4I",
+      "structure_3di_sha256": "c6eb51f31fd007e2712027fbc9ead9dd913dbd0f3b929829ac8f907601538014",
+      "token_length": 295
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A4L.cif",
+      "selected_structure_proxy_id": "pdb:1A4L",
+      "structure_3di_sha256": "d765fe044b87e4956a8ab3622a31df442d3e63978480906ef72bdb791d3f273f",
+      "token_length": 349
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A4S.cif",
+      "selected_structure_proxy_id": "pdb:1A4S",
+      "structure_3di_sha256": "2cd15a34b8d460243fc3b64c15748232f472371b0c8c4823a433c91f2e11f68d",
+      "token_length": 503
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A50.cif",
+      "selected_structure_proxy_id": "pdb:1A50",
+      "structure_3di_sha256": "81338980a9eb0ba3db91a8797d0628fcd4ce478e3f161b035c6b6b28c2d2dd32",
+      "token_length": 390
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A79.cif",
+      "selected_structure_proxy_id": "pdb:1A79",
+      "structure_3di_sha256": "ed89c3b8b725803934bcbb4578debcb1729b1433ce96aa1e3a995635fa7fe674",
+      "token_length": 171
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A7U.cif",
+      "selected_structure_proxy_id": "pdb:1A7U",
+      "structure_3di_sha256": "c8ee21aaf1ac7b98fff4c7fb131bb92b94415c38692b875d2642d764949682e1",
+      "token_length": 277
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A8H.cif",
+      "selected_structure_proxy_id": "pdb:1A8H",
+      "structure_3di_sha256": "d1b832aaa94c47c72eda963393aa84f135d6c6306c716afecf15e0c430aa105c",
+      "token_length": 500
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1A95.cif",
+      "selected_structure_proxy_id": "pdb:1A95",
+      "structure_3di_sha256": "189ddaef4a70de5a62e7d21c7cf52c030f31415bde6d7735f65ba2dbd8c9a02b",
+      "token_length": 150
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AA6.cif",
+      "selected_structure_proxy_id": "pdb:1AA6",
+      "structure_3di_sha256": "a666b475be13fc58b4338884ee86c7811104ff404c9e0c8f6e30bb44fc06134e",
+      "token_length": 697
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1ADN.cif",
+      "selected_structure_proxy_id": "pdb:1ADN",
+      "structure_3di_sha256": "d9d0de35f5759df81f4f50c8a56eff3723db768c530a61984f8f433157b04efc",
+      "token_length": 92
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AF7.cif",
+      "selected_structure_proxy_id": "pdb:1AF7",
+      "structure_3di_sha256": "f6758c2433146178a81fefab89218488b33fa571390dd02c22de1558e7a8b832",
+      "token_length": 274
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AFR.cif",
+      "selected_structure_proxy_id": "pdb:1AFR",
+      "structure_3di_sha256": "24c223b30b0c29b1f19b8537d75f38297ffedad4721d81dee812575521d55aaa",
+      "token_length": 345
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AFW.cif",
+      "selected_structure_proxy_id": "pdb:1AFW",
+      "structure_3di_sha256": "81a4bc73fa2c156a0cce7307f96343bd7e9b1dc777b153984a1f23819d7e8951",
+      "token_length": 393
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AGM.cif",
+      "selected_structure_proxy_id": "pdb:1AGM",
+      "structure_3di_sha256": "030fe094599f367a6f863e2d8289324216be5e1d7a4f5156ac2c40eee81976d5",
+      "token_length": 470
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AGY.cif",
+      "selected_structure_proxy_id": "pdb:1AGY",
+      "structure_3di_sha256": "46eaca2c9febdc93a0708be5c84bc3a286c75237fade08764b17c197fe687448",
+      "token_length": 197
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AH7.cif",
+      "selected_structure_proxy_id": "pdb:1AH7",
+      "structure_3di_sha256": "cf5c3838041ba6dc42ba1e9890359469f419dd6c601f44daecbc13ee5fb4935d",
+      "token_length": 245
+    },
+    {
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AJ0.cif",
+      "selected_structure_proxy_id": "pdb:1AJ0",
+      "structure_3di_sha256": "c1573c1e8d0fe55d3169d7af9815d94c66ccb56f2de5a2813226be5760ca5437",
+      "token_length": 282
+    }
+  ],
+  "token_length_summary": {
+    "count": 692,
+    "max": 1491,
+    "mean": 372.96,
+    "median": 333.5,
+    "min": 62
+  },
+  "tool_availability": {
+    "foldseek_3di_extraction_recipe": [
+      "foldseek createdb <selected_mmcif_dir> <db> --threads 1 -v 1",
+      "foldseek lndb <db>_h <db>_ss_h -v 1",
+      "foldseek convert2fasta <db>_ss <3di.fasta> -v 1"
+    ],
+    "foldseek_binary": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    "foldseek_binary_available": true,
+    "foldseek_binary_size_bytes": 43024088,
+    "foldseek_commands_executed": [
+      "foldseek createdb <temp_selected_mmcif_symlink_dir> <temp_db> --threads 1 -v 1",
+      "foldseek lndb <temp_db>_h <temp_db>_ss_h -v 1",
+      "foldseek convert2fasta <temp_db>_ss <temp_raw_3di.fasta> -v 1"
+    ],
+    "foldseek_on_path": false,
+    "foldseek_version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+    "huggingface_cache_probe_children_sample": [],
+    "huggingface_cache_probe_exists": false,
+    "huggingface_cache_probe_path": "/Users/vivekvardhanarrabelli/.cache/huggingface",
+    "prostt5_note": "Not needed for structure-derived 3Di because selected coordinate sidecars are available; no ProstT5 model download was attempted.",
+    "prostt5_python_dependencies_available": {
+      "sentencepiece": true,
+      "torch": true,
+      "transformers": true
+    },
+    "prostt5_python_dependency_versions": {
+      "sentencepiece": "0.2.0",
+      "torch": "2.7.1",
+      "transformers": "4.53.2"
+    },
+    "prostt5_sequence_to_3di_attempted": false,
+    "prostt5_weights_cached": false
+  }
+}
