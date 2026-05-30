@@ -1,0 +1,1375 @@
+{
+  "artifact_id": "v3_borrowed_mionic_metal_eval_current702_20260529",
+  "borrowed_predictor": {
+    "checkpoint": "esm2_t33_650M_UR50D_setB_fold1.pt",
+    "name": "M-Ionic",
+    "protein_score_policy": "max sigmoid residue probability across CA/CO/CU/FE2/FE/MG/MN/ZN outputs",
+    "published_module_compatibility_note": "The released Self_Attention permutation omits the attention-head dimension on current PyTorch; this evaluator uses the intended batch/head/residue/hidden ordering while loading the released weights.",
+    "repository": "https://github.com/TeamSundar/m-ionic"
+  },
+  "created_utc": "2026-05-29T22:59:19Z",
+  "guardrails": {
+    "fingerprint_registry_edited": false,
+    "heldout_labels_used_for_fit_or_threshold": false,
+    "label_registry_edited": false,
+    "no_training_performed": true,
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false
+  },
+  "metrics": {
+    "average_precision": 0.567376,
+    "expected_row_count": 135,
+    "heldout_metal_negative_count": 106,
+    "heldout_metal_positive_count": 29,
+    "roc_auc": 0.781067,
+    "scored_row_count": 135,
+    "status": "complete"
+  },
+  "row_policy": "Compact repository artifact retains row-level metal labels and M-Ionic protein scores; local full artifact also retained per-ion residue-pool scores and sequence hashes.",
+  "rows": [
+    {
+      "entry_id": "m_csa:3",
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.3088103234767914,
+      "sequence_id": "P15559",
+      "sequence_length": 274,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:9",
+      "local_cofactor_families": [
+        "metal_ion",
+        "sam"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.914251446723938,
+      "sequence_id": "P31153",
+      "sequence_length": 395,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:10",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9040546417236328,
+      "sequence_id": "P0A6Q3",
+      "sequence_length": 172,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:12",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.4567689895629883,
+      "sequence_id": "P00480",
+      "sequence_length": 354,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:14",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9911180138587952,
+      "sequence_id": "P49053",
+      "sequence_length": 609,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:20",
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.7774741649627686,
+      "sequence_id": "Q07WU7",
+      "sequence_length": 596,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:30",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8550139665603638,
+      "sequence_id": "P09373",
+      "sequence_length": 760,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:31",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9123061895370483,
+      "sequence_id": "P00469",
+      "sequence_length": 316,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:32",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9495508074760437,
+      "sequence_id": "Q04760",
+      "sequence_length": 184,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:34",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9468679428100586,
+      "sequence_id": "P06622",
+      "sequence_length": 307,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:43",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9876036047935486,
+      "sequence_id": "P80366",
+      "sequence_length": 459,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:44",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9961357712745667,
+      "sequence_id": "P00634",
+      "sequence_length": 471,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:45",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9988453388214111,
+      "sequence_id": "P43379",
+      "sequence_length": 713,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:46",
+      "local_cofactor_families": [
+        "sam"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9654411673545837,
+      "sequence_id": "P14385",
+      "sequence_length": 421,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:56",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.5381906628608704,
+      "sequence_id": "Q9WZW0",
+      "sequence_length": 309,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:67",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.3036338984966278,
+      "sequence_id": "O52942",
+      "sequence_length": 361,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:71",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.6786436438560486,
+      "sequence_id": "P12295",
+      "sequence_length": 229,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:73",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.934988260269165,
+      "sequence_id": "P61459",
+      "sequence_length": 104,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:79",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.7979947924613953,
+      "sequence_id": "Q05603",
+      "sequence_length": 356,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:80",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8769362568855286,
+      "sequence_id": "Q9X0I0",
+      "sequence_length": 431,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:86",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8266155123710632,
+      "sequence_id": "P51541",
+      "sequence_length": 357,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:97",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9995730519294739,
+      "sequence_id": "P0ABF6",
+      "sequence_length": 294,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:109",
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.48581963777542114,
+      "sequence_id": "Q02127",
+      "sequence_length": 395,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:115",
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.6806021332740784,
+      "sequence_id": "Q9T0N8",
+      "sequence_length": 534,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:116",
+      "local_cofactor_families": [
+        "nad"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.37842196226119995,
+      "sequence_id": "Q2RSB2",
+      "sequence_length": 384,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:118",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.5971630215644836,
+      "sequence_id": "Q00511",
+      "sequence_length": 302,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:121",
+      "local_cofactor_families": [
+        "heme"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9819318056106567,
+      "sequence_id": "P07850",
+      "sequence_length": 459,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:125",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9875169396400452,
+      "sequence_id": "Q9ZP19",
+      "sequence_length": 496,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:129",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9793648719787598,
+      "sequence_id": "P37610",
+      "sequence_length": 283,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:131",
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8519609570503235,
+      "sequence_id": "P20586",
+      "sequence_length": 394,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:144",
+      "local_cofactor_families": [
+        "fe_s_cluster"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9046671986579895,
+      "sequence_id": "Q7SIF3",
+      "sequence_length": 175,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:155",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.4804948568344116,
+      "sequence_id": "O06644",
+      "sequence_length": 428,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:159",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.974746823310852,
+      "sequence_id": "P0A434",
+      "sequence_length": 365,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:163",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9796114563941956,
+      "sequence_id": "P0A7Y4",
+      "sequence_length": 155,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:171",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.999853253364563,
+      "sequence_id": "P00730",
+      "sequence_length": 419,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:180",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9515977501869202,
+      "sequence_id": "P35505",
+      "sequence_length": 419,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:185",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9879695177078247,
+      "sequence_id": "O15527",
+      "sequence_length": 345,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:188",
+      "local_cofactor_families": [
+        "nad"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.46046411991119385,
+      "sequence_id": "P09147",
+      "sequence_length": 338,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:191",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8545249104499817,
+      "sequence_id": "P07237",
+      "sequence_length": 508,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:192",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8645799160003662,
+      "sequence_id": "Q9N0A4",
+      "sequence_length": 377,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:197",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9428529739379883,
+      "sequence_id": "P00952",
+      "sequence_length": 419,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:198",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.8004280924797058,
+      "sequence_id": "Q5SKN9",
+      "sequence_length": 541,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:199",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9760490655899048,
+      "sequence_id": "P04425",
+      "sequence_length": 316,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:201",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9622988104820251,
+      "sequence_id": "Q9X4K7",
+      "sequence_length": 530,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:211",
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.5676816701889038,
+      "sequence_id": "P38489",
+      "sequence_length": 217,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:213",
+      "local_cofactor_families": [
+        "plp"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.4572146236896515,
+      "sequence_id": "P10724",
+      "sequence_length": 388,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:217",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9316367506980896,
+      "sequence_id": "P52704",
+      "sequence_length": 257,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:219",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9891729354858398,
+      "sequence_id": "P29401",
+      "sequence_length": 623,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:220",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9766294360160828,
+      "sequence_id": "P20906",
+      "sequence_length": 528,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:225",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9747612476348877,
+      "sequence_id": "Q9WZC3",
+      "sequence_length": 130,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:230",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9782994985580444,
+      "sequence_id": "Q59643",
+      "sequence_length": 337,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:239",
+      "local_cofactor_families": [
+        "heme"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9977191090583801,
+      "sequence_id": "P00433",
+      "sequence_length": 353,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:242",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.8666279315948486,
+      "sequence_id": "Q8I914",
+      "sequence_length": 311,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:250",
+      "local_cofactor_families": [
+        "heme",
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.6740919351577759,
+      "sequence_id": "P04963",
+      "sequence_length": 373,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:254",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9707695245742798,
+      "sequence_id": "P33247",
+      "sequence_length": 631,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:255",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.3099316656589508,
+      "sequence_id": "P00334",
+      "sequence_length": 256,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:267",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.7611885666847229,
+      "sequence_id": "P0A6L2",
+      "sequence_length": 292,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:297",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9680253863334656,
+      "sequence_id": "P77072",
+      "sequence_length": 212,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:311",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9900591969490051,
+      "sequence_id": "P00924",
+      "sequence_length": 437,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:313",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9687091708183289,
+      "sequence_id": "P04395",
+      "sequence_length": 282,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:321",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9814708828926086,
+      "sequence_id": "P09155",
+      "sequence_length": 375,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:323",
+      "local_cofactor_families": [
+        "fe_s_cluster"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8639814853668213,
+      "sequence_id": "P05314",
+      "sequence_length": 594,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:333",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.987984299659729,
+      "sequence_id": "Q9RUB5",
+      "sequence_length": 629,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:334",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9630264043807983,
+      "sequence_id": "P44859",
+      "sequence_length": 274,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:346",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.15488475561141968,
+      "sequence_id": "P9WNP5",
+      "sequence_length": 314,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:352",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9393295049667358,
+      "sequence_id": "P00949",
+      "sequence_length": 562,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:355",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.6436758637428284,
+      "sequence_id": "P30074",
+      "sequence_length": 389,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:356",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9822803139686584,
+      "sequence_id": "P14769",
+      "sequence_length": 368,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:363",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9060942530632019,
+      "sequence_id": "P08179",
+      "sequence_length": 212,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:369",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8773258328437805,
+      "sequence_id": "P33038",
+      "sequence_length": 419,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:370",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9998296499252319,
+      "sequence_id": "O75164",
+      "sequence_length": 1064,
+      "sequence_truncated": true
+    },
+    {
+      "entry_id": "m_csa:375",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.4451422691345215,
+      "sequence_id": "P0ABP8",
+      "sequence_length": 239,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:384",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9996960163116455,
+      "sequence_id": "P23395",
+      "sequence_length": 618,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:388",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9115458130836487,
+      "sequence_id": "A0A0H3JGH6",
+      "sequence_length": 230,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:392",
+      "local_cofactor_families": [
+        "sam"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.7029666304588318,
+      "sequence_id": "P07801",
+      "sequence_length": 288,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:396",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9972813129425049,
+      "sequence_id": "P56272",
+      "sequence_length": 324,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:397",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9956508278846741,
+      "sequence_id": "P04063",
+      "sequence_length": 427,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:402",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.929218053817749,
+      "sequence_id": "P04036",
+      "sequence_length": 273,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:403",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9998155236244202,
+      "sequence_id": "P07584",
+      "sequence_length": 251,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:407",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.7717341184616089,
+      "sequence_id": "Q0ZPV7",
+      "sequence_length": 335,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:409",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8835210204124451,
+      "sequence_id": "P0A790",
+      "sequence_length": 126,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:418",
+      "local_cofactor_families": [
+        "plp"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.5409172773361206,
+      "sequence_id": "P37821",
+      "sequence_length": 473,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:419",
+      "local_cofactor_families": [
+        "plp"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.49090641736984253,
+      "sequence_id": "O52552",
+      "sequence_length": 388,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:423",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.7390136122703552,
+      "sequence_id": "P08236",
+      "sequence_length": 651,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:424",
+      "local_cofactor_families": [
+        "plp"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.6534635424613953,
+      "sequence_id": "P23721",
+      "sequence_length": 362,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:428",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.7465935349464417,
+      "sequence_id": "Q9ZF13",
+      "sequence_length": 279,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:431",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9252909421920776,
+      "sequence_id": "O59893",
+      "sequence_length": 234,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:438",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.4340455234050751,
+      "sequence_id": "P68036",
+      "sequence_length": 154,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:440",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.7220121026039124,
+      "sequence_id": "P07987",
+      "sequence_length": 471,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:444",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9218659996986389,
+      "sequence_id": "P62694",
+      "sequence_length": 513,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:448",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.7477346658706665,
+      "sequence_id": "P33665",
+      "sequence_length": 278,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:453",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.43474921584129333,
+      "sequence_id": "O68884",
+      "sequence_length": 372,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:474",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8738694190979004,
+      "sequence_id": "P19080",
+      "sequence_length": 127,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:477",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9992212057113647,
+      "sequence_id": "P04936",
+      "sequence_length": 2150,
+      "sequence_truncated": true
+    },
+    {
+      "entry_id": "m_csa:480",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9699601531028748,
+      "sequence_id": "P26214",
+      "sequence_length": 362,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:484",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9923536777496338,
+      "sequence_id": "P01116",
+      "sequence_length": 189,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:493",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8995184898376465,
+      "sequence_id": "P07649",
+      "sequence_length": 270,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:497",
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9752030372619629,
+      "sequence_id": "Q9FDN7",
+      "sequence_length": 399,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:509",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9273147583007812,
+      "sequence_id": "Q9X592",
+      "sequence_length": 432,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:511",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.5546774864196777,
+      "sequence_id": "Q13526",
+      "sequence_length": 163,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:517",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9997121691703796,
+      "sequence_id": "P61517",
+      "sequence_length": 220,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:526",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.968989372253418,
+      "sequence_id": "P11708",
+      "sequence_length": 334,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:541",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.7235913872718811,
+      "sequence_id": "P75430",
+      "sequence_length": 164,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:545",
+      "local_cofactor_families": [
+        "plp"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.2494635134935379,
+      "sequence_id": "Q7M523",
+      "sequence_length": 341,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:549",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9786256551742554,
+      "sequence_id": "P06229",
+      "sequence_length": 291,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:551",
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9013851284980774,
+      "sequence_id": "P15245",
+      "sequence_length": 665,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:563",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.6890190243721008,
+      "sequence_id": "P0AAJ3",
+      "sequence_length": 294,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:566",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8627931475639343,
+      "sequence_id": "P46844",
+      "sequence_length": 295,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:577",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9844745397567749,
+      "sequence_id": "P29218",
+      "sequence_length": 277,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:590",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.6552303433418274,
+      "sequence_id": "Q01172",
+      "sequence_length": 379,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:594",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9456499218940735,
+      "sequence_id": "Q9UM07",
+      "sequence_length": 663,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:599",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.5728129744529724,
+      "sequence_id": "P36936",
+      "sequence_length": 229,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:606",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.20759104192256927,
+      "sequence_id": "P0AEK4",
+      "sequence_length": 262,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:609",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.6821256875991821,
+      "sequence_id": "P00778",
+      "sequence_length": 397,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:614",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9562228322029114,
+      "sequence_id": "P0A715",
+      "sequence_length": 284,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:617",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9739554524421692,
+      "sequence_id": "Q44297",
+      "sequence_length": 359,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:627",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.8530789017677307,
+      "sequence_id": "P36655",
+      "sequence_length": 565,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:634",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9966577291488647,
+      "sequence_id": "P84147",
+      "sequence_length": 506,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:647",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9486299753189087,
+      "sequence_id": "P05057",
+      "sequence_length": 253,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:651",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9636496901512146,
+      "sequence_id": "P04807",
+      "sequence_length": 486,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:686",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9951413869857788,
+      "sequence_id": "Q7SIG4",
+      "sequence_length": 314,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:688",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9898659586906433,
+      "sequence_id": "Q5JP69",
+      "sequence_length": 752,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:709",
+      "local_cofactor_families": [
+        "heme"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.6976608037948608,
+      "sequence_id": "P00431",
+      "sequence_length": 361,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:710",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9637702703475952,
+      "sequence_id": "P25524",
+      "sequence_length": 427,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:714",
+      "local_cofactor_families": [
+        "heme",
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9909160733222961,
+      "sequence_id": "P0ABI8",
+      "sequence_length": 663,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:723",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9974972605705261,
+      "sequence_id": "P00782",
+      "sequence_length": 382,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:750",
+      "local_cofactor_families": [
+        "fe_s_cluster",
+        "flavin"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.6586830615997314,
+      "sequence_id": "P55792",
+      "sequence_length": 490,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:853",
+      "local_cofactor_families": [
+        "cobalamin",
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9500281810760498,
+      "sequence_id": "P31570",
+      "sequence_length": 196,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:854",
+      "local_cofactor_families": [
+        "plp"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.7299101948738098,
+      "sequence_id": "P80147",
+      "sequence_length": 500,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:866",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.7907859683036804,
+      "sequence_id": "P94388",
+      "sequence_length": 318,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:892",
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.5928113460540771,
+      "sequence_id": "A2RJT9",
+      "sequence_length": 311,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:897",
+      "local_cofactor_families": [],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.9722994565963745,
+      "sequence_id": "P23657",
+      "sequence_length": 157,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:916",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9319764375686646,
+      "sequence_id": "P9WI55",
+      "sequence_length": 162,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:990",
+      "local_cofactor_families": [
+        "fe_s_cluster",
+        "flavin"
+      ],
+      "metal_present_label": 0,
+      "mionic_metal_score": 0.978503406047821,
+      "sequence_id": "Q8GS60",
+      "sequence_length": 462,
+      "sequence_truncated": false
+    },
+    {
+      "entry_id": "m_csa:994",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "metal_present_label": 1,
+      "mionic_metal_score": 0.9994494318962097,
+      "sequence_id": "Q9Y3Z3",
+      "sequence_length": 626,
+      "sequence_truncated": false
+    }
+  ],
+  "schema_version": "borrowed_mionic_metal_eval.v1",
+  "scope": {
+    "clean_experimental_ligand_context_rows": 135,
+    "experimental_label_source": "v3_geometry_features_1025 ligand_context.cofactor_families",
+    "label_counts": {
+      "0": 106,
+      "1": 29
+    },
+    "max_sequence_length": 1022,
+    "sequence_input_only": true,
+    "split_assignment": "heldout"
+  },
+  "status": "complete"
+}

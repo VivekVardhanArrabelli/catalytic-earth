@@ -1,6 +1,6 @@
 # Sequence Cofactor-Channel Probe
 
-Run: 2026-05-29T20:28:51Z
+Run: 2026-05-29T22:54:19Z
 
 ## Answer
 
@@ -20,7 +20,7 @@ Run: 2026-05-29T20:28:51Z
 - Clean geometry label rows: 682/702.
 - Runnable one-vs-rest presence classes: ['metal_ion', 'flavin', 'plp', 'heme'].
 - Exact multiclass runnable now: False.
-- ESM-2 vectors available: False.
+- ESM-2 vectors available: True.
 
 ## K-mer Control Probe
 

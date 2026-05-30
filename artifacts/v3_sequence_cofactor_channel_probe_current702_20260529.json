@@ -40,7 +40,7 @@
         "train": 24
       }
     },
-    "esm2_probe_runnable_now": false,
+    "esm2_probe_runnable_now": true,
     "exact_multiclass_runnable_now": false,
     "kmer_control_interpretation": "kmer_control_has_some_signal_but_is_not_the_target_model",
     "label_readiness": "presence_probe_runnable_now",
@@ -48,7 +48,7 @@
     "short_answer": "Yes for one-vs-rest cofactor class-presence labels on metal/flavin/PLP/heme; not yet for a clean exact single-label multiclass probe including heme."
   },
   "artifact_id": "v3_sequence_cofactor_channel_probe_current702_20260529",
-  "created_utc": "2026-05-29T20:28:51Z",
+  "created_utc": "2026-05-29T22:54:19Z",
   "guardrails": {
     "fingerprint_registry_edited": false,
     "global_threshold_changed": false,
@@ -207,14 +207,14 @@
   "schema_version": "sequence_cofactor_channel_probe.v1",
   "sequence_probe": {
     "esm2_sidecar_status": {
-      "computed_embedding_backend": null,
-      "embedding_backend": "esm2_t6_8m_ur50d",
-      "embedding_failure_count": 702,
-      "emitted_row_count": 0,
-      "raw_embedding_vectors_retained": false,
-      "status": "blocked_no_embeddings_emitted",
+      "computed_embedding_backend": "esm2_t12_35m_ur50d",
+      "embedding_backend": "esm2_t12_35m_ur50d",
+      "embedding_failure_count": 0,
+      "emitted_row_count": 702,
+      "raw_embedding_vectors_retained": true,
+      "status": "complete",
       "warnings": [
-        "ESM-2 backend could not be loaded locally: OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'."
+        "ESM-2 embeddings are computed review-only controls; they do not replace active-site evidence, sequence-search completion, expert decisions, or factory gates"
       ]
     },
     "kmer_logistic_presence_probe": {
