@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "artifact_id": "esm2_150m_whole_sequence_current702_20260525_backend_execution",
+    "default_huggingface_cache_blocker": "default cache under ~/.cache/huggingface was not writable; run used HF_HOME=/private/tmp/catalytic-earth-hf-cache",
+    "device": "cpu",
+    "entry_embedding_count": 702,
+    "eval_contract_sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
+    "forbidden_inputs_used": [],
+    "generated_at": "2026-05-25T16:23:44.538684+00:00",
+    "heldout_prediction_count": 140,
+    "hf_home": "/private/tmp/catalytic-earth-hf-cache",
+    "hidden_size": 640,
+    "input_leakage_contract": "amino_acid_sequence_only; no EC/name/prose/expert-note/curator-rationale/review-decision/source-id semantic features",
+    "max_position_embeddings": 1026,
+    "max_residues_per_window": 1022,
+    "model_id": "facebook/esm2_t30_150M_UR50D",
+    "pooling_mode": "whole_sequence",
+    "python_version": "3.12.9",
+    "runtime_seconds": 751.05,
+    "schema_version": "esm2_150m_backend_execution.v1",
+    "sequence_nn_metrics_sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "split_artifact_sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425",
+    "status": "computed",
+    "torch_version": "2.7.1",
+    "transformers_model_class": "EsmModel"
+  },
+  "output_sha256": {
+    "embeddings_jsonl": "e7e5ee1ec329b084182e7b957c24f14a282f08bf61a6d2191dd639752ffd9617",
+    "embeddings_manifest": "61b9a4d53fa5c3ca05b9943094dd7cc9f035f2dbf977ea80441e376422aea225",
+    "metrics": "b67dee9010e5dc0c20c92709fe6094b29228d07b151c9fcbe1d11530edc7fa6b",
+    "predictions_jsonl": "5ef109653f49f4c1f84522819f76c83c474cccd6ff52dcedc673a78a1a007b99"
+  },
+  "outputs": {
+    "embeddings_jsonl": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+    "embeddings_manifest": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_manifest_current702_20260525.json",
+    "metrics": "artifacts/representation_tracks/esm2_150m/esm2_150m_metrics_current702_20260525.json",
+    "predictions_jsonl": "artifacts/representation_tracks/esm2_150m/esm2_150m_predictions_current702_20260525.jsonl"
+  },
+  "runnable_next_command": "HF_HOME=/private/tmp/catalytic-earth-hf-cache python <benchmark runner> from repository root; exact source inputs and outputs are recorded in work/representation_tracks/esm2_150m_handoff.md",
+  "source_artifact_sha256": {
+    "eval_contract": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
+    "fingerprint_audit": "cf9d5d3b17fa95d51374d244497ceba52414e60b8bdaefa12304ba3372cab734",
+    "sequence_fasta": "f151bcf8e3e9b7ca7adfd6bbf1da119e3d486228f3dad19f92dc4b9f20c42a3e",
+    "sequence_manifest": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b",
+    "sequence_nn_metrics": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26",
+    "split": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425"
+  }
+}

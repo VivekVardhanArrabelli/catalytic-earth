@@ -1,0 +1,885 @@
+{
+  "baseline_context": {
+    "sequence_nn_headline_metrics": {
+      "exact_label_accuracy_all": 0.5286,
+      "exact_label_accuracy_in_scope": 0.1458,
+      "max_nearest_jaccard_similarity": 0.1664,
+      "mean_nearest_jaccard_similarity": 0.076,
+      "out_of_scope_false_positive_rate_no_threshold": 0.2717,
+      "primary_supervised_accuracy": 0.1556
+    },
+    "sequence_nn_oos_abstention_diagnostics": {
+      "by_oos_tier": {
+        "far_oos": {
+          "abstention_rate": 0.0,
+          "false_positive_count": 1,
+          "false_positive_rate_no_threshold": 1.0,
+          "row_count": 1
+        },
+        "near_oos": {
+          "abstention_rate": 0.6667,
+          "false_positive_count": 1,
+          "false_positive_rate_no_threshold": 0.3333,
+          "row_count": 3
+        },
+        "unknown_oos": {
+          "abstention_rate": 0.7386,
+          "false_positive_count": 23,
+          "false_positive_rate_no_threshold": 0.2614,
+          "row_count": 88
+        }
+      },
+      "false_positive_count": 25,
+      "false_positive_rate_no_threshold": 0.2717,
+      "out_of_scope_heldout_count": 92,
+      "secondary_probe_heldout_count": 3,
+      "secondary_probe_rows": [
+        {
+          "abstained": true,
+          "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+          "entry_id": "m_csa:131",
+          "jaccard_similarity": 0.0861,
+          "predicted_label_group": "out_of_scope"
+        },
+        {
+          "abstained": false,
+          "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+          "entry_id": "m_csa:372",
+          "jaccard_similarity": 0.0871,
+          "predicted_label_group": "cobalamin_radical_rearrangement"
+        },
+        {
+          "abstained": false,
+          "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+          "entry_id": "m_csa:853",
+          "jaccard_similarity": 0.0573,
+          "predicted_label_group": "metal_dependent_hydrolase"
+        }
+      ],
+      "status": "computed"
+    }
+  },
+  "blocked_rows": [
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "unsupported_foldseek_aa_token"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PYA.cif",
+      "entry_id": "m_csa:49",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1PYA",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "blockers": [
+        "selected_record_exceeds_saprot_max_position_embeddings"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OFD.cif",
+      "entry_id": "m_csa:111",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "label_group": "flavin_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1OFD",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "selected_record_exceeds_saprot_max_position_embeddings"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2C3M.cif",
+      "entry_id": "m_csa:119",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:2C3M",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "unsupported_foldseek_aa_token"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2TOH.cif",
+      "entry_id": "m_csa:134",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:2TOH",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "selected_record_exceeds_saprot_max_position_embeddings"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1V97.cif",
+      "entry_id": "m_csa:139",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1V97",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "unsupported_foldseek_aa_token"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AUK.cif",
+      "entry_id": "m_csa:158",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1AUK",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "non_pdb_or_unrecognized_selected_structure_proxy"
+      ],
+      "coordinate_path": null,
+      "entry_id": "m_csa:204",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "not_evaluated",
+      "split_assignment": "in_distribution",
+      "split_status": "not_evaluated_sequence_split_assignment_repaired",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "selected_record_exceeds_saprot_max_position_embeddings"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2QF7.cif",
+      "entry_id": "m_csa:223",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:2QF7",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "blockers": [
+        "selected_record_exceeds_saprot_max_position_embeddings"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EA0.cif",
+      "entry_id": "m_csa:304",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "label_group": "flavin_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1EA0",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+      "blockers": [
+        "missing_selected_structure_proxy"
+      ],
+      "coordinate_path": null,
+      "entry_id": "m_csa:372",
+      "fingerprint_id": "radical_sam_enzyme",
+      "label_group": "radical_sam_enzyme",
+      "label_type": "seed_fingerprint",
+      "oos_tier": "far_oos",
+      "selected_structure_proxy_id": "missing_selected_structure",
+      "split_assignment": "heldout",
+      "split_status": "no_structure_positions",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "unsupported_foldseek_aa_token"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1QI9.cif",
+      "entry_id": "m_csa:373",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1QI9",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "unsupported_foldseek_aa_token"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1QI9.cif",
+      "entry_id": "m_csa:374",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1QI9",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "unsupported_foldseek_aa_token"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1QI9.cif",
+      "entry_id": "m_csa:386",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1QI9",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "unsupported_foldseek_aa_token"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1AW8.cif",
+      "entry_id": "m_csa:409",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1AW8",
+      "split_assignment": "heldout",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "unsupported_foldseek_aa_token"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1B6G.cif",
+      "entry_id": "m_csa:415",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1B6G",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "selected_record_exceeds_saprot_max_position_embeddings"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BXR.cif",
+      "entry_id": "m_csa:435",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1BXR",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "missing_selected_structure_proxy"
+      ],
+      "coordinate_path": null,
+      "entry_id": "m_csa:501",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "missing_selected_structure",
+      "split_assignment": "in_distribution",
+      "split_status": "no_structure_positions",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "unsupported_foldseek_aa_token"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1JEN.cif",
+      "entry_id": "m_csa:575",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "pdb:1JEN",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1IMA.cif",
+      "entry_id": "m_csa:577",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1IMA",
+      "split_assignment": "heldout",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EB6.cif",
+      "entry_id": "m_csa:596",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1EB6",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1FY2.cif",
+      "entry_id": "m_csa:599",
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "label_group": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1FY2",
+      "split_assignment": "heldout",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1R1J.cif",
+      "entry_id": "m_csa:623",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1R1J",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1EPW.cif",
+      "entry_id": "m_csa:626",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1EPW",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1UAQ.cif",
+      "entry_id": "m_csa:636",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1UAQ",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PWV.cif",
+      "entry_id": "m_csa:641",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1PWV",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LML.cif",
+      "entry_id": "m_csa:668",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1LML",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1R44.cif",
+      "entry_id": "m_csa:706",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1R44",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1RA0.cif",
+      "entry_id": "m_csa:710",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1RA0",
+      "split_assignment": "heldout",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1J2U.cif",
+      "entry_id": "m_csa:720",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1J2U",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::ser_his_acid_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1UK7.cif",
+      "entry_id": "m_csa:771",
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "label_group": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1UK7",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1FR2.cif",
+      "entry_id": "m_csa:791",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1FR2",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1Q91.cif",
+      "entry_id": "m_csa:812",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1Q91",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1ZNV.cif",
+      "entry_id": "m_csa:838",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1ZNV",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OAS.cif",
+      "entry_id": "m_csa:865",
+      "fingerprint_id": "plp_dependent_enzyme",
+      "label_group": "plp_dependent_enzyme",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1OAS",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2DOR.cif",
+      "entry_id": "m_csa:892",
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "label_group": "flavin_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:2DOR",
+      "split_assignment": "heldout",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1PVI.cif",
+      "entry_id": "m_csa:897",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1PVI",
+      "split_assignment": "heldout",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1XGM.cif",
+      "entry_id": "m_csa:917",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:1XGM",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+      "blockers": [
+        "selected_pdb_coordinate_not_staged_locally"
+      ],
+      "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_5G0I.cif",
+      "entry_id": "m_csa:998",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "oos_tier": null,
+      "selected_structure_proxy_id": "pdb:5G0I",
+      "split_assignment": "in_distribution",
+      "split_status": "ok",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "non_pdb_or_unrecognized_selected_structure_proxy"
+      ],
+      "coordinate_path": null,
+      "entry_id": "uniprot:P06744",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "not_evaluated",
+      "split_assignment": "in_distribution",
+      "split_status": "not_evaluated_sequence_split_assignment_repaired",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "non_pdb_or_unrecognized_selected_structure_proxy"
+      ],
+      "coordinate_path": null,
+      "entry_id": "uniprot:P78549",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "not_evaluated",
+      "split_assignment": "in_distribution",
+      "split_status": "not_evaluated_sequence_split_assignment_repaired",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blockers": [
+        "non_pdb_or_unrecognized_selected_structure_proxy"
+      ],
+      "coordinate_path": null,
+      "entry_id": "uniprot:Q3LXA3",
+      "fingerprint_id": null,
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "oos_tier": "unknown_oos",
+      "selected_structure_proxy_id": "not_evaluated",
+      "split_assignment": "in_distribution",
+      "split_status": "not_evaluated_sequence_split_assignment_repaired",
+      "tokenization_status": "blocked_before_saprot_embedding"
+    }
+  ],
+  "coverage": {
+    "blocked_entry_ids": [
+      "m_csa:49",
+      "m_csa:111",
+      "m_csa:119",
+      "m_csa:134",
+      "m_csa:139",
+      "m_csa:158",
+      "m_csa:204",
+      "m_csa:223",
+      "m_csa:304",
+      "m_csa:372",
+      "m_csa:373",
+      "m_csa:374",
+      "m_csa:386",
+      "m_csa:409",
+      "m_csa:415",
+      "m_csa:435",
+      "m_csa:501",
+      "m_csa:575",
+      "m_csa:577",
+      "m_csa:596",
+      "m_csa:599",
+      "m_csa:623",
+      "m_csa:626",
+      "m_csa:636",
+      "m_csa:641",
+      "m_csa:668",
+      "m_csa:706",
+      "m_csa:710",
+      "m_csa:720",
+      "m_csa:771",
+      "m_csa:791",
+      "m_csa:812",
+      "m_csa:838",
+      "m_csa:865",
+      "m_csa:892",
+      "m_csa:897",
+      "m_csa:917",
+      "m_csa:998",
+      "uniprot:P06744",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "over_model_length_entry_ids": [
+      "m_csa:111",
+      "m_csa:119",
+      "m_csa:139",
+      "m_csa:223",
+      "m_csa:304",
+      "m_csa:435"
+    ],
+    "ready_length_max": 1023,
+    "ready_length_mean": 365.25,
+    "ready_length_min": 62,
+    "status_by_label_group": {
+      "blocked_before_saprot_embedding::flavin_dehydrogenase_reductase": 3,
+      "blocked_before_saprot_embedding::metal_dependent_hydrolase": 17,
+      "blocked_before_saprot_embedding::out_of_scope": 17,
+      "blocked_before_saprot_embedding::plp_dependent_enzyme": 1,
+      "blocked_before_saprot_embedding::radical_sam_enzyme": 1,
+      "blocked_before_saprot_embedding::ser_his_acid_hydrolase": 2,
+      "ready_for_saprot_embedding::cobalamin_radical_rearrangement": 3,
+      "ready_for_saprot_embedding::flavin_dehydrogenase_reductase": 47,
+      "ready_for_saprot_embedding::flavin_monooxygenase": 2,
+      "ready_for_saprot_embedding::heme_peroxidase_oxidase": 20,
+      "ready_for_saprot_embedding::metal_dependent_hydrolase": 66,
+      "ready_for_saprot_embedding::out_of_scope": 453,
+      "ready_for_saprot_embedding::plp_dependent_enzyme": 30,
+      "ready_for_saprot_embedding::ser_his_acid_hydrolase": 40
+    },
+    "status_by_partition": {
+      "blocked_before_saprot_embedding::heldout": 7,
+      "blocked_before_saprot_embedding::in_distribution": 34,
+      "ready_for_saprot_embedding::heldout": 133,
+      "ready_for_saprot_embedding::in_distribution": 528
+    },
+    "status_counts": {
+      "blocked_before_saprot_embedding": 41,
+      "ready_for_saprot_embedding": 661
+    },
+    "unsupported_token_entry_ids": [
+      "m_csa:49",
+      "m_csa:134",
+      "m_csa:158",
+      "m_csa:373",
+      "m_csa:374",
+      "m_csa:386",
+      "m_csa:409",
+      "m_csa:415",
+      "m_csa:575"
+    ]
+  },
+  "metadata": {
+    "artifact_id": "saprot_tokenization_coverage_current702_20260525",
+    "blocked_before_saprot_embedding_count": 41,
+    "blocked_coordinate_abstentions_required_for_heldout_count": 7,
+    "branch": "research/representation-saprot",
+    "chain_token_policy_artifact": "artifacts/representation_tracks/saprot/saprot_chain_token_policy_current702_20260525.json",
+    "current_label_count": 702,
+    "generated_at": "2026-05-25T17:39:45.464089+00:00",
+    "heldout_blocked_before_saprot_embedding_count": 7,
+    "in_distribution_blocked_before_saprot_embedding_count": 34,
+    "ready_for_saprot_embedding_count": 661,
+    "repo_head": "0ec0e081b390ec26bb4a6c755ddb1ea0fd344075",
+    "schema_version": "saprot_tokenization_coverage.v1",
+    "status": "computed_current702_chain_tokenization_coverage",
+    "token_jsonl_artifact": "artifacts/representation_tracks/saprot/saprot_sa_tokens_current702_20260525.jsonl"
+  },
+  "multiple_foldseek_record_summary": {
+    "entry_ids_sample": [
+      "m_csa:3",
+      "m_csa:4",
+      "m_csa:5",
+      "m_csa:6",
+      "m_csa:8",
+      "m_csa:10",
+      "m_csa:13",
+      "m_csa:15",
+      "m_csa:16",
+      "m_csa:21",
+      "m_csa:22",
+      "m_csa:23",
+      "m_csa:24",
+      "m_csa:25",
+      "m_csa:28",
+      "m_csa:29",
+      "m_csa:30",
+      "m_csa:32",
+      "m_csa:33",
+      "m_csa:34",
+      "m_csa:35",
+      "m_csa:36",
+      "m_csa:37",
+      "m_csa:38",
+      "m_csa:39",
+      "m_csa:40",
+      "m_csa:42",
+      "m_csa:43",
+      "m_csa:44",
+      "m_csa:46",
+      "m_csa:48",
+      "m_csa:49",
+      "m_csa:50",
+      "m_csa:52",
+      "m_csa:54",
+      "m_csa:55",
+      "m_csa:56",
+      "m_csa:57",
+      "m_csa:58",
+      "m_csa:59",
+      "m_csa:60",
+      "m_csa:61",
+      "m_csa:62",
+      "m_csa:63",
+      "m_csa:66",
+      "m_csa:68",
+      "m_csa:70",
+      "m_csa:73",
+      "m_csa:75",
+      "m_csa:77"
+    ],
+    "max_alternative_record_count": 40,
+    "row_count": 414
+  }
+}

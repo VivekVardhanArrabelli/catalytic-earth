@@ -1,0 +1,2287 @@
+{
+  "artifact_id": "v3_lomo_frozen_snapshot_transfer_current702_20260530",
+  "automation_id": "lomo-frozen-snapshot-current702",
+  "conclusion": {
+    "max_surrogate_coverage_rate": 0.004425,
+    "oos_hard_gate_assessment": "failed_for_at_least_one_computed_track",
+    "overall_answer": "Current frozen learned/feature path does not demonstrate reliable leave-one-mechanism-out transfer. Exact recovery is unavailable without a candidate class synthesis mechanism, surrogate family recovery is limited, and OOS false-positive behavior fails as a hard gate for computed dry-run tracks.",
+    "stop_condition": "artifact and report only; no expansion, architecture changes, AF3, or production retraining launched",
+    "transfer_signal_assessment": "underpowered_no_exact_open_set_recovery"
+  },
+  "created_utc": "2026-05-30T07:14:45Z",
+  "disk": {
+    "available_gib_after": 26,
+    "available_gib_before": 26,
+    "guard_passed": true,
+    "minimum_required_gib": 10
+  },
+  "feasibility_matrix": [
+    {
+      "joined_current702_rows": 702,
+      "notes": [
+        "deterministic sequence-only control; no labels retained in sidecar"
+      ],
+      "requested_rows": 702,
+      "source_exists": true,
+      "source_path": "artifacts/v3_sequence_embedding_sidecar_current702_kmer_20260529.jsonl",
+      "source_size_bytes": 9626874,
+      "status": "computed_dry_run",
+      "summary_exists": true,
+      "summary_path": "artifacts/v3_sequence_embedding_sidecar_current702_kmer_20260529_summary.json",
+      "track_id": "sequence_kmer_oos_aware_logistic"
+    },
+    {
+      "joined_current702_rows": 0,
+      "notes": [
+        "summary claims 702 rows but local JSONL is 0 bytes; no huge model download attempted"
+      ],
+      "requested_rows": 702,
+      "source_exists": true,
+      "source_path": "artifacts/v3_sequence_embedding_sidecar_current702_esm2_t6_8m_20260529.jsonl",
+      "source_size_bytes": 0,
+      "status": "blocked_empty_jsonl_despite_summary",
+      "summary_exists": true,
+      "summary_path": "artifacts/v3_sequence_embedding_sidecar_current702_esm2_t6_8m_20260529_summary.json",
+      "track_id": "sequence_esm2_t6_8m_oos_aware_logistic"
+    },
+    {
+      "joined_current702_rows": 0,
+      "notes": [
+        "summary exists but embedding row file is absent; no huge model download attempted"
+      ],
+      "requested_rows": 702,
+      "source_exists": false,
+      "source_path": "artifacts/v3_sequence_embedding_sidecar_current702_esm2_t12_35m_20260529.jsonl",
+      "source_size_bytes": null,
+      "status": "blocked_missing_jsonl_despite_summary",
+      "summary_exists": true,
+      "summary_path": "artifacts/v3_sequence_embedding_sidecar_current702_esm2_t12_35m_20260529_summary.json",
+      "track_id": "sequence_esm2_t12_35m_oos_aware_logistic"
+    },
+    {
+      "joined_current702_rows": 698,
+      "notes": [
+        "filtered geometry_features_1025 to current702 entry IDs only",
+        "per-fingerprint retrieval/template score features removed"
+      ],
+      "requested_rows": 702,
+      "source_exists": true,
+      "source_path": "artifacts/v3_geometry_features_1025.json",
+      "source_size_bytes": 17887021,
+      "status": "computed_dry_run",
+      "summary_exists": false,
+      "summary_path": null,
+      "track_id": "geometry_local_descriptor_oos_aware_logistic"
+    },
+    {
+      "joined_current702_rows": null,
+      "notes": [
+        "cache is label-blind but train/cal feasibility only; not a complete frozen current702 LOMO eval matrix"
+      ],
+      "requested_rows": 702,
+      "source_exists": true,
+      "source_path": "artifacts/v3_active_site_encoder_cache_train_cal_547_20260528.jsonl",
+      "source_size_bytes": 3039595,
+      "status": "blocked_no_full_current702_or_heldout_cache",
+      "summary_exists": true,
+      "summary_path": "artifacts/v3_active_site_encoder_cache_train_cal_547_summary_20260528.json",
+      "track_id": "active_site_encoder_cache_547"
+    }
+  ],
+  "frozen_snapshot_verification": {
+    "commit_verified_before_analysis": true,
+    "expected_commit": "f393ad25c3959778c7e66a68974bcfee6c93f031",
+    "expected_tag": "snapshot/concordance-gate-current702-20260530",
+    "expected_tag_points_at_head": true,
+    "observed_branch": "automation/lomo-frozen-snapshot-current702-20260530",
+    "observed_commit": "f393ad25c3959778c7e66a68974bcfee6c93f031",
+    "tags_at_head": [
+      "snapshot/concordance-gate-current702-20260530"
+    ]
+  },
+  "guardrails": {
+    "expansion_rows_entered_train_cal_test": false,
+    "fingerprint_registry_edited": false,
+    "forbidden_predictive_inputs": [
+      "EC",
+      "mechanism_text",
+      "mechanism_prose",
+      "entry_name",
+      "source_ids",
+      "review_notes",
+      "target_labels"
+    ],
+    "forbidden_predictive_inputs_used": [],
+    "global_threshold_changed": false,
+    "heldout_mechanism_labels_used_for_fit_or_threshold": false,
+    "huge_model_downloads_performed": false,
+    "imports_changed": false,
+    "label_registry_edited": false,
+    "mcsa_import_or_promotion_performed": false,
+    "mcsa_role": "frozen benchmark/reference rows for ephemeral diagnostic fits only; no M-CSA import, promotion, production training, or persisted weights",
+    "model_weights_persisted": false,
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false,
+    "read_existing_snapshot_artifacts_only": true,
+    "row_universe": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json only",
+    "targeted_expansion_outputs_opened_or_hashed_for_artifact": false,
+    "targeted_expansion_outputs_used_for_train_cal_test": false
+  },
+  "input_scope": {
+    "eligible_primary_fingerprint_classes": [
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "ser_his_acid_hydrolase"
+    ],
+    "eligible_primary_support_counts": {
+      "flavin_dehydrogenase_reductase": 50,
+      "heme_peroxidase_oxidase": 20,
+      "metal_dependent_hydrolase": 83,
+      "plp_dependent_enzyme": 31,
+      "ser_his_acid_hydrolase": 42
+    },
+    "geometry_feature_join_audit": {
+      "current702_joined_entry_count": 698,
+      "source_entry_count": 1002
+    },
+    "label_type_counts": {
+      "out_of_scope": 470,
+      "seed_fingerprint": 232
+    },
+    "manifest_row_count": 702,
+    "out_of_scope_row_count": 470,
+    "secondary_or_tiny_probe_classes_excluded_from_primary_lomo": [
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "radical_sam_enzyme"
+    ],
+    "split_counts": {
+      "heldout": 140,
+      "in_distribution": 562
+    }
+  },
+  "protocol": {
+    "cal_fraction": 0.2,
+    "exact_recovery_policy": "exact top-k recovery is unavailable when the held-out class is absent from model classes; report ontology/cofactor surrogate top-k where a remaining sibling exists",
+    "heldout_class_eval_rows": "all current702 rows of the held-out primary class, across original split assignments, because the mechanism class is fully excluded from fit/calibration",
+    "oos_eval_rows": "original heldout split nonprimary rows only; false positive behavior is a hard gate",
+    "random_state": 702,
+    "task": "leave one eligible primary mechanism/fingerprint class out of fit and calibration, then score that class as unseen plus heldout OOS rows",
+    "threshold_policy": "per-LOMO lowest max-probability threshold with zero calibration nonprimary/OOS false positives; no heldout/OOS evaluation tuning",
+    "train_cal_rows": "in_distribution rows only, excluding the held-out mechanism class; OOS/secondary rows are learned/calibrated as none-of-above only"
+  },
+  "schema_version": "lomo_frozen_snapshot_transfer.v1",
+  "source_artifacts": {
+    "active_site_encoder_cache_train_cal": {
+      "exists": true,
+      "path": "artifacts/v3_active_site_encoder_cache_train_cal_547_20260528.jsonl",
+      "sha256": "78f8816c0707fd02913914ea366b88142118fee12072a3adbf48abc7693a8e9f",
+      "size_bytes": 3039595,
+      "used_for_train_cal_test": false
+    },
+    "active_site_encoder_cache_train_cal_summary": {
+      "exists": true,
+      "path": "artifacts/v3_active_site_encoder_cache_train_cal_547_summary_20260528.json",
+      "sha256": "7a81ed73a60d85bc4849941f5bd3ad67e2aaf8223de51b877eff0b8d6e2dde4c",
+      "size_bytes": 875,
+      "used_for_train_cal_test": false
+    },
+    "esm2_t12_sidecar": {
+      "exists": false,
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_esm2_t12_35m_20260529.jsonl",
+      "sha256": null,
+      "size_bytes": null,
+      "used_for_train_cal_test": false
+    },
+    "esm2_t12_summary": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_esm2_t12_35m_20260529_summary.json",
+      "sha256": "dee0360f7317a8b0b557c76c8e64165620516fa269f15b7f7bf1c7392898a7f9",
+      "size_bytes": 1635,
+      "used_for_train_cal_test": false
+    },
+    "esm2_t6_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_esm2_t6_8m_20260529.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "used_for_train_cal_test": false
+    },
+    "esm2_t6_summary": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_esm2_t6_8m_20260529_summary.json",
+      "sha256": "93268f14dc3063db5c2b5e363eaa3730e6e5d825a4eb0e022ac91ae1488ff276",
+      "size_bytes": 1627,
+      "used_for_train_cal_test": false
+    },
+    "geometry_features": {
+      "exists": true,
+      "path": "artifacts/v3_geometry_features_1025.json",
+      "sha256": "be7af8462397425062075ff8df5959cc9b68b165d07017692099deb66db1f8f6",
+      "size_bytes": 17887021,
+      "used_for_train_cal_test": true
+    },
+    "geometry_nonlinear_reference": {
+      "exists": true,
+      "path": "artifacts/v3_geometry_nonlinear_head_audit_702_20260529.json",
+      "sha256": "3a6f6c18631a8789a8c6091c9c19044305354277f8dfe30ca7ce97dc00b842d3",
+      "size_bytes": 409604,
+      "used_for_train_cal_test": false
+    },
+    "kmer_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_kmer_20260529.jsonl",
+      "sha256": "123f0bb5681c411e4d692472b01c6b1b4f0eda673cc7c4104ddaa3ef1ab71b72",
+      "size_bytes": 9626874,
+      "used_for_train_cal_test": true
+    },
+    "kmer_sidecar_summary": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_kmer_20260529_summary.json",
+      "sha256": "7a478c5f7179dc7b73475432c1cec2574fa16d1e12075dfc169517dff3c44c74",
+      "size_bytes": 1571,
+      "used_for_train_cal_test": false
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151",
+      "size_bytes": 1005735,
+      "used_for_train_cal_test": true
+    },
+    "sequence_split": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+      "sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425",
+      "size_bytes": 1109541,
+      "used_for_train_cal_test": false
+    }
+  },
+  "status": "complete_dry_run_from_cached_current702_features",
+  "track_results": {
+    "geometry_local_descriptor_oos_aware_logistic": {
+      "aggregate": {
+        "completed_heldout_class_count": 5,
+        "exact_withheld_class_recovery_note": "not available because each held-out class is removed from the output label space",
+        "exact_withheld_class_recovery_rate": null,
+        "heldout_class_abstention_count": 226,
+        "heldout_class_abstention_rate": 1.0,
+        "heldout_class_coverage_count": 0,
+        "heldout_class_coverage_rate": 0.0,
+        "heldout_class_support_count": 226,
+        "oos_hard_gate_failed_heldout_classes": [],
+        "oos_hard_gate_pass_all_lomo_runs": true,
+        "selected_thresholds_by_heldout_class": {
+          "flavin_dehydrogenase_reductase": 0.999833,
+          "heme_peroxidase_oxidase": 0.999572,
+          "metal_dependent_hydrolase": 0.98695,
+          "plp_dependent_enzyme": 0.999273,
+          "ser_his_acid_hydrolase": 0.999065
+        }
+      },
+      "display_name": "Geometry local-descriptor OOS-aware logistic",
+      "model": "DictVectorizer + StandardScaler(with_mean=False) + class_weight=balanced LogisticRegression(liblinear)",
+      "per_heldout_class": {
+        "flavin_dehydrogenase_reductase": {
+          "failure_modes": [
+            "no_open_set_class_synthesis_exact_recovery_unavailable",
+            "heldout_class_mostly_abstained"
+          ],
+          "fit": {
+            "calibration_label_counts": {
+              "__none_of_above__": 76,
+              "heme_peroxidase_oxidase": 3,
+              "metal_dependent_hydrolase": 13,
+              "plp_dependent_enzyme": 5,
+              "ser_his_acid_hydrolase": 7
+            },
+            "calibration_row_count": 104,
+            "fit_label_counts_after_lomo_exclusion": {
+              "__none_of_above__": 377,
+              "heme_peroxidase_oxidase": 16,
+              "metal_dependent_hydrolase": 66,
+              "plp_dependent_enzyme": 25,
+              "ser_his_acid_hydrolase": 34
+            },
+            "heldout_class_absent_from_model_classes": true,
+            "leakage_flags": [],
+            "model_classes": [
+              "__none_of_above__",
+              "heme_peroxidase_oxidase",
+              "metal_dependent_hydrolase",
+              "plp_dependent_enzyme",
+              "ser_his_acid_hydrolase"
+            ],
+            "train_label_counts": {
+              "__none_of_above__": 301,
+              "heme_peroxidase_oxidase": 13,
+              "metal_dependent_hydrolase": 53,
+              "plp_dependent_enzyme": 20,
+              "ser_his_acid_hydrolase": 27
+            },
+            "train_row_count": 414
+          },
+          "heldout_mechanism_class_eval": {
+            "abstention_count": 50,
+            "abstention_rate": 1.0,
+            "accepted_same_ontology_family_count": null,
+            "accepted_same_ontology_family_rate": null,
+            "called_label_distribution": {},
+            "coverage_count": 0,
+            "coverage_rate": 0.0,
+            "exact_withheld_class_recovery_available": false,
+            "exact_withheld_class_recovery_blocker": "held-out fingerprint class is intentionally removed from the output label space; current path has no open-set class synthesis",
+            "feature_available_count": 50,
+            "feature_missing_entry_ids": [],
+            "mean_max_probability": 0.954521,
+            "row_samples": [
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:3",
+                "max_probability": 0.961165,
+                "split_assignment": "heldout",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "heme_peroxidase_oxidase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:6",
+                "max_probability": 0.999854,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "heme_peroxidase_oxidase",
+                  "metal_dependent_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:20",
+                "max_probability": 0.993423,
+                "split_assignment": "heldout",
+                "top3_labels": [
+                  "heme_peroxidase_oxidase",
+                  "plp_dependent_enzyme",
+                  "metal_dependent_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:68",
+                "max_probability": 0.997168,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "heme_peroxidase_oxidase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:102",
+                "max_probability": 0.952909,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "heme_peroxidase_oxidase",
+                  "ser_his_acid_hydrolase",
+                  "metal_dependent_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:103",
+                "max_probability": 0.993468,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "heme_peroxidase_oxidase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:108",
+                "max_probability": 0.999343,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "heme_peroxidase_oxidase",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:109",
+                "max_probability": 0.948401,
+                "split_assignment": "heldout",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "metal_dependent_hydrolase",
+                  "heme_peroxidase_oxidase"
+                ]
+              }
+            ],
+            "split_support_counts": {
+              "heldout": 10,
+              "in_distribution": 40
+            },
+            "support_count": 50,
+            "top1_label_distribution": {
+              "heme_peroxidase_oxidase": 16,
+              "metal_dependent_hydrolase": 7,
+              "plp_dependent_enzyme": 10,
+              "ser_his_acid_hydrolase": 17
+            },
+            "top1_same_cofactor_count": null,
+            "top1_same_cofactor_rate": null,
+            "top1_same_cofactor_recovery_available": false,
+            "top1_same_ontology_family_count": null,
+            "top1_same_ontology_family_rate": null,
+            "top1_same_ontology_family_recovery_available": false,
+            "top3_same_cofactor_count": null,
+            "top3_same_cofactor_rate": null,
+            "top3_same_cofactor_recovery_available": false,
+            "top3_same_ontology_family_count": null,
+            "top3_same_ontology_family_rate": null,
+            "top3_same_ontology_family_recovery_available": false
+          },
+          "heldout_oos_eval": {
+            "false_positive_rows_sample": [],
+            "hard_gate_pass": true,
+            "oos_or_secondary_false_positive_count": 0,
+            "oos_or_secondary_false_positive_rate": 0.0,
+            "oos_or_secondary_support_count": 95,
+            "pure_oos_false_positive_count": 0,
+            "pure_oos_false_positive_rate": 0.0,
+            "pure_oos_support_count": 92,
+            "secondary_probe_nonabstained_count": 0,
+            "secondary_probe_support_count": 3
+          },
+          "status": "complete",
+          "threshold": {
+            "calibration_nonprimary_count": 76,
+            "calibration_oos_false_positive_count": 0,
+            "selected_threshold": 0.999833,
+            "threshold_selection_rule": "lowest max probability with zero calibration nonprimary/OOS false positives"
+          }
+        },
+        "heme_peroxidase_oxidase": {
+          "failure_modes": [
+            "no_open_set_class_synthesis_exact_recovery_unavailable",
+            "heldout_class_mostly_abstained"
+          ],
+          "fit": {
+            "calibration_label_counts": {
+              "__none_of_above__": 76,
+              "flavin_dehydrogenase_reductase": 8,
+              "metal_dependent_hydrolase": 13,
+              "plp_dependent_enzyme": 5,
+              "ser_his_acid_hydrolase": 7
+            },
+            "calibration_row_count": 109,
+            "fit_label_counts_after_lomo_exclusion": {
+              "__none_of_above__": 377,
+              "flavin_dehydrogenase_reductase": 40,
+              "metal_dependent_hydrolase": 66,
+              "plp_dependent_enzyme": 25,
+              "ser_his_acid_hydrolase": 34
+            },
+            "heldout_class_absent_from_model_classes": true,
+            "leakage_flags": [],
+            "model_classes": [
+              "__none_of_above__",
+              "flavin_dehydrogenase_reductase",
+              "metal_dependent_hydrolase",
+              "plp_dependent_enzyme",
+              "ser_his_acid_hydrolase"
+            ],
+            "train_label_counts": {
+              "__none_of_above__": 301,
+              "flavin_dehydrogenase_reductase": 32,
+              "metal_dependent_hydrolase": 53,
+              "plp_dependent_enzyme": 20,
+              "ser_his_acid_hydrolase": 27
+            },
+            "train_row_count": 433
+          },
+          "heldout_mechanism_class_eval": {
+            "abstention_count": 20,
+            "abstention_rate": 1.0,
+            "accepted_same_ontology_family_count": null,
+            "accepted_same_ontology_family_rate": null,
+            "called_label_distribution": {},
+            "coverage_count": 0,
+            "coverage_rate": 0.0,
+            "exact_withheld_class_recovery_available": false,
+            "exact_withheld_class_recovery_blocker": "held-out fingerprint class is intentionally removed from the output label space; current path has no open-set class synthesis",
+            "feature_available_count": 20,
+            "feature_missing_entry_ids": [],
+            "mean_max_probability": 0.902561,
+            "row_samples": [
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:37",
+                "max_probability": 0.995255,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:124",
+                "max_probability": 0.99971,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "ser_his_acid_hydrolase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:133",
+                "max_probability": 0.995797,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "ser_his_acid_hydrolase",
+                  "metal_dependent_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:208",
+                "max_probability": 0.99896,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:239",
+                "max_probability": 0.949711,
+                "split_assignment": "heldout",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:250",
+                "max_probability": 0.744948,
+                "split_assignment": "heldout",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:399",
+                "max_probability": 0.991,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "ser_his_acid_hydrolase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:473",
+                "max_probability": 0.981219,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "ser_his_acid_hydrolase",
+                  "plp_dependent_enzyme"
+                ]
+              }
+            ],
+            "split_support_counts": {
+              "heldout": 4,
+              "in_distribution": 16
+            },
+            "support_count": 20,
+            "top1_label_distribution": {
+              "flavin_dehydrogenase_reductase": 10,
+              "metal_dependent_hydrolase": 3,
+              "plp_dependent_enzyme": 1,
+              "ser_his_acid_hydrolase": 6
+            },
+            "top1_same_cofactor_count": null,
+            "top1_same_cofactor_rate": null,
+            "top1_same_cofactor_recovery_available": false,
+            "top1_same_ontology_family_count": null,
+            "top1_same_ontology_family_rate": null,
+            "top1_same_ontology_family_recovery_available": false,
+            "top3_same_cofactor_count": null,
+            "top3_same_cofactor_rate": null,
+            "top3_same_cofactor_recovery_available": false,
+            "top3_same_ontology_family_count": null,
+            "top3_same_ontology_family_rate": null,
+            "top3_same_ontology_family_recovery_available": false
+          },
+          "heldout_oos_eval": {
+            "false_positive_rows_sample": [],
+            "hard_gate_pass": true,
+            "oos_or_secondary_false_positive_count": 0,
+            "oos_or_secondary_false_positive_rate": 0.0,
+            "oos_or_secondary_support_count": 95,
+            "pure_oos_false_positive_count": 0,
+            "pure_oos_false_positive_rate": 0.0,
+            "pure_oos_support_count": 92,
+            "secondary_probe_nonabstained_count": 0,
+            "secondary_probe_support_count": 3
+          },
+          "status": "complete",
+          "threshold": {
+            "calibration_nonprimary_count": 76,
+            "calibration_oos_false_positive_count": 0,
+            "selected_threshold": 0.999572,
+            "threshold_selection_rule": "lowest max probability with zero calibration nonprimary/OOS false positives"
+          }
+        },
+        "metal_dependent_hydrolase": {
+          "failure_modes": [
+            "no_open_set_class_synthesis_exact_recovery_unavailable",
+            "heldout_class_mostly_abstained"
+          ],
+          "fit": {
+            "calibration_label_counts": {
+              "__none_of_above__": 76,
+              "flavin_dehydrogenase_reductase": 8,
+              "heme_peroxidase_oxidase": 3,
+              "plp_dependent_enzyme": 5,
+              "ser_his_acid_hydrolase": 7
+            },
+            "calibration_row_count": 99,
+            "fit_label_counts_after_lomo_exclusion": {
+              "__none_of_above__": 377,
+              "flavin_dehydrogenase_reductase": 40,
+              "heme_peroxidase_oxidase": 16,
+              "plp_dependent_enzyme": 25,
+              "ser_his_acid_hydrolase": 34
+            },
+            "heldout_class_absent_from_model_classes": true,
+            "leakage_flags": [],
+            "model_classes": [
+              "__none_of_above__",
+              "flavin_dehydrogenase_reductase",
+              "heme_peroxidase_oxidase",
+              "plp_dependent_enzyme",
+              "ser_his_acid_hydrolase"
+            ],
+            "train_label_counts": {
+              "__none_of_above__": 301,
+              "flavin_dehydrogenase_reductase": 32,
+              "heme_peroxidase_oxidase": 13,
+              "plp_dependent_enzyme": 20,
+              "ser_his_acid_hydrolase": 27
+            },
+            "train_row_count": 393
+          },
+          "heldout_mechanism_class_eval": {
+            "abstention_count": 83,
+            "abstention_rate": 1.0,
+            "accepted_same_ontology_family_count": 0,
+            "accepted_same_ontology_family_rate": 0.0,
+            "called_label_distribution": {},
+            "coverage_count": 0,
+            "coverage_rate": 0.0,
+            "exact_withheld_class_recovery_available": false,
+            "exact_withheld_class_recovery_blocker": "held-out fingerprint class is intentionally removed from the output label space; current path has no open-set class synthesis",
+            "feature_available_count": 83,
+            "feature_missing_entry_ids": [],
+            "mean_max_probability": 0.980824,
+            "row_samples": [
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:11",
+                "max_probability": 0.998489,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "heme_peroxidase_oxidase",
+                  "flavin_dehydrogenase_reductase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:15",
+                "max_probability": 0.993476,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:16",
+                "max_probability": 0.996931,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:27",
+                "max_probability": 0.996565,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:28",
+                "max_probability": 0.998232,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:38",
+                "max_probability": 0.998967,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:41",
+                "max_probability": 0.994406,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:42",
+                "max_probability": 0.998127,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              }
+            ],
+            "split_support_counts": {
+              "heldout": 17,
+              "in_distribution": 66
+            },
+            "support_count": 83,
+            "top1_label_distribution": {
+              "flavin_dehydrogenase_reductase": 25,
+              "heme_peroxidase_oxidase": 7,
+              "plp_dependent_enzyme": 36,
+              "ser_his_acid_hydrolase": 15
+            },
+            "top1_same_cofactor_count": null,
+            "top1_same_cofactor_rate": null,
+            "top1_same_cofactor_recovery_available": false,
+            "top1_same_ontology_family_count": 15,
+            "top1_same_ontology_family_rate": 0.180723,
+            "top1_same_ontology_family_recovery_available": true,
+            "top3_same_cofactor_count": null,
+            "top3_same_cofactor_rate": null,
+            "top3_same_cofactor_recovery_available": false,
+            "top3_same_ontology_family_count": 29,
+            "top3_same_ontology_family_rate": 0.349398,
+            "top3_same_ontology_family_recovery_available": true
+          },
+          "heldout_oos_eval": {
+            "false_positive_rows_sample": [],
+            "hard_gate_pass": true,
+            "oos_or_secondary_false_positive_count": 0,
+            "oos_or_secondary_false_positive_rate": 0.0,
+            "oos_or_secondary_support_count": 95,
+            "pure_oos_false_positive_count": 0,
+            "pure_oos_false_positive_rate": 0.0,
+            "pure_oos_support_count": 92,
+            "secondary_probe_nonabstained_count": 0,
+            "secondary_probe_support_count": 3
+          },
+          "status": "complete",
+          "threshold": {
+            "calibration_nonprimary_count": 76,
+            "calibration_oos_false_positive_count": 0,
+            "selected_threshold": 0.98695,
+            "threshold_selection_rule": "lowest max probability with zero calibration nonprimary/OOS false positives"
+          }
+        },
+        "plp_dependent_enzyme": {
+          "failure_modes": [
+            "no_open_set_class_synthesis_exact_recovery_unavailable",
+            "heldout_class_mostly_abstained"
+          ],
+          "fit": {
+            "calibration_label_counts": {
+              "__none_of_above__": 76,
+              "flavin_dehydrogenase_reductase": 8,
+              "heme_peroxidase_oxidase": 3,
+              "metal_dependent_hydrolase": 13,
+              "ser_his_acid_hydrolase": 7
+            },
+            "calibration_row_count": 107,
+            "fit_label_counts_after_lomo_exclusion": {
+              "__none_of_above__": 377,
+              "flavin_dehydrogenase_reductase": 40,
+              "heme_peroxidase_oxidase": 16,
+              "metal_dependent_hydrolase": 66,
+              "ser_his_acid_hydrolase": 34
+            },
+            "heldout_class_absent_from_model_classes": true,
+            "leakage_flags": [],
+            "model_classes": [
+              "__none_of_above__",
+              "flavin_dehydrogenase_reductase",
+              "heme_peroxidase_oxidase",
+              "metal_dependent_hydrolase",
+              "ser_his_acid_hydrolase"
+            ],
+            "train_label_counts": {
+              "__none_of_above__": 301,
+              "flavin_dehydrogenase_reductase": 32,
+              "heme_peroxidase_oxidase": 13,
+              "metal_dependent_hydrolase": 53,
+              "ser_his_acid_hydrolase": 27
+            },
+            "train_row_count": 426
+          },
+          "heldout_mechanism_class_eval": {
+            "abstention_count": 31,
+            "abstention_rate": 1.0,
+            "accepted_same_ontology_family_count": null,
+            "accepted_same_ontology_family_rate": null,
+            "called_label_distribution": {},
+            "coverage_count": 0,
+            "coverage_rate": 0.0,
+            "exact_withheld_class_recovery_available": false,
+            "exact_withheld_class_recovery_blocker": "held-out fingerprint class is intentionally removed from the output label space; current path has no open-set class synthesis",
+            "feature_available_count": 31,
+            "feature_missing_entry_ids": [],
+            "mean_max_probability": 0.951211,
+            "row_samples": [
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:66",
+                "max_probability": 0.993697,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:147",
+                "max_probability": 0.99796,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "heme_peroxidase_oxidase",
+                  "flavin_dehydrogenase_reductase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:186",
+                "max_probability": 0.99526,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:195",
+                "max_probability": 0.98424,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:205",
+                "max_probability": 0.997398,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "heme_peroxidase_oxidase",
+                  "flavin_dehydrogenase_reductase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:213",
+                "max_probability": 0.999501,
+                "split_assignment": "heldout",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:249",
+                "max_probability": 0.993543,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:286",
+                "max_probability": 0.999812,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              }
+            ],
+            "split_support_counts": {
+              "heldout": 6,
+              "in_distribution": 25
+            },
+            "support_count": 31,
+            "top1_label_distribution": {
+              "flavin_dehydrogenase_reductase": 2,
+              "heme_peroxidase_oxidase": 3,
+              "metal_dependent_hydrolase": 3,
+              "ser_his_acid_hydrolase": 23
+            },
+            "top1_same_cofactor_count": null,
+            "top1_same_cofactor_rate": null,
+            "top1_same_cofactor_recovery_available": false,
+            "top1_same_ontology_family_count": null,
+            "top1_same_ontology_family_rate": null,
+            "top1_same_ontology_family_recovery_available": false,
+            "top3_same_cofactor_count": null,
+            "top3_same_cofactor_rate": null,
+            "top3_same_cofactor_recovery_available": false,
+            "top3_same_ontology_family_count": null,
+            "top3_same_ontology_family_rate": null,
+            "top3_same_ontology_family_recovery_available": false
+          },
+          "heldout_oos_eval": {
+            "false_positive_rows_sample": [],
+            "hard_gate_pass": true,
+            "oos_or_secondary_false_positive_count": 0,
+            "oos_or_secondary_false_positive_rate": 0.0,
+            "oos_or_secondary_support_count": 95,
+            "pure_oos_false_positive_count": 0,
+            "pure_oos_false_positive_rate": 0.0,
+            "pure_oos_support_count": 92,
+            "secondary_probe_nonabstained_count": 0,
+            "secondary_probe_support_count": 3
+          },
+          "status": "complete",
+          "threshold": {
+            "calibration_nonprimary_count": 76,
+            "calibration_oos_false_positive_count": 0,
+            "selected_threshold": 0.999273,
+            "threshold_selection_rule": "lowest max probability with zero calibration nonprimary/OOS false positives"
+          }
+        },
+        "ser_his_acid_hydrolase": {
+          "failure_modes": [
+            "no_open_set_class_synthesis_exact_recovery_unavailable",
+            "heldout_class_mostly_abstained"
+          ],
+          "fit": {
+            "calibration_label_counts": {
+              "__none_of_above__": 76,
+              "flavin_dehydrogenase_reductase": 8,
+              "heme_peroxidase_oxidase": 3,
+              "metal_dependent_hydrolase": 13,
+              "plp_dependent_enzyme": 5
+            },
+            "calibration_row_count": 105,
+            "fit_label_counts_after_lomo_exclusion": {
+              "__none_of_above__": 377,
+              "flavin_dehydrogenase_reductase": 40,
+              "heme_peroxidase_oxidase": 16,
+              "metal_dependent_hydrolase": 66,
+              "plp_dependent_enzyme": 25
+            },
+            "heldout_class_absent_from_model_classes": true,
+            "leakage_flags": [],
+            "model_classes": [
+              "__none_of_above__",
+              "flavin_dehydrogenase_reductase",
+              "heme_peroxidase_oxidase",
+              "metal_dependent_hydrolase",
+              "plp_dependent_enzyme"
+            ],
+            "train_label_counts": {
+              "__none_of_above__": 301,
+              "flavin_dehydrogenase_reductase": 32,
+              "heme_peroxidase_oxidase": 13,
+              "metal_dependent_hydrolase": 53,
+              "plp_dependent_enzyme": 20
+            },
+            "train_row_count": 419
+          },
+          "heldout_mechanism_class_eval": {
+            "abstention_count": 42,
+            "abstention_rate": 1.0,
+            "accepted_same_ontology_family_count": 0,
+            "accepted_same_ontology_family_rate": 0.0,
+            "called_label_distribution": {},
+            "coverage_count": 0,
+            "coverage_rate": 0.0,
+            "exact_withheld_class_recovery_available": false,
+            "exact_withheld_class_recovery_blocker": "held-out fingerprint class is intentionally removed from the output label space; current path has no open-set class synthesis",
+            "feature_available_count": 42,
+            "feature_missing_entry_ids": [],
+            "mean_max_probability": 0.965969,
+            "row_samples": [
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:5",
+                "max_probability": 0.997028,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "flavin_dehydrogenase_reductase",
+                  "metal_dependent_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:94",
+                "max_probability": 0.981114,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "plp_dependent_enzyme",
+                  "flavin_dehydrogenase_reductase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:169",
+                "max_probability": 0.998234,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:173",
+                "max_probability": 0.998415,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:218",
+                "max_probability": 0.998608,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "metal_dependent_hydrolase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:238",
+                "max_probability": 0.97102,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "plp_dependent_enzyme",
+                  "flavin_dehydrogenase_reductase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:248",
+                "max_probability": 0.998236,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:337",
+                "max_probability": 0.996401,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme",
+                  "heme_peroxidase_oxidase"
+                ]
+              }
+            ],
+            "split_support_counts": {
+              "heldout": 8,
+              "in_distribution": 34
+            },
+            "support_count": 42,
+            "top1_label_distribution": {
+              "flavin_dehydrogenase_reductase": 9,
+              "heme_peroxidase_oxidase": 1,
+              "metal_dependent_hydrolase": 8,
+              "plp_dependent_enzyme": 24
+            },
+            "top1_same_cofactor_count": null,
+            "top1_same_cofactor_rate": null,
+            "top1_same_cofactor_recovery_available": false,
+            "top1_same_ontology_family_count": 8,
+            "top1_same_ontology_family_rate": 0.190476,
+            "top1_same_ontology_family_recovery_available": true,
+            "top3_same_cofactor_count": null,
+            "top3_same_cofactor_rate": null,
+            "top3_same_cofactor_recovery_available": false,
+            "top3_same_ontology_family_count": 21,
+            "top3_same_ontology_family_rate": 0.5,
+            "top3_same_ontology_family_recovery_available": true
+          },
+          "heldout_oos_eval": {
+            "false_positive_rows_sample": [],
+            "hard_gate_pass": true,
+            "oos_or_secondary_false_positive_count": 0,
+            "oos_or_secondary_false_positive_rate": 0.0,
+            "oos_or_secondary_support_count": 95,
+            "pure_oos_false_positive_count": 0,
+            "pure_oos_false_positive_rate": 0.0,
+            "pure_oos_support_count": 92,
+            "secondary_probe_nonabstained_count": 0,
+            "secondary_probe_support_count": 3
+          },
+          "status": "complete",
+          "threshold": {
+            "calibration_nonprimary_count": 76,
+            "calibration_oos_false_positive_count": 0,
+            "selected_threshold": 0.999065,
+            "threshold_selection_rule": "lowest max probability with zero calibration nonprimary/OOS false positives"
+          }
+        }
+      },
+      "row_scope": {
+        "current702_manifest_rows": 702,
+        "feature_joined_current702_rows": 698,
+        "missing_current702_entry_count": 4,
+        "missing_current702_entry_ids": [
+          "m_csa:204",
+          "uniprot:P06744",
+          "uniprot:P78549",
+          "uniprot:Q3LXA3"
+        ]
+      },
+      "status": "complete",
+      "track_id": "geometry_local_descriptor_oos_aware_logistic"
+    },
+    "sequence_kmer_oos_aware_logistic": {
+      "aggregate": {
+        "completed_heldout_class_count": 5,
+        "exact_withheld_class_recovery_note": "not available because each held-out class is removed from the output label space",
+        "exact_withheld_class_recovery_rate": null,
+        "heldout_class_abstention_count": 225,
+        "heldout_class_abstention_rate": 0.995575,
+        "heldout_class_coverage_count": 1,
+        "heldout_class_coverage_rate": 0.004425,
+        "heldout_class_support_count": 226,
+        "oos_hard_gate_failed_heldout_classes": [
+          "plp_dependent_enzyme"
+        ],
+        "oos_hard_gate_pass_all_lomo_runs": false,
+        "selected_thresholds_by_heldout_class": {
+          "flavin_dehydrogenase_reductase": 0.972016,
+          "heme_peroxidase_oxidase": 0.839993,
+          "metal_dependent_hydrolase": 0.590947,
+          "plp_dependent_enzyme": 0.924357,
+          "ser_his_acid_hydrolase": 0.965799
+        }
+      },
+      "display_name": "Sequence k-mer OOS-aware logistic",
+      "model": "DictVectorizer + StandardScaler(with_mean=False) + class_weight=balanced LogisticRegression(liblinear)",
+      "per_heldout_class": {
+        "flavin_dehydrogenase_reductase": {
+          "failure_modes": [
+            "no_open_set_class_synthesis_exact_recovery_unavailable",
+            "heldout_class_mostly_abstained"
+          ],
+          "fit": {
+            "calibration_label_counts": {
+              "__none_of_above__": 77,
+              "heme_peroxidase_oxidase": 3,
+              "metal_dependent_hydrolase": 13,
+              "plp_dependent_enzyme": 5,
+              "ser_his_acid_hydrolase": 7
+            },
+            "calibration_row_count": 105,
+            "fit_label_counts_after_lomo_exclusion": {
+              "__none_of_above__": 381,
+              "heme_peroxidase_oxidase": 16,
+              "metal_dependent_hydrolase": 66,
+              "plp_dependent_enzyme": 25,
+              "ser_his_acid_hydrolase": 34
+            },
+            "heldout_class_absent_from_model_classes": true,
+            "leakage_flags": [],
+            "model_classes": [
+              "__none_of_above__",
+              "heme_peroxidase_oxidase",
+              "metal_dependent_hydrolase",
+              "plp_dependent_enzyme",
+              "ser_his_acid_hydrolase"
+            ],
+            "train_label_counts": {
+              "__none_of_above__": 304,
+              "heme_peroxidase_oxidase": 13,
+              "metal_dependent_hydrolase": 53,
+              "plp_dependent_enzyme": 20,
+              "ser_his_acid_hydrolase": 27
+            },
+            "train_row_count": 417
+          },
+          "heldout_mechanism_class_eval": {
+            "abstention_count": 50,
+            "abstention_rate": 1.0,
+            "accepted_same_ontology_family_count": null,
+            "accepted_same_ontology_family_rate": null,
+            "called_label_distribution": {},
+            "coverage_count": 0,
+            "coverage_rate": 0.0,
+            "exact_withheld_class_recovery_available": false,
+            "exact_withheld_class_recovery_blocker": "held-out fingerprint class is intentionally removed from the output label space; current path has no open-set class synthesis",
+            "feature_available_count": 50,
+            "feature_missing_entry_ids": [],
+            "mean_max_probability": 0.994021,
+            "row_samples": [
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:3",
+                "max_probability": 0.99469,
+                "split_assignment": "heldout",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "metal_dependent_hydrolase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:6",
+                "max_probability": 0.997683,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "metal_dependent_hydrolase",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:20",
+                "max_probability": 0.991482,
+                "split_assignment": "heldout",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "heme_peroxidase_oxidase",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:68",
+                "max_probability": 0.998173,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "plp_dependent_enzyme",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:102",
+                "max_probability": 0.98403,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "heme_peroxidase_oxidase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:103",
+                "max_probability": 0.995204,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "heme_peroxidase_oxidase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:108",
+                "max_probability": 0.997593,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "plp_dependent_enzyme",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:109",
+                "max_probability": 0.998184,
+                "split_assignment": "heldout",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "plp_dependent_enzyme",
+                  "ser_his_acid_hydrolase"
+                ]
+              }
+            ],
+            "split_support_counts": {
+              "heldout": 10,
+              "in_distribution": 40
+            },
+            "support_count": 50,
+            "top1_label_distribution": {
+              "heme_peroxidase_oxidase": 3,
+              "metal_dependent_hydrolase": 22,
+              "plp_dependent_enzyme": 10,
+              "ser_his_acid_hydrolase": 15
+            },
+            "top1_same_cofactor_count": null,
+            "top1_same_cofactor_rate": null,
+            "top1_same_cofactor_recovery_available": false,
+            "top1_same_ontology_family_count": null,
+            "top1_same_ontology_family_rate": null,
+            "top1_same_ontology_family_recovery_available": false,
+            "top3_same_cofactor_count": null,
+            "top3_same_cofactor_rate": null,
+            "top3_same_cofactor_recovery_available": false,
+            "top3_same_ontology_family_count": null,
+            "top3_same_ontology_family_rate": null,
+            "top3_same_ontology_family_recovery_available": false
+          },
+          "heldout_oos_eval": {
+            "false_positive_rows_sample": [],
+            "hard_gate_pass": true,
+            "oos_or_secondary_false_positive_count": 0,
+            "oos_or_secondary_false_positive_rate": 0.0,
+            "oos_or_secondary_support_count": 95,
+            "pure_oos_false_positive_count": 0,
+            "pure_oos_false_positive_rate": 0.0,
+            "pure_oos_support_count": 92,
+            "secondary_probe_nonabstained_count": 0,
+            "secondary_probe_support_count": 3
+          },
+          "status": "complete",
+          "threshold": {
+            "calibration_nonprimary_count": 77,
+            "calibration_oos_false_positive_count": 0,
+            "selected_threshold": 0.972016,
+            "threshold_selection_rule": "lowest max probability with zero calibration nonprimary/OOS false positives"
+          }
+        },
+        "heme_peroxidase_oxidase": {
+          "failure_modes": [
+            "no_open_set_class_synthesis_exact_recovery_unavailable",
+            "heldout_class_mostly_abstained"
+          ],
+          "fit": {
+            "calibration_label_counts": {
+              "__none_of_above__": 77,
+              "flavin_dehydrogenase_reductase": 8,
+              "metal_dependent_hydrolase": 13,
+              "plp_dependent_enzyme": 5,
+              "ser_his_acid_hydrolase": 7
+            },
+            "calibration_row_count": 110,
+            "fit_label_counts_after_lomo_exclusion": {
+              "__none_of_above__": 381,
+              "flavin_dehydrogenase_reductase": 40,
+              "metal_dependent_hydrolase": 66,
+              "plp_dependent_enzyme": 25,
+              "ser_his_acid_hydrolase": 34
+            },
+            "heldout_class_absent_from_model_classes": true,
+            "leakage_flags": [],
+            "model_classes": [
+              "__none_of_above__",
+              "flavin_dehydrogenase_reductase",
+              "metal_dependent_hydrolase",
+              "plp_dependent_enzyme",
+              "ser_his_acid_hydrolase"
+            ],
+            "train_label_counts": {
+              "__none_of_above__": 304,
+              "flavin_dehydrogenase_reductase": 32,
+              "metal_dependent_hydrolase": 53,
+              "plp_dependent_enzyme": 20,
+              "ser_his_acid_hydrolase": 27
+            },
+            "train_row_count": 436
+          },
+          "heldout_mechanism_class_eval": {
+            "abstention_count": 20,
+            "abstention_rate": 1.0,
+            "accepted_same_ontology_family_count": null,
+            "accepted_same_ontology_family_rate": null,
+            "called_label_distribution": {},
+            "coverage_count": 0,
+            "coverage_rate": 0.0,
+            "exact_withheld_class_recovery_available": false,
+            "exact_withheld_class_recovery_blocker": "held-out fingerprint class is intentionally removed from the output label space; current path has no open-set class synthesis",
+            "feature_available_count": 20,
+            "feature_missing_entry_ids": [],
+            "mean_max_probability": 0.995494,
+            "row_samples": [
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:37",
+                "max_probability": 0.992077,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:124",
+                "max_probability": 0.997219,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "metal_dependent_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:133",
+                "max_probability": 0.99613,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "metal_dependent_hydrolase",
+                  "flavin_dehydrogenase_reductase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:208",
+                "max_probability": 0.998915,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "plp_dependent_enzyme",
+                  "metal_dependent_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:239",
+                "max_probability": 0.997511,
+                "split_assignment": "heldout",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "ser_his_acid_hydrolase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:250",
+                "max_probability": 0.997612,
+                "split_assignment": "heldout",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "ser_his_acid_hydrolase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:399",
+                "max_probability": 0.996091,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:473",
+                "max_probability": 0.993956,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "ser_his_acid_hydrolase",
+                  "plp_dependent_enzyme"
+                ]
+              }
+            ],
+            "split_support_counts": {
+              "heldout": 4,
+              "in_distribution": 16
+            },
+            "support_count": 20,
+            "top1_label_distribution": {
+              "flavin_dehydrogenase_reductase": 8,
+              "metal_dependent_hydrolase": 8,
+              "plp_dependent_enzyme": 2,
+              "ser_his_acid_hydrolase": 2
+            },
+            "top1_same_cofactor_count": null,
+            "top1_same_cofactor_rate": null,
+            "top1_same_cofactor_recovery_available": false,
+            "top1_same_ontology_family_count": null,
+            "top1_same_ontology_family_rate": null,
+            "top1_same_ontology_family_recovery_available": false,
+            "top3_same_cofactor_count": null,
+            "top3_same_cofactor_rate": null,
+            "top3_same_cofactor_recovery_available": false,
+            "top3_same_ontology_family_count": null,
+            "top3_same_ontology_family_rate": null,
+            "top3_same_ontology_family_recovery_available": false
+          },
+          "heldout_oos_eval": {
+            "false_positive_rows_sample": [],
+            "hard_gate_pass": true,
+            "oos_or_secondary_false_positive_count": 0,
+            "oos_or_secondary_false_positive_rate": 0.0,
+            "oos_or_secondary_support_count": 95,
+            "pure_oos_false_positive_count": 0,
+            "pure_oos_false_positive_rate": 0.0,
+            "pure_oos_support_count": 92,
+            "secondary_probe_nonabstained_count": 0,
+            "secondary_probe_support_count": 3
+          },
+          "status": "complete",
+          "threshold": {
+            "calibration_nonprimary_count": 77,
+            "calibration_oos_false_positive_count": 0,
+            "selected_threshold": 0.839993,
+            "threshold_selection_rule": "lowest max probability with zero calibration nonprimary/OOS false positives"
+          }
+        },
+        "metal_dependent_hydrolase": {
+          "failure_modes": [
+            "no_open_set_class_synthesis_exact_recovery_unavailable",
+            "heldout_class_mostly_abstained"
+          ],
+          "fit": {
+            "calibration_label_counts": {
+              "__none_of_above__": 77,
+              "flavin_dehydrogenase_reductase": 8,
+              "heme_peroxidase_oxidase": 3,
+              "plp_dependent_enzyme": 5,
+              "ser_his_acid_hydrolase": 7
+            },
+            "calibration_row_count": 100,
+            "fit_label_counts_after_lomo_exclusion": {
+              "__none_of_above__": 381,
+              "flavin_dehydrogenase_reductase": 40,
+              "heme_peroxidase_oxidase": 16,
+              "plp_dependent_enzyme": 25,
+              "ser_his_acid_hydrolase": 34
+            },
+            "heldout_class_absent_from_model_classes": true,
+            "leakage_flags": [],
+            "model_classes": [
+              "__none_of_above__",
+              "flavin_dehydrogenase_reductase",
+              "heme_peroxidase_oxidase",
+              "plp_dependent_enzyme",
+              "ser_his_acid_hydrolase"
+            ],
+            "train_label_counts": {
+              "__none_of_above__": 304,
+              "flavin_dehydrogenase_reductase": 32,
+              "heme_peroxidase_oxidase": 13,
+              "plp_dependent_enzyme": 20,
+              "ser_his_acid_hydrolase": 27
+            },
+            "train_row_count": 396
+          },
+          "heldout_mechanism_class_eval": {
+            "abstention_count": 82,
+            "abstention_rate": 0.987952,
+            "accepted_same_ontology_family_count": 0,
+            "accepted_same_ontology_family_rate": 0.0,
+            "called_label_distribution": {
+              "flavin_dehydrogenase_reductase": 1
+            },
+            "coverage_count": 1,
+            "coverage_rate": 0.012048,
+            "exact_withheld_class_recovery_available": false,
+            "exact_withheld_class_recovery_blocker": "held-out fingerprint class is intentionally removed from the output label space; current path has no open-set class synthesis",
+            "feature_available_count": 83,
+            "feature_missing_entry_ids": [],
+            "mean_max_probability": 0.990029,
+            "row_samples": [
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:11",
+                "max_probability": 0.99438,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "heme_peroxidase_oxidase",
+                  "ser_his_acid_hydrolase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:15",
+                "max_probability": 0.999423,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "ser_his_acid_hydrolase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:16",
+                "max_probability": 0.998972,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:27",
+                "max_probability": 0.991625,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:28",
+                "max_probability": 0.994132,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "ser_his_acid_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:38",
+                "max_probability": 0.998382,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "flavin_dehydrogenase_reductase",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:41",
+                "max_probability": 0.993894,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "plp_dependent_enzyme",
+                  "ser_his_acid_hydrolase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:42",
+                "max_probability": 0.995333,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase",
+                  "plp_dependent_enzyme"
+                ]
+              }
+            ],
+            "split_support_counts": {
+              "heldout": 17,
+              "in_distribution": 66
+            },
+            "support_count": 83,
+            "top1_label_distribution": {
+              "flavin_dehydrogenase_reductase": 43,
+              "heme_peroxidase_oxidase": 12,
+              "plp_dependent_enzyme": 16,
+              "ser_his_acid_hydrolase": 12
+            },
+            "top1_same_cofactor_count": null,
+            "top1_same_cofactor_rate": null,
+            "top1_same_cofactor_recovery_available": false,
+            "top1_same_ontology_family_count": 12,
+            "top1_same_ontology_family_rate": 0.144578,
+            "top1_same_ontology_family_recovery_available": true,
+            "top3_same_cofactor_count": null,
+            "top3_same_cofactor_rate": null,
+            "top3_same_cofactor_recovery_available": false,
+            "top3_same_ontology_family_count": 65,
+            "top3_same_ontology_family_rate": 0.783133,
+            "top3_same_ontology_family_recovery_available": true
+          },
+          "heldout_oos_eval": {
+            "false_positive_rows_sample": [],
+            "hard_gate_pass": true,
+            "oos_or_secondary_false_positive_count": 0,
+            "oos_or_secondary_false_positive_rate": 0.0,
+            "oos_or_secondary_support_count": 95,
+            "pure_oos_false_positive_count": 0,
+            "pure_oos_false_positive_rate": 0.0,
+            "pure_oos_support_count": 92,
+            "secondary_probe_nonabstained_count": 0,
+            "secondary_probe_support_count": 3
+          },
+          "status": "complete",
+          "threshold": {
+            "calibration_nonprimary_count": 77,
+            "calibration_oos_false_positive_count": 0,
+            "selected_threshold": 0.590947,
+            "threshold_selection_rule": "lowest max probability with zero calibration nonprimary/OOS false positives"
+          }
+        },
+        "plp_dependent_enzyme": {
+          "failure_modes": [
+            "no_open_set_class_synthesis_exact_recovery_unavailable",
+            "heldout_class_mostly_abstained",
+            "oos_false_positive_hard_gate_failed"
+          ],
+          "fit": {
+            "calibration_label_counts": {
+              "__none_of_above__": 77,
+              "flavin_dehydrogenase_reductase": 8,
+              "heme_peroxidase_oxidase": 3,
+              "metal_dependent_hydrolase": 13,
+              "ser_his_acid_hydrolase": 7
+            },
+            "calibration_row_count": 108,
+            "fit_label_counts_after_lomo_exclusion": {
+              "__none_of_above__": 381,
+              "flavin_dehydrogenase_reductase": 40,
+              "heme_peroxidase_oxidase": 16,
+              "metal_dependent_hydrolase": 66,
+              "ser_his_acid_hydrolase": 34
+            },
+            "heldout_class_absent_from_model_classes": true,
+            "leakage_flags": [],
+            "model_classes": [
+              "__none_of_above__",
+              "flavin_dehydrogenase_reductase",
+              "heme_peroxidase_oxidase",
+              "metal_dependent_hydrolase",
+              "ser_his_acid_hydrolase"
+            ],
+            "train_label_counts": {
+              "__none_of_above__": 304,
+              "flavin_dehydrogenase_reductase": 32,
+              "heme_peroxidase_oxidase": 13,
+              "metal_dependent_hydrolase": 53,
+              "ser_his_acid_hydrolase": 27
+            },
+            "train_row_count": 429
+          },
+          "heldout_mechanism_class_eval": {
+            "abstention_count": 31,
+            "abstention_rate": 1.0,
+            "accepted_same_ontology_family_count": null,
+            "accepted_same_ontology_family_rate": null,
+            "called_label_distribution": {},
+            "coverage_count": 0,
+            "coverage_rate": 0.0,
+            "exact_withheld_class_recovery_available": false,
+            "exact_withheld_class_recovery_blocker": "held-out fingerprint class is intentionally removed from the output label space; current path has no open-set class synthesis",
+            "feature_available_count": 31,
+            "feature_missing_entry_ids": [],
+            "mean_max_probability": 0.976868,
+            "row_samples": [
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:66",
+                "max_probability": 0.998412,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "heme_peroxidase_oxidase",
+                  "flavin_dehydrogenase_reductase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:147",
+                "max_probability": 0.996794,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "ser_his_acid_hydrolase",
+                  "flavin_dehydrogenase_reductase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:186",
+                "max_probability": 0.998769,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:195",
+                "max_probability": 0.996946,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "ser_his_acid_hydrolase",
+                  "metal_dependent_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:205",
+                "max_probability": 0.993417,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "metal_dependent_hydrolase",
+                  "ser_his_acid_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:213",
+                "max_probability": 0.997107,
+                "split_assignment": "heldout",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "metal_dependent_hydrolase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:249",
+                "max_probability": 0.998224,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "metal_dependent_hydrolase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:286",
+                "max_probability": 0.996771,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "heme_peroxidase_oxidase",
+                  "flavin_dehydrogenase_reductase"
+                ]
+              }
+            ],
+            "split_support_counts": {
+              "heldout": 6,
+              "in_distribution": 25
+            },
+            "support_count": 31,
+            "top1_label_distribution": {
+              "flavin_dehydrogenase_reductase": 12,
+              "metal_dependent_hydrolase": 16,
+              "ser_his_acid_hydrolase": 3
+            },
+            "top1_same_cofactor_count": null,
+            "top1_same_cofactor_rate": null,
+            "top1_same_cofactor_recovery_available": false,
+            "top1_same_ontology_family_count": null,
+            "top1_same_ontology_family_rate": null,
+            "top1_same_ontology_family_recovery_available": false,
+            "top3_same_cofactor_count": null,
+            "top3_same_cofactor_rate": null,
+            "top3_same_cofactor_recovery_available": false,
+            "top3_same_ontology_family_count": null,
+            "top3_same_ontology_family_rate": null,
+            "top3_same_ontology_family_recovery_available": false
+          },
+          "heldout_oos_eval": {
+            "false_positive_rows_sample": [
+              {
+                "benchmark_role": "oos_tier::unknown_oos",
+                "called_label": "ser_his_acid_hydrolase",
+                "entry_id": "m_csa:144",
+                "max_probability": 0.955489
+              }
+            ],
+            "hard_gate_pass": false,
+            "oos_or_secondary_false_positive_count": 1,
+            "oos_or_secondary_false_positive_rate": 0.010526,
+            "oos_or_secondary_support_count": 95,
+            "pure_oos_false_positive_count": 1,
+            "pure_oos_false_positive_rate": 0.01087,
+            "pure_oos_support_count": 92,
+            "secondary_probe_nonabstained_count": 0,
+            "secondary_probe_support_count": 3
+          },
+          "status": "complete",
+          "threshold": {
+            "calibration_nonprimary_count": 77,
+            "calibration_oos_false_positive_count": 0,
+            "selected_threshold": 0.924357,
+            "threshold_selection_rule": "lowest max probability with zero calibration nonprimary/OOS false positives"
+          }
+        },
+        "ser_his_acid_hydrolase": {
+          "failure_modes": [
+            "no_open_set_class_synthesis_exact_recovery_unavailable",
+            "heldout_class_mostly_abstained"
+          ],
+          "fit": {
+            "calibration_label_counts": {
+              "__none_of_above__": 77,
+              "flavin_dehydrogenase_reductase": 8,
+              "heme_peroxidase_oxidase": 3,
+              "metal_dependent_hydrolase": 13,
+              "plp_dependent_enzyme": 5
+            },
+            "calibration_row_count": 106,
+            "fit_label_counts_after_lomo_exclusion": {
+              "__none_of_above__": 381,
+              "flavin_dehydrogenase_reductase": 40,
+              "heme_peroxidase_oxidase": 16,
+              "metal_dependent_hydrolase": 66,
+              "plp_dependent_enzyme": 25
+            },
+            "heldout_class_absent_from_model_classes": true,
+            "leakage_flags": [],
+            "model_classes": [
+              "__none_of_above__",
+              "flavin_dehydrogenase_reductase",
+              "heme_peroxidase_oxidase",
+              "metal_dependent_hydrolase",
+              "plp_dependent_enzyme"
+            ],
+            "train_label_counts": {
+              "__none_of_above__": 304,
+              "flavin_dehydrogenase_reductase": 32,
+              "heme_peroxidase_oxidase": 13,
+              "metal_dependent_hydrolase": 53,
+              "plp_dependent_enzyme": 20
+            },
+            "train_row_count": 422
+          },
+          "heldout_mechanism_class_eval": {
+            "abstention_count": 42,
+            "abstention_rate": 1.0,
+            "accepted_same_ontology_family_count": 0,
+            "accepted_same_ontology_family_rate": 0.0,
+            "called_label_distribution": {},
+            "coverage_count": 0,
+            "coverage_rate": 0.0,
+            "exact_withheld_class_recovery_available": false,
+            "exact_withheld_class_recovery_blocker": "held-out fingerprint class is intentionally removed from the output label space; current path has no open-set class synthesis",
+            "feature_available_count": 42,
+            "feature_missing_entry_ids": [],
+            "mean_max_probability": 0.97156,
+            "row_samples": [
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:5",
+                "max_probability": 0.997641,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "heme_peroxidase_oxidase",
+                  "flavin_dehydrogenase_reductase",
+                  "metal_dependent_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:94",
+                "max_probability": 0.987445,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme",
+                  "metal_dependent_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:169",
+                "max_probability": 0.998465,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme",
+                  "metal_dependent_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:173",
+                "max_probability": 0.976476,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "plp_dependent_enzyme",
+                  "flavin_dehydrogenase_reductase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:218",
+                "max_probability": 0.951147,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:238",
+                "max_probability": 0.976126,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "flavin_dehydrogenase_reductase",
+                  "plp_dependent_enzyme"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:248",
+                "max_probability": 0.996496,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "flavin_dehydrogenase_reductase",
+                  "heme_peroxidase_oxidase",
+                  "metal_dependent_hydrolase"
+                ]
+              },
+              {
+                "abstained": true,
+                "called_label": null,
+                "entry_id": "m_csa:337",
+                "max_probability": 0.967855,
+                "split_assignment": "in_distribution",
+                "top3_labels": [
+                  "metal_dependent_hydrolase",
+                  "plp_dependent_enzyme",
+                  "flavin_dehydrogenase_reductase"
+                ]
+              }
+            ],
+            "split_support_counts": {
+              "heldout": 8,
+              "in_distribution": 34
+            },
+            "support_count": 42,
+            "top1_label_distribution": {
+              "flavin_dehydrogenase_reductase": 16,
+              "heme_peroxidase_oxidase": 2,
+              "metal_dependent_hydrolase": 22,
+              "plp_dependent_enzyme": 2
+            },
+            "top1_same_cofactor_count": null,
+            "top1_same_cofactor_rate": null,
+            "top1_same_cofactor_recovery_available": false,
+            "top1_same_ontology_family_count": 22,
+            "top1_same_ontology_family_rate": 0.52381,
+            "top1_same_ontology_family_recovery_available": true,
+            "top3_same_cofactor_count": null,
+            "top3_same_cofactor_rate": null,
+            "top3_same_cofactor_recovery_available": false,
+            "top3_same_ontology_family_count": 42,
+            "top3_same_ontology_family_rate": 1.0,
+            "top3_same_ontology_family_recovery_available": true
+          },
+          "heldout_oos_eval": {
+            "false_positive_rows_sample": [],
+            "hard_gate_pass": true,
+            "oos_or_secondary_false_positive_count": 0,
+            "oos_or_secondary_false_positive_rate": 0.0,
+            "oos_or_secondary_support_count": 95,
+            "pure_oos_false_positive_count": 0,
+            "pure_oos_false_positive_rate": 0.0,
+            "pure_oos_support_count": 92,
+            "secondary_probe_nonabstained_count": 0,
+            "secondary_probe_support_count": 3
+          },
+          "status": "complete",
+          "threshold": {
+            "calibration_nonprimary_count": 77,
+            "calibration_oos_false_positive_count": 0,
+            "selected_threshold": 0.965799,
+            "threshold_selection_rule": "lowest max probability with zero calibration nonprimary/OOS false positives"
+          }
+        }
+      },
+      "row_scope": {
+        "current702_manifest_rows": 702,
+        "feature_joined_current702_rows": 702,
+        "missing_current702_entry_count": 0,
+        "missing_current702_entry_ids": []
+      },
+      "status": "complete",
+      "track_id": "sequence_kmer_oos_aware_logistic"
+    }
+  }
+}

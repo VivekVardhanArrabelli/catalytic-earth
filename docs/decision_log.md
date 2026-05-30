@@ -3,6 +3,22 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-05-30: Session D1-D11 Decision Record
+
+Decision: preserve the D1-D11 session reasoning as a durable project-memory
+record before running D11 relationship-eval automation.
+
+Rationale: the session established the current line of reasoning from Wave 1
+decoder/join confounds, through predicted-geometry information loss, sequence
+cofactor-channel reconstruction, concordance gating, and the D11 mechanism
+relationship-space framing. Future agents should read this record before
+interpreting route-policy, LOMO, targeted expansion, or D11 relationship-eval
+outputs.
+
+Reference:
+
+- `docs/session_decision_record_20260530.md`
+
 ## 2026-05-25: Current702 Benchmark Contract
 
 Decision: freeze the current702 sequence benchmark and mechanism-prediction

@@ -1,0 +1,966 @@
+{
+  "coverage_feasibility": {
+    "current_uniprot_accession_probe": {
+      "batch_size": 100,
+      "endpoint": "https://rest.uniprot.org/uniprotkb/accessions",
+      "errors": [],
+      "fields": [
+        "accession",
+        "reviewed",
+        "length",
+        "id"
+      ],
+      "found_current_uniprot_count": 758,
+      "missing_current_uniprot_accessions": [
+        "P03176",
+        "Q05489"
+      ],
+      "missing_current_uniprot_count": 2,
+      "over_12000_residue_accessions_excluded_by_uniprot_policy": [],
+      "reviewed_swissprot_accession_count": 721,
+      "unreviewed_or_non_swissprot_accession_count": 37,
+      "unreviewed_or_non_swissprot_accessions": [
+        "B9JNP7",
+        "F8W4B7",
+        "O28603",
+        "O28604",
+        "O33199",
+        "O39914",
+        "O52942",
+        "O58727",
+        "O68884",
+        "O76290",
+        "O93734",
+        "P84147",
+        "P96965",
+        "Q2K340",
+        "Q3HWU8",
+        "Q4K9X1",
+        "Q53752",
+        "Q54331",
+        "Q59250",
+        "Q5EBY5",
+        "Q5JP69",
+        "Q6JTG5",
+        "Q6UV28",
+        "Q6YBS3",
+        "Q712I6",
+        "Q75WN8",
+        "Q7SID9",
+        "Q7SIE1",
+        "Q8KBW6",
+        "Q8KR84",
+        "Q8VQN0",
+        "Q9F4L3",
+        "Q9GPQ4",
+        "Q9X4K7",
+        "Q9X592",
+        "Q9X9P9",
+        "Q9ZF13"
+      ]
+    },
+    "reference_uniprot_accession_count": 760,
+    "row_level_expected_swissprot_h5_feasibility_without_local_h5": {
+      "exact_h5_key_coverage_status": "not_verified_until_h5py_and_per_protein_h5_are_available",
+      "partial_rows": [
+        {
+          "entry_id": "m_csa:124",
+          "label_group": "heme_peroxidase_oxidase",
+          "supported_reviewed_swissprot_accessions": [
+            "P00396",
+            "P68530"
+          ],
+          "target_fingerprint_id": "heme_peroxidase_oxidase",
+          "unsupported_accessions": [
+            {
+              "accession": "Q6JTG5",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "entry_id": "m_csa:776",
+          "label_group": "ser_his_acid_hydrolase",
+          "supported_reviewed_swissprot_accessions": [
+            "P27958"
+          ],
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "unsupported_accessions": [
+            {
+              "accession": "O39914",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        }
+      ],
+      "rows_with_at_least_one_reviewed_swissprot_accession": 666,
+      "rows_with_mixed_supported_and_unsupported_accessions": 2,
+      "rows_without_reviewed_swissprot_accession": 36,
+      "unsupported_rows": [
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:33",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q8VQN0"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q8VQN0",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:67",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "O52942"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "O52942",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:123",
+          "label_group": "flavin_dehydrogenase_reductase",
+          "reference_uniprot_ids": [
+            "O28603",
+            "O28604"
+          ],
+          "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "O28603",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            },
+            {
+              "accession": "O28604",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:201",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q9X4K7"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q9X4K7",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:221",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q9F4L3"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q9F4L3",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:223",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q2K340"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q2K340",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:237",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "O76290"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "O76290",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:269",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q4K9X1"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q4K9X1",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:372",
+          "label_group": "radical_sam_enzyme",
+          "reference_uniprot_ids": [
+            "Q712I6"
+          ],
+          "target_fingerprint_id": "radical_sam_enzyme",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q712I6",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:390",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q5EBY5"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q5EBY5",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:428",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q9ZF13"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q9ZF13",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:437",
+          "label_group": "ser_his_acid_hydrolase",
+          "reference_uniprot_ids": [
+            "Q75WN8"
+          ],
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q75WN8",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:453",
+          "label_group": "ser_his_acid_hydrolase",
+          "reference_uniprot_ids": [
+            "O68884"
+          ],
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "O68884",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:459",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q53752"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q53752",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:471",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q9GPQ4"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q9GPQ4",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:485",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q8KBW6"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q8KBW6",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:503",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "B9JNP7"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "B9JNP7",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:509",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q9X592"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q9X592",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:513",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q59250"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q59250",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered_by_selected_pdb_sequence_fallback",
+          "entry_id": "m_csa:519",
+          "label_group": "ser_his_acid_hydrolase",
+          "reference_uniprot_ids": [
+            "Q05489"
+          ],
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q05489",
+              "entry_type": "missing_current_uniprot"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:528",
+          "label_group": "metal_dependent_hydrolase",
+          "reference_uniprot_ids": [
+            "Q6UV28"
+          ],
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q6UV28",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:532",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "O93734"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "O93734",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:560",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q54331"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q54331",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:582",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q8KR84"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q8KR84",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered_by_selected_pdb_sequence_fallback",
+          "entry_id": "m_csa:588",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "P03176"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "P03176",
+              "entry_type": "missing_current_uniprot"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:634",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "P84147"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "P84147",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:649",
+          "label_group": "out_of_scope",
+          "reference_uniprot_ids": [
+            "Q7SIE1"
+          ],
+          "target_fingerprint_id": null,
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q7SIE1",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:666",
+          "label_group": "ser_his_acid_hydrolase",
+          "reference_uniprot_ids": [
+            "Q6YBS3"
+          ],
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q6YBS3",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:688",
+          "label_group": "ser_his_acid_hydrolase",
+          "reference_uniprot_ids": [
+            "Q5JP69"
+          ],
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q5JP69",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:716",
+          "label_group": "metal_dependent_hydrolase",
+          "reference_uniprot_ids": [
+            "O58727"
+          ],
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "O58727",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:733",
+          "label_group": "ser_his_acid_hydrolase",
+          "reference_uniprot_ids": [
+            "Q3HWU8"
+          ],
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q3HWU8",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered_by_sequence_coverage_repair_uniprot",
+          "entry_id": "m_csa:771",
+          "label_group": "ser_his_acid_hydrolase",
+          "reference_uniprot_ids": [
+            "P96965"
+          ],
+          "target_fingerprint_id": "ser_his_acid_hydrolase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "P96965",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:822",
+          "label_group": "flavin_dehydrogenase_reductase",
+          "reference_uniprot_ids": [
+            "Q7SID9"
+          ],
+          "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q7SID9",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:823",
+          "label_group": "metal_dependent_hydrolase",
+          "reference_uniprot_ids": [
+            "O33199"
+          ],
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "O33199",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered",
+          "entry_id": "m_csa:942",
+          "label_group": "flavin_dehydrogenase_reductase",
+          "reference_uniprot_ids": [
+            "Q9X9P9"
+          ],
+          "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "Q9X9P9",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        },
+        {
+          "coverage_status": "covered_by_sequence_coverage_repair_uniprot",
+          "entry_id": "m_csa:998",
+          "label_group": "metal_dependent_hydrolase",
+          "reference_uniprot_ids": [
+            "F8W4B7"
+          ],
+          "target_fingerprint_id": "metal_dependent_hydrolase",
+          "unsupported_accession_statuses": [
+            {
+              "accession": "F8W4B7",
+              "entry_type": "UniProtKB unreviewed (TrEMBL)"
+            }
+          ]
+        }
+      ]
+    },
+    "sequence_manifest_coverage_status_counts": {
+      "covered": 676,
+      "covered_by_selected_pdb_sequence_fallback": 2,
+      "covered_by_sequence_coverage_repair_uniprot": 24
+    },
+    "sequence_manifest_row_count": 702,
+    "sequence_source_type_row_counts": {
+      "historical_uniprot_fasta": 676,
+      "selected_pdb_sequence_fallback": 2,
+      "sequence_coverage_repair_uniprot_query": 24
+    },
+    "unique_uniprot_sequence_record_accession_count": 758
+  },
+  "interpretation": {
+    "claim": "No ProtT5 performance result is claimed in this artifact.",
+    "coverage_caveat": "Current702 includes TrEMBL and inactive accessions; Swiss-Prot-only per-protein embeddings are expected to leave unsupported rows unless alternate reviewed accessions or a broader embedding source is explicitly selected.",
+    "feasibility_summary": "Swiss-Prot whole-sequence ProtT5 embeddings are tractable to download locally, but exact H5 key coverage and metrics are blocked until h5py and the HDF5 file are present."
+  },
+  "local_backend_status": {
+    "blocking_reasons": [
+      "h5py_not_installed",
+      "uniprot_sprot_per_protein_h5_not_present_locally"
+    ],
+    "h5py": {
+      "available": false,
+      "error": "No module named 'h5py'",
+      "error_type": "ModuleNotFoundError"
+    },
+    "local_h5": {
+      "available": false,
+      "checked_paths": [
+        "artifacts/representation_tracks/prott5/downloads/uniprot_sprot_per-protein.h5",
+        "artifacts/representation_tracks/prott5/downloads/per-protein.h5"
+      ],
+      "existing_paths": []
+    }
+  },
+  "metadata": {
+    "artifact_id": "prott5_current702_swissprot_embedding_feasibility_20260525",
+    "branch": "research/representation-prott5",
+    "fingerprint_registry_edited": false,
+    "generated_at": "2026-05-25T16:18:14.620464+00:00",
+    "label_registry_edited": false,
+    "large_model_training_performed": false,
+    "metrics_computed": false,
+    "ontology_registry_edited": false,
+    "plm_embeddings_computed": false,
+    "plm_embeddings_downloaded": false,
+    "production_scoring_changed": false,
+    "schema_version": "prott5_embedding_feasibility.v1",
+    "source_baseline_commit": "8e69bf002097d5cf55521a13764e096908d8e0af",
+    "status": "blocked_before_prott5_metrics_local_h5_backend_and_file_missing",
+    "thresholds_changed": false,
+    "track": "representation_tracks/prott5"
+  },
+  "metric_status": {
+    "baseline_sequence_nn_comparison_available": {
+      "artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+      "canary_predictions_summary": {
+        "canary_count": 42,
+        "reported_canary_count": 12,
+        "status": "computed"
+      },
+      "headline_metrics": {
+        "exact_label_accuracy_all": 0.5286,
+        "exact_label_accuracy_in_scope": 0.1458,
+        "max_nearest_jaccard_similarity": 0.1664,
+        "mean_nearest_jaccard_similarity": 0.076,
+        "out_of_scope_false_positive_rate_no_threshold": 0.2717,
+        "primary_supervised_accuracy": 0.1556
+      },
+      "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+      "oos_abstention_diagnostics": {
+        "by_oos_tier": {
+          "far_oos": {
+            "abstention_rate": 0.0,
+            "false_positive_count": 1,
+            "false_positive_rate_no_threshold": 1.0,
+            "row_count": 1
+          },
+          "near_oos": {
+            "abstention_rate": 0.6667,
+            "false_positive_count": 1,
+            "false_positive_rate_no_threshold": 0.3333,
+            "row_count": 3
+          },
+          "unknown_oos": {
+            "abstention_rate": 0.7386,
+            "false_positive_count": 23,
+            "false_positive_rate_no_threshold": 0.2614,
+            "row_count": 88
+          }
+        },
+        "false_positive_count": 25,
+        "false_positive_rate_no_threshold": 0.2717,
+        "out_of_scope_heldout_count": 92,
+        "secondary_probe_heldout_count": 3,
+        "secondary_probe_rows": [
+          {
+            "abstained": true,
+            "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+            "entry_id": "m_csa:131",
+            "jaccard_similarity": 0.0861,
+            "predicted_label_group": "out_of_scope"
+          },
+          {
+            "abstained": false,
+            "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+            "entry_id": "m_csa:372",
+            "jaccard_similarity": 0.0871,
+            "predicted_label_group": "cobalamin_radical_rearrangement"
+          },
+          {
+            "abstained": false,
+            "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+            "entry_id": "m_csa:853",
+            "jaccard_similarity": 0.0573,
+            "predicted_label_group": "metal_dependent_hydrolase"
+          }
+        ],
+        "status": "computed"
+      },
+      "per_fingerprint_metrics": {
+        "flavin_dehydrogenase_reductase": {
+          "correct_count": 1,
+          "heldout_row_count": 10,
+          "status": "computed",
+          "top1_accuracy": 0.1,
+          "underpowered": false
+        },
+        "heme_peroxidase_oxidase": {
+          "correct_count": 1,
+          "heldout_row_count": 4,
+          "status": "computed",
+          "top1_accuracy": 0.25,
+          "underpowered": true
+        },
+        "metal_dependent_hydrolase": {
+          "correct_count": 3,
+          "heldout_row_count": 17,
+          "status": "computed",
+          "top1_accuracy": 0.1765,
+          "underpowered": false
+        },
+        "plp_dependent_enzyme": {
+          "correct_count": 0,
+          "heldout_row_count": 6,
+          "status": "computed",
+          "top1_accuracy": 0.0,
+          "underpowered": false
+        },
+        "ser_his_acid_hydrolase": {
+          "correct_count": 2,
+          "heldout_row_count": 8,
+          "status": "computed",
+          "top1_accuracy": 0.25,
+          "underpowered": false
+        }
+      },
+      "primary_seed_metrics": {
+        "accuracy": 0.1556,
+        "fingerprint_ids": [
+          "ser_his_acid_hydrolase",
+          "metal_dependent_hydrolase",
+          "plp_dependent_enzyme",
+          "flavin_dehydrogenase_reductase",
+          "heme_peroxidase_oxidase"
+        ],
+        "status": "computed",
+        "support_count": 45
+      }
+    },
+    "prott5_knn_or_probe_free_metrics": "not_computed",
+    "prott5_required_metrics_when_unblocked": [
+      "primary macro-F1 and accuracy under the frozen split",
+      "per-fingerprint breakdown with underpowered-cell flags",
+      "OOS false-positive and abstention diagnostics by tier",
+      "canary predictions",
+      "comparison to the deterministic sequence-NN baseline using the cited SHA"
+    ],
+    "reason": "local h5py backend and UniProtKB/Swiss-Prot per-protein HDF5 are unavailable; fail-closed before embedding lookup"
+  },
+  "next_commands": {
+    "download_whole_sequence_swissprot_h5": [
+      "mkdir -p artifacts/representation_tracks/prott5/downloads",
+      "curl -L --fail --continue-at - --output artifacts/representation_tracks/prott5/downloads/uniprot_sprot_per-protein.h5 https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/embeddings/uniprot_sprot/per-protein.h5"
+    ],
+    "expected_download_size": {
+      "per_residue_h5_bytes_do_not_download": 426737506536,
+      "per_residue_h5_display_do_not_download": "397.43 GiB (426.74 GB)",
+      "whole_sequence_per_protein_h5_bytes": 1383407848,
+      "whole_sequence_per_protein_h5_display": "1.29 GiB (1.38 GB)"
+    },
+    "install_hdf5_reader": [
+      "python -m pip install h5py numpy"
+    ],
+    "post_download_exact_key_probe": [
+      "python - <<'PY'",
+      "import h5py, json",
+      "from pathlib import Path",
+      "h5 = h5py.File(\"artifacts/representation_tracks/prott5/downloads/uniprot_sprot_per-protein.h5\", \"r\")",
+      "manifest = json.loads(Path(\"artifacts/v3_sequence_manifest_current702_repaired_20260525.json\").read_text())",
+      "accessions = sorted({a for row in manifest[\"rows\"] for a in row.get(\"reference_uniprot_ids\", [])})",
+      "missing = [a for a in accessions if a not in h5]",
+      "print(json.dumps({\"h5_key_count\": len(h5.keys()), \"manifest_accession_count\": len(accessions), \"missing_accessions\": missing}, indent=2))",
+      "PY"
+    ]
+  },
+  "oos_abstention_diagnostics": {
+    "eval_contract_oos_policy_keys": [
+      "allowed_assignment_evidence",
+      "assignment_scope",
+      "determinism_rule",
+      "forbidden_assignment_evidence",
+      "tier_definitions",
+      "tier_order"
+    ],
+    "prott5_status": "not_computed_backend_blocked",
+    "sequence_nn_reference_diagnostics": {
+      "by_oos_tier": {
+        "far_oos": {
+          "abstention_rate": 0.0,
+          "false_positive_count": 1,
+          "false_positive_rate_no_threshold": 1.0,
+          "row_count": 1
+        },
+        "near_oos": {
+          "abstention_rate": 0.6667,
+          "false_positive_count": 1,
+          "false_positive_rate_no_threshold": 0.3333,
+          "row_count": 3
+        },
+        "unknown_oos": {
+          "abstention_rate": 0.7386,
+          "false_positive_count": 23,
+          "false_positive_rate_no_threshold": 0.2614,
+          "row_count": 88
+        }
+      },
+      "false_positive_count": 25,
+      "false_positive_rate_no_threshold": 0.2717,
+      "out_of_scope_heldout_count": 92,
+      "secondary_probe_heldout_count": 3,
+      "secondary_probe_rows": [
+        {
+          "abstained": true,
+          "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+          "entry_id": "m_csa:131",
+          "jaccard_similarity": 0.0861,
+          "predicted_label_group": "out_of_scope"
+        },
+        {
+          "abstained": false,
+          "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+          "entry_id": "m_csa:372",
+          "jaccard_similarity": 0.0871,
+          "predicted_label_group": "cobalamin_radical_rearrangement"
+        },
+        {
+          "abstained": false,
+          "benchmark_role": "secondary_ood_probe::cobalamin_radical_rearrangement",
+          "entry_id": "m_csa:853",
+          "jaccard_similarity": 0.0573,
+          "predicted_label_group": "metal_dependent_hydrolase"
+        }
+      ],
+      "status": "computed"
+    }
+  },
+  "remote_embedding_source": {
+    "per_residue_h5_not_allowed_for_this_track": {
+      "content_length_bytes": 426737506536,
+      "content_length_display": "397.43 GiB (426.74 GB)",
+      "etag": "\"635b8998e8-646b943ec3df9\"",
+      "http_status": 200,
+      "last_modified": "Wed, 24 Dec 2025 21:23:02 GMT",
+      "reason": "per-residue file is outside track budget and would mix active-site/window evidence with whole-sequence baseline",
+      "url": "https://ftp.ebi.ac.uk/pub/contrib/UniProt/embeddings/current_release/uniprot_sprot/per-residue.h5"
+    },
+    "uniprot_embeddings_readme_url": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/embeddings/README",
+    "whole_sequence_per_protein_h5": {
+      "content_length_bytes": 1383407848,
+      "content_length_display": "1.29 GiB (1.38 GB)",
+      "etag": "\"527520e8-6497ab31b1c00\"",
+      "http_status": 200,
+      "last_modified": "Wed, 28 Jan 2026 23:00:00 GMT",
+      "url": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/embeddings/uniprot_sprot/per-protein.h5"
+    }
+  },
+  "required_citations": {
+    "active_site_pooling_status": "not_attempted; reserved for separate known_active_site_window_ablation contract only",
+    "eval_contract_artifact": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+    "eval_contract_sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50",
+    "fingerprint_audit_artifact": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json",
+    "fingerprint_audit_sha256": "cf9d5d3b17fa95d51374d244497ceba52414e60b8bdaefa12304ba3372cab734",
+    "input_leakage_contract": {
+      "accession_use": "accessions are lookup keys for embedding retrieval and are not model features",
+      "forbidden_for_prediction_fields": [
+        "EC labels",
+        "entry names",
+        "mechanism prose",
+        "expert notes",
+        "Rhea identifiers",
+        "source prose",
+        "review decisions"
+      ],
+      "predictive_inputs_allowed": [
+        "whole_sequence_prott5_embedding_vector_only"
+      ]
+    },
+    "model_or_source_id": "UniProtKB/Swiss-Prot ProtT5 per-protein embeddings; ProtT5/prottrans_t5_xl_u50 source vectors",
+    "pooling_mode": "whole_sequence_per_protein_prepooled_uniprot_hdf5",
+    "sequence_manifest_artifact": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    "sequence_manifest_sha256": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b",
+    "sequence_nn_metrics_artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+    "sequence_nn_metrics_sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "split_artifact_sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425"
+  }
+}

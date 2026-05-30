@@ -1,0 +1,198 @@
+{
+  "metadata": {
+    "artifact_id": "esm_c_feasibility_backend_blocker_current702_20260525",
+    "schema_version": "representation_track_backend_feasibility.v1",
+    "track": "representation_tracks/esm_c",
+    "automation_id": "representation-track-esm-c",
+    "generated_at_utc": "2026-05-25T16:12:19Z",
+    "branch": "research/representation-esm-c",
+    "origin_main_baseline_commit": "8e69bf002097d5cf55521a13764e096908d8e0af",
+    "origin_main_baseline_requirement_satisfied": true,
+    "status": "blocked_backend_unavailable",
+    "result_type": "feasibility_backend_blocker",
+    "embedding_vectors_computed": false,
+    "predictions_computed": false,
+    "metrics_computed": false,
+    "model_training_performed": false,
+    "large_model_training_performed": false,
+    "label_registry_edited": false,
+    "fingerprint_registry_edited": false,
+    "ontology_registry_edited": false,
+    "production_scoring_changed": false,
+    "shared_artifact_names_written": false
+  },
+  "shared_baseline_citations": {
+    "fingerprint_audit": {
+      "path": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json",
+      "sha256": "cf9d5d3b17fa95d51374d244497ceba52414e60b8bdaefa12304ba3372cab734"
+    },
+    "eval_contract": {
+      "path": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+      "sha256": "c4190f6f3f695185cd49e0de85d41280666c2986aaf2e359c8c4a60d67b40c50"
+    },
+    "sequence_manifest": {
+      "path": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+      "sha256": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b"
+    },
+    "split_artifact": {
+      "path": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+      "sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425"
+    },
+    "sequence_nn_metrics": {
+      "path": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+      "sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26"
+    }
+  },
+  "requested_model": {
+    "model_family": "ESM-C",
+    "model_id": "esmc_300m",
+    "model_id_status": "requested_local_open_weight_backend",
+    "requested_parameter_count": "300M",
+    "model_weight_size_bytes": null,
+    "model_weight_size_status": "not_measured_no_local_weights_found",
+    "six_b_or_api_used": false,
+    "six_b_or_api_status": "not_requested_not_used"
+  },
+  "pooling_contract": {
+    "pooling_mode": "whole_sequence",
+    "primary_benchmark_pooling_mode": "whole_sequence",
+    "active_site_pooling_used": false,
+    "known_active_site_window_ablation_status": "not_run",
+    "contract_source": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json::active_site_pooling_contract"
+  },
+  "input_leakage_contract": {
+    "status": "enforced_by_non_execution_and_next_step_spec",
+    "allowed_predictive_inputs_for_this_track": [
+      "amino_acid_sequence"
+    ],
+    "forbidden_predictive_inputs": [
+      "EC labels",
+      "entry names",
+      "mechanism prose",
+      "expert notes",
+      "review decision text",
+      "source identifiers as features"
+    ],
+    "forbidden_inputs_used": [],
+    "contract": "No EC/name/prose/expert-note fields may enter ESM-C embedding, classifier, abstention threshold selection, or nearest-neighbor prediction features."
+  },
+  "sequence_and_split_scope": {
+    "sequence_covered_label_count": 702,
+    "missing_sequence_entry_count": 0,
+    "train_sequence_count": 562,
+    "heldout_sequence_count": 140,
+    "split_assignment_counts": {
+      "heldout": 140,
+      "in_distribution": 562
+    },
+    "max_observed_train_test_identity": 0.284,
+    "sequence_identity_target_achieved": true,
+    "sequence_fasta": "artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json"
+  },
+  "backend_probe": {
+    "python_import_availability": {
+      "esm": false,
+      "torch": true,
+      "transformers": true,
+      "huggingface_hub": true,
+      "safetensors": true,
+      "numpy": true,
+      "sklearn": true
+    },
+    "python_package_versions": {
+      "esm": null,
+      "torch": "2.7.1",
+      "transformers": "4.53.2",
+      "huggingface_hub": "0.33.4",
+      "safetensors": "0.5.3",
+      "numpy": "2.3.1",
+      "scikit-learn": "1.7.0"
+    },
+    "device_probe": {
+      "cuda_available": false,
+      "mps_available": false,
+      "torch_version": "2.7.1"
+    },
+    "cache_probe": {
+      "hf_home": null,
+      "huggingface_hub_cache_env": null,
+      "default_huggingface_hub_cache": "/Users/vivekvardhanarrabelli/.cache/huggingface/hub",
+      "default_huggingface_hub_cache_exists": false,
+      "torch_home": null,
+      "default_torch_cache": "/Users/vivekvardhanarrabelli/.cache/torch",
+      "default_torch_cache_exists": false,
+      "esm_named_cache_entries_found": []
+    },
+    "local_only_transformers_probe": {
+      "EvolutionaryScale/esmc-300m-2024-12": "OSError: couldn't connect to Hugging Face and couldn't find files in the local cache",
+      "esmc_300m": "OSError: couldn't connect to Hugging Face and couldn't find files in the local cache",
+      "facebook/esm2_t6_8M_UR50D": "OSError: couldn't connect to Hugging Face and couldn't find files in the local cache"
+    },
+    "download_or_install_attempted": false,
+    "download_policy": "No model or package download attempted in this run because the required ESM-C package/backend was absent and bounded weight availability was not established."
+  },
+  "backend_blockers": [
+    {
+      "blocker_id": "python_package_esm_not_installed",
+      "severity": "blocking",
+      "evidence": "importlib.util.find_spec('esm') returned false; package metadata lookup for 'esm' returned null.",
+      "impact": "Cannot call the local EvolutionaryScale ESM-C loader or verify the exact 300M checkpoint interface."
+    },
+    {
+      "blocker_id": "local_esmc_weights_not_cached",
+      "severity": "blocking",
+      "evidence": "Default Hugging Face and Torch cache directories do not exist and local-only model probes found no cached ESM-C files.",
+      "impact": "No bounded local 300M checkpoint is available for embedding current702 sequences."
+    },
+    {
+      "blocker_id": "bounded_install_download_not_authorized_for_this_run",
+      "severity": "blocking",
+      "evidence": "The repository declares no runtime dependencies and this track is required to emit an exact blocker rather than perform risky package/model access.",
+      "impact": "ESM-C embeddings, predictions, and metrics remain intentionally uncomputed."
+    }
+  ],
+  "metrics_status": {
+    "primary_macro_f1": null,
+    "primary_accuracy": null,
+    "per_fingerprint_breakdown": null,
+    "oos_false_positive_abstention_diagnostics_by_tier": null,
+    "canary_predictions": null,
+    "underpowered_cell_flags": null,
+    "status": "not_computed_backend_blocked",
+    "reason": "No ESM-C embeddings or predictions were produced."
+  },
+  "oos_abstention_diagnostics": {
+    "status": "not_computed_backend_blocked",
+    "required_tiers_from_eval_contract": [
+      "far_oos",
+      "near_oos",
+      "boundary_oos",
+      "unknown_oos",
+      "secondary_probe_fingerprints"
+    ],
+    "threshold_selection_rule": "Any ESM-C abstention threshold must be chosen on train/calibration data only and reported unchanged on OOS tiers and primary eval rows.",
+    "sequence_nn_baseline_context": {
+      "artifact": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+      "model_id": "deterministic_3mer_jaccard_sequence_nn.v1",
+      "false_positive_rate_no_threshold": 0.2717,
+      "false_positive_count": 25,
+      "out_of_scope_heldout_count": 92,
+      "status": "baseline_context_only_not_esm_c_result"
+    }
+  },
+  "prepared_next_step": {
+    "status": "await_backend_install_or_cached_weights",
+    "required_before_embedding": [
+      "Install or expose a pinned EvolutionaryScale ESM-C backend that provides esmc_300m locally.",
+      "Confirm the 300M checkpoint cache path and model weight size before running embeddings.",
+      "Run whole-sequence embeddings only, using amino-acid sequence input from the repaired current702 FASTA.",
+      "Write embeddings, predictions, and metrics only under artifacts/representation_tracks/esm_c/."
+    ],
+    "post_embedding_required_outputs": [
+      "Embedding manifest with model id, model size, cache path, pooling_mode, sequence input SHA, and leakage contract.",
+      "Held-out prediction JSONL for the 140 repaired split heldout rows.",
+      "Metrics JSON with primary macro-F1/accuracy, per-fingerprint breakdown, OOS abstention diagnostics by tier, canary predictions, and underpowered-cell flags."
+    ]
+  }
+}

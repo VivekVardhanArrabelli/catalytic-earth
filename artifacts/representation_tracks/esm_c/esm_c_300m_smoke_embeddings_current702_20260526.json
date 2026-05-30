@@ -1,0 +1,102 @@
+{
+  "bounded_command": "HF_HOME=/private/tmp/esm_c_hf_home_20260525 HUGGINGFACE_HUB_CACHE=/private/tmp/esm_c_hf_home_20260525/hub HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TRANSFORMERS_CACHE=/private/tmp/esm_c_hf_home_20260525/transformers MPLCONFIGDIR=/private/tmp/esmc_mpl_cache /private/tmp/esmc_runtime_20260525/bin/python - <<'PY' # two-record cached ESM-C 300M smoke embedding",
+  "metadata": {
+    "artifact_id": "esm_c_300m_smoke_embeddings_current702_20260526",
+    "device": "cpu",
+    "embedding_dim": 960,
+    "embedding_dtype": "float32",
+    "forbidden_inputs_used": [],
+    "forward_seconds_total": 2.575,
+    "generated_at_utc": "2026-05-26T02:16:06Z",
+    "hf_home": "/private/tmp/esm_c_hf_home_20260525",
+    "hf_home_disk_usage_bytes_at_smoke": 1332121600,
+    "hf_hub_offline": "1",
+    "huggingface_hub_cache": "/private/tmp/esm_c_hf_home_20260525/hub",
+    "large_model_training_performed": false,
+    "model_family": "ESM-C",
+    "model_id": "esmc_300m",
+    "model_load_seconds": 2.737,
+    "model_parameter_count": "300M",
+    "model_repo_requested": "EvolutionaryScale/esmc-300m-2024-12",
+    "model_repo_resolved": "biohub/esmc-300m-2024-12",
+    "model_repo_sha": "c309e1f43e775c1a513826dba9f1fe04622e96a1",
+    "model_training_performed": false,
+    "pooling_mode": "whole_sequence_mean_excluding_bos_eos",
+    "predictive_inputs": [
+      "amino_acid_sequence_only"
+    ],
+    "python": "3.12.9",
+    "remote_api_used": false,
+    "runtime_path": "/private/tmp/esmc_runtime_20260525",
+    "schema_version": "esm_c_smoke_embeddings.v1",
+    "six_b_or_api_used": false,
+    "smoke_npz_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_smoke_embeddings_current702_20260526.npz",
+    "smoke_npz_sha256": "9fb29d1f4c1ff6141e798d8bda76b2e90f96312869c402b71c3f97f30381fd8e",
+    "smoke_record_count": 2,
+    "status": "passed",
+    "transformers_offline": "1",
+    "weight_local_path": "/private/tmp/esm_c_hf_home_20260525/hub/models--EvolutionaryScale--esmc-300m-2024-12/snapshots/c309e1f43e775c1a513826dba9f1fe04622e96a1/data/weights/esmc_300m_2024_12_v0.pth",
+    "weight_relative_path": "data/weights/esmc_300m_2024_12_v0.pth",
+    "weight_sha256": "323dff9fbf3fef297a74f4f18b6528e6f2e599b0bcf72b6927516804015becea",
+    "weight_size_bytes": 1332095738
+  },
+  "package_versions": {
+    "esm": "3.2.3",
+    "huggingface_hub": "0.33.4",
+    "numpy": "2.3.1",
+    "torch": "2.7.1",
+    "transformers": "4.48.1"
+  },
+  "records": [
+    {
+      "embedding_dim": 960,
+      "embedding_first8": [
+        0.00557854,
+        0.03467275,
+        0.00578623,
+        -0.031921,
+        0.00972321,
+        -0.00265361,
+        0.00134221,
+        0.0090181
+      ],
+      "embedding_l2_norm": 0.85221177,
+      "embedding_mean": 0.00036679,
+      "embedding_std": 0.02750257,
+      "fasta_first_token": "m_csa:519|pdb:1TAH|fallback_for_uniprot:Q05489",
+      "forward_seconds": 2.034,
+      "record_id": "m_csa:519",
+      "record_index": 0,
+      "sequence_length": 318,
+      "sequence_sha256": "a37be8f1ef43e7a8af9a80ae71f27218477f4332fb5a9a607a1423b9738c7c08",
+      "token_count_with_bos_eos": 320
+    },
+    {
+      "embedding_dim": 960,
+      "embedding_first8": [
+        0.00431451,
+        0.01129035,
+        0.00469634,
+        -0.00015653,
+        0.00492434,
+        0.01137793,
+        -0.00541724,
+        -0.00360297
+      ],
+      "embedding_l2_norm": 1.08180392,
+      "embedding_mean": 0.00059707,
+      "embedding_std": 0.03490996,
+      "fasta_first_token": "m_csa:588|pdb:1KIM|fallback_for_uniprot:P03176",
+      "forward_seconds": 0.541,
+      "record_id": "m_csa:588",
+      "record_index": 1,
+      "sequence_length": 366,
+      "sequence_sha256": "8ab0849a14718079eb822e3d9f87d4f19db1c14a52f0c890f457a16732c78339",
+      "token_count_with_bos_eos": 368
+    }
+  ],
+  "source_fasta": {
+    "path": "artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta",
+    "sha256": "f151bcf8e3e9b7ca7adfd6bbf1da119e3d486228f3dad19f92dc4b9f20c42a3e"
+  }
+}

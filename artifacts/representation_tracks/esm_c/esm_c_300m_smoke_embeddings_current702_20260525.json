@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "artifact_id": "esm_c_300m_smoke_embeddings_current702_20260525",
+    "device": "cpu",
+    "embedding_forward_seconds": 3.166,
+    "forbidden_inputs_used": [],
+    "generated_at_utc": "2026-05-26T02:14:29Z",
+    "hf_home": "/private/tmp/esm_c_hf_home_20260525",
+    "hf_hub_offline": "1",
+    "huggingface_hub_cache": "/private/tmp/esm_c_hf_home_20260525/hub",
+    "model_family": "ESM-C",
+    "model_id": "esmc_300m",
+    "model_load_seconds": 6.676,
+    "model_parameter_count": "300M",
+    "model_repo_requested": "EvolutionaryScale/esmc-300m-2024-12",
+    "model_repo_resolved": "biohub/esmc-300m-2024-12",
+    "model_repo_sha": "c309e1f43e775c1a513826dba9f1fe04622e96a1",
+    "pooling_mode": "whole_sequence_mean_excluding_bos_eos",
+    "predictive_inputs": [
+      "amino_acid_sequence_only"
+    ],
+    "purpose": "standalone two-record smoke embedding audit artifact; backend setup records the original smoke passed before the full current702 embedding run",
+    "remote_api_used": false,
+    "runtime_path": "/private/tmp/esmc_runtime_20260525",
+    "schema_version": "esm_c_smoke_embeddings.v1",
+    "sequence_fasta": "artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta",
+    "six_b_or_api_used": false,
+    "smoke_record_count": 2,
+    "status": "passed",
+    "weight_local_path": "/private/tmp/esm_c_hf_home_20260525/hub/models--EvolutionaryScale--esmc-300m-2024-12/snapshots/c309e1f43e775c1a513826dba9f1fe04622e96a1/data/weights/esmc_300m_2024_12_v0.pth",
+    "weight_relative_path": "data/weights/esmc_300m_2024_12_v0.pth",
+    "weight_sha256": "323dff9fbf3fef297a74f4f18b6528e6f2e599b0bcf72b6927516804015becea",
+    "weight_size_bytes": 1332095738
+  },
+  "package_versions": {
+    "esm": "3.2.3",
+    "huggingface_hub": "0.33.4",
+    "numpy": "2.3.1",
+    "torch": "2.7.1",
+    "transformers": "4.48.1"
+  },
+  "records": [
+    {
+      "embedding_dim": 960,
+      "embedding_dtype": "float32",
+      "fasta_first_token": "m_csa:519|pdb:1TAH|fallback_for_uniprot:Q05489",
+      "pooled_embedding_first_8": [
+        0.005579,
+        0.034673,
+        0.005786,
+        -0.031921,
+        0.009723,
+        -0.002654,
+        0.001342,
+        0.009018
+      ],
+      "pooled_embedding_l2_norm": 0.852212,
+      "pooled_embedding_mean": 0.000367,
+      "pooled_embedding_sha256": "9beccd78f608bddfd9b8c2ef797083b2b5be94032699103de94df08d5270a03a",
+      "pooled_embedding_std": 0.027503,
+      "pooling_mode": "whole_sequence_mean_excluding_bos_eos",
+      "record_id": "m_csa:519",
+      "record_index": 0,
+      "sequence_length": 318,
+      "sequence_sha256": "a37be8f1ef43e7a8af9a80ae71f27218477f4332fb5a9a607a1423b9738c7c08"
+    },
+    {
+      "embedding_dim": 960,
+      "embedding_dtype": "float32",
+      "fasta_first_token": "m_csa:588|pdb:1KIM|fallback_for_uniprot:P03176",
+      "pooled_embedding_first_8": [
+        0.004315,
+        0.01129,
+        0.004696,
+        -0.000157,
+        0.004924,
+        0.011378,
+        -0.005417,
+        -0.003603
+      ],
+      "pooled_embedding_l2_norm": 1.081804,
+      "pooled_embedding_mean": 0.000597,
+      "pooled_embedding_sha256": "29c4a41eeda49671404d8dd411eb757f0451ac701102cc33e0a3ef8714c239d3",
+      "pooled_embedding_std": 0.03491,
+      "pooling_mode": "whole_sequence_mean_excluding_bos_eos",
+      "record_id": "m_csa:588",
+      "record_index": 1,
+      "sequence_length": 366,
+      "sequence_sha256": "8ab0849a14718079eb822e3d9f87d4f19db1c14a52f0c890f457a16732c78339"
+    }
+  ]
+}

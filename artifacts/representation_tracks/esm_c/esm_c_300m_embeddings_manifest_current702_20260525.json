@@ -1,0 +1,139 @@
+{
+  "artifacts": {
+    "embedding_index_jsonl": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_index_current702_20260525.jsonl",
+    "embedding_npz": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz",
+    "metrics_json": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_cosine_nn_metrics_current702_20260525.json",
+    "predictions_jsonl": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_cosine_nn_predictions_current702_20260525.jsonl"
+  },
+  "embedding_index_preview": [
+    {
+      "embedding_dim": 960,
+      "embedding_npz": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz",
+      "fasta_first_token": "m_csa:519|pdb:1TAH|fallback_for_uniprot:Q05489",
+      "header": "m_csa:519|pdb:1TAH|fallback_for_uniprot:Q05489",
+      "keys": [
+        "m_csa:519",
+        "uniprot:Q05489"
+      ],
+      "pooling_mode": "whole_sequence_mean_excluding_bos_eos",
+      "record_id": "m_csa:519",
+      "record_index": 0,
+      "sequence_length": 318,
+      "sequence_sha256": "a37be8f1ef43e7a8af9a80ae71f27218477f4332fb5a9a607a1423b9738c7c08"
+    },
+    {
+      "embedding_dim": 960,
+      "embedding_npz": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz",
+      "fasta_first_token": "m_csa:588|pdb:1KIM|fallback_for_uniprot:P03176",
+      "header": "m_csa:588|pdb:1KIM|fallback_for_uniprot:P03176",
+      "keys": [
+        "m_csa:588",
+        "uniprot:P03176"
+      ],
+      "pooling_mode": "whole_sequence_mean_excluding_bos_eos",
+      "record_id": "m_csa:588",
+      "record_index": 1,
+      "sequence_length": 366,
+      "sequence_sha256": "8ab0849a14718079eb822e3d9f87d4f19db1c14a52f0c890f457a16732c78339"
+    },
+    {
+      "embedding_dim": 960,
+      "embedding_npz": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz",
+      "fasta_first_token": "sp|A0A0C6DRW4|DSZC1_RHOER",
+      "header": "sp|A0A0C6DRW4|DSZC1_RHOER Dibenzothiophene monooxygenase OS=Rhodococcus erythropolis OX=1833 GN=dszC PE=1 SV=1",
+      "keys": [
+        "A0A0C6DRW4"
+      ],
+      "pooling_mode": "whole_sequence_mean_excluding_bos_eos",
+      "record_id": "A0A0C6DRW4",
+      "record_index": 2,
+      "sequence_length": 417,
+      "sequence_sha256": "20dae6213b93c88bbba2b6a0192c67d0a1b93c64b9b87811e23e02557ed9d3fe"
+    },
+    {
+      "embedding_dim": 960,
+      "embedding_npz": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz",
+      "fasta_first_token": "sp|A0A0H3JGH6|YGEA_ECO57",
+      "header": "sp|A0A0H3JGH6|YGEA_ECO57 L-aspartate/glutamate-specific racemase OS=Escherichia coli O157:H7 OX=83334 GN=ygeA PE=1 SV=1",
+      "keys": [
+        "A0A0H3JGH6"
+      ],
+      "pooling_mode": "whole_sequence_mean_excluding_bos_eos",
+      "record_id": "A0A0H3JGH6",
+      "record_index": 3,
+      "sequence_length": 230,
+      "sequence_sha256": "d49c37c665e6ffc55585c7694cf36660a0941504a30fc42188525a0638db556d"
+    },
+    {
+      "embedding_dim": 960,
+      "embedding_npz": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz",
+      "fasta_first_token": "sp|A1AA28|NUDJ_ECOK1",
+      "header": "sp|A1AA28|NUDJ_ECOK1 Phosphatase NudJ OS=Escherichia coli O1:K1 / APEC OX=405955 GN=nudJ PE=1 SV=1",
+      "keys": [
+        "A1AA28"
+      ],
+      "pooling_mode": "whole_sequence_mean_excluding_bos_eos",
+      "record_id": "A1AA28",
+      "record_index": 4,
+      "sequence_length": 153,
+      "sequence_sha256": "2c4795db5c679fed0f1641aaf07d9d189eee6ce2a45b8b0b4b5cc7f18a2a58a2"
+    }
+  ],
+  "input_contract": {
+    "active_site_pooling_used": false,
+    "allowed_predictive_inputs": [
+      "amino_acid_sequence"
+    ],
+    "forbidden_predictive_inputs": [
+      "EC labels",
+      "entry names",
+      "mechanism prose",
+      "expert notes",
+      "review decision text",
+      "source identifiers as features"
+    ],
+    "pooling_mode": "whole_sequence"
+  },
+  "metadata": {
+    "artifact_id": "esm_c_300m_embeddings_manifest_current702_20260525",
+    "batch_count": 89,
+    "embedding_dim": 960,
+    "embedding_dtype": "float32",
+    "embedding_forward_seconds": 947.441,
+    "embedding_index_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_index_current702_20260525.jsonl",
+    "embedding_npz_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_embeddings_current702_20260525.npz",
+    "embedding_record_count": 760,
+    "fasta_max_sequence_length": 3011,
+    "fasta_record_count": 760,
+    "fasta_total_amino_acids": 318251,
+    "fingerprint_registry_edited": false,
+    "forbidden_inputs_used": [],
+    "label_registry_edited": false,
+    "large_model_training_performed": false,
+    "metrics_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_cosine_nn_metrics_current702_20260525.json",
+    "model_family": "ESM-C",
+    "model_id": "esmc_300m",
+    "model_load_seconds": 3.202,
+    "model_parameter_count": "300M",
+    "model_repo_requested": "EvolutionaryScale/esmc-300m-2024-12",
+    "model_repo_resolved": "biohub/esmc-300m-2024-12",
+    "model_repo_sha": "c309e1f43e775c1a513826dba9f1fe04622e96a1",
+    "model_training_performed": false,
+    "ontology_registry_edited": false,
+    "pooling_mode": "whole_sequence_mean_excluding_bos_eos",
+    "prediction_label_row_count": 702,
+    "predictions_artifact": "artifacts/representation_tracks/esm_c/esm_c_300m_whole_sequence_cosine_nn_predictions_current702_20260525.jsonl",
+    "predictive_inputs": [
+      "amino_acid_sequence_only"
+    ],
+    "production_scoring_changed": false,
+    "runtime_seconds_total": 967.749,
+    "schema_version": "esm_c_embeddings_manifest.v1",
+    "sequence_fasta": "artifacts/v3_sequence_distance_holdout_eval_current702_repaired_20260525.fasta",
+    "sequence_fasta_sha256": "f151bcf8e3e9b7ca7adfd6bbf1da119e3d486228f3dad19f92dc4b9f20c42a3e",
+    "status": "computed",
+    "weight_file": "/private/tmp/esm_c_hf_home_20260525/hub/models--EvolutionaryScale--esmc-300m-2024-12/snapshots/c309e1f43e775c1a513826dba9f1fe04622e96a1/data/weights/esmc_300m_2024_12_v0.pth",
+    "weight_sha256": "323dff9fbf3fef297a74f4f18b6528e6f2e599b0bcf72b6927516804015becea",
+    "weight_size_bytes": 1332095738
+  }
+}

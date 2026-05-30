@@ -1,0 +1,967 @@
+{
+  "coverage_by_label_group": {
+    "cobalamin_radical_rearrangement": {
+      "with_h5_embedding": 3
+    },
+    "flavin_dehydrogenase_reductase": {
+      "with_h5_embedding": 47,
+      "without_h5_embedding": 3
+    },
+    "flavin_monooxygenase": {
+      "with_h5_embedding": 2
+    },
+    "heme_peroxidase_oxidase": {
+      "with_h5_embedding": 20
+    },
+    "metal_dependent_hydrolase": {
+      "with_h5_embedding": 79,
+      "without_h5_embedding": 4
+    },
+    "out_of_scope": {
+      "with_h5_embedding": 449,
+      "without_h5_embedding": 21
+    },
+    "plp_dependent_enzyme": {
+      "with_h5_embedding": 31
+    },
+    "radical_sam_enzyme": {
+      "without_h5_embedding": 1
+    },
+    "ser_his_acid_hydrolase": {
+      "with_h5_embedding": 35,
+      "without_h5_embedding": 7
+    }
+  },
+  "coverage_summary": {
+    "current702_real_sequence_accession_count": 758,
+    "current702_real_sequence_accessions_missing_in_h5_count": 37,
+    "current702_real_sequence_accessions_present_in_h5_count": 721,
+    "current702_reference_accession_count": 760,
+    "current702_reference_accessions_missing_in_h5_count": 39,
+    "current702_reference_accessions_present_in_h5_count": 721,
+    "heldout_with_h5_embedding": 132,
+    "heldout_without_h5_embedding": 8,
+    "in_distribution_with_h5_embedding": 534,
+    "in_distribution_without_h5_embedding": 28,
+    "rows_total": 702,
+    "rows_with_h5_embedding": 666,
+    "rows_with_partial_accession_coverage": 2,
+    "rows_without_h5_embedding": 36
+  },
+  "h5_file": {
+    "dataset_dtype_sample": "float16",
+    "dataset_shape_sample": [
+      1024
+    ],
+    "first_key_sample": "A0A009IHW8",
+    "local_size_bytes": 1383407848,
+    "sha256": "15d7bc28aca161e70e25bd7ad51bc49a9824677e9cb28cbdd69765d0029d62d5",
+    "top_level_key_count": 574615
+  },
+  "metadata": {
+    "artifact_id": "prott5_current702_swissprot_h5_key_coverage_20260525",
+    "branch": "research/representation-prott5",
+    "generated_at": "2026-05-25T18:21:43.677768+00:00",
+    "h5_open_status": "ok",
+    "h5py_import_status": "available",
+    "local_h5_path": "artifacts/representation_tracks/prott5/downloads/uniprot_sprot_per-protein.h5",
+    "schema_version": "prott5_h5_key_coverage.v1",
+    "source_id": "UniProtKB/Swiss-Prot embeddings current_release uniprot_sprot/per-protein.h5; ProtT5/prottrans_t5_xl_u50 vectors",
+    "track": "representation_tracks/prott5"
+  },
+  "missing_current702_reference_accessions": [
+    "B9JNP7",
+    "F8W4B7",
+    "O28603",
+    "O28604",
+    "O33199",
+    "O39914",
+    "O52942",
+    "O58727",
+    "O68884",
+    "O76290",
+    "O93734",
+    "P03176",
+    "P84147",
+    "P96965",
+    "Q05489",
+    "Q2K340",
+    "Q3HWU8",
+    "Q4K9X1",
+    "Q53752",
+    "Q54331",
+    "Q59250",
+    "Q5EBY5",
+    "Q5JP69",
+    "Q6JTG5",
+    "Q6UV28",
+    "Q6YBS3",
+    "Q712I6",
+    "Q75WN8",
+    "Q7SID9",
+    "Q7SIE1",
+    "Q8KBW6",
+    "Q8KR84",
+    "Q8VQN0",
+    "Q9F4L3",
+    "Q9GPQ4",
+    "Q9X4K7",
+    "Q9X592",
+    "Q9X9P9",
+    "Q9ZF13"
+  ],
+  "missing_h5_heldout_rows": [
+    {
+      "entry_id": "m_csa:67",
+      "entry_name": "alanine dehydrogenase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "O52942"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "O52942"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:201",
+      "entry_name": "propionyl-CoA carboxylase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q9X4K7"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "Q9X4K7"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:372",
+      "entry_name": "NikJ, nikkomycin biosynthesis protein P1",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q712I6"
+      ],
+      "label_group": "radical_sam_enzyme",
+      "label_type": "seed_fingerprint",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "Q712I6"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "radical_sam_enzyme"
+    },
+    {
+      "entry_id": "m_csa:428",
+      "entry_name": "mannan endo-1,4-beta-mannosidase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q9ZF13"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "Q9ZF13"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:453",
+      "entry_name": "Brefeldin A esterase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "O68884"
+      ],
+      "label_group": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "O68884"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:509",
+      "entry_name": "pectate lyase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q9X592"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "Q9X592"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:634",
+      "entry_name": "phospholipase D",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "P84147"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "P84147"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:688",
+      "entry_name": "classical-complement-pathway C3/C5 convertase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q5JP69"
+      ],
+      "label_group": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "Q5JP69"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    }
+  ],
+  "missing_real_sequence_accessions": [
+    "B9JNP7",
+    "F8W4B7",
+    "O28603",
+    "O28604",
+    "O33199",
+    "O39914",
+    "O52942",
+    "O58727",
+    "O68884",
+    "O76290",
+    "O93734",
+    "P84147",
+    "P96965",
+    "Q2K340",
+    "Q3HWU8",
+    "Q4K9X1",
+    "Q53752",
+    "Q54331",
+    "Q59250",
+    "Q5EBY5",
+    "Q5JP69",
+    "Q6JTG5",
+    "Q6UV28",
+    "Q6YBS3",
+    "Q712I6",
+    "Q75WN8",
+    "Q7SID9",
+    "Q7SIE1",
+    "Q8KBW6",
+    "Q8KR84",
+    "Q8VQN0",
+    "Q9F4L3",
+    "Q9GPQ4",
+    "Q9X4K7",
+    "Q9X592",
+    "Q9X9P9",
+    "Q9ZF13"
+  ],
+  "partial_rows": [
+    {
+      "entry_id": "m_csa:124",
+      "entry_name": "cytochrome-c oxidase (AA3 type)",
+      "h5_available_accessions": [
+        "P00396",
+        "P68530"
+      ],
+      "h5_embedding_available": true,
+      "h5_missing_accessions": [
+        "Q6JTG5"
+      ],
+      "label_group": "heme_peroxidase_oxidase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "P00396",
+        "P68530",
+        "Q6JTG5"
+      ],
+      "row_key_coverage_status": "partial",
+      "target_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "entry_id": "m_csa:776",
+      "entry_name": "hepacivirin",
+      "h5_available_accessions": [
+        "P27958"
+      ],
+      "h5_embedding_available": true,
+      "h5_missing_accessions": [
+        "O39914"
+      ],
+      "label_group": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "O39914",
+        "P27958"
+      ],
+      "row_key_coverage_status": "partial",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    }
+  ],
+  "policy_notes": {
+    "coverage_artifact_scope": "summary_plus_missing_partial_and_unsupported_rows; all current702 accession keys are summarized in counts and missing-accession lists",
+    "full_covered_row_records_omitted": true,
+    "omitted_row_key_coverage_count": 702,
+    "per_residue_h5_downloaded": false,
+    "per_residue_h5_excluded_size_bytes": 426737506536,
+    "predictive_inputs_allowed": [
+      "uniprot_sprot_prott5_whole_sequence_per_protein_embedding_vectors_only"
+    ],
+    "whole_sequence_pooling_primary": true
+  },
+  "source_artifacts": {
+    "sequence_manifest": "artifacts/v3_sequence_manifest_current702_repaired_20260525.json",
+    "sequence_manifest_sha256": "b792e03276e5027975c323fb65068804ca7a7a70fa388fdf33e71e98434aeb4b",
+    "split_artifact": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+    "split_artifact_sha256": "dbed4d1a60c09e97403f6be26ae52a3de49284ba35b6d6c2fb4efebb55de7425"
+  },
+  "unsupported_rows": [
+    {
+      "entry_id": "m_csa:33",
+      "entry_name": "methylmalonyl-CoA epimerase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q8VQN0"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q8VQN0"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:67",
+      "entry_name": "alanine dehydrogenase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "O52942"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "O52942"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:123",
+      "entry_name": "adenylyl-sulfate reductase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "O28603",
+        "O28604"
+      ],
+      "label_group": "flavin_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "O28603",
+        "O28604"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "entry_id": "m_csa:201",
+      "entry_name": "propionyl-CoA carboxylase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q9X4K7"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "Q9X4K7"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:221",
+      "entry_name": "benzoin aldolase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q9F4L3"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q9F4L3"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:223",
+      "entry_name": "pyruvate carboxylase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q2K340"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q2K340"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:237",
+      "entry_name": "pteridine reductase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "O76290"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "O76290"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:269",
+      "entry_name": "muconate cycloisomerase (syn)",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q4K9X1"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q4K9X1"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:372",
+      "entry_name": "NikJ, nikkomycin biosynthesis protein P1",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q712I6"
+      ],
+      "label_group": "radical_sam_enzyme",
+      "label_type": "seed_fingerprint",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "Q712I6"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "radical_sam_enzyme"
+    },
+    {
+      "entry_id": "m_csa:390",
+      "entry_name": "laccase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q5EBY5"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q5EBY5"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:428",
+      "entry_name": "mannan endo-1,4-beta-mannosidase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q9ZF13"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "Q9ZF13"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:437",
+      "entry_name": "2,6-dioxo-6-phenylhexa-3-enoate hydrolase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q75WN8"
+      ],
+      "label_group": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q75WN8"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:453",
+      "entry_name": "Brefeldin A esterase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "O68884"
+      ],
+      "label_group": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "O68884"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:459",
+      "entry_name": "guanyl-specific ribonuclease Sa",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q53752"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q53752"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:471",
+      "entry_name": "inosine, adenosine, and guanine nucleoside hydrolase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q9GPQ4"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q9GPQ4"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:485",
+      "entry_name": "prephenate dehydratase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q8KBW6"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q8KBW6"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:503",
+      "entry_name": "galactarate dehydratase (type III)",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "B9JNP7"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "B9JNP7"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:509",
+      "entry_name": "pectate lyase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q9X592"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "Q9X592"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:513",
+      "entry_name": "protein-Npi-phosphohistidine---sugar phosphotransferase (type II)",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q59250"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q59250"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:519",
+      "entry_name": "triacylglycerol lipase (Pseudomonas family)",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q05489"
+      ],
+      "label_group": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q05489"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:528",
+      "entry_name": "phospholipase A2 (prokaryotic/fungal)",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q6UV28"
+      ],
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q6UV28"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:532",
+      "entry_name": "secondary-alcohol dehydrogenase (coenzyme-F420)",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "O93734"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "O93734"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:560",
+      "entry_name": "cellulase (GH12)",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q54331"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q54331"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:582",
+      "entry_name": "isomaltulose synthase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q8KR84"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q8KR84"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:588",
+      "entry_name": "thymidine kinase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "P03176"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "P03176"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:634",
+      "entry_name": "phospholipase D",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "P84147"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "P84147"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:649",
+      "entry_name": "maltose phosphorylase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q7SIE1"
+      ],
+      "label_group": "out_of_scope",
+      "label_type": "out_of_scope",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q7SIE1"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:666",
+      "entry_name": "alpha-amino-acid esterase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q6YBS3"
+      ],
+      "label_group": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q6YBS3"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:688",
+      "entry_name": "classical-complement-pathway C3/C5 convertase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q5JP69"
+      ],
+      "label_group": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "heldout",
+      "reference_uniprot_ids": [
+        "Q5JP69"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:716",
+      "entry_name": "nicotinamidase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "O58727"
+      ],
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "O58727"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:733",
+      "entry_name": "esterase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q3HWU8"
+      ],
+      "label_group": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q3HWU8"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:771",
+      "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "P96965"
+      ],
+      "label_group": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "P96965"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:822",
+      "entry_name": "cholesterol oxidase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q7SID9"
+      ],
+      "label_group": "flavin_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q7SID9"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "entry_id": "m_csa:823",
+      "entry_name": "ADP-ribose diphosphatase",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "O33199"
+      ],
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "O33199"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:942",
+      "entry_name": "NikD",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "Q9X9P9"
+      ],
+      "label_group": "flavin_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "Q9X9P9"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "entry_id": "m_csa:998",
+      "entry_name": "histone deacetylase 6 enzyme (HDAC6)",
+      "h5_available_accessions": [],
+      "h5_embedding_available": false,
+      "h5_missing_accessions": [
+        "F8W4B7"
+      ],
+      "label_group": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "partition": "in_distribution",
+      "reference_uniprot_ids": [
+        "F8W4B7"
+      ],
+      "row_key_coverage_status": "missing_h5_key",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    }
+  ]
+}

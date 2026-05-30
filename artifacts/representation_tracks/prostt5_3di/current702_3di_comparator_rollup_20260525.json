@@ -1,0 +1,276 @@
+{
+  "decision": {
+    "comparison_claim": "3Di token NN modestly improves current702 sequence-NN headline metrics, but no learned ProstT5/SaProt/ProtT5/ESM-2 superiority claim is supported by local artifacts.",
+    "foldseek_3di_token_nn_ready_for_review": true,
+    "no_smoke_run_reason": "Keep terminal ProstT5 blocker: fp16 weights are not cached in the probed local paths and CUDA/MPS are unavailable.",
+    "prostt5_full_terminal_blocker_kept": true
+  },
+  "direct_current702_metric_comparison": {
+    "metric_rows": [
+      {
+        "foldseek_3di_minus_sequence_nn": -1,
+        "foldseek_3di_token_nn": 139,
+        "metric": "prediction_count",
+        "sequence_nn": 140
+      },
+      {
+        "foldseek_3di_minus_sequence_nn": 0.0222,
+        "foldseek_3di_token_nn": 0.1778,
+        "metric": "primary_supervised_accuracy",
+        "sequence_nn": 0.1556
+      },
+      {
+        "foldseek_3di_minus_sequence_nn": 0.0759,
+        "foldseek_3di_token_nn": 0.3133,
+        "metric": "primary_macro_f1",
+        "sequence_nn": 0.2374
+      },
+      {
+        "foldseek_3di_minus_sequence_nn": 0.0613,
+        "foldseek_3di_token_nn": 0.5899,
+        "metric": "exact_label_accuracy_all",
+        "sequence_nn": 0.5286
+      },
+      {
+        "foldseek_3di_minus_sequence_nn": 0.0244,
+        "foldseek_3di_token_nn": 0.1702,
+        "metric": "exact_label_accuracy_in_scope",
+        "sequence_nn": 0.1458
+      },
+      {
+        "foldseek_3di_minus_sequence_nn": -0.076,
+        "foldseek_3di_token_nn": 0.1957,
+        "metric": "out_of_scope_false_positive_rate_no_threshold",
+        "sequence_nn": 0.2717
+      }
+    ],
+    "oos_abstention_diagnostics_comparison": {
+      "far_oos": {
+        "sequence_abstention_rate": 0.0,
+        "sequence_false_positive_rate_no_threshold": 1.0,
+        "sequence_row_count": 1,
+        "three_di_abstention_rate": 1.0,
+        "three_di_false_positive_rate_no_threshold": 0.0,
+        "three_di_minus_sequence_abstention_rate": 1.0,
+        "three_di_minus_sequence_false_positive_rate": -1.0,
+        "three_di_row_count": 1
+      },
+      "near_oos": {
+        "sequence_abstention_rate": 0.6667,
+        "sequence_false_positive_rate_no_threshold": 0.3333,
+        "sequence_row_count": 3,
+        "three_di_abstention_rate": 0.6667,
+        "three_di_false_positive_rate_no_threshold": 0.3333,
+        "three_di_minus_sequence_abstention_rate": 0.0,
+        "three_di_minus_sequence_false_positive_rate": 0.0,
+        "three_di_row_count": 3
+      },
+      "unknown_oos": {
+        "sequence_abstention_rate": 0.7386,
+        "sequence_false_positive_rate_no_threshold": 0.2614,
+        "sequence_row_count": 88,
+        "three_di_abstention_rate": 0.8068,
+        "three_di_false_positive_rate_no_threshold": 0.1932,
+        "three_di_minus_sequence_abstention_rate": 0.0682,
+        "three_di_minus_sequence_false_positive_rate": -0.0682,
+        "three_di_row_count": 88
+      }
+    },
+    "row_overlap_summary": {
+      "common_exact_label_overlap": {
+        "both_exact_match": {
+          "count": 56,
+          "role_counts": {
+            "oos_tier::near_oos": 1,
+            "oos_tier::unknown_oos": 52,
+            "primary_supervised_metric::flavin_dehydrogenase_reductase": 1,
+            "primary_supervised_metric::metal_dependent_hydrolase": 1,
+            "primary_supervised_metric::ser_his_acid_hydrolase": 1
+          }
+        },
+        "neither_exact_match": {
+          "count": 39,
+          "role_counts": {
+            "oos_tier::unknown_oos": 4,
+            "primary_supervised_metric::flavin_dehydrogenase_reductase": 9,
+            "primary_supervised_metric::heme_peroxidase_oxidase": 2,
+            "primary_supervised_metric::metal_dependent_hydrolase": 13,
+            "primary_supervised_metric::plp_dependent_enzyme": 3,
+            "primary_supervised_metric::ser_his_acid_hydrolase": 6,
+            "secondary_ood_probe::cobalamin_radical_rearrangement": 1,
+            "secondary_ood_probe::flavin_monooxygenase": 1
+          }
+        },
+        "sequence_only_exact_match": {
+          "count": 18,
+          "role_counts": {
+            "oos_tier::near_oos": 1,
+            "oos_tier::unknown_oos": 13,
+            "primary_supervised_metric::heme_peroxidase_oxidase": 1,
+            "primary_supervised_metric::metal_dependent_hydrolase": 2,
+            "primary_supervised_metric::ser_his_acid_hydrolase": 1
+          }
+        },
+        "three_di_only_exact_match": {
+          "count": 26,
+          "role_counts": {
+            "oos_tier::far_oos": 1,
+            "oos_tier::near_oos": 1,
+            "oos_tier::unknown_oos": 19,
+            "primary_supervised_metric::heme_peroxidase_oxidase": 1,
+            "primary_supervised_metric::metal_dependent_hydrolase": 1,
+            "primary_supervised_metric::plp_dependent_enzyme": 3
+          }
+        }
+      },
+      "common_prediction_count": 139,
+      "oos_overlap": {
+        "both_abstained": {
+          "count": 53,
+          "role_counts": {
+            "oos_tier::near_oos": 1,
+            "oos_tier::unknown_oos": 52
+          }
+        },
+        "common_oos_count": 92,
+        "neither_abstained": {
+          "count": 4,
+          "role_counts": {
+            "oos_tier::unknown_oos": 4
+          }
+        },
+        "sequence_only_abstained": {
+          "count": 14,
+          "role_counts": {
+            "oos_tier::near_oos": 1,
+            "oos_tier::unknown_oos": 13
+          }
+        },
+        "three_di_only_abstained": {
+          "count": 21,
+          "role_counts": {
+            "oos_tier::far_oos": 1,
+            "oos_tier::near_oos": 1,
+            "oos_tier::unknown_oos": 19
+          }
+        }
+      },
+      "primary_supervised_overlap": {
+        "both_top1_correct": {
+          "count": 3,
+          "role_counts": {
+            "primary_supervised_metric::flavin_dehydrogenase_reductase": 1,
+            "primary_supervised_metric::metal_dependent_hydrolase": 1,
+            "primary_supervised_metric::ser_his_acid_hydrolase": 1
+          }
+        },
+        "common_primary_count": 45,
+        "neither_top1_correct": {
+          "count": 33,
+          "role_counts": {
+            "primary_supervised_metric::flavin_dehydrogenase_reductase": 9,
+            "primary_supervised_metric::heme_peroxidase_oxidase": 2,
+            "primary_supervised_metric::metal_dependent_hydrolase": 13,
+            "primary_supervised_metric::plp_dependent_enzyme": 3,
+            "primary_supervised_metric::ser_his_acid_hydrolase": 6
+          }
+        },
+        "sequence_only_top1_correct": {
+          "count": 4,
+          "role_counts": {
+            "primary_supervised_metric::heme_peroxidase_oxidase": 1,
+            "primary_supervised_metric::metal_dependent_hydrolase": 2,
+            "primary_supervised_metric::ser_his_acid_hydrolase": 1
+          }
+        },
+        "three_di_only_top1_correct": {
+          "count": 5,
+          "role_counts": {
+            "primary_supervised_metric::heme_peroxidase_oxidase": 1,
+            "primary_supervised_metric::metal_dependent_hydrolase": 1,
+            "primary_supervised_metric::plp_dependent_enzyme": 3
+          }
+        }
+      },
+      "sequence_only_entries": [
+        "m_csa:372"
+      ],
+      "sequence_only_prediction_count": 1,
+      "three_di_only_entries": [],
+      "three_di_only_prediction_count": 0
+    },
+    "summary": "Foldseek 3Di token NN is directly comparable to sequence-NN on the frozen current702 split; other requested representation comparators are not locally available as current702 metrics or predictions."
+  },
+  "external_context_not_direct_comparator": {
+    "esm2_150m_external_source_artifact_count": 6,
+    "esm2_150m_external_source_artifacts_sample": [
+      "artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+      "artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_1025.json",
+      "artifacts/v3_external_source_pilot_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json",
+      "artifacts/v3_external_source_representation_backend_esm2_t6_8m_vs_t33_650m_stability_audit_1025.json",
+      "artifacts/v3_external_source_pilot_representation_backend_esm2_t33_650m_ur50d_sample_audit_1025.json",
+      "artifacts/v3_external_source_representation_backend_esm2_t33_650m_ur50d_sample_audit_1025.json"
+    ],
+    "note": "These local artifacts contain ESM-2 150M fallback/sample context for external-source work, but they are not current702 frozen-split benchmark outputs."
+  },
+  "metadata": {
+    "artifact_id": "current702_3di_comparator_rollup_20260525",
+    "downloads_performed": false,
+    "embedding_model_downloaded": false,
+    "fingerprint_registry_edited": false,
+    "generated_at": "2026-05-26T02:12:07Z",
+    "input_leakage_contract": "comparison uses existing artifact metrics and local artifact availability only; no EC/name/prose/expert-note/review text predictive features",
+    "label_registry_edited": false,
+    "large_model_training_performed": false,
+    "ontology_registry_edited": false,
+    "plm_embeddings_computed": false,
+    "production_scoring_changed": false,
+    "schema_version": "prostt5_3di_comparator_rollup.v1",
+    "status": "computed_from_existing_current702_metrics_and_local_artifact_scan",
+    "track": "representation_tracks/prostt5_3di"
+  },
+  "requested_comparator_availability": [
+    {
+      "candidate_artifacts": [],
+      "comparator": "foldseek_fast3di",
+      "scan_note": "filename/pattern scan under artifacts; only current702 frozen-split metrics or predictions are considered direct comparators",
+      "status": "not_available_as_current702_frozen_split_comparator"
+    },
+    {
+      "candidate_artifacts": [],
+      "comparator": "saprot",
+      "scan_note": "filename/pattern scan under artifacts; only current702 frozen-split metrics or predictions are considered direct comparators",
+      "status": "not_available_as_current702_frozen_split_comparator"
+    },
+    {
+      "candidate_artifacts": [],
+      "comparator": "prot_t5",
+      "scan_note": "filename/pattern scan under artifacts; only current702 frozen-split metrics or predictions are considered direct comparators",
+      "status": "not_available_as_current702_frozen_split_comparator"
+    },
+    {
+      "candidate_artifacts": [],
+      "comparator": "esm2_150m",
+      "scan_note": "filename/pattern scan under artifacts; only current702 frozen-split metrics or predictions are considered direct comparators",
+      "status": "not_available_as_current702_frozen_split_comparator"
+    }
+  ],
+  "sources": {
+    "final_backend_preflight": {
+      "path": "artifacts/representation_tracks/prostt5_3di/current702_prostt5_final_backend_preflight_20260525.json",
+      "sha256": "219d61e026bfbb073390bfd0383595d7f2679cb8c964ffc5e1052177abf3aaf1"
+    },
+    "foldseek_3di_token_nn_metrics": {
+      "path": "artifacts/representation_tracks/prostt5_3di/current702_3di_nn_smoke_metrics_20260525.json",
+      "sha256": "f735fbf9e91743c23dc295fafc08432b89f61267f51db9f075b8bf88d11ae208"
+    },
+    "foldseek_3di_vs_sequence_readiness": {
+      "path": "artifacts/representation_tracks/prostt5_3di/current702_3di_vs_sequence_nn_readiness_20260525.json",
+      "sha256": "3766a7633ecb8c64ec5ff500dc80e1fc3fe1078d23fd8b4ec7f7234ed2008bc3"
+    },
+    "sequence_nn_metrics": {
+      "path": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+      "sha256": "22792684a943cd16987a73d048f801c3177a96c5967444d746a5aa768a0e6a26"
+    }
+  }
+}

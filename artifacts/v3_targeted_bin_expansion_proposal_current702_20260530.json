@@ -1,0 +1,2413 @@
+{
+  "artifact_id": "v3_targeted_bin_expansion_proposal_current702_20260530",
+  "baseline_snapshot": {
+    "frozen_split_artifact": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    "ref": "snapshot/concordance-gate-current702-20260530",
+    "required_commit": "f393ad25c3959778c7e66a68974bcfee6c93f031",
+    "snapshot_matches_head": true,
+    "worktree_head_commit": "f393ad25c3959778c7e66a68974bcfee6c93f031"
+  },
+  "candidate_rows": [
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "external lead; no import/countable use until duplicate, Foldseek, geometry, expert, and factory gates pass",
+      "candidate_id": "mh_064",
+      "candidate_role_from_source": "external_positive_lead",
+      "countable_label_candidate": false,
+      "display_name": "Metallo-beta-lactamase NDM-1",
+      "evidence_summary": "external MBL B1 lead for beyond-M-CSA generalization",
+      "expected_role": "positive",
+      "lane": "metallo_beta_lactamase_like",
+      "leakage_risk": "medium_external; public PDB/AlphaFold available but no current702 import gates run",
+      "ligand_or_substrate_state": "beta-lactam amide hydrolysis; public holo/inhibitor PDBs available",
+      "metal_ligand_state": "binuclear Zn metallo-beta-lactamase; reviewed EC 3.5.2.6",
+      "panel_readiness": [
+        "silver"
+      ],
+      "panel_routes": [
+        "external_no_decision_review_only",
+        "metallo_beta_lactamase_like"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "no_reliable_structure",
+      "provenance": {
+        "accession_or_row_id": "uniprot:C7C422",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": false,
+        "external_candidate": true,
+        "source_artifacts": [
+          "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+          "artifacts/v3_external_panel_router_queue_20260528.json"
+        ],
+        "source_name": "metal_hydrolase_tail_panel",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "external_uniprot"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "materialize or verify structure/active-site cache row without touching the frozen LOMO split",
+        "source-free Foldseek/TM and active-site geometry classification before assigning future bin",
+        "experimental ligand/local structure context must support cofactor or chemistry; mechanism fingerprint label alone is not evidence"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "structure_availability": {
+        "coordinate_path": null,
+        "local_cofactor_family_available": null,
+        "missing_fields": [
+          "no_current702_active_site_cache_row"
+        ],
+        "selected_structure": null,
+        "status": "not_in_current702_active_site_cache",
+        "structure_cofactor_family_available": null
+      }
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "external lead; no import/countable use until duplicate, Foldseek, geometry, expert, and factory gates pass",
+      "candidate_id": "mh_065",
+      "candidate_role_from_source": "external_positive_lead",
+      "countable_label_candidate": false,
+      "display_name": "Metallo-beta-lactamase VIM-like enzyme",
+      "evidence_summary": "external MBL-family diversity lead; child evidence must distinguish from serine beta-lactamases",
+      "expected_role": "positive",
+      "lane": "metallo_beta_lactamase_like",
+      "leakage_risk": "medium_external; public PDB/AlphaFold available but no current702 import gates run",
+      "ligand_or_substrate_state": "beta-lactam hydrolysis; public structures available",
+      "metal_ligand_state": "Zn metallo-beta-lactamase; reviewed EC 3.5.2.6",
+      "panel_readiness": [
+        "silver"
+      ],
+      "panel_routes": [
+        "external_no_decision_review_only",
+        "metallo_beta_lactamase_like"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "no_reliable_structure",
+      "provenance": {
+        "accession_or_row_id": "uniprot:Q79MP6",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": false,
+        "external_candidate": true,
+        "source_artifacts": [
+          "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+          "artifacts/v3_external_panel_router_queue_20260528.json"
+        ],
+        "source_name": "metal_hydrolase_tail_panel",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "external_uniprot"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "materialize or verify structure/active-site cache row without touching the frozen LOMO split",
+        "source-free Foldseek/TM and active-site geometry classification before assigning future bin",
+        "experimental ligand/local structure context must support cofactor or chemistry; mechanism fingerprint label alone is not evidence"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "structure_availability": {
+        "coordinate_path": null,
+        "local_cofactor_family_available": null,
+        "missing_fields": [
+          "no_current702_active_site_cache_row"
+        ],
+        "selected_structure": null,
+        "status": "not_in_current702_active_site_cache",
+        "structure_cofactor_family_available": null
+      }
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "external lead; no import/countable use until duplicate, Foldseek, geometry, expert, and factory gates pass",
+      "candidate_id": "mh_066",
+      "candidate_role_from_source": "external_positive_lead",
+      "countable_label_candidate": false,
+      "display_name": "Metallo-beta-lactamase IMP-1",
+      "evidence_summary": "external MBL lead plus nuclease EC cross-reference warning in UniProt metadata",
+      "expected_role": "positive",
+      "lane": "metallo_beta_lactamase_like",
+      "leakage_risk": "medium_external; public PDB/AlphaFold available but no current702 import gates run",
+      "ligand_or_substrate_state": "beta-lactam hydrolysis; public structures available",
+      "metal_ligand_state": "Zn metallo-beta-lactamase IMP-1; reviewed EC 3.5.2.6",
+      "panel_readiness": [
+        "silver"
+      ],
+      "panel_routes": [
+        "external_no_decision_review_only",
+        "metallo_beta_lactamase_like"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "no_reliable_structure",
+      "provenance": {
+        "accession_or_row_id": "uniprot:P52699",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": false,
+        "external_candidate": true,
+        "source_artifacts": [
+          "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+          "artifacts/v3_external_panel_router_queue_20260528.json"
+        ],
+        "source_name": "metal_hydrolase_tail_panel",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "external_uniprot"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "materialize or verify structure/active-site cache row without touching the frozen LOMO split",
+        "source-free Foldseek/TM and active-site geometry classification before assigning future bin",
+        "experimental ligand/local structure context must support cofactor or chemistry; mechanism fingerprint label alone is not evidence"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "structure_availability": {
+        "coordinate_path": null,
+        "local_cofactor_family_available": null,
+        "missing_fields": [
+          "no_current702_active_site_cache_row"
+        ],
+        "selected_structure": null,
+        "status": "not_in_current702_active_site_cache",
+        "structure_cofactor_family_available": null
+      }
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "external lead; no import/countable use until duplicate, Foldseek, geometry, expert, and factory gates pass",
+      "candidate_id": "mh_067",
+      "candidate_role_from_source": "external_positive_lead",
+      "countable_label_candidate": false,
+      "display_name": "Carbonic anhydrase 2",
+      "evidence_summary": "external carbonic anhydrase boundary lead; should not force all CAs into generic hydrolase children",
+      "expected_role": "positive",
+      "lane": "carbonic_anhydrase_dehydratase_boundary",
+      "leakage_risk": "medium_external; public PDB/AlphaFold available but no current702 import gates run",
+      "ligand_or_substrate_state": "CO2/bicarbonate hydration/dehydration, not generic bond hydrolysis",
+      "metal_ligand_state": "Zn-water reversible carbonate dehydratase; reviewed EC 4.2.1.1",
+      "panel_readiness": [
+        "silver"
+      ],
+      "panel_routes": [
+        "carbonic_anhydrase_dehydratase_boundary",
+        "external_no_decision_review_only"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "no_reliable_structure",
+      "provenance": {
+        "accession_or_row_id": "uniprot:P00918",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": false,
+        "external_candidate": true,
+        "source_artifacts": [
+          "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+          "artifacts/v3_external_panel_router_queue_20260528.json"
+        ],
+        "source_name": "metal_hydrolase_tail_panel",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "external_uniprot"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "materialize or verify structure/active-site cache row without touching the frozen LOMO split",
+        "source-free Foldseek/TM and active-site geometry classification before assigning future bin",
+        "experimental ligand/local structure context must support cofactor or chemistry; mechanism fingerprint label alone is not evidence"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "structure_availability": {
+        "coordinate_path": null,
+        "local_cofactor_family_available": null,
+        "missing_fields": [
+          "no_current702_active_site_cache_row"
+        ],
+        "selected_structure": null,
+        "status": "not_in_current702_active_site_cache",
+        "structure_cofactor_family_available": null
+      }
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "external lead; no import/countable use until duplicate, Foldseek, geometry, expert, and factory gates pass",
+      "candidate_id": "mh_068",
+      "candidate_role_from_source": "external_positive_lead",
+      "countable_label_candidate": false,
+      "display_name": "Arylsulfatase A",
+      "evidence_summary": "external sulfatase/FGly lead paired with M-CSA m_csa:158 and m_csa:661",
+      "expected_role": "positive",
+      "lane": "sulfatase_fgly_metal_boundary",
+      "leakage_risk": "medium_external; public PDB/AlphaFold available but no current702 import gates run",
+      "ligand_or_substrate_state": "sulfate ester hydrolysis; FGL/FGly state must be checked in structures",
+      "metal_ligand_state": "FGly/formylglycine sulfatase with metal stabilization; reviewed EC 3.1.6.8",
+      "panel_readiness": [
+        "silver"
+      ],
+      "panel_routes": [
+        "external_no_decision_review_only",
+        "sulfatase_fgly_metal_boundary"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "no_reliable_structure",
+      "provenance": {
+        "accession_or_row_id": "uniprot:P15289",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": false,
+        "external_candidate": true,
+        "source_artifacts": [
+          "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+          "artifacts/v3_external_panel_router_queue_20260528.json"
+        ],
+        "source_name": "metal_hydrolase_tail_panel",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "external_uniprot"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "materialize or verify structure/active-site cache row without touching the frozen LOMO split",
+        "source-free Foldseek/TM and active-site geometry classification before assigning future bin",
+        "experimental ligand/local structure context must support cofactor or chemistry; mechanism fingerprint label alone is not evidence"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "structure_availability": {
+        "coordinate_path": null,
+        "local_cofactor_family_available": null,
+        "missing_fields": [
+          "no_current702_active_site_cache_row"
+        ],
+        "selected_structure": null,
+        "status": "not_in_current702_active_site_cache",
+        "structure_cofactor_family_available": null
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "external lead; no import/countable use until duplicate, Foldseek, geometry, expert, and factory gates pass",
+      "candidate_id": "mh_069",
+      "candidate_role_from_source": "external_positive_lead",
+      "countable_label_candidate": false,
+      "display_name": "Iduronate 2-sulfatase",
+      "evidence_summary": "external lysosomal sulfatase boundary lead; needs FGly and ligand-state extraction",
+      "expected_role": "review-only",
+      "lane": "sulfatase_fgly_metal_boundary",
+      "leakage_risk": "medium_external; public PDB/AlphaFold available but no current702 import gates run",
+      "ligand_or_substrate_state": "glycosaminoglycan sulfate ester hydrolysis; public structures available",
+      "metal_ligand_state": "FGly sulfatase family; reviewed EC 3.1.6.13",
+      "panel_readiness": [
+        "silver"
+      ],
+      "panel_routes": [
+        "external_no_decision_review_only",
+        "sulfatase_fgly_metal_boundary"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "no_reliable_structure",
+      "provenance": {
+        "accession_or_row_id": "uniprot:P22304",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": false,
+        "external_candidate": true,
+        "source_artifacts": [
+          "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+          "artifacts/v3_external_panel_router_queue_20260528.json"
+        ],
+        "source_name": "metal_hydrolase_tail_panel",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "external_uniprot"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "materialize or verify structure/active-site cache row without touching the frozen LOMO split",
+        "source-free Foldseek/TM and active-site geometry classification before assigning future bin",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "structure_availability": {
+        "coordinate_path": null,
+        "local_cofactor_family_available": null,
+        "missing_fields": [
+          "no_current702_active_site_cache_row"
+        ],
+        "selected_structure": null,
+        "status": "not_in_current702_active_site_cache",
+        "structure_cofactor_family_available": null
+      }
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "full_label_factory_gate_not_run; terminal_review_decision_not_accepted; uniref_wide_duplicate_screening_required",
+      "candidate_id": "uniprot:P22830",
+      "countable_label_candidate": false,
+      "display_name": null,
+      "duplicate_evidence_status": "bounded_duplicate_controls_clear_uniref_pending",
+      "expected_role": "hard-negative",
+      "leakage_risk": "medium; bounded duplicate screens clear but terminal/factory gates remain",
+      "predictive_use_allowed": false,
+      "proposed_bin": "no_reliable_structure",
+      "provenance": {
+        "accession_or_row_id": "P22830",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": false,
+        "external_candidate": true,
+        "source_artifacts": [
+          "artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json",
+          "artifacts/v3_external_hard_negative_next_candidate_uniref_current_reference_screen_1025.json"
+        ],
+        "source_name": "external_hard_negative_queue",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "external_hard_negative_next_candidate_terminal_review_queue_review_only"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "materialize or verify structure/active-site cache row without touching the frozen LOMO split",
+        "source-free Foldseek/TM and active-site geometry classification before assigning future bin",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "structure_availability": {
+        "status": "unknown"
+      },
+      "terminal_review_status": "needs_terminal_review_decision",
+      "uniref_current_reference_blockers": [],
+      "uniref_current_reference_screen_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "full_label_factory_gate_not_run; terminal_review_decision_not_accepted; uniref_wide_duplicate_screening_required",
+      "candidate_id": "uniprot:P78549",
+      "countable_label_candidate": false,
+      "display_name": null,
+      "duplicate_evidence_status": "bounded_duplicate_controls_clear_uniref_pending",
+      "expected_role": "hard-negative",
+      "leakage_risk": "medium; bounded duplicate screens clear but terminal/factory gates remain",
+      "predictive_use_allowed": false,
+      "proposed_bin": "no_reliable_structure",
+      "provenance": {
+        "accession_or_row_id": "P78549",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": false,
+        "external_candidate": true,
+        "source_artifacts": [
+          "artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json",
+          "artifacts/v3_external_hard_negative_next_candidate_uniref_current_reference_screen_1025.json"
+        ],
+        "source_name": "external_hard_negative_queue",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "external_hard_negative_next_candidate_terminal_review_queue_review_only"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "materialize or verify structure/active-site cache row without touching the frozen LOMO split",
+        "source-free Foldseek/TM and active-site geometry classification before assigning future bin",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "structure_availability": {
+        "status": "unknown"
+      },
+      "terminal_review_status": "needs_terminal_review_decision",
+      "uniref_current_reference_blockers": [],
+      "uniref_current_reference_screen_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "full_label_factory_gate_not_run; terminal_review_decision_not_accepted; uniref_wide_duplicate_screening_required",
+      "candidate_id": "uniprot:Q3LXA3",
+      "countable_label_candidate": false,
+      "display_name": null,
+      "duplicate_evidence_status": "bounded_duplicate_controls_clear_uniref_pending",
+      "expected_role": "hard-negative",
+      "leakage_risk": "medium; bounded duplicate screens clear but terminal/factory gates remain",
+      "predictive_use_allowed": false,
+      "proposed_bin": "no_reliable_structure",
+      "provenance": {
+        "accession_or_row_id": "Q3LXA3",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": false,
+        "external_candidate": true,
+        "source_artifacts": [
+          "artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json",
+          "artifacts/v3_external_hard_negative_next_candidate_uniref_current_reference_screen_1025.json"
+        ],
+        "source_name": "external_hard_negative_queue",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "external_hard_negative_next_candidate_terminal_review_queue_review_only"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "materialize or verify structure/active-site cache row without touching the frozen LOMO split",
+        "source-free Foldseek/TM and active-site geometry classification before assigning future bin",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "structure_availability": {
+        "status": "unknown"
+      },
+      "terminal_review_status": "needs_terminal_review_decision",
+      "uniref_current_reference_blockers": [],
+      "uniref_current_reference_screen_status": "uniref_current_reference_screen_no_current_reference_overlap"
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "external lead; no import/countable use until duplicate, Foldseek, geometry, expert, and factory gates pass",
+      "candidate_id": "mh_072",
+      "candidate_role_from_source": "external_hard_negative",
+      "countable_label_candidate": false,
+      "display_name": "Enolase",
+      "evidence_summary": "external metal-assisted dehydration hard negative",
+      "expected_role": "hard-negative",
+      "lane": "metal_dependent_nonhydrolytic_negative",
+      "leakage_risk": "medium_external; public PDB/AlphaFold available but no current702 import gates run",
+      "ligand_or_substrate_state": "2-phosphoglycerate dehydration; substrate/product analog structures available",
+      "metal_ligand_state": "Mg-dependent lyase/dehydratase, not hydrolysis; reviewed EC 4.2.1.11",
+      "panel_readiness": [
+        "gold"
+      ],
+      "panel_routes": [
+        "external_no_decision_review_only",
+        "metal_dependent_nonhydrolytic_negative"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "no_reliable_structure",
+      "provenance": {
+        "accession_or_row_id": "uniprot:P0A6P9",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": false,
+        "external_candidate": true,
+        "source_artifacts": [
+          "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+          "artifacts/v3_external_panel_router_queue_20260528.json"
+        ],
+        "source_name": "metal_hydrolase_tail_panel",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "external_uniprot"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "materialize or verify structure/active-site cache row without touching the frozen LOMO split",
+        "source-free Foldseek/TM and active-site geometry classification before assigning future bin",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "structure_availability": {
+        "coordinate_path": null,
+        "local_cofactor_family_available": null,
+        "missing_fields": [
+          "no_current702_active_site_cache_row"
+        ],
+        "selected_structure": null,
+        "status": "not_in_current702_active_site_cache",
+        "structure_cofactor_family_available": null
+      }
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "external lead; no import/countable use until duplicate, Foldseek, geometry, expert, and factory gates pass",
+      "candidate_id": "mh_073",
+      "candidate_role_from_source": "external_hard_negative",
+      "countable_label_candidate": false,
+      "display_name": "GTPase HRas",
+      "evidence_summary": "external GTPase false-positive control against Mg/nucleotide leakage",
+      "expected_role": "hard-negative",
+      "lane": "ntpase_nucleotide_hydrolase_boundary",
+      "leakage_risk": "medium_external; public PDB/AlphaFold available but no current702 import gates run",
+      "ligand_or_substrate_state": "GTP hydrolysis coupled to conformational signaling; many GDP/GTP analog PDBs available",
+      "metal_ligand_state": "Mg/GTPase switch protein; reviewed EC 3.6.5.2",
+      "panel_readiness": [
+        "gold"
+      ],
+      "panel_routes": [
+        "external_no_decision_review_only",
+        "ntpase_nucleotide_hydrolase_boundary"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "low_structure_neighborhood_near_orphan",
+      "provenance": {
+        "accession_or_row_id": "uniprot:P01112",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": false,
+        "external_candidate": true,
+        "source_artifacts": [
+          "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+          "artifacts/v3_external_panel_router_queue_20260528.json"
+        ],
+        "source_name": "metal_hydrolase_tail_panel",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "external_uniprot"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "confirm low same-mechanism structural-neighborhood support after materialization",
+        "use OOS/secondary role only for false-positive stress; no dense-neighborhood padding",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "source_panels": [
+        "metal_hydrolase_tail"
+      ],
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "structure_availability": {
+        "coordinate_path": null,
+        "local_cofactor_family_available": null,
+        "missing_fields": [
+          "no_current702_active_site_cache_row"
+        ],
+        "selected_structure": null,
+        "status": "not_in_current702_active_site_cache",
+        "structure_cofactor_family_available": null
+      }
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:10",
+      "countable_label_candidate": false,
+      "display_name": "3-hydroxydecanoyl-[acyl-carrier-protein] dehydratase",
+      "expected_role": "canary",
+      "fold_conflict_flag": false,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:461"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.6061,
+        "structure_key": "pdb:1S9C"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "low_structure_neighborhood_near_orphan",
+      "provenance": {
+        "accession_or_row_id": "m_csa:10",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "oos_router_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "confirm low same-mechanism structural-neighborhood support after materialization",
+        "use OOS/secondary role only for false-positive stress; no dense-neighborhood padding",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "oos_router_control",
+      "structural_neighborhood_bin_from_source": "broad_bucket_ambiguous",
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1MKB.cif",
+        "local_cofactor_family_available": false,
+        "missing_fields": [],
+        "selected_structure": "pdb:1MKB",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": false
+      }
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:30",
+      "countable_label_candidate": false,
+      "display_name": "formate C-acetyltransferase",
+      "expected_role": "canary",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:416"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.7722,
+        "structure_key": "pdb:1H7A"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "low_structure_neighborhood_near_orphan",
+      "provenance": {
+        "accession_or_row_id": "m_csa:30",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "oos_router_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "confirm low same-mechanism structural-neighborhood support after materialization",
+        "use OOS/secondary role only for false-positive stress; no dense-neighborhood padding",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "oos_router_control",
+      "structural_neighborhood_bin_from_source": "broad_bucket_ambiguous",
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2PFL.cif",
+        "local_cofactor_family_available": false,
+        "missing_fields": [],
+        "selected_structure": "pdb:2PFL",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": false
+      }
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:31",
+      "countable_label_candidate": false,
+      "display_name": "thymidylate synthase",
+      "expected_role": "canary",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:189"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.5127,
+        "structure_key": "pdb:1M9C"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "low_structure_neighborhood_near_orphan",
+      "provenance": {
+        "accession_or_row_id": "m_csa:31",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "oos_router_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "confirm low same-mechanism structural-neighborhood support after materialization",
+        "use OOS/secondary role only for false-positive stress; no dense-neighborhood padding",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "oos_router_control",
+      "structural_neighborhood_bin_from_source": "broad_bucket_ambiguous",
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1LCB.cif",
+        "local_cofactor_family_available": false,
+        "missing_fields": [],
+        "selected_structure": "pdb:1LCB",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": false
+      }
+    },
+    {
+      "batch_role": "smallest_next_batch",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:116",
+      "countable_label_candidate": false,
+      "display_name": "NAD(P)+ transhydrogenase (AB-specific)",
+      "expected_role": "canary",
+      "fold_conflict_flag": false,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:496"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.9826,
+        "structure_key": "pdb:1DJL"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "low_structure_neighborhood_near_orphan",
+      "provenance": {
+        "accession_or_row_id": "m_csa:116",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "oos_router_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "confirm low same-mechanism structural-neighborhood support after materialization",
+        "use OOS/secondary role only for false-positive stress; no dense-neighborhood padding",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "oos_router_control",
+      "structural_neighborhood_bin_from_source": "broad_bucket_ambiguous",
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1HZZ.cif",
+        "local_cofactor_family_available": true,
+        "missing_fields": [],
+        "selected_structure": "pdb:1HZZ",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": true
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:217",
+      "countable_label_candidate": false,
+      "display_name": "(S)-hydroxynitrile lyase",
+      "expected_role": "canary",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:248"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.7976,
+        "structure_key": "pdb:1A7U"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "verified_fold_conflict",
+      "provenance": {
+        "accession_or_row_id": "m_csa:217",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "fold_conflict_reference_anchor"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "verify high structural similarity to a different-fingerprint or OOS neighbor with TM/Foldseek evidence",
+        "expert review decides canary vs hard-negative role before future split use",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "fold_conflict_reference_anchor",
+      "structural_neighborhood_bin_from_source": "high_structure_similarity_different_fingerprint",
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1SC9.cif",
+        "local_cofactor_family_available": false,
+        "missing_fields": [],
+        "selected_structure": "pdb:1SC9",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": false
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:428",
+      "countable_label_candidate": false,
+      "display_name": "mannan endo-1,4-beta-mannosidase",
+      "expected_role": "canary",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:328"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.8059,
+        "structure_key": "pdb:1LBM"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "verified_fold_conflict",
+      "provenance": {
+        "accession_or_row_id": "m_csa:428",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "fold_conflict_reference_anchor"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "verify high structural similarity to a different-fingerprint or OOS neighbor with TM/Foldseek evidence",
+        "expert review decides canary vs hard-negative role before future split use",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "fold_conflict_reference_anchor",
+      "structural_neighborhood_bin_from_source": "high_structure_similarity_different_fingerprint",
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BQC.cif",
+        "local_cofactor_family_available": false,
+        "missing_fields": [],
+        "selected_structure": "pdb:1BQC",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": false
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:477",
+      "countable_label_candidate": false,
+      "display_name": "picornain 3C",
+      "expected_role": "canary",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:608"
+        ],
+        "fingerprints_or_label_families": [
+          "ser_his_acid_hydrolase"
+        ],
+        "max_pair_tm_score": 0.8043,
+        "structure_key": "pdb:1DS2"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "verified_fold_conflict",
+      "provenance": {
+        "accession_or_row_id": "m_csa:477",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "fold_conflict_reference_anchor"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "verify high structural similarity to a different-fingerprint or OOS neighbor with TM/Foldseek evidence",
+        "expert review decides canary vs hard-negative role before future split use",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "fold_conflict_reference_anchor",
+      "structural_neighborhood_bin_from_source": "high_structure_similarity_different_fingerprint",
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1CQQ.cif",
+        "local_cofactor_family_available": false,
+        "missing_fields": [],
+        "selected_structure": "pdb:1CQQ",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": false
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:131",
+      "countable_label_candidate": false,
+      "display_name": "4-hydroxybenzoate 3-monooxygenase",
+      "expected_role": "review-only",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:281"
+        ],
+        "fingerprints_or_label_families": [
+          "flavin_dehydrogenase_reductase"
+        ],
+        "max_pair_tm_score": 0.783,
+        "structure_key": "pdb:2GMH"
+      },
+      "panel_readiness": [],
+      "panel_routes": [
+        "flavin_monooxygenase",
+        "flavin_monooxygenase_c4a_peroxy_oxygen_transfer"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "verified_fold_conflict",
+      "provenance": {
+        "accession_or_row_id": "m_csa:131",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "fold_conflict_candidate_needs_review"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "verify high structural similarity to a different-fingerprint or OOS neighbor with TM/Foldseek evidence",
+        "expert review decides canary vs hard-negative role before future split use",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "fold_conflict_candidate_needs_review",
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structural_neighborhood_bin_from_source": "high_structure_similarity_different_fingerprint",
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DOC.cif",
+        "local_cofactor_family_available": true,
+        "missing_fields": [],
+        "selected_structure": "pdb:1DOC",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": true
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:853",
+      "countable_label_candidate": false,
+      "display_name": "cob(I)yrinic acid a,c-diamide adenosyltransferase",
+      "expected_role": "review-only",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:178"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.7585,
+        "structure_key": "pdb:1BMF"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "verified_fold_conflict",
+      "provenance": {
+        "accession_or_row_id": "m_csa:853",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "fold_conflict_candidate_needs_review"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "verify high structural similarity to a different-fingerprint or OOS neighbor with TM/Foldseek evidence",
+        "expert review decides canary vs hard-negative role before future split use",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "fold_conflict_candidate_needs_review",
+      "structural_neighborhood_bin_from_source": "broad_bucket_ambiguous",
+      "structure_availability": {
+        "nearest_train": {
+          "entry_ids": [
+            "m_csa:178"
+          ],
+          "fingerprints_or_label_families": [
+            "out_of_scope"
+          ],
+          "max_pair_tm_score": 0.7585,
+          "structure_key": "pdb:1BMF"
+        },
+        "status": "already_materialized"
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:118",
+      "countable_label_candidate": false,
+      "display_name": "urate oxidase",
+      "expected_role": "hard-negative",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:38"
+        ],
+        "fingerprints_or_label_families": [
+          "metal_dependent_hydrolase"
+        ],
+        "max_pair_tm_score": 0.8007,
+        "structure_key": "pdb:1FBX"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "oos_hard_negatives",
+      "provenance": {
+        "accession_or_row_id": "m_csa:118",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "oos_fold_conflict_hard_negative_candidate"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "oos_fold_conflict_hard_negative_candidate",
+      "structural_neighborhood_bin_from_source": "broad_bucket_ambiguous",
+      "structure_availability": {
+        "nearest_train": {
+          "entry_ids": [
+            "m_csa:38"
+          ],
+          "fingerprints_or_label_families": [
+            "metal_dependent_hydrolase"
+          ],
+          "max_pair_tm_score": 0.8007,
+          "structure_key": "pdb:1FBX"
+        },
+        "status": "already_materialized"
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:144",
+      "countable_label_candidate": false,
+      "display_name": "arsenite oxidase",
+      "expected_role": "hard-negative",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:562"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.8809,
+        "structure_key": "pdb:1AA6"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "oos_hard_negatives",
+      "provenance": {
+        "accession_or_row_id": "m_csa:144",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "oos_fold_conflict_hard_negative_candidate"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "oos_fold_conflict_hard_negative_candidate",
+      "structural_neighborhood_bin_from_source": "broad_bucket_ambiguous",
+      "structure_availability": {
+        "nearest_train": {
+          "entry_ids": [
+            "m_csa:562"
+          ],
+          "fingerprints_or_label_families": [
+            "out_of_scope"
+          ],
+          "max_pair_tm_score": 0.8809,
+          "structure_key": "pdb:1AA6"
+        },
+        "status": "already_materialized"
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:188",
+      "countable_label_candidate": false,
+      "display_name": "UDP-glucose 4-epimerase",
+      "expected_role": "hard-negative",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:557"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.9029,
+        "structure_key": "pdb:1EQ2"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "oos_hard_negatives",
+      "provenance": {
+        "accession_or_row_id": "m_csa:188",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "oos_fold_conflict_hard_negative_candidate"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "oos_fold_conflict_hard_negative_candidate",
+      "structural_neighborhood_bin_from_source": "broad_bucket_ambiguous",
+      "structure_availability": {
+        "nearest_train": {
+          "entry_ids": [
+            "m_csa:557"
+          ],
+          "fingerprints_or_label_families": [
+            "out_of_scope"
+          ],
+          "max_pair_tm_score": 0.9029,
+          "structure_key": "pdb:1EQ2"
+        },
+        "status": "already_materialized"
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:220",
+      "countable_label_candidate": false,
+      "display_name": "benzoylformate decarboxylase",
+      "expected_role": "hard-negative",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:298"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.9307,
+        "structure_key": "pdb:2PAN"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "oos_hard_negatives",
+      "provenance": {
+        "accession_or_row_id": "m_csa:220",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "oos_fold_conflict_hard_negative_candidate"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "oos_fold_conflict_hard_negative_candidate",
+      "structural_neighborhood_bin_from_source": "broad_bucket_ambiguous",
+      "structure_availability": {
+        "nearest_train": {
+          "entry_ids": [
+            "m_csa:298"
+          ],
+          "fingerprints_or_label_families": [
+            "out_of_scope"
+          ],
+          "max_pair_tm_score": 0.9307,
+          "structure_key": "pdb:2PAN"
+        },
+        "status": "already_materialized"
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:255",
+      "countable_label_candidate": false,
+      "display_name": "alcohol dehydrogenase (SDR type)",
+      "expected_role": "hard-negative",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": false,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:237"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.8318,
+        "structure_key": "pdb:2C7V"
+      },
+      "predictive_use_allowed": false,
+      "proposed_bin": "oos_hard_negatives",
+      "provenance": {
+        "accession_or_row_id": "m_csa:255",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "oos_fold_conflict_hard_negative_candidate"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "oos_fold_conflict_hard_negative_candidate",
+      "structural_neighborhood_bin_from_source": "broad_bucket_ambiguous",
+      "structure_availability": {
+        "nearest_train": {
+          "entry_ids": [
+            "m_csa:237"
+          ],
+          "fingerprints_or_label_families": [
+            "out_of_scope"
+          ],
+          "max_pair_tm_score": 0.8318,
+          "structure_key": "pdb:2C7V"
+        },
+        "status": "already_materialized"
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "review-only; future expert decision and frozen split required",
+      "candidate_id": "m_csa:128",
+      "candidate_role_from_source": "hard_negative_control",
+      "countable_label_candidate": false,
+      "display_name": "Photinus-luciferin 4-monooxygenase (ATP-hydrolysing)",
+      "evidence_summary": "Name contains monooxygenase but mechanism is ATP/luciferyl-adenylate bioluminescence.",
+      "expected_role": "hard-negative",
+      "flavin_cofactor_evidence": "No local flavin cofactor evidence in the M-CSA mechanism or current out-of-scope label.",
+      "leakage_risk": "high_if_imported; M-CSA row must stay eval-only unless already frozen current702",
+      "oxygen_activation_or_c4a_intermediate_evidence": "No flavin C4a-peroxy/C4a-hydroperoxy intermediate; chemistry proceeds through luciferyl adenylation/bioluminescent oxidation.",
+      "panel_readiness": [],
+      "panel_routes": [
+        "luciferase_atp_oxygenase",
+        "nonflavin_oxygenase_hard_negative"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "boundary_near_ood_controls",
+      "provenance": {
+        "accession_or_row_id": "m_csa:128",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+          "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
+        ],
+        "source_name": "fmo_candidate_scout",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "hard_negative_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BA3.cif",
+        "local_cofactor_family_available": false,
+        "missing_fields": [],
+        "selected_structure": "pdb:1BA3",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": false
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:129",
+      "candidate_role_from_source": "hard_negative_control",
+      "countable_label_candidate": false,
+      "display_name": "taurine dioxygenase",
+      "evidence_summary": "Oxygenase name and substrate hydroxylation without flavin.",
+      "expected_role": "hard-negative",
+      "flavin_cofactor_evidence": "No FAD/FMN evidence; current registry labels out_of_scope.",
+      "fold_conflict_flag": false,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:329"
+        ],
+        "fingerprints_or_label_families": [
+          "out_of_scope"
+        ],
+        "max_pair_tm_score": 0.5574,
+        "structure_key": "pdb:2IXJ"
+      },
+      "oxygen_activation_or_c4a_intermediate_evidence": "Fe(II)/2-oxoglutarate binds dioxygen and forms Fe(IV)=O chemistry.",
+      "panel_readiness": [],
+      "panel_routes": [
+        "non_heme_iron_oxygenase",
+        "nonflavin_oxygenase_hard_negative"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "boundary_near_ood_controls",
+      "provenance": {
+        "accession_or_row_id": "m_csa:129",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+          "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
+        ],
+        "source_name": "fmo_candidate_scout",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "hard_negative_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "near_orphan_candidate_from_retained_hits",
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structural_neighborhood_bin_from_source": "broad_bucket_ambiguous",
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1OS7.cif",
+        "local_cofactor_family_available": false,
+        "missing_fields": [],
+        "selected_structure": "pdb:1OS7",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": false
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "review-only; future expert decision and frozen split required",
+      "candidate_id": "m_csa:130",
+      "candidate_role_from_source": "hard_negative_control",
+      "countable_label_candidate": false,
+      "display_name": "naphthalene 1,2-dioxygenase",
+      "evidence_summary": "FAD and oxygenase appear in the same system but not as flavin C4a monooxygenation.",
+      "expected_role": "hard-negative",
+      "flavin_cofactor_evidence": "Mechanism includes NAD hydride transfer to FAD and electron relay through iron-sulfur clusters.",
+      "leakage_risk": "high_if_imported; M-CSA row must stay eval-only unless already frozen current702",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Dioxygen activation occurs at a Rieske/non-heme iron center, not at flavin C4a.",
+      "panel_readiness": [],
+      "panel_routes": [
+        "nonflavin_oxygenase_hard_negative",
+        "rieske_non_heme_iron_oxygenase"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "boundary_near_ood_controls",
+      "provenance": {
+        "accession_or_row_id": "m_csa:130",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+          "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
+        ],
+        "source_name": "fmo_candidate_scout",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "hard_negative_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1NDO.cif",
+        "local_cofactor_family_available": true,
+        "missing_fields": [],
+        "selected_structure": "pdb:1NDO",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": true
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "review-only; future expert decision and frozen split required",
+      "candidate_id": "m_csa:133",
+      "candidate_role_from_source": "hard_negative_control",
+      "countable_label_candidate": false,
+      "display_name": "camphor 5-monooxygenase",
+      "evidence_summary": "Monooxygenase name and NADPH electron supply can be mistaken for FMO without cofactor typing.",
+      "expected_role": "hard-negative",
+      "flavin_cofactor_evidence": "No catalytic flavin cofactor; current registry labels heme_peroxidase_oxidase.",
+      "leakage_risk": "high_if_imported; M-CSA row must stay eval-only unless already frozen current702",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Dioxygen activation occurs at heme iron/peroxo/ferryl intermediates, not flavin C4a.",
+      "panel_readiness": [],
+      "panel_routes": [
+        "nonflavin_oxygenase_hard_negative",
+        "p450_boundary"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "boundary_near_ood_controls",
+      "provenance": {
+        "accession_or_row_id": "m_csa:133",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+          "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
+        ],
+        "source_name": "fmo_candidate_scout",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "hard_negative_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1YRC.cif",
+        "local_cofactor_family_available": true,
+        "missing_fields": [],
+        "selected_structure": "pdb:1YRC",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": true
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "review-only; future expert decision and frozen split required",
+      "candidate_id": "m_csa:134",
+      "candidate_role_from_source": "hard_negative_control",
+      "countable_label_candidate": false,
+      "display_name": "tyrosine 3-monooxygenase",
+      "evidence_summary": "Aromatic hydroxylase target family but tetrahydrobiopterin/non-heme iron chemistry.",
+      "expected_role": "hard-negative",
+      "flavin_cofactor_evidence": "No FAD/FMN evidence; current label is out_of_scope.",
+      "leakage_risk": "high_if_imported; M-CSA row must stay eval-only unless already frozen current702",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Oxygen activation uses Fe(II), pterin electron transfer, peroxypterin, and Fe(IV)=O chemistry.",
+      "panel_readiness": [],
+      "panel_routes": [
+        "nonflavin_oxygenase_hard_negative",
+        "pterin_non_heme_iron_monooxygenase"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "boundary_near_ood_controls",
+      "provenance": {
+        "accession_or_row_id": "m_csa:134",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+          "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
+        ],
+        "source_name": "fmo_candidate_scout",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "hard_negative_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_2TOH.cif",
+        "local_cofactor_family_available": true,
+        "missing_fields": [],
+        "selected_structure": "pdb:2TOH",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": true
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "review-only; future expert decision and frozen split required",
+      "candidate_id": "m_csa:135",
+      "candidate_role_from_source": "hard_negative_control",
+      "countable_label_candidate": false,
+      "display_name": "peptidylglycine monooxygenase",
+      "evidence_summary": "Monooxygenase name and multiple oxygen activation proposals, all copper based.",
+      "expected_role": "hard-negative",
+      "flavin_cofactor_evidence": "No FAD/FMN evidence; current label is out_of_scope.",
+      "leakage_risk": "high_if_imported; M-CSA row must stay eval-only unless already frozen current702",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Oxygen activation proceeds through copper-superoxo/hydroperoxo/oxo proposals, not flavin C4a.",
+      "panel_readiness": [],
+      "panel_routes": [
+        "copper_oxygenase",
+        "nonflavin_oxygenase_hard_negative"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "boundary_near_ood_controls",
+      "provenance": {
+        "accession_or_row_id": "m_csa:135",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+          "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
+        ],
+        "source_name": "fmo_candidate_scout",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "hard_negative_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1SDW.cif",
+        "local_cofactor_family_available": true,
+        "missing_fields": [],
+        "selected_structure": "pdb:1SDW",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": true
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "review-only; future expert decision and frozen split required",
+      "candidate_id": "m_csa:141",
+      "candidate_role_from_source": "hard_negative_control",
+      "countable_label_candidate": false,
+      "display_name": "4-cresol dehydrogenase (hydroxylating)",
+      "evidence_summary": "Hydroxylating name and FAD cofactor can look FMO-like without C4a-peroxy oxygen transfer.",
+      "expected_role": "hard-negative",
+      "flavin_cofactor_evidence": "Mechanism has FAD and current registry labels the row as flavin_dehydrogenase_reductase.",
+      "leakage_risk": "high_if_imported; M-CSA row must stay eval-only unless already frozen current702",
+      "oxygen_activation_or_c4a_intermediate_evidence": "No local C4a-peroxyflavin or dioxygen-activation evidence; M-CSA states the inserted oxygen is water-derived.",
+      "panel_readiness": [],
+      "panel_routes": [
+        "flavin_heme_hydroxylating_boundary",
+        "heme_plus_flavin_electron_transfer"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "boundary_near_ood_controls",
+      "provenance": {
+        "accession_or_row_id": "m_csa:141",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+          "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
+        ],
+        "source_name": "fmo_candidate_scout",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "hard_negative_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1DII.cif",
+        "local_cofactor_family_available": true,
+        "missing_fields": [],
+        "selected_structure": "pdb:1DII",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": true
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "already frozen heldout/eval-only; do not train, import, or alter split assignment",
+      "candidate_id": "m_csa:497",
+      "countable_label_candidate": false,
+      "display_name": "nitric-oxide reductase (FMN)",
+      "expected_role": "canary",
+      "fold_conflict_flag": true,
+      "leakage_risk": "high_if_reused_for_training; frozen heldout/eval-only context",
+      "near_orphan_flag": true,
+      "nearest_train": {
+        "entry_ids": [
+          "m_csa:16"
+        ],
+        "fingerprints_or_label_families": [
+          "metal_dependent_hydrolase"
+        ],
+        "max_pair_tm_score": 0.848,
+        "structure_key": "pdb:1BC2"
+      },
+      "panel_readiness": [],
+      "panel_routes": [
+        "flavodiiron_no_reductase",
+        "non_heme_diiron_redox"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "boundary_near_ood_controls",
+      "provenance": {
+        "accession_or_row_id": "m_csa:497",
+        "already_in_frozen_current702": true,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+          "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+        ],
+        "source_name": "slice_contract",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "quarantine_do_not_anchor_metric"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "slice_use_status": "quarantine_do_not_anchor_metric",
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structural_neighborhood_bin_from_source": "low_structure_neighborhood_near_orphan",
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1YCF.cif",
+        "local_cofactor_family_available": true,
+        "missing_fields": [],
+        "selected_structure": "pdb:1YCF",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": true
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "review-only; future expert decision and frozen split required",
+      "candidate_id": "m_csa:699",
+      "candidate_role_from_source": "hard_negative_control",
+      "countable_label_candidate": false,
+      "display_name": "cytochrome P450 (BM-3)",
+      "evidence_summary": "Contains both FAD and FMN in a monooxygenase enzyme name/context.",
+      "expected_role": "hard-negative",
+      "flavin_cofactor_evidence": "P450 BM3 has a covalently bound FAD/FMN-dependent NADPH-cytochrome P450 oxidoreductase domain.",
+      "leakage_risk": "high_if_imported; M-CSA row must stay eval-only unless already frozen current702",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Oxygen activation and rebound occur at P450 heme/ferryl intermediates, not flavin C4a.",
+      "panel_readiness": [],
+      "panel_routes": [
+        "nonflavin_oxygenase_hard_negative",
+        "p450_boundary"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "boundary_near_ood_controls",
+      "provenance": {
+        "accession_or_row_id": "m_csa:699",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+          "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
+        ],
+        "source_name": "fmo_candidate_scout",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "hard_negative_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1BU7.cif",
+        "local_cofactor_family_available": true,
+        "missing_fields": [],
+        "selected_structure": "pdb:1BU7",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": true
+      }
+    },
+    {
+      "batch_role": "reserve",
+      "blocker": "review-only; future expert decision and frozen split required",
+      "candidate_id": "m_csa:795",
+      "candidate_role_from_source": "hard_negative_control",
+      "countable_label_candidate": false,
+      "display_name": "heme oxygenase (biliverdin-producing)",
+      "evidence_summary": "Oxygenase name and O2 activation but heme substrate/cofactor chemistry.",
+      "expected_role": "hard-negative",
+      "flavin_cofactor_evidence": "No catalytic FAD/FMN evidence; current registry labels heme_peroxidase_oxidase.",
+      "leakage_risk": "high_if_imported; M-CSA row must stay eval-only unless already frozen current702",
+      "oxygen_activation_or_c4a_intermediate_evidence": "Dioxygen binds heme iron and forms Fe-OOH/iron intermediates, not flavin C4a.",
+      "panel_readiness": [],
+      "panel_routes": [
+        "heme_oxygenase_boundary",
+        "nonflavin_oxygenase_hard_negative"
+      ],
+      "predictive_use_allowed": false,
+      "proposed_bin": "boundary_near_ood_controls",
+      "provenance": {
+        "accession_or_row_id": "m_csa:795",
+        "already_in_frozen_current702": false,
+        "current702_eval_only": true,
+        "external_candidate": false,
+        "source_artifacts": [
+          "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+          "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json"
+        ],
+        "source_name": "fmo_candidate_scout",
+        "source_provenance_tag_required_before_import": true,
+        "source_type": "hard_negative_control"
+      },
+      "ready_for_label_import": false,
+      "required_evidence": [
+        "provenance retained in artifact before any acquisition decision",
+        "no label/registry/import/scoring/threshold/model-weight changes from this proposal",
+        "duplicate and leakage screens against current702 and future split before countable use",
+        "must remain negative/canary unless future expert decision explicitly promotes another role",
+        "future OOS-FP gate must remain zero-tolerance for accepted positive calls on these rows",
+        "negative/canary evidence must include local ligand, active-site, or chemistry counterevidence where applicable"
+      ],
+      "source_panels": [
+        "flavin_redox",
+        "heme_redox_boundary"
+      ],
+      "structure_availability": {
+        "coordinate_path": "artifacts/v3_foldseek_coordinates_1000/pdb_1WNW.cif",
+        "local_cofactor_family_available": true,
+        "missing_fields": [],
+        "selected_structure": "pdb:1WNW",
+        "status": "already_materialized",
+        "structure_cofactor_family_available": true
+      }
+    }
+  ],
+  "candidate_summary": {
+    "by_batch_role": {
+      "reserve": 21,
+      "smallest_next_batch": 14
+    },
+    "by_expected_role": {
+      "canary": 8,
+      "hard-negative": 19,
+      "positive": 5,
+      "review-only": 3
+    },
+    "by_proposed_bin": {
+      "boundary_near_ood_controls": 10,
+      "low_structure_neighborhood_near_orphan": 5,
+      "no_reliable_structure": 10,
+      "oos_hard_negatives": 5,
+      "verified_fold_conflict": 5
+    },
+    "by_source_type": {
+      "external_hard_negative_next_candidate_terminal_review_queue_review_only": 3,
+      "external_uniprot": 8,
+      "fold_conflict_candidate_needs_review": 2,
+      "fold_conflict_reference_anchor": 3,
+      "hard_negative_control": 9,
+      "oos_fold_conflict_hard_negative_candidate": 5,
+      "oos_router_control": 4,
+      "quarantine_do_not_anchor_metric": 1
+    },
+    "candidate_count": 35
+  },
+  "created_utc": "2026-05-30T07:14:27Z",
+  "current_frozen_bin_counts": [
+    {
+      "bin": "dense_same_mechanism_structural_neighborhood",
+      "evaluable_floor_oos_or_secondary_gap": 5,
+      "evaluable_floor_primary_gap": 0,
+      "oos_or_secondary_available_count": 0,
+      "oos_or_secondary_false_positive_count": 0,
+      "oos_or_secondary_false_positive_rate_available": null,
+      "oos_or_secondary_support_count": 0,
+      "primary_abstention_count": 0,
+      "primary_accuracy_available": 1.0,
+      "primary_available_count": 10,
+      "primary_support_count": 10,
+      "pure_oos_false_positive_count": 0,
+      "pure_oos_false_positive_rate_available": null,
+      "pure_oos_support_count": 0,
+      "row_count": 10,
+      "row_ids": [
+        "m_csa:239",
+        "m_csa:407",
+        "m_csa:418",
+        "m_csa:419",
+        "m_csa:431",
+        "m_csa:453",
+        "m_csa:545",
+        "m_csa:709",
+        "m_csa:854",
+        "m_csa:866"
+      ],
+      "stable_oos_or_secondary_gap_to_target": 10,
+      "stable_primary_gap_to_target": 20
+    },
+    {
+      "bin": "fold_conflict_oos_hard_negative",
+      "evaluable_floor_oos_or_secondary_gap": 0,
+      "evaluable_floor_primary_gap": 10,
+      "oos_or_secondary_available_count": 11,
+      "oos_or_secondary_false_positive_count": 0,
+      "oos_or_secondary_false_positive_rate_available": 0.0,
+      "oos_or_secondary_support_count": 11,
+      "primary_abstention_count": 0,
+      "primary_accuracy_available": null,
+      "primary_available_count": 0,
+      "primary_support_count": 0,
+      "pure_oos_false_positive_count": 0,
+      "pure_oos_false_positive_rate_available": 0.0,
+      "pure_oos_support_count": 11,
+      "row_count": 11,
+      "row_ids": [
+        "m_csa:118",
+        "m_csa:144",
+        "m_csa:188",
+        "m_csa:220",
+        "m_csa:255",
+        "m_csa:267",
+        "m_csa:333",
+        "m_csa:346",
+        "m_csa:606",
+        "m_csa:614",
+        "m_csa:628"
+      ],
+      "stable_oos_or_secondary_gap_to_target": 0,
+      "stable_primary_gap_to_target": 30
+    },
+    {
+      "bin": "high_structure_similarity_different_fingerprint",
+      "evaluable_floor_oos_or_secondary_gap": 0,
+      "evaluable_floor_primary_gap": 10,
+      "oos_or_secondary_available_count": 5,
+      "oos_or_secondary_false_positive_count": 1,
+      "oos_or_secondary_false_positive_rate_available": 0.2,
+      "oos_or_secondary_support_count": 5,
+      "primary_abstention_count": 0,
+      "primary_accuracy_available": null,
+      "primary_available_count": 0,
+      "primary_support_count": 0,
+      "pure_oos_false_positive_count": 0,
+      "pure_oos_false_positive_rate_available": 0.0,
+      "pure_oos_support_count": 4,
+      "row_count": 5,
+      "row_ids": [
+        "m_csa:131",
+        "m_csa:217",
+        "m_csa:428",
+        "m_csa:440",
+        "m_csa:477"
+      ],
+      "stable_oos_or_secondary_gap_to_target": 5,
+      "stable_primary_gap_to_target": 30
+    },
+    {
+      "bin": "low_structure_neighborhood_near_orphan",
+      "evaluable_floor_oos_or_secondary_gap": 5,
+      "evaluable_floor_primary_gap": 0,
+      "oos_or_secondary_available_count": 0,
+      "oos_or_secondary_false_positive_count": 0,
+      "oos_or_secondary_false_positive_rate_available": null,
+      "oos_or_secondary_support_count": 0,
+      "primary_abstention_count": 0,
+      "primary_accuracy_available": 1.0,
+      "primary_available_count": 30,
+      "primary_support_count": 30,
+      "pure_oos_false_positive_count": 0,
+      "pure_oos_false_positive_rate_available": null,
+      "pure_oos_support_count": 0,
+      "row_count": 30,
+      "row_ids": [
+        "m_csa:3",
+        "m_csa:20",
+        "m_csa:43",
+        "m_csa:44",
+        "m_csa:97",
+        "m_csa:109",
+        "m_csa:115",
+        "m_csa:159",
+        "m_csa:163",
+        "m_csa:171",
+        "m_csa:180",
+        "m_csa:211",
+        "m_csa:213",
+        "m_csa:242",
+        "m_csa:250",
+        "m_csa:321",
+        "m_csa:403",
+        "m_csa:424",
+        "m_csa:497",
+        "m_csa:517",
+        "m_csa:551",
+        "m_csa:609",
+        "m_csa:686",
+        "m_csa:688",
+        "m_csa:714",
+        "m_csa:723",
+        "m_csa:750",
+        "m_csa:916",
+        "m_csa:990",
+        "m_csa:994"
+      ],
+      "stable_oos_or_secondary_gap_to_target": 10,
+      "stable_primary_gap_to_target": 0
+    },
+    {
+      "bin": "no_reliable_structure",
+      "evaluable_floor_oos_or_secondary_gap": 4,
+      "evaluable_floor_primary_gap": 5,
+      "oos_or_secondary_available_count": 1,
+      "oos_or_secondary_false_positive_count": 0,
+      "oos_or_secondary_false_positive_rate_available": 0.0,
+      "oos_or_secondary_support_count": 1,
+      "primary_abstention_count": 0,
+      "primary_accuracy_available": 1.0,
+      "primary_available_count": 5,
+      "primary_support_count": 5,
+      "pure_oos_false_positive_count": 0,
+      "pure_oos_false_positive_rate_available": null,
+      "pure_oos_support_count": 0,
+      "row_count": 6,
+      "row_ids": [
+        "m_csa:372",
+        "m_csa:577",
+        "m_csa:599",
+        "m_csa:710",
+        "m_csa:892",
+        "m_csa:897"
+      ],
+      "stable_oos_or_secondary_gap_to_target": 9,
+      "stable_primary_gap_to_target": 25
+    }
+  ],
+  "evaluation_policy": {
+    "dense_same_structure_policy": "Do not pad dense_same_mechanism_structural_neighborhood; any growth there is a side effect and excluded from target counts.",
+    "future_countable_use_requires": [
+      "provenance retained with row-level source tags",
+      "structure/materialization and local active-site evidence checks",
+      "current702 duplicate/leakage screens plus future split assignment",
+      "expert decision artifact",
+      "label-factory and batch-acceptance gates",
+      "OOS-FP hard gate remains satisfied"
+    ],
+    "minimal_evaluable_floor_for_next_batch": {
+      "oos_or_secondary_controls_per_bin": 5,
+      "primary_support_per_underpowered_primary_bin": 10,
+      "use": "smallest review-only next batch to make cells evaluable enough for diagnostic adjudication"
+    },
+    "stable_metric_targets": {
+      "oos_or_secondary_support_per_stress_bin": 10,
+      "primary_support_per_primary_bin": 30,
+      "use": "future stable metric target only; not achieved by this proposal"
+    }
+  },
+  "guardrails": {
+    "frozen_lomo_split_regenerated": false,
+    "global_thresholds_changed": false,
+    "imports_performed": false,
+    "labels_edited": false,
+    "main_or_shared_split_artifacts_written": false,
+    "model_weights_changed": false,
+    "ontologies_edited": false,
+    "production_scoring_changed": false,
+    "proposal_only": true,
+    "registries_edited": false
+  },
+  "non_negotiables": {
+    "cofactor_evidence_policy": "Cofactor labels must be supported by experimental ligand/local structure context or source-reviewed cofactor records, not inferred circularly from mechanism fingerprint labels.",
+    "external_policy": "External candidates are provenance-tagged and remain non-countable until materialization, duplicate/leakage, expert, factory, and future split gates pass.",
+    "mcsa_policy": "M-CSA rows are eval-only unless already present in frozen current702; all M-CSA candidates are explicitly provenance-tagged and not import-ready.",
+    "oos_fp_policy": "OOS-FP remains a hard gate for future evaluation; any nonzero OOS false-positive rate blocks metric promotion."
+  },
+  "schema_version": "targeted_bin_expansion_proposal.v1",
+  "smallest_next_acquisition_batch": {
+    "candidate_count": 14,
+    "candidate_ids": [
+      "mh_064",
+      "mh_065",
+      "mh_066",
+      "mh_067",
+      "mh_068",
+      "uniprot:P22830",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3",
+      "mh_072",
+      "mh_073",
+      "m_csa:10",
+      "m_csa:30",
+      "m_csa:31",
+      "m_csa:116"
+    ],
+    "composition": {
+      "near_orphan_oos_or_secondary_controls": [
+        "mh_073",
+        "m_csa:10",
+        "m_csa:30",
+        "m_csa:31",
+        "m_csa:116"
+      ],
+      "no_reliable_oos_or_secondary_controls": [
+        "uniprot:P22830",
+        "uniprot:P78549",
+        "uniprot:Q3LXA3",
+        "mh_072"
+      ],
+      "no_reliable_primary_positive_leads": [
+        "mh_064",
+        "mh_065",
+        "mh_066",
+        "mh_067",
+        "mh_068"
+      ]
+    },
+    "current_gaps_to_floor": {
+      "low_structure_neighborhood_near_orphan": {
+        "oos_or_secondary": 5,
+        "primary": 0
+      },
+      "no_reliable_structure": {
+        "oos_or_secondary": 4,
+        "primary": 5
+      }
+    },
+    "floor_definition": {
+      "low_structure_neighborhood_near_orphan": {
+        "oos_or_secondary_support": 5,
+        "primary_support": 10
+      },
+      "no_reliable_structure": {
+        "oos_or_secondary_support": 5,
+        "primary_support": 10
+      }
+    },
+    "limitations": [
+      "Does not meet the stable 30-primary/10-control target; it only makes the cells minimally review-evaluable.",
+      "Rows marked m_csa are frozen/eval-only canaries, not import candidates.",
+      "External rows remain non-countable until provenance, materialization, duplicate/leakage, OOS-FP, expert, and factory gates pass in a future split."
+    ],
+    "policy": "minimal_evaluable_floor_not_final_metric_target",
+    "why_smallest": "Covers the 5 primary and 4 OOS/secondary floor gaps for no_reliable_structure plus the 5 OOS/secondary floor gap for near_orphan without adding dense same-structure positives."
+  },
+  "source_artifacts": {
+    "concordance_gate": "artifacts/v3_predicted_geometry_fusion_fp_attribution_and_concordance_gate_current702_20260529.json",
+    "external_hard_negative_queue": "artifacts/v3_external_hard_negative_next_candidate_terminal_review_queue_1025.json",
+    "external_hard_negative_sourcing": "artifacts/v3_external_hard_negative_new_candidate_sourcing_1025.json",
+    "external_hard_negative_uniref_screen": "artifacts/v3_external_hard_negative_next_candidate_uniref_current_reference_screen_1025.json",
+    "external_panel_router_queue": "artifacts/v3_external_panel_router_queue_20260528.json",
+    "fmo_candidate_scout": "artifacts/v3_fmo_mcsa_candidate_scout_702_20260527.json",
+    "fmo_hard_negative_counteraxis": "artifacts/v3_fmo_hard_negative_counteraxis_702_20260527.json",
+    "metal_hydrolase_tail_panel": "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+    "readiness_matrix": "artifacts/v3_active_site_encoder_readiness_matrix_20260528.json",
+    "slice_contract": "artifacts/v3_wave1_2_fold_conflict_near_orphan_slice_contract_702_20260528.json",
+    "wave1_audit": "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+  },
+  "stable_target_gap_summary": {
+    "boundary_near_ood_controls": {
+      "secondary_ood_gap": 7
+    },
+    "low_structure_neighborhood_near_orphan": {
+      "oos_or_secondary_gap": 10,
+      "primary_gap": 0
+    },
+    "no_reliable_structure": {
+      "oos_or_secondary_gap": 9,
+      "primary_gap": 25
+    },
+    "verified_fold_conflict": {
+      "verified_anchor_gap": 7
+    }
+  },
+  "status": "proposal_materialization_queue_only",
+  "target_counts": [
+    {
+      "current_oos_or_secondary_support": 1,
+      "current_primary_support": 5,
+      "minimal_evaluable_floor_gaps": {
+        "oos_or_secondary": 4,
+        "primary": 5
+      },
+      "minimal_evaluable_floor_oos_or_secondary_support": 5,
+      "minimal_evaluable_floor_primary_support": 10,
+      "purpose": "primary support plus structure-acquisition stress cell",
+      "stable_target_gaps": {
+        "oos_or_secondary": 9,
+        "primary": 25
+      },
+      "stable_target_oos_or_secondary_support": 10,
+      "stable_target_primary_support": 30,
+      "target_bin": "no_reliable_structure"
+    },
+    {
+      "current_oos_or_secondary_support": 0,
+      "current_primary_support": 30,
+      "minimal_evaluable_floor_gaps": {
+        "oos_or_secondary": 5,
+        "primary": 0
+      },
+      "minimal_evaluable_floor_oos_or_secondary_support": 5,
+      "minimal_evaluable_floor_primary_support": 10,
+      "purpose": "near-orphan primary cell with OOS/secondary controls",
+      "stable_target_gaps": {
+        "oos_or_secondary": 10,
+        "primary": 0
+      },
+      "stable_target_oos_or_secondary_support": 10,
+      "stable_target_primary_support": 30,
+      "target_bin": "low_structure_neighborhood_near_orphan"
+    },
+    {
+      "current_oos_fold_conflict_hard_negative_count": 11,
+      "current_review_candidate_count": 2,
+      "current_verified_anchor_count": 3,
+      "minimal_evaluable_floor_gap": 2,
+      "minimal_evaluable_floor_verified_anchor_count": 5,
+      "purpose": "confirmed high-similarity different-fingerprint canaries, separate from broad OOS hard negatives",
+      "stable_target_gap": 7,
+      "stable_target_verified_anchor_count": 10,
+      "target_bin": "verified_fold_conflict"
+    },
+    {
+      "current_fold_conflict_oos_support_count": 11,
+      "current_oos_router_control_count": 9,
+      "minimal_evaluable_floor_gap": 0,
+      "minimal_evaluable_floor_oos_control_count": 10,
+      "purpose": "OOS-FP hard-gate controls for any future label or router evaluation",
+      "stable_target_gap": 0,
+      "stable_target_oos_control_count": 20,
+      "target_bin": "oos_hard_negatives"
+    },
+    {
+      "current_secondary_ood_probe_support_count": 3,
+      "minimal_evaluable_floor_boundary_control_count": 5,
+      "minimal_evaluable_floor_gap": 2,
+      "purpose": "near-OOD controls that share names, cofactors, folds, or active-site motifs but must reject/abstain",
+      "stable_target_boundary_control_count": 10,
+      "stable_target_gap": 7,
+      "target_bin": "boundary_near_ood_controls"
+    }
+  ],
+  "verification_expectations": [
+    "JSON parses",
+    "PYTHONPATH=src python -m catalytic_earth.cli validate if feasible",
+    "git diff --check",
+    "commit and push branch only; do not merge to main"
+  ]
+}
