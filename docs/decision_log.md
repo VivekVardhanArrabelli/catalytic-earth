@@ -3,6 +3,36 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-05-30: D11 Hygiene Surface — Real PLM Beats k-mer Control
+
+Decision: add a real protein-language-model sequence surface (persisted
+ESM2-150M whole-sequence embeddings) to the D11 relationship faithfulness
+measurement, evaluated under one identical, committed, rank-based pipeline
+against the deterministic k-mer control.
+
+Result: on the held-out query / in-distribution atlas split (48 queries, 184
+candidates), the ESM2-150M surface beats the k-mer control on all 24 reported
+metrics with zero losses — exact-top1 rises from ~0.31 to ~0.52 (cosine),
+family-top3-any from 0.67 to 0.90, family-MRR from 0.60 to 0.80. The k-mer
+control reproduces the prior D11 hygiene eval's ballpark (family-top3-any cosine
+0.667 vs 0.652), which cross-validates the new pipeline.
+
+Scope and guardrails: this is a hygiene-tier sequence-surface comparison, not the
+real D11 pass. The real pass remains `blocked_missing_row_level_cofactor_channel_scores`
+because row-level selected organic-cofactor scores (flavin/heme/PLP) and a
+cofactor-augmented predicted-geometry query representation are still missing.
+Inputs are amino-acid-sequence-only; no geometry-derived cofactor evidence, no
+training/refit, no held-out tuning (robust scaling uses atlas-only statistics).
+M-CSA remains eval-only.
+
+Artifacts: `artifacts/v3_mechanism_relationship_plm_surface_current702_20260530.json`,
+`work/mechanism_relationship_plm_surface_current702_20260530.md`. Module:
+`src/catalytic_earth/mechanism_relationship_surface_eval.py`; reproduce via its
+`write_mechanism_relationship_surface_eval(...)` entrypoint, exercised by
+`tests/test_mechanism_relationship_surface_eval.py::test_build_from_real_artifacts_if_present`.
+A convenience CLI subcommand `eval-mechanism-relationship-surface` is also wired
+into `src/catalytic_earth/cli.py`.
+
 ## 2026-05-30: Session D1-D11 Decision Record
 
 Decision: preserve the D1-D11 session reasoning as a durable project-memory

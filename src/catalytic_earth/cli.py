@@ -34,6 +34,7 @@ from .embedding_sidecar import write_sequence_embedding_sidecar
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
+from .mechanism_relationship_surface_eval import write_mechanism_relationship_surface_eval
 from .geometry_reports import write_geometry_slice_summary
 from .geometry_head import write_geometry_nonlinear_head_audit
 from .predicted_geometry_robustness import (
@@ -10653,6 +10654,22 @@ def cmd_summarize_geometry_slices(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_eval_mechanism_relationship_surface(args: argparse.Namespace) -> int:
+    audit = write_mechanism_relationship_surface_eval(
+        esm2_150m_path=Path(args.esm2_150m_embeddings),
+        ontology_path=Path(args.ontology),
+        kmer_path=Path(args.kmer_sidecar) if args.kmer_sidecar else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    comparison = audit.get("surface_comparison", {})
+    print(
+        "Wrote mechanism relationship surface eval to "
+        f"{args.out} (verdict: {comparison.get('verdict', 'n/a')})"
+    )
+    return 0
+
+
 def _split_csv(value: str | None) -> list[str]:
     if not value:
         return []
@@ -20975,6 +20992,33 @@ def build_parser() -> argparse.ArgumentParser:
     slice_summary.add_argument("--artifact-dir", default="artifacts")
     slice_summary.add_argument("--out", default="artifacts/v3_geometry_slice_summary.json")
     slice_summary.set_defaults(func=cmd_summarize_geometry_slices)
+
+    rel_surface = subparsers.add_parser(
+        "eval-mechanism-relationship-surface",
+        help=(
+            "D11 hygiene: rank-based mechanism relationship faithfulness for a real "
+            "PLM sequence surface vs the k-mer control"
+        ),
+    )
+    rel_surface.add_argument(
+        "--esm2-150m-embeddings",
+        default="artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+    )
+    rel_surface.add_argument("--ontology", default="data/registries/mechanism_ontology.json")
+    rel_surface.add_argument(
+        "--kmer-sidecar",
+        default="artifacts/v3_sequence_embedding_sidecar_current702_kmer_20260529.jsonl",
+        help="optional deterministic k-mer control sidecar for side-by-side comparison",
+    )
+    rel_surface.add_argument(
+        "--out",
+        default="artifacts/v3_mechanism_relationship_plm_surface_current702_20260530.json",
+    )
+    rel_surface.add_argument(
+        "--report",
+        default="work/mechanism_relationship_plm_surface_current702_20260530.md",
+    )
+    rel_surface.set_defaults(func=cmd_eval_mechanism_relationship_surface)
 
     log_work = subparsers.add_parser("log-work", help="append a timed work entry")
     log_work.add_argument("--stage", required=True, help="milestone stage, for example v0 or v1")

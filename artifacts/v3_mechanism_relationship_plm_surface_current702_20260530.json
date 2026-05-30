@@ -1,0 +1,292 @@
+{
+  "artifact_id": "v3_mechanism_relationship_plm_surface_current702_20260530",
+  "created_utc": "2026-05-30T21:02:04Z",
+  "guardrails": {
+    "labels_registries_thresholds_changed": false,
+    "no_geometry_derived_cofactor_inputs": true,
+    "no_heldout_tuning": true,
+    "no_training_or_refit": true,
+    "sequence_inputs_amino_acid_only": true
+  },
+  "pre_registered_relationships": {
+    "cofactor": "shared normalized required cofactor family",
+    "defined_before_reading_predictions": true,
+    "exact": "identical mechanism fingerprint_id",
+    "family": "shared mechanism ontology family id"
+  },
+  "real_d11_pass": {
+    "reason": "This adds a sequence-PLM hygiene surface. The real D11 pass still requires row-level selected organic-cofactor scores (flavin/heme/PLP) and a cofactor-augmented predicted-geometry query representation.",
+    "status": "blocked_missing_row_level_cofactor_channel_scores"
+  },
+  "schema_version": "mechanism_relationship_surface_eval.v0",
+  "scope": "D11 hygiene-tier relationship faithfulness: add a real PLM sequence surface alongside the k-mer control under one identical rank-based pipeline. Comparative claim only.",
+  "source_artifacts": {
+    "esm2_150m_embeddings": {
+      "path": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+      "sha256": "e7e5ee1ec329b084182e7b957c24f14a282f08bf61a6d2191dd639752ffd9617"
+    },
+    "mechanism_ontology": {
+      "path": "data/registries/mechanism_ontology.json",
+      "sha256": "d0b0758e0c2372630702925fa3e7f9485ba49fce97207ae5acc6196a6ed5caac"
+    },
+    "sequence_kmer_sidecar": {
+      "path": "artifacts/v3_sequence_embedding_sidecar_current702_kmer_20260529.jsonl",
+      "sha256": "123f0bb5681c411e4d692472b01c6b1b4f0eda673cc7c4104ddaa3ef1ab71b72"
+    }
+  },
+  "split_definition": {
+    "atlas": "in-distribution rows carrying a known mechanism fingerprint",
+    "query": "held-out rows carrying a known mechanism fingerprint",
+    "robust_scaling_statistics": "atlas_only_no_query_leakage"
+  },
+  "surface_comparison": {
+    "headline_variant": "robust_cosine",
+    "plm_better_metric_count": 24,
+    "plm_minus_kmer_deltas": {
+      "cosine": {
+        "cofactor_top3_any_rate": 0.229166,
+        "exact_top1_rate": 0.208333,
+        "exact_top3_any_rate": 0.270834,
+        "family_top3_any_rate": 0.229166,
+        "mrr_exact": 0.214808,
+        "mrr_family": 0.204067
+      },
+      "l2": {
+        "cofactor_top3_any_rate": 0.229166,
+        "exact_top1_rate": 0.145833,
+        "exact_top3_any_rate": 0.291667,
+        "family_top3_any_rate": 0.229166,
+        "mrr_exact": 0.188854,
+        "mrr_family": 0.148732
+      },
+      "robust_cosine": {
+        "cofactor_top3_any_rate": 0.104167,
+        "exact_top1_rate": 0.104167,
+        "exact_top3_any_rate": 0.1875,
+        "family_top3_any_rate": 0.104167,
+        "mrr_exact": 0.145839,
+        "mrr_family": 0.15042
+      },
+      "robust_l2": {
+        "cofactor_top3_any_rate": 0.3125,
+        "exact_top1_rate": 0.25,
+        "exact_top3_any_rate": 0.333334,
+        "family_top3_any_rate": 0.3125,
+        "mrr_exact": 0.266359,
+        "mrr_family": 0.331575
+      }
+    },
+    "plm_worse_metric_count": 0,
+    "verdict": "plm_organizes_relationship_space_better"
+  },
+  "surfaces": [
+    {
+      "candidate_pool_count": 184,
+      "display_name": "ESM2-150M whole-sequence pooled embedding (real PLM)",
+      "feature_dimension": 640,
+      "metrics_by_variant": {
+        "cosine": {
+          "cofactor_top10_any_rate": 0.979167,
+          "cofactor_top1_any_rate": 0.6875,
+          "cofactor_top1_rate": 0.6875,
+          "cofactor_top3_any_rate": 0.895833,
+          "cofactor_top5_any_rate": 0.9375,
+          "exact_top10_any_rate": 0.916667,
+          "exact_top1_any_rate": 0.520833,
+          "exact_top1_rate": 0.520833,
+          "exact_top3_any_rate": 0.791667,
+          "exact_top5_any_rate": 0.875,
+          "family_top10_any_rate": 0.979167,
+          "family_top1_any_rate": 0.6875,
+          "family_top1_rate": 0.6875,
+          "family_top3_any_rate": 0.895833,
+          "family_top5_any_rate": 0.9375,
+          "median_rank_cofactor": 1.0,
+          "median_rank_exact": 1.0,
+          "median_rank_family": 1.0,
+          "mrr_cofactor": 0.799141,
+          "mrr_exact": 0.676811,
+          "mrr_family": 0.799141
+        },
+        "l2": {
+          "cofactor_top10_any_rate": 0.958333,
+          "cofactor_top1_any_rate": 0.5625,
+          "cofactor_top1_rate": 0.5625,
+          "cofactor_top3_any_rate": 0.895833,
+          "cofactor_top5_any_rate": 0.9375,
+          "exact_top10_any_rate": 0.9375,
+          "exact_top1_any_rate": 0.4375,
+          "exact_top1_rate": 0.4375,
+          "exact_top3_any_rate": 0.791667,
+          "exact_top5_any_rate": 0.854167,
+          "family_top10_any_rate": 0.958333,
+          "family_top1_any_rate": 0.5625,
+          "family_top1_rate": 0.5625,
+          "family_top3_any_rate": 0.895833,
+          "family_top5_any_rate": 0.9375,
+          "median_rank_cofactor": 1.0,
+          "median_rank_exact": 2.0,
+          "median_rank_family": 1.0,
+          "mrr_cofactor": 0.735615,
+          "mrr_exact": 0.633383,
+          "mrr_family": 0.735615
+        },
+        "robust_cosine": {
+          "cofactor_top10_any_rate": 0.979167,
+          "cofactor_top1_any_rate": 0.583333,
+          "cofactor_top1_rate": 0.583333,
+          "cofactor_top3_any_rate": 0.8125,
+          "cofactor_top5_any_rate": 0.895833,
+          "exact_top10_any_rate": 0.958333,
+          "exact_top1_any_rate": 0.4375,
+          "exact_top1_rate": 0.4375,
+          "exact_top3_any_rate": 0.770833,
+          "exact_top5_any_rate": 0.875,
+          "family_top10_any_rate": 0.979167,
+          "family_top1_any_rate": 0.583333,
+          "family_top1_rate": 0.583333,
+          "family_top3_any_rate": 0.8125,
+          "family_top5_any_rate": 0.895833,
+          "median_rank_cofactor": 1.0,
+          "median_rank_exact": 2.0,
+          "median_rank_family": 1.0,
+          "mrr_cofactor": 0.713581,
+          "mrr_exact": 0.614441,
+          "mrr_family": 0.713581
+        },
+        "robust_l2": {
+          "cofactor_top10_any_rate": 0.958333,
+          "cofactor_top1_any_rate": 0.604167,
+          "cofactor_top1_rate": 0.604167,
+          "cofactor_top3_any_rate": 0.833333,
+          "cofactor_top5_any_rate": 0.958333,
+          "exact_top10_any_rate": 0.9375,
+          "exact_top1_any_rate": 0.458333,
+          "exact_top1_rate": 0.458333,
+          "exact_top3_any_rate": 0.729167,
+          "exact_top5_any_rate": 0.875,
+          "family_top10_any_rate": 0.958333,
+          "family_top1_any_rate": 0.604167,
+          "family_top1_rate": 0.604167,
+          "family_top3_any_rate": 0.833333,
+          "family_top5_any_rate": 0.958333,
+          "median_rank_cofactor": 1.0,
+          "median_rank_exact": 2.0,
+          "median_rank_family": 1.0,
+          "mrr_cofactor": 0.740169,
+          "mrr_exact": 0.626607,
+          "mrr_family": 0.740169
+        }
+      },
+      "note": "high-information sequence-only PLM representation; amino-acid-sequence-only, no geometry-derived inputs",
+      "relationship_query_count": 48,
+      "status": "computed",
+      "surface_id": "esm2_150m_whole_sequence",
+      "surface_kind": "sequence_plm"
+    },
+    {
+      "candidate_pool_count": 184,
+      "display_name": "Deterministic sequence k-mer control vector",
+      "feature_dimension": 8011,
+      "metrics_by_variant": {
+        "cosine": {
+          "cofactor_top10_any_rate": 0.916667,
+          "cofactor_top1_any_rate": 0.4375,
+          "cofactor_top1_rate": 0.4375,
+          "cofactor_top3_any_rate": 0.666667,
+          "cofactor_top5_any_rate": 0.770833,
+          "exact_top10_any_rate": 0.8125,
+          "exact_top1_any_rate": 0.3125,
+          "exact_top1_rate": 0.3125,
+          "exact_top3_any_rate": 0.520833,
+          "exact_top5_any_rate": 0.645833,
+          "family_top10_any_rate": 0.916667,
+          "family_top1_any_rate": 0.4375,
+          "family_top1_rate": 0.4375,
+          "family_top3_any_rate": 0.666667,
+          "family_top5_any_rate": 0.770833,
+          "median_rank_cofactor": 2.0,
+          "median_rank_exact": 3.0,
+          "median_rank_family": 2.0,
+          "mrr_cofactor": 0.595074,
+          "mrr_exact": 0.462003,
+          "mrr_family": 0.595074
+        },
+        "l2": {
+          "cofactor_top10_any_rate": 0.895833,
+          "cofactor_top1_any_rate": 0.4375,
+          "cofactor_top1_rate": 0.4375,
+          "cofactor_top3_any_rate": 0.666667,
+          "cofactor_top5_any_rate": 0.791667,
+          "exact_top10_any_rate": 0.770833,
+          "exact_top1_any_rate": 0.291667,
+          "exact_top1_rate": 0.291667,
+          "exact_top3_any_rate": 0.5,
+          "exact_top5_any_rate": 0.666667,
+          "family_top10_any_rate": 0.895833,
+          "family_top1_any_rate": 0.4375,
+          "family_top1_rate": 0.4375,
+          "family_top3_any_rate": 0.666667,
+          "family_top5_any_rate": 0.791667,
+          "median_rank_cofactor": 2.0,
+          "median_rank_exact": 3.5,
+          "median_rank_family": 2.0,
+          "mrr_cofactor": 0.586883,
+          "mrr_exact": 0.444529,
+          "mrr_family": 0.586883
+        },
+        "robust_cosine": {
+          "cofactor_top10_any_rate": 0.895833,
+          "cofactor_top1_any_rate": 0.416667,
+          "cofactor_top1_rate": 0.416667,
+          "cofactor_top3_any_rate": 0.708333,
+          "cofactor_top5_any_rate": 0.791667,
+          "exact_top10_any_rate": 0.770833,
+          "exact_top1_any_rate": 0.333333,
+          "exact_top1_rate": 0.333333,
+          "exact_top3_any_rate": 0.583333,
+          "exact_top5_any_rate": 0.625,
+          "family_top10_any_rate": 0.895833,
+          "family_top1_any_rate": 0.416667,
+          "family_top1_rate": 0.416667,
+          "family_top3_any_rate": 0.708333,
+          "family_top5_any_rate": 0.791667,
+          "median_rank_cofactor": 2.5,
+          "median_rank_exact": 3.0,
+          "median_rank_family": 2.5,
+          "mrr_cofactor": 0.563161,
+          "mrr_exact": 0.468602,
+          "mrr_family": 0.563161
+        },
+        "robust_l2": {
+          "cofactor_top10_any_rate": 0.833333,
+          "cofactor_top1_any_rate": 0.229167,
+          "cofactor_top1_rate": 0.229167,
+          "cofactor_top3_any_rate": 0.520833,
+          "cofactor_top5_any_rate": 0.770833,
+          "exact_top10_any_rate": 0.8125,
+          "exact_top1_any_rate": 0.208333,
+          "exact_top1_rate": 0.208333,
+          "exact_top3_any_rate": 0.395833,
+          "exact_top5_any_rate": 0.625,
+          "family_top10_any_rate": 0.833333,
+          "family_top1_any_rate": 0.229167,
+          "family_top1_rate": 0.229167,
+          "family_top3_any_rate": 0.520833,
+          "family_top5_any_rate": 0.770833,
+          "median_rank_cofactor": 3.0,
+          "median_rank_exact": 4.0,
+          "median_rank_family": 3.0,
+          "mrr_cofactor": 0.408594,
+          "mrr_exact": 0.360248,
+          "mrr_family": 0.408594
+        }
+      },
+      "note": "known-weak deterministic bag-of-k-mer control under the same pipeline",
+      "relationship_query_count": 48,
+      "status": "computed",
+      "surface_id": "sequence_kmer_control",
+      "surface_kind": "sequence_only_control"
+    }
+  ]
+}
