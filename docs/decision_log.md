@@ -3,6 +3,33 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-05-31: Ruled Out In-Repo Lever — Richer Geometry Sub-Features Do NOT Beat Collapsed top1_score For Novelty
+
+Decision: before reaching for a new external feature, test whether the
+novelty signal is already in the repo but hidden -- the predicted-geometry
+retrieval collapses a rich per-row fingerprint match (mechanistic_coherence_score,
+role_match_fraction, substrate_pocket_score, compactness_score,
+cofactor_context_score, counterevidence_penalty, distance stats) into one
+top1_score. Measured each sub-field's individual novelty AUC (in-scope > OOS) on
+the deployment held-out pool (47 in-scope, 79 OOS).
+
+Result: top1_score (AUC 0.757) is already the best single geometry novelty signal.
+No sub-field beats it -- next best are cofactor_context_score 0.688 and
+role_match_fraction 0.655; mechanistic_coherence, residue_match, substrate_pocket,
+compactness, counterevidence_penalty, plp_anchor are all 0.50-0.55 (near chance). A
+naive mean of the positive sub-fields (0.724) DILUTES the score rather than
+improving it. The atlas-standardized (Mahalanobis) variant is blocked by the
+known no-predicted-geometry-atlas issue.
+
+Consequence: the in-repo geometry decomposition has no headroom over the score
+that already integrates it. This rules out "unpack the features we have" and
+confirms the northstar redirect from the entry below: the next lever must be a
+GENUINELY NEW mechanism-discriminative feature (learned active-site/electron-flow
+embeddings, fold-level novelty, or a predicted-geometry retrieval that also scores
+the in_distribution atlas), not a recombination of existing channels. Probe-only
+(negative result); no module/artifact added. Atlas-free, deployment regime,
+M-CSA eval-only.
+
 ## 2026-05-31: Operational Gate Architecture Settled — Binding Constraint Is Feature Overlap, Not Combiner Design (Northstar Pivot)
 
 Decision: act on the operating-point gap. Built the per-channel RULE gate that the
