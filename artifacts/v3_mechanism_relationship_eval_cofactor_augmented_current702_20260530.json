@@ -1,0 +1,3232 @@
+{
+  "artifact_id": "v3_mechanism_relationship_eval_cofactor_augmented_current702_20260530",
+  "automation_id": "catalytic-earth-work-loop",
+  "counts": {
+    "candidate_in_distribution_seed_rows": 184,
+    "current702_rows": 702,
+    "heldout_seed_query_rows_with_predicted_geometry": 45,
+    "tuning_adjacent_ids_loaded": 29
+  },
+  "created_utc": "2026-05-31T00:57:13Z",
+  "feature_schema": {
+    "baseline_dimension": 72,
+    "cofactor_augmented_dimension": 78,
+    "cofactor_augmented_dimensions": {
+      "fixed_threshold_indicators": [
+        "flavin_fixed_0_5",
+        "heme_fixed_0_5",
+        "plp_fixed_0_5"
+      ],
+      "selected_scores": [
+        "flavin",
+        "heme",
+        "plp"
+      ]
+    },
+    "fingerprint_count": 8,
+    "fingerprint_score_components": [
+      "score",
+      "residue_match_fraction",
+      "role_match_fraction",
+      "cofactor_context_score",
+      "compactness_score",
+      "substrate_pocket_score",
+      "plp_ligand_anchor_score",
+      "mechanistic_coherence_score",
+      "counterevidence_penalty"
+    ]
+  },
+  "guardrails": {
+    "cofactor_scores_are_sequence_only": true,
+    "cofactor_scores_source": {
+      "trained:esm2_t30_150m_existing_track": 2106
+    },
+    "cofactor_threshold_policy": "fixed_0_5_not_tuned_on_heldout",
+    "feature_scaling_fit_on_candidates_only": true,
+    "heldout_labels_used_only_for_final_relationship_metrics": true
+  },
+  "headline": {
+    "augmented_non_tuning_cosine_family_top3_any_rate": 0.948718,
+    "augmented_predicted_score_cosine_family_top3_any_rate": 0.866667,
+    "baseline_predicted_score_cosine_family_top3_any_rate": 0.8,
+    "caveat": "Organic cofactor scores are the documented ESM2-150M fallback source, not a strict reproduction of the missing original t6/t12 selected heads.",
+    "delta_exact_top1_rate": 0.155555,
+    "delta_family_top3_any_rate": 0.066667,
+    "interpretation": "The row-level sidecar blocker is cleared for a bounded D11 rerun. This artifact evaluates a cofactor-augmented predicted-geometry query representation using fixed persisted sidecar scores, without refitting models or tuning thresholds on heldout rows.",
+    "status": "real_d11_cofactor_augmented_rerun_complete"
+  },
+  "pre_registered_relationships": {
+    "cofactor_sets": {
+      "cobalamin_radical_rearrangement": [
+        "cobalamin"
+      ],
+      "flavin_dehydrogenase_reductase": [
+        "flavin"
+      ],
+      "flavin_monooxygenase": [
+        "flavin",
+        "nad"
+      ],
+      "heme_peroxidase_oxidase": [
+        "h2o2 or o2 depending on family",
+        "heme"
+      ],
+      "metal_dependent_hydrolase": [
+        "fe2+/fe3+",
+        "metal_ion"
+      ],
+      "plp_dependent_enzyme": [
+        "plp"
+      ],
+      "radical_sam_enzyme": [
+        "fe_s_cluster",
+        "sam"
+      ],
+      "ser_his_acid_hydrolase": []
+    },
+    "family_by_fingerprint": {
+      "cobalamin_radical_rearrangement": [
+        "radical_rearrangement"
+      ],
+      "flavin_dehydrogenase_reductase": [
+        "flavin_redox"
+      ],
+      "flavin_monooxygenase": [
+        "flavin_redox"
+      ],
+      "heme_peroxidase_oxidase": [
+        "heme_redox"
+      ],
+      "metal_dependent_hydrolase": [
+        "hydrolysis"
+      ],
+      "plp_dependent_enzyme": [
+        "plp_chemistry"
+      ],
+      "radical_sam_enzyme": [
+        "radical_rearrangement"
+      ],
+      "ser_his_acid_hydrolase": [
+        "hydrolysis"
+      ]
+    },
+    "policy": {
+      "candidate_pool": "in_distribution current seed-fingerprint rows with experimental geometry vectors",
+      "cofactor_neighbor": "shared normalized cofactor family",
+      "exact_neighbor": "candidate fingerprint equals query fingerprint",
+      "family_neighbor": "exact neighbor or shared ontology family",
+      "query_pool": "heldout current seed-fingerprint rows with AlphaFoldDB predicted geometry vectors"
+    }
+  },
+  "relationship_rank_metrics": {
+    "predicted_query_vs_experimental_atlas_fingerprint_score_rerun": {
+      "candidate_pool_count": 184,
+      "display_name": "Predicted geometry score query vs experimental atlas score vector rerun",
+      "exclude_tuning_adjacent_queries": false,
+      "feature_dimension": 72,
+      "include_selected_organic_cofactor_scores": false,
+      "metrics_by_variant": {
+        "cosine": {
+          "cofactor_top10_any_rate": 0.666667,
+          "cofactor_top1_any_rate": 0.533333,
+          "cofactor_top1_rate": 0.533333,
+          "cofactor_top3_any_rate": 0.622222,
+          "cofactor_top5_any_rate": 0.644444,
+          "exact_top10_any_rate": 0.844444,
+          "exact_top1_any_rate": 0.666667,
+          "exact_top1_rate": 0.666667,
+          "exact_top3_any_rate": 0.8,
+          "exact_top5_any_rate": 0.822222,
+          "family_top10_any_rate": 0.844444,
+          "family_top1_any_rate": 0.688889,
+          "family_top1_rate": 0.688889,
+          "family_top3_any_rate": 0.8,
+          "family_top5_any_rate": 0.822222,
+          "median_rank_cofactor": 1.0,
+          "median_rank_exact": 1.0,
+          "median_rank_family": 1.0,
+          "mrr_cofactor": 0.589645,
+          "mrr_exact": 0.741497,
+          "mrr_family": 0.756312,
+          "query_count": 45
+        },
+        "robust_l2": {
+          "cofactor_top10_any_rate": 0.644444,
+          "cofactor_top1_any_rate": 0.444444,
+          "cofactor_top1_rate": 0.444444,
+          "cofactor_top3_any_rate": 0.511111,
+          "cofactor_top5_any_rate": 0.577778,
+          "exact_top10_any_rate": 0.8,
+          "exact_top1_any_rate": 0.622222,
+          "exact_top1_rate": 0.622222,
+          "exact_top3_any_rate": 0.666667,
+          "exact_top5_any_rate": 0.733333,
+          "family_top10_any_rate": 0.822222,
+          "family_top1_any_rate": 0.622222,
+          "family_top1_rate": 0.622222,
+          "family_top3_any_rate": 0.688889,
+          "family_top5_any_rate": 0.755556,
+          "median_rank_cofactor": 1.0,
+          "median_rank_exact": 1.0,
+          "median_rank_family": 1.0,
+          "mrr_cofactor": 0.49841,
+          "mrr_exact": 0.66908,
+          "mrr_family": 0.676188,
+          "query_count": 45
+        }
+      },
+      "notes": "No model was trained for this surface; robust_l2 scaling was fit on candidate in-distribution vectors only.",
+      "per_fingerprint": {
+        "cosine": {
+          "cobalamin_radical_rearrangement": {
+            "cofactor_top3_any_rate": 0.0,
+            "exact_top1_rate": 0.0,
+            "family_top3_any_rate": 0.0,
+            "query_count": 1
+          },
+          "flavin_dehydrogenase_reductase": {
+            "cofactor_top3_any_rate": 0.625,
+            "exact_top1_rate": 0.375,
+            "family_top3_any_rate": 0.625,
+            "query_count": 8
+          },
+          "flavin_monooxygenase": {
+            "cofactor_top3_any_rate": 1.0,
+            "exact_top1_rate": 0.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 1
+          },
+          "heme_peroxidase_oxidase": {
+            "cofactor_top3_any_rate": 0.25,
+            "exact_top1_rate": 0.25,
+            "family_top3_any_rate": 0.25,
+            "query_count": 4
+          },
+          "metal_dependent_hydrolase": {
+            "cofactor_top3_any_rate": 1.0,
+            "exact_top1_rate": 1.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 17
+          },
+          "plp_dependent_enzyme": {
+            "cofactor_top3_any_rate": 0.666667,
+            "exact_top1_rate": 0.333333,
+            "family_top3_any_rate": 0.666667,
+            "query_count": 6
+          },
+          "ser_his_acid_hydrolase": {
+            "cofactor_top3_any_rate": 0.0,
+            "exact_top1_rate": 0.875,
+            "family_top3_any_rate": 1.0,
+            "query_count": 8
+          }
+        },
+        "robust_l2": {
+          "cobalamin_radical_rearrangement": {
+            "cofactor_top3_any_rate": 0.0,
+            "exact_top1_rate": 0.0,
+            "family_top3_any_rate": 0.0,
+            "query_count": 1
+          },
+          "flavin_dehydrogenase_reductase": {
+            "cofactor_top3_any_rate": 0.375,
+            "exact_top1_rate": 0.25,
+            "family_top3_any_rate": 0.375,
+            "query_count": 8
+          },
+          "flavin_monooxygenase": {
+            "cofactor_top3_any_rate": 0.0,
+            "exact_top1_rate": 0.0,
+            "family_top3_any_rate": 0.0,
+            "query_count": 1
+          },
+          "heme_peroxidase_oxidase": {
+            "cofactor_top3_any_rate": 0.0,
+            "exact_top1_rate": 0.0,
+            "family_top3_any_rate": 0.0,
+            "query_count": 4
+          },
+          "metal_dependent_hydrolase": {
+            "cofactor_top3_any_rate": 1.0,
+            "exact_top1_rate": 1.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 17
+          },
+          "plp_dependent_enzyme": {
+            "cofactor_top3_any_rate": 0.5,
+            "exact_top1_rate": 0.166667,
+            "family_top3_any_rate": 0.5,
+            "query_count": 6
+          },
+          "ser_his_acid_hydrolase": {
+            "cofactor_top3_any_rate": 0.0,
+            "exact_top1_rate": 1.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 8
+          }
+        }
+      },
+      "relationship_query_count": 45,
+      "samples": {
+        "cosine": [
+          {
+            "entry_id": "m_csa:3",
+            "ranks": {
+              "cofactor": 2,
+              "exact": 2,
+              "family": 2
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:771",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:238",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:20",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:771",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:161",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:720",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:172",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:43",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:168",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:706",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:998",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:44",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:158",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:716",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:636",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:727",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:97",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:38",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:98",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:28",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:161",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:720",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:109",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:353",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:556",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:771",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:186",
+                "fingerprint_id": "plp_dependent_enzyme",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:238",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:115",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:739",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:114",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:102",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:294",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:131",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 3,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "same_family"
+              },
+              {
+                "entry_id": "m_csa:771",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:132",
+                "fingerprint_id": "flavin_monooxygenase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:170",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_monooxygenase"
+          },
+          {
+            "entry_id": "m_csa:159",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:626",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:216",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:41",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:163",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:28",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:528",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:171",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:28",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:528",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:706",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:180",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:170",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:41",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:27",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          }
+        ],
+        "robust_l2": [
+          {
+            "entry_id": "m_csa:3",
+            "ranks": {
+              "cofactor": 15,
+              "exact": 15,
+              "family": 15
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:839",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:168",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:42",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:20",
+            "ranks": {
+              "cofactor": 31,
+              "exact": 31,
+              "family": 31
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:41",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:176",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:720",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:172",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:43",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:168",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:720",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:28",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:44",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:158",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:519",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "same_family"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:430",
+                "fingerprint_id": "plp_dependent_enzyme",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:97",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:38",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:636",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:98",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:15",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:716",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:109",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:353",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:430",
+                "fingerprint_id": "plp_dependent_enzyme",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:482",
+                "fingerprint_id": "plp_dependent_enzyme",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:42",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:839",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:115",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:27",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:839",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:176",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:41",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:131",
+            "ranks": {
+              "cofactor": 6,
+              "exact": 74,
+              "family": 6
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:27",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:41",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:626",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:170",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:516",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_monooxygenase"
+          },
+          {
+            "entry_id": "m_csa:159",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:626",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:720",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:161",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:41",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:163",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:16",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:172",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:171",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:528",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:42",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:168",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:180",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:41",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:626",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:170",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:720",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:216",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          }
+        ]
+      },
+      "source_id": "predicted_query_vs_experimental_atlas_fingerprint_score_rerun",
+      "status": "complete",
+      "surface": "fingerprint_score_vector_with_optional_selected_organic_cofactor_scores"
+    },
+    "predicted_query_vs_experimental_atlas_score_plus_selected_organic_cofactor": {
+      "candidate_pool_count": 184,
+      "display_name": "Predicted geometry score query plus selected organic cofactor sidecar vs experimental atlas",
+      "exclude_tuning_adjacent_queries": false,
+      "feature_dimension": 78,
+      "include_selected_organic_cofactor_scores": true,
+      "metrics_by_variant": {
+        "cosine": {
+          "cofactor_top10_any_rate": 0.688889,
+          "cofactor_top1_any_rate": 0.666667,
+          "cofactor_top1_rate": 0.666667,
+          "cofactor_top3_any_rate": 0.688889,
+          "cofactor_top5_any_rate": 0.688889,
+          "exact_top10_any_rate": 0.844444,
+          "exact_top1_any_rate": 0.822222,
+          "exact_top1_rate": 0.822222,
+          "exact_top3_any_rate": 0.844444,
+          "exact_top5_any_rate": 0.844444,
+          "family_top10_any_rate": 0.866667,
+          "family_top1_any_rate": 0.844444,
+          "family_top1_rate": 0.844444,
+          "family_top3_any_rate": 0.866667,
+          "family_top5_any_rate": 0.866667,
+          "median_rank_cofactor": 1.0,
+          "median_rank_exact": 1.0,
+          "median_rank_family": 1.0,
+          "mrr_cofactor": 0.681961,
+          "mrr_exact": 0.838115,
+          "mrr_family": 0.859739,
+          "query_count": 45
+        },
+        "robust_l2": {
+          "cofactor_top10_any_rate": 0.688889,
+          "cofactor_top1_any_rate": 0.622222,
+          "cofactor_top1_rate": 0.622222,
+          "cofactor_top3_any_rate": 0.666667,
+          "cofactor_top5_any_rate": 0.666667,
+          "exact_top10_any_rate": 0.844444,
+          "exact_top1_any_rate": 0.777778,
+          "exact_top1_rate": 0.777778,
+          "exact_top3_any_rate": 0.822222,
+          "exact_top5_any_rate": 0.822222,
+          "family_top10_any_rate": 0.866667,
+          "family_top1_any_rate": 0.8,
+          "family_top1_rate": 0.8,
+          "family_top3_any_rate": 0.844444,
+          "family_top5_any_rate": 0.844444,
+          "median_rank_cofactor": 1.0,
+          "median_rank_exact": 1.0,
+          "median_rank_family": 1.0,
+          "mrr_cofactor": 0.651111,
+          "mrr_exact": 0.806901,
+          "mrr_family": 0.828889,
+          "query_count": 45
+        }
+      },
+      "notes": "No model was trained for this surface; robust_l2 scaling was fit on candidate in-distribution vectors only.",
+      "per_fingerprint": {
+        "cosine": {
+          "cobalamin_radical_rearrangement": {
+            "cofactor_top3_any_rate": 0.0,
+            "exact_top1_rate": 0.0,
+            "family_top3_any_rate": 0.0,
+            "query_count": 1
+          },
+          "flavin_dehydrogenase_reductase": {
+            "cofactor_top3_any_rate": 0.75,
+            "exact_top1_rate": 0.625,
+            "family_top3_any_rate": 0.75,
+            "query_count": 8
+          },
+          "flavin_monooxygenase": {
+            "cofactor_top3_any_rate": 1.0,
+            "exact_top1_rate": 0.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 1
+          },
+          "heme_peroxidase_oxidase": {
+            "cofactor_top3_any_rate": 0.5,
+            "exact_top1_rate": 0.5,
+            "family_top3_any_rate": 0.5,
+            "query_count": 4
+          },
+          "metal_dependent_hydrolase": {
+            "cofactor_top3_any_rate": 1.0,
+            "exact_top1_rate": 1.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 17
+          },
+          "plp_dependent_enzyme": {
+            "cofactor_top3_any_rate": 0.833333,
+            "exact_top1_rate": 0.833333,
+            "family_top3_any_rate": 0.833333,
+            "query_count": 6
+          },
+          "ser_his_acid_hydrolase": {
+            "cofactor_top3_any_rate": 0.0,
+            "exact_top1_rate": 1.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 8
+          }
+        },
+        "robust_l2": {
+          "cobalamin_radical_rearrangement": {
+            "cofactor_top3_any_rate": 0.0,
+            "exact_top1_rate": 0.0,
+            "family_top3_any_rate": 0.0,
+            "query_count": 1
+          },
+          "flavin_dehydrogenase_reductase": {
+            "cofactor_top3_any_rate": 0.625,
+            "exact_top1_rate": 0.5,
+            "family_top3_any_rate": 0.625,
+            "query_count": 8
+          },
+          "flavin_monooxygenase": {
+            "cofactor_top3_any_rate": 1.0,
+            "exact_top1_rate": 0.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 1
+          },
+          "heme_peroxidase_oxidase": {
+            "cofactor_top3_any_rate": 0.75,
+            "exact_top1_rate": 0.75,
+            "family_top3_any_rate": 0.75,
+            "query_count": 4
+          },
+          "metal_dependent_hydrolase": {
+            "cofactor_top3_any_rate": 0.941176,
+            "exact_top1_rate": 0.882353,
+            "family_top3_any_rate": 0.941176,
+            "query_count": 17
+          },
+          "plp_dependent_enzyme": {
+            "cofactor_top3_any_rate": 0.833333,
+            "exact_top1_rate": 0.833333,
+            "family_top3_any_rate": 0.833333,
+            "query_count": 6
+          },
+          "ser_his_acid_hydrolase": {
+            "cofactor_top3_any_rate": 0.0,
+            "exact_top1_rate": 1.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 8
+          }
+        }
+      },
+      "relationship_query_count": 45,
+      "samples": {
+        "cosine": [
+          {
+            "entry_id": "m_csa:3",
+            "ranks": {
+              "cofactor": 27,
+              "exact": 37,
+              "family": 27
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:771",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:238",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:27",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:20",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:354",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:102",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:739",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:294",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:43",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:168",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:706",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:16",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:44",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:158",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:716",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:636",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:727",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:97",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:38",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:98",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:998",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:28",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:161",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:109",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:110",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:800",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:941",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:852",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:115",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:739",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:102",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:114",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:822",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:131",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 26,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "same_family"
+              },
+              {
+                "entry_id": "m_csa:973",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "same_family"
+              },
+              {
+                "entry_id": "m_csa:739",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "same_family"
+              },
+              {
+                "entry_id": "m_csa:102",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "same_family"
+              },
+              {
+                "entry_id": "m_csa:354",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "same_family"
+              }
+            ],
+            "true_fingerprint_id": "flavin_monooxygenase"
+          },
+          {
+            "entry_id": "m_csa:159",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:626",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:41",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:216",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:163",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:28",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:171",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:28",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:528",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:706",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:180",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:27",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:216",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          }
+        ],
+        "robust_l2": [
+          {
+            "entry_id": "m_csa:3",
+            "ranks": {
+              "cofactor": 44,
+              "exact": 44,
+              "family": 44
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:27",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:42",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:338",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:839",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:20",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:320",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:381",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:973",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:294",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:43",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:168",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:720",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:176",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:44",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:158",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:519",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "same_family"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:97",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:98",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:38",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:636",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:15",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:837",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:109",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:381",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:320",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:800",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:895",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:115",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:120",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:275",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:142",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:103",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:131",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 95,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "same_family"
+              },
+              {
+                "entry_id": "m_csa:320",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "same_family"
+              },
+              {
+                "entry_id": "m_csa:68",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "same_family"
+              },
+              {
+                "entry_id": "m_csa:381",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "same_family"
+              },
+              {
+                "entry_id": "m_csa:275",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "same_family"
+              }
+            ],
+            "true_fingerprint_id": "flavin_monooxygenase"
+          },
+          {
+            "entry_id": "m_csa:159",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:626",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:720",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:161",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:41",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:163",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:16",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:172",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:171",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:168",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:528",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:16",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:180",
+            "ranks": {
+              "cofactor": 39,
+              "exact": 39,
+              "family": 39
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:320",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:381",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:275",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:973",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          }
+        ]
+      },
+      "source_id": "predicted_query_vs_experimental_atlas_score_plus_selected_organic_cofactor",
+      "status": "complete",
+      "surface": "fingerprint_score_vector_with_optional_selected_organic_cofactor_scores"
+    },
+    "predicted_query_vs_experimental_atlas_score_plus_selected_organic_cofactor_non_tuning_adjacent_queries": {
+      "candidate_pool_count": 184,
+      "display_name": "Predicted geometry score query plus selected organic cofactor sidecar vs experimental atlas",
+      "exclude_tuning_adjacent_queries": true,
+      "feature_dimension": 78,
+      "include_selected_organic_cofactor_scores": true,
+      "metrics_by_variant": {
+        "cosine": {
+          "cofactor_top10_any_rate": 0.74359,
+          "cofactor_top1_any_rate": 0.717949,
+          "cofactor_top1_rate": 0.717949,
+          "cofactor_top3_any_rate": 0.74359,
+          "cofactor_top5_any_rate": 0.74359,
+          "exact_top10_any_rate": 0.948718,
+          "exact_top1_any_rate": 0.923077,
+          "exact_top1_rate": 0.923077,
+          "exact_top3_any_rate": 0.948718,
+          "exact_top5_any_rate": 0.948718,
+          "family_top10_any_rate": 0.948718,
+          "family_top1_any_rate": 0.923077,
+          "family_top1_rate": 0.923077,
+          "family_top3_any_rate": 0.948718,
+          "family_top5_any_rate": 0.948718,
+          "median_rank_cofactor": 1.0,
+          "median_rank_exact": 1.0,
+          "median_rank_family": 1.0,
+          "mrr_cofactor": 0.733068,
+          "mrr_exact": 0.93794,
+          "mrr_family": 0.938197,
+          "query_count": 39
+        },
+        "robust_l2": {
+          "cofactor_top10_any_rate": 0.717949,
+          "cofactor_top1_any_rate": 0.641026,
+          "cofactor_top1_rate": 0.641026,
+          "cofactor_top3_any_rate": 0.692308,
+          "cofactor_top5_any_rate": 0.692308,
+          "exact_top10_any_rate": 0.923077,
+          "exact_top1_any_rate": 0.846154,
+          "exact_top1_rate": 0.846154,
+          "exact_top3_any_rate": 0.897436,
+          "exact_top5_any_rate": 0.897436,
+          "family_top10_any_rate": 0.923077,
+          "family_top1_any_rate": 0.846154,
+          "family_top1_rate": 0.846154,
+          "family_top3_any_rate": 0.897436,
+          "family_top5_any_rate": 0.897436,
+          "median_rank_cofactor": 1.0,
+          "median_rank_exact": 1.0,
+          "median_rank_family": 1.0,
+          "mrr_cofactor": 0.672429,
+          "mrr_exact": 0.877558,
+          "mrr_family": 0.877558,
+          "query_count": 39
+        }
+      },
+      "notes": "No model was trained for this surface; robust_l2 scaling was fit on candidate in-distribution vectors only.",
+      "per_fingerprint": {
+        "cosine": {
+          "flavin_dehydrogenase_reductase": {
+            "cofactor_top3_any_rate": 0.857143,
+            "exact_top1_rate": 0.714286,
+            "family_top3_any_rate": 0.857143,
+            "query_count": 7
+          },
+          "heme_peroxidase_oxidase": {
+            "cofactor_top3_any_rate": 1.0,
+            "exact_top1_rate": 1.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 2
+          },
+          "metal_dependent_hydrolase": {
+            "cofactor_top3_any_rate": 1.0,
+            "exact_top1_rate": 1.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 16
+          },
+          "plp_dependent_enzyme": {
+            "cofactor_top3_any_rate": 0.833333,
+            "exact_top1_rate": 0.833333,
+            "family_top3_any_rate": 0.833333,
+            "query_count": 6
+          },
+          "ser_his_acid_hydrolase": {
+            "cofactor_top3_any_rate": 0.0,
+            "exact_top1_rate": 1.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 8
+          }
+        },
+        "robust_l2": {
+          "flavin_dehydrogenase_reductase": {
+            "cofactor_top3_any_rate": 0.714286,
+            "exact_top1_rate": 0.571429,
+            "family_top3_any_rate": 0.714286,
+            "query_count": 7
+          },
+          "heme_peroxidase_oxidase": {
+            "cofactor_top3_any_rate": 1.0,
+            "exact_top1_rate": 1.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 2
+          },
+          "metal_dependent_hydrolase": {
+            "cofactor_top3_any_rate": 0.9375,
+            "exact_top1_rate": 0.875,
+            "family_top3_any_rate": 0.9375,
+            "query_count": 16
+          },
+          "plp_dependent_enzyme": {
+            "cofactor_top3_any_rate": 0.833333,
+            "exact_top1_rate": 0.833333,
+            "family_top3_any_rate": 0.833333,
+            "query_count": 6
+          },
+          "ser_his_acid_hydrolase": {
+            "cofactor_top3_any_rate": 0.0,
+            "exact_top1_rate": 1.0,
+            "family_top3_any_rate": 1.0,
+            "query_count": 8
+          }
+        }
+      },
+      "relationship_query_count": 39,
+      "samples": {
+        "cosine": [
+          {
+            "entry_id": "m_csa:3",
+            "ranks": {
+              "cofactor": 27,
+              "exact": 37,
+              "family": 27
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:771",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:238",
+                "fingerprint_id": "ser_his_acid_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:27",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:20",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:354",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:102",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:739",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:294",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:43",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:168",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:706",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:16",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:97",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:38",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:98",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:998",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:28",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:161",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:109",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:110",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:800",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:941",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:852",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:115",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:739",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:102",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:114",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:822",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:159",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:626",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:41",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:216",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:163",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:28",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:171",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:28",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:528",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:706",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:180",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:27",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:83",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:216",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:211",
+            "ranks": {
+              "cofactor": 2,
+              "exact": 2,
+              "family": 2
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:446",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:353",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:988",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:823",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:495",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:213",
+            "ranks": {
+              "cofactor": 19,
+              "exact": 19,
+              "family": 19
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:132",
+                "fingerprint_id": "flavin_monooxygenase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:304",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:111",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:516",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:208",
+                "fingerprint_id": "heme_peroxidase_oxidase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "plp_dependent_enzyme"
+          }
+        ],
+        "robust_l2": [
+          {
+            "entry_id": "m_csa:3",
+            "ranks": {
+              "cofactor": 44,
+              "exact": 44,
+              "family": 44
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:27",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:42",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:338",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:839",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:20",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:320",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:381",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:973",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:294",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:43",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:168",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:720",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:176",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:97",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:98",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:38",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:636",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:15",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:837",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:109",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:381",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:320",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:800",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:895",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:115",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:120",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:275",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:142",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:103",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:159",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:626",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:720",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:161",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:41",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:163",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:300",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:16",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:172",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:171",
+            "ranks": {
+              "cofactor": 1,
+              "exact": 1,
+              "family": 1
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:157",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:167",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:168",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:528",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              },
+              {
+                "entry_id": "m_csa:16",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "exact"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:180",
+            "ranks": {
+              "cofactor": 39,
+              "exact": 39,
+              "family": 39
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:108",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:320",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:381",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:275",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:973",
+                "fingerprint_id": "flavin_dehydrogenase_reductase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "metal_dependent_hydrolase"
+          },
+          {
+            "entry_id": "m_csa:211",
+            "ranks": {
+              "cofactor": 6,
+              "exact": 6,
+              "family": 6
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:446",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:988",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:379",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:823",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:486",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+          },
+          {
+            "entry_id": "m_csa:213",
+            "ranks": {
+              "cofactor": 103,
+              "exact": 103,
+              "family": 103
+            },
+            "top5_neighbors": [
+              {
+                "entry_id": "m_csa:132",
+                "fingerprint_id": "flavin_monooxygenase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:516",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:181",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:379",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              },
+              {
+                "entry_id": "m_csa:486",
+                "fingerprint_id": "metal_dependent_hydrolase",
+                "relationship": "unrelated"
+              }
+            ],
+            "true_fingerprint_id": "plp_dependent_enzyme"
+          }
+        ]
+      },
+      "source_id": "predicted_query_vs_experimental_atlas_score_plus_selected_organic_cofactor_non_tuning_adjacent_queries",
+      "status": "complete",
+      "surface": "fingerprint_score_vector_with_optional_selected_organic_cofactor_scores"
+    }
+  },
+  "schema_version": "mechanism_relationship_eval.cofactor_augmented.v1",
+  "scope": {
+    "candidate_atlas": "experimental in-distribution current702 geometry",
+    "cofactor_input": "persisted sequence-only selected organic cofactor scores for flavin/heme/PLP",
+    "heldout_labels_used_for_fit_or_threshold": false,
+    "labels_registries_ontologies_imports_thresholds_mutated": false,
+    "models_trained_or_refit": false,
+    "query_distribution": "AlphaFoldDB predicted heldout geometry",
+    "relationship_eval_only": true
+  },
+  "selected_organic_cofactor_sidecar": {
+    "artifact_id": "v3_selected_organic_cofactor_score_sidecars_current702_20260530",
+    "by_class": {
+      "flavin": 702,
+      "heme": 702,
+      "plp": 702
+    },
+    "entries_with_all_scores": 702,
+    "fallback_caveat": "Scores come from the ESM2-150M fallback selected sidecar; original t6/t12 selected sidecars remain unrecovered.",
+    "missingness_flags": {
+      "score_predicted_for_row_without_clean_experimental_cofactor_label": 60
+    },
+    "null_scores_by_class": {},
+    "row_class_records": 2106,
+    "selected_source_counts": {
+      "trained:esm2_t30_150m_existing_track": 2106
+    },
+    "status": "complete_with_fallback_non_original_selected_esm2_150m_scores"
+  },
+  "source_artifacts": {
+    "current_labels": {
+      "exists": true,
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "experimental_geometry_features": {
+      "exists": true,
+      "path": "artifacts/v3_geometry_features_1025.json",
+      "sha256": "be7af8462397425062075ff8df5959cc9b68b165d07017692099deb66db1f8f6"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "ontology": {
+      "exists": true,
+      "path": "data/registries/mechanism_ontology.json",
+      "sha256": "d0b0758e0c2372630702925fa3e7f9485ba49fce97207ae5acc6196a6ed5caac"
+    },
+    "predicted_geometry_audit": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+      "sha256": "b1c120e452f439c72686463eb56249f8002a12862a601410d682b6f19e8b6294"
+    },
+    "previous_eval": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_relationship_eval_v0_20260530.json",
+      "sha256": "5620bee4394ce668577a30f30e93b86fa8ca9fa3b5428274321cc4676fafc8c2"
+    },
+    "selected_organic_cofactor_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "faaedafb3c652526371044d3f65bb565ec1dcd8b6f9c10509a302bc6c3970de6"
+    }
+  },
+  "status": "real_d11_cofactor_augmented_rerun_complete"
+}

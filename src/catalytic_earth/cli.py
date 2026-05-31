@@ -59,6 +59,7 @@ from .learned_retrieval import build_learned_retrieval_manifest
 from .mechanism_prediction_contract import (
     build_mechanism_prediction_oos_and_diversity_eval_contract,
 )
+from .mechanism_relationship_eval import write_mechanism_relationship_eval
 from .representation_baseline import build_representation_baseline_shootout_plan
 from .sequence_nn import (
     build_sequence_nn_label_manifest_and_compliance,
@@ -2126,6 +2127,28 @@ def cmd_build_predicted_geometry_distillation_audit(args: argparse.Namespace) ->
         "Wrote predicted geometry distillation audit to "
         f"{args.out} ({audit.get('status')}; "
         f"mlp_primary={answer.get('mlp_32_oos_aware_predicted_primary_accuracy_available')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_relationship_eval(args: argparse.Namespace) -> int:
+    audit = write_mechanism_relationship_eval(
+        label_manifest_path=Path(args.label_manifest),
+        current_labels_path=Path(args.current_labels),
+        ontology_path=Path(args.ontology),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        predicted_geometry_audit_path=Path(args.predicted_geometry_audit),
+        selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
+        previous_eval_path=Path(args.previous_eval) if args.previous_eval else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    headline = audit.get("headline", {})
+    print(
+        "Wrote mechanism relationship eval to "
+        f"{args.out} ({audit.get('status')}; "
+        "family_top3="
+        f"{headline.get('augmented_predicted_score_cosine_family_top3_any_rate')})"
     )
     return 0
 
@@ -12372,6 +12395,62 @@ def build_parser() -> argparse.ArgumentParser:
     )
     predicted_geometry_distillation.set_defaults(
         func=cmd_build_predicted_geometry_distillation_audit
+    )
+
+    mechanism_relationship_eval = subparsers.add_parser(
+        "build-mechanism-relationship-eval",
+        help="rank heldout mechanism relationship placement with optional cofactor scores",
+    )
+    mechanism_relationship_eval.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    mechanism_relationship_eval.add_argument(
+        "--current-labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    mechanism_relationship_eval.add_argument(
+        "--ontology",
+        default="data/registries/mechanism_ontology.json",
+    )
+    mechanism_relationship_eval.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    mechanism_relationship_eval.add_argument(
+        "--predicted-geometry-audit",
+        default=(
+            "artifacts/"
+            "v3_predicted_geometry_robustness_audit_current702_20260529.json"
+        ),
+    )
+    mechanism_relationship_eval.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default=(
+            "artifacts/"
+            "v3_selected_organic_cofactor_score_sidecars_current702_20260530.json"
+        ),
+    )
+    mechanism_relationship_eval.add_argument(
+        "--previous-eval",
+        default="artifacts/v3_mechanism_relationship_eval_v0_20260530.json",
+    )
+    mechanism_relationship_eval.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_mechanism_relationship_eval_cofactor_augmented_current702_20260530.json"
+        ),
+    )
+    mechanism_relationship_eval.add_argument(
+        "--report",
+        default=(
+            "work/"
+            "mechanism_relationship_eval_cofactor_augmented_current702_20260530.md"
+        ),
+    )
+    mechanism_relationship_eval.set_defaults(
+        func=cmd_build_mechanism_relationship_eval
     )
 
     cofactor_channel_probe = subparsers.add_parser(
