@@ -183,7 +183,12 @@ def build_mechanism_relationship_eval(
         exclude_tuning_adjacent_queries=True,
     )
 
-    headline = _headline(baseline_surface, augmented_surface, augmented_non_tuning)
+    headline = _headline(
+        baseline_surface,
+        augmented_surface,
+        augmented_non_tuning,
+        cofactor_summary,
+    )
     return {
         "artifact_id": (
             "v3_mechanism_relationship_eval_cofactor_augmented_current702_20260530"
@@ -388,10 +393,7 @@ def _selected_organic_scores(
         "entries_with_all_scores": entries_with_all_scores,
         "selected_source_counts": dict(sorted(source_counts.items())),
         "missingness_flags": dict(sorted(missing_flags.items())),
-        "fallback_caveat": (
-            "Scores come from the ESM2-150M fallback selected sidecar; original "
-            "t6/t12 selected sidecars remain unrecovered."
-        ),
+        "source_caveat": _cofactor_source_caveat(selected_organic_cofactor_sidecar),
     }
 
 
@@ -719,6 +721,7 @@ def _headline(
     baseline_surface: dict[str, Any],
     augmented_surface: dict[str, Any],
     augmented_non_tuning: dict[str, Any],
+    cofactor_summary: dict[str, Any],
 ) -> dict[str, Any]:
     baseline_cosine = baseline_surface["metrics_by_variant"]["cosine"]
     augmented_cosine = augmented_surface["metrics_by_variant"]["cosine"]
@@ -750,11 +753,34 @@ def _headline(
         ),
         "delta_family_top3_any_rate": delta_family_top3,
         "delta_exact_top1_rate": delta_exact_top1,
-        "caveat": (
-            "Organic cofactor scores are the documented ESM2-150M fallback source, "
-            "not a strict reproduction of the missing original t6/t12 selected heads."
-        ),
+        "caveat": cofactor_summary["source_caveat"],
     }
+
+
+def _cofactor_source_caveat(sidecar: dict[str, Any]) -> str:
+    status = str(sidecar.get("status") or "")
+    source_counts = sidecar.get("selected_source_counts") or {}
+    if not source_counts:
+        source_counts = Counter(
+            str(record.get("selected_source") or "")
+            for record in sidecar.get("row_class_records", [])
+            if isinstance(record, dict) and record.get("selected_source")
+        )
+    sources = sorted(str(source) for source in source_counts)
+    if "fallback" in status or any("fallback" in source for source in sources):
+        return (
+            "Organic cofactor scores come from a documented fallback source; "
+            "strict original t6/t12 selected heads were not used."
+        )
+    if all(
+        expected in sources
+        for expected in ("trained:esm2_t12_35m", "trained:esm2_t6_8m")
+    ):
+        return (
+            "Organic cofactor scores use the strict original selected t6/t12 ESM "
+            "heads with row-level sidecars retained."
+        )
+    return "Organic cofactor scores use the persisted selected sidecar sources."
 
 
 def _delta(left: Any, right: Any) -> float | None:
@@ -841,9 +867,9 @@ def _report(audit: dict[str, Any]) -> str:
             "## Next Gate",
             "",
             (
-                "Use this artifact as the first cofactor-augmented D11 rerun. "
-                "A stricter reproduction still requires the original t6/t12 sidecars, "
-                "but the row-level blocker is no longer blocking D11 iteration."
+                "Use this artifact as the current cofactor-augmented D11 rerun. "
+                "The row-level cofactor sidecar blocker is no longer blocking "
+                "D11 iteration."
             ),
             "",
         ]

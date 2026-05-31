@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_sequence_embedding_sidecar_current702_20260529",
   "computed_embedding_backend": "esm2_t6_8m_ur50d",
-  "created_utc": "2026-05-29T21:56:31Z",
+  "created_utc": "2026-05-31T01:28:55Z",
   "embedding_backend": "esm2_t6_8m_ur50d",
   "embedding_backend_available": true,
   "embedding_failure_count": 0,
