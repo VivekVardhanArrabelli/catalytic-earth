@@ -3,6 +3,38 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-05-31: Two-Channel Abstention Gate (cofactor + geometry role) — Source-Agnostic, Clears Bar On Teacher Geometry
+
+Decision: productionize the two-channel abstention gate implied by the confounded-
+OOS diagnosis. Channel 1 is the cofactor-augmented PLM nearest-centroid; channel 2
+is geometry `top1_score x role_match_fraction` (novel chemistry shows the right
+active-site residues with the wrong catalytic roles). Each channel is mapped to its
+in-distribution ATLAS percentile (atlas-only, deployable, no eval-pool leakage) and
+combined by mean.
+
+Result on experimental/teacher geometry (47 in-scope, 88 OOS, 8 confounded): the
+combined-mean gate reaches overall AUC 0.830 and clears the 0.75 de novo bar, with
+geometry rescuing the cofactor-confounded set (cofactor 0.339 -> combined 0.503;
+geometry alone 0.652 there). Per channel: cofactor 0.684, geometry 0.801,
+combined-mean 0.830, combined-min 0.733.
+
+Relation to the predicted-geometry finding below: that entry correctly establishes
+the deployment-valid signal lives in predicted (apo) geometry, not this
+experimental retrieval, and that predicted top1 score alone hits AUC 0.757. This
+gate module is SOURCE-AGNOSTIC on `--geometry-retrieval`, so once a predicted-
+geometry retrieval persisting per-row `role_match_fraction` exists, the
+deployment-valid two-channel number is a one-line rerun. Until then this is a
+teacher-side proof the precondition is achievable with the right two channels, not
+a deployment claim — the report carries that caveat explicitly.
+
+Guardrails: sequence-only PLM input, atlas-only statistics/percentiles, no
+training/refit/heldout tuning; geometry fingerprint score is tuning-adjacent
+(role_match_fraction is structural); M-CSA eval-only. Module:
+`src/catalytic_earth/mechanism_abstention_gate_eval.py` (tests:
+`tests/test_mechanism_abstention_gate_eval.py`; CLI: `eval-mechanism-abstention-gate`;
+artifacts: `artifacts/v3_mechanism_abstention_gate_eval_current702_20260531.json`,
+`work/mechanism_abstention_gate_eval_current702_20260531.md`).
+
 ## 2026-05-31: Predicted-Geometry Confidence Is The Strongest Abstention Signal
 
 Decision: test whether geometry-channel confidence flags the cofactor-confounded
