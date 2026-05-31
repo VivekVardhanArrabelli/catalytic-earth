@@ -3,6 +3,40 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-05-31: D11 De Novo Precondition — Distance Cannot Abstain On Novelty; Cofactor Helps But Falls Short
+
+Decision: measure the D11 de novo validity check directly — can a cheap,
+unsupervised signal separate in-scope held-out queries (known mechanism
+fingerprint) from out-of-scope held-out rows (novel chemistry, no fingerprint)?
+Abstention-on-novelty is the de novo precondition, so this is a gate, not a
+nicety.
+
+Result (48 in-scope, 92 OOS, 184 atlas; all atlas-only statistics, no tuning):
+bare ESM2-150M distance signals are near chance — nearest-atlas cosine AUC 0.547,
+nearest-centroid 0.596, top1/top2 margin 0.567, between-class subspace projnorm
+0.524 (best 0.596). A general-purpose PLM encodes overall protein similarity, so
+novel enzymes still look like ordinary proteins and sit inside occupied regions.
+Adding the row-level organic-cofactor channel (the now-unblocked, source-agnostic
+sidecar) moves the signal in the right direction — augmented nearest-centroid AUC
+0.654, with OOS carrying lower in-class cofactor confidence (in 0.716 vs OOS
+0.601) — but still below the 0.75 usability bar.
+
+Consequence: distance-thresholded abstention is insufficient for de novo today.
+The cofactor channel is a genuine but partial mechanism-discriminative signal;
+the precondition needs a stronger one (recovered t6/t12 cofactor heads instead of
+the ESM2-150M fallback, and/or explicit mechanism-feature supervision). The
+novelty eval is source-agnostic, so re-running it once the fallback is removed is
+a one-line change.
+
+Guardrails held: sequence-only PLM input, no training/refit, no held-out tuning,
+atlas-only statistics/centroids/subspace, M-CSA eval-only.
+
+Artifacts: `artifacts/v3_mechanism_novelty_abstention_eval_current702_20260530.json`,
+`work/mechanism_novelty_abstention_eval_current702_20260530.md`. Module:
+`src/catalytic_earth/mechanism_novelty_abstention_eval.py`
+(tests: `tests/test_mechanism_novelty_abstention_eval.py`; CLI:
+`eval-mechanism-novelty-abstention`).
+
 ## 2026-05-30: D11 Hygiene Surface — Real PLM Beats k-mer Control
 
 Decision: add a real protein-language-model sequence surface (persisted

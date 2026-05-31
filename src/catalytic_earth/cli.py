@@ -35,6 +35,7 @@ from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
 from .mechanism_relationship_surface_eval import write_mechanism_relationship_surface_eval
+from .mechanism_novelty_abstention_eval import write_mechanism_novelty_abstention_eval
 from .geometry_reports import write_geometry_slice_summary
 from .geometry_head import write_geometry_nonlinear_head_audit
 from .predicted_geometry_robustness import (
@@ -10693,6 +10694,20 @@ def cmd_eval_mechanism_relationship_surface(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_eval_mechanism_novelty_abstention(args: argparse.Namespace) -> int:
+    audit = write_mechanism_novelty_abstention_eval(
+        esm2_150m_path=Path(args.esm2_150m_embeddings),
+        cofactor_sidecar_path=Path(args.cofactor_sidecar) if args.cofactor_sidecar else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    print(
+        "Wrote mechanism novelty abstention eval to "
+        f"{args.out} (overall best AUC: {audit.get('overall_best_auc')})"
+    )
+    return 0
+
+
 def _split_csv(value: str | None) -> list[str]:
     if not value:
         return []
@@ -21098,6 +21113,35 @@ def build_parser() -> argparse.ArgumentParser:
         default="work/mechanism_relationship_plm_surface_current702_20260530.md",
     )
     rel_surface.set_defaults(func=cmd_eval_mechanism_relationship_surface)
+
+    novelty_abstention = subparsers.add_parser(
+        "eval-mechanism-novelty-abstention",
+        help=(
+            "D11 de novo precondition: measure whether cheap distance signals (and "
+            "the cofactor-augmented representation) can abstain on novel chemistry"
+        ),
+    )
+    novelty_abstention.add_argument(
+        "--esm2-150m-embeddings",
+        default="artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+    )
+    novelty_abstention.add_argument(
+        "--cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+        help=(
+            "optional row-level organic cofactor score sidecar; source-agnostic so "
+            "the original t6/t12 sidecar can replace the ESM2-150M fallback"
+        ),
+    )
+    novelty_abstention.add_argument(
+        "--out",
+        default="artifacts/v3_mechanism_novelty_abstention_eval_current702_20260530.json",
+    )
+    novelty_abstention.add_argument(
+        "--report",
+        default="work/mechanism_novelty_abstention_eval_current702_20260530.md",
+    )
+    novelty_abstention.set_defaults(func=cmd_eval_mechanism_novelty_abstention)
 
     log_work = subparsers.add_parser("log-work", help="append a timed work entry")
     log_work.add_argument("--stage", required=True, help="milestone stage, for example v0 or v1")

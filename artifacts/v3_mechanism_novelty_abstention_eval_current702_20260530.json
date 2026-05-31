@@ -1,0 +1,90 @@
+{
+  "artifact_id": "v3_mechanism_novelty_abstention_eval_current702_20260530",
+  "cofactor_augmented_result": {
+    "best_auc": 0.653759,
+    "counts": {
+      "atlas": 184,
+      "inscope": 48,
+      "oos": 92
+    },
+    "signals": {
+      "augmented_centroid_margin": {
+        "auc_in_gt_oos": 0.592618,
+        "in_scope_mean": 0.447185,
+        "oos_mean": 0.332149
+      },
+      "augmented_nearest_centroid": {
+        "auc_in_gt_oos": 0.653759,
+        "in_scope_mean": 0.716347,
+        "oos_mean": 0.600879
+      },
+      "cofactor_max_raw_score": {
+        "auc_in_gt_oos": 0.580389,
+        "in_scope_mean": 0.33659,
+        "oos_mean": 0.154833
+      }
+    },
+    "source": "trained:esm2_t30_150m_existing_track",
+    "source_caveat": "Cofactor scores are source-agnostic; today's source may be the documented ESM2-150M fallback rather than the original t6/t12 selected heads. Re-run with the recovered sidecar to remove the fallback.",
+    "status": "computed"
+  },
+  "created_utc": "2026-05-31T01:45:07Z",
+  "guardrails": {
+    "atlas_only_statistics_centroids_subspace": true,
+    "labels_registries_thresholds_changed": false,
+    "no_heldout_tuning": true,
+    "no_training_or_refit": true,
+    "sequence_inputs_amino_acid_only": true
+  },
+  "interpretation": {
+    "cofactor_augmentation_helps_but_insufficient": true,
+    "headline": "Bare-PLM best abstention AUC is 0.596467; cofactor augmentation lifts it to 0.653759.",
+    "why": "OOS rows are real, well-folded enzymes with novel mechanism chemistry. A general-purpose PLM embedding encodes overall protein similarity, under which novel enzymes still look like ordinary proteins and sit inside occupied regions, so raw embedding distance is near chance. The mechanism-discriminative cofactor channel moves the signal in the right direction (novel chemistry carries lower in-class cofactor confidence) but does not yet clear the abstention bar, so the de novo precondition remains an open problem pending a stronger mechanism-feature signal."
+  },
+  "overall_best_auc": 0.653759,
+  "result": {
+    "abstention_status": "unsolved_by_unsupervised_distance",
+    "best_auc": 0.596467,
+    "counts": {
+      "atlas": 184,
+      "inscope": 48,
+      "oos": 92
+    },
+    "signals": {
+      "betweenclass_subspace_projnorm": {
+        "auc_in_gt_oos": 0.52423,
+        "in_scope_mean": 7.963788,
+        "oos_mean": 7.489623,
+        "subspace_dim": 6
+      },
+      "centroid_top1_top2_margin": {
+        "auc_in_gt_oos": 0.566576,
+        "in_scope_mean": 0.140771,
+        "oos_mean": 0.10748
+      },
+      "nearest_atlas_cosine": {
+        "auc_in_gt_oos": 0.547101,
+        "in_scope_mean": 0.519064,
+        "oos_mean": 0.495441
+      },
+      "nearest_centroid_cosine": {
+        "auc_in_gt_oos": 0.596467,
+        "in_scope_mean": 0.294294,
+        "oos_mean": 0.253897
+      }
+    },
+    "status": "computed"
+  },
+  "schema_version": "mechanism_novelty_abstention_eval.v0",
+  "scope": "D11 de novo precondition: measure whether cheap unsupervised distance signals in the ESM2-150M mechanism space separate in-scope held-out queries from out-of-scope (novel-chemistry) held-out rows.",
+  "source_artifacts": {
+    "cofactor_score_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "faaedafb3c652526371044d3f65bb565ec1dcd8b6f9c10509a302bc6c3970de6"
+    },
+    "esm2_150m_embeddings": {
+      "path": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+      "sha256": "e7e5ee1ec329b084182e7b957c24f14a282f08bf61a6d2191dd639752ffd9617"
+    }
+  }
+}
