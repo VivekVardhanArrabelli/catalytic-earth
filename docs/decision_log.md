@@ -3,6 +3,31 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-05-31: Deployment-Valid Two-Channel Gate Is Blocked — No Predicted-Geometry Atlas Rows
+
+Decision: attempted the deployment-valid rerun of the two-channel abstention gate
+flagged as the next step by the teacher-side entry below, pointing
+`--geometry-retrieval` at the `predicted_geometry_retrieval` block of
+`v3_predicted_geometry_robustness_audit_current702_20260529.json`.
+
+Finding (verified, no scoring claim): that block contains ONLY held-out rows — 47
+in-scope (heldout, has fingerprint) + 79 OOS (heldout, no fingerprint), and ZERO
+in_distribution rows. The gate needs in-distribution atlas rows to (a) build the
+cofactor-augmented PLM class centroids and (b) compute the geometry channel's
+atlas-percentile normalization. With atlas=0 the gate returns
+`status=insufficient_rows` and no AUC. The broken run artifact was deleted, not
+committed; no numbers were produced.
+
+Consequence: the deployment-valid two-channel gate is blocked on a
+predicted-geometry retrieval that also covers the ~124 in_distribution atlas rows
+(the current audit only re-scored the held-out evaluation set on predicted
+structure). Concrete next gate: regenerate geometry retrieval on predicted
+(AlphaFold) structures for the in_distribution atlas rows too, persisting per-row
+`role_match_fraction`, then rerun `eval-mechanism-abstention-gate
+--geometry-retrieval <that artifact>`. The separate predicted-geometry-confidence
+finding (raw `top1_score` AUC 0.757) stands because it is a single-channel
+rank-based AUC over the held-out pool only and needs no atlas.
+
 ## 2026-05-31: Two-Channel Abstention Gate (cofactor + geometry role) — Source-Agnostic, Clears Bar On Teacher Geometry
 
 Decision: productionize the two-channel abstention gate implied by the confounded-
