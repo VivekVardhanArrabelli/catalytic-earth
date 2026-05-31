@@ -174,6 +174,9 @@ def compute_novelty_signals(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
 
 
 COFACTOR_CLASSES = ("flavin", "heme", "plp")
+# Untuned fixed threshold (matches the sidecar's fixed_0_5_not_tuned_on_heldout
+# policy) for deciding whether an OOS row carries a known cofactor signature.
+COFACTOR_SIGNATURE_THRESHOLD = 0.5
 
 
 def load_cofactor_scores(sidecar_path: Path) -> dict[str, dict[str, float]]:
@@ -293,11 +296,43 @@ def compute_cofactor_augmented_signals(
             "oos_mean": round(sum(so) / len(so), 6),
         }
     best_auc = max(s["auc_in_gt_oos"] for s in signals.values())
+
+    # Stratified diagnostic: the aggregate AUC hides a sharp split. OOS rows that
+    # carry a strong cofactor signature (a known cofactor family at the untuned 0.5
+    # threshold) are *confidently misplaced* into occupied clusters -- the dangerous
+    # false-confident novelty cases -- while cofactor-agnostic OOS rows abstain well.
+    # Reported on the augmented_nearest_centroid signal, the best abstention signal.
+    inscope_nc = [aug_nearest_centroid(e) for e in inscope]
+    oos_with_cof = sorted(e for e in oos if cof_max_raw(e) >= COFACTOR_SIGNATURE_THRESHOLD)
+    oos_without_cof = sorted(e for e in oos if cof_max_raw(e) < COFACTOR_SIGNATURE_THRESHOLD)
+    stratified = {
+        "signal": "augmented_nearest_centroid",
+        "cofactor_signature_threshold": COFACTOR_SIGNATURE_THRESHOLD,
+        "auc_in_gt_oos_all": _auc_in_gt_oos(inscope_nc, [aug_nearest_centroid(e) for e in oos]),
+        "auc_in_gt_oos_with_cofactor_signature": (
+            _auc_in_gt_oos(inscope_nc, [aug_nearest_centroid(e) for e in oos_with_cof])
+            if oos_with_cof else None
+        ),
+        "auc_in_gt_oos_without_cofactor_signature": (
+            _auc_in_gt_oos(inscope_nc, [aug_nearest_centroid(e) for e in oos_without_cof])
+            if oos_without_cof else None
+        ),
+        "oos_with_cofactor_signature_count": len(oos_with_cof),
+        "oos_without_cofactor_signature_count": len(oos_without_cof),
+        "cofactor_confounded_oos_entry_ids": oos_with_cof,
+        "interpretation": (
+            "Cofactor-agnostic OOS rows abstain well (high AUC); the residual leak is "
+            "concentrated in the small set of OOS enzymes that carry a known cofactor "
+            "signature, which the channel pulls into occupied clusters. These are the "
+            "named false-confident novelty cases for any abstention gate to flag."
+        ),
+    }
     return {
         "status": "computed",
         "counts": {"atlas": len(atlas), "inscope": len(inscope), "oos": len(oos)},
         "signals": signals,
         "best_auc": best_auc,
+        "stratified_by_cofactor_signature": stratified,
     }
 
 
@@ -452,6 +487,25 @@ def _render_report(audit: dict[str, Any]) -> str:
             )
         lines.append("")
         lines.append(f"- Cofactor-augmented best AUC: **{cof['best_auc']}**.")
+        strat = cof.get("stratified_by_cofactor_signature")
+        if strat:
+            lines += [
+                "",
+                "### OOS stratified by cofactor signature",
+                "",
+                f"At an untuned cofactor threshold of {strat['cofactor_signature_threshold']}, the "
+                "aggregate abstention AUC splits sharply:",
+                "",
+                f"- Cofactor-agnostic OOS ({strat['oos_without_cofactor_signature_count']} rows): "
+                f"AUC **{strat['auc_in_gt_oos_without_cofactor_signature']}** (abstain well).",
+                f"- Cofactor-signature OOS ({strat['oos_with_cofactor_signature_count']} rows): "
+                f"AUC **{strat['auc_in_gt_oos_with_cofactor_signature']}** (confidently misplaced).",
+                "",
+                "Cofactor-confounded OOS entry ids: "
+                + (", ".join(f"`{e}`" for e in strat["cofactor_confounded_oos_entry_ids"]) or "none"),
+                "",
+                strat["interpretation"],
+            ]
     lines += [
         "",
         "## Interpretation",

@@ -102,6 +102,23 @@ def test_integration_cofactor_helps_but_insufficient_if_present():
     assert audit["interpretation"]["cofactor_augmentation_helps_but_insufficient"] is True
 
 
+def test_integration_stratified_isolates_cofactor_confounded_oos_if_present():
+    if not (ESM.exists() and COF.exists()):
+        return
+    audit = build_mechanism_novelty_abstention_eval(
+        esm2_150m_path=ESM, cofactor_sidecar_path=COF
+    )
+    strat = audit["cofactor_augmented_result"]["stratified_by_cofactor_signature"]
+    # The cofactor-agnostic OOS subset abstains far better than the confounded one.
+    assert (
+        strat["auc_in_gt_oos_without_cofactor_signature"]
+        > strat["auc_in_gt_oos_with_cofactor_signature"]
+    )
+    # The confounded set is a small, named minority of OOS rows.
+    assert 0 < strat["oos_with_cofactor_signature_count"] < strat["oos_without_cofactor_signature_count"]
+    assert len(strat["cofactor_confounded_oos_entry_ids"]) == strat["oos_with_cofactor_signature_count"]
+
+
 def test_load_cofactor_scores_shape_if_present():
     if not COF.exists():
         return

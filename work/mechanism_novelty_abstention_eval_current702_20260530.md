@@ -1,6 +1,6 @@
 # D11 Mechanism Novelty Abstention (de novo precondition)
 
-Run: 2026-05-31T02:06:52Z
+Run: 2026-05-31T02:10:22Z
 
 D11 de novo precondition: measure whether cheap unsupervised distance signals in the ESM2-150M mechanism space separate in-scope held-out queries from out-of-scope (novel-chemistry) held-out rows.
 
@@ -28,6 +28,17 @@ Source: `trained:esm2_t12_35m,trained:esm2_t6_8m`. In-scope: 48 | OOS: 92 | Atla
 | augmented_centroid_margin | 0.603487 | 0.405319 | 0.285022 |
 
 - Cofactor-augmented best AUC: **0.693614**.
+
+### OOS stratified by cofactor signature
+
+At an untuned cofactor threshold of 0.5, the aggregate abstention AUC splits sharply:
+
+- Cofactor-agnostic OOS (84 rows): AUC **0.71751** (abstain well).
+- Cofactor-signature OOS (8 rows): AUC **0.442708** (confidently misplaced).
+
+Cofactor-confounded OOS entry ids: `m_csa:191`, `m_csa:267`, `m_csa:30`, `m_csa:31`, `m_csa:448`, `m_csa:549`, `m_csa:563`, `m_csa:80`
+
+Cofactor-agnostic OOS rows abstain well (high AUC); the residual leak is concentrated in the small set of OOS enzymes that carry a known cofactor signature, which the channel pulls into occupied clusters. These are the named false-confident novelty cases for any abstention gate to flag.
 
 ## Interpretation
 

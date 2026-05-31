@@ -3,6 +3,34 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-05-31: Abstention Leak Is 8 Named Cofactor-Confounded OOS Rows, Not A Uniform Ceiling
+
+Decision: diagnose *why* novel-chemistry abstention plateaus at AUC ~0.69 instead
+of treating it as a generic ceiling. Tested two things and stratified the result.
+
+(1) A supervised, atlas-only mechanism-feature readout does NOT beat the
+unsupervised cofactor-augmented signal: per-class diagonal-Gaussian log-likelihood
+in the between-class subspace gives AUC 0.521 (chance) and a one-vs-rest
+mean-difference margin gives 0.637 — both below the cofactor-augmented 0.694. So
+the ceiling is not a method-sophistication problem solvable by learning directions
+on the current 8-class atlas (probe-only, not committed).
+
+(2) Stratifying the 92 OOS rows by whether they carry a known cofactor signature
+(max organic-cofactor score >= 0.5, untuned) splits the aggregate sharply:
+   - 84 cofactor-agnostic OOS rows abstain well: AUC 0.718 (near the 0.75 bar).
+   - 8 cofactor-signature OOS rows are confidently misplaced: AUC 0.443 (worse
+     than chance) — the channel pulls them into occupied clusters.
+The residual abstention leak is therefore concentrated in 8 named false-confident
+novelty cases (m_csa:30, 31, 80, 191, 267, 448, 549, 563), not spread uniformly.
+These are novel-mechanism enzymes that happen to use a known cofactor family, the
+single most dangerous failure mode for an abstention gate, and now enumerated.
+
+Consequence: an abstention gate built on the cofactor-augmented signal is viable
+for the cofactor-agnostic majority; the named cofactor-confounded OOS rows are the
+explicit target for the next mechanism-feature signal (fold/active-site geometry
+beyond cofactor identity). This stratified diagnostic is now part of the committed
+novelty eval (`stratified_by_cofactor_signature`).
+
 ## 2026-05-31: Novelty-Abstention Rerun On Strict t6/t12 Scores (Fallback Removed)
 
 Update to the de novo precondition result below: after the ESM2-150M fallback

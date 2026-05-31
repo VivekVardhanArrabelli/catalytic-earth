@@ -26,9 +26,29 @@
     },
     "source": "trained:esm2_t12_35m,trained:esm2_t6_8m",
     "source_caveat": "Cofactor scores are source-agnostic; today's source may be the documented ESM2-150M fallback rather than the original t6/t12 selected heads. Re-run with the recovered sidecar to remove the fallback.",
-    "status": "computed"
+    "status": "computed",
+    "stratified_by_cofactor_signature": {
+      "auc_in_gt_oos_all": 0.693614,
+      "auc_in_gt_oos_with_cofactor_signature": 0.442708,
+      "auc_in_gt_oos_without_cofactor_signature": 0.71751,
+      "cofactor_confounded_oos_entry_ids": [
+        "m_csa:191",
+        "m_csa:267",
+        "m_csa:30",
+        "m_csa:31",
+        "m_csa:448",
+        "m_csa:549",
+        "m_csa:563",
+        "m_csa:80"
+      ],
+      "cofactor_signature_threshold": 0.5,
+      "interpretation": "Cofactor-agnostic OOS rows abstain well (high AUC); the residual leak is concentrated in the small set of OOS enzymes that carry a known cofactor signature, which the channel pulls into occupied clusters. These are the named false-confident novelty cases for any abstention gate to flag.",
+      "oos_with_cofactor_signature_count": 8,
+      "oos_without_cofactor_signature_count": 84,
+      "signal": "augmented_nearest_centroid"
+    }
   },
-  "created_utc": "2026-05-31T02:06:52Z",
+  "created_utc": "2026-05-31T02:10:22Z",
   "guardrails": {
     "atlas_only_statistics_centroids_subspace": true,
     "labels_registries_thresholds_changed": false,
