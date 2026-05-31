@@ -148,3 +148,13 @@ def test_integration_deployment_gate_clears_bar_if_present():
     assert res["safest_channel_no_stratum_below_chance"] == "geometry_top1_score"
     assert res["channels"]["cofactor_max_score"]["confounded"] < 0.5
     assert res["channels"]["geometry_top1_score"]["confounded"] >= 0.75
+    # AUC does not imply a usable operating point: at >=90% in-scope retention the
+    # blind mean-combined gate abstains on NONE of the confounded rows, while the
+    # geometry-led gate keeps them safe (>0).
+    op = res["operating_points_at_90pct_retention"]
+    assert op["combined_mean"]["confounded_abstain_recall"] == 0.0
+    assert op["geometry_led"]["confounded_abstain_recall"] > 0.0
+    # Operating curve is monotone non-decreasing in OOS abstain-recall as threshold rises.
+    curve = res["geometry_led_operating_curve"]
+    recalls = [r["oos_abstain_recall"] for r in curve]
+    assert recalls == sorted(recalls)

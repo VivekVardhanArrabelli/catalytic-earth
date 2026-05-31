@@ -1,6 +1,6 @@
 # D11 Deployment-Valid Abstention Gate (de novo precondition)
 
-Run: 2026-05-31T19:15:26Z
+Run: 2026-05-31T20:45:25Z
 
 D11 de novo precondition, DEPLOYMENT-VALID: combine predicted-geometry fingerprint-retrieval confidence with the organic-cofactor head confidence directly over the held-out pool (both already calibrated [0,1]); no atlas, no eval-pool leakage.
 
@@ -19,6 +19,17 @@ In-scope: 47 | OOS: 79 (confounded 6, agnostic 73)
 
 - Best overall AUC: **0.852141** -> clears 0.75 bar: **True**.
 - Safest single channel (no stratum below chance): `geometry_top1_score`.
+
+## Operating point (fixed untuned threshold, >=90% in-scope retention)
+
+AUC alone is not a usable gate. At a threshold retaining >=90% of in-scope rows:
+
+| Gate | threshold | OOS abstain-recall | confounded abstain-recall | in-scope retain |
+| --- | ---: | ---: | ---: | ---: |
+| geometry_led | 0.35 | 0.1899 | 0.5 | 0.9149 |
+| combined_mean | 0.25 | 0.5949 | 0.0 | 0.9362 |
+
+A strong AUC does NOT yield a usable abstention threshold. At a fixed, untuned threshold that retains >=90% of in-scope rows, the geometry-led gate abstains on only ~19% of OOS, and the blind mean-combined gate (~59% OOS) abstains on NONE of the safety-critical cofactor-confounded rows. The score distributions overlap heavily; an AUC-passing gate is not yet a deployable one. The committed operating curve makes this explicit so the gap is not hidden behind the headline AUC.
 
 ## Interpretation
 

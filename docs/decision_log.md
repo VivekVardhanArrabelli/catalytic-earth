@@ -3,6 +3,41 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-05-31: Sobering Operating-Point Reality — De Novo AUC 0.852 Does NOT Yield A Usable Abstention Threshold
+
+Decision: the pivotal entry showed the deployment abstention AUC clears 0.75, but
+AUC is rank-only. Convert the gate to an actual decision (a threshold) and report
+its behavior, so the headline AUC is not mistaken for deployability. Thresholds are
+a fixed, untuned grid over the calibrated [0,1] scores — not fit to eval labels.
+
+Result (predicted/apo geometry; 47 in-scope, 79 OOS, 6 confounded; threshold chosen
+to retain >=90% of in-scope rows):
+  * geometry-led gate (thr 0.35): abstains on only **19% of OOS** at 91% in-scope
+    retention. The score distributions overlap heavily; there is a cliff near 0.40
+    where OOS-recall jumps to 0.84 but in-scope retention collapses to 0.64. No
+    threshold gives both high novelty-catch and high retention.
+  * blind mean-combined gate (thr 0.25): catches 59% of OOS but abstains on **NONE
+    of the 6 safety-critical cofactor-confounded rows** (confounded_abstain_recall
+    0.0) — the exact failure the AUC hid. The mean's aggregate edge comes entirely
+    from the cofactor-agnostic majority.
+
+Consequence: the de novo precondition is achievable in ranking (AUC 0.852) but NOT
+yet operational — there is no fixed threshold that abstains usefully while retaining
+known chemistry, and the blind mean is actively unsafe on the confounded subset. The
+gate now commits a full operating curve and the >=90%-retention operating points so
+this gap is explicit, not hidden behind the AUC. Future work: per-channel
+thresholds (geometry-led with a cofactor-agnostic-only cofactor lift), or a
+calibrated score, evaluated at the operating point, not by AUC.
+
+Guardrails: predicted-geometry deployment regime, sequence-only PLM input, no atlas,
+no training/refit, no heldout tuning (threshold grid is fixed/untuned); geometry
+fingerprint score is tuning-adjacent; M-CSA eval-only. Refines (does not overturn)
+the pivotal AUC entry below. Artifacts regenerated in place:
+`artifacts/v3_mechanism_deployment_abstention_gate_eval_current702_20260531.json`,
+`work/mechanism_deployment_abstention_gate_eval_current702_20260531.md`
+(`compute_deployment_gate` now emits `operating_points_at_90pct_retention` and
+`geometry_led_operating_curve`).
+
 ## 2026-05-31: PIVOTAL — De Novo Abstention Precondition IS MET On Deployment (Predicted) Geometry
 
 Decision: the prior "deployment-valid gate is blocked — no predicted-geometry

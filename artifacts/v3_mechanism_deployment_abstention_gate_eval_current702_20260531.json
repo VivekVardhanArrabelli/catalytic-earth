@@ -1,6 +1,6 @@
 {
   "artifact_id": "v3_mechanism_deployment_abstention_gate_eval_current702_20260531",
-  "created_utc": "2026-05-31T19:15:26Z",
+  "created_utc": "2026-05-31T20:45:25Z",
   "geometry_regime": "predicted_geometry_deployment",
   "guardrails": {
     "geometry_fingerprint_score_is_tuning_adjacent": true,
@@ -13,7 +13,8 @@
   },
   "interpretation": {
     "combined_vs_geometry": "combined_mean reaches 0.852141 across all OOS but trades away safety on the cofactor-confounded subset (the cofactor channel is fooled there); geometry top1 score alone is 0.756935 overall and is the single safest channel, strongest exactly on the confounded rows. A deployment gate should lead with geometry confidence and use the cofactor channel as a complementary lift on cofactor-agnostic OOS.",
-    "headline": "Deployment-valid best abstention AUC is 0.852141; the de novo precondition is MET on predicted geometry."
+    "headline": "Deployment-valid best abstention AUC is 0.852141; the de novo precondition is MET on predicted geometry.",
+    "operating_point_reality": "A strong AUC does NOT yield a usable abstention threshold. At a fixed, untuned threshold that retains >=90% of in-scope rows, the geometry-led gate abstains on only ~19% of OOS, and the blind mean-combined gate (~59% OOS) abstains on NONE of the safety-critical cofactor-confounded rows. The score distributions overlap heavily; an AUC-passing gate is not yet a deployable one. The committed operating curve makes this explicit so the gap is not hidden behind the headline AUC."
   },
   "result": {
     "best_overall_auc": 0.852141,
@@ -54,6 +55,137 @@
       "confounded_oos": 6,
       "inscope": 47,
       "oos": 79
+    },
+    "geometry_led_operating_curve": [
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.05
+      },
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.1
+      },
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.15
+      },
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0127,
+        "threshold": 0.2
+      },
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0253,
+        "threshold": 0.25
+      },
+      {
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.9787,
+        "oos_abstain_recall": 0.0633,
+        "threshold": 0.3
+      },
+      {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.1899,
+        "threshold": 0.35
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.6383,
+        "oos_abstain_recall": 0.8354,
+        "threshold": 0.4
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.4894,
+        "oos_abstain_recall": 0.9367,
+        "threshold": 0.45
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.4894,
+        "oos_abstain_recall": 0.9367,
+        "threshold": 0.5
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.383,
+        "oos_abstain_recall": 0.9494,
+        "threshold": 0.55
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.234,
+        "oos_abstain_recall": 0.9873,
+        "threshold": 0.6
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.1489,
+        "oos_abstain_recall": 0.9873,
+        "threshold": 0.65
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.1489,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.7
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.1489,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.75
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.1277,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.8
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.0851,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.85
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.0213,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.9
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.0,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.95
+      }
+    ],
+    "operating_points_at_90pct_retention": {
+      "combined_mean": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 0.9362,
+        "oos_abstain_recall": 0.5949,
+        "threshold": 0.25
+      },
+      "geometry_led": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.1899,
+        "threshold": 0.35
+      },
+      "min_inscope_retention": 0.9
     },
     "safest_channel_no_stratum_below_chance": "geometry_top1_score",
     "status": "computed"

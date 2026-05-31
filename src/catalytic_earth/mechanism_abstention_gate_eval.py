@@ -266,6 +266,38 @@ def compute_deployment_gate(
         key=lambda n: min(channels[n]["all"], channels[n]["confounded"], channels[n]["agnostic"]),
         default=None,
     )
+
+    # Operating point: AUC alone does not yield a usable abstention threshold, so
+    # report the actual decision curve. "Abstain" = score below threshold (looks
+    # novel). Thresholds are a fixed, untuned grid over the calibrated [0,1] score;
+    # they are NOT fit to the eval labels.
+    grid = [round(0.05 * i, 2) for i in range(1, 20)]
+
+    def operating_curve(fn) -> list[dict[str, Any]]:
+        curve = []
+        for thr in grid:
+            in_abst = sum(1 for e in inscope if fn(e) < thr)
+            oos_abst = sum(1 for e in oos if fn(e) < thr)
+            conf_abst = sum(1 for e in confounded if fn(e) < thr)
+            curve.append({
+                "threshold": thr,
+                "oos_abstain_recall": round(oos_abst / len(oos), 4),
+                "inscope_retain_recall": round(1 - in_abst / len(inscope), 4),
+                "confounded_abstain_recall": (
+                    round(conf_abst / len(confounded), 4) if confounded else None),
+            })
+        return curve
+
+    def best_at_retention(fn, min_retain: float) -> dict[str, Any] | None:
+        ok = [r for r in operating_curve(fn) if r["inscope_retain_recall"] >= min_retain]
+        return max(ok, key=lambda r: r["oos_abstain_recall"]) if ok else None
+
+    operating_points = {
+        "min_inscope_retention": 0.90,
+        "geometry_led": best_at_retention(geom, 0.90),
+        "combined_mean": best_at_retention(lambda e: (geom(e) + cof(e)) / 2, 0.90),
+    }
+
     return {
         "status": "computed",
         "combination": "raw_calibrated_confidence_no_atlas_no_leakage",
@@ -274,6 +306,8 @@ def compute_deployment_gate(
             "confounded_oos": len(confounded), "agnostic_oos": len(agnostic),
         },
         "channels": channels,
+        "operating_points_at_90pct_retention": operating_points,
+        "geometry_led_operating_curve": operating_curve(geom),
         "best_overall_auc": best,
         "clears_abstention_bar": best >= ABSTENTION_USABLE_AUC,
         "safest_channel_no_stratum_below_chance": safest,
@@ -322,6 +356,15 @@ def build_mechanism_deployment_abstention_gate_eval(
                 "is the single safest channel, strongest exactly on the confounded "
                 "rows. A deployment gate should lead with geometry confidence and use "
                 "the cofactor channel as a complementary lift on cofactor-agnostic OOS."
+            ),
+            "operating_point_reality": (
+                "A strong AUC does NOT yield a usable abstention threshold. At a fixed, "
+                "untuned threshold that retains >=90% of in-scope rows, the geometry-led "
+                "gate abstains on only ~19% of OOS, and the blind mean-combined gate "
+                "(~59% OOS) abstains on NONE of the safety-critical cofactor-confounded "
+                "rows. The score distributions overlap heavily; an AUC-passing gate is "
+                "not yet a deployable one. The committed operating curve makes this "
+                "explicit so the gap is not hidden behind the headline AUC."
             ),
         },
         "guardrails": {
@@ -397,6 +440,28 @@ def _render_deployment_report(audit: dict[str, Any]) -> str:
         f"**{res['clears_abstention_bar']}**.",
         f"- Safest single channel (no stratum below chance): "
         f"`{res['safest_channel_no_stratum_below_chance']}`.",
+    ]
+    op = res.get("operating_points_at_90pct_retention")
+    if op:
+        gl, mc = op.get("geometry_led"), op.get("combined_mean")
+        lines += [
+            "",
+            "## Operating point (fixed untuned threshold, >=90% in-scope retention)",
+            "",
+            "AUC alone is not a usable gate. At a threshold retaining >=90% of in-scope rows:",
+            "",
+            "| Gate | threshold | OOS abstain-recall | confounded abstain-recall | in-scope retain |",
+            "| --- | ---: | ---: | ---: | ---: |",
+        ]
+        for name, r in (("geometry_led", gl), ("combined_mean", mc)):
+            if r:
+                lines.append(
+                    f"| {name} | {r['threshold']} | {r['oos_abstain_recall']} | "
+                    f"{r['confounded_abstain_recall']} | {r['inscope_retain_recall']} |"
+                )
+        lines.append("")
+        lines.append(audit["interpretation"]["operating_point_reality"])
+    lines += [
         "",
         "## Interpretation",
         "",
