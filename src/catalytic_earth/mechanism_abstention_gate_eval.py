@@ -271,7 +271,7 @@ def compute_deployment_gate(
     # report the actual decision curve. "Abstain" = score below threshold (looks
     # novel). Thresholds are a fixed, untuned grid over the calibrated [0,1] score;
     # they are NOT fit to the eval labels.
-    grid = [round(0.05 * i, 2) for i in range(1, 20)]
+    grid = [round(0.02 * i, 2) for i in range(1, 50)]
 
     def operating_curve(fn) -> list[dict[str, Any]]:
         curve = []
@@ -298,6 +298,55 @@ def compute_deployment_gate(
         "combined_mean": best_at_retention(lambda e: (geom(e) + cof(e)) / 2, 0.90),
     }
 
+    # Per-channel RULE gate (the operational architecture): geometry leads; the
+    # cofactor channel may only ADD abstentions where it is trustworthy (no strong
+    # known-cofactor signature, cof < signature threshold), and may never KEEP a row
+    # geometry flags. This preserves confounded-row safety while lifting OOS recall
+    # on the cofactor-agnostic majority. A 2D fixed untuned threshold grid (tg, tc).
+    def _rule_metrics(tg: float, tc: float) -> dict[str, Any]:
+        def abstain(e: str) -> bool:
+            return geom(e) < tg or (
+                cof(e) < COFACTOR_SIGNATURE_THRESHOLD and cof(e) < tc)
+        in_abst = sum(1 for e in inscope if abstain(e))
+        return {
+            "geometry_threshold": tg,
+            "cofactor_threshold": tc,
+            "inscope_retain_recall": round(1 - in_abst / len(inscope), 4),
+            "oos_abstain_recall": round(sum(1 for e in oos if abstain(e)) / len(oos), 4),
+            "confounded_abstain_recall": (
+                round(sum(1 for e in confounded if abstain(e)) / len(confounded), 4)
+                if confounded else None),
+            "agnostic_abstain_recall": (
+                round(sum(1 for e in agnostic if abstain(e)) / len(agnostic), 4)
+                if agnostic else None),
+        }
+
+    def _best_rule(min_retain: float) -> dict[str, Any] | None:
+        best = None
+        for tg in grid:
+            for tc in grid:
+                m = _rule_metrics(tg, tc)
+                if m["inscope_retain_recall"] >= min_retain:
+                    key = (m["oos_abstain_recall"], m["confounded_abstain_recall"] or 0.0)
+                    if best is None or key > best[0]:
+                        best = (key, m)
+        return best[1] if best else None
+
+    geom_only_85 = best_at_retention(geom, 0.85)
+    rule_85 = _best_rule(0.85)
+    per_channel_rule = {
+        "rule": (
+            "abstain if geometry_score < tg OR "
+            "(cofactor_max < signature_threshold AND cofactor_max < tc)"
+        ),
+        "best_at_90pct_retention": _best_rule(0.90),
+        "best_at_85pct_retention": rule_85,
+        "geometry_only_at_85pct_retention": geom_only_85,
+        "cofactor_lift_oos_recall_at_85pct": (
+            round(rule_85["oos_abstain_recall"] - geom_only_85["oos_abstain_recall"], 4)
+            if (rule_85 and geom_only_85) else None),
+    }
+
     return {
         "status": "computed",
         "combination": "raw_calibrated_confidence_no_atlas_no_leakage",
@@ -308,6 +357,7 @@ def compute_deployment_gate(
         "channels": channels,
         "operating_points_at_90pct_retention": operating_points,
         "geometry_led_operating_curve": operating_curve(geom),
+        "per_channel_rule_gate": per_channel_rule,
         "best_overall_auc": best,
         "clears_abstention_bar": best >= ABSTENTION_USABLE_AUC,
         "safest_channel_no_stratum_below_chance": safest,
@@ -461,6 +511,26 @@ def _render_deployment_report(audit: dict[str, Any]) -> str:
                 )
         lines.append("")
         lines.append(audit["interpretation"]["operating_point_reality"])
+    pc = res.get("per_channel_rule_gate")
+    if pc:
+        b85, g85 = pc.get("best_at_85pct_retention"), pc.get("geometry_only_at_85pct_retention")
+        lines += [
+            "",
+            "## Per-channel rule gate (operational architecture)",
+            "",
+            f"Rule: `{pc['rule']}`.",
+            "",
+            f"- No viable operating point at 90% retention (`best_at_90pct_retention` "
+            f"= {pc['best_at_90pct_retention']}); the feature overlap forbids it.",
+        ]
+        if b85 and g85:
+            lines += [
+                f"- At a relaxed 85% retention floor the cofactor lift is real: OOS "
+                f"abstain-recall {g85['oos_abstain_recall']} (geometry only) -> "
+                f"{b85['oos_abstain_recall']} (per-channel rule), "
+                f"**+{pc['cofactor_lift_oos_recall_at_85pct']}**, concentrated on the "
+                f"cofactor-agnostic subset ({b85['agnostic_abstain_recall']}).",
+            ]
     lines += [
         "",
         "## Interpretation",

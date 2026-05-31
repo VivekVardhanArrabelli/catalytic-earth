@@ -158,3 +158,13 @@ def test_integration_deployment_gate_clears_bar_if_present():
     curve = res["geometry_led_operating_curve"]
     recalls = [r["oos_abstain_recall"] for r in curve]
     assert recalls == sorted(recalls)
+    # Per-channel rule gate: the cofactor lift helps at the relaxed 85% retention
+    # floor (the feature overlap forbids a useful 90%-retention operating point).
+    pc = res["per_channel_rule_gate"]
+    assert pc["best_at_90pct_retention"] is None
+    assert pc["best_at_85pct_retention"] is not None
+    assert pc["cofactor_lift_oos_recall_at_85pct"] > 0.0
+    assert (
+        pc["best_at_85pct_retention"]["oos_abstain_recall"]
+        > pc["geometry_only_at_85pct_retention"]["oos_abstain_recall"]
+    )

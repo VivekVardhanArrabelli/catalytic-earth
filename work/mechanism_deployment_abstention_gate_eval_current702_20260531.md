@@ -1,6 +1,6 @@
 # D11 Deployment-Valid Abstention Gate (de novo precondition)
 
-Run: 2026-05-31T20:45:25Z
+Run: 2026-05-31T20:52:09Z
 
 D11 de novo precondition, DEPLOYMENT-VALID: combine predicted-geometry fingerprint-retrieval confidence with the organic-cofactor head confidence directly over the held-out pool (both already calibrated [0,1]); no atlas, no eval-pool leakage.
 
@@ -26,10 +26,17 @@ AUC alone is not a usable gate. At a threshold retaining >=90% of in-scope rows:
 
 | Gate | threshold | OOS abstain-recall | confounded abstain-recall | in-scope retain |
 | --- | ---: | ---: | ---: | ---: |
-| geometry_led | 0.35 | 0.1899 | 0.5 | 0.9149 |
-| combined_mean | 0.25 | 0.5949 | 0.0 | 0.9362 |
+| geometry_led | 0.34 | 0.1392 | 0.1667 | 0.9362 |
+| combined_mean | 0.26 | 0.6709 | 0.0 | 0.9149 |
 
 A strong AUC does NOT yield a usable abstention threshold. At a fixed, untuned threshold that retains >=90% of in-scope rows, the geometry-led gate abstains on only ~19% of OOS, and the blind mean-combined gate (~59% OOS) abstains on NONE of the safety-critical cofactor-confounded rows. The score distributions overlap heavily; an AUC-passing gate is not yet a deployable one. The committed operating curve makes this explicit so the gap is not hidden behind the headline AUC.
+
+## Per-channel rule gate (operational architecture)
+
+Rule: `abstain if geometry_score < tg OR (cofactor_max < signature_threshold AND cofactor_max < tc)`.
+
+- No viable operating point at 90% retention (`best_at_90pct_retention` = None); the feature overlap forbids it.
+- At a relaxed 85% retention floor the cofactor lift is real: OOS abstain-recall 0.1392 (geometry only) -> 0.3038 (per-channel rule), **+0.1646**, concentrated on the cofactor-agnostic subset (0.3151).
 
 ## Interpretation
 

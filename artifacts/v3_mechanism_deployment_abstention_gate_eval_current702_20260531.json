@@ -1,6 +1,6 @@
 {
   "artifact_id": "v3_mechanism_deployment_abstention_gate_eval_current702_20260531",
-  "created_utc": "2026-05-31T20:45:25Z",
+  "created_utc": "2026-05-31T20:52:09Z",
   "geometry_regime": "predicted_geometry_deployment",
   "guardrails": {
     "geometry_fingerprint_score_is_tuning_adjacent": true,
@@ -61,7 +61,25 @@
         "confounded_abstain_recall": 0.0,
         "inscope_retain_recall": 1.0,
         "oos_abstain_recall": 0.0,
-        "threshold": 0.05
+        "threshold": 0.02
+      },
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.04
+      },
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.06
+      },
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.08
       },
       {
         "confounded_abstain_recall": 0.0,
@@ -73,7 +91,25 @@
         "confounded_abstain_recall": 0.0,
         "inscope_retain_recall": 1.0,
         "oos_abstain_recall": 0.0,
-        "threshold": 0.15
+        "threshold": 0.12
+      },
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.14
+      },
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.16
+      },
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.18
       },
       {
         "confounded_abstain_recall": 0.0,
@@ -84,8 +120,26 @@
       {
         "confounded_abstain_recall": 0.0,
         "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0127,
+        "threshold": 0.22
+      },
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0127,
+        "threshold": 0.24
+      },
+      {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
         "oos_abstain_recall": 0.0253,
-        "threshold": 0.25
+        "threshold": 0.26
+      },
+      {
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.038,
+        "threshold": 0.28
       },
       {
         "confounded_abstain_recall": 0.1667,
@@ -94,10 +148,28 @@
         "threshold": 0.3
       },
       {
-        "confounded_abstain_recall": 0.5,
-        "inscope_retain_recall": 0.9149,
-        "oos_abstain_recall": 0.1899,
-        "threshold": 0.35
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.9787,
+        "oos_abstain_recall": 0.0886,
+        "threshold": 0.32
+      },
+      {
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.9362,
+        "oos_abstain_recall": 0.1392,
+        "threshold": 0.34
+      },
+      {
+        "confounded_abstain_recall": 0.6667,
+        "inscope_retain_recall": 0.8085,
+        "oos_abstain_recall": 0.3797,
+        "threshold": 0.36
+      },
+      {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.7021,
+        "oos_abstain_recall": 0.7089,
+        "threshold": 0.38
       },
       {
         "confounded_abstain_recall": 1.0,
@@ -107,9 +179,27 @@
       },
       {
         "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.5745,
+        "oos_abstain_recall": 0.9114,
+        "threshold": 0.42
+      },
+      {
+        "confounded_abstain_recall": 1.0,
         "inscope_retain_recall": 0.4894,
         "oos_abstain_recall": 0.9367,
-        "threshold": 0.45
+        "threshold": 0.44
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.4894,
+        "oos_abstain_recall": 0.9367,
+        "threshold": 0.46
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.4894,
+        "oos_abstain_recall": 0.9367,
+        "threshold": 0.48
       },
       {
         "confounded_abstain_recall": 1.0,
@@ -119,9 +209,27 @@
       },
       {
         "confounded_abstain_recall": 1.0,
-        "inscope_retain_recall": 0.383,
+        "inscope_retain_recall": 0.4894,
+        "oos_abstain_recall": 0.9367,
+        "threshold": 0.52
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.4468,
         "oos_abstain_recall": 0.9494,
-        "threshold": 0.55
+        "threshold": 0.54
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.383,
+        "oos_abstain_recall": 0.962,
+        "threshold": 0.56
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.383,
+        "oos_abstain_recall": 0.9747,
+        "threshold": 0.58
       },
       {
         "confounded_abstain_recall": 1.0,
@@ -133,7 +241,25 @@
         "confounded_abstain_recall": 1.0,
         "inscope_retain_recall": 0.1489,
         "oos_abstain_recall": 0.9873,
-        "threshold": 0.65
+        "threshold": 0.62
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.1489,
+        "oos_abstain_recall": 0.9873,
+        "threshold": 0.64
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.1489,
+        "oos_abstain_recall": 0.9873,
+        "threshold": 0.66
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.1489,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.68
       },
       {
         "confounded_abstain_recall": 1.0,
@@ -145,7 +271,25 @@
         "confounded_abstain_recall": 1.0,
         "inscope_retain_recall": 0.1489,
         "oos_abstain_recall": 1.0,
-        "threshold": 0.75
+        "threshold": 0.72
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.1489,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.74
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.1489,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.76
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.1489,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.78
       },
       {
         "confounded_abstain_recall": 1.0,
@@ -157,7 +301,25 @@
         "confounded_abstain_recall": 1.0,
         "inscope_retain_recall": 0.0851,
         "oos_abstain_recall": 1.0,
-        "threshold": 0.85
+        "threshold": 0.82
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.0851,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.84
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.0851,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.86
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.0638,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.88
       },
       {
         "confounded_abstain_recall": 1.0,
@@ -169,23 +331,60 @@
         "confounded_abstain_recall": 1.0,
         "inscope_retain_recall": 0.0,
         "oos_abstain_recall": 1.0,
-        "threshold": 0.95
+        "threshold": 0.92
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.0,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.94
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.0,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.96
+      },
+      {
+        "confounded_abstain_recall": 1.0,
+        "inscope_retain_recall": 0.0,
+        "oos_abstain_recall": 1.0,
+        "threshold": 0.98
       }
     ],
     "operating_points_at_90pct_retention": {
       "combined_mean": {
         "confounded_abstain_recall": 0.0,
-        "inscope_retain_recall": 0.9362,
-        "oos_abstain_recall": 0.5949,
-        "threshold": 0.25
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.6709,
+        "threshold": 0.26
       },
       "geometry_led": {
-        "confounded_abstain_recall": 0.5,
-        "inscope_retain_recall": 0.9149,
-        "oos_abstain_recall": 0.1899,
-        "threshold": 0.35
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.9362,
+        "oos_abstain_recall": 0.1392,
+        "threshold": 0.34
       },
       "min_inscope_retention": 0.9
+    },
+    "per_channel_rule_gate": {
+      "best_at_85pct_retention": {
+        "agnostic_abstain_recall": 0.3151,
+        "cofactor_threshold": 0.02,
+        "confounded_abstain_recall": 0.1667,
+        "geometry_threshold": 0.32,
+        "inscope_retain_recall": 0.8511,
+        "oos_abstain_recall": 0.3038
+      },
+      "best_at_90pct_retention": null,
+      "cofactor_lift_oos_recall_at_85pct": 0.1646,
+      "geometry_only_at_85pct_retention": {
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.9362,
+        "oos_abstain_recall": 0.1392,
+        "threshold": 0.34
+      },
+      "rule": "abstain if geometry_score < tg OR (cofactor_max < signature_threshold AND cofactor_max < tc)"
     },
     "safest_channel_no_stratum_below_chance": "geometry_top1_score",
     "status": "computed"

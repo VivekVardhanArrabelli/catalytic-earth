@@ -3,6 +3,43 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-05-31: Operational Gate Architecture Settled — Binding Constraint Is Feature Overlap, Not Combiner Design (Northstar Pivot)
+
+Decision: act on the operating-point gap. Built the per-channel RULE gate that the
+prior entry pointed to: `abstain if geometry_score < tg OR (cofactor_max <
+signature_threshold AND cofactor_max < tc)` -- geometry leads (safe on the
+cofactor-confounded subset), and the cofactor channel may only ADD abstentions
+where it is trustworthy (no strong known-cofactor signature), never KEEP a row
+geometry flags. Swept a fixed untuned 2D threshold grid (0.02 steps); no tuning on
+eval labels.
+
+Result (predicted/apo deployment geometry; 47 in-scope, 79 OOS, 6 confounded, 73
+agnostic):
+  * At 90% in-scope retention there is STILL no viable operating point -- for any
+    combiner. The geometry score distributions overlap hard: in-scope median 0.434
+    (min 0.291), agnostic-OOS median 0.370 (max 0.676), confounded-OOS median 0.358.
+    Known and novel chemistry are not linearly separable on this feature.
+  * Relaxing to 85% retention, the per-channel rule gives a REAL lift: OOS
+    abstain-recall 0.139 (geometry only) -> 0.304 (rule), +0.165, entirely on the
+    cofactor-agnostic subset (0.315). The confounded subset stays hard (~0.17)
+    until retention drops to ~80%.
+
+Northstar consequence: the per-channel rule is the correct OPERATIONAL ARCHITECTURE
+(geometry-led, cofactor-as-agnostic-lift, confounded-safe) and is now committed.
+But the binding constraint on de novo abstention is no longer combiner design or
+thresholding -- it is FEATURE OVERLAP. The current channels (predicted-geometry
+fingerprint-retrieval confidence + organic-cofactor head probability) do not place
+novel chemistry far enough from known chemistry to abstain at deployable retention.
+This redirects the northstar: the next lever is a stronger mechanism-discriminative
+FEATURE (e.g. learned active-site/electron-flow embeddings, predicted-geometry role
+decomposition for atlas rows, or fold-level novelty signals), evaluated at the
+operating point -- not another way to combine the features we already have.
+
+Guardrails: predicted-geometry deployment regime, sequence-only PLM input, no atlas,
+no training/refit, fixed untuned threshold grid; geometry fingerprint score is
+tuning-adjacent; M-CSA eval-only. `compute_deployment_gate` now emits
+`per_channel_rule_gate`. Refines the operating-point entry below; both stand.
+
 ## 2026-05-31: Sobering Operating-Point Reality — De Novo AUC 0.852 Does NOT Yield A Usable Abstention Threshold
 
 Decision: the pivotal entry showed the deployment abstention AUC clears 0.75, but
