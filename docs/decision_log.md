@@ -3,6 +3,20 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-05-31: Novelty-Abstention Rerun On Strict t6/t12 Scores (Fallback Removed)
+
+Update to the de novo precondition result below: after the ESM2-150M fallback
+cofactor sidecar was replaced with the strict original t6/t12 selected scores
+(`trained:esm2_t6_8m` + `trained:esm2_t12_35m`), the source-agnostic
+novelty-abstention eval was re-run with no code change. The real cofactor heads
+improve separation over the fallback — cofactor-augmented best AUC rises from
+0.654 to **0.694**, and the raw cofactor-confidence signal reaches AUC 0.636 with
+novel chemistry carrying markedly lower in-class cofactor confidence (in-scope
+0.380 vs OOS 0.165). Bare-PLM distance is unchanged at 0.596. The signal is still
+below the 0.75 usability bar, so the conclusion stands: distance/cofactor
+abstention is not yet sufficient for de novo, but the stronger channel
+measurably helps. Artifact and report regenerated in place.
+
 ## 2026-05-31: D11 De Novo Precondition — Distance Cannot Abstain On Novelty; Cofactor Helps But Falls Short
 
 Decision: measure the D11 de novo validity check directly — can a cheap,

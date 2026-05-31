@@ -1,6 +1,6 @@
 # D11 Mechanism Novelty Abstention (de novo precondition)
 
-Run: 2026-05-31T01:45:07Z
+Run: 2026-05-31T02:06:52Z
 
 D11 de novo precondition: measure whether cheap unsupervised distance signals in the ESM2-150M mechanism space separate in-scope held-out queries from out-of-scope (novel-chemistry) held-out rows.
 
@@ -19,18 +19,18 @@ In-scope held-out: 48 | OOS held-out: 92 | Atlas: 184
 
 ## Cofactor-augmented signals
 
-Source: `trained:esm2_t30_150m_existing_track`. In-scope: 48 | OOS: 92 | Atlas: 184
+Source: `trained:esm2_t12_35m,trained:esm2_t6_8m`. In-scope: 48 | OOS: 92 | Atlas: 184
 
 | Signal | AUC | in-scope mean | OOS mean |
 | --- | ---: | ---: | ---: |
-| cofactor_max_raw_score | 0.580389 | 0.33659 | 0.154833 |
-| augmented_nearest_centroid | 0.653759 | 0.716347 | 0.600879 |
-| augmented_centroid_margin | 0.592618 | 0.447185 | 0.332149 |
+| cofactor_max_raw_score | 0.636209 | 0.379595 | 0.164706 |
+| augmented_nearest_centroid | 0.693614 | 0.716278 | 0.579234 |
+| augmented_centroid_margin | 0.603487 | 0.405319 | 0.285022 |
 
-- Cofactor-augmented best AUC: **0.653759**.
+- Cofactor-augmented best AUC: **0.693614**.
 
 ## Interpretation
 
-Bare-PLM best abstention AUC is 0.596467; cofactor augmentation lifts it to 0.653759.
+Bare-PLM best abstention AUC is 0.596467; cofactor augmentation lifts it to 0.693614.
 
 OOS rows are real, well-folded enzymes with novel mechanism chemistry. A general-purpose PLM embedding encodes overall protein similarity, under which novel enzymes still look like ordinary proteins and sit inside occupied regions, so raw embedding distance is near chance. The mechanism-discriminative cofactor channel moves the signal in the right direction (novel chemistry carries lower in-class cofactor confidence) but does not yet clear the abstention bar, so the de novo precondition remains an open problem pending a stronger mechanism-feature signal.
