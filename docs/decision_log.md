@@ -3,6 +3,33 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-05-31: Predicted-Geometry Confidence Is The Strongest Abstention Signal
+
+Decision: test whether geometry-channel confidence flags the cofactor-confounded
+OOS rows where the cofactor channel is confidently wrong — on deployment-valid
+PREDICTED (AlphaFold) geometry, not experimental teacher geometry.
+
+First rejected a trap: `v3_geometry_retrieval_1025.json` is experimental/teacher-
+side (retains ligand/cofactor context, scores a non-deployment-valid AUC 1.0). The
+honest signal is `top1_score` from `hand_router_on_predicted_geometry.rows` in
+`v3_predicted_geometry_robustness_audit_current702_20260529.json` (predicted, apo).
+
+Result (heldout split, predicted regime): predicted-geometry top1 score separates
+in-scope from OOS at AUC 0.757 (in vs all-OOS, 47 vs 79) — the first single signal
+to reach the 0.75 usability bar, beating cofactor-augmented 0.694 and bare-PLM
+0.596. It is strongest exactly where the cofactor channel fails: AUC 0.840 on the
+cofactor-confounded OOS (n=6 with usable predicted geometry; m_csa:549 fetch-failed,
+m_csa:563 excluded) vs the cofactor channel's worse-than-chance 0.443 there. The
+channels are complementary.
+
+Consequence: the de novo abstention gate should be geometry-confidence-led with
+the cofactor channel complementary. Next: a combined weakest-channel gate
+(predicted-geometry confidence AND cofactor agreement) and fold the
+predicted-geometry signal into the novelty eval as first-class. Existing per-row
+scores only; nothing fit on heldout; no labels/registries/thresholds changed;
+M-CSA eval-only. Artifact: `work/predicted_geometry_abstention_finding_current702_20260531.md`;
+reproduce with `scripts/predicted_geometry_abstention_probe.py`.
+
 ## 2026-05-31: Abstention Leak Is 8 Named Cofactor-Confounded OOS Rows, Not A Uniform Ceiling
 
 Decision: diagnose *why* novel-chemistry abstention plateaus at AUC ~0.69 instead
