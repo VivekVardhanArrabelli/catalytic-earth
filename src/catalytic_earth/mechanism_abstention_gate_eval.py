@@ -202,6 +202,211 @@ def _geometry_regime(geometry_retrieval_path: Path) -> str:
     return "experimental_geometry_teacher"
 
 
+def compute_deployment_gate(
+    plm_rows: dict[str, dict[str, Any]],
+    cofactor_scores: dict[str, dict[str, float]],
+    geometry_scores: dict[str, dict[str, float]],
+) -> dict[str, Any]:
+    """Deployment-valid abstention gate over the held-out pool, with NO atlas.
+
+    Both channels are already calibrated [0,1] confidences -- predicted-geometry
+    fingerprint-retrieval top1 score and the strongest organic-cofactor head
+    probability -- so they combine directly without atlas normalization and without
+    eval-pool leakage. Higher = looks more like known chemistry; in-scope should
+    score higher than out-of-scope. This is the deployment-valid de novo gate: it
+    needs only the predicted-geometry held-out scoring, not a predicted-geometry
+    atlas (which the current robustness audit does not provide).
+    """
+    def fp(e: str) -> str | None:
+        return plm_rows[e]["true_fingerprint_id"]
+
+    def usable(e: str) -> bool:
+        return e in geometry_scores and e in cofactor_scores and e in plm_rows
+
+    inscope = sorted(
+        e for e in geometry_scores
+        if usable(e) and plm_rows[e]["split_assignment"] == "heldout" and fp(e)
+    )
+    oos = sorted(
+        e for e in geometry_scores
+        if usable(e) and plm_rows[e]["split_assignment"] == "heldout" and not fp(e)
+    )
+    if not (inscope and oos):
+        return {"status": "insufficient_rows",
+                "counts": {"inscope": len(inscope), "oos": len(oos)}}
+
+    def geom(e): return geometry_scores[e]["score"]
+    def cof(e): return max(cofactor_scores[e].get(c, 0.0) for c in COFACTOR_CLASSES)
+    confounded = [e for e in oos if cof(e) >= COFACTOR_SIGNATURE_THRESHOLD]
+    agnostic = [e for e in oos if e not in confounded]
+
+    channel_fns = {
+        "geometry_top1_score": geom,
+        "cofactor_max_score": cof,
+        "combined_mean": lambda e: (geom(e) + cof(e)) / 2,
+        "combined_min_concordance": lambda e: min(geom(e), cof(e)),
+    }
+
+    def strata(fn) -> dict[str, Any]:
+        iv = [fn(e) for e in inscope]
+        return {
+            "all": _auc_in_gt_oos(iv, [fn(e) for e in oos]),
+            "confounded": _auc_in_gt_oos(iv, [fn(e) for e in confounded]),
+            "agnostic": _auc_in_gt_oos(iv, [fn(e) for e in agnostic]),
+            "in_scope_mean": round(sum(iv) / len(iv), 6),
+            "oos_mean": round(sum(fn(e) for e in oos) / len(oos), 6),
+        }
+
+    channels = {name: strata(fn) for name, fn in channel_fns.items()}
+    best = max((c["all"] for c in channels.values() if c["all"] is not None), default=0.0)
+    # The single safest channel across all OOS strata (no stratum below 0.5).
+    safest = max(
+        (n for n, c in channels.items()
+         if all(c[s] is not None and c[s] >= 0.5 for s in ("all", "confounded", "agnostic"))),
+        key=lambda n: min(channels[n]["all"], channels[n]["confounded"], channels[n]["agnostic"]),
+        default=None,
+    )
+    return {
+        "status": "computed",
+        "combination": "raw_calibrated_confidence_no_atlas_no_leakage",
+        "counts": {
+            "inscope": len(inscope), "oos": len(oos),
+            "confounded_oos": len(confounded), "agnostic_oos": len(agnostic),
+        },
+        "channels": channels,
+        "best_overall_auc": best,
+        "clears_abstention_bar": best >= ABSTENTION_USABLE_AUC,
+        "safest_channel_no_stratum_below_chance": safest,
+    }
+
+
+def build_mechanism_deployment_abstention_gate_eval(
+    *,
+    esm2_150m_path: Path,
+    cofactor_sidecar_path: Path,
+    predicted_geometry_audit_path: Path,
+) -> dict[str, Any]:
+    """Deployment-valid de novo gate from predicted-geometry held-out scoring."""
+    plm_rows = load_plm_rows(esm2_150m_path)
+    cofactor_scores = load_cofactor_scores(cofactor_sidecar_path)
+    geometry_scores = load_geometry_role_scores(predicted_geometry_audit_path)
+    result = compute_deployment_gate(plm_rows, cofactor_scores, geometry_scores)
+    best = result.get("best_overall_auc", 0.0)
+    mean_all = (result.get("channels", {}).get("combined_mean", {}) or {}).get("all")
+    geom_all = (result.get("channels", {}).get("geometry_top1_score", {}) or {}).get("all")
+    return {
+        "artifact_id": "v3_mechanism_deployment_abstention_gate_eval_current702_20260531",
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "scope": (
+            "D11 de novo precondition, DEPLOYMENT-VALID: combine predicted-geometry "
+            "fingerprint-retrieval confidence with the organic-cofactor head "
+            "confidence directly over the held-out pool (both already calibrated "
+            "[0,1]); no atlas, no eval-pool leakage."
+        ),
+        "geometry_regime": "predicted_geometry_deployment",
+        "result": result,
+        "interpretation": {
+            "headline": (
+                f"Deployment-valid best abstention AUC is {best}; "
+                + (
+                    "the de novo precondition is MET on predicted geometry."
+                    if best >= ABSTENTION_USABLE_AUC
+                    else "the de novo precondition is not yet met on predicted geometry."
+                )
+            ),
+            "combined_vs_geometry": (
+                f"combined_mean reaches {mean_all} across all OOS but trades away "
+                "safety on the cofactor-confounded subset (the cofactor channel is "
+                f"fooled there); geometry top1 score alone is {geom_all} overall and "
+                "is the single safest channel, strongest exactly on the confounded "
+                "rows. A deployment gate should lead with geometry confidence and use "
+                "the cofactor channel as a complementary lift on cofactor-agnostic OOS."
+            ),
+        },
+        "guardrails": {
+            "sequence_inputs_amino_acid_only": True,
+            "predicted_geometry_deployment_regime": True,
+            "no_atlas_no_eval_pool_leakage": True,
+            "no_training_or_refit": True,
+            "no_heldout_tuning": True,
+            "geometry_fingerprint_score_is_tuning_adjacent": True,
+            "labels_registries_thresholds_changed": False,
+        },
+        "source_artifacts": {
+            "esm2_150m_embeddings": {"path": str(esm2_150m_path), "sha256": _sha256(esm2_150m_path)},
+            "cofactor_score_sidecar": {
+                "path": str(cofactor_sidecar_path), "sha256": _sha256(cofactor_sidecar_path)},
+            "predicted_geometry_audit": {
+                "path": str(predicted_geometry_audit_path),
+                "sha256": _sha256(predicted_geometry_audit_path)},
+        },
+    }
+
+
+def write_mechanism_deployment_abstention_gate_eval(
+    *,
+    esm2_150m_path: Path,
+    cofactor_sidecar_path: Path,
+    predicted_geometry_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_deployment_abstention_gate_eval(
+        esm2_150m_path=esm2_150m_path,
+        cofactor_sidecar_path=cofactor_sidecar_path,
+        predicted_geometry_audit_path=predicted_geometry_audit_path,
+    )
+    out_path = Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path = Path(report_path)
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(_render_deployment_report(audit), encoding="utf-8")
+    return audit
+
+
+def _render_deployment_report(audit: dict[str, Any]) -> str:
+    res = audit["result"]
+    if res.get("status") != "computed":
+        return f"# D11 Deployment Abstention Gate\n\nStatus: {res.get('status')}\n"
+    c = res["counts"]
+    lines = [
+        "# D11 Deployment-Valid Abstention Gate (de novo precondition)",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        f"Combination: `{res['combination']}` | regime: **{audit['geometry_regime']}**",
+        "",
+        f"In-scope: {c['inscope']} | OOS: {c['oos']} "
+        f"(confounded {c['confounded_oos']}, agnostic {c['agnostic_oos']})",
+        "",
+        "## Abstention AUC (in-scope > OOS; 0.5 = chance) by channel and stratum",
+        "",
+        "| Channel | all OOS | cofactor-confounded | cofactor-agnostic |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for name, s in res["channels"].items():
+        lines.append(f"| {name} | {s['all']} | {s['confounded']} | {s['agnostic']} |")
+    lines += [
+        "",
+        f"- Best overall AUC: **{res['best_overall_auc']}** -> clears 0.75 bar: "
+        f"**{res['clears_abstention_bar']}**.",
+        f"- Safest single channel (no stratum below chance): "
+        f"`{res['safest_channel_no_stratum_below_chance']}`.",
+        "",
+        "## Interpretation",
+        "",
+        audit["interpretation"]["headline"],
+        "",
+        audit["interpretation"]["combined_vs_geometry"],
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def build_mechanism_abstention_gate_eval(
     *,
     esm2_150m_path: Path,

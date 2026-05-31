@@ -3,6 +3,48 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-05-31: PIVOTAL — De Novo Abstention Precondition IS MET On Deployment (Predicted) Geometry
+
+Decision: the prior "deployment-valid gate is blocked — no predicted-geometry
+atlas rows" entry below was solving the wrong problem. The two-channel gate does
+not need a predicted-geometry atlas at all. Both channels are already calibrated
+[0,1] confidences:
+  * predicted-geometry fingerprint-retrieval `top1_score` (from
+    `predicted_geometry_retrieval.results` in the robustness audit), and
+  * the strongest organic-cofactor head probability (`cofactor max_score`).
+They can be combined directly over the held-out pool with NO atlas normalization
+and NO eval-pool leakage. This makes the deployment-valid de novo gate computable
+from artifacts already in the repo.
+
+Result (predicted/apo deployment geometry; 47 in-scope, 79 OOS, 6 confounded, 73
+agnostic; held-out only, no atlas, no tuning):
+  * combined_mean: AUC **0.852 overall — CLEARS the 0.75 de novo precondition bar**.
+  * geometry_top1_score: 0.757 overall and the single SAFEST channel — no stratum
+    below chance, and strongest exactly on the dangerous cofactor-confounded OOS
+    (0.840), where the cofactor channel is fooled (0.280, worse than chance).
+  * cofactor_max_score: 0.628 overall (good 0.657 on agnostic, fooled on confounded).
+  * combined_min: 0.609 (the strict-concordance combiner is the worst here).
+
+This is the decisive de novo result: on the real deployment regime, mechanism
+novelty IS detectable with leakage-free, already-available signals. The recommended
+deployment gate LEADS WITH GEOMETRY CONFIDENCE (uniformly safe, best on the
+confounded cases) and adds the cofactor channel as a complementary lift on the
+cofactor-agnostic OOS majority — NOT a blind mean, which scores higher in aggregate
+(0.852) only by sacrificing safety on the confounded subset (0.330). Pick the
+combiner by the safety profile, not the aggregate AUC.
+
+Caveat: the geometry fingerprint score is hand-authored / tuning-adjacent (D4); the
+result is a relationship/abstention AUC, not a calibrated probability, and is bounded
+to the current 8-fingerprint family set. Guardrails: sequence-only PLM input,
+predicted-geometry deployment regime, no atlas, no training/refit, no heldout tuning,
+M-CSA eval-only.
+
+Artifacts: `artifacts/v3_mechanism_deployment_abstention_gate_eval_current702_20260531.json`,
+`work/mechanism_deployment_abstention_gate_eval_current702_20260531.md`. Module:
+`src/catalytic_earth/mechanism_abstention_gate_eval.py`
+(`compute_deployment_gate`, tests in `tests/test_mechanism_abstention_gate_eval.py`;
+CLI: `eval-mechanism-deployment-abstention-gate`). Supersedes the "blocked" entry below.
+
 ## 2026-05-31: Deployment-Valid Two-Channel Gate Is Blocked — No Predicted-Geometry Atlas Rows
 
 Decision: attempted the deployment-valid rerun of the two-channel abstention gate

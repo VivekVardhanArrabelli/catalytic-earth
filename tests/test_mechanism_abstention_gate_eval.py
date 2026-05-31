@@ -13,6 +13,8 @@ from catalytic_earth.mechanism_abstention_gate_eval import (
     _auc_in_gt_oos,
     _geometry_regime,
     build_mechanism_abstention_gate_eval,
+    build_mechanism_deployment_abstention_gate_eval,
+    compute_deployment_gate,
     compute_two_channel_gate,
     load_geometry_role_scores,
 )
@@ -20,6 +22,7 @@ from catalytic_earth.mechanism_abstention_gate_eval import (
 ESM = Path("artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl")
 COF = Path("artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json")
 GEO = Path("artifacts/v3_geometry_retrieval_1025.json")
+PREDICTED = Path("artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json")
 
 
 def test_auc_bounds():
@@ -102,3 +105,46 @@ def test_integration_geometry_role_scores_present_if_artifact():
     assert len(scores) > 100
     any_row = next(iter(scores.values()))
     assert "score" in any_row and "role_match_fraction" in any_row
+
+
+def test_compute_deployment_gate_no_atlas_synthetic():
+    # Deployment gate needs no atlas; in-scope high in both channels, OOS low.
+    def row(eid, split, fp):
+        return {"entry_id": eid, "embedding": [0.0], "split_assignment": split,
+                "true_fingerprint_id": fp}
+    plm = {
+        "q1": row("q1", "heldout", "f1"), "q2": row("q2", "heldout", "f2"),
+        "o1": row("o1", "heldout", None), "o2": row("o2", "heldout", None),
+    }
+    geom = {"q1": {"score": 0.9, "role_match_fraction": 0.8},
+            "q2": {"score": 0.85, "role_match_fraction": 0.7},
+            "o1": {"score": 0.2, "role_match_fraction": 0.1},
+            "o2": {"score": 0.25, "role_match_fraction": 0.1}}
+    cof = {"q1": {"flavin": 0.8}, "q2": {"heme": 0.7},
+           "o1": {"flavin": 0.1}, "o2": {"plp": 0.1}}
+    res = compute_deployment_gate(plm, cof, geom)
+    assert res["status"] == "computed"
+    assert res["counts"] == {"inscope": 2, "oos": 2, "confounded_oos": 0, "agnostic_oos": 2}
+    # Perfect separation -> AUC 1.0 on the combined mean.
+    assert res["channels"]["combined_mean"]["all"] == 1.0
+    assert res["clears_abstention_bar"] is True
+
+
+def test_integration_deployment_gate_clears_bar_if_present():
+    if not (ESM.exists() and COF.exists() and PREDICTED.exists()):
+        return
+    audit = build_mechanism_deployment_abstention_gate_eval(
+        esm2_150m_path=ESM, cofactor_sidecar_path=COF,
+        predicted_geometry_audit_path=PREDICTED,
+    )
+    res = audit["result"]
+    assert res["status"] == "computed"
+    # Deployment-valid (predicted/apo geometry), held-out only, no atlas.
+    assert res["counts"]["inscope"] == 47 and res["counts"]["oos"] == 79
+    # The de novo precondition is met on the deployment regime.
+    assert res["clears_abstention_bar"] is True
+    # Geometry confidence is the safest single channel (no stratum below chance);
+    # the cofactor channel is fooled on the confounded OOS subset.
+    assert res["safest_channel_no_stratum_below_chance"] == "geometry_top1_score"
+    assert res["channels"]["cofactor_max_score"]["confounded"] < 0.5
+    assert res["channels"]["geometry_top1_score"]["confounded"] >= 0.75

@@ -1,0 +1,77 @@
+{
+  "artifact_id": "v3_mechanism_deployment_abstention_gate_eval_current702_20260531",
+  "created_utc": "2026-05-31T19:15:26Z",
+  "geometry_regime": "predicted_geometry_deployment",
+  "guardrails": {
+    "geometry_fingerprint_score_is_tuning_adjacent": true,
+    "labels_registries_thresholds_changed": false,
+    "no_atlas_no_eval_pool_leakage": true,
+    "no_heldout_tuning": true,
+    "no_training_or_refit": true,
+    "predicted_geometry_deployment_regime": true,
+    "sequence_inputs_amino_acid_only": true
+  },
+  "interpretation": {
+    "combined_vs_geometry": "combined_mean reaches 0.852141 across all OOS but trades away safety on the cofactor-confounded subset (the cofactor channel is fooled there); geometry top1 score alone is 0.756935 overall and is the single safest channel, strongest exactly on the confounded rows. A deployment gate should lead with geometry confidence and use the cofactor channel as a complementary lift on cofactor-agnostic OOS.",
+    "headline": "Deployment-valid best abstention AUC is 0.852141; the de novo precondition is MET on predicted geometry."
+  },
+  "result": {
+    "best_overall_auc": 0.852141,
+    "channels": {
+      "cofactor_max_score": {
+        "agnostic": 0.65666,
+        "all": 0.628064,
+        "confounded": 0.280142,
+        "in_scope_mean": 0.366404,
+        "oos_mean": 0.159882
+      },
+      "combined_mean": {
+        "agnostic": 0.895074,
+        "all": 0.852141,
+        "confounded": 0.329787,
+        "in_scope_mean": 0.441196,
+        "oos_mean": 0.268083
+      },
+      "combined_min_concordance": {
+        "agnostic": 0.638006,
+        "all": 0.608672,
+        "confounded": 0.251773,
+        "in_scope_mean": 0.194485,
+        "oos_mean": 0.129132
+      },
+      "geometry_top1_score": {
+        "agnostic": 0.750073,
+        "all": 0.756935,
+        "confounded": 0.840426,
+        "in_scope_mean": 0.515987,
+        "oos_mean": 0.376285
+      }
+    },
+    "clears_abstention_bar": true,
+    "combination": "raw_calibrated_confidence_no_atlas_no_leakage",
+    "counts": {
+      "agnostic_oos": 73,
+      "confounded_oos": 6,
+      "inscope": 47,
+      "oos": 79
+    },
+    "safest_channel_no_stratum_below_chance": "geometry_top1_score",
+    "status": "computed"
+  },
+  "schema_version": "mechanism_abstention_gate_eval.v0",
+  "scope": "D11 de novo precondition, DEPLOYMENT-VALID: combine predicted-geometry fingerprint-retrieval confidence with the organic-cofactor head confidence directly over the held-out pool (both already calibrated [0,1]); no atlas, no eval-pool leakage.",
+  "source_artifacts": {
+    "cofactor_score_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    },
+    "esm2_150m_embeddings": {
+      "path": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+      "sha256": "e7e5ee1ec329b084182e7b957c24f14a282f08bf61a6d2191dd639752ffd9617"
+    },
+    "predicted_geometry_audit": {
+      "path": "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+      "sha256": "b1c120e452f439c72686463eb56249f8002a12862a601410d682b6f19e8b6294"
+    }
+  }
+}
