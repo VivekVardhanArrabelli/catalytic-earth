@@ -5,24 +5,20 @@
     "packets_ready_without_geometry_gaps": 4,
     "packets_with_geometry_gaps": 3,
     "panel_packets": 7,
-    "predicted_geometry_ok_rows": 12,
-    "rows_with_predicted_structure_fold_hits": 21,
-    "rows_with_selected_organic_cofactor_scores": 12,
-    "rows_with_selected_pdb_fold_proxy": 5
+    "predicted_geometry_ok_rows": 15,
+    "rows_with_predicted_structure_fold_hits": 21
   },
-  "created_utc": "2026-06-01T11:05:32Z",
+  "created_utc": "2026-06-01T15:23:54Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
+    "heldout_splits_changed": false,
     "imports_or_promotions_performed": false,
     "labels_registries_ontologies_changed": false,
-    "model_weights_fit_or_refit": false,
-    "production_thresholds_changed": false,
-    "review_only": true,
-    "threshold_values_changed": false
+    "production_thresholds_changed": false
   },
   "interpretation": {
-    "headline": "12/22 family-panel rows now have predicted-geometry evidence; 21 have predicted-fold hits.",
-    "next_action": "Materialize source-free predicted-geometry sidecars for the 10 source-backed fold-scored rows, starting with Q59490, A0A1M6T2I7, and Q6NSJ0."
+    "headline": "15/22 family-panel rows now have predicted-geometry evidence; 21 have predicted-fold hits.",
+    "next_action": "Source-check newly non-abstained source-free geometry rows, then clear the remaining source-free locator blockers for packet rows still missing geometry."
   },
   "panel_summaries": [
     {
@@ -32,7 +28,7 @@
       "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
       "predicted_geometry_ok_rows": 2,
       "rows_with_predicted_structure_fold_hits": 2,
-      "sha256": "1e19133aba7ba14fc1929e9f3192c84b34afa8aa0ae776ebb8d29e446515cbf9",
+      "sha256": "65acbf9837f5457b5a60b326abec01f92acb8ff7aa031f9ca9b22b8f701fc06e",
       "status": "evidence_packet_ready_review_only"
     },
     {
@@ -69,13 +65,12 @@
       "artifact": "artifacts/v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json",
       "candidate_rows": 3,
       "missing_geometry_entry_ids": [
-        "secondary_probe::cobalamin_radical_rearrangement",
-        "secondary_probe::radical_sam_enzyme"
+        "secondary_probe::cobalamin_radical_rearrangement"
       ],
       "panel_id": "cobalamin_and_radical_rearrangement_panel",
-      "predicted_geometry_ok_rows": 1,
+      "predicted_geometry_ok_rows": 2,
       "rows_with_predicted_structure_fold_hits": 3,
-      "sha256": "c023cde98edae059b46936bd26f8271623402db4deea98991d4f6a6d7b9d19e1",
+      "sha256": "64b3efdd11ad4594994f21ba3cc6237f5f3fec0b6756da89a5613570f5e5533e",
       "status": "evidence_packet_ready_with_geometry_gaps"
     },
     {
@@ -84,32 +79,30 @@
       "missing_geometry_entry_ids": [
         "mh_064",
         "mh_065",
-        "mh_066",
         "mh_067",
         "mh_068",
         "mh_072"
       ],
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
-      "predicted_geometry_ok_rows": 0,
+      "predicted_geometry_ok_rows": 1,
       "rows_with_predicted_structure_fold_hits": 6,
-      "sha256": "bda7cb4d68b888c15f9a0334dac7558f74e05c404a019303c7c6eb501d2116f2",
+      "sha256": "fcc454b5bdaa43b049c5b0811b1bed793dc50cc27d6245a1a8713f64af403267",
       "status": "evidence_packet_ready_with_geometry_gaps"
     },
     {
       "artifact": "artifacts/v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json",
       "candidate_rows": 4,
       "missing_geometry_entry_ids": [
-        "mh_073",
         "external_glycoside_panel"
       ],
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
-      "predicted_geometry_ok_rows": 2,
+      "predicted_geometry_ok_rows": 3,
       "rows_with_predicted_structure_fold_hits": 4,
-      "sha256": "f8694408c8856dc92640527db2c018f24934e95ea400293410572f41faf72bb9",
+      "sha256": "83ff67d2a86775fb3d7da5d49cbb1d448d391e1904420b602b68dd114f91095c",
       "status": "evidence_packet_ready_with_geometry_gaps"
     }
   ],
-  "schema_version": "northstar_next_levers.v0.coverage_refresh",
-  "scope": "Review-only coverage audit across family-expansion evidence packets after source-backed P0/P1 Foldseek/TM materialization.",
+  "schema_version": "northstar_next_levers.v0.family_panel_packet_coverage_audit",
+  "scope": "Review-only coverage audit across family-expansion evidence packets after source-backed P0/P1 Foldseek/TM materialization and approved source-free predicted-geometry retrieval joins.",
   "status": "coverage_audit_ready_review_only"
 }

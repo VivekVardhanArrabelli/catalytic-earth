@@ -50,6 +50,92 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Source-Free Geometry Scoring And Packet Refresh
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T14:41:45Z`
+- STARTED_LOCAL: `Mon Jun  1 09:41:45 CDT 2026`
+- ENDED_AT: `2026-06-01T15:32:38Z`
+- ENDED_LOCAL: `Mon Jun  1 10:32:38 CDT 2026`
+- ELAPSED_MINUTES: `50.9`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "86162", "started_at": "2026-06-01T14:41:45Z", "status": "acquired"}`
+- Lock release result: pending at handoff write; run the required release command
+  after commit, push, and `HEAD == origin/main` verification.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `fc7387e39cebd7dd0945530913a5f4d41784e2bb`
+- Git HEAD at end before commit: `fc7387e39cebd7dd0945530913a5f4d41784e2bb`
+- Dirty files at start: none
+- Dirty files at end before commit:
+  source-free predicted-geometry retrieval/preflight artifacts and reports;
+  fold-augmented novelty operating-grid artifact/report;
+  refreshed family-panel evidence packets and coverage audit;
+  refreshed family-panel readout/source-check/missing-channel queues;
+  refreshed mechanism-feature schema/contract audits;
+  docs, CLI/code, regression tests, docs reference check, and this handoff.
+- Input artifacts:
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json`,
+  `artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json`,
+  `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`,
+  `artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`,
+  family-panel evidence packets, mechanism-feature sidecars/contracts, and the
+  approved locator sidecars in
+  `artifacts/family_panel_source_free_active_site_locators_current702_20260601/`.
+- Output artifacts:
+  `artifacts/v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601.json`,
+  `work/family_panel_source_free_predicted_geometry_retrieval_current702_20260601.md`,
+  `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.json`,
+  `work/family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.md`,
+  `artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601.json`,
+  `work/predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601.md`,
+  refreshed cobalamin/radical, no-reliable-structure metal hydrolase, and
+  near-orphan family-panel evidence packets, refreshed packet coverage audit,
+  refreshed fold-augmented family-panel readout/source-check/missing-channel
+  queues, refreshed strict mechanism-feature contract/schema audits, docs,
+  code, tests, docs reference check, and this handoff.
+- Commands run:
+  lock acquire; `git fetch origin`; `git pull --ff-only origin main`;
+  required handoff/project-state/decision-log/artifact-index/runbook reads;
+  predicted-structure fold-channel contract audit; source-free predicted-geometry
+  retrieval build; fold-augmented family-panel readout/source-check queue/missing
+  queue/diagnosis builds; source-free predicted-geometry source-check preflight;
+  predicted-structure fold-augmented novelty operating-grid build; refreshed
+  family-panel evidence packet builds and packet coverage audit; mechanism-feature
+  sidecar schema audit and feature-contract strict audit refresh; docs artifact
+  reference check; repo-wide JSON parse; `compileall`; `catalytic_earth.cli validate`;
+  `git diff --check`; focused pytest; full pytest; full unittest.
+- Validation results:
+  source-free fold-channel contract audit passed with zero critical violations;
+  docs reference check reported 0 missing references; repo-wide JSON parse passed
+  for 3017 artifact JSON files; `compileall` passed; `git diff --check` passed;
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed for 12 source
+  records, 8 mechanism fingerprints, 15 ontology families, and 702 curated labels;
+  focused packet/readout tests passed; full
+  `PYTHONPATH=src python -m pytest tests -q` passed 1076 tests plus 26 subtests
+  with one existing sklearn deprecation warning; final
+  `PYTHONPATH=src python -m unittest discover -s tests` passed 1053 tests; final
+  focused geometry/northstar/doc-reference slice passed 112 tests plus 7 subtests.
+- Commit/push result: pending at handoff write.
+- Exact next action for the next run:
+  source-check `mh_066` first from
+  `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.json`,
+  then source-check `mh_073` and
+  `secondary_probe::radical_sam_enzyme`; continue clearing the seven remaining
+  approved source-free locator blockers before any family-expansion decision.
+
+Summary: scored the three approved source-free locator rows, joined them into
+the fold-augmented family-panel readout and affected evidence packets, added a
+review-only source-check preflight, added a fold-augmented novelty operating
+grid, refreshed mechanism-feature strict audits, and kept all work review-only.
+
 ### 2026-06-01 Wrap Reconciliation For Approved Locator Sidecars
 
 Automation run: `catalytic-earth-work-loop`

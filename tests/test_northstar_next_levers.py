@@ -21,11 +21,14 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_train_cal_oos_negative_surface_scores,
     build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision,
     build_fold_only_train_cal_oos_negative_surface,
+    build_family_panel_source_free_predicted_geometry_retrieval,
+    build_family_panel_source_free_predicted_geometry_source_check_preflight,
     build_learned_mechanism_feature_embedding_plan,
     build_mechanism_feature_active_site_role_graph_sidecar,
     build_mechanism_feature_reaction_center_template_sidecar,
     build_mechanism_feature_sidecar_schema_audit,
     build_predicted_atlas_geometry_novelty_variants,
+    build_predicted_structure_fold_augmented_novelty_operating_grid,
     build_predicted_structure_fold_channel,
     build_predicted_structure_fold_channel_contract_audit,
     build_selected_organic_cofactor_sidecar_schema_audit,
@@ -315,6 +318,290 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(audit["counts"]["critical_counts"], {})
         self.assertTrue(audit["row_audits"][0]["payload_matches_candidate_audit"])
         self.assertFalse(audit["row_audits"][0]["inside_audited_locator_dir"])
+
+    def test_source_free_predicted_geometry_retrieval_scores_approved_locator(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            af_cif = root / "AF-PTEST-F1-model_v6.cif"
+            manifest = root / "manifest.json"
+            materialization = root / "materialization.json"
+            schema_audit = root / "schema_audit.json"
+            threshold_contract = root / "threshold.json"
+            locator_dir = root / "locators"
+            locator_dir.mkdir()
+            locator_sidecar = locator_dir / "mh_test_PTEST.json"
+            af_cif.write_text(MINI_AF_CIF, encoding="utf-8")
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "row_manifests": [
+                            {
+                                "rank": 1,
+                                "entry_id": "mh_test",
+                                "panel_id": "review_panel",
+                                "source_accession": "uniprot:PTEST",
+                                "source_free_predicted_geometry_status": (
+                                    "ready_to_score_source_free_predicted_geometry"
+                                ),
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            materialization.write_text(
+                json.dumps(
+                    {
+                        "row_scores": [
+                            {
+                                "entry_id": "mh_test",
+                                "source_accession": "uniprot:PTEST",
+                                "selected_structure_id": "TEST",
+                                "coordinate_records": [
+                                    {
+                                        "coordinate_role": "alphafolddb_predicted_cif",
+                                        "exists": True,
+                                        "path": str(af_cif),
+                                        "sha256": hashlib.sha256(
+                                            af_cif.read_bytes()
+                                        ).hexdigest(),
+                                        "size_bytes": af_cif.stat().st_size,
+                                    }
+                                ],
+                                "predicted_structure_fold_channel": {
+                                    "nearest_atlas_entry_id": "m_csa:1",
+                                    "nearest_atlas_tm_score": 0.7,
+                                    "nearest_atlas_true_fingerprint_id": (
+                                        "metal_dependent_hydrolase"
+                                    ),
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            schema_audit.write_text(
+                json.dumps(
+                    {
+                        "row_audits": [
+                            {
+                                "entry_id": "mh_test",
+                                "ready_for_predicted_geometry_scoring": True,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold_contract.write_text(
+                json.dumps(
+                    {
+                        "threshold_contract": {
+                            "combined_mean_geometry_fold": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.1
+                                }
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            locator_sidecar.write_text(
+                json.dumps(
+                    {
+                        "entry_id": "mh_test",
+                        "source_accession": "uniprot:PTEST",
+                        "locator_evidence_class": (
+                            "structure_local_ligand_geometry_without_source_text"
+                        ),
+                        "locator_policy": "human_approved",
+                        "ready_for_predicted_geometry_scoring": True,
+                        "manual_review_approval": {
+                            "approval_scope": "source_free_active_site_locator_only"
+                        },
+                        "residue_locators": [
+                            {
+                                "sequence_position": 10,
+                                "residue_code": "ASP",
+                                "role_hint": "metal_ligand_contact_candidate",
+                                "locator_evidence_class": (
+                                    "structure_local_ligand_geometry_without_source_text"
+                                ),
+                                "locator_confidence": 0.25,
+                            },
+                            {
+                                "sequence_position": 30,
+                                "residue_code": "HIS",
+                                "role_hint": "metal_ligand_contact_candidate",
+                                "locator_evidence_class": (
+                                    "structure_local_ligand_geometry_without_source_text"
+                                ),
+                                "locator_confidence": 0.25,
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_family_panel_source_free_predicted_geometry_retrieval(
+                source_free_geometry_manifest_path=manifest,
+                source_backed_materialization_path=materialization,
+                locator_schema_audit_path=schema_audit,
+                locator_dir=locator_dir,
+                threshold_contract_path=threshold_contract,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "source_free_predicted_geometry_retrieval_scored_review_only",
+        )
+        self.assertEqual(audit["counts"]["predicted_geometry_ok_rows"], 1)
+        self.assertEqual(audit["counts"]["retained_at_fixed_research_threshold"], 1)
+        self.assertFalse(audit["guardrails"]["source_text_used_for_score"])
+        row = audit["row_scores"][0]
+        self.assertEqual(row["predicted_geometry_status"], "ok")
+        self.assertEqual(row["resolved_residue_count"], 2)
+        self.assertIsNotNone(
+            row["predicted_geometry_retrieval"]["top1_fingerprint_id"]
+        )
+        self.assertIsNotNone(
+            row["fold_augmented_projection"]["combined_mean_geometry_fold"]
+        )
+        self.assertTrue(
+            row["fold_augmented_projection"][
+                "retained_at_fixed_research_threshold"
+            ]
+        )
+        feature_entry = audit["predicted_geometry_features"]["entries"][0]
+        self.assertFalse(feature_entry["coordinate_swap"]["source_text_used"])
+        self.assertEqual(feature_entry["mechanism_text_snippets"], [])
+
+    def test_source_free_predicted_geometry_source_check_preflight_holds_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue = root / "queue.json"
+            retrieval = root / "retrieval.json"
+            materialization = root / "materialization.json"
+            source_sidecar = root / "source_sidecar.json"
+            external_panel = root / "external_panel.json"
+            queue.write_text(
+                json.dumps(
+                    {
+                        "queue_rows": [
+                            {
+                                "rank": 1,
+                                "entry_id": "mh_test",
+                                "panel_id": "review_panel",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            retrieval.write_text(
+                json.dumps(
+                    {
+                        "row_scores": [
+                            {
+                                "entry_id": "mh_test",
+                                "panel_id": "review_panel",
+                                "source_accession": "uniprot:PTEST",
+                                "predicted_geometry_retrieval": {
+                                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                                    "top1_score": 0.5,
+                                },
+                                "predicted_structure_fold_channel": {
+                                    "nearest_atlas_true_fingerprint_id": (
+                                        "metal_dependent_hydrolase"
+                                    ),
+                                    "nearest_atlas_tm_score": 0.8,
+                                },
+                                "fold_augmented_projection": {
+                                    "combined_mean_geometry_fold": 0.65,
+                                    "fixed_research_threshold": 0.44155,
+                                    "retained_at_fixed_research_threshold": True,
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_sidecar.write_text(
+                json.dumps(
+                    {
+                        "display_name": "Test hydrolase",
+                        "predictive_use_allowed": False,
+                        "catalytic_or_binding_site_evidence": {
+                            "status": "source_backed_review_context_only"
+                        },
+                        "source_urls": {"uniprot": "https://example.test/PTEST"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            materialization.write_text(
+                json.dumps(
+                    {
+                        "row_scores": [
+                            {
+                                "entry_id": "mh_test",
+                                "source_accession": "uniprot:PTEST",
+                                "sidecar_path": str(source_sidecar),
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            external_panel.write_text(
+                json.dumps(
+                    {
+                        "candidate_rows": [
+                            {
+                                "row_id": "mh_test",
+                                "accession": "uniprot:PTEST",
+                                "name": "External test hydrolase",
+                                "candidate_role": "external_positive_lead",
+                                "current_v1_state": "external_no_decision_review_only",
+                                "countable_label_candidate": False,
+                                "evidence_summary": "frozen local evidence",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_family_panel_source_free_predicted_geometry_source_check_preflight(
+                source_check_queue_path=queue,
+                source_free_predicted_geometry_retrieval_path=retrieval,
+                source_backed_materialization_path=materialization,
+                external_metal_hydrolase_panel_path=external_panel,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "source_free_predicted_geometry_source_check_preflight_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["preflight_rows"], 1)
+        self.assertEqual(audit["counts"]["geometry_fold_agreement_rows"], 1)
+        row = audit["preflight_rows"][0]
+        self.assertEqual(
+            row["preflight_decision"],
+            "hold_review_only_pending_source_check",
+        )
+        self.assertIn("label_import_not_authorized", row["risk_flags"])
+        self.assertIn("external_panel_row_not_countable", row["risk_flags"])
+        self.assertTrue(audit["guardrails"]["review_only"])
+        self.assertFalse(audit["guardrails"]["new_source_data_fetched"])
 
     def test_source_free_locator_manual_review_packet_combines_review_inputs(
         self,
@@ -3000,6 +3287,86 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(
             audit["row_scores"][0]["variant_scores"]["top1_score_x_role_raw"],
             0.6,
+        )
+
+    def test_predicted_structure_fold_augmented_operating_grid_reuses_variant_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            variants = root / "fold_augmented_variants.json"
+            variants.write_text(
+                json.dumps(
+                    {
+                        "best_signal": {"name": "mean_top1_raw_and_tm"},
+                        "row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "is_inscope": True,
+                                "is_oos": False,
+                                "is_confounded_predicted_geometry_oos": False,
+                                "variant_scores": {
+                                    "mean_top1_raw_and_tm": 0.9,
+                                    "nearest_atlas_tm_score": 0.8,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "is_inscope": True,
+                                "is_oos": False,
+                                "is_confounded_predicted_geometry_oos": False,
+                                "variant_scores": {
+                                    "mean_top1_raw_and_tm": 0.8,
+                                    "nearest_atlas_tm_score": 0.7,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:30",
+                                "is_inscope": False,
+                                "is_oos": True,
+                                "is_confounded_predicted_geometry_oos": True,
+                                "variant_scores": {
+                                    "mean_top1_raw_and_tm": 0.2,
+                                    "nearest_atlas_tm_score": 0.2,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:31",
+                                "is_inscope": False,
+                                "is_oos": True,
+                                "is_confounded_predicted_geometry_oos": False,
+                                "variant_scores": {
+                                    "mean_top1_raw_and_tm": 0.3,
+                                    "nearest_atlas_tm_score": 0.3,
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_predicted_structure_fold_augmented_novelty_operating_grid(
+                fold_augmented_variants_path=variants,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "predicted_structure_fold_augmented_novelty_operating_grid_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["row_scores"], 4)
+        self.assertEqual(audit["counts"]["grid_rows"], 8)
+        self.assertTrue(audit["guardrails"]["uses_existing_variant_artifact_only"])
+        self.assertFalse(audit["guardrails"]["foldseek_or_tmsearch_recomputed"])
+        best = audit["best_signal_from_variant_artifact"]
+        self.assertEqual(best["name"], "mean_top1_raw_and_tm")
+        self.assertEqual(
+            best["best_at_90pct_inscope_retention"]["oos_abstain_recall"],
+            1.0,
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in best["confounded_rows"]],
+            ["m_csa:30"],
         )
 
     def test_predicted_structure_fold_channel_stages_bounded_manifest(self) -> None:

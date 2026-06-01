@@ -33,6 +33,15 @@ from .predicted_geometry_robustness import (
     build_alphafold_predicted_geometry_features,
 )
 from .structure import METAL_ION_CODES, parse_atom_site_loop
+from .structure import (
+    atom_position,
+    ligand_context_from_atoms,
+    missing_position_detail,
+    pairwise_distances,
+    pocket_context_from_atoms,
+    residue_centroid,
+    select_residue_atoms,
+)
 
 SCHEMA_VERSION = "northstar_next_levers.v0"
 DEFAULT_FOLDSEEK_BINARY = "/private/tmp/catalytic-foldseek-env/bin/foldseek"
@@ -41,6 +50,9 @@ PREDICTED_STRUCTURE_FOLD_CHANNEL_ID = (
 )
 PREDICTED_STRUCTURE_FOLD_CHANNEL_CONTRACT_AUDIT_ID = (
     "v3_predicted_structure_fold_channel_contract_audit_current702_20260601"
+)
+PREDICTED_STRUCTURE_FOLD_AUGMENTED_NOVELTY_OPERATING_GRID_ID = (
+    "v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601"
 )
 FOLD_AUGMENTED_THRESHOLD_CONTRACT_ID = (
     "v3_fold_augmented_abstention_threshold_contract_current702_20260601"
@@ -74,6 +86,12 @@ FAMILY_PANEL_SOURCE_BACKED_SIDECAR_MATERIALIZATION_ID = (
 )
 FAMILY_PANEL_SOURCE_FREE_PREDICTED_GEOMETRY_SIDECAR_MANIFEST_ID = (
     "v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601"
+)
+FAMILY_PANEL_SOURCE_FREE_PREDICTED_GEOMETRY_RETRIEVAL_ID = (
+    "v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601"
+)
+FAMILY_PANEL_SOURCE_FREE_PREDICTED_GEOMETRY_SOURCE_CHECK_PREFLIGHT_ID = (
+    "v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601"
 )
 FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_SCHEMA_ID = (
     "v3_family_panel_source_free_active_site_locator_schema_current702_20260601"
@@ -2373,6 +2391,251 @@ def write_predicted_atlas_geometry_novelty_operating_grid(
     return audit
 
 
+def build_predicted_structure_fold_augmented_novelty_operating_grid(
+    *,
+    fold_augmented_variants_path: Path,
+    retention_targets: tuple[float, ...] = (0.95, 0.90, 0.85, 0.80),
+) -> dict[str, Any]:
+    variants = _read_json(fold_augmented_variants_path)
+    rows = [
+        row
+        for row in variants.get("row_scores", [])
+        if isinstance(row, dict) and row.get("variant_scores")
+    ]
+    if not rows:
+        return {
+            "artifact_id": PREDICTED_STRUCTURE_FOLD_AUGMENTED_NOVELTY_OPERATING_GRID_ID,
+            "schema_version": SCHEMA_VERSION,
+            "created_utc": _utc_now_iso(),
+            "status": "insufficient_rows",
+            "counts": {"row_scores": 0},
+        }
+
+    signal_names = sorted(rows[0]["variant_scores"])
+    grid: list[dict[str, Any]] = []
+    best_by_target: dict[str, dict[str, Any]] = {}
+    for signal_name in signal_names:
+        fn = lambda row, name=signal_name: float(row["variant_scores"][name])
+        for target in retention_targets:
+            operating_point = _best_threshold_at_retention(
+                rows,
+                fn,
+                min_retain=target,
+            )
+            item = {
+                "signal": signal_name,
+                "target_min_inscope_retention": target,
+                "operating_point": operating_point,
+            }
+            grid.append(item)
+            if operating_point is None:
+                continue
+            key = f"{target:.2f}"
+            candidate = {
+                "signal": signal_name,
+                **operating_point,
+            }
+            current = best_by_target.get(key)
+            if current is None or (
+                candidate["oos_abstain_recall"],
+                candidate["confounded_abstain_recall"] or 0.0,
+            ) > (
+                current["oos_abstain_recall"],
+                current["confounded_abstain_recall"] or 0.0,
+            ):
+                best_by_target[key] = candidate
+
+    best_signal_name = variants.get("best_signal", {}).get("name") or signal_names[0]
+    best_signal_90 = next(
+        (
+            item["operating_point"]
+            for item in grid
+            if item["signal"] == best_signal_name
+            and item["target_min_inscope_retention"] == 0.90
+        ),
+        None,
+    )
+    best_signal_85 = next(
+        (
+            item["operating_point"]
+            for item in grid
+            if item["signal"] == best_signal_name
+            and item["target_min_inscope_retention"] == 0.85
+        ),
+        None,
+    )
+
+    def below_best_threshold(row: dict[str, Any], point: dict[str, Any] | None) -> bool:
+        if point is None:
+            return False
+        score = row["variant_scores"].get(best_signal_name)
+        return score is not None and float(score) < float(point["threshold"])
+
+    confounded_rows = [
+        {
+            "entry_id": row.get("entry_id"),
+            "score": row["variant_scores"].get(best_signal_name),
+            "nearest_atlas_tm_score": row["variant_scores"].get(
+                "nearest_atlas_tm_score"
+            ),
+            "abstained_at_best_signal_90pct": below_best_threshold(
+                row,
+                best_signal_90,
+            ),
+            "abstained_at_best_signal_85pct": below_best_threshold(
+                row,
+                best_signal_85,
+            ),
+        }
+        for row in rows
+        if row.get("is_confounded_predicted_geometry_oos")
+    ]
+    return {
+        "artifact_id": PREDICTED_STRUCTURE_FOLD_AUGMENTED_NOVELTY_OPERATING_GRID_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "predicted_structure_fold_augmented_novelty_operating_grid_ready_review_only"
+        ),
+        "scope": (
+            "Review-only operating-grid readout over the frozen geometry-plus-"
+            "predicted-fold novelty variants. It recomputes post-hoc diagnostic "
+            "retention/OOS-abstention points from existing row scores only and "
+            "does not select or write a deployment threshold."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "model_fit_or_refit": False,
+            "foldseek_or_tmsearch_recomputed": False,
+            "uses_existing_variant_artifact_only": True,
+        },
+        "counts": {
+            "row_scores": len(rows),
+            "inscope": sum(1 for row in rows if row.get("is_inscope")),
+            "oos": sum(1 for row in rows if row.get("is_oos")),
+            "confounded_oos": sum(
+                1 for row in rows if row.get("is_confounded_predicted_geometry_oos")
+            ),
+            "signals": len(signal_names),
+            "retention_targets": len(retention_targets),
+            "grid_rows": len(grid),
+        },
+        "best_signal_from_variant_artifact": {
+            "name": best_signal_name,
+            "best_at_90pct_inscope_retention": best_signal_90,
+            "best_at_85pct_inscope_retention": best_signal_85,
+            "confounded_rows": sorted(
+                confounded_rows,
+                key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+            ),
+        },
+        "best_by_retention_target": dict(sorted(best_by_target.items())),
+        "operating_grid": grid,
+        "interpretation": {
+            "headline": (
+                "The geometry-plus-predicted-fold signal materially improves the "
+                "high-retention OOS-abstention diagnostic over geometry-only "
+                "predicted-atlas variants, but remains review-only."
+            ),
+            "next_action": (
+                "Use this as bounded evidence for train/cal OOS-surface and "
+                "source-check prioritization; do not promote a deployment threshold "
+                "from this heldout readout."
+            ),
+        },
+        "source_artifacts": {
+            "fold_augmented_variants": {
+                "path": str(fold_augmented_variants_path),
+                "sha256": _sha256(fold_augmented_variants_path),
+            },
+        },
+    }
+
+
+def _render_predicted_structure_fold_augmented_novelty_operating_grid_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    best = audit["best_signal_from_variant_artifact"]
+    lines = [
+        "# Predicted-Structure Fold-Augmented Novelty Operating Grid - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Counts",
+        "",
+        f"- Row scores: {counts['row_scores']}",
+        f"- In-scope: {counts['inscope']}",
+        f"- OOS: {counts['oos']}",
+        f"- Cofactor-confounded OOS: {counts['confounded_oos']}",
+        f"- Signals: {counts['signals']}",
+        f"- Grid rows: {counts['grid_rows']}",
+        "",
+        "## Best Signal From Variant Artifact",
+        "",
+        f"- Signal: {best['name']}",
+        f"- >=90% retention diagnostic: {best['best_at_90pct_inscope_retention']}",
+        f"- >=85% retention diagnostic: {best['best_at_85pct_inscope_retention']}",
+        "",
+        "## Best By Retention Target",
+        "",
+        "| target | signal | in-scope retain | OOS abstain | confounded abstain | threshold |",
+        "| ---: | --- | ---: | ---: | ---: | ---: |",
+    ]
+    for target, item in audit["best_by_retention_target"].items():
+        lines.append(
+            f"| {target} | `{item['signal']}` | {item['inscope_retain_recall']} | "
+            f"{item['oos_abstain_recall']} | {item['confounded_abstain_recall']} | "
+            f"{item['threshold']} |"
+        )
+    lines += [
+        "",
+        "## Confounded Rows",
+        "",
+        "| row | best-signal score | nearest-atlas TM | abstained at 90% | abstained at 85% |",
+        "| --- | ---: | ---: | --- | --- |",
+    ]
+    for row in best["confounded_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['score']} | {row['nearest_atlas_tm_score']} | "
+            f"{row['abstained_at_best_signal_90pct']} | "
+            f"{row['abstained_at_best_signal_85pct']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_predicted_structure_fold_augmented_novelty_operating_grid(
+    *,
+    fold_augmented_variants_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_predicted_structure_fold_augmented_novelty_operating_grid(
+        fold_augmented_variants_path=fold_augmented_variants_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_predicted_structure_fold_augmented_novelty_operating_grid_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
 REQUIRED_SELECTED_COFACTOR_RECORD_KEYS = (
     "entry_id",
     "class",
@@ -2673,6 +2936,7 @@ def build_family_panel_evidence_packet(
     predicted_structure_fold_channel_path: Path | None = None,
     m_csa_primary_channel_repair_path: Path | None = None,
     source_backed_materialization_path: Path | None = None,
+    source_free_predicted_geometry_retrieval_path: Path | None = None,
     panel_id: str = "glycyl_radical_or_thiamine_radical_lyase_boundary",
 ) -> dict[str, Any]:
     family_targets = _read_json(family_targets_path)
@@ -2696,6 +2960,12 @@ def build_family_panel_evidence_packet(
         _read_json(source_backed_materialization_path)
         if source_backed_materialization_path is not None
         and Path(source_backed_materialization_path).exists()
+        else {}
+    )
+    source_free_retrieval = (
+        _read_json(source_free_predicted_geometry_retrieval_path)
+        if source_free_predicted_geometry_retrieval_path is not None
+        and Path(source_free_predicted_geometry_retrieval_path).exists()
         else {}
     )
 
@@ -2751,11 +3021,16 @@ def build_family_panel_evidence_packet(
     source_backed_fold_by_entry = _source_backed_materialization_fold_hits_by_entry(
         source_backed_materialization
     )
+    source_free_geometry_by_entry = _source_free_predicted_geometry_scores_by_entry(
+        source_free_retrieval
+    )
     rows = []
     for entry_id in panel.get("candidate_rows", []):
         geo = geometry_by_entry.get(entry_id, {})
         repair = repair_by_entry.get(entry_id, {})
+        source_free_geometry = source_free_geometry_by_entry.get(entry_id, {})
         top = _top1_fingerprint(geo) or {}
+        geometry_score_source = "predicted_geometry_atlas" if top else None
         if repair and not top:
             top = {
                 "fingerprint_id": repair.get("geometry_top1_fingerprint_id"),
@@ -2763,6 +3038,19 @@ def build_family_panel_evidence_packet(
                 "role_match_fraction": None,
                 "cofactor_context_score": None,
             }
+            geometry_score_source = "m_csa_primary_channel_repair"
+        if source_free_geometry and not top:
+            top = {
+                "fingerprint_id": source_free_geometry.get("top1_fingerprint_id"),
+                "score": source_free_geometry.get("top1_score"),
+                "role_match_fraction": source_free_geometry.get(
+                    "top1_role_match_fraction"
+                ),
+                "cofactor_context_score": source_free_geometry.get(
+                    "top1_cofactor_context_score"
+                ),
+            }
+            geometry_score_source = str(source_free_geometry.get("source") or "")
         fold = fold_by_entry.get(entry_id, {})
         cof = _cofactor_scores_for_entry(cofactor_sidecar, entry_id)
         variant = variant_by_entry.get(entry_id, {})
@@ -2800,8 +3088,11 @@ def build_family_panel_evidence_packet(
                 "predicted_geometry_status": (
                     _predicted_row_status(geo)
                     if geo
-                    else repair.get("predicted_geometry_status") or "missing"
+                    else repair.get("predicted_geometry_status")
+                    or source_free_geometry.get("predicted_geometry_status")
+                    or "missing"
                 ),
+                "predicted_geometry_score_source": geometry_score_source,
                 "predicted_geometry_top1": {
                     "fingerprint_id": top.get("fingerprint_id"),
                     "score": top.get("score"),
@@ -2980,6 +3271,15 @@ def build_family_panel_evidence_packet(
                 and Path(source_backed_materialization_path).exists()
                 else None
             ),
+            "source_free_predicted_geometry_retrieval": (
+                {
+                    "path": str(source_free_predicted_geometry_retrieval_path),
+                    "sha256": _sha256(source_free_predicted_geometry_retrieval_path),
+                }
+                if source_free_predicted_geometry_retrieval_path is not None
+                and Path(source_free_predicted_geometry_retrieval_path).exists()
+                else None
+            ),
         },
     }
 
@@ -3041,6 +3341,7 @@ def write_family_panel_evidence_packet(
     predicted_structure_fold_channel_path: Path | None = None,
     m_csa_primary_channel_repair_path: Path | None = None,
     source_backed_materialization_path: Path | None = None,
+    source_free_predicted_geometry_retrieval_path: Path | None = None,
     report_path: Path | None = None,
     panel_id: str = "glycyl_radical_or_thiamine_radical_lyase_boundary",
 ) -> dict[str, Any]:
@@ -3053,6 +3354,9 @@ def write_family_panel_evidence_packet(
         predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
         m_csa_primary_channel_repair_path=m_csa_primary_channel_repair_path,
         source_backed_materialization_path=source_backed_materialization_path,
+        source_free_predicted_geometry_retrieval_path=(
+            source_free_predicted_geometry_retrieval_path
+        ),
         panel_id=panel_id,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -4099,6 +4403,945 @@ def write_family_panel_source_free_predicted_geometry_sidecar_manifest(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_family_panel_source_free_predicted_geometry_sidecar_manifest_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _clean_source_accession(value: Any) -> str:
+    text = str(value or "").strip()
+    if text.startswith("uniprot:"):
+        return text.split(":", 1)[1]
+    return text
+
+
+def _source_backed_materialization_rows_by_entry(
+    materialization: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    return {
+        str(row.get("entry_id") or ""): row
+        for row in materialization.get("row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+
+def _locator_schema_ready_entry_ids(schema_audit: dict[str, Any]) -> set[str]:
+    return {
+        str(row.get("entry_id") or "")
+        for row in schema_audit.get("row_audits", [])
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and row.get("ready_for_predicted_geometry_scoring")
+    }
+
+
+def _locator_sidecars_by_entry(locator_dir: Path) -> dict[str, dict[str, Any]]:
+    out: dict[str, dict[str, Any]] = {}
+    if not locator_dir.exists():
+        return out
+    for path in sorted(locator_dir.glob("*.json")):
+        try:
+            payload = _read_json(path)
+        except json.JSONDecodeError:
+            continue
+        entry_id = str(payload.get("entry_id") or "")
+        if entry_id:
+            out[entry_id] = {"path": str(path), "payload": payload}
+    return out
+
+
+def _afdb_coordinate_record(row: dict[str, Any]) -> dict[str, Any] | None:
+    for record in row.get("coordinate_records", []):
+        if (
+            isinstance(record, dict)
+            and record.get("coordinate_role") == "alphafolddb_predicted_cif"
+        ):
+            return record
+    return None
+
+
+def _source_free_locator_roles(locator: dict[str, Any]) -> list[str]:
+    roles: list[str] = []
+    role_hint = str(locator.get("role_hint") or "").strip()
+    if role_hint:
+        roles.append(role_hint)
+    evidence_class = str(locator.get("locator_evidence_class") or "").strip()
+    if evidence_class:
+        roles.append(evidence_class)
+    return roles or ["source_free_contact_candidate"]
+
+
+def _source_free_predicted_geometry_failed_entry(
+    *,
+    manifest_row: dict[str, Any],
+    materialization_row: dict[str, Any],
+    locator_sidecar_path: Path,
+    locator_sidecar: dict[str, Any],
+    accession: str,
+    reason: str,
+) -> dict[str, Any]:
+    entry_id = str(manifest_row.get("entry_id") or locator_sidecar.get("entry_id") or "")
+    return {
+        "entry_id": entry_id,
+        "entry_name": None,
+        "accession": accession,
+        "sequence_id": accession,
+        "benchmark_role": None,
+        "split_assignment": "review_only_family_panel",
+        "status": reason,
+        "experimental_pdb_id": materialization_row.get("selected_structure_id"),
+        "pdb_id": None,
+        "predicted_structure_source": {},
+        "source_free_locator_sidecar": {
+            "path": str(locator_sidecar_path),
+            "sha256": _sha256(locator_sidecar_path)
+            if locator_sidecar_path.exists()
+            else None,
+        },
+        "residue_count": len(locator_sidecar.get("residue_locators", []) or []),
+        "resolved_residue_count": 0,
+        "missing_positions": len(locator_sidecar.get("residue_locators", []) or []),
+        "missing_position_details": [],
+        "residues": [],
+        "pairwise_distances_angstrom": [],
+        "ligand_context": {
+            "distance_cutoff_angstrom": 6.0,
+            "proximal_ligands": [],
+            "ligand_codes": [],
+            "cofactor_families": [],
+            "structure_ligands": [],
+            "structure_ligand_codes": [],
+            "structure_cofactor_families": [],
+        },
+        "pocket_context": {
+            "distance_cutoff_angstrom": 8.0,
+            "nearby_residue_count": 0,
+            "nearby_residue_sites": [],
+            "descriptors": {},
+        },
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+    }
+
+
+def _source_free_predicted_geometry_entry_from_locator(
+    *,
+    manifest_row: dict[str, Any],
+    materialization_row: dict[str, Any],
+    locator_sidecar_path: Path,
+    locator_sidecar: dict[str, Any],
+) -> dict[str, Any]:
+    entry_id = str(manifest_row.get("entry_id") or locator_sidecar.get("entry_id") or "")
+    coord = _afdb_coordinate_record(materialization_row)
+    accession = _clean_source_accession(
+        locator_sidecar.get("source_accession")
+        or manifest_row.get("source_accession")
+        or materialization_row.get("source_accession")
+    )
+    if coord is None:
+        return _source_free_predicted_geometry_failed_entry(
+            manifest_row=manifest_row,
+            materialization_row=materialization_row,
+            locator_sidecar_path=locator_sidecar_path,
+            locator_sidecar=locator_sidecar,
+            accession=accession,
+            reason="alphafolddb_predicted_cif_record_missing",
+        )
+    coord_path = Path(str(coord.get("path") or ""))
+    if not coord.get("exists") or not coord_path.exists():
+        return _source_free_predicted_geometry_failed_entry(
+            manifest_row=manifest_row,
+            materialization_row=materialization_row,
+            locator_sidecar_path=locator_sidecar_path,
+            locator_sidecar=locator_sidecar,
+            accession=accession,
+            reason="alphafolddb_predicted_cif_file_missing",
+        )
+
+    text = coord_path.read_text(encoding="utf-8", errors="replace")
+    atoms = parse_atom_site_loop(text)
+    residue_locators = [
+        row
+        for row in locator_sidecar.get("residue_locators", [])
+        if isinstance(row, dict)
+    ]
+    resolved: list[dict[str, Any]] = []
+    missing_details: list[dict[str, Any]] = []
+    for index, locator in enumerate(residue_locators, start=1):
+        item = {
+            "residue_node_id": f"{entry_id}:source_free_locator:{index}",
+            "chain_name": None,
+            "resid": str(locator.get("sequence_position") or ""),
+            "code": locator.get("residue_code"),
+        }
+        residue_atoms = select_residue_atoms(
+            atoms,
+            chain_name=None,
+            resid=item["resid"],
+            code=item.get("code"),
+        )
+        if not residue_atoms:
+            missing_details.append(missing_position_detail(atoms, item))
+            continue
+        resolved.append(
+            {
+                "residue_node_id": item["residue_node_id"],
+                "code": str(locator.get("residue_code") or "").upper(),
+                "chain_name": None,
+                "resid": item["resid"],
+                "atom_count": len(residue_atoms),
+                "centroid": residue_centroid(residue_atoms),
+                "ca": atom_position(residue_atoms, "CA"),
+                "roles": _source_free_locator_roles(locator),
+                "sequence_position_uniprot_id": accession or None,
+                "locator_evidence_class": locator.get("locator_evidence_class"),
+                "locator_confidence": locator.get("locator_confidence"),
+            }
+        )
+    pairwise = pairwise_distances(resolved)
+    status = "ok" if len(resolved) >= 2 else "insufficient_resolved_residues"
+    return {
+        "entry_id": entry_id,
+        "entry_name": None,
+        "accession": accession,
+        "sequence_id": accession,
+        "benchmark_role": None,
+        "split_assignment": "review_only_family_panel",
+        "status": status,
+        "experimental_pdb_id": materialization_row.get("selected_structure_id"),
+        "pdb_id": coord_path.stem,
+        "predicted_structure_source": {
+            "backend": "alphafold_db_local_cif",
+            "path": str(coord_path),
+            "sha256": coord.get("sha256") or _sha256(coord_path),
+            "size_bytes": coord.get("size_bytes") or coord_path.stat().st_size,
+            "raw_coordinates_committed": True,
+            "coordinate_record_role": coord.get("coordinate_role"),
+        },
+        "source_free_locator_sidecar": {
+            "path": str(locator_sidecar_path),
+            "sha256": _sha256(locator_sidecar_path),
+            "locator_evidence_class": locator_sidecar.get("locator_evidence_class"),
+            "locator_policy": locator_sidecar.get("locator_policy"),
+            "manual_review_approval": locator_sidecar.get("manual_review_approval"),
+        },
+        "residue_count": len(residue_locators),
+        "resolved_residue_count": len(resolved),
+        "missing_positions": len(residue_locators) - len(resolved),
+        "missing_position_details": missing_details,
+        "residues": resolved,
+        "pairwise_distances_angstrom": pairwise,
+        "ligand_context": ligand_context_from_atoms(atoms, resolved),
+        "pocket_context": pocket_context_from_atoms(atoms, resolved),
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "coordinate_swap": {
+            "from": "human_approved_source_free_sequence_position_locators",
+            "to": "alphafold_db_local_uniprot_model",
+            "sequence_positions_used": True,
+            "structure_positions_used_for_predicted_model": False,
+            "source_text_used": False,
+            "entry_names_used_for_score": False,
+            "labels_used_for_score": False,
+        },
+    }
+
+
+def _fixed_combined_mean_geometry_fold_threshold(
+    threshold_contract: dict[str, Any] | None,
+) -> float | None:
+    if not threshold_contract:
+        return None
+    selected = (
+        threshold_contract.get("threshold_contract", {})
+        .get("combined_mean_geometry_fold", {})
+        .get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain", {})
+    )
+    threshold = selected.get("threshold")
+    try:
+        return float(threshold)
+    except (TypeError, ValueError):
+        return None
+
+
+def _source_free_geometry_result_rows(
+    *,
+    retrieval: dict[str, Any],
+    geometry_entries: list[dict[str, Any]],
+    manifest_rows_by_entry: dict[str, dict[str, Any]],
+    materialization_rows_by_entry: dict[str, dict[str, Any]],
+    fixed_threshold: float | None,
+) -> list[dict[str, Any]]:
+    entries_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in geometry_entries
+        if row.get("entry_id")
+    }
+    rows: list[dict[str, Any]] = []
+    for retrieval_row in retrieval.get("results", []):
+        entry_id = str(retrieval_row.get("entry_id") or "")
+        entry = entries_by_entry.get(entry_id, {})
+        manifest_row = manifest_rows_by_entry.get(entry_id, {})
+        materialization_row = materialization_rows_by_entry.get(entry_id, {})
+        fold = materialization_row.get("predicted_structure_fold_channel", {})
+        top = (retrieval_row.get("top_fingerprints") or [{}])[0]
+        top1_score = top.get("score")
+        fold_score = fold.get("nearest_atlas_tm_score")
+        combined = None
+        retained = None
+        if top1_score is not None and fold_score is not None:
+            combined = round((float(top1_score) + float(fold_score)) / 2.0, 4)
+            retained = (
+                None
+                if fixed_threshold is None
+                else bool(combined >= fixed_threshold)
+            )
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "rank": manifest_row.get("rank"),
+                "panel_id": manifest_row.get("panel_id"),
+                "source_accession": manifest_row.get("source_accession")
+                or materialization_row.get("source_accession"),
+                "predicted_geometry_status": retrieval_row.get("status"),
+                "resolved_residue_count": entry.get("resolved_residue_count"),
+                "source_free_locator_sidecar": entry.get("source_free_locator_sidecar"),
+                "predicted_geometry_retrieval": {
+                    "top1_fingerprint_id": top.get("fingerprint_id"),
+                    "top1_score": top1_score,
+                    "top1_role_match_fraction": top.get("role_match_fraction"),
+                    "top1_cofactor_context_score": top.get("cofactor_context_score"),
+                    "top1_cofactor_evidence_level": top.get(
+                        "cofactor_evidence_level"
+                    ),
+                    "top_fingerprints": retrieval_row.get("top_fingerprints", []),
+                },
+                "predicted_structure_fold_channel": fold or None,
+                "fold_augmented_projection": {
+                    "combined_mean_geometry_fold": combined,
+                    "fixed_research_threshold": fixed_threshold,
+                    "retained_at_fixed_research_threshold": retained,
+                    "threshold_source": (
+                        "v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601"
+                        if fixed_threshold is not None
+                        else None
+                    ),
+                },
+                "guardrail_note": (
+                    "review-only source-free predicted geometry retrieval; "
+                    "panel_id, rank, and source rows are carried only as review "
+                    "context and not used by the retrieval scorer"
+                ),
+            }
+        )
+    return sorted(rows, key=lambda row: int(row.get("rank") or 999999))
+
+
+def build_family_panel_source_free_predicted_geometry_retrieval(
+    *,
+    source_free_geometry_manifest_path: Path,
+    source_backed_materialization_path: Path,
+    locator_schema_audit_path: Path,
+    locator_dir: Path,
+    threshold_contract_path: Path | None = None,
+) -> dict[str, Any]:
+    manifest = _read_json(source_free_geometry_manifest_path)
+    materialization = _read_json(source_backed_materialization_path)
+    schema_audit = _read_json(locator_schema_audit_path)
+    threshold_contract = (
+        _read_json(threshold_contract_path)
+        if threshold_contract_path is not None and threshold_contract_path.exists()
+        else None
+    )
+    fixed_threshold = _fixed_combined_mean_geometry_fold_threshold(threshold_contract)
+    materialization_by_entry = _source_backed_materialization_rows_by_entry(
+        materialization
+    )
+    schema_ready_ids = _locator_schema_ready_entry_ids(schema_audit)
+    sidecars_by_entry = _locator_sidecars_by_entry(locator_dir)
+
+    manifest_rows = [
+        row
+        for row in manifest.get("row_manifests", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    manifest_by_entry = {str(row["entry_id"]): row for row in manifest_rows}
+    ready_rows = [
+        row
+        for row in manifest_rows
+        if row.get("source_free_predicted_geometry_status")
+        == "ready_to_score_source_free_predicted_geometry"
+    ]
+    geometry_entries: list[dict[str, Any]] = []
+    blocked_rows: list[dict[str, Any]] = []
+    for row in ready_rows:
+        entry_id = str(row.get("entry_id") or "")
+        if entry_id not in schema_ready_ids:
+            blocked_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "rank": row.get("rank"),
+                    "blockers": ["locator_schema_audit_not_ready"],
+                }
+            )
+            continue
+        materialization_row = materialization_by_entry.get(entry_id)
+        if materialization_row is None:
+            blocked_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "rank": row.get("rank"),
+                    "blockers": ["source_backed_materialization_row_missing"],
+                }
+            )
+            continue
+        sidecar_record = sidecars_by_entry.get(entry_id)
+        if sidecar_record is None:
+            blocked_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "rank": row.get("rank"),
+                    "blockers": ["approved_source_free_locator_sidecar_missing"],
+                }
+            )
+            continue
+        geometry_entries.append(
+            _source_free_predicted_geometry_entry_from_locator(
+                manifest_row=row,
+                materialization_row=materialization_row,
+                locator_sidecar_path=Path(sidecar_record["path"]),
+                locator_sidecar=sidecar_record["payload"],
+            )
+        )
+
+    retrieval = run_geometry_retrieval({"entries": geometry_entries})
+    result_rows = _source_free_geometry_result_rows(
+        retrieval=retrieval,
+        geometry_entries=geometry_entries,
+        manifest_rows_by_entry=manifest_by_entry,
+        materialization_rows_by_entry=materialization_by_entry,
+        fixed_threshold=fixed_threshold,
+    )
+    ok_rows = [row for row in result_rows if row["predicted_geometry_status"] == "ok"]
+    retained_rows = [
+        row
+        for row in ok_rows
+        if row["fold_augmented_projection"].get(
+            "retained_at_fixed_research_threshold"
+        )
+        is True
+    ]
+    not_retained_rows = [
+        row
+        for row in ok_rows
+        if row["fold_augmented_projection"].get(
+            "retained_at_fixed_research_threshold"
+        )
+        is False
+    ]
+    existing_blocked_rows = [
+        {
+            "entry_id": row.get("entry_id"),
+            "rank": row.get("rank"),
+            "source_accession": row.get("source_accession"),
+            "blockers": row.get("blockers", []),
+        }
+        for row in manifest_rows
+        if row.get("source_free_predicted_geometry_status")
+        == "blocked_source_free_geometry_preconditions"
+    ]
+    status = (
+        "source_free_predicted_geometry_retrieval_scored_review_only"
+        if len(ok_rows) == len(ready_rows) and not blocked_rows
+        else "source_free_predicted_geometry_retrieval_partial_review_only"
+        if ok_rows
+        else "source_free_predicted_geometry_retrieval_blocked_review_only"
+    )
+    return {
+        "artifact_id": FAMILY_PANEL_SOURCE_FREE_PREDICTED_GEOMETRY_RETRIEVAL_ID,
+        "schema_version": f"{SCHEMA_VERSION}.source_free_predicted_geometry_retrieval",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Review-only predicted active-site geometry retrieval for "
+            "family-panel rows with approved source-free locator sidecars. "
+            "The scorer uses only residue sequence positions/codes, generic "
+            "source-free locator role hints, local AlphaFoldDB coordinates, "
+            "and geometry-derived pocket/ligand context."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+            "source_text_used_for_score": False,
+            "entry_names_used_for_score": False,
+            "ec_or_rhea_ids_used_for_score": False,
+            "benchmark_roles_used_for_score": False,
+            "panel_ids_used_for_score": False,
+            "new_source_data_fetched": False,
+            "raw_coordinates_downloaded": False,
+        },
+        "counts": {
+            "manifest_target_rows": len(manifest_rows),
+            "manifest_ready_to_score_rows": len(ready_rows),
+            "locator_schema_ready_rows": len(schema_ready_ids),
+            "retrieval_rows_emitted": len(result_rows),
+            "predicted_geometry_ok_rows": len(ok_rows),
+            "runtime_blocked_ready_rows": len(blocked_rows),
+            "precondition_blocked_rows_carried": len(existing_blocked_rows),
+            "retained_at_fixed_research_threshold": len(retained_rows),
+            "abstained_at_fixed_research_threshold": len(not_retained_rows),
+        },
+        "predicted_geometry_features": {
+            "metadata": {
+                "artifact": "source_free_family_panel_predicted_geometry_features",
+                "schema_version": "predicted_geometry_features.source_free_review.v1",
+                "entry_count": len(geometry_entries),
+                "ok_entry_count": sum(
+                    1 for entry in geometry_entries if entry.get("status") == "ok"
+                ),
+                "source": "approved source-free locator sidecars plus local AFDB CIFs",
+                "mechanism_text_snippets_used": False,
+                "entry_names_used_for_score": False,
+                "labels_used_for_score": False,
+                "panel_ids_used_for_score": False,
+            },
+            "entries": geometry_entries,
+        },
+        "predicted_geometry_retrieval": retrieval,
+        "row_scores": result_rows,
+        "blocked_ready_rows": blocked_rows,
+        "precondition_blocked_rows": existing_blocked_rows,
+        "source_artifacts": {
+            "source_free_predicted_geometry_manifest": _source_path_record(
+                source_free_geometry_manifest_path
+            ),
+            "source_backed_materialization": _source_path_record(
+                source_backed_materialization_path
+            ),
+            "locator_schema_audit": _source_path_record(locator_schema_audit_path),
+            "locator_dir": str(locator_dir),
+            "threshold_contract": (
+                _source_path_record(threshold_contract_path)
+                if threshold_contract_path is not None
+                and threshold_contract_path.exists()
+                else None
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(ok_rows)}/{len(ready_rows)} ready rows now have "
+                "source-free predicted-geometry retrieval scores."
+            ),
+            "fixed_threshold_projection": (
+                f"{len(retained_rows)}/{len(ok_rows)} scored rows are retained "
+                "by the existing combined_mean_geometry_fold research threshold."
+                if fixed_threshold is not None
+                else "No fixed research threshold artifact was provided."
+            ),
+            "next_action": (
+                "Refresh the review-only family-panel readout to consume these "
+                "source-free predicted-geometry scores, while keeping all rows "
+                "non-importable and outside threshold selection."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_free_predicted_geometry_retrieval_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Family Panel Source-Free Predicted-Geometry Retrieval - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Manifest target rows: {counts['manifest_target_rows']}",
+        f"- Ready-to-score rows: {counts['manifest_ready_to_score_rows']}",
+        f"- Retrieval rows emitted: {counts['retrieval_rows_emitted']}",
+        f"- Predicted-geometry ok rows: {counts['predicted_geometry_ok_rows']}",
+        "- Fixed-threshold retained/abstained: "
+        f"{counts['retained_at_fixed_research_threshold']} / "
+        f"{counts['abstained_at_fixed_research_threshold']}",
+        "",
+        "## Row Scores",
+        "",
+        "| rank | row | top1 fingerprint | geometry score | fold TM | combined mean | fixed-threshold status |",
+        "| ---: | --- | --- | ---: | ---: | ---: | --- |",
+    ]
+    for row in audit["row_scores"]:
+        retrieval = row["predicted_geometry_retrieval"]
+        fold = row.get("predicted_structure_fold_channel") or {}
+        projection = row["fold_augmented_projection"]
+        retained = projection.get("retained_at_fixed_research_threshold")
+        status = (
+            "not_evaluated"
+            if retained is None
+            else ("retained" if retained else "abstained")
+        )
+        lines.append(
+            f"| {row['rank']} | {row['entry_id']} | "
+            f"{retrieval.get('top1_fingerprint_id')} | "
+            f"{retrieval.get('top1_score')} | "
+            f"{fold.get('nearest_atlas_tm_score')} | "
+            f"{projection.get('combined_mean_geometry_fold')} | {status} |"
+        )
+    lines += [
+        "",
+        "## Blocked Rows Carried",
+        "",
+    ]
+    for row in audit["precondition_blocked_rows"]:
+        blockers = ", ".join(str(item) for item in row.get("blockers", []))
+        lines.append(f"- {row.get('entry_id')}: {blockers}")
+    if not audit["precondition_blocked_rows"]:
+        lines.append("- none")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['fixed_threshold_projection']}",
+        f"- {audit['interpretation']['next_action']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Review-only. No labels, registries, ontologies, imports, thresholds, training data, production scoring, source fetching, or coordinate downloads changed.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_predicted_geometry_retrieval(
+    *,
+    source_free_geometry_manifest_path: Path,
+    source_backed_materialization_path: Path,
+    locator_schema_audit_path: Path,
+    locator_dir: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    threshold_contract_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_free_predicted_geometry_retrieval(
+        source_free_geometry_manifest_path=source_free_geometry_manifest_path,
+        source_backed_materialization_path=source_backed_materialization_path,
+        locator_schema_audit_path=locator_schema_audit_path,
+        locator_dir=locator_dir,
+        threshold_contract_path=threshold_contract_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_predicted_geometry_retrieval_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _external_candidate_rows_by_key(external_panel: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    rows: dict[str, dict[str, Any]] = {}
+    for row in external_panel.get("candidate_rows", []):
+        if not isinstance(row, dict):
+            continue
+        row_id = str(row.get("row_id") or "")
+        accession = _clean_source_accession(row.get("accession"))
+        if row_id:
+            rows[row_id] = row
+        if accession:
+            rows[accession] = row
+            rows[f"uniprot:{accession}"] = row
+    return rows
+
+
+def _source_free_preflight_risk_flags(
+    *,
+    geometry_fp: str | None,
+    fold_fp: str | None,
+    external_row: dict[str, Any] | None,
+    source_sidecar: dict[str, Any] | None,
+) -> list[str]:
+    flags = [
+        "source_check_required_before_family_decision",
+        "label_import_not_authorized",
+    ]
+    if geometry_fp and fold_fp and geometry_fp != fold_fp:
+        flags.append("geometry_fold_fingerprint_disagreement")
+    else:
+        flags.append("geometry_fold_fingerprint_agreement_needs_duplicate_screen")
+    if external_row:
+        if not external_row.get("countable_label_candidate", False):
+            flags.append("external_panel_row_not_countable")
+        if external_row.get("current_v1_state"):
+            flags.append(str(external_row["current_v1_state"]))
+    if source_sidecar and not source_sidecar.get("predictive_use_allowed", False):
+        flags.append("source_backed_sidecar_review_context_only")
+    return sorted(set(flags))
+
+
+def build_family_panel_source_free_predicted_geometry_source_check_preflight(
+    *,
+    source_check_queue_path: Path,
+    source_free_predicted_geometry_retrieval_path: Path,
+    source_backed_materialization_path: Path,
+    external_metal_hydrolase_panel_path: Path | None = None,
+) -> dict[str, Any]:
+    queue = _read_json(source_check_queue_path)
+    retrieval = _read_json(source_free_predicted_geometry_retrieval_path)
+    materialization = _read_json(source_backed_materialization_path)
+    external_panel = (
+        _read_json(external_metal_hydrolase_panel_path)
+        if external_metal_hydrolase_panel_path is not None
+        and external_metal_hydrolase_panel_path.exists()
+        else {}
+    )
+    queue_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in queue.get("queue_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    materialization_by_entry = _source_backed_materialization_rows_by_entry(
+        materialization
+    )
+    external_by_key = _external_candidate_rows_by_key(external_panel)
+    rows: list[dict[str, Any]] = []
+    for scored_row in retrieval.get("row_scores", []):
+        if not isinstance(scored_row, dict) or not scored_row.get("entry_id"):
+            continue
+        entry_id = str(scored_row["entry_id"])
+        queue_row = queue_by_entry.get(entry_id, {})
+        materialization_row = materialization_by_entry.get(entry_id, {})
+        source_accession = str(
+            scored_row.get("source_accession")
+            or materialization_row.get("source_accession")
+            or ""
+        )
+        accession = _clean_source_accession(source_accession)
+        sidecar_path = Path(str(materialization_row.get("sidecar_path") or ""))
+        source_sidecar = _read_json(sidecar_path) if sidecar_path.exists() else None
+        external_row = (
+            external_by_key.get(entry_id)
+            or external_by_key.get(accession)
+            or external_by_key.get(source_accession)
+        )
+        geometry = scored_row.get("predicted_geometry_retrieval") or {}
+        fold = scored_row.get("predicted_structure_fold_channel") or {}
+        geometry_fp = geometry.get("top1_fingerprint_id")
+        fold_fp = fold.get("nearest_atlas_true_fingerprint_id")
+        rows.append(
+            {
+                "rank": queue_row.get("rank"),
+                "entry_id": entry_id,
+                "panel_id": scored_row.get("panel_id") or queue_row.get("panel_id"),
+                "source_accession": source_accession,
+                "display_name": (
+                    (source_sidecar or {}).get("display_name")
+                    or (external_row or {}).get("name")
+                ),
+                "geometry_fold_agreement": bool(
+                    geometry_fp and fold_fp and geometry_fp == fold_fp
+                ),
+                "predicted_geometry_top1_fingerprint_id": geometry_fp,
+                "predicted_geometry_top1_score": geometry.get("top1_score"),
+                "nearest_atlas_true_fingerprint_id": fold_fp,
+                "nearest_atlas_tm_score": fold.get("nearest_atlas_tm_score"),
+                "combined_mean_geometry_fold": (
+                    scored_row.get("fold_augmented_projection") or {}
+                ).get("combined_mean_geometry_fold"),
+                "fixed_research_threshold": (
+                    scored_row.get("fold_augmented_projection") or {}
+                ).get("fixed_research_threshold"),
+                "retained_at_fixed_research_threshold": (
+                    scored_row.get("fold_augmented_projection") or {}
+                ).get("retained_at_fixed_research_threshold"),
+                "local_source_context": {
+                    "source": (
+                        "external_metal_hydrolase_tail_panel"
+                        if external_row
+                        else "source_backed_sidecar"
+                    ),
+                    "candidate_role": (external_row or {}).get("candidate_role"),
+                    "current_v1_state": (external_row or {}).get("current_v1_state"),
+                    "evidence_summary": (external_row or {}).get("evidence_summary"),
+                    "metal_ligand_state": (external_row or {}).get(
+                        "metal_ligand_state"
+                    ),
+                    "ligand_or_substrate_state": (external_row or {}).get(
+                        "ligand_or_substrate_state"
+                    ),
+                    "source_backed_sidecar_status": (source_sidecar or {}).get(
+                        "catalytic_or_binding_site_evidence", {}
+                    ).get("status"),
+                    "source_urls": (source_sidecar or {}).get("source_urls")
+                    or (external_row or {}).get("source_urls"),
+                },
+                "preflight_decision": "hold_review_only_pending_source_check",
+                "risk_flags": _source_free_preflight_risk_flags(
+                    geometry_fp=geometry_fp,
+                    fold_fp=fold_fp,
+                    external_row=external_row,
+                    source_sidecar=source_sidecar,
+                ),
+                "required_next_evidence": [
+                    "row-specific source-backed bond-change and reaction locus",
+                    "duplicate/leakage screen against current702 and source panels",
+                    "cofactor or metal-locus evidence normalized outside source prose",
+                    "expert family-admission decision before any label/import change",
+                ],
+            }
+        )
+    rows = sorted(rows, key=lambda row: int(row.get("rank") or 999999))
+    agreement_rows = [row for row in rows if row["geometry_fold_agreement"]]
+    status = (
+        "source_free_predicted_geometry_source_check_preflight_ready_review_only"
+        if rows
+        else "source_free_predicted_geometry_source_check_preflight_blocked"
+    )
+    return {
+        "artifact_id": FAMILY_PANEL_SOURCE_FREE_PREDICTED_GEOMETRY_SOURCE_CHECK_PREFLIGHT_ID,
+        "schema_version": f"{SCHEMA_VERSION}.source_free_predicted_geometry_source_check_preflight",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Review-only source-check preflight for the family-panel rows that "
+            "became non-abstained after approved source-free predicted-geometry "
+            "scoring. This packages local frozen evidence and blockers; it does "
+            "not adjudicate family membership."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "new_source_data_fetched": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+            "source_prose_used_for_predictive_scoring": False,
+        },
+        "counts": {
+            "preflight_rows": len(rows),
+            "geometry_fold_agreement_rows": len(agreement_rows),
+            "geometry_fold_disagreement_rows": len(rows) - len(agreement_rows),
+            "hold_review_only_rows": sum(
+                1
+                for row in rows
+                if row["preflight_decision"]
+                == "hold_review_only_pending_source_check"
+            ),
+        },
+        "preflight_rows": rows,
+        "source_artifacts": {
+            "source_check_queue": _source_path_record(source_check_queue_path),
+            "source_free_predicted_geometry_retrieval": _source_path_record(
+                source_free_predicted_geometry_retrieval_path
+            ),
+            "source_backed_materialization": _source_path_record(
+                source_backed_materialization_path
+            ),
+            "external_metal_hydrolase_panel": (
+                _source_path_record(external_metal_hydrolase_panel_path)
+                if external_metal_hydrolase_panel_path is not None
+                and external_metal_hydrolase_panel_path.exists()
+                else None
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(rows)} newly scored source-free rows are queued for "
+                "review-only source checks; none is import-ready."
+            ),
+            "next_action": (
+                "Start with `mh_066` because it has the largest positive margin, "
+                "then source-check `mh_073` and "
+                "`secondary_probe::radical_sam_enzyme` for mechanism locus and "
+                "duplicate/leakage status."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_free_predicted_geometry_source_check_preflight_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Family Panel Source-Free Predicted-Geometry Source-Check Preflight - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Preflight rows: {counts['preflight_rows']}",
+        f"- Geometry/fold agreement rows: {counts['geometry_fold_agreement_rows']}",
+        f"- Geometry/fold disagreement rows: {counts['geometry_fold_disagreement_rows']}",
+        "",
+        "## Rows",
+        "",
+        "| rank | row | name | geometry top1 | fold fingerprint | combined mean | decision | risk flags |",
+        "| ---: | --- | --- | --- | --- | ---: | --- | --- |",
+    ]
+    for row in audit["preflight_rows"]:
+        lines.append(
+            f"| {row['rank']} | {row['entry_id']} | {row.get('display_name')} | "
+            f"{row['predicted_geometry_top1_fingerprint_id']} | "
+            f"{row['nearest_atlas_true_fingerprint_id']} | "
+            f"{row['combined_mean_geometry_fold']} | "
+            f"{row['preflight_decision']} | "
+            f"{', '.join(row['risk_flags'])} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Review-only preflight. No labels, registries, ontologies, imports, thresholds, training data, source fetching, or production scoring changed.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_predicted_geometry_source_check_preflight(
+    *,
+    source_check_queue_path: Path,
+    source_free_predicted_geometry_retrieval_path: Path,
+    source_backed_materialization_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    external_metal_hydrolase_panel_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_free_predicted_geometry_source_check_preflight(
+        source_check_queue_path=source_check_queue_path,
+        source_free_predicted_geometry_retrieval_path=source_free_predicted_geometry_retrieval_path,
+        source_backed_materialization_path=source_backed_materialization_path,
+        external_metal_hydrolase_panel_path=external_metal_hydrolase_panel_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_predicted_geometry_source_check_preflight_report(
                 audit
             ),
             encoding="utf-8",
@@ -9784,17 +11027,61 @@ def _family_panel_packet_paths_from_coverage(coverage: dict[str, Any]) -> list[P
     ]
 
 
+def _source_free_predicted_geometry_scores_by_entry(
+    source_free_retrieval: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    out: dict[str, dict[str, Any]] = {}
+    for row in source_free_retrieval.get("row_scores", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        top1 = row.get("predicted_geometry_retrieval") or {}
+        out[str(row["entry_id"])] = {
+            "source": "family_panel_source_free_predicted_geometry_retrieval",
+            "top1_fingerprint_id": top1.get("top1_fingerprint_id"),
+            "top1_score": top1.get("top1_score"),
+            "top1_role_match_fraction": top1.get("top1_role_match_fraction"),
+            "top1_cofactor_context_score": top1.get(
+                "top1_cofactor_context_score"
+            ),
+            "predicted_geometry_status": row.get("predicted_geometry_status"),
+        }
+    return out
+
+
 def _family_panel_channel_row(
     *,
     panel_id: str,
     row: dict[str, Any],
     threshold: float,
     fallback_fold_score: dict[str, Any] | None = None,
+    fallback_geometry_score: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     entry_id = str(row.get("entry_id") or "")
     geometry_top1 = row.get("predicted_geometry_top1") or {}
     predicted_fold = row.get("predicted_structure_fold_channel") or {}
     geom = _parse_optional_float(geometry_top1.get("score"))
+    geometry_score_source = (
+        "family_panel_packet_predicted_geometry_top1"
+        if geom is not None
+        else None
+    )
+    if geom is None and fallback_geometry_score is not None:
+        fallback_geom = _parse_optional_float(
+            fallback_geometry_score.get("top1_score")
+        )
+        if fallback_geom is not None:
+            geom = fallback_geom
+            geometry_top1 = {
+                "fingerprint_id": fallback_geometry_score.get("top1_fingerprint_id"),
+                "score": fallback_geom,
+                "role_match_fraction": fallback_geometry_score.get(
+                    "top1_role_match_fraction"
+                ),
+                "cofactor_context_score": fallback_geometry_score.get(
+                    "top1_cofactor_context_score"
+                ),
+            }
+            geometry_score_source = str(fallback_geometry_score.get("source") or "")
     fold = _parse_optional_float(predicted_fold.get("nearest_atlas_tm_score"))
     fold_score_source = (
         "family_panel_packet_predicted_structure_fold_channel"
@@ -9853,6 +11140,7 @@ def _family_panel_channel_row(
         "benchmark_role": row.get("benchmark_role"),
         "predicted_geometry_status": row.get("predicted_geometry_status"),
         "predicted_geometry_top1_fingerprint_id": geometry_top1.get("fingerprint_id"),
+        "predicted_geometry_score_source": geometry_score_source,
         "predicted_structure_nearest_atlas_entry_id": predicted_fold.get(
             "nearest_atlas_entry_id"
         ),
@@ -9892,6 +11180,7 @@ def build_fold_augmented_family_panel_research_readout(
     family_panel_coverage_audit_path: Path,
     family_panel_packet_paths: list[Path] | None = None,
     train_cal_threshold_contract_path: Path | None = None,
+    source_free_predicted_geometry_retrieval_path: Path | None = None,
 ) -> dict[str, Any]:
     threshold_contract = _read_json(oos_calibrated_threshold_contract_path)
     sufficiency = _read_json(sufficiency_decision_path)
@@ -9900,6 +11189,12 @@ def build_fold_augmented_family_panel_research_readout(
         _read_json(train_cal_threshold_contract_path)
         if train_cal_threshold_contract_path is not None
         and train_cal_threshold_contract_path.exists()
+        else None
+    )
+    source_free_retrieval = (
+        _read_json(source_free_predicted_geometry_retrieval_path)
+        if source_free_predicted_geometry_retrieval_path is not None
+        and source_free_predicted_geometry_retrieval_path.exists()
         else None
     )
     threshold = _primary_fold_augmented_threshold(threshold_contract)
@@ -9914,6 +11209,9 @@ def build_fold_augmented_family_panel_research_readout(
             train_cal_contract or {}
         ).items()
     }
+    fallback_geometry_scores_by_entry = _source_free_predicted_geometry_scores_by_entry(
+        source_free_retrieval or {}
+    )
 
     rows: list[dict[str, Any]] = []
     panel_summaries: list[dict[str, Any]] = []
@@ -9943,6 +11241,9 @@ def build_fold_augmented_family_panel_research_readout(
                 row=row,
                 threshold=threshold,
                 fallback_fold_score=fallback_fold_scores_by_entry.get(
+                    str(row.get("entry_id") or "")
+                ),
+                fallback_geometry_score=fallback_geometry_scores_by_entry.get(
                     str(row.get("entry_id") or "")
                 ),
             )
@@ -10063,6 +11364,9 @@ def build_fold_augmented_family_panel_research_readout(
             "model_weights_fit_or_refit": False,
             "heldout_rows_used_for_training": False,
             "train_cal_oos_surface_reused_as_research_contract": True,
+            "source_free_predicted_geometry_retrieval_review_only": bool(
+                source_free_retrieval
+            ),
         },
         "threshold_source": {
             "channel": "combined_mean_geometry_fold",
@@ -10135,6 +11439,12 @@ def build_fold_augmented_family_panel_research_readout(
             "family_panel_packets": [
                 _source_path_record(path) for path in packet_paths
             ],
+            "source_free_predicted_geometry_retrieval": (
+                _source_path_record(source_free_predicted_geometry_retrieval_path)
+                if source_free_predicted_geometry_retrieval_path is not None
+                and source_free_predicted_geometry_retrieval_path.exists()
+                else None
+            ),
         },
         "interpretation": {
             "headline": (
@@ -10230,6 +11540,7 @@ def write_fold_augmented_family_panel_research_readout(
     family_panel_coverage_audit_path: Path,
     family_panel_packet_paths: list[Path] | None = None,
     train_cal_threshold_contract_path: Path | None = None,
+    source_free_predicted_geometry_retrieval_path: Path | None = None,
     out_path: Path,
     report_path: Path | None = None,
 ) -> dict[str, Any]:
@@ -10239,6 +11550,7 @@ def write_fold_augmented_family_panel_research_readout(
         family_panel_coverage_audit_path=family_panel_coverage_audit_path,
         family_panel_packet_paths=family_panel_packet_paths,
         train_cal_threshold_contract_path=train_cal_threshold_contract_path,
+        source_free_predicted_geometry_retrieval_path=source_free_predicted_geometry_retrieval_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -10525,6 +11837,17 @@ def build_fold_augmented_family_panel_missing_primary_channel_queue(
         if readout.get("status") == "family_panel_research_readout_ready_review_only"
         else "missing_primary_channel_queue_blocked"
     )
+    next_action = (
+        "Start with current702 M-CSA rows that need predicted-geometry "
+        "repair, then handle secondary-probe and external placeholder "
+        "rows through source-backed sidecars."
+        if m_csa_rows
+        else (
+            "No M-CSA rows remain in this queue; continue with the secondary "
+            "probe row and external placeholder rows that still need approved "
+            "source-free locator sidecars before predicted-geometry scoring."
+        )
+    )
     return {
         "artifact_id": FOLD_AUGMENTED_FAMILY_PANEL_MISSING_PRIMARY_CHANNEL_QUEUE_ID,
         "schema_version": f"{SCHEMA_VERSION}.missing_primary_channel_queue",
@@ -10566,11 +11889,7 @@ def build_fold_augmented_family_panel_missing_primary_channel_queue(
                 f"{len(queue_rows)} family-panel rows lack the primary "
                 "geometry+predicted-fold channel."
             ),
-            "next_action": (
-                "Start with current702 M-CSA rows that need predicted-geometry "
-                "repair, then handle secondary-probe and external placeholder "
-                "rows through source-backed sidecars."
-            ),
+            "next_action": next_action,
         },
     }
 

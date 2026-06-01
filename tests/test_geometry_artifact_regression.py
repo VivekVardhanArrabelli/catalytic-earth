@@ -2841,6 +2841,57 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             0.814301,
         )
 
+    def test_predicted_structure_fold_augmented_novelty_operating_grid_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_predicted_structure_fold_augmented_novelty_operating_grid_"
+                "current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "predicted_structure_fold_augmented_novelty_operating_grid_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["row_scores"], 126)
+        self.assertEqual(audit["counts"]["signals"], 11)
+        self.assertEqual(audit["counts"]["retention_targets"], 4)
+        self.assertEqual(audit["counts"]["grid_rows"], 44)
+        self.assertTrue(audit["guardrails"]["uses_existing_variant_artifact_only"])
+        self.assertFalse(audit["guardrails"]["foldseek_or_tmsearch_recomputed"])
+        self.assertFalse(audit["guardrails"]["production_thresholds_changed"])
+        best = audit["best_signal_from_variant_artifact"]
+        self.assertEqual(best["name"], "mean_top1_raw_and_tm")
+        self.assertEqual(
+            best["best_at_90pct_inscope_retention"]["oos_abstain_recall"],
+            0.7215,
+        )
+        self.assertEqual(
+            best["best_at_85pct_inscope_retention"]["oos_abstain_recall"],
+            0.7722,
+        )
+        self.assertEqual(
+            audit["best_by_retention_target"]["0.90"]["signal"],
+            "mean_top1_atlas_percentile_and_tm",
+        )
+        self.assertEqual(
+            audit["best_by_retention_target"]["0.85"]["signal"],
+            "harmonic_top1_raw_and_tm",
+        )
+        confounded_rows = best["confounded_rows"]
+        self.assertEqual(
+            [row["entry_id"] for row in confounded_rows],
+            ["m_csa:30", "m_csa:31", "m_csa:80", "m_csa:191", "m_csa:267", "m_csa:448"],
+        )
+        self.assertEqual(
+            sum(1 for row in confounded_rows if row["abstained_at_best_signal_90pct"]),
+            5,
+        )
+
     def test_mechanism_feature_sidecar_schema_audit_current_counts(self) -> None:
         audit = _load_json(
             ROOT
@@ -3410,17 +3461,17 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         expected = {
             "v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json": {
                 "candidate_rows": 3,
-                "predicted_geometry_ok_rows": 1,
+                "predicted_geometry_ok_rows": 2,
                 "rows_with_predicted_structure_fold_hits": 3,
             },
             "v3_family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.json": {
                 "candidate_rows": 6,
-                "predicted_geometry_ok_rows": 0,
+                "predicted_geometry_ok_rows": 1,
                 "rows_with_predicted_structure_fold_hits": 6,
             },
             "v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json": {
                 "candidate_rows": 4,
-                "predicted_geometry_ok_rows": 2,
+                "predicted_geometry_ok_rows": 3,
                 "rows_with_predicted_structure_fold_hits": 4,
             },
         }
@@ -3429,6 +3480,26 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             self.assertEqual(packet["status"], "evidence_packet_ready_with_geometry_gaps")
             for key, value in counts.items():
                 self.assertEqual(packet["counts"][key], value)
+        no_reliable = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.json"
+        )
+        by_entry = {row["entry_id"]: row for row in no_reliable["row_evidence"]}
+        self.assertEqual(
+            by_entry["mh_066"]["predicted_geometry_score_source"],
+            "family_panel_source_free_predicted_geometry_retrieval",
+        )
+        near_orphan = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json"
+        )
+        by_entry = {row["entry_id"]: row for row in near_orphan["row_evidence"]}
+        self.assertEqual(
+            by_entry["mh_073"]["predicted_geometry_score_source"],
+            "family_panel_source_free_predicted_geometry_retrieval",
+        )
 
     def test_fold_augmented_family_panel_research_readout_current_counts(self) -> None:
         readout = _load_json(
@@ -3444,13 +3515,23 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(readout["threshold_source"]["threshold"], 0.44155)
         self.assertEqual(readout["counts"]["panel_packets"], 7)
         self.assertEqual(readout["counts"]["candidate_rows"], 22)
-        self.assertEqual(readout["counts"]["primary_score_complete_rows"], 12)
-        self.assertEqual(readout["counts"]["non_abstained_at_research_threshold"], 6)
+        self.assertEqual(readout["counts"]["primary_score_complete_rows"], 15)
+        self.assertEqual(readout["counts"]["non_abstained_at_research_threshold"], 9)
         self.assertEqual(readout["counts"]["abstained_at_research_threshold"], 6)
-        self.assertEqual(readout["counts"]["not_score_complete_for_primary_channel"], 10)
+        self.assertEqual(readout["counts"]["not_score_complete_for_primary_channel"], 7)
         self.assertEqual(
             [row["entry_id"] for row in readout["review_priority_rows"]],
-            ["m_csa:267", "m_csa:131", "m_csa:750", "m_csa:551", "m_csa:132", "m_csa:116"],
+            [
+                "mh_066",
+                "m_csa:267",
+                "m_csa:131",
+                "m_csa:750",
+                "m_csa:551",
+                "m_csa:132",
+                "mh_073",
+                "secondary_probe::radical_sam_enzyme",
+                "m_csa:116",
+            ],
         )
         by_entry = {row["entry_id"]: row for row in readout["row_scores"]}
         self.assertEqual(
@@ -3460,6 +3541,16 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             by_entry["m_csa:973"]["research_gate_status"],
             "abstained_at_research_threshold",
+        )
+        self.assertEqual(
+            by_entry["mh_066"]["predicted_geometry_score_source"],
+            "family_panel_source_free_predicted_geometry_retrieval",
+        )
+        self.assertEqual(
+            by_entry["secondary_probe::radical_sam_enzyme"][
+                "research_gate_status"
+            ],
+            "non_abstained_at_research_threshold",
         )
         self.assertTrue(readout["guardrails"]["review_only"])
         self.assertFalse(readout["guardrails"]["thresholds_selected_on_family_panel_rows"])
@@ -3472,20 +3563,31 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
 
         self.assertEqual(queue["status"], "source_check_queue_ready_review_only")
-        self.assertEqual(queue["counts"]["source_check_rows"], 6)
-        self.assertEqual(queue["counts"]["panels_represented"], 4)
+        self.assertEqual(queue["counts"]["source_check_rows"], 9)
+        self.assertEqual(queue["counts"]["panels_represented"], 5)
         self.assertEqual(
             queue["counts"]["source_check_rows_by_panel"],
             {
-                "cobalamin_and_radical_rearrangement_panel": 1,
+                "cobalamin_and_radical_rearrangement_panel": 2,
                 "flavin_monooxygenase_and_flavin_oxygen_transfer": 3,
                 "lipoamide_or_sulfur_transfer_redox_boundary": 1,
-                "near_orphan_glycoside_or_nucleoside_hydrolase_controls": 1,
+                "near_orphan_glycoside_or_nucleoside_hydrolase_controls": 2,
+                "no_reliable_structure_metal_hydrolase_controls": 1,
             },
         )
         self.assertEqual(
             [row["entry_id"] for row in queue["queue_rows"]],
-            ["m_csa:267", "m_csa:131", "m_csa:750", "m_csa:551", "m_csa:132", "m_csa:116"],
+            [
+                "mh_066",
+                "m_csa:267",
+                "m_csa:131",
+                "m_csa:750",
+                "m_csa:551",
+                "m_csa:132",
+                "mh_073",
+                "secondary_probe::radical_sam_enzyme",
+                "m_csa:116",
+            ],
         )
         self.assertTrue(queue["guardrails"]["review_only"])
         self.assertFalse(queue["guardrails"]["new_source_data_fetched"])
@@ -3675,14 +3777,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             queue["status"],
             "missing_primary_channel_queue_ready_review_only",
         )
-        self.assertEqual(queue["counts"]["missing_primary_channel_rows"], 10)
+        self.assertEqual(queue["counts"]["missing_primary_channel_rows"], 7)
         self.assertEqual(queue["counts"]["m_csa_rows"], 0)
-        self.assertEqual(queue["counts"]["secondary_probe_rows"], 2)
-        self.assertEqual(queue["counts"]["external_or_placeholder_rows"], 8)
+        self.assertEqual(queue["counts"]["secondary_probe_rows"], 1)
+        self.assertEqual(queue["counts"]["external_or_placeholder_rows"], 6)
         self.assertEqual(
             queue["counts"]["score_blocker_counts"],
             {
-                "predicted_geometry_top1_score_missing": 10,
+                "predicted_geometry_top1_score_missing": 7,
             },
         )
         self.assertNotIn("m_csa:973", {row["entry_id"] for row in queue["queue_rows"]})
@@ -3704,14 +3806,14 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             diagnosis["status"],
             "missing_primary_channel_diagnosis_ready_review_only",
         )
-        self.assertEqual(diagnosis["counts"]["diagnosed_rows"], 10)
+        self.assertEqual(diagnosis["counts"]["diagnosed_rows"], 7)
         self.assertEqual(
             diagnosis["counts"]["diagnosis_counts"],
             {
-                "source_backed_fold_scored_needs_predicted_geometry": 10,
+                "source_backed_fold_scored_needs_predicted_geometry": 7,
             },
         )
-        self.assertEqual(diagnosis["counts"]["rows_with_source_backed_fold_score"], 10)
+        self.assertEqual(diagnosis["counts"]["rows_with_source_backed_fold_score"], 7)
         self.assertEqual(
             diagnosis["counts"]["rows_with_train_calibration_fold_score"],
             0,
@@ -3928,6 +4030,46 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "build-family-panel-source-free-predicted-geometry-sidecar-manifest",
             manifest["commands"]["reproduce_this_manifest"],
         )
+
+    def test_family_panel_source_free_predicted_geometry_retrieval_current_counts(
+        self,
+    ) -> None:
+        retrieval = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            retrieval["status"],
+            "source_free_predicted_geometry_retrieval_scored_review_only",
+        )
+        self.assertEqual(retrieval["counts"]["manifest_target_rows"], 10)
+        self.assertEqual(retrieval["counts"]["manifest_ready_to_score_rows"], 3)
+        self.assertEqual(retrieval["counts"]["predicted_geometry_ok_rows"], 3)
+        self.assertEqual(retrieval["counts"]["runtime_blocked_ready_rows"], 0)
+        self.assertEqual(retrieval["counts"]["precondition_blocked_rows_carried"], 7)
+        self.assertEqual(retrieval["counts"]["retained_at_fixed_research_threshold"], 3)
+        by_entry = {row["entry_id"]: row for row in retrieval["row_scores"]}
+        self.assertEqual(
+            set(by_entry),
+            {"mh_066", "mh_073", "secondary_probe::radical_sam_enzyme"},
+        )
+        self.assertEqual(
+            by_entry["mh_066"]["predicted_geometry_retrieval"]["top1_fingerprint_id"],
+            "metal_dependent_hydrolase",
+        )
+        self.assertEqual(
+            by_entry["mh_073"]["predicted_geometry_retrieval"]["top1_fingerprint_id"],
+            "ser_his_acid_hydrolase",
+        )
+        self.assertTrue(
+            by_entry["secondary_probe::radical_sam_enzyme"][
+                "fold_augmented_projection"
+            ]["retained_at_fixed_research_threshold"]
+        )
+        self.assertFalse(retrieval["guardrails"]["source_text_used_for_score"])
+        self.assertFalse(retrieval["guardrails"]["panel_ids_used_for_score"])
 
     def test_family_panel_source_free_active_site_locator_schema_current_counts(
         self,

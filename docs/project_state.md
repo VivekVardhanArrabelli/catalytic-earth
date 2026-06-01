@@ -85,6 +85,12 @@ artifacts first.
   Foldseek/TM. The best existing-channel variant is still
   `mean_top1_raw_and_tm`, with all-OOS AUC `0.907622` and confounded-OOS AUC
   `0.911348`; this confirms the rank signal but does not select a threshold.
+- A companion fold-augmented novelty operating-grid readout now enumerates
+  0.95/0.90/0.85/0.80 in-scope-retention diagnostics over those existing
+  variant rows. The best frozen variant artifact signal abstains on 72.15% of
+  OOS rows and 5/6 cofactor-confounded OOS rows at >=90% in-scope retention; the
+  best 0.90 grid row uses `mean_top1_atlas_percentile_and_tm` and abstains on
+  77.22% of OOS rows. This remains a heldout review-only diagnostic.
 - A geometry-only predicted-atlas operating-grid readout now enumerates the
   post-hoc retention/OOS-abstention tradeoff for all 10 frozen geometry novelty
   signals. The best geometry-only signal remains
@@ -114,12 +120,14 @@ artifacts first.
 - A downstream fold-augmented research readout now applies the fixed
   OOS-calibrated `combined_mean_geometry_fold` threshold to the seven
   review-only family expansion packets. After the repaired M-CSA primary-channel
-  pass, it finds 12/22 primary score-complete rows, with 6 non-abstained
-  review-priority rows (`m_csa:267`, `m_csa:131`, `m_csa:750`, `m_csa:551`,
-  `m_csa:132`, and `m_csa:116`), 6 abstained rows, and 10 geometry/fold-missing
-  rows. `m_csa:973` is score-complete via its frozen train/calibration fold
-  score and abstains at the fixed threshold. This is a triage signal only, not
-  a family promotion or threshold change.
+  pass and the source-free predicted-geometry retrieval for three approved
+  locator rows, it finds 15/22 primary score-complete rows, with 9
+  non-abstained review-priority rows (`mh_066`, `m_csa:267`, `m_csa:131`,
+  `m_csa:750`, `m_csa:551`, `m_csa:132`, `mh_073`,
+  `secondary_probe::radical_sam_enzyme`, and `m_csa:116`), 6 abstained rows,
+  and 7 geometry/fold-missing rows. `m_csa:973` is score-complete via its
+  frozen train/calibration fold score and abstains at the fixed threshold. This
+  is a triage signal only, not a family promotion or threshold change.
 - The rank-1 family-panel source check for `m_csa:267` is complete from frozen
   local artifacts and keeps the row as a review-only OOS boundary control:
   local M-CSA graph evidence supports dihydrodipicolinate synthase lysine
@@ -145,10 +153,11 @@ artifacts first.
   non-abstained under the fixed research gate and have frozen-local
   source-check packets: `m_csa:132` remains secondary FMO support only, and
   `m_csa:116` remains an OOS transhydrogenase/hydride-transfer control.
-- The remaining family-panel primary-channel gaps are queued separately: 10
-  secondary/external rows now have source-backed predicted-fold scores, but
-  still lack source-free predicted active-site geometry top1 scores. There are
-  no remaining M-CSA rows in the missing primary-channel queue.
+- The family-panel primary-channel gaps are queued separately. The original
+  10 secondary/external rows all have source-backed predicted-fold scores; after
+  approved source-free locator scoring for three rows, 7 still lack
+  source-free predicted active-site geometry top1 scores. There are no
+  remaining M-CSA rows in the missing primary-channel queue.
 - The 10-row missing queue now has a review-only source-backed materialization
   plan and a scored P0/P1 materialization. It selects Q59490 for the cobalamin
   secondary probe, A0A1M6T2I7 for the radical-SAM secondary probe, Q6NSJ0 for
@@ -160,12 +169,13 @@ artifacts first.
   materialized.
 - The source-free predicted-geometry sidecar manifest now narrows that blocker:
   10/10 queued rows have AFDB-v6 CIF hashes and source-backed Foldseek/TM
-  scores, but 0/10 have approved source-free active-site locator sidecars. The
+  scores, 3/10 have approved source-free active-site locator sidecars, and
+  7/10 remain blocked on approved locators. The
   companion locator schema requires at least two source-free sequence-position
   residue locators and forbids source prose, entry names, EC/Rhea identifiers,
   labels, benchmark roles, and panel IDs as predictive geometry features. The
-  schema audit currently reports 0/10 locator sidecars present, with
-  `locator_sidecar_missing` as the only critical violation class. A
+  schema audit currently reports 3/10 locator sidecars present and passing,
+  with `locator_sidecar_missing` as the remaining critical violation class. A
   materialization plan names the exact locator sidecar paths and rerun commands;
   eight rows start from structure-local ligand geometry candidates, while
   `mh_067` and `mh_068` require split-safe train/cal-template checks due to
@@ -198,9 +208,9 @@ artifacts first.
 - A priority-1 locator review preflight dry-ran schema compatibility,
   guardrail cleanliness, and coordinate-contact plausibility for `mh_066`,
   `mh_073`, and `secondary_probe::radical_sam_enzyme`. All three passed the
-  automation preflight, with `mh_073` carrying a minimum-two-locator warning,
-  but human approval is still required before any sidecar copy; 0 rows are
-  copy-authorized or scoring-ready.
+  automation preflight, with `mh_073` carrying a minimum-two-locator warning.
+  Human approval has since moved these three sidecars into the audited locator
+  directory and made them scoring-ready.
 - A blocked-row rescue manifest now inspects the two no-ligand locator rows.
   Both selected coordinates contain only water HETATMs. `mh_064` has five
   frozen source alternate PDB IDs (`3RKJ`, `3RKK`, `3SBL`, `3SFP`, and `3SPU`)
@@ -211,6 +221,25 @@ artifacts first.
   `m_csa:132` as secondary-probe support, `m_csa:551` and `m_csa:973` as future
   support only, and `m_csa:750` as radical flavin/Fe-S boundary negative. No
   FMO row is import-ready or registry-edit-ready.
+- A source-free predicted-geometry retrieval now scores the three approved
+  locator rows (`secondary_probe::radical_sam_enzyme`, `mh_073`, and `mh_066`)
+  against the existing geometry fingerprint surface using only approved residue
+  locators and local AFDB-v6 CIFs. All three rows resolve at least two predicted
+  residues and are retained by the existing `combined_mean_geometry_fold`
+  research threshold when joined to their source-backed fold scores. This is
+  review-only evidence; seven family-panel rows remain blocked on approved
+  source-free locators and no labels, imports, thresholds, splits, or
+  production scorers changed.
+- The family-panel evidence packets now consume the approved source-free
+  retrieval where applicable: `secondary_probe::radical_sam_enzyme`, `mh_066`,
+  and `mh_073` are geometry-ok in their packet rows. The packet coverage audit
+  now reports 15/22 family-panel rows with predicted geometry and 21 rows with
+  predicted-fold hits while preserving all review-only guardrails.
+- A companion source-check preflight now packages the three newly non-abstained
+  source-free geometry rows for local review. It holds `mh_066`, `mh_073`, and
+  `secondary_probe::radical_sam_enzyme` as review-only pending source checks,
+  with `mh_066` showing geometry/fold agreement and the other two requiring
+  mechanism-locus and duplicate/leakage review before any family decision.
 - Learned-representation results are diagnostic, not decision-grade. ESM-2
   logistic is the strongest local learned comparator in the Wave 1.2 table but
   does not displace geometry. ESM-C logistic versus ESM-C cosine shows decoder
@@ -311,16 +340,11 @@ artifacts first.
    source-checked and remain review-only. `m_csa:973` reuses its frozen
    train/calibration fold score, is score-complete, and abstains under the fixed
    research threshold. The 10-row source-backed coordinate/Foldseek pass is
-   done; next implement the source-free active-site locator sidecar validator
-   and materializer from
-   `artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json`,
-   rerun
-   `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`,
-   follow
-   `artifacts/v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.json`,
-   fill the review-only templates in
-   `artifacts/v3_family_panel_source_free_active_site_locator_template_bundle_current702_20260601.json`,
-   then refresh the source-free predicted-geometry manifest/readout.
+   done, and three approved locator rows now have source-free predicted-geometry
+   scores joined into the readout. Next source-check the three new
+   non-abstained review rows (`mh_066`, `mh_073`, and
+   `secondary_probe::radical_sam_enzyme`) and continue clearing the seven
+   remaining source-free locator blockers before any family-expansion decision.
 3. If representation work resumes, produce row-aligned local sidecars first,
    start from
    `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`,
@@ -353,6 +377,8 @@ artifacts first.
 - `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`
 - `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`
 - `artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json`
+- `artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601.json`
+- `artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json`
 - `artifacts/v3_predicted_atlas_geometry_novelty_operating_grid_current702_20260601.json`
 - `artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json`
 - `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`
@@ -385,12 +411,18 @@ artifacts first.
 - `artifacts/v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601.json`
 - `artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_template_bundle_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_candidate_audit_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_active_site_locator_candidate_integrity_audit_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_review_queue_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_active_site_locator_priority1_review_preflight_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_locator_blocked_row_rescue_manifest_current702_20260601.json`
 - `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`
 - `artifacts/v3_m_csa497_label_revision_702_20260527.json`
 - `artifacts/v3_m_csa750_label_revision_702_20260527.json`

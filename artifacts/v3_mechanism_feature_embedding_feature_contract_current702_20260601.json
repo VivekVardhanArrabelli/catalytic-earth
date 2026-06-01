@@ -55,7 +55,7 @@
     "organic_cofactor_classes": 3,
     "train_rows": 418
   },
-  "created_utc": "2026-06-01T12:52:27Z",
+  "created_utc": "2026-06-01T15:16:09Z",
   "excluded_fields_as_features": [
     "entry_id",
     "fingerprint_id",

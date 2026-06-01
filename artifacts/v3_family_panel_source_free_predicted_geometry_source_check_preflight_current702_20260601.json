@@ -1,0 +1,181 @@
+{
+  "artifact_id": "v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601",
+  "counts": {
+    "geometry_fold_agreement_rows": 1,
+    "geometry_fold_disagreement_rows": 2,
+    "hold_review_only_rows": 3,
+    "preflight_rows": 3
+  },
+  "created_utc": "2026-06-01T15:04:56Z",
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_source_data_fetched": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_prose_used_for_predictive_scoring": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "3 newly scored source-free rows are queued for review-only source checks; none is import-ready.",
+    "next_action": "Start with `mh_066` because it has the largest positive margin, then source-check `mh_073` and `secondary_probe::radical_sam_enzyme` for mechanism locus and duplicate/leakage status."
+  },
+  "preflight_rows": [
+    {
+      "combined_mean_geometry_fold": 0.6633,
+      "display_name": "Metallo-beta-lactamase IMP-1",
+      "entry_id": "mh_066",
+      "fixed_research_threshold": 0.44155,
+      "geometry_fold_agreement": true,
+      "local_source_context": {
+        "candidate_role": "external_positive_lead",
+        "current_v1_state": "external_no_decision_review_only",
+        "evidence_summary": "external MBL lead plus nuclease EC cross-reference warning in UniProt metadata",
+        "ligand_or_substrate_state": "beta-lactam hydrolysis; public structures available",
+        "metal_ligand_state": "Zn metallo-beta-lactamase IMP-1; reviewed EC 3.5.2.6",
+        "source": "external_metal_hydrolase_tail_panel",
+        "source_backed_sidecar_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1DD6",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P52699.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P52699/entry"
+        }
+      },
+      "nearest_atlas_tm_score": 0.9445,
+      "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_score": 0.3822,
+      "preflight_decision": "hold_review_only_pending_source_check",
+      "rank": 1,
+      "required_next_evidence": [
+        "row-specific source-backed bond-change and reaction locus",
+        "duplicate/leakage screen against current702 and source panels",
+        "cofactor or metal-locus evidence normalized outside source prose",
+        "expert family-admission decision before any label/import change"
+      ],
+      "retained_at_fixed_research_threshold": true,
+      "risk_flags": [
+        "external_no_decision_review_only",
+        "external_panel_row_not_countable",
+        "geometry_fold_fingerprint_agreement_needs_duplicate_screen",
+        "label_import_not_authorized",
+        "source_backed_sidecar_review_context_only",
+        "source_check_required_before_family_decision"
+      ],
+      "source_accession": "uniprot:P52699"
+    },
+    {
+      "combined_mean_geometry_fold": 0.4878,
+      "display_name": "GTPase HRas",
+      "entry_id": "mh_073",
+      "fixed_research_threshold": 0.44155,
+      "geometry_fold_agreement": false,
+      "local_source_context": {
+        "candidate_role": "external_hard_negative",
+        "current_v1_state": "external_no_decision_review_only",
+        "evidence_summary": "external GTPase false-positive control against Mg/nucleotide leakage",
+        "ligand_or_substrate_state": "GTP hydrolysis coupled to conformational signaling; many GDP/GTP analog PDBs available",
+        "metal_ligand_state": "Mg/GTPase switch protein; reviewed EC 3.6.5.2",
+        "source": "external_metal_hydrolase_tail_panel",
+        "source_backed_sidecar_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/121P",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P01112.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P01112/entry"
+        }
+      },
+      "nearest_atlas_tm_score": 0.8022,
+      "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "predicted_geometry_top1_score": 0.1733,
+      "preflight_decision": "hold_review_only_pending_source_check",
+      "rank": 7,
+      "required_next_evidence": [
+        "row-specific source-backed bond-change and reaction locus",
+        "duplicate/leakage screen against current702 and source panels",
+        "cofactor or metal-locus evidence normalized outside source prose",
+        "expert family-admission decision before any label/import change"
+      ],
+      "retained_at_fixed_research_threshold": true,
+      "risk_flags": [
+        "external_no_decision_review_only",
+        "external_panel_row_not_countable",
+        "geometry_fold_fingerprint_disagreement",
+        "label_import_not_authorized",
+        "source_backed_sidecar_review_context_only",
+        "source_check_required_before_family_decision"
+      ],
+      "source_accession": "uniprot:P01112"
+    },
+    {
+      "combined_mean_geometry_fold": 0.4833,
+      "display_name": "Radical SAM cyclopropyl synthase TigE (EC 4.1.-.-) (Ribosomally synthesized and post-translationally modified peptide-modifying enzyme TigE) (RiPP-modifying enzyme TigE) (TigB maturase)",
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "fixed_research_threshold": 0.44155,
+      "geometry_fold_agreement": false,
+      "local_source_context": {
+        "candidate_role": null,
+        "current_v1_state": null,
+        "evidence_summary": null,
+        "ligand_or_substrate_state": null,
+        "metal_ligand_state": null,
+        "source": "source_backed_sidecar",
+        "source_backed_sidecar_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/8VPO",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/A0A1M6T2I7/entry"
+        }
+      },
+      "nearest_atlas_tm_score": 0.7039,
+      "nearest_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_score": 0.2628,
+      "preflight_decision": "hold_review_only_pending_source_check",
+      "rank": 8,
+      "required_next_evidence": [
+        "row-specific source-backed bond-change and reaction locus",
+        "duplicate/leakage screen against current702 and source panels",
+        "cofactor or metal-locus evidence normalized outside source prose",
+        "expert family-admission decision before any label/import change"
+      ],
+      "retained_at_fixed_research_threshold": true,
+      "risk_flags": [
+        "geometry_fold_fingerprint_disagreement",
+        "label_import_not_authorized",
+        "source_backed_sidecar_review_context_only",
+        "source_check_required_before_family_decision"
+      ],
+      "source_accession": "uniprot:A0A1M6T2I7"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_predicted_geometry_source_check_preflight",
+  "scope": "Review-only source-check preflight for the family-panel rows that became non-abstained after approved source-free predicted-geometry scoring. This packages local frozen evidence and blockers; it does not adjudicate family membership.",
+  "source_artifacts": {
+    "external_metal_hydrolase_panel": {
+      "exists": true,
+      "path": "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+      "sha256": "a3006ad4fb79c48209893fc0746b92d9a84981a782df060bf9a55af4bf987fc9"
+    },
+    "source_backed_materialization": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json",
+      "sha256": "1c4eacb8b5917750f5ed6de7f614adcae55b1de1473942fc5efa9baeac4abbf6"
+    },
+    "source_check_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json",
+      "sha256": "e7d180af1f89fa61553a0c954c7b1a7e7e6f658571f0b397f6eeec7bb8bad3fa"
+    },
+    "source_free_predicted_geometry_retrieval": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601.json",
+      "sha256": "490ec907f56e13c047d715a8f9307da44f57f74eb73470f7ba0270e640d628c0"
+    }
+  },
+  "status": "source_free_predicted_geometry_source_check_preflight_ready_review_only"
+}

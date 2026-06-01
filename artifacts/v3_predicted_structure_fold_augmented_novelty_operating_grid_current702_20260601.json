@@ -1,0 +1,566 @@
+{
+  "artifact_id": "v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601",
+  "best_by_retention_target": {
+    "0.80": {
+      "confounded_abstain_recall": 0.8333,
+      "inscope_retain_recall": 0.8085,
+      "oos_abstain_recall": 0.8608,
+      "signal": "mean_top1_raw_and_tm",
+      "threshold": 0.5213
+    },
+    "0.85": {
+      "confounded_abstain_recall": 0.8333,
+      "inscope_retain_recall": 0.8511,
+      "oos_abstain_recall": 0.8354,
+      "signal": "harmonic_top1_raw_and_tm",
+      "threshold": 0.475146
+    },
+    "0.90": {
+      "confounded_abstain_recall": 0.8333,
+      "inscope_retain_recall": 0.9149,
+      "oos_abstain_recall": 0.7722,
+      "signal": "mean_top1_atlas_percentile_and_tm",
+      "threshold": 0.416045
+    },
+    "0.95": {
+      "confounded_abstain_recall": 0.8333,
+      "inscope_retain_recall": 0.9574,
+      "oos_abstain_recall": 0.6456,
+      "signal": "mean_top1_raw_and_tm",
+      "threshold": 0.45985
+    }
+  },
+  "best_signal_from_variant_artifact": {
+    "best_at_85pct_inscope_retention": {
+      "confounded_abstain_recall": 0.8333,
+      "inscope_retain_recall": 0.8511,
+      "oos_abstain_recall": 0.7722,
+      "threshold": 0.503
+    },
+    "best_at_90pct_inscope_retention": {
+      "confounded_abstain_recall": 0.8333,
+      "inscope_retain_recall": 0.9149,
+      "oos_abstain_recall": 0.7215,
+      "threshold": 0.48945
+    },
+    "confounded_rows": [
+      {
+        "abstained_at_best_signal_85pct": true,
+        "abstained_at_best_signal_90pct": true,
+        "entry_id": "m_csa:30",
+        "nearest_atlas_tm_score": 0.4988,
+        "score": 0.3802
+      },
+      {
+        "abstained_at_best_signal_85pct": true,
+        "abstained_at_best_signal_90pct": true,
+        "entry_id": "m_csa:31",
+        "nearest_atlas_tm_score": 0.3809,
+        "score": 0.36375
+      },
+      {
+        "abstained_at_best_signal_85pct": true,
+        "abstained_at_best_signal_90pct": true,
+        "entry_id": "m_csa:80",
+        "nearest_atlas_tm_score": 0.5109,
+        "score": 0.4299
+      },
+      {
+        "abstained_at_best_signal_85pct": true,
+        "abstained_at_best_signal_90pct": true,
+        "entry_id": "m_csa:191",
+        "nearest_atlas_tm_score": 0.3863,
+        "score": 0.37905
+      },
+      {
+        "abstained_at_best_signal_85pct": false,
+        "abstained_at_best_signal_90pct": false,
+        "entry_id": "m_csa:267",
+        "nearest_atlas_tm_score": 0.7389,
+        "score": 0.5679
+      },
+      {
+        "abstained_at_best_signal_85pct": true,
+        "abstained_at_best_signal_90pct": true,
+        "entry_id": "m_csa:448",
+        "nearest_atlas_tm_score": 0.5106,
+        "score": 0.4341
+      }
+    ],
+    "name": "mean_top1_raw_and_tm"
+  },
+  "counts": {
+    "confounded_oos": 6,
+    "grid_rows": 44,
+    "inscope": 47,
+    "oos": 79,
+    "retention_targets": 4,
+    "row_scores": 126,
+    "signals": 11
+  },
+  "created_utc": "2026-06-01T15:13:41Z",
+  "guardrails": {
+    "foldseek_or_tmsearch_recomputed": false,
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "uses_existing_variant_artifact_only": true
+  },
+  "interpretation": {
+    "headline": "The geometry-plus-predicted-fold signal materially improves the high-retention OOS-abstention diagnostic over geometry-only predicted-atlas variants, but remains review-only.",
+    "next_action": "Use this as bounded evidence for train/cal OOS-surface and source-check prioritization; do not promote a deployment threshold from this heldout readout."
+  },
+  "operating_grid": [
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.9574,
+        "oos_abstain_recall": 0.6329,
+        "threshold": 0.438887
+      },
+      "signal": "harmonic_top1_raw_and_tm",
+      "target_min_inscope_retention": 0.95
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.7468,
+        "threshold": 0.459621
+      },
+      "signal": "harmonic_top1_raw_and_tm",
+      "target_min_inscope_retention": 0.9
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.8511,
+        "oos_abstain_recall": 0.8354,
+        "threshold": 0.475146
+      },
+      "signal": "harmonic_top1_raw_and_tm",
+      "target_min_inscope_retention": 0.85
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.8298,
+        "oos_abstain_recall": 0.8481,
+        "threshold": 0.479518
+      },
+      "signal": "harmonic_top1_raw_and_tm",
+      "target_min_inscope_retention": 0.8
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.6667,
+        "inscope_retain_recall": 0.9574,
+        "oos_abstain_recall": 0.5316,
+        "threshold": 0.433688
+      },
+      "signal": "mean_cofactor_context_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.95
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.6203,
+        "threshold": 0.461252
+      },
+      "signal": "mean_cofactor_context_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.9
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.8936,
+        "oos_abstain_recall": 0.7342,
+        "threshold": 0.515602
+      },
+      "signal": "mean_cofactor_context_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.85
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.8936,
+        "oos_abstain_recall": 0.7342,
+        "threshold": 0.515602
+      },
+      "signal": "mean_cofactor_context_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.8
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.6667,
+        "inscope_retain_recall": 0.9574,
+        "oos_abstain_recall": 0.519,
+        "threshold": 0.445807
+      },
+      "signal": "mean_role_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.95
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.6667,
+        "inscope_retain_recall": 0.9574,
+        "oos_abstain_recall": 0.519,
+        "threshold": 0.445807
+      },
+      "signal": "mean_role_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.9
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.6667,
+        "inscope_retain_recall": 0.9574,
+        "oos_abstain_recall": 0.519,
+        "threshold": 0.445807
+      },
+      "signal": "mean_role_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.85
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.6667,
+        "inscope_retain_recall": 0.9574,
+        "oos_abstain_recall": 0.519,
+        "threshold": 0.445807
+      },
+      "signal": "mean_role_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.8
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.9574,
+        "oos_abstain_recall": 0.5696,
+        "threshold": 0.374595
+      },
+      "signal": "mean_top1_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.95
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.7722,
+        "threshold": 0.416045
+      },
+      "signal": "mean_top1_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.9
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.8723,
+        "oos_abstain_recall": 0.7848,
+        "threshold": 0.417286
+      },
+      "signal": "mean_top1_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.85
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.8298,
+        "oos_abstain_recall": 0.8228,
+        "threshold": 0.448207
+      },
+      "signal": "mean_top1_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.8
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.9574,
+        "oos_abstain_recall": 0.6456,
+        "threshold": 0.45985
+      },
+      "signal": "mean_top1_raw_and_tm",
+      "target_min_inscope_retention": 0.95
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.7215,
+        "threshold": 0.48945
+      },
+      "signal": "mean_top1_raw_and_tm",
+      "target_min_inscope_retention": 0.9
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.8511,
+        "oos_abstain_recall": 0.7722,
+        "threshold": 0.503
+      },
+      "signal": "mean_top1_raw_and_tm",
+      "target_min_inscope_retention": 0.85
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.8085,
+        "oos_abstain_recall": 0.8608,
+        "threshold": 0.5213
+      },
+      "signal": "mean_top1_raw_and_tm",
+      "target_min_inscope_retention": 0.8
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.6667,
+        "inscope_retain_recall": 0.9574,
+        "oos_abstain_recall": 0.4684,
+        "threshold": 0.356307
+      },
+      "signal": "mean_top1_role_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.95
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.7468,
+        "threshold": 0.424524
+      },
+      "signal": "mean_top1_role_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.9
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.8511,
+        "oos_abstain_recall": 0.8228,
+        "threshold": 0.443243
+      },
+      "signal": "mean_top1_role_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.85
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.8511,
+        "oos_abstain_recall": 0.8228,
+        "threshold": 0.443243
+      },
+      "signal": "mean_top1_role_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.8
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.9787,
+        "oos_abstain_recall": 0.1013,
+        "threshold": 0.053571
+      },
+      "signal": "min_top1_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.95
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.1899,
+        "threshold": 0.095238
+      },
+      "signal": "min_top1_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.9
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.8723,
+        "oos_abstain_recall": 0.2532,
+        "threshold": 0.10119
+      },
+      "signal": "min_top1_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.85
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.6667,
+        "inscope_retain_recall": 0.8085,
+        "oos_abstain_recall": 0.4051,
+        "threshold": 0.142857
+      },
+      "signal": "min_top1_atlas_percentile_and_tm",
+      "target_min_inscope_retention": 0.8
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.9574,
+        "oos_abstain_recall": 0.1266,
+        "threshold": 0.3378
+      },
+      "signal": "min_top1_raw_and_tm",
+      "target_min_inscope_retention": 0.95
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.2152,
+        "threshold": 0.3516
+      },
+      "signal": "min_top1_raw_and_tm",
+      "target_min_inscope_retention": 0.9
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.8723,
+        "oos_abstain_recall": 0.3038,
+        "threshold": 0.3561
+      },
+      "signal": "min_top1_raw_and_tm",
+      "target_min_inscope_retention": 0.85
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.6667,
+        "inscope_retain_recall": 0.8085,
+        "oos_abstain_recall": 0.4051,
+        "threshold": 0.363
+      },
+      "signal": "min_top1_raw_and_tm",
+      "target_min_inscope_retention": 0.8
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.3333,
+        "inscope_retain_recall": 0.9574,
+        "oos_abstain_recall": 0.3038,
+        "threshold": 0.4364
+      },
+      "signal": "nearest_atlas_tm_score",
+      "target_min_inscope_retention": 0.95
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.3333,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.4177,
+        "threshold": 0.48
+      },
+      "signal": "nearest_atlas_tm_score",
+      "target_min_inscope_retention": 0.9
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.8511,
+        "oos_abstain_recall": 0.5063,
+        "threshold": 0.5055
+      },
+      "signal": "nearest_atlas_tm_score",
+      "target_min_inscope_retention": 0.85
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.8085,
+        "oos_abstain_recall": 0.6456,
+        "threshold": 0.5297
+      },
+      "signal": "nearest_atlas_tm_score",
+      "target_min_inscope_retention": 0.8
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.9787,
+        "oos_abstain_recall": 0.1013,
+        "threshold": 0.053571
+      },
+      "signal": "top1_score_atlas_percentile",
+      "target_min_inscope_retention": 0.95
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.1899,
+        "threshold": 0.095238
+      },
+      "signal": "top1_score_atlas_percentile",
+      "target_min_inscope_retention": 0.9
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.8723,
+        "oos_abstain_recall": 0.2532,
+        "threshold": 0.10119
+      },
+      "signal": "top1_score_atlas_percentile",
+      "target_min_inscope_retention": 0.85
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.6667,
+        "inscope_retain_recall": 0.8085,
+        "oos_abstain_recall": 0.4051,
+        "threshold": 0.142857
+      },
+      "signal": "top1_score_atlas_percentile",
+      "target_min_inscope_retention": 0.8
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.9574,
+        "oos_abstain_recall": 0.1266,
+        "threshold": 0.3378
+      },
+      "signal": "top1_score_raw",
+      "target_min_inscope_retention": 0.95
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.2152,
+        "threshold": 0.3516
+      },
+      "signal": "top1_score_raw",
+      "target_min_inscope_retention": 0.9
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.8723,
+        "oos_abstain_recall": 0.3038,
+        "threshold": 0.3561
+      },
+      "signal": "top1_score_raw",
+      "target_min_inscope_retention": 0.85
+    },
+    {
+      "operating_point": {
+        "confounded_abstain_recall": 0.6667,
+        "inscope_retain_recall": 0.8085,
+        "oos_abstain_recall": 0.4051,
+        "threshold": 0.363
+      },
+      "signal": "top1_score_raw",
+      "target_min_inscope_retention": 0.8
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Review-only operating-grid readout over the frozen geometry-plus-predicted-fold novelty variants. It recomputes post-hoc diagnostic retention/OOS-abstention points from existing row scores only and does not select or write a deployment threshold.",
+  "source_artifacts": {
+    "fold_augmented_variants": {
+      "path": "artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json",
+      "sha256": "5211d902eb1e7bd77338b7d3b55b430469c84244dc9060d0fbbfe72b8e8876e3"
+    }
+  },
+  "status": "predicted_structure_fold_augmented_novelty_operating_grid_ready_review_only"
+}

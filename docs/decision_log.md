@@ -218,6 +218,32 @@ alternate source row. No coordinate fetch, locator copy, predicted geometry
 scoring, label/import, registry, ontology, split, threshold, or production
 scorer change occurred.
 
+Approved-locator scoring follow-up: after human approval moved `mh_066`,
+`mh_073`, and `secondary_probe::radical_sam_enzyme` into the audited
+source-free locator directory, run a bounded review-only predicted-geometry
+retrieval over those three rows. The run uses only approved sequence-position
+locators, residue codes, generic locator role hints, local AFDB-v6 CIFs, and
+geometry-derived pocket context; it does not use source prose, entry names,
+panel IDs, labels, EC/Rhea IDs, benchmark roles, heldout training, or new
+downloads. All three rows resolve at least two predicted residues and receive
+top1 geometry scores, and all three are retained when joined to their existing
+source-backed fold scores under the fixed `combined_mean_geometry_fold`
+research threshold. The review-only family-panel readout was refreshed to
+consume those scores: 15/22 rows are now primary score-complete, 9 are
+non-abstained, 6 abstain, and 7 remain missing primary-channel scores. Seven
+rows remain blocked on approved source-free locators. No labels, imports,
+registries, ontology entries, splits, thresholds, model weights, production
+scorers, source fetches, or coordinate downloads changed.
+
+Source-check preflight follow-up: package those three newly non-abstained
+source-free geometry rows for local review before any family-panel action. The
+preflight keeps all three rows in `hold_review_only_pending_source_check`,
+identifies `mh_066` as the first source-check target because its geometry and
+fold fingerprints agree, and flags `mh_073` plus
+`secondary_probe::radical_sam_enzyme` for mechanism-locus and duplicate/leakage
+review. No source adjudication, family admission, labels, imports, registries,
+thresholds, splits, or production scorers changed.
+
 Artifacts:
 `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`,
 `work/fold_augmented_family_panel_research_readout_current702_20260601.md`,
@@ -247,6 +273,10 @@ Artifacts:
 `work/family_panel_source_backed_sidecar_materialization_current702_20260601.md`,
 `artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json`,
 `work/family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601.json`,
+`work/family_panel_source_free_predicted_geometry_retrieval_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.json`,
+`work/family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.md`,
 `artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json`,
 `work/family_panel_source_free_active_site_locator_schema_current702_20260601.md`,
 `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`,
@@ -600,9 +630,18 @@ Result: new packets now cover `cobalamin_and_radical_rearrangement_panel`,
 `near_orphan_glycoside_or_nucleoside_hydrolase_controls`. The cobalamin/radical
 packet has one current row with ok predicted geometry (`m_csa:750`) and two
 secondary-probe geometry gaps. The no-reliable-structure metal hydrolase packet
-is entirely geometry gaps, as expected for the panel definition. The near-orphan
-glycoside/nucleoside packet has one current row with ok predicted geometry
-(`m_csa:10`) and three gaps.
+originally had only geometry gaps, as expected for the panel definition. The
+near-orphan glycoside/nucleoside packet has one current row with ok predicted
+geometry (`m_csa:10`) and three gaps.
+
+Follow-up: after the source-free predicted-geometry retrieval became available,
+refresh the affected family-panel evidence packets to consume approved
+source-free geometry scores for `secondary_probe::radical_sam_enzyme`, `mh_066`,
+and `mh_073`. The packet coverage audit now has 15/22 predicted-geometry-ok rows
+and 21 predicted-fold hits; the cobalamin/radical, no-reliable-structure metal
+hydrolase, and near-orphan packets each retain one or more explicit geometry gaps
+that still need approved source-free locators. No labels, imports, thresholds,
+splits, registries, or production scorers changed.
 
 Consequence: all seven family-set expansion target panels now have review-only
 evidence packets. Use them for source/materialization triage only; none authorize
@@ -679,10 +718,20 @@ fold TM (`mean_top1_raw_and_tm`, equivalent to the earlier
 `combined_mean_geometry_fold`) with AUC `0.907622` overall and `0.911348` on the
 six confounded OOS rows.
 
+Operating-grid follow-up: enumerate 0.95/0.90/0.85/0.80 retention diagnostics for
+all 11 frozen geometry-plus-predicted-fold variant signals using the existing
+variant rows only. The best variant artifact signal (`mean_top1_raw_and_tm`)
+abstains on `0.7215` of OOS rows and `0.8333` of cofactor-confounded OOS rows at
+>=90% in-scope retention. The best signal at the 0.90 target is
+`mean_top1_atlas_percentile_and_tm`, with `0.7722` OOS abstain recall. This
+remains post-hoc heldout evidence and does not authorize a deployment threshold.
+
 Artifacts: `artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json`,
 `work/fold_augmented_abstention_gate_current702_20260601.md`,
 `artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json`,
-`work/predicted_structure_fold_augmented_novelty_variants_current702_20260601.md`.
+`work/predicted_structure_fold_augmented_novelty_variants_current702_20260601.md`,
+`artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601.json`,
+`work/predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601.md`.
 
 ## 2026-06-01: Predicted-Atlas Geometry Robust-Distance Variant Adds Modest Rank Lift, But Not An Operating-Point Breakthrough
 

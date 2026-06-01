@@ -1,6 +1,6 @@
 # Family Panel Evidence Packet - no_reliable_structure_metal_hydrolase_controls
 
-Run: 2026-06-01T11:03:56Z
+Run: 2026-06-01T15:21:02Z
 
 Review-only evidence packet for the highest-value family-set expansion panel `no_reliable_structure_metal_hydrolase_controls`: cofactor-confounded OOS boundary rows that stress the current de novo abstention gate.
 
@@ -8,7 +8,7 @@ Review-only evidence packet for the highest-value family-set expansion panel `no
 
 - evidence_packet_ready_with_geometry_gaps
 - Candidate rows: 6
-- Predicted geometry ok rows: 0
+- Predicted geometry ok rows: 1
 
 ## Row Evidence
 
@@ -16,7 +16,7 @@ Review-only evidence packet for the highest-value family-set expansion panel `no
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | mh_064 | None | None | None | None | 0.9222 | None |
 | mh_065 | None | None | None | None | 0.9411 | None |
-| mh_066 | None | None | None | None | 0.9445 | None |
+| mh_066 | metal_dependent_hydrolase | 0.3822 | None | None | 0.9445 | None |
 | mh_067 | None | None | None | None | 1.004 | None |
 | mh_068 | None | None | None | None | 1.002 | None |
 | mh_072 | None | None | None | None | 0.5936 | None |

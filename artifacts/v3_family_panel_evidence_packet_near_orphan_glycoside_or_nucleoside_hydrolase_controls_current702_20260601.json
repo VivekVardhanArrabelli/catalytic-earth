@@ -3,15 +3,14 @@
   "counts": {
     "candidate_rows": 4,
     "missing_geometry_entry_ids": [
-      "mh_073",
       "external_glycoside_panel"
     ],
-    "predicted_geometry_ok_rows": 2,
+    "predicted_geometry_ok_rows": 3,
     "rows_with_predicted_structure_fold_hits": 4,
     "rows_with_selected_organic_cofactor_scores": 2,
     "rows_with_selected_pdb_fold_proxy": 0
   },
-  "created_utc": "2026-06-01T11:03:57Z",
+  "created_utc": "2026-06-01T15:22:47Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "heldout_splits_changed": false,
@@ -61,6 +60,7 @@
         "top1_score_raw": 0.356
       },
       "predicted_geometry_accession_repair": null,
+      "predicted_geometry_score_source": "predicted_geometry_atlas",
       "predicted_geometry_status": "ok",
       "predicted_geometry_top1": {
         "cofactor_context_score": 0.0,
@@ -104,6 +104,7 @@
         "skipped_nonmatching_residue_count": 1,
         "total_residue_node_count": 6
       },
+      "predicted_geometry_score_source": "m_csa_primary_channel_repair",
       "predicted_geometry_status": "ok",
       "predicted_geometry_top1": {
         "cofactor_context_score": null,
@@ -140,12 +141,13 @@
         "top1_score_raw": null
       },
       "predicted_geometry_accession_repair": null,
-      "predicted_geometry_status": "missing",
+      "predicted_geometry_score_source": "family_panel_source_free_predicted_geometry_retrieval",
+      "predicted_geometry_status": "ok",
       "predicted_geometry_top1": {
-        "cofactor_context_score": null,
-        "fingerprint_id": null,
-        "role_match_fraction": null,
-        "score": null
+        "cofactor_context_score": 0.25,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "role_match_fraction": 0.0,
+        "score": 0.1733
       },
       "predicted_structure_fold_channel": {
         "nearest_atlas_entry_id": "m_csa:535",
@@ -172,6 +174,7 @@
         "top1_score_raw": null
       },
       "predicted_geometry_accession_repair": null,
+      "predicted_geometry_score_source": null,
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1": {
         "cofactor_context_score": null,
@@ -213,7 +216,7 @@
     },
     "predicted_atlas_variants": {
       "path": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
-      "sha256": "1c09f7cad3bec0da694e03ac1d60f9c6bc96e9208d13bbb06a90095170a2ef13"
+      "sha256": "98d4cf7e21fc4b2e65551372b9b6923a6f04ef3bf57b7d4398a5756994e933f6"
     },
     "predicted_geometry_atlas": {
       "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
@@ -230,6 +233,10 @@
     "source_backed_sidecar_materialization": {
       "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json",
       "sha256": "1c4eacb8b5917750f5ed6de7f614adcae55b1de1473942fc5efa9baeac4abbf6"
+    },
+    "source_free_predicted_geometry_retrieval": {
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601.json",
+      "sha256": "490ec907f56e13c047d715a8f9307da44f57f74eb73470f7ba0270e640d628c0"
     }
   },
   "status": "evidence_packet_ready_with_geometry_gaps"

@@ -1,6 +1,6 @@
 # Mechanism-Feature Embedding Feature Contract Strict Audit - current702
 
-Run: 2026-06-01T14:01:09Z
+Run: 2026-06-01T15:16:13Z
 
 Strict no-fit audit for the mechanism-feature embedding feature contract. It validates row alignment, split discipline, forbidden label/outcome field exclusion, and no-model-fit guardrails.
 

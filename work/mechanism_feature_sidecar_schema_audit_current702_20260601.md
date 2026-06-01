@@ -1,6 +1,6 @@
 # Mechanism Feature Sidecar Schema Audit - current702
 
-Run: 2026-06-01T07:42:30Z
+Run: 2026-06-01T15:16:09Z
 
 Strict current702 schema and row-alignment audit for the mechanism-feature active-site role graph and reaction-center template sidecars.
 

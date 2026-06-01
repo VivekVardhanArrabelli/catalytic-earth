@@ -1,16 +1,17 @@
 {
   "artifact_id": "v3_fold_augmented_family_panel_source_check_queue_current702_20260601",
   "counts": {
-    "panels_represented": 4,
-    "source_check_rows": 6,
+    "panels_represented": 5,
+    "source_check_rows": 9,
     "source_check_rows_by_panel": {
-      "cobalamin_and_radical_rearrangement_panel": 1,
+      "cobalamin_and_radical_rearrangement_panel": 2,
       "flavin_monooxygenase_and_flavin_oxygen_transfer": 3,
       "lipoamide_or_sulfur_transfer_redox_boundary": 1,
-      "near_orphan_glycoside_or_nucleoside_hydrolase_controls": 1
+      "near_orphan_glycoside_or_nucleoside_hydrolase_controls": 2,
+      "no_reliable_structure_metal_hydrolase_controls": 1
     }
   },
-  "created_utc": "2026-06-01T11:03:57Z",
+  "created_utc": "2026-06-01T14:58:44Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "imports_or_promotions_performed": false,
@@ -22,10 +23,40 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "headline": "6 non-abstained family-panel rows need review-only source checking before any family-expansion decision.",
+    "headline": "9 non-abstained family-panel rows need review-only source checking before any family-expansion decision.",
     "next_action": "Work the queue in rank order, starting with the largest positive threshold margin, and record source-backed accept/reject/hold evidence without changing labels."
   },
   "queue_rows": [
+    {
+      "allowed_next_action": "review-only source check and evidence packet annotation",
+      "benchmark_role": null,
+      "combined_mean_geometry_fold": 0.66335,
+      "entry_id": "mh_066",
+      "forbidden_without_future_authorization": [
+        "label promotion",
+        "registry or ontology mutation",
+        "threshold retuning",
+        "training/calibration use"
+      ],
+      "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 1,
+      "required_evidence_before_family_decision": [
+        "source-backed row-level bond-change evidence",
+        "source-backed cofactor or redox-partner locus evidence",
+        "duplicate and split-leakage screen if a future import is proposed",
+        "expert mechanism-locus adjudication"
+      ],
+      "selected_organic_cofactor_max": null,
+      "source_check_focus": [
+        "row_specific_bond_change_and_mechanism_locus",
+        "cofactor_locus_and_redox_partner_identity",
+        "occupied_primary_fold_false_confidence_review"
+      ],
+      "split_assignment": null,
+      "threshold_margin": 0.2218
+    },
     {
       "allowed_next_action": "review-only source check and evidence packet annotation",
       "benchmark_role": "oos_tier::unknown_oos",
@@ -40,7 +71,7 @@
       "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
       "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
       "predicted_geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "rank": 1,
+      "rank": 2,
       "required_evidence_before_family_decision": [
         "source-backed row-level bond-change evidence",
         "source-backed cofactor or redox-partner locus evidence",
@@ -72,7 +103,7 @@
       "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
       "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
       "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
-      "rank": 2,
+      "rank": 3,
       "required_evidence_before_family_decision": [
         "source-backed row-level bond-change evidence",
         "source-backed cofactor or redox-partner locus evidence",
@@ -104,7 +135,7 @@
       "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
       "panel_id": "cobalamin_and_radical_rearrangement_panel",
       "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
-      "rank": 3,
+      "rank": 4,
       "required_evidence_before_family_decision": [
         "source-backed row-level bond-change evidence",
         "source-backed cofactor or redox-partner locus evidence",
@@ -136,7 +167,7 @@
       "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
       "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
       "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
-      "rank": 4,
+      "rank": 5,
       "required_evidence_before_family_decision": [
         "source-backed row-level bond-change evidence",
         "source-backed cofactor or redox-partner locus evidence",
@@ -168,7 +199,7 @@
       "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
       "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
       "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "rank": 5,
+      "rank": 6,
       "required_evidence_before_family_decision": [
         "source-backed row-level bond-change evidence",
         "source-backed cofactor or redox-partner locus evidence",
@@ -188,6 +219,68 @@
     },
     {
       "allowed_next_action": "review-only source check and evidence packet annotation",
+      "benchmark_role": null,
+      "combined_mean_geometry_fold": 0.48775,
+      "entry_id": "mh_073",
+      "forbidden_without_future_authorization": [
+        "label promotion",
+        "registry or ontology mutation",
+        "threshold retuning",
+        "training/calibration use"
+      ],
+      "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "rank": 7,
+      "required_evidence_before_family_decision": [
+        "source-backed row-level bond-change evidence",
+        "source-backed cofactor or redox-partner locus evidence",
+        "duplicate and split-leakage screen if a future import is proposed",
+        "expert mechanism-locus adjudication"
+      ],
+      "selected_organic_cofactor_max": null,
+      "source_check_focus": [
+        "row_specific_bond_change_and_mechanism_locus",
+        "cofactor_locus_and_redox_partner_identity",
+        "occupied_primary_fold_false_confidence_review",
+        "geometry_fold_fingerprint_disagreement"
+      ],
+      "split_assignment": null,
+      "threshold_margin": 0.0462
+    },
+    {
+      "allowed_next_action": "review-only source check and evidence packet annotation",
+      "benchmark_role": null,
+      "combined_mean_geometry_fold": 0.48335,
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "forbidden_without_future_authorization": [
+        "label promotion",
+        "registry or ontology mutation",
+        "threshold retuning",
+        "training/calibration use"
+      ],
+      "nearest_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 8,
+      "required_evidence_before_family_decision": [
+        "source-backed row-level bond-change evidence",
+        "source-backed cofactor or redox-partner locus evidence",
+        "duplicate and split-leakage screen if a future import is proposed",
+        "expert mechanism-locus adjudication"
+      ],
+      "selected_organic_cofactor_max": null,
+      "source_check_focus": [
+        "row_specific_bond_change_and_mechanism_locus",
+        "cofactor_locus_and_redox_partner_identity",
+        "occupied_primary_fold_false_confidence_review",
+        "geometry_fold_fingerprint_disagreement"
+      ],
+      "split_assignment": null,
+      "threshold_margin": 0.0418
+    },
+    {
+      "allowed_next_action": "review-only source check and evidence packet annotation",
       "benchmark_role": "oos_tier::unknown_oos",
       "combined_mean_geometry_fold": 0.45755,
       "entry_id": "m_csa:116",
@@ -200,7 +293,7 @@
       "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
-      "rank": 6,
+      "rank": 9,
       "required_evidence_before_family_decision": [
         "source-backed row-level bond-change evidence",
         "source-backed cofactor or redox-partner locus evidence",
@@ -224,7 +317,7 @@
     "family_panel_research_readout": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
-      "sha256": "a275eac56ca808659d589b2a5bbd431688b9c91cc1b542690cd8702808380c61"
+      "sha256": "9c8d11be5191f08893510e9c8c57e22051c078f5777c020fafa84c786167998f"
     }
   },
   "status": "source_check_queue_ready_review_only"

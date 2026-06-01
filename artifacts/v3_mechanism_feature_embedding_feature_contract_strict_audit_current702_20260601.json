@@ -16,7 +16,7 @@
     "split_manifest_rows": 524,
     "train_rows": 418
   },
-  "created_utc": "2026-06-01T14:01:09Z",
+  "created_utc": "2026-06-01T15:16:13Z",
   "guardrails": {
     "heldout_rows_present_in_feature_rows": false,
     "heldout_rows_used_for_training_or_threshold_tuning": false,
@@ -3183,7 +3183,7 @@
     "feature_contract": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json",
-      "sha256": "c38afb3dcb835750b857aab680129ea88077e37878568e8c3bef3947b585b583"
+      "sha256": "59c6782c620fb50f00b75af1820cce0daee0f10b604e2805550d972f5880cd6b"
     },
     "train_cal_input_manifest": {
       "exists": true,

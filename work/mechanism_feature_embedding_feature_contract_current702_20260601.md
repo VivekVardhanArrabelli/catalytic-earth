@@ -1,6 +1,6 @@
 # Mechanism-Feature Embedding Feature Contract - current702
 
-Run: 2026-06-01T12:52:27Z
+Run: 2026-06-01T15:16:09Z
 
 No-fit feature contract for the mechanism-feature embedding pilot. It enumerates train/cal feature rows and permitted feature groups while excluding labels and heldout rows from the feature surface.
 

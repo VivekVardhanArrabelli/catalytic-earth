@@ -3,9 +3,9 @@
   "counts": {
     "ignored_references": 7,
     "missing_references": 0,
-    "references_checked": 380
+    "references_checked": 393
   },
-  "created_utc": "2026-06-01T14:24:55Z",
+  "created_utc": "2026-06-01T15:24:52Z",
   "docs_checked": [
     "docs/artifact_index.md",
     "docs/project_state.md",
@@ -194,6 +194,12 @@
       "reference": "artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json"
     },
     {
+      "checked_path": "artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601.json"
+    },
+    {
       "checked_path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
       "doc": "docs/artifact_index.md",
       "exists": true,
@@ -294,12 +300,6 @@
       "doc": "docs/artifact_index.md",
       "exists": true,
       "reference": "artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_current702_20260601.json"
-    },
-    {
-      "checked_path": "artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_schema_audit_current702_20260601.json",
-      "doc": "docs/artifact_index.md",
-      "exists": true,
-      "reference": "artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_schema_audit_current702_20260601.json"
     }
   ],
   "schema_version": "current_docs_artifact_reference_check.v1",

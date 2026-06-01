@@ -55,6 +55,8 @@ from .northstar_next_levers import (
     write_family_panel_source_free_active_site_locator_schema_audit,
     write_family_panel_source_free_active_site_locator_template_bundle,
     write_family_panel_source_free_locator_blocked_row_rescue_manifest,
+    write_family_panel_source_free_predicted_geometry_retrieval,
+    write_family_panel_source_free_predicted_geometry_source_check_preflight,
     write_family_panel_source_free_predicted_geometry_sidecar_manifest,
     write_fold_augmented_abstention_gate,
     write_fold_augmented_abstention_threshold_contract,
@@ -79,6 +81,7 @@ from .northstar_next_levers import (
     write_mechanism_feature_sidecar_schema_audit,
     write_predicted_atlas_geometry_novelty_operating_grid,
     write_predicted_atlas_geometry_novelty_variants,
+    write_predicted_structure_fold_augmented_novelty_operating_grid,
     write_predicted_structure_fold_channel,
     write_predicted_structure_fold_channel_contract_audit,
     write_selected_organic_cofactor_sidecar_schema_audit,
@@ -10914,6 +10917,23 @@ def cmd_build_predicted_atlas_geometry_novelty_operating_grid(
     return 0
 
 
+def cmd_build_predicted_structure_fold_augmented_novelty_operating_grid(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_predicted_structure_fold_augmented_novelty_operating_grid(
+        fold_augmented_variants_path=Path(args.fold_augmented_variants),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    best = audit.get("best_signal_from_variant_artifact", {})
+    print(
+        "Wrote predicted-structure fold-augmented novelty operating grid to "
+        f"{args.out} (best signal: {best.get('name')}, "
+        f"grid rows: {audit.get('counts', {}).get('grid_rows')})"
+    )
+    return 0
+
+
 def cmd_audit_selected_organic_cofactor_sidecar_schema(args: argparse.Namespace) -> int:
     audit = write_selected_organic_cofactor_sidecar_schema_audit(
         selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
@@ -10944,6 +10964,11 @@ def cmd_build_family_panel_evidence_packet(args: argparse.Namespace) -> int:
         source_backed_materialization_path=Path(args.source_backed_materialization)
         if args.source_backed_materialization
         else None,
+        source_free_predicted_geometry_retrieval_path=(
+            Path(args.source_free_predicted_geometry_retrieval)
+            if args.source_free_predicted_geometry_retrieval
+            else None
+        ),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
         panel_id=args.panel_id,
@@ -11006,6 +11031,53 @@ def cmd_build_family_panel_source_free_predicted_geometry_sidecar_manifest(
         "Wrote family-panel source-free predicted-geometry sidecar manifest to "
         f"{args.out} (status: {audit.get('status')}, "
         f"blocked rows: {counts.get('source_free_geometry_blocked_rows')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_free_predicted_geometry_retrieval(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_predicted_geometry_retrieval(
+        source_free_geometry_manifest_path=Path(args.source_free_geometry_manifest),
+        source_backed_materialization_path=Path(args.source_backed_materialization),
+        locator_schema_audit_path=Path(args.locator_schema_audit),
+        locator_dir=Path(args.locator_dir),
+        threshold_contract_path=Path(args.threshold_contract)
+        if args.threshold_contract
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel source-free predicted-geometry retrieval to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"ok rows: {counts.get('predicted_geometry_ok_rows')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_free_predicted_geometry_source_check_preflight(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_predicted_geometry_source_check_preflight(
+        source_check_queue_path=Path(args.source_check_queue),
+        source_free_predicted_geometry_retrieval_path=Path(
+            args.source_free_predicted_geometry_retrieval
+        ),
+        source_backed_materialization_path=Path(args.source_backed_materialization),
+        external_metal_hydrolase_panel_path=Path(args.external_metal_hydrolase_panel)
+        if args.external_metal_hydrolase_panel
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel source-free predicted-geometry source-check "
+        f"preflight to {args.out} (status: {audit.get('status')}, "
+        f"rows: {counts.get('preflight_rows')})"
     )
     return 0
 
@@ -11344,6 +11416,11 @@ def cmd_build_fold_augmented_family_panel_research_readout(
         ],
         train_cal_threshold_contract_path=Path(args.train_cal_threshold_contract)
         if args.train_cal_threshold_contract
+        else None,
+        source_free_predicted_geometry_retrieval_path=Path(
+            args.source_free_predicted_geometry_retrieval
+        )
+        if args.source_free_predicted_geometry_retrieval
         else None,
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
@@ -22401,6 +22478,38 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_predicted_atlas_geometry_novelty_operating_grid
     )
 
+    predicted_structure_fold_augmented_novelty_operating_grid = subparsers.add_parser(
+        "build-predicted-structure-fold-augmented-novelty-operating-grid",
+        help=(
+            "summarize post-hoc retention/OOS-abstention operating points for "
+            "existing geometry-plus-predicted-fold novelty variants"
+        ),
+    )
+    predicted_structure_fold_augmented_novelty_operating_grid.add_argument(
+        "--fold-augmented-variants",
+        default=(
+            "artifacts/v3_predicted_structure_fold_augmented_novelty_variants_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_structure_fold_augmented_novelty_operating_grid.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_structure_fold_augmented_novelty_operating_grid.add_argument(
+        "--report",
+        default=(
+            "work/predicted_structure_fold_augmented_novelty_operating_grid_"
+            "current702_20260601.md"
+        ),
+    )
+    predicted_structure_fold_augmented_novelty_operating_grid.set_defaults(
+        func=cmd_build_predicted_structure_fold_augmented_novelty_operating_grid
+    )
+
     selected_cofactor_schema = subparsers.add_parser(
         "audit-selected-organic-cofactor-sidecar-schema",
         help="validate strict current702 schema/lineage for selected organic cofactor scores",
@@ -22468,6 +22577,13 @@ def build_parser() -> argparse.ArgumentParser:
         "--source-backed-materialization",
         default=(
             "artifacts/v3_family_panel_source_backed_sidecar_materialization_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_packet.add_argument(
+        "--source-free-predicted-geometry-retrieval",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_retrieval_"
             "current702_20260601.json"
         ),
     )
@@ -22617,6 +22733,116 @@ def build_parser() -> argparse.ArgumentParser:
     )
     family_panel_source_free_geometry_manifest.set_defaults(
         func=cmd_build_family_panel_source_free_predicted_geometry_sidecar_manifest
+    )
+
+    family_panel_source_free_geometry_retrieval = subparsers.add_parser(
+        "build-family-panel-source-free-predicted-geometry-retrieval",
+        help=(
+            "score approved source-free locator rows with predicted active-site "
+            "geometry retrieval"
+        ),
+    )
+    family_panel_source_free_geometry_retrieval.add_argument(
+        "--source-free-geometry-manifest",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_retrieval.add_argument(
+        "--source-backed-materialization",
+        default=(
+            "artifacts/v3_family_panel_source_backed_sidecar_materialization_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_retrieval.add_argument(
+        "--locator-schema-audit",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
+            "audit_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_retrieval.add_argument(
+        "--locator-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locators_"
+            "current702_20260601"
+        ),
+    )
+    family_panel_source_free_geometry_retrieval.add_argument(
+        "--threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "oos_calibrated_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_retrieval.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_"
+            "retrieval_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_retrieval.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_predicted_geometry_retrieval_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_source_free_geometry_retrieval.set_defaults(
+        func=cmd_build_family_panel_source_free_predicted_geometry_retrieval
+    )
+
+    family_panel_source_free_geometry_source_preflight = subparsers.add_parser(
+        "build-family-panel-source-free-predicted-geometry-source-check-preflight",
+        help=(
+            "package review-only source-check blockers for source-free "
+            "predicted-geometry-scored family-panel rows"
+        ),
+    )
+    family_panel_source_free_geometry_source_preflight.add_argument(
+        "--source-check-queue",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_source_check_queue_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_source_preflight.add_argument(
+        "--source-free-predicted-geometry-retrieval",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_"
+            "retrieval_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_source_preflight.add_argument(
+        "--source-backed-materialization",
+        default=(
+            "artifacts/v3_family_panel_source_backed_sidecar_materialization_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_source_preflight.add_argument(
+        "--external-metal-hydrolase-panel",
+        default="artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+    )
+    family_panel_source_free_geometry_source_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_"
+            "source_check_preflight_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_source_preflight.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_predicted_geometry_"
+            "source_check_preflight_current702_20260601.md"
+        ),
+    )
+    family_panel_source_free_geometry_source_preflight.set_defaults(
+        func=cmd_build_family_panel_source_free_predicted_geometry_source_check_preflight
     )
 
     family_panel_source_free_locator_schema = subparsers.add_parser(
@@ -23389,6 +23615,13 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/v3_fold_augmented_abstention_threshold_contract_"
             "current702_20260601.json"
+        ),
+    )
+    family_panel_readout.add_argument(
+        "--source-free-predicted-geometry-retrieval",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_"
+            "retrieval_current702_20260601.json"
         ),
     )
     family_panel_readout.add_argument(
