@@ -1,0 +1,61 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601",
+  "blocked_until": [
+    "source-backed row-specific bond-change sidecar materialized",
+    "sidecar schema audit passes with zero critical violations",
+    "feature contract is intentionally regenerated train/cal-only",
+    "strict audit confirms heldout rows remain excluded and labels/outcomes are not feature fields"
+  ],
+  "counts": {
+    "bond_schema_manifest_rows": 702,
+    "feature_contract_rows": 524,
+    "heldout_feature_rows": 0,
+    "rows_requiring_row_specific_bond_change_evidence": 232,
+    "strict_audit_critical_violation_total": 0,
+    "unexpected_bond_change_feature_rows": 0
+  },
+  "created_utc": "2026-06-01T17:13:08Z",
+  "feature_contract_allowed_current_groups": [
+    "active_site_role_graph",
+    "reaction_center_template",
+    "organic_cofactor_scores",
+    "inorganic_cofactor_loci"
+  ],
+  "guardrails": {
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false,
+    "validation_only": true
+  },
+  "interpretation": {
+    "next_action": "Materialize and audit source-backed row-specific bond-change sidecars before regenerating the train/cal feature contract.",
+    "result": "The row-specific bond-change schema is staged as a future feature gap and is not currently consumed by the no-fit feature contract."
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_feature_contract_gap_audit",
+  "scope": "Validation-only audit that the staged row-specific bond-change schema remains outside the no-fit mechanism-feature embedding contract until source evidence is materialized and explicitly authorized.",
+  "source_artifacts": {
+    "feature_contract": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json",
+      "sha256": "59c6782c620fb50f00b75af1820cce0daee0f10b604e2805550d972f5880cd6b"
+    },
+    "feature_contract_strict_audit": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601.json",
+      "sha256": "ed9b93afe9d0883fe7051a87153353075b7f24b8db7121db682be323f12edff0"
+    },
+    "row_specific_bond_change_schema": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json",
+      "sha256": "860aebbabe4262f99cfc116d07f2ebb0e2ad451d17c6f66c027041408973f1f4"
+    }
+  },
+  "status": "row_specific_bond_change_gap_not_consumed_by_feature_contract",
+  "violations": {
+    "heldout_feature_rows": [],
+    "unexpected_bond_change_feature_rows": []
+  }
+}

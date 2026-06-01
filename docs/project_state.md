@@ -73,6 +73,11 @@ artifacts first.
   rows have parsed nearest-atlas Foldseek/TM hits, with zero critical contract
   violations. Persistent predicted-CIF coordinate provenance remains a
   reproducibility task, not a score-completeness blocker.
+- The fold-channel coordinate-provenance audit now makes that reproducibility
+  task exact without rerunning Foldseek/TM: the all-heldout and priority TSVs
+  are present and parseable, the contract audit still has zero critical
+  violations, and byte-level reproduction would require persisting 299 expected
+  AFDB-v6 coordinate paths across 293 deduplicated accessions.
 - The fold-augmented gate now has a leakage-safe thresholding contract. A
   deterministic in-distribution train/cal split selected the
   `combined_mean_geometry_fold` threshold `0.44155` at >=90% calibration
@@ -235,6 +240,12 @@ artifacts first.
   and `mh_073` are geometry-ok in their packet rows. The packet coverage audit
   now reports 15/22 family-panel rows with predicted geometry and 21 rows with
   predicted-fold hits while preserving all review-only guardrails.
+- The highest-value glycyl-radical/thiamine-radical boundary panel now has a
+  readiness packet. Both rows (`m_csa:30` and `m_csa:31`) are score-complete
+  and abstain under the fixed fold-augmented research threshold, so they are
+  ready only as review-only OOS boundary controls. Both still lack
+  source-backed row-specific bond-change evidence and expert mechanism-locus
+  validation before any family-expansion discussion.
 - A companion source-check preflight now packages the three newly non-abstained
   source-free geometry rows for local review. It holds `mh_066`, `mh_073`, and
   `secondary_probe::radical_sam_enzyme` as review-only pending source checks,
@@ -293,10 +304,15 @@ artifacts first.
   unresolved rows. Automation discovery is complete, 0/7 are scoring-ready, and
   every row now needs a policy or human-review decision rather than another
   blind locator-discovery pass.
-- A current-run artifact integrity audit indexes 10 new JSON artifacts and 10
-  matching work reports from this run. All parse/presence checks passed, and the
-  validation summary records full pytest, unittest discovery, compileall,
-  `validate`, and diff-check success.
+- A compact human-decision matrix now groups those seven blockers into five
+  decision classes and recommends starting with the `mh_067`/`mh_068` locator
+  copy decision because their split-safe template check already passed and no
+  coordinate fetch is needed. The matrix authorizes no copy, fetch, or scoring.
+- A refreshed current-run artifact integrity audit indexes 6 JSON artifacts and
+  6 matching work reports from this run. All parse/presence checks passed, and
+  the validation summary records full pytest, unittest discovery, compileall,
+  `validate`, repo-wide JSON/JSONL parse, current-docs reference check, and
+  diff-check success.
 - Learned-representation results are diagnostic, not decision-grade. ESM-2
   logistic is the strongest local learned comparator in the Wave 1.2 table but
   does not displace geometry. ESM-C logistic versus ESM-C cosine shows decoder
@@ -308,6 +324,16 @@ artifacts first.
   reaction-center template sidecar row-aligns fingerprint-level chemical
   operations and bond-change descriptors for 232 rows, but it is not
   row-specific reaction evidence.
+- A no-fit row-specific bond-change schema now makes that remaining feature gap
+  explicit: 232 rows require source-backed row-specific bond-change evidence,
+  with allowed event types, required sidecar fields, forbidden predictive keys,
+  and a materialization queue staged before any embedding pilot can consume the
+  feature. No source evidence was materialized and no model was fit.
+- A companion feature-contract gap audit confirms that the staged
+  row-specific bond-change schema has not entered the current no-fit
+  mechanism-feature contract: 524 train/cal feature rows contain 0 bond-change
+  feature rows, 0 heldout rows, and the strict feature-contract audit still has
+  0 critical violations.
 - The mechanism-feature role-graph and reaction-center sidecars now pass a
   strict schema and row-alignment audit over all 702 current rows with zero
   critical violations. This validates the current sidecars as schema-safe
@@ -446,6 +472,7 @@ artifacts first.
 - `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`
 - `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`
 - `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`
+- `artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json`
 - `artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json`
 - `artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601.json`
 - `artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json`
@@ -453,6 +480,7 @@ artifacts first.
 - `artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json`
 - `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`
 - `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_inorganic_cofactor_locus_schema_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_current702_20260601.json`
@@ -467,7 +495,9 @@ artifacts first.
 - `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`
+- `artifacts/v3_family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_source_check_m_csa267_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_source_check_m_csa131_current702_20260601.json`
@@ -487,6 +517,8 @@ artifacts first.
 - `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_secondary_probe_radical_sam_enzyme_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.json`

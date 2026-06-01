@@ -50,6 +50,120 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Predicted Fold Provenance And Decision Matrix Carryover
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T16:45:20Z`
+- STARTED_LOCAL: `Mon Jun  1 11:45:20 CDT 2026`
+- ENDED_AT: `2026-06-01T17:35:17Z`
+- ENDED_LOCAL: `Mon Jun  1 12:35:17 CDT 2026`
+- ELAPSED_MINUTES: `50.0`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "22688", "started_at": "2026-06-01T16:45:20Z", "status": "acquired"}`
+- Lock release result: pending at handoff write; release after commit, push,
+  `HEAD == origin/main` verification, and clean worktree.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `94a6ba762dea82d1f8c1bd25d74ede2a8d4e5c05`
+- Git HEAD at end before commit: `94a6ba762dea82d1f8c1bd25d74ede2a8d4e5c05`
+- Dirty files at start: none
+- Dirty files at end before commit:
+  new predicted-fold coordinate provenance audit, row-specific bond-change
+  schema/gap audit, glycyl radical readiness packet, source-free locator human
+  decision matrix, refreshed current docs/reference/integrity artifacts, code,
+  regression/CLI tests, docs, and this handoff.
+- Input artifacts:
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601.json`,
+  `artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`,
+  `artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_current702_20260601.json`,
+  and
+  `artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json`.
+- Output artifacts:
+  `artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json`,
+  `work/predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_schema_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.md`,
+  `artifacts/v3_family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601.json`,
+  `work/family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601.md`,
+  `artifacts/v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601.json`,
+  `work/family_panel_source_free_locator_human_decision_matrix_current702_20260601.md`,
+  refreshed
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  refreshed
+  `work/current_docs_artifact_reference_check_current702_20260601.md`,
+  refreshed
+  `artifacts/v3_current_run_artifact_integrity_audit_current702_20260601.json`,
+  refreshed
+  `work/current_run_artifact_integrity_audit_current702_20260601.md`,
+  and durable docs/code/tests/handoff updates.
+- Commands run:
+  memory read; lock acquire; `git fetch origin`; `git pull --ff-only origin
+  main`; required context reads; fold-channel JSON/contract validation;
+  predicted-fold coordinate provenance audit build; row-specific bond-change
+  schema build; feature-contract gap audit build; glycyl radical readiness
+  packet build; source-free locator human decision matrix build; current-docs
+  reference check; current-run integrity audit; focused pytest slices; CLI
+  parser smoke tests; full pytest; unittest discovery; `compileall`;
+  `catalytic_earth.cli validate`; repo-wide JSON/JSONL parse sweep; artifact
+  migration dry-run; `git diff --check`; disk/status/diff inspections.
+- Validation results:
+  focused `tests/test_northstar_next_levers.py` passed 45 tests; focused
+  `tests/test_geometry_artifact_regression.py` passed 86 tests and 7 subtests;
+  `tests/test_cli.py` passed 118 tests plus 5 subtests; final full
+  `PYTHONPATH=src python -m pytest tests -q` passed 1098 tests plus 31
+  subtests with one existing sklearn deprecation warning; final
+  `PYTHONPATH=src python -m unittest discover -s tests` passed 1075 tests;
+  `compileall` passed; `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed with 702 curated mechanism labels; repo-wide artifact parse parsed
+  3113 JSON and 25 JSONL files with 0 errors; current-docs reference check
+  passed with 440 concrete references and 0 missing; artifact migration dry-run
+  passed with 113 rows, 0 blockers, `removal_allowed=0`; `git diff --check`
+  passed; disk headroom stayed above 10 GiB.
+- Commit/push result: pending at handoff write; commit all listed outputs,
+  push `main`, verify `HEAD == origin/main`, then release the lock. Final
+  commit hash and sync result should be reported in the automation response.
+- Exact next action for the next run:
+  start from
+  `artifacts/v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601.json`.
+  Pick exactly one human/policy decision class before any further source-free
+  geometry scoring. Recommended first decision is approve or reject copying
+  `mh_067`/`mh_068` vetted locator sidecars, because their split-safe template
+  check already passed and no coordinate fetch is needed. If approved, copy only
+  approved sidecars into the audited locator directory, rerun the locator schema
+  audit, then score source-free predicted geometry; if rejected, record the
+  rejection and move to the next decision class.
+
+Summary:
+
+- Confirmed the requested real predicted-structure fold channel already exists
+  and passes its strict contract audit. Added a coordinate-provenance audit that
+  records the remaining reproducibility blocker exactly: Foldseek/TM TSVs are
+  present and parseable, but byte-level reproduction would require 299 expected
+  AFDB-v6 coordinate paths across 293 deduplicated accessions.
+- Staged a no-fit row-specific bond-change sidecar schema for the
+  mechanism-feature embedding gap: 232 rows require source-backed row-specific
+  bond-change evidence. A companion gap audit confirms this future feature has
+  not entered the current 524-row train/cal no-fit feature contract and heldout
+  remains excluded.
+- Added a high-value glycyl/thiamine radical readiness packet. `m_csa:30` and
+  `m_csa:31` are score-complete and abstain at the fixed fold-augmented
+  research threshold, so they are review-only OOS boundary controls, not
+  import-ready family expansion rows.
+- Added a source-free locator human-decision matrix for the seven remaining
+  locator blockers. It authorizes no locator copy, coordinate fetch, or scoring;
+  it only ranks the next human/policy decisions.
+
 ### 2026-06-01 Source-Free Locator Blocker Resolution And Guardrail Audit
 
 Automation run: `catalytic-earth-work-loop`

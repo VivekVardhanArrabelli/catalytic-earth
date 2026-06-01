@@ -2735,6 +2735,32 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             6,
         )
 
+    def test_predicted_structure_fold_channel_coordinate_provenance_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "coordinate_bundle_not_persisted_results_parseable",
+        )
+        self.assertEqual(audit["counts"]["total_coordinate_requests"], 299)
+        self.assertEqual(audit["counts"]["unique_coordinate_files_expected"], 299)
+        self.assertEqual(audit["counts"]["unique_coordinate_files_observed"], 0)
+        self.assertEqual(audit["counts"]["unique_coordinate_files_missing"], 299)
+        self.assertEqual(audit["counts"]["unique_accessions_expected"], 293)
+        self.assertEqual(
+            audit["counts"]["unique_accessions_without_any_local_file"],
+            293,
+        )
+        self.assertEqual(audit["counts"]["duplicate_accession_requests"], 6)
+        self.assertTrue(audit["counts"]["result_files_parseable"])
+        self.assertEqual(audit["contract_audit"]["critical_violation_total"], 0)
+
     def test_predicted_atlas_geometry_novelty_variants_current_counts(self) -> None:
         audit = _load_json(
             ROOT
@@ -2917,6 +2943,102 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 for count in audit["counts"]["critical_counts"].values()
             )
         )
+
+    def test_mechanism_feature_row_specific_bond_change_schema_current_counts(
+        self,
+    ) -> None:
+        schema = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            schema["status"],
+            "row_specific_bond_change_schema_staged_no_fit",
+        )
+        self.assertEqual(schema["counts"]["manifest_rows"], 702)
+        self.assertEqual(schema["counts"]["reaction_template_rows"], 702)
+        self.assertEqual(
+            schema["counts"]["rows_requiring_row_specific_bond_change_evidence"],
+            232,
+        )
+        self.assertEqual(
+            schema["counts"]["row_status_counts"][
+                "not_applicable_no_mechanism_fingerprint_oos_or_unlabeled"
+            ],
+            470,
+        )
+        self.assertIn(
+            "electron_transfer",
+            schema["schema_contract"]["allowed_event_types"],
+        )
+        self.assertFalse(schema["guardrails"]["model_weights_fit_or_refit"])
+
+    def test_family_panel_high_value_glycyl_radical_readiness_packet(self) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            packet["status"],
+            "glycyl_radical_panel_ready_as_oos_boundary_review_only",
+        )
+        self.assertEqual(packet["counts"]["panel_rows"], 2)
+        self.assertEqual(packet["counts"]["score_complete_rows"], 2)
+        self.assertEqual(packet["counts"]["abstained_at_research_threshold"], 2)
+        self.assertEqual(packet["counts"]["non_abstained_at_research_threshold"], 0)
+        self.assertFalse(packet["panel_decision"]["promotion_or_import_ready"])
+        self.assertEqual(
+            {row["entry_id"] for row in packet["row_readiness"]},
+            {"m_csa:30", "m_csa:31"},
+        )
+        self.assertTrue(packet["guardrails"]["review_only"])
+
+    def test_source_free_locator_human_decision_matrix_current_counts(self) -> None:
+        matrix = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            matrix["status"],
+            "source_free_locator_human_decision_matrix_ready_review_only",
+        )
+        self.assertEqual(matrix["counts"]["blocked_rows_tracked"], 7)
+        self.assertEqual(matrix["counts"]["decision_classes"], 5)
+        self.assertEqual(matrix["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertEqual(
+            matrix["recommended_decision_order"][0],
+            "human_locator_copy_approval_after_split_safe_pass",
+        )
+        self.assertFalse(matrix["guardrails"]["locator_sidecars_created_or_copied"])
+        self.assertFalse(matrix["guardrails"]["new_coordinates_fetched"])
+        self.assertFalse(matrix["guardrails"]["predicted_geometry_scores_created"])
+
+    def test_row_specific_bond_change_feature_contract_gap_audit(self) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "row_specific_bond_change_gap_not_consumed_by_feature_contract",
+        )
+        self.assertEqual(audit["counts"]["feature_contract_rows"], 524)
+        self.assertEqual(
+            audit["counts"]["rows_requiring_row_specific_bond_change_evidence"],
+            232,
+        )
+        self.assertEqual(audit["counts"]["unexpected_bond_change_feature_rows"], 0)
+        self.assertEqual(audit["counts"]["heldout_feature_rows"], 0)
+        self.assertEqual(audit["counts"]["strict_audit_critical_violation_total"], 0)
+        self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
 
     def test_mechanism_feature_inorganic_cofactor_locus_schema_current_counts(
         self,
@@ -3453,11 +3575,11 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
 
         self.assertEqual(audit["status"], "current_run_artifact_integrity_audit_passed")
-        self.assertEqual(audit["counts"]["json_artifacts_checked"], 10)
-        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 10)
-        self.assertEqual(audit["counts"]["work_reports_checked"], 10)
-        self.assertEqual(audit["counts"]["work_reports_present"], 10)
-        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3108)
+        self.assertEqual(audit["counts"]["json_artifacts_checked"], 6)
+        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 6)
+        self.assertEqual(audit["counts"]["work_reports_checked"], 6)
+        self.assertEqual(audit["counts"]["work_reports_present"], 6)
+        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3113)
         self.assertEqual(audit["counts"]["repo_jsonl_artifacts_parse_checked"], 25)
         self.assertEqual(audit["counts"]["repo_json_parse_error_count"], 0)
         self.assertEqual(audit["counts"]["label_registry_mutations"], 0)
@@ -3467,10 +3589,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(audit["guardrails"]["production_thresholds_changed"])
         self.assertFalse(audit["guardrails"]["new_coordinates_fetched"])
         self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
-        self.assertEqual(len(audit["artifact_rows"]), 10)
+        self.assertEqual(len(audit["artifact_rows"]), 6)
         self.assertEqual(
             audit["artifact_rows"][-1]["category"],
-            "mechanism_feature_guardrail",
+            "docs_reference_check",
         )
 
     def test_thiol_disulfide_family_panel_packet_current_counts(self) -> None:

@@ -44,6 +44,7 @@ from .mechanism_abstention_gate_eval import (
 from .northstar_next_levers import (
     write_family_set_expansion_targets,
     write_family_panel_evidence_packet,
+    write_family_panel_high_value_glycyl_radical_readiness_packet,
     write_family_panel_source_backed_sidecar_materialization,
     write_family_panel_source_free_active_site_locator_candidate_audit,
     write_family_panel_source_free_active_site_locator_candidate_integrity_audit,
@@ -55,6 +56,7 @@ from .northstar_next_levers import (
     write_family_panel_source_free_active_site_locator_schema_audit,
     write_family_panel_source_free_active_site_locator_template_bundle,
     write_family_panel_source_free_locator_blocked_row_rescue_manifest,
+    write_family_panel_source_free_locator_human_decision_matrix,
     write_family_panel_source_free_predicted_geometry_retrieval,
     write_family_panel_source_free_predicted_geometry_source_check_preflight,
     write_family_panel_source_free_predicted_geometry_sidecar_manifest,
@@ -78,12 +80,15 @@ from .northstar_next_levers import (
     write_mechanism_feature_embedding_train_cal_split_manifest,
     write_mechanism_feature_active_site_role_graph_sidecar,
     write_mechanism_feature_reaction_center_template_sidecar,
+    write_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit,
+    write_mechanism_feature_row_specific_bond_change_schema,
     write_mechanism_feature_sidecar_schema_audit,
     write_predicted_atlas_geometry_novelty_operating_grid,
     write_predicted_atlas_geometry_novelty_variants,
     write_predicted_structure_fold_augmented_novelty_operating_grid,
     write_predicted_structure_fold_channel,
     write_predicted_structure_fold_channel_contract_audit,
+    write_predicted_structure_fold_channel_coordinate_provenance_audit,
     write_selected_organic_cofactor_sidecar_schema_audit,
 )
 from .geometry_reports import write_geometry_slice_summary
@@ -10884,6 +10889,24 @@ def cmd_audit_predicted_structure_fold_channel_contract(args: argparse.Namespace
     return 0
 
 
+def cmd_audit_predicted_structure_fold_channel_coordinate_provenance(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_predicted_structure_fold_channel_coordinate_provenance_audit(
+        predicted_structure_fold_channel_path=Path(args.predicted_structure_fold_channel),
+        contract_audit_path=Path(args.contract_audit) if args.contract_audit else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote predicted-structure fold channel coordinate provenance audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"missing coordinates: {counts.get('unique_coordinate_files_missing')})"
+    )
+    return 0
+
+
 def cmd_eval_predicted_atlas_geometry_novelty_variants(args: argparse.Namespace) -> int:
     audit = write_predicted_atlas_geometry_novelty_variants(
         predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
@@ -11268,6 +11291,23 @@ def cmd_build_family_panel_source_free_locator_blocked_row_rescue_manifest(
     return 0
 
 
+def cmd_build_family_panel_source_free_locator_human_decision_matrix(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_locator_human_decision_matrix(
+        blocker_resolution_status_path=Path(args.blocker_resolution_status),
+        remaining_blocker_action_queue_path=Path(args.remaining_blocker_action_queue),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel source-free locator human decision matrix to "
+        f"{args.out} (decision classes: {counts.get('decision_classes')})"
+    )
+    return 0
+
+
 def cmd_eval_fold_augmented_abstention_gate(args: argparse.Namespace) -> int:
     audit = write_fold_augmented_abstention_gate(
         predicted_structure_fold_channel_path=Path(args.predicted_structure_fold_channel),
@@ -11435,6 +11475,26 @@ def cmd_build_fold_augmented_family_panel_research_readout(
     return 0
 
 
+def cmd_build_family_panel_high_value_glycyl_radical_readiness_packet(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_high_value_glycyl_radical_readiness_packet(
+        evidence_packet_path=Path(args.evidence_packet),
+        fold_augmented_readout_path=Path(args.fold_augmented_readout),
+        row_specific_bond_change_schema_path=Path(args.row_specific_bond_change_schema),
+        fold_coordinate_provenance_audit_path=Path(args.fold_coordinate_provenance_audit),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel high-value glycyl radical readiness packet to "
+        f"{args.out} (abstained rows: "
+        f"{counts.get('abstained_at_research_threshold')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_family_panel_source_check_queue(
     args: argparse.Namespace,
 ) -> int:
@@ -11563,6 +11623,43 @@ def cmd_build_mechanism_feature_reaction_center_template_sidecar(args: argparse.
     print(
         "Wrote mechanism-feature reaction-center template sidecar to "
         f"{args.out} (template rows: {counts.get('rows_with_template')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_schema(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_schema(
+        label_manifest_path=Path(args.label_manifest),
+        reaction_center_template_sidecar_path=Path(args.reaction_center_template_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote mechanism-feature row-specific bond-change schema to "
+        f"{args.out} (required rows: "
+        f"{counts.get('rows_requiring_row_specific_bond_change_evidence')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_feature_contract_gap(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit(
+        row_specific_bond_change_schema_path=Path(args.row_specific_bond_change_schema),
+        feature_contract_path=Path(args.feature_contract),
+        feature_contract_strict_audit_path=Path(args.feature_contract_strict_audit),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote mechanism-feature row-specific bond-change feature-contract "
+        f"gap audit to {args.out} (unexpected rows: "
+        f"{counts.get('unexpected_bond_change_feature_rows')})"
     )
     return 0
 
@@ -22422,6 +22519,42 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_predicted_structure_fold_channel_contract
     )
 
+    predicted_structure_fold_coordinate_provenance = subparsers.add_parser(
+        "audit-predicted-structure-fold-channel-coordinate-provenance",
+        help=(
+            "inventory persistent AFDB-v6 coordinate provenance for the "
+            "already scored predicted-structure fold channel"
+        ),
+    )
+    predicted_structure_fold_coordinate_provenance.add_argument(
+        "--predicted-structure-fold-channel",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    )
+    predicted_structure_fold_coordinate_provenance.add_argument(
+        "--contract-audit",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_contract_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_structure_fold_coordinate_provenance.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_structure_fold_coordinate_provenance.add_argument(
+        "--report",
+        default=(
+            "work/predicted_structure_fold_channel_coordinate_provenance_audit_"
+            "current702_20260601.md"
+        ),
+    )
+    predicted_structure_fold_coordinate_provenance.set_defaults(
+        func=cmd_audit_predicted_structure_fold_channel_coordinate_provenance
+    )
+
     predicted_atlas_geometry_variants = subparsers.add_parser(
         "eval-predicted-atlas-geometry-novelty-variants",
         help=(
@@ -22596,6 +22729,59 @@ def build_parser() -> argparse.ArgumentParser:
         default="work/family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.md",
     )
     family_panel_packet.set_defaults(func=cmd_build_family_panel_evidence_packet)
+
+    family_panel_glycyl_readiness = subparsers.add_parser(
+        "build-family-panel-high-value-glycyl-radical-readiness-packet",
+        help=(
+            "write the review-only readiness packet for the highest-value "
+            "glycyl/thiamine radical boundary panel"
+        ),
+    )
+    family_panel_glycyl_readiness.add_argument(
+        "--evidence-packet",
+        default=(
+            "artifacts/v3_family_panel_evidence_packet_"
+            "glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json"
+        ),
+    )
+    family_panel_glycyl_readiness.add_argument(
+        "--fold-augmented-readout",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_research_readout_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_glycyl_readiness.add_argument(
+        "--row-specific-bond-change-schema",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_schema_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_glycyl_readiness.add_argument(
+        "--fold-coordinate-provenance-audit",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_glycyl_readiness.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_high_value_glycyl_radical_readiness_packet_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_glycyl_readiness.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_high_value_glycyl_radical_readiness_packet_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_glycyl_readiness.set_defaults(
+        func=cmd_build_family_panel_high_value_glycyl_radical_readiness_packet
+    )
 
     family_panel_source_backed_materialization = subparsers.add_parser(
         "build-family-panel-source-backed-sidecar-materialization",
@@ -23278,6 +23464,45 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_family_panel_source_free_locator_blocked_row_rescue_manifest
     )
 
+    family_panel_source_free_locator_human_decision_matrix = subparsers.add_parser(
+        "build-family-panel-source-free-locator-human-decision-matrix",
+        help=(
+            "summarize source-free locator blockers that now need human or "
+            "policy decisions"
+        ),
+    )
+    family_panel_source_free_locator_human_decision_matrix.add_argument(
+        "--blocker-resolution-status",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_human_decision_matrix.add_argument(
+        "--remaining-blocker-action-queue",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_remaining_blocker_"
+            "action_queue_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_human_decision_matrix.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_human_decision_matrix_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_human_decision_matrix.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_locator_human_decision_matrix_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_source_free_locator_human_decision_matrix.set_defaults(
+        func=cmd_build_family_panel_source_free_locator_human_decision_matrix
+    )
+
     fold_augmented_gate = subparsers.add_parser(
         "eval-fold-augmented-abstention-gate",
         help="evaluate no-fit deployment abstention diagnostics with the real predicted Foldseek/TM channel",
@@ -23902,6 +24127,88 @@ def build_parser() -> argparse.ArgumentParser:
     )
     reaction_center_sidecar.set_defaults(
         func=cmd_build_mechanism_feature_reaction_center_template_sidecar
+    )
+
+    row_specific_bond_change_schema = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-schema",
+        help=(
+            "stage a no-fit schema and materialization queue for row-specific "
+            "bond-change mechanism features"
+        ),
+    )
+    row_specific_bond_change_schema.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_schema.add_argument(
+        "--reaction-center-template-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_schema.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_schema_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_schema.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_schema_"
+            "current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_schema.set_defaults(
+        func=cmd_build_mechanism_feature_row_specific_bond_change_schema
+    )
+
+    row_specific_bond_change_gap_audit = subparsers.add_parser(
+        "audit-mechanism-feature-row-specific-bond-change-feature-contract-gap",
+        help=(
+            "verify staged row-specific bond-change fields are not consumed by "
+            "the current no-fit mechanism-feature contract"
+        ),
+    )
+    row_specific_bond_change_gap_audit.add_argument(
+        "--row-specific-bond-change-schema",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_schema_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_gap_audit.add_argument(
+        "--feature-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_gap_audit.add_argument(
+        "--feature-contract-strict-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_strict_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_gap_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "feature_contract_gap_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_gap_audit.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "feature_contract_gap_audit_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_gap_audit.set_defaults(
+        func=cmd_audit_mechanism_feature_row_specific_bond_change_feature_contract_gap
     )
 
     mechanism_feature_sidecar_schema = subparsers.add_parser(

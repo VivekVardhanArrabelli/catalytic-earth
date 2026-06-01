@@ -1,0 +1,113 @@
+{
+  "artifact_id": "v3_family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601",
+  "counts": {
+    "abstained_at_research_threshold": 2,
+    "fold_coordinate_paths_missing_for_global_channel": 299,
+    "fold_result_files_parseable": true,
+    "non_abstained_at_research_threshold": 0,
+    "panel_rows": 2,
+    "rows_missing_row_specific_bond_change_evidence": 2,
+    "score_complete_rows": 2
+  },
+  "created_utc": "2026-06-01T17:20:34Z",
+  "guardrails": {
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true
+  },
+  "interpretation": {
+    "exact_next_action": "Run a frozen-local source check for m_csa:30 and m_csa:31 focused on row-specific radical/thiamine bond-change evidence.",
+    "headline": "The highest-value glycyl/thiamine radical panel is ready as a review-only OOS boundary control, not as a family expansion import.",
+    "why_not_import_ready": "Both rows still lack source-backed row-specific bond-change and expert mechanism-locus validation, and no label-factory/import gate has run."
+  },
+  "next_actions": [
+    "source-check m_csa:30 and m_csa:31 for row-specific glycyl-radical/thiamine-radical bond-change evidence from frozen source graphs before any panel-promotion discussion",
+    "materialize the row-specific bond-change sidecar under the staged schema if source evidence exists",
+    "keep both rows review-only and out of train/cal/threshold selection until an explicit future split and label-factory gate authorize countable use"
+  ],
+  "panel_decision": {
+    "current_use": "review_only_oos_boundary_control",
+    "promotion_or_import_ready": false,
+    "rationale": "Both rows are score-complete, cofactor-confounded heldout OOS controls and abstain under the fixed combined_mean_geometry_fold research threshold; no source-backed row-specific bond-change evidence is materialized."
+  },
+  "row_readiness": [
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:30",
+      "evidence_role": "cofactor-confounded OOS control: known organic cofactor-like signal with weak/novel fold or geometry support against occupied primary mechanisms",
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_score": 0.2616,
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:11",
+      "predicted_structure_nearest_atlas_tm_score": 0.4988,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": -0.06135,
+      "promotion_readiness": "not_ready_review_only_oos_boundary_control",
+      "ready_for_embedding_pilot": false,
+      "remaining_blockers": [
+        "source_backed_row_specific_bond_change_evidence_missing",
+        "expert_mechanism_locus_review_missing",
+        "label_factory_import_gate_not_run",
+        "future_frozen_split_required_before_countable_use"
+      ],
+      "research_gate_status": "abstained_at_research_threshold",
+      "row_specific_bond_change_schema_status": "not_applicable_no_mechanism_fingerprint_oos_or_unlabeled",
+      "selected_organic_cofactor_max": 0.589255,
+      "split_assignment": "heldout"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:31",
+      "evidence_role": "cofactor-confounded OOS control: known organic cofactor-like signal with weak/novel fold or geometry support against occupied primary mechanisms",
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_top1_score": 0.3466,
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:900",
+      "predicted_structure_nearest_atlas_tm_score": 0.3809,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": -0.0778,
+      "promotion_readiness": "not_ready_review_only_oos_boundary_control",
+      "ready_for_embedding_pilot": false,
+      "remaining_blockers": [
+        "source_backed_row_specific_bond_change_evidence_missing",
+        "expert_mechanism_locus_review_missing",
+        "label_factory_import_gate_not_run",
+        "future_frozen_split_required_before_countable_use"
+      ],
+      "research_gate_status": "abstained_at_research_threshold",
+      "row_specific_bond_change_schema_status": "not_applicable_no_mechanism_fingerprint_oos_or_unlabeled",
+      "selected_organic_cofactor_max": 0.808565,
+      "split_assignment": "heldout"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.family_panel_high_value_readiness",
+  "scope": "Review-only readiness packet for the highest-value glycyl-radical/thiamine-radical lyase boundary panel after predicted fold scoring, fixed research-gate readout, and row-specific bond-change schema staging.",
+  "source_artifacts": {
+    "family_panel_evidence_packet": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json",
+      "sha256": "65acbf9837f5457b5a60b326abec01f92acb8ff7aa031f9ca9b22b8f701fc06e"
+    },
+    "fold_augmented_family_panel_research_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
+      "sha256": "9c8d11be5191f08893510e9c8c57e22051c078f5777c020fafa84c786167998f"
+    },
+    "fold_channel_coordinate_provenance_audit": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json",
+      "sha256": "d1308a0eef73866a233dd4399e2cee6870b0c0f4626e97da3395bc66fb3e84df"
+    },
+    "row_specific_bond_change_schema": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json",
+      "sha256": "860aebbabe4262f99cfc116d07f2ebb0e2ad451d17c6f66c027041408973f1f4"
+    }
+  },
+  "status": "glycyl_radical_panel_ready_as_oos_boundary_review_only"
+}

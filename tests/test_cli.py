@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from catalytic_earth.cli import _validate_label_factory_gate_cli_lineage
+from catalytic_earth.cli import _validate_label_factory_gate_cli_lineage, build_parser
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -105,6 +105,38 @@ class CliTests(unittest.TestCase):
             text=True,
         )
         self.assertIn("Validated", result.stdout)
+
+    def test_current702_northstar_carryover_commands_are_registered(self) -> None:
+        parser = build_parser()
+        cases = [
+            (
+                "audit-predicted-structure-fold-channel-coordinate-provenance",
+                "cmd_audit_predicted_structure_fold_channel_coordinate_provenance",
+            ),
+            (
+                "build-mechanism-feature-row-specific-bond-change-schema",
+                "cmd_build_mechanism_feature_row_specific_bond_change_schema",
+            ),
+            (
+                "audit-mechanism-feature-row-specific-bond-change-feature-contract-gap",
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "feature_contract_gap"
+                ),
+            ),
+            (
+                "build-family-panel-high-value-glycyl-radical-readiness-packet",
+                "cmd_build_family_panel_high_value_glycyl_radical_readiness_packet",
+            ),
+            (
+                "build-family-panel-source-free-locator-human-decision-matrix",
+                "cmd_build_family_panel_source_free_locator_human_decision_matrix",
+            ),
+        ]
+        for command_name, function_name in cases:
+            with self.subTest(command_name=command_name):
+                args = parser.parse_args([command_name])
+                self.assertEqual(args.func.__name__, function_name)
 
     def test_build_sequence_cluster_proxy_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

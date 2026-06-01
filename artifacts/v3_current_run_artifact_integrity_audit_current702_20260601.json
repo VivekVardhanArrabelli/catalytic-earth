@@ -1,124 +1,118 @@
 {
   "artifact_id": "v3_current_run_artifact_integrity_audit_current702_20260601",
-  "created_utc": "2026-06-01T16:23:54Z",
-  "schema_version": "current_run_artifact_integrity_audit.v1",
-  "status": "current_run_artifact_integrity_audit_passed",
-  "scope": {
-    "run_focus": "source-free family-panel locator blockers plus mechanism-feature train-cal guardrail",
-    "json_artifacts_checked": 10,
-    "work_reports_checked": 10,
-    "current702_safe_inputs_only": true
-  },
-  "counts": {
-    "json_artifacts_checked": 10,
-    "json_artifacts_parse_passed": 10,
-    "work_reports_checked": 10,
-    "work_reports_present": 10,
-    "repo_json_artifacts_parse_checked": 3108,
-    "repo_jsonl_artifacts_parse_checked": 25,
-    "repo_json_parse_error_count": 0,
-    "source_check_artifacts": 3,
-    "locator_blocker_artifacts": 6,
-    "mechanism_feature_guardrail_artifacts": 1,
-    "label_registry_mutations": 0,
-    "production_threshold_mutations": 0,
-    "new_coordinates_fetched": 0,
-    "predicted_geometry_scores_created": 0,
-    "model_fit_or_refit_artifacts": 0
-  },
-  "guardrails": {
-    "review_only": true,
-    "current702_safe_inputs_only": true,
-    "labels_registries_ontologies_changed": false,
-    "production_thresholds_changed": false,
-    "new_source_data_fetched": false,
-    "new_coordinates_fetched": false,
-    "model_weights_fit_or_refit": false,
-    "predicted_geometry_scored": false
-  },
   "artifact_rows": [
     {
-      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_066_current702_20260601.json",
-      "sha256": "415aef9e7c0ea39285a6f4a303345f7ea876e9a48810920ac5b298356c91c52e",
-      "category": "source_check",
-      "work_report": "work/family_panel_source_free_predicted_geometry_source_check_mh_066_current702_20260601.md",
-      "json_parse_status": "passed"
+      "artifact_status": "coordinate_bundle_not_persisted_results_parseable",
+      "category": "fold_channel_coordinate_provenance",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json",
+      "json_sha256": "d1308a0eef73866a233dd4399e2cee6870b0c0f4626e97da3395bc66fb3e84df",
+      "work_report_exists": true,
+      "work_report_path": "work/predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.md",
+      "work_report_sha256": "03784fad262c1fa1d766f438241343b3f088beb3664876ac5ac85ecb812e9f96"
     },
     {
-      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601.json",
-      "sha256": "39b588bf0dea2fd34a6b55d6d2618adb35685b5479125da9b4c8adc0526a01e8",
-      "category": "source_check",
-      "work_report": "work/family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601.md",
-      "json_parse_status": "passed"
+      "artifact_status": "row_specific_bond_change_schema_staged_no_fit",
+      "category": "mechanism_feature_schema",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json",
+      "json_sha256": "860aebbabe4262f99cfc116d07f2ebb0e2ad451d17c6f66c027041408973f1f4",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_schema_current702_20260601.md",
+      "work_report_sha256": "91b165d4509d29bc90abb4eb94bd8099c8de7a543506008a5126e618f6d29774"
     },
     {
-      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_secondary_probe_radical_sam_enzyme_current702_20260601.json",
-      "sha256": "45a2a6ea571d4981dd9b309d6c11ebe2a99557bdef403df10bf569d2814e7594",
-      "category": "source_check",
-      "work_report": "work/family_panel_source_free_predicted_geometry_source_check_secondary_probe_radical_sam_enzyme_current702_20260601.md",
-      "json_parse_status": "passed"
+      "artifact_status": "row_specific_bond_change_gap_not_consumed_by_feature_contract",
+      "category": "mechanism_feature_gap_guardrail",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.json",
+      "json_sha256": "4a7bceab0b45c6debd480b6fea6899a20b9e09ff38d185aea33a1b9342076dc1",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.md",
+      "work_report_sha256": "3593ba1e92d5b9228131c9f76b78ba61eb6f6b9665b8a759c15ed06a34c5b9b2"
     },
     {
-      "path": "artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json",
-      "sha256": "fe9c7f5b3e819cca4c67a340d428d38d3fdcd18aca32408326e70eb80a979d30",
-      "category": "locator_blocker_queue",
-      "work_report": "work/family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.md",
-      "json_parse_status": "passed"
+      "artifact_status": "glycyl_radical_panel_ready_as_oos_boundary_review_only",
+      "category": "family_panel_readiness",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601.json",
+      "json_sha256": "2625f032fedab01a3190d13b3bdef04ce8b406fb37d58c4fead7bef348416e8f",
+      "work_report_exists": true,
+      "work_report_path": "work/family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601.md",
+      "work_report_sha256": "c16b762868f5069bcdde54dcafabcfcfa963a5f90e1d8f76f88ebd7d7ba9ecf9"
     },
     {
-      "path": "artifacts/v3_family_panel_source_free_locator_uniprot_position_validation_mh065_mh072_current702_20260601.json",
-      "sha256": "7c5b77a17f8431bf35ad1ad0fc3770b2154da3e196ee09533348f02241a95fea",
-      "category": "locator_blocker_validation",
-      "work_report": "work/family_panel_source_free_locator_uniprot_position_validation_mh065_mh072_current702_20260601.md",
-      "json_parse_status": "passed"
+      "artifact_status": "source_free_locator_human_decision_matrix_ready_review_only",
+      "category": "source_free_locator_decision_matrix",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601.json",
+      "json_sha256": "65eaacd3507da11c9eea6899cbdd135bc3e8ceac31526ac626dbee48cae0b028",
+      "work_report_exists": true,
+      "work_report_path": "work/family_panel_source_free_locator_human_decision_matrix_current702_20260601.md",
+      "work_report_sha256": "201b9cb5bfe8ad9ddf2bb3c37da6492c5e60a2c788fa3c88e01e3a05e2d5aa2b"
     },
     {
-      "path": "artifacts/v3_family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.json",
-      "sha256": "bd210a557bc707996a3928216a19b5cd07c4c83746fdfc9b431de570912005e9",
-      "category": "locator_blocker_validation",
-      "work_report": "work/family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.md",
-      "json_parse_status": "passed"
-    },
-    {
-      "path": "artifacts/v3_family_panel_source_free_locator_ligand_specificity_review_external_glycoside_panel_current702_20260601.json",
-      "sha256": "dbe5112fa551f5060fb5ff51dcc86a3c10bbf58d7efecb4c5a1233003dcf7117",
-      "category": "locator_blocker_validation",
-      "work_report": "work/family_panel_source_free_locator_ligand_specificity_review_external_glycoside_panel_current702_20260601.md",
-      "json_parse_status": "passed"
-    },
-    {
-      "path": "artifacts/v3_family_panel_source_free_locator_policy_blockers_mh064_q59490_current702_20260601.json",
-      "sha256": "f5389f3c3bf3c7aa2c57abed076796f16a5ed9ef0556394e1aa015aaf3762deb",
-      "category": "locator_blocker_policy",
-      "work_report": "work/family_panel_source_free_locator_policy_blockers_mh064_q59490_current702_20260601.md",
-      "json_parse_status": "passed"
-    },
-    {
-      "path": "artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_current702_20260601.json",
-      "sha256": "ad377f429a4527f988c616432ae1a55f59ed870f8dacf01f0c4f6e931fe656cf",
-      "category": "locator_blocker_status",
-      "work_report": "work/family_panel_source_free_locator_blocker_resolution_status_current702_20260601.md",
-      "json_parse_status": "passed"
-    },
-    {
-      "path": "artifacts/v3_mechanism_feature_embedding_train_cal_guardrail_audit_current702_20260601.json",
-      "sha256": "1363275cb60f5e901f290bc31e2d690627351ca942781bfb2fd0c45a23faf03b",
-      "category": "mechanism_feature_guardrail",
-      "work_report": "work/mechanism_feature_embedding_train_cal_guardrail_audit_current702_20260601.md",
-      "json_parse_status": "passed"
+      "artifact_status": "current_docs_artifact_references_passed",
+      "category": "docs_reference_check",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json",
+      "json_sha256": "c5c5dedc3aa37bdf19254027face5a376127ee6c1be5106a14fc3d877ed30dfa",
+      "work_report_exists": true,
+      "work_report_path": "work/current_docs_artifact_reference_check_current702_20260601.md",
+      "work_report_sha256": "91de7b1786ee71d40993b23d1c380f420bdfea1d8d24bda62a42555ff0405ad1"
     }
   ],
-  "validation_summary": {
-    "focused_locator_pytest": "6 passed, 73 deselected",
-    "mechanism_feature_guardrail_pytest": "3 passed, 77 deselected",
-    "full_pytest": "1086 passed, 26 subtests passed, 1 sklearn deprecation warning",
-    "unittest_discover": "1064 tests passed",
-    "validate_cli": "702 curated mechanism labels validated",
-    "compileall": "passed",
-    "artifact_migration_dry_run": "113 rows, 0 blockers, removal_allowed=0",
-    "current_docs_reference_check": "430 concrete references checked, 0 missing",
-    "repo_artifact_json_parse_sweep": "3108 JSON and 25 JSONL files parsed with 0 errors",
-    "git_diff_check": "passed"
+  "counts": {
+    "docs_reference_check_artifacts": 1,
+    "family_panel_readiness_artifacts": 1,
+    "fold_channel_provenance_artifacts": 1,
+    "json_artifacts_checked": 6,
+    "json_artifacts_parse_passed": 6,
+    "label_registry_mutations": 0,
+    "mechanism_feature_gap_guardrail_artifacts": 1,
+    "mechanism_feature_schema_artifacts": 1,
+    "model_fit_or_refit_artifacts": 0,
+    "new_coordinates_fetched": 0,
+    "predicted_geometry_scores_created": 0,
+    "production_threshold_mutations": 0,
+    "repo_json_artifacts_parse_checked": 3113,
+    "repo_json_parse_error_count": 0,
+    "repo_jsonl_artifacts_parse_checked": 25,
+    "source_free_locator_decision_artifacts": 1,
+    "work_reports_checked": 6,
+    "work_reports_present": 6
   },
-  "next_action": "Use the consolidated locator blocker status artifact for human/policy decisions; do not rerun source-free locator discovery."
+  "created_utc": "2026-06-01T17:34:10Z",
+  "guardrails": {
+    "artifact_json_parse_sweep_passed": true,
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_coordinates_fetched": false,
+    "predicted_geometry_scores_created": false,
+    "production_thresholds_changed": false
+  },
+  "next_action": "Use the locator human-decision matrix to pick one policy decision, preferably mh_067/mh_068 locator-copy approval or rejection, before any further source-free geometry scoring.",
+  "repo_parse_errors": [],
+  "schema_version": "current_run_artifact_integrity.v1",
+  "scope": "Current automation-run integrity audit for new/updated JSON artifacts and matching work reports from fold provenance, mechanism-feature schema/gap guards, family-panel readiness, locator decision matrix, and docs-reference maintenance outputs.",
+  "status": "current_run_artifact_integrity_audit_passed",
+  "validation_summary": {
+    "catalytic_earth_cli_validate": "passed; 702 curated mechanism labels",
+    "compileall": "passed",
+    "current_docs_artifact_reference_check": "passed; 440 references checked, 0 missing",
+    "focused_geometry_artifact_regression": "86 passed, 7 subtests passed",
+    "focused_northstar_tests": "45 passed",
+    "full_pytest": "1098 passed, 31 subtests passed, 1 sklearn deprecation warning",
+    "git_diff_check": "passed",
+    "repo_json_parse_sweep": "3113 JSON and 25 JSONL files parsed with 0 errors",
+    "unittest_discovery": "1075 tests passed"
+  }
 }

@@ -51,6 +51,9 @@ PREDICTED_STRUCTURE_FOLD_CHANNEL_ID = (
 PREDICTED_STRUCTURE_FOLD_CHANNEL_CONTRACT_AUDIT_ID = (
     "v3_predicted_structure_fold_channel_contract_audit_current702_20260601"
 )
+PREDICTED_STRUCTURE_FOLD_CHANNEL_COORDINATE_PROVENANCE_AUDIT_ID = (
+    "v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601"
+)
 PREDICTED_STRUCTURE_FOLD_AUGMENTED_NOVELTY_OPERATING_GRID_ID = (
     "v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601"
 )
@@ -80,6 +83,9 @@ FOLD_AUGMENTED_FAMILY_PANEL_MISSING_PRIMARY_CHANNEL_DIAGNOSIS_ID = (
 )
 FOLD_AUGMENTED_FAMILY_PANEL_M_CSA_PRIMARY_CHANNEL_REPAIR_ID = (
     "v3_fold_augmented_family_panel_m_csa_primary_channel_repair_current702_20260601"
+)
+FAMILY_PANEL_HIGH_VALUE_GLYCYL_RADICAL_READINESS_PACKET_ID = (
+    "v3_family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601"
 )
 FAMILY_PANEL_SOURCE_BACKED_SIDECAR_MATERIALIZATION_ID = (
     "v3_family_panel_source_backed_sidecar_materialization_current702_20260601"
@@ -123,6 +129,9 @@ FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_PRIORITY1_REVIEW_PREFLIGHT_ID = (
 FAMILY_PANEL_SOURCE_FREE_LOCATOR_BLOCKED_ROW_RESCUE_MANIFEST_ID = (
     "v3_family_panel_source_free_locator_blocked_row_rescue_manifest_current702_20260601"
 )
+FAMILY_PANEL_SOURCE_FREE_LOCATOR_HUMAN_DECISION_MATRIX_ID = (
+    "v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601"
+)
 MECHANISM_FEATURE_SIDECAR_SCHEMA_AUDIT_ID = (
     "v3_mechanism_feature_sidecar_schema_audit_current702_20260601"
 )
@@ -131,6 +140,12 @@ MECHANISM_FEATURE_EMBEDDING_FEATURE_CONTRACT_ID = (
 )
 MECHANISM_FEATURE_EMBEDDING_FEATURE_CONTRACT_STRICT_AUDIT_ID = (
     "v3_mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_SCHEMA_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_FEATURE_CONTRACT_GAP_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601"
 )
 
 
@@ -1809,6 +1824,491 @@ def write_predicted_structure_fold_channel_contract_audit(
     return audit
 
 
+def _coordinate_request_record(item: dict[str, Any]) -> dict[str, Any]:
+    expected_path_value = str(item.get("expected_local_path") or "")
+    expected_path = Path(expected_path_value) if expected_path_value else None
+    exists = bool(expected_path is not None and expected_path.is_file())
+    return {
+        "accession": item.get("accession"),
+        "predicted_pdb_id": item.get("predicted_pdb_id"),
+        "entry_ids": list(item.get("entry_ids") or []),
+        "role": item.get("role"),
+        "expected_local_path": str(expected_path) if expected_path is not None else None,
+        "url": item.get("url"),
+        "download_command": item.get("download_command"),
+        "local_file_exists_reported": item.get("local_file_exists"),
+        "local_file_exists_observed": exists,
+        "sha256": _sha256(expected_path) if expected_path is not None and exists else None,
+    }
+
+
+def build_predicted_structure_fold_channel_coordinate_provenance_audit(
+    *,
+    predicted_structure_fold_channel_path: Path,
+    contract_audit_path: Path | None = None,
+) -> dict[str, Any]:
+    fold_channel = _read_json(predicted_structure_fold_channel_path)
+    request_groups = (
+        (fold_channel.get("foldseek_input_manifest") or {}).get(
+            "coordinate_request_groups"
+        )
+        or {}
+    )
+
+    group_summaries: dict[str, dict[str, Any]] = {}
+    missing_coordinate_requests: dict[str, list[dict[str, Any]]] = {}
+    observed_coordinate_requests: dict[str, list[dict[str, Any]]] = {}
+    path_to_records: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    reported_observed_mismatches: list[dict[str, Any]] = []
+    malformed_requests: list[dict[str, Any]] = []
+    accession_to_records: dict[str, list[dict[str, Any]]] = defaultdict(list)
+
+    for group_name, raw_items in sorted(request_groups.items()):
+        records = []
+        if not isinstance(raw_items, list):
+            malformed_requests.append(
+                {"group": group_name, "reason": "coordinate_group_not_list"}
+            )
+            raw_items = []
+        for raw_item in raw_items:
+            if not isinstance(raw_item, dict):
+                malformed_requests.append(
+                    {"group": group_name, "reason": "coordinate_request_not_object"}
+                )
+                continue
+            record = _coordinate_request_record(raw_item)
+            records.append(record)
+            expected_path = record["expected_local_path"]
+            if expected_path:
+                path_to_records[expected_path].append(
+                    {
+                        "group": group_name,
+                        "accession": record["accession"],
+                        "entry_ids": record["entry_ids"],
+                        "url": record["url"],
+                        "local_file_exists_observed": record[
+                            "local_file_exists_observed"
+                        ],
+                    }
+                )
+            if record["accession"]:
+                accession_to_records[str(record["accession"])].append(
+                    {
+                        "group": group_name,
+                        "expected_local_path": expected_path,
+                        "entry_ids": record["entry_ids"],
+                        "url": record["url"],
+                        "local_file_exists_observed": record[
+                            "local_file_exists_observed"
+                        ],
+                    }
+                )
+            if record["local_file_exists_reported"] != record[
+                "local_file_exists_observed"
+            ]:
+                reported_observed_mismatches.append(
+                    {
+                        "group": group_name,
+                        "expected_local_path": expected_path,
+                        "reported": record["local_file_exists_reported"],
+                        "observed": record["local_file_exists_observed"],
+                    }
+                )
+        missing = [
+            record
+            for record in records
+            if not record["local_file_exists_observed"]
+        ]
+        observed = [
+            record
+            for record in records
+            if record["local_file_exists_observed"]
+        ]
+        missing_coordinate_requests[group_name] = missing
+        observed_coordinate_requests[group_name] = observed
+        group_summaries[group_name] = {
+            "request_count": len(records),
+            "observed_file_count": len(observed),
+            "missing_file_count": len(missing),
+            "unique_expected_path_count": len(
+                {
+                    record["expected_local_path"]
+                    for record in records
+                    if record["expected_local_path"]
+                }
+            ),
+            "unique_accession_count": len(
+                {
+                    record["accession"]
+                    for record in records
+                    if record["accession"]
+                }
+            ),
+        }
+
+    unique_coordinate_records = []
+    duplicate_coordinate_requests = []
+    for path, records in sorted(path_to_records.items()):
+        exists = Path(path).is_file()
+        accessions = sorted(
+            {str(record["accession"]) for record in records if record["accession"]}
+        )
+        entry_ids = sorted(
+            {
+                str(entry_id)
+                for record in records
+                for entry_id in record.get("entry_ids", [])
+            },
+            key=_entry_id_sort_key,
+        )
+        groups = sorted({str(record["group"]) for record in records})
+        unique_record = {
+            "expected_local_path": path,
+            "accessions": accessions,
+            "entry_ids": entry_ids,
+            "groups": groups,
+            "url": next((record["url"] for record in records if record["url"]), None),
+            "local_file_exists_observed": exists,
+            "sha256": _sha256(Path(path)) if exists else None,
+        }
+        unique_coordinate_records.append(unique_record)
+        if len(groups) > 1:
+            duplicate_coordinate_requests.append(unique_record)
+
+    unique_accession_records = []
+    duplicate_accession_requests = []
+    for accession, records in sorted(accession_to_records.items()):
+        expected_paths = sorted(
+            {
+                str(record["expected_local_path"])
+                for record in records
+                if record["expected_local_path"]
+            }
+        )
+        entry_ids = sorted(
+            {
+                str(entry_id)
+                for record in records
+                for entry_id in record.get("entry_ids", [])
+            },
+            key=_entry_id_sort_key,
+        )
+        groups = sorted({str(record["group"]) for record in records})
+        accession_record = {
+            "accession": accession,
+            "expected_local_paths": expected_paths,
+            "entry_ids": entry_ids,
+            "groups": groups,
+            "urls": sorted(
+                {str(record["url"]) for record in records if record["url"]}
+            ),
+            "any_local_file_exists_observed": any(
+                record["local_file_exists_observed"] for record in records
+            ),
+            "all_local_files_exist_observed": all(
+                record["local_file_exists_observed"] for record in records
+            ),
+        }
+        unique_accession_records.append(accession_record)
+        if len(expected_paths) > 1 or len(groups) > 1:
+            duplicate_accession_requests.append(accession_record)
+
+    result_files = {
+        name: _summarize_foldseek_result_path(parsed_result)
+        for name, parsed_result in (
+            (fold_channel.get("parsed_foldseek_results") or {}).items()
+        )
+        if isinstance(parsed_result, dict)
+    }
+    missing_result_files = [
+        {"name": name, "path": summary.get("path")}
+        for name, summary in result_files.items()
+        if not summary.get("exists")
+    ]
+
+    contract_summary: dict[str, Any] | None = None
+    contract_missing = False
+    if contract_audit_path is not None:
+        if contract_audit_path.exists():
+            contract_audit = _read_json(contract_audit_path)
+            critical_counts = (contract_audit.get("counts") or {}).get(
+                "critical_counts"
+            ) or {}
+            contract_summary = {
+                "path": str(contract_audit_path),
+                "sha256": _sha256(contract_audit_path),
+                "status": contract_audit.get("status"),
+                "critical_violation_total": sum(critical_counts.values()),
+                "critical_counts": critical_counts,
+            }
+        else:
+            contract_missing = True
+
+    unique_missing = [
+        record
+        for record in unique_coordinate_records
+        if not record["local_file_exists_observed"]
+    ]
+    unique_observed = [
+        record
+        for record in unique_coordinate_records
+        if record["local_file_exists_observed"]
+    ]
+    unique_accessions_without_any_file = [
+        record
+        for record in unique_accession_records
+        if not record["any_local_file_exists_observed"]
+    ]
+    total_requests = sum(summary["request_count"] for summary in group_summaries.values())
+    total_missing_requests = sum(
+        summary["missing_file_count"] for summary in group_summaries.values()
+    )
+    total_observed_requests = sum(
+        summary["observed_file_count"] for summary in group_summaries.values()
+    )
+    critical_counts = {
+        "malformed_coordinate_requests": len(malformed_requests),
+        "missing_result_files": len(missing_result_files),
+        "contract_audit_missing": 1 if contract_missing else 0,
+    }
+    result_files_parseable = all(
+        summary.get("exists") and summary.get("parsed_status") == "parsed"
+        for summary in result_files.values()
+    )
+    if any(critical_counts.values()) or not result_files_parseable:
+        status = "coordinate_provenance_audit_blocked"
+    elif unique_missing:
+        status = "coordinate_bundle_not_persisted_results_parseable"
+    else:
+        status = "coordinate_provenance_complete"
+
+    materialization_plan = {
+        "decision_needed": (
+            "Persist the AFDB-v6 CIF coordinate bundle if byte-level "
+            "Foldseek reproduction is required; the scored TSVs already "
+            "support downstream diagnostics."
+        ),
+        "missing_coordinate_paths": len(unique_missing),
+        "deduplicated_missing_accessions": len(unique_accessions_without_any_file),
+        "rerun_provenance_audit_command": (
+            "PYTHONPATH=src python -m catalytic_earth.cli "
+            "audit-predicted-structure-fold-channel-coordinate-provenance"
+        ),
+        "download_script": (
+            "python - <<'PY'\n"
+            "import json\n"
+            "import urllib.request\n"
+            "from pathlib import Path\n"
+            "artifact = json.loads(Path('artifacts/"
+            "v3_predicted_structure_fold_channel_current702_20260601.json')"
+            ".read_text())\n"
+            "seen = set()\n"
+            "for group in artifact['foldseek_input_manifest']"
+            "['coordinate_request_groups'].values():\n"
+            "    for item in group:\n"
+            "        path = item.get('expected_local_path')\n"
+            "        url = item.get('url')\n"
+            "        if not path or not url or path in seen:\n"
+            "            continue\n"
+            "        seen.add(path)\n"
+            "        target = Path(path)\n"
+            "        target.parent.mkdir(parents=True, exist_ok=True)\n"
+            "        if not target.exists():\n"
+            "            urllib.request.urlretrieve(url, target)\n"
+            "PY"
+        ),
+    }
+
+    return {
+        "artifact_id": PREDICTED_STRUCTURE_FOLD_CHANNEL_COORDINATE_PROVENANCE_AUDIT_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Coordinate-provenance audit for the already scored "
+            "AlphaFoldDB-predicted Foldseek/TM channel. This validates the "
+            "remaining persistent CIF bundle blocker without rerunning "
+            "Foldseek/TM or changing downstream scores."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "foldseek_rerun_performed": False,
+            "coordinate_downloads_performed": False,
+            "validation_only": True,
+        },
+        "counts": {
+            "coordinate_request_groups": len(group_summaries),
+            "total_coordinate_requests": total_requests,
+            "total_coordinate_requests_observed": total_observed_requests,
+            "total_coordinate_requests_missing": total_missing_requests,
+            "unique_coordinate_files_expected": len(unique_coordinate_records),
+            "unique_coordinate_files_observed": len(unique_observed),
+            "unique_coordinate_files_missing": len(unique_missing),
+            "unique_accessions_expected": len(unique_accession_records),
+            "unique_accessions_without_any_local_file": len(
+                unique_accessions_without_any_file
+            ),
+            "duplicate_coordinate_request_paths": len(duplicate_coordinate_requests),
+            "duplicate_accession_requests": len(duplicate_accession_requests),
+            "foldseek_result_files": len(result_files),
+            "foldseek_result_files_missing": len(missing_result_files),
+            "result_files_parseable": result_files_parseable,
+            "critical_counts": critical_counts,
+        },
+        "coordinate_request_group_summaries": group_summaries,
+        "duplicate_coordinate_requests": duplicate_coordinate_requests,
+        "duplicate_accession_requests": duplicate_accession_requests,
+        "unique_missing_coordinate_files": unique_missing,
+        "unique_accessions_without_any_local_file": unique_accessions_without_any_file,
+        "missing_coordinate_requests_by_group": missing_coordinate_requests,
+        "observed_coordinate_requests_by_group": observed_coordinate_requests,
+        "foldseek_result_files": result_files,
+        "contract_audit": contract_summary,
+        "violations": {
+            "malformed_coordinate_requests": malformed_requests[:50],
+            "reported_observed_local_file_exists_mismatches": (
+                reported_observed_mismatches[:50]
+            ),
+            "missing_result_files": missing_result_files[:50],
+            "contract_audit_missing": (
+                [{"path": str(contract_audit_path)}] if contract_missing else []
+            ),
+        },
+        "materialization_plan": materialization_plan,
+        "interpretation": {
+            "result": (
+                "The Foldseek/TM result TSVs are present and parsed, but the "
+                "persistent AFDB-v6 coordinate bundle is not committed locally."
+                if unique_missing and result_files_parseable
+                else (
+                    "The fold-channel coordinate bundle and Foldseek/TM result "
+                    "files are locally present."
+                    if not unique_missing and result_files_parseable
+                    else "The provenance audit found a critical result-file or schema blocker."
+                )
+            ),
+            "next_action": (
+                "If byte-level score reproduction is needed, materialize the "
+                f"{len(unique_missing)} missing coordinate paths "
+                f"({len(unique_accessions_without_any_file)} deduplicated "
+                "AFDB-v6 accessions) using the recorded download script, "
+                "rerun the contract audit, and then rerun this provenance audit."
+                if unique_missing
+                else "Keep the coordinate bundle with the scored TSVs and rerun this audit after any fold-channel score refresh."
+            ),
+        },
+        "source_artifacts": {
+            "predicted_structure_fold_channel": {
+                "path": str(predicted_structure_fold_channel_path),
+                "sha256": _sha256(predicted_structure_fold_channel_path),
+            },
+            "contract_audit": (
+                _source_path_record(contract_audit_path)
+                if contract_audit_path is not None
+                else None
+            ),
+        },
+    }
+
+
+def _render_predicted_structure_fold_channel_coordinate_provenance_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Predicted-Structure Fold Channel Coordinate Provenance Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Unique coordinate files expected: {counts['unique_coordinate_files_expected']}",
+        f"- Unique coordinate files observed: {counts['unique_coordinate_files_observed']}",
+        f"- Unique coordinate files missing: {counts['unique_coordinate_files_missing']}",
+        f"- Deduplicated AFDB accessions expected: {counts['unique_accessions_expected']}",
+        "- Deduplicated AFDB accessions with no local file: "
+        f"{counts['unique_accessions_without_any_local_file']}",
+        f"- Foldseek result files missing: {counts['foldseek_result_files_missing']}",
+        f"- Result files parseable: {counts['result_files_parseable']}",
+        "",
+        "## Coordinate Groups",
+        "",
+    ]
+    for name, summary in audit["coordinate_request_group_summaries"].items():
+        lines.append(
+            f"- {name}: requests={summary['request_count']}, "
+            f"observed={summary['observed_file_count']}, "
+            f"missing={summary['missing_file_count']}, "
+            f"unique_paths={summary['unique_expected_path_count']}"
+        )
+    lines += [
+        "",
+        "## Foldseek Results",
+        "",
+    ]
+    for name, summary in audit["foldseek_result_files"].items():
+        lines.append(
+            f"- {name}: exists={summary['exists']}, "
+            f"parsed={summary['parsed_status']}, "
+            f"lines={summary['nonempty_line_count']}, "
+            f"hits={summary['query_entry_count_with_hits']}"
+        )
+    contract = audit.get("contract_audit")
+    if contract:
+        lines += [
+            "",
+            "## Contract Audit",
+            "",
+            f"- Status: {contract['status']}",
+            f"- Critical violations: {contract['critical_violation_total']}",
+        ]
+    lines += [
+        "",
+        "## Materialization Plan",
+        "",
+        f"- {audit['materialization_plan']['decision_needed']}",
+        f"- Missing coordinate paths: {audit['materialization_plan']['missing_coordinate_paths']}",
+        "- Deduplicated missing AFDB accessions: "
+        f"{audit['materialization_plan']['deduplicated_missing_accessions']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_predicted_structure_fold_channel_coordinate_provenance_audit(
+    *,
+    predicted_structure_fold_channel_path: Path,
+    contract_audit_path: Path | None,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_predicted_structure_fold_channel_coordinate_provenance_audit(
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        contract_audit_path=contract_audit_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_predicted_structure_fold_channel_coordinate_provenance_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
 GEOMETRY_VARIANT_FEATURES = (
     "score",
     "role_match_fraction",
@@ -3365,6 +3865,252 @@ def write_family_panel_evidence_packet(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_family_panel_evidence_packet_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_family_panel_high_value_glycyl_radical_readiness_packet(
+    *,
+    evidence_packet_path: Path,
+    fold_augmented_readout_path: Path,
+    row_specific_bond_change_schema_path: Path,
+    fold_coordinate_provenance_audit_path: Path,
+) -> dict[str, Any]:
+    packet = _read_json(evidence_packet_path)
+    readout = _read_json(fold_augmented_readout_path)
+    bond_schema = _read_json(row_specific_bond_change_schema_path)
+    fold_provenance = _read_json(fold_coordinate_provenance_audit_path)
+    readout_by_entry = {
+        str(row.get("entry_id")): row
+        for row in readout.get("row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    bond_by_entry = {
+        str(row.get("entry_id")): row
+        for row in bond_schema.get("row_materialization_queue", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    row_readiness = []
+    for row in packet.get("row_evidence", []):
+        if not isinstance(row, dict):
+            continue
+        entry_id = str(row.get("entry_id") or "")
+        readout_row = readout_by_entry.get(entry_id, {})
+        bond_row = bond_by_entry.get(entry_id, {})
+        geometry = row.get("predicted_geometry_top1") or {}
+        fold = row.get("predicted_structure_fold_channel") or {}
+        row_readiness.append(
+            {
+                "entry_id": entry_id,
+                "split_assignment": row.get("split_assignment"),
+                "benchmark_role": row.get("benchmark_role"),
+                "evidence_role": row.get("evidence_role"),
+                "predicted_geometry_status": row.get("predicted_geometry_status"),
+                "predicted_geometry_top1_fingerprint_id": geometry.get(
+                    "fingerprint_id"
+                ),
+                "predicted_geometry_top1_score": geometry.get("score"),
+                "selected_organic_cofactor_max": row.get(
+                    "selected_organic_cofactor_max"
+                ),
+                "predicted_structure_nearest_atlas_entry_id": fold.get(
+                    "nearest_atlas_entry_id"
+                ),
+                "predicted_structure_nearest_atlas_true_fingerprint_id": fold.get(
+                    "nearest_atlas_true_fingerprint_id"
+                ),
+                "predicted_structure_nearest_atlas_tm_score": fold.get(
+                    "nearest_atlas_tm_score"
+                ),
+                "research_gate_status": readout_row.get("research_gate_status"),
+                "primary_threshold": readout_row.get("primary_threshold"),
+                "primary_threshold_margin": readout_row.get(
+                    "primary_threshold_margin"
+                ),
+                "row_specific_bond_change_schema_status": bond_row.get(
+                    "row_specific_bond_change_status"
+                ),
+                "ready_for_embedding_pilot": bond_row.get(
+                    "ready_for_embedding_pilot",
+                    False,
+                ),
+                "promotion_readiness": "not_ready_review_only_oos_boundary_control",
+                "remaining_blockers": [
+                    "source_backed_row_specific_bond_change_evidence_missing",
+                    "expert_mechanism_locus_review_missing",
+                    "label_factory_import_gate_not_run",
+                    "future_frozen_split_required_before_countable_use",
+                ],
+            }
+        )
+    score_complete = [
+        row
+        for row in row_readiness
+        if row["predicted_geometry_status"] == "ok"
+        and row["predicted_structure_nearest_atlas_tm_score"] is not None
+    ]
+    abstained = [
+        row
+        for row in row_readiness
+        if row["research_gate_status"] == "abstained_at_research_threshold"
+    ]
+    return {
+        "artifact_id": FAMILY_PANEL_HIGH_VALUE_GLYCYL_RADICAL_READINESS_PACKET_ID,
+        "schema_version": f"{SCHEMA_VERSION}.family_panel_high_value_readiness",
+        "created_utc": _utc_now_iso(),
+        "status": "glycyl_radical_panel_ready_as_oos_boundary_review_only",
+        "scope": (
+            "Review-only readiness packet for the highest-value "
+            "glycyl-radical/thiamine-radical lyase boundary panel after "
+            "predicted fold scoring, fixed research-gate readout, and "
+            "row-specific bond-change schema staging."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "review_only": True,
+        },
+        "counts": {
+            "panel_rows": len(row_readiness),
+            "score_complete_rows": len(score_complete),
+            "abstained_at_research_threshold": len(abstained),
+            "non_abstained_at_research_threshold": sum(
+                1
+                for row in row_readiness
+                if row["research_gate_status"] == "non_abstained_at_research_threshold"
+            ),
+            "rows_missing_row_specific_bond_change_evidence": len(row_readiness),
+            "fold_coordinate_paths_missing_for_global_channel": (
+                (fold_provenance.get("counts") or {}).get(
+                    "unique_coordinate_files_missing"
+                )
+            ),
+            "fold_result_files_parseable": (
+                (fold_provenance.get("counts") or {}).get("result_files_parseable")
+            ),
+        },
+        "panel_decision": {
+            "current_use": "review_only_oos_boundary_control",
+            "promotion_or_import_ready": False,
+            "rationale": (
+                "Both rows are score-complete, cofactor-confounded heldout OOS "
+                "controls and abstain under the fixed combined_mean_geometry_fold "
+                "research threshold; no source-backed row-specific bond-change "
+                "evidence is materialized."
+            ),
+        },
+        "row_readiness": row_readiness,
+        "next_actions": [
+            "source-check m_csa:30 and m_csa:31 for row-specific glycyl-radical/thiamine-radical bond-change evidence from frozen source graphs before any panel-promotion discussion",
+            "materialize the row-specific bond-change sidecar under the staged schema if source evidence exists",
+            "keep both rows review-only and out of train/cal/threshold selection until an explicit future split and label-factory gate authorize countable use",
+        ],
+        "source_artifacts": {
+            "family_panel_evidence_packet": _source_path_record(evidence_packet_path),
+            "fold_augmented_family_panel_research_readout": _source_path_record(
+                fold_augmented_readout_path
+            ),
+            "row_specific_bond_change_schema": _source_path_record(
+                row_specific_bond_change_schema_path
+            ),
+            "fold_channel_coordinate_provenance_audit": _source_path_record(
+                fold_coordinate_provenance_audit_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "The highest-value glycyl/thiamine radical panel is ready as a "
+                "review-only OOS boundary control, not as a family expansion import."
+            ),
+            "why_not_import_ready": (
+                "Both rows still lack source-backed row-specific bond-change and "
+                "expert mechanism-locus validation, and no label-factory/import "
+                "gate has run."
+            ),
+            "exact_next_action": (
+                "Run a frozen-local source check for m_csa:30 and m_csa:31 focused "
+                "on row-specific radical/thiamine bond-change evidence."
+            ),
+        },
+    }
+
+
+def _render_family_panel_high_value_glycyl_radical_readiness_packet_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Family Panel High-Value Glycyl Radical Readiness Packet - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Panel rows: {counts['panel_rows']}",
+        f"- Score-complete rows: {counts['score_complete_rows']}",
+        f"- Abstained at research threshold: {counts['abstained_at_research_threshold']}",
+        (
+            "- Rows missing row-specific bond-change evidence: "
+            f"{counts['rows_missing_row_specific_bond_change_evidence']}"
+        ),
+        "",
+        "## Row Readiness",
+        "",
+        (
+            "| row | geometry top1 | geom score | fold TM | threshold margin | "
+            "gate status | readiness |"
+        ),
+        "| --- | --- | ---: | ---: | ---: | --- | --- |",
+    ]
+    for row in audit["row_readiness"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['predicted_geometry_top1_fingerprint_id']} | "
+            f"{row['predicted_geometry_top1_score']} | "
+            f"{row['predicted_structure_nearest_atlas_tm_score']} | "
+            f"{row['primary_threshold_margin']} | {row['research_gate_status']} | "
+            f"{row['promotion_readiness']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['why_not_import_ready']}",
+        f"- {audit['interpretation']['exact_next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_high_value_glycyl_radical_readiness_packet(
+    *,
+    evidence_packet_path: Path,
+    fold_augmented_readout_path: Path,
+    row_specific_bond_change_schema_path: Path,
+    fold_coordinate_provenance_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_high_value_glycyl_radical_readiness_packet(
+        evidence_packet_path=evidence_packet_path,
+        fold_augmented_readout_path=fold_augmented_readout_path,
+        row_specific_bond_change_schema_path=row_specific_bond_change_schema_path,
+        fold_coordinate_provenance_audit_path=fold_coordinate_provenance_audit_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_high_value_glycyl_radical_readiness_packet_report(
+                audit
+            ),
             encoding="utf-8",
         )
     return audit
@@ -8712,6 +9458,210 @@ def write_family_panel_source_free_locator_blocked_row_rescue_manifest(
     return audit
 
 
+LOCATOR_HUMAN_DECISION_PRIORITY = {
+    "human_locator_copy_approval_after_split_safe_pass": 1,
+    "accession_equivalence_or_matching_coordinate_required": 2,
+    "ligand_specificity_validator_or_substrate_coordinate_required": 3,
+    "alternate_coordinate_fetch_approval_required": 4,
+    "nonlabel_locator_strategy_or_alternate_source_required": 5,
+}
+
+
+def _locator_human_decision_text(resolution_class: str) -> tuple[str, str, str]:
+    if resolution_class == "human_locator_copy_approval_after_split_safe_pass":
+        return (
+            "Approve or reject copying the vetted mh_067/mh_068 candidate locators into the audited locator directory.",
+            "copy approved locator sidecars, rerun locator schema audit, then score source-free predicted geometry",
+            "manual scientific approval required, but no new coordinate fetch or heldout-template leak was found by the split-safe check",
+        )
+    if resolution_class == "accession_equivalence_or_matching_coordinate_required":
+        return (
+            "Approve representative-accession equivalence for mh_065/mh_072 or provide matching frozen coordinates.",
+            "copy/score only if equivalence or matching-coordinate policy is explicit and recorded",
+            "selected PDB struct_ref accessions do not match the source UniProt accessions",
+        )
+    if resolution_class == "ligand_specificity_validator_or_substrate_coordinate_required":
+        return (
+            "Define a glycoside/NAG specificity validator for 7QQF or approve a substrate-complex coordinate.",
+            "rerun ligand-specificity review before locator copy; do not use rejected acetate locator",
+            "selected acetate locator was rejected as nonspecific for the glycoside panel",
+        )
+    if resolution_class == "alternate_coordinate_fetch_approval_required":
+        return (
+            "Approve or reject fetching mh_064 frozen alternate coordinates 3RKJ/3RKK/3SBL/3SFP/3SPU.",
+            "fetch approved coordinates, rerun candidate extraction, then repeat schema/guardrail review",
+            "network coordinate fetches and alternate-coordinate policy are approval-gated",
+        )
+    return (
+        "Choose a nonlabel locator strategy for Q59490 or authorize a frozen alternate source row/coordinate.",
+        "stage a new source-free locator path and rerun candidate/schema audits before scoring",
+        "selected coordinate has no non-water/non-metal ligand and no frozen alternate PDB in the current artifact set",
+    )
+
+
+def build_family_panel_source_free_locator_human_decision_matrix(
+    *,
+    blocker_resolution_status_path: Path,
+    remaining_blocker_action_queue_path: Path,
+) -> dict[str, Any]:
+    status = _read_json(blocker_resolution_status_path)
+    action_queue = _read_json(remaining_blocker_action_queue_path)
+    resolution_rows = [
+        row for row in status.get("resolution_rows", []) if isinstance(row, dict)
+    ]
+    rows_by_class: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in resolution_rows:
+        rows_by_class[str(row.get("resolution_class") or "unknown")].append(row)
+    decision_classes = []
+    for resolution_class, rows in rows_by_class.items():
+        decision, after_approval, risk = _locator_human_decision_text(
+            resolution_class
+        )
+        decision_classes.append(
+            {
+                "priority": LOCATOR_HUMAN_DECISION_PRIORITY.get(
+                    resolution_class,
+                    99,
+                ),
+                "resolution_class": resolution_class,
+                "row_count": len(rows),
+                "entry_ids": [row.get("entry_id") for row in rows],
+                "decision_needed": decision,
+                "safe_after_approval_action": after_approval,
+                "automation_can_continue_without_decision": False,
+                "main_risk_or_blocker": risk,
+                "row_next_actions": [row.get("next_action") for row in rows],
+            }
+        )
+    decision_classes.sort(
+        key=lambda item: (int(item["priority"]), str(item["resolution_class"]))
+    )
+    return {
+        "artifact_id": FAMILY_PANEL_SOURCE_FREE_LOCATOR_HUMAN_DECISION_MATRIX_ID,
+        "schema_version": f"{SCHEMA_VERSION}.source_free_locator_human_decision_matrix",
+        "created_utc": _utc_now_iso(),
+        "status": "source_free_locator_human_decision_matrix_ready_review_only",
+        "scope": (
+            "Compact decision matrix for the seven source-free locator blockers "
+            "after automation discovery completed. This summarizes existing "
+            "blocker artifacts only and authorizes no locator copy, coordinate "
+            "fetch, or predicted-geometry scoring."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "locator_sidecars_created_or_copied": False,
+            "new_coordinates_fetched": False,
+            "predicted_geometry_scores_created": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+        },
+        "counts": {
+            "blocked_rows_tracked": len(resolution_rows),
+            "decision_classes": len(decision_classes),
+            "ready_for_predicted_geometry_scoring": 0,
+            "rows_requiring_human_or_policy_decision": len(resolution_rows),
+            "approved_locator_copy_authorized_rows": 0,
+        },
+        "recommended_decision_order": [
+            item["resolution_class"] for item in decision_classes
+        ],
+        "decision_classes": decision_classes,
+        "row_decisions": resolution_rows,
+        "source_artifacts": {
+            "blocker_resolution_status": _source_path_record(
+                blocker_resolution_status_path
+            ),
+            "remaining_blocker_action_queue": _source_path_record(
+                remaining_blocker_action_queue_path
+            ),
+        },
+        "source_status": {
+            "blocker_resolution_status": status.get("status"),
+            "remaining_blocker_action_queue": action_queue.get("status"),
+        },
+        "interpretation": {
+            "headline": (
+                "All seven source-free locator blockers are now policy or "
+                "human-review decisions, not automation-discovery tasks."
+            ),
+            "recommended_first_decision": (
+                "Approve or reject mh_067/mh_068 locator copy, because their "
+                "split-safe template check already passed and no coordinate fetch "
+                "is needed."
+            ),
+            "next_action": (
+                "Pick exactly one decision class, record the approval/rejection, "
+                "then rerun the relevant locator schema or candidate audit before "
+                "any scoring."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_free_locator_human_decision_matrix_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Source-Free Locator Human Decision Matrix - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Blocked rows tracked: {counts['blocked_rows_tracked']}",
+        f"- Decision classes: {counts['decision_classes']}",
+        f"- Ready for predicted-geometry scoring: {counts['ready_for_predicted_geometry_scoring']}",
+        "",
+        "## Decision Classes",
+        "",
+        "| priority | class | rows | decision needed |",
+        "| ---: | --- | --- | --- |",
+    ]
+    for item in audit["decision_classes"]:
+        lines.append(
+            f"| {item['priority']} | {item['resolution_class']} | "
+            f"{', '.join(item['entry_ids'])} | {item['decision_needed']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['recommended_first_decision']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_locator_human_decision_matrix(
+    *,
+    blocker_resolution_status_path: Path,
+    remaining_blocker_action_queue_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_free_locator_human_decision_matrix(
+        blocker_resolution_status_path=blocker_resolution_status_path,
+        remaining_blocker_action_queue_path=remaining_blocker_action_queue_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_locator_human_decision_matrix_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
 def build_fold_augmented_abstention_gate(
     *,
     predicted_structure_fold_channel_path: Path,
@@ -13328,6 +14278,457 @@ def write_mechanism_feature_reaction_center_template_sidecar(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_mechanism_feature_reaction_center_template_sidecar_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_mechanism_feature_row_specific_bond_change_schema(
+    *,
+    label_manifest_path: Path,
+    reaction_center_template_sidecar_path: Path,
+) -> dict[str, Any]:
+    manifest = _read_json(label_manifest_path)
+    reaction_sidecar = _read_json(reaction_center_template_sidecar_path)
+    manifest_rows = [
+        row for row in manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    reaction_rows = [
+        row for row in reaction_sidecar.get("rows", []) if isinstance(row, dict)
+    ]
+    reaction_by_entry = {
+        str(row.get("entry_id")): row
+        for row in reaction_rows
+        if row.get("entry_id")
+    }
+    status_counts: Counter[str] = Counter()
+    split_status_counts: Counter[str] = Counter()
+    required_rows = []
+    row_queue = []
+    for manifest_row in manifest_rows:
+        entry_id = str(manifest_row.get("entry_id") or "")
+        reaction_row = reaction_by_entry.get(entry_id)
+        reaction_status = reaction_row.get("status") if reaction_row else None
+        template = (
+            reaction_row.get("reaction_center_template")
+            if reaction_row
+            else {}
+        ) or {}
+        if reaction_status == "template_available":
+            status = "row_specific_bond_change_evidence_required"
+            priority = 1 if manifest_row.get("split_assignment") == "in_distribution" else 2
+            required_rows.append(entry_id)
+        elif reaction_status == "no_mechanism_fingerprint_oos_or_unlabeled":
+            status = "not_applicable_no_mechanism_fingerprint_oos_or_unlabeled"
+            priority = 4
+        elif reaction_status == "fingerprint_template_missing":
+            status = "blocked_fingerprint_template_missing"
+            priority = 3
+        else:
+            status = "blocked_missing_reaction_template_sidecar_row"
+            priority = 5
+        status_counts[status] += 1
+        split_status_counts[
+            f"{manifest_row.get('split_assignment') or 'unknown'}::{status}"
+        ] += 1
+        row_queue.append(
+            {
+                "priority": priority,
+                "entry_id": entry_id,
+                "accession": manifest_row.get("accession")
+                or manifest_row.get("sequence_id"),
+                "split_assignment": manifest_row.get("split_assignment"),
+                "fingerprint_id": _manifest_fingerprint_id(manifest_row),
+                "reaction_template_status": reaction_status,
+                "row_specific_bond_change_status": status,
+                "template_chemical_operation_normalized": template.get(
+                    "chemical_operation_normalized"
+                ),
+                "template_bond_changes_normalized": template.get(
+                    "bond_changes_normalized"
+                )
+                or [],
+                "required_next_evidence": (
+                    [
+                        "source_record_id",
+                        "row_specific_reaction_participant_mapping",
+                        "row_specific_bond_change_events",
+                        "active_site_residue_role_support",
+                        "source_graph_or_database_provenance",
+                    ]
+                    if status == "row_specific_bond_change_evidence_required"
+                    else []
+                ),
+                "allowed_for_model_training": False,
+                "allowed_for_threshold_selection": False,
+                "ready_for_embedding_pilot": False,
+            }
+        )
+    row_queue.sort(
+        key=lambda row: (
+            int(row.get("priority") or 99),
+            _entry_id_sort_key(str(row.get("entry_id") or "")),
+        )
+    )
+    return {
+        "artifact_id": MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_SCHEMA_ID,
+        "schema_version": f"{SCHEMA_VERSION}.row_specific_bond_change_schema",
+        "created_utc": _utc_now_iso(),
+        "status": "row_specific_bond_change_schema_staged_no_fit",
+        "scope": (
+            "No-fit schema and materialization queue for a future row-specific "
+            "bond-change sidecar. This closes the schema ambiguity left by the "
+            "fingerprint-template reaction-center sidecar without materializing "
+            "source evidence or training a model."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "row_specific_source_evidence_materialized": False,
+            "schema_only": True,
+        },
+        "schema_contract": {
+            "row_sidecar_required_top_level_fields": [
+                "entry_id",
+                "accession",
+                "split_assignment",
+                "status",
+                "source_evidence",
+                "reaction_participant_mapping",
+                "bond_change_events",
+                "active_site_residue_role_support",
+                "guardrails",
+            ],
+            "allowed_statuses": [
+                "row_specific_evidence_available",
+                "row_specific_evidence_required",
+                "not_applicable_no_mechanism_fingerprint_oos_or_unlabeled",
+                "blocked_fingerprint_template_missing",
+                "blocked_source_graph_missing",
+                "blocked_manual_adjudication_required",
+            ],
+            "bond_change_event_required_fields": [
+                "event_id",
+                "event_type",
+                "participants",
+                "source_graph_edge_or_record_id",
+                "evidence_confidence",
+            ],
+            "allowed_event_types": [
+                "bond_formed",
+                "bond_broken",
+                "bond_order_changed",
+                "proton_transfer",
+                "electron_transfer",
+                "redox_state_changed",
+                "coordination_changed",
+                "leaving_group_departure",
+                "isomerization_or_rearrangement",
+            ],
+            "forbidden_predictive_fields": [
+                "label_type",
+                "benchmark_role",
+                "top1_prediction",
+                "heldout_outcome",
+                "source_review_decision",
+                "family_panel_id",
+                "promotion_or_import_status",
+            ],
+            "split_policy": (
+                "Materialize source evidence for all rows if available, but any "
+                "supervised pilot must filter to train/cal rows before feature "
+                "normalization, threshold selection, or fitting."
+            ),
+        },
+        "counts": {
+            "manifest_rows": len(manifest_rows),
+            "reaction_template_rows": len(reaction_rows),
+            "rows_requiring_row_specific_bond_change_evidence": len(required_rows),
+            "row_status_counts": dict(sorted(status_counts.items())),
+            "split_status_counts": dict(sorted(split_status_counts.items())),
+        },
+        "row_materialization_queue": row_queue,
+        "interpretation": {
+            "gap_addressed": (
+                "The expected row-specific bond-change sidecar shape, allowed "
+                "event vocabulary, forbidden feature keys, and materialization "
+                "queue are now explicit."
+            ),
+            "remaining_gap": (
+                "No source-backed row-specific bond-change events have been "
+                "materialized; the existing reaction-center template remains "
+                "fingerprint-level evidence only."
+            ),
+            "next_action": (
+                "Materialize this sidecar from frozen source graphs/databases, "
+                "then audit it before adding it to the no-fit train/cal feature "
+                "contract."
+            ),
+        },
+        "source_artifacts": {
+            "label_manifest": _source_path_record(label_manifest_path),
+            "reaction_center_template_sidecar": _source_path_record(
+                reaction_center_template_sidecar_path
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_schema_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change Schema - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Manifest rows: {counts['manifest_rows']}",
+        f"- Reaction-template rows: {counts['reaction_template_rows']}",
+        (
+            "- Rows requiring row-specific bond-change evidence: "
+            f"{counts['rows_requiring_row_specific_bond_change_evidence']}"
+        ),
+        f"- Row status counts: {counts['row_status_counts']}",
+        "",
+        "## Schema Contract",
+        "",
+        (
+            "- Required top-level fields: "
+            f"{', '.join(audit['schema_contract']['row_sidecar_required_top_level_fields'])}"
+        ),
+        (
+            "- Allowed event types: "
+            f"{', '.join(audit['schema_contract']['allowed_event_types'])}"
+        ),
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['gap_addressed']}",
+        f"- {audit['interpretation']['remaining_gap']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_schema(
+    *,
+    label_manifest_path: Path,
+    reaction_center_template_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_schema(
+        label_manifest_path=label_manifest_path,
+        reaction_center_template_sidecar_path=reaction_center_template_sidecar_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_schema_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+ROW_SPECIFIC_BOND_CHANGE_FEATURE_CONTRACT_FORBIDDEN_KEYS = {
+    "active_site_residue_role_support",
+    "bond_change_events",
+    "reaction_participant_mapping",
+    "row_specific_bond_change",
+    "source_evidence",
+}
+
+
+def build_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit(
+    *,
+    row_specific_bond_change_schema_path: Path,
+    feature_contract_path: Path,
+    feature_contract_strict_audit_path: Path,
+) -> dict[str, Any]:
+    schema = _read_json(row_specific_bond_change_schema_path)
+    contract = _read_json(feature_contract_path)
+    strict_audit = _read_json(feature_contract_strict_audit_path)
+    feature_rows = [
+        row for row in contract.get("feature_rows", []) if isinstance(row, dict)
+    ]
+    unexpected_bond_change_feature_rows = []
+    heldout_feature_rows = []
+    for row in feature_rows:
+        present = sorted(
+            ROW_SPECIFIC_BOND_CHANGE_FEATURE_CONTRACT_FORBIDDEN_KEYS & set(row)
+        )
+        if present:
+            unexpected_bond_change_feature_rows.append(
+                {"entry_id": row.get("entry_id"), "unexpected_keys": present}
+            )
+        if (row.get("feature_guardrails") or {}).get("heldout_row") is True:
+            heldout_feature_rows.append(row.get("entry_id"))
+    strict_critical_total = (strict_audit.get("counts") or {}).get(
+        "critical_violation_total"
+    )
+    counts = {
+        "feature_contract_rows": len(feature_rows),
+        "bond_schema_manifest_rows": (schema.get("counts") or {}).get(
+            "manifest_rows"
+        ),
+        "rows_requiring_row_specific_bond_change_evidence": (
+            (schema.get("counts") or {}).get(
+                "rows_requiring_row_specific_bond_change_evidence"
+            )
+        ),
+        "unexpected_bond_change_feature_rows": len(
+            unexpected_bond_change_feature_rows
+        ),
+        "heldout_feature_rows": len(heldout_feature_rows),
+        "strict_audit_critical_violation_total": strict_critical_total,
+    }
+    passed = (
+        counts["unexpected_bond_change_feature_rows"] == 0
+        and counts["heldout_feature_rows"] == 0
+        and strict_critical_total == 0
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_FEATURE_CONTRACT_GAP_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_feature_contract_gap_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "row_specific_bond_change_gap_not_consumed_by_feature_contract"
+            if passed
+            else "row_specific_bond_change_gap_contract_violation"
+        ),
+        "scope": (
+            "Validation-only audit that the staged row-specific bond-change "
+            "schema remains outside the no-fit mechanism-feature embedding "
+            "contract until source evidence is materialized and explicitly "
+            "authorized."
+        ),
+        "guardrails": {
+            "validation_only": True,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+        },
+        "counts": counts,
+        "violations": {
+            "unexpected_bond_change_feature_rows": (
+                unexpected_bond_change_feature_rows[:50]
+            ),
+            "heldout_feature_rows": heldout_feature_rows[:50],
+        },
+        "feature_contract_allowed_current_groups": [
+            group.get("name")
+            for group in contract.get("feature_groups", [])
+            if isinstance(group, dict)
+        ],
+        "blocked_until": [
+            "source-backed row-specific bond-change sidecar materialized",
+            "sidecar schema audit passes with zero critical violations",
+            "feature contract is intentionally regenerated train/cal-only",
+            "strict audit confirms heldout rows remain excluded and labels/outcomes are not feature fields",
+        ],
+        "interpretation": {
+            "result": (
+                "The row-specific bond-change schema is staged as a future "
+                "feature gap and is not currently consumed by the no-fit "
+                "feature contract."
+                if passed
+                else "The feature contract contains row-specific bond-change fields or leakage violations; block embedding use until repaired."
+            ),
+            "next_action": (
+                "Materialize and audit source-backed row-specific bond-change "
+                "sidecars before regenerating the train/cal feature contract."
+            ),
+        },
+        "source_artifacts": {
+            "row_specific_bond_change_schema": _source_path_record(
+                row_specific_bond_change_schema_path
+            ),
+            "feature_contract": _source_path_record(feature_contract_path),
+            "feature_contract_strict_audit": _source_path_record(
+                feature_contract_strict_audit_path
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change Feature Contract Gap Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Feature contract rows: {counts['feature_contract_rows']}",
+        (
+            "- Rows requiring row-specific bond-change evidence: "
+            f"{counts['rows_requiring_row_specific_bond_change_evidence']}"
+        ),
+        (
+            "- Unexpected bond-change feature rows: "
+            f"{counts['unexpected_bond_change_feature_rows']}"
+        ),
+        f"- Heldout feature rows: {counts['heldout_feature_rows']}",
+        (
+            "- Strict audit critical violations: "
+            f"{counts['strict_audit_critical_violation_total']}"
+        ),
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit(
+    *,
+    row_specific_bond_change_schema_path: Path,
+    feature_contract_path: Path,
+    feature_contract_strict_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit(
+        row_specific_bond_change_schema_path=row_specific_bond_change_schema_path,
+        feature_contract_path=feature_contract_path,
+        feature_contract_strict_audit_path=feature_contract_strict_audit_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_report(
+                audit
+            ),
             encoding="utf-8",
         )
     return audit

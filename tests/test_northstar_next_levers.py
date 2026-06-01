@@ -9,6 +9,7 @@ from pathlib import Path
 from catalytic_earth.northstar_next_levers import (
     _predicted_model_parts,
     build_family_panel_evidence_packet,
+    build_family_panel_high_value_glycyl_radical_readiness_packet,
     build_fold_augmented_abstention_gate,
     build_fold_augmented_family_panel_m_csa_primary_channel_repair,
     build_fold_augmented_family_panel_missing_primary_channel_diagnosis,
@@ -21,16 +22,20 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_train_cal_oos_negative_surface_scores,
     build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision,
     build_fold_only_train_cal_oos_negative_surface,
+    build_family_panel_source_free_locator_human_decision_matrix,
     build_family_panel_source_free_predicted_geometry_retrieval,
     build_family_panel_source_free_predicted_geometry_source_check_preflight,
     build_learned_mechanism_feature_embedding_plan,
     build_mechanism_feature_active_site_role_graph_sidecar,
     build_mechanism_feature_reaction_center_template_sidecar,
+    build_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit,
+    build_mechanism_feature_row_specific_bond_change_schema,
     build_mechanism_feature_sidecar_schema_audit,
     build_predicted_atlas_geometry_novelty_variants,
     build_predicted_structure_fold_augmented_novelty_operating_grid,
     build_predicted_structure_fold_channel,
     build_predicted_structure_fold_channel_contract_audit,
+    build_predicted_structure_fold_channel_coordinate_provenance_audit,
     build_selected_organic_cofactor_sidecar_schema_audit,
     write_family_panel_source_free_active_site_locator_candidate_audit,
     write_family_panel_source_free_active_site_locator_candidate_integrity_audit,
@@ -745,6 +750,66 @@ class NorthstarNextLeversTests(unittest.TestCase):
             "ready_for_manual_forbidden_feature_review",
         )
         self.assertEqual(queue["queue_rows"][-1]["priority"], 5)
+
+    def test_source_free_locator_human_decision_matrix_orders_classes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            status = root / "status.json"
+            queue = root / "queue.json"
+            status.write_text(
+                json.dumps(
+                    {
+                        "status": "source_free_locator_blocker_resolution_status_ready_review_only",
+                        "resolution_rows": [
+                            {
+                                "entry_id": "mh_067",
+                                "source_accession": "uniprot:P00918",
+                                "resolution_class": (
+                                    "human_locator_copy_approval_after_split_safe_pass"
+                                ),
+                                "next_action": "approve or reject copy",
+                            },
+                            {
+                                "entry_id": "mh_064",
+                                "source_accession": "uniprot:C7C422",
+                                "resolution_class": (
+                                    "alternate_coordinate_fetch_approval_required"
+                                ),
+                                "next_action": "approve fetches",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue.write_text(
+                json.dumps(
+                    {
+                        "status": "source_free_locator_remaining_blocker_action_queue_ready_review_only"
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            matrix = build_family_panel_source_free_locator_human_decision_matrix(
+                blocker_resolution_status_path=status,
+                remaining_blocker_action_queue_path=queue,
+            )
+
+        self.assertEqual(
+            matrix["status"],
+            "source_free_locator_human_decision_matrix_ready_review_only",
+        )
+        self.assertEqual(matrix["counts"]["blocked_rows_tracked"], 2)
+        self.assertEqual(matrix["counts"]["decision_classes"], 2)
+        self.assertEqual(
+            matrix["recommended_decision_order"][0],
+            "human_locator_copy_approval_after_split_safe_pass",
+        )
+        self.assertFalse(
+            matrix["decision_classes"][0]["automation_can_continue_without_decision"]
+        )
+        self.assertFalse(matrix["guardrails"]["new_coordinates_fetched"])
 
     def test_fold_augmented_gate_combines_fold_geometry_and_cofactor(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -2403,6 +2468,146 @@ class NorthstarNextLeversTests(unittest.TestCase):
             "c_c_bond_cleavage",
         )
 
+    def test_row_specific_bond_change_schema_stages_required_queue(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest = root / "manifest.json"
+            reaction_sidecar = root / "reaction.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "fingerprint_id": "fp1",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "P22222",
+                                "fingerprint_id": None,
+                                "split_assignment": "heldout",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "P33333",
+                                "fingerprint_id": "missing",
+                                "split_assignment": "in_distribution",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            reaction_sidecar.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "status": "template_available",
+                                "reaction_center_template": {
+                                    "chemical_operation_normalized": "hydrolysis",
+                                    "bond_changes_normalized": ["bond_broken"],
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "status": "no_mechanism_fingerprint_oos_or_unlabeled",
+                                "reaction_center_template": {},
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "status": "fingerprint_template_missing",
+                                "reaction_center_template": {},
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_schema(
+                label_manifest_path=manifest,
+                reaction_center_template_sidecar_path=reaction_sidecar,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "row_specific_bond_change_schema_staged_no_fit",
+        )
+        self.assertEqual(
+            audit["counts"]["rows_requiring_row_specific_bond_change_evidence"],
+            1,
+        )
+        self.assertIn(
+            "proton_transfer",
+            audit["schema_contract"]["allowed_event_types"],
+        )
+        required_row = audit["row_materialization_queue"][0]
+        self.assertEqual(required_row["entry_id"], "m_csa:1")
+        self.assertFalse(required_row["ready_for_embedding_pilot"])
+        self.assertIn(
+            "row_specific_reaction_participant_mapping",
+            required_row["required_next_evidence"],
+        )
+
+    def test_row_specific_bond_change_gap_audit_excludes_contract_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            schema = root / "schema.json"
+            contract = root / "contract.json"
+            strict = root / "strict.json"
+            schema.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "manifest_rows": 3,
+                            "rows_requiring_row_specific_bond_change_evidence": 1,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract.write_text(
+                json.dumps(
+                    {
+                        "feature_groups": [{"name": "reaction_center_template"}],
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "assigned_embedding_split": "train",
+                                "feature_guardrails": {"heldout_row": False},
+                                "reaction_center_template": {"status": "template_available"},
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            strict.write_text(
+                json.dumps({"counts": {"critical_violation_total": 0}}),
+                encoding="utf-8",
+            )
+
+            audit = (
+                build_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit(
+                    row_specific_bond_change_schema_path=schema,
+                    feature_contract_path=contract,
+                    feature_contract_strict_audit_path=strict,
+                )
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "row_specific_bond_change_gap_not_consumed_by_feature_contract",
+        )
+        self.assertEqual(audit["counts"]["feature_contract_rows"], 1)
+        self.assertEqual(audit["counts"]["unexpected_bond_change_feature_rows"], 0)
+        self.assertEqual(audit["counts"]["heldout_feature_rows"], 0)
+        self.assertEqual(audit["counts"]["strict_audit_critical_violation_total"], 0)
+
     def test_mechanism_feature_sidecar_schema_audit_passes_aligned_sidecars(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -2819,6 +3024,102 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 "nearest_atlas_tm_score"
             ],
             0.42,
+        )
+
+    def test_family_panel_high_value_glycyl_readiness_packet(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            packet = root / "packet.json"
+            readout = root / "readout.json"
+            bond_schema = root / "bond_schema.json"
+            fold_provenance = root / "fold_provenance.json"
+            packet.write_text(
+                json.dumps(
+                    {
+                        "row_evidence": [
+                            {
+                                "entry_id": "m_csa:30",
+                                "split_assignment": "heldout",
+                                "benchmark_role": "oos_tier::unknown_oos",
+                                "evidence_role": "cofactor-confounded OOS control",
+                                "predicted_geometry_status": "ok",
+                                "predicted_geometry_top1": {
+                                    "fingerprint_id": "metal_dependent_hydrolase",
+                                    "score": 0.2616,
+                                },
+                                "selected_organic_cofactor_max": 0.589255,
+                                "predicted_structure_fold_channel": {
+                                    "nearest_atlas_entry_id": "m_csa:11",
+                                    "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+                                    "nearest_atlas_tm_score": 0.4988,
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readout.write_text(
+                json.dumps(
+                    {
+                        "row_scores": [
+                            {
+                                "entry_id": "m_csa:30",
+                                "research_gate_status": "abstained_at_research_threshold",
+                                "primary_threshold": 0.44155,
+                                "primary_threshold_margin": -0.06135,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            bond_schema.write_text(
+                json.dumps(
+                    {
+                        "row_materialization_queue": [
+                            {
+                                "entry_id": "m_csa:30",
+                                "row_specific_bond_change_status": (
+                                    "not_applicable_no_mechanism_fingerprint_oos_or_unlabeled"
+                                ),
+                                "ready_for_embedding_pilot": False,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_provenance.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "unique_coordinate_files_missing": 299,
+                            "result_files_parseable": True,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_family_panel_high_value_glycyl_radical_readiness_packet(
+                evidence_packet_path=packet,
+                fold_augmented_readout_path=readout,
+                row_specific_bond_change_schema_path=bond_schema,
+                fold_coordinate_provenance_audit_path=fold_provenance,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "glycyl_radical_panel_ready_as_oos_boundary_review_only",
+        )
+        self.assertEqual(audit["counts"]["panel_rows"], 1)
+        self.assertEqual(audit["counts"]["score_complete_rows"], 1)
+        self.assertEqual(audit["counts"]["abstained_at_research_threshold"], 1)
+        self.assertFalse(audit["panel_decision"]["promotion_or_import_ready"])
+        self.assertEqual(
+            audit["row_readiness"][0]["promotion_readiness"],
+            "not_ready_review_only_oos_boundary_control",
         )
 
     def test_family_panel_evidence_packet_consumes_m_csa_repair_scores(self) -> None:
@@ -3712,6 +4013,148 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertTrue(audit["foldseek_result_files"]["all_heldout_vs_atlas"]["exists"])
         self.assertTrue(
             all(count == 0 for count in audit["counts"]["critical_counts"].values())
+        )
+
+    def test_predicted_structure_fold_channel_coordinate_provenance_audit(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            fold_channel = root / "fold_channel.json"
+            contract_audit = root / "contract_audit.json"
+            all_tsv = root / "all.tsv"
+            priority_tsv = root / "priority.tsv"
+            existing_cif = root / "coords" / "atlas" / "afdb_P11111_v6.cif"
+            missing_priority = root / "coords" / "queries" / "afdb_P22222_v6.cif"
+            missing_atlas = root / "coords" / "atlas" / "afdb_P33333_v6.cif"
+            existing_cif.parent.mkdir(parents=True)
+            existing_cif.write_text("data_AF-P11111-F1-model_v6\n", encoding="utf-8")
+            all_tsv.write_text("q\tt\t0.1\t0.2\t0.7\t0.6\t40\n", encoding="utf-8")
+            priority_tsv.write_text(
+                "q\tt\t0.1\t0.2\t0.7\t0.6\t40\n",
+                encoding="utf-8",
+            )
+            fold_channel.write_text(
+                json.dumps(
+                    {
+                        "foldseek_input_manifest": {
+                            "coordinate_request_groups": {
+                                "all_heldout_queries_when_cheap": [
+                                    {
+                                        "accession": "P11111",
+                                        "predicted_pdb_id": "AF-P11111-F1-model_v6",
+                                        "entry_ids": ["m_csa:1"],
+                                        "role": "atlas_in_distribution_target",
+                                        "expected_local_path": str(existing_cif),
+                                        "url": "https://example.test/P11111.cif",
+                                        "download_command": "curl P11111",
+                                        "local_file_exists": False,
+                                    },
+                                    {
+                                        "accession": "P22222",
+                                        "predicted_pdb_id": "AF-P22222-F1-model_v6",
+                                        "entry_ids": ["m_csa:30"],
+                                        "role": "all_heldout_query_when_cheap",
+                                        "expected_local_path": str(missing_priority),
+                                        "url": "https://example.test/P22222.cif",
+                                        "download_command": "curl P22222",
+                                        "local_file_exists": False,
+                                    },
+                                ],
+                                "atlas_in_distribution": [
+                                    {
+                                        "accession": "P33333",
+                                        "predicted_pdb_id": "AF-P33333-F1-model_v6",
+                                        "entry_ids": ["m_csa:2"],
+                                        "role": "atlas_in_distribution_target",
+                                        "expected_local_path": str(missing_atlas),
+                                        "url": "https://example.test/P33333.cif",
+                                        "download_command": "curl P33333",
+                                        "local_file_exists": False,
+                                    }
+                                ],
+                                "priority_cofactor_confounded_oos_queries": [
+                                    {
+                                        "accession": "P22222",
+                                        "predicted_pdb_id": "AF-P22222-F1-model_v6",
+                                        "entry_ids": ["m_csa:30"],
+                                        "role": "priority_query_cofactor_confounded_oos",
+                                        "expected_local_path": str(missing_priority),
+                                        "url": "https://example.test/P22222.cif",
+                                        "download_command": "curl P22222",
+                                        "local_file_exists": False,
+                                    }
+                                ],
+                            }
+                        },
+                        "parsed_foldseek_results": {
+                            "all_heldout_vs_atlas": {
+                                "status": "parsed",
+                                "path": str(all_tsv),
+                                "summary": {
+                                    "mapped_pair_count": 1,
+                                    "query_entry_count_with_hits": 1,
+                                },
+                            },
+                            "priority_cofactor_confounded_oos_vs_atlas": {
+                                "status": "parsed",
+                                "path": str(priority_tsv),
+                                "summary": {
+                                    "mapped_pair_count": 1,
+                                    "query_entry_count_with_hits": 1,
+                                },
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_audit.write_text(
+                json.dumps(
+                    {
+                        "status": "fold_channel_contract_passed_current702",
+                        "counts": {
+                            "critical_counts": {
+                                "status_violations": 0,
+                                "count_mismatches": 0,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = (
+                build_predicted_structure_fold_channel_coordinate_provenance_audit(
+                    predicted_structure_fold_channel_path=fold_channel,
+                    contract_audit_path=contract_audit,
+                )
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "coordinate_bundle_not_persisted_results_parseable",
+        )
+        self.assertEqual(audit["counts"]["total_coordinate_requests"], 4)
+        self.assertEqual(audit["counts"]["unique_coordinate_files_expected"], 3)
+        self.assertEqual(audit["counts"]["unique_coordinate_files_observed"], 1)
+        self.assertEqual(audit["counts"]["unique_coordinate_files_missing"], 2)
+        self.assertEqual(audit["counts"]["unique_accessions_expected"], 3)
+        self.assertEqual(
+            audit["counts"]["unique_accessions_without_any_local_file"],
+            2,
+        )
+        self.assertEqual(audit["counts"]["duplicate_coordinate_request_paths"], 1)
+        self.assertEqual(audit["counts"]["duplicate_accession_requests"], 1)
+        self.assertTrue(audit["counts"]["result_files_parseable"])
+        self.assertEqual(audit["contract_audit"]["critical_violation_total"], 0)
+        self.assertEqual(
+            len(
+                audit["violations"][
+                    "reported_observed_local_file_exists_mismatches"
+                ]
+            ),
+            1,
         )
 
 
