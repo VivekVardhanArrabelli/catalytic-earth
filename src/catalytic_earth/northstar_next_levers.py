@@ -145,6 +145,12 @@ MECHANISM_FEATURE_EMBEDDING_FEATURE_CONTRACT_ID = (
 MECHANISM_FEATURE_EMBEDDING_FEATURE_CONTRACT_STRICT_AUDIT_ID = (
     "v3_mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601"
 )
+MECHANISM_FEATURE_EMBEDDING_PILOT_ID = (
+    "v3_mechanism_feature_embedding_pilot_current702_20260601"
+)
+MECHANISM_FEATURE_EMBEDDING_HELDOUT_READOUT_ID = (
+    "v3_mechanism_feature_embedding_heldout_readout_current702_20260601"
+)
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_SCHEMA_ID = (
     "v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601"
 )
@@ -19500,6 +19506,1032 @@ def write_mechanism_feature_embedding_feature_contract_strict_audit(
             _render_mechanism_feature_embedding_feature_contract_strict_audit_report(
                 audit
             ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _label_by_entry_from_manifest(label_manifest: dict[str, Any]) -> dict[str, str]:
+    labels: dict[str, str] = {}
+    for row in label_manifest.get("rows", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        fingerprint = row.get("fingerprint_id") or row.get("mechanism_fingerprint_id")
+        if fingerprint and row.get("label_type") == "seed_fingerprint":
+            labels[str(row["entry_id"])] = str(fingerprint)
+        else:
+            labels[str(row["entry_id"])] = "none_of_above"
+    return labels
+
+
+def _cofactor_scores_by_entry(
+    cofactor_sidecar: dict[str, Any],
+) -> dict[str, dict[str, float]]:
+    scores: dict[str, dict[str, float]] = defaultdict(dict)
+    for record in cofactor_sidecar.get("row_class_records", []):
+        if not isinstance(record, dict):
+            continue
+        entry_id = record.get("entry_id")
+        cofactor_class = record.get("cofactor_class") or record.get("class")
+        if not entry_id or not cofactor_class:
+            continue
+        score = record.get("selected_score")
+        if score is None:
+            score = record.get("score")
+        try:
+            scores[str(entry_id)][str(cofactor_class)] = float(score)
+        except (TypeError, ValueError):
+            scores[str(entry_id)][str(cofactor_class)] = 0.0
+    return scores
+
+
+def _mechanism_feature_pilot_domains(
+    feature_rows: list[dict[str, Any]],
+    *,
+    include_reaction_template: bool,
+) -> dict[str, Any]:
+    reaction_statuses = sorted(
+        {
+            str(row.get("reaction_center_template", {}).get("status") or "missing")
+            for row in feature_rows
+        }
+    )
+    reaction_operations = sorted(
+        {
+            str(
+                row.get("reaction_center_template", {}).get(
+                    "reaction_chemical_operation"
+                )
+                or "missing"
+            )
+            for row in feature_rows
+        }
+    )
+    locus_domains: dict[str, list[str]] = {}
+    for row in feature_rows:
+        for locus, status in row.get("inorganic_cofactor_loci", {}).items():
+            locus_domains.setdefault(str(locus), []).append(str(status))
+    return {
+        "include_reaction_template": include_reaction_template,
+        "reaction_template_status": reaction_statuses
+        if include_reaction_template
+        else [],
+        "reaction_chemical_operation": reaction_operations
+        if include_reaction_template
+        else [],
+        "organic_cofactor_classes": ["flavin", "heme", "plp"],
+        "inorganic_loci": {
+            locus: sorted(set(statuses))
+            for locus, statuses in sorted(locus_domains.items())
+        },
+    }
+
+
+def _mechanism_feature_pilot_vector(
+    row: dict[str, Any],
+    *,
+    domains: dict[str, Any],
+    cofactor_scores: dict[str, dict[str, float]],
+) -> list[float]:
+    values: list[float] = []
+    role_graph = row.get("active_site_role_graph") or {}
+    residue_count = role_graph.get("active_site_residue_count")
+    try:
+        values.append(math.log1p(float(residue_count)))
+    except (TypeError, ValueError):
+        values.append(0.0)
+
+    if domains["include_reaction_template"]:
+        reaction = row.get("reaction_center_template") or {}
+        status = str(reaction.get("status") or "missing")
+        operation = str(reaction.get("reaction_chemical_operation") or "missing")
+        values.extend(
+            1.0 if status == allowed else 0.0
+            for allowed in domains["reaction_template_status"]
+        )
+        values.extend(
+            1.0 if operation == allowed else 0.0
+            for allowed in domains["reaction_chemical_operation"]
+        )
+
+    entry_scores = cofactor_scores.get(str(row.get("entry_id")), {})
+    values.extend(
+        float(entry_scores.get(cofactor_class, 0.0))
+        for cofactor_class in domains["organic_cofactor_classes"]
+    )
+    loci = row.get("inorganic_cofactor_loci") or {}
+    for locus, allowed_statuses in domains["inorganic_loci"].items():
+        status = str(loci.get(locus) or "missing")
+        values.extend(1.0 if status == allowed else 0.0 for allowed in allowed_statuses)
+    return values
+
+
+def _standardize_train_cal_vectors(
+    train_vectors: list[list[float]],
+    other_vectors: list[list[float]],
+) -> tuple[list[list[float]], list[list[float]], dict[str, list[float]]]:
+    if not train_vectors:
+        return [], other_vectors, {"mean": [], "scale": []}
+    width = len(train_vectors[0])
+    means: list[float] = []
+    scales: list[float] = []
+    for index in range(width):
+        column = [vector[index] for vector in train_vectors]
+        mean = sum(column) / len(column)
+        variance = sum((value - mean) ** 2 for value in column) / len(column)
+        scale = math.sqrt(variance) or 1.0
+        means.append(mean)
+        scales.append(scale)
+
+    def transform(vectors: list[list[float]]) -> list[list[float]]:
+        return [
+            [
+                round((value - means[index]) / scales[index], 8)
+                for index, value in enumerate(vector)
+            ]
+            for vector in vectors
+        ]
+
+    return (
+        transform(train_vectors),
+        transform(other_vectors),
+        {
+            "mean": [round(value, 8) for value in means],
+            "scale": [round(value, 8) for value in scales],
+        },
+    )
+
+
+def _centroid(vector_rows: list[list[float]]) -> list[float]:
+    if not vector_rows:
+        return []
+    width = len(vector_rows[0])
+    return [
+        round(sum(row[index] for row in vector_rows) / len(vector_rows), 8)
+        for index in range(width)
+    ]
+
+
+def _euclidean_distance(a: list[float], b: list[float]) -> float:
+    return math.sqrt(sum((x - y) ** 2 for x, y in zip(a, b)))
+
+
+def _mechanism_feature_pilot_scores(
+    vectors: list[list[float]],
+    rows: list[dict[str, Any]],
+    *,
+    labels_by_entry: dict[str, str],
+    primary_centroids: dict[str, list[float]],
+) -> list[dict[str, Any]]:
+    scored: list[dict[str, Any]] = []
+    for vector, row in zip(vectors, rows):
+        distances = {
+            label: _euclidean_distance(vector, centroid)
+            for label, centroid in primary_centroids.items()
+        }
+        if distances:
+            nearest_label, nearest_distance = min(
+                distances.items(), key=lambda item: (item[1], item[0])
+            )
+            nearest_score = 1.0 / (1.0 + nearest_distance)
+        else:
+            nearest_label = None
+            nearest_distance = None
+            nearest_score = 0.0
+        true_label = labels_by_entry.get(str(row.get("entry_id")), "none_of_above")
+        scored.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "assigned_embedding_split": row.get("assigned_embedding_split"),
+                "true_label": true_label,
+                "is_primary": true_label != "none_of_above",
+                "nearest_primary_label": nearest_label,
+                "nearest_primary_distance": (
+                    round(nearest_distance, 8)
+                    if nearest_distance is not None
+                    else None
+                ),
+                "nearest_primary_similarity": round(nearest_score, 8),
+                "primary_prediction_correct": (
+                    bool(true_label != "none_of_above" and nearest_label == true_label)
+                    if nearest_label is not None
+                    else False
+                ),
+            }
+        )
+    return scored
+
+
+def _select_similarity_threshold(
+    scored_rows: list[dict[str, Any]],
+    *,
+    retention_target: float,
+) -> dict[str, Any]:
+    primary_rows = [row for row in scored_rows if row["is_primary"]]
+    oos_rows = [row for row in scored_rows if not row["is_primary"]]
+    if not primary_rows:
+        return {
+            "retention_target": retention_target,
+            "threshold": None,
+            "primary_retain_recall": None,
+            "oos_abstain_recall": None,
+            "primary_rows": 0,
+            "oos_rows": len(oos_rows),
+        }
+    candidates = sorted(
+        {float(row["nearest_primary_similarity"]) for row in scored_rows},
+        reverse=True,
+    )
+    selected = candidates[-1]
+    selected_primary_retain = 0.0
+    selected_oos_abstain = 0.0
+    for threshold in candidates:
+        primary_retain = sum(
+            1
+            for row in primary_rows
+            if float(row["nearest_primary_similarity"]) >= threshold
+        ) / len(primary_rows)
+        oos_abstain = (
+            sum(
+                1
+                for row in oos_rows
+                if float(row["nearest_primary_similarity"]) < threshold
+            )
+            / len(oos_rows)
+            if oos_rows
+            else None
+        )
+        if primary_retain >= retention_target:
+            selected = threshold
+            selected_primary_retain = primary_retain
+            selected_oos_abstain = oos_abstain if oos_abstain is not None else 0.0
+            break
+    return {
+        "retention_target": retention_target,
+        "threshold": round(selected, 8),
+        "primary_retain_recall": round(selected_primary_retain, 6),
+        "oos_abstain_recall": round(selected_oos_abstain, 6),
+        "primary_rows": len(primary_rows),
+        "oos_rows": len(oos_rows),
+    }
+
+
+def _classification_summary(scored_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    primary_rows = [row for row in scored_rows if row["is_primary"]]
+    oos_rows = [row for row in scored_rows if not row["is_primary"]]
+    return {
+        "rows": len(scored_rows),
+        "primary_rows": len(primary_rows),
+        "oos_rows": len(oos_rows),
+        "primary_nearest_label_accuracy": (
+            round(
+                sum(1 for row in primary_rows if row["primary_prediction_correct"])
+                / len(primary_rows),
+                6,
+            )
+            if primary_rows
+            else None
+        ),
+        "mean_primary_similarity": _mean(
+            [float(row["nearest_primary_similarity"]) for row in primary_rows]
+        ),
+        "mean_oos_similarity": _mean(
+            [float(row["nearest_primary_similarity"]) for row in oos_rows]
+        ),
+        "auc_primary_vs_oos": _auc_in_gt_oos(
+            [float(row["nearest_primary_similarity"]) for row in primary_rows],
+            [float(row["nearest_primary_similarity"]) for row in oos_rows],
+        ),
+    }
+
+
+def _build_mechanism_feature_embedding_pilot_variant(
+    *,
+    variant_name: str,
+    include_reaction_template: bool,
+    feature_rows: list[dict[str, Any]],
+    labels_by_entry: dict[str, str],
+    cofactor_scores: dict[str, dict[str, float]],
+) -> dict[str, Any]:
+    domains = _mechanism_feature_pilot_domains(
+        feature_rows, include_reaction_template=include_reaction_template
+    )
+    train_rows = [
+        row for row in feature_rows if row.get("assigned_embedding_split") == "train"
+    ]
+    calibration_rows = [
+        row
+        for row in feature_rows
+        if row.get("assigned_embedding_split") == "calibration"
+    ]
+    train_raw = [
+        _mechanism_feature_pilot_vector(
+            row, domains=domains, cofactor_scores=cofactor_scores
+        )
+        for row in train_rows
+    ]
+    calibration_raw = [
+        _mechanism_feature_pilot_vector(
+            row, domains=domains, cofactor_scores=cofactor_scores
+        )
+        for row in calibration_rows
+    ]
+    train_vectors, calibration_vectors, scaling = _standardize_train_cal_vectors(
+        train_raw, calibration_raw
+    )
+    primary_labels = sorted(
+        {
+            labels_by_entry.get(str(row.get("entry_id")))
+            for row in train_rows
+            if labels_by_entry.get(str(row.get("entry_id"))) != "none_of_above"
+        }
+    )
+    primary_centroids: dict[str, list[float]] = {}
+    for label in primary_labels:
+        label_vectors = [
+            vector
+            for vector, row in zip(train_vectors, train_rows)
+            if labels_by_entry.get(str(row.get("entry_id"))) == label
+        ]
+        primary_centroids[str(label)] = _centroid(label_vectors)
+
+    train_scored = _mechanism_feature_pilot_scores(
+        train_vectors,
+        train_rows,
+        labels_by_entry=labels_by_entry,
+        primary_centroids=primary_centroids,
+    )
+    calibration_scored = _mechanism_feature_pilot_scores(
+        calibration_vectors,
+        calibration_rows,
+        labels_by_entry=labels_by_entry,
+        primary_centroids=primary_centroids,
+    )
+    selected_threshold = _select_similarity_threshold(
+        calibration_scored, retention_target=0.9
+    )
+    return {
+        "variant_name": variant_name,
+        "include_reaction_template": include_reaction_template,
+        "model_type": "standardized_nearest_primary_centroid",
+        "feature_dimension": len(train_vectors[0]) if train_vectors else 0,
+        "feature_domains": domains,
+        "train_summary": _classification_summary(train_scored),
+        "calibration_summary": _classification_summary(calibration_scored),
+        "calibration_selected_threshold": selected_threshold,
+        "centroid_labels": sorted(primary_centroids),
+        "model_parameters": {
+            "scaling": scaling,
+            "primary_centroids": primary_centroids,
+        },
+    }
+
+
+def build_mechanism_feature_embedding_pilot(
+    *,
+    feature_contract_path: Path,
+    feature_contract_strict_audit_path: Path,
+    label_manifest_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+) -> dict[str, Any]:
+    contract = _read_json(feature_contract_path)
+    strict_audit = _read_json(feature_contract_strict_audit_path)
+    label_manifest = _read_json(label_manifest_path)
+    cofactor_sidecar = _read_json(selected_organic_cofactor_sidecar_path)
+    feature_rows = [
+        row for row in contract.get("feature_rows", []) if isinstance(row, dict)
+    ]
+    labels_by_entry = _label_by_entry_from_manifest(label_manifest)
+    cofactor_scores = _cofactor_scores_by_entry(cofactor_sidecar)
+    train_rows = sum(
+        1 for row in feature_rows if row.get("assigned_embedding_split") == "train"
+    )
+    calibration_rows = sum(
+        1
+        for row in feature_rows
+        if row.get("assigned_embedding_split") == "calibration"
+    )
+    missing_labels = [
+        str(row.get("entry_id"))
+        for row in feature_rows
+        if str(row.get("entry_id")) not in labels_by_entry
+    ]
+    missing_cofactor_score_rows = [
+        str(row.get("entry_id"))
+        for row in feature_rows
+        if len(cofactor_scores.get(str(row.get("entry_id")), {})) < 3
+    ]
+    strict_passed = (
+        strict_audit.get("status")
+        == "mechanism_feature_embedding_feature_contract_strict_audit_passed_no_model_fit"
+        and strict_audit.get("counts", {}).get("critical_violation_total") == 0
+    )
+    blockers = []
+    if not strict_passed:
+        blockers.append("feature_contract_strict_audit_not_passed")
+    if missing_labels:
+        blockers.append("feature_rows_missing_label_manifest_records")
+    if missing_cofactor_score_rows:
+        blockers.append("feature_rows_missing_three_organic_cofactor_scores")
+    if not train_rows or not calibration_rows:
+        blockers.append("train_or_calibration_rows_missing")
+    variants = []
+    if not blockers:
+        variants = [
+            _build_mechanism_feature_embedding_pilot_variant(
+                variant_name="full_contract_with_reaction_template",
+                include_reaction_template=True,
+                feature_rows=feature_rows,
+                labels_by_entry=labels_by_entry,
+                cofactor_scores=cofactor_scores,
+            ),
+            _build_mechanism_feature_embedding_pilot_variant(
+                variant_name="no_reaction_template_ablation",
+                include_reaction_template=False,
+                feature_rows=feature_rows,
+                labels_by_entry=labels_by_entry,
+                cofactor_scores=cofactor_scores,
+            ),
+        ]
+    best_variant = None
+    if variants:
+        best_variant = max(
+            variants,
+            key=lambda variant: (
+                variant["calibration_summary"]["auc_primary_vs_oos"] or -1,
+                variant["calibration_summary"]["primary_nearest_label_accuracy"] or -1,
+                variant["variant_name"],
+            ),
+        )["variant_name"]
+    status = (
+        "mechanism_feature_embedding_pilot_fit_train_cal_ready"
+        if not blockers
+        else "mechanism_feature_embedding_pilot_blocked"
+    )
+    return {
+        "artifact_id": MECHANISM_FEATURE_EMBEDDING_PILOT_ID,
+        "schema_version": f"{SCHEMA_VERSION}.mechanism_feature_embedding_pilot",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Train/cal-only mechanism-feature embedding pilot over the audited "
+            "current702 feature contract. It fits standardized nearest-primary "
+            "centroids on assigned train rows and selects a review threshold on "
+            "assigned calibration rows only."
+        ),
+        "guardrails": {
+            "model_weights_fit_or_refit": not blockers,
+            "model_fit_rows": "train_only",
+            "threshold_selected_or_tuned": not blockers,
+            "threshold_selection_rows": "calibration_only",
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "heldout_feature_surface_available": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "review_only": True,
+        },
+        "counts": {
+            "feature_rows": len(feature_rows),
+            "train_rows": train_rows,
+            "calibration_rows": calibration_rows,
+            "heldout_excluded_rows": contract.get("counts", {}).get(
+                "heldout_excluded_rows"
+            ),
+            "missing_label_rows": len(missing_labels),
+            "missing_three_organic_cofactor_score_rows": len(
+                missing_cofactor_score_rows
+            ),
+            "variants": len(variants),
+            "primary_label_count": len(
+                {
+                    label
+                    for row in feature_rows
+                    for label in [labels_by_entry.get(str(row.get("entry_id")))]
+                    if label and label != "none_of_above"
+                }
+            ),
+        },
+        "blockers": blockers,
+        "best_calibration_variant": best_variant,
+        "pilot_variants": variants,
+        "heldout_followup": {
+            "status": "heldout_not_evaluated_no_feature_surface",
+            "required_next_step": (
+                "materialize the same allowed feature fields for heldout rows, "
+                "then apply the train-fit/cal-selected model exactly once"
+            ),
+        },
+        "source_artifacts": {
+            "feature_contract": _source_path_record(feature_contract_path),
+            "feature_contract_strict_audit": _source_path_record(
+                feature_contract_strict_audit_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "selected_organic_cofactor_sidecar": _source_path_record(
+                selected_organic_cofactor_sidecar_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "A real train/cal mechanism-feature centroid pilot is fit and "
+                "calibrated without heldout use."
+                if not blockers
+                else "The mechanism-feature embedding pilot is blocked before fit."
+            ),
+            "next_action": (
+                "Extend the audited feature materializer to heldout rows and run "
+                "a once-only heldout readout; prioritize the no-template ablation "
+                "if the full variant wins only by reaction-template leakage."
+                if not blockers
+                else "Clear the listed blockers, then rerun this pilot builder."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_embedding_pilot_report(audit: dict[str, Any]) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism-Feature Embedding Pilot - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Feature rows: {counts['feature_rows']}",
+        f"- Train rows: {counts['train_rows']}",
+        f"- Calibration rows: {counts['calibration_rows']}",
+        f"- Heldout excluded rows: {counts['heldout_excluded_rows']}",
+        f"- Variants: {counts['variants']}",
+        f"- Best calibration variant: {audit['best_calibration_variant']}",
+        "",
+        "## Variant Results",
+        "",
+        "| variant | dim | cal primary acc | cal AUC primary>OOS | cal threshold | cal primary retain | cal OOS abstain |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for variant in audit["pilot_variants"]:
+        summary = variant["calibration_summary"]
+        threshold = variant["calibration_selected_threshold"]
+        lines.append(
+            f"| {variant['variant_name']} | {variant['feature_dimension']} | "
+            f"{summary['primary_nearest_label_accuracy']} | "
+            f"{summary['auc_primary_vs_oos']} | "
+            f"{threshold['threshold']} | "
+            f"{threshold['primary_retain_recall']} | "
+            f"{threshold['oos_abstain_recall']} |"
+        )
+    lines += [
+        "",
+        "## Heldout Follow-Up",
+        "",
+        f"- {audit['heldout_followup']['status']}",
+        f"- {audit['heldout_followup']['required_next_step']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_embedding_pilot(
+    *,
+    feature_contract_path: Path,
+    feature_contract_strict_audit_path: Path,
+    label_manifest_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_embedding_pilot(
+        feature_contract_path=feature_contract_path,
+        feature_contract_strict_audit_path=feature_contract_strict_audit_path,
+        label_manifest_path=label_manifest_path,
+        selected_organic_cofactor_sidecar_path=selected_organic_cofactor_sidecar_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_embedding_pilot_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _mechanism_feature_heldout_rows_from_sidecars(
+    *,
+    label_manifest: dict[str, Any],
+    active_site_role_graph_sidecar: dict[str, Any],
+    reaction_center_template_sidecar: dict[str, Any],
+    metal_ion_locus_sidecar: dict[str, Any],
+    cobalamin_locus_sidecar: dict[str, Any],
+    radical_sam_locus_sidecar: dict[str, Any],
+    iron_sulfur_locus_sidecar: dict[str, Any],
+    cofactor_scores: dict[str, dict[str, float]],
+) -> tuple[list[dict[str, Any]], Counter[str]]:
+    role_by_entry = {
+        str(row.get("entry_id")): row
+        for row in active_site_role_graph_sidecar.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    reaction_by_entry = {
+        str(row.get("entry_id")): row
+        for row in reaction_center_template_sidecar.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    locus_sidecars = {
+        "metal_ion_locus": metal_ion_locus_sidecar,
+        "cobalamin_locus": cobalamin_locus_sidecar,
+        "radical_sam_locus": radical_sam_locus_sidecar,
+        "iron_sulfur_locus": iron_sulfur_locus_sidecar,
+    }
+    loci_by_entry: dict[str, dict[str, str]] = defaultdict(dict)
+    for locus_name, sidecar in locus_sidecars.items():
+        for row in sidecar.get("rows", []):
+            if isinstance(row, dict) and row.get("entry_id"):
+                loci_by_entry[str(row["entry_id"])][locus_name] = str(
+                    row.get("sidecar_status") or "unsupported_or_missing_geometry"
+                )
+
+    heldout_rows = [
+        row
+        for row in label_manifest.get("rows", [])
+        if isinstance(row, dict) and row.get("split_assignment") == "heldout"
+    ]
+    blocker_counts: Counter[str] = Counter()
+    feature_rows: list[dict[str, Any]] = []
+    for manifest_row in heldout_rows:
+        entry_id = str(manifest_row.get("entry_id"))
+        role_row = role_by_entry.get(entry_id)
+        reaction_row = reaction_by_entry.get(entry_id)
+        if role_row is None:
+            blocker_counts["role_graph_row_missing"] += 1
+            continue
+        if role_row.get("status") != "ok":
+            blocker_counts[f"role_graph:{role_row.get('status')}"] += 1
+            continue
+        if reaction_row is None:
+            blocker_counts["reaction_template_row_missing"] += 1
+            continue
+        if len(cofactor_scores.get(entry_id, {})) < 3:
+            blocker_counts["organic_cofactor_scores_missing"] += 1
+            continue
+        loci = loci_by_entry.get(entry_id, {})
+        required_loci = {
+            "metal_ion_locus",
+            "cobalamin_locus",
+            "radical_sam_locus",
+            "iron_sulfur_locus",
+        }
+        if set(loci) != required_loci:
+            blocker_counts["inorganic_locus_status_missing"] += 1
+            continue
+        reaction_template = reaction_row.get("reaction_center_template") or {}
+        feature_rows.append(
+            {
+                "entry_id": entry_id,
+                "assigned_embedding_split": "heldout_final",
+                "active_site_role_graph": {
+                    "status": role_row.get("status"),
+                    "active_site_residue_count": role_row.get(
+                        "active_site_residue_count"
+                    ),
+                },
+                "reaction_center_template": {
+                    "status": reaction_row.get("status"),
+                    "reaction_chemical_operation": reaction_template.get(
+                        "chemical_operation_normalized"
+                    ),
+                },
+                "organic_cofactor_scores": {
+                    "available_classes": ["flavin", "heme", "plp"],
+                    "score_values_materialized_in_source_sidecar": True,
+                },
+                "inorganic_cofactor_loci": loci,
+                "feature_guardrails": {
+                    "fingerprint_id_excluded_from_features": True,
+                    "label_type_excluded_from_features": True,
+                    "stratum_excluded_from_features": True,
+                    "heldout_row": True,
+                },
+            }
+        )
+    return (
+        sorted(feature_rows, key=lambda row: _entry_id_sort_key(str(row["entry_id"]))),
+        blocker_counts,
+    )
+
+
+def _apply_pilot_scaling(
+    vector: list[float],
+    *,
+    scaling: dict[str, list[float]],
+) -> list[float]:
+    means = scaling.get("mean") or []
+    scales = scaling.get("scale") or []
+    return [
+        round((value - means[index]) / (scales[index] or 1.0), 8)
+        for index, value in enumerate(vector)
+    ]
+
+
+def _threshold_readout(
+    scored_rows: list[dict[str, Any]],
+    *,
+    threshold: float | None,
+) -> dict[str, Any]:
+    primary_rows = [row for row in scored_rows if row["is_primary"]]
+    oos_rows = [row for row in scored_rows if not row["is_primary"]]
+    if threshold is None:
+        return {
+            "threshold": None,
+            "primary_retain_recall": None,
+            "oos_abstain_recall": None,
+        }
+    return {
+        "threshold": threshold,
+        "primary_retain_recall": (
+            round(
+                sum(
+                    1
+                    for row in primary_rows
+                    if float(row["nearest_primary_similarity"]) >= threshold
+                )
+                / len(primary_rows),
+                6,
+            )
+            if primary_rows
+            else None
+        ),
+        "oos_abstain_recall": (
+            round(
+                sum(
+                    1
+                    for row in oos_rows
+                    if float(row["nearest_primary_similarity"]) < threshold
+                )
+                / len(oos_rows),
+                6,
+            )
+            if oos_rows
+            else None
+        ),
+    }
+
+
+def _score_heldout_with_pilot_variant(
+    *,
+    variant: dict[str, Any],
+    heldout_feature_rows: list[dict[str, Any]],
+    labels_by_entry: dict[str, str],
+    cofactor_scores: dict[str, dict[str, float]],
+) -> dict[str, Any]:
+    domains = variant["feature_domains"]
+    raw_vectors = [
+        _mechanism_feature_pilot_vector(
+            row, domains=domains, cofactor_scores=cofactor_scores
+        )
+        for row in heldout_feature_rows
+    ]
+    scaled_vectors = [
+        _apply_pilot_scaling(vector, scaling=variant["model_parameters"]["scaling"])
+        for vector in raw_vectors
+    ]
+    scored_rows = _mechanism_feature_pilot_scores(
+        scaled_vectors,
+        heldout_feature_rows,
+        labels_by_entry=labels_by_entry,
+        primary_centroids=variant["model_parameters"]["primary_centroids"],
+    )
+    threshold = variant.get("calibration_selected_threshold", {}).get("threshold")
+    return {
+        "variant_name": variant["variant_name"],
+        "feature_dimension": variant["feature_dimension"],
+        "heldout_summary": _classification_summary(scored_rows),
+        "heldout_threshold_readout": _threshold_readout(
+            scored_rows, threshold=threshold
+        ),
+        "calibration_selected_threshold": variant.get(
+            "calibration_selected_threshold"
+        ),
+        "top_non_abstained_oos": [
+            {
+                "entry_id": row["entry_id"],
+                "nearest_primary_label": row["nearest_primary_label"],
+                "nearest_primary_similarity": row["nearest_primary_similarity"],
+            }
+            for row in sorted(
+                [
+                    row
+                    for row in scored_rows
+                    if not row["is_primary"]
+                    and threshold is not None
+                    and float(row["nearest_primary_similarity"]) >= threshold
+                ],
+                key=lambda item: (
+                    -float(item["nearest_primary_similarity"]),
+                    str(item["entry_id"]),
+                ),
+            )[:15]
+        ],
+    }
+
+
+def build_mechanism_feature_embedding_heldout_readout(
+    *,
+    embedding_pilot_path: Path,
+    label_manifest_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    reaction_center_template_sidecar_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    metal_ion_locus_sidecar_path: Path,
+    cobalamin_locus_sidecar_path: Path,
+    radical_sam_locus_sidecar_path: Path,
+    iron_sulfur_locus_sidecar_path: Path,
+) -> dict[str, Any]:
+    pilot = _read_json(embedding_pilot_path)
+    label_manifest = _read_json(label_manifest_path)
+    cofactor_sidecar = _read_json(selected_organic_cofactor_sidecar_path)
+    cofactor_scores = _cofactor_scores_by_entry(cofactor_sidecar)
+    heldout_feature_rows, blocker_counts = _mechanism_feature_heldout_rows_from_sidecars(
+        label_manifest=label_manifest,
+        active_site_role_graph_sidecar=_read_json(active_site_role_graph_sidecar_path),
+        reaction_center_template_sidecar=_read_json(reaction_center_template_sidecar_path),
+        metal_ion_locus_sidecar=_read_json(metal_ion_locus_sidecar_path),
+        cobalamin_locus_sidecar=_read_json(cobalamin_locus_sidecar_path),
+        radical_sam_locus_sidecar=_read_json(radical_sam_locus_sidecar_path),
+        iron_sulfur_locus_sidecar=_read_json(iron_sulfur_locus_sidecar_path),
+        cofactor_scores=cofactor_scores,
+    )
+    labels_by_entry = _label_by_entry_from_manifest(label_manifest)
+    heldout_rows_total = sum(
+        1
+        for row in label_manifest.get("rows", [])
+        if isinstance(row, dict) and row.get("split_assignment") == "heldout"
+    )
+    variant_readouts = [
+        _score_heldout_with_pilot_variant(
+            variant=variant,
+            heldout_feature_rows=heldout_feature_rows,
+            labels_by_entry=labels_by_entry,
+            cofactor_scores=cofactor_scores,
+        )
+        for variant in pilot.get("pilot_variants", [])
+        if isinstance(variant, dict)
+    ]
+    best_variant = pilot.get("best_calibration_variant")
+    return {
+        "artifact_id": MECHANISM_FEATURE_EMBEDDING_HELDOUT_READOUT_ID,
+        "schema_version": f"{SCHEMA_VERSION}.mechanism_feature_embedding_heldout_readout",
+        "created_utc": _utc_now_iso(),
+        "status": "mechanism_feature_embedding_heldout_readout_applied_once",
+        "scope": (
+            "Once-only heldout readout for the train/cal-fitted mechanism-feature "
+            "embedding pilot. It materializes the same allowed feature fields for "
+            "heldout rows from existing sidecars and applies train-fit, "
+            "calibration-thresholded pilot variants without refit."
+        ),
+        "guardrails": {
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_source": "train_cal_embedding_pilot",
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated_once": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "review_only": True,
+        },
+        "counts": {
+            "heldout_rows_total": heldout_rows_total,
+            "heldout_feature_rows": len(heldout_feature_rows),
+            "heldout_feature_missing_rows": heldout_rows_total
+            - len(heldout_feature_rows),
+            "blocker_counts": dict(sorted(blocker_counts.items())),
+            "variant_readouts": len(variant_readouts),
+        },
+        "best_calibration_variant": best_variant,
+        "variant_readouts": variant_readouts,
+        "heldout_feature_rows": heldout_feature_rows,
+        "source_artifacts": {
+            "embedding_pilot": _source_path_record(embedding_pilot_path),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "active_site_role_graph_sidecar": _source_path_record(
+                active_site_role_graph_sidecar_path
+            ),
+            "reaction_center_template_sidecar": _source_path_record(
+                reaction_center_template_sidecar_path
+            ),
+            "selected_organic_cofactor_sidecar": _source_path_record(
+                selected_organic_cofactor_sidecar_path
+            ),
+            "metal_ion_locus_sidecar": _source_path_record(metal_ion_locus_sidecar_path),
+            "cobalamin_locus_sidecar": _source_path_record(cobalamin_locus_sidecar_path),
+            "radical_sam_locus_sidecar": _source_path_record(
+                radical_sam_locus_sidecar_path
+            ),
+            "iron_sulfur_locus_sidecar": _source_path_record(
+                iron_sulfur_locus_sidecar_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                "The train/cal-fitted mechanism-feature pilot has now been "
+                "applied to the heldout feature surface once."
+            ),
+            "next_action": (
+                "Use the no-template heldout readout as the honest mechanism "
+                "signal floor, and continue row-specific bond-change/proton/"
+                "electron-flow materialization before any production claim."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_embedding_heldout_readout_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism-Feature Embedding Heldout Readout - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Heldout rows total: {counts['heldout_rows_total']}",
+        f"- Heldout feature rows: {counts['heldout_feature_rows']}",
+        f"- Missing feature rows: {counts['heldout_feature_missing_rows']}",
+        f"- Blocker counts: {counts['blocker_counts']}",
+        "",
+        "## Variant Readouts",
+        "",
+        "| variant | rows | primary rows | OOS rows | AUC | threshold | primary retain | OOS abstain |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for readout in audit["variant_readouts"]:
+        summary = readout["heldout_summary"]
+        threshold = readout["heldout_threshold_readout"]
+        lines.append(
+            f"| {readout['variant_name']} | {summary['rows']} | "
+            f"{summary['primary_rows']} | {summary['oos_rows']} | "
+            f"{summary['auc_primary_vs_oos']} | {threshold['threshold']} | "
+            f"{threshold['primary_retain_recall']} | "
+            f"{threshold['oos_abstain_recall']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_embedding_heldout_readout(
+    *,
+    embedding_pilot_path: Path,
+    label_manifest_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    reaction_center_template_sidecar_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    metal_ion_locus_sidecar_path: Path,
+    cobalamin_locus_sidecar_path: Path,
+    radical_sam_locus_sidecar_path: Path,
+    iron_sulfur_locus_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_embedding_heldout_readout(
+        embedding_pilot_path=embedding_pilot_path,
+        label_manifest_path=label_manifest_path,
+        active_site_role_graph_sidecar_path=active_site_role_graph_sidecar_path,
+        reaction_center_template_sidecar_path=reaction_center_template_sidecar_path,
+        selected_organic_cofactor_sidecar_path=selected_organic_cofactor_sidecar_path,
+        metal_ion_locus_sidecar_path=metal_ion_locus_sidecar_path,
+        cobalamin_locus_sidecar_path=cobalamin_locus_sidecar_path,
+        radical_sam_locus_sidecar_path=radical_sam_locus_sidecar_path,
+        iron_sulfur_locus_sidecar_path=iron_sulfur_locus_sidecar_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_embedding_heldout_readout_report(audit),
             encoding="utf-8",
         )
     return audit

@@ -45,12 +45,14 @@ the hand-feature list. Inputs sequence-only or sequence+predicted-geometry; labe
 signal from the 8-fingerprint atlas. Evaluate novelty separation at the operating
 point. This is the de novo precondition's real lever; everything else is a probe.
 
-Current status addendum, 2026-06-01: the train/cal no-fit feature contract is
-still label-stripped and heldout-excluding. The row-specific bond-change gap is
-now bounded into a 15-row P0 extraction worksheet plus a source-evidence sidecar
-schema/audit plan. The next safe embedding-gap action is to fill that worksheet
-from source-backed M-CSA/Rhea/mechanism evidence and audit the resulting sidecar
-before any no-fit feature-contract refresh or model work.
+Current status addendum, 2026-06-01: the train/cal feature contract has now
+been consumed by a real standardized nearest-primary centroid pilot, with a
+once-only heldout readout. The full contract scores well only while the
+reaction-template field is present; the no-reaction-template ablation is weak
+on both calibration and heldout. The next embedding-gap action is no longer
+another plan: materialize row-specific bond-change, proton-transfer, and
+electron-flow features, rerun the no-template pilot/readout, and use the
+template-dependent full-contract score only as a ceiling diagnostic.
 
 ### 3. Fold-level novelty signal (complementary, catches the confounded subset)
 The 6 cofactor-confounded OOS (novel chemistry reusing a known cofactor family)

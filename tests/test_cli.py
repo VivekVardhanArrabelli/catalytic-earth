@@ -212,6 +212,14 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                "build-mechanism-feature-embedding-pilot",
+                "cmd_build_mechanism_feature_embedding_pilot",
+            ),
+            (
+                "build-mechanism-feature-embedding-heldout-readout",
+                "cmd_build_mechanism_feature_embedding_heldout_readout",
+            ),
+            (
                 "build-family-panel-high-value-glycyl-radical-readiness-packet",
                 "cmd_build_family_panel_high_value_glycyl_radical_readiness_packet",
             ),

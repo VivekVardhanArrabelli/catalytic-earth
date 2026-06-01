@@ -3907,6 +3907,116 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(audit["row_audits"][0]["entry_id"], "m_csa:1")
         self.assertEqual(audit["row_audits"][0]["critical_violations"], [])
 
+    def test_mechanism_feature_embedding_pilot_current_counts(self) -> None:
+        pilot = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_embedding_pilot_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            pilot["status"],
+            "mechanism_feature_embedding_pilot_fit_train_cal_ready",
+        )
+        self.assertEqual(pilot["counts"]["feature_rows"], 524)
+        self.assertEqual(pilot["counts"]["train_rows"], 418)
+        self.assertEqual(pilot["counts"]["calibration_rows"], 106)
+        self.assertEqual(pilot["counts"]["heldout_excluded_rows"], 140)
+        self.assertEqual(pilot["counts"]["variants"], 2)
+        self.assertEqual(pilot["counts"]["missing_label_rows"], 0)
+        self.assertEqual(
+            pilot["counts"]["missing_three_organic_cofactor_score_rows"], 0
+        )
+        self.assertEqual(
+            pilot["best_calibration_variant"],
+            "full_contract_with_reaction_template",
+        )
+        by_variant = {
+            variant["variant_name"]: variant
+            for variant in pilot["pilot_variants"]
+        }
+        self.assertAlmostEqual(
+            by_variant["full_contract_with_reaction_template"][
+                "calibration_summary"
+            ]["auc_primary_vs_oos"],
+            0.948491,
+        )
+        self.assertAlmostEqual(
+            by_variant["full_contract_with_reaction_template"][
+                "calibration_selected_threshold"
+            ]["oos_abstain_recall"],
+            1.0,
+        )
+        self.assertAlmostEqual(
+            by_variant["no_reaction_template_ablation"][
+                "calibration_summary"
+            ]["auc_primary_vs_oos"],
+            0.549698,
+        )
+        self.assertTrue(pilot["guardrails"]["model_weights_fit_or_refit"])
+        self.assertEqual(pilot["guardrails"]["model_fit_rows"], "train_only")
+        self.assertEqual(
+            pilot["guardrails"]["threshold_selection_rows"],
+            "calibration_only",
+        )
+        self.assertFalse(
+            pilot["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+        self.assertFalse(pilot["guardrails"]["heldout_rows_evaluated"])
+
+    def test_mechanism_feature_embedding_heldout_readout_current_counts(self) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_embedding_heldout_readout_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "mechanism_feature_embedding_heldout_readout_applied_once",
+        )
+        self.assertEqual(readout["counts"]["heldout_rows_total"], 140)
+        self.assertEqual(readout["counts"]["heldout_feature_rows"], 132)
+        self.assertEqual(readout["counts"]["heldout_feature_missing_rows"], 8)
+        self.assertEqual(
+            readout["counts"]["blocker_counts"],
+            {"role_graph:missing_accession_compatible_sequence_positions": 8},
+        )
+        by_variant = {
+            variant["variant_name"]: variant
+            for variant in readout["variant_readouts"]
+        }
+        self.assertAlmostEqual(
+            by_variant["full_contract_with_reaction_template"][
+                "heldout_summary"
+            ]["auc_primary_vs_oos"],
+            0.8812,
+        )
+        self.assertAlmostEqual(
+            by_variant["full_contract_with_reaction_template"][
+                "heldout_threshold_readout"
+            ]["primary_retain_recall"],
+            0.75,
+        )
+        self.assertAlmostEqual(
+            by_variant["full_contract_with_reaction_template"][
+                "heldout_threshold_readout"
+            ]["oos_abstain_recall"],
+            1.0,
+        )
+        self.assertAlmostEqual(
+            by_variant["no_reaction_template_ablation"][
+                "heldout_summary"
+            ]["auc_primary_vs_oos"],
+            0.488591,
+        )
+        self.assertFalse(readout["guardrails"]["model_weights_fit_or_refit"])
+        self.assertFalse(readout["guardrails"]["threshold_selected_or_tuned"])
+        self.assertTrue(readout["guardrails"]["heldout_rows_evaluated_once"])
+        self.assertFalse(
+            readout["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+
     def test_mechanism_feature_embedding_train_cal_guardrail_audit_current_counts(
         self,
     ) -> None:

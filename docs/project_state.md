@@ -412,9 +412,7 @@ artifacts first.
   audits with zero critical violations.
 - A completion audit now confirms that all four schema-named cofactor-locus
   sidecar classes are materialized for 702 rows and schema-passing with zero
-  critical violations. The next mechanism-feature action is a train/cal-only
-  embedding pilot that consumes these sidecars without label/import changes or
-  heldout leakage.
+  critical violations.
 - A no-fit mechanism-feature embedding train/cal input manifest now enumerates
   the current sidecar surface without fitting weights or evaluating heldout
   rows. It keeps all 140 heldout rows excluded, marks 562 in-distribution
@@ -434,6 +432,26 @@ artifacts first.
   alignment, forbidden label/outcome field exclusion, no-heldout discipline, and
   no-model-fit guardrails. It passes for 524/524 rows with zero critical
   violations; model fitting remains blocked until explicitly authorized.
+- A train/cal-only mechanism-feature embedding pilot now consumes the audited
+  feature contract directly. It fits standardized nearest-primary centroids on
+  the 418 assigned train rows and selects a >=90% primary-retention threshold
+  on the 106 calibration rows. The full contract reaches calibration AUC
+  `0.948491` and 100% OOS abstention at 91.43% primary retention, but the
+  no-reaction-template ablation drops to AUC `0.549698` and 14.08% OOS
+  abstention at the same retention target. Treat this as a real implementation
+  result and a clear signal that the next mechanism-feature work must close
+  row-specific bond-change/proton/electron-flow features and then materialize
+  the same allowed feature surface for heldout once-only readout; do not trust
+  the full-contract score as production evidence.
+- That heldout readout is now materialized once. Existing sidecars provide the
+  same allowed feature surface for 132/140 heldout rows; 8 remain blocked by
+  accession-compatible role-graph gaps. The full-contract variant reaches
+  heldout AUC `0.8812` and abstains on 100% of ready OOS rows at the
+  calibration-selected threshold, but retains only 75% of ready primary rows.
+  The no-reaction-template ablation is near chance on heldout (AUC `0.488591`,
+  9.52% OOS abstention at 85.42% primary retention). This confirms the real
+  next lever is row-specific mechanism-feature materialization, not another
+  template-level classifier.
 - A no-fit mechanism-feature train/cal guardrail audit now pins the same
   surface across the input manifest, split manifest, and feature contract: 524
   feature rows exactly match 524 split rows, 140 heldout rows remain excluded,

@@ -77,6 +77,8 @@ from .northstar_next_levers import (
     write_mechanism_feature_embedding_train_cal_input_manifest,
     write_mechanism_feature_embedding_feature_contract,
     write_mechanism_feature_embedding_feature_contract_strict_audit,
+    write_mechanism_feature_embedding_heldout_readout,
+    write_mechanism_feature_embedding_pilot,
     write_mechanism_feature_embedding_train_cal_split_manifest,
     write_mechanism_feature_active_site_role_graph_sidecar,
     write_mechanism_feature_reaction_center_template_sidecar,
@@ -11981,6 +11983,51 @@ def cmd_audit_mechanism_feature_embedding_feature_contract(
         "Wrote mechanism-feature embedding feature contract strict audit to "
         f"{args.out} (passed rows: {counts.get('row_audits_passed')}, "
         f"critical violations: {counts.get('critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_embedding_pilot(args: argparse.Namespace) -> int:
+    audit = write_mechanism_feature_embedding_pilot(
+        feature_contract_path=Path(args.feature_contract),
+        feature_contract_strict_audit_path=Path(args.feature_contract_strict_audit),
+        label_manifest_path=Path(args.label_manifest),
+        selected_organic_cofactor_sidecar_path=Path(
+            args.selected_organic_cofactor_sidecar
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote mechanism-feature embedding pilot to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"variants: {counts.get('variants')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_embedding_heldout_readout(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_embedding_heldout_readout(
+        embedding_pilot_path=Path(args.embedding_pilot),
+        label_manifest_path=Path(args.label_manifest),
+        active_site_role_graph_sidecar_path=Path(args.active_site_role_graph_sidecar),
+        reaction_center_template_sidecar_path=Path(args.reaction_center_template_sidecar),
+        selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
+        metal_ion_locus_sidecar_path=Path(args.metal_ion_locus_sidecar),
+        cobalamin_locus_sidecar_path=Path(args.cobalamin_locus_sidecar),
+        radical_sam_locus_sidecar_path=Path(args.radical_sam_locus_sidecar),
+        iron_sulfur_locus_sidecar_path=Path(args.iron_sulfur_locus_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote mechanism-feature embedding heldout readout to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"heldout feature rows: {counts.get('heldout_feature_rows')})"
     )
     return 0
 
@@ -25071,6 +25118,140 @@ def build_parser() -> argparse.ArgumentParser:
     )
     mechanism_embedding_feature_contract_audit.set_defaults(
         func=cmd_audit_mechanism_feature_embedding_feature_contract
+    )
+
+    mechanism_embedding_pilot = subparsers.add_parser(
+        "build-mechanism-feature-embedding-pilot",
+        help=(
+            "fit a train/cal-only mechanism-feature centroid pilot from the "
+            "audited feature contract"
+        ),
+    )
+    mechanism_embedding_pilot.add_argument(
+        "--feature-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_pilot.add_argument(
+        "--feature-contract-strict-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "strict_audit_current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_pilot.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    mechanism_embedding_pilot.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default=(
+            "artifacts/v3_selected_organic_cofactor_score_sidecars_"
+            "current702_20260530.json"
+        ),
+    )
+    mechanism_embedding_pilot.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_pilot_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_pilot.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_embedding_pilot_current702_20260601.md"
+        ),
+    )
+    mechanism_embedding_pilot.set_defaults(
+        func=cmd_build_mechanism_feature_embedding_pilot
+    )
+
+    mechanism_embedding_heldout_readout = subparsers.add_parser(
+        "build-mechanism-feature-embedding-heldout-readout",
+        help=(
+            "materialize heldout mechanism-feature rows and apply the "
+            "train/cal-fitted embedding pilot once"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--embedding-pilot",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_pilot_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--active-site-role-graph-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--reaction-center-template-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default=(
+            "artifacts/v3_selected_organic_cofactor_score_sidecars_"
+            "current702_20260530.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--metal-ion-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--cobalamin-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--radical-sam-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--iron-sulfur-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_heldout_readout_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_heldout_readout.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_embedding_heldout_readout_"
+            "current702_20260601.md"
+        ),
+    )
+    mechanism_embedding_heldout_readout.set_defaults(
+        func=cmd_build_mechanism_feature_embedding_heldout_readout
     )
 
     family_expansion_targets = subparsers.add_parser(

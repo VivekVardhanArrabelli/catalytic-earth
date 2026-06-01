@@ -50,6 +50,108 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Mechanism-Feature Embedding Pilot And Heldout Readout
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T21:07:56Z`
+- STARTED_LOCAL: `Mon Jun  1 16:07:56 CDT 2026`
+- ENDED_AT: `2026-06-01T21:22:44Z`
+- ENDED_LOCAL: `Mon Jun  1 16:22:44 CDT 2026`
+- ELAPSED_MINUTES: `14.8`
+- EARLY_STOP_REASON: corrective user-triggered run after the previous attempt
+  drifted from the four northstar levers; this run produced the requested
+  concrete mechanism-feature implementation artifacts, validated them, and is
+  wrapping to commit/push/release the lock rather than continue the stale
+  Rhea-only handoff path.
+- CARRYOVER_ATTEMPTS: corrected `work/NEXT_WORKS_northstar_20260531.md` away
+  from stale no-fit wording; implemented the train/cal mechanism-feature pilot;
+  implemented the once-only heldout readout; updated durable docs and tests.
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "22757", "started_at": "2026-06-01T21:07:56Z", "status": "acquired"}`
+- Lock release result: pending until this handoff, commit, push, and sync
+  verification complete from a clean worktree; final release result is reported
+  in the automation response.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `766059f38ab438c210cccaeead754413c53e0b61`
+- Git HEAD at end before commit:
+  `766059f38ab438c210cccaeead754413c53e0b61`
+- Dirty files at start: none
+- Dirty files at end before commit:
+  `docs/artifact_index.md`, `docs/decision_log.md`,
+  `docs/project_state.md`, `src/catalytic_earth/cli.py`,
+  `src/catalytic_earth/northstar_next_levers.py`,
+  `tests/test_cli.py`, `tests/test_geometry_artifact_regression.py`,
+  `tests/test_northstar_next_levers.py`,
+  `work/NEXT_WORKS_northstar_20260531.md`,
+  `artifacts/v3_mechanism_feature_embedding_pilot_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_embedding_heldout_readout_current702_20260601.json`,
+  `work/mechanism_feature_embedding_pilot_current702_20260601.md`, and
+  `work/mechanism_feature_embedding_heldout_readout_current702_20260601.md`.
+- Input artifacts:
+  `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601.json`,
+  `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`,
+  `artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json`,
+  `artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_current702_20260601.json`,
+  and
+  `artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_current702_20260601.json`.
+- Output artifacts:
+  `artifacts/v3_mechanism_feature_embedding_pilot_current702_20260601.json`,
+  `work/mechanism_feature_embedding_pilot_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_embedding_heldout_readout_current702_20260601.json`,
+  `work/mechanism_feature_embedding_heldout_readout_current702_20260601.md`,
+  updated docs, updated northstar priority text, and tests/CLI for the two
+  new commands.
+- Commands run:
+  memory read; lock status; lock acquire; sidecar/artifact inspections;
+  `PYTHONPATH=src python -m catalytic_earth.cli build-mechanism-feature-embedding-pilot`;
+  `PYTHONPATH=src python -m catalytic_earth.cli build-mechanism-feature-embedding-heldout-readout`;
+  focused pytest for new builder/CLI/regression tests; JSON parse checks for
+  both new artifacts; `python -m compileall -q src tests`;
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`; `git diff --check`;
+  broad pytest over `tests/test_northstar_next_levers.py`,
+  `tests/test_geometry_artifact_regression.py`, and `tests/test_cli.py`; full
+  `PYTHONPATH=src python -m unittest discover -s tests`.
+- Validation results:
+  focused new tests passed; both new JSON artifacts parsed; compileall passed;
+  CLI validate passed with 12 source records, 8 fingerprints, 15 ontology
+  families, and 702 labels; git diff check passed; broad pytest passed with
+  273 tests and 23 subtests; full unittest discovery passed with 1099 tests and
+  one existing sklearn/scipy deprecation warning.
+- Commit/push result: pending at handoff write; commit this implementation,
+  push to `origin/main`, verify `HEAD == origin/main`, then release the
+  automation lock.
+- Exact next action for the next run:
+  improve the no-template mechanism-feature signal by materializing
+  row-specific bond-change, proton-transfer, and electron-flow features from
+  source-backed evidence, then rerun
+  `build-mechanism-feature-embedding-pilot` and
+  `build-mechanism-feature-embedding-heldout-readout`. Do not retarget to the
+  stale generic Rhea-only path except as a bounded substep of those
+  row-specific feature materializations.
+
+Summary:
+
+- Implemented a real train/cal mechanism-feature embedding pilot over the
+  audited 524-row feature contract. The full reaction-template-including
+  variant reaches calibration AUC `0.948491`, but the no-template ablation is
+  weak at AUC `0.549698`.
+- Materialized the same allowed feature surface for heldout and applied the
+  train-fit/calibration-thresholded model once. Existing sidecars cover 132/140
+  heldout rows; the full variant reaches heldout AUC `0.8812` but retains only
+  75% of ready primary rows at the calibration threshold, while the
+  no-template ablation is near chance at AUC `0.488591`.
+- Updated durable docs and northstar handoff text so automations continue on
+  the four-lever path: row-specific mechanism features are now the bottleneck,
+  not more planning around the already-completed fold/predicted-atlas artifacts.
+
 ### 2026-06-01 P0 Source-Evidence Draft Sidecar And Rhea Lookup Handoff
 
 Automation run: `catalytic-earth-work-loop`

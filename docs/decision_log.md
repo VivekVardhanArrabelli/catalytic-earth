@@ -3,6 +3,42 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-01: Mechanism-Feature Embedding Pilot Is Implemented, But Template-Dependent
+
+Decision: move the learned mechanism-feature lane from a no-fit scaffold to a
+real train/cal-only pilot. The pilot consumes the audited
+`v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`
+surface, fits standardized nearest-primary centroids on the 418 assigned train
+rows, and selects the operating threshold only on the 106 assigned calibration
+rows. No heldout rows are used for fitting, threshold selection, or evaluation;
+no labels, registries, ontologies, imports, production scorers, or production
+thresholds changed.
+
+Result: the full contract variant reaches calibration AUC `0.948491` for
+primary-vs-OOS nearest-primary similarity and abstains on 100% of calibration
+OOS rows at 91.43% primary retention. The stricter
+`no_reaction_template_ablation` drops to calibration AUC `0.549698` and 14.08%
+OOS abstention at the same retention target.
+
+Follow-up: materialize the same feature surface for heldout rows and apply the
+train-fit/calibration-thresholded pilot once. Existing sidecars cover 132/140
+heldout rows; 8 remain blocked by accession-compatible role-graph gaps. The
+full-contract heldout readout reaches AUC `0.8812` and abstains on 100% of
+ready OOS rows, but retains only 75% of ready primary rows at the
+calibration-selected threshold. The no-template ablation is near chance on
+heldout with AUC `0.488591` and 9.52% OOS abstention at 85.42% primary
+retention.
+
+Consequence: treat the pilot as implemented but not yet scientifically
+sufficient. The strong full-contract result is largely reaction-template
+dependent; the next useful mechanism-feature work is to materialize
+row-specific bond-change, proton-transfer, and electron-flow evidence. Do not
+cite the full-contract train/cal or heldout scores as deployment evidence.
+
+Artifact:
+`artifacts/v3_mechanism_feature_embedding_pilot_current702_20260601.json`;
+`artifacts/v3_mechanism_feature_embedding_heldout_readout_current702_20260601.json`.
+
 ## 2026-06-01: Fold-Augmented Threshold Contract Selects Thresholds On Train/Calibration Rows, Not Heldout
 
 Decision: promote the fold-augmented heldout-only diagnostic into a bounded

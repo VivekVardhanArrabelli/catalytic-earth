@@ -38,6 +38,7 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness,
     build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest,
     build_mechanism_feature_row_specific_bond_change_schema,
+    build_mechanism_feature_embedding_pilot,
     build_mechanism_feature_sidecar_schema_audit,
     build_predicted_atlas_geometry_novelty_variants,
     build_predicted_structure_fold_augmented_novelty_operating_grid,
@@ -3898,6 +3899,184 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertIn(
             "explicit_authorization_required_before_model_weights_are_fit",
             audit["blockers_before_model_fit"],
+        )
+
+    def test_mechanism_feature_embedding_pilot_fits_train_cal_centroids(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            feature_contract = root / "contract.json"
+            strict_audit = root / "strict.json"
+            label_manifest = root / "labels.json"
+            cofactor_sidecar = root / "cofactor.json"
+
+            def feature_row(
+                entry_id: str,
+                split: str,
+                residue_count: int,
+                operation: str | None,
+                metal_status: str,
+            ) -> dict[str, object]:
+                return {
+                    "entry_id": entry_id,
+                    "assigned_embedding_split": split,
+                    "active_site_role_graph": {
+                        "status": "ok",
+                        "active_site_residue_count": residue_count,
+                    },
+                    "reaction_center_template": {
+                        "status": (
+                            "template_available"
+                            if operation
+                            else "no_mechanism_fingerprint_oos_or_unlabeled"
+                        ),
+                        "reaction_chemical_operation": operation,
+                    },
+                    "organic_cofactor_scores": {
+                        "available_classes": ["flavin", "heme", "plp"],
+                        "score_values_materialized_in_source_sidecar": True,
+                    },
+                    "inorganic_cofactor_loci": {
+                        "metal_ion_locus": metal_status,
+                    },
+                    "feature_guardrails": {
+                        "fingerprint_id_excluded_from_features": True,
+                        "label_type_excluded_from_features": True,
+                        "stratum_excluded_from_features": True,
+                        "heldout_row": False,
+                    },
+                }
+
+            rows = [
+                feature_row("m_csa:1", "train", 2, "op_a", "no_metal_context_detected"),
+                feature_row("m_csa:2", "train", 3, "op_a", "no_metal_context_detected"),
+                feature_row("m_csa:3", "train", 8, "op_b", "proximal_metal_context_available"),
+                feature_row("m_csa:4", "train", 18, None, "no_metal_context_detected"),
+                feature_row("m_csa:5", "calibration", 2, "op_a", "no_metal_context_detected"),
+                feature_row("m_csa:6", "calibration", 8, "op_b", "proximal_metal_context_available"),
+                feature_row("m_csa:7", "calibration", 18, None, "no_metal_context_detected"),
+                feature_row("m_csa:8", "calibration", 20, None, "no_metal_context_detected"),
+            ]
+            feature_contract.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": rows,
+                        "counts": {"heldout_excluded_rows": 2},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            strict_audit.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "mechanism_feature_embedding_feature_contract_"
+                            "strict_audit_passed_no_model_fit"
+                        ),
+                        "counts": {"critical_violation_total": 0},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            label_manifest.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "fp_a",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "fp_a",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "fp_b",
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "label_type": "out_of_scope",
+                                "fingerprint_id": None,
+                            },
+                            {
+                                "entry_id": "m_csa:5",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "fp_a",
+                            },
+                            {
+                                "entry_id": "m_csa:6",
+                                "label_type": "seed_fingerprint",
+                                "fingerprint_id": "fp_b",
+                            },
+                            {
+                                "entry_id": "m_csa:7",
+                                "label_type": "out_of_scope",
+                                "fingerprint_id": None,
+                            },
+                            {
+                                "entry_id": "m_csa:8",
+                                "label_type": "out_of_scope",
+                                "fingerprint_id": None,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cofactor_records = []
+            for row in rows:
+                for cofactor_class, score in (
+                    ("flavin", 0.1),
+                    ("heme", 0.2),
+                    ("plp", 0.3),
+                ):
+                    cofactor_records.append(
+                        {
+                            "entry_id": row["entry_id"],
+                            "cofactor_class": cofactor_class,
+                            "selected_score": score,
+                        }
+                    )
+            cofactor_sidecar.write_text(
+                json.dumps({"row_class_records": cofactor_records}),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_embedding_pilot(
+                feature_contract_path=feature_contract,
+                feature_contract_strict_audit_path=strict_audit,
+                label_manifest_path=label_manifest,
+                selected_organic_cofactor_sidecar_path=cofactor_sidecar,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "mechanism_feature_embedding_pilot_fit_train_cal_ready",
+        )
+        self.assertEqual(audit["counts"]["variants"], 2)
+        self.assertEqual(audit["counts"]["train_rows"], 4)
+        self.assertEqual(audit["counts"]["calibration_rows"], 4)
+        self.assertTrue(audit["guardrails"]["model_weights_fit_or_refit"])
+        self.assertEqual(audit["guardrails"]["model_fit_rows"], "train_only")
+        self.assertFalse(audit["guardrails"]["heldout_rows_evaluated"])
+        self.assertEqual(
+            {
+                variant["variant_name"]
+                for variant in audit["pilot_variants"]
+            },
+            {
+                "full_contract_with_reaction_template",
+                "no_reaction_template_ablation",
+            },
+        )
+        self.assertTrue(
+            all(
+                variant["calibration_selected_threshold"]["threshold"] is not None
+                for variant in audit["pilot_variants"]
+            )
         )
 
     def test_family_panel_evidence_packet_is_review_only(self) -> None:
