@@ -1,6 +1,6 @@
 # Fold-Augmented Train/Cal OOS Negative Surface Scores - current702
 
-Run: 2026-06-01T04:52:32Z
+Run: 2026-06-01T06:37:42Z
 
 Bounded predicted-geometry plus Foldseek feature surface for the hash-selected current702 in-distribution OOS calibration negatives needed by the fold-augmented threshold contract.
 
@@ -8,9 +8,9 @@ Bounded predicted-geometry plus Foldseek feature surface for the hash-selected c
 
 - computed_partial_train_cal_oos_negative_surface_scores
 - Candidate IDs requested: 76
-- Predicted geometry ok rows: 65
-- Foldseek rows with nearest train hits: 75
-- Full channel score rows: 65
+- Predicted geometry ok rows: 71
+- Foldseek rows with nearest train hits: 74
+- Full channel score rows: 70
 - Foldseek TSV parse status: parsed
 
 ## Blockers
@@ -33,7 +33,7 @@ Bounded predicted-geometry plus Foldseek feature surface for the hash-selected c
 | m_csa:40 | flavin_monooxygenase | 0.2536 | m_csa:337 | 0.5809 | 0.41725 |
 | m_csa:52 | metal_dependent_hydrolase | 0.5977 | m_csa:300 | 0.6331 | 0.6154 |
 | m_csa:54 | heme_peroxidase_oxidase | 0.4074 | m_csa:697 | 0.7059 | 0.55665 |
-| m_csa:57 | None | None | m_csa:472 | 0.4255 | None |
+| m_csa:57 | heme_peroxidase_oxidase | 0.357 | m_csa:472 | 0.4255 | 0.39125 |
 | m_csa:61 | flavin_dehydrogenase_reductase | 0.303 | m_csa:699 | 0.6568 | 0.4799 |
 | m_csa:65 | metal_dependent_hydrolase | 0.6047 | m_csa:631 | 0.4901 | 0.5474 |
 | m_csa:78 | metal_dependent_hydrolase | 0.075 | None | None | None |
@@ -41,7 +41,7 @@ Bounded predicted-geometry plus Foldseek feature surface for the hash-selected c
 | m_csa:85 | metal_dependent_hydrolase | 0.3618 | m_csa:205 | 0.6373 | 0.49955 |
 | m_csa:93 | metal_dependent_hydrolase | 0.3204 | m_csa:94 | 0.3853 | 0.35285 |
 | m_csa:104 | metal_dependent_hydrolase | 0.5822 | m_csa:740 | 0.7174 | 0.6498 |
-| m_csa:106 | None | None | m_csa:275 | 0.6479 | None |
+| m_csa:106 | metal_dependent_hydrolase | 0.3628 | m_csa:275 | 0.6479 | 0.50535 |
 | m_csa:119 | metal_dependent_hydrolase | 0.3572 | m_csa:727 | 0.5354 | 0.4463 |
 | m_csa:126 | metal_dependent_hydrolase | 0.6044 | m_csa:395 | 0.421 | 0.5127 |
 | m_csa:136 | metal_dependent_hydrolase | 0.4161 | m_csa:795 | 0.614 | 0.51505 |
@@ -88,5 +88,5 @@ PYTHONPATH=src python -m catalytic_earth.cli score-fold-augmented-train-cal-oos-
 
 ## Interpretation
 
-- The train/cal OOS negative surface now has predicted-geometry, cofactor, and nearest-train Foldseek/TM channel scores for the 65 score-complete candidate rows.
+- The train/cal OOS negative surface now has predicted-geometry, cofactor, and nearest-train Foldseek/TM channel scores for the 70 score-complete candidate rows.
 - Extend the fold-augmented threshold contract to consume these calibration OOS negatives for OOS-aware threshold selection, while keeping heldout final-only.

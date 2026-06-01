@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from catalytic_earth.northstar_next_levers import (
+    _predicted_model_parts,
     build_family_panel_evidence_packet,
     build_fold_augmented_abstention_gate,
     build_fold_augmented_oos_calibrated_threshold_contract,
@@ -20,6 +21,7 @@ from catalytic_earth.northstar_next_levers import (
     build_predicted_structure_fold_channel,
     build_selected_organic_cofactor_sidecar_schema_audit,
 )
+from catalytic_earth.predicted_geometry_robustness import _target_manifest_row_selection
 
 
 class NorthstarNextLeversTests(unittest.TestCase):
@@ -636,6 +638,173 @@ class NorthstarNextLeversTests(unittest.TestCase):
             audit["blocker_rows"][0]["blocker_reason"],
             "missing_accession_compatible_sequence_positions",
         )
+
+    def test_train_cal_oos_geometry_selection_allows_accession_subset(self) -> None:
+        label_manifest = {
+            "rows": [
+                {
+                    "entry_id": "m_csa:57",
+                    "accession": "P13448",
+                    "sequence_id": "P13448",
+                    "split_assignment": "in_distribution",
+                }
+            ]
+        }
+        graph = {
+            "nodes": [
+                {
+                    "id": "m_csa:57:residue:1",
+                    "type": "catalytic_residue",
+                    "sequence_positions": [
+                        {
+                            "is_reference": True,
+                            "resid": 110,
+                            "code": "Cys",
+                            "uniprot_id": "P13448",
+                        }
+                    ],
+                },
+                {
+                    "id": "m_csa:57:residue:2",
+                    "type": "catalytic_residue",
+                    "sequence_positions": [
+                        {
+                            "is_reference": True,
+                            "resid": 114,
+                            "code": "Ser",
+                            "uniprot_id": "P13448",
+                        }
+                    ],
+                },
+                {
+                    "id": "m_csa:57:residue:3",
+                    "type": "catalytic_residue",
+                    "sequence_positions": [
+                        {
+                            "is_reference": True,
+                            "resid": 72,
+                            "code": "Tyr",
+                            "uniprot_id": "P13449",
+                        }
+                    ],
+                },
+            ]
+        }
+        experimental = {"entries": [{"entry_id": "m_csa:57", "status": "ok"}]}
+
+        strict_rows, strict_excluded = _target_manifest_row_selection(
+            label_manifest=label_manifest,
+            graph=graph,
+            experimental_geometry_features=experimental,
+            split_assignment=None,
+            max_rows=0,
+        )
+        repaired_rows, repaired_excluded = _target_manifest_row_selection(
+            label_manifest=label_manifest,
+            graph=graph,
+            experimental_geometry_features=experimental,
+            split_assignment=None,
+            max_rows=0,
+            allow_accession_compatible_residue_subset=True,
+        )
+
+        self.assertEqual(strict_rows, [])
+        self.assertEqual(
+            strict_excluded[0]["reason"],
+            "missing_accession_compatible_sequence_positions",
+        )
+        self.assertEqual(repaired_excluded, [])
+        self.assertEqual(repaired_rows[0]["accession"], "P13448")
+        self.assertEqual(
+            repaired_rows[0]["predicted_geometry_accession_repair"]["policy"],
+            "manifest_accession_compatible_residue_subset",
+        )
+
+    def test_train_cal_oos_geometry_selection_can_use_best_real_accession(self) -> None:
+        label_manifest = {
+            "rows": [
+                {
+                    "entry_id": "m_csa:284",
+                    "accession": "O66186",
+                    "sequence_id": "O66186",
+                    "real_sequence_accessions": ["O66186", "O66188"],
+                    "split_assignment": "in_distribution",
+                }
+            ]
+        }
+        graph = {
+            "nodes": [
+                {
+                    "id": "m_csa:284:residue:1",
+                    "type": "catalytic_residue",
+                    "sequence_positions": [
+                        {
+                            "is_reference": True,
+                            "resid": 108,
+                            "code": "Tyr",
+                            "uniprot_id": "O66186",
+                        }
+                    ],
+                },
+                {
+                    "id": "m_csa:284:residue:2",
+                    "type": "catalytic_residue",
+                    "sequence_positions": [
+                        {
+                            "is_reference": True,
+                            "resid": 128,
+                            "code": "Cys",
+                            "uniprot_id": "O66188",
+                        }
+                    ],
+                },
+                {
+                    "id": "m_csa:284:residue:3",
+                    "type": "catalytic_residue",
+                    "sequence_positions": [
+                        {
+                            "is_reference": True,
+                            "resid": 132,
+                            "code": "Ser",
+                            "uniprot_id": "O66188",
+                        }
+                    ],
+                },
+            ]
+        }
+        experimental = {"entries": [{"entry_id": "m_csa:284", "status": "ok"}]}
+
+        rows, excluded = _target_manifest_row_selection(
+            label_manifest=label_manifest,
+            graph=graph,
+            experimental_geometry_features=experimental,
+            split_assignment=None,
+            max_rows=0,
+            allow_accession_compatible_residue_subset=True,
+            allow_best_real_sequence_accession=True,
+        )
+
+        self.assertEqual(excluded, [])
+        self.assertEqual(rows[0]["original_accession"], "O66186")
+        self.assertEqual(rows[0]["accession"], "O66188")
+        self.assertEqual(rows[0]["sequence_id"], "O66188")
+        self.assertEqual(
+            rows[0]["predicted_geometry_accession_repair"]["policy"],
+            "best_real_sequence_accession_by_active_site_coverage",
+        )
+
+    def test_predicted_model_parts_uses_predicted_pdb_accession(self) -> None:
+        accession, version, pdb_id = _predicted_model_parts(
+            {
+                "entry_id": "m_csa:284",
+                "accession": "O66186",
+                "predicted_pdb_id": "AF-O66188-F1-model_v6",
+            }
+        )
+
+        self.assertEqual(accession, "O66188")
+        self.assertEqual(version, 6)
+        self.assertEqual(pdb_id, "AF-O66188-F1-model_v6")
 
     def test_active_site_role_graph_sidecar_normalizes_roles(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

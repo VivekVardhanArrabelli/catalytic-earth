@@ -865,11 +865,15 @@ def _enriched_predicted_retrieval_results(
         entry_id = str(row.get("entry_id") or "")
         manifest = manifest_by_entry.get(entry_id, {})
         predicted = predicted_by_entry.get(entry_id, {})
+        predicted_accession = predicted.get("accession")
+        manifest_accession = manifest.get("accession")
         top = (row.get("top_fingerprints") or [{}])[0]
         enriched = dict(row)
         enriched.update(
             {
-                "accession": manifest.get("accession") or predicted.get("accession"),
+                "accession": predicted_accession or manifest_accession,
+                "manifest_accession": manifest_accession,
+                "predicted_geometry_accession": predicted_accession,
                 "sequence_id": manifest.get("sequence_id") or predicted.get("sequence_id"),
                 "sequence_sha256": manifest.get("sequence_sha256"),
                 "split_assignment": manifest.get("split_assignment")
@@ -880,6 +884,9 @@ def _enriched_predicted_retrieval_results(
                 or manifest.get("mechanism_fingerprint_id"),
                 "predicted_geometry_status": predicted.get("status") or row.get("status"),
                 "predicted_pdb_id": predicted.get("pdb_id") or row.get("pdb_id"),
+                "predicted_geometry_accession_repair": predicted.get(
+                    "predicted_geometry_accession_repair"
+                ),
                 "experimental_pdb_id": predicted.get("experimental_pdb_id"),
                 "predicted_resolved_residue_count": predicted.get(
                     "resolved_residue_count"
@@ -993,6 +1000,8 @@ def _target_manifest_row_selection(
     experimental_geometry_features: dict[str, Any],
     split_assignment: str | None,
     max_rows: int,
+    allow_accession_compatible_residue_subset: bool = False,
+    allow_best_real_sequence_accession: bool = False,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     residues_by_entry = _residue_nodes_by_entry(graph)
     experimental_by_entry = {
@@ -1022,12 +1031,26 @@ def _target_manifest_row_selection(
             continue
         residue_nodes = residues_by_entry.get(entry_id, [])
         accession = str(row.get("accession") or row.get("sequence_id") or "")
-        if not _has_reference_sequence_positions(residue_nodes, accession):
+        if _has_reference_sequence_positions(residue_nodes, accession):
+            rows.append(dict(row))
+            if max_rows and len(rows) >= max_rows:
+                break
+            continue
+        repaired_row = _accession_repaired_target_row(
+            row,
+            residue_nodes,
+            accession,
+            allow_accession_compatible_residue_subset=(
+                allow_accession_compatible_residue_subset
+            ),
+            allow_best_real_sequence_accession=allow_best_real_sequence_accession,
+        )
+        if repaired_row is None:
             excluded_rows.append(
                 _excluded_target_row(row, "missing_accession_compatible_sequence_positions")
             )
             continue
-        rows.append(dict(row))
+        rows.append(repaired_row)
         if max_rows and len(rows) >= max_rows:
             break
     return rows, excluded_rows
@@ -1043,6 +1066,82 @@ def _excluded_target_row(row: dict[str, Any], reason: str) -> dict[str, Any]:
         or row.get("mechanism_fingerprint_id"),
         "reason": reason,
     }
+
+
+def _accession_repaired_target_row(
+    row: dict[str, Any],
+    residue_nodes: list[dict[str, Any]],
+    accession: str,
+    *,
+    allow_accession_compatible_residue_subset: bool,
+    allow_best_real_sequence_accession: bool,
+) -> dict[str, Any] | None:
+    if allow_accession_compatible_residue_subset:
+        selected_count = _reference_sequence_position_count(residue_nodes, accession)
+        if selected_count >= 2:
+            repaired = dict(row)
+            repaired["predicted_geometry_accession_repair"] = {
+                "policy": "manifest_accession_compatible_residue_subset",
+                "original_accession": accession,
+                "selected_accession": accession,
+                "selected_residue_count": selected_count,
+                "total_residue_node_count": len(residue_nodes),
+                "skipped_nonmatching_residue_count": max(
+                    len(residue_nodes) - selected_count,
+                    0,
+                ),
+            }
+            return repaired
+
+    if allow_best_real_sequence_accession:
+        best = _best_real_sequence_accession(row, residue_nodes, accession)
+        if best is not None:
+            selected_accession, selected_count = best
+            repaired = dict(row)
+            repaired["original_accession"] = accession
+            repaired["original_sequence_id"] = row.get("sequence_id")
+            repaired["accession"] = selected_accession
+            repaired["sequence_id"] = selected_accession
+            repaired["predicted_geometry_accession_repair"] = {
+                "policy": "best_real_sequence_accession_by_active_site_coverage",
+                "original_accession": accession,
+                "selected_accession": selected_accession,
+                "selected_residue_count": selected_count,
+                "total_residue_node_count": len(residue_nodes),
+                "skipped_nonmatching_residue_count": max(
+                    len(residue_nodes) - selected_count,
+                    0,
+                ),
+            }
+            return repaired
+
+    return None
+
+
+def _best_real_sequence_accession(
+    row: dict[str, Any],
+    residue_nodes: list[dict[str, Any]],
+    current_accession: str,
+) -> tuple[str, int] | None:
+    accessions = [
+        str(accession)
+        for accession in row.get("real_sequence_accessions", [])
+        if accession
+    ]
+    if current_accession and current_accession not in accessions:
+        accessions.append(current_accession)
+    scored = [
+        (accession, _reference_sequence_position_count(residue_nodes, accession))
+        for accession in accessions
+    ]
+    eligible = [
+        item
+        for item in scored
+        if item[1] >= 2 and item[0] != current_accession
+    ]
+    if not eligible:
+        return None
+    return sorted(eligible, key=lambda item: (-item[1], item[0]))[0]
 
 
 def _predicted_entry_from_atoms(
@@ -1087,6 +1186,11 @@ def _predicted_entry_from_atoms(
         "entry_name": None,
         "accession": accession,
         "sequence_id": manifest_row.get("sequence_id"),
+        "original_accession": manifest_row.get("original_accession"),
+        "original_sequence_id": manifest_row.get("original_sequence_id"),
+        "predicted_geometry_accession_repair": manifest_row.get(
+            "predicted_geometry_accession_repair"
+        ),
         "benchmark_role": manifest_row.get("benchmark_role"),
         "split_assignment": manifest_row.get("split_assignment"),
         "status": status,
@@ -1124,6 +1228,11 @@ def _failed_predicted_entry(
         "entry_name": None,
         "accession": manifest_row.get("accession"),
         "sequence_id": manifest_row.get("sequence_id"),
+        "original_accession": manifest_row.get("original_accession"),
+        "original_sequence_id": manifest_row.get("original_sequence_id"),
+        "predicted_geometry_accession_repair": manifest_row.get(
+            "predicted_geometry_accession_repair"
+        ),
         "benchmark_role": manifest_row.get("benchmark_role"),
         "split_assignment": manifest_row.get("split_assignment"),
         "status": reason,
@@ -1928,7 +2037,9 @@ def _reference_sequence_positions(
         candidates = [
             item
             for item in node.get("sequence_positions", [])
-            if isinstance(item, dict) and item.get("is_reference", True)
+            if isinstance(item, dict)
+            and item.get("is_reference", True)
+            and item.get("resid")
         ]
         if not candidates:
             continue
@@ -1937,7 +2048,9 @@ def _reference_sequence_positions(
             for item in candidates
             if not item.get("uniprot_id") or str(item.get("uniprot_id")) == accession
         ]
-        source = matching[0] if matching else candidates[0]
+        if not matching:
+            continue
+        source = matching[0]
         positions.append(
             {
                 "residue_node_id": node.get("id"),
@@ -1948,6 +2061,27 @@ def _reference_sequence_positions(
             }
         )
     return positions
+
+
+def _reference_sequence_position_count(
+    residue_nodes: list[dict[str, Any]],
+    accession: str,
+) -> int:
+    count = 0
+    for node in residue_nodes:
+        candidates = [
+            item
+            for item in node.get("sequence_positions", [])
+            if isinstance(item, dict)
+            and item.get("is_reference", True)
+            and item.get("resid")
+        ]
+        if any(
+            not item.get("uniprot_id") or str(item.get("uniprot_id")) == accession
+            for item in candidates
+        ):
+            count += 1
+    return count
 
 
 def _has_reference_sequence_positions(

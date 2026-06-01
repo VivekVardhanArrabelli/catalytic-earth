@@ -50,6 +50,40 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Accession Repair Follow-Up For Train/Cal OOS Surface
+
+Manual follow-up after the automation wrap, before pushing the remaining local
+work.
+
+- Repaired the six accession-compatible train/cal OOS mapping blockers in the
+  predicted-geometry target selection path:
+  `m_csa:57`, `m_csa:106`, `m_csa:178`, `m_csa:284`, `m_csa:314`, and
+  `m_csa:503`.
+- Refreshed
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/train_cal_oos_negatives_vs_train_atlas.tsv`,
+  and
+  `work/fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.md`.
+- Current score surface counts: 76 requested candidates, 72 geometry target
+  rows, 71 predicted-geometry ok rows, 74 rows with nearest train Foldseek hits,
+  and 70 score-complete channel rows.
+- Remaining score blockers: `m_csa:78` has no Foldseek query coordinate,
+  `m_csa:284` has predicted-geometry repair but still lacks a Foldseek query
+  coordinate for the selected accession path, `m_csa:204` and `m_csa:531`
+  remain experimental-geometry blockers, and `uniprot:P78549` /
+  `uniprot:Q3LXA3` remain non-M-CSA active-site rows.
+- Validation before commit: JSON parse/count check passed; `python -m
+  compileall -q src tests` passed; `PYTHONPATH=src python -m
+  catalytic_earth.cli validate` passed; `git diff --check` passed;
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -q`
+  passed with 19 tests.
+- Exact next action: rerun
+  `build-fold-augmented-train-cal-oos-negative-surface-blocker-resolution` and
+  `eval-fold-augmented-oos-calibrated-threshold-contract` against the refreshed
+  70-row score-complete OOS surface; separately inspect whether `m_csa:284`
+  should get a selected-accession Foldseek query coordinate or remain a
+  fold-coordinate blocker.
+
 ### 2026-06-01 Train/Cal OOS Fold Calibration Surface And Mechanism Sidecars
 
 Automation run: `catalytic-earth-work-loop`

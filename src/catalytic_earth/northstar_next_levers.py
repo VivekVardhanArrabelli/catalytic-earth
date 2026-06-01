@@ -478,7 +478,7 @@ def _predicted_model_parts(row: dict[str, Any]) -> tuple[str | None, int | None,
     accession = str(row.get("accession") or row.get("sequence_id") or "").strip() or None
     version = None
     if match:
-        accession = accession or match.group("accession")
+        accession = match.group("accession") or accession
         version = int(match.group("version"))
     return accession, version, pdb_id or None
 
@@ -3195,6 +3195,8 @@ def build_fold_augmented_train_cal_oos_negative_surface_scores(
         experimental_geometry_features=experimental_geometry_features,
         split_assignment=None,
         max_rows=0,
+        allow_accession_compatible_residue_subset=True,
+        allow_best_real_sequence_accession=True,
     )
     geometry_target_rows = [
         row
@@ -3293,6 +3295,19 @@ def build_fold_augmented_train_cal_oos_negative_surface_scores(
             {
                 "entry_id": entry_id,
                 "accession": manifest_row.get("accession") or manifest_row.get("sequence_id"),
+                "predicted_geometry_accession": (
+                    geo.get("predicted_geometry_accession")
+                    or geo.get("accession")
+                    or None
+                ),
+                "predicted_geometry_manifest_accession": (
+                    geo.get("manifest_accession")
+                    or manifest_row.get("accession")
+                    or manifest_row.get("sequence_id")
+                ),
+                "predicted_geometry_accession_repair": (
+                    geo.get("predicted_geometry_accession_repair") if geo else None
+                ),
                 "split_assignment": manifest_row.get("split_assignment"),
                 "benchmark_role": manifest_row.get("benchmark_role"),
                 "oos_tier": manifest_row.get("oos_tier"),
