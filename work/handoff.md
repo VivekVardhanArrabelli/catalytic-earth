@@ -50,6 +50,123 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 P0 Feature-Readiness Audit And Heldout Panel Guardrail
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T21:50:45Z`
+- STARTED_LOCAL: `Mon Jun  1 16:50:45 CDT 2026`
+- ENDED_AT: `2026-06-01T22:41:42Z`
+- ENDED_LOCAL: `Mon Jun  1 17:41:42 CDT 2026`
+- ELAPSED_MINUTES: `51.0`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "40892", "started_at": "2026-06-01T21:50:45Z", "status": "acquired"}`
+- Lock release result: pending until this handoff, commit, push, and sync
+  verification complete from a clean worktree; final release result is reported
+  in the automation response.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `958fe21f812b0ee1936d1e28d2fd3b25e747d34b`
+- Git HEAD at end before commit:
+  `958fe21f812b0ee1936d1e28d2fd3b25e747d34b`
+- Dirty files at start: none
+- Dirty files at end before commit:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  `artifacts/v3_current_run_artifact_integrity_audit_current702_20260601.json`,
+  `docs/artifact_index.md`, `docs/decision_log.md`,
+  `docs/project_state.md`, `src/catalytic_earth/cli.py`,
+  `src/catalytic_earth/northstar_next_levers.py`,
+  `tests/test_cli.py`, `tests/test_geometry_artifact_regression.py`,
+  `tests/test_northstar_next_levers.py`,
+  `work/NEXT_WORKS_northstar_20260531.md`,
+  `work/current_docs_artifact_reference_check_current702_20260601.md`,
+  `work/current_run_artifact_integrity_audit_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.md`,
+  `artifacts/v3_family_panel_high_value_glycyl_radical_no_template_feature_guardrail_current702_20260601.json`,
+  and
+  `work/family_panel_high_value_glycyl_radical_no_template_feature_guardrail_current702_20260601.md`.
+- Input artifacts:
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `work/predicted_structure_fold_channel_current702_20260601.md`,
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`,
+  `artifacts/v3_family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601.json`,
+  and
+  `artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json`.
+- Output artifacts:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.md`,
+  `artifacts/v3_family_panel_high_value_glycyl_radical_no_template_feature_guardrail_current702_20260601.json`,
+  `work/family_panel_high_value_glycyl_radical_no_template_feature_guardrail_current702_20260601.md`,
+  refreshed
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  refreshed
+  `work/current_docs_artifact_reference_check_current702_20260601.md`,
+  refreshed
+  `artifacts/v3_current_run_artifact_integrity_audit_current702_20260601.json`,
+  refreshed
+  `work/current_run_artifact_integrity_audit_current702_20260601.md`,
+  updated durable docs, updated carryover file, and tests/CLI for the new P0
+  feature-readiness audit.
+- Commands run:
+  memory read attempt and fallback; lock acquire; `git fetch origin`;
+  `git pull --ff-only origin main`; required context reads; fold-channel,
+  predicted-atlas, and fold-level JSON parse checks; source artifact
+  inspections; implemented and ran
+  `audit-mechanism-feature-row-specific-bond-change-p0-feature-readiness`;
+  generated the high-value glycyl-radical no-template feature guardrail;
+  refreshed `build-current-docs-artifact-reference-check`; refreshed current-run
+  integrity by recomputing artifact/report hashes and repo JSON/JSONL parse
+  counts; focused pytest; changed-file pytest; full unittest discovery; full
+  pytest; `python -m compileall -q src tests`;
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`; JSON parse checks;
+  `git diff --check`; disk check; measured elapsed time; validation soak loop
+  through `SOAK_ITER=30`.
+- Validation results:
+  fold-channel JSON and report parsed; focused new tests passed with 5 tests
+  and 17 subtests; affected current-run/guardrail regression tests passed;
+  changed-file pytest passed with 276 tests and 24 subtests after the final
+  guardrail update; full unittest discovery passed with 1101 tests and one
+  existing sklearn/scipy deprecation warning; full pytest passed with 1124
+  tests, 43 subtests, and the same warning; compileall passed; CLI validate
+  passed with 12 source records, 8 fingerprints, 15 ontology families, and 702
+  labels; current-docs reference check passed with 489 checked references and
+  0 missing; current-run integrity audit passed with 18 JSON artifacts, 18
+  reports, 3131 repo JSON files, 26 JSONL files, and 0 parse errors; git diff
+  check passed; disk check passed with 27 GiB available; validation soak passed
+  30 iterations.
+- Commit/push result: pending at handoff write; commit this implementation,
+  push to `origin/main`, verify `HEAD == origin/main`, then release the
+  automation lock.
+- Exact next action for the next run:
+  resolve the four P0 Rhea lookup rows in order (`m_csa:124`, `m_csa:11`,
+  `m_csa:169`, then `m_csa:5`), add reviewer-provenance approval or rejection
+  for each draft event, rerun the strict sidecar audit and P0
+  feature-readiness audit, and refresh only train/cal no-template feature
+  contracts if that gate passes. Keep `m_csa:30` and `m_csa:31` as
+  review-only heldout controls; do not use them for train/cal feature refresh.
+
+Summary:
+
+- Confirmed the real predicted-structure fold channel already exists and
+  parses; no Foldseek/TM score was recomputed.
+- Added a P0 feature-readiness audit over the draft source-evidence sidecar.
+  All 15 P0 rows are structurally draft-ready, with 10 rows carrying
+  bond-change events, 6 carrying proton-transfer events, and 9 carrying
+  electron-transfer events, but 0 rows are approved or consumable and
+  feature-contract refresh remains blocked.
+- Added a high-value glycyl-radical/thiamine guardrail showing `m_csa:30` and
+  `m_csa:31` are score-complete heldout OOS controls, absent from P0 train/cal
+  readiness and train/cal feature contracts, and not eligible for no-template
+  feature refresh.
+
 ### 2026-06-01 Mechanism-Feature Embedding Pilot And Heldout Readout
 
 Automation run: `catalytic-earth-work-loop`

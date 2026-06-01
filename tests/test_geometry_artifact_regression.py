@@ -3421,6 +3421,77 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(manifest["guardrails"]["source_fetch_performed"])
         self.assertFalse(manifest["guardrails"]["feature_contract_refresh_allowed"])
 
+    def test_row_specific_bond_change_p0_feature_readiness_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_feature_readiness_audit_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_feature_readiness_audit_blocked_review_required",
+        )
+        self.assertEqual(audit["counts"]["sidecar_rows"], 15)
+        self.assertEqual(audit["counts"]["structurally_ready_draft_rows"], 15)
+        self.assertEqual(audit["counts"]["approved_consumable_rows"], 0)
+        self.assertEqual(audit["counts"]["rows_with_bond_change_event"], 10)
+        self.assertEqual(audit["counts"]["rows_with_proton_transfer_event"], 6)
+        self.assertEqual(audit["counts"]["rows_with_electron_transfer_event"], 9)
+        self.assertEqual(
+            audit["counts"]["draft_event_type_counts"],
+            {
+                "bond_broken": 5,
+                "bond_formed": 6,
+                "bond_order_changed": 7,
+                "electron_transfer": 21,
+                "proton_transfer": 10,
+            },
+        )
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertFalse(audit["counts"]["feature_contract_refresh_allowed"])
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+
+    def test_high_value_glycyl_radical_no_template_guardrail_current_counts(
+        self,
+    ) -> None:
+        guardrail = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_high_value_glycyl_radical_"
+                "no_template_feature_guardrail_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            guardrail["status"],
+            "glycyl_radical_panel_no_template_feature_guardrail_ready_review_only",
+        )
+        self.assertEqual(guardrail["counts"]["panel_rows"], 2)
+        self.assertEqual(guardrail["counts"]["heldout_final_only_rows"], 2)
+        self.assertEqual(guardrail["counts"]["score_complete_rows"], 2)
+        self.assertEqual(guardrail["counts"]["abstained_at_research_threshold"], 2)
+        self.assertEqual(guardrail["counts"]["rows_present_in_p0_train_cal_readiness"], 0)
+        self.assertEqual(guardrail["counts"]["rows_present_in_train_cal_feature_contract"], 0)
+        self.assertEqual(
+            guardrail["counts"]["rows_allowed_for_no_template_feature_contract_refresh"],
+            0,
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in guardrail["row_guardrails"]],
+            ["m_csa:30", "m_csa:31"],
+        )
+        self.assertFalse(guardrail["guardrails"]["feature_contract_mutated"])
+        self.assertFalse(
+            guardrail["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+
     def test_mechanism_feature_inorganic_cofactor_locus_schema_current_counts(
         self,
     ) -> None:
@@ -4067,16 +4138,24 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
 
         self.assertEqual(audit["status"], "current_run_artifact_integrity_audit_passed")
         self.assertEqual(audit["schema_version"], "current_run_artifact_integrity.v2")
-        self.assertEqual(audit["counts"]["json_artifacts_checked"], 16)
-        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 16)
-        self.assertEqual(audit["counts"]["work_reports_checked"], 16)
-        self.assertEqual(audit["counts"]["work_reports_present"], 16)
-        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3123)
-        self.assertEqual(audit["counts"]["repo_jsonl_artifacts_parse_checked"], 25)
+        self.assertEqual(audit["counts"]["json_artifacts_checked"], 18)
+        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 18)
+        self.assertEqual(audit["counts"]["work_reports_checked"], 18)
+        self.assertEqual(audit["counts"]["work_reports_present"], 18)
+        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3131)
+        self.assertEqual(audit["counts"]["repo_jsonl_artifacts_parse_checked"], 26)
         self.assertEqual(audit["counts"]["repo_json_parse_error_count"], 0)
         self.assertEqual(audit["counts"]["label_registry_mutations"], 0)
         self.assertEqual(audit["counts"]["new_coordinates_fetched"], 0)
         self.assertEqual(audit["counts"]["predicted_geometry_scores_created"], 0)
+        self.assertEqual(
+            audit["counts"]["mechanism_feature_p0_feature_readiness_audit_artifacts"],
+            1,
+        )
+        self.assertEqual(
+            audit["counts"]["family_panel_no_template_feature_guardrail_artifacts"],
+            1,
+        )
         self.assertFalse(audit["guardrails"]["labels_registries_ontologies_changed"])
         self.assertFalse(audit["guardrails"]["production_thresholds_changed"])
         self.assertFalse(audit["guardrails"]["new_coordinates_fetched"])
@@ -4084,7 +4163,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(
             all(count == 0 for count in audit["critical_counts"].values())
         )
-        self.assertEqual(len(audit["artifact_rows"]), 16)
+        self.assertEqual(len(audit["artifact_rows"]), 18)
         self.assertEqual(
             audit["artifact_rows"][-1]["category"],
             "docs_reference_check",

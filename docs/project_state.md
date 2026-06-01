@@ -231,6 +231,13 @@ artifacts first.
   `m_csa:132` as secondary-probe support, `m_csa:551` and `m_csa:973` as future
   support only, and `m_csa:750` as radical flavin/Fe-S boundary negative. No
   FMO row is import-ready or registry-edit-ready.
+- The high-value glycyl-radical/thiamine panel now has a no-template
+  feature-refresh guardrail. Its two rows (`m_csa:30` and `m_csa:31`) are
+  score-complete and abstained at the fixed research threshold, but both are
+  heldout OOS/final-only controls, absent from the P0 train/cal readiness
+  audit, and absent from the train/cal feature contract. They may be
+  source-checked as review-only heldout evidence, but must not feed the
+  no-template train/cal feature refresh.
 - A source-free predicted-geometry retrieval now scores the three approved
   locator rows (`secondary_probe::radical_sam_enzyme`, `mh_073`, and `mh_066`)
   against the existing geometry fingerprint surface using only approved residue
@@ -383,6 +390,13 @@ artifacts first.
   four Rhea-missing rows: `ec:1.9.3.1`, `ec:3.1.21.2`, `ec:3.4.14.5`, and
   `ec:3.4.16.6`. It performs no source fetch and only hands off manual lookup
   plus strict-audit rerun instructions.
+- A P0 feature-readiness audit now makes the no-template embedding blocker
+  exact. All 15 draft rows are structurally ready as source-evidence drafts,
+  with 10 rows carrying bond-change events, 6 carrying proton-transfer events,
+  and 9 carrying electron-transfer events. Zero rows are approved or consumable,
+  the feature contract contains no row-specific bond/proton/electron fields,
+  and refresh remains blocked on reviewer provenance plus the four Rhea lookup
+  rows.
 - The mechanism-feature role-graph and reaction-center sidecars now pass a
   strict schema and row-alignment audit over all 702 current rows with zero
   critical violations. This validates the current sidecars as schema-safe

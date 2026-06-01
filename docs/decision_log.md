@@ -777,6 +777,15 @@ sidecar audit after any manual source update. No source fetch, source import,
 approval, feature-contract refresh, model fit, threshold selection, label edit,
 registry edit, ontology edit, or production-scorer change occurred.
 
+P0 feature-readiness follow-up: audit the draft source-evidence sidecar against
+the strict audit, manual review queue, Rhea lookup manifest, and current
+feature contract. All 15 rows are structurally ready as drafts, with draft
+coverage for 10 bond-change rows, 6 proton-transfer rows, and 9
+electron-transfer rows. Zero rows are approved or consumable, and the current
+feature contract contains no row-specific bond/proton/electron fields. The
+next blocker remains manual Rhea resolution plus reviewer-provenance approval
+before any train/cal-only no-template feature refresh.
+
 Artifacts:
 `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
 `work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
@@ -831,7 +840,9 @@ Artifacts:
 `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json`,
 `work/mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.md`,
 `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json`,
-`work/mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.md`.
+`work/mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.md`.
 
 ## 2026-06-01: Thiol/Disulfide Redox Boundary Panel Packet Added
 

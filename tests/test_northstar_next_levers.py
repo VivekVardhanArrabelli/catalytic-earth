@@ -35,6 +35,7 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar,
     build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue,
     build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit,
     build_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness,
     build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest,
     build_mechanism_feature_row_specific_bond_change_schema,
@@ -3618,6 +3619,101 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertEqual(manifest["counts"]["critical_violation_total"], 0)
         self.assertFalse(manifest["guardrails"]["source_fetch_performed"])
+
+    def test_row_specific_bond_change_p0_feature_readiness_blocks_draft_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            sidecar = root / "sidecar.json"
+            strict = root / "strict.json"
+            queue = root / "queue.json"
+            rhea = root / "rhea.json"
+            contract = root / "contract.json"
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "review_status": "draft",
+                                "reviewer_id": None,
+                                "row_specific_reaction_participant_mapping": [
+                                    {"participant_id": "substrate_1"}
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {"event_type": "bond_formed"},
+                                    {"event_type": "proton_transfer"},
+                                    {"event_type": "electron_transfer"},
+                                ],
+                                "source_text_or_database_evidence_span": [
+                                    {"source_database": "m_csa_local_graph"}
+                                ],
+                                "allowed_for_feature_contract_consumption_now": False,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            strict.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_source_evidence_sidecar_strict_audit_"
+                            "passed_draft_not_consumable"
+                        )
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_source_evidence_review_queue_ready_manual_only",
+                        "queue_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "blockers": ["review_status_not_approved"],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rhea.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_rhea_lookup_manifest_ready_manual_only",
+                        "lookup_rows": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract.write_text(json.dumps({"feature_rows": []}), encoding="utf-8")
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit(
+                sidecar_path=sidecar,
+                strict_audit_path=strict,
+                review_queue_path=queue,
+                rhea_lookup_manifest_path=rhea,
+                feature_contract_path=contract,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_feature_readiness_audit_blocked_review_required",
+        )
+        self.assertEqual(audit["counts"]["sidecar_rows"], 1)
+        self.assertEqual(audit["counts"]["structurally_ready_draft_rows"], 1)
+        self.assertEqual(audit["counts"]["approved_consumable_rows"], 0)
+        self.assertEqual(audit["counts"]["rows_with_bond_change_event"], 1)
+        self.assertEqual(audit["counts"]["rows_with_proton_transfer_event"], 1)
+        self.assertEqual(audit["counts"]["rows_with_electron_transfer_event"], 1)
+        self.assertFalse(audit["counts"]["feature_contract_refresh_allowed"])
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+        self.assertIn("reviewer_id_missing", audit["row_readiness"][0]["blockers"])
 
     def test_mechanism_feature_sidecar_schema_audit_passes_aligned_sidecars(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

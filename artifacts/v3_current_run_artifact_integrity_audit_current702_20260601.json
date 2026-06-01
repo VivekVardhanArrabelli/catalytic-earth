@@ -145,6 +145,17 @@
       "work_report_sha256": "a802e76cff85e2197aed2239de95f42c452bf8bd1692a98dba91facae0118970"
     },
     {
+      "artifact_status": "p0_feature_readiness_audit_blocked_review_required",
+      "category": "mechanism_feature_p0_feature_readiness_audit",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json",
+      "json_sha256": "d5bf6c74161a95e0dc60dc7843d1069b322d2572addfbc13a0bc903dd7a76524",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.md",
+      "work_report_sha256": "cfed49ecca376a15d9b30401efc2e60b384fcb1e2fd498d1893266760d61b66a"
+    },
+    {
       "artifact_status": "glycyl_radical_panel_ready_as_oos_boundary_review_only",
       "category": "family_panel_readiness",
       "json_exists": true,
@@ -154,6 +165,17 @@
       "work_report_exists": true,
       "work_report_path": "work/family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601.md",
       "work_report_sha256": "c16b762868f5069bcdde54dcafabcfcfa963a5f90e1d8f76f88ebd7d7ba9ecf9"
+    },
+    {
+      "artifact_status": "glycyl_radical_panel_no_template_feature_guardrail_ready_review_only",
+      "category": "family_panel_no_template_feature_guardrail",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_family_panel_high_value_glycyl_radical_no_template_feature_guardrail_current702_20260601.json",
+      "json_sha256": "b1c1b24c1430628f3744039888a8a0763aa313b1daeb7bc174ac66444b8e2a71",
+      "work_report_exists": true,
+      "work_report_path": "work/family_panel_high_value_glycyl_radical_no_template_feature_guardrail_current702_20260601.md",
+      "work_report_sha256": "d79b9a6ad9eae2b779e73f9d6dcc375d82983a8f0c20d8ed7ea5b52ba3190ab9"
     },
     {
       "artifact_status": "source_free_locator_human_decision_matrix_ready_review_only",
@@ -172,24 +194,26 @@
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json",
-      "json_sha256": "4e2465a39ab34f808335a22fdca8a447140d85250e1049c56453bf41f569ac40",
+      "json_sha256": "038eb7ea22507073db858dd5e4a2012c6ef50bf7e88a3e2b611e29674b2d8913",
       "work_report_exists": true,
       "work_report_path": "work/current_docs_artifact_reference_check_current702_20260601.md",
-      "work_report_sha256": "9e8b299f91828352de4d82ecf27ebe588d009881a2cc06f787535bad663b16bf"
+      "work_report_sha256": "8dbee4235579d93224ed8371b041832453cb4dffbf4b455c67561405b3727fd4"
     }
   ],
   "counts": {
     "docs_reference_check_artifacts": 1,
+    "family_panel_no_template_feature_guardrail_artifacts": 1,
     "family_panel_readiness_artifacts": 1,
     "fold_channel_coordinate_provenance_artifacts": 1,
     "fold_channel_reproduction_manifest_artifacts": 1,
-    "json_artifacts_checked": 16,
-    "json_artifacts_parse_passed": 16,
+    "json_artifacts_checked": 18,
+    "json_artifacts_parse_passed": 18,
     "label_registry_mutations": 0,
     "mechanism_feature_gap_guardrail_artifacts": 1,
     "mechanism_feature_gap_priority_artifacts": 1,
     "mechanism_feature_p0_extraction_strict_audit_artifacts": 1,
     "mechanism_feature_p0_extraction_work_package_artifacts": 1,
+    "mechanism_feature_p0_feature_readiness_audit_artifacts": 1,
     "mechanism_feature_p0_rhea_lookup_manifest_artifacts": 1,
     "mechanism_feature_p0_source_evidence_review_queue_artifacts": 1,
     "mechanism_feature_p0_source_evidence_schema_artifacts": 1,
@@ -201,44 +225,46 @@
     "new_coordinates_fetched": 0,
     "predicted_geometry_scores_created": 0,
     "production_threshold_mutations": 0,
-    "repo_json_artifacts_parse_checked": 3123,
+    "repo_json_artifacts_parse_checked": 3131,
     "repo_json_parse_error_count": 0,
-    "repo_jsonl_artifacts_parse_checked": 25,
+    "repo_jsonl_artifacts_parse_checked": 26,
     "source_free_locator_decision_matrix_artifacts": 1,
-    "work_reports_checked": 16,
-    "work_reports_present": 16
+    "work_reports_checked": 18,
+    "work_reports_present": 18
   },
-  "created_utc": "2026-06-01T20:13:09Z",
+  "created_utc": "2026-06-01T22:11:01Z",
   "critical_counts": {
-    "json_parse_failures": 0,
-    "missing_json_artifacts": 0,
-    "missing_work_reports": 0,
-    "repo_json_parse_errors": 0
+    "json_missing_or_parse_failed_rows": 0,
+    "label_registry_mutations": 0,
+    "new_coordinates_fetched": 0,
+    "predicted_geometry_scores_created": 0,
+    "production_threshold_mutations": 0,
+    "repo_parse_errors": 0,
+    "work_reports_missing": 0
   },
   "guardrails": {
-    "artifact_json_parse_sweep_passed": true,
     "heldout_threshold_tuning_for_deployment": false,
-    "imports_or_promotions_performed": false,
     "labels_registries_ontologies_changed": false,
     "model_weights_fit_or_refit": false,
     "new_coordinates_fetched": false,
     "predicted_geometry_scores_created": false,
     "production_thresholds_changed": false
   },
-  "next_action": "Manually resolve the P0 Rhea lookup manifest in order (`m_csa:124`, `m_csa:11`, `m_csa:169`, `m_csa:5`), update the draft source-evidence sidecar, then rerun strict audit and review queue before any feature-contract refresh.",
+  "next_action": "Resolve the four P0 Rhea lookup rows and reviewer provenance, rerun strict/readiness audits, then refresh only train/cal no-template feature contracts if the gate passes; keep m_csa:30/m_csa:31 as review-only heldout controls.",
   "repo_parse_errors": [],
   "schema_version": "current_run_artifact_integrity.v2",
-  "scope": "Current automation-run integrity audit for fold reproduction, mechanism-feature bond-change source-evidence draft artifacts, Rhea lookup handoff, family-panel readiness, locator decision, and docs-reference maintenance outputs.",
+  "scope": "Current automation-run integrity audit for fold reproduction, mechanism-feature bond/proton/electron readiness, Rhea lookup handoff, family-panel guardrails, locator decision, and docs-reference maintenance outputs.",
   "status": "current_run_artifact_integrity_audit_passed",
   "validation_summary": {
     "catalytic_earth_cli_validate": "passed; 702 curated mechanism labels",
+    "changed_file_pytest": "passed; 275 tests and 24 subtests",
     "compileall": "passed",
-    "current_docs_artifact_reference_check": "passed; 481 references checked, 0 missing",
-    "disk_check": "passed; 28 GiB available",
-    "focused_source_evidence_tests": "passed",
-    "full_pytest": "passed; 1119 tests, 40 subtests, 1 sklearn warning",
+    "current_docs_artifact_reference_check": "passed; 489 references checked, 0 missing",
+    "disk_check": "passed; 27 GiB available",
+    "focused_new_tests": "passed; 5 tests and 17 subtests",
+    "full_pytest": "passed; 1124 tests, 43 subtests, 1 sklearn/scipy deprecation warning",
     "git_diff_check": "passed",
-    "repo_json_parse_sweep": "passed; 3123 JSON and 25 JSONL files parsed with 0 errors",
-    "unittest_discovery": "passed; 1096 tests"
+    "repo_json_parse_sweep": "passed; 3131 JSON and 26 JSONL files parsed with 0 errors",
+    "unittest_discovery": "passed; 1101 tests, 1 sklearn/scipy deprecation warning"
   }
 }

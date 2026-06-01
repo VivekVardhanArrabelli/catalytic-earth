@@ -54,6 +54,11 @@ another plan: materialize row-specific bond-change, proton-transfer, and
 electron-flow features, rerun the no-template pilot/readout, and use the
 template-dependent full-contract score only as a ceiling diagnostic.
 
+Readiness addendum, 2026-06-01: the P0 source-evidence sidecar now has a
+feature-readiness audit over draft bond/proton/electron events, but 0/15 rows
+are approved or consumable; resolve the four Rhea lookup rows and reviewer
+provenance before any no-template feature-contract refresh.
+
 ### 3. Fold-level novelty signal (complementary, catches the confounded subset)
 The 6 cofactor-confounded OOS (novel chemistry reusing a known cofactor family)
 are the hardest cases. A fold/structure-distance novelty signal (Foldseek/TM

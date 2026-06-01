@@ -90,6 +90,7 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue,
     write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit,
     write_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness,
+    write_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit,
     write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest,
     write_mechanism_feature_row_specific_bond_change_schema,
     write_mechanism_feature_sidecar_schema_audit,
@@ -11852,6 +11853,28 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest
         "Wrote row-specific bond-change P0 Rhea lookup manifest to "
         f"{args.out} (status: {manifest.get('status')}, "
         f"lookup rows: {counts.get('rhea_lookup_rows')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_feature_readiness(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit(
+        sidecar_path=Path(args.sidecar),
+        strict_audit_path=Path(args.strict_audit),
+        review_queue_path=Path(args.review_queue),
+        rhea_lookup_manifest_path=Path(args.rhea_lookup_manifest),
+        feature_contract_path=Path(args.feature_contract),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 feature-readiness audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"structurally ready draft rows: {counts.get('structurally_ready_draft_rows')}, "
+        f"approved consumable rows: {counts.get('approved_consumable_rows')})"
     )
     return 0
 
@@ -24817,6 +24840,68 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_rhea_lookup.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest
+        )
+    )
+
+    row_specific_bond_change_p0_feature_readiness = subparsers.add_parser(
+        "audit-mechanism-feature-row-specific-bond-change-p0-feature-readiness",
+        help=(
+            "audit whether the draft P0 source-evidence sidecar can safely "
+            "enter a future mechanism-feature contract"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--strict-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_strict_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--review-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_review_queue_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--rhea-lookup-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--feature-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_feature_readiness_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_feature_readiness_audit_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_feature_readiness.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_feature_readiness
         )
     )
 

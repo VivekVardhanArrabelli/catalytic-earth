@@ -181,6 +181,9 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_SOURCE_EVIDENCE_REVIEW_QUEUE_ID = 
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_RHEA_LOOKUP_MANIFEST_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_FEATURE_READINESS_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601"
+)
 
 
 def _utc_now_iso() -> str:
@@ -17595,6 +17598,342 @@ def write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest(
             encoding="utf-8",
         )
     return manifest
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit(
+    *,
+    sidecar_path: Path,
+    strict_audit_path: Path,
+    review_queue_path: Path,
+    rhea_lookup_manifest_path: Path,
+    feature_contract_path: Path,
+) -> dict[str, Any]:
+    sidecar = _read_json(sidecar_path)
+    strict_audit = _read_json(strict_audit_path)
+    review_queue = _read_json(review_queue_path)
+    rhea_lookup = _read_json(rhea_lookup_manifest_path)
+    feature_contract = _read_json(feature_contract_path)
+
+    sidecar_rows = [
+        row
+        for row in sidecar.get("sidecar_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    queue_by_entry = {
+        str(row.get("entry_id")): row
+        for row in review_queue.get("queue_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    rhea_lookup_entries = {
+        str(row.get("entry_id"))
+        for row in rhea_lookup.get("lookup_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    contract_by_entry = {
+        str(row.get("entry_id")): row
+        for row in feature_contract.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    forbidden_contract_field_tokens = (
+        "row_specific_bond_change",
+        "row_specific_reaction_participant",
+        "row_specific_proton_transfer",
+        "row_specific_electron_transfer",
+        "source_evidence_span",
+        "reviewer_id",
+    )
+
+    def contract_row_has_forbidden_field(value: Any) -> bool:
+        if isinstance(value, dict):
+            for key, nested in value.items():
+                lowered = str(key).lower()
+                if any(token in lowered for token in forbidden_contract_field_tokens):
+                    return True
+                if contract_row_has_forbidden_field(nested):
+                    return True
+        if isinstance(value, list):
+            return any(contract_row_has_forbidden_field(item) for item in value)
+        return False
+
+    event_type_counter: Counter[str] = Counter()
+    approved_event_type_counter: Counter[str] = Counter()
+    blocker_counter: Counter[str] = Counter()
+    row_readiness = []
+    for row in sidecar_rows:
+        entry_id = str(row["entry_id"])
+        events = [
+            event
+            for event in row.get("row_specific_bond_change_events", [])
+            if isinstance(event, dict)
+        ]
+        event_types = sorted(
+            {
+                str(event.get("event_type"))
+                for event in events
+                if event.get("event_type")
+            }
+        )
+        event_type_counter.update(
+            str(event.get("event_type"))
+            for event in events
+            if event.get("event_type")
+        )
+        row_blockers = list(queue_by_entry.get(entry_id, {}).get("blockers", []))
+        feature_contract_row_has_forbidden_field = contract_row_has_forbidden_field(
+            contract_by_entry.get(entry_id, {})
+        )
+        if entry_id in rhea_lookup_entries:
+            row_blockers.append("rhea_lookup_unresolved")
+        if row.get("review_status") != "approved":
+            row_blockers.append("review_status_not_approved")
+        if not row.get("reviewer_id"):
+            row_blockers.append("reviewer_id_missing")
+        if not events:
+            row_blockers.append("row_specific_events_missing")
+        if not row.get("row_specific_reaction_participant_mapping"):
+            row_blockers.append("participant_mapping_missing")
+        if not row.get("source_text_or_database_evidence_span"):
+            row_blockers.append("source_evidence_span_missing")
+        if feature_contract_row_has_forbidden_field:
+            row_blockers.append("unexpected_existing_feature_contract_row_specific_field")
+        row_blockers = sorted(set(row_blockers))
+        blocker_counter.update(row_blockers)
+
+        structurally_ready_draft = (
+            bool(events)
+            and bool(row.get("row_specific_reaction_participant_mapping"))
+            and bool(row.get("source_text_or_database_evidence_span"))
+        )
+        approved_and_consumable = (
+            row.get("review_status") == "approved"
+            and bool(row.get("reviewer_id"))
+            and bool(row.get("allowed_for_feature_contract_consumption_now"))
+            and not row_blockers
+        )
+        if approved_and_consumable:
+            approved_event_type_counter.update(
+                str(event.get("event_type"))
+                for event in events
+                if event.get("event_type")
+            )
+        row_readiness.append(
+            {
+                "entry_id": entry_id,
+                "accession": row.get("accession"),
+                "review_status": row.get("review_status"),
+                "event_count": len(events),
+                "event_types": event_types,
+                "has_proton_transfer_event": "proton_transfer" in event_types,
+                "has_electron_transfer_event": "electron_transfer" in event_types,
+                "has_bond_change_event": any(
+                    event_type in {"bond_formed", "bond_broken", "bond_order_changed"}
+                    for event_type in event_types
+                ),
+                "structurally_ready_draft": structurally_ready_draft,
+                "approved_and_consumable": approved_and_consumable,
+                "feature_contract_row_present": entry_id in contract_by_entry,
+                "feature_contract_row_has_forbidden_field": (
+                    feature_contract_row_has_forbidden_field
+                ),
+                "blockers": row_blockers,
+            }
+        )
+    row_readiness.sort(key=lambda row: _entry_id_sort_key(row["entry_id"]))
+
+    strict_passed = (
+        strict_audit.get("status")
+        == "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable"
+    )
+    feature_contract_refresh_allowed = (
+        strict_passed
+        and bool(row_readiness)
+        and all(row["approved_and_consumable"] for row in row_readiness)
+    )
+    critical_counts = {
+        "strict_audit_not_passed": 0 if strict_passed else 1,
+        "review_queue_not_ready": (
+            0
+            if review_queue.get("status")
+            == "p0_source_evidence_review_queue_ready_manual_only"
+            else 1
+        ),
+        "rhea_lookup_manifest_not_ready": (
+            0
+            if rhea_lookup.get("status") == "p0_rhea_lookup_manifest_ready_manual_only"
+            else 1
+        ),
+        "unexpected_feature_contract_row_specific_fields": sum(
+            1
+            for row in row_readiness
+            if row["feature_contract_row_has_forbidden_field"]
+        ),
+        "feature_contract_refresh_allowed_rows": sum(
+            1
+            for row in sidecar_rows
+            if row.get("allowed_for_feature_contract_consumption_now")
+        ),
+    }
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_FEATURE_READINESS_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_feature_readiness_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_feature_readiness_audit_ready_for_feature_contract_refresh"
+            if feature_contract_refresh_allowed
+            else "p0_feature_readiness_audit_blocked_review_required"
+        ),
+        "scope": (
+            "Review-only readiness audit for converting the P0 row-specific "
+            "bond-change source-evidence sidecar into future mechanism-feature "
+            "contract fields. It inventories proton-transfer, electron-transfer, "
+            "and bond-change draft coverage while keeping every draft row out "
+            "of training and threshold selection."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "feature_contract_mutated": False,
+            "feature_contract_refresh_allowed": feature_contract_refresh_allowed,
+            "draft_source_evidence_not_training_input": True,
+        },
+        "counts": {
+            "sidecar_rows": len(sidecar_rows),
+            "structurally_ready_draft_rows": sum(
+                1 for row in row_readiness if row["structurally_ready_draft"]
+            ),
+            "approved_consumable_rows": sum(
+                1 for row in row_readiness if row["approved_and_consumable"]
+            ),
+            "rows_with_bond_change_event": sum(
+                1 for row in row_readiness if row["has_bond_change_event"]
+            ),
+            "rows_with_proton_transfer_event": sum(
+                1 for row in row_readiness if row["has_proton_transfer_event"]
+            ),
+            "rows_with_electron_transfer_event": sum(
+                1 for row in row_readiness if row["has_electron_transfer_event"]
+            ),
+            "draft_event_type_counts": dict(sorted(event_type_counter.items())),
+            "approved_event_type_counts": dict(
+                sorted(approved_event_type_counter.items())
+            ),
+            "blocker_counts": dict(sorted(blocker_counter.items())),
+            "critical_counts": critical_counts,
+            "critical_violation_total": sum(critical_counts.values()),
+            "feature_contract_refresh_allowed": feature_contract_refresh_allowed,
+        },
+        "row_readiness": row_readiness,
+        "interpretation": {
+            "result": (
+                "The P0 sidecar has structural draft coverage for bond-change, "
+                "proton-transfer, and electron-transfer signals, but zero rows "
+                "are approved or consumable, so the no-template embedding "
+                "contract must remain unchanged."
+                if not feature_contract_refresh_allowed
+                else "All P0 rows are approved and consumable for a bounded feature-contract refresh."
+            ),
+            "next_action": (
+                "Resolve the Rhea-missing rows, manually approve or reject each "
+                "draft event with reviewer provenance, rerun the strict audit "
+                "and this readiness audit, then refresh only train/cal feature "
+                "contracts if the refresh gate passes."
+            ),
+        },
+        "source_artifacts": {
+            "sidecar": _source_path_record(sidecar_path),
+            "strict_audit": _source_path_record(strict_audit_path),
+            "review_queue": _source_path_record(review_queue_path),
+            "rhea_lookup_manifest": _source_path_record(rhea_lookup_manifest_path),
+            "feature_contract": _source_path_record(feature_contract_path),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 Feature-Readiness Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Sidecar rows: {counts['sidecar_rows']}",
+        f"- Structurally ready draft rows: {counts['structurally_ready_draft_rows']}",
+        f"- Approved consumable rows: {counts['approved_consumable_rows']}",
+        f"- Rows with bond-change events: {counts['rows_with_bond_change_event']}",
+        f"- Rows with proton-transfer events: {counts['rows_with_proton_transfer_event']}",
+        f"- Rows with electron-transfer events: {counts['rows_with_electron_transfer_event']}",
+        f"- Draft event type counts: {counts['draft_event_type_counts']}",
+        f"- Blocker counts: {counts['blocker_counts']}",
+        f"- Feature-contract refresh allowed: {counts['feature_contract_refresh_allowed']}",
+        "",
+        "## Row Readiness",
+        "",
+        "| row | events | event types | structurally ready | approved consumable | blockers |",
+        "| --- | ---: | --- | --- | --- | --- |",
+    ]
+    for row in audit["row_readiness"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['event_count']} | "
+            f"{', '.join(row['event_types'])} | "
+            f"{row['structurally_ready_draft']} | "
+            f"{row['approved_and_consumable']} | "
+            f"{', '.join(row['blockers'])} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit(
+    *,
+    sidecar_path: Path,
+    strict_audit_path: Path,
+    review_queue_path: Path,
+    rhea_lookup_manifest_path: Path,
+    feature_contract_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit(
+        sidecar_path=sidecar_path,
+        strict_audit_path=strict_audit_path,
+        review_queue_path=review_queue_path,
+        rhea_lookup_manifest_path=rhea_lookup_manifest_path,
+        feature_contract_path=feature_contract_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
 
 
 def _manifest_fingerprint_id(row: dict[str, Any]) -> Any:

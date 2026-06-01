@@ -212,6 +212,16 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                (
+                    "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-feature-readiness"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_feature_readiness"
+                ),
+            ),
+            (
                 "build-mechanism-feature-embedding-pilot",
                 "cmd_build_mechanism_feature_embedding_pilot",
             ),
