@@ -43,6 +43,15 @@ Status terms:
 | `docs/wave1_representation_shootout.md` | Human summary of the original Wave 1 representation shootout | Historical; contains pre-audit caveats |
 | `artifacts/v3_sequence_nn_metrics_current702_20260525.json` | What did the deterministic 3-mer sequence-NN smoke baseline show? | Trusted smoke baseline, not PLM evidence |
 
+## D11 Novelty And Northstar Levers
+
+| Artifact | Answers | Status |
+| --- | --- | --- |
+| `artifacts/v3_mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.json` | Does the predicted-geometry atlas-percentile two-channel gate run after adding in-distribution atlas rows? | Current deployment-regime rerun |
+| `artifacts/v3_fold_level_novelty_signal_current702_20260601.json` | Does the frozen selected-PDB Foldseek proxy add a fold-level novelty signal for OOS and cofactor-confounded rows? | Diagnostic; selected-PDB fold proxy, not predicted-Foldseek deployment signal |
+| `artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json` | What leakage-safe scaffold and feature gaps exist for a learned mechanism-feature embedding? | Current scaffold/plan |
+| `artifacts/v3_family_set_expansion_targets_current702_20260601.json` | Which targeted family expansions de-risk the 8-fingerprint bound without imports? | Proposal-only; no label/import mutation |
+
 ## Geometry And Active-Site Evidence
 
 | Artifact | Answers | Status |

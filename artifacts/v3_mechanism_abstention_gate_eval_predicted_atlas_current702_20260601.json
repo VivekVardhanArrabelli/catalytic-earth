@@ -1,0 +1,69 @@
+{
+  "artifact_id": "v3_mechanism_abstention_gate_eval_current702_20260531",
+  "created_utc": "2026-06-01T02:04:11Z",
+  "geometry_regime": "predicted_geometry_deployment",
+  "guardrails": {
+    "atlas_only_statistics_and_percentiles": true,
+    "geometry_fingerprint_score_is_tuning_adjacent": true,
+    "labels_registries_thresholds_changed": false,
+    "no_heldout_tuning": true,
+    "no_training_or_refit": true,
+    "sequence_inputs_amino_acid_only": true
+  },
+  "interpretation": {
+    "deployment_caveat": "Deployment-regime (predicted geometry) gate evaluated directly.",
+    "headline": "Best overall abstention AUC is 0.847697 on the predicted_geometry_deployment regime; the two-channel gate clears the 0.75 de novo precondition bar.",
+    "why": "The cofactor channel handles the cofactor-agnostic OOS majority but confidently misplaces novel enzymes that reuse a known cofactor family. The geometry role-agreement channel catches exactly those: novel chemistry shows the right active-site residues with the wrong catalytic roles. Combining the two atlas-percentiles recovers the cases each channel misses."
+  },
+  "result": {
+    "best_overall_auc": 0.847697,
+    "channels": {
+      "cofactor_augmented": {
+        "agnostic": 0.725444,
+        "all": 0.697953,
+        "confounded": 0.363475
+      },
+      "combined_mean": {
+        "agnostic": 0.865783,
+        "all": 0.847697,
+        "confounded": 0.62766
+      },
+      "combined_min_concordance": {
+        "agnostic": 0.675751,
+        "all": 0.664288,
+        "confounded": 0.524823
+      },
+      "geometry_score_x_role": {
+        "agnostic": 0.748033,
+        "all": 0.748047,
+        "confounded": 0.748227
+      }
+    },
+    "clears_abstention_bar": true,
+    "counts": {
+      "agnostic_oos": 73,
+      "atlas": 168,
+      "confounded_oos": 6,
+      "inscope": 47,
+      "oos": 79
+    },
+    "normalization": "atlas_percentile_deployable",
+    "status": "computed"
+  },
+  "schema_version": "mechanism_abstention_gate_eval.v0",
+  "scope": "D11 de novo precondition: a two-channel abstention gate (cofactor-augmented PLM + geometry active-site role-agreement) over the predicted_geometry_deployment geometry regime, with deployable atlas-percentile combination.",
+  "source_artifacts": {
+    "cofactor_score_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    },
+    "esm2_150m_embeddings": {
+      "path": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+      "sha256": "e7e5ee1ec329b084182e7b957c24f14a282f08bf61a6d2191dd639752ffd9617"
+    },
+    "geometry_retrieval": {
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    }
+  }
+}

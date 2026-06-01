@@ -50,6 +50,213 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Northstar Four-Lever Completion
+
+Automation run: `catalytic-earth-work-loop`
+
+Wall-clock:
+
+- STARTED_AT: `2026-06-01T02:03:04Z`
+- Local start: `Sun May 31 21:03:23 CDT 2026`
+- Handoff write time: `2026-06-01T02:19:59Z`
+- Local handoff write time: `Sun May 31 21:19:59 CDT 2026`
+- Elapsed at handoff write: ~16.9 minutes
+- Stop reason before minute 50: all four requested northstar priorities produced
+  coherent artifacts/reports and validation passed; continuing would have started
+  a new, unrequested lever.
+
+Lock:
+
+- First intended command and first repo command:
+
+```bash
+STARTED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" --stale-after-minutes 75 acquire --started-at "$STARTED_AT"
+```
+
+- Acquire result:
+
+```json
+{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "32757", "started_at": "2026-06-01T02:03:04Z", "status": "acquired"}
+```
+
+- Release status at handoff write: pending commit/push verification. Preferred
+  release command after clean synced push:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced
+```
+
+Startup repository state:
+
+- Branch: `main`
+- Git HEAD at start: `fa431ea746b536ec1f47b97d4ed5d60fcc3b1317`
+- Dirty files at start: none (`git status --short --branch` returned
+  `## main...origin/main`)
+- Recent commits checked: `fa431ea Add predicted geometry atlas retrieval`
+- Disk at start: 30 GiB free; disk at handoff write: 30 GiB free
+- Automation memory read from
+  `/Users/vivekvardhanarrabelli/.codex/automations/catalytic-earth-work-loop/memory.md`;
+  prior memory said Priority 1 atlas retrieval was pushed in `fa431ea` and the
+  next exact command was the predicted-atlas abstention gate rerun.
+
+Continuity read before new work:
+
+- `docs/session_decision_record_20260530.md`
+- `docs/project_state.md`
+- `docs/decision_log.md`
+- `docs/artifact_index.md`
+- `docs/agent_runbook.md`
+- `work/handoff.md`
+- `work/NEXT_WORKS_northstar_20260531.md`
+- Task-specific prior report:
+  `work/predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.md`
+
+Input artifacts:
+
+- `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`
+- `artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json`
+- `artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json`
+- `artifacts/v3_mechanism_novelty_abstention_eval_current702_20260530.json`
+- `artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl`
+- `artifacts/representation_tracks/foldseek_pocket/foldseek_structure_neighborhood_metadata_current702_20260526.jsonl`
+- `data/registries/mechanism_fingerprints.json`
+- `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`
+- `artifacts/v3_targeted_bin_expansion_proposal_current702_20260530.json`
+- `artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json`
+
+Work completed:
+
+- Priority 1: verified the prior predicted-geometry in-distribution atlas
+  retrieval artifact and ran the unblocked predicted-atlas two-channel gate.
+  Counts from the carried atlas retrieval remain: 184 atlas rows expected, 168
+  scored ok, 16 missing/unusable
+  (`missing_accession_compatible_sequence_positions=13`,
+  `predicted_structure_fetch_failed=2`,
+  `insufficient_resolved_residues=1`), 128 heldout rows carried, 299 combined
+  retrieval rows. The gate rerun used 168 atlas, 47 in-scope, 79 OOS, and 6
+  predicted-geometry-overlap cofactor-confounded OOS rows. Best AUC was
+  `0.847697`; `combined_mean` cleared the 0.75 bar, and
+  `geometry_score_x_role` scored `0.748047` overall.
+- Priority 2: added reproducible `eval-fold-level-novelty-signal` CLI and
+  generated a fold-level novelty diagnostic from frozen selected-PDB Foldseek
+  metadata. It scored all 140 heldout fold rows (48 in-scope, 92 OOS), recorded
+  all 8 cofactor-confounded OOS rows from the novelty eval and the 6 overlapping
+  the predicted-geometry gate, and reported `nearest_primary_foldseek_prob` AUC
+  `0.823256` overall and `0.793403` against the predicted-geometry confounded
+  subset. It is partly orthogonal to current channels
+  (Pearson fold-vs-geometry `0.24572`; fold-vs-cofactor `0.344169`) and catches
+  the confounded rows as a rank signal, but is not a standalone deployable
+  operating point because >=85%/90% in-scope retention forces threshold `0.0`.
+- Priority 3: added reproducible
+  `build-learned-mechanism-feature-embedding-plan` CLI and generated a
+  leakage-safe mechanism-feature embedding scaffold. It audits all 8 mechanism
+  fingerprints for electron-flow class, transition-state stabilization, proton
+  transfer, bond changes, cofactor locus, metal/covalent/radical flags, and
+  active-site residue-role graph availability. No heldout labels were used for
+  training/calibration/threshold tuning. Output is a scaffold plus exact
+  feature extraction gaps; no model was trained because row-level electron-flow,
+  transition-state, proton-connectivity, bond-change, and metal/cobalamin/
+  radical/Fe-S sidecars are incomplete.
+- Priority 4: added reproducible `build-family-set-expansion-targets` CLI and
+  generated a proposal-only targeted family expansion plan. It proposes seven
+  candidate family panels spanning no_reliable_structure, near_orphan,
+  confounded-OOS, FMO/flavin-redox boundary, radical/cobalamin/Fe-S, and dark
+  bins without label/import/split mutation.
+- Updated `docs/artifact_index.md` with the four new D11/northstar artifacts.
+
+Output artifacts:
+
+- `artifacts/v3_mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.json`
+- `work/mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.md`
+- `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`
+- `work/fold_level_novelty_signal_current702_20260601.md`
+- `artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json`
+- `work/learned_mechanism_feature_embedding_plan_current702_20260601.md`
+- `artifacts/v3_family_set_expansion_targets_current702_20260601.json`
+- `work/family_set_expansion_targets_current702_20260601.md`
+- Code: `src/catalytic_earth/northstar_next_levers.py`
+- CLI wiring: `src/catalytic_earth/cli.py`
+- Index update: `docs/artifact_index.md`
+
+Key commands run:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli eval-mechanism-abstention-gate --geometry-retrieval artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json --out artifacts/v3_mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.json --report work/mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.md
+PYTHONPATH=src python -m catalytic_earth.cli eval-fold-level-novelty-signal
+PYTHONPATH=src python -m catalytic_earth.cli build-learned-mechanism-feature-embedding-plan
+PYTHONPATH=src python -m catalytic_earth.cli build-family-set-expansion-targets
+```
+
+Validation commands/results:
+
+```bash
+python -m json.tool artifacts/v3_mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.json >/dev/null
+python -m json.tool artifacts/v3_fold_level_novelty_signal_current702_20260601.json >/dev/null
+python -m json.tool artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json >/dev/null
+python -m json.tool artifacts/v3_family_set_expansion_targets_current702_20260601.json >/dev/null
+# all passed
+
+PYTHONPATH=src python -m catalytic_earth.cli validate
+# Validated 12 source records, 8 mechanism fingerprints, 15 mechanism ontology families, 702 curated labels
+
+git diff --check
+# passed
+
+python -m compileall -q src tests
+# passed
+
+PYTHONPATH=src python -m pytest tests/test_mechanism_abstention_gate_eval.py tests/test_predicted_geometry_robustness.py
+# 13 passed
+
+PYTHONPATH=src python -m unittest discover -s tests
+# Ran 960 tests in 36.571s, OK
+```
+
+Dirty files at handoff write before staging/commit:
+
+```text
+M docs/artifact_index.md
+M src/catalytic_earth/cli.py
+?? artifacts/v3_family_set_expansion_targets_current702_20260601.json
+?? artifacts/v3_fold_level_novelty_signal_current702_20260601.json
+?? artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json
+?? artifacts/v3_mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.json
+?? src/catalytic_earth/northstar_next_levers.py
+?? work/family_set_expansion_targets_current702_20260601.md
+?? work/fold_level_novelty_signal_current702_20260601.md
+?? work/learned_mechanism_feature_embedding_plan_current702_20260601.md
+?? work/mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.md
+```
+
+Blockers:
+
+- No run-blocking condition. Priority 2 is explicitly bounded: it uses the
+  existing selected-PDB Foldseek proxy, not a new predicted-structure Foldseek/TM
+  deployment channel. The exact next blocker-clearing task is below.
+- No labels, registries, ontologies, production imports, production scoring
+  thresholds, global thresholds, or heldout splits were changed.
+
+Commit/push status at handoff write:
+
+- Commit and push pending immediately after this handoff update and final status
+  check. Record exact commit hash and release result in automation memory/final
+  status after push.
+
+Exact next action:
+
+- Full four-priority assignment is complete. Next run should retarget rather
+  than redo these outputs. The smallest next concrete northstar task is a real
+  predicted-structure fold channel: start from
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json` and
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  then implement or stage a bounded Foldseek/TM scoring manifest for
+  AlphaFoldDB-predicted heldout rows against the in-distribution atlas. If no
+  Foldseek runtime is available, write the exact manifest/command plan instead
+  of fabricating scores.
+
+Next run should: retarget.
+
 ### 2026-06-01 Predicted-Geometry In-Distribution Atlas Retrieval
 
 Automation run: `catalytic-earth-work-loop`

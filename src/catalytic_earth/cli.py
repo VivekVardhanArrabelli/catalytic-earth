@@ -40,6 +40,11 @@ from .mechanism_abstention_gate_eval import (
     write_mechanism_abstention_gate_eval,
     write_mechanism_deployment_abstention_gate_eval,
 )
+from .northstar_next_levers import (
+    write_family_set_expansion_targets,
+    write_fold_level_novelty_signal,
+    write_learned_mechanism_feature_embedding_plan,
+)
 from .geometry_reports import write_geometry_slice_summary
 from .geometry_head import write_geometry_nonlinear_head_audit
 from .predicted_geometry_robustness import (
@@ -10776,6 +10781,58 @@ def cmd_eval_mechanism_deployment_abstention_gate(args: argparse.Namespace) -> i
     return 0
 
 
+def cmd_eval_fold_level_novelty_signal(args: argparse.Namespace) -> int:
+    audit = write_fold_level_novelty_signal(
+        foldseek_metadata_path=Path(args.foldseek_metadata),
+        esm2_150m_path=Path(args.esm2_150m_embeddings),
+        cofactor_sidecar_path=Path(args.cofactor_sidecar),
+        predicted_geometry_audit_path=Path(args.predicted_geometry_audit),
+        novelty_eval_path=Path(args.novelty_eval),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    signal = audit.get("signals", {}).get("nearest_primary_foldseek_prob", {})
+    print(
+        "Wrote fold-level novelty signal to "
+        f"{args.out} (rows: {counts.get('heldout_fold_rows_scored')}, "
+        f"primary AUC: {signal.get('auc_in_gt_oos')})"
+    )
+    return 0
+
+
+def cmd_build_learned_mechanism_feature_embedding_plan(args: argparse.Namespace) -> int:
+    audit = write_learned_mechanism_feature_embedding_plan(
+        mechanism_fingerprints_path=Path(args.mechanism_fingerprints),
+        label_manifest_path=Path(args.label_manifest),
+        selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
+        predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    coverage = audit.get("available_feature_spec", {}).get("feature_coverage", {})
+    print(
+        "Wrote learned mechanism-feature embedding plan to "
+        f"{args.out} (fingerprints: {coverage.get('fingerprints_total')})"
+    )
+    return 0
+
+
+def cmd_build_family_set_expansion_targets(args: argparse.Namespace) -> int:
+    audit = write_family_set_expansion_targets(
+        prior_expansion_path=Path(args.prior_expansion),
+        prediction_contract_path=Path(args.prediction_contract),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    summary = audit.get("target_summary", {})
+    print(
+        "Wrote family-set expansion targets to "
+        f"{args.out} (families: {summary.get('candidate_family_count')})"
+    )
+    return 0
+
+
 def _split_csv(value: str | None) -> list[str]:
     if not value:
         return []
@@ -21321,6 +21378,97 @@ def build_parser() -> argparse.ArgumentParser:
         default="work/mechanism_deployment_abstention_gate_eval_current702_20260531.md",
     )
     deployment_gate.set_defaults(func=cmd_eval_mechanism_deployment_abstention_gate)
+
+    fold_novelty = subparsers.add_parser(
+        "eval-fold-level-novelty-signal",
+        help="D11 fold-level novelty diagnostic from frozen current702 Foldseek metadata",
+    )
+    fold_novelty.add_argument(
+        "--foldseek-metadata",
+        default=(
+            "artifacts/representation_tracks/foldseek_pocket/"
+            "foldseek_structure_neighborhood_metadata_current702_20260526.jsonl"
+        ),
+    )
+    fold_novelty.add_argument(
+        "--esm2-150m-embeddings",
+        default="artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+    )
+    fold_novelty.add_argument(
+        "--cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+    )
+    fold_novelty.add_argument(
+        "--predicted-geometry-audit",
+        default="artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+    )
+    fold_novelty.add_argument(
+        "--novelty-eval",
+        default="artifacts/v3_mechanism_novelty_abstention_eval_current702_20260530.json",
+    )
+    fold_novelty.add_argument(
+        "--out",
+        default="artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
+    )
+    fold_novelty.add_argument(
+        "--report",
+        default="work/fold_level_novelty_signal_current702_20260601.md",
+    )
+    fold_novelty.set_defaults(func=cmd_eval_fold_level_novelty_signal)
+
+    mechanism_embedding_plan = subparsers.add_parser(
+        "build-learned-mechanism-feature-embedding-plan",
+        help="write the leakage-safe learned mechanism-feature embedding scaffold",
+    )
+    mechanism_embedding_plan.add_argument(
+        "--mechanism-fingerprints",
+        default="data/registries/mechanism_fingerprints.json",
+    )
+    mechanism_embedding_plan.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    mechanism_embedding_plan.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+    )
+    mechanism_embedding_plan.add_argument(
+        "--predicted-geometry-atlas",
+        default="artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+    )
+    mechanism_embedding_plan.add_argument(
+        "--out",
+        default="artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json",
+    )
+    mechanism_embedding_plan.add_argument(
+        "--report",
+        default="work/learned_mechanism_feature_embedding_plan_current702_20260601.md",
+    )
+    mechanism_embedding_plan.set_defaults(
+        func=cmd_build_learned_mechanism_feature_embedding_plan
+    )
+
+    family_expansion_targets = subparsers.add_parser(
+        "build-family-set-expansion-targets",
+        help="write targeted family-set expansion proposal without imports",
+    )
+    family_expansion_targets.add_argument(
+        "--prior-expansion",
+        default="artifacts/v3_targeted_bin_expansion_proposal_current702_20260530.json",
+    )
+    family_expansion_targets.add_argument(
+        "--prediction-contract",
+        default="artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+    )
+    family_expansion_targets.add_argument(
+        "--out",
+        default="artifacts/v3_family_set_expansion_targets_current702_20260601.json",
+    )
+    family_expansion_targets.add_argument(
+        "--report",
+        default="work/family_set_expansion_targets_current702_20260601.md",
+    )
+    family_expansion_targets.set_defaults(func=cmd_build_family_set_expansion_targets)
 
     log_work = subparsers.add_parser("log-work", help="append a timed work entry")
     log_work.add_argument("--stage", required=True, help="milestone stage, for example v0 or v1")

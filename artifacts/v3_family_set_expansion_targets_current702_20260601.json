@@ -1,0 +1,186 @@
+{
+  "artifact_id": "v3_family_set_expansion_targets_current702_20260601",
+  "candidate_families": [
+    {
+      "candidate_family": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+      "candidate_rows": [
+        "m_csa:30",
+        "m_csa:31"
+      ],
+      "candidate_sources": [
+        "M-CSA current heldout canaries",
+        "Swiss-Prot radical enzyme reviews",
+        "Rhea radical C-C bond cleavage reactions"
+      ],
+      "expected_eval_bin_impact": "adds confounded-OOS controls that reuse known cofactors but should abstain from occupied hydrolase/redox families",
+      "priority_bins": [
+        "cofactor_confounded_oos",
+        "near_orphan",
+        "dark_bin"
+      ],
+      "required_human_validation": "expert decision on exact radical/cofactor locus and whether rows remain OOS controls or seed a future family"
+    },
+    {
+      "candidate_family": "thiol_disulfide_oxidoreductase_isomerase_boundary",
+      "candidate_rows": [
+        "m_csa:191"
+      ],
+      "candidate_sources": [
+        "M-CSA disulfide-isomerase row",
+        "Swiss-Prot protein disulfide-isomerase family",
+        "Rhea thiol-disulfide interchange reactions"
+      ],
+      "expected_eval_bin_impact": "tests redox chemistry that can look cofactor-like without matching flavin/heme occupied loci",
+      "priority_bins": [
+        "cofactor_confounded_oos",
+        "FMO_flavin_redox_boundary"
+      ],
+      "required_human_validation": "confirm row-level bond-change and redox partner before any countable label"
+    },
+    {
+      "candidate_family": "lipoamide_or_sulfur_transfer_redox_boundary",
+      "candidate_rows": [
+        "m_csa:267",
+        "m_csa:448"
+      ],
+      "candidate_sources": [
+        "M-CSA current heldout canaries",
+        "Swiss-Prot lipoamide/sulfur-transfer enzymes",
+        "Rhea sulfur-transfer/redox reactions"
+      ],
+      "expected_eval_bin_impact": "adds hard OOS controls for known-cofactor leakage and Fe-S/sulfur chemistry",
+      "priority_bins": [
+        "cofactor_confounded_oos",
+        "radical_cobalamin_FeS"
+      ],
+      "required_human_validation": "expert review of catalytic locus and cofactor identity; keep review-only until duplicate and split gates pass"
+    },
+    {
+      "candidate_family": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "candidate_rows": [
+        "m_csa:131",
+        "m_csa:132",
+        "m_csa:551",
+        "m_csa:973"
+      ],
+      "candidate_sources": [
+        "M-CSA FMO-like rows",
+        "Swiss-Prot FMO/BVMO reviewed proteins",
+        "Rhea oxygen insertion and Baeyer-Villiger reactions"
+      ],
+      "expected_eval_bin_impact": "separates flavin oxygen-transfer from flavin dehydrogenase/reductase without promoting FMO prematurely",
+      "priority_bins": [
+        "FMO_flavin_redox_boundary",
+        "near_orphan",
+        "no_reliable_structure"
+      ],
+      "required_human_validation": "subtype panel, hard-negative separation, ligand/coordinate materialization, and expert admission decision"
+    },
+    {
+      "candidate_family": "cobalamin_and_radical_rearrangement_panel",
+      "candidate_rows": [
+        "secondary_probe::cobalamin_radical_rearrangement",
+        "secondary_probe::radical_sam_enzyme",
+        "m_csa:750"
+      ],
+      "candidate_sources": [
+        "existing secondary probe definitions",
+        "Swiss-Prot B12/radical-SAM reviewed families",
+        "Rhea radical rearrangement reactions"
+      ],
+      "expected_eval_bin_impact": "widens the 8-fingerprint bound into radical/cobalamin/Fe-S chemistry where current labels are sparse",
+      "priority_bins": [
+        "radical_cobalamin_FeS",
+        "dark_bin",
+        "no_reliable_structure"
+      ],
+      "required_human_validation": "keep current probes secondary until enough support exists; m_csa:750 remains OOS/boundary under current decision log"
+    },
+    {
+      "candidate_family": "no_reliable_structure_metal_hydrolase_controls",
+      "candidate_rows": [
+        "mh_064",
+        "mh_065",
+        "mh_066",
+        "mh_067",
+        "mh_068",
+        "mh_072"
+      ],
+      "candidate_sources": [
+        "prior targeted expansion proposal",
+        "Swiss-Prot metal hydrolase candidates",
+        "Rhea hydrolysis reactions with metal cofactors"
+      ],
+      "expected_eval_bin_impact": "increases no_reliable_structure positive and hard-negative support without padding dense structural neighborhoods",
+      "priority_bins": [
+        "no_reliable_structure",
+        "dark_bin"
+      ],
+      "required_human_validation": "external duplicate screen, Foldseek/TM screen, geometry materialization, expert review, label-factory gates, future frozen split"
+    },
+    {
+      "candidate_family": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "candidate_rows": [
+        "m_csa:10",
+        "m_csa:116",
+        "mh_073",
+        "external_glycoside_panel"
+      ],
+      "candidate_sources": [
+        "prior targeted expansion proposal",
+        "external glycoside/carbohydrate panel",
+        "Rhea glycosidic bond hydrolysis reactions"
+      ],
+      "expected_eval_bin_impact": "adds near-orphan OOS controls that stress hydrolase boundary calls without dense-neighborhood padding",
+      "priority_bins": [
+        "near_orphan",
+        "confounded_OOS",
+        "dark_bin"
+      ],
+      "required_human_validation": "source-backed substrate/bond-change adjudication and strict no-training use for current heldout canaries"
+    }
+  ],
+  "created_utc": "2026-06-01T02:16:04Z",
+  "global_human_validation_required": [
+    "expert mechanism-locus review",
+    "source-backed M-CSA/Swiss-Prot/Rhea provenance",
+    "duplicate and train/test leakage screen",
+    "coordinate or predicted-structure materialization feasibility",
+    "label-factory gate and future frozen split before any countable use"
+  ],
+  "guardrails": {
+    "heldout_splits_changed": false,
+    "imports_or_promotions_performed": false,
+    "labels_edited": false,
+    "ontologies_edited": false,
+    "proposal_only": true,
+    "registries_edited": false
+  },
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Targeted family-set expansion proposal to de-risk the current 8-fingerprint bound by increasing no_reliable_structure, near_orphan, confounded-OOS, FMO/flavin-redox boundary, radical/cobalamin/Fe-S, and dark-bin support without padding dense structural neighborhoods.",
+  "source_artifacts": {
+    "mechanism_prediction_contract": {
+      "path": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+      "sha256": "731b94ebd3b4f7ae483a3cca75d2b8c3b88242024ecd9c364d70bdfcda6624ee"
+    },
+    "prior_targeted_expansion_proposal": {
+      "path": "artifacts/v3_targeted_bin_expansion_proposal_current702_20260530.json",
+      "sha256": "0706b0258d61e06601568f0f3efe1133bfbc724ec73cccaf06d5ebd3790d374d"
+    }
+  },
+  "status": "proposal_only_no_imports",
+  "target_summary": {
+    "candidate_family_count": 7,
+    "prior_smallest_batch_size": 8,
+    "priority_bin_coverage": {
+      "FMO_flavin_redox_boundary": 2,
+      "cofactor_confounded_oos": 3,
+      "confounded_OOS": 1,
+      "dark_bin": 4,
+      "near_orphan": 3,
+      "no_reliable_structure": 3,
+      "radical_cobalamin_FeS": 2
+    },
+    "secondary_probe_fingerprints_in_contract": []
+  }
+}

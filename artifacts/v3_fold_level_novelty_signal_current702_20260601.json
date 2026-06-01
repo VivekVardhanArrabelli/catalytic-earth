@@ -1,0 +1,724 @@
+{
+  "artifact_id": "v3_fold_level_novelty_signal_current702_20260601",
+  "confounded_entry_ids": {
+    "any_geometry_from_novelty_eval": [
+      "m_csa:191",
+      "m_csa:267",
+      "m_csa:30",
+      "m_csa:31",
+      "m_csa:448",
+      "m_csa:549",
+      "m_csa:563",
+      "m_csa:80"
+    ],
+    "predicted_geometry_overlap_current_gate": [
+      "m_csa:191",
+      "m_csa:267",
+      "m_csa:30",
+      "m_csa:31",
+      "m_csa:448",
+      "m_csa:80"
+    ]
+  },
+  "confounded_row_details": [
+    {
+      "entry_id": "m_csa:30",
+      "fold_signals": {
+        "high_conf_primary_hit_indicator": 0.0,
+        "log1p_high_conf_primary_hit_count": 0.0,
+        "nearest_primary_foldseek_prob": 0.057,
+        "nearest_primary_indicator": 1.0,
+        "top3_primary_foldseek_prob": 0.057
+      },
+      "is_cofactor_confounded_oos_any_geometry": true,
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "nearest_foldseek_bits": 25.0,
+      "nearest_foldseek_lddt_tm_proxy": 0.2834,
+      "nearest_foldseek_prob": 0.057,
+      "nearest_train_entry_id": "m_csa:124",
+      "nearest_train_fingerprint_id": "heme_peroxidase_oxidase",
+      "nearest_train_label_group": "heme_peroxidase_oxidase",
+      "retained_high_confidence_primary_fingerprint_hit_count": 0,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "top3_retained_train_neighbors": [
+        {
+          "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+          "bits": 25.0,
+          "entry_id": "m_csa:124",
+          "evalue": 0.2636,
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "high_confidence": false,
+          "label_group": "heme_peroxidase_oxidase",
+          "lddt": 0.2834,
+          "prob": 0.057,
+          "qcov": 0.269,
+          "raw_target": "m_csa__124__pdb_1V54_P",
+          "tcov": 0.776
+        },
+        {
+          "benchmark_role": "primary_supervised_metric::heme_peroxidase_oxidase",
+          "bits": 21.0,
+          "entry_id": "m_csa:124",
+          "evalue": 0.67,
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "high_confidence": false,
+          "label_group": "heme_peroxidase_oxidase",
+          "lddt": 0.2839,
+          "prob": 0.034,
+          "qcov": 0.269,
+          "raw_target": "m_csa__124__pdb_1V54_P",
+          "tcov": 0.776
+        },
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 20.0,
+          "entry_id": "m_csa:479",
+          "evalue": 0.1998,
+          "fingerprint_id": null,
+          "high_confidence": false,
+          "label_group": "out_of_scope",
+          "lddt": 0.2166,
+          "prob": 0.029,
+          "qcov": 0.611,
+          "raw_target": "m_csa__479__pdb_1CWY",
+          "tcov": 0.876
+        }
+      ],
+      "true_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:31",
+      "fold_signals": {
+        "high_conf_primary_hit_indicator": 0.0,
+        "log1p_high_conf_primary_hit_count": 0.0,
+        "nearest_primary_foldseek_prob": 0.014,
+        "nearest_primary_indicator": 1.0,
+        "top3_primary_foldseek_prob": 0.014
+      },
+      "is_cofactor_confounded_oos_any_geometry": true,
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "nearest_foldseek_bits": 16.0,
+      "nearest_foldseek_lddt_tm_proxy": 0.2744,
+      "nearest_foldseek_prob": 0.014,
+      "nearest_train_entry_id": "m_csa:160",
+      "nearest_train_fingerprint_id": "metal_dependent_hydrolase",
+      "nearest_train_label_group": "metal_dependent_hydrolase",
+      "retained_high_confidence_primary_fingerprint_hit_count": 0,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "top3_retained_train_neighbors": [
+        {
+          "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+          "bits": 16.0,
+          "entry_id": "m_csa:160",
+          "evalue": 2.602,
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "high_confidence": false,
+          "label_group": "metal_dependent_hydrolase",
+          "lddt": 0.2744,
+          "prob": 0.014,
+          "qcov": 0.307,
+          "raw_target": "m_csa__160__pdb_1AKO",
+          "tcov": 0.448
+        },
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 15.0,
+          "entry_id": "m_csa:139",
+          "evalue": 0.9421,
+          "fingerprint_id": null,
+          "high_confidence": false,
+          "label_group": "out_of_scope",
+          "lddt": 0.1947,
+          "prob": 0.011,
+          "qcov": 0.25,
+          "raw_target": "m_csa__139__pdb_1V97_A",
+          "tcov": 0.072
+        },
+        {
+          "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+          "bits": 14.0,
+          "entry_id": "m_csa:16",
+          "evalue": 5.332,
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "high_confidence": false,
+          "label_group": "metal_dependent_hydrolase",
+          "lddt": 0.2425,
+          "prob": 0.01,
+          "qcov": 0.171,
+          "raw_target": "m_csa__16__pdb_1BC2_B",
+          "tcov": 0.208
+        }
+      ],
+      "true_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:80",
+      "fold_signals": {
+        "high_conf_primary_hit_indicator": 0.0,
+        "log1p_high_conf_primary_hit_count": 0.0,
+        "nearest_primary_foldseek_prob": 0.0,
+        "nearest_primary_indicator": 0.0,
+        "top3_primary_foldseek_prob": 0.0
+      },
+      "is_cofactor_confounded_oos_any_geometry": true,
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "nearest_foldseek_bits": 633.0,
+      "nearest_foldseek_lddt_tm_proxy": 0.6624,
+      "nearest_foldseek_prob": 1.0,
+      "nearest_train_entry_id": "m_csa:408",
+      "nearest_train_fingerprint_id": null,
+      "nearest_train_label_group": "out_of_scope",
+      "retained_high_confidence_primary_fingerprint_hit_count": 0,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "top3_retained_train_neighbors": [
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 633.0,
+          "entry_id": "m_csa:408",
+          "evalue": 4.708e-16,
+          "fingerprint_id": null,
+          "high_confidence": true,
+          "label_group": "out_of_scope",
+          "lddt": 0.6624,
+          "prob": 1.0,
+          "qcov": 0.96,
+          "raw_target": "m_csa__408__pdb_1AUW_D",
+          "tcov": 0.933
+        },
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 625.0,
+          "entry_id": "m_csa:408",
+          "evalue": 1.691e-15,
+          "fingerprint_id": null,
+          "high_confidence": true,
+          "label_group": "out_of_scope",
+          "lddt": 0.6783,
+          "prob": 1.0,
+          "qcov": 0.965,
+          "raw_target": "m_csa__408__pdb_1AUW_A",
+          "tcov": 0.951
+        },
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 619.0,
+          "entry_id": "m_csa:408",
+          "evalue": 1.627e-15,
+          "fingerprint_id": null,
+          "high_confidence": true,
+          "label_group": "out_of_scope",
+          "lddt": 0.6756,
+          "prob": 1.0,
+          "qcov": 0.967,
+          "raw_target": "m_csa__408__pdb_1AUW_A",
+          "tcov": 0.953
+        }
+      ],
+      "true_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:191",
+      "fold_signals": {
+        "high_conf_primary_hit_indicator": 0.0,
+        "log1p_high_conf_primary_hit_count": 0.0,
+        "nearest_primary_foldseek_prob": 0.0,
+        "nearest_primary_indicator": 0.0,
+        "top3_primary_foldseek_prob": 0.0
+      },
+      "is_cofactor_confounded_oos_any_geometry": true,
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "nearest_foldseek_bits": 28.0,
+      "nearest_foldseek_lddt_tm_proxy": 0.331,
+      "nearest_foldseek_prob": 0.076,
+      "nearest_train_entry_id": "m_csa:398",
+      "nearest_train_fingerprint_id": null,
+      "nearest_train_label_group": "out_of_scope",
+      "retained_high_confidence_primary_fingerprint_hit_count": 0,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "top3_retained_train_neighbors": [
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 28.0,
+          "entry_id": "m_csa:398",
+          "evalue": 0.3489,
+          "fingerprint_id": null,
+          "high_confidence": false,
+          "label_group": "out_of_scope",
+          "lddt": 0.331,
+          "prob": 0.076,
+          "qcov": 0.767,
+          "raw_target": "m_csa__398__pdb_1AOP",
+          "tcov": 0.25
+        },
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 26.0,
+          "entry_id": "m_csa:331",
+          "evalue": 0.145,
+          "fingerprint_id": null,
+          "high_confidence": false,
+          "label_group": "out_of_scope",
+          "lddt": 0.294,
+          "prob": 0.063,
+          "qcov": 0.9,
+          "raw_target": "m_csa__331__pdb_1RM0_B",
+          "tcov": 0.262
+        },
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 24.0,
+          "entry_id": "m_csa:652",
+          "evalue": 0.4656,
+          "fingerprint_id": null,
+          "high_confidence": false,
+          "label_group": "out_of_scope",
+          "lddt": 0.3153,
+          "prob": 0.051,
+          "qcov": 0.633,
+          "raw_target": "m_csa__652__pdb_1NVM_B",
+          "tcov": 0.263
+        }
+      ],
+      "true_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:267",
+      "fold_signals": {
+        "high_conf_primary_hit_indicator": 1.0,
+        "log1p_high_conf_primary_hit_count": 3.258097,
+        "nearest_primary_foldseek_prob": 0.0,
+        "nearest_primary_indicator": 0.0,
+        "top3_primary_foldseek_prob": 0.0
+      },
+      "is_cofactor_confounded_oos_any_geometry": true,
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "nearest_foldseek_bits": 135.0,
+      "nearest_foldseek_lddt_tm_proxy": 0.4173,
+      "nearest_foldseek_prob": 1.0,
+      "nearest_train_entry_id": "m_csa:652",
+      "nearest_train_fingerprint_id": null,
+      "nearest_train_label_group": "out_of_scope",
+      "retained_high_confidence_primary_fingerprint_hit_count": 25,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "top3_retained_train_neighbors": [
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 135.0,
+          "entry_id": "m_csa:652",
+          "evalue": 5.768e-06,
+          "fingerprint_id": null,
+          "high_confidence": true,
+          "label_group": "out_of_scope",
+          "lddt": 0.4173,
+          "prob": 1.0,
+          "qcov": 0.983,
+          "raw_target": "m_csa__652__pdb_1NVM_G",
+          "tcov": 0.973
+        },
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 135.0,
+          "entry_id": "m_csa:652",
+          "evalue": 1.229e-05,
+          "fingerprint_id": null,
+          "high_confidence": true,
+          "label_group": "out_of_scope",
+          "lddt": 0.4283,
+          "prob": 1.0,
+          "qcov": 0.986,
+          "raw_target": "m_csa__652__pdb_1NVM_A",
+          "tcov": 0.974
+        },
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 135.0,
+          "entry_id": "m_csa:652",
+          "evalue": 2.132e-05,
+          "fingerprint_id": null,
+          "high_confidence": true,
+          "label_group": "out_of_scope",
+          "lddt": 0.4421,
+          "prob": 1.0,
+          "qcov": 0.993,
+          "raw_target": "m_csa__652__pdb_1NVM_C",
+          "tcov": 0.994
+        }
+      ],
+      "true_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:448",
+      "fold_signals": {
+        "high_conf_primary_hit_indicator": 0.0,
+        "log1p_high_conf_primary_hit_count": 0.0,
+        "nearest_primary_foldseek_prob": 0.0,
+        "nearest_primary_indicator": 0.0,
+        "top3_primary_foldseek_prob": 0.009
+      },
+      "is_cofactor_confounded_oos_any_geometry": true,
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "nearest_foldseek_bits": 15.0,
+      "nearest_foldseek_lddt_tm_proxy": 0.2842,
+      "nearest_foldseek_prob": 0.011,
+      "nearest_train_entry_id": "m_csa:136",
+      "nearest_train_fingerprint_id": null,
+      "nearest_train_label_group": "out_of_scope",
+      "retained_high_confidence_primary_fingerprint_hit_count": 0,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "top3_retained_train_neighbors": [
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 15.0,
+          "entry_id": "m_csa:136",
+          "evalue": 1.727,
+          "fingerprint_id": null,
+          "high_confidence": false,
+          "label_group": "out_of_scope",
+          "lddt": 0.2842,
+          "prob": 0.011,
+          "qcov": 0.769,
+          "raw_target": "m_csa__136__pdb_1AFR_A",
+          "tcov": 0.516
+        },
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 14.0,
+          "entry_id": "m_csa:78",
+          "evalue": 1.271,
+          "fingerprint_id": null,
+          "high_confidence": false,
+          "label_group": "out_of_scope",
+          "lddt": 0.2383,
+          "prob": 0.01,
+          "qcov": 0.798,
+          "raw_target": "m_csa__78__pdb_1AL6",
+          "tcov": 0.471
+        },
+        {
+          "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+          "bits": 13.0,
+          "entry_id": "m_csa:157",
+          "evalue": 9.71,
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "high_confidence": false,
+          "label_group": "metal_dependent_hydrolase",
+          "lddt": 0.3324,
+          "prob": 0.009,
+          "qcov": 0.29,
+          "raw_target": "m_csa__157__pdb_1QH5_A",
+          "tcov": 0.308
+        }
+      ],
+      "true_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:549",
+      "fold_signals": {
+        "high_conf_primary_hit_indicator": 0.0,
+        "log1p_high_conf_primary_hit_count": 0.0,
+        "nearest_primary_foldseek_prob": 0.0,
+        "nearest_primary_indicator": 0.0,
+        "top3_primary_foldseek_prob": 0.126
+      },
+      "is_cofactor_confounded_oos_any_geometry": true,
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "nearest_foldseek_bits": 36.0,
+      "nearest_foldseek_lddt_tm_proxy": 0.3374,
+      "nearest_foldseek_prob": 0.15,
+      "nearest_train_entry_id": "m_csa:25",
+      "nearest_train_fingerprint_id": null,
+      "nearest_train_label_group": "out_of_scope",
+      "retained_high_confidence_primary_fingerprint_hit_count": 0,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "top3_retained_train_neighbors": [
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 36.0,
+          "entry_id": "m_csa:25",
+          "evalue": 0.2259,
+          "fingerprint_id": null,
+          "high_confidence": false,
+          "label_group": "out_of_scope",
+          "lddt": 0.3374,
+          "prob": 0.15,
+          "qcov": 0.771,
+          "raw_target": "m_csa__25__pdb_1NBA_C",
+          "tcov": 0.771
+        },
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 35.0,
+          "entry_id": "m_csa:296",
+          "evalue": 0.2809,
+          "fingerprint_id": null,
+          "high_confidence": false,
+          "label_group": "out_of_scope",
+          "lddt": 0.3366,
+          "prob": 0.138,
+          "qcov": 0.476,
+          "raw_target": "m_csa__296__pdb_1N1D_B",
+          "tcov": 0.706
+        },
+        {
+          "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+          "bits": 34.0,
+          "entry_id": "m_csa:716",
+          "evalue": 0.1817,
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "high_confidence": false,
+          "label_group": "metal_dependent_hydrolase",
+          "lddt": 0.2901,
+          "prob": 0.126,
+          "qcov": 0.749,
+          "raw_target": "m_csa__716__pdb_1IM5",
+          "tcov": 0.939
+        }
+      ],
+      "true_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:563",
+      "fold_signals": {
+        "high_conf_primary_hit_indicator": 0.0,
+        "log1p_high_conf_primary_hit_count": 0.0,
+        "nearest_primary_foldseek_prob": 0.0,
+        "nearest_primary_indicator": 0.0,
+        "top3_primary_foldseek_prob": 0.0
+      },
+      "is_cofactor_confounded_oos_any_geometry": true,
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "nearest_foldseek_bits": 1029.0,
+      "nearest_foldseek_lddt_tm_proxy": 0.5446,
+      "nearest_foldseek_prob": 1.0,
+      "nearest_train_entry_id": "m_csa:276",
+      "nearest_train_fingerprint_id": null,
+      "nearest_train_label_group": "out_of_scope",
+      "retained_high_confidence_primary_fingerprint_hit_count": 0,
+      "split_assignment": "heldout",
+      "structural_neighborhood_bin": "broad_bucket_ambiguous",
+      "top3_retained_train_neighbors": [
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 1029.0,
+          "entry_id": "m_csa:276",
+          "evalue": 2.03e-41,
+          "fingerprint_id": null,
+          "high_confidence": true,
+          "label_group": "out_of_scope",
+          "lddt": 0.5446,
+          "prob": 1.0,
+          "qcov": 0.988,
+          "raw_target": "m_csa__276__pdb_1OGY_E",
+          "tcov": 0.999
+        },
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 1023.0,
+          "entry_id": "m_csa:276",
+          "evalue": 1.49e-41,
+          "fingerprint_id": null,
+          "high_confidence": true,
+          "label_group": "out_of_scope",
+          "lddt": 0.5381,
+          "prob": 1.0,
+          "qcov": 0.988,
+          "raw_target": "m_csa__276__pdb_1OGY_K",
+          "tcov": 0.999
+        },
+        {
+          "benchmark_role": "oos_tier::unknown_oos",
+          "bits": 1006.0,
+          "entry_id": "m_csa:276",
+          "evalue": 5.807e-41,
+          "fingerprint_id": null,
+          "high_confidence": true,
+          "label_group": "out_of_scope",
+          "lddt": 0.5358,
+          "prob": 1.0,
+          "qcov": 0.988,
+          "raw_target": "m_csa__276__pdb_1OGY_O",
+          "tcov": 0.999
+        }
+      ],
+      "true_fingerprint_id": null
+    }
+  ],
+  "counts": {
+    "channel_overlap_rows_for_correlation": 126,
+    "cofactor_confounded_oos_any_geometry": 8,
+    "cofactor_confounded_oos_predicted_geometry_overlap": 6,
+    "heldout_fold_rows_scored": 140,
+    "inscope": 48,
+    "oos": 92
+  },
+  "created_utc": "2026-06-01T02:15:00Z",
+  "guardrails": {
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "m_csa_eval_only": true,
+    "production_thresholds_changed": false
+  },
+  "interpretation": {
+    "deployment_gap": "A real deployment fold channel still needs predicted-structure Foldseek/TM scoring against the in-distribution atlas; this artifact uses selected-PDB structure metadata already frozen in repo.",
+    "does_fold_signal_catch_confounded_rows": "yes_as_a_rank_signal; all predicted-geometry confounded rows have near-zero nearest-primary Foldseek support in the existing selected-PDB proxy",
+    "operating_point_status": "not_deployable_standalone; at >=85% or >=90% in-scope retention the nearest-primary Foldseek proxy cannot abstain many OOS rows, because many in-scope rows also lack strong primary structural-neighbor support"
+  },
+  "orthogonality_to_current_channels": {
+    "interpretation": "The selected-PDB fold proxy is only weakly correlated with both current deployment channels on overlapping heldout rows, so it is partly orthogonal. It catches the confounded rows by fold novelty, but its standalone high-retention operating point remains weak.",
+    "pearson_fold_vs_cofactor_max": 0.344169,
+    "pearson_fold_vs_predicted_geometry_top1": 0.24572,
+    "pearson_predicted_geometry_top1_vs_cofactor_max": -0.204472,
+    "primary_fold_signal": "nearest_primary_foldseek_prob"
+  },
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Fold-level novelty diagnostic against the current702 heldout rows, using the frozen selected-PDB Foldseek/fast-3Di structural-neighborhood metadata already in the repo. This is a bounded fold proxy, not a new predicted-geometry Foldseek run.",
+  "signals": {
+    "high_conf_primary_hit_indicator": {
+      "auc_in_gt_any_geometry_confounded_oos": 0.729167,
+      "auc_in_gt_oos": 0.693841,
+      "auc_in_gt_predicted_geometry_confounded_oos": 0.708333,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "in_scope_mean": 0.583333,
+      "oos_mean": 0.195652,
+      "predicted_geometry_confounded_mean": 0.166667
+    },
+    "log1p_high_conf_primary_hit_count": {
+      "auc_in_gt_any_geometry_confounded_oos": 0.721354,
+      "auc_in_gt_oos": 0.714561,
+      "auc_in_gt_predicted_geometry_confounded_oos": 0.697917,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "in_scope_mean": 1.585011,
+      "oos_mean": 0.39936,
+      "predicted_geometry_confounded_mean": 0.543016
+    },
+    "nearest_primary_foldseek_prob": {
+      "auc_in_gt_any_geometry_confounded_oos": 0.808594,
+      "auc_in_gt_oos": 0.823256,
+      "auc_in_gt_predicted_geometry_confounded_oos": 0.793403,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "in_scope_mean": 0.612771,
+      "oos_mean": 0.045804,
+      "predicted_geometry_confounded_mean": 0.011833
+    },
+    "nearest_primary_indicator": {
+      "auc_in_gt_any_geometry_confounded_oos": 0.729167,
+      "auc_in_gt_oos": 0.810688,
+      "auc_in_gt_predicted_geometry_confounded_oos": 0.6875,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "in_scope_mean": 0.708333,
+      "oos_mean": 0.086957,
+      "predicted_geometry_confounded_mean": 0.333333
+    },
+    "top3_primary_foldseek_prob": {
+      "auc_in_gt_any_geometry_confounded_oos": 0.813802,
+      "auc_in_gt_oos": 0.820086,
+      "auc_in_gt_predicted_geometry_confounded_oos": 0.821181,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "in_scope_mean": 0.642813,
+      "oos_mean": 0.095848,
+      "predicted_geometry_confounded_mean": 0.013333
+    }
+  },
+  "source_artifacts": {
+    "cofactor_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    },
+    "esm2_150m_embeddings": {
+      "path": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+      "sha256": "e7e5ee1ec329b084182e7b957c24f14a282f08bf61a6d2191dd639752ffd9617"
+    },
+    "foldseek_metadata": {
+      "path": "artifacts/representation_tracks/foldseek_pocket/foldseek_structure_neighborhood_metadata_current702_20260526.jsonl",
+      "sha256": "f55b1c072666f403404d0ac02d73e5809b7206e3fddc1afe321b16e45e297227"
+    },
+    "novelty_eval": {
+      "path": "artifacts/v3_mechanism_novelty_abstention_eval_current702_20260530.json",
+      "sha256": "0abafea9f024b7941afbd14e108722286a43371c35586dc85db81986d8d94f8d"
+    },
+    "predicted_geometry_audit": {
+      "path": "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+      "sha256": "b1c120e452f439c72686463eb56249f8002a12862a601410d682b6f19e8b6294"
+    }
+  },
+  "status": "computed_from_existing_selected_pdb_foldseek_proxy"
+}

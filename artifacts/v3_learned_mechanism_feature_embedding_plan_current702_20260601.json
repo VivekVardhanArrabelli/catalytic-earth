@@ -1,0 +1,324 @@
+{
+  "artifact_id": "v3_learned_mechanism_feature_embedding_plan_current702_20260601",
+  "available_feature_spec": {
+    "feature_coverage": {
+      "active_site_residue_role_graph_available": 8,
+      "bond_making_breaking_descriptor": 8,
+      "cofactor_catalytic_locus": 7,
+      "electron_flow_class": 8,
+      "fingerprints_total": 8,
+      "metal_covalent_radical_flags": 6,
+      "proton_transfer_connectivity_present": 5,
+      "transition_state_stabilization_role_present": 3
+    },
+    "fingerprint_level_features": [
+      {
+        "active_site_residue_role_graph_available": true,
+        "active_site_roles": [
+          "nucleophile",
+          "general_base",
+          "acid_or_orienter"
+        ],
+        "bond_making_breaking_descriptor": [
+          "acyl heteroatom bond hydrolysis"
+        ],
+        "cofactor_catalytic_locus": [],
+        "covalent_flag": true,
+        "electron_flow_class": "nucleophilic_or_polar",
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "metal_flag": false,
+        "proton_transfer_connectivity_present": true,
+        "radical_flag": false,
+        "transition_state_stabilization_role_present": false
+      },
+      {
+        "active_site_residue_role_graph_available": true,
+        "active_site_roles": [
+          "metal_ligand",
+          "water_activator",
+          "leaving_group_stabilizer"
+        ],
+        "bond_making_breaking_descriptor": [
+          "hydrolysis of ester, amide, phosphate, or related bond"
+        ],
+        "cofactor_catalytic_locus": [
+          "Zn2+",
+          "Mg2+",
+          "Mn2+",
+          "Fe2+/Fe3+"
+        ],
+        "covalent_flag": false,
+        "electron_flow_class": "nucleophilic_or_polar",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "metal_flag": true,
+        "proton_transfer_connectivity_present": true,
+        "radical_flag": false,
+        "transition_state_stabilization_role_present": true
+      },
+      {
+        "active_site_residue_role_graph_available": true,
+        "active_site_roles": [
+          "plp_anchor",
+          "acid_base",
+          "phosphate_binder"
+        ],
+        "bond_making_breaking_descriptor": [
+          "C-N, C-C, or C-S bond transformation adjacent to amino group"
+        ],
+        "cofactor_catalytic_locus": [
+          "pyridoxal phosphate"
+        ],
+        "covalent_flag": false,
+        "electron_flow_class": "nucleophilic_or_polar",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "metal_flag": false,
+        "proton_transfer_connectivity_present": true,
+        "radical_flag": false,
+        "transition_state_stabilization_role_present": true
+      },
+      {
+        "active_site_residue_role_graph_available": true,
+        "active_site_roles": [
+          "cluster_ligand",
+          "sam_binding",
+          "substrate_positioning"
+        ],
+        "bond_making_breaking_descriptor": [
+          "radical-mediated C-H activation or rearrangement"
+        ],
+        "cofactor_catalytic_locus": [
+          "[4Fe-4S]",
+          "S-adenosylmethionine"
+        ],
+        "covalent_flag": false,
+        "electron_flow_class": "radical",
+        "fingerprint_id": "radical_sam_enzyme",
+        "metal_flag": false,
+        "proton_transfer_connectivity_present": false,
+        "radical_flag": true,
+        "transition_state_stabilization_role_present": false
+      },
+      {
+        "active_site_residue_role_graph_available": true,
+        "active_site_roles": [
+          "cobalamin_ligand",
+          "radical_stabilizer",
+          "substrate_orienter"
+        ],
+        "bond_making_breaking_descriptor": [
+          "radical-mediated carbon skeleton rearrangement or ammonia elimination"
+        ],
+        "cofactor_catalytic_locus": [
+          "adenosylcobalamin"
+        ],
+        "covalent_flag": false,
+        "electron_flow_class": "radical",
+        "fingerprint_id": "cobalamin_radical_rearrangement",
+        "metal_flag": false,
+        "proton_transfer_connectivity_present": false,
+        "radical_flag": true,
+        "transition_state_stabilization_role_present": true
+      },
+      {
+        "active_site_residue_role_graph_available": true,
+        "active_site_roles": [
+          "flavin_binder",
+          "nadph_binding",
+          "substrate_orienter"
+        ],
+        "bond_making_breaking_descriptor": [
+          "oxygen insertion or hydroxylation"
+        ],
+        "cofactor_catalytic_locus": [
+          "FAD",
+          "FMN",
+          "NADPH"
+        ],
+        "covalent_flag": false,
+        "electron_flow_class": "redox_or_electron_transfer",
+        "fingerprint_id": "flavin_monooxygenase",
+        "metal_flag": true,
+        "proton_transfer_connectivity_present": false,
+        "radical_flag": false,
+        "transition_state_stabilization_role_present": false
+      },
+      {
+        "active_site_residue_role_graph_available": true,
+        "active_site_roles": [
+          "flavin_binder",
+          "redox_acid_base",
+          "electron_transfer_path"
+        ],
+        "bond_making_breaking_descriptor": [
+          "hydride or electron transfer without oxygen insertion"
+        ],
+        "cofactor_catalytic_locus": [
+          "FAD",
+          "FMN"
+        ],
+        "covalent_flag": false,
+        "electron_flow_class": "redox_or_electron_transfer",
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "metal_flag": true,
+        "proton_transfer_connectivity_present": true,
+        "radical_flag": false,
+        "transition_state_stabilization_role_present": false
+      },
+      {
+        "active_site_residue_role_graph_available": true,
+        "active_site_roles": [
+          "heme_ligand",
+          "acid_base",
+          "electron_transfer_path"
+        ],
+        "bond_making_breaking_descriptor": [
+          "one-electron oxidation",
+          "peroxide reduction",
+          "aromatic bond oxidation"
+        ],
+        "cofactor_catalytic_locus": [
+          "heme",
+          "H2O2 or O2 depending on family"
+        ],
+        "covalent_flag": false,
+        "electron_flow_class": "redox_or_electron_transfer",
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "metal_flag": false,
+        "proton_transfer_connectivity_present": true,
+        "radical_flag": false,
+        "transition_state_stabilization_role_present": false
+      }
+    ],
+    "primary_fingerprint_ids": [
+      "flavin_dehydrogenase_reductase",
+      "heme_peroxidase_oxidase",
+      "metal_dependent_hydrolase",
+      "plp_dependent_enzyme",
+      "ser_his_acid_hydrolase"
+    ],
+    "secondary_or_probe_fingerprint_ids": [
+      "cobalamin_radical_rearrangement",
+      "flavin_monooxygenase",
+      "radical_sam_enzyme"
+    ]
+  },
+  "created_utc": "2026-06-01T02:15:51Z",
+  "current_data_readiness": {
+    "fingerprint_row_counts_raw": {
+      "cobalamin_radical_rearrangement": 3,
+      "flavin_dehydrogenase_reductase": 50,
+      "flavin_monooxygenase": 2,
+      "heme_peroxidase_oxidase": 20,
+      "metal_dependent_hydrolase": 83,
+      "plp_dependent_enzyme": 31,
+      "radical_sam_enzyme": 1,
+      "ser_his_acid_hydrolase": 42
+    },
+    "manifest_split_counts": {
+      "heldout": 140,
+      "in_distribution": 562
+    },
+    "predicted_geometry_atlas_counts": {
+      "atlas_retrieval_result_count": 171,
+      "atlas_rows_expected": 184,
+      "atlas_rows_missing": 16,
+      "atlas_rows_scored_ok": 168,
+      "atlas_rows_selected_for_predicted_geometry": 171,
+      "atlas_status_counts": {
+        "insufficient_resolved_residues": 1,
+        "ok": 168,
+        "predicted_structure_fetch_failed": 2
+      },
+      "atlas_top1_fingerprint_counts": {
+        "flavin_dehydrogenase_reductase": 16,
+        "flavin_monooxygenase": 1,
+        "heme_peroxidase_oxidase": 13,
+        "metal_dependent_hydrolase": 98,
+        "plp_dependent_enzyme": 4,
+        "ser_his_acid_hydrolase": 36
+      },
+      "combined_results_count": 299,
+      "heldout_predicted_retrieval_rows_carried": 128,
+      "missing_reason_counts": {
+        "insufficient_resolved_residues": 1,
+        "missing_accession_compatible_sequence_positions": 13,
+        "predicted_structure_fetch_failed": 2
+      }
+    },
+    "predicted_geometry_atlas_status": "complete",
+    "row_level_selected_organic_cofactor_records": 2106
+  },
+  "feature_extraction_gaps": [
+    {
+      "feature": "row_level_electron_flow_class",
+      "gap": "available only as fingerprint-level template, not row-level evidence",
+      "next_action": "derive row-level labels/features from curated reaction center plus active-site roles for train/cal rows only"
+    },
+    {
+      "feature": "transition_state_stabilization_role",
+      "gap": "role text exists in fingerprints but not as normalized row-level graph edges",
+      "next_action": "normalize active_site_signature roles into residue-role graph vocabulary"
+    },
+    {
+      "feature": "proton_transfer_connectivity",
+      "gap": "acid/base roles present but no directed donor/acceptor connectivity sidecar",
+      "next_action": "extract directed role edges from geometry feature rows where residue mappings exist"
+    },
+    {
+      "feature": "bond_making_breaking",
+      "gap": "fingerprint reaction-center descriptors exist; row-specific Rhea/M-CSA bond-change mapping is not normalized here",
+      "next_action": "build a source-backed bond-change sidecar before any supervised pilot"
+    },
+    {
+      "feature": "cofactor_catalytic_locus",
+      "gap": "row-level organic cofactor scores exist for flavin/heme/PLP, but metal/cobalamin/radical/Fe-S loci are incomplete",
+      "next_action": "persist row-level metal/cobalamin/radical/Fe-S sidecars or mark unsupported classes as missing"
+    }
+  ],
+  "guardrails": {
+    "evaluation_target": "operating_point_novelty_abstention_and_relationship_eval",
+    "heldout_labels_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false
+  },
+  "next_unblocked_command": "PYTHONPATH=src python -m catalytic_earth.cli build-learned-mechanism-feature-embedding-plan",
+  "pilot_design": {
+    "forbidden_training_rows": "heldout and OOS rows",
+    "input_blocks": [
+      "fingerprint-level mechanism chemistry template",
+      "sequence-only ESM2 embedding or frozen PLM surface",
+      "sequence-only organic cofactor scores when available",
+      "predicted-geometry role decomposition for atlas rows when available"
+    ],
+    "output_head": "small supervised or metric-learning projection trained only on train/cal rows; calibrate abstention on calibration/in-distribution atlas statistics, then evaluate heldout once",
+    "required_metrics": [
+      "operating-point OOS abstain recall at >=90% and >=85% in-scope retention",
+      "cofactor-confounded OOS abstain recall",
+      "relationship-rank hygiene: same-chemistry unrelated-fold near; same-fold different-chemistry far",
+      "no OOS false positives at the selected operating point"
+    ],
+    "trainable_rows": "train/calibration or current702 in_distribution rows only"
+  },
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Leakage-safe learned mechanism-feature embedding scaffold for the D11 continuous mechanism-space target. This is a spec plus coverage audit, not a heldout-trained or threshold-tuned model.",
+  "source_artifacts": {
+    "label_manifest": {
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "mechanism_fingerprints": {
+      "path": "data/registries/mechanism_fingerprints.json",
+      "sha256": "a1e7ae135adb97dc79d8cab91345bc3ed4720cf3371115737e05f10b629a2516"
+    },
+    "predicted_geometry_atlas": {
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    },
+    "selected_organic_cofactor_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    }
+  },
+  "status": "scaffold_ready_train_cal_pilot_deferred_until_row_level_feature_extraction"
+}
