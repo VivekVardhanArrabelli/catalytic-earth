@@ -1,0 +1,2069 @@
+{
+  "artifact_id": "v3_fold_augmented_abstention_gate_current702_20260601",
+  "best_channel": {
+    "auc_in_gt_confounded_oos": 0.911348,
+    "auc_in_gt_oos_all": 0.907622,
+    "best_at_85pct_inscope_retention": {
+      "confounded_abstain_recall": 0.8333,
+      "inscope_retain_recall": 0.8511,
+      "oos_abstain_recall": 0.7722,
+      "threshold": 0.503
+    },
+    "best_at_90pct_inscope_retention": {
+      "confounded_abstain_recall": 0.8333,
+      "inscope_retain_recall": 0.9149,
+      "oos_abstain_recall": 0.7215,
+      "threshold": 0.48945
+    },
+    "name": "combined_mean_geometry_fold"
+  },
+  "channels": {
+    "cofactor_max_score": {
+      "auc_in_gt_agnostic_oos": 0.65666,
+      "auc_in_gt_confounded_oos": 0.280142,
+      "auc_in_gt_oos_all": 0.628064,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 0.8723,
+        "oos_abstain_recall": 0.2532,
+        "threshold": 0.024632
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 0.9362,
+        "oos_abstain_recall": 0.1519,
+        "threshold": 0.01516
+      },
+      "confounded_mean": 0.705849,
+      "in_scope_mean": 0.366404,
+      "oos_mean": 0.159882
+    },
+    "combined_mean_geometry_cofactor_fold": {
+      "auc_in_gt_agnostic_oos": 0.922763,
+      "auc_in_gt_confounded_oos": 0.464539,
+      "auc_in_gt_oos_all": 0.887961,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 0.8723,
+        "oos_abstain_recall": 0.7468,
+        "threshold": 0.375253
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.6835,
+        "threshold": 0.363793
+      },
+      "confounded_mean": 0.519161,
+      "in_scope_mean": 0.523203,
+      "oos_mean": 0.352003
+    },
+    "combined_mean_geometry_fold": {
+      "auc_in_gt_agnostic_oos": 0.907316,
+      "auc_in_gt_confounded_oos": 0.911348,
+      "auc_in_gt_oos_all": 0.907622,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.8511,
+        "oos_abstain_recall": 0.7722,
+        "threshold": 0.503
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.8333,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.7215,
+        "threshold": 0.48945
+      },
+      "confounded_mean": 0.425817,
+      "in_scope_mean": 0.601603,
+      "oos_mean": 0.448064
+    },
+    "combined_min_geometry_fold": {
+      "auc_in_gt_agnostic_oos": 0.758525,
+      "auc_in_gt_confounded_oos": 0.840426,
+      "auc_in_gt_oos_all": 0.764745,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.8723,
+        "oos_abstain_recall": 0.3038,
+        "threshold": 0.3561
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.2152,
+        "threshold": 0.3516
+      },
+      "confounded_mean": 0.347233,
+      "in_scope_mean": 0.480264,
+      "oos_mean": 0.370115
+    },
+    "fold_nearest_atlas_tm_score": {
+      "auc_in_gt_agnostic_oos": 0.813028,
+      "auc_in_gt_confounded_oos": 0.829787,
+      "auc_in_gt_oos_all": 0.814301,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.8511,
+        "oos_abstain_recall": 0.5063,
+        "threshold": 0.5055
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.3333,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.4177,
+        "threshold": 0.48
+      },
+      "confounded_mean": 0.5044,
+      "in_scope_mean": 0.687219,
+      "oos_mean": 0.519843
+    },
+    "geometry_top1_score": {
+      "auc_in_gt_agnostic_oos": 0.750073,
+      "auc_in_gt_confounded_oos": 0.840426,
+      "auc_in_gt_oos_all": 0.756935,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.8723,
+        "oos_abstain_recall": 0.3038,
+        "threshold": 0.3561
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.2152,
+        "threshold": 0.3516
+      },
+      "confounded_mean": 0.347233,
+      "in_scope_mean": 0.515987,
+      "oos_mean": 0.376285
+    }
+  },
+  "counts": {
+    "confounded_oos": 6,
+    "heldout_rows_scored": 126,
+    "inscope": 47,
+    "oos": 79
+  },
+  "created_utc": "2026-06-01T03:13:12Z",
+  "guardrails": {
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_fit_or_refit": false,
+    "production_thresholds_changed": false
+  },
+  "interpretation": {
+    "caveat": "This is a no-fit diagnostic over heldout rows, not a selected deployment threshold or production scoring change.",
+    "headline": "Best fold-augmented diagnostic channel is combined_mean_geometry_fold with AUC 0.907622 overall."
+  },
+  "row_scores": [
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.341938,
+        "combined_mean_geometry_cofactor_fold": 0.420546,
+        "combined_mean_geometry_fold": 0.45985,
+        "combined_min_geometry_fold": 0.3678,
+        "fold_nearest_atlas_tm_score": 0.5519,
+        "geometry_top1_score": 0.3678
+      },
+      "entry_id": "m_csa:3",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.057045,
+        "combined_mean_geometry_cofactor_fold": 0.340748,
+        "combined_mean_geometry_fold": 0.4826,
+        "combined_min_geometry_fold": 0.3952,
+        "fold_nearest_atlas_tm_score": 0.3952,
+        "geometry_top1_score": 0.57
+      },
+      "entry_id": "m_csa:9",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.017518,
+        "combined_mean_geometry_cofactor_fold": 0.282273,
+        "combined_mean_geometry_fold": 0.41465,
+        "combined_min_geometry_fold": 0.356,
+        "fold_nearest_atlas_tm_score": 0.4733,
+        "geometry_top1_score": 0.356
+      },
+      "entry_id": "m_csa:10",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.101629,
+        "combined_mean_geometry_cofactor_fold": 0.323143,
+        "combined_mean_geometry_fold": 0.4339,
+        "combined_min_geometry_fold": 0.3602,
+        "fold_nearest_atlas_tm_score": 0.5076,
+        "geometry_top1_score": 0.3602
+      },
+      "entry_id": "m_csa:12",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.370306,
+        "combined_mean_geometry_cofactor_fold": 0.397002,
+        "combined_mean_geometry_fold": 0.41035,
+        "combined_min_geometry_fold": 0.4018,
+        "fold_nearest_atlas_tm_score": 0.4018,
+        "geometry_top1_score": 0.4189
+      },
+      "entry_id": "m_csa:14",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.999947,
+        "combined_mean_geometry_cofactor_fold": 0.743949,
+        "combined_mean_geometry_fold": 0.61595,
+        "combined_min_geometry_fold": 0.363,
+        "fold_nearest_atlas_tm_score": 0.8689,
+        "geometry_top1_score": 0.363
+      },
+      "entry_id": "m_csa:20",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.589255,
+        "combined_mean_geometry_cofactor_fold": 0.449885,
+        "combined_mean_geometry_fold": 0.3802,
+        "combined_min_geometry_fold": 0.2616,
+        "fold_nearest_atlas_tm_score": 0.4988,
+        "geometry_top1_score": 0.2616
+      },
+      "entry_id": "m_csa:30",
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.808565,
+        "combined_mean_geometry_cofactor_fold": 0.512022,
+        "combined_mean_geometry_fold": 0.36375,
+        "combined_min_geometry_fold": 0.3466,
+        "fold_nearest_atlas_tm_score": 0.3809,
+        "geometry_top1_score": 0.3466
+      },
+      "entry_id": "m_csa:31",
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.229583,
+        "combined_mean_geometry_cofactor_fold": 0.363261,
+        "combined_mean_geometry_fold": 0.4301,
+        "combined_min_geometry_fold": 0.4072,
+        "fold_nearest_atlas_tm_score": 0.453,
+        "geometry_top1_score": 0.4072
+      },
+      "entry_id": "m_csa:32",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.306956,
+        "combined_mean_geometry_cofactor_fold": 0.441385,
+        "combined_mean_geometry_fold": 0.5086,
+        "combined_min_geometry_fold": 0.4838,
+        "fold_nearest_atlas_tm_score": 0.4838,
+        "geometry_top1_score": 0.5334
+      },
+      "entry_id": "m_csa:34",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.027056,
+        "combined_mean_geometry_cofactor_fold": 0.390119,
+        "combined_mean_geometry_fold": 0.57165,
+        "combined_min_geometry_fold": 0.5453,
+        "fold_nearest_atlas_tm_score": 0.5453,
+        "geometry_top1_score": 0.598
+      },
+      "entry_id": "m_csa:43",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.03118,
+        "combined_mean_geometry_cofactor_fold": 0.363793,
+        "combined_mean_geometry_fold": 0.5301,
+        "combined_min_geometry_fold": 0.4316,
+        "fold_nearest_atlas_tm_score": 0.6286,
+        "geometry_top1_score": 0.4316
+      },
+      "entry_id": "m_csa:44",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.02003,
+        "combined_mean_geometry_cofactor_fold": 0.345177,
+        "combined_mean_geometry_fold": 0.50775,
+        "combined_min_geometry_fold": 0.3613,
+        "fold_nearest_atlas_tm_score": 0.6542,
+        "geometry_top1_score": 0.3613
+      },
+      "entry_id": "m_csa:45",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.251551,
+        "combined_mean_geometry_cofactor_fold": 0.345384,
+        "combined_mean_geometry_fold": 0.3923,
+        "combined_min_geometry_fold": 0.2965,
+        "fold_nearest_atlas_tm_score": 0.4881,
+        "geometry_top1_score": 0.2965
+      },
+      "entry_id": "m_csa:46",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.002812,
+        "combined_mean_geometry_cofactor_fold": 0.257271,
+        "combined_mean_geometry_fold": 0.3845,
+        "combined_min_geometry_fold": 0.3642,
+        "fold_nearest_atlas_tm_score": 0.4048,
+        "geometry_top1_score": 0.3642
+      },
+      "entry_id": "m_csa:56",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.012919,
+        "combined_mean_geometry_cofactor_fold": 0.289306,
+        "combined_mean_geometry_fold": 0.4275,
+        "combined_min_geometry_fold": 0.3545,
+        "fold_nearest_atlas_tm_score": 0.5005,
+        "geometry_top1_score": 0.3545
+      },
+      "entry_id": "m_csa:67",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.14849,
+        "combined_mean_geometry_cofactor_fold": 0.345663,
+        "combined_mean_geometry_fold": 0.44425,
+        "combined_min_geometry_fold": 0.3706,
+        "fold_nearest_atlas_tm_score": 0.5179,
+        "geometry_top1_score": 0.3706
+      },
+      "entry_id": "m_csa:71",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.190108,
+        "combined_mean_geometry_cofactor_fold": 0.396069,
+        "combined_mean_geometry_fold": 0.49905,
+        "combined_min_geometry_fold": 0.3755,
+        "fold_nearest_atlas_tm_score": 0.6226,
+        "geometry_top1_score": 0.3755
+      },
+      "entry_id": "m_csa:73",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.064958,
+        "combined_mean_geometry_cofactor_fold": 0.343619,
+        "combined_mean_geometry_fold": 0.48295,
+        "combined_min_geometry_fold": 0.3714,
+        "fold_nearest_atlas_tm_score": 0.5945,
+        "geometry_top1_score": 0.3714
+      },
+      "entry_id": "m_csa:79",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.542182,
+        "combined_mean_geometry_cofactor_fold": 0.467327,
+        "combined_mean_geometry_fold": 0.4299,
+        "combined_min_geometry_fold": 0.3489,
+        "fold_nearest_atlas_tm_score": 0.5109,
+        "geometry_top1_score": 0.3489
+      },
+      "entry_id": "m_csa:80",
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.067442,
+        "combined_mean_geometry_cofactor_fold": 0.280114,
+        "combined_mean_geometry_fold": 0.38645,
+        "combined_min_geometry_fold": 0.351,
+        "fold_nearest_atlas_tm_score": 0.4219,
+        "geometry_top1_score": 0.351
+      },
+      "entry_id": "m_csa:86",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.024632,
+        "combined_mean_geometry_cofactor_fold": 0.427744,
+        "combined_mean_geometry_fold": 0.6293,
+        "combined_min_geometry_fold": 0.6047,
+        "fold_nearest_atlas_tm_score": 0.6539,
+        "geometry_top1_score": 0.6047
+      },
+      "entry_id": "m_csa:97",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.791315,
+        "combined_mean_geometry_cofactor_fold": 0.634272,
+        "combined_mean_geometry_fold": 0.55575,
+        "combined_min_geometry_fold": 0.3441,
+        "fold_nearest_atlas_tm_score": 0.7674,
+        "geometry_top1_score": 0.3441
+      },
+      "entry_id": "m_csa:109",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.91277,
+        "combined_mean_geometry_cofactor_fold": 0.69119,
+        "combined_mean_geometry_fold": 0.5804,
+        "combined_min_geometry_fold": 0.4112,
+        "fold_nearest_atlas_tm_score": 0.7496,
+        "geometry_top1_score": 0.4112
+      },
+      "entry_id": "m_csa:115",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.046615,
+        "combined_mean_geometry_cofactor_fold": 0.359238,
+        "combined_mean_geometry_fold": 0.51555,
+        "combined_min_geometry_fold": 0.3031,
+        "fold_nearest_atlas_tm_score": 0.728,
+        "geometry_top1_score": 0.3031
+      },
+      "entry_id": "m_csa:118",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.100449,
+        "combined_mean_geometry_cofactor_fold": 0.27925,
+        "combined_mean_geometry_fold": 0.36865,
+        "combined_min_geometry_fold": 0.3641,
+        "fold_nearest_atlas_tm_score": 0.3641,
+        "geometry_top1_score": 0.3732
+      },
+      "entry_id": "m_csa:121",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.112104,
+        "combined_mean_geometry_cofactor_fold": 0.324001,
+        "combined_mean_geometry_fold": 0.42995,
+        "combined_min_geometry_fold": 0.3997,
+        "fold_nearest_atlas_tm_score": 0.4602,
+        "geometry_top1_score": 0.3997
+      },
+      "entry_id": "m_csa:125",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.405899,
+        "combined_mean_geometry_cofactor_fold": 0.413233,
+        "combined_mean_geometry_fold": 0.4169,
+        "combined_min_geometry_fold": 0.4054,
+        "fold_nearest_atlas_tm_score": 0.4054,
+        "geometry_top1_score": 0.4284
+      },
+      "entry_id": "m_csa:129",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.980908,
+        "combined_mean_geometry_cofactor_fold": 0.694703,
+        "combined_mean_geometry_fold": 0.5516,
+        "combined_min_geometry_fold": 0.3522,
+        "fold_nearest_atlas_tm_score": 0.751,
+        "geometry_top1_score": 0.3522
+      },
+      "entry_id": "m_csa:131",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.07112,
+        "combined_mean_geometry_cofactor_fold": 0.318573,
+        "combined_mean_geometry_fold": 0.4423,
+        "combined_min_geometry_fold": 0.3045,
+        "fold_nearest_atlas_tm_score": 0.5801,
+        "geometry_top1_score": 0.3045
+      },
+      "entry_id": "m_csa:155",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.01516,
+        "combined_mean_geometry_cofactor_fold": 0.43582,
+        "combined_mean_geometry_fold": 0.64615,
+        "combined_min_geometry_fold": 0.5945,
+        "fold_nearest_atlas_tm_score": 0.6978,
+        "geometry_top1_score": 0.5945
+      },
+      "entry_id": "m_csa:159",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.026459,
+        "combined_mean_geometry_cofactor_fold": 0.375253,
+        "combined_mean_geometry_fold": 0.54965,
+        "combined_min_geometry_fold": 0.4943,
+        "fold_nearest_atlas_tm_score": 0.4943,
+        "geometry_top1_score": 0.605
+      },
+      "entry_id": "m_csa:163",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.009608,
+        "combined_mean_geometry_cofactor_fold": 0.399869,
+        "combined_mean_geometry_fold": 0.595,
+        "combined_min_geometry_fold": 0.5826,
+        "fold_nearest_atlas_tm_score": 0.5826,
+        "geometry_top1_score": 0.6074
+      },
+      "entry_id": "m_csa:171",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.055615,
+        "combined_mean_geometry_cofactor_fold": 0.353872,
+        "combined_mean_geometry_fold": 0.503,
+        "combined_min_geometry_fold": 0.4222,
+        "fold_nearest_atlas_tm_score": 0.4222,
+        "geometry_top1_score": 0.5838
+      },
+      "entry_id": "m_csa:180",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.003664,
+        "combined_mean_geometry_cofactor_fold": 0.276921,
+        "combined_mean_geometry_fold": 0.41355,
+        "combined_min_geometry_fold": 0.399,
+        "fold_nearest_atlas_tm_score": 0.4281,
+        "geometry_top1_score": 0.399
+      },
+      "entry_id": "m_csa:185",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.01416,
+        "combined_mean_geometry_cofactor_fold": 0.33782,
+        "combined_mean_geometry_fold": 0.49965,
+        "combined_min_geometry_fold": 0.3568,
+        "fold_nearest_atlas_tm_score": 0.6425,
+        "geometry_top1_score": 0.3568
+      },
+      "entry_id": "m_csa:188",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.555321,
+        "combined_mean_geometry_cofactor_fold": 0.437807,
+        "combined_mean_geometry_fold": 0.37905,
+        "combined_min_geometry_fold": 0.3718,
+        "fold_nearest_atlas_tm_score": 0.3863,
+        "geometry_top1_score": 0.3718
+      },
+      "entry_id": "m_csa:191",
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.131177,
+        "combined_mean_geometry_cofactor_fold": 0.320259,
+        "combined_mean_geometry_fold": 0.4148,
+        "combined_min_geometry_fold": 0.3546,
+        "fold_nearest_atlas_tm_score": 0.475,
+        "geometry_top1_score": 0.3546
+      },
+      "entry_id": "m_csa:192",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.059128,
+        "combined_mean_geometry_cofactor_fold": 0.327209,
+        "combined_mean_geometry_fold": 0.46125,
+        "combined_min_geometry_fold": 0.4059,
+        "fold_nearest_atlas_tm_score": 0.5166,
+        "geometry_top1_score": 0.4059
+      },
+      "entry_id": "m_csa:197",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.134105,
+        "combined_mean_geometry_cofactor_fold": 0.344735,
+        "combined_mean_geometry_fold": 0.45005,
+        "combined_min_geometry_fold": 0.373,
+        "fold_nearest_atlas_tm_score": 0.5271,
+        "geometry_top1_score": 0.373
+      },
+      "entry_id": "m_csa:198",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.068564,
+        "combined_mean_geometry_cofactor_fold": 0.325421,
+        "combined_mean_geometry_fold": 0.45385,
+        "combined_min_geometry_fold": 0.4184,
+        "fold_nearest_atlas_tm_score": 0.4893,
+        "geometry_top1_score": 0.4184
+      },
+      "entry_id": "m_csa:199",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.322644,
+        "combined_mean_geometry_cofactor_fold": 0.365548,
+        "combined_mean_geometry_fold": 0.387,
+        "combined_min_geometry_fold": 0.1919,
+        "fold_nearest_atlas_tm_score": 0.5821,
+        "geometry_top1_score": 0.1919
+      },
+      "entry_id": "m_csa:201",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.100229,
+        "combined_mean_geometry_cofactor_fold": 0.300676,
+        "combined_mean_geometry_fold": 0.4009,
+        "combined_min_geometry_fold": 0.3516,
+        "fold_nearest_atlas_tm_score": 0.4502,
+        "geometry_top1_score": 0.3516
+      },
+      "entry_id": "m_csa:211",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.345223,
+        "combined_mean_geometry_cofactor_fold": 0.449774,
+        "combined_mean_geometry_fold": 0.50205,
+        "combined_min_geometry_fold": 0.3561,
+        "fold_nearest_atlas_tm_score": 0.648,
+        "geometry_top1_score": 0.3561
+      },
+      "entry_id": "m_csa:213",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.051407,
+        "combined_mean_geometry_cofactor_fold": 0.404002,
+        "combined_mean_geometry_fold": 0.5803,
+        "combined_min_geometry_fold": 0.3919,
+        "fold_nearest_atlas_tm_score": 0.7687,
+        "geometry_top1_score": 0.3919
+      },
+      "entry_id": "m_csa:217",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.382055,
+        "combined_mean_geometry_cofactor_fold": 0.551785,
+        "combined_mean_geometry_fold": 0.63665,
+        "combined_min_geometry_fold": 0.3843,
+        "fold_nearest_atlas_tm_score": 0.889,
+        "geometry_top1_score": 0.3843
+      },
+      "entry_id": "m_csa:220",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.035978,
+        "combined_mean_geometry_cofactor_fold": 0.312993,
+        "combined_mean_geometry_fold": 0.4515,
+        "combined_min_geometry_fold": 0.3796,
+        "fold_nearest_atlas_tm_score": 0.5234,
+        "geometry_top1_score": 0.3796
+      },
+      "entry_id": "m_csa:225",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.111344,
+        "combined_mean_geometry_cofactor_fold": 0.386015,
+        "combined_mean_geometry_fold": 0.52335,
+        "combined_min_geometry_fold": 0.399,
+        "fold_nearest_atlas_tm_score": 0.6477,
+        "geometry_top1_score": 0.399
+      },
+      "entry_id": "m_csa:230",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.087938,
+        "combined_mean_geometry_cofactor_fold": 0.495846,
+        "combined_mean_geometry_fold": 0.6998,
+        "combined_min_geometry_fold": 0.5423,
+        "fold_nearest_atlas_tm_score": 0.8573,
+        "geometry_top1_score": 0.5423
+      },
+      "entry_id": "m_csa:239",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.138136,
+        "combined_mean_geometry_cofactor_fold": 0.413545,
+        "combined_mean_geometry_fold": 0.55125,
+        "combined_min_geometry_fold": 0.3994,
+        "fold_nearest_atlas_tm_score": 0.7031,
+        "geometry_top1_score": 0.3994
+      },
+      "entry_id": "m_csa:242",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.985062,
+        "combined_mean_geometry_cofactor_fold": 0.654654,
+        "combined_mean_geometry_fold": 0.48945,
+        "combined_min_geometry_fold": 0.4364,
+        "fold_nearest_atlas_tm_score": 0.4364,
+        "geometry_top1_score": 0.5425
+      },
+      "entry_id": "m_csa:250",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.033532,
+        "combined_mean_geometry_cofactor_fold": 0.252977,
+        "combined_mean_geometry_fold": 0.3627,
+        "combined_min_geometry_fold": 0.3313,
+        "fold_nearest_atlas_tm_score": 0.3941,
+        "geometry_top1_score": 0.3313
+      },
+      "entry_id": "m_csa:254",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.149184,
+        "combined_mean_geometry_cofactor_fold": 0.386461,
+        "combined_mean_geometry_fold": 0.5051,
+        "combined_min_geometry_fold": 0.3555,
+        "fold_nearest_atlas_tm_score": 0.6547,
+        "geometry_top1_score": 0.3555
+      },
+      "entry_id": "m_csa:255",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.834847,
+        "combined_mean_geometry_cofactor_fold": 0.656882,
+        "combined_mean_geometry_fold": 0.5679,
+        "combined_min_geometry_fold": 0.3969,
+        "fold_nearest_atlas_tm_score": 0.7389,
+        "geometry_top1_score": 0.3969
+      },
+      "entry_id": "m_csa:267",
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.022233,
+        "combined_mean_geometry_cofactor_fold": 0.280111,
+        "combined_mean_geometry_fold": 0.40905,
+        "combined_min_geometry_fold": 0.3804,
+        "fold_nearest_atlas_tm_score": 0.4377,
+        "geometry_top1_score": 0.3804
+      },
+      "entry_id": "m_csa:297",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.014764,
+        "combined_mean_geometry_cofactor_fold": 0.392855,
+        "combined_mean_geometry_fold": 0.5819,
+        "combined_min_geometry_fold": 0.5813,
+        "fold_nearest_atlas_tm_score": 0.5825,
+        "geometry_top1_score": 0.5813
+      },
+      "entry_id": "m_csa:311",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.00085,
+        "combined_mean_geometry_cofactor_fold": 0.262917,
+        "combined_mean_geometry_fold": 0.39395,
+        "combined_min_geometry_fold": 0.3701,
+        "fold_nearest_atlas_tm_score": 0.4178,
+        "geometry_top1_score": 0.3701
+      },
+      "entry_id": "m_csa:313",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.08602,
+        "combined_mean_geometry_cofactor_fold": 0.406773,
+        "combined_mean_geometry_fold": 0.56715,
+        "combined_min_geometry_fold": 0.4255,
+        "fold_nearest_atlas_tm_score": 0.7088,
+        "geometry_top1_score": 0.4255
+      },
+      "entry_id": "m_csa:321",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.257731,
+        "combined_mean_geometry_cofactor_fold": 0.326577,
+        "combined_mean_geometry_fold": 0.361,
+        "combined_min_geometry_fold": 0.3287,
+        "fold_nearest_atlas_tm_score": 0.3933,
+        "geometry_top1_score": 0.3287
+      },
+      "entry_id": "m_csa:323",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.020439,
+        "combined_mean_geometry_cofactor_fold": 0.296146,
+        "combined_mean_geometry_fold": 0.434,
+        "combined_min_geometry_fold": 0.297,
+        "fold_nearest_atlas_tm_score": 0.571,
+        "geometry_top1_score": 0.297
+      },
+      "entry_id": "m_csa:333",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.432941,
+        "combined_mean_geometry_cofactor_fold": 0.41028,
+        "combined_mean_geometry_fold": 0.39895,
+        "combined_min_geometry_fold": 0.371,
+        "fold_nearest_atlas_tm_score": 0.4269,
+        "geometry_top1_score": 0.371
+      },
+      "entry_id": "m_csa:334",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.032504,
+        "combined_mean_geometry_cofactor_fold": 0.364035,
+        "combined_mean_geometry_fold": 0.5298,
+        "combined_min_geometry_fold": 0.3572,
+        "fold_nearest_atlas_tm_score": 0.7024,
+        "geometry_top1_score": 0.3572
+      },
+      "entry_id": "m_csa:346",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.305828,
+        "combined_mean_geometry_cofactor_fold": 0.500776,
+        "combined_mean_geometry_fold": 0.59825,
+        "combined_min_geometry_fold": 0.5209,
+        "fold_nearest_atlas_tm_score": 0.5209,
+        "geometry_top1_score": 0.6756
+      },
+      "entry_id": "m_csa:352",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.239087,
+        "combined_mean_geometry_cofactor_fold": 0.345296,
+        "combined_mean_geometry_fold": 0.3984,
+        "combined_min_geometry_fold": 0.3758,
+        "fold_nearest_atlas_tm_score": 0.421,
+        "geometry_top1_score": 0.3758
+      },
+      "entry_id": "m_csa:355",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.026902,
+        "combined_mean_geometry_cofactor_fold": 0.287434,
+        "combined_mean_geometry_fold": 0.4177,
+        "combined_min_geometry_fold": 0.3586,
+        "fold_nearest_atlas_tm_score": 0.4768,
+        "geometry_top1_score": 0.3586
+      },
+      "entry_id": "m_csa:356",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.21109,
+        "combined_mean_geometry_cofactor_fold": 0.408697,
+        "combined_mean_geometry_fold": 0.5075,
+        "combined_min_geometry_fold": 0.4056,
+        "fold_nearest_atlas_tm_score": 0.6094,
+        "geometry_top1_score": 0.4056
+      },
+      "entry_id": "m_csa:363",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.018957,
+        "combined_mean_geometry_cofactor_fold": 0.266886,
+        "combined_mean_geometry_fold": 0.39085,
+        "combined_min_geometry_fold": 0.3543,
+        "fold_nearest_atlas_tm_score": 0.4274,
+        "geometry_top1_score": 0.3543
+      },
+      "entry_id": "m_csa:369",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.049217,
+        "combined_mean_geometry_cofactor_fold": 0.280206,
+        "combined_mean_geometry_fold": 0.3957,
+        "combined_min_geometry_fold": 0.3724,
+        "fold_nearest_atlas_tm_score": 0.3724,
+        "geometry_top1_score": 0.419
+      },
+      "entry_id": "m_csa:370",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.194866,
+        "combined_mean_geometry_cofactor_fold": 0.374955,
+        "combined_mean_geometry_fold": 0.465,
+        "combined_min_geometry_fold": 0.3578,
+        "fold_nearest_atlas_tm_score": 0.5722,
+        "geometry_top1_score": 0.3578
+      },
+      "entry_id": "m_csa:375",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.011893,
+        "combined_mean_geometry_cofactor_fold": 0.369264,
+        "combined_mean_geometry_fold": 0.54795,
+        "combined_min_geometry_fold": 0.5417,
+        "fold_nearest_atlas_tm_score": 0.5417,
+        "geometry_top1_score": 0.5542
+      },
+      "entry_id": "m_csa:384",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.002246,
+        "combined_mean_geometry_cofactor_fold": 0.283782,
+        "combined_mean_geometry_fold": 0.42455,
+        "combined_min_geometry_fold": 0.3237,
+        "fold_nearest_atlas_tm_score": 0.5254,
+        "geometry_top1_score": 0.3237
+      },
+      "entry_id": "m_csa:392",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.442444,
+        "combined_mean_geometry_cofactor_fold": 0.400181,
+        "combined_mean_geometry_fold": 0.37905,
+        "combined_min_geometry_fold": 0.3576,
+        "fold_nearest_atlas_tm_score": 0.4005,
+        "geometry_top1_score": 0.3576
+      },
+      "entry_id": "m_csa:396",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.083668,
+        "combined_mean_geometry_cofactor_fold": 0.364623,
+        "combined_mean_geometry_fold": 0.5051,
+        "combined_min_geometry_fold": 0.3636,
+        "fold_nearest_atlas_tm_score": 0.6466,
+        "geometry_top1_score": 0.3636
+      },
+      "entry_id": "m_csa:397",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.110814,
+        "combined_mean_geometry_cofactor_fold": 0.348371,
+        "combined_mean_geometry_fold": 0.46715,
+        "combined_min_geometry_fold": 0.3861,
+        "fold_nearest_atlas_tm_score": 0.5482,
+        "geometry_top1_score": 0.3861
+      },
+      "entry_id": "m_csa:402",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.015679,
+        "combined_mean_geometry_cofactor_fold": 0.369326,
+        "combined_mean_geometry_fold": 0.54615,
+        "combined_min_geometry_fold": 0.5438,
+        "fold_nearest_atlas_tm_score": 0.5438,
+        "geometry_top1_score": 0.5485
+      },
+      "entry_id": "m_csa:403",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.103855,
+        "combined_mean_geometry_cofactor_fold": 0.435252,
+        "combined_mean_geometry_fold": 0.60095,
+        "combined_min_geometry_fold": 0.4338,
+        "fold_nearest_atlas_tm_score": 0.7681,
+        "geometry_top1_score": 0.4338
+      },
+      "entry_id": "m_csa:407",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.01762,
+        "combined_mean_geometry_cofactor_fold": 0.300473,
+        "combined_mean_geometry_fold": 0.4419,
+        "combined_min_geometry_fold": 0.34,
+        "fold_nearest_atlas_tm_score": 0.5438,
+        "geometry_top1_score": 0.34
+      },
+      "entry_id": "m_csa:409",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.998919,
+        "combined_mean_geometry_cofactor_fold": 0.723106,
+        "combined_mean_geometry_fold": 0.5852,
+        "combined_min_geometry_fold": 0.3646,
+        "fold_nearest_atlas_tm_score": 0.8058,
+        "geometry_top1_score": 0.3646
+      },
+      "entry_id": "m_csa:418",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.823618,
+        "combined_mean_geometry_cofactor_fold": 0.644873,
+        "combined_mean_geometry_fold": 0.5555,
+        "combined_min_geometry_fold": 0.33,
+        "fold_nearest_atlas_tm_score": 0.781,
+        "geometry_top1_score": 0.33
+      },
+      "entry_id": "m_csa:419",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.030343,
+        "combined_mean_geometry_cofactor_fold": 0.345314,
+        "combined_mean_geometry_fold": 0.5028,
+        "combined_min_geometry_fold": 0.3653,
+        "fold_nearest_atlas_tm_score": 0.6403,
+        "geometry_top1_score": 0.3653
+      },
+      "entry_id": "m_csa:423",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.996288,
+        "combined_mean_geometry_cofactor_fold": 0.716929,
+        "combined_mean_geometry_fold": 0.57725,
+        "combined_min_geometry_fold": 0.3568,
+        "fold_nearest_atlas_tm_score": 0.7977,
+        "geometry_top1_score": 0.3568
+      },
+      "entry_id": "m_csa:424",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.002675,
+        "combined_mean_geometry_cofactor_fold": 0.360125,
+        "combined_mean_geometry_fold": 0.53885,
+        "combined_min_geometry_fold": 0.3681,
+        "fold_nearest_atlas_tm_score": 0.7096,
+        "geometry_top1_score": 0.3681
+      },
+      "entry_id": "m_csa:428",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.058921,
+        "combined_mean_geometry_cofactor_fold": 0.559207,
+        "combined_mean_geometry_fold": 0.80935,
+        "combined_min_geometry_fold": 0.7886,
+        "fold_nearest_atlas_tm_score": 0.8301,
+        "geometry_top1_score": 0.7886
+      },
+      "entry_id": "m_csa:431",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.050435,
+        "combined_mean_geometry_cofactor_fold": 0.340878,
+        "combined_mean_geometry_fold": 0.4861,
+        "combined_min_geometry_fold": 0.3684,
+        "fold_nearest_atlas_tm_score": 0.6038,
+        "geometry_top1_score": 0.3684
+      },
+      "entry_id": "m_csa:440",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.010331,
+        "combined_mean_geometry_cofactor_fold": 0.271444,
+        "combined_mean_geometry_fold": 0.402,
+        "combined_min_geometry_fold": 0.3799,
+        "fold_nearest_atlas_tm_score": 0.4241,
+        "geometry_top1_score": 0.3799
+      },
+      "entry_id": "m_csa:444",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.904927,
+        "combined_mean_geometry_cofactor_fold": 0.591042,
+        "combined_mean_geometry_fold": 0.4341,
+        "combined_min_geometry_fold": 0.3576,
+        "fold_nearest_atlas_tm_score": 0.5106,
+        "geometry_top1_score": 0.3576
+      },
+      "entry_id": "m_csa:448",
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.016287,
+        "combined_mean_geometry_cofactor_fold": 0.529696,
+        "combined_mean_geometry_fold": 0.7864,
+        "combined_min_geometry_fold": 0.7711,
+        "fold_nearest_atlas_tm_score": 0.7711,
+        "geometry_top1_score": 0.8017
+      },
+      "entry_id": "m_csa:453",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.066805,
+        "combined_mean_geometry_cofactor_fold": 0.305968,
+        "combined_mean_geometry_fold": 0.42555,
+        "combined_min_geometry_fold": 0.3381,
+        "fold_nearest_atlas_tm_score": 0.513,
+        "geometry_top1_score": 0.3381
+      },
+      "entry_id": "m_csa:474",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.019869,
+        "combined_mean_geometry_cofactor_fold": 0.283156,
+        "combined_mean_geometry_fold": 0.4148,
+        "combined_min_geometry_fold": 0.377,
+        "fold_nearest_atlas_tm_score": 0.4526,
+        "geometry_top1_score": 0.377
+      },
+      "entry_id": "m_csa:480",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.063852,
+        "combined_mean_geometry_cofactor_fold": 0.287317,
+        "combined_mean_geometry_fold": 0.39905,
+        "combined_min_geometry_fold": 0.365,
+        "fold_nearest_atlas_tm_score": 0.4331,
+        "geometry_top1_score": 0.365
+      },
+      "entry_id": "m_csa:493",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.037846,
+        "combined_mean_geometry_cofactor_fold": 0.481415,
+        "combined_mean_geometry_fold": 0.7032,
+        "combined_min_geometry_fold": 0.5899,
+        "fold_nearest_atlas_tm_score": 0.8165,
+        "geometry_top1_score": 0.5899
+      },
+      "entry_id": "m_csa:497",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.215486,
+        "combined_mean_geometry_cofactor_fold": 0.290729,
+        "combined_mean_geometry_fold": 0.32835,
+        "combined_min_geometry_fold": 0.2475,
+        "fold_nearest_atlas_tm_score": 0.4092,
+        "geometry_top1_score": 0.2475
+      },
+      "entry_id": "m_csa:509",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.015874,
+        "combined_mean_geometry_cofactor_fold": 0.277658,
+        "combined_mean_geometry_fold": 0.40855,
+        "combined_min_geometry_fold": 0.3749,
+        "fold_nearest_atlas_tm_score": 0.4422,
+        "geometry_top1_score": 0.3749
+      },
+      "entry_id": "m_csa:511",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.139662,
+        "combined_mean_geometry_cofactor_fold": 0.415321,
+        "combined_mean_geometry_fold": 0.55315,
+        "combined_min_geometry_fold": 0.5055,
+        "fold_nearest_atlas_tm_score": 0.5055,
+        "geometry_top1_score": 0.6008
+      },
+      "entry_id": "m_csa:517",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.009935,
+        "combined_mean_geometry_cofactor_fold": 0.338945,
+        "combined_mean_geometry_fold": 0.50345,
+        "combined_min_geometry_fold": 0.3914,
+        "fold_nearest_atlas_tm_score": 0.6155,
+        "geometry_top1_score": 0.3914
+      },
+      "entry_id": "m_csa:526",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.396318,
+        "combined_mean_geometry_cofactor_fold": 0.490073,
+        "combined_mean_geometry_fold": 0.53695,
+        "combined_min_geometry_fold": 0.4248,
+        "fold_nearest_atlas_tm_score": 0.6491,
+        "geometry_top1_score": 0.4248
+      },
+      "entry_id": "m_csa:541",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.926197,
+        "combined_mean_geometry_cofactor_fold": 0.700166,
+        "combined_mean_geometry_fold": 0.58715,
+        "combined_min_geometry_fold": 0.3887,
+        "fold_nearest_atlas_tm_score": 0.7856,
+        "geometry_top1_score": 0.3887
+      },
+      "entry_id": "m_csa:545",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.922628,
+        "combined_mean_geometry_cofactor_fold": 0.670609,
+        "combined_mean_geometry_fold": 0.5446,
+        "combined_min_geometry_fold": 0.3583,
+        "fold_nearest_atlas_tm_score": 0.7309,
+        "geometry_top1_score": 0.3583
+      },
+      "entry_id": "m_csa:551",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.006945,
+        "combined_mean_geometry_cofactor_fold": 0.303115,
+        "combined_mean_geometry_fold": 0.4512,
+        "combined_min_geometry_fold": 0.3741,
+        "fold_nearest_atlas_tm_score": 0.5283,
+        "geometry_top1_score": 0.3741
+      },
+      "entry_id": "m_csa:566",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.059677,
+        "combined_mean_geometry_cofactor_fold": 0.485659,
+        "combined_mean_geometry_fold": 0.69865,
+        "combined_min_geometry_fold": 0.5995,
+        "fold_nearest_atlas_tm_score": 0.7978,
+        "geometry_top1_score": 0.5995
+      },
+      "entry_id": "m_csa:577",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.260602,
+        "combined_mean_geometry_cofactor_fold": 0.341401,
+        "combined_mean_geometry_fold": 0.3818,
+        "combined_min_geometry_fold": 0.3512,
+        "fold_nearest_atlas_tm_score": 0.4124,
+        "geometry_top1_score": 0.3512
+      },
+      "entry_id": "m_csa:590",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.027175,
+        "combined_mean_geometry_cofactor_fold": 0.302492,
+        "combined_mean_geometry_fold": 0.44015,
+        "combined_min_geometry_fold": 0.3836,
+        "fold_nearest_atlas_tm_score": 0.4967,
+        "geometry_top1_score": 0.3836
+      },
+      "entry_id": "m_csa:594",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.066956,
+        "combined_mean_geometry_cofactor_fold": 0.466852,
+        "combined_mean_geometry_fold": 0.6668,
+        "combined_min_geometry_fold": 0.5198,
+        "fold_nearest_atlas_tm_score": 0.5198,
+        "geometry_top1_score": 0.8138
+      },
+      "entry_id": "m_csa:599",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.02863,
+        "combined_mean_geometry_cofactor_fold": 0.344477,
+        "combined_mean_geometry_fold": 0.5024,
+        "combined_min_geometry_fold": 0.3488,
+        "fold_nearest_atlas_tm_score": 0.656,
+        "geometry_top1_score": 0.3488
+      },
+      "entry_id": "m_csa:606",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.008689,
+        "combined_mean_geometry_cofactor_fold": 0.527996,
+        "combined_mean_geometry_fold": 0.78765,
+        "combined_min_geometry_fold": 0.7061,
+        "fold_nearest_atlas_tm_score": 0.7061,
+        "geometry_top1_score": 0.8692
+      },
+      "entry_id": "m_csa:609",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.027738,
+        "combined_mean_geometry_cofactor_fold": 0.357779,
+        "combined_mean_geometry_fold": 0.5228,
+        "combined_min_geometry_fold": 0.3774,
+        "fold_nearest_atlas_tm_score": 0.6682,
+        "geometry_top1_score": 0.3774
+      },
+      "entry_id": "m_csa:614",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.097266,
+        "combined_mean_geometry_cofactor_fold": 0.324022,
+        "combined_mean_geometry_fold": 0.4374,
+        "combined_min_geometry_fold": 0.372,
+        "fold_nearest_atlas_tm_score": 0.5028,
+        "geometry_top1_score": 0.372
+      },
+      "entry_id": "m_csa:617",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.218736,
+        "combined_mean_geometry_cofactor_fold": 0.329412,
+        "combined_mean_geometry_fold": 0.38475,
+        "combined_min_geometry_fold": 0.3526,
+        "fold_nearest_atlas_tm_score": 0.4169,
+        "geometry_top1_score": 0.3526
+      },
+      "entry_id": "m_csa:627",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.132491,
+        "combined_mean_geometry_cofactor_fold": 0.304997,
+        "combined_mean_geometry_fold": 0.39125,
+        "combined_min_geometry_fold": 0.3543,
+        "fold_nearest_atlas_tm_score": 0.4282,
+        "geometry_top1_score": 0.3543
+      },
+      "entry_id": "m_csa:634",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.079037,
+        "combined_mean_geometry_cofactor_fold": 0.293679,
+        "combined_mean_geometry_fold": 0.401,
+        "combined_min_geometry_fold": 0.3668,
+        "fold_nearest_atlas_tm_score": 0.4352,
+        "geometry_top1_score": 0.3668
+      },
+      "entry_id": "m_csa:647",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.064457,
+        "combined_mean_geometry_cofactor_fold": 0.299586,
+        "combined_mean_geometry_fold": 0.41715,
+        "combined_min_geometry_fold": 0.3635,
+        "fold_nearest_atlas_tm_score": 0.4708,
+        "geometry_top1_score": 0.3635
+      },
+      "entry_id": "m_csa:651",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "true_fingerprint_id": null
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.011667,
+        "combined_mean_geometry_cofactor_fold": 0.451222,
+        "combined_mean_geometry_fold": 0.671,
+        "combined_min_geometry_fold": 0.5856,
+        "fold_nearest_atlas_tm_score": 0.7564,
+        "geometry_top1_score": 0.5856
+      },
+      "entry_id": "m_csa:686",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.044261,
+        "combined_mean_geometry_cofactor_fold": 0.58482,
+        "combined_mean_geometry_fold": 0.8551,
+        "combined_min_geometry_fold": 0.8232,
+        "fold_nearest_atlas_tm_score": 0.8232,
+        "geometry_top1_score": 0.887
+      },
+      "entry_id": "m_csa:688",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.629266,
+        "combined_mean_geometry_cofactor_fold": 0.653855,
+        "combined_mean_geometry_fold": 0.66615,
+        "combined_min_geometry_fold": 0.3896,
+        "fold_nearest_atlas_tm_score": 0.9427,
+        "geometry_top1_score": 0.3896
+      },
+      "entry_id": "m_csa:709",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.096257,
+        "combined_mean_geometry_cofactor_fold": 0.478819,
+        "combined_mean_geometry_fold": 0.6701,
+        "combined_min_geometry_fold": 0.5924,
+        "fold_nearest_atlas_tm_score": 0.7478,
+        "geometry_top1_score": 0.5924
+      },
+      "entry_id": "m_csa:710",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.997535,
+        "combined_mean_geometry_cofactor_fold": 0.783378,
+        "combined_mean_geometry_fold": 0.6763,
+        "combined_min_geometry_fold": 0.376,
+        "fold_nearest_atlas_tm_score": 0.9766,
+        "geometry_top1_score": 0.376
+      },
+      "entry_id": "m_csa:714",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.507053,
+        "combined_mean_geometry_cofactor_fold": 0.659984,
+        "combined_mean_geometry_fold": 0.73645,
+        "combined_min_geometry_fold": 0.5581,
+        "fold_nearest_atlas_tm_score": 0.5581,
+        "geometry_top1_score": 0.9148
+      },
+      "entry_id": "m_csa:723",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.703989,
+        "combined_mean_geometry_cofactor_fold": 0.60203,
+        "combined_mean_geometry_fold": 0.55105,
+        "combined_min_geometry_fold": 0.3664,
+        "fold_nearest_atlas_tm_score": 0.7357,
+        "geometry_top1_score": 0.3664
+      },
+      "entry_id": "m_csa:750",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.033745,
+        "combined_mean_geometry_cofactor_fold": 0.358782,
+        "combined_mean_geometry_fold": 0.5213,
+        "combined_min_geometry_fold": 0.4098,
+        "fold_nearest_atlas_tm_score": 0.6328,
+        "geometry_top1_score": 0.4098
+      },
+      "entry_id": "m_csa:853",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "cobalamin_radical_rearrangement"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.980187,
+        "combined_mean_geometry_cofactor_fold": 0.731262,
+        "combined_mean_geometry_fold": 0.6068,
+        "combined_min_geometry_fold": 0.3378,
+        "fold_nearest_atlas_tm_score": 0.8758,
+        "geometry_top1_score": 0.3378
+      },
+      "entry_id": "m_csa:854",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.092906,
+        "combined_mean_geometry_cofactor_fold": 0.576269,
+        "combined_mean_geometry_fold": 0.81795,
+        "combined_min_geometry_fold": 0.7538,
+        "fold_nearest_atlas_tm_score": 0.7538,
+        "geometry_top1_score": 0.8821
+      },
+      "entry_id": "m_csa:866",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.920706,
+        "combined_mean_geometry_cofactor_fold": 0.701935,
+        "combined_mean_geometry_fold": 0.59255,
+        "combined_min_geometry_fold": 0.2908,
+        "fold_nearest_atlas_tm_score": 0.8943,
+        "geometry_top1_score": 0.2908
+      },
+      "entry_id": "m_csa:892",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.508862,
+        "combined_mean_geometry_cofactor_fold": 0.488187,
+        "combined_mean_geometry_fold": 0.47785,
+        "combined_min_geometry_fold": 0.426,
+        "fold_nearest_atlas_tm_score": 0.5297,
+        "geometry_top1_score": 0.426
+      },
+      "entry_id": "m_csa:897",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.363472,
+        "combined_mean_geometry_cofactor_fold": 0.400524,
+        "combined_mean_geometry_fold": 0.41905,
+        "combined_min_geometry_fold": 0.4122,
+        "fold_nearest_atlas_tm_score": 0.4259,
+        "geometry_top1_score": 0.4122
+      },
+      "entry_id": "m_csa:916",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.146664,
+        "combined_mean_geometry_cofactor_fold": 0.382521,
+        "combined_mean_geometry_fold": 0.50045,
+        "combined_min_geometry_fold": 0.48,
+        "fold_nearest_atlas_tm_score": 0.48,
+        "geometry_top1_score": 0.5209
+      },
+      "entry_id": "m_csa:990",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.050014,
+        "combined_mean_geometry_cofactor_fold": 0.358171,
+        "combined_mean_geometry_fold": 0.51225,
+        "combined_min_geometry_fold": 0.4894,
+        "fold_nearest_atlas_tm_score": 0.4894,
+        "geometry_top1_score": 0.5351
+      },
+      "entry_id": "m_csa:994",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Fold-augmented deployment abstention diagnostic over heldout rows with ok predicted geometry: raw predicted-geometry top1 confidence, sequence-only selected organic cofactor max score, and real predicted-structure nearest-atlas Foldseek/TM score.",
+  "source_artifacts": {
+    "predicted_geometry_atlas": {
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    },
+    "predicted_structure_fold_channel": {
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+      "sha256": "32389ae5d6abcc26cf6f0e8a57f3ae70c9f7ac482ec7b1138eb25c053382be24"
+    },
+    "selected_organic_cofactor_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    }
+  },
+  "status": "computed_no_fit_no_threshold_change"
+}

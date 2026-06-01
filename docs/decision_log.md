@@ -3,6 +3,94 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-01: Real Predicted-Structure Foldseek Channel Is Scored For All Ok Heldout Rows
+
+Decision: move beyond the selected-PDB fold proxy by staging the real
+AlphaFoldDB-predicted fold channel for heldout rows against the predicted
+in-distribution atlas. The run used exact AFDB v6 CIF requests derived from the
+current702 predicted-geometry atlas artifact, staged coordinates transiently
+under `/private/tmp`, and committed only the small Foldseek TSVs plus parsed
+JSON/report. No label, registry, ontology, threshold, production scoring, import,
+or split changed.
+
+Result: Foldseek exact TM scoring completed for all 126 heldout rows with ok
+predicted geometry against 167 unique predicted atlas CIFs, yielding 11,297
+mapped heldout-vs-atlas pairs and 0 unmapped names. The nearest-atlas TM signal
+separates in-scope heldout from OOS at AUC `0.814301` overall and `0.829787`
+against the six cofactor-confounded OOS rows. At the diagnostic >=90% in-scope
+retention point it abstains on `0.4177` of all OOS and `0.3333` of confounded
+OOS; at >=85% retention it abstains on `0.5063` of all OOS and `0.5` of
+confounded OOS. Priority nearest-atlas TM scores were: `m_csa:30` 0.4988,
+`m_csa:31` 0.3809, `m_csa:80` 0.5109, `m_csa:191` 0.3863, `m_csa:267` 0.7389,
+and `m_csa:448` 0.5106.
+
+Consequence: the real predicted-structure fold channel is now an all-heldout
+rank signal, not only a manifest. It clears the 0.75 rank bar and is partly
+aligned with the desired confounded-OOS behavior, but the high-retention operating
+point is still not standalone deployment. Next work should combine this fold
+channel with geometry/cofactor signals and decide whether persistent predicted-CIF
+coordinate provenance should be committed.
+
+Artifacts: `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+`artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/cofactor_confounded_oos_vs_atlas.tsv`,
+`artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/all_heldout_vs_atlas.tsv`,
+`work/predicted_structure_fold_channel_current702_20260601.md`.
+
+## 2026-06-01: Fold-Augmented Predicted-Geometry Gate Is The Strongest No-Fit Abstention Diagnostic So Far
+
+Decision: combine the real predicted-structure nearest-atlas Foldseek/TM score
+with frozen predicted-geometry confidence in a bounded heldout-only diagnostic.
+This is explicitly no-fit and post-hoc: it selects no production threshold, does
+not train on heldout, and changes no label, registry, ontology, import, split, or
+production scorer.
+
+Result: among raw and simple combined channels, `combined_mean_geometry_fold` is
+best. It separates in-scope heldout rows from all OOS rows at AUC `0.907622` and
+from the six cofactor-confounded OOS rows at AUC `0.911348`, above standalone
+predicted geometry (`0.756935`/`0.840426`) and standalone nearest-atlas fold TM
+(`0.814301`/`0.829787`). At the diagnostic >=90% in-scope retention point it
+retains `0.9149` of in-scope rows while abstaining on `0.7215` of all OOS rows
+and `0.8333` of cofactor-confounded OOS rows; at >=85% retention it abstains on
+`0.7722` of all OOS rows and `0.8333` of cofactor-confounded OOS rows.
+
+Consequence: the next deployment-gate work should promote this from a
+heldout-only diagnostic into a leakage-safe train/cal/heldout thresholding
+contract, with any fitted weights or threshold selected on train/cal only. Do
+not treat these post-hoc operating points as authorized production thresholds.
+
+Artifacts: `artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json`,
+`work/fold_augmented_abstention_gate_current702_20260601.md`.
+
+## 2026-06-01: Predicted-Atlas Geometry Robust-Distance Variant Adds Modest Rank Lift, But Not An Operating-Point Breakthrough
+
+Decision: after the in-distribution predicted-geometry atlas was materialized,
+rerun the blocked atlas-normalized novelty variants rather than combining only raw
+heldout scores. The bounded rerun used predicted-geometry retrieval rows only:
+168 in-distribution atlas rows, 47 in-scope heldout rows, 79 OOS heldout rows,
+and the six cofactor-confounded OOS rows already identified by the current gate.
+All normalization was atlas-only; no labels, thresholds, registries, imports, or
+splits changed.
+
+Result: the best variant is a robust feature-distance signal to the nearest
+in-distribution mechanism class centroid over top1 geometry subfeatures. It
+improves novelty rank AUC over raw predicted-geometry top1 score:
+`0.776461` vs `0.756935` overall, and `0.847518` vs `0.840426` on the
+cofactor-confounded subset. The lift is real but bounded: at the diagnostic
+>=90% in-scope retention point it abstains on only `0.2278` of OOS rows and
+`0.3333` of confounded rows. Relaxing to >=85% retention reaches `0.5949` OOS
+abstain recall and `0.6667` confounded abstain recall, still post-hoc and not a
+deployment threshold.
+
+Consequence: predicted-atlas robust-distance geometry is the best in-repo
+geometry-only novelty variant so far, but it does not erase the operating-point
+feature-overlap problem. Future work should treat it as a diagnostic/possible
+feature input, not as a standalone deployable gate. The next distinct lever is
+the real predicted-structure Foldseek/TM channel or a mechanism-feature embedding
+gap closure, not another raw geometry subfeature recombination.
+
+Artifacts: `artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json`,
+`work/predicted_atlas_geometry_novelty_variants_current702_20260601.md`.
+
 ## 2026-05-31: Ruled Out In-Repo Lever — Richer Geometry Sub-Features Do NOT Beat Collapsed top1_score For Novelty
 
 Decision: before reaching for a new external feature, test whether the

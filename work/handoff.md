@@ -50,6 +50,109 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Predicted-Structure Fold Channel And Fold-Augmented Gate
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T02:34:09Z`
+- STARTED_LOCAL: `Sun May 31 21:34:09 CDT 2026`
+- ENDED_AT: `2026-06-01T03:25:44Z`
+- ENDED_LOCAL: `Sun May 31 22:25:44 CDT 2026`
+- ELAPSED_MINUTES: `51.6`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "61454", "started_at": "2026-06-01T02:34:09Z", "status": "acquired"}`
+- Lock release result: pending at handoff write; release command to run after
+  clean synced push:
+  `PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced`
+- Git branch at start: `main`
+- Git HEAD at start: `4ba1328a3e5434d132caa84beb4573a8b7549c19`
+- Dirty files at start: none
+- Git branch at end before commit: `main`
+- Git HEAD at end before commit: `4ba1328a3e5434d132caa84beb4573a8b7549c19`
+- Dirty files at end before staging: `docs/artifact_index.md`,
+  `docs/decision_log.md`, `docs/project_state.md`,
+  `src/catalytic_earth/cli.py`, `src/catalytic_earth/northstar_next_levers.py`,
+  `tests/test_northstar_next_levers.py`, five new JSON artifacts, five new
+  work reports, and the two Foldseek TSV result files under
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/`.
+- Input artifacts:
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json`,
+  `artifacts/v3_family_set_expansion_targets_current702_20260601.json`,
+  `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`.
+- Output artifacts:
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/cofactor_confounded_oos_vs_atlas.tsv`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/all_heldout_vs_atlas.tsv`,
+  `artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json`,
+  `artifacts/v3_selected_organic_cofactor_sidecar_schema_audit_current702_20260601.json`,
+  `artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json`,
+  and matching reports in `work/`.
+- Commands run:
+  `git fetch origin`, `git pull --ff-only origin main`,
+  `PYTHONPATH=src python -m catalytic_earth.cli build-predicted-structure-fold-channel`,
+  transient AFDB v6 CIF materialization under `/private/tmp`,
+  `/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search` for the
+  six-row priority OOS scope and the all-heldout scope,
+  `PYTHONPATH=src python -m catalytic_earth.cli eval-predicted-atlas-geometry-novelty-variants`,
+  `PYTHONPATH=src python -m catalytic_earth.cli audit-selected-organic-cofactor-sidecar-schema`,
+  `PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-evidence-packet`,
+  `PYTHONPATH=src python -m catalytic_earth.cli eval-fold-augmented-abstention-gate`,
+  JSON/source-reference/report consistency checks, CLI help checks, and the
+  validation commands below.
+- Validation results:
+  JSON parsing passed for all five new JSON artifacts;
+  `python -m compileall -q src tests` passed;
+  `git diff --check` passed;
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with 12 source
+  records, 8 mechanism fingerprints, 15 mechanism ontology families, and 702
+  curated labels;
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_mechanism_abstention_gate_eval.py tests/test_predicted_geometry_robustness.py`
+  passed with 19 tests;
+  `PYTHONPATH=src python -m pytest` passed with 989 tests and one upstream
+  sklearn/scipy deprecation warning before the final report wording cleanup;
+  final `PYTHONPATH=src python -m unittest discover -s tests` passed with 966
+  tests and the same upstream deprecation warning.
+- Commit/push result: pending at handoff write; commit and push after this
+  ledger, then verify `HEAD == origin/main`.
+- Exact next action for the next run: promote the fold-augmented no-fit
+  diagnostic into a leakage-safe train/cal/heldout abstention thresholding
+  contract, selecting any fitted weights or threshold on train/cal only; keep the
+  current heldout operating points non-production and decide whether persistent
+  AFDB predicted-CIF coordinate provenance should be committed.
+
+Work completed:
+
+- Built a real predicted-structure fold channel from AlphaFoldDB v6 predicted
+  structures against the in-distribution predicted atlas. Foldseek exact TM
+  scoring is parsed for all 126 heldout rows with ok predicted geometry, with
+  11,297 mapped heldout-vs-atlas pairs and 0 unmapped names. The standalone
+  nearest-atlas TM signal reaches AUC `0.814301` overall and `0.829787` on the
+  six cofactor-confounded OOS rows. Persistent coordinate files are intentionally
+  not committed; the small result TSVs and parsed JSON/report are committed.
+- Ran the now-unblocked predicted-atlas novelty variants. The best geometry-only
+  variant is `negative_nearest_class_centroid_robust_distance` with AUC
+  `0.776461` overall and `0.847518` on cofactor-confounded OOS.
+- Audited the selected organic cofactor sidecar under a strict current702
+  row-class schema. The sidecar passed with 2,106/2,106 row-class records and no
+  critical violations, closing the organic flavin/heme/PLP sidecar schema risk.
+- Built the review-only glycyl-radical/thiamine-lyase family panel evidence
+  packet for `m_csa:30` and `m_csa:31`, including predicted-structure fold TM
+  scores. No labels, registries, imports, thresholds, production scorers, or
+  splits changed.
+- Added the fold-augmented abstention gate diagnostic. The best no-fit channel is
+  `combined_mean_geometry_fold`, with AUC `0.907622` overall and `0.911348` on
+  cofactor-confounded OOS. At >=90% in-scope retention it abstains on `0.7215`
+  of all OOS and `0.8333` of cofactor-confounded OOS; these are diagnostic
+  heldout operating points, not production thresholds.
+- Updated `docs/artifact_index.md`, `docs/decision_log.md`, and
+  `docs/project_state.md` with the new fold-channel and fold-augmented-gate
+  posture.
+
 ### 2026-06-01 Northstar Four-Lever Completion
 
 Automation run: `catalytic-earth-work-loop`

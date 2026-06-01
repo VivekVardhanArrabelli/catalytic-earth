@@ -42,8 +42,13 @@ from .mechanism_abstention_gate_eval import (
 )
 from .northstar_next_levers import (
     write_family_set_expansion_targets,
+    write_family_panel_evidence_packet,
+    write_fold_augmented_abstention_gate,
     write_fold_level_novelty_signal,
     write_learned_mechanism_feature_embedding_plan,
+    write_predicted_atlas_geometry_novelty_variants,
+    write_predicted_structure_fold_channel,
+    write_selected_organic_cofactor_sidecar_schema_audit,
 )
 from .geometry_reports import write_geometry_slice_summary
 from .geometry_head import write_geometry_nonlinear_head_audit
@@ -10801,6 +10806,99 @@ def cmd_eval_fold_level_novelty_signal(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_predicted_structure_fold_channel(args: argparse.Namespace) -> int:
+    audit = write_predicted_structure_fold_channel(
+        predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
+        fold_level_signal_path=Path(args.fold_level_signal),
+        coordinate_root=Path(args.coordinate_root),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        foldseek_binary=args.foldseek_binary,
+        threads=args.threads,
+        priority_result_tsv=(
+            Path(args.priority_result_tsv) if args.priority_result_tsv else None
+        ),
+        heldout_result_tsv=(
+            Path(args.heldout_result_tsv) if args.heldout_result_tsv else None
+        ),
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote predicted-structure fold channel manifest to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"priority rows: {counts.get('priority_cofactor_confounded_oos_rows')})"
+    )
+    return 0
+
+
+def cmd_eval_predicted_atlas_geometry_novelty_variants(args: argparse.Namespace) -> int:
+    audit = write_predicted_atlas_geometry_novelty_variants(
+        predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
+        fold_level_signal_path=Path(args.fold_level_signal),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    best = audit.get("best_signal", {})
+    print(
+        "Wrote predicted-atlas geometry novelty variants to "
+        f"{args.out} (best: {best.get('name')}, "
+        f"AUC: {best.get('auc_in_gt_oos_all')})"
+    )
+    return 0
+
+
+def cmd_audit_selected_organic_cofactor_sidecar_schema(args: argparse.Namespace) -> int:
+    audit = write_selected_organic_cofactor_sidecar_schema_audit(
+        selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    critical = audit.get("counts", {}).get("critical_counts", {})
+    print(
+        "Wrote selected organic cofactor sidecar schema audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"critical violations: {sum(critical.values()) if critical else 'n/a'})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_evidence_packet(args: argparse.Namespace) -> int:
+    audit = write_family_panel_evidence_packet(
+        family_targets_path=Path(args.family_targets),
+        predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
+        fold_level_signal_path=Path(args.fold_level_signal),
+        selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
+        predicted_atlas_variants_path=Path(args.predicted_atlas_variants),
+        predicted_structure_fold_channel_path=Path(args.predicted_structure_fold_channel),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        panel_id=args.panel_id,
+    )
+    print(
+        "Wrote family panel evidence packet to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"rows: {audit.get('counts', {}).get('candidate_rows')})"
+    )
+    return 0
+
+
+def cmd_eval_fold_augmented_abstention_gate(args: argparse.Namespace) -> int:
+    audit = write_fold_augmented_abstention_gate(
+        predicted_structure_fold_channel_path=Path(args.predicted_structure_fold_channel),
+        predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
+        selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    best = audit.get("best_channel", {})
+    print(
+        "Wrote fold-augmented abstention gate to "
+        f"{args.out} (best: {best.get('name')}, AUC: {best.get('auc_in_gt_oos_all')})"
+    )
+    return 0
+
+
 def cmd_build_learned_mechanism_feature_embedding_plan(args: argparse.Namespace) -> int:
     audit = write_learned_mechanism_feature_embedding_plan(
         mechanism_fingerprints_path=Path(args.mechanism_fingerprints),
@@ -21415,6 +21513,171 @@ def build_parser() -> argparse.ArgumentParser:
         default="work/fold_level_novelty_signal_current702_20260601.md",
     )
     fold_novelty.set_defaults(func=cmd_eval_fold_level_novelty_signal)
+
+    predicted_structure_fold = subparsers.add_parser(
+        "build-predicted-structure-fold-channel",
+        help=(
+            "stage a bounded AlphaFoldDB-predicted Foldseek/TM channel manifest "
+            "for heldout rows against the in-distribution atlas"
+        ),
+    )
+    predicted_structure_fold.add_argument(
+        "--predicted-geometry-atlas",
+        default="artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+    )
+    predicted_structure_fold.add_argument(
+        "--fold-level-signal",
+        default="artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
+    )
+    predicted_structure_fold.add_argument(
+        "--coordinate-root",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates",
+    )
+    predicted_structure_fold.add_argument(
+        "--foldseek-binary",
+        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    )
+    predicted_structure_fold.add_argument("--threads", type=int, default=4)
+    predicted_structure_fold.add_argument(
+        "--priority-result-tsv",
+        default=None,
+        help="optional Foldseek TSV for cofactor-confounded OOS queries vs atlas",
+    )
+    predicted_structure_fold.add_argument(
+        "--heldout-result-tsv",
+        default=None,
+        help="optional Foldseek TSV for all heldout queries vs atlas",
+    )
+    predicted_structure_fold.add_argument(
+        "--out",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    )
+    predicted_structure_fold.add_argument(
+        "--report",
+        default="work/predicted_structure_fold_channel_current702_20260601.md",
+    )
+    predicted_structure_fold.set_defaults(
+        func=cmd_build_predicted_structure_fold_channel
+    )
+
+    predicted_atlas_geometry_variants = subparsers.add_parser(
+        "eval-predicted-atlas-geometry-novelty-variants",
+        help=(
+            "evaluate bounded predicted-geometry atlas novelty variants using "
+            "in-distribution atlas statistics only"
+        ),
+    )
+    predicted_atlas_geometry_variants.add_argument(
+        "--predicted-geometry-atlas",
+        default="artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+    )
+    predicted_atlas_geometry_variants.add_argument(
+        "--fold-level-signal",
+        default="artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
+    )
+    predicted_atlas_geometry_variants.add_argument(
+        "--out",
+        default="artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
+    )
+    predicted_atlas_geometry_variants.add_argument(
+        "--report",
+        default="work/predicted_atlas_geometry_novelty_variants_current702_20260601.md",
+    )
+    predicted_atlas_geometry_variants.set_defaults(
+        func=cmd_eval_predicted_atlas_geometry_novelty_variants
+    )
+
+    selected_cofactor_schema = subparsers.add_parser(
+        "audit-selected-organic-cofactor-sidecar-schema",
+        help="validate strict current702 schema/lineage for selected organic cofactor scores",
+    )
+    selected_cofactor_schema.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+    )
+    selected_cofactor_schema.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    selected_cofactor_schema.add_argument(
+        "--out",
+        default="artifacts/v3_selected_organic_cofactor_sidecar_schema_audit_current702_20260601.json",
+    )
+    selected_cofactor_schema.add_argument(
+        "--report",
+        default="work/selected_organic_cofactor_sidecar_schema_audit_current702_20260601.md",
+    )
+    selected_cofactor_schema.set_defaults(
+        func=cmd_audit_selected_organic_cofactor_sidecar_schema
+    )
+
+    family_panel_packet = subparsers.add_parser(
+        "build-family-panel-evidence-packet",
+        help="write a review-only evidence packet for one targeted family panel",
+    )
+    family_panel_packet.add_argument(
+        "--panel-id",
+        default="glycyl_radical_or_thiamine_radical_lyase_boundary",
+    )
+    family_panel_packet.add_argument(
+        "--family-targets",
+        default="artifacts/v3_family_set_expansion_targets_current702_20260601.json",
+    )
+    family_panel_packet.add_argument(
+        "--predicted-geometry-atlas",
+        default="artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+    )
+    family_panel_packet.add_argument(
+        "--fold-level-signal",
+        default="artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
+    )
+    family_panel_packet.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+    )
+    family_panel_packet.add_argument(
+        "--predicted-atlas-variants",
+        default="artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
+    )
+    family_panel_packet.add_argument(
+        "--predicted-structure-fold-channel",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    )
+    family_panel_packet.add_argument(
+        "--out",
+        default="artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json",
+    )
+    family_panel_packet.add_argument(
+        "--report",
+        default="work/family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.md",
+    )
+    family_panel_packet.set_defaults(func=cmd_build_family_panel_evidence_packet)
+
+    fold_augmented_gate = subparsers.add_parser(
+        "eval-fold-augmented-abstention-gate",
+        help="evaluate no-fit deployment abstention diagnostics with the real predicted Foldseek/TM channel",
+    )
+    fold_augmented_gate.add_argument(
+        "--predicted-structure-fold-channel",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    )
+    fold_augmented_gate.add_argument(
+        "--predicted-geometry-atlas",
+        default="artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+    )
+    fold_augmented_gate.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+    )
+    fold_augmented_gate.add_argument(
+        "--out",
+        default="artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json",
+    )
+    fold_augmented_gate.add_argument(
+        "--report",
+        default="work/fold_augmented_abstention_gate_current702_20260601.md",
+    )
+    fold_augmented_gate.set_defaults(func=cmd_eval_fold_augmented_abstention_gate)
 
     mechanism_embedding_plan = subparsers.add_parser(
         "build-learned-mechanism-feature-embedding-plan",

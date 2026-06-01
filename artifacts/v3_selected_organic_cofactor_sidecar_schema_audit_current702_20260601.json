@@ -1,0 +1,97 @@
+{
+  "artifact_id": "v3_selected_organic_cofactor_sidecar_schema_audit_current702_20260601",
+  "counts": {
+    "class_counts": {
+      "flavin": 702,
+      "heme": 702,
+      "plp": 702
+    },
+    "critical_counts": {
+      "class_mismatches": 0,
+      "duplicate_entry_class_pairs": 0,
+      "extra_entry_class_pairs": 0,
+      "fallback_source_rows": 0,
+      "missing_entry_class_pairs": 0,
+      "missing_record_key_rows": 0,
+      "missing_source_paths": 0,
+      "provenance_missing_rows": 0,
+      "score_range_violations": 0,
+      "split_mismatches": 0,
+      "threshold_policy_violations": 0
+    },
+    "expected_entries": 702,
+    "expected_row_class_records": 2106,
+    "manifest_rows": 702,
+    "row_class_records": 2106,
+    "selected_source_counts": {
+      "trained:esm2_t12_35m": 702,
+      "trained:esm2_t6_8m": 1404
+    },
+    "split_counts": {
+      "heldout": 420,
+      "in_distribution": 1686
+    }
+  },
+  "created_utc": "2026-06-01T02:49:40Z",
+  "guardrails": {
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "sidecar_values_changed": false
+  },
+  "interpretation": {
+    "embedding_gap_relevance": "This closes the organic flavin/heme/PLP sidecar schema risk for the mechanism-feature embedding scaffold, while metal, cobalamin, radical, and Fe-S row-level loci remain separate feature gaps.",
+    "result": "The selected organic cofactor sidecar satisfies the strict current702 row-class grid and lineage contract."
+  },
+  "schema_contract": {
+    "entry_class_grid": "every current702 entry must have flavin, heme, and plp records",
+    "fallback_sources_allowed": false,
+    "required_classes": [
+      "flavin",
+      "heme",
+      "plp"
+    ],
+    "required_record_keys": [
+      "entry_id",
+      "class",
+      "cofactor_class",
+      "selected_score",
+      "selected_source",
+      "selected_source_status",
+      "split_assignment",
+      "threshold_or_bin",
+      "source_artifact",
+      "source_channel_artifact",
+      "provenance_hashes"
+    ],
+    "score_range": "[0.0, 1.0]",
+    "threshold_policy": "fixed_0_5_not_tuned_on_heldout"
+  },
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Strict schema and lineage audit for the selected organic cofactor sidecar consumed by the D11 abstention gate and mechanism-feature embedding scaffold.",
+  "source_artifacts": {
+    "label_manifest": {
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "selected_organic_cofactor_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    }
+  },
+  "status": "schema_passed_strict_current702",
+  "violations": {
+    "class_mismatches": [],
+    "duplicate_entry_class_pairs": [],
+    "extra_entry_class_pairs": [],
+    "fallback_source_rows": [],
+    "missing_entry_class_pairs": [],
+    "missing_record_key_rows": [],
+    "missing_source_paths": [],
+    "provenance_missing_rows": [],
+    "score_range_violations": [],
+    "split_mismatches": [],
+    "threshold_policy_violations": []
+  }
+}

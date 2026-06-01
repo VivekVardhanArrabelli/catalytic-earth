@@ -10,6 +10,10 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import re
+import shlex
+import shutil
+import subprocess
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -24,6 +28,10 @@ from .mechanism_novelty_abstention_eval import (
 )
 
 SCHEMA_VERSION = "northstar_next_levers.v0"
+DEFAULT_FOLDSEEK_BINARY = "/private/tmp/catalytic-foldseek-env/bin/foldseek"
+PREDICTED_STRUCTURE_FOLD_CHANNEL_ID = (
+    "v3_predicted_structure_fold_channel_current702_20260601"
+)
 
 
 def _utc_now_iso() -> str:
@@ -399,6 +407,1951 @@ def write_fold_level_novelty_signal(
     if report_path is not None:
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(_render_fold_report(audit), encoding="utf-8")
+    return audit
+
+
+def _entry_id_sort_key(entry_id: str) -> tuple[str, int, str]:
+    match = re.match(r"^m_csa:(\d+)$", str(entry_id))
+    if match:
+        return ("m_csa", int(match.group(1)), str(entry_id))
+    return (str(entry_id), -1, str(entry_id))
+
+
+def _foldseek_binary_info(binary: str) -> dict[str, Any]:
+    resolved = shutil.which(binary)
+    if resolved is None:
+        path = Path(binary)
+        if path.exists():
+            resolved = str(path.resolve())
+    version = None
+    version_command = None
+    error = None
+    if resolved:
+        version_command = shlex.join([resolved, "version"])
+        try:
+            proc = subprocess.run(
+                [resolved, "version"],
+                check=True,
+                capture_output=True,
+                text=True,
+                timeout=10,
+            )
+            version = (proc.stdout or proc.stderr).strip() or None
+        except (OSError, subprocess.SubprocessError) as exc:
+            error = f"{type(exc).__name__}: {exc}"
+    return {
+        "requested": binary,
+        "resolved": resolved,
+        "available": bool(resolved and version and not error),
+        "version": version,
+        "version_command": version_command,
+        "error": error,
+    }
+
+
+def _predicted_row_status(row: dict[str, Any]) -> str:
+    return str(row.get("predicted_geometry_status") or row.get("status") or "unknown")
+
+
+def _predicted_row_ok(row: dict[str, Any]) -> bool:
+    return _predicted_row_status(row) == "ok"
+
+
+def _predicted_model_parts(row: dict[str, Any]) -> tuple[str | None, int | None, str | None]:
+    pdb_id = str(row.get("predicted_pdb_id") or row.get("pdb_id") or "")
+    match = re.match(r"^AF-(?P<accession>.+)-F1-model_v(?P<version>\d+)$", pdb_id)
+    accession = str(row.get("accession") or row.get("sequence_id") or "").strip() or None
+    version = None
+    if match:
+        accession = accession or match.group("accession")
+        version = int(match.group("version"))
+    return accession, version, pdb_id or None
+
+
+def _afdb_cif_url(accession: str, version: int | None) -> str:
+    model_version = int(version or 6)
+    return f"https://alphafold.ebi.ac.uk/files/AF-{accession}-F1-model_v{model_version}.cif"
+
+
+def _safe_path_token(value: str) -> str:
+    return re.sub(r"[^A-Za-z0-9_.-]+", "_", value).strip("_") or "unknown"
+
+
+def _coordinate_requests(
+    rows: list[dict[str, Any]],
+    *,
+    coordinate_root: Path,
+    role: str,
+    subdir: str,
+) -> list[dict[str, Any]]:
+    by_path: dict[str, dict[str, Any]] = {}
+    for row in sorted(rows, key=lambda item: _entry_id_sort_key(str(item.get("entry_id")))):
+        accession, version, predicted_pdb_id = _predicted_model_parts(row)
+        entry_id = str(row.get("entry_id") or "")
+        if not accession:
+            key = f"missing_accession::{entry_id}"
+            by_path[key] = {
+                "role": role,
+                "status": "missing_accession",
+                "accession": None,
+                "alphafold_version": version,
+                "predicted_pdb_id": predicted_pdb_id,
+                "url": None,
+                "expected_local_path": None,
+                "local_file_exists": False,
+                "entry_ids": [entry_id],
+                "rows": [
+                    {
+                        "entry_id": entry_id,
+                        "split_assignment": row.get("split_assignment"),
+                        "true_fingerprint_id": row.get("true_fingerprint_id"),
+                        "benchmark_role": row.get("benchmark_role"),
+                    }
+                ],
+            }
+            continue
+        token = _safe_path_token(f"{accession}_v{version or 6}")
+        local_path = coordinate_root / subdir / f"afdb_{token}.cif"
+        key = str(local_path)
+        if key not in by_path:
+            url = _afdb_cif_url(accession, version)
+            by_path[key] = {
+                "role": role,
+                "status": "ready_to_materialize",
+                "accession": accession,
+                "alphafold_version": version or 6,
+                "predicted_pdb_id": predicted_pdb_id,
+                "url": url,
+                "expected_local_path": str(local_path),
+                "local_file_exists": local_path.exists(),
+                "download_command": shlex.join(
+                    ["curl", "-fL", "--retry", "3", url, "-o", str(local_path)]
+                ),
+                "entry_ids": [],
+                "rows": [],
+            }
+        by_path[key]["entry_ids"].append(entry_id)
+        by_path[key]["rows"].append(
+            {
+                "entry_id": entry_id,
+                "split_assignment": row.get("split_assignment"),
+                "true_fingerprint_id": row.get("true_fingerprint_id"),
+                "benchmark_role": row.get("benchmark_role"),
+                "top1_fingerprint_id": row.get("top1_fingerprint_id"),
+            }
+        )
+    return sorted(
+        by_path.values(),
+        key=lambda item: (
+            str(item.get("accession") or ""),
+            _entry_id_sort_key(str((item.get("entry_ids") or [""])[0])),
+        ),
+    )
+
+
+def _missing_coordinate_count(requests: list[dict[str, Any]]) -> int:
+    return sum(1 for item in requests if not item.get("local_file_exists"))
+
+
+def _foldseek_easy_search_command(
+    *,
+    binary: str,
+    query_dir: Path,
+    target_dir: Path,
+    result_tsv: Path,
+    tmp_dir: Path,
+    threads: int,
+) -> str:
+    return shlex.join(
+        [
+            binary,
+            "easy-search",
+            str(query_dir),
+            str(target_dir),
+            str(result_tsv),
+            str(tmp_dir),
+            "--format-output",
+            "query,target,qtmscore,ttmscore,alntmscore,prob,bits",
+            "--exhaustive-search",
+            "1",
+            "--alignment-type",
+            "1",
+            "--tmalign-fast",
+            "0",
+            "--exact-tmscore",
+            "1",
+            "--threads",
+            str(max(1, int(threads))),
+            "-v",
+            "1",
+        ]
+    )
+
+
+def _request_aliases(request: dict[str, Any]) -> set[str]:
+    path_value = request.get("expected_local_path")
+    aliases = set()
+    if path_value:
+        path = Path(str(path_value))
+        aliases.update({str(path), path.name, path.stem})
+    accession = request.get("accession")
+    version = request.get("alphafold_version")
+    if accession:
+        aliases.add(f"afdb_{_safe_path_token(f'{accession}_v{version or 6}')}")
+        aliases.add(f"afdb_{_safe_path_token(f'{accession}_v{version or 6}')}.cif")
+    predicted_pdb_id = request.get("predicted_pdb_id")
+    if predicted_pdb_id:
+        aliases.add(str(predicted_pdb_id))
+    return aliases
+
+
+def _alias_map(requests: list[dict[str, Any]]) -> tuple[dict[str, dict[str, Any]], list[str]]:
+    alias_to_request: dict[str, dict[str, Any]] = {}
+    collisions: set[str] = set()
+    for request in requests:
+        for alias in _request_aliases(request):
+            if alias in alias_to_request and alias_to_request[alias] is not request:
+                collisions.add(alias)
+                continue
+            alias_to_request[alias] = request
+    for alias in collisions:
+        alias_to_request.pop(alias, None)
+    return alias_to_request, sorted(collisions)
+
+
+def _parse_optional_float(value: str | None) -> float | None:
+    if value in (None, ""):
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _parse_foldseek_tsv_hits(
+    *,
+    result_tsv: Path,
+    query_requests: list[dict[str, Any]],
+    target_requests: list[dict[str, Any]],
+) -> dict[str, Any]:
+    if not result_tsv.exists():
+        return {
+            "status": "result_tsv_missing",
+            "path": str(result_tsv),
+            "nearest_atlas_hits": [],
+            "summary": {
+                "mapped_pair_count": 0,
+                "unmapped_pair_count": 0,
+                "query_entry_count_with_hits": 0,
+            },
+        }
+    query_aliases, query_collisions = _alias_map(query_requests)
+    target_aliases, target_collisions = _alias_map(target_requests)
+    nearest: dict[str, dict[str, Any]] = {}
+    mapped_pair_count = 0
+    unmapped_pair_count = 0
+    unmapped_names: set[str] = set()
+    for line in result_tsv.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        parts = line.split("\t")
+        if parts[0] == "query":
+            continue
+        if len(parts) < 5:
+            unmapped_pair_count += 1
+            continue
+        raw_query, raw_target = parts[0], parts[1]
+        query_request = query_aliases.get(raw_query)
+        target_request = target_aliases.get(raw_target)
+        if query_request is None or target_request is None:
+            unmapped_pair_count += 1
+            if query_request is None:
+                unmapped_names.add(raw_query)
+            if target_request is None:
+                unmapped_names.add(raw_target)
+            continue
+        qtmscore = _parse_optional_float(parts[2])
+        ttmscore = _parse_optional_float(parts[3])
+        alntmscore = _parse_optional_float(parts[4])
+        scores = [s for s in (qtmscore, ttmscore, alntmscore) if s is not None]
+        if not scores:
+            unmapped_pair_count += 1
+            continue
+        mapped_pair_count += 1
+        tm_score = max(scores)
+        prob = _parse_optional_float(parts[5]) if len(parts) > 5 else None
+        bits = _parse_optional_float(parts[6]) if len(parts) > 6 else None
+        target_row = (target_request.get("rows") or [{}])[0]
+        for query_row in query_request.get("rows") or []:
+            entry_id = str(query_row.get("entry_id"))
+            candidate = {
+                "query_entry_id": entry_id,
+                "query_accession": query_request.get("accession"),
+                "raw_query_name": raw_query,
+                "nearest_atlas_entry_id": target_row.get("entry_id"),
+                "nearest_atlas_accession": target_request.get("accession"),
+                "nearest_atlas_true_fingerprint_id": target_row.get("true_fingerprint_id"),
+                "raw_target_name": raw_target,
+                "tm_score": round(tm_score, 6),
+                "qtmscore": qtmscore,
+                "ttmscore": ttmscore,
+                "alntmscore": alntmscore,
+                "prob": prob,
+                "bits": bits,
+            }
+            previous = nearest.get(entry_id)
+            if previous is None or candidate["tm_score"] > previous["tm_score"]:
+                nearest[entry_id] = candidate
+    hits = sorted(nearest.values(), key=lambda row: _entry_id_sort_key(row["query_entry_id"]))
+    return {
+        "status": "parsed" if hits else "parsed_no_mapped_hits",
+        "path": str(result_tsv),
+        "nearest_atlas_hits": hits,
+        "summary": {
+            "mapped_pair_count": mapped_pair_count,
+            "unmapped_pair_count": unmapped_pair_count,
+            "query_entry_count_with_hits": len(hits),
+            "max_nearest_atlas_tm_score": (
+                round(max(row["tm_score"] for row in hits), 6) if hits else None
+            ),
+            "min_nearest_atlas_tm_score": (
+                round(min(row["tm_score"] for row in hits), 6) if hits else None
+            ),
+            "alias_collision_count": len(query_collisions) + len(target_collisions),
+            "alias_collisions": query_collisions + target_collisions,
+            "unmapped_names": sorted(unmapped_names),
+        },
+    }
+
+
+def _fold_channel_signal_from_hits(
+    *,
+    hits: list[dict[str, Any]],
+    query_requests: list[dict[str, Any]],
+    confounded_ids: set[str],
+) -> dict[str, Any] | None:
+    row_context = {
+        str(row.get("entry_id")): row
+        for request in query_requests
+        for row in request.get("rows") or []
+        if row.get("entry_id")
+    }
+    scored_rows = []
+    for hit in hits:
+        entry_id = str(hit.get("query_entry_id"))
+        context = row_context.get(entry_id, {})
+        if not context:
+            continue
+        scored_rows.append(
+            {
+                "entry_id": entry_id,
+                "true_fingerprint_id": context.get("true_fingerprint_id"),
+                "is_inscope": bool(context.get("true_fingerprint_id")),
+                "is_oos": not bool(context.get("true_fingerprint_id")),
+                "is_confounded_predicted_geometry_oos": entry_id in confounded_ids,
+                "fold_signals": {"nearest_atlas_tm_score": float(hit["tm_score"])},
+                "nearest_atlas_entry_id": hit.get("nearest_atlas_entry_id"),
+                "nearest_atlas_true_fingerprint_id": hit.get(
+                    "nearest_atlas_true_fingerprint_id"
+                ),
+            }
+        )
+    if not scored_rows:
+        return None
+    inscope = [row for row in scored_rows if row["is_inscope"]]
+    oos = [row for row in scored_rows if row["is_oos"]]
+    conf = [row for row in oos if row["is_confounded_predicted_geometry_oos"]]
+    agn = [row for row in oos if not row["is_confounded_predicted_geometry_oos"]]
+    fn = lambda row: float(row["fold_signals"]["nearest_atlas_tm_score"])
+    return {
+        "signal_name": "nearest_atlas_tm_score",
+        "direction": "higher_means_nearer_to_in_distribution_predicted_atlas",
+        "counts": {
+            "heldout_rows_scored": len(scored_rows),
+            "inscope": len(inscope),
+            "oos": len(oos),
+            "confounded_oos": len(conf),
+            "agnostic_oos": len(agn),
+        },
+        "auc_in_gt_oos_all": _auc_in_gt_oos([fn(row) for row in inscope], [fn(row) for row in oos]),
+        "auc_in_gt_confounded_oos": _auc_in_gt_oos(
+            [fn(row) for row in inscope], [fn(row) for row in conf]
+        ),
+        "auc_in_gt_agnostic_oos": _auc_in_gt_oos(
+            [fn(row) for row in inscope], [fn(row) for row in agn]
+        ),
+        "in_scope_mean": _mean([fn(row) for row in inscope]),
+        "oos_mean": _mean([fn(row) for row in oos]),
+        "confounded_mean": _mean([fn(row) for row in conf]),
+        "best_at_90pct_inscope_retention": _best_threshold_at_retention(
+            scored_rows, fn, min_retain=0.90
+        ),
+        "best_at_85pct_inscope_retention": _best_threshold_at_retention(
+            scored_rows, fn, min_retain=0.85
+        ),
+        "row_scores": scored_rows,
+    }
+
+
+def build_predicted_structure_fold_channel(
+    *,
+    predicted_geometry_atlas_path: Path,
+    fold_level_signal_path: Path,
+    coordinate_root: Path,
+    foldseek_binary: str = DEFAULT_FOLDSEEK_BINARY,
+    threads: int = 4,
+    priority_result_tsv: Path | None = None,
+    heldout_result_tsv: Path | None = None,
+) -> dict[str, Any]:
+    predicted_atlas = _read_json(predicted_geometry_atlas_path)
+    fold_signal = _read_json(fold_level_signal_path)
+    rows = [
+        row
+        for row in predicted_atlas.get("results", [])
+        if isinstance(row, dict)
+    ]
+    atlas_rows = [
+        row
+        for row in rows
+        if row.get("split_assignment") == "in_distribution" and _predicted_row_ok(row)
+    ]
+    heldout_ok_rows = [
+        row
+        for row in rows
+        if row.get("split_assignment") == "heldout" and _predicted_row_ok(row)
+    ]
+    confounded_ids = set(
+        fold_signal.get("confounded_entry_ids", {}).get(
+            "predicted_geometry_overlap_current_gate", []
+        )
+    )
+    priority_rows = [
+        row for row in heldout_ok_rows if str(row.get("entry_id")) in confounded_ids
+    ]
+    missing_priority_ids = sorted(
+        confounded_ids - {str(row.get("entry_id")) for row in priority_rows},
+        key=_entry_id_sort_key,
+    )
+
+    coordinate_root = Path(coordinate_root)
+    atlas_dir = coordinate_root / "atlas_in_distribution"
+    priority_query_dir = coordinate_root / "queries_cofactor_confounded_oos"
+    heldout_query_dir = coordinate_root / "queries_all_heldout"
+    result_root = coordinate_root.parent / f"{coordinate_root.name}_foldseek_results"
+
+    atlas_requests = _coordinate_requests(
+        atlas_rows,
+        coordinate_root=coordinate_root,
+        role="atlas_in_distribution_target",
+        subdir="atlas_in_distribution",
+    )
+    priority_requests = _coordinate_requests(
+        priority_rows,
+        coordinate_root=coordinate_root,
+        role="priority_query_cofactor_confounded_oos",
+        subdir="queries_cofactor_confounded_oos",
+    )
+    heldout_requests = _coordinate_requests(
+        heldout_ok_rows,
+        coordinate_root=coordinate_root,
+        role="all_heldout_query_when_cheap",
+        subdir="queries_all_heldout",
+    )
+    foldseek = _foldseek_binary_info(foldseek_binary)
+    resolved_binary = str(foldseek.get("resolved") or foldseek_binary)
+
+    priority_command = _foldseek_easy_search_command(
+        binary=resolved_binary,
+        query_dir=priority_query_dir,
+        target_dir=atlas_dir,
+        result_tsv=priority_result_tsv
+        or result_root / "cofactor_confounded_oos_vs_atlas.tsv",
+        tmp_dir=result_root / "tmp_confounded",
+        threads=threads,
+    )
+    heldout_command = _foldseek_easy_search_command(
+        binary=resolved_binary,
+        query_dir=heldout_query_dir,
+        target_dir=atlas_dir,
+        result_tsv=heldout_result_tsv or result_root / "all_heldout_vs_atlas.tsv",
+        tmp_dir=result_root / "tmp_all_heldout",
+        threads=threads,
+    )
+    materialization_command = (
+        "python - <<'PY'\n"
+        "import json\n"
+        "import urllib.request\n"
+        "from pathlib import Path\n"
+        f"artifact = json.loads(Path('artifacts/{PREDICTED_STRUCTURE_FOLD_CHANNEL_ID}.json').read_text())\n"
+        "groups = artifact['foldseek_input_manifest']['coordinate_request_groups']\n"
+        "for group in groups.values():\n"
+        "    for item in group:\n"
+        "        path = item.get('expected_local_path')\n"
+        "        url = item.get('url')\n"
+        "        if not path or not url:\n"
+        "            continue\n"
+        "        target = Path(path)\n"
+        "        target.parent.mkdir(parents=True, exist_ok=True)\n"
+        "        if target.exists():\n"
+        "            continue\n"
+        "        urllib.request.urlretrieve(url, target)\n"
+        "PY"
+    )
+
+    priority_missing = _missing_coordinate_count(atlas_requests) + _missing_coordinate_count(
+        priority_requests
+    )
+    heldout_missing = _missing_coordinate_count(atlas_requests) + _missing_coordinate_count(
+        heldout_requests
+    )
+    blockers: list[str] = []
+    if not foldseek["available"]:
+        blockers.append("foldseek_runtime_unavailable")
+    if priority_missing:
+        blockers.append("predicted_coordinate_files_missing_for_priority_scope")
+    if heldout_missing:
+        blockers.append("predicted_coordinate_files_missing_for_all_heldout_scope")
+    priority_result = _parse_foldseek_tsv_hits(
+        result_tsv=priority_result_tsv
+        or result_root / "cofactor_confounded_oos_vs_atlas.tsv",
+        query_requests=priority_requests,
+        target_requests=atlas_requests,
+    )
+    heldout_result = _parse_foldseek_tsv_hits(
+        result_tsv=heldout_result_tsv or result_root / "all_heldout_vs_atlas.tsv",
+        query_requests=heldout_requests,
+        target_requests=atlas_requests,
+    )
+    if priority_result["status"] != "parsed":
+        blockers.append("priority_foldseek_results_not_computed_or_parsed")
+    if heldout_result["status"] != "parsed":
+        blockers.append("all_heldout_foldseek_results_not_computed_or_parsed")
+    all_heldout_signal = _fold_channel_signal_from_hits(
+        hits=heldout_result.get("nearest_atlas_hits", []),
+        query_requests=heldout_requests,
+        confounded_ids=confounded_ids,
+    )
+    status = (
+        "computed_all_heldout_foldseek_scores"
+        if heldout_result["status"] == "parsed"
+        else "computed_priority_foldseek_scores"
+        if priority_result["status"] == "parsed"
+        else (
+            "ready_to_run_foldseek_priority_scope"
+            if foldseek["available"] and priority_missing == 0
+            else "manifest_staged_missing_predicted_coordinate_bundle"
+        )
+    )
+    if heldout_result["status"] == "parsed":
+        current_result = (
+            "All-heldout Foldseek/TM scores were parsed from the configured result TSV; "
+            "the fold channel now has a real nearest-atlas TM signal for every ok "
+            "predicted-geometry heldout row."
+        )
+        next_action = (
+            "Use the all-heldout fold-channel signal in the next abstention combiner "
+            "diagnostic, or decide whether persistent predicted-CIF coordinate "
+            "provenance should be committed."
+        )
+    elif priority_result["status"] == "parsed":
+        current_result = (
+            "Priority Foldseek/TM scores for the cofactor-confounded OOS rows were "
+            "parsed from the configured result TSV; the full all-heldout sweep remains "
+            "uncomputed."
+        )
+        next_action = (
+            "Run the all-heldout Foldseek/TM sweep when cheap, or commit a dedicated "
+            "predicted CIF bundle if persistent coordinate provenance is required."
+        )
+    else:
+        current_result = (
+            "No Foldseek/TM scores are claimed here because the current repo does not "
+            "contain a dedicated predicted AlphaFold CIF bundle for these current702 "
+            "atlas/query rows."
+        )
+        next_action = (
+            "Materialize the exact AFDB v6 coordinate requests, run the priority "
+            "Foldseek command, then rerun the parser to emit nearest-atlas TM scores "
+            "for the six confounded rows before the all-heldout sweep."
+        )
+
+    return {
+        "artifact_id": PREDICTED_STRUCTURE_FOLD_CHANNEL_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Bounded manifest for a deployment-regime predicted-structure "
+            "Foldseek/TM channel: AlphaFoldDB-predicted heldout rows scored "
+            "against the current702 in-distribution predicted-structure atlas."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "large_model_downloads_performed": False,
+            "frozen_current702_inputs_only": True,
+            "score_fabrication": False,
+        },
+        "counts": {
+            "combined_predicted_retrieval_rows": len(rows),
+            "atlas_in_distribution_rows_ok": len(atlas_rows),
+            "heldout_rows_ok": len(heldout_ok_rows),
+            "priority_cofactor_confounded_oos_rows": len(priority_rows),
+            "priority_cofactor_confounded_oos_missing_ids": len(missing_priority_ids),
+            "atlas_coordinate_requests": len(atlas_requests),
+            "priority_query_coordinate_requests": len(priority_requests),
+            "all_heldout_query_coordinate_requests": len(heldout_requests),
+            "priority_scope_missing_coordinate_files": priority_missing,
+            "all_heldout_scope_missing_coordinate_files": heldout_missing,
+        },
+        "target_rows": {
+            "priority_cofactor_confounded_oos_entry_ids": [
+                str(row.get("entry_id"))
+                for row in sorted(priority_rows, key=lambda item: _entry_id_sort_key(str(item.get("entry_id"))))
+            ],
+            "priority_cofactor_confounded_oos_missing_ids": missing_priority_ids,
+            "all_heldout_when_cheap_entry_count": len(heldout_ok_rows),
+        },
+        "runtime": {
+            "foldseek": foldseek,
+            "threads": max(1, int(threads)),
+        },
+        "blockers": blockers,
+        "parsed_foldseek_results": {
+            "priority_cofactor_confounded_oos_vs_atlas": priority_result,
+            "all_heldout_vs_atlas": heldout_result,
+        },
+        "fold_channel_signal": {
+            "nearest_atlas_tm_score": all_heldout_signal,
+        },
+        "foldseek_input_manifest": {
+            "coordinate_root": str(coordinate_root),
+            "atlas_database_dir": str(atlas_dir),
+            "priority_query_dir": str(priority_query_dir),
+            "all_heldout_query_dir": str(heldout_query_dir),
+            "result_root": str(result_root),
+            "coordinate_request_groups": {
+                "atlas_in_distribution": atlas_requests,
+                "priority_cofactor_confounded_oos_queries": priority_requests,
+                "all_heldout_queries_when_cheap": heldout_requests,
+            },
+        },
+        "commands": {
+            "materialize_coordinate_bundle": materialization_command,
+            "run_priority_cofactor_confounded_oos_vs_atlas": priority_command,
+            "run_all_heldout_vs_atlas_when_cheap": heldout_command,
+            "expected_foldseek_tsv_columns": [
+                "query",
+                "target",
+                "qtmscore",
+                "ttmscore",
+                "alntmscore",
+                "prob",
+                "bits",
+            ],
+            "scoring_contract": (
+                "Per query, score the nearest in-distribution atlas hit by "
+                "max(qtmscore, ttmscore, alntmscore); lower nearest-atlas TM "
+                "support is the fold-novelty direction."
+            ),
+        },
+        "source_artifacts": {
+            "predicted_geometry_atlas": {
+                "path": str(predicted_geometry_atlas_path),
+                "sha256": _sha256(predicted_geometry_atlas_path),
+            },
+            "fold_level_signal": {
+                "path": str(fold_level_signal_path),
+                "sha256": _sha256(fold_level_signal_path),
+            },
+        },
+        "interpretation": {
+            "current_result": current_result,
+            "next_action": next_action,
+        },
+    }
+
+
+def _render_predicted_structure_fold_channel_report(audit: dict[str, Any]) -> str:
+    counts = audit["counts"]
+    parsed = audit.get("parsed_foldseek_results", {})
+    priority_parsed = parsed.get("priority_cofactor_confounded_oos_vs_atlas", {})
+    heldout_parsed = parsed.get("all_heldout_vs_atlas", {})
+    lines = [
+        "# Predicted-Structure Fold Channel - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Foldseek available: {audit['runtime']['foldseek']['available']}",
+        f"- Priority scope missing coordinate files: {counts['priority_scope_missing_coordinate_files']}",
+        f"- All-heldout scope missing coordinate files: {counts['all_heldout_scope_missing_coordinate_files']}",
+        f"- Priority Foldseek TSV parse status: {priority_parsed.get('status')}",
+        f"- All-heldout Foldseek TSV parse status: {heldout_parsed.get('status')}",
+        "",
+        "## Scope Counts",
+        "",
+        f"- Atlas in-distribution rows with ok predicted geometry: {counts['atlas_in_distribution_rows_ok']}",
+        f"- Heldout rows with ok predicted geometry: {counts['heldout_rows_ok']}",
+        f"- Priority cofactor-confounded OOS rows: {counts['priority_cofactor_confounded_oos_rows']}",
+        "",
+        "## Priority Rows",
+        "",
+    ]
+    for entry_id in audit["target_rows"]["priority_cofactor_confounded_oos_entry_ids"]:
+        lines.append(f"- {entry_id}")
+    lines += [
+        "",
+        "## Blockers",
+        "",
+    ]
+    if audit["status"].startswith("computed_") and audit["blockers"]:
+        lines += [
+            "- The scored Foldseek TSVs below were parsed successfully; these blockers track "
+            "missing persistent coordinate-file provenance for reproduction.",
+        ]
+    for blocker in audit["blockers"]:
+        lines.append(f"- {blocker}")
+    lines += [
+        "",
+        "## All-Heldout Fold Signal",
+        "",
+    ]
+    fold_signal = (audit.get("fold_channel_signal") or {}).get("nearest_atlas_tm_score")
+    if fold_signal:
+        lines += [
+            f"- AUC in-scope > all OOS: {fold_signal['auc_in_gt_oos_all']}",
+            f"- AUC in-scope > confounded OOS: {fold_signal['auc_in_gt_confounded_oos']}",
+            f"- Mean in-scope: {fold_signal['in_scope_mean']}; mean OOS: {fold_signal['oos_mean']}; mean confounded: {fold_signal['confounded_mean']}",
+            f"- Best >=90% retention diagnostic: {fold_signal['best_at_90pct_inscope_retention']}",
+            f"- Best >=85% retention diagnostic: {fold_signal['best_at_85pct_inscope_retention']}",
+        ]
+    else:
+        lines.append("- All-heldout Foldseek/TM scores have not been parsed yet.")
+    lines += [
+        "",
+        "## Priority Parsed Hits",
+        "",
+    ]
+    priority_hits = priority_parsed.get("nearest_atlas_hits", [])
+    if priority_hits:
+        lines += [
+            "| Query | nearest atlas | atlas fingerprint | TM score |",
+            "| --- | --- | --- | ---: |",
+        ]
+        for hit in priority_hits:
+            lines.append(
+                f"| {hit['query_entry_id']} | {hit['nearest_atlas_entry_id']} | "
+                f"{hit['nearest_atlas_true_fingerprint_id']} | {hit['tm_score']} |"
+            )
+    else:
+        lines.append("- No priority Foldseek hits parsed yet.")
+    lines += [
+        "",
+        "## Commands",
+        "",
+        "Materialize the exact predicted CIF bundle:",
+        "",
+        "```bash",
+        audit["commands"]["materialize_coordinate_bundle"],
+        "```",
+        "",
+        "Run the six-row priority Foldseek/TM pass:",
+        "",
+        "```bash",
+        audit["commands"]["run_priority_cofactor_confounded_oos_vs_atlas"],
+        "```",
+        "",
+        "Run all heldout rows when cheap:",
+        "",
+        "```bash",
+        audit["commands"]["run_all_heldout_vs_atlas_when_cheap"],
+        "```",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['current_result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_predicted_structure_fold_channel(
+    *,
+    predicted_geometry_atlas_path: Path,
+    fold_level_signal_path: Path,
+    coordinate_root: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    foldseek_binary: str = DEFAULT_FOLDSEEK_BINARY,
+    threads: int = 4,
+    priority_result_tsv: Path | None = None,
+    heldout_result_tsv: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_predicted_structure_fold_channel(
+        predicted_geometry_atlas_path=predicted_geometry_atlas_path,
+        fold_level_signal_path=fold_level_signal_path,
+        coordinate_root=coordinate_root,
+        foldseek_binary=foldseek_binary,
+        threads=threads,
+        priority_result_tsv=priority_result_tsv,
+        heldout_result_tsv=heldout_result_tsv,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_predicted_structure_fold_channel_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+GEOMETRY_VARIANT_FEATURES = (
+    "score",
+    "role_match_fraction",
+    "residue_match_fraction",
+    "mechanistic_coherence_score",
+    "substrate_pocket_score",
+    "compactness_score",
+    "cofactor_context_score",
+    "counterevidence_penalty",
+    "plp_ligand_anchor_score",
+)
+
+
+def _top1_fingerprint(row: dict[str, Any]) -> dict[str, Any] | None:
+    top = row.get("top_fingerprints") or []
+    if not top or not isinstance(top[0], dict):
+        return None
+    return top[0]
+
+
+def _median(values: list[float]) -> float:
+    if not values:
+        return 0.0
+    sorted_values = sorted(values)
+    mid = len(sorted_values) // 2
+    if len(sorted_values) % 2:
+        return sorted_values[mid]
+    return (sorted_values[mid - 1] + sorted_values[mid]) / 2
+
+
+def _quantile(values: list[float], q: float) -> float:
+    if not values:
+        return 0.0
+    sorted_values = sorted(values)
+    pos = (len(sorted_values) - 1) * q
+    lower = int(math.floor(pos))
+    upper = int(math.ceil(pos))
+    if lower == upper:
+        return sorted_values[lower]
+    weight = pos - lower
+    return sorted_values[lower] * (1 - weight) + sorted_values[upper] * weight
+
+
+def _percentile_rank(value: float, atlas_values: list[float]) -> float:
+    if not atlas_values:
+        return 0.0
+    return sum(1 for item in atlas_values if item <= value) / len(atlas_values)
+
+
+def _feature_vector(top: dict[str, Any]) -> list[float]:
+    return [float(top.get(name) or 0.0) for name in GEOMETRY_VARIANT_FEATURES]
+
+
+def _robust_center_scale(vectors: list[list[float]]) -> tuple[list[float], list[float]]:
+    if not vectors:
+        return [], []
+    dims = len(vectors[0])
+    centers = []
+    scales = []
+    for idx in range(dims):
+        col = [vec[idx] for vec in vectors]
+        centers.append(_median(col))
+        iqr = _quantile(col, 0.75) - _quantile(col, 0.25)
+        scales.append(iqr if abs(iqr) > 1e-9 else 1.0)
+    return centers, scales
+
+
+def _robust_distance(vector: list[float], center: list[float], scale: list[float]) -> float:
+    if not center:
+        return 0.0
+    return math.sqrt(
+        sum(((value - center[idx]) / scale[idx]) ** 2 for idx, value in enumerate(vector))
+    )
+
+
+def _signal_metrics(
+    rows: list[dict[str, Any]],
+    score_name: str,
+) -> dict[str, Any]:
+    inscope = [r for r in rows if r["is_inscope"]]
+    oos = [r for r in rows if r["is_oos"]]
+    conf = [r for r in oos if r["is_confounded_predicted_geometry_oos"]]
+    agn = [r for r in oos if not r["is_confounded_predicted_geometry_oos"]]
+    fn = lambda row: float(row["variant_scores"][score_name])
+    return {
+        "auc_in_gt_oos_all": _auc_in_gt_oos([fn(r) for r in inscope], [fn(r) for r in oos]),
+        "auc_in_gt_confounded_oos": _auc_in_gt_oos([fn(r) for r in inscope], [fn(r) for r in conf]),
+        "auc_in_gt_agnostic_oos": _auc_in_gt_oos([fn(r) for r in inscope], [fn(r) for r in agn]),
+        "in_scope_mean": _mean([fn(r) for r in inscope]),
+        "oos_mean": _mean([fn(r) for r in oos]),
+        "confounded_mean": _mean([fn(r) for r in conf]),
+        "best_at_90pct_inscope_retention": _best_threshold_at_retention(
+            rows, fn, min_retain=0.90
+        ),
+        "best_at_85pct_inscope_retention": _best_threshold_at_retention(
+            rows, fn, min_retain=0.85
+        ),
+    }
+
+
+def build_predicted_atlas_geometry_novelty_variants(
+    *,
+    predicted_geometry_atlas_path: Path,
+    fold_level_signal_path: Path,
+) -> dict[str, Any]:
+    predicted_atlas = _read_json(predicted_geometry_atlas_path)
+    fold_signal = _read_json(fold_level_signal_path)
+    rows = [
+        row
+        for row in predicted_atlas.get("results", [])
+        if isinstance(row, dict) and _predicted_row_ok(row) and _top1_fingerprint(row)
+    ]
+    atlas_rows = [
+        row
+        for row in rows
+        if row.get("split_assignment") == "in_distribution" and row.get("true_fingerprint_id")
+    ]
+    heldout_rows = [row for row in rows if row.get("split_assignment") == "heldout"]
+    if not atlas_rows or not heldout_rows:
+        return {
+            "artifact_id": "v3_predicted_atlas_geometry_novelty_variants_current702_20260601",
+            "schema_version": SCHEMA_VERSION,
+            "created_utc": _utc_now_iso(),
+            "status": "insufficient_rows",
+            "counts": {"atlas": len(atlas_rows), "heldout": len(heldout_rows)},
+        }
+
+    atlas_vectors = [_feature_vector(_top1_fingerprint(row) or {}) for row in atlas_rows]
+    center, scale = _robust_center_scale(atlas_vectors)
+    class_centers: dict[str, list[float]] = {}
+    for fp in sorted({str(row.get("true_fingerprint_id")) for row in atlas_rows}):
+        members = [
+            _feature_vector(_top1_fingerprint(row) or {})
+            for row in atlas_rows
+            if str(row.get("true_fingerprint_id")) == fp
+        ]
+        class_centers[fp] = [
+            sum(vec[idx] for vec in members) / len(members)
+            for idx in range(len(GEOMETRY_VARIANT_FEATURES))
+        ]
+    atlas_feature_values = {
+        name: [float((_top1_fingerprint(row) or {}).get(name) or 0.0) for row in atlas_rows]
+        for name in GEOMETRY_VARIANT_FEATURES
+    }
+    atlas_score_x_role = [
+        float((_top1_fingerprint(row) or {}).get("score") or 0.0)
+        * float((_top1_fingerprint(row) or {}).get("role_match_fraction") or 0.0)
+        for row in atlas_rows
+    ]
+    confounded_ids = set(
+        fold_signal.get("confounded_entry_ids", {}).get(
+            "predicted_geometry_overlap_current_gate", []
+        )
+    )
+
+    scored_rows: list[dict[str, Any]] = []
+    for row in sorted(heldout_rows, key=lambda item: _entry_id_sort_key(str(item.get("entry_id")))):
+        top = _top1_fingerprint(row) or {}
+        vector = _feature_vector(top)
+        global_distance = _robust_distance(vector, center, scale)
+        nearest_class_distance = min(
+            _robust_distance(vector, class_center, scale)
+            for class_center in class_centers.values()
+        )
+        score = float(top.get("score") or 0.0)
+        role = float(top.get("role_match_fraction") or 0.0)
+        score_x_role = score * role
+        variant_scores = {
+            "top1_score_raw": score,
+            "top1_score_atlas_percentile": _percentile_rank(
+                score, atlas_feature_values["score"]
+            ),
+            "role_match_fraction_raw": role,
+            "role_match_fraction_atlas_percentile": _percentile_rank(
+                role, atlas_feature_values["role_match_fraction"]
+            ),
+            "top1_score_x_role_raw": score_x_role,
+            "top1_score_x_role_atlas_percentile": _percentile_rank(
+                score_x_role, atlas_score_x_role
+            ),
+            "cofactor_context_score_raw": float(top.get("cofactor_context_score") or 0.0),
+            "cofactor_context_score_atlas_percentile": _percentile_rank(
+                float(top.get("cofactor_context_score") or 0.0),
+                atlas_feature_values["cofactor_context_score"],
+            ),
+            "negative_robust_distance_to_atlas_median": -global_distance,
+            "negative_nearest_class_centroid_robust_distance": -nearest_class_distance,
+        }
+        scored_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "split_assignment": row.get("split_assignment"),
+                "true_fingerprint_id": row.get("true_fingerprint_id"),
+                "is_inscope": bool(row.get("true_fingerprint_id")),
+                "is_oos": not bool(row.get("true_fingerprint_id")),
+                "is_confounded_predicted_geometry_oos": row.get("entry_id") in confounded_ids,
+                "top1_fingerprint_id": top.get("fingerprint_id"),
+                "variant_scores": {
+                    key: round(value, 6) for key, value in variant_scores.items()
+                },
+            }
+        )
+
+    signal_names = list(scored_rows[0]["variant_scores"]) if scored_rows else []
+    signals = {
+        name: _signal_metrics(scored_rows, name)
+        for name in signal_names
+    }
+    best_name, best_signal = max(
+        signals.items(),
+        key=lambda item: item[1]["auc_in_gt_oos_all"] or 0.0,
+    )
+    return {
+        "artifact_id": "v3_predicted_atlas_geometry_novelty_variants_current702_20260601",
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": "computed_predicted_atlas_geometry_variants",
+        "scope": (
+            "Bounded predicted-geometry atlas novelty rerun using the newly "
+            "available in-distribution predicted atlas rows. All atlas statistics "
+            "are computed from in-distribution rows only; heldout rows are final "
+            "evaluation diagnostics."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "atlas_statistics_only_for_normalization": True,
+        },
+        "counts": {
+            "atlas_rows": len(atlas_rows),
+            "heldout_rows": len(scored_rows),
+            "inscope": sum(1 for row in scored_rows if row["is_inscope"]),
+            "oos": sum(1 for row in scored_rows if row["is_oos"]),
+            "confounded_predicted_geometry_oos": sum(
+                1 for row in scored_rows if row["is_confounded_predicted_geometry_oos"]
+            ),
+            "atlas_true_fingerprint_counts": dict(
+                sorted(Counter(str(row.get("true_fingerprint_id")) for row in atlas_rows).items())
+            ),
+        },
+        "signals": signals,
+        "best_signal": {
+            "name": best_name,
+            "auc_in_gt_oos_all": best_signal["auc_in_gt_oos_all"],
+            "auc_in_gt_confounded_oos": best_signal["auc_in_gt_confounded_oos"],
+            "best_at_90pct_inscope_retention": best_signal[
+                "best_at_90pct_inscope_retention"
+            ],
+            "best_at_85pct_inscope_retention": best_signal[
+                "best_at_85pct_inscope_retention"
+            ],
+        },
+        "row_scores": scored_rows,
+        "interpretation": {
+            "headline": (
+                f"Best predicted-atlas geometry variant is {best_name} with "
+                f"AUC {best_signal['auc_in_gt_oos_all']}."
+            ),
+            "operating_point_caveat": (
+                "Post-hoc retention rows are diagnostics only; no deployment "
+                "threshold is selected or written to production."
+            ),
+        },
+        "source_artifacts": {
+            "predicted_geometry_atlas": {
+                "path": str(predicted_geometry_atlas_path),
+                "sha256": _sha256(predicted_geometry_atlas_path),
+            },
+            "fold_level_signal": {
+                "path": str(fold_level_signal_path),
+                "sha256": _sha256(fold_level_signal_path),
+            },
+        },
+    }
+
+
+def _render_predicted_atlas_geometry_novelty_variants_report(audit: dict[str, Any]) -> str:
+    counts = audit["counts"]
+    best = audit["best_signal"]
+    lines = [
+        "# Predicted-Atlas Geometry Novelty Variants - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Counts",
+        "",
+        f"- Atlas rows: {counts['atlas_rows']}",
+        f"- Heldout rows: {counts['heldout_rows']}",
+        f"- In-scope: {counts['inscope']}",
+        f"- OOS: {counts['oos']}",
+        f"- Cofactor-confounded OOS: {counts['confounded_predicted_geometry_oos']}",
+        "",
+        "## Best Signal",
+        "",
+        f"- {best['name']}: AUC all OOS {best['auc_in_gt_oos_all']}; confounded AUC {best['auc_in_gt_confounded_oos']}",
+        f"- Best >=90% retention diagnostic: {best['best_at_90pct_inscope_retention']}",
+        f"- Best >=85% retention diagnostic: {best['best_at_85pct_inscope_retention']}",
+        "",
+        "## Signals",
+        "",
+        "| Signal | all OOS AUC | confounded AUC | agnostic AUC |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for name, sig in audit["signals"].items():
+        lines.append(
+            f"| {name} | {sig['auc_in_gt_oos_all']} | "
+            f"{sig['auc_in_gt_confounded_oos']} | {sig['auc_in_gt_agnostic_oos']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['operating_point_caveat']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_predicted_atlas_geometry_novelty_variants(
+    *,
+    predicted_geometry_atlas_path: Path,
+    fold_level_signal_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_predicted_atlas_geometry_novelty_variants(
+        predicted_geometry_atlas_path=predicted_geometry_atlas_path,
+        fold_level_signal_path=fold_level_signal_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_predicted_atlas_geometry_novelty_variants_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+REQUIRED_SELECTED_COFACTOR_RECORD_KEYS = (
+    "entry_id",
+    "class",
+    "cofactor_class",
+    "selected_score",
+    "selected_source",
+    "selected_source_status",
+    "split_assignment",
+    "threshold_or_bin",
+    "source_artifact",
+    "source_channel_artifact",
+    "provenance_hashes",
+)
+
+
+def build_selected_organic_cofactor_sidecar_schema_audit(
+    *,
+    selected_organic_cofactor_sidecar_path: Path,
+    label_manifest_path: Path,
+) -> dict[str, Any]:
+    sidecar = _read_json(selected_organic_cofactor_sidecar_path)
+    manifest = _read_json(label_manifest_path)
+    records = [
+        record
+        for record in sidecar.get("row_class_records", [])
+        if isinstance(record, dict)
+    ]
+    manifest_rows = [
+        row for row in manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    split_by_entry = {
+        str(row.get("entry_id")): row.get("split_assignment")
+        for row in manifest_rows
+        if row.get("entry_id")
+    }
+    expected_entries = set(split_by_entry)
+    expected_pairs = {
+        (entry_id, cls)
+        for entry_id in expected_entries
+        for cls in COFACTOR_CLASSES
+    }
+    seen_pairs: set[tuple[str, str]] = set()
+    duplicate_pairs: list[dict[str, Any]] = []
+    missing_key_rows: list[dict[str, Any]] = []
+    score_range_violations: list[dict[str, Any]] = []
+    class_mismatches: list[dict[str, Any]] = []
+    split_mismatches: list[dict[str, Any]] = []
+    threshold_policy_violations: list[dict[str, Any]] = []
+    fallback_source_rows: list[dict[str, Any]] = []
+    missing_source_paths: list[dict[str, Any]] = []
+    provenance_missing_rows: list[dict[str, Any]] = []
+
+    for record in records:
+        entry_id = str(record.get("entry_id") or "")
+        cls = str(record.get("class") or "")
+        pair = (entry_id, cls)
+        if pair in seen_pairs:
+            duplicate_pairs.append({"entry_id": entry_id, "class": cls})
+        seen_pairs.add(pair)
+        missing_keys = [
+            key for key in REQUIRED_SELECTED_COFACTOR_RECORD_KEYS if key not in record
+        ]
+        if missing_keys:
+            missing_key_rows.append(
+                {"entry_id": entry_id, "class": cls, "missing_keys": missing_keys}
+            )
+        if cls != record.get("cofactor_class"):
+            class_mismatches.append(
+                {
+                    "entry_id": entry_id,
+                    "class": cls,
+                    "cofactor_class": record.get("cofactor_class"),
+                }
+            )
+        score = record.get("selected_score")
+        if not isinstance(score, (int, float)) or not 0.0 <= float(score) <= 1.0:
+            score_range_violations.append(
+                {"entry_id": entry_id, "class": cls, "selected_score": score}
+            )
+        expected_split = split_by_entry.get(entry_id)
+        if expected_split is None or record.get("split_assignment") != expected_split:
+            split_mismatches.append(
+                {
+                    "entry_id": entry_id,
+                    "class": cls,
+                    "record_split": record.get("split_assignment"),
+                    "manifest_split": expected_split,
+                }
+            )
+        threshold = record.get("threshold_or_bin") or {}
+        if (
+            threshold.get("fixed_threshold") != 0.5
+            or threshold.get("threshold_policy") != "fixed_0_5_not_tuned_on_heldout"
+        ):
+            threshold_policy_violations.append(
+                {"entry_id": entry_id, "class": cls, "threshold_or_bin": threshold}
+            )
+        source = str(record.get("selected_source") or "")
+        status = str(record.get("selected_source_status") or "")
+        if "fallback" in source.lower() or "fallback" in status.lower():
+            fallback_source_rows.append(
+                {"entry_id": entry_id, "class": cls, "selected_source": source}
+            )
+        for path_key in ("source_artifact", "source_channel_artifact", "source_summary_artifact"):
+            path_value = record.get(path_key)
+            if path_value and not Path(str(path_value)).exists():
+                missing_source_paths.append(
+                    {
+                        "entry_id": entry_id,
+                        "class": cls,
+                        "path_key": path_key,
+                        "path": path_value,
+                    }
+                )
+        provenance = record.get("provenance_hashes")
+        if not isinstance(provenance, dict) or not provenance:
+            provenance_missing_rows.append({"entry_id": entry_id, "class": cls})
+
+    missing_pairs = sorted(
+        expected_pairs - seen_pairs,
+        key=lambda pair: (_entry_id_sort_key(pair[0]), pair[1]),
+    )
+    extra_pairs = sorted(
+        seen_pairs - expected_pairs,
+        key=lambda pair: (_entry_id_sort_key(pair[0]), pair[1]),
+    )
+    critical_counts = {
+        "missing_record_key_rows": len(missing_key_rows),
+        "duplicate_entry_class_pairs": len(duplicate_pairs),
+        "missing_entry_class_pairs": len(missing_pairs),
+        "extra_entry_class_pairs": len(extra_pairs),
+        "score_range_violations": len(score_range_violations),
+        "class_mismatches": len(class_mismatches),
+        "split_mismatches": len(split_mismatches),
+        "threshold_policy_violations": len(threshold_policy_violations),
+        "fallback_source_rows": len(fallback_source_rows),
+        "missing_source_paths": len(missing_source_paths),
+        "provenance_missing_rows": len(provenance_missing_rows),
+    }
+    passed = all(count == 0 for count in critical_counts.values())
+    return {
+        "artifact_id": "v3_selected_organic_cofactor_sidecar_schema_audit_current702_20260601",
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "schema_passed_strict_current702" if passed else "schema_failed_strict_current702"
+        ),
+        "scope": (
+            "Strict schema and lineage audit for the selected organic cofactor "
+            "sidecar consumed by the D11 abstention gate and mechanism-feature "
+            "embedding scaffold."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "sidecar_values_changed": False,
+        },
+        "schema_contract": {
+            "required_record_keys": list(REQUIRED_SELECTED_COFACTOR_RECORD_KEYS),
+            "required_classes": list(COFACTOR_CLASSES),
+            "entry_class_grid": "every current702 entry must have flavin, heme, and plp records",
+            "score_range": "[0.0, 1.0]",
+            "threshold_policy": "fixed_0_5_not_tuned_on_heldout",
+            "fallback_sources_allowed": False,
+        },
+        "counts": {
+            "manifest_rows": len(manifest_rows),
+            "expected_entries": len(expected_entries),
+            "row_class_records": len(records),
+            "expected_row_class_records": len(expected_pairs),
+            "class_counts": dict(sorted(Counter(str(r.get("class")) for r in records).items())),
+            "split_counts": dict(
+                sorted(Counter(str(r.get("split_assignment")) for r in records).items())
+            ),
+            "selected_source_counts": dict(
+                sorted(Counter(str(r.get("selected_source")) for r in records).items())
+            ),
+            "critical_counts": critical_counts,
+        },
+        "violations": {
+            "missing_record_key_rows": missing_key_rows[:50],
+            "duplicate_entry_class_pairs": duplicate_pairs[:50],
+            "missing_entry_class_pairs": [
+                {"entry_id": entry_id, "class": cls} for entry_id, cls in missing_pairs[:50]
+            ],
+            "extra_entry_class_pairs": [
+                {"entry_id": entry_id, "class": cls} for entry_id, cls in extra_pairs[:50]
+            ],
+            "score_range_violations": score_range_violations[:50],
+            "class_mismatches": class_mismatches[:50],
+            "split_mismatches": split_mismatches[:50],
+            "threshold_policy_violations": threshold_policy_violations[:50],
+            "fallback_source_rows": fallback_source_rows[:50],
+            "missing_source_paths": missing_source_paths[:50],
+            "provenance_missing_rows": provenance_missing_rows[:50],
+        },
+        "interpretation": {
+            "result": (
+                "The selected organic cofactor sidecar satisfies the strict "
+                "current702 row-class grid and lineage contract."
+                if passed
+                else "One or more strict sidecar schema checks failed; treat the sidecar as blocked until repaired."
+            ),
+            "embedding_gap_relevance": (
+                "This closes the organic flavin/heme/PLP sidecar schema risk for "
+                "the mechanism-feature embedding scaffold, while metal, cobalamin, "
+                "radical, and Fe-S row-level loci remain separate feature gaps."
+            ),
+        },
+        "source_artifacts": {
+            "selected_organic_cofactor_sidecar": {
+                "path": str(selected_organic_cofactor_sidecar_path),
+                "sha256": _sha256(selected_organic_cofactor_sidecar_path),
+            },
+            "label_manifest": {
+                "path": str(label_manifest_path),
+                "sha256": _sha256(label_manifest_path),
+            },
+        },
+    }
+
+
+def _render_selected_organic_cofactor_sidecar_schema_audit_report(audit: dict[str, Any]) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Selected Organic Cofactor Sidecar Schema Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Row-class records: {counts['row_class_records']} / {counts['expected_row_class_records']}",
+        f"- Critical violation counts: {counts['critical_counts']}",
+        "",
+        "## Contract",
+        "",
+        f"- Required classes: {', '.join(audit['schema_contract']['required_classes'])}",
+        f"- Threshold policy: {audit['schema_contract']['threshold_policy']}",
+        f"- Fallback sources allowed: {audit['schema_contract']['fallback_sources_allowed']}",
+        "",
+        "## Selected Sources",
+        "",
+    ]
+    for source, count in counts["selected_source_counts"].items():
+        lines.append(f"- {source}: {count}")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['embedding_gap_relevance']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_selected_organic_cofactor_sidecar_schema_audit(
+    *,
+    selected_organic_cofactor_sidecar_path: Path,
+    label_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_selected_organic_cofactor_sidecar_schema_audit(
+        selected_organic_cofactor_sidecar_path=selected_organic_cofactor_sidecar_path,
+        label_manifest_path=label_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_selected_organic_cofactor_sidecar_schema_audit_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _cofactor_scores_for_entry(sidecar: dict[str, Any], entry_id: str) -> dict[str, float]:
+    scores: dict[str, float] = {}
+    for record in sidecar.get("row_class_records", []):
+        if record.get("entry_id") == entry_id and record.get("class"):
+            scores[str(record["class"])] = float(record.get("selected_score") or 0.0)
+    return scores
+
+
+def build_family_panel_evidence_packet(
+    *,
+    family_targets_path: Path,
+    predicted_geometry_atlas_path: Path,
+    fold_level_signal_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    predicted_atlas_variants_path: Path,
+    predicted_structure_fold_channel_path: Path | None = None,
+    panel_id: str = "glycyl_radical_or_thiamine_radical_lyase_boundary",
+) -> dict[str, Any]:
+    family_targets = _read_json(family_targets_path)
+    predicted_atlas = _read_json(predicted_geometry_atlas_path)
+    fold_signal = _read_json(fold_level_signal_path)
+    cofactor_sidecar = _read_json(selected_organic_cofactor_sidecar_path)
+    variants = _read_json(predicted_atlas_variants_path)
+    predicted_fold_channel = (
+        _read_json(predicted_structure_fold_channel_path)
+        if predicted_structure_fold_channel_path is not None
+        and Path(predicted_structure_fold_channel_path).exists()
+        else {}
+    )
+
+    panel = None
+    for item in family_targets.get("candidate_families", []):
+        if item.get("candidate_family") == panel_id:
+            panel = item
+            break
+    if panel is None:
+        return {
+            "artifact_id": f"v3_family_panel_evidence_packet_{panel_id}_current702_20260601",
+            "schema_version": SCHEMA_VERSION,
+            "created_utc": _utc_now_iso(),
+            "status": "panel_not_found",
+            "panel_id": panel_id,
+        }
+
+    geometry_by_entry = {
+        str(row.get("entry_id")): row
+        for row in predicted_atlas.get("results", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    fold_by_entry = {
+        str(row.get("entry_id")): row
+        for row in fold_signal.get("confounded_row_details", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    variant_by_entry = {
+        str(row.get("entry_id")): row
+        for row in variants.get("row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    predicted_fold_hits = {
+        str(row.get("query_entry_id")): row
+        for row in (
+            predicted_fold_channel.get("parsed_foldseek_results", {})
+            .get("priority_cofactor_confounded_oos_vs_atlas", {})
+            .get("nearest_atlas_hits", [])
+        )
+        if isinstance(row, dict) and row.get("query_entry_id")
+    }
+    rows = []
+    for entry_id in panel.get("candidate_rows", []):
+        geo = geometry_by_entry.get(entry_id, {})
+        top = _top1_fingerprint(geo) or {}
+        fold = fold_by_entry.get(entry_id, {})
+        cof = _cofactor_scores_for_entry(cofactor_sidecar, entry_id)
+        variant = variant_by_entry.get(entry_id, {})
+        variant_scores = variant.get("variant_scores", {})
+        cofactor_max = max(cof.values()) if cof else None
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "split_assignment": geo.get("split_assignment"),
+                "benchmark_role": geo.get("benchmark_role"),
+                "predicted_geometry_status": _predicted_row_status(geo) if geo else "missing",
+                "predicted_geometry_top1": {
+                    "fingerprint_id": top.get("fingerprint_id"),
+                    "score": top.get("score"),
+                    "role_match_fraction": top.get("role_match_fraction"),
+                    "cofactor_context_score": top.get("cofactor_context_score"),
+                },
+                "selected_organic_cofactor_scores": cof,
+                "selected_organic_cofactor_max": (
+                    round(cofactor_max, 6) if cofactor_max is not None else None
+                ),
+                "selected_pdb_fold_proxy": {
+                    "nearest_primary_foldseek_prob": (
+                        (fold.get("fold_signals") or {}).get("nearest_primary_foldseek_prob")
+                    ),
+                    "top3_primary_foldseek_prob": (
+                        (fold.get("fold_signals") or {}).get("top3_primary_foldseek_prob")
+                    ),
+                    "nearest_train_label_group": fold.get("nearest_train_label_group"),
+                    "nearest_train_fingerprint_id": fold.get("nearest_train_fingerprint_id"),
+                },
+                "predicted_atlas_geometry_variant_scores": {
+                    "top1_score_raw": variant_scores.get("top1_score_raw"),
+                    "negative_nearest_class_centroid_robust_distance": variant_scores.get(
+                        "negative_nearest_class_centroid_robust_distance"
+                    ),
+                },
+                "predicted_structure_fold_channel": {
+                    "nearest_atlas_entry_id": (
+                        predicted_fold_hits.get(entry_id, {}).get("nearest_atlas_entry_id")
+                    ),
+                    "nearest_atlas_true_fingerprint_id": (
+                        predicted_fold_hits.get(entry_id, {}).get(
+                            "nearest_atlas_true_fingerprint_id"
+                        )
+                    ),
+                    "nearest_atlas_tm_score": (
+                        predicted_fold_hits.get(entry_id, {}).get("tm_score")
+                    ),
+                },
+                "evidence_role": (
+                    "cofactor-confounded OOS control: known organic cofactor-like "
+                    "signal with weak/novel fold or geometry support against occupied "
+                    "primary mechanisms"
+                ),
+            }
+        )
+
+    missing_geometry = [
+        row["entry_id"] for row in rows if row["predicted_geometry_status"] != "ok"
+    ]
+    return {
+        "artifact_id": "v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601",
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "evidence_packet_ready_review_only"
+            if not missing_geometry else "evidence_packet_ready_with_geometry_gaps"
+        ),
+        "scope": (
+            "Review-only evidence packet for the highest-value family-set expansion "
+            "panel: cofactor-confounded OOS radical/thiamine-lyase boundary rows "
+            "that stress the current de novo abstention gate."
+        ),
+        "guardrails": {
+            "proposal_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_splits_changed": False,
+            "heldout_rows_used_for_training": False,
+        },
+        "panel": panel,
+        "counts": {
+            "candidate_rows": len(rows),
+            "predicted_geometry_ok_rows": sum(
+                1 for row in rows if row["predicted_geometry_status"] == "ok"
+            ),
+            "rows_with_selected_pdb_fold_proxy": sum(
+                1
+                for row in rows
+                if row["selected_pdb_fold_proxy"]["nearest_primary_foldseek_prob"] is not None
+            ),
+            "rows_with_selected_organic_cofactor_scores": sum(
+                1 for row in rows if row["selected_organic_cofactor_scores"]
+            ),
+            "rows_with_predicted_structure_fold_hits": sum(
+                1
+                for row in rows
+                if row["predicted_structure_fold_channel"]["nearest_atlas_tm_score"]
+                is not None
+            ),
+            "missing_geometry_entry_ids": missing_geometry,
+        },
+        "row_evidence": rows,
+        "review_questions": [
+            "Do these rows share a coherent radical/thiamine-lyase mechanism locus, or should they stay OOS controls?",
+            "Which row-level bond-change and cofactor-locus features must be normalized before any countable family addition?",
+            "Does the real predicted-structure Foldseek/TM channel keep these rows outside occupied primary atlas folds?",
+        ],
+        "next_actions": (
+            [
+                "use the completed all-heldout predicted Foldseek/TM signal in the next abstention combiner diagnostic",
+                "source-check mechanism locus and bond-change evidence before any panel promotion discussion",
+                "keep rows review-only and out of training/calibration until a future frozen split is explicitly authorized",
+            ]
+            if predicted_fold_channel.get("status") == "computed_all_heldout_foldseek_scores"
+            else (
+            [
+                "extend the predicted-structure Foldseek/TM sweep from this two-row panel to all priority confounded rows or all heldout rows",
+                "source-check mechanism locus and bond-change evidence before any panel promotion discussion",
+                "keep rows review-only and out of training/calibration until a future frozen split is explicitly authorized",
+            ]
+            if predicted_fold_hits
+            else [
+                "run the predicted-structure Foldseek/TM priority manifest for these rows against the predicted atlas",
+                "source-check mechanism locus and bond-change evidence before any panel promotion discussion",
+                "keep rows review-only and out of training/calibration until a future frozen split is explicitly authorized",
+            ]
+            )
+        ),
+        "source_artifacts": {
+            "family_targets": {
+                "path": str(family_targets_path),
+                "sha256": _sha256(family_targets_path),
+            },
+            "predicted_geometry_atlas": {
+                "path": str(predicted_geometry_atlas_path),
+                "sha256": _sha256(predicted_geometry_atlas_path),
+            },
+            "fold_level_signal": {
+                "path": str(fold_level_signal_path),
+                "sha256": _sha256(fold_level_signal_path),
+            },
+            "selected_organic_cofactor_sidecar": {
+                "path": str(selected_organic_cofactor_sidecar_path),
+                "sha256": _sha256(selected_organic_cofactor_sidecar_path),
+            },
+            "predicted_atlas_variants": {
+                "path": str(predicted_atlas_variants_path),
+                "sha256": _sha256(predicted_atlas_variants_path),
+            },
+            "predicted_structure_fold_channel": (
+                {
+                    "path": str(predicted_structure_fold_channel_path),
+                    "sha256": _sha256(predicted_structure_fold_channel_path),
+                }
+                if predicted_structure_fold_channel_path is not None
+                and Path(predicted_structure_fold_channel_path).exists()
+                else None
+            ),
+        },
+    }
+
+
+def _render_family_panel_evidence_packet_report(audit: dict[str, Any]) -> str:
+    lines = [
+        "# Family Panel Evidence Packet - Glycyl Radical / Thiamine Lyase",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Candidate rows: {audit['counts']['candidate_rows']}",
+        f"- Predicted geometry ok rows: {audit['counts']['predicted_geometry_ok_rows']}",
+        "",
+        "## Row Evidence",
+        "",
+        "| Row | geometry top1 | geom score | cofactor max | selected-PDB fold prob | predicted-fold TM | robust atlas distance signal |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for row in audit["row_evidence"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['predicted_geometry_top1']['fingerprint_id']} | "
+            f"{row['predicted_geometry_top1']['score']} | "
+            f"{row['selected_organic_cofactor_max']} | "
+            f"{row['selected_pdb_fold_proxy']['nearest_primary_foldseek_prob']} | "
+            f"{row['predicted_structure_fold_channel']['nearest_atlas_tm_score']} | "
+            f"{row['predicted_atlas_geometry_variant_scores']['negative_nearest_class_centroid_robust_distance']} |"
+        )
+    lines += [
+        "",
+        "## Review Questions",
+        "",
+    ]
+    for item in audit["review_questions"]:
+        lines.append(f"- {item}")
+    lines += [
+        "",
+        "## Next Actions",
+        "",
+    ]
+    for item in audit["next_actions"]:
+        lines.append(f"- {item}")
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_evidence_packet(
+    *,
+    family_targets_path: Path,
+    predicted_geometry_atlas_path: Path,
+    fold_level_signal_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    predicted_atlas_variants_path: Path,
+    out_path: Path,
+    predicted_structure_fold_channel_path: Path | None = None,
+    report_path: Path | None = None,
+    panel_id: str = "glycyl_radical_or_thiamine_radical_lyase_boundary",
+) -> dict[str, Any]:
+    audit = build_family_panel_evidence_packet(
+        family_targets_path=family_targets_path,
+        predicted_geometry_atlas_path=predicted_geometry_atlas_path,
+        fold_level_signal_path=fold_level_signal_path,
+        selected_organic_cofactor_sidecar_path=selected_organic_cofactor_sidecar_path,
+        predicted_atlas_variants_path=predicted_atlas_variants_path,
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        panel_id=panel_id,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_evidence_packet_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_abstention_gate(
+    *,
+    predicted_structure_fold_channel_path: Path,
+    predicted_geometry_atlas_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+) -> dict[str, Any]:
+    fold_channel = _read_json(predicted_structure_fold_channel_path)
+    predicted_atlas = _read_json(predicted_geometry_atlas_path)
+    cofactor_sidecar = _read_json(selected_organic_cofactor_sidecar_path)
+    geometry_by_entry = {
+        str(row.get("entry_id")): row
+        for row in predicted_atlas.get("results", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    fold_rows = (
+        fold_channel.get("fold_channel_signal", {})
+        .get("nearest_atlas_tm_score", {})
+        .get("row_scores", [])
+    )
+    scored_rows = []
+    for row in fold_rows:
+        entry_id = str(row.get("entry_id"))
+        geo = geometry_by_entry.get(entry_id, {})
+        top = _top1_fingerprint(geo) or {}
+        cofactor_scores = _cofactor_scores_for_entry(cofactor_sidecar, entry_id)
+        if not top or not cofactor_scores:
+            continue
+        geom = float(top.get("score") or 0.0)
+        cof = max(cofactor_scores.values())
+        fold = float((row.get("fold_signals") or {}).get("nearest_atlas_tm_score") or 0.0)
+        scored_rows.append(
+            {
+                "entry_id": entry_id,
+                "true_fingerprint_id": row.get("true_fingerprint_id"),
+                "is_inscope": bool(row.get("true_fingerprint_id")),
+                "is_oos": not bool(row.get("true_fingerprint_id")),
+                "is_confounded_predicted_geometry_oos": bool(
+                    row.get("is_confounded_predicted_geometry_oos")
+                ),
+                "channel_scores": {
+                    "geometry_top1_score": round(geom, 6),
+                    "cofactor_max_score": round(cof, 6),
+                    "fold_nearest_atlas_tm_score": round(fold, 6),
+                    "combined_mean_geometry_cofactor_fold": round((geom + cof + fold) / 3, 6),
+                    "combined_mean_geometry_fold": round((geom + fold) / 2, 6),
+                    "combined_min_geometry_fold": round(min(geom, fold), 6),
+                },
+            }
+        )
+    if not scored_rows:
+        return {
+            "artifact_id": "v3_fold_augmented_abstention_gate_current702_20260601",
+            "schema_version": SCHEMA_VERSION,
+            "created_utc": _utc_now_iso(),
+            "status": "insufficient_rows",
+        }
+    channel_names = list(scored_rows[0]["channel_scores"])
+    channels = {
+        name: _signal_metrics(
+            [
+                {
+                    **row,
+                    "variant_scores": row["channel_scores"],
+                }
+                for row in scored_rows
+            ],
+            name,
+        )
+        for name in channel_names
+    }
+    best_name, best = max(
+        channels.items(),
+        key=lambda item: item[1]["auc_in_gt_oos_all"] or 0.0,
+    )
+    return {
+        "artifact_id": "v3_fold_augmented_abstention_gate_current702_20260601",
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": "computed_no_fit_no_threshold_change",
+        "scope": (
+            "Fold-augmented deployment abstention diagnostic over heldout rows "
+            "with ok predicted geometry: raw predicted-geometry top1 confidence, "
+            "sequence-only selected organic cofactor max score, and real "
+            "predicted-structure nearest-atlas Foldseek/TM score."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "model_fit_or_refit": False,
+        },
+        "counts": {
+            "heldout_rows_scored": len(scored_rows),
+            "inscope": sum(1 for row in scored_rows if row["is_inscope"]),
+            "oos": sum(1 for row in scored_rows if row["is_oos"]),
+            "confounded_oos": sum(
+                1 for row in scored_rows if row["is_confounded_predicted_geometry_oos"]
+            ),
+        },
+        "channels": channels,
+        "best_channel": {
+            "name": best_name,
+            "auc_in_gt_oos_all": best["auc_in_gt_oos_all"],
+            "auc_in_gt_confounded_oos": best["auc_in_gt_confounded_oos"],
+            "best_at_90pct_inscope_retention": best["best_at_90pct_inscope_retention"],
+            "best_at_85pct_inscope_retention": best["best_at_85pct_inscope_retention"],
+        },
+        "row_scores": scored_rows,
+        "interpretation": {
+            "headline": (
+                f"Best fold-augmented diagnostic channel is {best_name} with "
+                f"AUC {best['auc_in_gt_oos_all']} overall."
+            ),
+            "caveat": (
+                "This is a no-fit diagnostic over heldout rows, not a selected "
+                "deployment threshold or production scoring change."
+            ),
+        },
+        "source_artifacts": {
+            "predicted_structure_fold_channel": {
+                "path": str(predicted_structure_fold_channel_path),
+                "sha256": _sha256(predicted_structure_fold_channel_path),
+            },
+            "predicted_geometry_atlas": {
+                "path": str(predicted_geometry_atlas_path),
+                "sha256": _sha256(predicted_geometry_atlas_path),
+            },
+            "selected_organic_cofactor_sidecar": {
+                "path": str(selected_organic_cofactor_sidecar_path),
+                "sha256": _sha256(selected_organic_cofactor_sidecar_path),
+            },
+        },
+    }
+
+
+def _render_fold_augmented_abstention_gate_report(audit: dict[str, Any]) -> str:
+    best = audit["best_channel"]
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Abstention Gate - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Counts",
+        "",
+        f"- Heldout rows scored: {counts['heldout_rows_scored']}",
+        f"- In-scope: {counts['inscope']}",
+        f"- OOS: {counts['oos']}",
+        f"- Cofactor-confounded OOS: {counts['confounded_oos']}",
+        "",
+        "## Best Channel",
+        "",
+        f"- {best['name']}: AUC all OOS {best['auc_in_gt_oos_all']}; confounded AUC {best['auc_in_gt_confounded_oos']}",
+        f"- Best >=90% retention diagnostic: {best['best_at_90pct_inscope_retention']}",
+        f"- Best >=85% retention diagnostic: {best['best_at_85pct_inscope_retention']}",
+        "",
+        "## Channels",
+        "",
+        "| Channel | all OOS AUC | confounded AUC | agnostic AUC |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for name, channel in audit["channels"].items():
+        lines.append(
+            f"| {name} | {channel['auc_in_gt_oos_all']} | "
+            f"{channel['auc_in_gt_confounded_oos']} | {channel['auc_in_gt_agnostic_oos']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['caveat']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_abstention_gate(
+    *,
+    predicted_structure_fold_channel_path: Path,
+    predicted_geometry_atlas_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_abstention_gate(
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        predicted_geometry_atlas_path=predicted_geometry_atlas_path,
+        selected_organic_cofactor_sidecar_path=selected_organic_cofactor_sidecar_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(_render_fold_augmented_abstention_gate_report(audit), encoding="utf-8")
     return audit
 
 

@@ -49,8 +49,13 @@ Status terms:
 | --- | --- | --- |
 | `artifacts/v3_mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.json` | Does the predicted-geometry atlas-percentile two-channel gate run after adding in-distribution atlas rows? | Current deployment-regime rerun |
 | `artifacts/v3_fold_level_novelty_signal_current702_20260601.json` | Does the frozen selected-PDB Foldseek proxy add a fold-level novelty signal for OOS and cofactor-confounded rows? | Diagnostic; selected-PDB fold proxy, not predicted-Foldseek deployment signal |
+| `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json` | What exact AlphaFoldDB/Foldseek scores exist for the real predicted-structure fold channel against the in-distribution atlas? | Current all-heldout scored artifact; persistent coordinate bundle still pending |
+| `artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json` | Does the real predicted-structure Foldseek/TM channel improve the deployment-regime abstention diagnostic when combined with predicted geometry? | Current no-fit diagnostic; no production threshold selected |
+| `artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json` | Do predicted-atlas geometry percentile and robust-distance variants improve novelty separation after atlas retrieval was unblocked? | Current diagnostic; atlas-only normalization, no deployment threshold selected |
+| `artifacts/v3_selected_organic_cofactor_sidecar_schema_audit_current702_20260601.json` | Does the selected organic cofactor sidecar satisfy a strict row-class schema and lineage contract for D11/embedding use? | Current schema audit; organic flavin/heme/PLP sidecar contract passed |
 | `artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json` | What leakage-safe scaffold and feature gaps exist for a learned mechanism-feature embedding? | Current scaffold/plan |
 | `artifacts/v3_family_set_expansion_targets_current702_20260601.json` | Which targeted family expansions de-risk the 8-fingerprint bound without imports? | Proposal-only; no label/import mutation |
+| `artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json` | What frozen evidence supports the highest-value glycyl-radical/thiamine-lyase boundary panel? | Review-only evidence packet; no label/import mutation |
 
 ## Geometry And Active-Site Evidence
 

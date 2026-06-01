@@ -62,6 +62,12 @@ artifacts first.
   non-abstained primary calls, and a 12.3% OOS/secondary false-positive rate.
   This makes robustness to predicted active-site geometry degradation a learned
   model job description, not a raw clean-M-CSA accuracy contest.
+- A real AlphaFoldDB-predicted structure Foldseek channel is now scored for all
+  126 heldout rows with ok predicted geometry against the predicted
+  in-distribution atlas. The standalone nearest-atlas TM signal separates
+  in-scope from all OOS at AUC 0.814301; a no-fit mean of predicted geometry
+  confidence and fold TM reaches AUC 0.907622 overall and 0.911348 on the six
+  cofactor-confounded OOS rows. These are diagnostics, not production thresholds.
 - Learned-representation results are diagnostic, not decision-grade. ESM-2
   logistic is the strongest local learned comparator in the Wave 1.2 table but
   does not displace geometry. ESM-C logistic versus ESM-C cosine shows decoder
@@ -96,8 +102,9 @@ artifacts first.
 
 ## Next Gates
 
-1. Freeze a geometry-router contract that separates clean experimental
-   coordinate use from predicted-geometry deployment claims.
+1. Promote the fold-augmented abstention diagnostic into a leakage-safe
+   train/cal/heldout thresholding contract; keep the current heldout operating
+   points non-production until then.
 2. If representation work resumes, produce row-aligned local sidecars first,
    then train heads on train/cal rows only and evaluate heldout once, including
    a predicted-geometry robustness cell.

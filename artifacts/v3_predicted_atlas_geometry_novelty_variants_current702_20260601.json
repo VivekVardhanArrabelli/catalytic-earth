@@ -1,0 +1,2909 @@
+{
+  "artifact_id": "v3_predicted_atlas_geometry_novelty_variants_current702_20260601",
+  "best_signal": {
+    "auc_in_gt_confounded_oos": 0.847518,
+    "auc_in_gt_oos_all": 0.776461,
+    "best_at_85pct_inscope_retention": {
+      "confounded_abstain_recall": 0.6667,
+      "inscope_retain_recall": 0.8723,
+      "oos_abstain_recall": 0.5949,
+      "threshold": -1.473053
+    },
+    "best_at_90pct_inscope_retention": {
+      "confounded_abstain_recall": 0.3333,
+      "inscope_retain_recall": 0.9149,
+      "oos_abstain_recall": 0.2278,
+      "threshold": -2.079745
+    },
+    "name": "negative_nearest_class_centroid_robust_distance"
+  },
+  "counts": {
+    "atlas_rows": 168,
+    "atlas_true_fingerprint_counts": {
+      "flavin_dehydrogenase_reductase": 37,
+      "heme_peroxidase_oxidase": 14,
+      "metal_dependent_hydrolase": 63,
+      "plp_dependent_enzyme": 24,
+      "ser_his_acid_hydrolase": 30
+    },
+    "confounded_predicted_geometry_oos": 6,
+    "heldout_rows": 126,
+    "inscope": 47,
+    "oos": 79
+  },
+  "created_utc": "2026-06-01T02:44:25Z",
+  "guardrails": {
+    "atlas_statistics_only_for_normalization": true,
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false
+  },
+  "interpretation": {
+    "headline": "Best predicted-atlas geometry variant is negative_nearest_class_centroid_robust_distance with AUC 0.776461.",
+    "operating_point_caveat": "Post-hoc retention rows are diagnostics only; no deployment threshold is selected or written to production."
+  },
+  "row_scores": [
+    {
+      "entry_id": "m_csa:3",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.366085,
+        "negative_robust_distance_to_atlas_median": -1.480857,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.160714,
+        "top1_score_raw": 0.3678,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:9",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -1.266056,
+        "negative_robust_distance_to_atlas_median": -1.579593,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.60119,
+        "top1_score_raw": 0.57,
+        "top1_score_x_role_atlas_percentile": 0.452381,
+        "top1_score_x_role_raw": 0.189981
+      }
+    },
+    {
+      "entry_id": "m_csa:10",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -1.534108,
+        "negative_robust_distance_to_atlas_median": -2.073363,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.356,
+        "top1_score_x_role_atlas_percentile": 0.202381,
+        "top1_score_x_role_raw": 0.118655
+      }
+    },
+    {
+      "entry_id": "m_csa:12",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.352027,
+        "negative_robust_distance_to_atlas_median": -1.544909,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.107143,
+        "top1_score_raw": 0.3602,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:14",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.945337,
+        "negative_robust_distance_to_atlas_median": -1.077728,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.428571,
+        "top1_score_raw": 0.4189,
+        "top1_score_x_role_atlas_percentile": 0.297619,
+        "top1_score_x_role_raw": 0.139619
+      }
+    },
+    {
+      "entry_id": "m_csa:20",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.473053,
+        "negative_robust_distance_to_atlas_median": -1.461482,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.142857,
+        "top1_score_raw": 0.363,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:30",
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -2.309839,
+        "negative_robust_distance_to_atlas_median": -2.061059,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.0,
+        "top1_score_raw": 0.2616,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:31",
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.399238,
+        "negative_robust_distance_to_atlas_median": -1.942597,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.071429,
+        "top1_score_raw": 0.3466,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:32",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.865836,
+        "negative_robust_distance_to_atlas_median": -1.635517,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.380952,
+        "top1_score_raw": 0.4072,
+        "top1_score_x_role_atlas_percentile": 0.27381,
+        "top1_score_x_role_raw": 0.13572
+      }
+    },
+    {
+      "entry_id": "m_csa:34",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.723239,
+        "negative_robust_distance_to_atlas_median": -0.939559,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.517857,
+        "top1_score_raw": 0.5334,
+        "top1_score_x_role_atlas_percentile": 0.369048,
+        "top1_score_x_role_raw": 0.177782
+      }
+    },
+    {
+      "entry_id": "m_csa:43",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.43731,
+        "negative_robust_distance_to_atlas_median": -0.822379,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.761905,
+        "top1_score_raw": 0.598,
+        "top1_score_x_role_atlas_percentile": 0.613095,
+        "top1_score_x_role_raw": 0.199313
+      }
+    },
+    {
+      "entry_id": "m_csa:44",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -2.517866,
+        "negative_robust_distance_to_atlas_median": -2.796639,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.5,
+        "top1_score_raw": 0.4316,
+        "top1_score_x_role_atlas_percentile": 0.875,
+        "top1_score_x_role_raw": 0.287748
+      }
+    },
+    {
+      "entry_id": "m_csa:45",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.405746,
+        "negative_robust_distance_to_atlas_median": -1.482734,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.125,
+        "top1_score_raw": 0.3613,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:46",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -1.761516,
+        "negative_robust_distance_to_atlas_median": -2.577167,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.011905,
+        "top1_score_raw": 0.2965,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:56",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.443795,
+        "negative_robust_distance_to_atlas_median": -1.45929,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.14881,
+        "top1_score_raw": 0.3642,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:67",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.440264,
+        "negative_robust_distance_to_atlas_median": -1.513164,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.3545,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:71",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.375,
+        "cofactor_context_score_raw": 0.25,
+        "negative_nearest_class_centroid_robust_distance": -2.525463,
+        "negative_robust_distance_to_atlas_median": -3.055502,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.172619,
+        "top1_score_raw": 0.3706,
+        "top1_score_x_role_atlas_percentile": 0.684524,
+        "top1_score_x_role_raw": 0.247079
+      }
+    },
+    {
+      "entry_id": "m_csa:73",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.558613,
+        "negative_robust_distance_to_atlas_median": -1.447783,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.208333,
+        "top1_score_raw": 0.3755,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:79",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.801965,
+        "negative_robust_distance_to_atlas_median": -1.662929,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.184524,
+        "top1_score_raw": 0.3714,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:80",
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -4.05767,
+        "negative_robust_distance_to_atlas_median": -5.41903,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.083333,
+        "top1_score_raw": 0.3489,
+        "top1_score_x_role_atlas_percentile": 0.202381,
+        "top1_score_x_role_raw": 0.116288
+      }
+    },
+    {
+      "entry_id": "m_csa:86",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.374686,
+        "negative_robust_distance_to_atlas_median": -1.812081,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.095238,
+        "top1_score_raw": 0.351,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:97",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.802463,
+        "negative_robust_distance_to_atlas_median": -1.130269,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.803571,
+        "top1_score_raw": 0.6047,
+        "top1_score_x_role_atlas_percentile": 0.654762,
+        "top1_score_x_role_raw": 0.201547
+      }
+    },
+    {
+      "entry_id": "m_csa:109",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -1.455639,
+        "negative_robust_distance_to_atlas_median": -2.327594,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.065476,
+        "top1_score_raw": 0.3441,
+        "top1_score_x_role_atlas_percentile": 0.202381,
+        "top1_score_x_role_raw": 0.114689
+      }
+    },
+    {
+      "entry_id": "m_csa:115",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.375,
+        "cofactor_context_score_raw": 0.25,
+        "negative_nearest_class_centroid_robust_distance": -1.364985,
+        "negative_robust_distance_to_atlas_median": -2.555386,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.392857,
+        "top1_score_raw": 0.4112,
+        "top1_score_x_role_atlas_percentile": 0.845238,
+        "top1_score_x_role_raw": 0.274147
+      }
+    },
+    {
+      "entry_id": "m_csa:118",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -3.657519,
+        "negative_robust_distance_to_atlas_median": -5.340725,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.035714,
+        "top1_score_raw": 0.3031,
+        "top1_score_x_role_atlas_percentile": 0.184524,
+        "top1_score_x_role_raw": 0.101023
+      }
+    },
+    {
+      "entry_id": "m_csa:121",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -3.809005,
+        "negative_robust_distance_to_atlas_median": -5.01782,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.184524,
+        "top1_score_raw": 0.3732,
+        "top1_score_x_role_atlas_percentile": 0.208333,
+        "top1_score_x_role_raw": 0.124388
+      }
+    },
+    {
+      "entry_id": "m_csa:125",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.713736,
+        "negative_robust_distance_to_atlas_median": -1.177401,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.357143,
+        "top1_score_raw": 0.3997,
+        "top1_score_x_role_atlas_percentile": 0.261905,
+        "top1_score_x_role_raw": 0.13322
+      }
+    },
+    {
+      "entry_id": "m_csa:129",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.778805,
+        "negative_robust_distance_to_atlas_median": -0.983779,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.5,
+        "top1_score_raw": 0.4284,
+        "top1_score_x_role_atlas_percentile": 0.357143,
+        "top1_score_x_role_raw": 0.142786
+      }
+    },
+    {
+      "entry_id": "m_csa:131",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "flavin_monooxygenase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.376203,
+        "negative_robust_distance_to_atlas_median": -1.668064,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.095238,
+        "top1_score_raw": 0.3522,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:155",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -3.556981,
+        "negative_robust_distance_to_atlas_median": -4.765078,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.035714,
+        "top1_score_raw": 0.3045,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:159",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.413973,
+        "negative_robust_distance_to_atlas_median": -0.760492,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.690476,
+        "top1_score_raw": 0.5945,
+        "top1_score_x_role_atlas_percentile": 0.541667,
+        "top1_score_x_role_raw": 0.198147
+      }
+    },
+    {
+      "entry_id": "m_csa:163",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.802953,
+        "negative_robust_distance_to_atlas_median": -1.130864,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.809524,
+        "top1_score_raw": 0.605,
+        "top1_score_x_role_atlas_percentile": 0.660714,
+        "top1_score_x_role_raw": 0.201646
+      }
+    },
+    {
+      "entry_id": "m_csa:171",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.808776,
+        "negative_robust_distance_to_atlas_median": -1.137367,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.815476,
+        "top1_score_raw": 0.6074,
+        "top1_score_x_role_atlas_percentile": 0.666667,
+        "top1_score_x_role_raw": 0.202446
+      }
+    },
+    {
+      "entry_id": "m_csa:180",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.60617,
+        "negative_robust_distance_to_atlas_median": -0.812278,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.613095,
+        "top1_score_raw": 0.5838,
+        "top1_score_x_role_atlas_percentile": 0.464286,
+        "top1_score_x_role_raw": 0.194581
+      }
+    },
+    {
+      "entry_id": "m_csa:185",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -2.399523,
+        "negative_robust_distance_to_atlas_median": -2.627034,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.345238,
+        "top1_score_raw": 0.399,
+        "top1_score_x_role_atlas_percentile": 0.785714,
+        "top1_score_x_role_raw": 0.266013
+      }
+    },
+    {
+      "entry_id": "m_csa:188",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -2.050112,
+        "negative_robust_distance_to_atlas_median": -2.195178,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.3568,
+        "top1_score_x_role_atlas_percentile": 0.202381,
+        "top1_score_x_role_raw": 0.118921
+      }
+    },
+    {
+      "entry_id": "m_csa:191",
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.800092,
+        "negative_robust_distance_to_atlas_median": -1.66112,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.184524,
+        "top1_score_raw": 0.3718,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:192",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -2.06218,
+        "negative_robust_distance_to_atlas_median": -2.194899,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.3546,
+        "top1_score_x_role_atlas_percentile": 0.202381,
+        "top1_score_x_role_raw": 0.118188
+      }
+    },
+    {
+      "entry_id": "m_csa:197",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -1.490187,
+        "negative_robust_distance_to_atlas_median": -2.336167,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.369048,
+        "top1_score_raw": 0.4059,
+        "top1_score_x_role_atlas_percentile": 0.267857,
+        "top1_score_x_role_raw": 0.135286
+      }
+    },
+    {
+      "entry_id": "m_csa:198",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -3.80967,
+        "negative_robust_distance_to_atlas_median": -5.018123,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.184524,
+        "top1_score_raw": 0.373,
+        "top1_score_x_role_atlas_percentile": 0.208333,
+        "top1_score_x_role_raw": 0.124321
+      }
+    },
+    {
+      "entry_id": "m_csa:199",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.584023,
+        "negative_robust_distance_to_atlas_median": -1.09997,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.428571,
+        "top1_score_raw": 0.4184,
+        "top1_score_x_role_atlas_percentile": 0.297619,
+        "top1_score_x_role_raw": 0.139453
+      }
+    },
+    {
+      "entry_id": "m_csa:201",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.375,
+        "cofactor_context_score_raw": 0.25,
+        "negative_nearest_class_centroid_robust_distance": -4.700217,
+        "negative_robust_distance_to_atlas_median": -5.932808,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.0,
+        "top1_score_raw": 0.1919,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.06396
+      }
+    },
+    {
+      "entry_id": "m_csa:211",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.380795,
+        "negative_robust_distance_to_atlas_median": -1.684361,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.095238,
+        "top1_score_raw": 0.3516,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:213",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "true_fingerprint_id": "plp_dependent_enzyme",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -3.743626,
+        "negative_robust_distance_to_atlas_median": -5.412754,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.3561,
+        "top1_score_x_role_atlas_percentile": 0.678571,
+        "top1_score_x_role_raw": 0.237412
+      }
+    },
+    {
+      "entry_id": "m_csa:217",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -2.360987,
+        "negative_robust_distance_to_atlas_median": -2.491077,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.297619,
+        "top1_score_raw": 0.3919,
+        "top1_score_x_role_atlas_percentile": 0.22619,
+        "top1_score_x_role_raw": 0.13062
+      }
+    },
+    {
+      "entry_id": "m_csa:220",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -2.318924,
+        "negative_robust_distance_to_atlas_median": -3.214262,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.267857,
+        "top1_score_raw": 0.3843,
+        "top1_score_x_role_atlas_percentile": 0.22619,
+        "top1_score_x_role_raw": 0.128087
+      }
+    },
+    {
+      "entry_id": "m_csa:225",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -2.675799,
+        "negative_robust_distance_to_atlas_median": -3.90253,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.244048,
+        "top1_score_raw": 0.3796,
+        "top1_score_x_role_atlas_percentile": 0.702381,
+        "top1_score_x_role_raw": 0.253079
+      }
+    },
+    {
+      "entry_id": "m_csa:230",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -2.399523,
+        "negative_robust_distance_to_atlas_median": -2.627034,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.345238,
+        "top1_score_raw": 0.399,
+        "top1_score_x_role_atlas_percentile": 0.785714,
+        "top1_score_x_role_raw": 0.266013
+      }
+    },
+    {
+      "entry_id": "m_csa:239",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "heme_peroxidase_oxidase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.176479,
+        "negative_robust_distance_to_atlas_median": -0.651779,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.541667,
+        "top1_score_raw": 0.5423,
+        "top1_score_x_role_atlas_percentile": 0.392857,
+        "top1_score_x_role_raw": 0.180749
+      }
+    },
+    {
+      "entry_id": "m_csa:242",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.797232,
+        "negative_robust_distance_to_atlas_median": -1.155063,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.35119,
+        "top1_score_raw": 0.3994,
+        "top1_score_x_role_atlas_percentile": 0.261905,
+        "top1_score_x_role_raw": 0.13312
+      }
+    },
+    {
+      "entry_id": "m_csa:250",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "heme_peroxidase_oxidase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.507917,
+        "negative_robust_distance_to_atlas_median": -0.709405,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.541667,
+        "top1_score_raw": 0.5425,
+        "top1_score_x_role_atlas_percentile": 0.392857,
+        "top1_score_x_role_raw": 0.180815
+      }
+    },
+    {
+      "entry_id": "m_csa:254",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -1.005944,
+        "negative_robust_distance_to_atlas_median": -2.935805,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.053571,
+        "top1_score_raw": 0.3313,
+        "top1_score_x_role_atlas_percentile": 0.196429,
+        "top1_score_x_role_raw": 0.110422
+      }
+    },
+    {
+      "entry_id": "m_csa:255",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -2.057079,
+        "negative_robust_distance_to_atlas_median": -2.19471,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.3555,
+        "top1_score_x_role_atlas_percentile": 0.202381,
+        "top1_score_x_role_raw": 0.118488
+      }
+    },
+    {
+      "entry_id": "m_csa:267",
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -1.475892,
+        "negative_robust_distance_to_atlas_median": -2.281099,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.327381,
+        "top1_score_raw": 0.3969,
+        "top1_score_x_role_atlas_percentile": 0.761905,
+        "top1_score_x_role_raw": 0.264613
+      }
+    },
+    {
+      "entry_id": "m_csa:297",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.772796,
+        "negative_robust_distance_to_atlas_median": -1.637425,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.244048,
+        "top1_score_raw": 0.3804,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:311",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.790457,
+        "negative_robust_distance_to_atlas_median": -0.923599,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.613095,
+        "top1_score_raw": 0.5813,
+        "top1_score_x_role_atlas_percentile": 0.464286,
+        "top1_score_x_role_raw": 0.193747
+      }
+    },
+    {
+      "entry_id": "m_csa:313",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.807667,
+        "negative_robust_distance_to_atlas_median": -1.668176,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.166667,
+        "top1_score_raw": 0.3701,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:321",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.897389,
+        "negative_robust_distance_to_atlas_median": -1.049809,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.47619,
+        "top1_score_raw": 0.4255,
+        "top1_score_x_role_atlas_percentile": 0.333333,
+        "top1_score_x_role_raw": 0.141819
+      }
+    },
+    {
+      "entry_id": "m_csa:323",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -1.155749,
+        "negative_robust_distance_to_atlas_median": -2.99125,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.053571,
+        "top1_score_raw": 0.3287,
+        "top1_score_x_role_atlas_percentile": 0.196429,
+        "top1_score_x_role_raw": 0.109556
+      }
+    },
+    {
+      "entry_id": "m_csa:333",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -3.923692,
+        "negative_robust_distance_to_atlas_median": -5.14833,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.02381,
+        "top1_score_raw": 0.297,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:334",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.723065,
+        "negative_robust_distance_to_atlas_median": -1.557879,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.184524,
+        "top1_score_raw": 0.371,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:346",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.354195,
+        "negative_robust_distance_to_atlas_median": -1.587953,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.3572,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:352",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -1.133623,
+        "negative_robust_distance_to_atlas_median": -2.650393,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.821429,
+        "top1_score_raw": 0.6756,
+        "top1_score_x_role_atlas_percentile": 0.880952,
+        "top1_score_x_role_raw": 0.450423
+      }
+    },
+    {
+      "entry_id": "m_csa:355",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.375,
+        "cofactor_context_score_raw": 0.25,
+        "negative_nearest_class_centroid_robust_distance": -2.822229,
+        "negative_robust_distance_to_atlas_median": -3.137114,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.208333,
+        "top1_score_raw": 0.3758,
+        "top1_score_x_role_atlas_percentile": 0.696429,
+        "top1_score_x_role_raw": 0.250546
+      }
+    },
+    {
+      "entry_id": "m_csa:356",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.356323,
+        "negative_robust_distance_to_atlas_median": -1.686631,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.3586,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:363",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -2.65889,
+        "negative_robust_distance_to_atlas_median": -2.907869,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.369048,
+        "top1_score_raw": 0.4056,
+        "top1_score_x_role_atlas_percentile": 0.267857,
+        "top1_score_x_role_raw": 0.135186
+      }
+    },
+    {
+      "entry_id": "m_csa:369",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.371576,
+        "negative_robust_distance_to_atlas_median": -1.584355,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.095238,
+        "top1_score_raw": 0.3543,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:370",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.574474,
+        "negative_robust_distance_to_atlas_median": -1.098369,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.434524,
+        "top1_score_raw": 0.419,
+        "top1_score_x_role_atlas_percentile": 0.303571,
+        "top1_score_x_role_raw": 0.139653
+      }
+    },
+    {
+      "entry_id": "m_csa:375",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.352316,
+        "negative_robust_distance_to_atlas_median": -1.581613,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.3578,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:384",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -1.913233,
+        "negative_robust_distance_to_atlas_median": -2.380969,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.577381,
+        "top1_score_raw": 0.5542,
+        "top1_score_x_role_atlas_percentile": 0.428571,
+        "top1_score_x_role_raw": 0.184715
+      }
+    },
+    {
+      "entry_id": "m_csa:392",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -2.380964,
+        "negative_robust_distance_to_atlas_median": -3.461249,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.047619,
+        "top1_score_raw": 0.3237,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:396",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.482573,
+        "negative_robust_distance_to_atlas_median": -1.485302,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.3576,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:397",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.365168,
+        "negative_robust_distance_to_atlas_median": -1.498995,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.142857,
+        "top1_score_raw": 0.3636,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:402",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.765192,
+        "negative_robust_distance_to_atlas_median": -1.63311,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.27381,
+        "top1_score_raw": 0.3861,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:403",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.365401,
+        "negative_robust_distance_to_atlas_median": -0.78068,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.559524,
+        "top1_score_raw": 0.5485,
+        "top1_score_x_role_atlas_percentile": 0.410714,
+        "top1_score_x_role_raw": 0.182815
+      }
+    },
+    {
+      "entry_id": "m_csa:407",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": "ser_his_acid_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -2.467342,
+        "negative_robust_distance_to_atlas_median": -2.806343,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.511905,
+        "top1_score_raw": 0.4338,
+        "top1_score_x_role_atlas_percentile": 0.880952,
+        "top1_score_x_role_raw": 0.289214
+      }
+    },
+    {
+      "entry_id": "m_csa:409",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -0.672936,
+        "negative_robust_distance_to_atlas_median": -2.370181,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.059524,
+        "top1_score_raw": 0.34,
+        "top1_score_x_role_atlas_percentile": 0.196429,
+        "top1_score_x_role_raw": 0.113322
+      }
+    },
+    {
+      "entry_id": "m_csa:418",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "plp_dependent_enzyme",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.379616,
+        "negative_robust_distance_to_atlas_median": -1.48174,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.14881,
+        "top1_score_raw": 0.3646,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:419",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "plp_dependent_enzyme",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -2.079745,
+        "negative_robust_distance_to_atlas_median": -3.084872,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.053571,
+        "top1_score_raw": 0.33,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:423",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.332971,
+        "negative_robust_distance_to_atlas_median": -1.550824,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.14881,
+        "top1_score_raw": 0.3653,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:424",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "plp_dependent_enzyme",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.359688,
+        "negative_robust_distance_to_atlas_median": -1.573303,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.3568,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:428",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.531483,
+        "negative_robust_distance_to_atlas_median": -1.451439,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.160714,
+        "top1_score_raw": 0.3681,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:431",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": "ser_his_acid_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.902394,
+        "negative_robust_distance_to_atlas_median": -2.486928,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.839286,
+        "top1_score_raw": 0.7886,
+        "top1_score_x_role_atlas_percentile": 0.761905,
+        "top1_score_x_role_raw": 0.26284
+      }
+    },
+    {
+      "entry_id": "m_csa:440",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.6941,
+        "negative_robust_distance_to_atlas_median": -1.509988,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.160714,
+        "top1_score_raw": 0.3684,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:444",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.773877,
+        "negative_robust_distance_to_atlas_median": -1.638283,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.244048,
+        "top1_score_raw": 0.3799,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:448",
+      "is_confounded_predicted_geometry_oos": true,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.350762,
+        "negative_robust_distance_to_atlas_median": -1.637886,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.3576,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:453",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": "ser_his_acid_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.871311,
+        "negative_robust_distance_to_atlas_median": -2.74101,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.869048,
+        "top1_score_raw": 0.8017,
+        "top1_score_x_role_atlas_percentile": 0.815476,
+        "top1_score_x_role_raw": 0.267207
+      }
+    },
+    {
+      "entry_id": "m_csa:474",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.489809,
+        "negative_robust_distance_to_atlas_median": -2.08784,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.059524,
+        "top1_score_raw": 0.3381,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:480",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.713796,
+        "negative_robust_distance_to_atlas_median": -1.554644,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.220238,
+        "top1_score_raw": 0.377,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:493",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.512293,
+        "negative_robust_distance_to_atlas_median": -1.45652,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.14881,
+        "top1_score_raw": 0.365,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:497",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.429933,
+        "negative_robust_distance_to_atlas_median": -0.751291,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.64881,
+        "top1_score_raw": 0.5899,
+        "top1_score_x_role_atlas_percentile": 0.5,
+        "top1_score_x_role_raw": 0.196614
+      }
+    },
+    {
+      "entry_id": "m_csa:509",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -1.241602,
+        "negative_robust_distance_to_atlas_median": -2.822367,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.0,
+        "top1_score_raw": 0.2475,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.082492
+      }
+    },
+    {
+      "entry_id": "m_csa:511",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.582695,
+        "negative_robust_distance_to_atlas_median": -1.454096,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.208333,
+        "top1_score_raw": 0.3749,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:517",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.800876,
+        "negative_robust_distance_to_atlas_median": -1.125267,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.791667,
+        "top1_score_raw": 0.6008,
+        "top1_score_x_role_atlas_percentile": 0.642857,
+        "top1_score_x_role_raw": 0.200247
+      }
+    },
+    {
+      "entry_id": "m_csa:526",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.765693,
+        "negative_robust_distance_to_atlas_median": -1.637312,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.291667,
+        "top1_score_raw": 0.3914,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:541",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -1.143754,
+        "negative_robust_distance_to_atlas_median": -1.314757,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.47619,
+        "top1_score_raw": 0.4248,
+        "top1_score_x_role_atlas_percentile": 0.333333,
+        "top1_score_x_role_raw": 0.141586
+      }
+    },
+    {
+      "entry_id": "m_csa:545",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "true_fingerprint_id": "plp_dependent_enzyme",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -1.130892,
+        "negative_robust_distance_to_atlas_median": -2.487512,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.285714,
+        "top1_score_raw": 0.3887,
+        "top1_score_x_role_atlas_percentile": 0.732143,
+        "top1_score_x_role_raw": 0.259146
+      }
+    },
+    {
+      "entry_id": "m_csa:551",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.385598,
+        "negative_robust_distance_to_atlas_median": -1.51542,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.10119,
+        "top1_score_raw": 0.3583,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:566",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.695023,
+        "negative_robust_distance_to_atlas_median": -1.523329,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.208333,
+        "top1_score_raw": 0.3741,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:577",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.802312,
+        "negative_robust_distance_to_atlas_median": -1.124995,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.77381,
+        "top1_score_raw": 0.5995,
+        "top1_score_x_role_atlas_percentile": 0.625,
+        "top1_score_x_role_raw": 0.199813
+      }
+    },
+    {
+      "entry_id": "m_csa:590",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.382646,
+        "negative_robust_distance_to_atlas_median": -1.628208,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.095238,
+        "top1_score_raw": 0.3512,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:594",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.687238,
+        "negative_robust_distance_to_atlas_median": -1.524314,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.261905,
+        "top1_score_raw": 0.3836,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:599",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": "ser_his_acid_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.771116,
+        "negative_robust_distance_to_atlas_median": -2.87319,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.880952,
+        "top1_score_raw": 0.8138,
+        "top1_score_x_role_atlas_percentile": 0.833333,
+        "top1_score_x_role_raw": 0.27124
+      }
+    },
+    {
+      "entry_id": "m_csa:606",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -1.354939,
+        "negative_robust_distance_to_atlas_median": -2.054049,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.083333,
+        "top1_score_raw": 0.3488,
+        "top1_score_x_role_atlas_percentile": 0.202381,
+        "top1_score_x_role_raw": 0.116255
+      }
+    },
+    {
+      "entry_id": "m_csa:609",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": "ser_his_acid_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.640252,
+        "negative_robust_distance_to_atlas_median": -2.931447,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.910714,
+        "top1_score_raw": 0.8692,
+        "top1_score_x_role_atlas_percentile": 0.910714,
+        "top1_score_x_role_raw": 0.579496
+      }
+    },
+    {
+      "entry_id": "m_csa:614",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.680791,
+        "negative_robust_distance_to_atlas_median": -1.507387,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.220238,
+        "top1_score_raw": 0.3774,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:617",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.799224,
+        "negative_robust_distance_to_atlas_median": -1.660308,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.184524,
+        "top1_score_raw": 0.372,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:627",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.382984,
+        "negative_robust_distance_to_atlas_median": -1.587721,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.095238,
+        "top1_score_raw": 0.3526,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:634",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.375,
+        "cofactor_context_score_raw": 0.25,
+        "negative_nearest_class_centroid_robust_distance": -2.034546,
+        "negative_robust_distance_to_atlas_median": -3.085744,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.095238,
+        "top1_score_raw": 0.3543,
+        "top1_score_x_role_atlas_percentile": 0.678571,
+        "top1_score_x_role_raw": 0.236212
+      }
+    },
+    {
+      "entry_id": "m_csa:647",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -3.833239,
+        "negative_robust_distance_to_atlas_median": -5.030353,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.160714,
+        "top1_score_raw": 0.3668,
+        "top1_score_x_role_atlas_percentile": 0.202381,
+        "top1_score_x_role_raw": 0.122254
+      }
+    },
+    {
+      "entry_id": "m_csa:651",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": false,
+      "is_oos": true,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": null,
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.372298,
+        "negative_robust_distance_to_atlas_median": -1.492688,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.142857,
+        "top1_score_raw": 0.3635,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:686",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.423369,
+        "negative_robust_distance_to_atlas_median": -0.758001,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.613095,
+        "top1_score_raw": 0.5856,
+        "top1_score_x_role_atlas_percentile": 0.464286,
+        "top1_score_x_role_raw": 0.19518
+      }
+    },
+    {
+      "entry_id": "m_csa:688",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": "ser_his_acid_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.42546,
+        "negative_robust_distance_to_atlas_median": -3.165421,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.952381,
+        "top1_score_raw": 0.887,
+        "top1_score_x_role_atlas_percentile": 0.952381,
+        "top1_score_x_role_raw": 0.591363
+      }
+    },
+    {
+      "entry_id": "m_csa:709",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "true_fingerprint_id": "heme_peroxidase_oxidase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -1.081248,
+        "negative_robust_distance_to_atlas_median": -2.685987,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.291667,
+        "top1_score_raw": 0.3896,
+        "top1_score_x_role_atlas_percentile": 0.738095,
+        "top1_score_x_role_raw": 0.259746
+      }
+    },
+    {
+      "entry_id": "m_csa:710",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.575216,
+        "negative_robust_distance_to_atlas_median": -0.809739,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.666667,
+        "top1_score_raw": 0.5924,
+        "top1_score_x_role_atlas_percentile": 0.517857,
+        "top1_score_x_role_raw": 0.197447
+      }
+    },
+    {
+      "entry_id": "m_csa:714",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "heme_peroxidase_oxidase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -3.224511,
+        "negative_robust_distance_to_atlas_median": -4.394069,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.208333,
+        "top1_score_raw": 0.376,
+        "top1_score_x_role_atlas_percentile": 0.208333,
+        "top1_score_x_role_raw": 0.125321
+      }
+    },
+    {
+      "entry_id": "m_csa:723",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": "ser_his_acid_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.828843,
+        "negative_robust_distance_to_atlas_median": -3.610167,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 1.0,
+        "top1_score_raw": 0.9148,
+        "top1_score_x_role_atlas_percentile": 1.0,
+        "top1_score_x_role_raw": 0.609897
+      }
+    },
+    {
+      "entry_id": "m_csa:750",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.465543,
+        "negative_robust_distance_to_atlas_median": -1.450553,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.160714,
+        "top1_score_raw": 0.3664,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:853",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "cobalamin_radical_rearrangement",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.851006,
+        "negative_robust_distance_to_atlas_median": -1.639568,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.386905,
+        "top1_score_raw": 0.4098,
+        "top1_score_x_role_atlas_percentile": 0.27381,
+        "top1_score_x_role_raw": 0.136586
+      }
+    },
+    {
+      "entry_id": "m_csa:854",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "plp_dependent_enzyme",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.315476,
+        "cofactor_context_score_raw": 0.2,
+        "negative_nearest_class_centroid_robust_distance": -1.868695,
+        "negative_robust_distance_to_atlas_median": -2.82077,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.053571,
+        "top1_score_raw": 0.3378,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:866",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "true_fingerprint_id": "ser_his_acid_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.380015,
+        "negative_robust_distance_to_atlas_median": -3.09762,
+        "role_match_fraction_atlas_percentile": 1.0,
+        "role_match_fraction_raw": 0.6667,
+        "top1_score_atlas_percentile": 0.940476,
+        "top1_score_raw": 0.8821,
+        "top1_score_x_role_atlas_percentile": 0.940476,
+        "top1_score_x_role_raw": 0.588096
+      }
+    },
+    {
+      "entry_id": "m_csa:892",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 0.136905,
+        "cofactor_context_score_raw": 0.0,
+        "negative_nearest_class_centroid_robust_distance": -1.434876,
+        "negative_robust_distance_to_atlas_median": -2.665928,
+        "role_match_fraction_atlas_percentile": 0.160714,
+        "role_match_fraction_raw": 0.0,
+        "top1_score_atlas_percentile": 0.011905,
+        "top1_score_raw": 0.2908,
+        "top1_score_x_role_atlas_percentile": 0.160714,
+        "top1_score_x_role_raw": 0.0
+      }
+    },
+    {
+      "entry_id": "m_csa:897",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -1.132254,
+        "negative_robust_distance_to_atlas_median": -1.305392,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.47619,
+        "top1_score_raw": 0.426,
+        "top1_score_x_role_atlas_percentile": 0.333333,
+        "top1_score_x_role_raw": 0.141986
+      }
+    },
+    {
+      "entry_id": "m_csa:916",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.629689,
+        "negative_robust_distance_to_atlas_median": -1.203721,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.392857,
+        "top1_score_raw": 0.4122,
+        "top1_score_x_role_atlas_percentile": 0.27381,
+        "top1_score_x_role_raw": 0.137386
+      }
+    },
+    {
+      "entry_id": "m_csa:990",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -1.098716,
+        "negative_robust_distance_to_atlas_median": -1.590753,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.517857,
+        "top1_score_raw": 0.5209,
+        "top1_score_x_role_atlas_percentile": 0.369048,
+        "top1_score_x_role_raw": 0.173616
+      }
+    },
+    {
+      "entry_id": "m_csa:994",
+      "is_confounded_predicted_geometry_oos": false,
+      "is_inscope": true,
+      "is_oos": false,
+      "split_assignment": "heldout",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "true_fingerprint_id": "metal_dependent_hydrolase",
+      "variant_scores": {
+        "cofactor_context_score_atlas_percentile": 1.0,
+        "cofactor_context_score_raw": 1.0,
+        "negative_nearest_class_centroid_robust_distance": -0.718302,
+        "negative_robust_distance_to_atlas_median": -0.926023,
+        "role_match_fraction_atlas_percentile": 0.732143,
+        "role_match_fraction_raw": 0.3333,
+        "top1_score_atlas_percentile": 0.529762,
+        "top1_score_raw": 0.5351,
+        "top1_score_x_role_atlas_percentile": 0.380952,
+        "top1_score_x_role_raw": 0.178349
+      }
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Bounded predicted-geometry atlas novelty rerun using the newly available in-distribution predicted atlas rows. All atlas statistics are computed from in-distribution rows only; heldout rows are final evaluation diagnostics.",
+  "signals": {
+    "cofactor_context_score_atlas_percentile": {
+      "auc_in_gt_agnostic_oos": 0.683911,
+      "auc_in_gt_confounded_oos": 0.737589,
+      "auc_in_gt_oos_all": 0.687988,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.8936,
+        "oos_abstain_recall": 0.1772,
+        "threshold": 0.315476
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.136905
+      },
+      "confounded_mean": 0.399801,
+      "in_scope_mean": 0.74924,
+      "oos_mean": 0.468806
+    },
+    "cofactor_context_score_raw": {
+      "auc_in_gt_agnostic_oos": 0.683911,
+      "auc_in_gt_confounded_oos": 0.737589,
+      "auc_in_gt_oos_all": 0.687988,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.8936,
+        "oos_abstain_recall": 0.1772,
+        "threshold": 0.2
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "confounded_mean": 0.3,
+      "in_scope_mean": 0.707447,
+      "oos_mean": 0.379747
+    },
+    "negative_nearest_class_centroid_robust_distance": {
+      "auc_in_gt_agnostic_oos": 0.770621,
+      "auc_in_gt_confounded_oos": 0.847518,
+      "auc_in_gt_oos_all": 0.776461,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.6667,
+        "inscope_retain_recall": 0.8723,
+        "oos_abstain_recall": 0.5949,
+        "threshold": -1.473053
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.3333,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.2278,
+        "threshold": -2.079745
+      },
+      "confounded_mean": -2.065582,
+      "in_scope_mean": -1.116024,
+      "oos_mean": -1.812715
+    },
+    "negative_robust_distance_to_atlas_median": {
+      "auc_in_gt_agnostic_oos": 0.610318,
+      "auc_in_gt_confounded_oos": 0.663121,
+      "auc_in_gt_oos_all": 0.614328,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.8511,
+        "oos_abstain_recall": 0.2152,
+        "threshold": -2.87319
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.1667,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.1519,
+        "threshold": -3.09762
+      },
+      "confounded_mean": -2.500465,
+      "in_scope_mean": -1.885842,
+      "oos_mean": -2.246601
+    },
+    "role_match_fraction_atlas_percentile": {
+      "auc_in_gt_agnostic_oos": 0.652142,
+      "auc_in_gt_confounded_oos": 0.687943,
+      "auc_in_gt_oos_all": 0.654861,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.160714
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.160714
+      },
+      "confounded_mean": 0.395833,
+      "in_scope_mean": 0.655395,
+      "oos_mean": 0.462703
+    },
+    "role_match_fraction_raw": {
+      "auc_in_gt_agnostic_oos": 0.652142,
+      "auc_in_gt_confounded_oos": 0.687943,
+      "auc_in_gt_oos_all": 0.654861,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "confounded_mean": 0.166667,
+      "in_scope_mean": 0.32623,
+      "oos_mean": 0.194084
+    },
+    "top1_score_atlas_percentile": {
+      "auc_in_gt_agnostic_oos": 0.749344,
+      "auc_in_gt_confounded_oos": 0.842199,
+      "auc_in_gt_oos_all": 0.756396,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.8723,
+        "oos_abstain_recall": 0.2532,
+        "threshold": 0.10119
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.1899,
+        "threshold": 0.095238
+      },
+      "confounded_mean": 0.127976,
+      "in_scope_mean": 0.481636,
+      "oos_mean": 0.206224
+    },
+    "top1_score_raw": {
+      "auc_in_gt_agnostic_oos": 0.750073,
+      "auc_in_gt_confounded_oos": 0.840426,
+      "auc_in_gt_oos_all": 0.756935,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.8723,
+        "oos_abstain_recall": 0.3038,
+        "threshold": 0.3561
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.5,
+        "inscope_retain_recall": 0.9149,
+        "oos_abstain_recall": 0.2152,
+        "threshold": 0.3516
+      },
+      "confounded_mean": 0.347233,
+      "in_scope_mean": 0.515987,
+      "oos_mean": 0.376285
+    },
+    "top1_score_x_role_atlas_percentile": {
+      "auc_in_gt_agnostic_oos": 0.748033,
+      "auc_in_gt_confounded_oos": 0.748227,
+      "auc_in_gt_oos_all": 0.748047,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.160714
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.160714
+      },
+      "confounded_mean": 0.267857,
+      "in_scope_mean": 0.487589,
+      "oos_mean": 0.257233
+    },
+    "top1_score_x_role_raw": {
+      "auc_in_gt_agnostic_oos": 0.744827,
+      "auc_in_gt_confounded_oos": 0.744681,
+      "auc_in_gt_oos_all": 0.744816,
+      "best_at_85pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "best_at_90pct_inscope_retention": {
+        "confounded_abstain_recall": 0.0,
+        "inscope_retain_recall": 1.0,
+        "oos_abstain_recall": 0.0,
+        "threshold": 0.0
+      },
+      "confounded_mean": 0.063483,
+      "in_scope_mean": 0.187059,
+      "oos_mean": 0.077721
+    }
+  },
+  "source_artifacts": {
+    "fold_level_signal": {
+      "path": "artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
+      "sha256": "03515cb359fe0ebf4c673117201a2addf2d75e03af5f89ba58fc77891c47f85d"
+    },
+    "predicted_geometry_atlas": {
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    }
+  },
+  "status": "computed_predicted_atlas_geometry_variants"
+}
