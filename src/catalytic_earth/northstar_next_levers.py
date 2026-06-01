@@ -17,8 +17,11 @@ import shutil
 import subprocess
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from io import StringIO
 from pathlib import Path
 from typing import Any, Callable
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
 from .mechanism_abstention_gate_eval import load_geometry_role_scores
 from .mechanism_novelty_abstention_eval import (
@@ -60,6 +63,9 @@ PREDICTED_STRUCTURE_FOLD_CHANNEL_REPRODUCTION_MANIFEST_ID = (
 )
 PREDICTED_STRUCTURE_FOLD_AUGMENTED_NOVELTY_OPERATING_GRID_ID = (
     "v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601"
+)
+PREDICTED_ATLAS_VS_FOLD_NOVELTY_DELTA_AUDIT_ID = (
+    "v3_predicted_atlas_vs_fold_novelty_operating_grid_delta_current702_20260601"
 )
 FOLD_AUGMENTED_THRESHOLD_CONTRACT_ID = (
     "v3_fold_augmented_abstention_threshold_contract_current702_20260601"
@@ -181,9 +187,18 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_SOURCE_EVIDENCE_REVIEW_QUEUE_ID = 
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_RHEA_LOOKUP_MANIFEST_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_RHEA_LOOKUP_RESOLUTION_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_current702_20260601"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_RHEA_RESOLUTION_CONSUMPTION_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601"
+)
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_FEATURE_READINESS_AUDIT_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601"
 )
+RHEA_REST_URL = "https://www.rhea-db.org/rhea"
+RHEA_QUERY_COLUMNS = "rhea-id,equation,ec,uniprot"
+RHEA_USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
 
 
 def _utc_now_iso() -> str:
@@ -3674,6 +3689,206 @@ def write_predicted_structure_fold_augmented_novelty_operating_grid(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_predicted_structure_fold_augmented_novelty_operating_grid_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_predicted_atlas_vs_fold_novelty_operating_grid_delta(
+    *,
+    geometry_operating_grid_path: Path,
+    fold_operating_grid_path: Path,
+) -> dict[str, Any]:
+    geometry = _read_json(geometry_operating_grid_path)
+    fold = _read_json(fold_operating_grid_path)
+    geometry_best = geometry.get("best_by_retention_target", {})
+    fold_best = fold.get("best_by_retention_target", {})
+    targets = sorted(set(geometry_best).intersection(fold_best), key=float)
+    delta_rows = []
+    for target in targets:
+        geometry_row = geometry_best[target]
+        fold_row = fold_best[target]
+        oos_delta = round(
+            float(fold_row["oos_abstain_recall"])
+            - float(geometry_row["oos_abstain_recall"]),
+            4,
+        )
+        confounded_delta = round(
+            float(fold_row["confounded_abstain_recall"])
+            - float(geometry_row["confounded_abstain_recall"]),
+            4,
+        )
+        delta_rows.append(
+            {
+                "target_min_inscope_retention": float(target),
+                "geometry_signal": geometry_row.get("signal"),
+                "fold_augmented_signal": fold_row.get("signal"),
+                "geometry_inscope_retain_recall": geometry_row.get(
+                    "inscope_retain_recall"
+                ),
+                "fold_inscope_retain_recall": fold_row.get("inscope_retain_recall"),
+                "geometry_oos_abstain_recall": geometry_row.get(
+                    "oos_abstain_recall"
+                ),
+                "fold_oos_abstain_recall": fold_row.get("oos_abstain_recall"),
+                "oos_abstain_recall_delta": oos_delta,
+                "geometry_confounded_abstain_recall": geometry_row.get(
+                    "confounded_abstain_recall"
+                ),
+                "fold_confounded_abstain_recall": fold_row.get(
+                    "confounded_abstain_recall"
+                ),
+                "confounded_abstain_recall_delta": confounded_delta,
+                "geometry_threshold": geometry_row.get("threshold"),
+                "fold_augmented_threshold": fold_row.get("threshold"),
+            }
+        )
+    target_90 = next(
+        (
+            row
+            for row in delta_rows
+            if row["target_min_inscope_retention"] == 0.9
+        ),
+        None,
+    )
+    critical_counts = {
+        "geometry_operating_grid_not_ready": (
+            0
+            if geometry.get("status")
+            == "predicted_atlas_geometry_novelty_operating_grid_ready_review_only"
+            else 1
+        ),
+        "fold_operating_grid_not_ready": (
+            0
+            if fold.get("status")
+            == "predicted_structure_fold_augmented_novelty_operating_grid_ready_review_only"
+            else 1
+        ),
+        "missing_shared_retention_targets": 0 if targets else 1,
+    }
+    return {
+        "artifact_id": PREDICTED_ATLAS_VS_FOLD_NOVELTY_DELTA_AUDIT_ID,
+        "schema_version": f"{SCHEMA_VERSION}.predicted_atlas_vs_fold_novelty_delta",
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "predicted_atlas_vs_fold_novelty_delta_ready_review_only"
+            if all(value == 0 for value in critical_counts.values())
+            else "predicted_atlas_vs_fold_novelty_delta_blocked"
+        ),
+        "scope": (
+            "Review-only delta audit comparing frozen predicted-atlas geometry "
+            "novelty operating-grid rows against frozen geometry-plus-predicted-"
+            "fold operating-grid rows. It reads existing artifacts only and "
+            "does not select a deployment threshold."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "existing_artifacts_only": True,
+            "heldout_threshold_selected_or_promoted": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "feature_contract_mutated": False,
+        },
+        "counts": {
+            "shared_retention_targets": len(targets),
+            "targets_with_oos_abstain_lift": sum(
+                1 for row in delta_rows if row["oos_abstain_recall_delta"] > 0
+            ),
+            "targets_with_confounded_abstain_lift": sum(
+                1
+                for row in delta_rows
+                if row["confounded_abstain_recall_delta"] > 0
+            ),
+            "critical_counts": critical_counts,
+            "critical_violation_total": sum(critical_counts.values()),
+        },
+        "target_90_summary": target_90,
+        "delta_rows": delta_rows,
+        "interpretation": {
+            "headline": (
+                "Fold-augmented novelty materially improves the frozen "
+                "predicted-atlas operating-grid diagnostic at matched retention."
+            ),
+            "target_90_delta": target_90,
+            "next_action": (
+                "Use the fold-augmented train/cal threshold contract for any "
+                "thresholded claim; keep this heldout operating-grid comparison "
+                "review-only."
+            ),
+        },
+        "source_artifacts": {
+            "geometry_operating_grid": _source_path_record(geometry_operating_grid_path),
+            "fold_operating_grid": _source_path_record(fold_operating_grid_path),
+        },
+    }
+
+
+def _render_predicted_atlas_vs_fold_novelty_operating_grid_delta_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Predicted-Atlas Versus Fold Novelty Operating-Grid Delta - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Shared retention targets: {counts['shared_retention_targets']}",
+        f"- Targets with OOS abstain lift: {counts['targets_with_oos_abstain_lift']}",
+        "- Targets with confounded abstain lift: "
+        f"{counts['targets_with_confounded_abstain_lift']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Delta Rows",
+        "",
+        "| target | geometry OOS | fold OOS | OOS delta | geometry confounded | fold confounded | confounded delta |",
+        "| ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for row in audit["delta_rows"]:
+        lines.append(
+            f"| {row['target_min_inscope_retention']:.2f} | "
+            f"{row['geometry_oos_abstain_recall']} | "
+            f"{row['fold_oos_abstain_recall']} | "
+            f"{row['oos_abstain_recall_delta']} | "
+            f"{row['geometry_confounded_abstain_recall']} | "
+            f"{row['fold_confounded_abstain_recall']} | "
+            f"{row['confounded_abstain_recall_delta']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_predicted_atlas_vs_fold_novelty_operating_grid_delta(
+    *,
+    geometry_operating_grid_path: Path,
+    fold_operating_grid_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_predicted_atlas_vs_fold_novelty_operating_grid_delta(
+        geometry_operating_grid_path=geometry_operating_grid_path,
+        fold_operating_grid_path=fold_operating_grid_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_predicted_atlas_vs_fold_novelty_operating_grid_delta_report(
+                audit
+            ),
             encoding="utf-8",
         )
     return audit
@@ -16554,11 +16769,635 @@ def _draft_events_from_mechanism_text(
     return events
 
 
+def _rhea_query_url(query: str, *, limit: int = 20) -> str:
+    return (
+        f"{RHEA_REST_URL}?"
+        + urlencode(
+            {
+                "query": query,
+                "columns": RHEA_QUERY_COLUMNS,
+                "format": "tsv",
+                "limit": str(limit),
+            }
+        )
+    )
+
+
+def _fetch_rhea_query_tsv(query: str, *, limit: int = 20) -> str:
+    request = Request(
+        _rhea_query_url(query, limit=limit),
+        headers={"User-Agent": RHEA_USER_AGENT},
+    )
+    with urlopen(request, timeout=30) as response:
+        return response.read().decode("utf-8", errors="replace")
+
+
+def _safe_int(value: Any) -> int | None:
+    try:
+        return int(str(value).strip())
+    except (TypeError, ValueError):
+        return None
+
+
+def _normalize_rhea_result_tsv(text: str) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    reader = csv.DictReader(StringIO(text), delimiter="\t")
+    for row in reader:
+        if not row:
+            continue
+        rhea_id = str(row.get("Reaction identifier") or "").strip()
+        equation = str(row.get("Equation") or "").strip()
+        if not rhea_id or not equation:
+            continue
+        records.append(
+            {
+                "rhea_id": rhea_id,
+                "equation": equation,
+                "ec_number": str(row.get("EC number") or "").strip(),
+                "mapped_enzyme_count": _safe_int(row.get("Enzymes")),
+                "source": "rhea",
+            }
+        )
+    return records
+
+
+def _rhea_query_attempt(
+    *,
+    query: str,
+    query_type: str,
+    fetcher: Callable[[str], str],
+) -> dict[str, Any]:
+    text = fetcher(query)
+    records = _normalize_rhea_result_tsv(text)
+    return {
+        "query": query,
+        "query_type": query_type,
+        "url": _rhea_query_url(query),
+        "record_count": len(records),
+        "records": records,
+    }
+
+
+def _select_rhea_resolution(
+    *,
+    ec_attempts: list[dict[str, Any]],
+    accession_attempt: dict[str, Any],
+    ec_targets: list[str],
+) -> dict[str, Any]:
+    exact_ec_records = [
+        record
+        for attempt in ec_attempts
+        for record in attempt.get("records", [])
+        if record.get("rhea_id")
+    ]
+    if exact_ec_records:
+        record = exact_ec_records[0]
+        return {
+            "status": "resolved_exact_ec_query",
+            "resolution_method": "exact_ec_query",
+            "rhea_id": record.get("rhea_id"),
+            "equation": record.get("equation"),
+            "ec_number": record.get("ec_number"),
+            "ec_targets": ec_targets,
+            "records": exact_ec_records,
+        }
+    accession_records = [
+        record
+        for record in accession_attempt.get("records", [])
+        if record.get("rhea_id")
+    ]
+    if accession_records:
+        record = accession_records[0]
+        return {
+            "status": (
+                "resolved_accession_query_with_ec_reclassification"
+                if record.get("ec_number")
+                and record.get("ec_number") not in set(ec_targets)
+                else "resolved_accession_query"
+            ),
+            "resolution_method": "accession_query",
+            "rhea_id": record.get("rhea_id"),
+            "equation": record.get("equation"),
+            "ec_number": record.get("ec_number"),
+            "ec_targets": ec_targets,
+            "records": accession_records,
+        }
+    return {
+        "status": "unresolved_no_rhea_record_for_ec_or_accession",
+        "resolution_method": None,
+        "rhea_id": None,
+        "equation": None,
+        "ec_number": None,
+        "ec_targets": ec_targets,
+        "records": [],
+    }
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution(
+    *,
+    rhea_lookup_manifest_path: Path,
+    fetcher: Callable[[str], str] | None = None,
+) -> dict[str, Any]:
+    manifest = _read_json(rhea_lookup_manifest_path)
+    fetcher = fetcher or (lambda query: _fetch_rhea_query_tsv(query))
+    row_resolutions = []
+    for row in manifest.get("lookup_rows", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        entry_id = str(row["entry_id"])
+        ec_targets = [
+            str(target)
+            for target in row.get("ec_targets", [])
+            if isinstance(target, str) and target
+        ]
+        ec_attempts = [
+            _rhea_query_attempt(
+                query=target.removeprefix("ec:"),
+                query_type="manifest_ec_target",
+                fetcher=fetcher,
+            )
+            for target in ec_targets
+        ]
+        accession = str(row.get("accession") or "").strip()
+        accession_attempt = _rhea_query_attempt(
+            query=f"uniprot:{accession}",
+            query_type="row_accession",
+            fetcher=fetcher,
+        ) if accession else {
+            "query": "",
+            "query_type": "row_accession",
+            "url": None,
+            "record_count": 0,
+            "records": [],
+        }
+        selected = _select_rhea_resolution(
+            ec_attempts=ec_attempts,
+            accession_attempt=accession_attempt,
+            ec_targets=ec_targets,
+        )
+        row_resolutions.append(
+            {
+                "entry_id": entry_id,
+                "accession": accession or None,
+                "m_csa_entry_name": row.get("m_csa_entry_name"),
+                "draft_event_count": row.get("draft_event_count"),
+                "lookup_blockers_before_resolution": row.get("lookup_blockers", []),
+                "ec_query_attempts": ec_attempts,
+                "accession_query_attempt": accession_attempt,
+                "accepted_resolution": selected,
+                "allowed_for_feature_contract_consumption_now": False,
+                "allowed_for_model_training_now": False,
+            }
+        )
+    row_resolutions.sort(key=lambda row: _entry_id_sort_key(str(row["entry_id"])))
+    resolved_rows = [
+        row
+        for row in row_resolutions
+        if str(row.get("accepted_resolution", {}).get("status", "")).startswith(
+            "resolved_"
+        )
+    ]
+    unresolved_rows = len(row_resolutions) - len(resolved_rows)
+    status = (
+        "p0_rhea_lookup_resolution_complete_review_only"
+        if row_resolutions and not unresolved_rows
+        else (
+            "p0_rhea_lookup_resolution_partial_review_only"
+            if resolved_rows
+            else "p0_rhea_lookup_resolution_unresolved_review_only"
+        )
+    )
+    exact_ec_rows = sum(
+        1
+        for row in row_resolutions
+        if row["accepted_resolution"].get("resolution_method") == "exact_ec_query"
+    )
+    accession_rows = sum(
+        1
+        for row in row_resolutions
+        if row["accepted_resolution"].get("resolution_method") == "accession_query"
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_RHEA_LOOKUP_RESOLUTION_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_rhea_lookup_resolution"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Official Rhea lookup resolution for P0 draft source-evidence rows "
+            "that lacked local graph Rhea equations. This may add review-only "
+            "Rhea equation evidence to the draft sidecar, but does not approve "
+            "rows or refresh feature contracts."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "source_fetch_performed": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "feature_contract_mutated": False,
+            "feature_contract_refresh_allowed": False,
+        },
+        "counts": {
+            "lookup_rows": len(row_resolutions),
+            "ec_query_attempts": sum(
+                len(row.get("ec_query_attempts", [])) for row in row_resolutions
+            ),
+            "accession_query_attempts": sum(
+                1 for row in row_resolutions if row.get("accession_query_attempt")
+            ),
+            "resolved_rows": len(resolved_rows),
+            "resolved_by_exact_ec_rows": exact_ec_rows,
+            "resolved_by_accession_rows": accession_rows,
+            "unresolved_rows": unresolved_rows,
+            "feature_contract_consumable_rows": 0,
+        },
+        "row_resolutions": row_resolutions,
+        "interpretation": {
+            "result": (
+                f"{len(resolved_rows)}/{len(row_resolutions)} Rhea lookup rows "
+                "resolved to an official Rhea equation; unresolved rows remain "
+                "manual review blockers."
+            ),
+            "next_action": (
+                "Rebuild the draft P0 source-evidence sidecar with this "
+                "resolution artifact, rerun the strict audit, then keep "
+                "remaining unresolved rows in the Rhea lookup manifest."
+            ),
+        },
+        "source_artifacts": {
+            "rhea_lookup_manifest": _source_path_record(rhea_lookup_manifest_path),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_report(
+    resolution: dict[str, Any],
+) -> str:
+    counts = resolution["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 Rhea Lookup Resolution - current702",
+        "",
+        f"Run: {resolution['created_utc']}",
+        "",
+        resolution["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {resolution['status']}",
+        f"- Lookup rows: {counts['lookup_rows']}",
+        f"- Resolved rows: {counts['resolved_rows']}",
+        f"- Resolved by exact EC rows: {counts['resolved_by_exact_ec_rows']}",
+        f"- Resolved by accession rows: {counts['resolved_by_accession_rows']}",
+        f"- Unresolved rows: {counts['unresolved_rows']}",
+        "",
+        "## Row Resolutions",
+        "",
+        "| row | accession | status | Rhea | EC | equation |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in resolution["row_resolutions"]:
+        accepted = row.get("accepted_resolution", {})
+        equation = str(accepted.get("equation") or "")
+        if len(equation) > 120:
+            equation = equation[:117] + "..."
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | "
+            f"{accepted.get('status')} | {accepted.get('rhea_id')} | "
+            f"{accepted.get('ec_number')} | {equation} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {resolution['interpretation']['result']}",
+        f"- {resolution['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution(
+    *,
+    rhea_lookup_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    resolution = (
+        build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution(
+            rhea_lookup_manifest_path=rhea_lookup_manifest_path,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(resolution, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_report(
+                resolution
+            ),
+            encoding="utf-8",
+        )
+    return resolution
+
+
+def _rhea_span_ids(row: dict[str, Any]) -> set[str]:
+    spans = row.get("source_text_or_database_evidence_span")
+    if not isinstance(spans, list):
+        return set()
+    ids = set()
+    for span in spans:
+        if not isinstance(span, dict):
+            continue
+        if span.get("source_database") not in {"rhea_local_graph", "rhea_official_lookup"}:
+            continue
+        source_record_id = str(span.get("source_record_id") or "")
+        if source_record_id:
+            ids.add(source_record_id.removeprefix("rhea:"))
+    return ids
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit(
+    *,
+    rhea_lookup_resolution_path: Path,
+    sidecar_path: Path,
+    review_queue_path: Path,
+    rhea_lookup_manifest_path: Path,
+    feature_readiness_path: Path,
+) -> dict[str, Any]:
+    resolution = _read_json(rhea_lookup_resolution_path)
+    sidecar = _read_json(sidecar_path)
+    queue = _read_json(review_queue_path)
+    manifest = _read_json(rhea_lookup_manifest_path)
+    readiness = _read_json(feature_readiness_path)
+
+    resolution_rows = [
+        row
+        for row in resolution.get("row_resolutions", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    sidecar_by_entry = {
+        str(row.get("entry_id")): row
+        for row in sidecar.get("sidecar_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    queue_by_entry = {
+        str(row.get("entry_id")): row
+        for row in queue.get("queue_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    manifest_entries = {
+        str(row.get("entry_id"))
+        for row in manifest.get("lookup_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    readiness_by_entry = {
+        str(row.get("entry_id")): row
+        for row in readiness.get("row_readiness", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    row_audits = []
+    critical_counter: Counter[str] = Counter()
+    for row in resolution_rows:
+        entry_id = str(row["entry_id"])
+        accepted = row.get("accepted_resolution") or {}
+        resolved = str(accepted.get("status", "")).startswith("resolved_")
+        rhea_id = str(accepted.get("rhea_id") or "")
+        sidecar_row = sidecar_by_entry.get(entry_id, {})
+        queue_row = queue_by_entry.get(entry_id, {})
+        readiness_row = readiness_by_entry.get(entry_id, {})
+        sidecar_rhea_ids = _rhea_span_ids(sidecar_row)
+        violations = []
+        if resolved and rhea_id not in sidecar_rhea_ids:
+            violations.append("resolved_rhea_id_missing_from_sidecar")
+        if resolved and entry_id in manifest_entries:
+            violations.append("resolved_row_still_in_lookup_manifest")
+        if not resolved and entry_id not in manifest_entries:
+            violations.append("unresolved_row_missing_from_lookup_manifest")
+        if not resolved and queue_row.get("review_category") != "rhea_lookup_required_before_approval":
+            violations.append("unresolved_row_not_prioritized_for_rhea_lookup")
+        readiness_blockers = set(readiness_row.get("blockers") or [])
+        if not resolved and "rhea_lookup_unresolved" not in readiness_blockers:
+            violations.append("unresolved_row_missing_readiness_blocker")
+        if sidecar_row.get("allowed_for_feature_contract_consumption_now"):
+            violations.append("feature_contract_consumption_allowed")
+        if sidecar_row.get("allowed_for_model_training_now"):
+            violations.append("model_training_allowed")
+        if sidecar_row.get("review_status") == "approved":
+            violations.append("resolved_or_unresolved_row_approved_without_review_gate")
+        critical_counter.update(violations)
+        row_audits.append(
+            {
+                "entry_id": entry_id,
+                "accepted_resolution_status": accepted.get("status"),
+                "resolved": resolved,
+                "rhea_id": rhea_id or None,
+                "sidecar_rhea_ids": sorted(sidecar_rhea_ids),
+                "in_remaining_lookup_manifest": entry_id in manifest_entries,
+                "review_category": queue_row.get("review_category"),
+                "readiness_blockers": sorted(readiness_blockers),
+                "allowed_for_feature_contract_consumption_now": bool(
+                    sidecar_row.get("allowed_for_feature_contract_consumption_now")
+                ),
+                "allowed_for_model_training_now": bool(
+                    sidecar_row.get("allowed_for_model_training_now")
+                ),
+                "review_status": sidecar_row.get("review_status"),
+                "violations": violations,
+                "status": "passed" if not violations else "failed",
+            }
+        )
+    row_audits.sort(key=lambda row: _entry_id_sort_key(str(row["entry_id"])))
+    critical_counts = dict(sorted(critical_counter.items()))
+    critical_total = sum(critical_counts.values())
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_RHEA_RESOLUTION_CONSUMPTION_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_rhea_resolution_consumption_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_rhea_resolution_consumption_audit_passed_review_only"
+            if critical_total == 0
+            else "p0_rhea_resolution_consumption_audit_failed"
+        ),
+        "scope": (
+            "Strict review-only audit that the bounded P0 Rhea lookup resolution "
+            "was consumed only as draft sidecar evidence: resolved rows must "
+            "carry their Rhea equation, unresolved rows must remain in the "
+            "lookup/readiness blockers, and no row may become consumable."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "feature_contract_mutated": False,
+            "feature_contract_refresh_allowed": False,
+        },
+        "counts": {
+            "resolution_rows": len(row_audits),
+            "resolved_rows": sum(1 for row in row_audits if row["resolved"]),
+            "unresolved_rows": sum(1 for row in row_audits if not row["resolved"]),
+            "remaining_lookup_manifest_rows": len(manifest_entries),
+            "approved_rows": sum(1 for row in row_audits if row["review_status"] == "approved"),
+            "feature_contract_consumable_rows": sum(
+                1
+                for row in row_audits
+                if row["allowed_for_feature_contract_consumption_now"]
+            ),
+            "model_training_allowed_rows": sum(
+                1 for row in row_audits if row["allowed_for_model_training_now"]
+            ),
+            "critical_counts": critical_counts,
+            "critical_violation_total": critical_total,
+        },
+        "row_audits": row_audits,
+        "source_artifacts": {
+            "rhea_lookup_resolution": _source_path_record(rhea_lookup_resolution_path),
+            "sidecar": _source_path_record(sidecar_path),
+            "review_queue": _source_path_record(review_queue_path),
+            "rhea_lookup_manifest": _source_path_record(rhea_lookup_manifest_path),
+            "feature_readiness": _source_path_record(feature_readiness_path),
+        },
+        "interpretation": {
+            "result": (
+                "The Rhea lookup resolution is consumed only as draft review "
+                "evidence; remaining unresolved rows stay blocked and no row "
+                "is feature-contract consumable."
+                if critical_total == 0
+                else "The Rhea lookup resolution consumption audit found critical violations."
+            ),
+            "next_action": (
+                "Resolve the remaining Rhea lookup rows and add reviewer "
+                "provenance before any train/cal no-template feature-contract refresh."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 Rhea Resolution Consumption Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Resolution rows: {counts['resolution_rows']}",
+        f"- Resolved rows: {counts['resolved_rows']}",
+        f"- Unresolved rows: {counts['unresolved_rows']}",
+        f"- Remaining lookup manifest rows: {counts['remaining_lookup_manifest_rows']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Row Audits",
+        "",
+        "| row | resolved | Rhea | in remaining manifest | review category | status |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in audit["row_audits"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['resolved']} | {row['rhea_id']} | "
+            f"{row['in_remaining_lookup_manifest']} | {row['review_category']} | "
+            f"{row['status']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit(
+    *,
+    rhea_lookup_resolution_path: Path,
+    sidecar_path: Path,
+    review_queue_path: Path,
+    rhea_lookup_manifest_path: Path,
+    feature_readiness_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = (
+        build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit(
+            rhea_lookup_resolution_path=rhea_lookup_resolution_path,
+            sidecar_path=sidecar_path,
+            review_queue_path=review_queue_path,
+            rhea_lookup_manifest_path=rhea_lookup_manifest_path,
+            feature_readiness_path=feature_readiness_path,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _rhea_resolution_nodes_by_entry(
+    rhea_lookup_resolution_path: Path | None,
+) -> dict[str, list[dict[str, Any]]]:
+    if rhea_lookup_resolution_path is None or not Path(rhea_lookup_resolution_path).exists():
+        return {}
+    resolution = _read_json(Path(rhea_lookup_resolution_path))
+    resolved: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in resolution.get("row_resolutions", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        accepted = row.get("accepted_resolution") or {}
+        if not str(accepted.get("status", "")).startswith("resolved_"):
+            continue
+        for record in accepted.get("records", []):
+            if not isinstance(record, dict) or not record.get("rhea_id"):
+                continue
+            resolved[str(row["entry_id"])].append(
+                {
+                    "id": f"rhea:{record['rhea_id']}",
+                    "equation": record.get("equation"),
+                    "ec_number": record.get("ec_number"),
+                    "source_database": "rhea_official_lookup",
+                    "resolution_method": accepted.get("resolution_method"),
+                }
+            )
+    return {
+        entry_id: sorted(nodes, key=lambda node: str(node.get("id") or ""))
+        for entry_id, nodes in resolved.items()
+    }
+
+
 def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
     *,
     worksheet_path: Path,
     source_evidence_schema_path: Path,
     graph_path: Path,
+    rhea_lookup_resolution_path: Path | None = None,
 ) -> dict[str, Any]:
     worksheet_rows = [
         row for row in _read_tsv_rows(worksheet_path) if row.get("entry_id")
@@ -16567,6 +17406,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
     graph = _read_json(graph_path)
     nodes, outgoing = _graph_nodes_and_outgoing(graph)
     graph_generated_at = graph.get("metadata", {}).get("generated_at")
+    resolved_rhea_by_entry = _rhea_resolution_nodes_by_entry(
+        rhea_lookup_resolution_path
+    )
 
     sidecar_rows = []
     status_counter: Counter[str] = Counter()
@@ -16601,6 +17443,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
                 target = str(edge.get("target") or "")
                 if target in nodes:
                     rhea_nodes.append(nodes[target])
+        rhea_nodes.extend(resolved_rhea_by_entry.get(entry_id, []))
         rhea_nodes.sort(key=lambda node: str(node.get("id") or ""))
         if not rhea_nodes:
             missing_rhea_rows += 1
@@ -16660,7 +17503,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
         evidence_spans.extend(
             {
                 "source_record_id": str(node.get("id")),
-                "source_database": "rhea_local_graph",
+                "source_database": str(node.get("source_database") or "rhea_local_graph"),
                 "span_text": str(node.get("equation") or ""),
             }
             for node in rhea_nodes
@@ -16750,6 +17593,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
             "worksheet": _source_path_record(worksheet_path),
             "source_evidence_schema": _source_path_record(source_evidence_schema_path),
             "graph": _source_path_record(graph_path),
+            "rhea_lookup_resolution": _source_path_record(rhea_lookup_resolution_path)
+            if rhea_lookup_resolution_path is not None
+            else {"path": None, "exists": False, "sha256": None},
         },
         "schema_snapshot": {
             "required_row_fields": schema.get("sidecar_schema", {}).get(
@@ -16816,6 +17662,7 @@ def write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
     worksheet_path: Path,
     source_evidence_schema_path: Path,
     graph_path: Path,
+    rhea_lookup_resolution_path: Path | None = None,
     out_path: Path,
     report_path: Path | None = None,
 ) -> dict[str, Any]:
@@ -16824,6 +17671,7 @@ def write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
             worksheet_path=worksheet_path,
             source_evidence_schema_path=source_evidence_schema_path,
             graph_path=graph_path,
+            rhea_lookup_resolution_path=rhea_lookup_resolution_path,
         )
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -17168,6 +18016,10 @@ def _source_span_databases(row: dict[str, Any]) -> set[str]:
     }
 
 
+def _row_has_rhea_equation_span(row: dict[str, Any]) -> bool:
+    return bool(_source_span_databases(row).intersection({"rhea_local_graph", "rhea_official_lookup"}))
+
+
 def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue(
     *,
     sidecar_path: Path,
@@ -17198,7 +18050,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_q
         )
         span_databases = _source_span_databases(row)
         blockers = ["review_status_not_approved"]
-        if "rhea_local_graph" not in span_databases:
+        if not _row_has_rhea_equation_span(row):
             blockers.append("rhea_equation_missing")
         if len(events) >= 4:
             blockers.append("multi_event_mechanism_review")
@@ -17519,14 +18371,15 @@ def build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest(
         "lookup_rows": lookup_rows,
         "interpretation": {
             "result": (
-                "The four P1 review-queue rows all have EC targets but no local "
-                "Rhea equations. The next blocker-clearing step is manual Rhea "
-                "lookup and sidecar update, not feature use."
+                f"{len(lookup_rows)} P1 review-queue rows have EC targets but "
+                "still lack local or resolved official Rhea equations. The next "
+                "blocker-clearing step is bounded Rhea lookup and sidecar "
+                "update, not feature use."
             ),
             "next_action": (
-                "Resolve `m_csa:124`, `m_csa:11`, `m_csa:169`, then `m_csa:5` "
-                "from the staged query URLs; rerun the sidecar strict audit and "
-                "review queue after edits."
+                "Resolve the remaining rows from the staged query URLs, then "
+                "rerun the sidecar, strict audit, review queue, and feature "
+                "readiness audit after edits."
             ),
         },
         "source_artifacts": {

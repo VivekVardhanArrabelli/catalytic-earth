@@ -107,6 +107,11 @@ artifacts first.
   `negative_nearest_class_centroid_robust_distance`; at >=90% in-scope retention
   it abstains on only 22.78% of OOS and 2/6 cofactor-confounded OOS rows, so it
   remains diagnostic input rather than a standalone deployment gate.
+- A matched-retention delta audit now compares that frozen geometry-only grid
+  to the fold-augmented grid. Fold augmentation improves OOS and
+  cofactor-confounded abstention at all four shared retention targets; at 90%
+  in-scope retention, OOS abstention rises by `0.5444` and confounded-OOS
+  abstention rises by `0.5`. This is still review-only and selects no threshold.
 - A train/cal OOS-negative calibration surface now exists for the fold-augmented
   gate. The hash-selected 76-row surface has 71 score-complete rows with
   predicted geometry, selected organic cofactor scores, and exact Foldseek/TM
@@ -320,8 +325,8 @@ artifacts first.
   decision classes and recommends starting with the `mh_067`/`mh_068` locator
   copy decision because their split-safe template check already passed and no
   coordinate fetch is needed. The matrix authorizes no copy, fetch, or scoring.
-- A refreshed current-run artifact integrity audit indexes 12 JSON artifacts
-  and 12 matching work reports from this run. All parse/presence checks passed, and
+- A refreshed current-run artifact integrity audit indexes 21 JSON artifacts
+  and 21 matching work reports from this run. All parse/presence checks passed, and
   the validation summary records full pytest, unittest discovery, compileall,
   `validate`, repo-wide JSON/JSONL parse, current-docs reference check, and
   diff-check success.
@@ -377,25 +382,32 @@ artifacts first.
   is schema-only and still materializes 0 source values.
 - The P0 worksheet now has a draft source-evidence sidecar derived from frozen
   local M-CSA graph evidence. All 15 rows have source spans and draft
-  bond-change events, 11/15 have Rhea equations, and 4/15 remain Rhea-missing.
-  The strict sidecar audit passes with 0 critical violations, but 0 rows are
-  approved and feature-contract refresh remains blocked pending manual review.
+  bond-change events. After the bounded official Rhea lookup resolution, 12/15
+  have Rhea equations and 3/15 remain Rhea-missing. The strict sidecar audit
+  passes with 0 critical violations, but 0 rows are approved and
+  feature-contract refresh remains blocked pending manual review.
 - A companion manual-review queue ranks those 15 draft rows without changing
-  review state. It prioritizes four Rhea-missing rows (`m_csa:124`,
-  `m_csa:11`, `m_csa:169`, and `m_csa:5`), then four high-complexity
-  multi-event rows, then seven standard draft reviews. It authorizes no
+  review state. It now prioritizes three Rhea-missing rows (`m_csa:11`,
+  `m_csa:169`, and `m_csa:5`), then five high-complexity multi-event rows
+  including Rhea-resolved `m_csa:124`, then seven standard draft reviews. It authorizes no
   approval, feature-contract refresh, model use, label change, or threshold
   change.
-- A follow-up Rhea lookup manifest stages the exact EC query targets for those
-  four Rhea-missing rows: `ec:1.9.3.1`, `ec:3.1.21.2`, `ec:3.4.14.5`, and
-  `ec:3.4.16.6`. It performs no source fetch and only hands off manual lookup
-  plus strict-audit rerun instructions.
+- A bounded official Rhea lookup resolution queried the four staged EC/accession
+  rows. Exact EC queries returned no Rhea records, but accession `P00396`
+  resolves `m_csa:124` to `RHEA:11436` with Rhea EC `7.1.1.9`, reflecting an
+  EC reclassification away from the worksheet `ec:1.9.3.1`. The remaining Rhea
+  lookup manifest now stages only `ec:3.1.21.2`, `ec:3.4.14.5`, and
+  `ec:3.4.16.6` for `m_csa:11`, `m_csa:169`, and `m_csa:5`.
+- A strict consumption audit confirms that the Rhea lookup resolution is used
+  only as draft review evidence: `m_csa:124` carries `RHEA:11436` in the
+  sidecar, the three unresolved rows remain in lookup/readiness blockers, and
+  0 rows are approved, consumable, or model-training eligible.
 - A P0 feature-readiness audit now makes the no-template embedding blocker
   exact. All 15 draft rows are structurally ready as source-evidence drafts,
   with 10 rows carrying bond-change events, 6 carrying proton-transfer events,
   and 9 carrying electron-transfer events. Zero rows are approved or consumable,
   the feature contract contains no row-specific bond/proton/electron fields,
-  and refresh remains blocked on reviewer provenance plus the four Rhea lookup
+  and refresh remains blocked on reviewer provenance plus the three remaining Rhea lookup
   rows.
 - The mechanism-feature role-graph and reaction-center sidecars now pass a
   strict schema and row-alignment audit over all 702 current rows with zero

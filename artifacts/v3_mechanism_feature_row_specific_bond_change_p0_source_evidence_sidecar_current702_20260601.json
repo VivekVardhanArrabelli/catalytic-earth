@@ -13,14 +13,14 @@
     "review_status_counts": {
       "draft": 15
     },
-    "rows_missing_rhea_equations": 4,
+    "rows_missing_rhea_equations": 3,
     "rows_with_draft_bond_change_events": 15,
-    "rows_with_rhea_equations": 11,
+    "rows_with_rhea_equations": 12,
     "rows_with_source_spans": 15,
     "sidecar_rows": 15,
     "worksheet_rows": 15
   },
-  "created_utc": "2026-06-01T19:56:31Z",
+  "created_utc": "2026-06-01T23:00:43Z",
   "guardrails": {
     "draft_source_evidence_not_training_input": true,
     "feature_contract_mutated": false,
@@ -2340,10 +2340,14 @@
             "m_csa:124:residue:8"
           ],
           "participants_after": [
-            "mechanism_text_product_context"
+            "4 Fe(III)-[cytochrome c]",
+            "2 H2O",
+            "4 H(+)(out)"
           ],
           "participants_before": [
-            "mechanism_text_substrate_context"
+            "4 Fe(II)-[cytochrome c]",
+            "O2",
+            "8 H(+)(in)"
           ],
           "source_evidence_span": {
             "source_record_id": "m_csa:124:mechanism:2",
@@ -2362,10 +2366,14 @@
             "m_csa:124:residue:3"
           ],
           "participants_after": [
-            "mechanism_text_product_context"
+            "4 Fe(III)-[cytochrome c]",
+            "2 H2O",
+            "4 H(+)(out)"
           ],
           "participants_before": [
-            "mechanism_text_substrate_context"
+            "4 Fe(II)-[cytochrome c]",
+            "O2",
+            "8 H(+)(in)"
           ],
           "source_evidence_span": {
             "source_record_id": "m_csa:124:mechanism:2",
@@ -2384,10 +2392,14 @@
             "m_csa:124:residue:3"
           ],
           "participants_after": [
-            "mechanism_text_product_context"
+            "4 Fe(III)-[cytochrome c]",
+            "2 H2O",
+            "4 H(+)(out)"
           ],
           "participants_before": [
-            "mechanism_text_substrate_context"
+            "4 Fe(II)-[cytochrome c]",
+            "O2",
+            "8 H(+)(in)"
           ],
           "source_evidence_span": {
             "source_record_id": "m_csa:124:mechanism:2",
@@ -2406,10 +2418,14 @@
             "m_csa:124:residue:3"
           ],
           "participants_after": [
-            "mechanism_text_product_context"
+            "4 Fe(III)-[cytochrome c]",
+            "2 H2O",
+            "4 H(+)(out)"
           ],
           "participants_before": [
-            "mechanism_text_substrate_context"
+            "4 Fe(II)-[cytochrome c]",
+            "O2",
+            "8 H(+)(in)"
           ],
           "source_evidence_span": {
             "source_record_id": "m_csa:124:mechanism:2",
@@ -2428,10 +2444,14 @@
             "m_csa:124:residue:3"
           ],
           "participants_after": [
-            "mechanism_text_product_context"
+            "4 Fe(III)-[cytochrome c]",
+            "2 H2O",
+            "4 H(+)(out)"
           ],
           "participants_before": [
-            "mechanism_text_substrate_context"
+            "4 Fe(II)-[cytochrome c]",
+            "O2",
+            "8 H(+)(in)"
           ],
           "source_evidence_span": {
             "source_record_id": "m_csa:124:mechanism:2",
@@ -2440,6 +2460,42 @@
         }
       ],
       "row_specific_reaction_participant_mapping": [
+        {
+          "mapped_atom_or_group": "4 Fe(II)-[cytochrome c]",
+          "participant_id": "substrate_1",
+          "role": "substrate",
+          "source_identifier": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        },
+        {
+          "mapped_atom_or_group": "O2",
+          "participant_id": "substrate_2",
+          "role": "substrate",
+          "source_identifier": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        },
+        {
+          "mapped_atom_or_group": "8 H(+)(in)",
+          "participant_id": "substrate_3",
+          "role": "substrate",
+          "source_identifier": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        },
+        {
+          "mapped_atom_or_group": "4 Fe(III)-[cytochrome c]",
+          "participant_id": "product_1",
+          "role": "product",
+          "source_identifier": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        },
+        {
+          "mapped_atom_or_group": "2 H2O",
+          "participant_id": "product_2",
+          "role": "product",
+          "source_identifier": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        },
+        {
+          "mapped_atom_or_group": "4 H(+)(out)",
+          "participant_id": "product_3",
+          "role": "product",
+          "source_identifier": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
+        },
         {
           "mapped_atom_or_group": "Trp126",
           "participant_id": "m_csa:124:residue:1",
@@ -2533,6 +2589,11 @@
           "source_database": "m_csa_local_graph",
           "source_record_id": "m_csa:124:mechanism:2",
           "span_text": "Cytochrome c oxidase is a redox driven proton pump that utilises free energy of oxygen reduction for creation of proton gradient across the mitochondrial membrane. All protons pumped across the membrane and three out of the four substrate protons consumed per cycle are transferred through the so-called D-pathway. It leads from the conserved Asp91 under involvement of solvent molecules straight up to Ser156 and Ser157 and from there through a large presumably water-filled cavity to the conserved Glu242 [PMID:15147881, PMID:2765763, PMID:9788998]. The further pathway for protons consist of two chain of water molecules. One connecting Glu242 to propionate D of haem A3 <i>via</i> the NH group of Trp126 and one connecting Glu242 to the catalytic site of the enzyme [PMID:15147881, PMID:2765763]. One of the chemical protons presumably comes <i>via</i> the K-pathway. This involves Lys319 that could receive protons either from Ser255 directly or from the conserved subunit II Glu residue indirectly. It would transfer the proton via Thr316 the hydroxy group of the side chain of hame A3 to Tyr244 which is covalently cross-linked to His240 [PMID:15147881, PMID:9788998]. The effect of the cross-link would be to lower the pKa of Tyr244 making this residue a possible proton donor for O2 intermediates bound at the active site [PMID:15598510]. Electrons are supplied by cytochrome c <i>via</i> CuA - haem A - haem A3/CuB at the binuclear centre and the residues Arg438 Arg439 and Phe377 may be involved in these electron transfers [PMID:10775261]."
+        },
+        {
+          "source_database": "rhea_official_lookup",
+          "source_record_id": "rhea:RHEA:11436",
+          "span_text": "4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)"
         }
       ]
     },
@@ -3469,6 +3530,11 @@
       "exists": true,
       "path": "artifacts/v1_graph_1025.json",
       "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "rhea_lookup_resolution": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_current702_20260601.json",
+      "sha256": "7fe9372b048ef97f9451a59227a865d15376a55ef9027192928f419c61f4ca2b"
     },
     "source_evidence_schema": {
       "exists": true,

@@ -213,6 +213,26 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-rhea-lookup-resolution"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_rhea_lookup_resolution"
+                ),
+            ),
+            (
+                (
+                    "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-rhea-resolution-consumption"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_rhea_resolution_consumption"
+                ),
+            ),
+            (
+                (
                     "audit-mechanism-feature-row-specific-bond-change-"
                     "p0-feature-readiness"
                 ),
@@ -236,6 +256,10 @@ class CliTests(unittest.TestCase):
             (
                 "build-family-panel-source-free-locator-human-decision-matrix",
                 "cmd_build_family_panel_source_free_locator_human_decision_matrix",
+            ),
+            (
+                "audit-predicted-atlas-vs-fold-novelty-operating-grid-delta",
+                "cmd_audit_predicted_atlas_vs_fold_novelty_operating_grid_delta",
             ),
         ]
         for command_name, function_name in cases:

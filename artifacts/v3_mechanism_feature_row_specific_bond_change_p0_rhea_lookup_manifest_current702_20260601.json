@@ -2,7 +2,7 @@
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601",
   "counts": {
     "blocker_counts": {
-      "rhea_equation_missing": 4
+      "rhea_equation_missing": 3
     },
     "critical_counts": {
       "feature_contract_consumption_allowed_rows": 0,
@@ -10,12 +10,12 @@
       "rhea_missing_rows_absent": 0
     },
     "critical_violation_total": 0,
-    "lookup_target_count": 4,
+    "lookup_target_count": 3,
     "review_queue_rows": 15,
-    "rhea_lookup_rows": 4,
-    "rows_with_ec_targets": 4
+    "rhea_lookup_rows": 3,
+    "rows_with_ec_targets": 3
   },
-  "created_utc": "2026-06-01T20:08:21Z",
+  "created_utc": "2026-06-01T23:00:43Z",
   "guardrails": {
     "feature_contract_mutated": false,
     "feature_contract_refresh_allowed": false,
@@ -28,33 +28,10 @@
     "source_fetch_performed": false
   },
   "interpretation": {
-    "next_action": "Resolve `m_csa:124`, `m_csa:11`, `m_csa:169`, then `m_csa:5` from the staged query URLs; rerun the sidecar strict audit and review queue after edits.",
-    "result": "The four P1 review-queue rows all have EC targets but no local Rhea equations. The next blocker-clearing step is manual Rhea lookup and sidecar update, not feature use."
+    "next_action": "Resolve the remaining rows from the staged query URLs, then rerun the sidecar, strict audit, review queue, and feature readiness audit after edits.",
+    "result": "3 P1 review-queue rows have EC targets but still lack local or resolved official Rhea equations. The next blocker-clearing step is bounded Rhea lookup and sidecar update, not feature use."
   },
   "lookup_rows": [
-    {
-      "accession": "P00396",
-      "allowed_for_feature_contract_consumption_now": false,
-      "allowed_for_model_training_now": false,
-      "draft_event_count": 5,
-      "ec_targets": [
-        "ec:1.9.3.1"
-      ],
-      "entry_id": "m_csa:124",
-      "lookup_blockers": [
-        "rhea_equation_missing"
-      ],
-      "lookup_targets": [
-        {
-          "ec_target": "ec:1.9.3.1",
-          "local_graph_expectation": "no existing ec_to_rhea mapping in artifacts/v1_graph_1025.json",
-          "rhea_query_url": "https://www.rhea-db.org/rhea?query=1.9.3.1"
-        }
-      ],
-      "m_csa_entry_name": "cytochrome-c oxidase (AA3 type)",
-      "manual_review_command_template": "Open the Rhea EC query URL, record matching RHEA IDs and equations in the P0 source-evidence sidecar, then rerun audit-mechanism-feature-row-specific-bond-change-p0-source-evidence-sidecar-strict.",
-      "review_queue_priority_rank": 1
-    },
     {
       "accession": "P0A6C1",
       "allowed_for_feature_contract_consumption_now": false,
@@ -131,7 +108,7 @@
     "review_queue": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-      "sha256": "d06811cb3c7bb1111e4b0b74b1eb49dc74134dbab7415939b2ca3d9e98b2a441"
+      "sha256": "98c49ed319d631d1dd862ac4aaacf8f41b810dda49b2d41615002d3d6fc27b64"
     },
     "source_graph_readiness": {
       "exists": true,

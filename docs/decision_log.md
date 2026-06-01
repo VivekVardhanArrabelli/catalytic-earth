@@ -73,6 +73,13 @@ Artifacts:
 `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/in_distribution_atlas_self_vs_atlas.tsv`,
 `work/fold_augmented_abstention_threshold_contract_current702_20260601.md`.
 
+Follow-up: add a review-only matched-retention delta audit between the frozen
+predicted-atlas geometry operating grid and the frozen fold-augmented operating
+grid. At the 90% in-scope-retention diagnostic, fold augmentation lifts OOS
+abstention from `0.2278` to `0.7722` and cofactor-confounded OOS abstention
+from `0.3333` to `0.8333`. This comparison reads existing heldout diagnostic
+artifacts only and does not select, tune, or promote a threshold.
+
 ## 2026-06-01: Fold-Augmented Research Gate Applied To Review-Only Family Panels
 
 Decision: add a downstream readout that applies the already selected
@@ -777,13 +784,35 @@ sidecar audit after any manual source update. No source fetch, source import,
 approval, feature-contract refresh, model fit, threshold selection, label edit,
 registry edit, ontology edit, or production-scorer change occurred.
 
+P0 Rhea lookup-resolution follow-up: run a bounded official Rhea lookup for the
+four staged rows. Exact EC queries returned zero Rhea records for all four
+worksheet ECs; accession query `uniprot:P00396` resolved `m_csa:124` to
+`RHEA:11436` with equation
+`4 Fe(II)-[cytochrome c] + O2 + 8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + 4 H(+)(out)`
+and Rhea EC `7.1.1.9`. The source-evidence sidecar now records that official
+Rhea equation as review-only evidence, increasing Rhea-covered rows from 11/15
+to 12/15. The refreshed manual review queue leaves three Rhea-missing rows
+(`m_csa:11`, `m_csa:169`, and `m_csa:5`) and moves `m_csa:124` into
+high-complexity manual review. All rows remain draft/non-consumable: no
+approval, feature-contract refresh, model fit, threshold selection, label edit,
+registry edit, ontology edit, import, or production-scorer change occurred.
+
+P0 Rhea resolution-consumption follow-up: add a strict audit tying the bounded
+Rhea lookup resolution to the refreshed sidecar, review queue, remaining lookup
+manifest, and feature-readiness audit. It confirms `m_csa:124` carries
+`RHEA:11436` in the sidecar, is absent from the remaining lookup manifest, and
+stays draft/non-consumable; `m_csa:11`, `m_csa:169`, and `m_csa:5` remain in
+the lookup manifest and readiness blockers. The audit reports 0 critical
+violations, 0 approved rows, 0 feature-contract-consumable rows, and 0
+model-training-eligible rows.
+
 P0 feature-readiness follow-up: audit the draft source-evidence sidecar against
 the strict audit, manual review queue, Rhea lookup manifest, and current
 feature contract. All 15 rows are structurally ready as drafts, with draft
 coverage for 10 bond-change rows, 6 proton-transfer rows, and 9
 electron-transfer rows. Zero rows are approved or consumable, and the current
 feature contract contains no row-specific bond/proton/electron fields. The
-next blocker remains manual Rhea resolution plus reviewer-provenance approval
+next blocker remains the three unresolved Rhea rows plus reviewer-provenance approval
 before any train/cal-only no-template feature refresh.
 
 Artifacts:

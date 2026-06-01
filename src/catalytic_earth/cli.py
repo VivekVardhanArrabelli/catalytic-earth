@@ -92,10 +92,13 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness,
     write_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit,
     write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest,
+    write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution,
+    write_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit,
     write_mechanism_feature_row_specific_bond_change_schema,
     write_mechanism_feature_sidecar_schema_audit,
     write_predicted_atlas_geometry_novelty_operating_grid,
     write_predicted_atlas_geometry_novelty_variants,
+    write_predicted_atlas_vs_fold_novelty_operating_grid_delta,
     write_predicted_structure_fold_augmented_novelty_operating_grid,
     write_predicted_structure_fold_channel,
     write_predicted_structure_fold_channel_contract_audit,
@@ -10992,6 +10995,24 @@ def cmd_build_predicted_structure_fold_augmented_novelty_operating_grid(
     return 0
 
 
+def cmd_audit_predicted_atlas_vs_fold_novelty_operating_grid_delta(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_predicted_atlas_vs_fold_novelty_operating_grid_delta(
+        geometry_operating_grid_path=Path(args.geometry_operating_grid),
+        fold_operating_grid_path=Path(args.fold_operating_grid),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote predicted-atlas versus fold novelty operating-grid delta to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"shared targets: {counts.get('shared_retention_targets')})"
+    )
+    return 0
+
+
 def cmd_audit_selected_organic_cofactor_sidecar_schema(args: argparse.Namespace) -> int:
     audit = write_selected_organic_cofactor_sidecar_schema_audit(
         selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
@@ -11783,6 +11804,11 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_source_evidence_side
             worksheet_path=Path(args.worksheet),
             source_evidence_schema_path=Path(args.source_evidence_schema),
             graph_path=Path(args.graph),
+            rhea_lookup_resolution_path=(
+                Path(args.rhea_lookup_resolution)
+                if args.rhea_lookup_resolution
+                else None
+            ),
             out_path=Path(args.out),
             report_path=Path(args.report) if args.report else None,
         )
@@ -11853,6 +11879,49 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest
         "Wrote row-specific bond-change P0 Rhea lookup manifest to "
         f"{args.out} (status: {manifest.get('status')}, "
         f"lookup rows: {counts.get('rhea_lookup_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution(
+    args: argparse.Namespace,
+) -> int:
+    resolution = (
+        write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution(
+            rhea_lookup_manifest_path=Path(args.rhea_lookup_manifest),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = resolution.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 Rhea lookup resolution to "
+        f"{args.out} (status: {resolution.get('status')}, "
+        f"resolved rows: {counts.get('resolved_rows')}, "
+        f"unresolved rows: {counts.get('unresolved_rows')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption(
+    args: argparse.Namespace,
+) -> int:
+    audit = (
+        write_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit(
+            rhea_lookup_resolution_path=Path(args.rhea_lookup_resolution),
+            sidecar_path=Path(args.sidecar),
+            review_queue_path=Path(args.review_queue),
+            rhea_lookup_manifest_path=Path(args.rhea_lookup_manifest),
+            feature_readiness_path=Path(args.feature_readiness),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 Rhea resolution consumption audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"critical violations: {counts.get('critical_violation_total')})"
     )
     return 0
 
@@ -22946,6 +23015,45 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_predicted_structure_fold_augmented_novelty_operating_grid
     )
 
+    predicted_atlas_vs_fold_delta = subparsers.add_parser(
+        "audit-predicted-atlas-vs-fold-novelty-operating-grid-delta",
+        help=(
+            "compare frozen predicted-atlas geometry and fold-augmented "
+            "novelty operating-grid diagnostics without selecting thresholds"
+        ),
+    )
+    predicted_atlas_vs_fold_delta.add_argument(
+        "--geometry-operating-grid",
+        default=(
+            "artifacts/v3_predicted_atlas_geometry_novelty_operating_grid_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_atlas_vs_fold_delta.add_argument(
+        "--fold-operating-grid",
+        default=(
+            "artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_atlas_vs_fold_delta.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_predicted_atlas_vs_fold_novelty_operating_grid_delta_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_atlas_vs_fold_delta.add_argument(
+        "--report",
+        default=(
+            "work/predicted_atlas_vs_fold_novelty_operating_grid_delta_"
+            "current702_20260601.md"
+        ),
+    )
+    predicted_atlas_vs_fold_delta.set_defaults(
+        func=cmd_audit_predicted_atlas_vs_fold_novelty_operating_grid_delta
+    )
+
     selected_cofactor_schema = subparsers.add_parser(
         "audit-selected-organic-cofactor-sidecar-schema",
         help="validate strict current702 schema/lineage for selected organic cofactor scores",
@@ -24694,6 +24802,13 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v1_graph_1025.json",
     )
     row_specific_bond_change_p0_source_sidecar.add_argument(
+        "--rhea-lookup-resolution",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_resolution_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar.add_argument(
         "--out",
         default=(
             "artifacts/v3_mechanism_feature_row_specific_bond_change_"
@@ -24840,6 +24955,102 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_rhea_lookup.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest
+        )
+    )
+
+    row_specific_bond_change_p0_rhea_resolution = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-rhea-lookup-resolution",
+        help=(
+            "fetch bounded official Rhea lookup evidence for P0 rows missing "
+            "local Rhea equations"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_resolution.add_argument(
+        "--rhea-lookup-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_resolution.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_resolution_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_resolution.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_resolution_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_resolution.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution
+        )
+    )
+
+    row_specific_bond_change_p0_rhea_consumption = subparsers.add_parser(
+        "audit-mechanism-feature-row-specific-bond-change-p0-rhea-resolution-consumption",
+        help=(
+            "audit that resolved Rhea lookup evidence was consumed only as "
+            "draft source evidence and remaining rows stay blocked"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--rhea-lookup-resolution",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_resolution_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--review-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_review_queue_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--rhea-lookup-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--feature-readiness",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_feature_readiness_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_resolution_consumption_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_resolution_consumption_audit_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_consumption.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption
         )
     )
 

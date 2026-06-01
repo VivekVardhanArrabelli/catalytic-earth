@@ -38,10 +38,13 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit,
     build_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness,
     build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest,
+    build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution,
+    build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit,
     build_mechanism_feature_row_specific_bond_change_schema,
     build_mechanism_feature_embedding_pilot,
     build_mechanism_feature_sidecar_schema_audit,
     build_predicted_atlas_geometry_novelty_variants,
+    build_predicted_atlas_vs_fold_novelty_operating_grid_delta,
     build_predicted_structure_fold_augmented_novelty_operating_grid,
     build_predicted_structure_fold_channel,
     build_predicted_structure_fold_channel_contract_audit,
@@ -3620,6 +3623,279 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(manifest["counts"]["critical_violation_total"], 0)
         self.assertFalse(manifest["guardrails"]["source_fetch_performed"])
 
+    def test_row_specific_bond_change_p0_rhea_lookup_resolution_feeds_sidecar(
+        self,
+    ) -> None:
+        def fake_fetch(query: str) -> str:
+            header = "Reaction identifier\tEquation\tEC number\tEnzymes\n"
+            if query == "uniprot:P00396":
+                return (
+                    header
+                    + "RHEA:11436\t4 Fe(II)-[cytochrome c] + O2 + "
+                    "8 H(+)(in) = 4 Fe(III)-[cytochrome c] + 2 H2O + "
+                    "4 H(+)(out)\tEC:7.1.1.9\t1870579\n"
+                )
+            return header
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest = root / "manifest.json"
+            resolution_path = root / "resolution.json"
+            worksheet = root / "worksheet.tsv"
+            schema = root / "schema.json"
+            graph = root / "graph.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "lookup_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P00396",
+                                "m_csa_entry_name": "cytochrome oxidase",
+                                "draft_event_count": 2,
+                                "lookup_blockers": ["rhea_equation_missing"],
+                                "ec_targets": ["ec:1.9.3.1"],
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "P0A6C1",
+                                "m_csa_entry_name": "nuclease",
+                                "draft_event_count": 1,
+                                "lookup_blockers": ["rhea_equation_missing"],
+                                "ec_targets": ["ec:3.1.21.2"],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            resolution = build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution(
+                rhea_lookup_manifest_path=manifest,
+                fetcher=fake_fetch,
+            )
+            resolution_path.write_text(json.dumps(resolution), encoding="utf-8")
+            worksheet.write_text(
+                "entry_id\taccession\nm_csa:1\tP00396\n",
+                encoding="utf-8",
+            )
+            schema.write_text(
+                json.dumps(
+                    {
+                        "sidecar_schema": {
+                            "allowed_event_types": [
+                                "bond_formed",
+                                "bond_broken",
+                                "bond_order_changed",
+                                "proton_transfer",
+                                "electron_transfer",
+                            ],
+                            "allowed_participant_roles": [
+                                "substrate",
+                                "product",
+                                "cofactor",
+                                "catalytic_residue",
+                                "water",
+                                "metal",
+                                "other",
+                            ],
+                            "allowed_review_statuses": ["draft"],
+                            "forbidden_predictive_fields": [],
+                            "required_event_fields": [
+                                "event_type",
+                                "participants_before",
+                                "participants_after",
+                                "mapped_active_site_residues",
+                                "source_evidence_span",
+                                "confidence",
+                            ],
+                            "required_mapping_fields": [
+                                "participant_id",
+                                "role",
+                                "source_identifier",
+                                "mapped_atom_or_group",
+                            ],
+                            "required_row_fields": [
+                                "entry_id",
+                                "accession",
+                                "source_record_id",
+                                "source_database",
+                                "source_record_version_or_date",
+                                "row_specific_reaction_participant_mapping",
+                                "row_specific_bond_change_events",
+                                "active_site_residue_role_support",
+                                "source_text_or_database_evidence_span",
+                                "extractor_id",
+                                "review_status",
+                                "reviewer_id",
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"generated_at": "2026-06-01T00:00:00Z"},
+                        "nodes": [
+                            {"id": "m_csa:1", "type": "m_csa_entry"},
+                            {
+                                "id": "m_csa:1:mechanism:1",
+                                "type": "mechanism_text",
+                                "text": "Cytochrome oxidase transfers electrons and pumps protons.",
+                            },
+                        ],
+                        "edges": [
+                            {
+                                "source": "m_csa:1",
+                                "target": "m_csa:1:mechanism:1",
+                                "predicate": "has_mechanism_text",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            sidecar = build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
+                worksheet_path=worksheet,
+                source_evidence_schema_path=schema,
+                graph_path=graph,
+                rhea_lookup_resolution_path=resolution_path,
+            )
+
+        self.assertEqual(
+            resolution["status"],
+            "p0_rhea_lookup_resolution_partial_review_only",
+        )
+        self.assertEqual(resolution["counts"]["resolved_rows"], 1)
+        self.assertEqual(resolution["counts"]["resolved_by_accession_rows"], 1)
+        self.assertEqual(resolution["counts"]["unresolved_rows"], 1)
+        self.assertEqual(sidecar["counts"]["rows_with_rhea_equations"], 1)
+        self.assertEqual(sidecar["counts"]["rows_missing_rhea_equations"], 0)
+        span_databases = {
+            span["source_database"]
+            for span in sidecar["sidecar_rows"][0]["source_text_or_database_evidence_span"]
+        }
+        self.assertIn("rhea_official_lookup", span_databases)
+
+    def test_row_specific_bond_change_p0_rhea_resolution_consumption_audit_passes(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            resolution = root / "resolution.json"
+            sidecar = root / "sidecar.json"
+            queue = root / "queue.json"
+            manifest = root / "manifest.json"
+            readiness = root / "readiness.json"
+            resolution.write_text(
+                json.dumps(
+                    {
+                        "row_resolutions": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accepted_resolution": {
+                                    "status": "resolved_accession_query",
+                                    "rhea_id": "RHEA:1",
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accepted_resolution": {
+                                    "status": (
+                                        "unresolved_no_rhea_record_for_ec_or_accession"
+                                    ),
+                                    "rhea_id": None,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "review_status": "draft",
+                                "source_text_or_database_evidence_span": [
+                                    {
+                                        "source_database": "rhea_official_lookup",
+                                        "source_record_id": "rhea:RHEA:1",
+                                    }
+                                ],
+                                "allowed_for_feature_contract_consumption_now": False,
+                                "allowed_for_model_training_now": False,
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "review_status": "draft",
+                                "source_text_or_database_evidence_span": [],
+                                "allowed_for_feature_contract_consumption_now": False,
+                                "allowed_for_model_training_now": False,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue.write_text(
+                json.dumps(
+                    {
+                        "queue_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "review_category": "high_complexity_multi_event_review",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "review_category": "rhea_lookup_required_before_approval",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps({"lookup_rows": [{"entry_id": "m_csa:2"}]}),
+                encoding="utf-8",
+            )
+            readiness.write_text(
+                json.dumps(
+                    {
+                        "row_readiness": [
+                            {"entry_id": "m_csa:1", "blockers": []},
+                            {
+                                "entry_id": "m_csa:2",
+                                "blockers": ["rhea_lookup_unresolved"],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit(
+                rhea_lookup_resolution_path=resolution,
+                sidecar_path=sidecar,
+                review_queue_path=queue,
+                rhea_lookup_manifest_path=manifest,
+                feature_readiness_path=readiness,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_rhea_resolution_consumption_audit_passed_review_only",
+        )
+        self.assertEqual(audit["counts"]["resolved_rows"], 1)
+        self.assertEqual(audit["counts"]["unresolved_rows"], 1)
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertFalse(audit["guardrails"]["feature_contract_refresh_allowed"])
+
     def test_row_specific_bond_change_p0_feature_readiness_blocks_draft_rows(
         self,
     ) -> None:
@@ -4954,6 +5230,68 @@ class NorthstarNextLeversTests(unittest.TestCase):
             [row["entry_id"] for row in best["confounded_rows"]],
             ["m_csa:30"],
         )
+
+    def test_predicted_atlas_vs_fold_operating_grid_delta_compares_targets(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            geometry = root / "geometry_grid.json"
+            fold = root / "fold_grid.json"
+            geometry.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "predicted_atlas_geometry_novelty_operating_grid_"
+                            "ready_review_only"
+                        ),
+                        "best_by_retention_target": {
+                            "0.90": {
+                                "signal": "geometry_signal",
+                                "threshold": 0.1,
+                                "inscope_retain_recall": 0.91,
+                                "oos_abstain_recall": 0.2,
+                                "confounded_abstain_recall": 0.3,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "predicted_structure_fold_augmented_novelty_"
+                            "operating_grid_ready_review_only"
+                        ),
+                        "best_by_retention_target": {
+                            "0.90": {
+                                "signal": "fold_signal",
+                                "threshold": 0.4,
+                                "inscope_retain_recall": 0.91,
+                                "oos_abstain_recall": 0.8,
+                                "confounded_abstain_recall": 0.9,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_predicted_atlas_vs_fold_novelty_operating_grid_delta(
+                geometry_operating_grid_path=geometry,
+                fold_operating_grid_path=fold,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "predicted_atlas_vs_fold_novelty_delta_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["shared_retention_targets"], 1)
+        self.assertEqual(audit["counts"]["targets_with_oos_abstain_lift"], 1)
+        self.assertEqual(audit["target_90_summary"]["oos_abstain_recall_delta"], 0.6)
+        self.assertFalse(audit["guardrails"]["production_thresholds_changed"])
 
     def test_predicted_structure_fold_channel_stages_bounded_manifest(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

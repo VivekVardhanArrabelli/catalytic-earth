@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 Feature-Readiness Audit - current702
 
-Run: 2026-06-01T21:58:01Z
+Run: 2026-06-01T23:00:43Z
 
 Review-only readiness audit for converting the P0 row-specific bond-change source-evidence sidecar into future mechanism-feature contract fields. It inventories proton-transfer, electron-transfer, and bond-change draft coverage while keeping every draft row out of training and threshold selection.
 
@@ -14,7 +14,7 @@ Review-only readiness audit for converting the P0 row-specific bond-change sourc
 - Rows with proton-transfer events: 6
 - Rows with electron-transfer events: 9
 - Draft event type counts: {'bond_broken': 5, 'bond_formed': 6, 'bond_order_changed': 7, 'electron_transfer': 21, 'proton_transfer': 10}
-- Blocker counts: {'low_confidence_event_review': 7, 'multi_event_mechanism_review': 7, 'review_status_not_approved': 15, 'reviewer_id_missing': 15, 'rhea_equation_missing': 4, 'rhea_lookup_unresolved': 4}
+- Blocker counts: {'low_confidence_event_review': 7, 'multi_event_mechanism_review': 7, 'review_status_not_approved': 15, 'reviewer_id_missing': 15, 'rhea_equation_missing': 3, 'rhea_lookup_unresolved': 3}
 - Feature-contract refresh allowed: False
 
 ## Row Readiness
@@ -31,7 +31,7 @@ Review-only readiness audit for converting the P0 row-specific bond-change sourc
 | m_csa:68 | 3 | electron_transfer | True | False | low_confidence_event_review, review_status_not_approved, reviewer_id_missing |
 | m_csa:94 | 2 | bond_formed | True | False | review_status_not_approved, reviewer_id_missing |
 | m_csa:102 | 5 | bond_broken, electron_transfer | True | False | low_confidence_event_review, multi_event_mechanism_review, review_status_not_approved, reviewer_id_missing |
-| m_csa:124 | 5 | electron_transfer, proton_transfer | True | False | multi_event_mechanism_review, review_status_not_approved, reviewer_id_missing, rhea_equation_missing, rhea_lookup_unresolved |
+| m_csa:124 | 5 | electron_transfer, proton_transfer | True | False | multi_event_mechanism_review, review_status_not_approved, reviewer_id_missing |
 | m_csa:133 | 5 | bond_formed, electron_transfer, proton_transfer | True | False | low_confidence_event_review, multi_event_mechanism_review, review_status_not_approved, reviewer_id_missing |
 | m_csa:147 | 4 | bond_order_changed, proton_transfer | True | False | multi_event_mechanism_review, review_status_not_approved, reviewer_id_missing |
 | m_csa:169 | 4 | bond_broken, bond_formed, proton_transfer | True | False | multi_event_mechanism_review, review_status_not_approved, reviewer_id_missing, rhea_equation_missing, rhea_lookup_unresolved |

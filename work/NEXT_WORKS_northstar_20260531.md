@@ -38,6 +38,13 @@ deployment regime). Action: regenerate `predicted_geometry_retrieval` for the
 and the atlas-Mahalanobis novelty path. This may itself lift the operating point
 and unblocks #2.
 
+Status addendum, 2026-06-01: the predicted-atlas geometry novelty variants and
+operating grid are rerun, and a review-only matched-retention delta audit now
+compares them to the fold-augmented operating grid. Fold augmentation improves
+all four matched retention targets, including +0.5444 OOS abstention and +0.5
+cofactor-confounded OOS abstention at the 90% retention diagnostic. This does
+not select a threshold.
+
 ### 2. Learned mechanism-feature embedding (the real northstar feature)
 Train a representation that answers to mechanism chemistry (electron flow,
 transition-state stabilization, proton transfer, bond making/breaking), not to
@@ -56,8 +63,11 @@ template-dependent full-contract score only as a ceiling diagnostic.
 
 Readiness addendum, 2026-06-01: the P0 source-evidence sidecar now has a
 feature-readiness audit over draft bond/proton/electron events, but 0/15 rows
-are approved or consumable; resolve the four Rhea lookup rows and reviewer
-provenance before any no-template feature-contract refresh.
+are approved or consumable. A bounded official Rhea lookup resolved `m_csa:124`
+by accession to `RHEA:11436` / EC `7.1.1.9`, and a strict consumption audit
+confirms it entered only the draft sidecar. Resolve the remaining three Rhea
+lookup rows (`m_csa:11`, `m_csa:169`, and `m_csa:5`) and reviewer provenance
+before any no-template feature-contract refresh.
 
 ### 3. Fold-level novelty signal (complementary, catches the confounded subset)
 The 6 cofactor-confounded OOS (novel chemistry reusing a known cofactor family)

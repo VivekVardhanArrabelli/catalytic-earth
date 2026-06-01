@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 Source-Evidence Sidecar - current702
 
-Run: 2026-06-01T19:56:31Z
+Run: 2026-06-01T23:00:43Z
 
 Draft source-evidence sidecar for the balanced P0 row-specific bond-change pilot. It fills row-specific M-CSA mechanism spans, Rhea equations where available, active-site residue support, and draft bond-change events, but every row remains non-consumable until strict review approval.
 
@@ -10,8 +10,8 @@ Draft source-evidence sidecar for the balanced P0 row-specific bond-change pilot
 - Sidecar rows: 15
 - Rows with source spans: 15
 - Rows with draft bond-change events: 15
-- Rows with Rhea equations: 11
-- Rows missing Rhea equations: 4
+- Rows with Rhea equations: 12
+- Rows missing Rhea equations: 3
 - Approved rows: 0
 - Review status counts: {'draft': 15}
 - Draft event type counts: {'bond_broken': 5, 'bond_formed': 6, 'bond_order_changed': 7, 'electron_transfer': 21, 'proton_transfer': 10}

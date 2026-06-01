@@ -50,6 +50,118 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 P0 Rhea Resolution And Predicted-Atlas Delta Audit
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T22:52:45Z`
+- STARTED_LOCAL: `Mon Jun  1 17:52:45 CDT 2026`
+- ENDED_AT: `2026-06-01T23:46:35Z`
+- ENDED_LOCAL: `Mon Jun  1 18:46:35 CDT 2026`
+- ELAPSED_MINUTES: `53.8`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "64740", "started_at": "2026-06-01T22:52:45Z", "status": "acquired"}`
+- Lock release result: pending until this handoff, commit, push, and sync
+  verification complete from a clean worktree; final release result is reported
+  in the automation response.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `45af119ea55e88ebdb852c820511ea9c2dc75a8f`
+- Git HEAD at end before commit:
+  `45af119ea55e88ebdb852c820511ea9c2dc75a8f`
+- Dirty files at start: none
+- Dirty files at end before commit:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  `artifacts/v3_current_run_artifact_integrity_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json`,
+  `artifacts/v3_predicted_atlas_vs_fold_novelty_operating_grid_delta_current702_20260601.json`,
+  durable docs, CLI/code/tests, affected work reports, carryover notes, and
+  this handoff.
+- Input artifacts:
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json`,
+  and
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json`.
+- Output artifacts:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601.md`,
+  `artifacts/v3_predicted_atlas_vs_fold_novelty_operating_grid_delta_current702_20260601.json`,
+  `work/predicted_atlas_vs_fold_novelty_operating_grid_delta_current702_20260601.md`,
+  refreshed P0 sidecar, strict audit, review queue, lookup manifest, feature
+  readiness audit, current-docs reference check, current-run integrity audit,
+  durable docs, CLI/code/tests, and carryover notes.
+- Commands run:
+  memory read attempt and fallback; lock acquire; `git fetch origin`;
+  `git pull --ff-only origin main`; required context reads; JSON parses for the
+  fold channel, predicted-atlas retrieval, fold-level novelty, and new outputs;
+  implemented and ran
+  `build-mechanism-feature-row-specific-bond-change-p0-rhea-lookup-resolution`;
+  regenerated the P0 source-evidence sidecar with the Rhea resolution input;
+  reran the strict sidecar audit, review queue, Rhea lookup manifest, feature
+  readiness audit, and new Rhea resolution consumption audit; implemented and
+  ran `audit-predicted-atlas-vs-fold-novelty-operating-grid-delta`; refreshed
+  `build-current-docs-artifact-reference-check`; refreshed the current-run
+  integrity audit; focused pytest slices; full CLI test file; full unittest
+  discovery; full pytest; `python -m compileall -q src tests`;
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`; repo JSON/JSONL
+  parse sweep; `git diff --check`; disk check; measured elapsed time; and a
+  validation soak loop through `SOAK_ITER=21`.
+- Validation results:
+  new JSON artifacts parse; focused Rhea resolution/consumption,
+  predicted-atlas-vs-fold delta, current-run integrity, and CLI registration
+  tests passed; full CLI test file passed with 118 tests; full unittest
+  discovery passed with 1108 tests and one existing sklearn/scipy deprecation
+  warning; full pytest passed with 1131 tests and the same warning; compileall
+  passed; CLI validate passed with 12 source records, 8 fingerprints, 15
+  ontology families, and 702 labels; current-docs reference check passed with
+  492 checked references and 0 missing; current-run integrity audit passed with
+  21 JSON artifacts, 21 reports, 3134 repo JSON files, 26 JSONL files, and 0
+  parse errors; git diff check passed; disk check passed with 27 GiB available;
+  validation soak passed 21 iterations through 50.1 elapsed minutes.
+- Commit/push result: pending at handoff write; commit this implementation,
+  push to `origin/main`, verify `HEAD == origin/main`, then release the
+  automation lock.
+- Exact next action for the next run:
+  resolve the three remaining P0 Rhea rows (`m_csa:11`, `m_csa:169`, and
+  `m_csa:5`) with curated, row-specific provenance; add reviewer-provenance
+  approval or rejection for each draft event; rerun the strict sidecar,
+  resolution-consumption, review-queue, lookup-manifest, and feature-readiness
+  audits; only consider a train/cal no-template feature-contract refresh if
+  the audit gate becomes consumable. Treat the predicted-structure fold channel
+  and predicted-atlas-vs-fold novelty delta as complete, review-only evidence;
+  do not promote thresholds.
+
+Summary:
+
+- Confirmed the requested predicted-structure fold channel was already present
+  and score-complete for all heldout rows; no Foldseek/TM recomputation was
+  needed.
+- Added bounded official Rhea lookup resolution for P0 source-evidence rows.
+  Exact EC lookup resolved no rows, but the accession-backed query resolved
+  `m_csa:124` through `P00396` to `RHEA:11436`; `m_csa:11`, `m_csa:169`, and
+  `m_csa:5` remain unresolved review blockers.
+- Wired the Rhea resolution into the P0 sidecar/review/readiness pipeline and
+  added a consumption audit. The sidecar now carries Rhea equations for 12 of
+  15 rows, but 0 rows are approved/consumable and feature readiness remains
+  blocked.
+- Added a predicted-atlas-vs-fold novelty delta audit. All four shared
+  retention targets show OOS and cofactor-confounded abstain-recall lift from
+  the fold-augmented signal; the 0.90 target has OOS delta `0.5444` and
+  confounded delta `0.5`, with no threshold promotion.
+
 ### 2026-06-01 P0 Feature-Readiness Audit And Heldout Panel Guardrail
 
 Automation run: `catalytic-earth-work-loop`

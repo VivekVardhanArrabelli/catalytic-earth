@@ -22,7 +22,7 @@
     "violation_counts": {},
     "worksheet_rows": 15
   },
-  "created_utc": "2026-06-01T20:06:02Z",
+  "created_utc": "2026-06-01T23:00:43Z",
   "guardrails": {
     "feature_contract_mutated": false,
     "feature_contract_refresh_allowed": false,
@@ -170,7 +170,7 @@
       "forbidden_fields_present": [],
       "mapped_event_residue_count": 26,
       "missing_row_fields": [],
-      "participant_mapping_count": 14,
+      "participant_mapping_count": 20,
       "review_status": "draft",
       "status": "passed",
       "violations": []
@@ -230,7 +230,7 @@
     "sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "0217582884d1a053393555cb27ac92ab380107b92363949ac9eb5a89ed97b8ac"
+      "sha256": "73480b483045649ec44fb8b77871faa80b646ea19bcfb3169ec784cd71b0e482"
     },
     "source_evidence_schema": {
       "exists": true,
