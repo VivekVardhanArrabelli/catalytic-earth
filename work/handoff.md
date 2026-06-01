@@ -50,6 +50,133 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Fold Channel Validation And Research Gate Handoff
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T07:32:42Z`
+- STARTED_LOCAL: `Mon Jun  1 02:32:42 CDT 2026`
+- ENDED_AT: `2026-06-01T08:22:51Z`
+- ENDED_LOCAL: `Mon Jun  1 03:22:51 CDT 2026`
+- ELAPSED_MINUTES: `50.2`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "54557", "started_at": "2026-06-01T07:32:42Z", "status": "acquired"}`
+- Lock status during wrap:
+  `{"acquired": false, "age_seconds": 2614.604, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "54557", "started_at": "2026-06-01T07:32:42Z", "status": "active_lock_present"}`
+- Lock release result: pending at handoff write; release command to run after
+  clean synced push:
+  `PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced`
+- Git branch at start: `main`
+- Git HEAD at start: `5d2240f6f39dc9eaa2622751c5bd9f61a3a88afd`
+- Dirty files at start: none
+- Git branch at end before commit: `main`
+- Git HEAD at end before commit: `5d2240f6f39dc9eaa2622751c5bd9f61a3a88afd`
+- Dirty files at end before staging:
+  `artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json`,
+  `docs/artifact_index.md`, `docs/decision_log.md`,
+  `docs/project_state.md`, `src/catalytic_earth/cli.py`,
+  `src/catalytic_earth/northstar_next_levers.py`,
+  `tests/test_geometry_artifact_regression.py`,
+  `tests/test_northstar_next_levers.py`,
+  `work/learned_mechanism_feature_embedding_plan_current702_20260601.md`,
+  `artifacts/v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json`,
+  `artifacts/v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.json`,
+  `artifacts/v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json`,
+  `artifacts/v3_family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.json`,
+  `artifacts/v3_family_panel_evidence_packet_thiol_disulfide_oxidoreductase_isomerase_boundary_current702_20260601.json`,
+  `artifacts/v3_family_panel_packet_coverage_audit_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
+  `work/family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.md`,
+  `work/family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.md`,
+  `work/family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.md`,
+  `work/family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.md`,
+  `work/family_panel_evidence_packet_thiol_disulfide_oxidoreductase_isomerase_boundary_current702_20260601.md`,
+  `work/family_panel_packet_coverage_audit_current702_20260601.md`,
+  `work/fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.md`,
+  `work/fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.md`,
+  `work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
+  `work/predicted_structure_fold_channel_contract_audit_current702_20260601.md`,
+  and this handoff.
+- Input artifacts:
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.json`,
+  `artifacts/v3_fold_only_train_cal_oos_negative_surface_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json`,
+  `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`,
+  `data/registries/mechanism_fingerprints.json`,
+  `artifacts/v3_family_set_expansion_targets_current702_20260601.json`,
+  `artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json`,
+  `artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json`,
+  and the parsed Foldseek TSVs under
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/`.
+- Output artifacts:
+  `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
+  `work/predicted_structure_fold_channel_contract_audit_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
+  `work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
+  refreshed
+  `artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json`,
+  `work/learned_mechanism_feature_embedding_plan_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json`,
+  `work/fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.json`,
+  `work/fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.md`,
+  five new family-panel evidence packets and reports,
+  `artifacts/v3_family_panel_packet_coverage_audit_current702_20260601.json`,
+  `work/family_panel_packet_coverage_audit_current702_20260601.md`,
+  updated `docs/project_state.md`, `docs/decision_log.md`,
+  `docs/artifact_index.md`, `src/catalytic_earth/cli.py`,
+  `src/catalytic_earth/northstar_next_levers.py`,
+  `tests/test_northstar_next_levers.py`,
+  `tests/test_geometry_artifact_regression.py`, and this handoff.
+- Commands run:
+  automation memory read, lock acquire, required handoff/project-state/
+  decision-log/artifact-index/runbook reads, disk/status checks, `git fetch
+  origin`, `git pull --ff-only origin main`, predicted fold-channel contract
+  audit, mechanism-feature sidecar schema audit, refreshed learned
+  mechanism-feature embedding plan with schema audit input, train/cal OOS
+  sufficiency decision build, remaining blocker-attempt packet creation,
+  family-panel packet builds, family-panel coverage audit build, JSON parsing
+  checks, artifact/report pair checks, docs coverage checks, `python -m
+  compileall -q src tests`, `PYTHONPATH=src python -m catalytic_earth.cli
+  validate`, `git diff --check`, focused pytest, full pytest, full unittest
+  discovery, code/diff review, lock status, and exact wall-clock checks.
+- Validation results:
+  JSON parsing passed for all new/refreshed JSON artifacts; all ten new
+  artifact/report pairs exist and have nonempty reports; compileall passed; CLI
+  validate passed with 12 source records, 8 mechanism fingerprints, 15
+  mechanism ontology families, and 702 curated labels; `git diff --check`
+  passed; focused `PYTHONPATH=src python -m pytest
+  tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py
+  -q` passed with 50 tests and 7 subtests; full `PYTHONPATH=src python -m
+  pytest -q` passed repeatedly, final count 1014 tests, 26 subtests, and one
+  known sklearn/scipy deprecation warning; `PYTHONPATH=src python -m unittest
+  discover -s tests` passed repeatedly, final count 991 tests with the same
+  warning; disk stayed above 10 GiB free with 30 GiB available.
+- Commit/push result: pending at handoff write; commit and push after this
+  ledger, then verify `HEAD == origin/main`.
+- Exact next action for the next run:
+  run downstream fold-augmented diagnostics using the research-sufficient 71/76
+  train/cal OOS-negative surface and the family-panel coverage audit. If a
+  production-like threshold claim is desired, first clear `m_csa:78`
+  coordinate policy/source materialization, source-geometry repair for
+  `m_csa:204` and `m_csa:531`, and active-site sidecars for `uniprot:P78549`
+  and `uniprot:Q3LXA3`. If mechanism-feature embedding resumes instead, use
+  the schema-safe active-site sidecar for a train/cal-only pilot and do not use
+  reaction-center templates as predictive inputs without source-backed row-level
+  evidence.
+
 ### 2026-06-01 Train/Cal OOS Surface Accession Repair Completion
 
 Automation run: `catalytic-earth-work-loop`

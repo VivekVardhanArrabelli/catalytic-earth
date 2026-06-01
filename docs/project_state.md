@@ -68,6 +68,11 @@ artifacts first.
   in-scope from all OOS at AUC 0.814301; a no-fit mean of predicted geometry
   confidence and fold TM reaches AUC 0.907622 overall and 0.911348 on the six
   cofactor-confounded OOS rows. These are diagnostics, not production thresholds.
+- The scored predicted-structure fold channel now has a strict contract audit.
+  It confirms 126/126 ok heldout rows and 6/6 priority cofactor-confounded OOS
+  rows have parsed nearest-atlas Foldseek/TM hits, with zero critical contract
+  violations. Persistent predicted-CIF coordinate provenance remains a
+  reproducibility task, not a score-completeness blocker.
 - The fold-augmented gate now has a leakage-safe thresholding contract. A
   deterministic in-distribution train/cal split selected the
   `combined_mean_geometry_fold` threshold `0.44155` at >=90% calibration
@@ -85,6 +90,16 @@ artifacts first.
   been cleared; the surface remains partial because `m_csa:78` lacks an AFDB
   coordinate, `m_csa:204` and `m_csa:531` need source-geometry repair, and two
   UniProt-only rows need active-site sidecars.
+- The partial train/cal OOS-negative surface is now explicitly sufficient for
+  the bounded fold-augmented research contract with blocker disclosure, because
+  71/76 rows are score-complete, the OOS-calibrated contract consumes exactly
+  those 71 rows, no accession-compatible mapping blockers remain, and the
+  primary threshold did not move. It is not sufficient for production-like
+  threshold claims until the remaining five blockers are cleared.
+- The remaining five train/cal OOS score-surface blockers were inspected from
+  frozen inputs. None can be safely cleared without new source-backed
+  active-site evidence, an alternate predicted coordinate, or an explicitly
+  authorized experimental-coordinate-only policy.
 - Learned-representation results are diagnostic, not decision-grade. ESM-2
   logistic is the strongest local learned comparator in the Wave 1.2 table but
   does not displace geometry. ESM-C logistic versus ESM-C cosine shows decoder
@@ -96,6 +111,10 @@ artifacts first.
   reaction-center template sidecar row-aligns fingerprint-level chemical
   operations and bond-change descriptors for 232 rows, but it is not
   row-specific reaction evidence.
+- The mechanism-feature role-graph and reaction-center sidecars now pass a
+  strict schema and row-alignment audit over all 702 current rows with zero
+  critical violations. This validates the current sidecars as schema-safe
+  train/cal-only embedding inputs, not as new mechanistic supervision.
 - ProtT5 and SaProt have only NN/cosine-style local standardized exports today.
   Matched logistic-head reruns are blocked until raw local sidecars or weights
   exist; do not download large models for this by default.
@@ -126,10 +145,10 @@ artifacts first.
 
 ## Next Gates
 
-1. Decide whether the partial 71-row train/cal OOS-negative calibration surface
-   is sufficient for the fold-augmented research gate, or clear the remaining
+1. Use the fold-augmented research gate with the disclosed 71/76 train/cal
+   OOS-negative surface when running downstream diagnostics; clear the remaining
    five source-geometry/coordinate/sidecar blockers before any stronger
-   threshold claim.
+   threshold or production-like claim.
 2. If representation work resumes, produce row-aligned local sidecars first,
    then train heads on train/cal rows only and evaluate heldout once, including
    a predicted-geometry robustness cell.
@@ -155,6 +174,12 @@ artifacts first.
 - `artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json`
 - `artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json`
 - `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`
+- `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`
+- `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`
+- `artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json`
+- `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`
+- `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`
 - `artifacts/v3_m_csa497_label_revision_702_20260527.json`
 - `artifacts/v3_m_csa750_label_revision_702_20260527.json`
 - `artifacts/v3_fmo_fingerprint_definition_audit_702_20260528.json`

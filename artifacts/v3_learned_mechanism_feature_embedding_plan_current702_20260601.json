@@ -202,7 +202,7 @@
       "radical_sam_enzyme"
     ]
   },
-  "created_utc": "2026-06-01T05:16:57Z",
+  "created_utc": "2026-06-01T07:58:19Z",
   "current_data_readiness": {
     "active_site_role_graph_sidecar": {
       "rows_with_ok_role_graph": 656,
@@ -223,6 +223,29 @@
     "manifest_split_counts": {
       "heldout": 140,
       "in_distribution": 562
+    },
+    "mechanism_feature_sidecar_schema_audit": {
+      "critical_counts": {
+        "active_site_alignment_violations": 0,
+        "active_site_extra_entries": 0,
+        "active_site_missing_entries": 0,
+        "active_site_required_key_violations": 0,
+        "active_site_residue_count_violations": 0,
+        "active_site_role_count_violations": 0,
+        "active_site_status_violations": 0,
+        "duplicate_active_site_rows": 0,
+        "duplicate_reaction_center_rows": 0,
+        "reaction_center_alignment_violations": 0,
+        "reaction_center_extra_entries": 0,
+        "reaction_center_missing_entries": 0,
+        "reaction_center_required_key_violations": 0,
+        "reaction_center_status_violations": 0,
+        "reaction_center_template_violations": 0,
+        "sidecar_cross_missing_entries": 0,
+        "source_status_violations": 0
+      },
+      "schema_safe_for_train_cal_pilot": true,
+      "status": "mechanism_feature_sidecar_schema_passed_current702"
     },
     "predicted_geometry_atlas_counts": {
       "atlas_retrieval_result_count": 171,
@@ -323,6 +346,11 @@
     "label_manifest": {
       "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
       "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "mechanism_feature_sidecar_schema_audit": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json",
+      "sha256": "8c18e359045fd5ce84ab4415063cd10a8eed83d8e9f641d06c63b966c88e589b"
     },
     "mechanism_fingerprints": {
       "path": "data/registries/mechanism_fingerprints.json",

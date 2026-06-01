@@ -1,0 +1,178 @@
+{
+  "artifact_id": "v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601",
+  "counts": {
+    "candidate_rows": 3,
+    "missing_geometry_entry_ids": [
+      "secondary_probe::cobalamin_radical_rearrangement",
+      "secondary_probe::radical_sam_enzyme"
+    ],
+    "predicted_geometry_ok_rows": 1,
+    "rows_with_predicted_structure_fold_hits": 1,
+    "rows_with_selected_organic_cofactor_scores": 1,
+    "rows_with_selected_pdb_fold_proxy": 0
+  },
+  "created_utc": "2026-06-01T08:02:12Z",
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "heldout_splits_changed": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "proposal_only": true
+  },
+  "next_actions": [
+    "use the completed all-heldout predicted Foldseek/TM signal in the next abstention combiner diagnostic",
+    "source-check mechanism locus and bond-change evidence before any panel promotion discussion",
+    "keep rows review-only and out of training/calibration until a future frozen split is explicitly authorized"
+  ],
+  "panel": {
+    "candidate_family": "cobalamin_and_radical_rearrangement_panel",
+    "candidate_rows": [
+      "secondary_probe::cobalamin_radical_rearrangement",
+      "secondary_probe::radical_sam_enzyme",
+      "m_csa:750"
+    ],
+    "candidate_sources": [
+      "existing secondary probe definitions",
+      "Swiss-Prot B12/radical-SAM reviewed families",
+      "Rhea radical rearrangement reactions"
+    ],
+    "expected_eval_bin_impact": "widens the 8-fingerprint bound into radical/cobalamin/Fe-S chemistry where current labels are sparse",
+    "priority_bins": [
+      "radical_cobalamin_FeS",
+      "dark_bin",
+      "no_reliable_structure"
+    ],
+    "required_human_validation": "keep current probes secondary until enough support exists; m_csa:750 remains OOS/boundary under current decision log"
+  },
+  "review_questions": [
+    "Do these rows share a coherent `cobalamin_and_radical_rearrangement_panel` mechanism locus, or should they stay OOS controls?",
+    "Which row-level bond-change and cofactor-locus features must be normalized before any countable family addition?",
+    "Does the real predicted-structure Foldseek/TM channel keep these rows outside occupied primary atlas folds?"
+  ],
+  "row_evidence": [
+    {
+      "benchmark_role": null,
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "evidence_role": "cofactor-confounded OOS control: known organic cofactor-like signal with weak/novel fold or geometry support against occupied primary mechanisms",
+      "predicted_atlas_geometry_variant_scores": {
+        "negative_nearest_class_centroid_robust_distance": null,
+        "top1_score_raw": null
+      },
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1": {
+        "cofactor_context_score": null,
+        "fingerprint_id": null,
+        "role_match_fraction": null,
+        "score": null
+      },
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": null,
+        "nearest_atlas_tm_score": null,
+        "nearest_atlas_true_fingerprint_id": null
+      },
+      "selected_organic_cofactor_max": null,
+      "selected_organic_cofactor_scores": {},
+      "selected_pdb_fold_proxy": {
+        "nearest_primary_foldseek_prob": null,
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": null,
+        "top3_primary_foldseek_prob": null
+      },
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "evidence_role": "cofactor-confounded OOS control: known organic cofactor-like signal with weak/novel fold or geometry support against occupied primary mechanisms",
+      "predicted_atlas_geometry_variant_scores": {
+        "negative_nearest_class_centroid_robust_distance": null,
+        "top1_score_raw": null
+      },
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1": {
+        "cofactor_context_score": null,
+        "fingerprint_id": null,
+        "role_match_fraction": null,
+        "score": null
+      },
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": null,
+        "nearest_atlas_tm_score": null,
+        "nearest_atlas_true_fingerprint_id": null
+      },
+      "selected_organic_cofactor_max": null,
+      "selected_organic_cofactor_scores": {},
+      "selected_pdb_fold_proxy": {
+        "nearest_primary_foldseek_prob": null,
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": null,
+        "top3_primary_foldseek_prob": null
+      },
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "entry_id": "m_csa:750",
+      "evidence_role": "cofactor-confounded OOS control: known organic cofactor-like signal with weak/novel fold or geometry support against occupied primary mechanisms",
+      "predicted_atlas_geometry_variant_scores": {
+        "negative_nearest_class_centroid_robust_distance": -1.465543,
+        "top1_score_raw": 0.3664
+      },
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1": {
+        "cofactor_context_score": 0.2,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "role_match_fraction": 0.0,
+        "score": 0.3664
+      },
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:973",
+        "nearest_atlas_tm_score": 0.7357,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      "selected_organic_cofactor_max": 0.703989,
+      "selected_organic_cofactor_scores": {
+        "flavin": 0.703989,
+        "heme": 0.000724,
+        "plp": 0.445905
+      },
+      "selected_pdb_fold_proxy": {
+        "nearest_primary_foldseek_prob": null,
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": null,
+        "top3_primary_foldseek_prob": null
+      },
+      "split_assignment": "heldout"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Review-only evidence packet for the highest-value family-set expansion panel `cobalamin_and_radical_rearrangement_panel`: cofactor-confounded OOS boundary rows that stress the current de novo abstention gate.",
+  "source_artifacts": {
+    "family_targets": {
+      "path": "artifacts/v3_family_set_expansion_targets_current702_20260601.json",
+      "sha256": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff"
+    },
+    "fold_level_signal": {
+      "path": "artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
+      "sha256": "03515cb359fe0ebf4c673117201a2addf2d75e03af5f89ba58fc77891c47f85d"
+    },
+    "predicted_atlas_variants": {
+      "path": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
+      "sha256": "1c09f7cad3bec0da694e03ac1d60f9c6bc96e9208d13bbb06a90095170a2ef13"
+    },
+    "predicted_geometry_atlas": {
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    },
+    "predicted_structure_fold_channel": {
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+      "sha256": "565266bfd8379c75104e1d7a74457ef40846563ea71988c4946d16c92f733582"
+    },
+    "selected_organic_cofactor_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    }
+  },
+  "status": "evidence_packet_ready_with_geometry_gaps"
+}

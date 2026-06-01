@@ -1,0 +1,131 @@
+{
+  "artifact_id": "v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601",
+  "counts": {
+    "blocker_reason_counts": {
+      "alphafold_db_coordinate_unavailable": 1,
+      "experimental_geometry_not_ok:None": 1,
+      "experimental_geometry_not_ok:insufficient_resolved_residues": 1,
+      "not_m_csa_entry": 2
+    },
+    "calibration_oos_abstain_recall": 0.3944,
+    "calibration_oos_abstained": 28,
+    "calibration_oos_total_used_by_contract": 71,
+    "candidate_ids_requested": 76,
+    "fold_only_salvage_rows": 4,
+    "missing_full_score_rows": 5,
+    "score_complete_fraction": 0.934211,
+    "score_complete_rows": 71
+  },
+  "created_utc": "2026-06-01T07:54:42Z",
+  "decision": {
+    "next_action": "Treat the 71/76 surface as sufficient for the bounded research contract and do not block downstream diagnostics on the remaining five disclosed coordinate/source-geometry/sidecar gaps. Clear those blockers before any stronger production or production-like threshold claim.",
+    "production_surface_sufficient": false,
+    "reason": "Coverage is above the 90% bounded research bar, the OOS-calibrated contract consumes exactly the score-complete rows, accession-compatible mapping blockers are cleared, and the primary threshold remains the same as the prior in-scope-only contract.",
+    "research_surface_sufficient": true
+  },
+  "decision_policy": {
+    "minimum_research_coverage": 0.9,
+    "production_sufficiency_requires_complete_surface": true,
+    "requires_contract_oos_total_equals_score_complete_rows": true,
+    "requires_no_unresolved_accession_mapping_blockers": true,
+    "requires_oos_calibrated_threshold_matches_prior_in_scope_threshold": true
+  },
+  "guardrails": {
+    "heldout_rows_used_for_selection_or_scoring": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "research_decision_only": true,
+    "threshold_values_changed": false
+  },
+  "remaining_blockers": [
+    {
+      "accession": "P23007",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker_reason": "alphafold_db_coordinate_unavailable",
+      "entry_id": "m_csa:78",
+      "fetch_failure": {
+        "accession": "P23007",
+        "entry_id": "m_csa:78",
+        "error": "AlphaFoldDB mmCIF unavailable for P23007; tried v6: HTTP 404, v5: HTTP 404, v4: HTTP 404, v3: HTTP 404, v2: HTTP 404, v1: HTTP 404",
+        "error_type": "RuntimeError"
+      },
+      "fold_tm_available": false,
+      "predicted_geometry_status": "predicted_structure_fetch_failed",
+      "recommended_action": "verify replacement accession or alternate local coordinate source; AFDB has no v1-v6 model for this accession"
+    },
+    {
+      "accession": "P10746",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker_reason": "experimental_geometry_not_ok:None",
+      "entry_id": "m_csa:204",
+      "fetch_failure": null,
+      "fold_tm_available": true,
+      "predicted_geometry_status": "missing",
+      "recommended_action": "repair source geometry evidence or keep row excluded from geometry-calibrated OOS surface"
+    },
+    {
+      "accession": "P31572",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker_reason": "experimental_geometry_not_ok:insufficient_resolved_residues",
+      "entry_id": "m_csa:531",
+      "fetch_failure": null,
+      "fold_tm_available": true,
+      "predicted_geometry_status": "missing",
+      "recommended_action": "repair source geometry evidence or keep row excluded from geometry-calibrated OOS surface"
+    },
+    {
+      "accession": "P78549",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker_reason": "not_m_csa_entry",
+      "entry_id": "uniprot:P78549",
+      "fetch_failure": null,
+      "fold_tm_available": true,
+      "predicted_geometry_status": "missing",
+      "recommended_action": "provide an active-site residue sidecar for UniProt-only rows or score them in a fold-only negative surface"
+    },
+    {
+      "accession": "Q3LXA3",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "blocker_reason": "not_m_csa_entry",
+      "entry_id": "uniprot:Q3LXA3",
+      "fetch_failure": null,
+      "fold_tm_available": true,
+      "predicted_geometry_status": "missing",
+      "recommended_action": "provide an active-site residue sidecar for UniProt-only rows or score them in a fold-only negative surface"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Bounded decision artifact for whether the partial train/cal OOS-negative fold-augmented score surface is sufficient for the current research gate.",
+  "source_artifacts": {
+    "blocker_resolution": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.json",
+      "sha256": "7194c29531820dc70d47a1921b0533c46f24a7a68c81a4d8b946a12279115195"
+    },
+    "fold_only_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_only_train_cal_oos_negative_surface_current702_20260601.json",
+      "sha256": "a097d10c423f6b6bc5c50fa3ee7d87cb85dafd83ccd8c35abfa08eac843b8143"
+    },
+    "oos_calibrated_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json",
+      "sha256": "8bd974b131270091502c9a6b9d06354a1fac937f1b3a4f02a2035ee88c95d829"
+    },
+    "train_cal_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json",
+      "sha256": "05d4a70aada32d883b275de9d135d7650213d11c6ecfe7e61f570d023db7769e"
+    }
+  },
+  "status": "research_contract_sufficient_with_blocker_disclosure",
+  "threshold_readout": {
+    "heldout_confounded_oos_abstain_recall": 0.8333,
+    "heldout_in_scope_retain_recall": 0.9574,
+    "heldout_oos_abstain_recall": 0.557,
+    "oos_calibrated_threshold": 0.44155,
+    "primary_channel": "combined_mean_geometry_fold",
+    "prior_in_scope_threshold": 0.44155
+  }
+}

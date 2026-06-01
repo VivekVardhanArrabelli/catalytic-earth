@@ -38,14 +38,23 @@ DEFAULT_FOLDSEEK_BINARY = "/private/tmp/catalytic-foldseek-env/bin/foldseek"
 PREDICTED_STRUCTURE_FOLD_CHANNEL_ID = (
     "v3_predicted_structure_fold_channel_current702_20260601"
 )
+PREDICTED_STRUCTURE_FOLD_CHANNEL_CONTRACT_AUDIT_ID = (
+    "v3_predicted_structure_fold_channel_contract_audit_current702_20260601"
+)
 FOLD_AUGMENTED_THRESHOLD_CONTRACT_ID = (
     "v3_fold_augmented_abstention_threshold_contract_current702_20260601"
 )
 FOLD_AUGMENTED_TRAIN_CAL_OOS_NEGATIVE_SURFACE_SCORES_ID = (
     "v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601"
 )
+FOLD_AUGMENTED_TRAIN_CAL_OOS_NEGATIVE_SURFACE_SUFFICIENCY_DECISION_ID = (
+    "v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601"
+)
 FOLD_AUGMENTED_OOS_CALIBRATED_THRESHOLD_CONTRACT_ID = (
     "v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601"
+)
+MECHANISM_FEATURE_SIDECAR_SCHEMA_AUDIT_ID = (
+    "v3_mechanism_feature_sidecar_schema_audit_current702_20260601"
 )
 
 
@@ -1230,6 +1239,500 @@ def write_predicted_structure_fold_channel(
     return audit
 
 
+def _summarize_foldseek_result_path(parsed_result: dict[str, Any]) -> dict[str, Any]:
+    path_value = parsed_result.get("path")
+    path = Path(str(path_value)) if path_value else None
+    exists = bool(path and path.is_file())
+    line_count = None
+    if exists:
+        line_count = sum(
+            1 for line in path.read_text(encoding="utf-8").splitlines() if line.strip()
+        )
+    return {
+        "path": str(path) if path else None,
+        "exists": exists,
+        "sha256": _sha256(path) if exists else None,
+        "nonempty_line_count": line_count,
+        "parsed_status": parsed_result.get("status"),
+        "mapped_pair_count": (
+            (parsed_result.get("summary") or {}).get("mapped_pair_count")
+        ),
+        "query_entry_count_with_hits": (
+            (parsed_result.get("summary") or {}).get("query_entry_count_with_hits")
+        ),
+    }
+
+
+def _record_count_mismatch(
+    mismatches: list[dict[str, Any]],
+    *,
+    key: str,
+    expected: Any,
+    actual: Any,
+) -> None:
+    if expected != actual:
+        mismatches.append({"key": key, "expected": expected, "actual": actual})
+
+
+def build_predicted_structure_fold_channel_contract_audit(
+    *,
+    predicted_structure_fold_channel_path: Path,
+    predicted_geometry_atlas_path: Path,
+    fold_level_signal_path: Path,
+) -> dict[str, Any]:
+    fold_channel = _read_json(predicted_structure_fold_channel_path)
+    predicted_atlas = _read_json(predicted_geometry_atlas_path)
+    fold_signal = _read_json(fold_level_signal_path)
+    rows = [
+        row
+        for row in predicted_atlas.get("results", [])
+        if isinstance(row, dict)
+    ]
+    atlas_rows = [
+        row
+        for row in rows
+        if row.get("split_assignment") == "in_distribution" and _predicted_row_ok(row)
+    ]
+    heldout_rows = [
+        row
+        for row in rows
+        if row.get("split_assignment") == "heldout" and _predicted_row_ok(row)
+    ]
+    heldout_ids = {
+        str(row.get("entry_id"))
+        for row in heldout_rows
+        if row.get("entry_id")
+    }
+    confounded_ids = set(
+        fold_signal.get("confounded_entry_ids", {}).get(
+            "predicted_geometry_overlap_current_gate", []
+        )
+    )
+    priority_ids = heldout_ids & confounded_ids
+    priority_missing_ids = sorted(confounded_ids - heldout_ids, key=_entry_id_sort_key)
+
+    parsed = fold_channel.get("parsed_foldseek_results") or {}
+    all_parsed = parsed.get("all_heldout_vs_atlas") or {}
+    priority_parsed = parsed.get("priority_cofactor_confounded_oos_vs_atlas") or {}
+    all_hits = [
+        hit for hit in all_parsed.get("nearest_atlas_hits", []) if isinstance(hit, dict)
+    ]
+    priority_hits = [
+        hit
+        for hit in priority_parsed.get("nearest_atlas_hits", [])
+        if isinstance(hit, dict)
+    ]
+    all_hit_ids = [str(hit.get("query_entry_id")) for hit in all_hits]
+    priority_hit_ids = [str(hit.get("query_entry_id")) for hit in priority_hits]
+    all_hit_id_set = set(all_hit_ids)
+    priority_hit_id_set = set(priority_hit_ids)
+    row_scores = (
+        (
+            (fold_channel.get("fold_channel_signal") or {})
+            .get("nearest_atlas_tm_score")
+            or {}
+        )
+        .get("row_scores")
+        or []
+    )
+    row_score_ids = [
+        str(row.get("entry_id")) for row in row_scores if isinstance(row, dict)
+    ]
+    row_score_id_set = set(row_score_ids)
+
+    count_mismatches: list[dict[str, Any]] = []
+    counts = fold_channel.get("counts") or {}
+    _record_count_mismatch(
+        count_mismatches,
+        key="combined_predicted_retrieval_rows",
+        expected=len(rows),
+        actual=counts.get("combined_predicted_retrieval_rows"),
+    )
+    _record_count_mismatch(
+        count_mismatches,
+        key="atlas_in_distribution_rows_ok",
+        expected=len(atlas_rows),
+        actual=counts.get("atlas_in_distribution_rows_ok"),
+    )
+    _record_count_mismatch(
+        count_mismatches,
+        key="heldout_rows_ok",
+        expected=len(heldout_rows),
+        actual=counts.get("heldout_rows_ok"),
+    )
+    _record_count_mismatch(
+        count_mismatches,
+        key="priority_cofactor_confounded_oos_rows",
+        expected=len(priority_ids),
+        actual=counts.get("priority_cofactor_confounded_oos_rows"),
+    )
+    _record_count_mismatch(
+        count_mismatches,
+        key="priority_cofactor_confounded_oos_missing_ids",
+        expected=len(priority_missing_ids),
+        actual=counts.get("priority_cofactor_confounded_oos_missing_ids"),
+    )
+    _record_count_mismatch(
+        count_mismatches,
+        key="all_heldout_nearest_hit_rows",
+        expected=len(heldout_ids),
+        actual=len(all_hit_id_set),
+    )
+    _record_count_mismatch(
+        count_mismatches,
+        key="priority_nearest_hit_rows",
+        expected=len(priority_ids),
+        actual=len(priority_hit_id_set),
+    )
+    _record_count_mismatch(
+        count_mismatches,
+        key="fold_signal_row_scores",
+        expected=len(heldout_ids),
+        actual=len(row_score_id_set),
+    )
+
+    duplicate_hit_ids = sorted(
+        {
+            entry_id
+            for entry_id, count in Counter(all_hit_ids).items()
+            if entry_id and count > 1
+        },
+        key=_entry_id_sort_key,
+    )
+    duplicate_priority_hit_ids = sorted(
+        {
+            entry_id
+            for entry_id, count in Counter(priority_hit_ids).items()
+            if entry_id and count > 1
+        },
+        key=_entry_id_sort_key,
+    )
+    missing_all_hit_ids = sorted(heldout_ids - all_hit_id_set, key=_entry_id_sort_key)
+    extra_all_hit_ids = sorted(all_hit_id_set - heldout_ids, key=_entry_id_sort_key)
+    missing_priority_hit_ids = sorted(
+        priority_ids - priority_hit_id_set,
+        key=_entry_id_sort_key,
+    )
+    extra_priority_hit_ids = sorted(
+        priority_hit_id_set - priority_ids,
+        key=_entry_id_sort_key,
+    )
+    missing_row_score_ids = sorted(heldout_ids - row_score_id_set, key=_entry_id_sort_key)
+    extra_row_score_ids = sorted(row_score_id_set - heldout_ids, key=_entry_id_sort_key)
+
+    score_range_violations = []
+    for row in row_scores:
+        if not isinstance(row, dict):
+            continue
+        score = ((row.get("fold_signals") or {}).get("nearest_atlas_tm_score"))
+        if not isinstance(score, (int, float)) or not 0.0 <= float(score) <= 1.0:
+            score_range_violations.append(
+                {"entry_id": row.get("entry_id"), "nearest_atlas_tm_score": score}
+            )
+
+    source_mismatches = []
+    expected_sources = {
+        "predicted_geometry_atlas": predicted_geometry_atlas_path,
+        "fold_level_signal": fold_level_signal_path,
+    }
+    for key, path in expected_sources.items():
+        record = (fold_channel.get("source_artifacts") or {}).get(key) or {}
+        if record.get("path") != str(path):
+            source_mismatches.append(
+                {
+                    "source": key,
+                    "field": "path",
+                    "expected": str(path),
+                    "actual": record.get("path"),
+                }
+            )
+        if not path.exists():
+            source_mismatches.append(
+                {
+                    "source": key,
+                    "field": "exists",
+                    "expected": True,
+                    "actual": False,
+                }
+            )
+        elif record.get("sha256") != _sha256(path):
+            source_mismatches.append(
+                {
+                    "source": key,
+                    "field": "sha256",
+                    "expected": _sha256(path),
+                    "actual": record.get("sha256"),
+                }
+            )
+
+    required_guardrails = {
+        "labels_registries_ontologies_changed": False,
+        "imports_or_promotions_performed": False,
+        "production_thresholds_changed": False,
+        "heldout_threshold_tuning_for_deployment": False,
+        "large_model_downloads_performed": False,
+        "frozen_current702_inputs_only": True,
+        "score_fabrication": False,
+    }
+    guardrails = fold_channel.get("guardrails") or {}
+    guardrail_mismatches = [
+        {"key": key, "expected": expected, "actual": guardrails.get(key)}
+        for key, expected in required_guardrails.items()
+        if guardrails.get(key) != expected
+    ]
+
+    expected_status = "computed_all_heldout_foldseek_scores"
+    status_violations = []
+    if fold_channel.get("artifact_id") != PREDICTED_STRUCTURE_FOLD_CHANNEL_ID:
+        status_violations.append(
+            {
+                "field": "artifact_id",
+                "expected": PREDICTED_STRUCTURE_FOLD_CHANNEL_ID,
+                "actual": fold_channel.get("artifact_id"),
+            }
+        )
+    if fold_channel.get("status") != expected_status:
+        status_violations.append(
+            {
+                "field": "status",
+                "expected": expected_status,
+                "actual": fold_channel.get("status"),
+            }
+        )
+    for name, parsed_result in (
+        ("all_heldout_vs_atlas", all_parsed),
+        ("priority_cofactor_confounded_oos_vs_atlas", priority_parsed),
+    ):
+        if parsed_result.get("status") != "parsed":
+            status_violations.append(
+                {
+                    "field": f"{name}.status",
+                    "expected": "parsed",
+                    "actual": parsed_result.get("status"),
+                }
+            )
+
+    allowed_computed_blockers = {
+        "predicted_coordinate_files_missing_for_priority_scope",
+        "predicted_coordinate_files_missing_for_all_heldout_scope",
+    }
+    blockers = set(fold_channel.get("blockers") or [])
+    blocker_violations = sorted(blockers - allowed_computed_blockers)
+
+    command_violations = []
+    commands = fold_channel.get("commands") or {}
+    for key in (
+        "run_priority_cofactor_confounded_oos_vs_atlas",
+        "run_all_heldout_vs_atlas_when_cheap",
+    ):
+        command = str(commands.get(key) or "")
+        for token in (
+            "--exact-tmscore",
+            "--exhaustive-search 1",
+            "query,target,qtmscore,ttmscore,alntmscore,prob,bits",
+        ):
+            if token not in command:
+                command_violations.append(
+                    {"command": key, "missing_token": token}
+                )
+
+    foldseek_result_files = {
+        "all_heldout_vs_atlas": _summarize_foldseek_result_path(all_parsed),
+        "priority_cofactor_confounded_oos_vs_atlas": _summarize_foldseek_result_path(
+            priority_parsed
+        ),
+    }
+    missing_result_files = [
+        {"name": name, "path": summary["path"]}
+        for name, summary in foldseek_result_files.items()
+        if not summary["exists"]
+    ]
+
+    critical_counts = {
+        "status_violations": len(status_violations),
+        "count_mismatches": len(count_mismatches),
+        "duplicate_all_heldout_hit_ids": len(duplicate_hit_ids),
+        "duplicate_priority_hit_ids": len(duplicate_priority_hit_ids),
+        "missing_all_heldout_hit_ids": len(missing_all_hit_ids),
+        "extra_all_heldout_hit_ids": len(extra_all_hit_ids),
+        "missing_priority_hit_ids": len(missing_priority_hit_ids),
+        "extra_priority_hit_ids": len(extra_priority_hit_ids),
+        "missing_fold_signal_row_score_ids": len(missing_row_score_ids),
+        "extra_fold_signal_row_score_ids": len(extra_row_score_ids),
+        "score_range_violations": len(score_range_violations),
+        "source_mismatches": len(source_mismatches),
+        "guardrail_mismatches": len(guardrail_mismatches),
+        "unexpected_blockers": len(blocker_violations),
+        "command_violations": len(command_violations),
+        "missing_result_files": len(missing_result_files),
+    }
+    passed = all(count == 0 for count in critical_counts.values())
+    return {
+        "artifact_id": PREDICTED_STRUCTURE_FOLD_CHANNEL_CONTRACT_AUDIT_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_channel_contract_passed_current702"
+            if passed
+            else "fold_channel_contract_failed_current702"
+        ),
+        "scope": (
+            "Strict contract audit for the existing AlphaFoldDB-predicted "
+            "Foldseek/TM channel: verify that the scored all-heldout and "
+            "priority cofactor-confounded rows match frozen current702 inputs."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "scored_fold_channel_mutated": False,
+            "validation_only": True,
+        },
+        "contract": {
+            "expected_fold_channel_status": expected_status,
+            "allowed_computed_blockers": sorted(allowed_computed_blockers),
+            "required_guardrails": required_guardrails,
+            "required_foldseek_command_tokens": [
+                "--exact-tmscore",
+                "--exhaustive-search 1",
+                "query,target,qtmscore,ttmscore,alntmscore,prob,bits",
+            ],
+        },
+        "counts": {
+            "predicted_atlas_rows": len(rows),
+            "atlas_in_distribution_rows_ok": len(atlas_rows),
+            "heldout_rows_ok": len(heldout_rows),
+            "priority_cofactor_confounded_oos_rows": len(priority_ids),
+            "priority_cofactor_confounded_oos_missing_ids": len(priority_missing_ids),
+            "all_heldout_nearest_hits": len(all_hits),
+            "priority_nearest_hits": len(priority_hits),
+            "fold_signal_row_scores": len(row_scores),
+            "critical_counts": critical_counts,
+        },
+        "foldseek_result_files": foldseek_result_files,
+        "violations": {
+            "status_violations": status_violations,
+            "count_mismatches": count_mismatches,
+            "duplicate_all_heldout_hit_ids": duplicate_hit_ids[:50],
+            "duplicate_priority_hit_ids": duplicate_priority_hit_ids[:50],
+            "missing_all_heldout_hit_ids": missing_all_hit_ids[:50],
+            "extra_all_heldout_hit_ids": extra_all_hit_ids[:50],
+            "missing_priority_hit_ids": missing_priority_hit_ids[:50],
+            "extra_priority_hit_ids": extra_priority_hit_ids[:50],
+            "missing_fold_signal_row_score_ids": missing_row_score_ids[:50],
+            "extra_fold_signal_row_score_ids": extra_row_score_ids[:50],
+            "score_range_violations": score_range_violations[:50],
+            "source_mismatches": source_mismatches[:50],
+            "guardrail_mismatches": guardrail_mismatches[:50],
+            "unexpected_blockers": blocker_violations[:50],
+            "command_violations": command_violations[:50],
+            "missing_result_files": missing_result_files[:50],
+        },
+        "interpretation": {
+            "result": (
+                "The real predicted-structure fold channel satisfies the strict "
+                "current702 scoring contract: all ok heldout rows and all six "
+                "priority cofactor-confounded OOS rows have parsed nearest-atlas "
+                "Foldseek/TM hits, with only persistent coordinate-file provenance "
+                "listed as an allowed blocker."
+                if passed
+                else "The fold channel contract has critical mismatches; treat the scored channel as blocked until repaired."
+            ),
+            "next_action": (
+                "Use this as the validation layer for downstream fold-augmented "
+                "gate work; persistent CIF provenance remains optional research "
+                "infrastructure, not a scoring blocker."
+                if passed
+                else "Repair the listed violations, rerun the fold-channel builder, then rerun this audit."
+            ),
+        },
+        "source_artifacts": {
+            "predicted_structure_fold_channel": {
+                "path": str(predicted_structure_fold_channel_path),
+                "sha256": _sha256(predicted_structure_fold_channel_path),
+            },
+            "predicted_geometry_atlas": {
+                "path": str(predicted_geometry_atlas_path),
+                "sha256": _sha256(predicted_geometry_atlas_path),
+            },
+            "fold_level_signal": {
+                "path": str(fold_level_signal_path),
+                "sha256": _sha256(fold_level_signal_path),
+            },
+        },
+    }
+
+
+def _render_predicted_structure_fold_channel_contract_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Predicted-Structure Fold Channel Contract Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Heldout ok rows: {counts['heldout_rows_ok']}",
+        f"- All-heldout nearest hits: {counts['all_heldout_nearest_hits']}",
+        f"- Priority confounded rows: {counts['priority_cofactor_confounded_oos_rows']}",
+        f"- Priority nearest hits: {counts['priority_nearest_hits']}",
+        f"- Critical violation counts: {counts['critical_counts']}",
+        "",
+        "## Foldseek Result Files",
+        "",
+    ]
+    for name, summary in audit["foldseek_result_files"].items():
+        lines.append(
+            f"- {name}: exists={summary['exists']}, "
+            f"lines={summary['nonempty_line_count']}, "
+            f"hits={summary['query_entry_count_with_hits']}"
+        )
+    lines += [
+        "",
+        "## Contract",
+        "",
+        f"- Expected fold-channel status: {audit['contract']['expected_fold_channel_status']}",
+        f"- Allowed computed blockers: {', '.join(audit['contract']['allowed_computed_blockers'])}",
+        "- This audit validates the scored artifact without changing labels, registries, thresholds, or imports.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_predicted_structure_fold_channel_contract_audit(
+    *,
+    predicted_structure_fold_channel_path: Path,
+    predicted_geometry_atlas_path: Path,
+    fold_level_signal_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_predicted_structure_fold_channel_contract_audit(
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        predicted_geometry_atlas_path=predicted_geometry_atlas_path,
+        fold_level_signal_path=fold_level_signal_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_predicted_structure_fold_channel_contract_audit_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
 GEOMETRY_VARIANT_FEATURES = (
     "score",
     "role_match_fraction",
@@ -1915,15 +2418,21 @@ def build_family_panel_evidence_packet(
         for row in variants.get("row_scores", [])
         if isinstance(row, dict) and row.get("entry_id")
     }
-    predicted_fold_hits = {
-        str(row.get("query_entry_id")): row
-        for row in (
-            predicted_fold_channel.get("parsed_foldseek_results", {})
-            .get("priority_cofactor_confounded_oos_vs_atlas", {})
-            .get("nearest_atlas_hits", [])
-        )
-        if isinstance(row, dict) and row.get("query_entry_id")
-    }
+    def _predicted_fold_hits(section: str) -> dict[str, dict[str, Any]]:
+        return {
+            str(row.get("query_entry_id")): row
+            for row in (
+                predicted_fold_channel.get("parsed_foldseek_results", {})
+                .get(section, {})
+                .get("nearest_atlas_hits", [])
+            )
+            if isinstance(row, dict) and row.get("query_entry_id")
+        }
+
+    predicted_fold_hits = _predicted_fold_hits("all_heldout_vs_atlas")
+    predicted_fold_hits.update(
+        _predicted_fold_hits("priority_cofactor_confounded_oos_vs_atlas")
+    )
     rows = []
     for entry_id in panel.get("candidate_rows", []):
         geo = geometry_by_entry.get(entry_id, {})
@@ -3960,6 +4469,214 @@ def write_fold_augmented_train_cal_oos_negative_surface_blocker_resolution(
     return audit
 
 
+def build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision(
+    *,
+    train_cal_oos_surface_path: Path,
+    blocker_resolution_path: Path,
+    oos_calibrated_threshold_contract_path: Path,
+    fold_only_surface_path: Path,
+    minimum_research_coverage: float = 0.90,
+) -> dict[str, Any]:
+    surface = _read_json(train_cal_oos_surface_path)
+    blockers = _read_json(blocker_resolution_path)
+    contract = _read_json(oos_calibrated_threshold_contract_path)
+    fold_only = _read_json(fold_only_surface_path)
+
+    surface_counts = surface.get("counts") or {}
+    blocker_counts = blockers.get("counts") or {}
+    fold_only_counts = fold_only.get("counts") or {}
+    requested = int(surface_counts.get("candidate_ids_requested") or 0)
+    complete = int(surface_counts.get("candidate_rows_with_full_channel_scores") or 0)
+    missing = max(0, requested - complete)
+    coverage = (complete / requested) if requested else 0.0
+    primary = contract.get("primary_channel_readout") or {}
+    selected = (
+        primary.get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain")
+        or {}
+    )
+    prior = primary.get("prior_in_scope_only_selected_at_90pct") or {}
+    heldout = primary.get("heldout_final_eval_at_90pct_oos_calibrated_threshold") or {}
+    blocker_reason_counts = blocker_counts.get("blocker_reason_counts") or {}
+    unresolved_accession_mapping = blocker_reason_counts.get(
+        "missing_accession_compatible_sequence_positions",
+        0,
+    )
+    fold_only_rows = int(fold_only_counts.get("fold_only_rows") or 0)
+    research_sufficient = (
+        coverage >= minimum_research_coverage
+        and complete == int(selected.get("calibration_oos_total") or -1)
+        and int(blocker_counts.get("missing_full_score_rows") or 0) == missing
+        and not unresolved_accession_mapping
+        and selected.get("threshold") == prior.get("threshold")
+    )
+    decision = (
+        "research_contract_sufficient_with_blocker_disclosure"
+        if research_sufficient
+        else "research_contract_not_sufficient_until_blockers_cleared"
+    )
+    blocker_rows = blockers.get("blocker_rows") or []
+    next_action = (
+        "Treat the 71/76 surface as sufficient for the bounded research contract "
+        "and do not block downstream diagnostics on the remaining five disclosed "
+        "coordinate/source-geometry/sidecar gaps. Clear those blockers before any "
+        "stronger production or production-like threshold claim."
+        if research_sufficient
+        else "Clear the missing rows in the blocker-resolution packet, rerun the "
+        "train/cal OOS surface scorer, and rerun the OOS-calibrated threshold contract."
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_TRAIN_CAL_OOS_NEGATIVE_SURFACE_SUFFICIENCY_DECISION_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": decision,
+        "scope": (
+            "Bounded decision artifact for whether the partial train/cal OOS-negative "
+            "fold-augmented score surface is sufficient for the current research gate."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_selection_or_scoring": False,
+            "threshold_values_changed": False,
+            "research_decision_only": True,
+        },
+        "decision_policy": {
+            "minimum_research_coverage": minimum_research_coverage,
+            "requires_no_unresolved_accession_mapping_blockers": True,
+            "requires_contract_oos_total_equals_score_complete_rows": True,
+            "requires_oos_calibrated_threshold_matches_prior_in_scope_threshold": True,
+            "production_sufficiency_requires_complete_surface": True,
+        },
+        "counts": {
+            "candidate_ids_requested": requested,
+            "score_complete_rows": complete,
+            "missing_full_score_rows": missing,
+            "score_complete_fraction": round(coverage, 6),
+            "fold_only_salvage_rows": fold_only_rows,
+            "blocker_reason_counts": blocker_reason_counts,
+            "calibration_oos_total_used_by_contract": selected.get("calibration_oos_total"),
+            "calibration_oos_abstained": selected.get("calibration_oos_abstained"),
+            "calibration_oos_abstain_recall": selected.get("calibration_oos_abstain_recall"),
+        },
+        "threshold_readout": {
+            "primary_channel": primary.get("channel"),
+            "prior_in_scope_threshold": prior.get("threshold"),
+            "oos_calibrated_threshold": selected.get("threshold"),
+            "heldout_in_scope_retain_recall": heldout.get("heldout_in_scope_retain_recall"),
+            "heldout_oos_abstain_recall": heldout.get("heldout_oos_abstain_recall"),
+            "heldout_confounded_oos_abstain_recall": heldout.get(
+                "heldout_confounded_oos_abstain_recall"
+            ),
+        },
+        "decision": {
+            "research_surface_sufficient": research_sufficient,
+            "production_surface_sufficient": False,
+            "reason": (
+                "Coverage is above the 90% bounded research bar, the OOS-calibrated "
+                "contract consumes exactly the score-complete rows, accession-compatible "
+                "mapping blockers are cleared, and the primary threshold remains the "
+                "same as the prior in-scope-only contract."
+                if research_sufficient
+                else "One or more bounded research sufficiency checks failed."
+            ),
+            "next_action": next_action,
+        },
+        "remaining_blockers": sorted(
+            blocker_rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "source_artifacts": {
+            "train_cal_oos_surface": _source_path_record(train_cal_oos_surface_path),
+            "blocker_resolution": _source_path_record(blocker_resolution_path),
+            "oos_calibrated_threshold_contract": _source_path_record(
+                oos_calibrated_threshold_contract_path
+            ),
+            "fold_only_surface": _source_path_record(fold_only_surface_path),
+        },
+    }
+
+
+def _render_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    readout = audit["threshold_readout"]
+    lines = [
+        "# Fold-Augmented Train/Cal OOS Surface Sufficiency Decision - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Decision",
+        "",
+        f"- {audit['status']}",
+        f"- Research sufficient: {audit['decision']['research_surface_sufficient']}",
+        f"- Production sufficient: {audit['decision']['production_surface_sufficient']}",
+        f"- Reason: {audit['decision']['reason']}",
+        "",
+        "## Counts",
+        "",
+        f"- Score-complete rows: {counts['score_complete_rows']} / {counts['candidate_ids_requested']} ({counts['score_complete_fraction']})",
+        f"- Fold-only salvage rows: {counts['fold_only_salvage_rows']}",
+        f"- Blocker reason counts: {counts['blocker_reason_counts']}",
+        f"- Calibration OOS used by contract: {counts['calibration_oos_total_used_by_contract']}",
+        "",
+        "## Threshold Readout",
+        "",
+        f"- Primary channel: {readout['primary_channel']}",
+        f"- Prior in-scope threshold: {readout['prior_in_scope_threshold']}",
+        f"- OOS-calibrated threshold: {readout['oos_calibrated_threshold']}",
+        f"- Heldout in-scope retention: {readout['heldout_in_scope_retain_recall']}",
+        f"- Heldout OOS abstain recall: {readout['heldout_oos_abstain_recall']}",
+        f"- Heldout confounded-OOS abstain recall: {readout['heldout_confounded_oos_abstain_recall']}",
+        "",
+        "## Remaining Blockers",
+        "",
+        "| Entry | reason | fold TM available | action |",
+        "| --- | --- | --- | --- |",
+    ]
+    for row in audit["remaining_blockers"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['blocker_reason']} | "
+            f"{row['fold_tm_available']} | {row['recommended_action']} |"
+        )
+    lines += [
+        "",
+        "## Next Action",
+        "",
+        f"- {audit['decision']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision(
+    *,
+    train_cal_oos_surface_path: Path,
+    blocker_resolution_path: Path,
+    oos_calibrated_threshold_contract_path: Path,
+    fold_only_surface_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision(
+        train_cal_oos_surface_path=train_cal_oos_surface_path,
+        blocker_resolution_path=blocker_resolution_path,
+        oos_calibrated_threshold_contract_path=oos_calibrated_threshold_contract_path,
+        fold_only_surface_path=fold_only_surface_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
 def _score_threshold_for_min_retain_max_oos(
     calibration_in_scope_rows: list[dict[str, Any]],
     calibration_oos_rows: list[dict[str, Any]],
@@ -4677,6 +5394,450 @@ def write_mechanism_feature_reaction_center_template_sidecar(
     return audit
 
 
+def _manifest_fingerprint_id(row: dict[str, Any]) -> Any:
+    return row.get("fingerprint_id") or row.get("mechanism_fingerprint_id")
+
+
+def _sidecar_required_key_violations(
+    rows: list[dict[str, Any]],
+    *,
+    required_keys: tuple[str, ...],
+) -> list[dict[str, Any]]:
+    violations = []
+    for row in rows:
+        missing = [key for key in required_keys if key not in row]
+        if missing:
+            violations.append({"entry_id": row.get("entry_id"), "missing_keys": missing})
+    return violations
+
+
+def build_mechanism_feature_sidecar_schema_audit(
+    *,
+    label_manifest_path: Path,
+    mechanism_fingerprints_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    reaction_center_template_sidecar_path: Path,
+) -> dict[str, Any]:
+    manifest = _read_json(label_manifest_path)
+    fingerprints = _read_json(mechanism_fingerprints_path)
+    active_sidecar = _read_json(active_site_role_graph_sidecar_path)
+    reaction_sidecar = _read_json(reaction_center_template_sidecar_path)
+    manifest_rows = [
+        row for row in manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    manifest_by_entry = {
+        str(row.get("entry_id")): row
+        for row in manifest_rows
+        if row.get("entry_id")
+    }
+    expected_entries = set(manifest_by_entry)
+    fingerprint_ids = {
+        str(fp.get("id"))
+        for fp in fingerprints
+        if isinstance(fp, dict) and fp.get("id")
+    }
+
+    active_rows = [
+        row for row in active_sidecar.get("rows", []) if isinstance(row, dict)
+    ]
+    reaction_rows = [
+        row for row in reaction_sidecar.get("rows", []) if isinstance(row, dict)
+    ]
+    active_by_entry = defaultdict(list)
+    reaction_by_entry = defaultdict(list)
+    for row in active_rows:
+        active_by_entry[str(row.get("entry_id"))].append(row)
+    for row in reaction_rows:
+        reaction_by_entry[str(row.get("entry_id"))].append(row)
+
+    def entry_set(by_entry: dict[str, list[dict[str, Any]]]) -> set[str]:
+        return {entry_id for entry_id in by_entry if entry_id}
+
+    active_entries = entry_set(active_by_entry)
+    reaction_entries = entry_set(reaction_by_entry)
+    duplicate_active_rows = sorted(
+        [entry_id for entry_id, rows in active_by_entry.items() if len(rows) > 1],
+        key=_entry_id_sort_key,
+    )
+    duplicate_reaction_rows = sorted(
+        [entry_id for entry_id, rows in reaction_by_entry.items() if len(rows) > 1],
+        key=_entry_id_sort_key,
+    )
+    active_missing_entries = sorted(expected_entries - active_entries, key=_entry_id_sort_key)
+    active_extra_entries = sorted(active_entries - expected_entries, key=_entry_id_sort_key)
+    reaction_missing_entries = sorted(
+        expected_entries - reaction_entries,
+        key=_entry_id_sort_key,
+    )
+    reaction_extra_entries = sorted(
+        reaction_entries - expected_entries,
+        key=_entry_id_sort_key,
+    )
+    sidecar_cross_missing_entries = sorted(
+        active_entries.symmetric_difference(reaction_entries),
+        key=_entry_id_sort_key,
+    )
+
+    allowed_active_statuses = {
+        "ok",
+        "missing_accession_compatible_sequence_positions",
+        "missing_catalytic_residue_nodes",
+        "not_m_csa_no_curated_active_site_roles",
+    }
+    allowed_reaction_statuses = {
+        "template_available",
+        "fingerprint_template_missing",
+        "no_mechanism_fingerprint_oos_or_unlabeled",
+    }
+    active_status_violations = []
+    active_alignment_violations = []
+    active_role_count_violations = []
+    active_residue_count_violations = []
+    for row in active_rows:
+        entry_id = str(row.get("entry_id"))
+        manifest_row = manifest_by_entry.get(entry_id)
+        if row.get("status") not in allowed_active_statuses:
+            active_status_violations.append(
+                {"entry_id": entry_id, "status": row.get("status")}
+            )
+        if manifest_row:
+            manifest_accession = manifest_row.get("accession") or manifest_row.get("sequence_id")
+            expected_fp = _manifest_fingerprint_id(manifest_row)
+            for key, expected, actual in (
+                ("split_assignment", manifest_row.get("split_assignment"), row.get("split_assignment")),
+                ("accession", manifest_accession, row.get("accession")),
+                ("fingerprint_id", expected_fp, row.get("fingerprint_id")),
+            ):
+                if expected != actual:
+                    active_alignment_violations.append(
+                        {
+                            "entry_id": entry_id,
+                            "field": key,
+                            "expected": expected,
+                            "actual": actual,
+                        }
+                    )
+        residues = row.get("residues") or []
+        if row.get("active_site_residue_count") != len(residues):
+            active_residue_count_violations.append(
+                {
+                    "entry_id": entry_id,
+                    "active_site_residue_count": row.get("active_site_residue_count"),
+                    "residue_records": len(residues),
+                }
+            )
+        role_total = sum(
+            len(residue.get("roles") or [])
+            for residue in residues
+            if isinstance(residue, dict)
+        )
+        if sum((row.get("role_counts") or {}).values()) != role_total:
+            active_role_count_violations.append(
+                {
+                    "entry_id": entry_id,
+                    "role_counts_total": sum((row.get("role_counts") or {}).values()),
+                    "residue_role_total": role_total,
+                }
+            )
+        if row.get("status") == "ok" and (
+            row.get("active_site_residue_count", 0) <= 0
+            or row.get("accession_compatible_sequence_positions") is not True
+        ):
+            active_status_violations.append(
+                {
+                    "entry_id": entry_id,
+                    "status": row.get("status"),
+                    "reason": "ok_status_requires_residues_and_accession_compatible_positions",
+                }
+            )
+
+    reaction_status_violations = []
+    reaction_alignment_violations = []
+    reaction_template_violations = []
+    for row in reaction_rows:
+        entry_id = str(row.get("entry_id"))
+        manifest_row = manifest_by_entry.get(entry_id)
+        if row.get("status") not in allowed_reaction_statuses:
+            reaction_status_violations.append(
+                {"entry_id": entry_id, "status": row.get("status")}
+            )
+        if manifest_row:
+            manifest_accession = manifest_row.get("accession") or manifest_row.get("sequence_id")
+            expected_fp = _manifest_fingerprint_id(manifest_row)
+            for key, expected, actual in (
+                ("split_assignment", manifest_row.get("split_assignment"), row.get("split_assignment")),
+                ("accession", manifest_accession, row.get("accession")),
+                ("fingerprint_id", expected_fp, row.get("fingerprint_id")),
+            ):
+                if expected != actual:
+                    reaction_alignment_violations.append(
+                        {
+                            "entry_id": entry_id,
+                            "field": key,
+                            "expected": expected,
+                            "actual": actual,
+                        }
+                    )
+            expected_status = (
+                "template_available"
+                if expected_fp and str(expected_fp) in fingerprint_ids
+                else "fingerprint_template_missing"
+                if expected_fp
+                else "no_mechanism_fingerprint_oos_or_unlabeled"
+            )
+            if row.get("status") != expected_status:
+                reaction_template_violations.append(
+                    {
+                        "entry_id": entry_id,
+                        "expected_status": expected_status,
+                        "actual_status": row.get("status"),
+                    }
+                )
+        template = row.get("reaction_center_template")
+        if not isinstance(template, dict):
+            reaction_template_violations.append(
+                {"entry_id": entry_id, "reason": "reaction_center_template_not_object"}
+            )
+        elif row.get("status") == "template_available":
+            if "chemical_operation_normalized" not in template:
+                reaction_template_violations.append(
+                    {
+                        "entry_id": entry_id,
+                        "reason": "template_available_missing_normalized_operation_field",
+                    }
+                )
+            if not isinstance(template.get("bond_changes_normalized"), list):
+                reaction_template_violations.append(
+                    {
+                        "entry_id": entry_id,
+                        "reason": "template_available_missing_normalized_bond_change_list",
+                    }
+                )
+
+    required_active_keys = (
+        "entry_id",
+        "accession",
+        "split_assignment",
+        "fingerprint_id",
+        "status",
+        "active_site_residue_count",
+        "accession_compatible_sequence_positions",
+        "role_counts",
+        "role_edges",
+        "residues",
+    )
+    required_reaction_keys = (
+        "entry_id",
+        "accession",
+        "split_assignment",
+        "fingerprint_id",
+        "status",
+        "reaction_center_template",
+    )
+    active_required_key_violations = _sidecar_required_key_violations(
+        active_rows,
+        required_keys=required_active_keys,
+    )
+    reaction_required_key_violations = _sidecar_required_key_violations(
+        reaction_rows,
+        required_keys=required_reaction_keys,
+    )
+    source_status_violations = []
+    if active_sidecar.get("status") != "active_site_role_graph_sidecar_ready":
+        source_status_violations.append(
+            {
+                "artifact": "active_site_role_graph_sidecar",
+                "expected": "active_site_role_graph_sidecar_ready",
+                "actual": active_sidecar.get("status"),
+            }
+        )
+    if reaction_sidecar.get("status") != "reaction_center_template_sidecar_ready":
+        source_status_violations.append(
+            {
+                "artifact": "reaction_center_template_sidecar",
+                "expected": "reaction_center_template_sidecar_ready",
+                "actual": reaction_sidecar.get("status"),
+            }
+        )
+
+    critical_counts = {
+        "source_status_violations": len(source_status_violations),
+        "duplicate_active_site_rows": len(duplicate_active_rows),
+        "duplicate_reaction_center_rows": len(duplicate_reaction_rows),
+        "active_site_missing_entries": len(active_missing_entries),
+        "active_site_extra_entries": len(active_extra_entries),
+        "reaction_center_missing_entries": len(reaction_missing_entries),
+        "reaction_center_extra_entries": len(reaction_extra_entries),
+        "sidecar_cross_missing_entries": len(sidecar_cross_missing_entries),
+        "active_site_required_key_violations": len(active_required_key_violations),
+        "reaction_center_required_key_violations": len(reaction_required_key_violations),
+        "active_site_status_violations": len(active_status_violations),
+        "reaction_center_status_violations": len(reaction_status_violations),
+        "active_site_alignment_violations": len(active_alignment_violations),
+        "reaction_center_alignment_violations": len(reaction_alignment_violations),
+        "active_site_residue_count_violations": len(active_residue_count_violations),
+        "active_site_role_count_violations": len(active_role_count_violations),
+        "reaction_center_template_violations": len(reaction_template_violations),
+    }
+    passed = all(count == 0 for count in critical_counts.values())
+    return {
+        "artifact_id": MECHANISM_FEATURE_SIDECAR_SCHEMA_AUDIT_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "mechanism_feature_sidecar_schema_passed_current702"
+            if passed
+            else "mechanism_feature_sidecar_schema_failed_current702"
+        ),
+        "scope": (
+            "Strict current702 schema and row-alignment audit for the "
+            "mechanism-feature active-site role graph and reaction-center "
+            "template sidecars."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "sidecar_values_changed": False,
+            "validation_only": True,
+        },
+        "schema_contract": {
+            "active_site_required_keys": list(required_active_keys),
+            "reaction_center_required_keys": list(required_reaction_keys),
+            "active_site_allowed_statuses": sorted(allowed_active_statuses),
+            "reaction_center_allowed_statuses": sorted(allowed_reaction_statuses),
+            "row_grid": "each current702 manifest entry must have one row in both sidecars",
+            "alignment_fields": ["entry_id", "accession", "split_assignment", "fingerprint_id"],
+        },
+        "counts": {
+            "manifest_rows": len(manifest_rows),
+            "active_site_rows": len(active_rows),
+            "reaction_center_rows": len(reaction_rows),
+            "active_site_status_counts": dict(
+                sorted(Counter(row.get("status") for row in active_rows).items())
+            ),
+            "reaction_center_status_counts": dict(
+                sorted(Counter(row.get("status") for row in reaction_rows).items())
+            ),
+            "critical_counts": critical_counts,
+        },
+        "violations": {
+            "source_status_violations": source_status_violations[:50],
+            "duplicate_active_site_rows": duplicate_active_rows[:50],
+            "duplicate_reaction_center_rows": duplicate_reaction_rows[:50],
+            "active_site_missing_entries": active_missing_entries[:50],
+            "active_site_extra_entries": active_extra_entries[:50],
+            "reaction_center_missing_entries": reaction_missing_entries[:50],
+            "reaction_center_extra_entries": reaction_extra_entries[:50],
+            "sidecar_cross_missing_entries": sidecar_cross_missing_entries[:50],
+            "active_site_required_key_violations": active_required_key_violations[:50],
+            "reaction_center_required_key_violations": reaction_required_key_violations[:50],
+            "active_site_status_violations": active_status_violations[:50],
+            "reaction_center_status_violations": reaction_status_violations[:50],
+            "active_site_alignment_violations": active_alignment_violations[:50],
+            "reaction_center_alignment_violations": reaction_alignment_violations[:50],
+            "active_site_residue_count_violations": active_residue_count_violations[:50],
+            "active_site_role_count_violations": active_role_count_violations[:50],
+            "reaction_center_template_violations": reaction_template_violations[:50],
+        },
+        "interpretation": {
+            "result": (
+                "Both mechanism-feature sidecars satisfy the strict current702 "
+                "row grid, alignment, status, and internal consistency contract."
+                if passed
+                else "One or more mechanism-feature sidecar schema checks failed; block embedding pilots until repaired."
+            ),
+            "embedding_gap_relevance": (
+                "This closes a schema-risk layer for the current role-graph and "
+                "reaction-center template sidecars, but it does not add directed "
+                "electron/proton-transfer edges or row-specific bond-change evidence."
+            ),
+            "next_action": (
+                "Use train/cal-only embedding pilots against these validated "
+                "sidecars, or add row-specific bond-change/proton-transfer sidecars next."
+            ),
+        },
+        "source_artifacts": {
+            "label_manifest": _source_path_record(label_manifest_path),
+            "mechanism_fingerprints": _source_path_record(mechanism_fingerprints_path),
+            "active_site_role_graph_sidecar": _source_path_record(
+                active_site_role_graph_sidecar_path
+            ),
+            "reaction_center_template_sidecar": _source_path_record(
+                reaction_center_template_sidecar_path
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_sidecar_schema_audit_report(audit: dict[str, Any]) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Sidecar Schema Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Manifest rows: {counts['manifest_rows']}",
+        f"- Active-site sidecar rows: {counts['active_site_rows']}",
+        f"- Reaction-center sidecar rows: {counts['reaction_center_rows']}",
+        f"- Critical violation counts: {counts['critical_counts']}",
+        "",
+        "## Active-Site Status Counts",
+        "",
+    ]
+    for status, count in counts["active_site_status_counts"].items():
+        lines.append(f"- {status}: {count}")
+    lines += [
+        "",
+        "## Reaction-Center Status Counts",
+        "",
+    ]
+    for status, count in counts["reaction_center_status_counts"].items():
+        lines.append(f"- {status}: {count}")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['embedding_gap_relevance']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_sidecar_schema_audit(
+    *,
+    label_manifest_path: Path,
+    mechanism_fingerprints_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    reaction_center_template_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_sidecar_schema_audit(
+        label_manifest_path=label_manifest_path,
+        mechanism_fingerprints_path=mechanism_fingerprints_path,
+        active_site_role_graph_sidecar_path=active_site_role_graph_sidecar_path,
+        reaction_center_template_sidecar_path=reaction_center_template_sidecar_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_sidecar_schema_audit_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
 def _feature_flags_for_fingerprint(fp: dict[str, Any]) -> dict[str, Any]:
     fp_id = fp["id"]
     cofs = [str(c).lower() for c in fp.get("cofactors", [])]
@@ -4717,6 +5878,7 @@ def build_learned_mechanism_feature_embedding_plan(
     predicted_geometry_atlas_path: Path,
     active_site_role_graph_sidecar_path: Path | None = None,
     reaction_center_template_sidecar_path: Path | None = None,
+    mechanism_feature_sidecar_schema_audit_path: Path | None = None,
 ) -> dict[str, Any]:
     fingerprints = _read_json(mechanism_fingerprints_path)
     manifest = _read_json(label_manifest_path)
@@ -4732,6 +5894,12 @@ def build_learned_mechanism_feature_embedding_plan(
         _read_json(reaction_center_template_sidecar_path)
         if reaction_center_template_sidecar_path is not None
         and Path(reaction_center_template_sidecar_path).exists()
+        else {}
+    )
+    sidecar_schema_audit = (
+        _read_json(mechanism_feature_sidecar_schema_audit_path)
+        if mechanism_feature_sidecar_schema_audit_path is not None
+        and Path(mechanism_feature_sidecar_schema_audit_path).exists()
         else {}
     )
 
@@ -4850,6 +6018,24 @@ def build_learned_mechanism_feature_embedding_plan(
                     "unique_bond_change_templates"
                 ),
             },
+            "mechanism_feature_sidecar_schema_audit": {
+                "status": sidecar_schema_audit.get("status"),
+                "critical_counts": sidecar_schema_audit.get("counts", {}).get(
+                    "critical_counts"
+                ),
+                "schema_safe_for_train_cal_pilot": (
+                    sidecar_schema_audit.get("status")
+                    == "mechanism_feature_sidecar_schema_passed_current702"
+                    and all(
+                        count == 0
+                        for count in (
+                            sidecar_schema_audit.get("counts", {})
+                            .get("critical_counts", {})
+                            .values()
+                        )
+                    )
+                ),
+            },
         },
         "feature_extraction_gaps": [
             {
@@ -4909,6 +6095,11 @@ def build_learned_mechanism_feature_embedding_plan(
                 if reaction_center_template_sidecar_path is not None
                 else None
             ),
+            "mechanism_feature_sidecar_schema_audit": (
+                _source_path_record(mechanism_feature_sidecar_schema_audit_path)
+                if mechanism_feature_sidecar_schema_audit_path is not None
+                else None
+            ),
         },
     }
 
@@ -4944,6 +6135,7 @@ def _render_embedding_plan_report(audit: dict[str, Any]) -> str:
         "",
         f"- Active-site role graph: {audit['current_data_readiness']['active_site_role_graph_sidecar']}",
         f"- Reaction-center template: {audit['current_data_readiness']['reaction_center_template_sidecar']}",
+        f"- Sidecar schema audit: {audit['current_data_readiness']['mechanism_feature_sidecar_schema_audit']}",
         "",
         "## Extraction Gaps",
         "",
@@ -4963,6 +6155,7 @@ def write_learned_mechanism_feature_embedding_plan(
     report_path: Path | None = None,
     active_site_role_graph_sidecar_path: Path | None = None,
     reaction_center_template_sidecar_path: Path | None = None,
+    mechanism_feature_sidecar_schema_audit_path: Path | None = None,
 ) -> dict[str, Any]:
     audit = build_learned_mechanism_feature_embedding_plan(
         mechanism_fingerprints_path=mechanism_fingerprints_path,
@@ -4971,6 +6164,7 @@ def write_learned_mechanism_feature_embedding_plan(
         predicted_geometry_atlas_path=predicted_geometry_atlas_path,
         active_site_role_graph_sidecar_path=active_site_role_graph_sidecar_path,
         reaction_center_template_sidecar_path=reaction_center_template_sidecar_path,
+        mechanism_feature_sidecar_schema_audit_path=mechanism_feature_sidecar_schema_audit_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")

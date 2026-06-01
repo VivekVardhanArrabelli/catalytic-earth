@@ -2664,6 +2664,195 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(primary["calibration_oos_abstained"], 28)
         self.assertEqual(primary["calibration_oos_total"], 71)
 
+    def test_train_cal_oos_sufficiency_decision_current_counts(self) -> None:
+        decision = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            decision["status"],
+            "research_contract_sufficient_with_blocker_disclosure",
+        )
+        self.assertTrue(decision["decision"]["research_surface_sufficient"])
+        self.assertFalse(decision["decision"]["production_surface_sufficient"])
+        self.assertEqual(decision["counts"]["candidate_ids_requested"], 76)
+        self.assertEqual(decision["counts"]["score_complete_rows"], 71)
+        self.assertEqual(decision["counts"]["missing_full_score_rows"], 5)
+        self.assertEqual(decision["counts"]["fold_only_salvage_rows"], 4)
+        self.assertEqual(decision["counts"]["calibration_oos_total_used_by_contract"], 71)
+        self.assertEqual(decision["threshold_readout"]["oos_calibrated_threshold"], 0.44155)
+
+    def test_train_cal_oos_remaining_blocker_clearance_attempts_current_counts(self) -> None:
+        attempts = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            attempts["status"],
+            "clearance_attempts_staged_no_safe_repo_mutation",
+        )
+        self.assertEqual(attempts["counts"]["remaining_blocker_rows"], 5)
+        self.assertEqual(attempts["counts"]["safe_repairs_applied"], 0)
+        self.assertEqual(attempts["counts"]["rows_with_fold_only_evidence"], 4)
+        self.assertEqual(
+            {row["entry_id"] for row in attempts["row_attempts"]},
+            {"m_csa:78", "m_csa:204", "m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"},
+        )
+
+    def test_predicted_structure_fold_channel_contract_audit_current_counts(self) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json"
+        )
+
+        self.assertEqual(audit["status"], "fold_channel_contract_passed_current702")
+        self.assertEqual(audit["counts"]["heldout_rows_ok"], 126)
+        self.assertEqual(audit["counts"]["all_heldout_nearest_hits"], 126)
+        self.assertEqual(audit["counts"]["priority_cofactor_confounded_oos_rows"], 6)
+        self.assertEqual(audit["counts"]["priority_nearest_hits"], 6)
+        self.assertTrue(
+            all(
+                count == 0
+                for count in audit["counts"]["critical_counts"].values()
+            )
+        )
+        self.assertEqual(
+            audit["foldseek_result_files"]["all_heldout_vs_atlas"][
+                "query_entry_count_with_hits"
+            ],
+            126,
+        )
+        self.assertEqual(
+            audit["foldseek_result_files"]["priority_cofactor_confounded_oos_vs_atlas"][
+                "query_entry_count_with_hits"
+            ],
+            6,
+        )
+
+    def test_mechanism_feature_sidecar_schema_audit_current_counts(self) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "mechanism_feature_sidecar_schema_passed_current702",
+        )
+        self.assertEqual(audit["counts"]["manifest_rows"], 702)
+        self.assertEqual(audit["counts"]["active_site_rows"], 702)
+        self.assertEqual(audit["counts"]["reaction_center_rows"], 702)
+        self.assertEqual(audit["counts"]["active_site_status_counts"]["ok"], 656)
+        self.assertEqual(
+            audit["counts"]["reaction_center_status_counts"]["template_available"],
+            232,
+        )
+        self.assertTrue(
+            all(
+                count == 0
+                for count in audit["counts"]["critical_counts"].values()
+            )
+        )
+
+    def test_embedding_plan_consumes_mechanism_feature_sidecar_schema_audit(self) -> None:
+        plan = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_learned_mechanism_feature_embedding_plan_current702_20260601.json"
+        )
+
+        schema = plan["current_data_readiness"][
+            "mechanism_feature_sidecar_schema_audit"
+        ]
+        self.assertEqual(
+            schema["status"],
+            "mechanism_feature_sidecar_schema_passed_current702",
+        )
+        self.assertTrue(schema["schema_safe_for_train_cal_pilot"])
+        self.assertEqual(
+            plan["source_artifacts"]["mechanism_feature_sidecar_schema_audit"][
+                "path"
+            ],
+            "artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json",
+        )
+
+    def test_thiol_disulfide_family_panel_packet_current_counts(self) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_evidence_packet_thiol_disulfide_oxidoreductase_isomerase_boundary_current702_20260601.json"
+        )
+
+        self.assertEqual(packet["status"], "evidence_packet_ready_review_only")
+        self.assertEqual(packet["panel"]["candidate_family"], "thiol_disulfide_oxidoreductase_isomerase_boundary")
+        self.assertEqual(packet["counts"]["candidate_rows"], 1)
+        self.assertEqual(packet["counts"]["predicted_geometry_ok_rows"], 1)
+        self.assertEqual(packet["counts"]["rows_with_predicted_structure_fold_hits"], 1)
+        self.assertEqual(packet["row_evidence"][0]["entry_id"], "m_csa:191")
+        self.assertEqual(
+            packet["row_evidence"][0]["predicted_structure_fold_channel"][
+                "nearest_atlas_tm_score"
+            ],
+            0.3863,
+        )
+
+    def test_flavin_monooxygenase_family_panel_packet_current_counts(self) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.json"
+        )
+
+        self.assertEqual(packet["status"], "evidence_packet_ready_with_geometry_gaps")
+        self.assertEqual(packet["panel"]["candidate_family"], "flavin_monooxygenase_and_flavin_oxygen_transfer")
+        self.assertEqual(packet["counts"]["candidate_rows"], 4)
+        self.assertEqual(packet["counts"]["predicted_geometry_ok_rows"], 3)
+        self.assertEqual(packet["counts"]["rows_with_predicted_structure_fold_hits"], 2)
+        self.assertEqual(packet["counts"]["missing_geometry_entry_ids"], ["m_csa:132"])
+        by_entry = {row["entry_id"]: row for row in packet["row_evidence"]}
+        self.assertEqual(
+            by_entry["m_csa:131"]["predicted_structure_fold_channel"][
+                "nearest_atlas_tm_score"
+            ],
+            0.751,
+        )
+        self.assertEqual(
+            by_entry["m_csa:551"]["predicted_structure_fold_channel"][
+                "nearest_atlas_tm_score"
+            ],
+            0.7309,
+        )
+
+    def test_remaining_family_panel_packets_current_counts(self) -> None:
+        expected = {
+            "v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json": {
+                "candidate_rows": 3,
+                "predicted_geometry_ok_rows": 1,
+                "rows_with_predicted_structure_fold_hits": 1,
+            },
+            "v3_family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.json": {
+                "candidate_rows": 6,
+                "predicted_geometry_ok_rows": 0,
+                "rows_with_predicted_structure_fold_hits": 0,
+            },
+            "v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json": {
+                "candidate_rows": 4,
+                "predicted_geometry_ok_rows": 1,
+                "rows_with_predicted_structure_fold_hits": 1,
+            },
+        }
+        for filename, counts in expected.items():
+            packet = _load_json(ROOT / "artifacts" / filename)
+            self.assertEqual(packet["status"], "evidence_packet_ready_with_geometry_gaps")
+            for key, value in counts.items():
+                self.assertEqual(packet["counts"][key], value)
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

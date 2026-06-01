@@ -1,6 +1,6 @@
 # Learned Mechanism-Feature Embedding Plan - current702
 
-Run: 2026-06-01T05:16:57Z
+Run: 2026-06-01T07:58:19Z
 
 Leakage-safe learned mechanism-feature embedding scaffold for the D11 continuous mechanism-space target. This is a spec plus coverage audit, not a heldout-trained or threshold-tuned model.
 
@@ -30,6 +30,7 @@ Leakage-safe learned mechanism-feature embedding scaffold for the D11 continuous
 
 - Active-site role graph: {'status': 'active_site_role_graph_sidecar_ready', 'rows_with_ok_role_graph': 656, 'unique_roles': 53, 'unique_role_edges': 669}
 - Reaction-center template: {'status': 'reaction_center_template_sidecar_ready', 'rows_with_template': 232, 'unique_chemical_operations': 8, 'unique_bond_change_templates': 10}
+- Sidecar schema audit: {'status': 'mechanism_feature_sidecar_schema_passed_current702', 'critical_counts': {'active_site_alignment_violations': 0, 'active_site_extra_entries': 0, 'active_site_missing_entries': 0, 'active_site_required_key_violations': 0, 'active_site_residue_count_violations': 0, 'active_site_role_count_violations': 0, 'active_site_status_violations': 0, 'duplicate_active_site_rows': 0, 'duplicate_reaction_center_rows': 0, 'reaction_center_alignment_violations': 0, 'reaction_center_extra_entries': 0, 'reaction_center_missing_entries': 0, 'reaction_center_required_key_violations': 0, 'reaction_center_status_violations': 0, 'reaction_center_template_violations': 0, 'sidecar_cross_missing_entries': 0, 'source_status_violations': 0}, 'schema_safe_for_train_cal_pilot': True}
 
 ## Extraction Gaps
 

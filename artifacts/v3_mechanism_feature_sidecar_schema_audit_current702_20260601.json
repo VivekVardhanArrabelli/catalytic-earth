@@ -1,0 +1,136 @@
+{
+  "artifact_id": "v3_mechanism_feature_sidecar_schema_audit_current702_20260601",
+  "counts": {
+    "active_site_rows": 702,
+    "active_site_status_counts": {
+      "missing_accession_compatible_sequence_positions": 42,
+      "missing_catalytic_residue_nodes": 1,
+      "not_m_csa_no_curated_active_site_roles": 3,
+      "ok": 656
+    },
+    "critical_counts": {
+      "active_site_alignment_violations": 0,
+      "active_site_extra_entries": 0,
+      "active_site_missing_entries": 0,
+      "active_site_required_key_violations": 0,
+      "active_site_residue_count_violations": 0,
+      "active_site_role_count_violations": 0,
+      "active_site_status_violations": 0,
+      "duplicate_active_site_rows": 0,
+      "duplicate_reaction_center_rows": 0,
+      "reaction_center_alignment_violations": 0,
+      "reaction_center_extra_entries": 0,
+      "reaction_center_missing_entries": 0,
+      "reaction_center_required_key_violations": 0,
+      "reaction_center_status_violations": 0,
+      "reaction_center_template_violations": 0,
+      "sidecar_cross_missing_entries": 0,
+      "source_status_violations": 0
+    },
+    "manifest_rows": 702,
+    "reaction_center_rows": 702,
+    "reaction_center_status_counts": {
+      "no_mechanism_fingerprint_oos_or_unlabeled": 470,
+      "template_available": 232
+    }
+  },
+  "created_utc": "2026-06-01T07:42:30Z",
+  "guardrails": {
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "sidecar_values_changed": false,
+    "validation_only": true
+  },
+  "interpretation": {
+    "embedding_gap_relevance": "This closes a schema-risk layer for the current role-graph and reaction-center template sidecars, but it does not add directed electron/proton-transfer edges or row-specific bond-change evidence.",
+    "next_action": "Use train/cal-only embedding pilots against these validated sidecars, or add row-specific bond-change/proton-transfer sidecars next.",
+    "result": "Both mechanism-feature sidecars satisfy the strict current702 row grid, alignment, status, and internal consistency contract."
+  },
+  "schema_contract": {
+    "active_site_allowed_statuses": [
+      "missing_accession_compatible_sequence_positions",
+      "missing_catalytic_residue_nodes",
+      "not_m_csa_no_curated_active_site_roles",
+      "ok"
+    ],
+    "active_site_required_keys": [
+      "entry_id",
+      "accession",
+      "split_assignment",
+      "fingerprint_id",
+      "status",
+      "active_site_residue_count",
+      "accession_compatible_sequence_positions",
+      "role_counts",
+      "role_edges",
+      "residues"
+    ],
+    "alignment_fields": [
+      "entry_id",
+      "accession",
+      "split_assignment",
+      "fingerprint_id"
+    ],
+    "reaction_center_allowed_statuses": [
+      "fingerprint_template_missing",
+      "no_mechanism_fingerprint_oos_or_unlabeled",
+      "template_available"
+    ],
+    "reaction_center_required_keys": [
+      "entry_id",
+      "accession",
+      "split_assignment",
+      "fingerprint_id",
+      "status",
+      "reaction_center_template"
+    ],
+    "row_grid": "each current702 manifest entry must have one row in both sidecars"
+  },
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Strict current702 schema and row-alignment audit for the mechanism-feature active-site role graph and reaction-center template sidecars.",
+  "source_artifacts": {
+    "active_site_role_graph_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json",
+      "sha256": "8c58a6de59dde646dc3d3c4995fcda23ac3fe7f5190d1c4d19481859e7451e2b"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "mechanism_fingerprints": {
+      "exists": true,
+      "path": "data/registries/mechanism_fingerprints.json",
+      "sha256": "a1e7ae135adb97dc79d8cab91345bc3ed4720cf3371115737e05f10b629a2516"
+    },
+    "reaction_center_template_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json",
+      "sha256": "eef4112405b230efd37e15dfba0bc5075ae6760723ef4d115d9e72a45faabac6"
+    }
+  },
+  "status": "mechanism_feature_sidecar_schema_passed_current702",
+  "violations": {
+    "active_site_alignment_violations": [],
+    "active_site_extra_entries": [],
+    "active_site_missing_entries": [],
+    "active_site_required_key_violations": [],
+    "active_site_residue_count_violations": [],
+    "active_site_role_count_violations": [],
+    "active_site_status_violations": [],
+    "duplicate_active_site_rows": [],
+    "duplicate_reaction_center_rows": [],
+    "reaction_center_alignment_violations": [],
+    "reaction_center_extra_entries": [],
+    "reaction_center_missing_entries": [],
+    "reaction_center_required_key_violations": [],
+    "reaction_center_status_violations": [],
+    "reaction_center_template_violations": [],
+    "sidecar_cross_missing_entries": [],
+    "source_status_violations": []
+  }
+}

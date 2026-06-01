@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import tempfile
 import unittest
@@ -13,12 +14,15 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_abstention_threshold_contract,
     build_fold_augmented_train_cal_oos_negative_surface_blocker_resolution,
     build_fold_augmented_train_cal_oos_negative_surface_scores,
+    build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision,
     build_fold_only_train_cal_oos_negative_surface,
     build_learned_mechanism_feature_embedding_plan,
     build_mechanism_feature_active_site_role_graph_sidecar,
     build_mechanism_feature_reaction_center_template_sidecar,
+    build_mechanism_feature_sidecar_schema_audit,
     build_predicted_atlas_geometry_novelty_variants,
     build_predicted_structure_fold_channel,
+    build_predicted_structure_fold_channel_contract_audit,
     build_selected_organic_cofactor_sidecar_schema_audit,
 )
 from catalytic_earth.predicted_geometry_robustness import _target_manifest_row_selection
@@ -639,6 +643,89 @@ class NorthstarNextLeversTests(unittest.TestCase):
             "missing_accession_compatible_sequence_positions",
         )
 
+    def test_train_cal_oos_sufficiency_decision_allows_research_partial_surface(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            surface = root / "surface.json"
+            blockers = root / "blockers.json"
+            contract = root / "contract.json"
+            fold_only = root / "fold_only.json"
+            surface.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "candidate_ids_requested": 10,
+                            "candidate_rows_with_full_channel_scores": 9,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            blockers.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "missing_full_score_rows": 1,
+                            "blocker_reason_counts": {
+                                "alphafold_db_coordinate_unavailable": 1
+                            },
+                        },
+                        "blocker_rows": [
+                            {
+                                "entry_id": "m_csa:78",
+                                "blocker_reason": "alphafold_db_coordinate_unavailable",
+                                "fold_tm_available": False,
+                                "recommended_action": "source alternate coordinate",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract.write_text(
+                json.dumps(
+                    {
+                        "primary_channel_readout": {
+                            "channel": "combined_mean_geometry_fold",
+                            "prior_in_scope_only_selected_at_90pct": {
+                                "threshold": 0.44
+                            },
+                            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                "threshold": 0.44,
+                                "calibration_oos_total": 9,
+                                "calibration_oos_abstained": 4,
+                                "calibration_oos_abstain_recall": 0.4444,
+                            },
+                            "heldout_final_eval_at_90pct_oos_calibrated_threshold": {
+                                "heldout_in_scope_retain_recall": 0.95,
+                                "heldout_oos_abstain_recall": 0.55,
+                                "heldout_confounded_oos_abstain_recall": 0.83,
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_only.write_text(
+                json.dumps({"counts": {"fold_only_rows": 1}}),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision(
+                train_cal_oos_surface_path=surface,
+                blocker_resolution_path=blockers,
+                oos_calibrated_threshold_contract_path=contract,
+                fold_only_surface_path=fold_only,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "research_contract_sufficient_with_blocker_disclosure",
+        )
+        self.assertTrue(audit["decision"]["research_surface_sufficient"])
+        self.assertFalse(audit["decision"]["production_surface_sufficient"])
+        self.assertEqual(audit["counts"]["score_complete_fraction"], 0.9)
+
     def test_train_cal_oos_geometry_selection_allows_accession_subset(self) -> None:
         label_manifest = {
             "rows": [
@@ -913,6 +1000,108 @@ class NorthstarNextLeversTests(unittest.TestCase):
             "c_c_bond_cleavage",
         )
 
+    def test_mechanism_feature_sidecar_schema_audit_passes_aligned_sidecars(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest = root / "manifest.json"
+            graph = root / "graph.json"
+            fingerprints = root / "fingerprints.json"
+            active_sidecar = root / "active.json"
+            reaction_sidecar = root / "reaction.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "fingerprint_id": "fp1",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "uniprot:Q11111",
+                                "accession": "Q11111",
+                                "fingerprint_id": None,
+                                "split_assignment": "heldout",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "nodes": [
+                            {
+                                "id": "m_csa:1:residue:1",
+                                "type": "catalytic_residue",
+                                "roles": ["Proton donor"],
+                                "sequence_positions": [
+                                    {
+                                        "resid": 10,
+                                        "code": "His",
+                                        "uniprot_id": "P11111",
+                                        "is_reference": True,
+                                    }
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fingerprints.write_text(
+                json.dumps(
+                    [
+                        {
+                            "id": "fp1",
+                            "active_site_signature": [{"role": "proton donor"}],
+                            "cofactors": [],
+                            "reaction_center": {
+                                "chemical_operation": "hydrolysis",
+                                "bond_changes": ["bond broken"],
+                            },
+                        }
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            active_sidecar.write_text(
+                json.dumps(
+                    build_mechanism_feature_active_site_role_graph_sidecar(
+                        label_manifest_path=manifest,
+                        graph_path=graph,
+                    )
+                ),
+                encoding="utf-8",
+            )
+            reaction_sidecar.write_text(
+                json.dumps(
+                    build_mechanism_feature_reaction_center_template_sidecar(
+                        label_manifest_path=manifest,
+                        mechanism_fingerprints_path=fingerprints,
+                    )
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_sidecar_schema_audit(
+                label_manifest_path=manifest,
+                mechanism_fingerprints_path=fingerprints,
+                active_site_role_graph_sidecar_path=active_sidecar,
+                reaction_center_template_sidecar_path=reaction_sidecar,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "mechanism_feature_sidecar_schema_passed_current702",
+        )
+        self.assertEqual(audit["counts"]["manifest_rows"], 2)
+        self.assertTrue(
+            all(count == 0 for count in audit["counts"]["critical_counts"].values())
+        )
+
     def test_embedding_plan_reads_feature_sidecar_readiness(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -922,6 +1111,7 @@ class NorthstarNextLeversTests(unittest.TestCase):
             atlas = root / "atlas.json"
             role_sidecar = root / "role.json"
             reaction_sidecar = root / "reaction.json"
+            schema_audit = root / "schema_audit.json"
             fingerprints.write_text(
                 json.dumps(
                     [
@@ -980,6 +1170,15 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            schema_audit.write_text(
+                json.dumps(
+                    {
+                        "status": "mechanism_feature_sidecar_schema_passed_current702",
+                        "counts": {"critical_counts": {"alignment_violations": 0}},
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             audit = build_learned_mechanism_feature_embedding_plan(
                 mechanism_fingerprints_path=fingerprints,
@@ -988,6 +1187,7 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 predicted_geometry_atlas_path=atlas,
                 active_site_role_graph_sidecar_path=role_sidecar,
                 reaction_center_template_sidecar_path=reaction_sidecar,
+                mechanism_feature_sidecar_schema_audit_path=schema_audit,
             )
 
         readiness = audit["current_data_readiness"]
@@ -999,6 +1199,11 @@ class NorthstarNextLeversTests(unittest.TestCase):
             readiness["reaction_center_template_sidecar"]["rows_with_template"],
             1,
         )
+        self.assertTrue(
+            readiness["mechanism_feature_sidecar_schema_audit"][
+                "schema_safe_for_train_cal_pilot"
+            ]
+        )
 
     def test_family_panel_evidence_packet_is_review_only(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -1008,6 +1213,7 @@ class NorthstarNextLeversTests(unittest.TestCase):
             fold_signal = root / "fold.json"
             sidecar = root / "cofactor.json"
             variants = root / "variants.json"
+            predicted_fold = root / "predicted_fold.json"
             family_targets.write_text(
                 json.dumps(
                     {
@@ -1091,6 +1297,26 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            predicted_fold.write_text(
+                json.dumps(
+                    {
+                        "status": "computed_all_heldout_foldseek_scores",
+                        "parsed_foldseek_results": {
+                            "all_heldout_vs_atlas": {
+                                "nearest_atlas_hits": [
+                                    {
+                                        "query_entry_id": "m_csa:30",
+                                        "nearest_atlas_entry_id": "m_csa:1",
+                                        "nearest_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+                                        "tm_score": 0.42,
+                                    }
+                                ]
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             audit = build_family_panel_evidence_packet(
                 family_targets_path=family_targets,
@@ -1098,6 +1324,7 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 fold_level_signal_path=fold_signal,
                 selected_organic_cofactor_sidecar_path=sidecar,
                 predicted_atlas_variants_path=variants,
+                predicted_structure_fold_channel_path=predicted_fold,
             )
 
         self.assertEqual(audit["status"], "evidence_packet_ready_review_only")
@@ -1106,6 +1333,12 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(
             audit["row_evidence"][0]["selected_pdb_fold_proxy"]["nearest_primary_foldseek_prob"],
             0.057,
+        )
+        self.assertEqual(
+            audit["row_evidence"][0]["predicted_structure_fold_channel"][
+                "nearest_atlas_tm_score"
+            ],
+            0.42,
         )
 
     def test_family_panel_evidence_packet_uses_nondefault_panel_id(self) -> None:
@@ -1485,6 +1718,192 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(parsed["nearest_atlas_hits"][0]["query_entry_id"], "m_csa:30")
         self.assertEqual(parsed["nearest_atlas_hits"][0]["nearest_atlas_entry_id"], "m_csa:1")
         self.assertEqual(parsed["nearest_atlas_hits"][0]["tm_score"], 0.88)
+
+    def test_predicted_structure_fold_channel_contract_audit_passes_scored_channel(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            predicted_atlas = root / "predicted_atlas.json"
+            fold_signal = root / "fold_signal.json"
+            fold_channel = root / "fold_channel.json"
+            all_tsv = root / "all.tsv"
+            priority_tsv = root / "priority.tsv"
+            predicted_atlas.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "split_assignment": "in_distribution",
+                                "predicted_geometry_status": "ok",
+                                "predicted_pdb_id": "AF-P11111-F1-model_v6",
+                                "true_fingerprint_id": "metal_dependent_hydrolase",
+                            },
+                            {
+                                "entry_id": "m_csa:30",
+                                "accession": "P22222",
+                                "split_assignment": "heldout",
+                                "predicted_geometry_status": "ok",
+                                "predicted_pdb_id": "AF-P22222-F1-model_v6",
+                                "true_fingerprint_id": None,
+                            },
+                            {
+                                "entry_id": "m_csa:40",
+                                "accession": "P33333",
+                                "split_assignment": "heldout",
+                                "predicted_geometry_status": "ok",
+                                "predicted_pdb_id": "AF-P33333-F1-model_v6",
+                                "true_fingerprint_id": "ser_his_acid_hydrolase",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_signal.write_text(
+                json.dumps(
+                    {
+                        "confounded_entry_ids": {
+                            "predicted_geometry_overlap_current_gate": ["m_csa:30"]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            all_tsv.write_text(
+                "afdb_P22222_v6\tafdb_P11111_v6\t0.1\t0.2\t0.7\t0.6\t40\n"
+                "afdb_P33333_v6\tafdb_P11111_v6\t0.2\t0.3\t0.8\t0.7\t50\n",
+                encoding="utf-8",
+            )
+            priority_tsv.write_text(
+                "afdb_P22222_v6\tafdb_P11111_v6\t0.1\t0.2\t0.7\t0.6\t40\n",
+                encoding="utf-8",
+            )
+
+            def digest(path: Path) -> str:
+                return hashlib.sha256(path.read_bytes()).hexdigest()
+
+            fold_channel.write_text(
+                json.dumps(
+                    {
+                        "artifact_id": "v3_predicted_structure_fold_channel_current702_20260601",
+                        "status": "computed_all_heldout_foldseek_scores",
+                        "counts": {
+                            "combined_predicted_retrieval_rows": 3,
+                            "atlas_in_distribution_rows_ok": 1,
+                            "heldout_rows_ok": 2,
+                            "priority_cofactor_confounded_oos_rows": 1,
+                            "priority_cofactor_confounded_oos_missing_ids": 0,
+                        },
+                        "guardrails": {
+                            "labels_registries_ontologies_changed": False,
+                            "imports_or_promotions_performed": False,
+                            "production_thresholds_changed": False,
+                            "heldout_threshold_tuning_for_deployment": False,
+                            "large_model_downloads_performed": False,
+                            "frozen_current702_inputs_only": True,
+                            "score_fabrication": False,
+                        },
+                        "blockers": [
+                            "predicted_coordinate_files_missing_for_priority_scope"
+                        ],
+                        "commands": {
+                            "run_priority_cofactor_confounded_oos_vs_atlas": (
+                                "foldseek easy-search q t out tmp --format-output "
+                                "query,target,qtmscore,ttmscore,alntmscore,prob,bits "
+                                "--exhaustive-search 1 --exact-tmscore 1"
+                            ),
+                            "run_all_heldout_vs_atlas_when_cheap": (
+                                "foldseek easy-search q t out tmp --format-output "
+                                "query,target,qtmscore,ttmscore,alntmscore,prob,bits "
+                                "--exhaustive-search 1 --exact-tmscore 1"
+                            ),
+                        },
+                        "parsed_foldseek_results": {
+                            "all_heldout_vs_atlas": {
+                                "status": "parsed",
+                                "path": str(all_tsv),
+                                "summary": {
+                                    "mapped_pair_count": 2,
+                                    "query_entry_count_with_hits": 2,
+                                },
+                                "nearest_atlas_hits": [
+                                    {
+                                        "query_entry_id": "m_csa:30",
+                                        "tm_score": 0.7,
+                                    },
+                                    {
+                                        "query_entry_id": "m_csa:40",
+                                        "tm_score": 0.8,
+                                    },
+                                ],
+                            },
+                            "priority_cofactor_confounded_oos_vs_atlas": {
+                                "status": "parsed",
+                                "path": str(priority_tsv),
+                                "summary": {
+                                    "mapped_pair_count": 1,
+                                    "query_entry_count_with_hits": 1,
+                                },
+                                "nearest_atlas_hits": [
+                                    {
+                                        "query_entry_id": "m_csa:30",
+                                        "tm_score": 0.7,
+                                    }
+                                ],
+                            },
+                        },
+                        "fold_channel_signal": {
+                            "nearest_atlas_tm_score": {
+                                "row_scores": [
+                                    {
+                                        "entry_id": "m_csa:30",
+                                        "fold_signals": {
+                                            "nearest_atlas_tm_score": 0.7
+                                        },
+                                    },
+                                    {
+                                        "entry_id": "m_csa:40",
+                                        "fold_signals": {
+                                            "nearest_atlas_tm_score": 0.8
+                                        },
+                                    },
+                                ]
+                            }
+                        },
+                        "source_artifacts": {
+                            "predicted_geometry_atlas": {
+                                "path": str(predicted_atlas),
+                                "sha256": digest(predicted_atlas),
+                            },
+                            "fold_level_signal": {
+                                "path": str(fold_signal),
+                                "sha256": digest(fold_signal),
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_predicted_structure_fold_channel_contract_audit(
+                predicted_structure_fold_channel_path=fold_channel,
+                predicted_geometry_atlas_path=predicted_atlas,
+                fold_level_signal_path=fold_signal,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_channel_contract_passed_current702",
+        )
+        self.assertEqual(audit["counts"]["all_heldout_nearest_hits"], 2)
+        self.assertEqual(audit["counts"]["priority_nearest_hits"], 1)
+        self.assertTrue(audit["foldseek_result_files"]["all_heldout_vs_atlas"]["exists"])
+        self.assertTrue(
+            all(count == 0 for count in audit["counts"]["critical_counts"].values())
+        )
 
 
 if __name__ == "__main__":

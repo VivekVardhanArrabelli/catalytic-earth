@@ -37,6 +37,30 @@ Artifacts:
 `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/in_distribution_atlas_self_vs_atlas.tsv`,
 `work/fold_augmented_abstention_threshold_contract_current702_20260601.md`.
 
+## 2026-06-01: Predicted-Structure Fold Channel Contract Audit Passes
+
+Decision: add a strict validation layer for the already-scored AlphaFoldDB
+predicted-structure Foldseek/TM channel rather than regenerating the scored
+artifact. The audit checks frozen current702 row counts, parsed Foldseek TSV
+coverage, source artifact hashes, guardrails, score ranges, expected command
+tokens, and the allowed computed blockers. No label, registry, ontology, import,
+split, threshold, production scorer, or scored fold-channel value changed.
+
+Result: the contract audit passes with zero critical violations. It confirms
+126/126 ok heldout rows have nearest-atlas Foldseek/TM hits, all six priority
+cofactor-confounded OOS rows have parsed priority hits, and the only fold-channel
+blockers are persistent coordinate-file provenance blockers. The all-heldout TSV
+has 11,297 mapped pairs; the priority TSV has 402 mapped pairs.
+
+Consequence: downstream fold-augmented gate work can treat the scored predicted
+fold channel as validated for current702. Persistent predicted-CIF provenance is
+still useful reproducibility infrastructure, but it is not a score-completeness
+blocker under this contract.
+
+Artifacts:
+`artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
+`work/predicted_structure_fold_channel_contract_audit_current702_20260601.md`.
+
 ## 2026-06-01: Train/Cal OOS Negatives Add A Partial OOS Calibration Surface For The Fold-Augmented Gate
 
 Decision: score the hash-selected in-distribution OOS calibration negatives
@@ -83,6 +107,58 @@ Artifacts:
 `work/fold_only_train_cal_oos_negative_surface_current702_20260601.md`,
 `work/fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.md`.
 
+## 2026-06-01: Partial Train/Cal OOS Surface Is Sufficient For The Research Contract
+
+Decision: resolve the handoff question about whether to block downstream
+fold-augmented research diagnostics on the remaining five train/cal OOS-negative
+surface gaps. The decision artifact applies a bounded, explicit policy: at least
+90% score-complete coverage, no unresolved accession-compatible mapping
+blockers, OOS-calibrated contract total matching the score-complete rows, and no
+movement in the primary threshold relative to the in-scope-only contract. No
+label, registry, ontology, import, split, production scorer, or threshold value
+changed.
+
+Result: the 71/76 surface is sufficient for the current research contract with
+blocker disclosure. Coverage is `0.934211`; the OOS-calibrated contract consumes
+exactly 71 calibration OOS rows; all accession-compatible mapping blockers are
+cleared; and the primary `combined_mean_geometry_fold` threshold remains
+`0.44155`. The surface is not sufficient for production-like claims while
+`m_csa:78`, `m_csa:204`, `m_csa:531`, `uniprot:P78549`, and
+`uniprot:Q3LXA3` remain unresolved.
+
+Consequence: future runs should proceed with downstream diagnostics using this
+research contract and disclosed blockers, rather than redoing the sufficiency
+decision. Clear the five blockers before making any stronger threshold claim.
+
+Artifacts:
+`artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json`,
+`work/fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.md`.
+
+## 2026-06-01: Remaining Train/Cal OOS Blockers Require New Source Evidence Or Coordinate Policy
+
+Decision: inspect the five remaining score-surface blockers after the research
+sufficiency decision and record whether any can be cleared from frozen current702
+inputs. No label, registry, ontology, import, split, threshold, production
+scorer, active-site sidecar, or coordinate policy changed.
+
+Result: no blocker can be safely cleared in-repo from current inputs. `m_csa:78`
+still exposes only P23007 locally and the scorer already recorded AFDB v1-v6
+404s; experimental PDB 1AL6 does not clear the deployment predicted-coordinate
+requirement. `m_csa:204` has no catalytic residue nodes in the current graph.
+`m_csa:531` has only one catalytic residue and remains below geometry
+eligibility. `uniprot:P78549` and `uniprot:Q3LXA3` are UniProt-only external
+hard negatives without current active-site sidecars. Four rows have fold-only
+evidence and should remain fold-only until source-backed sidecars exist.
+
+Consequence: proceed with the research-sufficient 71/76 surface for downstream
+diagnostics. Clear the five blockers only after new source-backed active-site
+evidence, an alternate predicted coordinate, or an explicitly authorized
+experimental-coordinate-only policy exists.
+
+Artifacts:
+`artifacts/v3_fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.json`,
+`work/fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.md`.
+
 ## 2026-06-01: Active-Site Role Graph Sidecar Closes One Mechanism-Feature Embedding Gap
 
 Decision: materialize a normalized row-level active-site residue-role graph
@@ -108,6 +184,110 @@ Artifacts:
 `artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json`,
 `work/mechanism_feature_active_site_role_graph_sidecar_current702_20260601.md`,
 `work/mechanism_feature_reaction_center_template_sidecar_current702_20260601.md`.
+
+## 2026-06-01: Mechanism-Feature Sidecar Schema Audit Passes
+
+Decision: add a strict schema and row-alignment audit over the two current
+mechanism-feature sidecars: active-site residue-role graphs and reaction-center
+templates. The audit validates one row per current702 manifest entry, split /
+accession / fingerprint alignment, required keys, allowed status values,
+internal role/residue counts, template status consistency, and source status.
+No model was fit and no label, registry, ontology, import, threshold, split, or
+sidecar value changed.
+
+Result: the schema audit passes with zero critical violations. Both sidecars
+cover all 702 manifest rows. The active-site sidecar has 656 ok role-graph rows,
+42 accession-position blockers, one missing catalytic-residue-node row, and
+three non-M-CSA rows. The reaction-center template sidecar has 232 template rows
+and 470 OOS/unlabeled rows without mechanism-fingerprint templates. The learned
+mechanism-feature embedding plan now records this schema audit and marks the
+current sidecars schema-safe for train/cal-only pilots.
+
+Consequence: the current mechanism-feature sidecars are validated for
+train/cal-only embedding pilots as schema-safe inputs. The scientific feature
+gap remains directed electron/proton-transfer edges and row-specific bond-change
+evidence.
+
+Artifacts:
+`artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
+`work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
+`artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json`,
+`work/learned_mechanism_feature_embedding_plan_current702_20260601.md`.
+
+## 2026-06-01: Thiol/Disulfide Redox Boundary Panel Packet Added
+
+Decision: build one additional review-only family-set expansion evidence packet
+for the `thiol_disulfide_oxidoreductase_isomerase_boundary` panel. This uses
+existing frozen current702 predicted geometry, predicted-atlas novelty variants,
+selected organic cofactor scores, selected-PDB fold proxy evidence, and the real
+predicted-structure fold channel. No label, registry, ontology, import,
+promotion, threshold, split, or production scorer changed.
+
+Result: the packet covers `m_csa:191` and is ready for review. The row has ok
+predicted geometry, selected cofactor scores, selected-PDB fold proxy evidence,
+and a real predicted-structure nearest-atlas TM score of `0.3863` against
+`m_csa:631` / `ser_his_acid_hydrolase`.
+
+Consequence: this widens the review-only family expansion evidence set for a
+cofactor-confounded redox boundary without promoting any row. The next review
+step is source-checking row-level bond-change and redox-partner evidence before
+any countable family discussion.
+
+Artifacts:
+`artifacts/v3_family_panel_evidence_packet_thiol_disulfide_oxidoreductase_isomerase_boundary_current702_20260601.json`,
+`work/family_panel_evidence_packet_thiol_disulfide_oxidoreductase_isomerase_boundary_current702_20260601.md`.
+
+## 2026-06-01: Family Panel Packets Use All-Heldout Predicted-Fold Hits
+
+Decision: update the family-panel evidence packet builder to use
+all-heldout predicted-structure Foldseek/TM hits whenever available, while still
+preserving priority cofactor-confounded hits. Then build a review-only
+`flavin_monooxygenase_and_flavin_oxygen_transfer` evidence packet. No label,
+registry, ontology, import, promotion, threshold, split, or production scorer
+changed.
+
+Result: the FMO/flavin oxygen-transfer packet covers four review rows:
+`m_csa:131`, `m_csa:132`, `m_csa:551`, and `m_csa:973`. Three rows have ok
+predicted geometry; `m_csa:132` remains a geometry gap. The all-heldout fold
+channel supplies predicted-fold TM hits for `m_csa:131` (`0.751`) and
+`m_csa:551` (`0.7309`), which were not available through the priority-only hit
+lookup.
+
+Consequence: review-only family expansion packets can now consume the completed
+all-heldout fold channel, making non-priority panels better populated without
+changing benchmark labels or training data. FMO remains secondary/review-only.
+
+Artifacts:
+`artifacts/v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.json`,
+`work/family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.md`.
+
+## 2026-06-01: Remaining Family-Expansion Panels Have Review Packets
+
+Decision: complete the review-only evidence packet set for the remaining
+family-expansion panels after the panel builder was updated to consume
+all-heldout predicted-fold hits. No label, registry, ontology, import,
+promotion, threshold, split, or production scorer changed.
+
+Result: new packets now cover `cobalamin_and_radical_rearrangement_panel`,
+`no_reliable_structure_metal_hydrolase_controls`, and
+`near_orphan_glycoside_or_nucleoside_hydrolase_controls`. The cobalamin/radical
+packet has one current row with ok predicted geometry (`m_csa:750`) and two
+secondary-probe geometry gaps. The no-reliable-structure metal hydrolase packet
+is entirely geometry gaps, as expected for the panel definition. The near-orphan
+glycoside/nucleoside packet has one current row with ok predicted geometry
+(`m_csa:10`) and three gaps.
+
+Consequence: all seven family-set expansion target panels now have review-only
+evidence packets. Use them for source/materialization triage only; none authorize
+countable imports, label promotions, or training use.
+
+Artifacts:
+`artifacts/v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json`,
+`work/family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.md`,
+`artifacts/v3_family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.json`,
+`work/family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.md`,
+`artifacts/v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json`,
+`work/family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.md`.
 
 ## 2026-06-01: Real Predicted-Structure Foldseek Channel Is Scored For All Ok Heldout Rows
 
