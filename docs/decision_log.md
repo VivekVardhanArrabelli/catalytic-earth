@@ -138,6 +138,31 @@ remain primary-channel incomplete because source-free predicted active-site
 geometry top1 scores are still missing. No labels, registries, imports,
 thresholds, splits, or production scorers changed.
 
+Source-free geometry follow-up: validate that the real fold channel and the
+10-row source-backed materialization are not runtime-blocked, then stage the
+source-free predicted-geometry sidecar manifest. All 10 rows have AFDB-v6 CIF
+hashes and source-backed Foldseek/TM scores, but 0/10 have approved source-free
+active-site locator sidecars. The blocker-clearing attempts checked existing
+predicted-geometry retrieval rows, current702 label-manifest membership,
+source-backed sidecars, and coordinate/Foldseek runtime state. The result is a
+semantic blocker, not a Foldseek or coordinate blocker: these rows are
+secondary/external review rows outside the current702 graph-backed residue
+locator surface. A companion strict locator schema now requires at least two
+source-free sequence-position residue locators per row and explicitly forbids
+entry names, EC/Rhea identifiers, source prose, mechanism text, labels,
+benchmark roles, and panel IDs as predictive geometry features. No labels,
+registries, imports, thresholds, splits, or production scorers changed.
+The companion schema audit is staged and currently reports 0/10 locator
+sidecars present, with `locator_sidecar_missing` as the only critical violation
+class. A materialization plan now records the exact locator sidecar paths and
+rerun commands for all 10 rows; eight rows start from a
+structure-local-ligand-geometry policy candidate, while `mh_067` and `mh_068`
+carry same-accession current702 geometry matches and require split-safe
+train/cal-template checks before any locator use. A template-only bundle now
+stages the 10 planned locator sidecar shells outside the audited locator
+directory. The templates are review-only, contain no residue locators, create no
+audited sidecars, and are not ready for predicted-geometry scoring.
+
 Artifacts:
 `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`,
 `work/fold_augmented_family_panel_research_readout_current702_20260601.md`,
@@ -165,6 +190,16 @@ Artifacts:
 `work/family_panel_source_backed_sidecar_materialization_plan_current702_20260601.md`,
 `artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json`,
 `work/family_panel_source_backed_sidecar_materialization_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json`,
+`work/family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json`,
+`work/family_panel_source_free_active_site_locator_schema_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`,
+`work/family_panel_source_free_active_site_locator_schema_audit_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.json`,
+`work/family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_active_site_locator_template_bundle_current702_20260601.json`,
+`work/family_panel_source_free_active_site_locator_template_bundle_current702_20260601.md`,
 `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`,
 `work/fmo_subtype_hard_negative_packet_current702_20260601.md`.
 
@@ -376,6 +411,20 @@ completion audit records 4/4 materialized classes, 4/4 passing schema audits,
 rows. The next mechanism-feature step is a train/cal-only embedding pilot; no
 labels, registries, imports, thresholds, splits, or production scorers changed.
 
+Train/cal input-manifest follow-up: stage the no-fit input surface for that
+future embedding pilot. The manifest enumerates only the 562 in-distribution
+candidate rows and keeps all 140 heldout rows excluded from training and
+threshold tuning. It finds 524 rows with the minimal active-site role-graph plus
+organic cofactor plus inorganic cofactor-locus feature bundle, records 184
+train/cal reaction-template rows, and does not fit weights, select thresholds,
+or evaluate heldout rows.
+
+Train/cal split-manifest follow-up: deterministically partition only the 524
+minimal-bundle-ready rows into 418 train rows and 106 calibration rows across
+six strata. The split manifest carries heldout only as an excluded count, records
+38 blocked train/cal candidates by role-graph readiness class, and still does
+not fit weights, select thresholds, or evaluate heldout rows.
+
 Artifacts:
 `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
 `work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
@@ -400,7 +449,11 @@ Artifacts:
 `artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_schema_audit_current702_20260601.json`,
 `work/mechanism_feature_iron_sulfur_locus_sidecar_schema_audit_current702_20260601.md`,
 `artifacts/v3_mechanism_feature_inorganic_cofactor_locus_completion_audit_current702_20260601.json`,
-`work/mechanism_feature_inorganic_cofactor_locus_completion_audit_current702_20260601.md`.
+`work/mechanism_feature_inorganic_cofactor_locus_completion_audit_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`,
+`work/mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`,
+`work/mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.md`.
 
 ## 2026-06-01: Thiol/Disulfide Redox Boundary Panel Packet Added
 
@@ -572,8 +625,19 @@ feature input, not as a standalone deployable gate. The next distinct lever is
 the real predicted-structure Foldseek/TM channel or a mechanism-feature embedding
 gap closure, not another raw geometry subfeature recombination.
 
+A follow-up operating-grid readout now enumerates 0.95/0.90/0.85/0.80
+retention diagnostics for all 10 frozen predicted-atlas geometry novelty
+signals without recomputing retrieval or Foldseek/TM. The best geometry-only
+signal remains `negative_nearest_class_centroid_robust_distance`; at >=90%
+in-scope retention it abstains on only 22.78% of OOS rows and 2/6
+cofactor-confounded OOS rows. At >=85% retention it abstains on 59.49% of OOS
+and 4/6 confounded OOS rows, reinforcing that this is evidence for a later
+fold/mechanism-feature channel rather than a standalone threshold.
+
 Artifacts: `artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json`,
-`work/predicted_atlas_geometry_novelty_variants_current702_20260601.md`.
+`work/predicted_atlas_geometry_novelty_variants_current702_20260601.md`,
+`artifacts/v3_predicted_atlas_geometry_novelty_operating_grid_current702_20260601.json`,
+`work/predicted_atlas_geometry_novelty_operating_grid_current702_20260601.md`.
 
 ## 2026-05-31: Ruled Out In-Repo Lever — Richer Geometry Sub-Features Do NOT Beat Collapsed top1_score For Novelty
 

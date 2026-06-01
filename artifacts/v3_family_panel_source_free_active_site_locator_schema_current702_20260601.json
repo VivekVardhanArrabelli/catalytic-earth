@@ -1,0 +1,244 @@
+{
+  "allowed_locator_evidence_classes": [
+    "sequence_motif_or_profile_model_without_label_text",
+    "structure_local_ligand_geometry_without_source_text",
+    "train_cal_template_alignment_without_heldout_rows",
+    "human_approved_non_label_locator_annotation"
+  ],
+  "artifact_id": "v3_family_panel_source_free_active_site_locator_schema_current702_20260601",
+  "counts": {
+    "allowed_locator_evidence_classes": 4,
+    "forbidden_predictive_fields": 10,
+    "required_residue_locator_minimum": 2,
+    "target_rows": 10
+  },
+  "created_utc": "2026-06-01T11:45:01Z",
+  "example_sidecar_skeleton": {
+    "artifact_id": "v3_family_panel_source_free_active_site_locator_<entry_token>_current702_20260601",
+    "entry_id": "external_or_secondary_review_row_id",
+    "forbidden_feature_audit": {
+      "benchmark_role": false,
+      "ec_identifiers": false,
+      "entry_name": false,
+      "fingerprint_id": false,
+      "label_type": false,
+      "mechanism_text": false,
+      "panel_id_as_feature": false,
+      "rhea_identifiers": false,
+      "source_prose": false,
+      "source_review_rationale": false
+    },
+    "locator_evidence_class": "train_cal_template_alignment_without_heldout_rows",
+    "locator_policy": "train_cal_template_alignment_without_heldout_rows",
+    "ready_for_predicted_geometry_scoring": false,
+    "residue_locators": [
+      {
+        "coordinate_independent_provenance": {
+          "heldout_rows_used": false,
+          "method": "alignment_or_motif_locator",
+          "source_text_used": false
+        },
+        "locator_confidence": 0.0,
+        "locator_evidence_class": "train_cal_template_alignment_without_heldout_rows",
+        "residue_code": "ASP",
+        "role_hint": "acid_or_base",
+        "sequence_position": 123
+      }
+    ],
+    "schema_version": "northstar_next_levers.v0.source_free_active_site_locator",
+    "source_accession": "uniprot:ACCESSION",
+    "source_free_active_site_locator_status": "ready",
+    "split_protection": {
+      "allowed_for_threshold_selection": false,
+      "allowed_for_training": false,
+      "ready_for_label_import": false,
+      "review_only": true
+    }
+  },
+  "forbidden_predictive_fields": [
+    "entry_name",
+    "ec_identifiers",
+    "rhea_identifiers",
+    "source_prose",
+    "mechanism_text",
+    "source_review_rationale",
+    "label_type",
+    "fingerprint_id",
+    "benchmark_role",
+    "panel_id_as_feature"
+  ],
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_label_fields_allowed_as_predictive_features": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "The blocker now has an explicit schema: geometry scoring can proceed only after target rows have locator sidecars with at least two source-free sequence-position residue locators.",
+    "next_action": "Implement a validator/materializer for this schema and keep all target rows review-only until locator validation passes."
+  },
+  "next_commands_after_sidecars_exist": [
+    "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-predicted-geometry-sidecar-manifest",
+    "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-evidence-packet --panel-id cobalamin_and_radical_rearrangement_panel",
+    "PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-family-panel-research-readout",
+    "PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-family-panel-missing-primary-channel-queue"
+  ],
+  "residue_locator_required_fields": [
+    "residue_code",
+    "sequence_position",
+    "role_hint",
+    "locator_confidence",
+    "locator_evidence_class",
+    "coordinate_independent_provenance"
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_active_site_locator_schema",
+  "scope": "Strict schema contract for the source-free active-site locator sidecars needed before family-panel review rows can enter the predicted active-site geometry retrieval channel.",
+  "sidecar_required_top_level_fields": [
+    "artifact_id",
+    "schema_version",
+    "created_utc",
+    "entry_id",
+    "source_accession",
+    "locator_policy",
+    "locator_evidence_class",
+    "source_free_active_site_locator_status",
+    "residue_locators",
+    "forbidden_feature_audit",
+    "split_protection",
+    "ready_for_predicted_geometry_scoring"
+  ],
+  "source_artifacts": {
+    "source_free_predicted_geometry_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json",
+      "sha256": "1b46bfcdd5cef37ea85a516dba8dbeda30b1f63f8622b6ca8f5643eec071551c"
+    }
+  },
+  "status": "source_free_active_site_locator_schema_ready_review_only",
+  "target_rows": [
+    {
+      "current_blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "source_accession": "uniprot:Q59490"
+    },
+    {
+      "current_blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "source_accession": "uniprot:A0A1M6T2I7"
+    },
+    {
+      "current_blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "external_glycoside_panel",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "source_accession": "uniprot:Q6NSJ0"
+    },
+    {
+      "current_blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_073",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "source_accession": "uniprot:P01112"
+    },
+    {
+      "current_blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_064",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "source_accession": "uniprot:C7C422"
+    },
+    {
+      "current_blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_065",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "source_accession": "uniprot:Q79MP6"
+    },
+    {
+      "current_blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_066",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "source_accession": "uniprot:P52699"
+    },
+    {
+      "current_blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_067",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "source_accession": "uniprot:P00918"
+    },
+    {
+      "current_blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_068",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "source_accession": "uniprot:P15289"
+    },
+    {
+      "current_blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_072",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "source_accession": "uniprot:P0A6P9"
+    }
+  ],
+  "validation_rules": [
+    "entry_id must match one of the target review-only family-panel rows",
+    "source_accession must match the already hashed AFDB coordinate accession",
+    "at least two residue_locators are required before geometry scoring",
+    "each residue locator must use sequence positions, not PDB chain residue numbers only",
+    "locator_evidence_class must be one of the allowed classes",
+    "forbidden_feature_audit must prove no entry names, EC/Rhea IDs, source prose, labels, benchmark roles, or panel IDs were used as predictive features",
+    "split_protection must mark heldout/training/threshold-selection use as false until a future explicit import/split decision",
+    "ready_for_predicted_geometry_scoring may be true only when all blockers are cleared and validation passes"
+  ]
+}

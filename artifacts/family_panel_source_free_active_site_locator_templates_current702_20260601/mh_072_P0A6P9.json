@@ -1,0 +1,43 @@
+{
+  "artifact_id": "v3_family_panel_source_free_active_site_locator_template_bundle_current702_20260601_template",
+  "created_utc": "2026-06-01T11:56:44Z",
+  "entry_id": "mh_072",
+  "fill_instructions": [
+    "Add at least two residue_locators with sequence_position and residue_code.",
+    "Set locator_evidence_class to one allowed by the schema.",
+    "Keep forbidden_feature_audit false for every forbidden field.",
+    "Run audit-family-panel-source-free-active-site-locator-schema before any predicted-geometry scoring."
+  ],
+  "forbidden_feature_audit": {
+    "benchmark_role": false,
+    "ec_identifiers": false,
+    "entry_name": false,
+    "fingerprint_id": false,
+    "label_type": false,
+    "mechanism_text": false,
+    "panel_id_as_feature": false,
+    "rhea_identifiers": false,
+    "source_prose": false,
+    "source_review_rationale": false
+  },
+  "locator_evidence_class": null,
+  "locator_policy": "structure_local_ligand_geometry_without_source_text_candidate_requires_validator",
+  "ready_for_predicted_geometry_scoring": false,
+  "residue_locators": [],
+  "schema_version": "northstar_next_levers.v0.source_free_active_site_locator_template",
+  "source_accession": "uniprot:P0A6P9",
+  "source_free_active_site_locator_status": "not_materialized",
+  "split_protection": {
+    "allowed_for_threshold_selection": false,
+    "allowed_for_training": false,
+    "ready_for_label_import": false,
+    "review_only": true
+  },
+  "status": "template_only_not_ready_for_scoring",
+  "template_guardrails": {
+    "do_not_place_in_audited_locator_dir_until_filled_and_reviewed": true,
+    "source_text_or_label_fields_allowed_as_predictive_features": false,
+    "template_only": true
+  },
+  "template_path": "artifacts/family_panel_source_free_active_site_locator_templates_current702_20260601/mh_072_P0A6P9.json"
+}

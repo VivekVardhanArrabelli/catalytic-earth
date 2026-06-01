@@ -1,0 +1,572 @@
+{
+  "artifact_id": "v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601",
+  "commands": {
+    "create_locator_dir": "mkdir -p artifacts/family_panel_source_free_active_site_locators_current702_20260601",
+    "refresh_family_panel_readout_after_geometry_scores_exist": "PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-family-panel-research-readout",
+    "rerun_geometry_manifest_after_audit_passes": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-predicted-geometry-sidecar-manifest",
+    "rerun_schema_audit": "PYTHONPATH=src python -m catalytic_earth.cli audit-family-panel-source-free-active-site-locator-schema"
+  },
+  "counts": {
+    "locator_sidecars_present_before_plan": 0,
+    "locator_sidecars_ready_before_plan": 0,
+    "planned_rows": 10,
+    "suggested_locator_policy_counts": {
+      "structure_local_ligand_geometry_without_source_text_candidate_requires_validator": 8,
+      "train_cal_template_alignment_without_heldout_rows_candidate_requires_split_check": 2
+    }
+  },
+  "created_utc": "2026-06-01T11:54:14Z",
+  "guardrails": {
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "locator_sidecars_created": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_label_fields_allowed_as_predictive_features": false
+  },
+  "interpretation": {
+    "headline": "10 locator sidecars are planned; 0 are currently ready.",
+    "next_action": "Materialize the planned locator sidecars with only allowed source-free evidence, rerun the schema audit, then update the predicted-geometry manifest before any packet/readout refresh."
+  },
+  "locator_dir": "artifacts/family_panel_source_free_active_site_locators_current702_20260601",
+  "row_plans": [
+    {
+      "allowed_locator_evidence_classes": [
+        "sequence_motif_or_profile_model_without_label_text",
+        "structure_local_ligand_geometry_without_source_text",
+        "train_cal_template_alignment_without_heldout_rows",
+        "human_approved_non_label_locator_annotation"
+      ],
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "minimum_residue_locators": 2,
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "planned_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+      "rank": 1,
+      "remaining_blockers": [
+        "locator_sidecar_missing",
+        "forbidden_feature_audit_required",
+        "manual_or_algorithmic_source_free_locator_validation_required",
+        "predicted_geometry_scorer_must_consume_locator_sidecar_after_audit_passes"
+      ],
+      "required_residue_locator_fields": [
+        "residue_code",
+        "sequence_position",
+        "role_hint",
+        "locator_confidence",
+        "locator_evidence_class",
+        "coordinate_independent_provenance"
+      ],
+      "required_top_level_fields": [
+        "artifact_id",
+        "schema_version",
+        "created_utc",
+        "entry_id",
+        "source_accession",
+        "locator_policy",
+        "locator_evidence_class",
+        "source_free_active_site_locator_status",
+        "residue_locators",
+        "forbidden_feature_audit",
+        "split_protection",
+        "ready_for_predicted_geometry_scoring"
+      ],
+      "same_accession_current702_geometry_rows": [],
+      "source_accession": "uniprot:Q59490",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:697",
+        "nearest_atlas_tm_score": 0.4655,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "suggested_locator_policy": "structure_local_ligand_geometry_without_source_text_candidate_requires_validator"
+    },
+    {
+      "allowed_locator_evidence_classes": [
+        "sequence_motif_or_profile_model_without_label_text",
+        "structure_local_ligand_geometry_without_source_text",
+        "train_cal_template_alignment_without_heldout_rows",
+        "human_approved_non_label_locator_annotation"
+      ],
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "minimum_residue_locators": 2,
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "planned_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
+      "rank": 2,
+      "remaining_blockers": [
+        "locator_sidecar_missing",
+        "forbidden_feature_audit_required",
+        "manual_or_algorithmic_source_free_locator_validation_required",
+        "predicted_geometry_scorer_must_consume_locator_sidecar_after_audit_passes"
+      ],
+      "required_residue_locator_fields": [
+        "residue_code",
+        "sequence_position",
+        "role_hint",
+        "locator_confidence",
+        "locator_evidence_class",
+        "coordinate_independent_provenance"
+      ],
+      "required_top_level_fields": [
+        "artifact_id",
+        "schema_version",
+        "created_utc",
+        "entry_id",
+        "source_accession",
+        "locator_policy",
+        "locator_evidence_class",
+        "source_free_active_site_locator_status",
+        "residue_locators",
+        "forbidden_feature_audit",
+        "split_protection",
+        "ready_for_predicted_geometry_scoring"
+      ],
+      "same_accession_current702_geometry_rows": [],
+      "source_accession": "uniprot:A0A1M6T2I7",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:358",
+        "nearest_atlas_tm_score": 0.7039,
+        "nearest_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "suggested_locator_policy": "structure_local_ligand_geometry_without_source_text_candidate_requires_validator"
+    },
+    {
+      "allowed_locator_evidence_classes": [
+        "sequence_motif_or_profile_model_without_label_text",
+        "structure_local_ligand_geometry_without_source_text",
+        "train_cal_template_alignment_without_heldout_rows",
+        "human_approved_non_label_locator_annotation"
+      ],
+      "entry_id": "external_glycoside_panel",
+      "minimum_residue_locators": 2,
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "planned_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/external_glycoside_panel_Q6NSJ0.json",
+      "rank": 3,
+      "remaining_blockers": [
+        "locator_sidecar_missing",
+        "forbidden_feature_audit_required",
+        "manual_or_algorithmic_source_free_locator_validation_required",
+        "predicted_geometry_scorer_must_consume_locator_sidecar_after_audit_passes"
+      ],
+      "required_residue_locator_fields": [
+        "residue_code",
+        "sequence_position",
+        "role_hint",
+        "locator_confidence",
+        "locator_evidence_class",
+        "coordinate_independent_provenance"
+      ],
+      "required_top_level_fields": [
+        "artifact_id",
+        "schema_version",
+        "created_utc",
+        "entry_id",
+        "source_accession",
+        "locator_policy",
+        "locator_evidence_class",
+        "source_free_active_site_locator_status",
+        "residue_locators",
+        "forbidden_feature_audit",
+        "split_protection",
+        "ready_for_predicted_geometry_scoring"
+      ],
+      "same_accession_current702_geometry_rows": [],
+      "source_accession": "uniprot:Q6NSJ0",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:697",
+        "nearest_atlas_tm_score": 0.6259,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "suggested_locator_policy": "structure_local_ligand_geometry_without_source_text_candidate_requires_validator"
+    },
+    {
+      "allowed_locator_evidence_classes": [
+        "sequence_motif_or_profile_model_without_label_text",
+        "structure_local_ligand_geometry_without_source_text",
+        "train_cal_template_alignment_without_heldout_rows",
+        "human_approved_non_label_locator_annotation"
+      ],
+      "entry_id": "mh_073",
+      "minimum_residue_locators": 2,
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "planned_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_073_P01112.json",
+      "rank": 4,
+      "remaining_blockers": [
+        "locator_sidecar_missing",
+        "forbidden_feature_audit_required",
+        "manual_or_algorithmic_source_free_locator_validation_required",
+        "predicted_geometry_scorer_must_consume_locator_sidecar_after_audit_passes"
+      ],
+      "required_residue_locator_fields": [
+        "residue_code",
+        "sequence_position",
+        "role_hint",
+        "locator_confidence",
+        "locator_evidence_class",
+        "coordinate_independent_provenance"
+      ],
+      "required_top_level_fields": [
+        "artifact_id",
+        "schema_version",
+        "created_utc",
+        "entry_id",
+        "source_accession",
+        "locator_policy",
+        "locator_evidence_class",
+        "source_free_active_site_locator_status",
+        "residue_locators",
+        "forbidden_feature_audit",
+        "split_protection",
+        "ready_for_predicted_geometry_scoring"
+      ],
+      "same_accession_current702_geometry_rows": [],
+      "source_accession": "uniprot:P01112",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:535",
+        "nearest_atlas_tm_score": 0.8022,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "suggested_locator_policy": "structure_local_ligand_geometry_without_source_text_candidate_requires_validator"
+    },
+    {
+      "allowed_locator_evidence_classes": [
+        "sequence_motif_or_profile_model_without_label_text",
+        "structure_local_ligand_geometry_without_source_text",
+        "train_cal_template_alignment_without_heldout_rows",
+        "human_approved_non_label_locator_annotation"
+      ],
+      "entry_id": "mh_064",
+      "minimum_residue_locators": 2,
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "planned_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_064_C7C422.json",
+      "rank": 5,
+      "remaining_blockers": [
+        "locator_sidecar_missing",
+        "forbidden_feature_audit_required",
+        "manual_or_algorithmic_source_free_locator_validation_required",
+        "predicted_geometry_scorer_must_consume_locator_sidecar_after_audit_passes"
+      ],
+      "required_residue_locator_fields": [
+        "residue_code",
+        "sequence_position",
+        "role_hint",
+        "locator_confidence",
+        "locator_evidence_class",
+        "coordinate_independent_provenance"
+      ],
+      "required_top_level_fields": [
+        "artifact_id",
+        "schema_version",
+        "created_utc",
+        "entry_id",
+        "source_accession",
+        "locator_policy",
+        "locator_evidence_class",
+        "source_free_active_site_locator_status",
+        "residue_locators",
+        "forbidden_feature_audit",
+        "split_protection",
+        "ready_for_predicted_geometry_scoring"
+      ],
+      "same_accession_current702_geometry_rows": [],
+      "source_accession": "uniprot:C7C422",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:16",
+        "nearest_atlas_tm_score": 0.9222,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "suggested_locator_policy": "structure_local_ligand_geometry_without_source_text_candidate_requires_validator"
+    },
+    {
+      "allowed_locator_evidence_classes": [
+        "sequence_motif_or_profile_model_without_label_text",
+        "structure_local_ligand_geometry_without_source_text",
+        "train_cal_template_alignment_without_heldout_rows",
+        "human_approved_non_label_locator_annotation"
+      ],
+      "entry_id": "mh_065",
+      "minimum_residue_locators": 2,
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "planned_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_065_Q79MP6.json",
+      "rank": 6,
+      "remaining_blockers": [
+        "locator_sidecar_missing",
+        "forbidden_feature_audit_required",
+        "manual_or_algorithmic_source_free_locator_validation_required",
+        "predicted_geometry_scorer_must_consume_locator_sidecar_after_audit_passes"
+      ],
+      "required_residue_locator_fields": [
+        "residue_code",
+        "sequence_position",
+        "role_hint",
+        "locator_confidence",
+        "locator_evidence_class",
+        "coordinate_independent_provenance"
+      ],
+      "required_top_level_fields": [
+        "artifact_id",
+        "schema_version",
+        "created_utc",
+        "entry_id",
+        "source_accession",
+        "locator_policy",
+        "locator_evidence_class",
+        "source_free_active_site_locator_status",
+        "residue_locators",
+        "forbidden_feature_audit",
+        "split_protection",
+        "ready_for_predicted_geometry_scoring"
+      ],
+      "same_accession_current702_geometry_rows": [],
+      "source_accession": "uniprot:Q79MP6",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:15",
+        "nearest_atlas_tm_score": 0.9411,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "suggested_locator_policy": "structure_local_ligand_geometry_without_source_text_candidate_requires_validator"
+    },
+    {
+      "allowed_locator_evidence_classes": [
+        "sequence_motif_or_profile_model_without_label_text",
+        "structure_local_ligand_geometry_without_source_text",
+        "train_cal_template_alignment_without_heldout_rows",
+        "human_approved_non_label_locator_annotation"
+      ],
+      "entry_id": "mh_066",
+      "minimum_residue_locators": 2,
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "planned_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_066_P52699.json",
+      "rank": 7,
+      "remaining_blockers": [
+        "locator_sidecar_missing",
+        "forbidden_feature_audit_required",
+        "manual_or_algorithmic_source_free_locator_validation_required",
+        "predicted_geometry_scorer_must_consume_locator_sidecar_after_audit_passes"
+      ],
+      "required_residue_locator_fields": [
+        "residue_code",
+        "sequence_position",
+        "role_hint",
+        "locator_confidence",
+        "locator_evidence_class",
+        "coordinate_independent_provenance"
+      ],
+      "required_top_level_fields": [
+        "artifact_id",
+        "schema_version",
+        "created_utc",
+        "entry_id",
+        "source_accession",
+        "locator_policy",
+        "locator_evidence_class",
+        "source_free_active_site_locator_status",
+        "residue_locators",
+        "forbidden_feature_audit",
+        "split_protection",
+        "ready_for_predicted_geometry_scoring"
+      ],
+      "same_accession_current702_geometry_rows": [],
+      "source_accession": "uniprot:P52699",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:15",
+        "nearest_atlas_tm_score": 0.9445,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "suggested_locator_policy": "structure_local_ligand_geometry_without_source_text_candidate_requires_validator"
+    },
+    {
+      "allowed_locator_evidence_classes": [
+        "sequence_motif_or_profile_model_without_label_text",
+        "structure_local_ligand_geometry_without_source_text",
+        "train_cal_template_alignment_without_heldout_rows",
+        "human_approved_non_label_locator_annotation"
+      ],
+      "entry_id": "mh_067",
+      "minimum_residue_locators": 2,
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "planned_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_067_P00918.json",
+      "rank": 8,
+      "remaining_blockers": [
+        "locator_sidecar_missing",
+        "forbidden_feature_audit_required",
+        "manual_or_algorithmic_source_free_locator_validation_required",
+        "predicted_geometry_scorer_must_consume_locator_sidecar_after_audit_passes"
+      ],
+      "required_residue_locator_fields": [
+        "residue_code",
+        "sequence_position",
+        "role_hint",
+        "locator_confidence",
+        "locator_evidence_class",
+        "coordinate_independent_provenance"
+      ],
+      "required_top_level_fields": [
+        "artifact_id",
+        "schema_version",
+        "created_utc",
+        "entry_id",
+        "source_accession",
+        "locator_policy",
+        "locator_evidence_class",
+        "source_free_active_site_locator_status",
+        "residue_locators",
+        "forbidden_feature_audit",
+        "split_protection",
+        "ready_for_predicted_geometry_scoring"
+      ],
+      "same_accession_current702_geometry_rows": [
+        {
+          "entry_id": "m_csa:216",
+          "split_assignment": "in_distribution",
+          "status": "ok",
+          "top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5455
+        }
+      ],
+      "source_accession": "uniprot:P00918",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:216",
+        "nearest_atlas_tm_score": 1.004,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "suggested_locator_policy": "train_cal_template_alignment_without_heldout_rows_candidate_requires_split_check"
+    },
+    {
+      "allowed_locator_evidence_classes": [
+        "sequence_motif_or_profile_model_without_label_text",
+        "structure_local_ligand_geometry_without_source_text",
+        "train_cal_template_alignment_without_heldout_rows",
+        "human_approved_non_label_locator_annotation"
+      ],
+      "entry_id": "mh_068",
+      "minimum_residue_locators": 2,
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "planned_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_068_P15289.json",
+      "rank": 9,
+      "remaining_blockers": [
+        "locator_sidecar_missing",
+        "forbidden_feature_audit_required",
+        "manual_or_algorithmic_source_free_locator_validation_required",
+        "predicted_geometry_scorer_must_consume_locator_sidecar_after_audit_passes"
+      ],
+      "required_residue_locator_fields": [
+        "residue_code",
+        "sequence_position",
+        "role_hint",
+        "locator_confidence",
+        "locator_evidence_class",
+        "coordinate_independent_provenance"
+      ],
+      "required_top_level_fields": [
+        "artifact_id",
+        "schema_version",
+        "created_utc",
+        "entry_id",
+        "source_accession",
+        "locator_policy",
+        "locator_evidence_class",
+        "source_free_active_site_locator_status",
+        "residue_locators",
+        "forbidden_feature_audit",
+        "split_protection",
+        "ready_for_predicted_geometry_scoring"
+      ],
+      "same_accession_current702_geometry_rows": [
+        {
+          "entry_id": "m_csa:158",
+          "split_assignment": "in_distribution",
+          "status": "ok",
+          "top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5948
+        }
+      ],
+      "source_accession": "uniprot:P15289",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:158",
+        "nearest_atlas_tm_score": 1.002,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "suggested_locator_policy": "train_cal_template_alignment_without_heldout_rows_candidate_requires_split_check"
+    },
+    {
+      "allowed_locator_evidence_classes": [
+        "sequence_motif_or_profile_model_without_label_text",
+        "structure_local_ligand_geometry_without_source_text",
+        "train_cal_template_alignment_without_heldout_rows",
+        "human_approved_non_label_locator_annotation"
+      ],
+      "entry_id": "mh_072",
+      "minimum_residue_locators": 2,
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "planned_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_072_P0A6P9.json",
+      "rank": 10,
+      "remaining_blockers": [
+        "locator_sidecar_missing",
+        "forbidden_feature_audit_required",
+        "manual_or_algorithmic_source_free_locator_validation_required",
+        "predicted_geometry_scorer_must_consume_locator_sidecar_after_audit_passes"
+      ],
+      "required_residue_locator_fields": [
+        "residue_code",
+        "sequence_position",
+        "role_hint",
+        "locator_confidence",
+        "locator_evidence_class",
+        "coordinate_independent_provenance"
+      ],
+      "required_top_level_fields": [
+        "artifact_id",
+        "schema_version",
+        "created_utc",
+        "entry_id",
+        "source_accession",
+        "locator_policy",
+        "locator_evidence_class",
+        "source_free_active_site_locator_status",
+        "residue_locators",
+        "forbidden_feature_audit",
+        "split_protection",
+        "ready_for_predicted_geometry_scoring"
+      ],
+      "same_accession_current702_geometry_rows": [],
+      "source_accession": "uniprot:P0A6P9",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:300",
+        "nearest_atlas_tm_score": 0.5936,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "suggested_locator_policy": "structure_local_ligand_geometry_without_source_text_candidate_requires_validator"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_active_site_locator_materialization_plan",
+  "scope": "Review-only plan for materializing source-free active-site locator sidecars for the 10 fold-scored family-panel rows. This creates no locator sidecars and does not score predicted geometry.",
+  "source_artifacts": {
+    "locator_schema": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json",
+      "sha256": "25aacb9867b227f05f1784e212cfc992762e5edd69d8bebfaa19b23fcea2ed59"
+    },
+    "locator_schema_audit": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json",
+      "sha256": "02378be68ab6fb6da600f69ff08b0409ec906a28999c04dfc73dc47b514bac5b"
+    },
+    "source_free_predicted_geometry_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json",
+      "sha256": "1b46bfcdd5cef37ea85a516dba8dbeda30b1f63f8622b6ca8f5643eec071551c"
+    }
+  },
+  "status": "source_free_active_site_locator_materialization_plan_ready_review_only"
+}

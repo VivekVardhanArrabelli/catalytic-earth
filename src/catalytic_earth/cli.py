@@ -44,6 +44,11 @@ from .northstar_next_levers import (
     write_family_set_expansion_targets,
     write_family_panel_evidence_packet,
     write_family_panel_source_backed_sidecar_materialization,
+    write_family_panel_source_free_active_site_locator_materialization_plan,
+    write_family_panel_source_free_active_site_locator_schema,
+    write_family_panel_source_free_active_site_locator_schema_audit,
+    write_family_panel_source_free_active_site_locator_template_bundle,
+    write_family_panel_source_free_predicted_geometry_sidecar_manifest,
     write_fold_augmented_abstention_gate,
     write_fold_augmented_abstention_threshold_contract,
     write_fold_augmented_family_panel_m_csa_primary_channel_repair,
@@ -58,9 +63,12 @@ from .northstar_next_levers import (
     write_fold_level_novelty_signal,
     write_fold_only_train_cal_oos_negative_surface,
     write_learned_mechanism_feature_embedding_plan,
+    write_mechanism_feature_embedding_train_cal_input_manifest,
+    write_mechanism_feature_embedding_train_cal_split_manifest,
     write_mechanism_feature_active_site_role_graph_sidecar,
     write_mechanism_feature_reaction_center_template_sidecar,
     write_mechanism_feature_sidecar_schema_audit,
+    write_predicted_atlas_geometry_novelty_operating_grid,
     write_predicted_atlas_geometry_novelty_variants,
     write_predicted_structure_fold_channel,
     write_predicted_structure_fold_channel_contract_audit,
@@ -10880,6 +10888,23 @@ def cmd_eval_predicted_atlas_geometry_novelty_variants(args: argparse.Namespace)
     return 0
 
 
+def cmd_build_predicted_atlas_geometry_novelty_operating_grid(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_predicted_atlas_geometry_novelty_operating_grid(
+        predicted_atlas_variants_path=Path(args.predicted_atlas_variants),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    best = audit.get("best_signal_from_variant_artifact", {})
+    print(
+        "Wrote predicted-atlas geometry novelty operating grid to "
+        f"{args.out} (best signal: {best.get('name')}, "
+        f"grid rows: {audit.get('counts', {}).get('grid_rows')})"
+    )
+    return 0
+
+
 def cmd_audit_selected_organic_cofactor_sidecar_schema(args: argparse.Namespace) -> int:
     audit = write_selected_organic_cofactor_sidecar_schema_audit(
         selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
@@ -10947,6 +10972,96 @@ def cmd_build_family_panel_source_backed_sidecar_materialization(
         "Wrote family-panel source-backed sidecar materialization to "
         f"{args.out} (status: {audit.get('status')}, "
         f"scored rows: {counts.get('foldseek_query_entries_with_hits')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_free_predicted_geometry_sidecar_manifest(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_predicted_geometry_sidecar_manifest(
+        source_backed_materialization_path=Path(args.source_backed_materialization),
+        predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
+        label_manifest_path=Path(args.label_manifest),
+        missing_primary_channel_diagnosis_path=Path(args.missing_primary_channel_diagnosis)
+        if args.missing_primary_channel_diagnosis
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel source-free predicted-geometry sidecar manifest to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"blocked rows: {counts.get('source_free_geometry_blocked_rows')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_free_active_site_locator_schema(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_active_site_locator_schema(
+        source_free_geometry_manifest_path=Path(args.source_free_geometry_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    print(
+        "Wrote family-panel source-free active-site locator schema to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"target rows: {audit.get('counts', {}).get('target_rows')})"
+    )
+    return 0
+
+
+def cmd_audit_family_panel_source_free_active_site_locator_schema(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_active_site_locator_schema_audit(
+        locator_schema_path=Path(args.locator_schema),
+        locator_dir=Path(args.locator_dir),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel source-free active-site locator schema audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"ready rows: {counts.get('ready_for_predicted_geometry_scoring')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_free_active_site_locator_materialization_plan(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_active_site_locator_materialization_plan(
+        source_free_geometry_manifest_path=Path(args.source_free_geometry_manifest),
+        locator_schema_path=Path(args.locator_schema),
+        locator_schema_audit_path=Path(args.locator_schema_audit),
+        locator_dir=Path(args.locator_dir),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    print(
+        "Wrote family-panel source-free active-site locator materialization plan to "
+        f"{args.out} (planned rows: {audit.get('counts', {}).get('planned_rows')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_free_active_site_locator_template_bundle(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_active_site_locator_template_bundle(
+        locator_materialization_plan_path=Path(args.locator_materialization_plan),
+        template_dir=Path(args.template_dir),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    print(
+        "Wrote family-panel source-free active-site locator template bundle to "
+        f"{args.out} (templates: {audit.get('counts', {}).get('templates')})"
     )
     return 0
 
@@ -11291,6 +11406,50 @@ def cmd_build_learned_mechanism_feature_embedding_plan(args: argparse.Namespace)
     print(
         "Wrote learned mechanism-feature embedding plan to "
         f"{args.out} (fingerprints: {coverage.get('fingerprints_total')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_embedding_train_cal_input_manifest(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_embedding_train_cal_input_manifest(
+        learned_embedding_plan_path=Path(args.learned_embedding_plan),
+        label_manifest_path=Path(args.label_manifest),
+        active_site_role_graph_sidecar_path=Path(args.active_site_role_graph_sidecar),
+        reaction_center_template_sidecar_path=Path(args.reaction_center_template_sidecar),
+        selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
+        inorganic_cofactor_completion_audit_path=Path(
+            args.inorganic_cofactor_completion_audit
+        ),
+        metal_ion_locus_sidecar_path=Path(args.metal_ion_locus_sidecar),
+        cobalamin_locus_sidecar_path=Path(args.cobalamin_locus_sidecar),
+        radical_sam_locus_sidecar_path=Path(args.radical_sam_locus_sidecar),
+        iron_sulfur_locus_sidecar_path=Path(args.iron_sulfur_locus_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote mechanism-feature embedding train/cal input manifest to "
+        f"{args.out} (ready rows: {counts.get('minimal_feature_bundle_ready_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_embedding_train_cal_split_manifest(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_embedding_train_cal_split_manifest(
+        train_cal_input_manifest_path=Path(args.train_cal_input_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote mechanism-feature embedding train/cal split manifest to "
+        f"{args.out} (train rows: {counts.get('train_rows')}, "
+        f"calibration rows: {counts.get('calibration_rows')})"
     )
     return 0
 
@@ -22003,6 +22162,35 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_eval_predicted_atlas_geometry_novelty_variants
     )
 
+    predicted_atlas_geometry_operating_grid = subparsers.add_parser(
+        "build-predicted-atlas-geometry-novelty-operating-grid",
+        help=(
+            "summarize post-hoc retention/OOS-abstention operating points for "
+            "existing predicted-atlas geometry novelty variants"
+        ),
+    )
+    predicted_atlas_geometry_operating_grid.add_argument(
+        "--predicted-atlas-variants",
+        default="artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
+    )
+    predicted_atlas_geometry_operating_grid.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_predicted_atlas_geometry_novelty_operating_grid_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_atlas_geometry_operating_grid.add_argument(
+        "--report",
+        default=(
+            "work/predicted_atlas_geometry_novelty_operating_grid_"
+            "current702_20260601.md"
+        ),
+    )
+    predicted_atlas_geometry_operating_grid.set_defaults(
+        func=cmd_build_predicted_atlas_geometry_novelty_operating_grid
+    )
+
     selected_cofactor_schema = subparsers.add_parser(
         "audit-selected-organic-cofactor-sidecar-schema",
         help="validate strict current702 schema/lineage for selected organic cofactor scores",
@@ -22162,6 +22350,219 @@ def build_parser() -> argparse.ArgumentParser:
     )
     family_panel_source_backed_materialization.set_defaults(
         func=cmd_build_family_panel_source_backed_sidecar_materialization
+    )
+
+    family_panel_source_free_geometry_manifest = subparsers.add_parser(
+        "build-family-panel-source-free-predicted-geometry-sidecar-manifest",
+        help=(
+            "stage the source-free predicted active-site geometry sidecar "
+            "readiness manifest for fold-scored family-panel rows"
+        ),
+    )
+    family_panel_source_free_geometry_manifest.add_argument(
+        "--source-backed-materialization",
+        default=(
+            "artifacts/v3_family_panel_source_backed_sidecar_materialization_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_manifest.add_argument(
+        "--predicted-geometry-atlas",
+        default=(
+            "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_manifest.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    family_panel_source_free_geometry_manifest.add_argument(
+        "--missing-primary-channel-diagnosis",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_"
+            "diagnosis_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_manifest.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_manifest.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_predicted_geometry_sidecar_manifest_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_source_free_geometry_manifest.set_defaults(
+        func=cmd_build_family_panel_source_free_predicted_geometry_sidecar_manifest
+    )
+
+    family_panel_source_free_locator_schema = subparsers.add_parser(
+        "build-family-panel-source-free-active-site-locator-schema",
+        help=(
+            "write the strict source-free active-site locator sidecar schema "
+            "needed before external family-panel predicted geometry scoring"
+        ),
+    )
+    family_panel_source_free_locator_schema.add_argument(
+        "--source-free-geometry-manifest",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_schema.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_schema.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_active_site_locator_schema_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_source_free_locator_schema.set_defaults(
+        func=cmd_build_family_panel_source_free_active_site_locator_schema
+    )
+
+    family_panel_source_free_locator_schema_audit = subparsers.add_parser(
+        "audit-family-panel-source-free-active-site-locator-schema",
+        help=(
+            "validate source-free active-site locator sidecars before "
+            "family-panel predicted-geometry scoring"
+        ),
+    )
+    family_panel_source_free_locator_schema_audit.add_argument(
+        "--locator-schema",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_schema_audit.add_argument(
+        "--locator-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locators_"
+            "current702_20260601"
+        ),
+    )
+    family_panel_source_free_locator_schema_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
+            "audit_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_schema_audit.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_active_site_locator_schema_audit_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_source_free_locator_schema_audit.set_defaults(
+        func=cmd_audit_family_panel_source_free_active_site_locator_schema
+    )
+
+    family_panel_source_free_locator_plan = subparsers.add_parser(
+        "build-family-panel-source-free-active-site-locator-materialization-plan",
+        help=(
+            "write the per-row materialization plan for source-free active-site "
+            "locator sidecars"
+        ),
+    )
+    family_panel_source_free_locator_plan.add_argument(
+        "--source-free-geometry-manifest",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_plan.add_argument(
+        "--locator-schema",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_plan.add_argument(
+        "--locator-schema-audit",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
+            "audit_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_plan.add_argument(
+        "--locator-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locators_"
+            "current702_20260601"
+        ),
+    )
+    family_panel_source_free_locator_plan.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_"
+            "materialization_plan_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_plan.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_active_site_locator_materialization_plan_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_source_free_locator_plan.set_defaults(
+        func=cmd_build_family_panel_source_free_active_site_locator_materialization_plan
+    )
+
+    family_panel_source_free_locator_templates = subparsers.add_parser(
+        "build-family-panel-source-free-active-site-locator-template-bundle",
+        help=(
+            "write template-only source-free active-site locator sidecars outside "
+            "the audited scoring directory"
+        ),
+    )
+    family_panel_source_free_locator_templates.add_argument(
+        "--locator-materialization-plan",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_"
+            "materialization_plan_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_templates.add_argument(
+        "--template-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locator_templates_"
+            "current702_20260601"
+        ),
+    )
+    family_panel_source_free_locator_templates.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_"
+            "template_bundle_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_templates.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_active_site_locator_template_bundle_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_source_free_locator_templates.set_defaults(
+        func=cmd_build_family_panel_source_free_active_site_locator_template_bundle
     )
 
     fold_augmented_gate = subparsers.add_parser(
@@ -22878,6 +23279,124 @@ def build_parser() -> argparse.ArgumentParser:
     )
     mechanism_embedding_plan.set_defaults(
         func=cmd_build_learned_mechanism_feature_embedding_plan
+    )
+
+    mechanism_embedding_train_cal_manifest = subparsers.add_parser(
+        "build-mechanism-feature-embedding-train-cal-input-manifest",
+        help=(
+            "write a no-fit train/cal input manifest for the mechanism-feature "
+            "embedding pilot"
+        ),
+    )
+    mechanism_embedding_train_cal_manifest.add_argument(
+        "--learned-embedding-plan",
+        default="artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json",
+    )
+    mechanism_embedding_train_cal_manifest.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    mechanism_embedding_train_cal_manifest.add_argument(
+        "--active-site-role-graph-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_train_cal_manifest.add_argument(
+        "--reaction-center-template-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_train_cal_manifest.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+    )
+    mechanism_embedding_train_cal_manifest.add_argument(
+        "--inorganic-cofactor-completion-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_inorganic_cofactor_locus_"
+            "completion_audit_current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_train_cal_manifest.add_argument(
+        "--metal-ion-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_train_cal_manifest.add_argument(
+        "--cobalamin-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_train_cal_manifest.add_argument(
+        "--radical-sam-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_train_cal_manifest.add_argument(
+        "--iron-sulfur-locus-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_train_cal_manifest.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_input_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_train_cal_manifest.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_embedding_train_cal_input_manifest_"
+            "current702_20260601.md"
+        ),
+    )
+    mechanism_embedding_train_cal_manifest.set_defaults(
+        func=cmd_build_mechanism_feature_embedding_train_cal_input_manifest
+    )
+
+    mechanism_embedding_train_cal_split = subparsers.add_parser(
+        "build-mechanism-feature-embedding-train-cal-split-manifest",
+        help=(
+            "write a deterministic no-fit train/cal split for ready "
+            "mechanism-feature embedding rows"
+        ),
+    )
+    mechanism_embedding_train_cal_split.add_argument(
+        "--train-cal-input-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_input_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_train_cal_split.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_split_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_train_cal_split.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_embedding_train_cal_split_manifest_"
+            "current702_20260601.md"
+        ),
+    )
+    mechanism_embedding_train_cal_split.set_defaults(
+        func=cmd_build_mechanism_feature_embedding_train_cal_split_manifest
     )
 
     family_expansion_targets = subparsers.add_parser(

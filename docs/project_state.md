@@ -85,6 +85,12 @@ artifacts first.
   Foldseek/TM. The best existing-channel variant is still
   `mean_top1_raw_and_tm`, with all-OOS AUC `0.907622` and confounded-OOS AUC
   `0.911348`; this confirms the rank signal but does not select a threshold.
+- A geometry-only predicted-atlas operating-grid readout now enumerates the
+  post-hoc retention/OOS-abstention tradeoff for all 10 frozen geometry novelty
+  signals. The best geometry-only signal remains
+  `negative_nearest_class_centroid_robust_distance`; at >=90% in-scope retention
+  it abstains on only 22.78% of OOS and 2/6 cofactor-confounded OOS rows, so it
+  remains diagnostic input rather than a standalone deployment gate.
 - A train/cal OOS-negative calibration surface now exists for the fold-augmented
   gate. The hash-selected 76-row surface has 71 score-complete rows with
   predicted geometry, selected organic cofactor scores, and exact Foldseek/TM
@@ -152,6 +158,21 @@ artifacts first.
   scores from `0.4655` to `1.004`. These rows remain review-only and are not
   primary-channel score-complete until source-free predicted geometry is
   materialized.
+- The source-free predicted-geometry sidecar manifest now narrows that blocker:
+  10/10 queued rows have AFDB-v6 CIF hashes and source-backed Foldseek/TM
+  scores, but 0/10 have approved source-free active-site locator sidecars. The
+  companion locator schema requires at least two source-free sequence-position
+  residue locators and forbids source prose, entry names, EC/Rhea identifiers,
+  labels, benchmark roles, and panel IDs as predictive geometry features. The
+  schema audit currently reports 0/10 locator sidecars present, with
+  `locator_sidecar_missing` as the only critical violation class. A
+  materialization plan now names the exact locator sidecar paths and rerun
+  commands; eight rows start from structure-local ligand geometry candidates,
+  while `mh_067` and `mh_068` require split-safe train/cal-template checks due
+  to same-accession current702 geometry matches. A template-only bundle stages
+  all 10 locator sidecar shells outside the audited locator directory; none are
+  scoring-ready until validated source-free residue locators are added and the
+  schema audit is rerun.
 - A review-only FMO subtype/hard-negative packet keeps `m_csa:131` and repaired
   `m_csa:132` as secondary-probe support, `m_csa:551` and `m_csa:973` as future
   support only, and `m_csa:750` as radical flavin/Fe-S boundary negative. No
@@ -199,6 +220,15 @@ artifacts first.
   critical violations. The next mechanism-feature action is a train/cal-only
   embedding pilot that consumes these sidecars without label/import changes or
   heldout leakage.
+- A no-fit mechanism-feature embedding train/cal input manifest now enumerates
+  the current sidecar surface without fitting weights or evaluating heldout
+  rows. It keeps all 140 heldout rows excluded, marks 562 in-distribution
+  candidate rows, and finds 524 rows with the minimal role-graph plus organic
+  and inorganic cofactor-locus feature bundle.
+- A deterministic train/cal split manifest now partitions those 524 ready
+  mechanism-feature rows into 418 train rows and 106 calibration rows across six
+  strata. Heldout remains excluded, 38 train/cal candidates remain blocked by
+  role-graph readiness, and no model weights or thresholds are fit.
 - ProtT5 and SaProt have only NN/cosine-style local standardized exports today.
   Matched logistic-head reruns are blocked until raw local sidecars or weights
   exist; do not download large models for this by default.
@@ -237,9 +267,21 @@ artifacts first.
    source-checked and remain review-only. `m_csa:973` reuses its frozen
    train/calibration fold score, is score-complete, and abstains under the fixed
    research threshold. The 10-row source-backed coordinate/Foldseek pass is
-   done; next materialize source-free predicted-geometry sidecars for the same
-   rows, starting with Q59490, A0A1M6T2I7, and Q6NSJ0.
+   done; next implement the source-free active-site locator sidecar validator
+   and materializer from
+   `artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json`,
+   rerun
+   `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`,
+   follow
+   `artifacts/v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.json`,
+   fill the review-only templates in
+   `artifacts/v3_family_panel_source_free_active_site_locator_template_bundle_current702_20260601.json`,
+   then refresh the source-free predicted-geometry manifest/readout.
 3. If representation work resumes, produce row-aligned local sidecars first,
+   start from
+   `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`,
+   then
+   `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`,
    then train heads on train/cal rows only and evaluate heldout once, including
    a predicted-geometry robustness cell.
 4. For FMO, revise the review/silver evidence gate into subtype panels, finish
@@ -267,6 +309,7 @@ artifacts first.
 - `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`
 - `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`
 - `artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json`
+- `artifacts/v3_predicted_atlas_geometry_novelty_operating_grid_current702_20260601.json`
 - `artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json`
 - `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`
 - `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json`
@@ -281,6 +324,8 @@ artifacts first.
 - `artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_schema_audit_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_inorganic_cofactor_locus_completion_audit_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_source_check_m_csa267_current702_20260601.json`
@@ -294,6 +339,11 @@ artifacts first.
 - `artifacts/v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.json`
 - `artifacts/v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601.json`
 - `artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_active_site_locator_template_bundle_current702_20260601.json`
 - `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`
 - `artifacts/v3_m_csa497_label_revision_702_20260527.json`
 - `artifacts/v3_m_csa750_label_revision_702_20260527.json`

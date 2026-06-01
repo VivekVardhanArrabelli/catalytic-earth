@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import sys
 import unittest
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -2756,6 +2757,56 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             audit["guardrails"]["atlas_statistics_only_for_normalization"]
         )
 
+    def test_predicted_atlas_geometry_novelty_operating_grid_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_predicted_atlas_geometry_novelty_operating_grid_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "predicted_atlas_geometry_novelty_operating_grid_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["row_scores"], 126)
+        self.assertEqual(audit["counts"]["signals"], 10)
+        self.assertEqual(audit["counts"]["retention_targets"], 4)
+        self.assertEqual(audit["counts"]["grid_rows"], 40)
+        self.assertTrue(audit["guardrails"]["uses_existing_variant_artifact_only"])
+        self.assertFalse(audit["guardrails"]["production_thresholds_changed"])
+        best = audit["best_signal_from_variant_artifact"]
+        self.assertEqual(
+            best["name"],
+            "negative_nearest_class_centroid_robust_distance",
+        )
+        self.assertEqual(
+            best["best_at_90pct_inscope_retention"]["oos_abstain_recall"],
+            0.2278,
+        )
+        self.assertEqual(
+            best["best_at_85pct_inscope_retention"]["oos_abstain_recall"],
+            0.5949,
+        )
+        self.assertEqual(
+            audit["best_by_retention_target"]["0.90"]["signal"],
+            "negative_nearest_class_centroid_robust_distance",
+        )
+        confounded_rows = best["confounded_rows"]
+        self.assertEqual(
+            [row["entry_id"] for row in confounded_rows],
+            ["m_csa:30", "m_csa:31", "m_csa:80", "m_csa:191", "m_csa:267", "m_csa:448"],
+        )
+        self.assertEqual(
+            sum(1 for row in confounded_rows if row["abstained_at_best_signal_90pct"]),
+            2,
+        )
+        self.assertEqual(
+            sum(1 for row in confounded_rows if row["abstained_at_best_signal_85pct"]),
+            4,
+        )
+
     def test_predicted_structure_fold_augmented_novelty_variants_current_counts(
         self,
     ) -> None:
@@ -3140,6 +3191,96 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "path"
             ],
             "artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json",
+        )
+
+    def test_mechanism_feature_embedding_train_cal_input_manifest_current_counts(
+        self,
+    ) -> None:
+        manifest = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            manifest["status"],
+            "train_cal_input_manifest_ready_no_model_fit",
+        )
+        self.assertEqual(manifest["counts"]["manifest_rows"], 702)
+        self.assertEqual(manifest["counts"]["train_cal_candidate_rows"], 562)
+        self.assertEqual(manifest["counts"]["heldout_excluded_rows"], 140)
+        self.assertEqual(manifest["counts"]["minimal_feature_bundle_ready_rows"], 524)
+        self.assertEqual(
+            manifest["counts"]["role_graph_status_counts_train_cal"]["ok"],
+            524,
+        )
+        self.assertEqual(
+            manifest["counts"]["reaction_template_status_counts_train_cal"][
+                "template_available"
+            ],
+            184,
+        )
+        self.assertEqual(
+            manifest["counts"]["inorganic_completion_critical_violation_total"],
+            0,
+        )
+        self.assertFalse(manifest["guardrails"]["model_weights_fit_or_refit"])
+        self.assertFalse(
+            manifest["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+        self.assertEqual(len(manifest["row_records"]), 562)
+        self.assertTrue(manifest["row_records"][0]["minimal_train_cal_feature_bundle_ready"])
+        self.assertIn("metal_ion_locus", manifest["locus_status_counts_train_cal"])
+
+    def test_mechanism_feature_embedding_train_cal_split_manifest_current_counts(
+        self,
+    ) -> None:
+        manifest = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            manifest["status"],
+            "mechanism_feature_embedding_train_cal_split_ready_no_model_fit",
+        )
+        self.assertEqual(manifest["counts"]["minimal_feature_bundle_ready_rows"], 524)
+        self.assertEqual(manifest["counts"]["split_rows"], 524)
+        self.assertEqual(manifest["counts"]["train_rows"], 418)
+        self.assertEqual(manifest["counts"]["calibration_rows"], 106)
+        self.assertEqual(manifest["counts"]["heldout_excluded_rows"], 140)
+        self.assertEqual(manifest["counts"]["not_ready_rows"], 38)
+        self.assertEqual(manifest["counts"]["strata"], 6)
+        self.assertFalse(manifest["guardrails"]["model_weights_fit_or_refit"])
+        self.assertFalse(manifest["guardrails"]["threshold_selected_or_tuned"])
+        self.assertFalse(
+            manifest["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+        self.assertEqual(
+            manifest["stratum_counts"]["fingerprint:metal_dependent_hydrolase"],
+            {"calibration": 13, "total": 64, "train": 51},
+        )
+        self.assertEqual(
+            manifest["stratum_counts"]["label_type:out_of_scope"],
+            {"calibration": 71, "total": 353, "train": 282},
+        )
+        self.assertEqual(
+            manifest["counts"]["not_ready_reason_counts"],
+            {
+                "role_graph:missing_accession_compatible_sequence_positions": 34,
+                "role_graph:missing_catalytic_residue_nodes": 1,
+                "role_graph:not_m_csa_no_curated_active_site_roles": 3,
+            },
+        )
+        split_counts = Counter(
+            row["assigned_embedding_split"] for row in manifest["split_records"]
+        )
+        self.assertEqual(dict(split_counts), {"train": 418, "calibration": 106})
+        self.assertEqual(manifest["split_records"][0]["entry_id"], "m_csa:1")
+        self.assertEqual(
+            manifest["split_records"][1]["assigned_embedding_split"],
+            "calibration",
         )
 
     def test_thiol_disulfide_family_panel_packet_current_counts(self) -> None:
@@ -3637,6 +3778,225 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             sidecar = _load_json(ROOT / row["sidecar_path"])
             self.assertFalse(sidecar["predictive_use_allowed"])
             self.assertFalse(sidecar["ready_for_label_import"])
+
+    def test_family_panel_source_free_predicted_geometry_sidecar_manifest_current_counts(
+        self,
+    ) -> None:
+        manifest = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            manifest["status"],
+            "source_free_predicted_geometry_manifest_blocked_locator_missing_review_only",
+        )
+        self.assertEqual(manifest["counts"]["targeted_rows"], 10)
+        self.assertEqual(manifest["counts"]["rows_with_afdb_predicted_cif"], 10)
+        self.assertEqual(manifest["counts"]["rows_with_source_backed_fold_score"], 10)
+        self.assertEqual(manifest["counts"]["source_free_geometry_ready_rows"], 0)
+        self.assertEqual(manifest["counts"]["source_free_geometry_blocked_rows"], 10)
+        self.assertEqual(
+            manifest["counts"]["blocker_counts"],
+            {
+                "approved_source_free_active_site_locator_missing": 10,
+                "not_current702_label_manifest_row": 10,
+                "source_backed_sidecar_lacks_residue_locator": 10,
+                "source_free_predicted_geometry_retrieval_missing": 10,
+            },
+        )
+        self.assertEqual(
+            len(manifest["blocker_clearing_attempts"]),
+            4,
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in manifest["row_manifests"][:3]],
+            [
+                "secondary_probe::cobalamin_radical_rearrangement",
+                "secondary_probe::radical_sam_enzyme",
+                "external_glycoside_panel",
+            ],
+        )
+        for row in manifest["row_manifests"]:
+            self.assertTrue(row["alphafolddb_predicted_cif"]["exists"])
+            self.assertEqual(
+                row["source_free_predicted_geometry_status"],
+                "blocked_source_free_active_site_locator_missing",
+            )
+            self.assertFalse(row["source_backed_sidecar"]["predictive_use_allowed"])
+            self.assertIsNone(row["existing_source_free_geometry_row"])
+        self.assertFalse(
+            manifest["guardrails"]["source_prose_used_as_predictive_geometry_feature"]
+        )
+        self.assertIn(
+            "build-family-panel-source-free-predicted-geometry-sidecar-manifest",
+            manifest["commands"]["reproduce_this_manifest"],
+        )
+
+    def test_family_panel_source_free_active_site_locator_schema_current_counts(
+        self,
+    ) -> None:
+        schema = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            schema["status"],
+            "source_free_active_site_locator_schema_ready_review_only",
+        )
+        self.assertEqual(schema["counts"]["target_rows"], 10)
+        self.assertEqual(schema["counts"]["required_residue_locator_minimum"], 2)
+        self.assertEqual(schema["counts"]["allowed_locator_evidence_classes"], 4)
+        self.assertFalse(
+            schema["guardrails"][
+                "source_text_or_label_fields_allowed_as_predictive_features"
+            ]
+        )
+        self.assertIn(
+            "source_prose",
+            schema["forbidden_predictive_fields"],
+        )
+        self.assertIn(
+            "residue_locators",
+            schema["sidecar_required_top_level_fields"],
+        )
+        self.assertIn(
+            "sequence_position",
+            schema["residue_locator_required_fields"],
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in schema["target_rows"][:3]],
+            [
+                "secondary_probe::cobalamin_radical_rearrangement",
+                "secondary_probe::radical_sam_enzyme",
+                "external_glycoside_panel",
+            ],
+        )
+        self.assertIn(
+            "build-fold-augmented-family-panel-research-readout",
+            "\n".join(schema["next_commands_after_sidecars_exist"]),
+        )
+
+    def test_family_panel_source_free_active_site_locator_schema_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "source_free_active_site_locator_schema_audit_blocked_missing_sidecars",
+        )
+        self.assertEqual(audit["counts"]["target_rows"], 10)
+        self.assertEqual(audit["counts"]["locator_sidecars_present"], 0)
+        self.assertEqual(audit["counts"]["locator_sidecars_missing"], 10)
+        self.assertEqual(audit["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertEqual(
+            audit["counts"]["critical_counts"],
+            {"locator_sidecar_missing": 10},
+        )
+        self.assertFalse(audit["guardrails"]["predicted_geometry_scored"])
+        self.assertEqual(
+            [row["status"] for row in audit["row_audits"]],
+            ["missing"] * 10,
+        )
+        self.assertIn(
+            "secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+            audit["row_audits"][0]["path"],
+        )
+
+    def test_family_panel_source_free_active_site_locator_materialization_plan_counts(
+        self,
+    ) -> None:
+        plan = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            plan["status"],
+            "source_free_active_site_locator_materialization_plan_ready_review_only",
+        )
+        self.assertEqual(plan["counts"]["planned_rows"], 10)
+        self.assertEqual(plan["counts"]["locator_sidecars_present_before_plan"], 0)
+        self.assertEqual(plan["counts"]["locator_sidecars_ready_before_plan"], 0)
+        self.assertEqual(
+            plan["counts"]["suggested_locator_policy_counts"],
+            {
+                "structure_local_ligand_geometry_without_source_text_candidate_requires_validator": 8,
+                "train_cal_template_alignment_without_heldout_rows_candidate_requires_split_check": 2,
+            },
+        )
+        self.assertFalse(plan["guardrails"]["locator_sidecars_created"])
+        self.assertFalse(plan["guardrails"]["predicted_geometry_scored"])
+        self.assertEqual(
+            [row["entry_id"] for row in plan["row_plans"][:3]],
+            [
+                "secondary_probe::cobalamin_radical_rearrangement",
+                "secondary_probe::radical_sam_enzyme",
+                "external_glycoside_panel",
+            ],
+        )
+        by_entry = {row["entry_id"]: row for row in plan["row_plans"]}
+        self.assertEqual(
+            by_entry["mh_067"]["suggested_locator_policy"],
+            "train_cal_template_alignment_without_heldout_rows_candidate_requires_split_check",
+        )
+        self.assertIn(
+            "audit-family-panel-source-free-active-site-locator-schema",
+            plan["commands"]["rerun_schema_audit"],
+        )
+
+    def test_family_panel_source_free_active_site_locator_template_bundle_counts(
+        self,
+    ) -> None:
+        bundle = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_source_free_active_site_locator_template_bundle_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            bundle["status"],
+            "source_free_active_site_locator_templates_ready_review_only",
+        )
+        self.assertEqual(bundle["counts"]["templates"], 10)
+        self.assertEqual(bundle["counts"]["templates_ready_for_scoring"], 0)
+        self.assertTrue(bundle["guardrails"]["template_only"])
+        self.assertFalse(
+            bundle["guardrails"]["locator_sidecars_created_in_audited_dir"]
+        )
+        self.assertFalse(bundle["guardrails"]["predicted_geometry_scored"])
+        template_dir = ROOT / bundle["template_dir"]
+        self.assertEqual(len(list(template_dir.glob("*.json"))), 10)
+        first_template_path = ROOT / bundle["templates"][0]["template_path"]
+        self.assertIn(
+            "secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+            str(first_template_path),
+        )
+        self.assertTrue(first_template_path.exists())
+        first_template = _load_json(first_template_path)
+        self.assertEqual(first_template["status"], "template_only_not_ready_for_scoring")
+        self.assertFalse(first_template["ready_for_predicted_geometry_scoring"])
+        self.assertEqual(first_template["residue_locators"], [])
+        self.assertTrue(
+            first_template["template_guardrails"][
+                "do_not_place_in_audited_locator_dir_until_filled_and_reviewed"
+            ]
+        )
+        self.assertFalse(
+            first_template["template_guardrails"][
+                "source_text_or_label_fields_allowed_as_predictive_features"
+            ]
+        )
+        self.assertFalse(first_template["split_protection"]["ready_for_label_import"])
 
     def test_fmo_subtype_hard_negative_packet_current_counts(self) -> None:
         packet = _load_json(

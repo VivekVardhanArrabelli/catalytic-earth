@@ -1,0 +1,501 @@
+{
+  "artifact_id": "v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601",
+  "blocker_clearing_attempts": [
+    {
+      "attempt": "looked_up_existing_predicted_geometry_by_review_entry_id",
+      "result": "0 targeted review-only rows are present as source-free predicted-geometry rows in the current combined atlas/heldout retrieval artifact."
+    },
+    {
+      "attempt": "checked_current702_label_manifest_membership",
+      "result": "All targeted rows are secondary/external family-panel rows, not current702 label-manifest rows with graph-backed residue locators."
+    },
+    {
+      "attempt": "checked_source_backed_sidecars_for_residue_locators",
+      "result": "The sidecars are present and fold-scored, but their catalytic or binding site evidence status remains `source_backed_row_context_staged_local_site_not_extracted`."
+    },
+    {
+      "attempt": "checked_coordinate_and_fold_runtime_state",
+      "result": "AFDB v6 CIFs and source-backed Foldseek/TM scores are already present for all 10 rows, so the blocker is data semantics for active-site localization rather than runtime or coordinate availability."
+    }
+  ],
+  "commands": {
+    "blocked_scoring_prerequisite": "Create an approved source-free active-site locator sidecar with entry_id, accession, sequence positions, residue roles, and coordinate-independent provenance; then run the existing AlphaFoldDB predicted-geometry feature builder over those locator rows and pass the resulting retrieval into the family-panel packet/readout refresh commands.",
+    "refresh_source_backed_fold_materialization": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-backed-sidecar-materialization",
+    "reproduce_this_manifest": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-predicted-geometry-sidecar-manifest",
+    "validate_existing_fold_channel_contract": "PYTHONPATH=src python -m catalytic_earth.cli audit-predicted-structure-fold-channel-contract"
+  },
+  "counts": {
+    "blocker_counts": {
+      "approved_source_free_active_site_locator_missing": 10,
+      "not_current702_label_manifest_row": 10,
+      "source_backed_sidecar_lacks_residue_locator": 10,
+      "source_free_predicted_geometry_retrieval_missing": 10
+    },
+    "rows_with_afdb_predicted_cif": 10,
+    "rows_with_same_accession_current702_geometry": 2,
+    "rows_with_source_backed_fold_score": 10,
+    "source_free_geometry_blocked_rows": 10,
+    "source_free_geometry_ready_rows": 0,
+    "targeted_rows": 10
+  },
+  "created_utc": "2026-06-01T11:42:53Z",
+  "guardrails": {
+    "coordinates_or_large_models_downloaded": false,
+    "entry_names_ec_rhea_or_labels_used_as_predictive_features": false,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_prose_used_as_predictive_geometry_feature": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "10/10 rows have source-backed fold scores and AFDB coordinate hashes, but 10 remain blocked for source-free predicted geometry because no approved active-site locator sidecar exists.",
+    "next_action": "Define and materialize the source-free active-site locator sidecar before refreshing family-panel packets/readout; do not promote rows or use source-backed review prose as scoring input."
+  },
+  "row_manifests": [
+    {
+      "alphafolddb_predicted_cif": {
+        "coordinate_role": "alphafolddb_predicted_cif",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q59490-F1-model_v6.cif",
+        "sha256": "cecf4f4c8cf9aeb92f1efa29458503b596830c52450f382865e70795fd560c00",
+        "size_bytes": 675706
+      },
+      "blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "existing_source_free_geometry_row": null,
+      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "rank": 1,
+      "same_accession_current702_geometry_rows": [],
+      "selected_structure_id": "1L1L",
+      "source_accession": "uniprot:Q59490",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:697",
+        "nearest_atlas_tm_score": 0.4655,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "source_backed_sidecar": {
+        "catalytic_or_binding_site_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+        "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+        "predictive_use_allowed": false,
+        "ready_for_label_import": false,
+        "sha256": "b93b12303767c604fa5a944ffce9872f8bd24785bb3939cebd71c39d0126327c"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+    },
+    {
+      "alphafolddb_predicted_cif": {
+        "coordinate_role": "alphafolddb_predicted_cif",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-A0A1M6T2I7-F1-model_v6.cif",
+        "sha256": "acda433793b8615254e09c9e8448bbc94ee9f0b6bdb755770e8b35e2d7726c13",
+        "size_bytes": 469615
+      },
+      "blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "existing_source_free_geometry_row": null,
+      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "rank": 2,
+      "same_accession_current702_geometry_rows": [],
+      "selected_structure_id": "8VPO",
+      "source_accession": "uniprot:A0A1M6T2I7",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:358",
+        "nearest_atlas_tm_score": 0.7039,
+        "nearest_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "source_backed_sidecar": {
+        "catalytic_or_binding_site_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
+        "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+        "predictive_use_allowed": false,
+        "ready_for_label_import": false,
+        "sha256": "422cde49363eb0a43e6ded3d4243337194f353b319d1781c08d3d2fd52342a17"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+    },
+    {
+      "alphafolddb_predicted_cif": {
+        "coordinate_role": "alphafolddb_predicted_cif",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q6NSJ0-F1-model_v6.cif",
+        "sha256": "0483a266d4e7d1cdda3fae7350670ae3115363f8cba0ae539c1837040d0cd1a3",
+        "size_bytes": 669937
+      },
+      "blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "external_glycoside_panel",
+      "existing_source_free_geometry_row": null,
+      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "rank": 3,
+      "same_accession_current702_geometry_rows": [],
+      "selected_structure_id": "7QQF",
+      "source_accession": "uniprot:Q6NSJ0",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:697",
+        "nearest_atlas_tm_score": 0.6259,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "source_backed_sidecar": {
+        "catalytic_or_binding_site_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/external_glycoside_panel_Q6NSJ0.json",
+        "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+        "predictive_use_allowed": false,
+        "ready_for_label_import": false,
+        "sha256": "6e1619ff21305f2ba6fe2eff2ec7c35717a58a33eba355c2c4699d11905a6c7e"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+    },
+    {
+      "alphafolddb_predicted_cif": {
+        "coordinate_role": "alphafolddb_predicted_cif",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P01112-F1-model_v6.cif",
+        "sha256": "b5359c737fe031a18359d836f805f5d291cefbb57ee06590601945c33140103e",
+        "size_bytes": 184247
+      },
+      "blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_073",
+      "existing_source_free_geometry_row": null,
+      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "rank": 4,
+      "same_accession_current702_geometry_rows": [],
+      "selected_structure_id": "121P",
+      "source_accession": "uniprot:P01112",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:535",
+        "nearest_atlas_tm_score": 0.8022,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "source_backed_sidecar": {
+        "catalytic_or_binding_site_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_073_P01112.json",
+        "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+        "predictive_use_allowed": false,
+        "ready_for_label_import": false,
+        "sha256": "63bafd9ed9456f9ef311f323dc6ad583216c1c188d9b8f43a134d3adf32c1272"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+    },
+    {
+      "alphafolddb_predicted_cif": {
+        "coordinate_role": "alphafolddb_predicted_cif",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-C7C422-F1-model_v6.cif",
+        "sha256": "3f2b5927b626c5328eb214efc24b10924ec120c9c19a0f7c70e021e609caaa06",
+        "size_bytes": 244502
+      },
+      "blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_064",
+      "existing_source_free_geometry_row": null,
+      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "rank": 5,
+      "same_accession_current702_geometry_rows": [],
+      "selected_structure_id": "3PG4",
+      "source_accession": "uniprot:C7C422",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:16",
+        "nearest_atlas_tm_score": 0.9222,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "source_backed_sidecar": {
+        "catalytic_or_binding_site_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_064_C7C422.json",
+        "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+        "predictive_use_allowed": false,
+        "ready_for_label_import": false,
+        "sha256": "e8de46c237aa6b2571126bf9a4e35ad26fde2b9a5febc8fb3bd34d8a723fb380"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+    },
+    {
+      "alphafolddb_predicted_cif": {
+        "coordinate_role": "alphafolddb_predicted_cif",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q79MP6-F1-model_v6.cif",
+        "sha256": "26cde0b0a16e5fa8f051f86674f591ad3f156e210d929406258a249220a47c36",
+        "size_bytes": 233491
+      },
+      "blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_065",
+      "existing_source_free_geometry_row": null,
+      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "rank": 6,
+      "same_accession_current702_geometry_rows": [],
+      "selected_structure_id": "1DDK",
+      "source_accession": "uniprot:Q79MP6",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:15",
+        "nearest_atlas_tm_score": 0.9411,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "source_backed_sidecar": {
+        "catalytic_or_binding_site_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_065_Q79MP6.json",
+        "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+        "predictive_use_allowed": false,
+        "ready_for_label_import": false,
+        "sha256": "78e489d19595d170c4c9882377a04efbf078d496ef30754000a09a67c35e8372"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+    },
+    {
+      "alphafolddb_predicted_cif": {
+        "coordinate_role": "alphafolddb_predicted_cif",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P52699-F1-model_v6.cif",
+        "sha256": "ebcc401fff928d6501c3d950d86c4791c26538f939f91e7c46ce0953d88a1aa0",
+        "size_bytes": 233713
+      },
+      "blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_066",
+      "existing_source_free_geometry_row": null,
+      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "rank": 7,
+      "same_accession_current702_geometry_rows": [],
+      "selected_structure_id": "1DD6",
+      "source_accession": "uniprot:P52699",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:15",
+        "nearest_atlas_tm_score": 0.9445,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "source_backed_sidecar": {
+        "catalytic_or_binding_site_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_066_P52699.json",
+        "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+        "predictive_use_allowed": false,
+        "ready_for_label_import": false,
+        "sha256": "c94ca30b033a4adbe1a6be938a3bf55bbc8d245eb82c2d21a085733ecec7cad4"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+    },
+    {
+      "alphafolddb_predicted_cif": {
+        "coordinate_role": "alphafolddb_predicted_cif",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P00918-F1-model_v6.cif",
+        "sha256": "173c4f1fa81ffb1a288c881040217d1473ed2d08cd792671252ee116cac10c7d",
+        "size_bytes": 252675
+      },
+      "blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_067",
+      "existing_source_free_geometry_row": null,
+      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "rank": 8,
+      "same_accession_current702_geometry_rows": [
+        {
+          "entry_id": "m_csa:216",
+          "split_assignment": "in_distribution",
+          "status": "ok",
+          "top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5455
+        }
+      ],
+      "selected_structure_id": "12CA",
+      "source_accession": "uniprot:P00918",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:216",
+        "nearest_atlas_tm_score": 1.004,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "source_backed_sidecar": {
+        "catalytic_or_binding_site_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_067_P00918.json",
+        "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+        "predictive_use_allowed": false,
+        "ready_for_label_import": false,
+        "sha256": "29b6c6285837d58c71f9aa6993cbc328b052cd7b08e19750f9de7e7facbad5aa"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+    },
+    {
+      "alphafolddb_predicted_cif": {
+        "coordinate_role": "alphafolddb_predicted_cif",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P15289-F1-model_v6.cif",
+        "sha256": "92a63ccadbe5014407a5b2b735961c5b44fa3a0ebe8b2a97c79c4a486d3880e4",
+        "size_bytes": 448908
+      },
+      "blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_068",
+      "existing_source_free_geometry_row": null,
+      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "rank": 9,
+      "same_accession_current702_geometry_rows": [
+        {
+          "entry_id": "m_csa:158",
+          "split_assignment": "in_distribution",
+          "status": "ok",
+          "top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.5948
+        }
+      ],
+      "selected_structure_id": "1AUK",
+      "source_accession": "uniprot:P15289",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:158",
+        "nearest_atlas_tm_score": 1.002,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "source_backed_sidecar": {
+        "catalytic_or_binding_site_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_068_P15289.json",
+        "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+        "predictive_use_allowed": false,
+        "ready_for_label_import": false,
+        "sha256": "92cea9fec31d85b9edaab1b5506b758741f809aef4df6bc0c80e594b6cb85de6"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+    },
+    {
+      "alphafolddb_predicted_cif": {
+        "coordinate_role": "alphafolddb_predicted_cif",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P0A6P9-F1-model_v6.cif",
+        "sha256": "ad6dc6116c071abf3ade1df3bfedd181d97334a5b5bbd625da5eadec6b8eed27",
+        "size_bytes": 383406
+      },
+      "blockers": [
+        "approved_source_free_active_site_locator_missing",
+        "not_current702_label_manifest_row",
+        "source_backed_sidecar_lacks_residue_locator",
+        "source_free_predicted_geometry_retrieval_missing"
+      ],
+      "entry_id": "mh_072",
+      "existing_source_free_geometry_row": null,
+      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
+      "rank": 10,
+      "same_accession_current702_geometry_rows": [],
+      "selected_structure_id": "1E9I",
+      "source_accession": "uniprot:P0A6P9",
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:300",
+        "nearest_atlas_tm_score": 0.5936,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "source_backed_sidecar": {
+        "catalytic_or_binding_site_status": "source_backed_row_context_staged_local_site_not_extracted",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_072_P0A6P9.json",
+        "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+        "predictive_use_allowed": false,
+        "ready_for_label_import": false,
+        "sha256": "fd06afd9484d4e22d8d9a6a073cfedbf1243beccd00a028e43a3fc21c063eacb"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_predicted_geometry_manifest",
+  "scope": "Review-only readiness manifest for materializing source-free predicted active-site geometry sidecars for the 10 family-panel rows that already have source-backed AFDB-vs-predicted-atlas Foldseek/TM scores.",
+  "source_artifacts": {
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "missing_primary_channel_diagnosis": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.json",
+      "sha256": "f886340a6702a0bd10dec46e7546cf3c22e1f443dec0b0ad8e85ac1923db26f7"
+    },
+    "predicted_geometry_atlas": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    },
+    "source_backed_sidecar_materialization": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json",
+      "sha256": "1c4eacb8b5917750f5ed6de7f614adcae55b1de1473942fc5efa9baeac4abbf6"
+    }
+  },
+  "status": "source_free_predicted_geometry_manifest_blocked_locator_missing_review_only"
+}
