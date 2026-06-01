@@ -13,6 +13,17 @@
       "work_report_sha256": "03784fad262c1fa1d766f438241343b3f088beb3664876ac5ac85ecb812e9f96"
     },
     {
+      "artifact_status": "fold_channel_reproduction_manifest_ready_missing_coordinates",
+      "category": "fold_channel_reproduction_manifest",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json",
+      "json_sha256": "80937bc9a44dac65ff52b2f3545f69b58756eedcc02b245ec0cd15f0e42a5ba2",
+      "work_report_exists": true,
+      "work_report_path": "work/predicted_structure_fold_channel_reproduction_manifest_current702_20260601.md",
+      "work_report_sha256": "395391381dab366afeeac6b8e89d4a8e1c4d60f4f698b0170a29bedf39c5809d"
+    },
+    {
       "artifact_status": "row_specific_bond_change_schema_staged_no_fit",
       "category": "mechanism_feature_schema",
       "json_exists": true,
@@ -33,6 +44,61 @@
       "work_report_exists": true,
       "work_report_path": "work/mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.md",
       "work_report_sha256": "3593ba1e92d5b9228131c9f76b78ba61eb6f6b9665b8a759c15ed06a34c5b9b2"
+    },
+    {
+      "artifact_status": "row_specific_bond_change_materialization_priority_ready_no_fit",
+      "category": "mechanism_feature_gap_priority",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.json",
+      "json_sha256": "7208382e0e4aa96d158dfb4ae99cdcc1338daf798fa29d768aae25ccd5a17db7",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.md",
+      "work_report_sha256": "4c983e9bfc0598432a494fc2916d6fbd3ab47629ec08afde317f69d6f9eb9eaf"
+    },
+    {
+      "artifact_status": "p0_source_graph_context_ready_bond_events_not_structured",
+      "category": "mechanism_feature_p0_source_graph_readiness",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.json",
+      "json_sha256": "e60af5641e7c6d3ab92c683cecadb4d578736dbf7267ac9a862f8f8e3a6038a9",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.md",
+      "work_report_sha256": "c8db03109829cf13a69a5c969710cce8cd969c86f1dc201d5116996650bec6f2"
+    },
+    {
+      "artifact_status": "p0_row_specific_bond_change_extraction_work_package_ready_manual_only",
+      "category": "mechanism_feature_p0_extraction_work_package",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.json",
+      "json_sha256": "17700859acd6ac7e737d690e09bc4f4a91f5d611b6c609d8037c693d4ca8eea9",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.md",
+      "work_report_sha256": "eee21f2159cdea1343b10bc48de730aa742ea7a84c95df83bf7f253d82e48527"
+    },
+    {
+      "artifact_status": "p0_extraction_work_package_strict_audit_passed",
+      "category": "mechanism_feature_p0_extraction_strict_audit",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.json",
+      "json_sha256": "b23aec738963aa464564e1aaaa1e3687e40008520144fab700da9aefd765048b",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.md",
+      "work_report_sha256": "bd677c35b08e7eb2c2c3bd74184f2bf96b9608f916cf27f97a7244c184b6b930"
+    },
+    {
+      "artifact_status": "p0_source_evidence_sidecar_schema_staged_no_fit",
+      "category": "mechanism_feature_p0_source_evidence_schema",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json",
+      "json_sha256": "909686b9d6afafd105cc2c397c3de6b7af54508a1878a877b52164eedfa3d666",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.md",
+      "work_report_sha256": "040fdec6bf313b96e1c8659d84318056d68a4a655d00343cc41eb731501fa337"
     },
     {
       "artifact_status": "glycyl_radical_panel_ready_as_oos_boundary_review_only",
@@ -62,33 +128,45 @@
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json",
-      "json_sha256": "c5c5dedc3aa37bdf19254027face5a376127ee6c1be5106a14fc3d877ed30dfa",
+      "json_sha256": "43f8c5761fba4e1475a5db7f1b5ba8c85c165594ab8e6aa6238b252d0366bbe5",
       "work_report_exists": true,
       "work_report_path": "work/current_docs_artifact_reference_check_current702_20260601.md",
-      "work_report_sha256": "91de7b1786ee71d40993b23d1c380f420bdfea1d8d24bda62a42555ff0405ad1"
+      "work_report_sha256": "5d67e1722a9fcc0c1445d51989273ad317b07bae06438b7a38a72442a1e40f04"
     }
   ],
   "counts": {
     "docs_reference_check_artifacts": 1,
     "family_panel_readiness_artifacts": 1,
-    "fold_channel_provenance_artifacts": 1,
-    "json_artifacts_checked": 6,
-    "json_artifacts_parse_passed": 6,
+    "fold_channel_coordinate_provenance_artifacts": 1,
+    "fold_channel_reproduction_manifest_artifacts": 1,
+    "json_artifacts_checked": 12,
+    "json_artifacts_parse_passed": 12,
     "label_registry_mutations": 0,
     "mechanism_feature_gap_guardrail_artifacts": 1,
+    "mechanism_feature_gap_priority_artifacts": 1,
+    "mechanism_feature_p0_extraction_strict_audit_artifacts": 1,
+    "mechanism_feature_p0_extraction_work_package_artifacts": 1,
+    "mechanism_feature_p0_source_evidence_schema_artifacts": 1,
+    "mechanism_feature_p0_source_graph_readiness_artifacts": 1,
     "mechanism_feature_schema_artifacts": 1,
     "model_fit_or_refit_artifacts": 0,
     "new_coordinates_fetched": 0,
     "predicted_geometry_scores_created": 0,
     "production_threshold_mutations": 0,
-    "repo_json_artifacts_parse_checked": 3113,
+    "repo_json_artifacts_parse_checked": 3123,
     "repo_json_parse_error_count": 0,
-    "repo_jsonl_artifacts_parse_checked": 25,
-    "source_free_locator_decision_artifacts": 1,
-    "work_reports_checked": 6,
-    "work_reports_present": 6
+    "repo_jsonl_artifacts_parse_checked": 26,
+    "source_free_locator_decision_matrix_artifacts": 1,
+    "work_reports_checked": 12,
+    "work_reports_present": 12
   },
-  "created_utc": "2026-06-01T17:34:10Z",
+  "created_utc": "2026-06-01T19:11:20Z",
+  "critical_counts": {
+    "json_parse_failures": 0,
+    "missing_json_artifacts": 0,
+    "missing_work_reports": 0,
+    "repo_json_parse_errors": 0
+  },
   "guardrails": {
     "artifact_json_parse_sweep_passed": true,
     "heldout_threshold_tuning_for_deployment": false,
@@ -99,20 +177,18 @@
     "predicted_geometry_scores_created": false,
     "production_thresholds_changed": false
   },
-  "next_action": "Use the locator human-decision matrix to pick one policy decision, preferably mh_067/mh_068 locator-copy approval or rejection, before any further source-free geometry scoring.",
+  "next_action": "Fill the P0 row-specific bond-change extraction worksheet from source-backed M-CSA/Rhea/mechanism evidence, emit a sidecar conforming to the staged schema, and run a strict source-evidence sidecar audit before any no-fit feature-contract refresh.",
   "repo_parse_errors": [],
-  "schema_version": "current_run_artifact_integrity.v1",
-  "scope": "Current automation-run integrity audit for new/updated JSON artifacts and matching work reports from fold provenance, mechanism-feature schema/gap guards, family-panel readiness, locator decision matrix, and docs-reference maintenance outputs.",
+  "schema_version": "current_run_artifact_integrity.v2",
+  "scope": "Current automation-run integrity audit for fold reproduction, mechanism-feature bond-change gap closure artifacts, family-panel readiness, locator decision, and docs-reference maintenance outputs.",
   "status": "current_run_artifact_integrity_audit_passed",
   "validation_summary": {
     "catalytic_earth_cli_validate": "passed; 702 curated mechanism labels",
     "compileall": "passed",
-    "current_docs_artifact_reference_check": "passed; 440 references checked, 0 missing",
-    "focused_geometry_artifact_regression": "86 passed, 7 subtests passed",
-    "focused_northstar_tests": "45 passed",
-    "full_pytest": "1098 passed, 31 subtests passed, 1 sklearn deprecation warning",
+    "current_docs_artifact_reference_check": "passed; 469 references checked, 0 missing",
+    "full_pytest": "passed; 1110 tests, 36 subtests, 1 sklearn deprecation warning",
     "git_diff_check": "passed",
-    "repo_json_parse_sweep": "3113 JSON and 25 JSONL files parsed with 0 errors",
-    "unittest_discovery": "1075 tests passed"
+    "repo_json_parse_sweep": "passed; 3123 JSON and 26 JSONL files parsed with 0 errors",
+    "unittest_discovery": "passed; 1087 tests"
   }
 }

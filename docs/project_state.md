@@ -313,8 +313,8 @@ artifacts first.
   decision classes and recommends starting with the `mh_067`/`mh_068` locator
   copy decision because their split-safe template check already passed and no
   coordinate fetch is needed. The matrix authorizes no copy, fetch, or scoring.
-- A refreshed current-run artifact integrity audit indexes 6 JSON artifacts and
-  6 matching work reports from this run. All parse/presence checks passed, and
+- A refreshed current-run artifact integrity audit indexes 12 JSON artifacts
+  and 12 matching work reports from this run. All parse/presence checks passed, and
   the validation summary records full pytest, unittest discovery, compileall,
   `validate`, repo-wide JSON/JSONL parse, current-docs reference check, and
   diff-check success.
@@ -339,6 +339,35 @@ artifacts first.
   mechanism-feature contract: 524 train/cal feature rows contain 0 bond-change
   feature rows, 0 heldout rows, and the strict feature-contract audit still has
   0 critical violations.
+- The row-specific bond-change gap now has a no-fit materialization priority
+  manifest. It partitions the 232 evidence-required rows into 171 P0 train/cal
+  feature-contract gap rows, 13 P1 in-distribution rows needing upstream
+  feature-bundle repair, and 48 P2 heldout final-only rows, plus a balanced
+  15-row P0 pilot seed queue. It materializes no source evidence and mutates no
+  feature contract.
+- A no-fit P0 source-graph readiness audit now checks that balanced 15-row
+  pilot seed against the frozen M-CSA graph. All 15 rows have entry nodes,
+  mechanism-text edges, catalytic-residue edges, and EC mappings; 11/15 have
+  local EC-to-Rhea mappings; 0/15 expose structured row-specific bond-change
+  event edges. Manual/source-backed extraction remains required before any
+  feature-contract refresh.
+- A companion P0 extraction work package turns that readiness result into 15
+  manual extraction templates with nine required source-backed fields, exact
+  event/mapping acceptance criteria, and per-row Rhea lookup flags. It still
+  materializes no source evidence and authorizes no feature-contract or model
+  use.
+- A strict audit now validates that P0 extraction work package as
+  template-only: all 15 rows have the expected nine fields, 0 rows contain
+  non-null extracted values, 0 rows are contract/model consumable, and the audit
+  reports 0 critical violations.
+- A companion TSV worksheet now gives the next run a manual filling surface for
+  those same 15 P0 rows. All source-evidence cells are blank by construction;
+  four rows are flagged for Rhea lookup, and the worksheet must be audited after
+  any source-backed values are filled.
+- A source-evidence sidecar schema now stages the future filled sidecar contract
+  for that worksheet: 12 required row fields, six event fields, four mapping
+  fields, forbidden predictive fields, and strict evidence/leakage checks. It
+  is schema-only and still materializes 0 source values.
 - The mechanism-feature role-graph and reaction-center sidecars now pass a
   strict schema and row-alignment audit over all 702 current rows with zero
   critical violations. This validates the current sidecars as schema-safe
@@ -502,6 +531,12 @@ artifacts first.
 - `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.tsv`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`
 - `artifacts/v3_family_panel_high_value_glycyl_radical_readiness_packet_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json`

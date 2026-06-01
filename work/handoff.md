@@ -50,6 +50,93 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Mechanism Bond-Change P0 Extraction Package
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T18:20:34Z`
+- STARTED_LOCAL: `Mon Jun  1 13:20:34 CDT 2026`
+- ENDED_AT: `2026-06-01T19:10:55Z`
+- ENDED_LOCAL: `Mon Jun  1 14:10:55 CDT 2026`
+- ELAPSED_MINUTES: `50.4`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "9071", "started_at": "2026-06-01T18:20:34Z", "status": "acquired"}`
+- Lock release result: pending until after commit, push, sync verification, and
+  clean worktree.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `95e15ed417ccd8d9ed775b7ec0107fa6c0cc5bb5`
+- Git HEAD at end before commit: `95e15ed417ccd8d9ed775b7ec0107fa6c0cc5bb5`
+- Dirty files at start: none
+- Dirty files at end before commit: artifacts/docs/code/tests/work changes for
+  the materialization priority, P0 source-graph readiness, P0 extraction work
+  package, P0 extraction strict audit, P0 worksheet, P0 source-evidence schema,
+  current-docs reference check, current-run integrity audit, durable docs, and
+  this handoff.
+- Input artifacts:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_schema_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.json`,
+  `artifacts/v1_graph_1025.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.json`,
+  and
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.json`.
+- Output artifacts:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.tsv`,
+  `work/mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.md`,
+  refreshed
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  refreshed
+  `work/current_docs_artifact_reference_check_current702_20260601.md`,
+  refreshed
+  `artifacts/v3_current_run_artifact_integrity_audit_current702_20260601.json`,
+  refreshed
+  `work/current_run_artifact_integrity_audit_current702_20260601.md`,
+  plus code/tests/docs for the new mechanism-feature carryover commands.
+- Commands run:
+  memory read; lock acquire; `git fetch origin`; `git pull --ff-only origin
+  main`; required context reads; full pre-edit pytest; focused
+  mechanism-feature unit/CLI/regression tests; built
+  `build-mechanism-feature-row-specific-bond-change-materialization-priority`;
+  built
+  `build-mechanism-feature-row-specific-bond-change-p0-source-graph-readiness`;
+  built
+  `build-mechanism-feature-row-specific-bond-change-p0-extraction-work-package`;
+  built
+  `audit-mechanism-feature-row-specific-bond-change-p0-extraction-package-strict`;
+  generated the P0 extraction worksheet and source-evidence sidecar schema;
+  refreshed current-docs artifact reference checks; refreshed current-run
+  artifact integrity audit; `PYTHONPATH=src python -m pytest tests -q`;
+  `PYTHONPATH=src python -m unittest discover -s tests`;
+  `python -m compileall -q src tests`; `PYTHONPATH=src python -m
+  catalytic_earth.cli validate`; repo JSON/JSONL parse sweep; `git diff
+  --check`; `df -h .`; `git status --short`; `git diff` review.
+- Validation results:
+  pre-edit full pytest passed with 1100 tests, 32 subtests, and one sklearn
+  warning. Final full pytest passed with 1110 tests, 36 subtests, and one
+  sklearn warning. Final unittest discovery passed with 1087 tests. Compileall,
+  CLI validate, git diff check, focused unit/CLI/regression tests, JSON/JSONL
+  parse sweep (`3123` JSON and `26` JSONL files), current-docs reference check
+  (`469` checked, 0 missing), and current-run integrity audit passed.
+- Commit/push result: pending at handoff draft.
+- Exact next action for the next run:
+  fill the P0 row-specific bond-change extraction worksheet from source-backed
+  M-CSA/Rhea/mechanism evidence, emit a sidecar conforming to the staged schema,
+  and run a strict source-evidence sidecar audit before any no-fit
+  feature-contract refresh.
+
 ### 2026-06-01 Predicted Fold Reproduction Manifest Interrupted Stop
 
 Automation run: `catalytic-earth-work-loop`

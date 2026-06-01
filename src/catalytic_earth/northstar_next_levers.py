@@ -150,6 +150,18 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_SCHEMA_ID = (
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_FEATURE_CONTRACT_GAP_AUDIT_ID = (
     "v3_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_current702_20260601"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_MATERIALIZATION_PRIORITY_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_SOURCE_GRAPH_READINESS_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_EXTRACTION_WORK_PACKAGE_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_EXTRACTION_PACKAGE_STRICT_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601"
+)
 
 
 def _utc_now_iso() -> str:
@@ -15236,6 +15248,1070 @@ def write_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_mechanism_feature_row_specific_bond_change_materialization_priority(
+    *,
+    row_specific_bond_change_schema_path: Path,
+    feature_contract_path: Path,
+    split_manifest_path: Path,
+) -> dict[str, Any]:
+    schema = _read_json(row_specific_bond_change_schema_path)
+    feature_contract = _read_json(feature_contract_path)
+    split_manifest = _read_json(split_manifest_path)
+
+    feature_rows = [
+        row for row in feature_contract.get("feature_rows", []) if isinstance(row, dict)
+    ]
+    feature_ids = {str(row.get("entry_id")) for row in feature_rows if row.get("entry_id")}
+    split_records = [
+        row for row in split_manifest.get("split_records", []) if isinstance(row, dict)
+    ]
+    split_by_entry = {
+        str(row.get("entry_id")): row for row in split_records if row.get("entry_id")
+    }
+    required_rows = [
+        row
+        for row in schema.get("row_materialization_queue", [])
+        if isinstance(row, dict)
+        and row.get("row_specific_bond_change_status")
+        == "row_specific_bond_change_evidence_required"
+    ]
+
+    priority_counter: Counter[str] = Counter()
+    fingerprint_counter: Counter[str] = Counter()
+    operation_counter: Counter[str] = Counter()
+    split_counter: Counter[str] = Counter()
+    embedding_split_counter: Counter[str] = Counter()
+    priority_rows: list[dict[str, Any]] = []
+    for row in required_rows:
+        entry_id = str(row.get("entry_id") or "")
+        split_assignment = str(row.get("split_assignment") or "unknown")
+        feature_contract_ready = entry_id in feature_ids
+        split_record = split_by_entry.get(entry_id) or {}
+        assigned_embedding_split = split_record.get("assigned_embedding_split")
+        if feature_contract_ready and assigned_embedding_split in {"train", "calibration"}:
+            priority_tier = "P0_train_cal_feature_contract_gap"
+            materialization_scope = "source_backed_evidence_for_next_no_fit_contract_refresh"
+        elif split_assignment == "in_distribution":
+            priority_tier = "P1_in_distribution_not_feature_contract_ready"
+            materialization_scope = "repair_upstream_minimal_feature_bundle_before_contract_use"
+        elif split_assignment == "heldout":
+            priority_tier = "P2_heldout_final_only_evidence_gap"
+            materialization_scope = "materialize_for_final_readout_audit_only_not_training"
+        else:
+            priority_tier = "P3_unknown_split_review_required"
+            materialization_scope = "manual_split_review_before_use"
+
+        fingerprint_id = row.get("fingerprint_id") or "unknown"
+        operation = row.get("template_chemical_operation_normalized") or "unknown"
+        priority_counter[priority_tier] += 1
+        fingerprint_counter[str(fingerprint_id)] += 1
+        operation_counter[str(operation)] += 1
+        split_counter[split_assignment] += 1
+        embedding_split_counter[
+            str(assigned_embedding_split or "not_in_split_manifest")
+        ] += 1
+        priority_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": row.get("accession"),
+                "split_assignment": split_assignment,
+                "assigned_embedding_split": assigned_embedding_split,
+                "fingerprint_id": fingerprint_id,
+                "template_chemical_operation_normalized": operation,
+                "template_bond_changes_normalized": row.get(
+                    "template_bond_changes_normalized"
+                )
+                or [],
+                "priority_tier": priority_tier,
+                "materialization_scope": materialization_scope,
+                "feature_contract_ready_before_bond_change": feature_contract_ready,
+                "allowed_for_model_training_now": False,
+                "allowed_for_threshold_selection_now": False,
+                "allowed_for_feature_contract_consumption_now": False,
+                "required_next_evidence": row.get("required_next_evidence") or [],
+            }
+        )
+    priority_rows.sort(
+        key=lambda row: (
+            str(row["priority_tier"]),
+            str(row.get("fingerprint_id") or ""),
+            _entry_id_sort_key(str(row.get("entry_id") or "")),
+        )
+    )
+
+    p0_by_fingerprint: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in priority_rows:
+        if row["priority_tier"] == "P0_train_cal_feature_contract_gap":
+            p0_by_fingerprint[str(row.get("fingerprint_id") or "unknown")].append(row)
+    balanced_pilot_seed_queue = []
+    for fingerprint_id in sorted(p0_by_fingerprint):
+        for row in p0_by_fingerprint[fingerprint_id][:3]:
+            balanced_pilot_seed_queue.append(
+                {
+                    "entry_id": row["entry_id"],
+                    "accession": row["accession"],
+                    "assigned_embedding_split": row["assigned_embedding_split"],
+                    "fingerprint_id": row["fingerprint_id"],
+                    "template_chemical_operation_normalized": row[
+                        "template_chemical_operation_normalized"
+                    ],
+                    "selection_reason": (
+                        "first_three_train_cal_rows_per_fingerprint_for_bounded_"
+                        "source_evidence_materialization_pilot"
+                    ),
+                }
+            )
+
+    critical_counts = {
+        "schema_rows_missing": 1 if not required_rows else 0,
+        "feature_contract_missing": 1 if not feature_rows else 0,
+        "split_manifest_missing": 1 if not split_records else 0,
+        "unexpected_consumable_rows": sum(
+            1
+            for row in priority_rows
+            if row["allowed_for_feature_contract_consumption_now"]
+        ),
+    }
+    passed = all(value == 0 for value in critical_counts.values())
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_MATERIALIZATION_PRIORITY_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_materialization_priority"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "row_specific_bond_change_materialization_priority_ready_no_fit"
+            if passed
+            else "row_specific_bond_change_materialization_priority_blocked"
+        ),
+        "scope": (
+            "No-fit prioritization manifest for the row-specific bond-change "
+            "evidence gap. It intersects the staged bond-change schema with the "
+            "current train/cal feature contract and split manifest, but does "
+            "not materialize source evidence, consume the feature, or fit a model."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "row_specific_source_evidence_materialized": False,
+            "feature_contract_mutated": False,
+            "heldout_rows_allowed_for_training_or_thresholds": False,
+            "no_fit_prioritization_only": True,
+        },
+        "counts": {
+            "rows_requiring_row_specific_bond_change_evidence": len(required_rows),
+            "priority_tier_counts": dict(sorted(priority_counter.items())),
+            "split_assignment_counts": dict(sorted(split_counter.items())),
+            "embedding_split_counts": dict(sorted(embedding_split_counter.items())),
+            "fingerprint_counts": dict(sorted(fingerprint_counter.items())),
+            "chemical_operation_counts": dict(sorted(operation_counter.items())),
+            "train_cal_feature_contract_gap_rows": priority_counter.get(
+                "P0_train_cal_feature_contract_gap", 0
+            ),
+            "in_distribution_not_feature_contract_ready_rows": priority_counter.get(
+                "P1_in_distribution_not_feature_contract_ready", 0
+            ),
+            "heldout_final_only_gap_rows": priority_counter.get(
+                "P2_heldout_final_only_evidence_gap", 0
+            ),
+            "balanced_pilot_seed_rows": len(balanced_pilot_seed_queue),
+            "critical_counts": critical_counts,
+        },
+        "priority_rows": priority_rows,
+        "balanced_pilot_seed_queue": balanced_pilot_seed_queue,
+        "materialization_contract": {
+            "p0_policy": (
+                "P0 rows may be materialized first because they are already in "
+                "the no-fit train/cal feature contract apart from the missing "
+                "row-specific bond-change evidence."
+            ),
+            "p1_policy": (
+                "P1 rows need upstream feature-bundle repair before they can be "
+                "used in any train/cal mechanism-feature contract."
+            ),
+            "p2_policy": (
+                "P2 heldout rows may be audited as final-only evidence but must "
+                "not influence feature normalization, fitting, or thresholds."
+            ),
+            "source_evidence_requirements": [
+                "source_record_id",
+                "row_specific_reaction_participant_mapping",
+                "row_specific_bond_change_events",
+                "active_site_residue_role_support",
+                "source_graph_or_database_provenance",
+            ],
+            "forbidden_predictive_fields": (
+                (schema.get("schema_contract") or {}).get(
+                    "forbidden_predictive_fields"
+                )
+                or []
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The row-specific bond-change gap is now prioritized against "
+                "the current no-fit train/cal feature contract: P0 rows are "
+                "contract-ready except for missing source-backed bond-change "
+                "evidence, while P1/P2 rows remain excluded from training or "
+                "threshold use."
+            ),
+            "next_action": (
+                "Materialize the balanced P0 pilot seed queue from frozen "
+                "source graphs/databases, audit the source-backed sidecar, then "
+                "regenerate the train/cal feature contract only if the audit "
+                "passes."
+            ),
+        },
+        "source_artifacts": {
+            "row_specific_bond_change_schema": _source_path_record(
+                row_specific_bond_change_schema_path
+            ),
+            "feature_contract": _source_path_record(feature_contract_path),
+            "split_manifest": _source_path_record(split_manifest_path),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_materialization_priority_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change Materialization Priority - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Rows requiring row-specific bond-change evidence: "
+        f"{counts['rows_requiring_row_specific_bond_change_evidence']}",
+        f"- Priority tiers: {counts['priority_tier_counts']}",
+        "- Train/cal feature-contract gap rows: "
+        f"{counts['train_cal_feature_contract_gap_rows']}",
+        "- In-distribution not feature-contract-ready rows: "
+        f"{counts['in_distribution_not_feature_contract_ready_rows']}",
+        f"- Heldout final-only gap rows: {counts['heldout_final_only_gap_rows']}",
+        f"- Balanced P0 pilot seed rows: {counts['balanced_pilot_seed_rows']}",
+        "",
+        "## Fingerprints",
+        "",
+    ]
+    for fingerprint_id, count in counts["fingerprint_counts"].items():
+        lines.append(f"- {fingerprint_id}: {count}")
+    lines += [
+        "",
+        "## Chemical Operations",
+        "",
+    ]
+    for operation, count in counts["chemical_operation_counts"].items():
+        lines.append(f"- {operation}: {count}")
+    lines += [
+        "",
+        "## Balanced P0 Pilot Seed Queue",
+        "",
+    ]
+    for row in audit["balanced_pilot_seed_queue"]:
+        lines.append(
+            f"- {row['entry_id']} ({row['fingerprint_id']}, "
+            f"{row['assigned_embedding_split']})"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_materialization_priority(
+    *,
+    row_specific_bond_change_schema_path: Path,
+    feature_contract_path: Path,
+    split_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_materialization_priority(
+        row_specific_bond_change_schema_path=row_specific_bond_change_schema_path,
+        feature_contract_path=feature_contract_path,
+        split_manifest_path=split_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_materialization_priority_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+STRUCTURED_BOND_CHANGE_PREDICATES = {
+    "has_bond_change_event",
+    "has_reaction_participant_mapping",
+    "has_reaction_center_event",
+    "has_row_specific_reaction_event",
+}
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness(
+    *,
+    materialization_priority_path: Path,
+    graph_path: Path,
+) -> dict[str, Any]:
+    priority = _read_json(materialization_priority_path)
+    graph = _read_json(graph_path)
+    nodes = {
+        str(node.get("id")): node
+        for node in graph.get("nodes", [])
+        if isinstance(node, dict) and node.get("id")
+    }
+    outgoing: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for edge in graph.get("edges", []):
+        if isinstance(edge, dict) and edge.get("source"):
+            outgoing[str(edge.get("source"))].append(edge)
+
+    seed_rows = [
+        row
+        for row in priority.get("balanced_pilot_seed_queue", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    row_readiness = []
+    status_counter: Counter[str] = Counter()
+    blocker_counter: Counter[str] = Counter()
+    for row in seed_rows:
+        entry_id = str(row["entry_id"])
+        entry_node = nodes.get(entry_id)
+        entry_edges = outgoing.get(entry_id, [])
+        residue_edges = [
+            edge for edge in entry_edges if edge.get("predicate") == "has_catalytic_residue"
+        ]
+        mechanism_edges = [
+            edge for edge in entry_edges if edge.get("predicate") == "has_mechanism_text"
+        ]
+        ec_edges = [edge for edge in entry_edges if edge.get("predicate") == "has_ec"]
+        rhea_targets = []
+        for ec_edge in ec_edges:
+            ec_id = str(ec_edge.get("target") or "")
+            rhea_targets.extend(
+                str(edge.get("target"))
+                for edge in outgoing.get(ec_id, [])
+                if edge.get("predicate") == "maps_to_reaction" and edge.get("target")
+            )
+        structured_edges = [
+            edge
+            for edge in entry_edges
+            if edge.get("predicate") in STRUCTURED_BOND_CHANGE_PREDICATES
+        ]
+        blockers = []
+        if entry_node is None:
+            blockers.append("m_csa_entry_node_missing")
+        if not mechanism_edges:
+            blockers.append("mechanism_text_edge_missing")
+        if not residue_edges:
+            blockers.append("catalytic_residue_edges_missing")
+        if not ec_edges:
+            blockers.append("ec_mapping_edge_missing")
+        if not rhea_targets:
+            blockers.append("rhea_reaction_mapping_missing")
+        if not structured_edges:
+            blockers.append("structured_bond_change_events_missing")
+        if structured_edges and not blockers:
+            status = "structured_bond_change_source_graph_ready"
+        elif entry_node is not None and mechanism_edges and residue_edges:
+            status = "source_context_present_structured_bond_events_missing"
+        else:
+            status = "source_context_incomplete"
+        status_counter[status] += 1
+        blocker_counter.update(blockers)
+        row_readiness.append(
+            {
+                "entry_id": entry_id,
+                "accession": row.get("accession"),
+                "fingerprint_id": row.get("fingerprint_id"),
+                "assigned_embedding_split": row.get("assigned_embedding_split"),
+                "template_chemical_operation_normalized": row.get(
+                    "template_chemical_operation_normalized"
+                ),
+                "status": status,
+                "blockers": blockers,
+                "source_graph_evidence": {
+                    "m_csa_entry_node_present": entry_node is not None,
+                    "m_csa_entry_name": entry_node.get("name") if entry_node else None,
+                    "catalytic_residue_edge_count": len(residue_edges),
+                    "mechanism_text_edge_count": len(mechanism_edges),
+                    "ec_mapping_count": len(ec_edges),
+                    "ec_targets": sorted(
+                        {str(edge.get("target")) for edge in ec_edges if edge.get("target")}
+                    ),
+                    "rhea_reaction_mapping_count": len(set(rhea_targets)),
+                    "rhea_targets": sorted(set(rhea_targets)),
+                    "structured_bond_change_edge_count": len(structured_edges),
+                },
+                "allowed_for_feature_contract_consumption_now": False,
+                "allowed_for_model_training_now": False,
+                "manual_extraction_required": True,
+            }
+        )
+    row_readiness.sort(key=lambda row: _entry_id_sort_key(row["entry_id"]))
+
+    critical_counts = {
+        "seed_rows_missing": 1 if not seed_rows else 0,
+        "structured_bond_change_ready_rows": status_counter.get(
+            "structured_bond_change_source_graph_ready", 0
+        ),
+        "rows_allowed_for_contract_consumption_now": sum(
+            1
+            for row in row_readiness
+            if row["allowed_for_feature_contract_consumption_now"]
+        ),
+    }
+    ready_rows = status_counter.get("structured_bond_change_source_graph_ready", 0)
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_SOURCE_GRAPH_READINESS_ID
+        ),
+        "schema_version": f"{SCHEMA_VERSION}.row_specific_bond_change_p0_source_graph_readiness",
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_source_graph_context_ready_bond_events_not_structured"
+            if seed_rows and ready_rows == 0
+            else (
+                "p0_source_graph_structured_bond_events_ready"
+                if seed_rows and ready_rows == len(seed_rows)
+                else "p0_source_graph_readiness_partial_or_blocked"
+            )
+        ),
+        "scope": (
+            "No-fit source-graph readiness audit for the balanced P0 "
+            "row-specific bond-change pilot seed queue. It checks frozen local "
+            "graph context only and does not extract mechanism text, materialize "
+            "bond-change events, mutate the feature contract, or fit a model."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "row_specific_source_evidence_materialized": False,
+            "feature_contract_mutated": False,
+            "mechanism_text_used_as_predictive_feature": False,
+            "validation_only": True,
+        },
+        "counts": {
+            "balanced_p0_seed_rows": len(seed_rows),
+            "m_csa_entry_nodes_present": sum(
+                1
+                for row in row_readiness
+                if row["source_graph_evidence"]["m_csa_entry_node_present"]
+            ),
+            "mechanism_text_present_rows": sum(
+                1
+                for row in row_readiness
+                if row["source_graph_evidence"]["mechanism_text_edge_count"] > 0
+            ),
+            "catalytic_residue_edges_present_rows": sum(
+                1
+                for row in row_readiness
+                if row["source_graph_evidence"]["catalytic_residue_edge_count"] > 0
+            ),
+            "ec_mapping_present_rows": sum(
+                1
+                for row in row_readiness
+                if row["source_graph_evidence"]["ec_mapping_count"] > 0
+            ),
+            "rhea_mapping_present_rows": sum(
+                1
+                for row in row_readiness
+                if row["source_graph_evidence"]["rhea_reaction_mapping_count"] > 0
+            ),
+            "structured_bond_change_ready_rows": ready_rows,
+            "manual_extraction_required_rows": sum(
+                1 for row in row_readiness if row["manual_extraction_required"]
+            ),
+            "status_counts": dict(sorted(status_counter.items())),
+            "blocker_counts": dict(sorted(blocker_counter.items())),
+            "critical_counts": critical_counts,
+        },
+        "row_readiness": row_readiness,
+        "interpretation": {
+            "result": (
+                "The balanced P0 seed rows have local M-CSA graph context, "
+                "mechanism-text links, and catalytic-residue edges, but the "
+                "frozen graph does not expose structured row-specific bond-change "
+                "event edges. Rhea reaction mappings are present for the subset "
+                "with local EC-to-Rhea coverage."
+            ),
+            "next_action": (
+                "Use this readiness audit to drive manual/source-backed "
+                "extraction of row-specific reaction participant mappings and "
+                "bond-change events; do not add the feature to the train/cal "
+                "contract until a source-backed sidecar and strict audit exist."
+            ),
+        },
+        "source_artifacts": {
+            "materialization_priority": _source_path_record(
+                materialization_priority_path
+            ),
+            "graph": _source_path_record(graph_path),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 Source-Graph Readiness - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Balanced P0 seed rows: {counts['balanced_p0_seed_rows']}",
+        f"- M-CSA entry nodes present: {counts['m_csa_entry_nodes_present']}",
+        f"- Mechanism text present rows: {counts['mechanism_text_present_rows']}",
+        "- Catalytic residue edge rows: "
+        f"{counts['catalytic_residue_edges_present_rows']}",
+        f"- Rhea mapping present rows: {counts['rhea_mapping_present_rows']}",
+        "- Structured bond-change ready rows: "
+        f"{counts['structured_bond_change_ready_rows']}",
+        f"- Manual extraction required rows: {counts['manual_extraction_required_rows']}",
+        f"- Blocker counts: {counts['blocker_counts']}",
+        "",
+        "## Row Readiness",
+        "",
+    ]
+    for row in audit["row_readiness"]:
+        evidence = row["source_graph_evidence"]
+        lines.append(
+            f"- {row['entry_id']} ({row['fingerprint_id']}): {row['status']}; "
+            f"residues={evidence['catalytic_residue_edge_count']}, "
+            f"mechanism_text={evidence['mechanism_text_edge_count']}, "
+            f"rhea={evidence['rhea_reaction_mapping_count']}, "
+            f"blockers={', '.join(row['blockers'])}"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness(
+    *,
+    materialization_priority_path: Path,
+    graph_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness(
+        materialization_priority_path=materialization_priority_path,
+        graph_path=graph_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+ROW_SPECIFIC_BOND_CHANGE_EXTRACTION_REQUIRED_FIELDS = [
+    "source_record_id",
+    "source_database",
+    "source_record_version_or_date",
+    "row_specific_reaction_participant_mapping",
+    "row_specific_bond_change_events",
+    "active_site_residue_role_support",
+    "source_text_or_database_evidence_span",
+    "extractor_id",
+    "review_status",
+]
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_extraction_work_package(
+    *,
+    source_graph_readiness_path: Path,
+) -> dict[str, Any]:
+    readiness = _read_json(source_graph_readiness_path)
+    row_readiness = [
+        row
+        for row in readiness.get("row_readiness", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+
+    blocker_counter: Counter[str] = Counter()
+    fingerprint_counter: Counter[str] = Counter()
+    extraction_rows = []
+    for row in row_readiness:
+        evidence = row.get("source_graph_evidence") or {}
+        blockers = [
+            str(blocker)
+            for blocker in row.get("blockers", [])
+            if isinstance(blocker, str)
+        ]
+        blocker_counter.update(blockers)
+        fingerprint_id = str(row.get("fingerprint_id") or "unknown")
+        fingerprint_counter[fingerprint_id] += 1
+        rhea_targets = [
+            str(target)
+            for target in evidence.get("rhea_targets", [])
+            if isinstance(target, str)
+        ]
+        extraction_rows.append(
+            {
+                "entry_id": str(row["entry_id"]),
+                "accession": row.get("accession"),
+                "fingerprint_id": fingerprint_id,
+                "assigned_embedding_split": row.get("assigned_embedding_split"),
+                "template_chemical_operation_normalized": row.get(
+                    "template_chemical_operation_normalized"
+                ),
+                "source_context_status": row.get("status"),
+                "blockers": blockers,
+                "recommended_source_targets": {
+                    "m_csa_entry_name": evidence.get("m_csa_entry_name"),
+                    "ec_targets": evidence.get("ec_targets") or [],
+                    "rhea_targets": sorted(set(rhea_targets)),
+                    "rhea_lookup_required": not bool(rhea_targets),
+                },
+                "manual_extraction_template": {
+                    field: None
+                    for field in ROW_SPECIFIC_BOND_CHANGE_EXTRACTION_REQUIRED_FIELDS
+                },
+                "required_event_schema": {
+                    "row_specific_bond_change_events": [
+                        {
+                            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+                            "participants_before": [],
+                            "participants_after": [],
+                            "mapped_active_site_residues": [],
+                            "source_evidence_span": None,
+                            "confidence": "high|medium|low",
+                        }
+                    ],
+                    "row_specific_reaction_participant_mapping": [
+                        {
+                            "participant_id": None,
+                            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+                            "source_identifier": None,
+                            "mapped_atom_or_group": None,
+                        }
+                    ],
+                },
+                "acceptance_criteria": [
+                    "all_required_fields_non_null",
+                    "at_least_one_source_backed_bond_change_event",
+                    "reaction_participant_mapping_covers_each_bond_change_event",
+                    "active_site_residue_support_links_to_current_row_residues",
+                    "review_status_approved_before_feature_contract_use",
+                ],
+                "allowed_for_feature_contract_consumption_now": False,
+                "allowed_for_model_training_now": False,
+                "extraction_status": "manual_extraction_not_started",
+            }
+        )
+    extraction_rows.sort(key=lambda row: _entry_id_sort_key(row["entry_id"]))
+
+    rows_with_rhea = sum(
+        1
+        for row in extraction_rows
+        if row["recommended_source_targets"]["rhea_targets"]
+    )
+    critical_counts = {
+        "source_graph_readiness_rows_missing": 1 if not row_readiness else 0,
+        "rows_allowed_for_feature_contract_consumption_now": sum(
+            1
+            for row in extraction_rows
+            if row["allowed_for_feature_contract_consumption_now"]
+        ),
+        "rows_allowed_for_model_training_now": sum(
+            1 for row in extraction_rows if row["allowed_for_model_training_now"]
+        ),
+    }
+    passed = row_readiness and all(value == 0 for value in critical_counts.values())
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_EXTRACTION_WORK_PACKAGE_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_extraction_work_package"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_row_specific_bond_change_extraction_work_package_ready_manual_only"
+            if passed
+            else "p0_row_specific_bond_change_extraction_work_package_blocked"
+        ),
+        "scope": (
+            "No-fit manual extraction work package for the balanced P0 "
+            "row-specific bond-change pilot seed. It defines row-level required "
+            "fields and acceptance criteria, but does not extract or materialize "
+            "source evidence, mutate feature contracts, or fit a model."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "row_specific_source_evidence_materialized": False,
+            "feature_contract_mutated": False,
+            "manual_extraction_templates_only": True,
+        },
+        "counts": {
+            "p0_seed_rows": len(row_readiness),
+            "manual_extraction_rows": len(extraction_rows),
+            "rows_with_rhea_targets": rows_with_rhea,
+            "rows_requiring_rhea_lookup": len(extraction_rows) - rows_with_rhea,
+            "rows_with_structured_bond_change_events_now": 0,
+            "fingerprint_counts": dict(sorted(fingerprint_counter.items())),
+            "blocker_counts": dict(sorted(blocker_counter.items())),
+            "required_field_count": len(
+                ROW_SPECIFIC_BOND_CHANGE_EXTRACTION_REQUIRED_FIELDS
+            ),
+            "critical_counts": critical_counts,
+        },
+        "required_fields": ROW_SPECIFIC_BOND_CHANGE_EXTRACTION_REQUIRED_FIELDS,
+        "extraction_rows": extraction_rows,
+        "commands": {
+            "rebuild_source_graph_readiness": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-mechanism-feature-row-specific-bond-change-"
+                "p0-source-graph-readiness"
+            ),
+            "rebuild_extraction_work_package": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-mechanism-feature-row-specific-bond-change-"
+                "p0-extraction-work-package"
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The balanced P0 pilot is ready for manual/source-backed "
+                "extraction planning, not feature consumption: every row still "
+                "needs approved row-specific participant mappings and "
+                "bond-change events."
+            ),
+            "next_action": (
+                "Fill these templates from source-backed M-CSA/Rhea/mechanism "
+                "evidence, run a strict sidecar audit, and only then consider a "
+                "no-fit feature-contract refresh."
+            ),
+        },
+        "source_artifacts": {
+            "source_graph_readiness": _source_path_record(source_graph_readiness_path),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 Extraction Work Package - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- P0 seed rows: {counts['p0_seed_rows']}",
+        f"- Manual extraction rows: {counts['manual_extraction_rows']}",
+        f"- Rows with Rhea targets: {counts['rows_with_rhea_targets']}",
+        f"- Rows requiring Rhea lookup: {counts['rows_requiring_rhea_lookup']}",
+        f"- Required sidecar fields: {counts['required_field_count']}",
+        f"- Blocker counts: {counts['blocker_counts']}",
+        "",
+        "## Extraction Rows",
+        "",
+    ]
+    for row in audit["extraction_rows"]:
+        targets = row["recommended_source_targets"]
+        lines.append(
+            f"- {row['entry_id']} ({row['fingerprint_id']}): "
+            f"rhea={len(targets['rhea_targets'])}, "
+            f"lookup_required={targets['rhea_lookup_required']}, "
+            f"status={row['extraction_status']}"
+        )
+    lines += [
+        "",
+        "## Required Fields",
+        "",
+    ]
+    for field in audit["required_fields"]:
+        lines.append(f"- {field}")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_extraction_work_package(
+    *,
+    source_graph_readiness_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_extraction_work_package(
+        source_graph_readiness_path=source_graph_readiness_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit(
+    *,
+    extraction_work_package_path: Path,
+) -> dict[str, Any]:
+    package = _read_json(extraction_work_package_path)
+    rows = [
+        row
+        for row in package.get("extraction_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    required_fields = [
+        str(field)
+        for field in package.get("required_fields", [])
+        if isinstance(field, str)
+    ]
+    expected_fields = ROW_SPECIFIC_BOND_CHANGE_EXTRACTION_REQUIRED_FIELDS
+    row_audits = []
+    violation_counter: Counter[str] = Counter()
+    for row in rows:
+        template = row.get("manual_extraction_template")
+        if not isinstance(template, dict):
+            template = {}
+        missing_fields = [field for field in expected_fields if field not in template]
+        unexpected_fields = sorted(set(template) - set(expected_fields))
+        non_null_fields = [
+            field
+            for field, value in template.items()
+            if field in expected_fields and value is not None
+        ]
+        acceptance_criteria = row.get("acceptance_criteria")
+        if not isinstance(acceptance_criteria, list):
+            acceptance_criteria = []
+        violations = []
+        if missing_fields:
+            violations.append("required_template_fields_missing")
+        if unexpected_fields:
+            violations.append("unexpected_template_fields")
+        if non_null_fields:
+            violations.append("template_contains_materialized_values")
+        if row.get("extraction_status") != "manual_extraction_not_started":
+            violations.append("extraction_status_not_template_only")
+        if row.get("allowed_for_feature_contract_consumption_now"):
+            violations.append("feature_contract_consumption_allowed")
+        if row.get("allowed_for_model_training_now"):
+            violations.append("model_training_allowed")
+        if len(acceptance_criteria) < 5:
+            violations.append("acceptance_criteria_incomplete")
+        violation_counter.update(violations)
+        row_audits.append(
+            {
+                "entry_id": str(row["entry_id"]),
+                "status": "passed_template_only" if not violations else "failed",
+                "missing_fields": missing_fields,
+                "unexpected_fields": unexpected_fields,
+                "non_null_template_fields": non_null_fields,
+                "acceptance_criteria_count": len(acceptance_criteria),
+                "violations": violations,
+            }
+        )
+    expected_field_violation = required_fields != expected_fields
+    if expected_field_violation:
+        violation_counter["package_required_fields_mismatch"] += 1
+    guardrails = package.get("guardrails") if isinstance(package.get("guardrails"), dict) else {}
+    if guardrails.get("row_specific_source_evidence_materialized"):
+        violation_counter["source_evidence_materialized"] += 1
+    if guardrails.get("feature_contract_mutated"):
+        violation_counter["feature_contract_mutated"] += 1
+    if not guardrails.get("manual_extraction_templates_only"):
+        violation_counter["manual_templates_only_guardrail_missing"] += 1
+
+    critical_counts = {
+        "extraction_rows_missing": 1 if not rows else 0,
+        "package_required_fields_mismatch": 1 if expected_field_violation else 0,
+        "row_template_violation_rows": sum(
+            1 for row in row_audits if row["violations"]
+        ),
+        "rows_allowed_for_feature_contract_consumption_now": sum(
+            1
+            for row in rows
+            if row.get("allowed_for_feature_contract_consumption_now")
+        ),
+        "rows_allowed_for_model_training_now": sum(
+            1 for row in rows if row.get("allowed_for_model_training_now")
+        ),
+        "source_evidence_materialized": (
+            1 if guardrails.get("row_specific_source_evidence_materialized") else 0
+        ),
+    }
+    passed = all(value == 0 for value in critical_counts.values())
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_EXTRACTION_PACKAGE_STRICT_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_extraction_package_strict_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_extraction_work_package_strict_audit_passed"
+            if passed
+            else "p0_extraction_work_package_strict_audit_failed"
+        ),
+        "scope": (
+            "Strict template-only audit for the P0 row-specific bond-change "
+            "extraction work package. It verifies that required manual fields "
+            "are present but unfilled, rows are not consumable, and no source "
+            "evidence has been materialized."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "row_specific_source_evidence_materialized": False,
+            "feature_contract_mutated": False,
+            "strict_audit_only": True,
+        },
+        "counts": {
+            "extraction_rows": len(rows),
+            "passed_template_only_rows": sum(
+                1 for row in row_audits if row["status"] == "passed_template_only"
+            ),
+            "rows_with_non_null_template_values": sum(
+                1 for row in row_audits if row["non_null_template_fields"]
+            ),
+            "required_field_count": len(expected_fields),
+            "violation_counts": dict(sorted(violation_counter.items())),
+            "critical_counts": critical_counts,
+            "strict_audit_critical_violation_total": sum(critical_counts.values()),
+        },
+        "expected_required_fields": expected_fields,
+        "row_audits": row_audits,
+        "interpretation": {
+            "result": (
+                "The P0 extraction work package is schema-complete and "
+                "template-only: it contains manual extraction slots and "
+                "acceptance criteria but no materialized row-specific "
+                "bond-change evidence."
+            ),
+            "next_action": (
+                "Only after source-backed values are filled should a future "
+                "sidecar audit check evidence provenance and decide whether a "
+                "no-fit feature-contract refresh is allowed."
+            ),
+        },
+        "source_artifacts": {
+            "extraction_work_package": _source_path_record(
+                extraction_work_package_path
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 Extraction Package Strict Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Extraction rows: {counts['extraction_rows']}",
+        f"- Passed template-only rows: {counts['passed_template_only_rows']}",
+        "- Rows with non-null template values: "
+        f"{counts['rows_with_non_null_template_values']}",
+        f"- Required field count: {counts['required_field_count']}",
+        "- Strict critical violations: "
+        f"{counts['strict_audit_critical_violation_total']}",
+        f"- Violation counts: {counts['violation_counts']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit(
+    *,
+    extraction_work_package_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = (
+        build_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit(
+            extraction_work_package_path=extraction_work_package_path,
+        )
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_report(
                 audit
             ),
             encoding="utf-8",

@@ -1,11 +1,11 @@
 {
   "artifact_id": "v3_current_docs_artifact_reference_check_current702_20260601",
   "counts": {
-    "ignored_references": 7,
+    "ignored_references": 9,
     "missing_references": 0,
-    "references_checked": 445
+    "references_checked": 469
   },
-  "created_utc": "2026-06-01T17:53:56Z",
+  "created_utc": "2026-06-01T19:11:20Z",
   "docs_checked": [
     "docs/artifact_index.md",
     "docs/project_state.md",
@@ -38,6 +38,16 @@
       "doc": "docs/agent_runbook.md",
       "reason": "glob_pattern",
       "reference": "artifacts/v3_*.jsonl"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/v3_*.tsv"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "work/*.md"
     },
     {
       "doc": "docs/agent_runbook.md",

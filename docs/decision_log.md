@@ -672,6 +672,50 @@ input rows, 140 heldout rows remain excluded, and fingerprint/label/stratum
 fields remain outside the feature surface. No model fit, threshold selection,
 heldout evaluation, import, label change, or production scorer change occurred.
 
+Row-specific bond-change priority follow-up: intersect the staged
+row-specific bond-change schema with the current no-fit feature contract and
+train/cal split manifest. The priority manifest partitions 232 evidence-required
+rows into 171 P0 train/cal feature-contract gap rows, 13 P1 in-distribution rows
+that need upstream feature-bundle repair before contract use, and 48 P2 heldout
+final-only rows. It also stages a balanced 15-row P0 pilot seed queue across the
+five current primary fingerprints. No source evidence was materialized and no
+feature contract, label, split, threshold, model weight, import, registry,
+ontology, or production scorer changed.
+
+P0 source-graph readiness follow-up: audit that balanced 15-row P0 seed queue
+against the frozen local M-CSA graph. All 15 rows have entry-node,
+mechanism-text, catalytic-residue, and EC context; 11/15 have EC-to-Rhea
+mappings; 0/15 have structured row-specific bond-change event predicates. This
+does not materialize source evidence or authorize feature-contract consumption;
+it converts the next work into manual/source-backed extraction of reaction
+participant mappings and bond-change events.
+
+P0 extraction-work-package follow-up: turn the readiness audit into a bounded
+manual extraction package with 15 row templates, nine required source-backed
+fields, event/mapping acceptance criteria, and per-row Rhea lookup flags. The
+package is templates-only: every row remains `manual_extraction_not_started`,
+and no source evidence, feature row, model input, threshold, label, registry,
+ontology, import, or production scorer changed.
+
+P0 extraction-package strict-audit follow-up: add a schema/guardrail audit for
+that work package. It validates 15/15 template rows, 0 non-null extracted
+values, 0 rows allowed for feature-contract or model use, and 0 critical
+violations. The next safe step remains filling those templates from
+source-backed evidence, then auditing the resulting sidecar before any no-fit
+feature-contract refresh.
+
+P0 extraction-worksheet follow-up: export the same 15 P0 template rows as a TSV
+manual-fill worksheet. All source-evidence fields are blank by construction and
+four rows are flagged for Rhea lookup. The worksheet is not a sidecar and must
+not be consumed by a feature contract unless it is later filled from
+source-backed evidence and passes a strict evidence audit.
+
+P0 source-evidence sidecar-schema follow-up: stage the schema and audit plan
+for the future filled sidecar. It requires 12 row fields, six event fields, and
+four participant-mapping fields, names forbidden predictive fields, and defines
+evidence/leakage checks. This remains schema-only with 0 materialized source
+values.
+
 Artifacts:
 `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
 `work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
@@ -706,7 +750,19 @@ Artifacts:
 `artifacts/v3_mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601.json`,
 `work/mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601.md`,
 `artifacts/v3_mechanism_feature_embedding_train_cal_guardrail_audit_current702_20260601.json`,
-`work/mechanism_feature_embedding_train_cal_guardrail_audit_current702_20260601.md`.
+`work/mechanism_feature_embedding_train_cal_guardrail_audit_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.tsv`,
+`work/mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.md`.
 
 ## 2026-06-01: Thiol/Disulfide Redox Boundary Panel Packet Added
 

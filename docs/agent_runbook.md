@@ -21,6 +21,10 @@ the main repo.
 - `work/*.md` for human-readable reports from a bounded run.
 - New `artifacts/v3_*.json` or `artifacts/v3_*.jsonl` when a task explicitly
   asks for machine-readable audit outputs.
+- New worksheet-style `artifacts/v3_*.tsv` only when it is explicitly
+  manual-fill or review-only, has a matching `work/*.md` report, and is not
+  consumed by training, threshold selection, or a feature contract until a
+  strict evidence audit passes.
 - Code and tests only when the task requires implementation.
 
 ## Forbidden Or Approval-Gated Edits
@@ -113,6 +117,9 @@ the residual risk in the final status.
   before making sequence-to-predicted-structure claims.
 - A row in a review packet, scout, or PyMOL queue is not countable label
   support until it passes explicit import and label-factory gates.
+- A manual extraction worksheet is not source evidence. Treat blank worksheet
+  cells as a to-do list, not as a sidecar, and require a strict source-evidence
+  audit before using any filled values in feature generation.
 - Existing ProtT5 and SaProt exports are not fair logistic-head peers for
   ESM-2/ESM-C until row-aligned local sidecars or local weights exist.
 

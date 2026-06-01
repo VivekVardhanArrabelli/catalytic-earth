@@ -1,0 +1,128 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601",
+  "counts": {
+    "allowed_review_status_count": 4,
+    "critical_counts": {
+      "feature_contract_rows_created": 0,
+      "source_values_materialized_now": 0,
+      "worksheet_rows_missing": 0
+    },
+    "p0_worksheet_rows": 15,
+    "required_event_field_count": 6,
+    "required_mapping_field_count": 4,
+    "required_row_field_count": 12,
+    "source_values_materialized_now": 0
+  },
+  "created_utc": "2026-06-01T18:51:25Z",
+  "guardrails": {
+    "feature_contract_mutated": false,
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "row_specific_source_evidence_materialized": false,
+    "schema_only_no_values": true
+  },
+  "interpretation": {
+    "next_action": "Fill the worksheet from source-backed evidence, emit a sidecar conforming to this schema, and run the strict evidence audit before any no-fit feature-contract refresh.",
+    "result": "The P0 extraction worksheet now has an explicit future sidecar schema and strict audit plan, but no row-specific source evidence has been filled."
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_source_evidence_sidecar_schema",
+  "scope": "Schema and audit plan for a future source-backed row-specific bond-change sidecar derived from the P0 extraction worksheet. This artifact is schema-only and does not fill source evidence, mutate feature contracts, or fit a model.",
+  "sidecar_schema": {
+    "allowed_event_types": [
+      "bond_formed",
+      "bond_broken",
+      "bond_order_changed",
+      "proton_transfer",
+      "electron_transfer"
+    ],
+    "allowed_participant_roles": [
+      "substrate",
+      "product",
+      "cofactor",
+      "catalytic_residue",
+      "water",
+      "metal",
+      "other"
+    ],
+    "allowed_review_statuses": [
+      "draft",
+      "needs_more_evidence",
+      "approved",
+      "rejected"
+    ],
+    "forbidden_predictive_fields": [
+      "label_type",
+      "target_label",
+      "true_fingerprint",
+      "split_assignment",
+      "geometry_score",
+      "fold_score",
+      "abstention_decision"
+    ],
+    "required_event_fields": [
+      "event_type",
+      "participants_before",
+      "participants_after",
+      "mapped_active_site_residues",
+      "source_evidence_span",
+      "confidence"
+    ],
+    "required_mapping_fields": [
+      "participant_id",
+      "role",
+      "source_identifier",
+      "mapped_atom_or_group"
+    ],
+    "required_row_fields": [
+      "entry_id",
+      "accession",
+      "source_record_id",
+      "source_database",
+      "source_record_version_or_date",
+      "row_specific_reaction_participant_mapping",
+      "row_specific_bond_change_events",
+      "active_site_residue_role_support",
+      "source_text_or_database_evidence_span",
+      "extractor_id",
+      "review_status",
+      "reviewer_id"
+    ]
+  },
+  "source_artifacts": {
+    "extraction_package_strict_audit": {
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.json",
+      "sha256": "b23aec738963aa464564e1aaaa1e3687e40008520144fab700da9aefd765048b"
+    },
+    "extraction_work_package": {
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.json",
+      "sha256": "17700859acd6ac7e737d690e09bc4f4a91f5d611b6c609d8037c693d4ca8eea9"
+    },
+    "extraction_worksheet": {
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.tsv",
+      "sha256": "d1dc5f9edcdb5009c21e4e04a9253875280ec471216db8911435204c398e2a21"
+    }
+  },
+  "status": "p0_source_evidence_sidecar_schema_staged_no_fit",
+  "strict_audit_plan": {
+    "evidence_checks": [
+      "approved rows have non-empty source_record_id/source_database/source span",
+      "approved rows have at least one bond-change event",
+      "each bond-change event has participant mapping coverage",
+      "active_site_residue_role_support references current row residues"
+    ],
+    "failure_policy": "any missing required approved-row evidence blocks feature-contract refresh",
+    "leakage_checks": [
+      "no forbidden predictive fields",
+      "no heldout threshold or score fields",
+      "feature contract remains unchanged until audit passes"
+    ],
+    "row_alignment_checks": [
+      "all worksheet entry_ids present exactly once",
+      "no extra sidecar rows",
+      "accessions match worksheet when available"
+    ]
+  }
+}

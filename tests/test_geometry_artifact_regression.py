@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import json
 import sys
 import unittest
@@ -3083,6 +3084,221 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(audit["counts"]["strict_audit_critical_violation_total"], 0)
         self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
 
+    def test_row_specific_bond_change_materialization_priority_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_materialization_priority_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "row_specific_bond_change_materialization_priority_ready_no_fit",
+        )
+        self.assertEqual(
+            audit["counts"]["rows_requiring_row_specific_bond_change_evidence"],
+            232,
+        )
+        self.assertEqual(
+            audit["counts"]["priority_tier_counts"],
+            {
+                "P0_train_cal_feature_contract_gap": 171,
+                "P1_in_distribution_not_feature_contract_ready": 13,
+                "P2_heldout_final_only_evidence_gap": 48,
+            },
+        )
+        self.assertEqual(audit["counts"]["train_cal_feature_contract_gap_rows"], 171)
+        self.assertEqual(
+            audit["counts"]["in_distribution_not_feature_contract_ready_rows"],
+            13,
+        )
+        self.assertEqual(audit["counts"]["heldout_final_only_gap_rows"], 48)
+        self.assertEqual(audit["counts"]["balanced_pilot_seed_rows"], 15)
+        self.assertEqual(
+            audit["counts"]["embedding_split_counts"],
+            {"calibration": 35, "not_in_split_manifest": 61, "train": 136},
+        )
+        self.assertTrue(
+            all(count == 0 for count in audit["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(audit["guardrails"]["row_specific_source_evidence_materialized"])
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+        self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
+        self.assertEqual(
+            {
+                row["fingerprint_id"]
+                for row in audit["balanced_pilot_seed_queue"]
+            },
+            {
+                "flavin_dehydrogenase_reductase",
+                "heme_peroxidase_oxidase",
+                "metal_dependent_hydrolase",
+                "plp_dependent_enzyme",
+                "ser_his_acid_hydrolase",
+            },
+        )
+
+    def test_row_specific_bond_change_p0_source_graph_readiness_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_source_graph_context_ready_bond_events_not_structured",
+        )
+        self.assertEqual(audit["counts"]["balanced_p0_seed_rows"], 15)
+        self.assertEqual(audit["counts"]["m_csa_entry_nodes_present"], 15)
+        self.assertEqual(audit["counts"]["mechanism_text_present_rows"], 15)
+        self.assertEqual(audit["counts"]["catalytic_residue_edges_present_rows"], 15)
+        self.assertEqual(audit["counts"]["ec_mapping_present_rows"], 15)
+        self.assertEqual(audit["counts"]["rhea_mapping_present_rows"], 11)
+        self.assertEqual(audit["counts"]["structured_bond_change_ready_rows"], 0)
+        self.assertEqual(audit["counts"]["manual_extraction_required_rows"], 15)
+        self.assertEqual(
+            audit["counts"]["blocker_counts"],
+            {
+                "rhea_reaction_mapping_missing": 4,
+                "structured_bond_change_events_missing": 15,
+            },
+        )
+        self.assertEqual(
+            audit["counts"]["status_counts"],
+            {"source_context_present_structured_bond_events_missing": 15},
+        )
+        self.assertFalse(audit["guardrails"]["row_specific_source_evidence_materialized"])
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+        self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
+
+    def test_row_specific_bond_change_p0_extraction_package_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_extraction_work_package_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_row_specific_bond_change_extraction_work_package_ready_manual_only",
+        )
+        self.assertEqual(audit["counts"]["p0_seed_rows"], 15)
+        self.assertEqual(audit["counts"]["manual_extraction_rows"], 15)
+        self.assertEqual(audit["counts"]["rows_with_rhea_targets"], 11)
+        self.assertEqual(audit["counts"]["rows_requiring_rhea_lookup"], 4)
+        self.assertEqual(audit["counts"]["rows_with_structured_bond_change_events_now"], 0)
+        self.assertEqual(audit["counts"]["required_field_count"], 9)
+        self.assertEqual(
+            audit["counts"]["fingerprint_counts"],
+            {
+                "flavin_dehydrogenase_reductase": 3,
+                "heme_peroxidase_oxidase": 3,
+                "metal_dependent_hydrolase": 3,
+                "plp_dependent_enzyme": 3,
+                "ser_his_acid_hydrolase": 3,
+            },
+        )
+        self.assertTrue(
+            all(count == 0 for count in audit["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(audit["guardrails"]["row_specific_source_evidence_materialized"])
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+        self.assertTrue(audit["guardrails"]["manual_extraction_templates_only"])
+
+    def test_row_specific_bond_change_p0_extraction_strict_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_extraction_work_package_strict_audit_passed",
+        )
+        self.assertEqual(audit["counts"]["extraction_rows"], 15)
+        self.assertEqual(audit["counts"]["passed_template_only_rows"], 15)
+        self.assertEqual(audit["counts"]["rows_with_non_null_template_values"], 0)
+        self.assertEqual(audit["counts"]["required_field_count"], 9)
+        self.assertEqual(audit["counts"]["violation_counts"], {})
+        self.assertEqual(audit["counts"]["strict_audit_critical_violation_total"], 0)
+        self.assertTrue(
+            all(count == 0 for count in audit["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(audit["guardrails"]["row_specific_source_evidence_materialized"])
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+        self.assertTrue(audit["guardrails"]["strict_audit_only"])
+
+    def test_row_specific_bond_change_p0_extraction_worksheet_current_counts(
+        self,
+    ) -> None:
+        worksheet_path = (
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.tsv"
+        )
+        with worksheet_path.open(encoding="utf-8", newline="") as handle:
+            rows = list(csv.DictReader(handle, delimiter="\t"))
+
+        self.assertEqual(len(rows), 15)
+        self.assertEqual(rows[0]["entry_id"], "m_csa:5")
+        self.assertEqual(rows[-1]["entry_id"], "m_csa:186")
+        self.assertEqual(
+            {row["fingerprint_id"] for row in rows},
+            {
+                "flavin_dehydrogenase_reductase",
+                "heme_peroxidase_oxidase",
+                "metal_dependent_hydrolase",
+                "plp_dependent_enzyme",
+                "ser_his_acid_hydrolase",
+            },
+        )
+        self.assertEqual(
+            sum(1 for row in rows if row["rhea_lookup_required"] == "true"),
+            4,
+        )
+        self.assertTrue(all(row["source_record_id"] == "" for row in rows))
+        self.assertTrue(
+            all(row["row_specific_bond_change_events"] == "" for row in rows)
+        )
+        self.assertTrue(all(row["review_status"] == "" for row in rows))
+
+    def test_row_specific_bond_change_p0_source_evidence_schema_current_counts(
+        self,
+    ) -> None:
+        schema = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json"
+        )
+
+        self.assertEqual(schema["status"], "p0_source_evidence_sidecar_schema_staged_no_fit")
+        self.assertEqual(schema["counts"]["p0_worksheet_rows"], 15)
+        self.assertEqual(schema["counts"]["required_row_field_count"], 12)
+        self.assertEqual(schema["counts"]["required_event_field_count"], 6)
+        self.assertEqual(schema["counts"]["required_mapping_field_count"], 4)
+        self.assertEqual(schema["counts"]["source_values_materialized_now"], 0)
+        self.assertTrue(
+            all(count == 0 for count in schema["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(
+            schema["guardrails"]["row_specific_source_evidence_materialized"]
+        )
+        self.assertFalse(schema["guardrails"]["feature_contract_mutated"])
+        self.assertIn(
+            "geometry_score",
+            schema["sidecar_schema"]["forbidden_predictive_fields"],
+        )
+
     def test_mechanism_feature_inorganic_cofactor_locus_schema_current_counts(
         self,
     ) -> None:
@@ -3618,12 +3834,13 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
 
         self.assertEqual(audit["status"], "current_run_artifact_integrity_audit_passed")
-        self.assertEqual(audit["counts"]["json_artifacts_checked"], 6)
-        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 6)
-        self.assertEqual(audit["counts"]["work_reports_checked"], 6)
-        self.assertEqual(audit["counts"]["work_reports_present"], 6)
-        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3113)
-        self.assertEqual(audit["counts"]["repo_jsonl_artifacts_parse_checked"], 25)
+        self.assertEqual(audit["schema_version"], "current_run_artifact_integrity.v2")
+        self.assertEqual(audit["counts"]["json_artifacts_checked"], 12)
+        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 12)
+        self.assertEqual(audit["counts"]["work_reports_checked"], 12)
+        self.assertEqual(audit["counts"]["work_reports_present"], 12)
+        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3123)
+        self.assertEqual(audit["counts"]["repo_jsonl_artifacts_parse_checked"], 26)
         self.assertEqual(audit["counts"]["repo_json_parse_error_count"], 0)
         self.assertEqual(audit["counts"]["label_registry_mutations"], 0)
         self.assertEqual(audit["counts"]["new_coordinates_fetched"], 0)
@@ -3632,7 +3849,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(audit["guardrails"]["production_thresholds_changed"])
         self.assertFalse(audit["guardrails"]["new_coordinates_fetched"])
         self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
-        self.assertEqual(len(audit["artifact_rows"]), 6)
+        self.assertTrue(
+            all(count == 0 for count in audit["critical_counts"].values())
+        )
+        self.assertEqual(len(audit["artifact_rows"]), 12)
         self.assertEqual(
             audit["artifact_rows"][-1]["category"],
             "docs_reference_check",
