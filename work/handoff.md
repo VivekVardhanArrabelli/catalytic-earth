@@ -63,8 +63,9 @@ Automation run: `catalytic-earth-work-loop`
 - ELAPSED_MINUTES: `50.4`
 - Lock acquire result:
   `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "9071", "started_at": "2026-06-01T18:20:34Z", "status": "acquired"}`
-- Lock release result: pending until after commit, push, sync verification, and
-  clean worktree.
+- Lock release result: pending until after the follow-up handoff commit is
+  pushed and sync-verified from a clean worktree; final release result is
+  reported in the automation response.
 - Git branch at start/end: `main` / `main`
 - Git HEAD at start: `95e15ed417ccd8d9ed775b7ec0107fa6c0cc5bb5`
 - Git HEAD at end before commit: `95e15ed417ccd8d9ed775b7ec0107fa6c0cc5bb5`
@@ -130,7 +131,9 @@ Automation run: `catalytic-earth-work-loop`
   CLI validate, git diff check, focused unit/CLI/regression tests, JSON/JSONL
   parse sweep (`3123` JSON and `26` JSONL files), current-docs reference check
   (`469` checked, 0 missing), and current-run integrity audit passed.
-- Commit/push result: pending at handoff draft.
+- Commit/push result: main work commit
+  `f1a07f136963f41e2825eb2173f0a9a241c87141` pushed to `origin/main`.
+  Follow-up handoff-only commit pending at this line edit.
 - Exact next action for the next run:
   fill the P0 row-specific bond-change extraction worksheet from source-backed
   M-CSA/Rhea/mechanism evidence, emit a sidecar conforming to the staged schema,
