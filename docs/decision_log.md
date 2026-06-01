@@ -244,6 +244,102 @@ fold fingerprints agree, and flags `mh_073` plus
 review. No source adjudication, family admission, labels, imports, registries,
 thresholds, splits, or production scorers changed.
 
+`mh_066` source-check follow-up: complete a frozen-local review-only source
+check for the IMP-1 metallo-beta-lactamase row. The source-free geometry and
+predicted-fold channels agree on `metal_dependent_hydrolase`, local 1DD6
+coordinate metadata supports a zinc metallo-beta-lactamase hydrolase context,
+and current702 has no exact P52699 accession duplicate. The nearest predicted
+fold atlas row is still an occupied B1 beta-lactamase seed (`m_csa:15`), and
+the external row lacks an extracted row-specific bond-change/residue-role
+sidecar plus duplicate/split/expert admission. Keep `mh_066` review-only and
+non-countable; do not promote or import it without a future explicitly
+authorized admission packet.
+
+`mh_073` source-check follow-up: complete a frozen-local review-only source
+check for the H-Ras row. Local 121P coordinate metadata supports an Mg/GTPase
+nucleotide locus, the external panel predeclares it as a hard negative against
+Mg/nucleotide leakage, and the source-free geometry channel disagrees with the
+metal-hydrolase fold hit. The nearest predicted-fold atlas row is `m_csa:535`,
+a current702 GTPase-like seed currently labeled `metal_dependent_hydrolase`,
+which makes `mh_073` a boundary/leakage diagnostic rather than promotion
+evidence. Keep it review-only and non-countable unless a future authorized
+GTPase-boundary policy reopens current702 scope.
+
+Radical-SAM source-check follow-up: complete a frozen-local review-only source
+check for `secondary_probe::radical_sam_enzyme` using the freeze artifact,
+local 8VPO coordinate metadata, the approved SF4-contact locator, and current
+family-panel readouts. The evidence supports a TigE radical-SAM/Fe-S locus, but
+the source-free geometry channel calls `metal_dependent_hydrolase` and the
+nearest predicted-fold atlas row is the PLP-dependent seed `m_csa:358`.
+Current702 has no exact A0A1M6T2I7 duplicate and only one radical-SAM secondary
+probe row, so this is useful radical/Fe-S panel evidence but remains
+review-only and non-importable pending row-specific bond-change, duplicate/split
+review, and expert admission.
+
+Remaining-locator queue follow-up: classify the seven family-panel rows still
+blocked on approved source-free active-site locators after the three source
+checks. All seven have AFDB coordinate hashes and source-backed fold scores, but
+none is scoring-ready. Two rows need UniProt position validation (`mh_065`,
+`mh_072`), two need split-safe same-accession template checks (`mh_067`,
+`mh_068`), one needs ligand-specificity review (`external_glycoside_panel`),
+one has manually approved alternate-coordinate fetch commands but requires
+approval before any fetch (`mh_064`), and Q59490 needs a new nonlabel locator
+strategy or explicitly authorized alternate source row. No sidecars were copied,
+coordinates fetched, geometry scored, labels/imports changed, or thresholds
+touched.
+
+UniProt-position validation follow-up: attempt the `mh_065`/`mh_072`
+sequence-position validation using only frozen local candidate sidecars and
+selected PDB mmCIF mappings. Both rows remain blocked because the selected PDB
+`struct_ref` accessions do not match the source-row accessions: `1DDK` maps to
+`Q932P5` rather than `Q79MP6`, and `1E9I` maps to `P08324` rather than
+`P0A6P9`. The candidate contacts remain review evidence, but no source-free
+locator sidecar can be copied and no predicted-geometry score can be produced
+without an explicit representative-accession equivalence policy or a frozen
+coordinate whose mapping matches the requested source accession.
+
+Split-safe template follow-up: check `mh_067` and `mh_068` against the current702
+manifest before any locator copy. Both candidates have validated
+sequence-position locators, no forbidden source/label predictive fields, and
+same-accession current702 matches that are in-distribution seed rows
+(`m_csa:216` for P00918 and `m_csa:158` for P15289), not heldout rows. This
+clears the split-safety question as review-only evidence, but it does not copy
+sidecars or authorize predicted-geometry scoring; manual locator-copy approval
+is still required before either row can enter the audited locator directory.
+
+Ligand-specificity follow-up: review the `external_glycoside_panel` selected
+coordinate ligand before any locator copy. The current candidate selected
+acetate (`ACT`) in local unliganded MYORG structure `7QQF`; that ligand is too
+nonspecific for a glycoside-hydrolase active-site locator. Frozen NAG contacts
+exist in the same candidate extraction, but local annotations include
+glycan/N-glycosylation context, so they are not an automatic catalytic-substrate
+replacement. Keep the row blocked until a dedicated glycoside-ligand validator
+or an explicitly approved substrate-complex coordinate is available.
+
+No-ligand policy-blocker follow-up: isolate the remaining no-ligand/metal
+source-free locator blockers. `mh_064` cannot proceed from selected structure
+`3PG4`; it has five frozen alternate-coordinate fetch commands but those
+require explicit approval before any download. Q59490 has no detected ligand or
+metal site in selected `1L1L` and no frozen alternate PDB IDs, so it needs a
+reviewed nonlabel locator strategy or approved alternate source row. No
+coordinates were fetched, no locator sidecars were copied, and no scoring was
+run.
+
+Resolution-status follow-up: consolidate the seven unresolved source-free
+locator blockers into one current status artifact. Automation discovery is now
+complete for all seven, 0/7 are scoring-ready, and every remaining action is a
+policy or human-review decision: accession equivalence or matching coordinates
+for `mh_065`/`mh_072`, copy approval for `mh_067`/`mh_068`, ligand validator or
+substrate coordinate for `external_glycoside_panel`, alternate-coordinate fetch
+approval for `mh_064`, and a nonlabel locator strategy or alternate source row
+for Q59490.
+
+Integrity follow-up: index the current run's 10 new JSON artifacts and 10 work
+reports in a parse/presence audit. The audit records no label/registry/ontology
+mutation, no production-threshold mutation, no coordinate fetches, no model
+fit, and no predicted-geometry scoring; validation results are captured for
+pytest, unittest discovery, compileall, `validate`, and diff-check.
+
 Artifacts:
 `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`,
 `work/fold_augmented_family_panel_research_readout_current702_20260601.md`,
@@ -277,6 +373,26 @@ Artifacts:
 `work/family_panel_source_free_predicted_geometry_retrieval_current702_20260601.md`,
 `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.json`,
 `work/family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_066_current702_20260601.json`,
+`work/family_panel_source_free_predicted_geometry_source_check_mh_066_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601.json`,
+`work/family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_predicted_geometry_source_check_secondary_probe_radical_sam_enzyme_current702_20260601.json`,
+`work/family_panel_source_free_predicted_geometry_source_check_secondary_probe_radical_sam_enzyme_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json`,
+`work/family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_locator_uniprot_position_validation_mh065_mh072_current702_20260601.json`,
+`work/family_panel_source_free_locator_uniprot_position_validation_mh065_mh072_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.json`,
+`work/family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_locator_ligand_specificity_review_external_glycoside_panel_current702_20260601.json`,
+`work/family_panel_source_free_locator_ligand_specificity_review_external_glycoside_panel_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_locator_policy_blockers_mh064_q59490_current702_20260601.json`,
+`work/family_panel_source_free_locator_policy_blockers_mh064_q59490_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_current702_20260601.json`,
+`work/family_panel_source_free_locator_blocker_resolution_status_current702_20260601.md`,
+`artifacts/v3_current_run_artifact_integrity_audit_current702_20260601.json`,
+`work/current_run_artifact_integrity_audit_current702_20260601.md`,
 `artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json`,
 `work/family_panel_source_free_active_site_locator_schema_current702_20260601.md`,
 `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`,
@@ -537,6 +653,13 @@ forbidden label/outcome fields are absent from feature groups, keeps heldout
 absent from feature rows, and reports zero critical violations. This does not
 authorize feature-vector materialization or model fitting.
 
+Train/cal guardrail follow-up: add a no-fit audit across the input manifest,
+split manifest, and feature contract. It confirms that the 524 feature rows
+exactly match the 524 train/cal split rows, split rows are a subset of the 562
+input rows, 140 heldout rows remain excluded, and fingerprint/label/stratum
+fields remain outside the feature surface. No model fit, threshold selection,
+heldout evaluation, import, label change, or production scorer change occurred.
+
 Artifacts:
 `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
 `work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
@@ -569,7 +692,9 @@ Artifacts:
 `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`,
 `work/mechanism_feature_embedding_feature_contract_current702_20260601.md`,
 `artifacts/v3_mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601.json`,
-`work/mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601.md`.
+`work/mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_embedding_train_cal_guardrail_audit_current702_20260601.json`,
+`work/mechanism_feature_embedding_train_cal_guardrail_audit_current702_20260601.md`.
 
 ## 2026-06-01: Thiol/Disulfide Redox Boundary Panel Packet Added
 

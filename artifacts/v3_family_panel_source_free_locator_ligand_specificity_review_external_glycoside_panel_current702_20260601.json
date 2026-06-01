@@ -1,0 +1,130 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_ligand_specificity_review_external_glycoside_panel_current702_20260601",
+  "created_utc": "2026-06-01T16:09:36Z",
+  "schema_version": "northstar_next_levers.v0.source_free_locator_ligand_specificity_review",
+  "status": "source_free_locator_ligand_specificity_review_rejected_selected_acetate_review_only",
+  "scope": {
+    "target_entries": [
+      "external_glycoside_panel"
+    ],
+    "selection_reason": "next_remaining_source_free_locator_blocker_class_after_split_safe_template_check",
+    "source_free_locator_blocker_action_class": "ligand_specificity_review_required",
+    "current702_safe_inputs_only": true
+  },
+  "counts": {
+    "target_rows": 1,
+    "candidate_integrity_passed_rows": 1,
+    "candidate_rows_with_at_least_two_locators": 1,
+    "sequence_position_validated_locator_count": 8,
+    "selected_ligand_specificity_passed_rows": 0,
+    "selected_ligand_specificity_rejected_rows": 1,
+    "alternate_ligand_candidate_classes_present": 1,
+    "approved_locator_copy_authorized_rows": 0,
+    "ready_for_predicted_geometry_scoring": 0,
+    "locator_sidecars_created_or_copied": 0,
+    "predicted_geometry_scores_created": 0
+  },
+  "guardrails": {
+    "review_only": true,
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "source_text_or_label_fields_used_as_predictive_features": false,
+    "new_source_data_fetched": false,
+    "new_coordinates_fetched": false,
+    "heldout_rows_used_for_training": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "predicted_geometry_scored": false
+  },
+  "input_artifacts": {
+    "remaining_blocker_queue": {
+      "path": "artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json",
+      "sha256": "fe9c7f5b3e819cca4c67a340d428d38d3fdcd18aca32408326e70eb80a979d30"
+    },
+    "candidate_sidecar": {
+      "path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/external_glycoside_panel_Q6NSJ0.json",
+      "sha256": "40f0b1498872808852c57146eb78a0b0255daf619b0fcffbe08701c0ef929c47"
+    },
+    "source_backed_sidecar": {
+      "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/external_glycoside_panel_Q6NSJ0.json",
+      "sha256": "6e1619ff21305f2ba6fe2eff2ec7c35717a58a33eba355c2c4699d11905a6c7e"
+    }
+  },
+  "review_rows": [
+    {
+      "entry_id": "external_glycoside_panel",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "source_accession": "uniprot:Q6NSJ0",
+      "display_name": "Alpha-galactosidase MYORG",
+      "selected_structure_id": "7QQF",
+      "selected_pdb_coordinate": {
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_7QQF.cif",
+        "sha256": "f9e551da0ec73293d877dd07c4bd8301e9461f7329bac66e56062d8808c7f20a"
+      },
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/external_glycoside_panel_Q6NSJ0.json",
+      "candidate_integrity_sha256": "40f0b1498872808852c57146eb78a0b0255daf619b0fcffbe08701c0ef929c47",
+      "candidate_integrity_status": "passed",
+      "candidate_residue_locator_count": 8,
+      "sequence_position_validated_locator_count": 8,
+      "selected_ligand_site": {
+        "atom_count": 4,
+        "chain_id": "B",
+        "comp_id": "ACT",
+        "residue_id": "805",
+        "structure_id": "7QQF"
+      },
+      "selected_ligand_review": {
+        "selected_ligand_comp_id": "ACT",
+        "selected_ligand_name_from_local_cif": "ACETATE ION",
+        "local_structure_title": "Crystal structure of unliganded MYORG",
+        "local_structure_keywords": "GH31, Glycoside hydrolase, MYORG, NET37, galactosidase, HYDROLASE",
+        "review_result": "rejected_selected_ligand_not_biologically_specific_for_glycoside_hydrolase_active_site",
+        "rationale": "The selected coordinate ligand is acetate in the local unliganded MYORG structure, not a glycoside substrate, product, catalytic metal, or mechanism-defining cofactor. Acetate contacts are too nonspecific for source-free active-site localization in this panel.",
+        "acceptable_for_audited_locator_copy": false
+      },
+      "alternate_ligand_candidates_observed": [
+        {
+          "comp_id": "NAG",
+          "candidate_site_count": 4,
+          "contact_count_range": [
+            7,
+            8
+          ],
+          "local_cif_annotation": "2-acetamido-2-deoxy-beta-D-glucopyranose with multiple local N-glycosylation links",
+          "automatic_retarget_allowed": false,
+          "review_note": "NAG contacts exist in the frozen candidate extraction, but local mmCIF annotations include glycan/N-glycosylation context. Do not automatically replace the selected acetate locator with NAG without a dedicated substrate/site validator or approved alternate coordinate."
+        }
+      ],
+      "candidate_forbidden_feature_audit": {
+        "benchmark_role": false,
+        "ec_identifiers": false,
+        "entry_name": false,
+        "fingerprint_id": false,
+        "label_type": false,
+        "mechanism_text": false,
+        "panel_id_as_feature": false,
+        "rhea_identifiers": false,
+        "source_prose": false,
+        "source_review_rationale": false
+      },
+      "split_protection": {
+        "same_accession_current702_geometry_rows": [],
+        "allowed_for_training": false,
+        "allowed_for_threshold_selection": false,
+        "ready_for_label_import": false,
+        "review_only": true
+      },
+      "validation_decision": {
+        "ready_for_predicted_geometry_scoring": false,
+        "approved_locator_copy_allowed_now": false,
+        "remaining_blockers": [
+          "coordinate_ligand_specificity_review_required",
+          "manual_review_required_before_copy_to_audited_dir",
+          "candidate_sidecar_not_in_audited_locator_dir"
+        ],
+        "automation_safe_next_action": "Do not copy the acetate-derived locator. Stage a dedicated glycoside-ligand validator over the frozen 7QQF NAG candidates or request approval to fetch/use a substrate-complex coordinate such as the already referenced 7QQH before any audited locator copy."
+      }
+    }
+  ],
+  "next_action": "Handle the two remaining no-ligand/alternate-coordinate blockers: mh_064 requires explicit alternate-coordinate fetch approval, and Q59490 requires a nonlabel locator strategy or approved alternate source row."
+}

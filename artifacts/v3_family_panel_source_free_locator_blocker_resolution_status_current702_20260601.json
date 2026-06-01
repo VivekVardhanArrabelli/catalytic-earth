@@ -1,0 +1,126 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_blocker_resolution_status_current702_20260601",
+  "created_utc": "2026-06-01T16:13:49Z",
+  "schema_version": "northstar_next_levers.v0.source_free_locator_blocker_resolution_status",
+  "status": "source_free_locator_blocker_resolution_status_ready_review_only",
+  "scope": {
+    "target_rows": "seven_family_panel_rows_without_approved_source_free_locators_after_three_source_checks",
+    "current702_safe_inputs_only": true,
+    "historical_queue_artifact": "artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json"
+  },
+  "counts": {
+    "blocked_rows_tracked": 7,
+    "automation_discovery_completed_rows": 7,
+    "ready_for_predicted_geometry_scoring": 0,
+    "approved_locator_copy_authorized_rows": 0,
+    "locator_sidecars_created_or_copied": 0,
+    "predicted_geometry_scores_created": 0,
+    "rows_requiring_human_or_policy_decision": 7,
+    "resolution_class_counts": {
+      "accession_equivalence_or_matching_coordinate_required": 2,
+      "human_locator_copy_approval_after_split_safe_pass": 2,
+      "ligand_specificity_validator_or_substrate_coordinate_required": 1,
+      "alternate_coordinate_fetch_approval_required": 1,
+      "nonlabel_locator_strategy_or_alternate_source_required": 1
+    }
+  },
+  "guardrails": {
+    "review_only": true,
+    "approved_locator_sidecars_created_or_copied": false,
+    "source_text_or_label_fields_used_as_predictive_features": false,
+    "new_source_data_fetched": false,
+    "new_coordinates_fetched": false,
+    "heldout_rows_used_for_training": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "predicted_geometry_scored": false
+  },
+  "source_artifacts": {
+    "remaining_blocker_action_queue": {
+      "path": "artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json",
+      "sha256": "fe9c7f5b3e819cca4c67a340d428d38d3fdcd18aca32408326e70eb80a979d30"
+    },
+    "uniprot_position_validation": {
+      "path": "artifacts/v3_family_panel_source_free_locator_uniprot_position_validation_mh065_mh072_current702_20260601.json",
+      "sha256": "7c5b77a17f8431bf35ad1ad0fc3770b2154da3e196ee09533348f02241a95fea"
+    },
+    "split_safe_template_check": {
+      "path": "artifacts/v3_family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.json",
+      "sha256": "bd210a557bc707996a3928216a19b5cd07c4c83746fdfc9b431de570912005e9"
+    },
+    "ligand_specificity_review": {
+      "path": "artifacts/v3_family_panel_source_free_locator_ligand_specificity_review_external_glycoside_panel_current702_20260601.json",
+      "sha256": "dbe5112fa551f5060fb5ff51dcc86a3c10bbf58d7efecb4c5a1233003dcf7117"
+    },
+    "policy_blocker_packet": {
+      "path": "artifacts/v3_family_panel_source_free_locator_policy_blockers_mh064_q59490_current702_20260601.json",
+      "sha256": "f5389f3c3bf3c7aa2c57abed076796f16a5ed9ef0556394e1aa015aaf3762deb"
+    }
+  },
+  "resolution_rows": [
+    {
+      "entry_id": "mh_065",
+      "source_accession": "uniprot:Q79MP6",
+      "previous_action_class": "uniprot_position_validation_required",
+      "resolution_class": "accession_equivalence_or_matching_coordinate_required",
+      "resolution_status": "blocked_accession_mismatch",
+      "ready_for_predicted_geometry_scoring": false,
+      "next_action": "Approve Q79MP6-to-Q932P5 representative equivalence or supply a frozen coordinate whose struct_ref maps to Q79MP6."
+    },
+    {
+      "entry_id": "mh_072",
+      "source_accession": "uniprot:P0A6P9",
+      "previous_action_class": "uniprot_position_validation_required",
+      "resolution_class": "accession_equivalence_or_matching_coordinate_required",
+      "resolution_status": "blocked_accession_mismatch",
+      "ready_for_predicted_geometry_scoring": false,
+      "next_action": "Approve P0A6P9-to-P08324 representative equivalence or supply a frozen coordinate whose struct_ref maps to P0A6P9."
+    },
+    {
+      "entry_id": "mh_067",
+      "source_accession": "uniprot:P00918",
+      "previous_action_class": "split_safe_template_check_required",
+      "resolution_class": "human_locator_copy_approval_after_split_safe_pass",
+      "resolution_status": "split_safe_passed_copy_not_authorized",
+      "ready_for_predicted_geometry_scoring": false,
+      "next_action": "Human review may approve copying the vetted candidate locator to the audited locator directory; rerun schema audit before scoring."
+    },
+    {
+      "entry_id": "mh_068",
+      "source_accession": "uniprot:P15289",
+      "previous_action_class": "split_safe_template_check_required",
+      "resolution_class": "human_locator_copy_approval_after_split_safe_pass",
+      "resolution_status": "split_safe_passed_copy_not_authorized",
+      "ready_for_predicted_geometry_scoring": false,
+      "next_action": "Human review may approve copying the vetted candidate locator to the audited locator directory; rerun schema audit before scoring."
+    },
+    {
+      "entry_id": "external_glycoside_panel",
+      "source_accession": "uniprot:Q6NSJ0",
+      "previous_action_class": "ligand_specificity_review_required",
+      "resolution_class": "ligand_specificity_validator_or_substrate_coordinate_required",
+      "resolution_status": "selected_acetate_locator_rejected",
+      "ready_for_predicted_geometry_scoring": false,
+      "next_action": "Build a dedicated frozen-7QQF glycoside/NAG validator or approve a substrate-complex coordinate before any locator copy."
+    },
+    {
+      "entry_id": "mh_064",
+      "source_accession": "uniprot:C7C422",
+      "previous_action_class": "alternate_coordinate_fetch_requires_manual_approval",
+      "resolution_class": "alternate_coordinate_fetch_approval_required",
+      "resolution_status": "blocked_pending_fetch_policy",
+      "ready_for_predicted_geometry_scoring": false,
+      "next_action": "Approve or reject fetching frozen alternate PDBs 3RKJ/3RKK/3SBL/3SFP/3SPU."
+    },
+    {
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "source_accession": "uniprot:Q59490",
+      "previous_action_class": "new_nonlabel_locator_strategy_required",
+      "resolution_class": "nonlabel_locator_strategy_or_alternate_source_required",
+      "resolution_status": "blocked_no_ligand_no_alternate_pdb",
+      "ready_for_predicted_geometry_scoring": false,
+      "next_action": "Design a source-free nonlabel locator strategy or authorize a frozen alternate source row/coordinate."
+    }
+  ],
+  "next_action": "Do not rerun locator discovery. Pick one policy decision: approve mh_067/mh_068 locator copy, decide mh_065/mh_072 accession equivalence, reject/approve mh_064 alternate fetches, or define the Q59490 nonlabel locator strategy."
+}

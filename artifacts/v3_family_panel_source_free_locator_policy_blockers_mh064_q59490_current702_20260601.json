@@ -1,0 +1,133 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_policy_blockers_mh064_q59490_current702_20260601",
+  "created_utc": "2026-06-01T16:11:45Z",
+  "schema_version": "northstar_next_levers.v0.source_free_locator_policy_blockers",
+  "status": "source_free_locator_policy_blockers_ready_for_human_decision_review_only",
+  "scope": {
+    "target_entries": [
+      "mh_064",
+      "secondary_probe::cobalamin_radical_rearrangement"
+    ],
+    "selection_reason": "remaining_no_ligand_or_metal_locator_blockers_after_validation_reviews",
+    "current702_safe_inputs_only": true
+  },
+  "counts": {
+    "target_rows": 2,
+    "candidate_integrity_passed_rows": 2,
+    "rows_with_candidate_residue_locators": 0,
+    "rows_with_selected_nonwater_ligand_or_metal_site": 0,
+    "rows_requiring_alternate_coordinate_fetch_approval": 1,
+    "rows_requiring_new_nonlabel_locator_strategy": 1,
+    "alternate_coordinate_fetch_commands_manifested": 5,
+    "approved_locator_copy_authorized_rows": 0,
+    "ready_for_predicted_geometry_scoring": 0,
+    "locator_sidecars_created_or_copied": 0,
+    "new_coordinates_fetched": 0,
+    "predicted_geometry_scores_created": 0
+  },
+  "guardrails": {
+    "review_only": true,
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "source_text_or_label_fields_used_as_predictive_features": false,
+    "new_source_data_fetched": false,
+    "new_coordinates_fetched": false,
+    "heldout_rows_used_for_training": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "predicted_geometry_scored": false
+  },
+  "input_artifacts": {
+    "remaining_blocker_queue": {
+      "path": "artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json",
+      "sha256": "fe9c7f5b3e819cca4c67a340d428d38d3fdcd18aca32408326e70eb80a979d30"
+    },
+    "blocked_row_rescue_manifest": {
+      "path": "artifacts/v3_family_panel_source_free_locator_blocked_row_rescue_manifest_current702_20260601.json",
+      "sha256": "de6f48432b6c27012c7c17dfa1173518dc89f05066c996c7816545937b030779"
+    },
+    "mh_064_candidate_sidecar": {
+      "path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_064_C7C422.json",
+      "sha256": "445aa8df4af5dae2f76c9600c006c3fd944e5c912ed6c379f190d43710f07c0e"
+    },
+    "q59490_candidate_sidecar": {
+      "path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+      "sha256": "e0520c245a8b016b3b457423bc136ceef2e12075aaddee7c780b29b6445d857b"
+    },
+    "mh_064_source_backed_sidecar": {
+      "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_064_C7C422.json",
+      "sha256": "e8de46c237aa6b2571126bf9a4e35ad26fde2b9a5febc8fb3bd34d8a723fb380"
+    },
+    "q59490_source_backed_sidecar": {
+      "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+      "sha256": "b93b12303767c604fa5a944ffce9872f8bd24785bb3939cebd71c39d0126327c"
+    }
+  },
+  "policy_rows": [
+    {
+      "entry_id": "mh_064",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "source_accession": "uniprot:C7C422",
+      "selected_structure_id": "3PG4",
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_064_C7C422.json",
+      "candidate_integrity_sha256": "445aa8df4af5dae2f76c9600c006c3fd944e5c912ed6c379f190d43710f07c0e",
+      "candidate_integrity_status": "passed",
+      "candidate_status": "candidate_contacts_blocked_minimum_not_met",
+      "candidate_residue_locator_count": 0,
+      "selected_ligand_site": null,
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:16",
+        "nearest_atlas_tm_score": 0.9222,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "blocked_reason": "selected_structure_has_no_detected_nonwater_ligand_or_metal_site",
+      "policy_decision_required": "approve_or_reject_fetch_of_frozen_alternate_coordinates",
+      "alternate_coordinate_fetch_commands": [
+        "curl -L --fail https://files.rcsb.org/download/3RKJ.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3RKJ.cif",
+        "curl -L --fail https://files.rcsb.org/download/3RKK.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3RKK.cif",
+        "curl -L --fail https://files.rcsb.org/download/3SBL.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SBL.cif",
+        "curl -L --fail https://files.rcsb.org/download/3SFP.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SFP.cif",
+        "curl -L --fail https://files.rcsb.org/download/3SPU.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SPU.cif"
+      ],
+      "alternate_pdb_ids": [
+        "3RKJ",
+        "3RKK",
+        "3SBL",
+        "3SFP",
+        "3SPU"
+      ],
+      "automation_safe_next_action": "If and only if approved, fetch the five frozen alternate PDB coordinates, rerun coordinate-only candidate extraction, then rerun integrity/schema audits before any locator copy."
+    },
+    {
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "source_accession": "uniprot:Q59490",
+      "selected_structure_id": "1L1L",
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+      "candidate_integrity_sha256": "e0520c245a8b016b3b457423bc136ceef2e12075aaddee7c780b29b6445d857b",
+      "candidate_integrity_status": "passed",
+      "candidate_status": "candidate_contacts_blocked_minimum_not_met",
+      "candidate_residue_locator_count": 0,
+      "selected_ligand_site": null,
+      "source_backed_fold_score": {
+        "nearest_atlas_entry_id": "m_csa:697",
+        "nearest_atlas_tm_score": 0.4655,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "blocked_reason": "selected_structure_has_no_detected_nonwater_ligand_or_metal_site_and_no_frozen_alternate_pdb_ids",
+      "policy_decision_required": "design_nonlabel_locator_strategy_or_authorize_alternate_source_row",
+      "alternate_coordinate_fetch_commands": [],
+      "alternate_pdb_ids": [],
+      "nonlabel_locator_strategy_requirements": [
+        "must use only source-free coordinate or sequence-position evidence",
+        "must not use source prose, label text, EC/Rhea IDs, fingerprint IDs, panel IDs, or review rationale as predictive features",
+        "must produce at least two sequence-position residue locators",
+        "must pass the existing source-free locator schema and integrity audit before any predicted-geometry scoring"
+      ],
+      "automation_safe_next_action": "Define and review a nonlabel locator strategy, or authorize a frozen alternate source row/coordinate; do not fabricate residue locators from panel identity or source prose."
+    }
+  ],
+  "next_action": "Human decision required: approve mh_064 alternate-coordinate fetches, reject them, or authorize/design a Q59490 nonlabel locator strategy."
+}

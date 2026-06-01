@@ -240,6 +240,63 @@ artifacts first.
   `secondary_probe::radical_sam_enzyme` as review-only pending source checks,
   with `mh_066` showing geometry/fold agreement and the other two requiring
   mechanism-locus and duplicate/leakage review before any family decision.
+- The first source-free geometry source check is complete for `mh_066`. Frozen
+  local evidence supports an IMP-1 zinc metallo-beta-lactamase hydrolase
+  context and both source-free geometry plus predicted-fold channels agree on
+  `metal_dependent_hydrolase`, but the row remains an external non-countable
+  review-only expansion candidate. It is not import-ready because row-specific
+  bond-change/residue-role evidence, duplicate/split review, and expert
+  admission are still unresolved.
+- The second source-free geometry source check is complete for `mh_073`. Frozen
+  local evidence supports an H-Ras Mg/GTPase nucleotide locus, while source-free
+  geometry and predicted-fold channels disagree. The nearest fold hit is a
+  current702 GTPase-like `metal_dependent_hydrolase` seed, so the row is kept
+  as a review-only Mg/nucleotide boundary hard negative rather than promotion
+  support.
+- The third source-free geometry source check is complete for
+  `secondary_probe::radical_sam_enzyme`. Frozen local evidence supports a TigE
+  radical-SAM/Fe-S locus, but source-free geometry calls
+  `metal_dependent_hydrolase` and the nearest predicted-fold hit is a
+  `plp_dependent_enzyme` seed. The row remains secondary review-only evidence,
+  not import-ready family promotion support.
+- A remaining source-free locator blocker action queue now classifies the seven
+  still-blocked family-panel rows after the three source checks. The least
+  ambiguous next work is UniProt position validation for `mh_065` and `mh_072`,
+  followed by split-safe template checks for `mh_067`/`mh_068`, ligand
+  specificity review for `external_glycoside_panel`, and policy decisions for
+  `mh_064`/Q59490.
+- The `mh_065`/`mh_072` UniProt position-validation attempt is complete and
+  keeps both rows blocked. Their candidate contacts are coordinate-local, but
+  frozen selected PDB mappings point to `Q932P5` for `1DDK` and `P08324` for
+  `1E9I`, not the source accessions `Q79MP6` and `P0A6P9`. Do not copy these
+  locator sidecars or score source-free predicted geometry until an explicit
+  representative-accession equivalence policy or matching frozen coordinate is
+  available.
+- The `mh_067`/`mh_068` split-safe template check passes as review-only
+  evidence: same-accession current702 matches are in-distribution seeds
+  (`m_csa:216` and `m_csa:158`), not heldout rows, and the candidate sidecars
+  have no forbidden predictive source/label fields. This does not authorize
+  copying locator sidecars; manual copy approval remains required before
+  source-free predicted-geometry scoring.
+- The `external_glycoside_panel` ligand-specificity review rejects the selected
+  acetate (`ACT`) locator from unliganded MYORG `7QQF`. NAG contacts are present
+  in the candidate extraction but are glycan/glycosylation-context evidence, not
+  an automatic catalytic-substrate replacement. Do not copy or score this row
+  until a dedicated glycoside-ligand validator or approved substrate-complex
+  coordinate is available.
+- The final no-ligand locator blocker packet isolates two policy decisions:
+  `mh_064` needs explicit approval before fetching five frozen alternate PDBs
+  (`3RKJ`, `3RKK`, `3SBL`, `3SFP`, `3SPU`), and Q59490 needs a nonlabel
+  locator strategy or approved alternate source row. Automation did not fetch
+  coordinates, copy sidecars, or score predicted geometry.
+- A refreshed source-free locator blocker status now consolidates all seven
+  unresolved rows. Automation discovery is complete, 0/7 are scoring-ready, and
+  every row now needs a policy or human-review decision rather than another
+  blind locator-discovery pass.
+- A current-run artifact integrity audit indexes 10 new JSON artifacts and 10
+  matching work reports from this run. All parse/presence checks passed, and the
+  validation summary records full pytest, unittest discovery, compileall,
+  `validate`, and diff-check success.
 - Learned-representation results are diagnostic, not decision-grade. ESM-2
   logistic is the strongest local learned comparator in the Wave 1.2 table but
   does not displace geometry. ESM-C logistic versus ESM-C cosine shows decoder
@@ -302,6 +359,11 @@ artifacts first.
   alignment, forbidden label/outcome field exclusion, no-heldout discipline, and
   no-model-fit guardrails. It passes for 524/524 rows with zero critical
   violations; model fitting remains blocked until explicitly authorized.
+- A no-fit mechanism-feature train/cal guardrail audit now pins the same
+  surface across the input manifest, split manifest, and feature contract: 524
+  feature rows exactly match 524 split rows, 140 heldout rows remain excluded,
+  and label identity fields are not features. This still does not authorize
+  model fitting or heldout evaluation.
 - ProtT5 and SaProt have only NN/cosine-style local standardized exports today.
   Matched logistic-head reruns are blocked until raw local sidecars or weights
   exist; do not download large models for this by default.
@@ -345,6 +407,14 @@ artifacts first.
    non-abstained review rows (`mh_066`, `mh_073`, and
    `secondary_probe::radical_sam_enzyme`) and continue clearing the seven
    remaining source-free locator blockers before any family-expansion decision.
+   `mh_065`/`mh_072` require accession-equivalence or matching-coordinate
+   policy before any locator copy, and `mh_067`/`mh_068` now need human
+   locator-copy approval after a passing split-safe template check. The
+   glycoside panel row needs a ligand-specificity validator or approved
+   substrate-complex coordinate after acetate rejection. `mh_064` and Q59490
+   are now explicit policy-decision blockers rather than ambiguous automation
+   tasks. The refreshed blocker-status artifact should be the next run's entry
+   point for any locator decision.
 3. If representation work resumes, produce row-aligned local sidecars first,
    start from
    `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`,
@@ -413,6 +483,10 @@ artifacts first.
 - `artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_066_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_secondary_probe_radical_sam_enzyme_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.json`

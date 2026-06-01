@@ -1,0 +1,340 @@
+{
+  "artifact_id": "v3_family_panel_source_free_predicted_geometry_source_check_secondary_probe_radical_sam_enzyme_current702_20260601",
+  "created_utc": "2026-06-01T15:55:38Z",
+  "duplicate_and_leakage_screen": {
+    "current702_label_manifest_membership": false,
+    "current702_radical_sam_label_rows": [
+      {
+        "entry_id": "m_csa:372",
+        "fingerprint_id": "radical_sam_enzyme",
+        "label_type": "seed_fingerprint",
+        "rationale": "NikJ uses a [4Fe-4S]-AdoMet radical mechanism, matching the radical SAM enzyme seed despite limited resolved local geometry."
+      }
+    ],
+    "current702_radical_sam_probe_rows": [
+      {
+        "accession": "Q712I6",
+        "benchmark_role": "secondary_ood_probe::radical_sam_enzyme",
+        "entry_id": "m_csa:372",
+        "fingerprint_id": "radical_sam_enzyme",
+        "probe_role": "far_oos_tail_diagnostic",
+        "sequence_cluster_id": "uniprot:Q712I6",
+        "split_assignment": "heldout"
+      }
+    ],
+    "exact_source_accession_matches": [],
+    "interpretation": "The row is not an exact accession duplicate of current702. Its nearest predicted-fold atlas hit is a PLP-dependent seed, while current702 has only one radical-SAM secondary probe row, so this is useful radical/Fe-S panel evidence but not import-ready primary-family support.",
+    "nearest_atlas_entry_id": "m_csa:358",
+    "nearest_atlas_label": {
+      "entry_id": "m_csa:358",
+      "fingerprint_id": "plp_dependent_enzyme",
+      "label_type": "seed_fingerprint",
+      "rationale": "Lysine 2,3-aminomutase requires PLP along with SAM and an iron-sulfur cluster; the PLP external aldimine chemistry fits the broad PLP-dependent seed."
+    },
+    "nearest_atlas_manifest_rows": [
+      {
+        "accession": "Q9XBQ8",
+        "benchmark_role": "primary_supervised_metric::plp_dependent_enzyme",
+        "entry_id": "m_csa:358",
+        "fingerprint_id": "plp_dependent_enzyme",
+        "mmseqs30_subfamily_cluster_id": "mmseqs30:m_csa:358",
+        "sequence_cluster_id": "uniprot:Q9XBQ8",
+        "split_assignment": "in_distribution"
+      }
+    ],
+    "nearest_atlas_tm_score": 0.7039,
+    "nearest_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+    "same_accession_current702_geometry_rows": [],
+    "screen_result": "no_exact_accession_duplicate_in_current702_manifest_but_nearest_fold_hit_is_plp_dependent_seed",
+    "source_accession_in_current702_manifest": false
+  },
+  "fold_augmented_readout": {
+    "combined_mean_geometry_fold": 0.48335,
+    "fixed_research_threshold": 0.44155,
+    "geometry_fold_agreement": false,
+    "nearest_atlas_tm_score": 0.7039,
+    "nearest_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+    "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+    "predicted_geometry_top1_score": 0.2628,
+    "queue_rank": 8,
+    "readout_research_gate_status": "non_abstained_at_research_threshold",
+    "retained_at_fixed_research_threshold": true,
+    "source_check_focus": [
+      "row_specific_bond_change_and_mechanism_locus",
+      "cofactor_locus_and_redox_partner_identity",
+      "occupied_primary_fold_false_confidence_review",
+      "geometry_fold_fingerprint_disagreement"
+    ],
+    "threshold_margin": 0.0418
+  },
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_source_data_fetched": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_prose_used_for_predictive_scoring": false,
+    "threshold_values_changed": false
+  },
+  "local_source_evidence": {
+    "approved_source_free_locator_summary": {
+      "forbidden_feature_audit": {
+        "benchmark_role": false,
+        "ec_identifiers": false,
+        "entry_name": false,
+        "fingerprint_id": false,
+        "label_type": false,
+        "mechanism_text": false,
+        "panel_id_as_feature": false,
+        "rhea_identifiers": false,
+        "source_prose": false,
+        "source_review_rationale": false
+      },
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
+      "locator_policy": "human_approved_structure_local_ligand_geometry_without_source_text",
+      "locator_sha256": "3cd43b805e0d0e80fcd0c4d234c6428ae16b1916ae06369e906b4b305ec9f38a",
+      "ready_for_predicted_geometry_scoring": true,
+      "residue_locator_count": 4,
+      "residue_locators": [
+        {
+          "candidate_contact": {
+            "auth_seq_id": 417,
+            "distance_angstrom": 2.275,
+            "label_seq_id": 417,
+            "ligand_atom": "FE3",
+            "ligand_comp_id": "SF4",
+            "residue_atom": "SG",
+            "residue_chain_id": "A",
+            "residue_id": "417",
+            "selected_structure_id": "8VPO"
+          },
+          "provenance_method": "source_free_selected_structure_ligand_contact_candidate",
+          "residue_code": "CYS",
+          "role_hint": "iron_sulfur_cluster_contact_candidate",
+          "sequence_position": 417,
+          "sequence_position_uniprot_validated": true,
+          "source_text_used": false
+        },
+        {
+          "candidate_contact": {
+            "auth_seq_id": 446,
+            "distance_angstrom": 2.29,
+            "label_seq_id": 446,
+            "ligand_atom": "FE4",
+            "ligand_comp_id": "SF4",
+            "residue_atom": "SG",
+            "residue_chain_id": "A",
+            "residue_id": "446",
+            "selected_structure_id": "8VPO"
+          },
+          "provenance_method": "source_free_selected_structure_ligand_contact_candidate",
+          "residue_code": "CYS",
+          "role_hint": "iron_sulfur_cluster_contact_candidate",
+          "sequence_position": 446,
+          "sequence_position_uniprot_validated": true,
+          "source_text_used": false
+        },
+        {
+          "candidate_contact": {
+            "auth_seq_id": 423,
+            "distance_angstrom": 2.312,
+            "label_seq_id": 423,
+            "ligand_atom": "FE1",
+            "ligand_comp_id": "SF4",
+            "residue_atom": "SG",
+            "residue_chain_id": "A",
+            "residue_id": "423",
+            "selected_structure_id": "8VPO"
+          },
+          "provenance_method": "source_free_selected_structure_ligand_contact_candidate",
+          "residue_code": "CYS",
+          "role_hint": "iron_sulfur_cluster_contact_candidate",
+          "sequence_position": 423,
+          "sequence_position_uniprot_validated": true,
+          "source_text_used": false
+        },
+        {
+          "candidate_contact": {
+            "auth_seq_id": 414,
+            "distance_angstrom": 2.332,
+            "label_seq_id": 414,
+            "ligand_atom": "FE2",
+            "ligand_comp_id": "SF4",
+            "residue_atom": "SG",
+            "residue_chain_id": "A",
+            "residue_id": "414",
+            "selected_structure_id": "8VPO"
+          },
+          "provenance_method": "source_free_selected_structure_ligand_contact_candidate",
+          "residue_code": "CYS",
+          "role_hint": "iron_sulfur_cluster_contact_candidate",
+          "sequence_position": 414,
+          "sequence_position_uniprot_validated": true,
+          "source_text_used": false
+        }
+      ]
+    },
+    "freeze_context": {
+      "entry_name": "TIGE_PARC5",
+      "fe_s_or_sam_source_context_present": true,
+      "freeze_rank": 1,
+      "primary_ec": "4.1.-.-",
+      "protein_name": "Radical SAM cyclopropyl synthase TigE (EC 4.1.-.-) (Ribosomally synthesized and post-translationally modified peptide-modifying enzyme TigE) (RiPP-modifying enzyme TigE) (TigB maturase)",
+      "radical_sam_source_context_present": true,
+      "score_status": "not_scored_at_freeze",
+      "selection_reason": "Swiss-Prot radical SAM row with catalytic activity, PDB cross-reference, sequence, active/binding-site annotation, and radical SAM/Fe-S/SAM source context; prior pools and cobalamin-overlap contexts excluded; deterministic cap max two rows per primary EC.",
+      "source_artifact": "artifacts/v3_prospective_external_radical_sam_minicampaign_freeze_20260521.json"
+    },
+    "mechanism_locus_assessment": {
+      "assessment": "The frozen radical-SAM freeze artifact, local 8VPO CIF, and approved SF4-contact locator support a radical-SAM/Fe-S locus. The source-free geometry top1 is metal_dependent_hydrolase and nearest predicted fold is a PLP-dependent in-distribution row, so the non-abstention reflects confounded chemistry rather than current primary-family promotion evidence.",
+      "frozen_local_context_supports_current_primary_family_promotion": false,
+      "frozen_local_context_supports_radical_sam_fe_s_locus": true,
+      "geometry_fold_disagreement": true,
+      "m_csa_like_catalytic_residue_role_graph_available": false,
+      "mechanism_text_source_count": 0,
+      "row_specific_bond_change_sidecar_status": "not_extracted_for_external_secondary_probe_row"
+    },
+    "panel_packet_scores": {
+      "predicted_geometry_top1": {
+        "cofactor_context_score": 0.2,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "role_match_fraction": 0.0,
+        "score": 0.2628
+      },
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:358",
+        "nearest_atlas_tm_score": 0.7039,
+        "nearest_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "selected_organic_cofactor_scores": {},
+      "selected_pdb_fold_proxy": {
+        "nearest_primary_foldseek_prob": null,
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": null,
+        "top3_primary_foldseek_prob": null
+      }
+    },
+    "selected_structure_evidence": {
+      "citation_title": "Structural, Biochemical, and Bioinformatic Basis for Identifying Radical SAM Cyclopropyl Synthases.",
+      "coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_8VPO.cif",
+      "coordinate_sha256": "8cb131d4ef0dcb2013c02c5d65c861a9ada4fc48d2c663240bef93922d318059",
+      "entity_description": "Radical SAM core domain-containing protein",
+      "entity_ec": null,
+      "local_cif_title": "X-Ray Crystal Structure of TigE from Paramaledivibacter caminithermalis",
+      "local_coordinate_terms_checked": {
+        "contains_iron_sulfur_cluster": true,
+        "contains_plp_keyword": false,
+        "contains_radical_sam_keyword": true,
+        "contains_sf4_cluster": true,
+        "contains_tige_title": true,
+        "contains_uniprot_a0a1m6t2i7_mapping": true
+      },
+      "nonpolymer_entities": [
+        "IRON/SULFUR CLUSTER",
+        "GLYCEROL"
+      ],
+      "selected_structure_id": "8VPO",
+      "sf4_cluster_count_from_entity_instances": 2,
+      "struct_ref_accession": "A0A1M6T2I7"
+    },
+    "source_backed_sidecar_blockers_to_clear": [
+      "create row-level sidecar from radical-SAM freeze and decision artifacts",
+      "verify Fe-S/SAM local context on selected coordinate",
+      "run source-free geometry and Foldseek/TM scoring before any panel interpretation"
+    ],
+    "source_backed_sidecar_status": "source_backed_row_context_staged_local_site_not_extracted"
+  },
+  "row": {
+    "benchmark_role": null,
+    "candidate_role": "secondary_probe_external_radical_sam_candidate",
+    "countable_current702_label": false,
+    "current_v1_state": "secondary_probe_review_only_not_import_ready",
+    "display_name": "Radical SAM cyclopropyl synthase TigE (EC 4.1.-.-) (Ribosomally synthesized and post-translationally modified peptide-modifying enzyme TigE) (RiPP-modifying enzyme TigE) (TigB maturase)",
+    "entry_id": "secondary_probe::radical_sam_enzyme",
+    "panel_id": "cobalamin_and_radical_rearrangement_panel",
+    "ready_for_label_import": false,
+    "source_accession": "uniprot:A0A1M6T2I7",
+    "split_assignment": null
+  },
+  "schema_version": "northstar_next_levers.v0.source_free_predicted_geometry_source_check_packet",
+  "scope": "Review-only frozen-local source check for source-free predicted-geometry family-panel row secondary_probe::radical_sam_enzyme.",
+  "source_artifacts": {
+    "curated_labels": {
+      "exists": true,
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "family_panel_evidence_packet": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json",
+      "sha256": "64b3efdd11ad4594994f21ba3cc6237f5f3fec0b6756da89a5613570f5e5533e"
+    },
+    "family_panel_research_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
+      "sha256": "9c8d11be5191f08893510e9c8c57e22051c078f5777c020fafa84c786167998f"
+    },
+    "radical_sam_freeze": {
+      "exists": true,
+      "path": "artifacts/v3_prospective_external_radical_sam_minicampaign_freeze_20260521.json",
+      "sha256": "e5b2686dba305b74e765ae0fe1300fb9cd1ea715903ac7001ee780c9cbe0448c"
+    },
+    "selected_structure_cif": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_8VPO.cif",
+      "sha256": "8cb131d4ef0dcb2013c02c5d65c861a9ada4fc48d2c663240bef93922d318059"
+    },
+    "sequence_label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "source_backed_materialization": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json",
+      "sha256": "1c4eacb8b5917750f5ed6de7f614adcae55b1de1473942fc5efa9baeac4abbf6"
+    },
+    "source_backed_sidecar": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
+      "sha256": "422cde49363eb0a43e6ded3d4243337194f353b319d1781c08d3d2fd52342a17"
+    },
+    "source_check_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.json",
+      "sha256": "76f9f6a850313e7182a8665422f40666ed655704a6571e886d4c0fcb53c74d04"
+    },
+    "source_check_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json",
+      "sha256": "e7d180af1f89fa61553a0c954c7b1a7e7e6f658571f0b397f6eeec7bb8bad3fa"
+    },
+    "source_free_active_site_locator": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
+      "sha256": "3cd43b805e0d0e80fcd0c4d234c6428ae16b1916ae06369e906b4b305ec9f38a"
+    },
+    "source_free_locator_candidate": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
+      "sha256": "cae625e255aa109edfa330183860bd3ab3a60a73545c2c5cb78eeabfdb50fe3a"
+    },
+    "source_free_predicted_geometry_retrieval": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601.json",
+      "sha256": "490ec907f56e13c047d715a8f9307da44f57f74eb73470f7ba0270e640d628c0"
+    }
+  },
+  "source_check_decision": {
+    "family_promotion_ready": false,
+    "label_import_ready": false,
+    "next_action": "After the three source-free source checks, return to clearing the seven remaining approved-locator blockers or build a stricter radical-SAM/cobalamin mechanism-locus sidecar before any family expansion decision.",
+    "reason": "Frozen local evidence supports a radical-SAM/Fe-S TigE locus, but the source-free geometry and predicted-fold channels disagree and the nearest fold hit is PLP-dependent. Without a row-specific bond-change/residue-role sidecar, duplicate/split review, and expert admission, this remains secondary review-only radical-SAM panel evidence rather than current-family promotion support.",
+    "source_check_result": "confirm_radical_sam_locus_review_only_no_family_promotion"
+  },
+  "status": "source_check_completed_review_only_no_label_change"
+}

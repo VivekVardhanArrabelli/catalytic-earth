@@ -1,0 +1,297 @@
+{
+  "artifact_id": "v3_family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601",
+  "created_utc": "2026-06-01T15:52:25Z",
+  "duplicate_and_leakage_screen": {
+    "current702_label_manifest_membership": false,
+    "exact_source_accession_matches": [],
+    "interpretation": "The row is not an exact accession duplicate of current702, but its nearest predicted-fold atlas row is a current702 GTPase-like seed already labeled metal_dependent_hydrolase. This exposes Mg/nucleotide boundary leakage risk and does not authorize external HRas admission.",
+    "nearest_atlas_entry_id": "m_csa:535",
+    "nearest_atlas_label": {
+      "entry_id": "m_csa:535",
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "rationale": "protein-synthesizing GTPase (elongation factor Tu) is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.6017 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence."
+    },
+    "nearest_atlas_manifest_rows": [
+      {
+        "accession": "P0CE47",
+        "benchmark_role": "primary_supervised_metric::metal_dependent_hydrolase",
+        "entry_id": "m_csa:535",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "mmseqs30_subfamily_cluster_id": "mmseqs30:m_csa:535",
+        "sequence_cluster_id": "uniprot:P0CE47+Q7M0J8",
+        "split_assignment": "in_distribution"
+      }
+    ],
+    "nearest_atlas_tm_score": 0.8022,
+    "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+    "same_accession_current702_geometry_rows": [],
+    "screen_result": "no_exact_accession_duplicate_in_current702_manifest_but_nearest_fold_hit_is_current702_gtpase_like_seed",
+    "source_accession_in_current702_manifest": false
+  },
+  "fold_augmented_readout": {
+    "combined_mean_geometry_fold": 0.48775,
+    "fixed_research_threshold": 0.44155,
+    "geometry_fold_agreement": false,
+    "nearest_atlas_tm_score": 0.8022,
+    "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+    "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+    "predicted_geometry_top1_score": 0.1733,
+    "queue_rank": 7,
+    "readout_research_gate_status": "non_abstained_at_research_threshold",
+    "retained_at_fixed_research_threshold": true,
+    "source_check_focus": [
+      "row_specific_bond_change_and_mechanism_locus",
+      "cofactor_locus_and_redox_partner_identity",
+      "occupied_primary_fold_false_confidence_review",
+      "geometry_fold_fingerprint_disagreement"
+    ],
+    "threshold_margin": 0.0462
+  },
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_source_data_fetched": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_prose_used_for_predictive_scoring": false,
+    "threshold_values_changed": false
+  },
+  "local_source_evidence": {
+    "approved_source_free_locator_summary": {
+      "forbidden_feature_audit": {
+        "benchmark_role": false,
+        "ec_identifiers": false,
+        "entry_name": false,
+        "fingerprint_id": false,
+        "label_type": false,
+        "mechanism_text": false,
+        "panel_id_as_feature": false,
+        "rhea_identifiers": false,
+        "source_prose": false,
+        "source_review_rationale": false
+      },
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_073_P01112.json",
+      "locator_policy": "human_approved_structure_local_ligand_geometry_without_source_text",
+      "locator_sha256": "9340a15730268e23f8abc65c5efa88ca9d3545a0de57be45c1a52a34ac95ad86",
+      "ready_for_predicted_geometry_scoring": true,
+      "residue_locator_count": 2,
+      "residue_locators": [
+        {
+          "candidate_contact": {
+            "auth_seq_id": 35,
+            "distance_angstrom": 2.255,
+            "label_seq_id": 35,
+            "ligand_atom": "MG",
+            "ligand_comp_id": "MG",
+            "residue_atom": "OG1",
+            "residue_chain_id": "A",
+            "residue_id": "35",
+            "selected_structure_id": "121P"
+          },
+          "provenance_method": "source_free_selected_structure_ligand_contact_candidate",
+          "residue_code": "THR",
+          "role_hint": "metal_proximal_contact_candidate",
+          "sequence_position": 35,
+          "sequence_position_uniprot_validated": true,
+          "source_text_used": false
+        },
+        {
+          "candidate_contact": {
+            "auth_seq_id": 17,
+            "distance_angstrom": 2.282,
+            "label_seq_id": 17,
+            "ligand_atom": "MG",
+            "ligand_comp_id": "MG",
+            "residue_atom": "OG",
+            "residue_chain_id": "A",
+            "residue_id": "17",
+            "selected_structure_id": "121P"
+          },
+          "provenance_method": "source_free_selected_structure_ligand_contact_candidate",
+          "residue_code": "SER",
+          "role_hint": "metal_proximal_contact_candidate",
+          "sequence_position": 17,
+          "sequence_position_uniprot_validated": true,
+          "source_text_used": false
+        }
+      ]
+    },
+    "external_panel_context": {
+      "evidence_summary": "external GTPase false-positive control against Mg/nucleotide leakage",
+      "expected_router_behavior": "review_only external hard negative; no import and should route away or abstain",
+      "foldseek_neighbor_expectation": "Foldseek should expose nucleotide-protein fold families and enforce transferase/motor/conformational-cycle route-away or abstention.",
+      "lane": "ntpase_nucleotide_hydrolase_boundary",
+      "ligand_or_substrate_state": "GTP hydrolysis coupled to conformational signaling; many GDP/GTP analog PDBs available",
+      "metal_ligand_state": "Mg/GTPase switch protein; reviewed EC 3.6.5.2",
+      "provenance_tier": "tier_D_control_only",
+      "readiness_tier": "gold",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect P-loop, AAA, GTPase, ATPase, or nucleotide-hydrolase neighbors; Mg/ATP/GTP alone must not become metal hydrolase positive evidence.",
+      "source_artifact": "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/121P",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P01112.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P01112/entry"
+      }
+    },
+    "mechanism_locus_assessment": {
+      "assessment": "The frozen external panel and local 121P CIF support an H-Ras Mg/GTPase nucleotide locus. The source-free geometry top1 is weak ser_his_acid_hydrolase while the fold hit points to a current702 GTPase-like metal_dependent_hydrolase seed, so this is a boundary false-confidence signal rather than family-promotion evidence.",
+      "frozen_local_context_supports_current_panel_promotion": false,
+      "frozen_local_context_supports_gtpase_mg_nucleotide_locus": true,
+      "geometry_fold_disagreement": true,
+      "m_csa_like_catalytic_residue_role_graph_available": false,
+      "mechanism_text_source_count": 0,
+      "row_specific_bond_change_sidecar_status": "not_extracted_for_external_row"
+    },
+    "panel_packet_scores": {
+      "predicted_geometry_top1": {
+        "cofactor_context_score": 0.25,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "role_match_fraction": 0.0,
+        "score": 0.1733
+      },
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:535",
+        "nearest_atlas_tm_score": 0.8022,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "selected_organic_cofactor_scores": {},
+      "selected_pdb_fold_proxy": {
+        "nearest_primary_foldseek_prob": null,
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": null,
+        "top3_primary_foldseek_prob": null
+      }
+    },
+    "selected_structure_evidence": {
+      "citation_title": "Refined Crystal Structure of the Triphosphate Conformation of H-Ras P21 at 1.35 Angstroms Resolution: Implications for the Mechanism of GTP Hydrolysis",
+      "coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_121P.cif",
+      "coordinate_sha256": "377f44c4f036b39f5a5b9d76e1155a66348f180bffc63c9f9f0486a83929d56f",
+      "entity_description": "H-RAS P21 PROTEIN",
+      "entity_ec": null,
+      "local_cif_title": "STRUKTUR UND GUANOSINTRIPHOSPHAT-HYDROLYSEMECHANISMUS DES C-TERMINAL VERKUERZTEN MENSCHLICHEN KREBSPROTEINS P21-H-RAS",
+      "local_coordinate_terms_checked": {
+        "contains_gtp_hydrolysis_citation": true,
+        "contains_h_ras_title": true,
+        "contains_hydrolase_keyword": false,
+        "contains_magnesium_entity": true,
+        "contains_uniprot_p01112_mapping": true
+      },
+      "nonpolymer_entities": [
+        "MAGNESIUM ION",
+        "PHOSPHOMETHYLPHOSPHONIC ACID GUANYLATE ESTER"
+      ],
+      "selected_structure_id": "121P",
+      "struct_ref_accession": "P01112",
+      "struct_site_summary": {
+        "guanylate_ester_binding_site_residue_count": 28,
+        "magnesium_binding_site": "SER17, THR35, guanylate ester, and waters around MG168"
+      }
+    },
+    "source_backed_sidecar_blockers_to_clear": [
+      "create source-backed row sidecar from identifier scout and targeted expansion provenance",
+      "fetch or verify coordinate locally and record sha256",
+      "run duplicate/leakage, source-free geometry, and Foldseek/TM checks before interpretation",
+      "keep external row non-countable until future split/import gates pass"
+    ],
+    "source_backed_sidecar_status": "source_backed_row_context_staged_local_site_not_extracted"
+  },
+  "row": {
+    "benchmark_role": null,
+    "candidate_role": "external_hard_negative",
+    "countable_current702_label": false,
+    "current_v1_state": "external_no_decision_review_only",
+    "display_name": "GTPase HRas",
+    "entry_id": "mh_073",
+    "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+    "ready_for_label_import": false,
+    "source_accession": "uniprot:P01112",
+    "split_assignment": null
+  },
+  "schema_version": "northstar_next_levers.v0.source_free_predicted_geometry_source_check_packet",
+  "scope": "Review-only frozen-local source check for source-free predicted-geometry family-panel row mh_073.",
+  "source_artifacts": {
+    "curated_labels": {
+      "exists": true,
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "external_metal_hydrolase_panel": {
+      "exists": true,
+      "path": "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+      "sha256": "a3006ad4fb79c48209893fc0746b92d9a84981a782df060bf9a55af4bf987fc9"
+    },
+    "family_panel_evidence_packet": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json",
+      "sha256": "83ff67d2a86775fb3d7da5d49cbb1d448d391e1904420b602b68dd114f91095c"
+    },
+    "family_panel_research_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
+      "sha256": "9c8d11be5191f08893510e9c8c57e22051c078f5777c020fafa84c786167998f"
+    },
+    "selected_structure_cif": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_121P.cif",
+      "sha256": "377f44c4f036b39f5a5b9d76e1155a66348f180bffc63c9f9f0486a83929d56f"
+    },
+    "sequence_label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "source_backed_materialization": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json",
+      "sha256": "1c4eacb8b5917750f5ed6de7f614adcae55b1de1473942fc5efa9baeac4abbf6"
+    },
+    "source_backed_sidecar": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_073_P01112.json",
+      "sha256": "63bafd9ed9456f9ef311f323dc6ad583216c1c188d9b8f43a134d3adf32c1272"
+    },
+    "source_check_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.json",
+      "sha256": "76f9f6a850313e7182a8665422f40666ed655704a6571e886d4c0fcb53c74d04"
+    },
+    "source_check_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json",
+      "sha256": "e7d180af1f89fa61553a0c954c7b1a7e7e6f658571f0b397f6eeec7bb8bad3fa"
+    },
+    "source_free_active_site_locator": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_073_P01112.json",
+      "sha256": "9340a15730268e23f8abc65c5efa88ca9d3545a0de57be45c1a52a34ac95ad86"
+    },
+    "source_free_locator_candidate": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_073_P01112.json",
+      "sha256": "0e1b8c6c114354c02ed881258b44927cf63198978153c4afd1bfa05b0d616500"
+    },
+    "source_free_predicted_geometry_retrieval": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601.json",
+      "sha256": "490ec907f56e13c047d715a8f9307da44f57f74eb73470f7ba0270e640d628c0"
+    }
+  },
+  "source_check_decision": {
+    "family_promotion_ready": false,
+    "label_import_ready": false,
+    "next_action": "Continue the source-free source-check queue with secondary_probe::radical_sam_enzyme; keep mh_073 review-only unless a future explicitly authorized GTPase-boundary policy revisits current702 metal_dependent_hydrolase scope.",
+    "reason": "Frozen local evidence supports an H-Ras Mg/GTPase nucleotide locus, the external panel predeclares mh_073 as a hard negative against Mg/nucleotide leakage, and source-free geometry disagrees with the metal-dependent fold hit. The non-abstention is a useful false-confidence/boundary signal, not support for near-orphan hydrolase or metal-hydrolase promotion.",
+    "source_check_result": "keep_as_review_only_gtpase_boundary_hard_negative"
+  },
+  "status": "source_check_completed_review_only_no_label_change"
+}

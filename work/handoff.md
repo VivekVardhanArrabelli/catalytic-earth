@@ -50,6 +50,123 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Source-Free Locator Blocker Resolution And Guardrail Audit
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T15:43:47Z`
+- STARTED_LOCAL: `Mon Jun  1 10:43:47 CDT 2026`
+- ENDED_AT: `2026-06-01T16:33:58Z`
+- ENDED_LOCAL: `Mon Jun  1 11:33:58 CDT 2026`
+- ELAPSED_MINUTES: `50.2`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "55733", "started_at": "2026-06-01T15:43:47Z", "status": "acquired"}`
+- Lock release result: pending at handoff write; release after commit, push,
+  `HEAD == origin/main` verification, and clean worktree.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `3ae3febc7f1f1eef810bb92354ba083a20ceb993`
+- Git HEAD at end before commit: `3ae3febc7f1f1eef810bb92354ba083a20ceb993`
+- Dirty files at start: none
+- Dirty files at end before commit:
+  new source-free geometry source checks, locator blocker validation artifacts,
+  mechanism-feature guardrail audit, current-run integrity audit, refreshed
+  current-docs reference check/report, durable docs, regression tests, and this
+  handoff.
+- Input artifacts:
+  `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`,
+  `artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json`,
+  `artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/*.json`,
+  `artifacts/family_panel_source_backed_sidecars_current702_20260601/*.json`,
+  `artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_*.cif`,
+  `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`,
+  `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`,
+  and
+  `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`.
+- Output artifacts:
+  `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_066_current702_20260601.json`,
+  `work/family_panel_source_free_predicted_geometry_source_check_mh_066_current702_20260601.md`,
+  `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601.json`,
+  `work/family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601.md`,
+  `artifacts/v3_family_panel_source_free_predicted_geometry_source_check_secondary_probe_radical_sam_enzyme_current702_20260601.json`,
+  `work/family_panel_source_free_predicted_geometry_source_check_secondary_probe_radical_sam_enzyme_current702_20260601.md`,
+  `artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json`,
+  `work/family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.md`,
+  `artifacts/v3_family_panel_source_free_locator_uniprot_position_validation_mh065_mh072_current702_20260601.json`,
+  `work/family_panel_source_free_locator_uniprot_position_validation_mh065_mh072_current702_20260601.md`,
+  `artifacts/v3_family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.json`,
+  `work/family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601.md`,
+  `artifacts/v3_family_panel_source_free_locator_ligand_specificity_review_external_glycoside_panel_current702_20260601.json`,
+  `work/family_panel_source_free_locator_ligand_specificity_review_external_glycoside_panel_current702_20260601.md`,
+  `artifacts/v3_family_panel_source_free_locator_policy_blockers_mh064_q59490_current702_20260601.json`,
+  `work/family_panel_source_free_locator_policy_blockers_mh064_q59490_current702_20260601.md`,
+  `artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_current702_20260601.json`,
+  `work/family_panel_source_free_locator_blocker_resolution_status_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_embedding_train_cal_guardrail_audit_current702_20260601.json`,
+  `work/mechanism_feature_embedding_train_cal_guardrail_audit_current702_20260601.md`,
+  `artifacts/v3_current_run_artifact_integrity_audit_current702_20260601.json`,
+  `work/current_run_artifact_integrity_audit_current702_20260601.md`,
+  refreshed
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  refreshed
+  `work/current_docs_artifact_reference_check_current702_20260601.md`,
+  and durable docs/tests/handoff updates.
+- Commands run:
+  lock acquire/status; `git fetch origin`; `git pull --ff-only origin main`;
+  disk check; required context reads; source-free candidate/source-backed sidecar
+  and mmCIF inspections with `jq`, `rg`, and Python read-only checks;
+  JSON parse checks for new artifacts; focused pytest slices; current-docs
+  reference-check CLI; `PYTHONPATH=src python -m catalytic_earth.cli validate`;
+  `PYTHONPATH=src python -m pytest tests -q`; `PYTHONPATH=src python -m unittest
+  discover -s tests`; `PYTHONPATH=src python -m compileall -q src tests`;
+  `PYTHONPATH=src python -m catalytic_earth.cli validate-artifact-migration
+  --dry-run --check-local-files`; repo-wide JSON/JSONL parse sweep; `git diff
+  --check`. Attempted `validate-review-only-zero-import-artifacts` on the new
+  artifacts, but that gate is incompatible with these schemas and was not kept
+  as an output artifact.
+- Validation results:
+  full pytest passed twice after late edits; final result `1087 passed, 26
+  subtests passed, 1 sklearn deprecation warning`;
+  final unittest discovery `1064 tests passed`; `validate` passed with 702
+  curated mechanism labels; compileall passed; artifact migration dry-run
+  passed with 113 rows, 0 blockers, `removal_allowed=0`; current-docs reference
+  check passed with 430 concrete references and 0 missing; repo artifact parse
+  sweep parsed 3108 JSON and 25 JSONL files with 0 errors; `git diff --check`
+  passed.
+- Commit/push result: pending at handoff write; commit all listed outputs,
+  push `main`, verify `HEAD == origin/main`, then release the lock. Final
+  commit hash and sync result should be reported in the automation response.
+- Exact next action for the next run:
+  start from
+  `artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_current702_20260601.json`.
+  Do not rerun source-free locator discovery. Choose one policy decision:
+  approve `mh_067`/`mh_068` locator copy and rerun schema/scoring, decide
+  `mh_065`/`mh_072` accession equivalence or matching-coordinate policy,
+  approve/reject `mh_064` alternate-coordinate fetches, or define/authorize the
+  Q59490 nonlabel locator strategy.
+
+Summary:
+
+- Source-checked the three new source-free non-abstained family-panel rows:
+  `mh_066` remains a review-only metal-hydrolase expansion candidate, `mh_073`
+  remains a Mg/GTPase boundary hard negative, and
+  `secondary_probe::radical_sam_enzyme` remains radical-SAM/Fe-S review-only
+  evidence. No import, promotion, threshold, split, or scoring mutation.
+- Cleared the seven source-free locator blockers into explicit outcomes:
+  `mh_065`/`mh_072` are blocked by selected-PDB accession mismatches;
+  `mh_067`/`mh_068` pass split-safety but still need human locator-copy
+  approval; `external_glycoside_panel` rejects the selected acetate locator;
+  `mh_064` needs alternate-coordinate fetch approval; Q59490 needs a nonlabel
+  locator strategy or approved alternate source row.
+- Added a no-fit mechanism-feature train/cal guardrail audit: 524 feature rows
+  match the split surface, 140 heldout rows remain excluded, and no model fit or
+  threshold selection occurred.
+- Added a current-run integrity audit and refreshed the durable docs artifact
+  reference check.
+
 ### 2026-06-01 Source-Free Geometry Scoring And Packet Refresh
 
 Automation run: `catalytic-earth-work-loop`

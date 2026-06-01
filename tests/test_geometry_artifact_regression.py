@@ -3404,6 +3404,75 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(audit["row_audits"][0]["entry_id"], "m_csa:1")
         self.assertEqual(audit["row_audits"][0]["critical_violations"], [])
 
+    def test_mechanism_feature_embedding_train_cal_guardrail_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_embedding_train_cal_guardrail_audit_"
+                "current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "mechanism_feature_embedding_train_cal_guardrail_audit_passed_review_only",
+        )
+        self.assertEqual(audit["counts"]["input_manifest_rows"], 562)
+        self.assertEqual(audit["counts"]["input_heldout_excluded_rows"], 140)
+        self.assertEqual(audit["counts"]["split_rows"], 524)
+        self.assertEqual(audit["counts"]["feature_rows"], 524)
+        self.assertEqual(audit["counts"]["train_rows"], 418)
+        self.assertEqual(audit["counts"]["calibration_rows"], 106)
+        self.assertEqual(audit["counts"]["split_minus_input_rows"], 0)
+        self.assertEqual(audit["counts"]["feature_minus_split_rows"], 0)
+        self.assertEqual(audit["counts"]["split_minus_feature_rows"], 0)
+        self.assertEqual(audit["counts"]["feature_rows_marked_heldout"], 0)
+        self.assertEqual(audit["counts"]["feature_rows_with_fingerprint_id_feature_leak"], 0)
+        self.assertEqual(audit["counts"]["feature_rows_with_label_type_feature_leak"], 0)
+        self.assertEqual(audit["counts"]["feature_rows_with_stratum_feature_leak"], 0)
+        self.assertEqual(
+            audit["not_ready_reason_counts"],
+            {
+                "role_graph:missing_accession_compatible_sequence_positions": 34,
+                "role_graph:missing_catalytic_residue_nodes": 1,
+                "role_graph:not_m_csa_no_curated_active_site_roles": 3,
+            },
+        )
+        self.assertFalse(audit["guardrails"]["heldout_rows_present_in_feature_rows"])
+        self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_current_run_artifact_integrity_audit_current_counts(self) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_current_run_artifact_integrity_audit_current702_20260601.json"
+        )
+
+        self.assertEqual(audit["status"], "current_run_artifact_integrity_audit_passed")
+        self.assertEqual(audit["counts"]["json_artifacts_checked"], 10)
+        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 10)
+        self.assertEqual(audit["counts"]["work_reports_checked"], 10)
+        self.assertEqual(audit["counts"]["work_reports_present"], 10)
+        self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3108)
+        self.assertEqual(audit["counts"]["repo_jsonl_artifacts_parse_checked"], 25)
+        self.assertEqual(audit["counts"]["repo_json_parse_error_count"], 0)
+        self.assertEqual(audit["counts"]["label_registry_mutations"], 0)
+        self.assertEqual(audit["counts"]["new_coordinates_fetched"], 0)
+        self.assertEqual(audit["counts"]["predicted_geometry_scores_created"], 0)
+        self.assertFalse(audit["guardrails"]["labels_registries_ontologies_changed"])
+        self.assertFalse(audit["guardrails"]["production_thresholds_changed"])
+        self.assertFalse(audit["guardrails"]["new_coordinates_fetched"])
+        self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
+        self.assertEqual(len(audit["artifact_rows"]), 10)
+        self.assertEqual(
+            audit["artifact_rows"][-1]["category"],
+            "mechanism_feature_guardrail",
+        )
+
     def test_thiol_disulfide_family_panel_packet_current_counts(self) -> None:
         packet = _load_json(
             ROOT
@@ -4070,6 +4139,447 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(retrieval["guardrails"]["source_text_used_for_score"])
         self.assertFalse(retrieval["guardrails"]["panel_ids_used_for_score"])
+
+    def test_family_panel_source_free_predicted_geometry_mh066_source_check_current_result(
+        self,
+    ) -> None:
+        check = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_predicted_geometry_source_check_"
+                "mh_066_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            check["status"],
+            "source_check_completed_review_only_no_label_change",
+        )
+        self.assertEqual(check["row"]["entry_id"], "mh_066")
+        self.assertEqual(
+            check["row"]["current_v1_state"],
+            "external_no_decision_review_only",
+        )
+        self.assertEqual(
+            check["fold_augmented_readout"]["predicted_geometry_top1_fingerprint_id"],
+            "metal_dependent_hydrolase",
+        )
+        self.assertEqual(
+            check["fold_augmented_readout"]["nearest_atlas_true_fingerprint_id"],
+            "metal_dependent_hydrolase",
+        )
+        self.assertTrue(check["fold_augmented_readout"]["geometry_fold_agreement"])
+        self.assertEqual(
+            check["duplicate_and_leakage_screen"]["exact_source_accession_matches"],
+            [],
+        )
+        self.assertEqual(
+            check["duplicate_and_leakage_screen"]["nearest_atlas_entry_id"],
+            "m_csa:15",
+        )
+        self.assertEqual(
+            check["source_check_decision"]["source_check_result"],
+            "hold_as_review_only_metal_hydrolase_expansion_candidate",
+        )
+        self.assertFalse(check["source_check_decision"]["family_promotion_ready"])
+        self.assertFalse(check["source_check_decision"]["label_import_ready"])
+        self.assertTrue(check["guardrails"]["review_only"])
+        self.assertFalse(check["guardrails"]["new_source_data_fetched"])
+
+    def test_family_panel_source_free_predicted_geometry_mh073_source_check_current_result(
+        self,
+    ) -> None:
+        check = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_predicted_geometry_source_check_"
+                "mh_073_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            check["status"],
+            "source_check_completed_review_only_no_label_change",
+        )
+        self.assertEqual(check["row"]["entry_id"], "mh_073")
+        self.assertEqual(
+            check["row"]["candidate_role"],
+            "external_hard_negative",
+        )
+        self.assertEqual(
+            check["fold_augmented_readout"]["predicted_geometry_top1_fingerprint_id"],
+            "ser_his_acid_hydrolase",
+        )
+        self.assertEqual(
+            check["fold_augmented_readout"]["nearest_atlas_true_fingerprint_id"],
+            "metal_dependent_hydrolase",
+        )
+        self.assertFalse(check["fold_augmented_readout"]["geometry_fold_agreement"])
+        self.assertEqual(
+            check["duplicate_and_leakage_screen"]["nearest_atlas_entry_id"],
+            "m_csa:535",
+        )
+        self.assertEqual(
+            check["source_check_decision"]["source_check_result"],
+            "keep_as_review_only_gtpase_boundary_hard_negative",
+        )
+        self.assertFalse(check["source_check_decision"]["family_promotion_ready"])
+        self.assertFalse(check["source_check_decision"]["label_import_ready"])
+        self.assertTrue(check["guardrails"]["review_only"])
+        self.assertFalse(check["guardrails"]["new_source_data_fetched"])
+
+    def test_family_panel_source_free_predicted_geometry_radical_sam_source_check_current_result(
+        self,
+    ) -> None:
+        check = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_predicted_geometry_source_check_"
+                "secondary_probe_radical_sam_enzyme_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            check["status"],
+            "source_check_completed_review_only_no_label_change",
+        )
+        self.assertEqual(
+            check["row"]["entry_id"],
+            "secondary_probe::radical_sam_enzyme",
+        )
+        self.assertEqual(
+            check["row"]["current_v1_state"],
+            "secondary_probe_review_only_not_import_ready",
+        )
+        self.assertEqual(
+            check["fold_augmented_readout"]["predicted_geometry_top1_fingerprint_id"],
+            "metal_dependent_hydrolase",
+        )
+        self.assertEqual(
+            check["fold_augmented_readout"]["nearest_atlas_true_fingerprint_id"],
+            "plp_dependent_enzyme",
+        )
+        self.assertFalse(check["fold_augmented_readout"]["geometry_fold_agreement"])
+        self.assertEqual(
+            check["duplicate_and_leakage_screen"]["nearest_atlas_entry_id"],
+            "m_csa:358",
+        )
+        self.assertEqual(
+            check["source_check_decision"]["source_check_result"],
+            "confirm_radical_sam_locus_review_only_no_family_promotion",
+        )
+        self.assertFalse(check["source_check_decision"]["family_promotion_ready"])
+        self.assertFalse(check["source_check_decision"]["label_import_ready"])
+        self.assertTrue(check["guardrails"]["review_only"])
+        self.assertFalse(check["guardrails"]["new_source_data_fetched"])
+
+    def test_family_panel_source_free_locator_remaining_blocker_action_queue_current_counts(
+        self,
+    ) -> None:
+        queue = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_remaining_blocker_"
+                "action_queue_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            queue["status"],
+            "source_free_locator_remaining_blocker_action_queue_ready_review_only",
+        )
+        self.assertEqual(queue["counts"]["blocked_rows"], 7)
+        self.assertEqual(queue["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertEqual(
+            queue["counts"]["action_class_counts"],
+            {
+                "alternate_coordinate_fetch_requires_manual_approval": 1,
+                "ligand_specificity_review_required": 1,
+                "new_nonlabel_locator_strategy_required": 1,
+                "split_safe_template_check_required": 2,
+                "uniprot_position_validation_required": 2,
+            },
+        )
+        by_entry = {row["entry_id"]: row for row in queue["action_rows"]}
+        self.assertEqual(
+            by_entry["mh_065"]["action_class"],
+            "uniprot_position_validation_required",
+        )
+        self.assertEqual(
+            by_entry["mh_072"]["action_class"],
+            "uniprot_position_validation_required",
+        )
+        self.assertEqual(
+            by_entry["mh_064"]["alternate_pdb_ids"],
+            ["3RKJ", "3RKK", "3SBL", "3SFP", "3SPU"],
+        )
+        self.assertFalse(queue["guardrails"]["locator_sidecars_created_or_copied"])
+        self.assertFalse(queue["guardrails"]["new_coordinates_fetched"])
+        self.assertFalse(queue["guardrails"]["predicted_geometry_scored"])
+
+    def test_family_panel_source_free_locator_uniprot_position_validation_mh065_mh072(
+        self,
+    ) -> None:
+        validation = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_uniprot_position_"
+                "validation_mh065_mh072_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            validation["status"],
+            "source_free_locator_uniprot_position_validation_blocked_review_only",
+        )
+        self.assertEqual(validation["counts"]["target_rows"], 2)
+        self.assertEqual(validation["counts"]["validation_passed_rows"], 0)
+        self.assertEqual(validation["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertEqual(
+            validation["counts"]["rows_with_selected_pdb_struct_ref_accession_mismatch"],
+            2,
+        )
+        self.assertFalse(
+            validation["guardrails"]["approved_locator_sidecars_created_or_copied"]
+        )
+        self.assertFalse(validation["guardrails"]["new_source_data_fetched"])
+        self.assertFalse(validation["guardrails"]["predicted_geometry_scored"])
+
+        by_entry = {row["entry_id"]: row for row in validation["validation_rows"]}
+        self.assertEqual(
+            by_entry["mh_065"]["accession_validation"]["result"],
+            "blocked_accession_mismatch",
+        )
+        self.assertEqual(
+            by_entry["mh_065"]["accession_validation"][
+                "selected_pdb_struct_ref_accessions"
+            ],
+            ["Q932P5"],
+        )
+        self.assertEqual(
+            by_entry["mh_072"]["accession_validation"]["result"],
+            "blocked_accession_mismatch",
+        )
+        self.assertEqual(
+            by_entry["mh_072"]["accession_validation"][
+                "selected_pdb_struct_ref_accessions"
+            ],
+            ["P08324"],
+        )
+        for row in validation["validation_rows"]:
+            self.assertEqual(
+                row["validation_decision"]["sequence_position_validated_locator_count"],
+                0,
+            )
+            self.assertFalse(row["validation_decision"]["approved_locator_copy_allowed"])
+
+    def test_family_panel_source_free_locator_split_safe_template_check_mh067_mh068(
+        self,
+    ) -> None:
+        check = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_split_safe_template_"
+                "check_mh067_mh068_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            check["status"],
+            "source_free_locator_split_safe_template_check_passed_review_only_copy_not_authorized",
+        )
+        self.assertEqual(check["counts"]["target_rows"], 2)
+        self.assertEqual(check["counts"]["rows_with_heldout_same_accession_matches"], 0)
+        self.assertEqual(
+            check["counts"]["split_safe_template_check_passed_rows"],
+            2,
+        )
+        self.assertEqual(check["counts"]["approved_locator_copy_authorized_rows"], 0)
+        self.assertEqual(check["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertFalse(
+            check["guardrails"]["approved_locator_sidecars_created_or_copied"]
+        )
+        self.assertFalse(check["guardrails"]["heldout_rows_used_as_templates"])
+        self.assertFalse(check["guardrails"]["predicted_geometry_scored"])
+
+        by_entry = {row["entry_id"]: row for row in check["split_check_rows"]}
+        self.assertEqual(
+            by_entry["mh_067"]["same_accession_current702_matches"][0]["entry_id"],
+            "m_csa:216",
+        )
+        self.assertEqual(
+            by_entry["mh_068"]["same_accession_current702_matches"][0]["entry_id"],
+            "m_csa:158",
+        )
+        for row in check["split_check_rows"]:
+            self.assertEqual(row["heldout_same_accession_matches"], [])
+            self.assertEqual(
+                row["split_safety_decision"]["split_safe_template_check_result"],
+                "passed_no_heldout_same_accession_template",
+            )
+            self.assertTrue(
+                row["split_safety_decision"]["manual_copy_approval_still_required"]
+            )
+            self.assertFalse(
+                row["split_safety_decision"]["approved_locator_copy_allowed_now"]
+            )
+
+    def test_family_panel_source_free_locator_ligand_specificity_external_glycoside(
+        self,
+    ) -> None:
+        review = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_ligand_specificity_review_"
+                "external_glycoside_panel_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            review["status"],
+            "source_free_locator_ligand_specificity_review_rejected_selected_acetate_review_only",
+        )
+        self.assertEqual(review["counts"]["target_rows"], 1)
+        self.assertEqual(review["counts"]["selected_ligand_specificity_passed_rows"], 0)
+        self.assertEqual(review["counts"]["selected_ligand_specificity_rejected_rows"], 1)
+        self.assertEqual(review["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertFalse(
+            review["guardrails"]["approved_locator_sidecars_created_or_copied"]
+        )
+        self.assertFalse(review["guardrails"]["new_coordinates_fetched"])
+        self.assertFalse(review["guardrails"]["predicted_geometry_scored"])
+
+        row = review["review_rows"][0]
+        self.assertEqual(row["entry_id"], "external_glycoside_panel")
+        self.assertEqual(row["selected_ligand_site"]["comp_id"], "ACT")
+        self.assertEqual(
+            row["selected_ligand_review"]["review_result"],
+            "rejected_selected_ligand_not_biologically_specific_for_glycoside_hydrolase_active_site",
+        )
+        self.assertFalse(
+            row["selected_ligand_review"]["acceptable_for_audited_locator_copy"]
+        )
+        self.assertEqual(
+            row["alternate_ligand_candidates_observed"][0]["comp_id"],
+            "NAG",
+        )
+        self.assertFalse(
+            row["alternate_ligand_candidates_observed"][0]["automatic_retarget_allowed"]
+        )
+        self.assertFalse(row["validation_decision"]["approved_locator_copy_allowed_now"])
+
+    def test_family_panel_source_free_locator_policy_blockers_mh064_q59490(
+        self,
+    ) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_policy_blockers_"
+                "mh064_q59490_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            packet["status"],
+            "source_free_locator_policy_blockers_ready_for_human_decision_review_only",
+        )
+        self.assertEqual(packet["counts"]["target_rows"], 2)
+        self.assertEqual(packet["counts"]["rows_with_candidate_residue_locators"], 0)
+        self.assertEqual(
+            packet["counts"]["rows_requiring_alternate_coordinate_fetch_approval"],
+            1,
+        )
+        self.assertEqual(
+            packet["counts"]["rows_requiring_new_nonlabel_locator_strategy"],
+            1,
+        )
+        self.assertEqual(packet["counts"]["alternate_coordinate_fetch_commands_manifested"], 5)
+        self.assertEqual(packet["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertFalse(
+            packet["guardrails"]["approved_locator_sidecars_created_or_copied"]
+        )
+        self.assertFalse(packet["guardrails"]["new_coordinates_fetched"])
+        self.assertFalse(packet["guardrails"]["predicted_geometry_scored"])
+
+        by_entry = {row["entry_id"]: row for row in packet["policy_rows"]}
+        self.assertEqual(len(by_entry["mh_064"]["alternate_pdb_ids"]), 5)
+        self.assertEqual(
+            by_entry["mh_064"]["policy_decision_required"],
+            "approve_or_reject_fetch_of_frozen_alternate_coordinates",
+        )
+        self.assertEqual(
+            by_entry["secondary_probe::cobalamin_radical_rearrangement"][
+                "policy_decision_required"
+            ],
+            "design_nonlabel_locator_strategy_or_authorize_alternate_source_row",
+        )
+        self.assertEqual(
+            by_entry["secondary_probe::cobalamin_radical_rearrangement"][
+                "alternate_coordinate_fetch_commands"
+            ],
+            [],
+        )
+
+    def test_family_panel_source_free_locator_blocker_resolution_status_current(
+        self,
+    ) -> None:
+        status = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_blocker_resolution_status_"
+                "current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            status["status"],
+            "source_free_locator_blocker_resolution_status_ready_review_only",
+        )
+        self.assertEqual(status["counts"]["blocked_rows_tracked"], 7)
+        self.assertEqual(status["counts"]["automation_discovery_completed_rows"], 7)
+        self.assertEqual(status["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertEqual(status["counts"]["locator_sidecars_created_or_copied"], 0)
+        self.assertEqual(
+            status["counts"]["resolution_class_counts"],
+            {
+                "accession_equivalence_or_matching_coordinate_required": 2,
+                "alternate_coordinate_fetch_approval_required": 1,
+                "human_locator_copy_approval_after_split_safe_pass": 2,
+                "ligand_specificity_validator_or_substrate_coordinate_required": 1,
+                "nonlabel_locator_strategy_or_alternate_source_required": 1,
+            },
+        )
+        self.assertFalse(
+            status["guardrails"]["approved_locator_sidecars_created_or_copied"]
+        )
+        self.assertFalse(status["guardrails"]["new_coordinates_fetched"])
+        self.assertFalse(status["guardrails"]["predicted_geometry_scored"])
+
+        by_entry = {row["entry_id"]: row for row in status["resolution_rows"]}
+        self.assertEqual(by_entry["mh_065"]["resolution_status"], "blocked_accession_mismatch")
+        self.assertEqual(
+            by_entry["mh_067"]["resolution_status"],
+            "split_safe_passed_copy_not_authorized",
+        )
+        self.assertEqual(
+            by_entry["external_glycoside_panel"]["resolution_status"],
+            "selected_acetate_locator_rejected",
+        )
+        self.assertEqual(
+            by_entry["secondary_probe::cobalamin_radical_rearrangement"][
+                "resolution_status"
+            ],
+            "blocked_no_ligand_no_alternate_pdb",
+        )
 
     def test_family_panel_source_free_active_site_locator_schema_current_counts(
         self,

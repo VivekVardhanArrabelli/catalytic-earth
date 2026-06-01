@@ -1,0 +1,353 @@
+{
+  "artifact_id": "v3_family_panel_source_free_predicted_geometry_source_check_mh_066_current702_20260601",
+  "created_utc": "2026-06-01T15:48:19Z",
+  "duplicate_and_leakage_screen": {
+    "current702_label_manifest_membership": false,
+    "exact_source_accession_matches": [],
+    "interpretation": "The row is not an exact accession duplicate of current702, but its high-TM nearest atlas hit is an occupied B1 metallo-beta-lactamase seed. Future import would need explicit duplicate/subfamily review and split assignment; this source check does not authorize import.",
+    "nearby_current702_mbl_seed_label_rationales": [
+      {
+        "entry_id": "m_csa:15",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "rationale": "Class B1 beta-lactamase is a metallo-beta-lactamase using metal-activated hydrolysis."
+      },
+      {
+        "entry_id": "m_csa:16",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "rationale": "Class B1 beta-lactamase is a metallo-beta-lactamase using metal-activated hydrolysis."
+      },
+      {
+        "entry_id": "m_csa:258",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "rationale": "Class B1 beta-lactamase uses zinc-activated hydroxide for beta-lactam amide hydrolysis, matching the metal-dependent hydrolase seed."
+      }
+    ],
+    "nearby_current702_mbl_seed_rows": [
+      {
+        "accession": "P25910",
+        "entry_id": "m_csa:15",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "mmseqs30_subfamily_cluster_id": "mmseqs30:m_csa:15",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P04190",
+        "entry_id": "m_csa:16",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "mmseqs30_subfamily_cluster_id": "mmseqs30:m_csa:15",
+        "split_assignment": "in_distribution"
+      },
+      {
+        "accession": "P52700",
+        "entry_id": "m_csa:258",
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "mmseqs30_subfamily_cluster_id": "mmseqs30:m_csa:258",
+        "split_assignment": "in_distribution"
+      }
+    ],
+    "nearest_atlas_entry_id": "m_csa:15",
+    "nearest_atlas_tm_score": 0.9445,
+    "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+    "same_accession_current702_geometry_rows": [],
+    "screen_result": "no_exact_accession_duplicate_in_current702_manifest_but_nearest_fold_hits_occupied_mbl_seed_anchor",
+    "source_accession_in_current702_manifest": false
+  },
+  "fold_augmented_readout": {
+    "combined_mean_geometry_fold": 0.66335,
+    "fixed_research_threshold": 0.44155,
+    "geometry_fold_agreement": true,
+    "nearest_atlas_tm_score": 0.9445,
+    "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+    "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+    "predicted_geometry_top1_score": 0.3822,
+    "queue_rank": 1,
+    "readout_research_gate_status": "non_abstained_at_research_threshold",
+    "retained_at_fixed_research_threshold": true,
+    "source_check_focus": [
+      "row_specific_bond_change_and_mechanism_locus",
+      "cofactor_locus_and_redox_partner_identity",
+      "occupied_primary_fold_false_confidence_review"
+    ],
+    "threshold_margin": 0.2218
+  },
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_source_data_fetched": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_prose_used_for_predictive_scoring": false,
+    "threshold_values_changed": false
+  },
+  "local_source_evidence": {
+    "approved_source_free_locator_summary": {
+      "forbidden_feature_audit": {
+        "benchmark_role": false,
+        "ec_identifiers": false,
+        "entry_name": false,
+        "fingerprint_id": false,
+        "label_type": false,
+        "mechanism_text": false,
+        "panel_id_as_feature": false,
+        "rhea_identifiers": false,
+        "source_prose": false,
+        "source_review_rationale": false
+      },
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+      "locator_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_066_P52699.json",
+      "locator_policy": "human_approved_structure_local_ligand_geometry_without_source_text",
+      "locator_sha256": "3ee9c109b15001d10899c65c2a40066531d304462d580bc14d486d8361301621",
+      "ready_for_predicted_geometry_scoring": true,
+      "residue_locator_count": 3,
+      "residue_locators": [
+        {
+          "candidate_contact": {
+            "auth_seq_id": 81,
+            "distance_angstrom": 2.095,
+            "label_seq_id": 81,
+            "ligand_atom": "ZN",
+            "ligand_comp_id": "ZN",
+            "residue_atom": "OD2",
+            "residue_chain_id": "A",
+            "residue_id": "81",
+            "selected_structure_id": "1DD6"
+          },
+          "provenance_method": "source_free_selected_structure_ligand_contact_candidate",
+          "residue_code": "ASP",
+          "role_hint": "metal_ligand_contact_candidate",
+          "sequence_position": 99,
+          "sequence_position_uniprot_validated": true,
+          "source_text_used": false
+        },
+        {
+          "candidate_contact": {
+            "auth_seq_id": 197,
+            "distance_angstrom": 2.256,
+            "label_seq_id": 197,
+            "ligand_atom": "ZN",
+            "ligand_comp_id": "ZN",
+            "residue_atom": "NE2",
+            "residue_chain_id": "A",
+            "residue_id": "197",
+            "selected_structure_id": "1DD6"
+          },
+          "provenance_method": "source_free_selected_structure_ligand_contact_candidate",
+          "residue_code": "HIS",
+          "role_hint": "metal_ligand_contact_candidate",
+          "sequence_position": 215,
+          "sequence_position_uniprot_validated": true,
+          "source_text_used": false
+        },
+        {
+          "candidate_contact": {
+            "auth_seq_id": 158,
+            "distance_angstrom": 2.329,
+            "label_seq_id": 158,
+            "ligand_atom": "ZN",
+            "ligand_comp_id": "ZN",
+            "residue_atom": "SG",
+            "residue_chain_id": "A",
+            "residue_id": "158",
+            "selected_structure_id": "1DD6"
+          },
+          "provenance_method": "source_free_selected_structure_ligand_contact_candidate",
+          "residue_code": "CYS",
+          "role_hint": "metal_ligand_contact_candidate",
+          "sequence_position": 176,
+          "sequence_position_uniprot_validated": true,
+          "source_text_used": false
+        }
+      ]
+    },
+    "external_panel_context": {
+      "evidence_summary": "external MBL lead plus nuclease EC cross-reference warning in UniProt metadata",
+      "foldseek_neighbor_expectation": "Foldseek should recover B1/MBL fold neighbors and MBL-fold hydrolases, while child calls require lactam amide hydrolysis context.",
+      "lane": "metallo_beta_lactamase_like",
+      "ligand_or_substrate_state": "beta-lactam hydrolysis; public structures available",
+      "metal_ligand_state": "Zn metallo-beta-lactamase IMP-1; reviewed EC 3.5.2.6",
+      "provenance_tier": "tier_B_external_curated",
+      "readiness_tier": "silver",
+      "selection_frozen_before_scoring": true,
+      "sequence_neighbor_expectation": "Expect metallo-beta-lactamase sequence or MBL-fold neighbors; must reject serine beta-lactamases despite shared beta-lactam substrate wording.",
+      "source_artifact": "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+      "source_refs": [
+        "UniProt REST metadata spot check 2026-05-28",
+        "RCSB public structure cross-references from UniProt"
+      ],
+      "source_urls": {
+        "rcsb_representative_structure": "https://www.rcsb.org/structure/1DD6",
+        "uniprot": "https://rest.uniprot.org/uniprotkb/P52699.json",
+        "uniprot_page": "https://www.uniprot.org/uniprotkb/P52699/entry"
+      }
+    },
+    "mechanism_locus_assessment": {
+      "assessment": "The frozen external panel, local 1DD6 CIF, approved Zn-contact locator, predicted geometry, and nearest predicted fold all agree with a metal-dependent beta-lactamase-like hydrolase locus, but the row remains external and lacks an extracted row-specific bond-change or residue-role graph sidecar.",
+      "frozen_local_context_supports_metal_beta_lactamase": true,
+      "frozen_local_context_supports_zinc_hydrolase_locus": true,
+      "m_csa_like_catalytic_residue_role_graph_available": false,
+      "mechanism_text_source_count": 0,
+      "row_specific_bond_change_sidecar_status": "not_extracted_for_external_row"
+    },
+    "panel_packet_scores": {
+      "predicted_geometry_top1": {
+        "cofactor_context_score": 1.0,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "role_match_fraction": 0.0,
+        "score": 0.3822
+      },
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:15",
+        "nearest_atlas_tm_score": 0.9445,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "selected_organic_cofactor_scores": {},
+      "selected_pdb_fold_proxy": {
+        "nearest_primary_foldseek_prob": null,
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": null,
+        "top3_primary_foldseek_prob": null
+      }
+    },
+    "selected_structure_evidence": {
+      "citation_title": "Crystal structure of the IMP-1 metallo beta-lactamase from Pseudomonas aeruginosa and its complex with a mercaptocarboxylate inhibitor: binding determinants of a potent, broad-spectrum inhibitor.",
+      "coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1DD6.cif",
+      "coordinate_sha256": "b8d630330377ab6aa37693a4c7657b5063c0efdbac8799df4b9d3c869ea271c8",
+      "entity_description": "IMP-1 METALLO BETA-LACTAMASE",
+      "entity_ec": "3.5.2.6",
+      "local_cif_title": "IMP-1 METALLO BETA-LACTAMASE FROM PSEUDOMONAS AERUGINOSA IN COMPLEX WITH A MERCAPTOCARBOXYLATE INHIBITOR",
+      "local_coordinate_terms_checked": {
+        "contains_hydrolase_keyword": true,
+        "contains_imp1_metallo_beta_lactamase_title": true,
+        "contains_uniprot_p52699_mapping": true,
+        "contains_zinc_entity": true
+      },
+      "nonpolymer_entities": [
+        "SULFATE ION",
+        "ZINC ION",
+        "(2-MERCAPTOMETHYL-4-PHENYL-BUTYRYLIMINO)-(5-TETRAZOL-1-YLMETHYL-THIOPHEN-2-YL)-ACETIC ACID"
+      ],
+      "selected_structure_id": "1DD6",
+      "struct_ref_accession": "P52699",
+      "struct_ref_seq_mappings": [
+        {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 228,
+          "chain_id": "A",
+          "db_accession": "P52699",
+          "db_align_beg": 19,
+          "db_align_end": 246
+        },
+        {
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 228,
+          "chain_id": "B",
+          "db_accession": "P52699",
+          "db_align_beg": 19,
+          "db_align_end": 246
+        }
+      ]
+    },
+    "source_backed_sidecar_blockers_to_clear": [
+      "create source-backed row sidecar from identifier scout and targeted expansion provenance",
+      "fetch or verify coordinate locally and record sha256",
+      "run duplicate/leakage, source-free geometry, and Foldseek/TM checks before interpretation",
+      "keep external row non-countable until future split/import gates pass"
+    ],
+    "source_backed_sidecar_status": "source_backed_row_context_staged_local_site_not_extracted"
+  },
+  "row": {
+    "benchmark_role": null,
+    "candidate_role": "external_positive_lead",
+    "countable_current702_label": false,
+    "current_v1_state": "external_no_decision_review_only",
+    "display_name": "Metallo-beta-lactamase IMP-1",
+    "entry_id": "mh_066",
+    "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+    "ready_for_label_import": false,
+    "source_accession": "uniprot:P52699",
+    "split_assignment": null
+  },
+  "schema_version": "northstar_next_levers.v0.source_free_predicted_geometry_source_check_packet",
+  "scope": "Review-only frozen-local source check for source-free predicted-geometry family-panel row mh_066.",
+  "source_artifacts": {
+    "curated_labels": {
+      "exists": true,
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "external_metal_hydrolase_panel": {
+      "exists": true,
+      "path": "artifacts/v3_external_metal_hydrolase_tail_panel_20260528.json",
+      "sha256": "a3006ad4fb79c48209893fc0746b92d9a84981a782df060bf9a55af4bf987fc9"
+    },
+    "family_panel_evidence_packet": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.json",
+      "sha256": "fcc454b5bdaa43b049c5b0811b1bed793dc50cc27d6245a1a8713f64af403267"
+    },
+    "family_panel_research_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
+      "sha256": "9c8d11be5191f08893510e9c8c57e22051c078f5777c020fafa84c786167998f"
+    },
+    "selected_structure_cif": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1DD6.cif",
+      "sha256": "b8d630330377ab6aa37693a4c7657b5063c0efdbac8799df4b9d3c869ea271c8"
+    },
+    "sequence_label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "source_backed_materialization": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json",
+      "sha256": "1c4eacb8b5917750f5ed6de7f614adcae55b1de1473942fc5efa9baeac4abbf6"
+    },
+    "source_backed_sidecar": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_066_P52699.json",
+      "sha256": "c94ca30b033a4adbe1a6be938a3bf55bbc8d245eb82c2d21a085733ecec7cad4"
+    },
+    "source_check_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_preflight_current702_20260601.json",
+      "sha256": "76f9f6a850313e7182a8665422f40666ed655704a6571e886d4c0fcb53c74d04"
+    },
+    "source_check_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json",
+      "sha256": "e7d180af1f89fa61553a0c954c7b1a7e7e6f658571f0b397f6eeec7bb8bad3fa"
+    },
+    "source_free_active_site_locator": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_066_P52699.json",
+      "sha256": "3ee9c109b15001d10899c65c2a40066531d304462d580bc14d486d8361301621"
+    },
+    "source_free_locator_candidate": {
+      "exists": true,
+      "path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_066_P52699.json",
+      "sha256": "81b6e59b8956a4071f82ae84d1275921a90bb68b3a5e8effd662a06eab502a6a"
+    },
+    "source_free_predicted_geometry_retrieval": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_retrieval_current702_20260601.json",
+      "sha256": "490ec907f56e13c047d715a8f9307da44f57f74eb73470f7ba0270e640d628c0"
+    }
+  },
+  "source_check_decision": {
+    "family_promotion_ready": false,
+    "label_import_ready": false,
+    "next_action": "Continue the source-free source-check queue with mh_073, then secondary_probe::radical_sam_enzyme; keep mh_066 review-only until a future explicitly authorized import/admission packet resolves bond-change, duplicate, split, and expert-review blockers.",
+    "reason": "Frozen local evidence is consistent with IMP-1 zinc metallo-beta-lactamase hydrolase context and the source-free geometry/fold channels agree on metal_dependent_hydrolase, but mh_066 is an external non-countable row with no extracted row-specific bond-change/residue-role sidecar and no authorized duplicate, split, or expert admission gate.",
+    "source_check_result": "hold_as_review_only_metal_hydrolase_expansion_candidate"
+  },
+  "status": "source_check_completed_review_only_no_label_change"
+}

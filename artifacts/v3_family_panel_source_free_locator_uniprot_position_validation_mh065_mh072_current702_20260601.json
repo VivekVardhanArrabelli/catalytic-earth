@@ -1,0 +1,286 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_uniprot_position_validation_mh065_mh072_current702_20260601",
+  "created_utc": "2026-06-01T16:03:01Z",
+  "schema_version": "northstar_next_levers.v0.source_free_locator_uniprot_position_validation",
+  "status": "source_free_locator_uniprot_position_validation_blocked_review_only",
+  "scope": {
+    "target_entries": [
+      "mh_065",
+      "mh_072"
+    ],
+    "selection_reason": "least_ambiguous_remaining_source_free_locator_blocker_class",
+    "source_free_locator_blocker_action_class": "uniprot_position_validation_required",
+    "current702_safe_inputs_only": true
+  },
+  "counts": {
+    "target_rows": 2,
+    "candidate_integrity_passed_rows": 2,
+    "candidate_rows_with_at_least_two_locators": 2,
+    "rows_with_selected_pdb_struct_ref_mapping": 2,
+    "rows_with_selected_pdb_struct_ref_accession_mismatch": 2,
+    "validation_passed_rows": 0,
+    "ready_for_predicted_geometry_scoring": 0,
+    "locator_sidecars_created_or_copied": 0,
+    "predicted_geometry_scores_created": 0
+  },
+  "guardrails": {
+    "review_only": true,
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "source_text_or_label_fields_used_as_predictive_features": false,
+    "new_source_data_fetched": false,
+    "new_coordinates_fetched": false,
+    "heldout_rows_used_for_training": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "predicted_geometry_scored": false
+  },
+  "input_artifacts": {
+    "remaining_blocker_queue": {
+      "path": "artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json",
+      "sha256": "fe9c7f5b3e819cca4c67a340d428d38d3fdcd18aca32408326e70eb80a979d30"
+    },
+    "mh_065_candidate_sidecar": {
+      "path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_065_Q79MP6.json",
+      "sha256": "e515c38ce68e00f4dc0657684b75c110635eeb791ab2234eadfd8a3f82ec4ac9"
+    },
+    "mh_072_candidate_sidecar": {
+      "path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_072_P0A6P9.json",
+      "sha256": "e354f51dd0328d8dee73173ff54d8a8b535d1c18f72b5d59c11447973b4d58dd"
+    },
+    "mh_065_source_backed_sidecar": {
+      "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_065_Q79MP6.json",
+      "sha256": "78e489d19595d170c4c9882377a04efbf078d496ef30754000a09a67c35e8372"
+    },
+    "mh_072_source_backed_sidecar": {
+      "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_072_P0A6P9.json",
+      "sha256": "fd06afd9484d4e22d8d9a6a073cfedbf1243beccd00a028e43a3fc21c063eacb"
+    }
+  },
+  "validation_rows": [
+    {
+      "entry_id": "mh_065",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "source_accession": "uniprot:Q79MP6",
+      "selected_structure_id": "1DDK",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "500",
+        "structure_id": "1DDK"
+      },
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_065_Q79MP6.json",
+      "candidate_integrity_sha256": "e515c38ce68e00f4dc0657684b75c110635eeb791ab2234eadfd8a3f82ec4ac9",
+      "candidate_integrity_status": "passed",
+      "candidate_residue_locator_count": 3,
+      "candidate_sequence_position_source": "label_seq_id",
+      "candidate_sequence_positions": [
+        138,
+        76,
+        78
+      ],
+      "candidate_contacts": [
+        {
+          "auth_seq_id": 139,
+          "distance_angstrom": 2.136,
+          "label_seq_id": 138,
+          "ligand_atom": "ZN",
+          "residue_atom": "NE2",
+          "residue_chain_id": "A",
+          "residue_code": "HIS"
+        },
+        {
+          "auth_seq_id": 77,
+          "distance_angstrom": 2.284,
+          "label_seq_id": 76,
+          "ligand_atom": "ZN",
+          "residue_atom": "NE2",
+          "residue_chain_id": "A",
+          "residue_code": "HIS"
+        },
+        {
+          "auth_seq_id": 79,
+          "distance_angstrom": 2.328,
+          "label_seq_id": 78,
+          "ligand_atom": "ZN",
+          "residue_atom": "ND1",
+          "residue_chain_id": "A",
+          "residue_code": "HIS"
+        }
+      ],
+      "selected_pdb_coordinate": {
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1DDK.cif",
+        "sha256": "4e4f544bd050a69972c1245de33f8fd180bb89c75fc5ce5a807b4e8535033090"
+      },
+      "selected_pdb_struct_ref": {
+        "db_name": "UNP",
+        "db_code": "Q932P5_9GAMM",
+        "pdbx_db_accession": "Q932P5"
+      },
+      "selected_pdb_struct_ref_seq_mappings": [
+        {
+          "pdb_id": "1DDK",
+          "strand_id": "A",
+          "seq_align_beg": 1,
+          "seq_align_end": 220,
+          "db_accession": "Q932P5",
+          "db_align_beg": 20,
+          "db_align_end": 239,
+          "auth_seq_align_beg": 2,
+          "auth_seq_align_end": 221
+        }
+      ],
+      "accession_validation": {
+        "requested_accession": "Q79MP6",
+        "selected_pdb_struct_ref_accessions": [
+          "Q932P5"
+        ],
+        "requested_accession_present_in_selected_pdb_struct_ref": false,
+        "authorized_accession_equivalence_available": false,
+        "result": "blocked_accession_mismatch"
+      },
+      "validation_decision": {
+        "sequence_position_validated_locator_count": 0,
+        "ready_for_predicted_geometry_scoring": false,
+        "approved_locator_copy_allowed": false,
+        "blockers_remaining": [
+          "selected_pdb_struct_ref_accession_mismatch",
+          "uniprot_sequence_position_validation_required",
+          "manual_review_required_before_copy_to_audited_dir",
+          "candidate_sidecar_not_in_audited_locator_dir"
+        ],
+        "automation_safe_next_action": "Request an explicit Q79MP6-to-Q932P5 representative-equivalence policy or supply a frozen coordinate whose struct_ref maps to Q79MP6 before copying any locator."
+      }
+    },
+    {
+      "entry_id": "mh_072",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "source_accession": "uniprot:P0A6P9",
+      "selected_structure_id": "1E9I",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "C",
+        "comp_id": "MG",
+        "residue_id": "1429",
+        "structure_id": "1E9I"
+      },
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_072_P0A6P9.json",
+      "candidate_integrity_sha256": "e354f51dd0328d8dee73173ff54d8a8b535d1c18f72b5d59c11447973b4d58dd",
+      "candidate_integrity_status": "passed",
+      "candidate_residue_locator_count": 3,
+      "candidate_sequence_position_source": "label_seq_id",
+      "candidate_sequence_positions": [
+        289,
+        316,
+        245
+      ],
+      "candidate_contacts": [
+        {
+          "auth_seq_id": 289,
+          "distance_angstrom": 2.038,
+          "label_seq_id": 289,
+          "ligand_atom": "MG",
+          "residue_atom": "OE2",
+          "residue_chain_id": "C",
+          "residue_code": "GLU"
+        },
+        {
+          "auth_seq_id": 316,
+          "distance_angstrom": 2.759,
+          "label_seq_id": 316,
+          "ligand_atom": "MG",
+          "residue_atom": "OD2",
+          "residue_chain_id": "C",
+          "residue_code": "ASP"
+        },
+        {
+          "auth_seq_id": 245,
+          "distance_angstrom": 2.94,
+          "label_seq_id": 245,
+          "ligand_atom": "MG",
+          "residue_atom": "OD2",
+          "residue_chain_id": "C",
+          "residue_code": "ASP"
+        }
+      ],
+      "selected_pdb_coordinate": {
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1E9I.cif",
+        "sha256": "fbbf17a100e17512cf14b32fab6ad897460eb571e2dea9b998a5159bd77db4a0"
+      },
+      "selected_pdb_struct_ref": {
+        "db_name": "UNP",
+        "db_code": "ENO_ECOLI",
+        "pdbx_db_accession": "P08324"
+      },
+      "selected_pdb_struct_ref_seq_mappings": [
+        {
+          "pdb_id": "1E9I",
+          "strand_id": "A",
+          "seq_align_beg": 1,
+          "seq_align_end": 431,
+          "db_accession": "P08324",
+          "db_align_beg": 1,
+          "db_align_end": 431,
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 431
+        },
+        {
+          "pdb_id": "1E9I",
+          "strand_id": "B",
+          "seq_align_beg": 1,
+          "seq_align_end": 431,
+          "db_accession": "P08324",
+          "db_align_beg": 1,
+          "db_align_end": 431,
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 431
+        },
+        {
+          "pdb_id": "1E9I",
+          "strand_id": "C",
+          "seq_align_beg": 1,
+          "seq_align_end": 431,
+          "db_accession": "P08324",
+          "db_align_beg": 1,
+          "db_align_end": 431,
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 431
+        },
+        {
+          "pdb_id": "1E9I",
+          "strand_id": "D",
+          "seq_align_beg": 1,
+          "seq_align_end": 431,
+          "db_accession": "P08324",
+          "db_align_beg": 1,
+          "db_align_end": 431,
+          "auth_seq_align_beg": 1,
+          "auth_seq_align_end": 431
+        }
+      ],
+      "accession_validation": {
+        "requested_accession": "P0A6P9",
+        "selected_pdb_struct_ref_accessions": [
+          "P08324"
+        ],
+        "requested_accession_present_in_selected_pdb_struct_ref": false,
+        "authorized_accession_equivalence_available": false,
+        "result": "blocked_accession_mismatch"
+      },
+      "validation_decision": {
+        "sequence_position_validated_locator_count": 0,
+        "ready_for_predicted_geometry_scoring": false,
+        "approved_locator_copy_allowed": false,
+        "blockers_remaining": [
+          "selected_pdb_struct_ref_accession_mismatch",
+          "uniprot_sequence_position_validation_required",
+          "manual_review_required_before_copy_to_audited_dir",
+          "candidate_sidecar_not_in_audited_locator_dir"
+        ],
+        "automation_safe_next_action": "Request an explicit P0A6P9-to-P08324 representative-equivalence policy or supply a frozen coordinate whose struct_ref maps to P0A6P9 before copying any locator."
+      }
+    }
+  ],
+  "next_action": "Run split-safe same-accession template checks for mh_067 and mh_068, then update the remaining-locator blocker queue."
+}

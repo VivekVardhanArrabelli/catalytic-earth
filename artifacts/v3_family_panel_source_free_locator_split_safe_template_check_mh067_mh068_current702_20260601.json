@@ -1,0 +1,203 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_split_safe_template_check_mh067_mh068_current702_20260601",
+  "created_utc": "2026-06-01T16:06:55Z",
+  "schema_version": "northstar_next_levers.v0.source_free_locator_split_safe_template_check",
+  "status": "source_free_locator_split_safe_template_check_passed_review_only_copy_not_authorized",
+  "scope": {
+    "target_entries": [
+      "mh_067",
+      "mh_068"
+    ],
+    "selection_reason": "next_remaining_source_free_locator_blocker_class_after_uniprot_position_validation",
+    "source_free_locator_blocker_action_class": "split_safe_template_check_required",
+    "current702_safe_inputs_only": true
+  },
+  "counts": {
+    "target_rows": 2,
+    "candidate_integrity_passed_rows": 2,
+    "candidate_rows_with_at_least_two_locators": 2,
+    "sequence_position_validated_locator_count": 7,
+    "rows_with_same_accession_current702_matches": 2,
+    "rows_with_heldout_same_accession_matches": 0,
+    "rows_with_in_distribution_same_accession_seed_matches": 2,
+    "rows_with_forbidden_predictive_feature_violations": 0,
+    "split_safe_template_check_passed_rows": 2,
+    "approved_locator_copy_authorized_rows": 0,
+    "ready_for_predicted_geometry_scoring": 0,
+    "locator_sidecars_created_or_copied": 0,
+    "predicted_geometry_scores_created": 0
+  },
+  "guardrails": {
+    "review_only": true,
+    "approved_locator_sidecars_created_or_copied": false,
+    "candidate_sidecars_modified": false,
+    "source_text_or_label_fields_used_as_predictive_features": false,
+    "new_source_data_fetched": false,
+    "new_coordinates_fetched": false,
+    "heldout_rows_used_for_training": false,
+    "heldout_rows_used_as_templates": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "predicted_geometry_scored": false
+  },
+  "input_artifacts": {
+    "current702_sequence_manifest": {
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "remaining_blocker_queue": {
+      "path": "artifacts/v3_family_panel_source_free_locator_remaining_blocker_action_queue_current702_20260601.json",
+      "sha256": "fe9c7f5b3e819cca4c67a340d428d38d3fdcd18aca32408326e70eb80a979d30"
+    },
+    "mh_067_candidate_sidecar": {
+      "path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_067_P00918.json",
+      "sha256": "4dd8048ad5e72492502f86949758eff6373b85de7ebc76c3717fdb00fcd70bd3"
+    },
+    "mh_068_candidate_sidecar": {
+      "path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_068_P15289.json",
+      "sha256": "b3fe6d9deb6d5d7cebc11d7af11019114b08d2f04a483579d37a3f391f696096"
+    },
+    "mh_067_source_backed_sidecar": {
+      "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_067_P00918.json",
+      "sha256": "29b6c6285837d58c71f9aa6993cbc328b052cd7b08e19750f9de7e7facbad5aa"
+    },
+    "mh_068_source_backed_sidecar": {
+      "path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_068_P15289.json",
+      "sha256": "92cea9fec31d85b9edaab1b5506b758741f809aef4df6bc0c80e594b6cb85de6"
+    }
+  },
+  "split_check_rows": [
+    {
+      "entry_id": "mh_067",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "source_accession": "uniprot:P00918",
+      "selected_structure_id": "12CA",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "262",
+        "structure_id": "12CA"
+      },
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_067_P00918.json",
+      "candidate_integrity_sha256": "4dd8048ad5e72492502f86949758eff6373b85de7ebc76c3717fdb00fcd70bd3",
+      "candidate_integrity_status": "passed",
+      "candidate_residue_locator_count": 3,
+      "sequence_position_validated_locator_count": 3,
+      "candidate_sequence_positions": [
+        95,
+        118,
+        93
+      ],
+      "candidate_sequence_position_source": "struct_ref_seq.auth_seq_id",
+      "candidate_locator_policy": "train_cal_template_alignment_without_heldout_rows_candidate_requires_split_check",
+      "candidate_forbidden_feature_audit": {
+        "benchmark_role": false,
+        "ec_identifiers": false,
+        "entry_name": false,
+        "fingerprint_id": false,
+        "label_type": false,
+        "mechanism_text": false,
+        "panel_id_as_feature": false,
+        "rhea_identifiers": false,
+        "source_prose": false,
+        "source_review_rationale": false
+      },
+      "same_accession_current702_matches": [
+        {
+          "accession": "P00918",
+          "entry_id": "m_csa:216",
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "label_type": "seed_fingerprint",
+          "manifest_status": "ready_for_sequence_nn",
+          "mmseqs30_subfamily_cluster_id": "mmseqs30:m_csa:216",
+          "sequence_cluster_id": "uniprot:P00918",
+          "split_assignment": "in_distribution"
+        }
+      ],
+      "heldout_same_accession_matches": [],
+      "split_safety_decision": {
+        "split_safe_template_check_result": "passed_no_heldout_same_accession_template",
+        "same_accession_template_rows_are_in_distribution": true,
+        "forbidden_predictive_feature_violation_count": 0,
+        "candidate_uses_source_text": false,
+        "candidate_uses_heldout_rows": false,
+        "manual_copy_approval_still_required": true,
+        "approved_locator_copy_allowed_now": false,
+        "ready_for_predicted_geometry_scoring": false,
+        "remaining_blockers": [
+          "manual_review_required_before_copy_to_audited_dir",
+          "candidate_sidecar_not_in_audited_locator_dir"
+        ],
+        "automation_safe_next_action": "Use this split-safety result in a human locator-copy review; do not score source-free predicted geometry until the sidecar is explicitly copied into the audited locator directory."
+      }
+    },
+    {
+      "entry_id": "mh_068",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "source_accession": "uniprot:P15289",
+      "selected_structure_id": "1AUK",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "603",
+        "structure_id": "1AUK"
+      },
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_068_P15289.json",
+      "candidate_integrity_sha256": "b3fe6d9deb6d5d7cebc11d7af11019114b08d2f04a483579d37a3f391f696096",
+      "candidate_integrity_status": "passed",
+      "candidate_residue_locator_count": 4,
+      "sequence_position_validated_locator_count": 4,
+      "candidate_sequence_positions": [
+        281,
+        30,
+        29,
+        282
+      ],
+      "candidate_sequence_position_source": "struct_ref_seq.auth_seq_id",
+      "candidate_locator_policy": "train_cal_template_alignment_without_heldout_rows_candidate_requires_split_check",
+      "candidate_forbidden_feature_audit": {
+        "benchmark_role": false,
+        "ec_identifiers": false,
+        "entry_name": false,
+        "fingerprint_id": false,
+        "label_type": false,
+        "mechanism_text": false,
+        "panel_id_as_feature": false,
+        "rhea_identifiers": false,
+        "source_prose": false,
+        "source_review_rationale": false
+      },
+      "same_accession_current702_matches": [
+        {
+          "accession": "P15289",
+          "entry_id": "m_csa:158",
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "label_type": "seed_fingerprint",
+          "manifest_status": "ready_for_sequence_nn",
+          "mmseqs30_subfamily_cluster_id": "mmseqs30:m_csa:158",
+          "sequence_cluster_id": "uniprot:P15289",
+          "split_assignment": "in_distribution"
+        }
+      ],
+      "heldout_same_accession_matches": [],
+      "split_safety_decision": {
+        "split_safe_template_check_result": "passed_no_heldout_same_accession_template",
+        "same_accession_template_rows_are_in_distribution": true,
+        "forbidden_predictive_feature_violation_count": 0,
+        "candidate_uses_source_text": false,
+        "candidate_uses_heldout_rows": false,
+        "manual_copy_approval_still_required": true,
+        "approved_locator_copy_allowed_now": false,
+        "ready_for_predicted_geometry_scoring": false,
+        "remaining_blockers": [
+          "manual_review_required_before_copy_to_audited_dir",
+          "candidate_sidecar_not_in_audited_locator_dir"
+        ],
+        "automation_safe_next_action": "Use this split-safety result in a human locator-copy review; do not score source-free predicted geometry until the sidecar is explicitly copied into the audited locator directory."
+      }
+    }
+  ],
+  "next_action": "Review ligand specificity for external_glycoside_panel, then prepare a refreshed remaining-locator blocker state."
+}

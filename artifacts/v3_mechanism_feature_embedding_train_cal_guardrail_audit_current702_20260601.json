@@ -1,0 +1,99 @@
+{
+  "artifact_id": "v3_mechanism_feature_embedding_train_cal_guardrail_audit_current702_20260601",
+  "created_utc": "2026-06-01T16:17:06Z",
+  "schema_version": "northstar_next_levers.v0.mechanism_feature_embedding_train_cal_guardrail_audit",
+  "status": "mechanism_feature_embedding_train_cal_guardrail_audit_passed_review_only",
+  "scope": {
+    "audit_target": "mechanism_feature_embedding_train_cal_manifests",
+    "current702_safe_inputs_only": true,
+    "model_fit_or_refit_allowed": false
+  },
+  "counts": {
+    "input_manifest_rows": 562,
+    "input_heldout_excluded_rows": 140,
+    "input_minimal_feature_bundle_ready_rows": 524,
+    "split_rows": 524,
+    "feature_rows": 524,
+    "train_rows": 418,
+    "calibration_rows": 106,
+    "split_minus_input_rows": 0,
+    "feature_minus_split_rows": 0,
+    "split_minus_feature_rows": 0,
+    "input_ready_minus_split_rows": 0,
+    "input_not_ready_rows": 38,
+    "feature_rows_marked_heldout": 0,
+    "feature_rows_with_fingerprint_id_feature_leak": 0,
+    "feature_rows_with_label_type_feature_leak": 0,
+    "feature_rows_with_stratum_feature_leak": 0,
+    "organic_cofactor_score_rows_materialized": 524,
+    "active_site_role_graph_ok_feature_rows": 524,
+    "reaction_template_available_feature_rows": 171
+  },
+  "not_ready_reason_counts": {
+    "role_graph:missing_accession_compatible_sequence_positions": 34,
+    "role_graph:missing_catalytic_residue_nodes": 1,
+    "role_graph:not_m_csa_no_curated_active_site_roles": 3
+  },
+  "guardrails": {
+    "review_only": true,
+    "heldout_rows_present_in_feature_rows": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "label_fields_excluded_from_feature_rows": true,
+    "model_weights_fit_or_refit": false,
+    "threshold_selected_or_tuned": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "imports_or_promotions_performed": false
+  },
+  "source_artifacts": {
+    "train_cal_input_manifest": {
+      "path": "artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json",
+      "sha256": "189ad77e0c3ca985a0a4fa4bc7efd07b6c94b2d4c7317efb77e9e1586cc18de6"
+    },
+    "train_cal_split_manifest": {
+      "path": "artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json",
+      "sha256": "d06038f1faa9c42d98c409d949450c6cc953d6da325d98c0636ed4d9daf52d83"
+    },
+    "feature_contract": {
+      "path": "artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json",
+      "sha256": "59c6782c620fb50f00b75af1820cce0daee0f10b604e2805550d972f5880cd6b"
+    }
+  },
+  "audit_checks": [
+    {
+      "check_id": "split_rows_are_subset_of_input_manifest",
+      "status": "passed",
+      "violation_count": 0
+    },
+    {
+      "check_id": "feature_rows_equal_split_rows",
+      "status": "passed",
+      "violation_count": 0
+    },
+    {
+      "check_id": "feature_rows_exclude_heldout",
+      "status": "passed",
+      "violation_count": 0
+    },
+    {
+      "check_id": "label_identity_fields_excluded_from_features",
+      "status": "passed",
+      "violation_count": 0
+    },
+    {
+      "check_id": "no_model_fit_or_threshold_selection",
+      "status": "passed",
+      "violation_count": 0
+    },
+    {
+      "check_id": "not_ready_rows_have_explicit_role_graph_reasons",
+      "status": "passed",
+      "violation_count": 0
+    }
+  ],
+  "interpretation": {
+    "headline": "The no-fit mechanism-feature embedding train/cal inputs are internally consistent and leakage-guarded.",
+    "caveat": "This does not train an embedding model, select a threshold, evaluate heldout rows, or authorize production use.",
+    "next_action": "If model fitting is explicitly authorized later, fit only on the 418 train rows, select any threshold only on the 106 calibration rows, and evaluate heldout once."
+  }
+}
