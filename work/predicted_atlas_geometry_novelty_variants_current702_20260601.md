@@ -1,6 +1,6 @@
 # Predicted-Atlas Geometry Novelty Variants - current702
 
-Run: 2026-06-01T02:44:25Z
+Run: 2026-06-01T11:09:44Z
 
 Bounded predicted-geometry atlas novelty rerun using the newly available in-distribution predicted atlas rows. All atlas statistics are computed from in-distribution rows only; heldout rows are final evaluation diagnostics.
 

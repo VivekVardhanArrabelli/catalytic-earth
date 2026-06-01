@@ -43,6 +43,7 @@ from .mechanism_abstention_gate_eval import (
 from .northstar_next_levers import (
     write_family_set_expansion_targets,
     write_family_panel_evidence_packet,
+    write_family_panel_source_backed_sidecar_materialization,
     write_fold_augmented_abstention_gate,
     write_fold_augmented_abstention_threshold_contract,
     write_fold_augmented_family_panel_m_csa_primary_channel_repair,
@@ -10906,6 +10907,9 @@ def cmd_build_family_panel_evidence_packet(args: argparse.Namespace) -> int:
         m_csa_primary_channel_repair_path=Path(args.m_csa_primary_channel_repair)
         if args.m_csa_primary_channel_repair
         else None,
+        source_backed_materialization_path=Path(args.source_backed_materialization)
+        if args.source_backed_materialization
+        else None,
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
         panel_id=args.panel_id,
@@ -10914,6 +10918,35 @@ def cmd_build_family_panel_evidence_packet(args: argparse.Namespace) -> int:
         "Wrote family panel evidence packet to "
         f"{args.out} (status: {audit.get('status')}, "
         f"rows: {audit.get('counts', {}).get('candidate_rows')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_backed_sidecar_materialization(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_backed_sidecar_materialization(
+        materialization_plan_path=Path(args.materialization_plan),
+        predicted_structure_fold_channel_path=Path(
+            args.predicted_structure_fold_channel
+        ),
+        coordinate_dir=Path(args.coordinate_dir),
+        sidecar_dir=Path(args.sidecar_dir),
+        foldseek_result_tsv=Path(args.foldseek_result_tsv),
+        query_dir=Path(args.query_dir),
+        target_atlas_dir=Path(args.target_atlas_dir),
+        foldseek_binary=args.foldseek_binary,
+        target_priorities=list(args.target_priorities),
+        alphafold_version=args.alphafold_version,
+        threads=args.threads,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel source-backed sidecar materialization to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"scored rows: {counts.get('foldseek_query_entries_with_hits')})"
     )
     return 0
 
@@ -11131,6 +11164,9 @@ def cmd_build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
         predicted_geometry_atlas_retrieval_path=Path(
             args.predicted_geometry_atlas_retrieval
         ),
+        source_backed_materialization_path=Path(args.source_backed_materialization)
+        if args.source_backed_materialization
+        else None,
         local_candidate_adjudication_path=local_candidate_adjudication,
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
@@ -22031,6 +22067,13 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     family_panel_packet.add_argument(
+        "--source-backed-materialization",
+        default=(
+            "artifacts/v3_family_panel_source_backed_sidecar_materialization_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_packet.add_argument(
         "--out",
         default="artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json",
     )
@@ -22039,6 +22082,87 @@ def build_parser() -> argparse.ArgumentParser:
         default="work/family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.md",
     )
     family_panel_packet.set_defaults(func=cmd_build_family_panel_evidence_packet)
+
+    family_panel_source_backed_materialization = subparsers.add_parser(
+        "build-family-panel-source-backed-sidecar-materialization",
+        help=(
+            "parse source-backed family-panel coordinate hashes and "
+            "Foldseek/TM scores against the frozen predicted atlas"
+        ),
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--materialization-plan",
+        default=(
+            "artifacts/v3_family_panel_source_backed_sidecar_materialization_"
+            "plan_current702_20260601.json"
+        ),
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--predicted-structure-fold-channel",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--coordinate-dir",
+        default="artifacts/family_panel_source_backed_coordinates_current702_20260601",
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--sidecar-dir",
+        default="artifacts/family_panel_source_backed_sidecars_current702_20260601",
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--foldseek-result-tsv",
+        default=(
+            "artifacts/v3_family_panel_source_backed_sidecar_materialization_"
+            "current702_20260601_foldseek.tsv"
+        ),
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--query-dir",
+        default="/private/tmp/catalytic-earth-family-panel-source-backed-afdb-queries",
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--target-atlas-dir",
+        default=(
+            "/private/tmp/catalytic-earth-predicted-structure-fold-channel-"
+            "current702/atlas_in_distribution"
+        ),
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--foldseek-binary",
+        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--target-priorities",
+        nargs="+",
+        default=["P0", "P1"],
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--alphafold-version",
+        type=int,
+        default=6,
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--threads",
+        type=int,
+        default=4,
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_backed_sidecar_materialization_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_backed_materialization.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_backed_sidecar_materialization_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_source_backed_materialization.set_defaults(
+        func=cmd_build_family_panel_source_backed_sidecar_materialization
+    )
 
     fold_augmented_gate = subparsers.add_parser(
         "eval-fold-augmented-abstention-gate",
@@ -22490,6 +22614,13 @@ def build_parser() -> argparse.ArgumentParser:
         "--predicted-geometry-atlas-retrieval",
         default=(
             "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_missing_channel_diagnosis.add_argument(
+        "--source-backed-materialization",
+        default=(
+            "artifacts/v3_family_panel_source_backed_sidecar_materialization_"
             "current702_20260601.json"
         ),
     )

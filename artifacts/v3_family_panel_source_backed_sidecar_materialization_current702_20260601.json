@@ -1,0 +1,837 @@
+{
+  "artifact_id": "v3_family_panel_source_backed_sidecar_materialization_current702_20260601",
+  "blockers": [],
+  "commands": {
+    "expected_foldseek_tsv_columns": [
+      "query",
+      "target",
+      "qtmscore",
+      "ttmscore",
+      "alntmscore",
+      "prob",
+      "bits"
+    ],
+    "run_foldseek_afdb_vs_predicted_atlas": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-family-panel-source-backed-afdb-queries /private/tmp/catalytic-earth-predicted-structure-fold-channel-current702/atlas_in_distribution artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601_foldseek.tsv /private/tmp/catalytic-earth-family-panel-source-backed-foldseek --format-output query,target,qtmscore,ttmscore,alntmscore,prob,bits --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --threads 4 -v 1"
+  },
+  "counts": {
+    "foldseek_query_entries_with_hits": 10,
+    "plan_rows": 10,
+    "remaining_predicted_fold_blockers": 0,
+    "remaining_predicted_geometry_blockers": 10,
+    "sidecars_with_coordinate_hashes": 10,
+    "target_priorities": [
+      "P0",
+      "P1"
+    ],
+    "targeted_rows": 10
+  },
+  "created_utc": "2026-06-01T11:03:56Z",
+  "foldseek_input_manifest": {
+    "query_dir": "/private/tmp/catalytic-earth-family-panel-source-backed-afdb-queries",
+    "query_requests": [
+      {
+        "accession": "Q59490",
+        "alphafold_version": 6,
+        "entry_ids": [
+          "secondary_probe::cobalamin_radical_rearrangement"
+        ],
+        "expected_local_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q59490-F1-model_v6.cif",
+        "local_file_exists": true,
+        "predicted_pdb_id": "AF-Q59490-F1-model_v6",
+        "role": "family_panel_source_backed_query",
+        "rows": [
+          {
+            "benchmark_role": "review_only_family_panel_primary_channel_gap",
+            "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+            "panel_id": "cobalamin_and_radical_rearrangement_panel",
+            "split_assignment": "review_only_family_panel",
+            "true_fingerprint_id": null
+          }
+        ],
+        "status": "ready_to_score",
+        "url": "https://alphafold.ebi.ac.uk/files/AF-Q59490-F1-model_v6.cif"
+      },
+      {
+        "accession": "A0A1M6T2I7",
+        "alphafold_version": 6,
+        "entry_ids": [
+          "secondary_probe::radical_sam_enzyme"
+        ],
+        "expected_local_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-A0A1M6T2I7-F1-model_v6.cif",
+        "local_file_exists": true,
+        "predicted_pdb_id": "AF-A0A1M6T2I7-F1-model_v6",
+        "role": "family_panel_source_backed_query",
+        "rows": [
+          {
+            "benchmark_role": "review_only_family_panel_primary_channel_gap",
+            "entry_id": "secondary_probe::radical_sam_enzyme",
+            "panel_id": "cobalamin_and_radical_rearrangement_panel",
+            "split_assignment": "review_only_family_panel",
+            "true_fingerprint_id": null
+          }
+        ],
+        "status": "ready_to_score",
+        "url": "https://alphafold.ebi.ac.uk/files/AF-A0A1M6T2I7-F1-model_v6.cif"
+      },
+      {
+        "accession": "Q6NSJ0",
+        "alphafold_version": 6,
+        "entry_ids": [
+          "external_glycoside_panel"
+        ],
+        "expected_local_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q6NSJ0-F1-model_v6.cif",
+        "local_file_exists": true,
+        "predicted_pdb_id": "AF-Q6NSJ0-F1-model_v6",
+        "role": "family_panel_source_backed_query",
+        "rows": [
+          {
+            "benchmark_role": "review_only_family_panel_primary_channel_gap",
+            "entry_id": "external_glycoside_panel",
+            "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+            "split_assignment": "review_only_family_panel",
+            "true_fingerprint_id": null
+          }
+        ],
+        "status": "ready_to_score",
+        "url": "https://alphafold.ebi.ac.uk/files/AF-Q6NSJ0-F1-model_v6.cif"
+      },
+      {
+        "accession": "P01112",
+        "alphafold_version": 6,
+        "entry_ids": [
+          "mh_073"
+        ],
+        "expected_local_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P01112-F1-model_v6.cif",
+        "local_file_exists": true,
+        "predicted_pdb_id": "AF-P01112-F1-model_v6",
+        "role": "family_panel_source_backed_query",
+        "rows": [
+          {
+            "benchmark_role": "review_only_family_panel_primary_channel_gap",
+            "entry_id": "mh_073",
+            "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+            "split_assignment": "review_only_family_panel",
+            "true_fingerprint_id": null
+          }
+        ],
+        "status": "ready_to_score",
+        "url": "https://alphafold.ebi.ac.uk/files/AF-P01112-F1-model_v6.cif"
+      },
+      {
+        "accession": "C7C422",
+        "alphafold_version": 6,
+        "entry_ids": [
+          "mh_064"
+        ],
+        "expected_local_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-C7C422-F1-model_v6.cif",
+        "local_file_exists": true,
+        "predicted_pdb_id": "AF-C7C422-F1-model_v6",
+        "role": "family_panel_source_backed_query",
+        "rows": [
+          {
+            "benchmark_role": "review_only_family_panel_primary_channel_gap",
+            "entry_id": "mh_064",
+            "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+            "split_assignment": "review_only_family_panel",
+            "true_fingerprint_id": null
+          }
+        ],
+        "status": "ready_to_score",
+        "url": "https://alphafold.ebi.ac.uk/files/AF-C7C422-F1-model_v6.cif"
+      },
+      {
+        "accession": "Q79MP6",
+        "alphafold_version": 6,
+        "entry_ids": [
+          "mh_065"
+        ],
+        "expected_local_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q79MP6-F1-model_v6.cif",
+        "local_file_exists": true,
+        "predicted_pdb_id": "AF-Q79MP6-F1-model_v6",
+        "role": "family_panel_source_backed_query",
+        "rows": [
+          {
+            "benchmark_role": "review_only_family_panel_primary_channel_gap",
+            "entry_id": "mh_065",
+            "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+            "split_assignment": "review_only_family_panel",
+            "true_fingerprint_id": null
+          }
+        ],
+        "status": "ready_to_score",
+        "url": "https://alphafold.ebi.ac.uk/files/AF-Q79MP6-F1-model_v6.cif"
+      },
+      {
+        "accession": "P52699",
+        "alphafold_version": 6,
+        "entry_ids": [
+          "mh_066"
+        ],
+        "expected_local_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P52699-F1-model_v6.cif",
+        "local_file_exists": true,
+        "predicted_pdb_id": "AF-P52699-F1-model_v6",
+        "role": "family_panel_source_backed_query",
+        "rows": [
+          {
+            "benchmark_role": "review_only_family_panel_primary_channel_gap",
+            "entry_id": "mh_066",
+            "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+            "split_assignment": "review_only_family_panel",
+            "true_fingerprint_id": null
+          }
+        ],
+        "status": "ready_to_score",
+        "url": "https://alphafold.ebi.ac.uk/files/AF-P52699-F1-model_v6.cif"
+      },
+      {
+        "accession": "P00918",
+        "alphafold_version": 6,
+        "entry_ids": [
+          "mh_067"
+        ],
+        "expected_local_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P00918-F1-model_v6.cif",
+        "local_file_exists": true,
+        "predicted_pdb_id": "AF-P00918-F1-model_v6",
+        "role": "family_panel_source_backed_query",
+        "rows": [
+          {
+            "benchmark_role": "review_only_family_panel_primary_channel_gap",
+            "entry_id": "mh_067",
+            "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+            "split_assignment": "review_only_family_panel",
+            "true_fingerprint_id": null
+          }
+        ],
+        "status": "ready_to_score",
+        "url": "https://alphafold.ebi.ac.uk/files/AF-P00918-F1-model_v6.cif"
+      },
+      {
+        "accession": "P15289",
+        "alphafold_version": 6,
+        "entry_ids": [
+          "mh_068"
+        ],
+        "expected_local_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P15289-F1-model_v6.cif",
+        "local_file_exists": true,
+        "predicted_pdb_id": "AF-P15289-F1-model_v6",
+        "role": "family_panel_source_backed_query",
+        "rows": [
+          {
+            "benchmark_role": "review_only_family_panel_primary_channel_gap",
+            "entry_id": "mh_068",
+            "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+            "split_assignment": "review_only_family_panel",
+            "true_fingerprint_id": null
+          }
+        ],
+        "status": "ready_to_score",
+        "url": "https://alphafold.ebi.ac.uk/files/AF-P15289-F1-model_v6.cif"
+      },
+      {
+        "accession": "P0A6P9",
+        "alphafold_version": 6,
+        "entry_ids": [
+          "mh_072"
+        ],
+        "expected_local_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P0A6P9-F1-model_v6.cif",
+        "local_file_exists": true,
+        "predicted_pdb_id": "AF-P0A6P9-F1-model_v6",
+        "role": "family_panel_source_backed_query",
+        "rows": [
+          {
+            "benchmark_role": "review_only_family_panel_primary_channel_gap",
+            "entry_id": "mh_072",
+            "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+            "split_assignment": "review_only_family_panel",
+            "true_fingerprint_id": null
+          }
+        ],
+        "status": "ready_to_score",
+        "url": "https://alphafold.ebi.ac.uk/files/AF-P0A6P9-F1-model_v6.cif"
+      }
+    ],
+    "result_tsv": "artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601_foldseek.tsv",
+    "target_atlas_dir": "/private/tmp/catalytic-earth-predicted-structure-fold-channel-current702/atlas_in_distribution",
+    "target_request_count": 167
+  },
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_backed_rows_countable": false,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "10/10 source-backed rows now have real AFDB-vs-predicted-atlas Foldseek/TM scores.",
+    "next_action": "Materialize source-free predicted-geometry sidecars for the remaining rows, then refresh the family-panel readout again without changing labels, thresholds, imports, or splits.",
+    "remaining_gap": "Rows without source-free predicted active-site geometry top1 scores remain outside the primary combined gate."
+  },
+  "parsed_foldseek_results": {
+    "nearest_atlas_hits": [
+      {
+        "alntmscore": 0.6259,
+        "bits": 30.0,
+        "nearest_atlas_accession": "Q9FEW9",
+        "nearest_atlas_entry_id": "m_csa:697",
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "prob": 0.09,
+        "qtmscore": 0.304,
+        "query_accession": "Q6NSJ0",
+        "query_entry_id": "external_glycoside_panel",
+        "raw_query_name": "afdb_Q6NSJ0_v6",
+        "raw_target_name": "afdb_Q9FEW9_v6",
+        "tm_score": 0.6259,
+        "ttmscore": 0.501
+      },
+      {
+        "alntmscore": 0.9222,
+        "bits": 76.0,
+        "nearest_atlas_accession": "P04190",
+        "nearest_atlas_entry_id": "m_csa:16",
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.971,
+        "qtmscore": 0.7687,
+        "query_accession": "C7C422",
+        "query_entry_id": "mh_064",
+        "raw_query_name": "afdb_C7C422_v6",
+        "raw_target_name": "afdb_P04190_v6",
+        "tm_score": 0.9222,
+        "ttmscore": 0.8057
+      },
+      {
+        "alntmscore": 0.9411,
+        "bits": 84.0,
+        "nearest_atlas_accession": "P25910",
+        "nearest_atlas_entry_id": "m_csa:15",
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.991,
+        "qtmscore": 0.8422,
+        "query_accession": "Q79MP6",
+        "query_entry_id": "mh_065",
+        "raw_query_name": "afdb_Q79MP6_v6",
+        "raw_target_name": "afdb_P25910_v6",
+        "tm_score": 0.9411,
+        "ttmscore": 0.8325
+      },
+      {
+        "alntmscore": 0.9445,
+        "bits": 84.0,
+        "nearest_atlas_accession": "P25910",
+        "nearest_atlas_entry_id": "m_csa:15",
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.991,
+        "qtmscore": 0.845,
+        "query_accession": "P52699",
+        "query_entry_id": "mh_066",
+        "raw_query_name": "afdb_P52699_v6",
+        "raw_target_name": "afdb_P25910_v6",
+        "tm_score": 0.9445,
+        "ttmscore": 0.8352
+      },
+      {
+        "alntmscore": 1.004,
+        "bits": 100.0,
+        "nearest_atlas_accession": "P00918",
+        "nearest_atlas_entry_id": "m_csa:216",
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 1.0,
+        "qtmscore": 1.0,
+        "query_accession": "P00918",
+        "query_entry_id": "mh_067",
+        "raw_query_name": "afdb_P00918_v6",
+        "raw_target_name": "afdb_P00918_v6",
+        "tm_score": 1.004,
+        "ttmscore": 1.0
+      },
+      {
+        "alntmscore": 1.002,
+        "bits": 100.0,
+        "nearest_atlas_accession": "P15289",
+        "nearest_atlas_entry_id": "m_csa:158",
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 1.0,
+        "qtmscore": 1.0,
+        "query_accession": "P15289",
+        "query_entry_id": "mh_068",
+        "raw_query_name": "afdb_P15289_v6",
+        "raw_target_name": "afdb_P15289_v6",
+        "tm_score": 1.002,
+        "ttmscore": 1.0
+      },
+      {
+        "alntmscore": 0.5936,
+        "bits": 36.0,
+        "nearest_atlas_accession": "Q8RB32",
+        "nearest_atlas_entry_id": "m_csa:300",
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.15,
+        "qtmscore": 0.3627,
+        "query_accession": "P0A6P9",
+        "query_entry_id": "mh_072",
+        "raw_query_name": "afdb_P0A6P9_v6",
+        "raw_target_name": "afdb_Q8RB32_v6",
+        "tm_score": 0.5936,
+        "ttmscore": 0.5916
+      },
+      {
+        "alntmscore": 0.8022,
+        "bits": 71.0,
+        "nearest_atlas_accession": "P0CE47",
+        "nearest_atlas_entry_id": "m_csa:535",
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.941,
+        "qtmscore": 0.7151,
+        "query_accession": "P01112",
+        "query_entry_id": "mh_073",
+        "raw_query_name": "afdb_P01112_v6",
+        "raw_target_name": "afdb_P0CE47_v6",
+        "tm_score": 0.8022,
+        "ttmscore": 0.3637
+      },
+      {
+        "alntmscore": 0.4655,
+        "bits": 23.0,
+        "nearest_atlas_accession": "Q9FEW9",
+        "nearest_atlas_entry_id": "m_csa:697",
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "prob": 0.045,
+        "qtmscore": 0.2356,
+        "query_accession": "Q59490",
+        "query_entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+        "raw_query_name": "afdb_Q59490_v6",
+        "raw_target_name": "afdb_Q9FEW9_v6",
+        "tm_score": 0.4655,
+        "ttmscore": 0.3919
+      },
+      {
+        "alntmscore": 0.7039,
+        "bits": 42.0,
+        "nearest_atlas_accession": "Q9XBQ8",
+        "nearest_atlas_entry_id": "m_csa:358",
+        "nearest_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+        "prob": 0.254,
+        "qtmscore": 0.4252,
+        "query_accession": "A0A1M6T2I7",
+        "query_entry_id": "secondary_probe::radical_sam_enzyme",
+        "raw_query_name": "afdb_A0A1M6T2I7_v6",
+        "raw_target_name": "afdb_Q9XBQ8_v6",
+        "tm_score": 0.7039,
+        "ttmscore": 0.4758
+      }
+    ],
+    "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601_foldseek.tsv",
+    "status": "parsed",
+    "summary": {
+      "alias_collision_count": 0,
+      "alias_collisions": [],
+      "mapped_pair_count": 1075,
+      "max_nearest_atlas_tm_score": 1.004,
+      "min_nearest_atlas_tm_score": 0.4655,
+      "query_entry_count_with_hits": 10,
+      "unmapped_names": [],
+      "unmapped_pair_count": 0
+    }
+  },
+  "row_scores": [
+    {
+      "coordinate_records": [
+        {
+          "coordinate_role": "selected_pdb_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1L1L.cif",
+          "sha256": "9b4d9b9b291b4ed3ee068e1d99bd7781d5d7628df1f9c76f693d6ad2090a4f18",
+          "size_bytes": 2587063
+        },
+        {
+          "coordinate_role": "alphafolddb_predicted_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q59490-F1-model_v6.cif",
+          "sha256": "cecf4f4c8cf9aeb92f1efa29458503b596830c52450f382865e70795fd560c00",
+          "size_bytes": 675706
+        }
+      ],
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "guardrail_note": "review-only source-backed materialization; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:697",
+        "nearest_atlas_tm_score": 0.4655,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "priority": "P0",
+      "rank": 1,
+      "remaining_primary_channel_blockers": [
+        "predicted_geometry_top1_score_missing"
+      ],
+      "representative_source_row_id": "uniprot:Q59490",
+      "selected_structure_id": "1L1L",
+      "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+      "source_accession": "uniprot:Q59490"
+    },
+    {
+      "coordinate_records": [
+        {
+          "coordinate_role": "selected_pdb_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_8VPO.cif",
+          "sha256": "8cb131d4ef0dcb2013c02c5d65c861a9ada4fc48d2c663240bef93922d318059",
+          "size_bytes": 501313
+        },
+        {
+          "coordinate_role": "alphafolddb_predicted_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-A0A1M6T2I7-F1-model_v6.cif",
+          "sha256": "acda433793b8615254e09c9e8448bbc94ee9f0b6bdb755770e8b35e2d7726c13",
+          "size_bytes": 469615
+        }
+      ],
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "guardrail_note": "review-only source-backed materialization; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:358",
+        "nearest_atlas_tm_score": 0.7039,
+        "nearest_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "priority": "P0",
+      "rank": 2,
+      "remaining_primary_channel_blockers": [
+        "predicted_geometry_top1_score_missing"
+      ],
+      "representative_source_row_id": "uniprot:A0A1M6T2I7",
+      "selected_structure_id": "8VPO",
+      "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
+      "source_accession": "uniprot:A0A1M6T2I7"
+    },
+    {
+      "coordinate_records": [
+        {
+          "coordinate_role": "selected_pdb_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_7QQF.cif",
+          "sha256": "f9e551da0ec73293d877dd07c4bd8301e9461f7329bac66e56062d8808c7f20a",
+          "size_bytes": 3872130
+        },
+        {
+          "coordinate_role": "alphafolddb_predicted_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q6NSJ0-F1-model_v6.cif",
+          "sha256": "0483a266d4e7d1cdda3fae7350670ae3115363f8cba0ae539c1837040d0cd1a3",
+          "size_bytes": 669937
+        }
+      ],
+      "entry_id": "external_glycoside_panel",
+      "guardrail_note": "review-only source-backed materialization; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:697",
+        "nearest_atlas_tm_score": 0.6259,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "priority": "P0",
+      "rank": 3,
+      "remaining_primary_channel_blockers": [
+        "predicted_geometry_top1_score_missing"
+      ],
+      "representative_source_row_id": "uniprot:Q6NSJ0",
+      "selected_structure_id": "7QQF",
+      "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/external_glycoside_panel_Q6NSJ0.json",
+      "source_accession": "uniprot:Q6NSJ0"
+    },
+    {
+      "coordinate_records": [
+        {
+          "coordinate_role": "selected_pdb_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_121P.cif",
+          "sha256": "377f44c4f036b39f5a5b9d76e1155a66348f180bffc63c9f9f0486a83929d56f",
+          "size_bytes": 221442
+        },
+        {
+          "coordinate_role": "alphafolddb_predicted_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P01112-F1-model_v6.cif",
+          "sha256": "b5359c737fe031a18359d836f805f5d291cefbb57ee06590601945c33140103e",
+          "size_bytes": 184247
+        }
+      ],
+      "entry_id": "mh_073",
+      "guardrail_note": "review-only source-backed materialization; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:535",
+        "nearest_atlas_tm_score": 0.8022,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "priority": "P1",
+      "rank": 4,
+      "remaining_primary_channel_blockers": [
+        "predicted_geometry_top1_score_missing"
+      ],
+      "representative_source_row_id": "mh_073",
+      "selected_structure_id": "121P",
+      "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_073_P01112.json",
+      "source_accession": "uniprot:P01112"
+    },
+    {
+      "coordinate_records": [
+        {
+          "coordinate_role": "selected_pdb_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3PG4.cif",
+          "sha256": "77372ff429b15fc7753047610edfb1d908fb72379dbfa479a70da64201c171ea",
+          "size_bytes": 230180
+        },
+        {
+          "coordinate_role": "alphafolddb_predicted_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-C7C422-F1-model_v6.cif",
+          "sha256": "3f2b5927b626c5328eb214efc24b10924ec120c9c19a0f7c70e021e609caaa06",
+          "size_bytes": 244502
+        }
+      ],
+      "entry_id": "mh_064",
+      "guardrail_note": "review-only source-backed materialization; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:16",
+        "nearest_atlas_tm_score": 0.9222,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "priority": "P1",
+      "rank": 5,
+      "remaining_primary_channel_blockers": [
+        "predicted_geometry_top1_score_missing"
+      ],
+      "representative_source_row_id": "mh_064",
+      "selected_structure_id": "3PG4",
+      "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_064_C7C422.json",
+      "source_accession": "uniprot:C7C422"
+    },
+    {
+      "coordinate_records": [
+        {
+          "coordinate_role": "selected_pdb_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1DDK.cif",
+          "sha256": "4e4f544bd050a69972c1245de33f8fd180bb89c75fc5ce5a807b4e8535033090",
+          "size_bytes": 231811
+        },
+        {
+          "coordinate_role": "alphafolddb_predicted_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q79MP6-F1-model_v6.cif",
+          "sha256": "26cde0b0a16e5fa8f051f86674f591ad3f156e210d929406258a249220a47c36",
+          "size_bytes": 233491
+        }
+      ],
+      "entry_id": "mh_065",
+      "guardrail_note": "review-only source-backed materialization; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:15",
+        "nearest_atlas_tm_score": 0.9411,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "priority": "P1",
+      "rank": 6,
+      "remaining_primary_channel_blockers": [
+        "predicted_geometry_top1_score_missing"
+      ],
+      "representative_source_row_id": "mh_065",
+      "selected_structure_id": "1DDK",
+      "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_065_Q79MP6.json",
+      "source_accession": "uniprot:Q79MP6"
+    },
+    {
+      "coordinate_records": [
+        {
+          "coordinate_role": "selected_pdb_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1DD6.cif",
+          "sha256": "b8d630330377ab6aa37693a4c7657b5063c0efdbac8799df4b9d3c869ea271c8",
+          "size_bytes": 438870
+        },
+        {
+          "coordinate_role": "alphafolddb_predicted_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P52699-F1-model_v6.cif",
+          "sha256": "ebcc401fff928d6501c3d950d86c4791c26538f939f91e7c46ce0953d88a1aa0",
+          "size_bytes": 233713
+        }
+      ],
+      "entry_id": "mh_066",
+      "guardrail_note": "review-only source-backed materialization; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:15",
+        "nearest_atlas_tm_score": 0.9445,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "priority": "P1",
+      "rank": 7,
+      "remaining_primary_channel_blockers": [
+        "predicted_geometry_top1_score_missing"
+      ],
+      "representative_source_row_id": "mh_066",
+      "selected_structure_id": "1DD6",
+      "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_066_P52699.json",
+      "source_accession": "uniprot:P52699"
+    },
+    {
+      "coordinate_records": [
+        {
+          "coordinate_role": "selected_pdb_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_12CA.cif",
+          "sha256": "b53a17aa0b8bc49341b9e0dc9086160416329728b13efb1e6eb450bf375ed9ef",
+          "size_bytes": 265753
+        },
+        {
+          "coordinate_role": "alphafolddb_predicted_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P00918-F1-model_v6.cif",
+          "sha256": "173c4f1fa81ffb1a288c881040217d1473ed2d08cd792671252ee116cac10c7d",
+          "size_bytes": 252675
+        }
+      ],
+      "entry_id": "mh_067",
+      "guardrail_note": "review-only source-backed materialization; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:216",
+        "nearest_atlas_tm_score": 1.004,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "priority": "P1",
+      "rank": 8,
+      "remaining_primary_channel_blockers": [
+        "predicted_geometry_top1_score_missing"
+      ],
+      "representative_source_row_id": "mh_067",
+      "selected_structure_id": "12CA",
+      "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_067_P00918.json",
+      "source_accession": "uniprot:P00918"
+    },
+    {
+      "coordinate_records": [
+        {
+          "coordinate_role": "selected_pdb_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1AUK.cif",
+          "sha256": "285d9de7e8023558c4f8e19f0462a4f5a7058b779808ada761f7cb237642a364",
+          "size_bytes": 448593
+        },
+        {
+          "coordinate_role": "alphafolddb_predicted_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P15289-F1-model_v6.cif",
+          "sha256": "92a63ccadbe5014407a5b2b735961c5b44fa3a0ebe8b2a97c79c4a486d3880e4",
+          "size_bytes": 448908
+        }
+      ],
+      "entry_id": "mh_068",
+      "guardrail_note": "review-only source-backed materialization; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:158",
+        "nearest_atlas_tm_score": 1.002,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "priority": "P1",
+      "rank": 9,
+      "remaining_primary_channel_blockers": [
+        "predicted_geometry_top1_score_missing"
+      ],
+      "representative_source_row_id": "mh_068",
+      "selected_structure_id": "1AUK",
+      "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_068_P15289.json",
+      "source_accession": "uniprot:P15289"
+    },
+    {
+      "coordinate_records": [
+        {
+          "coordinate_role": "selected_pdb_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1E9I.cif",
+          "sha256": "fbbf17a100e17512cf14b32fab6ad897460eb571e2dea9b998a5159bd77db4a0",
+          "size_bytes": 1366564
+        },
+        {
+          "coordinate_role": "alphafolddb_predicted_cif",
+          "exists": true,
+          "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P0A6P9-F1-model_v6.cif",
+          "sha256": "ad6dc6116c071abf3ade1df3bfedd181d97334a5b5bbd625da5eadec6b8eed27",
+          "size_bytes": 383406
+        }
+      ],
+      "entry_id": "mh_072",
+      "guardrail_note": "review-only source-backed materialization; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:300",
+        "nearest_atlas_tm_score": 0.5936,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+      },
+      "priority": "P1",
+      "rank": 10,
+      "remaining_primary_channel_blockers": [
+        "predicted_geometry_top1_score_missing"
+      ],
+      "representative_source_row_id": "mh_072",
+      "selected_structure_id": "1E9I",
+      "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_072_P0A6P9.json",
+      "source_accession": "uniprot:P0A6P9"
+    }
+  ],
+  "runtime": {
+    "alphafold_version_used": 6,
+    "foldseek": {
+      "available": true,
+      "error": null,
+      "requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+      "resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+      "version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+      "version_command": "/private/tmp/catalytic-foldseek-env/bin/foldseek version"
+    },
+    "threads": 4
+  },
+  "schema_version": "northstar_next_levers.v0.source_backed_sidecar_materialization",
+  "scope": "Review-only materialization and Foldseek/TM scoring of targeted source-backed family-panel rows against the frozen current702 in-distribution predicted atlas.",
+  "source_artifacts": {
+    "materialization_plan": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601.json",
+      "sha256": "841a4a03d1564ab95329326d30bb1875e5561cf62801f11c9fecf48a65615601"
+    },
+    "predicted_structure_fold_channel": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+      "sha256": "565266bfd8379c75104e1d7a74457ef40846563ea71988c4946d16c92f733582"
+    }
+  },
+  "status": "source_backed_sidecars_fold_scored_review_only"
+}

@@ -1,0 +1,73 @@
+{
+  "artifact_id": "v3_family_panel_source_backed_sidecar_materialization_current702_20260601_sidecar",
+  "catalytic_or_binding_site_evidence": {
+    "blockers_to_clear": [
+      "create row-level sidecar from radical-SAM freeze and decision artifacts",
+      "verify Fe-S/SAM local context on selected coordinate",
+      "run source-free geometry and Foldseek/TM scoring before any panel interpretation"
+    ],
+    "status": "source_backed_row_context_staged_local_site_not_extracted"
+  },
+  "coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_8VPO.cif",
+  "coordinate_records": [
+    {
+      "coordinate_role": "selected_pdb_cif",
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_8VPO.cif",
+      "sha256": "8cb131d4ef0dcb2013c02c5d65c861a9ada4fc48d2c663240bef93922d318059",
+      "size_bytes": 501313
+    },
+    {
+      "coordinate_role": "alphafolddb_predicted_cif",
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-A0A1M6T2I7-F1-model_v6.cif",
+      "sha256": "acda433793b8615254e09c9e8448bbc94ee9f0b6bdb755770e8b35e2d7726c13",
+      "size_bytes": 469615
+    }
+  ],
+  "coordinate_sha256": "8cb131d4ef0dcb2013c02c5d65c861a9ada4fc48d2c663240bef93922d318059",
+  "created_utc": "2026-06-01T11:03:56Z",
+  "current702_split_protection": {
+    "allowed_for_training_or_threshold_selection": false,
+    "countable_current702_label": false,
+    "review_only": true
+  },
+  "display_name": "Radical SAM cyclopropyl synthase TigE (EC 4.1.-.-) (Ribosomally synthesized and post-translationally modified peptide-modifying enzyme TigE) (RiPP-modifying enzyme TigE) (TigB maturase)",
+  "entry_id": "secondary_probe::radical_sam_enzyme",
+  "intended_review_role": "review_only_family_panel_primary_channel_gap_closure",
+  "ligand_or_cofactor_state": {
+    "manual_local_site_verification_required": true,
+    "state": "radical_sam_fe_s_context_expected_from_source_row"
+  },
+  "panel_id": "cobalamin_and_radical_rearrangement_panel",
+  "predicted_fold_channel_status": "computed_foldseek_tm_against_frozen_predicted_atlas",
+  "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+  "predicted_structure_fold_channel": {
+    "nearest_atlas_entry_id": "m_csa:358",
+    "nearest_atlas_tm_score": 0.7039,
+    "nearest_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+    "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+  },
+  "predictive_use_allowed": false,
+  "ready_for_label_import": false,
+  "representative_selection_policy": "freeze-rank-1 Swiss-Prot radical-SAM row selected before scoring with PDB cross-reference and radical SAM/Fe-S/SAM source context",
+  "representative_source_row_id": "uniprot:A0A1M6T2I7",
+  "schema_version": "northstar_next_levers.v0.source_backed_family_panel_sidecar",
+  "selected_structure_id": "8VPO",
+  "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
+  "source_accession": "uniprot:A0A1M6T2I7",
+  "source_artifact_hashes": {
+    "materialization_plan": {
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601.json",
+      "sha256": "841a4a03d1564ab95329326d30bb1875e5561cf62801f11c9fecf48a65615601"
+    },
+    "representative_basis_artifact": {
+      "path": "artifacts/v3_prospective_external_radical_sam_minicampaign_freeze_20260521.json",
+      "sha256": "e5b2686dba305b74e765ae0fe1300fb9cd1ea715903ac7001ee780c9cbe0448c"
+    }
+  },
+  "source_urls": {
+    "rcsb_representative_structure": "https://www.rcsb.org/structure/8VPO",
+    "uniprot_page": "https://www.uniprot.org/uniprotkb/A0A1M6T2I7/entry"
+  }
+}

@@ -1,6 +1,6 @@
 # Family Panel Evidence Packet - cobalamin_and_radical_rearrangement_panel
 
-Run: 2026-06-01T08:02:12Z
+Run: 2026-06-01T11:03:56Z
 
 Review-only evidence packet for the highest-value family-set expansion panel `cobalamin_and_radical_rearrangement_panel`: cofactor-confounded OOS boundary rows that stress the current de novo abstention gate.
 
@@ -14,8 +14,8 @@ Review-only evidence packet for the highest-value family-set expansion panel `co
 
 | Row | geometry top1 | geom score | cofactor max | selected-PDB fold prob | predicted-fold TM | robust atlas distance signal |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| secondary_probe::cobalamin_radical_rearrangement | None | None | None | None | None | None |
-| secondary_probe::radical_sam_enzyme | None | None | None | None | None | None |
+| secondary_probe::cobalamin_radical_rearrangement | None | None | None | None | 0.4655 | None |
+| secondary_probe::radical_sam_enzyme | None | None | None | None | 0.7039 | None |
 | m_csa:750 | metal_dependent_hydrolase | 0.3664 | 0.703989 | None | 0.7357 | -1.465543 |
 
 ## Review Questions

@@ -29,6 +29,7 @@ from catalytic_earth.northstar_next_levers import (
     build_predicted_structure_fold_channel,
     build_predicted_structure_fold_channel_contract_audit,
     build_selected_organic_cofactor_sidecar_schema_audit,
+    write_family_panel_source_backed_sidecar_materialization,
 )
 from catalytic_earth.predicted_geometry_robustness import _target_manifest_row_selection
 
@@ -1204,6 +1205,82 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertFalse(audit["guardrails"]["foldseek_or_tmsearch_recomputed"])
 
+    def test_fold_augmented_family_panel_missing_primary_channel_diagnosis_reuses_source_backed_fold_score(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue = root / "queue.json"
+            train_cal = root / "train_cal.json"
+            fold_channel = root / "fold_channel.json"
+            predicted_geometry = root / "predicted_geometry.json"
+            source_backed = root / "source_backed.json"
+            queue.write_text(
+                json.dumps(
+                    {
+                        "status": "missing_primary_channel_queue_ready_review_only",
+                        "queue_rows": [
+                            {
+                                "rank": 1,
+                                "entry_id": "external_panel_row",
+                                "panel_id": "external",
+                                "score_blockers": [
+                                    "predicted_geometry_top1_score_missing"
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            train_cal.write_text(json.dumps({"calibration_row_scores": []}), encoding="utf-8")
+            fold_channel.write_text(json.dumps({"row_scores": []}), encoding="utf-8")
+            predicted_geometry.write_text(json.dumps({"results": []}), encoding="utf-8")
+            source_backed.write_text(
+                json.dumps(
+                    {
+                        "row_scores": [
+                            {
+                                "entry_id": "external_panel_row",
+                                "selected_structure_id": "7QQF",
+                                "sidecar_path": "sidecars/external.json",
+                                "predicted_structure_fold_channel": {
+                                    "nearest_atlas_entry_id": "m_csa:697",
+                                    "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+                                    "nearest_atlas_tm_score": 0.6259,
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
+                missing_primary_channel_queue_path=queue,
+                train_cal_threshold_contract_path=train_cal,
+                predicted_structure_fold_channel_path=fold_channel,
+                predicted_geometry_atlas_retrieval_path=predicted_geometry,
+                source_backed_materialization_path=source_backed,
+            )
+
+        row = audit["diagnosed_rows"][0]
+        self.assertEqual(
+            row["diagnosis"],
+            "source_backed_fold_scored_needs_predicted_geometry",
+        )
+        self.assertEqual(audit["counts"]["rows_with_source_backed_fold_score"], 1)
+        self.assertEqual(
+            row["fold_score_evidence"]["source"],
+            "family_panel_source_backed_afdb_vs_predicted_atlas",
+        )
+        self.assertEqual(row["fold_score_evidence"]["nearest_atlas_tm_score"], 0.6259)
+        self.assertIn(
+            "remaining primary-channel blocker is source-free predicted active-site geometry",
+            audit["interpretation"]["headline"],
+        )
+        self.assertFalse(audit["guardrails"]["foldseek_or_tmsearch_recomputed"])
+
     def test_fold_augmented_family_panel_m_csa_repair_scores_repaired_row(
         self,
     ) -> None:
@@ -2059,6 +2136,183 @@ class NorthstarNextLeversTests(unittest.TestCase):
             "m_csa_primary_channel_repair",
         )
         self.assertEqual(audit["counts"]["missing_geometry_entry_ids"], [])
+
+    def test_family_panel_evidence_packet_consumes_source_backed_fold_scores(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            family_targets = root / "family_targets.json"
+            empty = root / "empty.json"
+            source_backed = root / "source_backed.json"
+            family_targets.write_text(
+                json.dumps(
+                    {
+                        "candidate_families": [
+                            {
+                                "candidate_family": "external_panel",
+                                "candidate_rows": ["external_panel_row"],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            empty.write_text(
+                json.dumps({"results": [], "confounded_row_details": [], "row_class_records": [], "row_scores": []}),
+                encoding="utf-8",
+            )
+            source_backed.write_text(
+                json.dumps(
+                    {
+                        "row_scores": [
+                            {
+                                "entry_id": "external_panel_row",
+                                "predicted_structure_fold_channel": {
+                                    "nearest_atlas_entry_id": "m_csa:697",
+                                    "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+                                    "nearest_atlas_tm_score": 0.6259,
+                                    "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas",
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_family_panel_evidence_packet(
+                family_targets_path=family_targets,
+                predicted_geometry_atlas_path=empty,
+                fold_level_signal_path=empty,
+                selected_organic_cofactor_sidecar_path=empty,
+                predicted_atlas_variants_path=empty,
+                source_backed_materialization_path=source_backed,
+                panel_id="external_panel",
+            )
+
+        row = audit["row_evidence"][0]
+        self.assertEqual(audit["status"], "evidence_packet_ready_with_geometry_gaps")
+        self.assertEqual(audit["counts"]["rows_with_predicted_structure_fold_hits"], 1)
+        self.assertEqual(
+            audit["counts"]["missing_geometry_entry_ids"],
+            ["external_panel_row"],
+        )
+        self.assertEqual(
+            row["predicted_structure_fold_channel"]["nearest_atlas_tm_score"],
+            0.6259,
+        )
+        self.assertEqual(
+            row["predicted_structure_fold_channel"]["score_source"],
+            "family_panel_source_backed_afdb_vs_predicted_atlas",
+        )
+
+    def test_family_panel_source_backed_materialization_writes_sidecars(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            coordinate_dir = root / "coordinates"
+            sidecar_dir = root / "sidecars"
+            query_dir = root / "queries"
+            target_dir = root / "targets"
+            coordinate_dir.mkdir()
+            query_dir.mkdir()
+            target_dir.mkdir()
+            pdb_path = coordinate_dir / "pdb_1ABC.cif"
+            afdb_path = coordinate_dir / "AF-P11111-F1-model_v6.cif"
+            pdb_path.write_text("data_1ABC\n", encoding="utf-8")
+            afdb_path.write_text("data_AF\n", encoding="utf-8")
+            plan = root / "plan.json"
+            fold_channel = root / "fold_channel.json"
+            tsv = root / "foldseek.tsv"
+            out = root / "materialization.json"
+            report = root / "materialization.md"
+            plan.write_text(
+                json.dumps(
+                    {
+                        "row_plan": [
+                            {
+                                "rank": 1,
+                                "entry_id": "external_panel_row",
+                                "panel_id": "external",
+                                "priority": "P0",
+                                "identifier_resolution": {
+                                    "uniprot_id": "P11111",
+                                    "source_accession": "uniprot:P11111",
+                                    "source_urls": {},
+                                },
+                                "representative_selection": {
+                                    "selected_source_row_id": "uniprot:P11111",
+                                    "selection_policy": "unit_test",
+                                    "display_name": "Unit test row",
+                                },
+                                "coordinate_materialization_manifest": {
+                                    "preferred_coordinate_id": "1ABC",
+                                    "pdb_cif_path": str(pdb_path),
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_channel.write_text(
+                json.dumps(
+                    {
+                        "foldseek_input_manifest": {
+                            "coordinate_request_groups": {
+                                "atlas_in_distribution": [
+                                    {
+                                        "accession": "T22222",
+                                        "predicted_pdb_id": "AF-T22222-F1-model_v6",
+                                        "rows": [
+                                            {
+                                                "entry_id": "m_csa:1",
+                                                "true_fingerprint_id": "metal_dependent_hydrolase",
+                                            }
+                                        ],
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            tsv.write_text(
+                "AF-P11111-F1-model_v6\tAF-T22222-F1-model_v6\t0.5\t0.6\t0.55\t0.9\t100\n",
+                encoding="utf-8",
+            )
+
+            audit = write_family_panel_source_backed_sidecar_materialization(
+                materialization_plan_path=plan,
+                predicted_structure_fold_channel_path=fold_channel,
+                coordinate_dir=coordinate_dir,
+                sidecar_dir=sidecar_dir,
+                foldseek_result_tsv=tsv,
+                query_dir=query_dir,
+                target_atlas_dir=target_dir,
+                foldseek_binary="/missing/foldseek",
+                target_priorities=["P0"],
+                out_path=out,
+                report_path=report,
+            )
+            row = audit["row_scores"][0]
+            sidecar_written = Path(row["sidecar_path"]).is_file()
+            sidecar = json.loads(Path(row["sidecar_path"]).read_text(encoding="utf-8"))
+            out_written = out.is_file()
+            report_written = report.is_file()
+
+        self.assertEqual(audit["status"], "source_backed_sidecars_fold_scored_review_only")
+        self.assertEqual(audit["counts"]["targeted_rows"], 1)
+        self.assertEqual(audit["counts"]["foldseek_query_entries_with_hits"], 1)
+        self.assertEqual(
+            row["predicted_structure_fold_channel"]["nearest_atlas_tm_score"],
+            0.6,
+        )
+        self.assertEqual(row["remaining_primary_channel_blockers"], ["predicted_geometry_top1_score_missing"])
+        self.assertTrue(sidecar_written)
+        self.assertFalse(sidecar["predictive_use_allowed"])
+        self.assertFalse(sidecar["ready_for_label_import"])
+        self.assertTrue(out_written)
+        self.assertTrue(report_written)
 
     def test_family_panel_evidence_packet_uses_nondefault_panel_id(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

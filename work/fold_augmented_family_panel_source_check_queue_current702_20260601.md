@@ -1,6 +1,6 @@
 # Fold-Augmented Family-Panel Source-Check Queue - current702
 
-Run: 2026-06-01T09:55:05Z
+Run: 2026-06-01T11:03:57Z
 
 Review-only source-check queue for family-panel rows that remain non-abstained under the fixed fold-augmented research threshold.
 

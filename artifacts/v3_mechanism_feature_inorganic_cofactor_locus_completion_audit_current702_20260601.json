@@ -1,0 +1,189 @@
+{
+  "artifact_id": "v3_mechanism_feature_inorganic_cofactor_locus_completion_audit_current702_20260601",
+  "schema_version": "v3",
+  "created_utc": "2026-06-01T11:13:09Z",
+  "status": "inorganic_cofactor_locus_completion_audit_passed_review_only",
+  "scope": "Review-only completion audit for the metal, cobalamin, radical-SAM, and Fe-S cofactor_catalytic_locus sidecars named by the current702 inorganic locus schema.",
+  "guardrails": {
+    "review_only": true,
+    "labels_registries_ontologies_changed": false,
+    "imports_or_promotions_performed": false,
+    "production_thresholds_changed": false,
+    "heldout_training_or_threshold_tuning": false,
+    "new_coordinates_or_models_downloaded": false
+  },
+  "counts": {
+    "schema_classes": 4,
+    "materialized_sidecar_classes": 4,
+    "schema_audit_passed_classes": 4,
+    "sidecar_rows_per_class": {
+      "metal_ion_locus": 702,
+      "cobalamin_locus": 702,
+      "radical_sam_locus": 702,
+      "iron_sulfur_locus": 702
+    },
+    "critical_violation_total": 0,
+    "critical_counts": {
+      "distance_range_violations": 0,
+      "duplicate_entry_rows": 0,
+      "extra_rows": 0,
+      "missing_manifest_rows": 0,
+      "predictive_or_import_flag_violations": 0,
+      "proximal_consistency_violations": 0,
+      "required_key_violations": 0,
+      "split_mismatches": 0,
+      "status_violations": 0
+    },
+    "predictive_use_allowed_rows": 0,
+    "ready_for_label_import_rows": 0
+  },
+  "class_rows": [
+    {
+      "class_id": "metal_ion_locus",
+      "sidecar_status": "metal_ion_locus_sidecar_ready_review_only",
+      "audit_status": "metal_ion_locus_sidecar_schema_passed_current702",
+      "sidecar_rows": 702,
+      "audit_sidecar_rows": 702,
+      "manifest_rows": 702,
+      "schema_current702_rows_with_any_context": 264,
+      "proximal_context_rows": 175,
+      "structure_wide_only_rows": 85,
+      "predictive_use_allowed_rows": 0,
+      "ready_for_label_import_rows": 0,
+      "critical_counts": {
+        "distance_range_violations": 0,
+        "duplicate_entry_rows": 0,
+        "extra_rows": 0,
+        "missing_manifest_rows": 0,
+        "predictive_or_import_flag_violations": 0,
+        "proximal_consistency_violations": 0,
+        "required_key_violations": 0,
+        "split_mismatches": 0,
+        "status_violations": 0
+      },
+      "source_artifacts": {
+        "sidecar": {
+          "path": "artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_current702_20260601.json",
+          "sha256": "341746d27757caad0ba72cf9fb683f1ee9cd91bc9c031e67fdde8c098f966672"
+        },
+        "schema_audit": {
+          "path": "artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_schema_audit_current702_20260601.json",
+          "sha256": "970331e8c1ab54b8f7ad9986807e9158822df7370e369657f68d0d3cbaf6e4c5"
+        }
+      }
+    },
+    {
+      "class_id": "cobalamin_locus",
+      "sidecar_status": "cobalamin_locus_sidecar_ready_review_only",
+      "audit_status": "cobalamin_locus_sidecar_schema_passed_current702",
+      "sidecar_rows": 702,
+      "audit_sidecar_rows": 702,
+      "manifest_rows": 702,
+      "schema_current702_rows_with_any_context": 4,
+      "proximal_context_rows": 4,
+      "structure_wide_only_rows": 0,
+      "predictive_use_allowed_rows": 0,
+      "ready_for_label_import_rows": 0,
+      "critical_counts": {
+        "distance_range_violations": 0,
+        "duplicate_entry_rows": 0,
+        "extra_rows": 0,
+        "missing_manifest_rows": 0,
+        "predictive_or_import_flag_violations": 0,
+        "proximal_consistency_violations": 0,
+        "required_key_violations": 0,
+        "split_mismatches": 0,
+        "status_violations": 0
+      },
+      "source_artifacts": {
+        "sidecar": {
+          "path": "artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_current702_20260601.json",
+          "sha256": "70363f5ce84c3e8b6098e6566e8a8e16b2a44a829aaf8c32d5851fb95e571cfa"
+        },
+        "schema_audit": {
+          "path": "artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_schema_audit_current702_20260601.json",
+          "sha256": "c1dc3ca7e95d1874984a528b49ec9f44cab0cc4904093296b220071cc12482b3"
+        }
+      }
+    },
+    {
+      "class_id": "radical_sam_locus",
+      "sidecar_status": "radical_sam_locus_sidecar_ready_review_only",
+      "audit_status": "radical_sam_locus_sidecar_schema_passed_current702",
+      "sidecar_rows": 702,
+      "audit_sidecar_rows": 702,
+      "manifest_rows": 702,
+      "schema_current702_rows_with_any_context": 39,
+      "proximal_context_rows": 8,
+      "structure_wide_only_rows": 2,
+      "predictive_use_allowed_rows": 0,
+      "ready_for_label_import_rows": 0,
+      "critical_counts": {
+        "distance_range_violations": 0,
+        "duplicate_entry_rows": 0,
+        "extra_rows": 0,
+        "missing_manifest_rows": 0,
+        "predictive_or_import_flag_violations": 0,
+        "proximal_consistency_violations": 0,
+        "required_key_violations": 0,
+        "split_mismatches": 0,
+        "status_violations": 0
+      },
+      "source_artifacts": {
+        "sidecar": {
+          "path": "artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_current702_20260601.json",
+          "sha256": "a48fc5f4f8785e9e16f5b0d931343c5c06d2d380c5389c0d9a84de503d561078"
+        },
+        "schema_audit": {
+          "path": "artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_schema_audit_current702_20260601.json",
+          "sha256": "e9dcf0dc2ce660e6cb0c8c489a5b2bf877172f8b253f09b9c77986d30201dbc9"
+        }
+      }
+    },
+    {
+      "class_id": "iron_sulfur_locus",
+      "sidecar_status": "iron_sulfur_locus_sidecar_ready_review_only",
+      "audit_status": "iron_sulfur_locus_sidecar_schema_passed_current702",
+      "sidecar_rows": 702,
+      "audit_sidecar_rows": 702,
+      "manifest_rows": 702,
+      "schema_current702_rows_with_any_context": 29,
+      "proximal_context_rows": 17,
+      "structure_wide_only_rows": 11,
+      "predictive_use_allowed_rows": 0,
+      "ready_for_label_import_rows": 0,
+      "critical_counts": {
+        "distance_range_violations": 0,
+        "duplicate_entry_rows": 0,
+        "extra_rows": 0,
+        "missing_manifest_rows": 0,
+        "predictive_or_import_flag_violations": 0,
+        "proximal_consistency_violations": 0,
+        "required_key_violations": 0,
+        "split_mismatches": 0,
+        "status_violations": 0
+      },
+      "source_artifacts": {
+        "sidecar": {
+          "path": "artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_current702_20260601.json",
+          "sha256": "4631c7d26b11d8c278644675dcd33b20d61a371889ed23e080aca0477a760b62"
+        },
+        "schema_audit": {
+          "path": "artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_schema_audit_current702_20260601.json",
+          "sha256": "6027250dbe3ae2e36594bb0d2b42c8e8d7da6cc9886e4447d9021d37b358c70f"
+        }
+      }
+    }
+  ],
+  "interpretation": {
+    "current_state": "All four schema-named inorganic/cobalamin/radical/Fe-S locus sidecar classes are materialized for 702 current rows and pass their schema audits with zero critical violations.",
+    "embedding_implication": "cofactor_catalytic_locus is no longer blocked on row-level sidecar materialization, but remains review-only until a train/cal-only feature pilot is explicitly staged.",
+    "exact_next_action": "Stage a train/cal-only mechanism-feature embedding pilot that consumes these sidecars without label/import changes or heldout leakage."
+  },
+  "source_artifacts": {
+    "inorganic_locus_schema": {
+      "path": "artifacts/v3_mechanism_feature_inorganic_cofactor_locus_schema_current702_20260601.json",
+      "sha256": "0ec97a47135ada1dcecbcbcaf27a24abe54a1fc91b2ae08ef638cfbc0691e974"
+    }
+  }
+}

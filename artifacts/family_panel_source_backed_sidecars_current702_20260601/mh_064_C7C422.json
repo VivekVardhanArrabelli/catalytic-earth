@@ -1,0 +1,75 @@
+{
+  "artifact_id": "v3_family_panel_source_backed_sidecar_materialization_current702_20260601_sidecar",
+  "catalytic_or_binding_site_evidence": {
+    "blockers_to_clear": [
+      "create source-backed row sidecar from identifier scout and targeted expansion provenance",
+      "fetch or verify coordinate locally and record sha256",
+      "run duplicate/leakage, source-free geometry, and Foldseek/TM checks before interpretation",
+      "keep external row non-countable until future split/import gates pass"
+    ],
+    "status": "source_backed_row_context_staged_local_site_not_extracted"
+  },
+  "coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3PG4.cif",
+  "coordinate_records": [
+    {
+      "coordinate_role": "selected_pdb_cif",
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3PG4.cif",
+      "sha256": "77372ff429b15fc7753047610edfb1d908fb72379dbfa479a70da64201c171ea",
+      "size_bytes": 230180
+    },
+    {
+      "coordinate_role": "alphafolddb_predicted_cif",
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-C7C422-F1-model_v6.cif",
+      "sha256": "3f2b5927b626c5328eb214efc24b10924ec120c9c19a0f7c70e021e609caaa06",
+      "size_bytes": 244502
+    }
+  ],
+  "coordinate_sha256": "77372ff429b15fc7753047610edfb1d908fb72379dbfa479a70da64201c171ea",
+  "created_utc": "2026-06-01T11:03:56Z",
+  "current702_split_protection": {
+    "allowed_for_training_or_threshold_selection": false,
+    "countable_current702_label": false,
+    "review_only": true
+  },
+  "display_name": "Metallo-beta-lactamase NDM-1",
+  "entry_id": "mh_064",
+  "intended_review_role": "review_only_family_panel_primary_channel_gap_closure",
+  "ligand_or_cofactor_state": {
+    "manual_local_site_verification_required": true,
+    "state": "source_backed_external_representative_context"
+  },
+  "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+  "predicted_fold_channel_status": "computed_foldseek_tm_against_frozen_predicted_atlas",
+  "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+  "predicted_structure_fold_channel": {
+    "nearest_atlas_entry_id": "m_csa:16",
+    "nearest_atlas_tm_score": 0.9222,
+    "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+    "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+  },
+  "predictive_use_allowed": false,
+  "ready_for_label_import": false,
+  "representative_selection_policy": "prior external identifier scout row already resolved to UniProt accession plus representative public structure before current scoring",
+  "representative_source_row_id": "mh_064",
+  "schema_version": "northstar_next_levers.v0.source_backed_family_panel_sidecar",
+  "selected_structure_id": "3PG4",
+  "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_064_C7C422.json",
+  "source_accession": "uniprot:C7C422",
+  "source_artifact_hashes": {
+    "materialization_plan": {
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601.json",
+      "sha256": "841a4a03d1564ab95329326d30bb1875e5561cf62801f11c9fecf48a65615601"
+    },
+    "representative_basis_artifact": {
+      "path": "artifacts/v3_external_identifier_resolution_scout_20260528.json",
+      "sha256": "0ccf352e3d5d8d1d6bfe786673a626fc0caf811806fe40de48c0291b7f9f30d2"
+    }
+  },
+  "source_urls": {
+    "rcsb_representative_structure": "https://www.rcsb.org/structure/3PG4",
+    "uniprot": "https://rest.uniprot.org/uniprotkb/C7C422.json",
+    "uniprot_page": "https://www.uniprot.org/uniprotkb/C7C422/entry"
+  }
+}

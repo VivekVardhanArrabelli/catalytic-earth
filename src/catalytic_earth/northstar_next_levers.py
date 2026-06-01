@@ -68,6 +68,9 @@ FOLD_AUGMENTED_FAMILY_PANEL_MISSING_PRIMARY_CHANNEL_DIAGNOSIS_ID = (
 FOLD_AUGMENTED_FAMILY_PANEL_M_CSA_PRIMARY_CHANNEL_REPAIR_ID = (
     "v3_fold_augmented_family_panel_m_csa_primary_channel_repair_current702_20260601"
 )
+FAMILY_PANEL_SOURCE_BACKED_SIDECAR_MATERIALIZATION_ID = (
+    "v3_family_panel_source_backed_sidecar_materialization_current702_20260601"
+)
 MECHANISM_FEATURE_SIDECAR_SCHEMA_AUDIT_ID = (
     "v3_mechanism_feature_sidecar_schema_audit_current702_20260601"
 )
@@ -2391,6 +2394,7 @@ def build_family_panel_evidence_packet(
     predicted_atlas_variants_path: Path,
     predicted_structure_fold_channel_path: Path | None = None,
     m_csa_primary_channel_repair_path: Path | None = None,
+    source_backed_materialization_path: Path | None = None,
     panel_id: str = "glycyl_radical_or_thiamine_radical_lyase_boundary",
 ) -> dict[str, Any]:
     family_targets = _read_json(family_targets_path)
@@ -2408,6 +2412,12 @@ def build_family_panel_evidence_packet(
         _read_json(m_csa_primary_channel_repair_path)
         if m_csa_primary_channel_repair_path is not None
         and Path(m_csa_primary_channel_repair_path).exists()
+        else {}
+    )
+    source_backed_materialization = (
+        _read_json(source_backed_materialization_path)
+        if source_backed_materialization_path is not None
+        and Path(source_backed_materialization_path).exists()
         else {}
     )
 
@@ -2460,6 +2470,9 @@ def build_family_panel_evidence_packet(
         for row in m_csa_repair.get("row_scores", [])
         if isinstance(row, dict) and row.get("entry_id")
     }
+    source_backed_fold_by_entry = _source_backed_materialization_fold_hits_by_entry(
+        source_backed_materialization
+    )
     rows = []
     for entry_id in panel.get("candidate_rows", []):
         geo = geometry_by_entry.get(entry_id, {})
@@ -2486,6 +2499,18 @@ def build_family_panel_evidence_packet(
                 ),
                 "tm_score": repair.get("nearest_atlas_tm_score"),
                 "score_source": "m_csa_primary_channel_repair",
+            }
+        source_backed_fold_hit = source_backed_fold_by_entry.get(entry_id, {})
+        if source_backed_fold_hit and predicted_fold_hit.get("tm_score") is None:
+            predicted_fold_hit = {
+                "nearest_atlas_entry_id": source_backed_fold_hit.get(
+                    "nearest_atlas_entry_id"
+                ),
+                "nearest_atlas_true_fingerprint_id": source_backed_fold_hit.get(
+                    "nearest_atlas_true_fingerprint_id"
+                ),
+                "tm_score": source_backed_fold_hit.get("nearest_atlas_tm_score"),
+                "score_source": source_backed_fold_hit.get("score_source"),
             }
         rows.append(
             {
@@ -2668,6 +2693,15 @@ def build_family_panel_evidence_packet(
                 and Path(m_csa_primary_channel_repair_path).exists()
                 else None
             ),
+            "source_backed_sidecar_materialization": (
+                {
+                    "path": str(source_backed_materialization_path),
+                    "sha256": _sha256(source_backed_materialization_path),
+                }
+                if source_backed_materialization_path is not None
+                and Path(source_backed_materialization_path).exists()
+                else None
+            ),
         },
     }
 
@@ -2728,6 +2762,7 @@ def write_family_panel_evidence_packet(
     out_path: Path,
     predicted_structure_fold_channel_path: Path | None = None,
     m_csa_primary_channel_repair_path: Path | None = None,
+    source_backed_materialization_path: Path | None = None,
     report_path: Path | None = None,
     panel_id: str = "glycyl_radical_or_thiamine_radical_lyase_boundary",
 ) -> dict[str, Any]:
@@ -2739,6 +2774,7 @@ def write_family_panel_evidence_packet(
         predicted_atlas_variants_path=predicted_atlas_variants_path,
         predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
         m_csa_primary_channel_repair_path=m_csa_primary_channel_repair_path,
+        source_backed_materialization_path=source_backed_materialization_path,
         panel_id=panel_id,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -2749,6 +2785,539 @@ def write_family_panel_evidence_packet(
             _render_family_panel_evidence_packet_report(audit),
             encoding="utf-8",
         )
+    return audit
+
+
+def _source_backed_materialization_fold_hits_by_entry(
+    audit: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    rows = {}
+    for row in audit.get("row_scores", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        fold = row.get("predicted_structure_fold_channel") or {}
+        if fold.get("nearest_atlas_tm_score") is None:
+            continue
+        rows[str(row["entry_id"])] = fold
+    return rows
+
+
+def _source_backed_plan_accession(row: dict[str, Any]) -> str | None:
+    identifier = row.get("identifier_resolution") or {}
+    accession = str(identifier.get("uniprot_id") or "").strip()
+    if accession:
+        return accession
+    source_accession = str(identifier.get("source_accession") or "").strip()
+    if source_accession.startswith("uniprot:"):
+        return source_accession.split(":", 1)[1]
+    return source_accession or None
+
+
+def _source_backed_sidecar_path(row: dict[str, Any], sidecar_dir: Path) -> Path:
+    accession = _source_backed_plan_accession(row) or "unknown"
+    entry_id = str(row.get("entry_id") or "unknown")
+    token = _safe_path_token(f"{entry_id}_{accession}")
+    return sidecar_dir / f"{token}.json"
+
+
+def _coordinate_file_record(path: Path, *, coordinate_role: str) -> dict[str, Any]:
+    exists = path.is_file()
+    return {
+        "coordinate_role": coordinate_role,
+        "path": str(path),
+        "exists": exists,
+        "size_bytes": path.stat().st_size if exists else None,
+        "sha256": _sha256(path) if exists else None,
+    }
+
+
+def _source_backed_query_request(
+    row: dict[str, Any],
+    *,
+    coordinate_dir: Path,
+    alphafold_version: int,
+) -> dict[str, Any]:
+    entry_id = str(row.get("entry_id") or "")
+    accession = _source_backed_plan_accession(row)
+    afdb_path = (
+        coordinate_dir / f"AF-{accession}-F1-model_v{alphafold_version}.cif"
+        if accession
+        else coordinate_dir / "missing_accession.cif"
+    )
+    return {
+        "role": "family_panel_source_backed_query",
+        "status": "ready_to_score" if accession and afdb_path.is_file() else "missing_coordinate",
+        "accession": accession,
+        "alphafold_version": alphafold_version,
+        "predicted_pdb_id": (
+            f"AF-{accession}-F1-model_v{alphafold_version}" if accession else None
+        ),
+        "url": _afdb_cif_url(accession, alphafold_version) if accession else None,
+        "expected_local_path": str(afdb_path) if accession else None,
+        "local_file_exists": afdb_path.is_file() if accession else False,
+        "entry_ids": [entry_id],
+        "rows": [
+            {
+                "entry_id": entry_id,
+                "split_assignment": "review_only_family_panel",
+                "true_fingerprint_id": None,
+                "benchmark_role": "review_only_family_panel_primary_channel_gap",
+                "panel_id": row.get("panel_id"),
+            }
+        ],
+    }
+
+
+def _source_backed_ligand_or_cofactor_state(entry_id: str) -> dict[str, Any]:
+    if entry_id == "secondary_probe::cobalamin_radical_rearrangement":
+        return {
+            "state": "adenosylcobalamin_context_expected_from_source_row",
+            "manual_local_site_verification_required": True,
+        }
+    if entry_id == "secondary_probe::radical_sam_enzyme":
+        return {
+            "state": "radical_sam_fe_s_context_expected_from_source_row",
+            "manual_local_site_verification_required": True,
+        }
+    if entry_id == "external_glycoside_panel":
+        return {
+            "state": "glycoside_hydrolase_acidic_dyad_and_glycan_context_expected_from_source_row",
+            "manual_local_site_verification_required": True,
+        }
+    return {
+        "state": "source_backed_external_representative_context",
+        "manual_local_site_verification_required": True,
+    }
+
+
+def _build_source_backed_sidecar_payload(
+    *,
+    row: dict[str, Any],
+    sidecar_path: Path,
+    coordinate_records: list[dict[str, Any]],
+    fold_hit: dict[str, Any] | None,
+    plan_path: Path,
+) -> dict[str, Any]:
+    entry_id = str(row.get("entry_id") or "")
+    identifier = row.get("identifier_resolution") or {}
+    selection = row.get("representative_selection") or {}
+    basis_path = Path(str(selection.get("basis_artifact") or ""))
+    source_artifact_hashes = {
+        "materialization_plan": {
+            "path": str(plan_path),
+            "sha256": _sha256(plan_path),
+        }
+    }
+    if basis_path.is_file():
+        source_artifact_hashes["representative_basis_artifact"] = {
+            "path": str(basis_path),
+            "sha256": _sha256(basis_path),
+        }
+    nearest_tm = (fold_hit or {}).get("tm_score")
+    return {
+        "artifact_id": f"{FAMILY_PANEL_SOURCE_BACKED_SIDECAR_MATERIALIZATION_ID}_sidecar",
+        "schema_version": f"{SCHEMA_VERSION}.source_backed_family_panel_sidecar",
+        "created_utc": _utc_now_iso(),
+        "entry_id": entry_id,
+        "representative_source_row_id": selection.get("selected_source_row_id"),
+        "source_accession": identifier.get("source_accession"),
+        "source_artifact_hashes": source_artifact_hashes,
+        "representative_selection_policy": selection.get("selection_policy"),
+        "display_name": selection.get("display_name"),
+        "source_urls": identifier.get("source_urls") or {},
+        "panel_id": row.get("panel_id"),
+        "intended_review_role": "review_only_family_panel_primary_channel_gap_closure",
+        "predictive_use_allowed": False,
+        "ready_for_label_import": False,
+        "selected_structure_id": (
+            (row.get("coordinate_materialization_manifest") or {}).get(
+                "preferred_coordinate_id"
+            )
+        ),
+        "coordinate_records": coordinate_records,
+        "coordinate_path": next(
+            (
+                record["path"]
+                for record in coordinate_records
+                if record["coordinate_role"] == "selected_pdb_cif"
+            ),
+            None,
+        ),
+        "coordinate_sha256": next(
+            (
+                record["sha256"]
+                for record in coordinate_records
+                if record["coordinate_role"] == "selected_pdb_cif"
+            ),
+            None,
+        ),
+        "catalytic_or_binding_site_evidence": {
+            "status": "source_backed_row_context_staged_local_site_not_extracted",
+            "blockers_to_clear": row.get("blockers_to_clear") or [],
+        },
+        "ligand_or_cofactor_state": _source_backed_ligand_or_cofactor_state(entry_id),
+        "current702_split_protection": {
+            "review_only": True,
+            "countable_current702_label": False,
+            "allowed_for_training_or_threshold_selection": False,
+        },
+        "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+        "predicted_fold_channel_status": (
+            "computed_foldseek_tm_against_frozen_predicted_atlas"
+            if nearest_tm is not None
+            else "foldseek_tm_missing_or_unparsed"
+        ),
+        "predicted_structure_fold_channel": {
+            "nearest_atlas_entry_id": (fold_hit or {}).get("nearest_atlas_entry_id"),
+            "nearest_atlas_true_fingerprint_id": (fold_hit or {}).get(
+                "nearest_atlas_true_fingerprint_id"
+            ),
+            "nearest_atlas_tm_score": nearest_tm,
+            "score_source": (
+                "family_panel_source_backed_afdb_vs_predicted_atlas"
+                if nearest_tm is not None
+                else None
+            ),
+        },
+        "sidecar_path": str(sidecar_path),
+    }
+
+
+def build_family_panel_source_backed_sidecar_materialization(
+    *,
+    materialization_plan_path: Path,
+    predicted_structure_fold_channel_path: Path,
+    coordinate_dir: Path,
+    sidecar_dir: Path,
+    foldseek_result_tsv: Path,
+    query_dir: Path,
+    target_atlas_dir: Path,
+    foldseek_binary: str = DEFAULT_FOLDSEEK_BINARY,
+    target_priorities: list[str] | None = None,
+    alphafold_version: int = 6,
+    threads: int = 4,
+) -> dict[str, Any]:
+    plan = _read_json(materialization_plan_path)
+    fold_channel = _read_json(predicted_structure_fold_channel_path)
+    priorities = set(target_priorities or ["P0"])
+    row_plans = [
+        row
+        for row in plan.get("row_plan", [])
+        if isinstance(row, dict) and str(row.get("priority") or "") in priorities
+    ]
+    query_requests = [
+        _source_backed_query_request(
+            row,
+            coordinate_dir=coordinate_dir,
+            alphafold_version=alphafold_version,
+        )
+        for row in row_plans
+    ]
+    target_requests = (
+        (fold_channel.get("foldseek_input_manifest") or {})
+        .get("coordinate_request_groups", {})
+        .get("atlas_in_distribution", [])
+    )
+    parsed_foldseek = _parse_foldseek_tsv_hits(
+        result_tsv=foldseek_result_tsv,
+        query_requests=query_requests,
+        target_requests=target_requests,
+    )
+    hits_by_entry = {
+        str(hit.get("query_entry_id") or ""): hit
+        for hit in parsed_foldseek.get("nearest_atlas_hits", [])
+        if isinstance(hit, dict) and hit.get("query_entry_id")
+    }
+    foldseek = _foldseek_binary_info(foldseek_binary)
+    run_foldseek_command = _foldseek_easy_search_command(
+        binary=str(foldseek.get("resolved") or foldseek_binary),
+        query_dir=query_dir,
+        target_dir=target_atlas_dir,
+        result_tsv=foldseek_result_tsv,
+        tmp_dir=Path("/private/tmp/catalytic-earth-family-panel-source-backed-foldseek"),
+        threads=threads,
+    )
+    row_scores: list[dict[str, Any]] = []
+    blockers: list[str] = []
+    sidecar_payloads: list[dict[str, Any]] = []
+    for row in sorted(row_plans, key=lambda item: int(item.get("rank") or 0)):
+        entry_id = str(row.get("entry_id") or "")
+        accession = _source_backed_plan_accession(row)
+        manifest = row.get("coordinate_materialization_manifest") or {}
+        pdb_path = Path(str(manifest.get("pdb_cif_path") or ""))
+        afdb_path = (
+            coordinate_dir / f"AF-{accession}-F1-model_v{alphafold_version}.cif"
+            if accession
+            else coordinate_dir / "missing_accession.cif"
+        )
+        coordinate_records = [
+            _coordinate_file_record(pdb_path, coordinate_role="selected_pdb_cif"),
+            _coordinate_file_record(afdb_path, coordinate_role="alphafolddb_predicted_cif"),
+        ]
+        missing_coordinates = [
+            record["coordinate_role"] for record in coordinate_records if not record["exists"]
+        ]
+        if missing_coordinates:
+            blockers.append(f"{entry_id}:missing_{'_and_'.join(missing_coordinates)}")
+        hit = hits_by_entry.get(entry_id)
+        if hit is None:
+            blockers.append(f"{entry_id}:foldseek_hit_missing")
+        sidecar_path = _source_backed_sidecar_path(row, sidecar_dir)
+        sidecar = _build_source_backed_sidecar_payload(
+            row=row,
+            sidecar_path=sidecar_path,
+            coordinate_records=coordinate_records,
+            fold_hit=hit,
+            plan_path=materialization_plan_path,
+        )
+        sidecar_payloads.append(sidecar)
+        fold_channel_row = sidecar["predicted_structure_fold_channel"]
+        remaining_blockers = ["predicted_geometry_top1_score_missing"]
+        if fold_channel_row["nearest_atlas_tm_score"] is None:
+            remaining_blockers.append("predicted_structure_fold_tm_missing")
+        row_scores.append(
+            {
+                "rank": row.get("rank"),
+                "entry_id": entry_id,
+                "panel_id": row.get("panel_id"),
+                "priority": row.get("priority"),
+                "representative_source_row_id": sidecar["representative_source_row_id"],
+                "source_accession": sidecar["source_accession"],
+                "selected_structure_id": sidecar["selected_structure_id"],
+                "coordinate_records": coordinate_records,
+                "sidecar_path": str(sidecar_path),
+                "predicted_geometry_status": sidecar["predicted_geometry_status"],
+                "predicted_structure_fold_channel": fold_channel_row,
+                "remaining_primary_channel_blockers": remaining_blockers,
+                "guardrail_note": (
+                    "review-only source-backed materialization; do not use as "
+                    "training, label promotion, threshold selection, or production "
+                    "scoring evidence"
+                ),
+            }
+        )
+    if parsed_foldseek.get("status") != "parsed":
+        blockers.append(f"foldseek_tsv_status:{parsed_foldseek.get('status')}")
+    sidecars_with_hashes = [
+        row
+        for row in row_scores
+        if all(record["exists"] and record["sha256"] for record in row["coordinate_records"])
+    ]
+    scored_rows = [
+        row
+        for row in row_scores
+        if (
+            row.get("predicted_structure_fold_channel") or {}
+        ).get("nearest_atlas_tm_score")
+        is not None
+    ]
+    status = (
+        "source_backed_sidecars_fold_scored_review_only"
+        if len(scored_rows) == len(row_scores) and not blockers
+        else "source_backed_sidecars_staged_with_blockers"
+    )
+    return {
+        "artifact_id": FAMILY_PANEL_SOURCE_BACKED_SIDECAR_MATERIALIZATION_ID,
+        "schema_version": f"{SCHEMA_VERSION}.source_backed_sidecar_materialization",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Review-only materialization and Foldseek/TM scoring of targeted "
+            "source-backed family-panel rows against the frozen current702 "
+            "in-distribution predicted atlas."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+            "source_backed_rows_countable": False,
+        },
+        "counts": {
+            "plan_rows": len(plan.get("row_plan", [])),
+            "targeted_rows": len(row_scores),
+            "target_priorities": sorted(priorities),
+            "sidecars_with_coordinate_hashes": len(sidecars_with_hashes),
+            "foldseek_query_entries_with_hits": len(scored_rows),
+            "remaining_predicted_geometry_blockers": sum(
+                1
+                for row in row_scores
+                if "predicted_geometry_top1_score_missing"
+                in row["remaining_primary_channel_blockers"]
+            ),
+            "remaining_predicted_fold_blockers": sum(
+                1
+                for row in row_scores
+                if "predicted_structure_fold_tm_missing"
+                in row["remaining_primary_channel_blockers"]
+            ),
+        },
+        "runtime": {
+            "foldseek": foldseek,
+            "threads": max(1, int(threads)),
+            "alphafold_version_used": alphafold_version,
+        },
+        "blockers": sorted(set(blockers)),
+        "parsed_foldseek_results": parsed_foldseek,
+        "foldseek_input_manifest": {
+            "query_dir": str(query_dir),
+            "target_atlas_dir": str(target_atlas_dir),
+            "result_tsv": str(foldseek_result_tsv),
+            "query_requests": query_requests,
+            "target_request_count": len(target_requests),
+        },
+        "commands": {
+            "run_foldseek_afdb_vs_predicted_atlas": run_foldseek_command,
+            "expected_foldseek_tsv_columns": [
+                "query",
+                "target",
+                "qtmscore",
+                "ttmscore",
+                "alntmscore",
+                "prob",
+                "bits",
+            ],
+        },
+        "row_scores": row_scores,
+        "sidecar_payloads": sidecar_payloads,
+        "source_artifacts": {
+            "materialization_plan": _source_path_record(materialization_plan_path),
+            "predicted_structure_fold_channel": _source_path_record(
+                predicted_structure_fold_channel_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(scored_rows)}/{len(row_scores)} source-backed rows now "
+                "have real AFDB-vs-predicted-atlas Foldseek/TM scores."
+            ),
+            "remaining_gap": (
+                "Rows without source-free predicted active-site geometry top1 "
+                "scores remain outside the primary combined gate."
+            ),
+            "next_action": (
+                "Materialize source-free predicted-geometry sidecars for the "
+                "remaining rows, then refresh the family-panel readout again "
+                "without changing labels, thresholds, imports, or splits."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_backed_sidecar_materialization_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    parsed = audit.get("parsed_foldseek_results") or {}
+    lines = [
+        "# Family Panel Source-Backed Sidecar Materialization - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Targeted rows: {counts['targeted_rows']}",
+        f"- Sidecars with coordinate hashes: {counts['sidecars_with_coordinate_hashes']}",
+        f"- Foldseek rows with hits: {counts['foldseek_query_entries_with_hits']}",
+        f"- Remaining predicted-geometry blockers: {counts['remaining_predicted_geometry_blockers']}",
+        f"- Remaining predicted-fold blockers: {counts['remaining_predicted_fold_blockers']}",
+        f"- Foldseek TSV parse status: {parsed.get('status')}",
+        "",
+        "## Row Scores",
+        "",
+        "| rank | row | accession | selected structure | nearest atlas | atlas fingerprint | TM | remaining blockers |",
+        "| ---: | --- | --- | --- | --- | --- | ---: | --- |",
+    ]
+    for row in audit["row_scores"]:
+        fold = row["predicted_structure_fold_channel"]
+        lines.append(
+            f"| {row['rank']} | {row['entry_id']} | {row['source_accession']} | "
+            f"{row['selected_structure_id']} | {fold.get('nearest_atlas_entry_id')} | "
+            f"{fold.get('nearest_atlas_true_fingerprint_id')} | "
+            f"{fold.get('nearest_atlas_tm_score')} | "
+            f"{', '.join(row['remaining_primary_channel_blockers'])} |"
+        )
+    lines += [
+        "",
+        "## Blockers",
+        "",
+    ]
+    if audit["blockers"]:
+        lines.extend(f"- {blocker}" for blocker in audit["blockers"])
+    else:
+        lines.append("- None for targeted coordinate hashing or Foldseek/TM parsing.")
+    lines += [
+        "",
+        "## Command",
+        "",
+        "```bash",
+        audit["commands"]["run_foldseek_afdb_vs_predicted_atlas"],
+        "```",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['remaining_gap']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_backed_sidecar_materialization(
+    *,
+    materialization_plan_path: Path,
+    predicted_structure_fold_channel_path: Path,
+    coordinate_dir: Path,
+    sidecar_dir: Path,
+    foldseek_result_tsv: Path,
+    query_dir: Path,
+    target_atlas_dir: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    foldseek_binary: str = DEFAULT_FOLDSEEK_BINARY,
+    target_priorities: list[str] | None = None,
+    alphafold_version: int = 6,
+    threads: int = 4,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_backed_sidecar_materialization(
+        materialization_plan_path=materialization_plan_path,
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        coordinate_dir=coordinate_dir,
+        sidecar_dir=sidecar_dir,
+        foldseek_result_tsv=foldseek_result_tsv,
+        query_dir=query_dir,
+        target_atlas_dir=target_atlas_dir,
+        foldseek_binary=foldseek_binary,
+        target_priorities=target_priorities,
+        alphafold_version=alphafold_version,
+        threads=threads,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    sidecar_dir.mkdir(parents=True, exist_ok=True)
+    for sidecar in audit.get("sidecar_payloads", []):
+        sidecar_path = Path(str(sidecar["sidecar_path"]))
+        sidecar_path.parent.mkdir(parents=True, exist_ok=True)
+        sidecar_path.write_text(
+            json.dumps(sidecar, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_backed_sidecar_materialization_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    audit.pop("sidecar_payloads", None)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return audit
 
 
@@ -6032,6 +6601,28 @@ def _summarize_train_calibration_score_row(
     }
 
 
+def _summarize_source_backed_materialization_score_row(
+    row: dict[str, Any] | None,
+) -> dict[str, Any] | None:
+    if not row:
+        return None
+    fold = row.get("predicted_structure_fold_channel") or {}
+    tm_score = _parse_optional_float(fold.get("nearest_atlas_tm_score"))
+    if tm_score is None:
+        return None
+    return {
+        "source": "family_panel_source_backed_afdb_vs_predicted_atlas",
+        "partition": "review_only_family_panel_source_backed_materialization",
+        "nearest_atlas_entry_id": fold.get("nearest_atlas_entry_id"),
+        "nearest_atlas_true_fingerprint_id": fold.get(
+            "nearest_atlas_true_fingerprint_id"
+        ),
+        "nearest_atlas_tm_score": round(tm_score, 6),
+        "selected_structure_id": row.get("selected_structure_id"),
+        "sidecar_path": row.get("sidecar_path"),
+    }
+
+
 def _summarize_local_adjudication_row(row: dict[str, Any] | None) -> dict[str, Any] | None:
     if not row:
         return None
@@ -6061,6 +6652,16 @@ def _missing_primary_channel_diagnosis(
             "family_panel_lookup_scope_gap",
             "extend the family-panel readout join to reuse the existing "
             "train/calibration or heldout fold score, then rerun the readout",
+        )
+    if (
+        not entry_id.startswith("m_csa:")
+        and fold_score is not None
+        and "predicted_geometry_top1_score_missing" in blockers
+    ):
+        return (
+            "source_backed_fold_scored_needs_predicted_geometry",
+            "materialize a source-free predicted active-site geometry sidecar "
+            "for this review-only row before primary-channel readout",
         )
     if not entry_id.startswith("m_csa:"):
         return (
@@ -6093,12 +6694,19 @@ def build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
     train_cal_threshold_contract_path: Path,
     predicted_structure_fold_channel_path: Path,
     predicted_geometry_atlas_retrieval_path: Path,
+    source_backed_materialization_path: Path | None = None,
     local_candidate_adjudication_path: Path | None = None,
 ) -> dict[str, Any]:
     queue = _read_json(missing_primary_channel_queue_path)
     train_cal_contract = _read_json(train_cal_threshold_contract_path)
     fold_channel = _read_json(predicted_structure_fold_channel_path)
     predicted_geometry = _read_json(predicted_geometry_atlas_retrieval_path)
+    source_backed_materialization = (
+        _read_json(source_backed_materialization_path)
+        if source_backed_materialization_path is not None
+        and source_backed_materialization_path.exists()
+        else None
+    )
     local_adjudication = (
         _read_json(local_candidate_adjudication_path)
         if local_candidate_adjudication_path is not None
@@ -6109,6 +6717,11 @@ def build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
     predicted_geometry_by_entry = _predicted_geometry_rows_by_entry(predicted_geometry)
     heldout_fold_by_entry = _fold_channel_rows_by_entry(fold_channel)
     train_cal_by_entry = _train_calibration_scores_by_entry(train_cal_contract)
+    source_backed_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (source_backed_materialization or {}).get("row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
     local_by_entry = _local_adjudication_rows_by_entry(local_adjudication)
 
     diagnosed_rows: list[dict[str, Any]] = []
@@ -6130,7 +6743,12 @@ def build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
         train_cal_summary = _summarize_train_calibration_score_row(
             train_cal_by_entry.get(entry_id)
         )
-        fold_score_summary = heldout_fold_summary or train_cal_summary
+        source_backed_summary = _summarize_source_backed_materialization_score_row(
+            source_backed_by_entry.get(entry_id)
+        )
+        fold_score_summary = (
+            heldout_fold_summary or train_cal_summary or source_backed_summary
+        )
         diagnosis, next_action = _missing_primary_channel_diagnosis(
             entry_id=entry_id,
             blockers=blockers,
@@ -6176,6 +6794,12 @@ def build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
         if (row["fold_score_evidence"] or {}).get("source")
         == "predicted_structure_fold_channel_heldout_signal"
     ]
+    rows_with_source_backed_fold = [
+        row
+        for row in diagnosed_rows
+        if (row["fold_score_evidence"] or {}).get("source")
+        == "family_panel_source_backed_afdb_vs_predicted_atlas"
+    ]
     status = (
         "missing_primary_channel_diagnosis_ready_review_only"
         if diagnosed_rows
@@ -6204,6 +6828,34 @@ def build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
             "m_csa:973 remains queued and still needs primary-channel evidence "
             "before any review-only family-panel decision."
         )
+    rows_with_any_fold_score = (
+        len(rows_with_train_cal_fold)
+        + len(rows_with_heldout_fold)
+        + len(rows_with_source_backed_fold)
+    )
+    if rows_with_any_fold_score == len(diagnosed_rows):
+        headline = (
+            f"All {len(diagnosed_rows)} queued rows now have frozen or "
+            "source-backed fold scores; the remaining primary-channel "
+            "blocker is source-free predicted active-site geometry."
+        )
+        next_action = (
+            "Materialize source-free predicted active-site geometry sidecars "
+            "for the source-backed fold-scored rows, starting with Q59490, "
+            "A0A1M6T2I7, and Q6NSJ0."
+        )
+    else:
+        headline = (
+            f"{rows_with_any_fold_score} queued rows already have a frozen "
+            "fold score upstream; the rest need geometry, sidecar, or "
+            "fold-lookup materialization."
+        )
+        next_action = (
+            "Work the remaining missing rows by first materializing "
+            "source-free predicted geometry where fold scores exist, then "
+            "clearing any remaining source-backed sidecar and fold-lookup "
+            "gaps."
+        )
     return {
         "artifact_id": FOLD_AUGMENTED_FAMILY_PANEL_MISSING_PRIMARY_CHANNEL_DIAGNOSIS_ID,
         "schema_version": SCHEMA_VERSION,
@@ -6231,6 +6883,7 @@ def build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
             "rows_with_predicted_geometry_evidence": len(rows_with_geometry),
             "rows_with_train_calibration_fold_score": len(rows_with_train_cal_fold),
             "rows_with_heldout_fold_channel_score": len(rows_with_heldout_fold),
+            "rows_with_source_backed_fold_score": len(rows_with_source_backed_fold),
             "diagnosis_counts": dict(sorted(diagnosis_counts.items())),
         },
         "diagnosed_rows": sorted(
@@ -6250,6 +6903,12 @@ def build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
             "predicted_geometry_atlas_retrieval": _source_path_record(
                 predicted_geometry_atlas_retrieval_path
             ),
+            "source_backed_sidecar_materialization": (
+                _source_path_record(source_backed_materialization_path)
+                if source_backed_materialization_path is not None
+                and source_backed_materialization_path.exists()
+                else None
+            ),
             "local_candidate_adjudication": (
                 _source_path_record(local_candidate_adjudication_path)
                 if local_candidate_adjudication_path is not None
@@ -6258,17 +6917,9 @@ def build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
             ),
         },
         "interpretation": {
-            "headline": (
-                f"{len(rows_with_train_cal_fold) + len(rows_with_heldout_fold)} "
-                "queued rows already have a frozen fold score upstream; the rest "
-                "need geometry, sidecar, or fold-lookup materialization."
-            ),
+            "headline": headline,
             "m_csa_973_result": m_csa_973_result,
-            "next_action": (
-                "Work the remaining missing rows by first repairing "
-                "current702 M-CSA predicted geometry, then materializing "
-                "source-backed sidecars for secondary and external rows."
-            ),
+            "next_action": next_action,
         },
     }
 
@@ -6291,6 +6942,7 @@ def _render_fold_augmented_family_panel_missing_primary_channel_diagnosis_report
         f"- Rows with predicted geometry evidence: {counts['rows_with_predicted_geometry_evidence']}",
         f"- Rows with train/cal fold score: {counts['rows_with_train_calibration_fold_score']}",
         f"- Rows with heldout fold score: {counts['rows_with_heldout_fold_channel_score']}",
+        f"- Rows with source-backed fold score: {counts['rows_with_source_backed_fold_score']}",
         f"- Diagnosis counts: {counts['diagnosis_counts']}",
         "",
         "## Diagnosed Rows",
@@ -6330,6 +6982,7 @@ def write_fold_augmented_family_panel_missing_primary_channel_diagnosis(
     train_cal_threshold_contract_path: Path,
     predicted_structure_fold_channel_path: Path,
     predicted_geometry_atlas_retrieval_path: Path,
+    source_backed_materialization_path: Path | None = None,
     local_candidate_adjudication_path: Path | None = None,
     out_path: Path,
     report_path: Path | None = None,
@@ -6339,6 +6992,7 @@ def write_fold_augmented_family_panel_missing_primary_channel_diagnosis(
         train_cal_threshold_contract_path=train_cal_threshold_contract_path,
         predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
         predicted_geometry_atlas_retrieval_path=predicted_geometry_atlas_retrieval_path,
+        source_backed_materialization_path=source_backed_materialization_path,
         local_candidate_adjudication_path=local_candidate_adjudication_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)

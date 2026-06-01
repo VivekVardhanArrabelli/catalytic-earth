@@ -140,14 +140,18 @@ artifacts first.
   source-check packets: `m_csa:132` remains secondary FMO support only, and
   `m_csa:116` remains an OOS transhydrogenase/hydride-transfer control.
 - The remaining family-panel primary-channel gaps are queued separately: 10
-  rows lack geometry-plus-predicted-fold scores, all requiring source-backed
-  row sidecars and coordinate materialization. There are no remaining M-CSA
-  rows in the missing primary-channel queue.
+  secondary/external rows now have source-backed predicted-fold scores, but
+  still lack source-free predicted active-site geometry top1 scores. There are
+  no remaining M-CSA rows in the missing primary-channel queue.
 - The 10-row missing queue now has a review-only source-backed materialization
-  plan. It selects Q59490 for the cobalamin secondary probe, A0A1M6T2I7 for
-  the radical-SAM secondary probe, Q6NSJ0 for the glycoside placeholder, and
-  seven prior-resolved metal-hydrolase/boundary representatives. It is a
-  manifest only: no coordinates were fetched and no labels/imports changed.
+  plan and a scored P0/P1 materialization. It selects Q59490 for the cobalamin
+  secondary probe, A0A1M6T2I7 for the radical-SAM secondary probe, Q6NSJ0 for
+  the glycoside placeholder, and seven prior-resolved metal-hydrolase/boundary
+  representatives. All 10 sidecars record PDB and AFDB-v6 coordinate hashes and
+  real Foldseek/TM hits against the frozen predicted atlas, with nearest TM
+  scores from `0.4655` to `1.004`. These rows remain review-only and are not
+  primary-channel score-complete until source-free predicted geometry is
+  materialized.
 - A review-only FMO subtype/hard-negative packet keeps `m_csa:131` and repaired
   `m_csa:132` as secondary-probe support, `m_csa:551` and `m_csa:973` as future
   support only, and `m_csa:750` as radical flavin/Fe-S boundary negative. No
@@ -171,8 +175,7 @@ artifacts first.
   and materialization queue for `metal_ion_locus`, `cobalamin_locus`,
   `radical_sam_locus`, and `iron_sulfur_locus`. It uses existing geometry
   ligand context only: 176 current702 rows have proximal metal context, 4 have
-  cobalamin, 8 have SAM, and 17 have Fe-S cluster context. The next concrete
-  implementation should emit a review-only `metal_ion_locus` sidecar first.
+  cobalamin, 8 have SAM, and 17 have Fe-S cluster context.
 - The review-only `metal_ion_locus` sidecar is now materialized for all 702
   current rows from existing geometry ligand context. It marks 175 rows with
   proximal metal context, 85 with structure-wide-only metal context, 422 with no
@@ -184,6 +187,18 @@ artifacts first.
   marks 4 rows with proximal cobalamin context, 678 with no cobalamin context,
   and 20 unsupported/missing-geometry rows; there are no structure-wide-only B12
   rows in the current geometry source.
+- The review-only `radical_sam_locus` and `iron_sulfur_locus` sidecars are now
+  materialized and audited from the same existing ligand context. The
+  radical-SAM sidecar marks 8 proximal SAM-context rows and 2
+  structure-wide-only rows; the Fe-S sidecar marks 17 proximal Fe-S-context rows
+  and 11 structure-wide-only rows. Both carry explicit SAM/Fe-S copresence
+  status, keep predictive/import flags false for all 702 rows, and pass schema
+  audits with zero critical violations.
+- A completion audit now confirms that all four schema-named cofactor-locus
+  sidecar classes are materialized for 702 rows and schema-passing with zero
+  critical violations. The next mechanism-feature action is a train/cal-only
+  embedding pilot that consumes these sidecars without label/import changes or
+  heldout leakage.
 - ProtT5 and SaProt have only NN/cosine-style local standardized exports today.
   Matched logistic-head reruns are blocked until raw local sidecars or weights
   exist; do not download large models for this by default.
@@ -221,10 +236,9 @@ artifacts first.
 2. For family-panel review, the six non-abstained fold-augmented rows are
    source-checked and remain review-only. `m_csa:973` reuses its frozen
    train/calibration fold score, is score-complete, and abstains under the fixed
-   research threshold. Next materialize the P0 sidecars/coordinates from
-   `artifacts/v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601.json`,
-   record coordinate hashes, run Foldseek/TM against the frozen atlas, and
-   refresh only review-only family-panel readouts.
+   research threshold. The 10-row source-backed coordinate/Foldseek pass is
+   done; next materialize source-free predicted-geometry sidecars for the same
+   rows, starting with Q59490, A0A1M6T2I7, and Q6NSJ0.
 3. If representation work resumes, produce row-aligned local sidecars first,
    then train heads on train/cal rows only and evaluate heldout once, including
    a predicted-geometry robustness cell.
@@ -262,6 +276,11 @@ artifacts first.
 - `artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_schema_audit_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_schema_audit_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_schema_audit_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_schema_audit_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_inorganic_cofactor_locus_completion_audit_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_source_check_m_csa267_current702_20260601.json`
@@ -274,6 +293,7 @@ artifacts first.
 - `artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.json`
 - `artifacts/v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601.json`
+- `artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json`
 - `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`
 - `artifacts/v3_m_csa497_label_revision_702_20260527.json`
 - `artifacts/v3_m_csa750_label_revision_702_20260527.json`

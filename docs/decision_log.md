@@ -52,12 +52,12 @@ non-abstained at the fixed `0.44155` research threshold: `m_csa:267`,
 `m_csa:131`, `m_csa:750`, `m_csa:551`, `m_csa:132`, and `m_csa:116`. Six
 score-complete rows abstain, including `m_csa:973` after joining its frozen
 train/calibration fold score, and 10 rows remain blocked by missing predicted
-geometry and/or predicted-fold channel evidence.
+active-site geometry evidence. Those 10 rows now have source-backed
+AFDB-vs-predicted-atlas fold scores from the P0/P1 materialization follow-up.
 
 Consequence: the next review work should keep the six source-checked
 non-abstained boundary rows review-only, while working the 10 remaining
-primary-channel-missing rows in the source-backed sidecar and coordinate
-materialization queue.
+primary-channel-missing rows through source-free predicted-geometry sidecars.
 This readout is review-only and must not be interpreted as a family promotion,
 production threshold, or training signal.
 
@@ -92,7 +92,8 @@ manifest accession-compatible residue subset on `Q2RSB2`, resolves 5/5 scored
 positions, and scores nearest-atlas Foldseek/TM `0.5417`. Both become
 score-complete and non-abstained at the fixed research threshold. The refreshed
 missing queue now has 10 rows, all secondary-probe or external/placeholder rows
-requiring source-backed sidecars and coordinate materialization.
+that required source-backed sidecars and coordinate materialization before the
+later P0/P1 materialization follow-up.
 
 Fifth/sixth follow-up: the newly non-abstained repaired M-CSA rows were
 source-checked from frozen local graph, registry, repair, and readout artifacts.
@@ -126,6 +127,17 @@ A0A1M6T2I7 for `secondary_probe::radical_sam_enzyme`, Q6NSJ0 for
 external identifier scout. It records exact PDB/AFDB candidate commands and
 sidecar fields while keeping every row review-only and non-countable.
 
+P0/P1 materialization follow-up: materialize and hash the selected PDB
+coordinates plus AFDB-v6 predicted coordinates for all 10 queued source-backed
+representatives, then run Foldseek exact TM against the frozen predicted
+in-distribution atlas. All 10 rows now have real predicted-fold hits, including
+`0.4655` for Q59490, `0.7039` for A0A1M6T2I7, `0.6259` for Q6NSJ0, and
+metal-hydrolase/boundary nearest TM scores from `0.5936` to `1.004`. The family
+packets, readout, missing-channel queue, and diagnosis were refreshed. The rows
+remain primary-channel incomplete because source-free predicted active-site
+geometry top1 scores are still missing. No labels, registries, imports,
+thresholds, splits, or production scorers changed.
+
 Artifacts:
 `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`,
 `work/fold_augmented_family_panel_research_readout_current702_20260601.md`,
@@ -151,6 +163,8 @@ Artifacts:
 `work/fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.md`,
 `artifacts/v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601.json`,
 `work/family_panel_source_backed_sidecar_materialization_plan_current702_20260601.md`,
+`artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json`,
+`work/family_panel_source_backed_sidecar_materialization_current702_20260601.md`,
 `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`,
 `work/fmo_subtype_hard_negative_packet_current702_20260601.md`.
 
@@ -346,6 +360,22 @@ proximal cobalamin rows, 678 no-context rows, 20 unsupported/missing-geometry
 rows, and no structure-wide-only B12 rows in the current geometry source. The
 schema audit passes with zero critical violations.
 
+Fourth follow-up: materialize and audit `radical_sam_locus` and
+`iron_sulfur_locus` separately, preserving SAM/Fe-S copresence as an explicit
+row status. The radical-SAM sidecar records 8 proximal SAM rows, 2
+structure-wide-only SAM rows, and 20 unsupported/missing-geometry rows. The
+Fe-S sidecar records 17 proximal Fe-S rows, 11 structure-wide-only Fe-S rows,
+and 20 unsupported/missing-geometry rows. Both remain review-only, keep all
+predictive/import flags false, and pass strict schema audits with zero critical
+violations.
+
+Completion audit follow-up: validate that all four schema-named
+cofactor-locus sidecar classes are now materialized and schema-passing. The
+completion audit records 4/4 materialized classes, 4/4 passing schema audits,
+702 rows per class, zero critical violations, and zero predictive/import-ready
+rows. The next mechanism-feature step is a train/cal-only embedding pilot; no
+labels, registries, imports, thresholds, splits, or production scorers changed.
+
 Artifacts:
 `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
 `work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
@@ -360,7 +390,17 @@ Artifacts:
 `artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_current702_20260601.json`,
 `work/mechanism_feature_cobalamin_locus_sidecar_current702_20260601.md`,
 `artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_schema_audit_current702_20260601.json`,
-`work/mechanism_feature_cobalamin_locus_sidecar_schema_audit_current702_20260601.md`.
+`work/mechanism_feature_cobalamin_locus_sidecar_schema_audit_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_current702_20260601.json`,
+`work/mechanism_feature_radical_sam_locus_sidecar_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_schema_audit_current702_20260601.json`,
+`work/mechanism_feature_radical_sam_locus_sidecar_schema_audit_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_current702_20260601.json`,
+`work/mechanism_feature_iron_sulfur_locus_sidecar_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_iron_sulfur_locus_sidecar_schema_audit_current702_20260601.json`,
+`work/mechanism_feature_iron_sulfur_locus_sidecar_schema_audit_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_inorganic_cofactor_locus_completion_audit_current702_20260601.json`,
+`work/mechanism_feature_inorganic_cofactor_locus_completion_audit_current702_20260601.md`.
 
 ## 2026-06-01: Thiol/Disulfide Redox Boundary Panel Packet Added
 

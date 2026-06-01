@@ -1,0 +1,43 @@
+{
+  "artifact_id": "v3_mechanism_feature_radical_sam_locus_sidecar_schema_audit_current702_20260601",
+  "counts": {
+    "critical_counts": {
+      "distance_range_violations": 0,
+      "duplicate_entry_rows": 0,
+      "extra_rows": 0,
+      "missing_manifest_rows": 0,
+      "predictive_or_import_flag_violations": 0,
+      "proximal_consistency_violations": 0,
+      "required_key_violations": 0,
+      "split_mismatches": 0,
+      "status_violations": 0
+    },
+    "manifest_rows": 702,
+    "sidecar_rows": 702,
+    "status_counts": {
+      "no_radical_sam_context_detected": 672,
+      "proximal_radical_sam_context_available": 8,
+      "structure_wide_radical_sam_context_only": 2,
+      "unsupported_or_missing_geometry": 20
+    }
+  },
+  "created_utc": "2026-06-01T10:56:05Z",
+  "critical_violations": [],
+  "interpretation": {
+    "current_state": "The radical_sam locus sidecar is row-aligned with current702 and passes strict review-only schema checks.",
+    "next_action": "Consume only as split-filtered review-only feature input in a future mechanism-feature embedding pilot."
+  },
+  "schema_version": "v3",
+  "scope": "Strict schema audit for the review-only current702 radical_sam locus sidecar.",
+  "source_artifacts": {
+    "radical_sam_locus_sidecar": {
+      "path": "artifacts/v3_mechanism_feature_radical_sam_locus_sidecar_current702_20260601.json",
+      "sha256": "a48fc5f4f8785e9e16f5b0d931343c5c06d2d380c5389c0d9a84de503d561078"
+    },
+    "sequence_nn_label_manifest": {
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    }
+  },
+  "status": "radical_sam_locus_sidecar_schema_passed_current702"
+}

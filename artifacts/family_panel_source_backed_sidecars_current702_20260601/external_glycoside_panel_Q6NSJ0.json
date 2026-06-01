@@ -1,0 +1,73 @@
+{
+  "artifact_id": "v3_family_panel_source_backed_sidecar_materialization_current702_20260601_sidecar",
+  "catalytic_or_binding_site_evidence": {
+    "blockers_to_clear": [
+      "create row-level sidecar from glycoside panel source evidence",
+      "verify current-reference sequence and Foldseek screens remain review-only",
+      "do not collapse glycoside hydrolase into generic metal-hydrolase label"
+    ],
+    "status": "source_backed_row_context_staged_local_site_not_extracted"
+  },
+  "coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_7QQF.cif",
+  "coordinate_records": [
+    {
+      "coordinate_role": "selected_pdb_cif",
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_7QQF.cif",
+      "sha256": "f9e551da0ec73293d877dd07c4bd8301e9461f7329bac66e56062d8808c7f20a",
+      "size_bytes": 3872130
+    },
+    {
+      "coordinate_role": "alphafolddb_predicted_cif",
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q6NSJ0-F1-model_v6.cif",
+      "sha256": "0483a266d4e7d1cdda3fae7350670ae3115363f8cba0ae539c1837040d0cd1a3",
+      "size_bytes": 669937
+    }
+  ],
+  "coordinate_sha256": "f9e551da0ec73293d877dd07c4bd8301e9461f7329bac66e56062d8808c7f20a",
+  "created_utc": "2026-06-01T11:03:56Z",
+  "current702_split_protection": {
+    "allowed_for_training_or_threshold_selection": false,
+    "countable_current702_label": false,
+    "review_only": true
+  },
+  "display_name": "Alpha-galactosidase MYORG",
+  "entry_id": "external_glycoside_panel",
+  "intended_review_role": "review_only_family_panel_primary_channel_gap_closure",
+  "ligand_or_cofactor_state": {
+    "manual_local_site_verification_required": true,
+    "state": "glycoside_hydrolase_acidic_dyad_and_glycan_context_expected_from_source_row"
+  },
+  "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+  "predicted_fold_channel_status": "computed_foldseek_tm_against_frozen_predicted_atlas",
+  "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+  "predicted_structure_fold_channel": {
+    "nearest_atlas_entry_id": "m_csa:697",
+    "nearest_atlas_tm_score": 0.6259,
+    "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+    "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+  },
+  "predictive_use_allowed": false,
+  "ready_for_label_import": false,
+  "representative_selection_policy": "panel-rank-1 external positive glycoside lead with sourced acidic dyad, glycan binding context, PDB structures, and prior no-near-duplicate signal",
+  "representative_source_row_id": "uniprot:Q6NSJ0",
+  "schema_version": "northstar_next_levers.v0.source_backed_family_panel_sidecar",
+  "selected_structure_id": "7QQF",
+  "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/external_glycoside_panel_Q6NSJ0.json",
+  "source_accession": "uniprot:Q6NSJ0",
+  "source_artifact_hashes": {
+    "materialization_plan": {
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601.json",
+      "sha256": "841a4a03d1564ab95329326d30bb1875e5561cf62801f11c9fecf48a65615601"
+    },
+    "representative_basis_artifact": {
+      "path": "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
+      "sha256": "5fd73c1a47a68047433476e5b04ffd94062117d8710139b8616e8ac38872e20a"
+    }
+  },
+  "source_urls": {
+    "rcsb_pdb": "https://www.rcsb.org/structure/7QQH",
+    "uniprotkb": "https://www.uniprot.org/uniprotkb/Q6NSJ0/entry"
+  }
+}

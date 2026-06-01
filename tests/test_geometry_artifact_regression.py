@@ -2865,6 +2865,46 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(schema["guardrails"]["new_coordinates_or_models_downloaded"])
         self.assertTrue(schema["guardrails"]["review_only"])
 
+    def test_mechanism_feature_inorganic_cofactor_locus_completion_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_inorganic_cofactor_locus_completion_audit_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "inorganic_cofactor_locus_completion_audit_passed_review_only",
+        )
+        self.assertEqual(audit["counts"]["schema_classes"], 4)
+        self.assertEqual(audit["counts"]["materialized_sidecar_classes"], 4)
+        self.assertEqual(audit["counts"]["schema_audit_passed_classes"], 4)
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertEqual(audit["counts"]["predictive_use_allowed_rows"], 0)
+        self.assertEqual(audit["counts"]["ready_for_label_import_rows"], 0)
+        self.assertEqual(
+            audit["counts"]["sidecar_rows_per_class"],
+            {
+                "cobalamin_locus": 702,
+                "iron_sulfur_locus": 702,
+                "metal_ion_locus": 702,
+                "radical_sam_locus": 702,
+            },
+        )
+        self.assertEqual(
+            {row["class_id"] for row in audit["class_rows"]},
+            {
+                "cobalamin_locus",
+                "iron_sulfur_locus",
+                "metal_ion_locus",
+                "radical_sam_locus",
+            },
+        )
+        self.assertFalse(audit["guardrails"]["new_coordinates_or_models_downloaded"])
+        self.assertTrue(audit["guardrails"]["review_only"])
+
     def test_mechanism_feature_metal_ion_locus_sidecar_current_counts(self) -> None:
         sidecar = _load_json(
             ROOT
@@ -2993,6 +3033,93 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertTrue(audit["guardrails"]["review_only"])
 
+    def test_mechanism_feature_radical_sam_and_iron_sulfur_locus_sidecars(
+        self,
+    ) -> None:
+        expected = {
+            "radical_sam": {
+                "status": "radical_sam_locus_sidecar_ready_review_only",
+                "status_counts": {
+                    "no_radical_sam_context_detected": 672,
+                    "proximal_radical_sam_context_available": 8,
+                    "structure_wide_radical_sam_context_only": 2,
+                    "unsupported_or_missing_geometry": 20,
+                },
+                "proximal_context_rows": 8,
+                "structure_wide_only_rows": 2,
+                "example_entry": "m_csa:358",
+                "example_code": "SAM",
+            },
+            "iron_sulfur": {
+                "status": "iron_sulfur_locus_sidecar_ready_review_only",
+                "status_counts": {
+                    "no_iron_sulfur_context_detected": 654,
+                    "proximal_iron_sulfur_context_available": 17,
+                    "structure_wide_iron_sulfur_context_only": 11,
+                    "unsupported_or_missing_geometry": 20,
+                },
+                "proximal_context_rows": 17,
+                "structure_wide_only_rows": 11,
+                "example_entry": "m_csa:358",
+                "example_code": "SF4",
+            },
+        }
+        for kind, spec in expected.items():
+            sidecar = _load_json(
+                ROOT
+                / "artifacts"
+                / f"v3_mechanism_feature_{kind}_locus_sidecar_current702_20260601.json"
+            )
+            self.assertEqual(sidecar["status"], spec["status"])
+            self.assertEqual(sidecar["counts"]["rows"], 702)
+            self.assertEqual(
+                sidecar["counts"]["status_counts"],
+                spec["status_counts"],
+            )
+            self.assertEqual(
+                sidecar["counts"]["proximal_context_rows"],
+                spec["proximal_context_rows"],
+            )
+            self.assertEqual(
+                sidecar["counts"]["structure_wide_only_rows"],
+                spec["structure_wide_only_rows"],
+            )
+            self.assertEqual(sidecar["counts"]["ready_for_label_import_rows"], 0)
+            self.assertEqual(sidecar["counts"]["predictive_use_allowed_rows"], 0)
+            by_entry = {row["entry_id"]: row for row in sidecar["rows"]}
+            self.assertEqual(
+                by_entry[spec["example_entry"]]["sam_fe_s_copresence_status"],
+                "proximal_sam_and_fe_s_context",
+            )
+            self.assertIn(
+                spec["example_code"],
+                by_entry[spec["example_entry"]]["supporting_ligand_codes"],
+            )
+            self.assertFalse(sidecar["guardrails"]["new_coordinates_or_models_downloaded"])
+            self.assertTrue(sidecar["guardrails"]["review_only"])
+
+    def test_mechanism_feature_radical_sam_and_iron_sulfur_schema_audits(
+        self,
+    ) -> None:
+        for kind in ("radical_sam", "iron_sulfur"):
+            audit = _load_json(
+                ROOT
+                / "artifacts"
+                / f"v3_mechanism_feature_{kind}_locus_sidecar_schema_audit_current702_20260601.json"
+            )
+            self.assertEqual(
+                audit["status"],
+                f"{kind}_locus_sidecar_schema_passed_current702",
+            )
+            self.assertEqual(audit["counts"]["manifest_rows"], 702)
+            self.assertEqual(audit["counts"]["sidecar_rows"], 702)
+            self.assertTrue(
+                all(
+                    count == 0
+                    for count in audit["counts"]["critical_counts"].values()
+                )
+            )
+
     def test_embedding_plan_consumes_mechanism_feature_sidecar_schema_audit(self) -> None:
         plan = _load_json(
             ROOT
@@ -3073,17 +3200,17 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json": {
                 "candidate_rows": 3,
                 "predicted_geometry_ok_rows": 1,
-                "rows_with_predicted_structure_fold_hits": 1,
+                "rows_with_predicted_structure_fold_hits": 3,
             },
             "v3_family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.json": {
                 "candidate_rows": 6,
                 "predicted_geometry_ok_rows": 0,
-                "rows_with_predicted_structure_fold_hits": 0,
+                "rows_with_predicted_structure_fold_hits": 6,
             },
             "v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json": {
                 "candidate_rows": 4,
                 "predicted_geometry_ok_rows": 2,
-                "rows_with_predicted_structure_fold_hits": 2,
+                "rows_with_predicted_structure_fold_hits": 4,
             },
         }
         for filename, counts in expected.items():
@@ -3345,7 +3472,6 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             queue["counts"]["score_blocker_counts"],
             {
                 "predicted_geometry_top1_score_missing": 10,
-                "predicted_structure_fold_tm_missing": 10,
             },
         )
         self.assertNotIn("m_csa:973", {row["entry_id"] for row in queue["queue_rows"]})
@@ -3371,9 +3497,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             diagnosis["counts"]["diagnosis_counts"],
             {
-                "needs_source_backed_row_sidecar_and_coordinate_materialization": 10,
+                "source_backed_fold_scored_needs_predicted_geometry": 10,
             },
         )
+        self.assertEqual(diagnosis["counts"]["rows_with_source_backed_fold_score"], 10)
         self.assertEqual(
             diagnosis["counts"]["rows_with_train_calibration_fold_score"],
             0,
@@ -3448,6 +3575,68 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             " ".join(plan["guardrails"]),
         )
         self.assertIn("foldseek easy-search", "\n".join(plan["commands_to_run_next"]))
+
+    def test_family_panel_source_backed_sidecar_materialization_current_scores(
+        self,
+    ) -> None:
+        materialization = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            materialization["status"],
+            "source_backed_sidecars_fold_scored_review_only",
+        )
+        self.assertEqual(materialization["counts"]["targeted_rows"], 10)
+        self.assertEqual(
+            materialization["counts"]["foldseek_query_entries_with_hits"],
+            10,
+        )
+        self.assertEqual(
+            materialization["counts"]["remaining_predicted_fold_blockers"],
+            0,
+        )
+        self.assertEqual(
+            materialization["counts"]["remaining_predicted_geometry_blockers"],
+            10,
+        )
+        self.assertFalse(materialization["blockers"])
+        by_entry = {row["entry_id"]: row for row in materialization["row_scores"]}
+        expected_tm = {
+            "secondary_probe::cobalamin_radical_rearrangement": 0.4655,
+            "secondary_probe::radical_sam_enzyme": 0.7039,
+            "external_glycoside_panel": 0.6259,
+            "mh_073": 0.8022,
+            "mh_064": 0.9222,
+            "mh_065": 0.9411,
+            "mh_066": 0.9445,
+            "mh_067": 1.004,
+            "mh_068": 1.002,
+            "mh_072": 0.5936,
+        }
+        self.assertEqual(set(by_entry), set(expected_tm))
+        for entry_id, tm_score in expected_tm.items():
+            row = by_entry[entry_id]
+            self.assertEqual(
+                row["predicted_structure_fold_channel"]["nearest_atlas_tm_score"],
+                tm_score,
+            )
+            self.assertEqual(
+                row["predicted_structure_fold_channel"]["score_source"],
+                "family_panel_source_backed_afdb_vs_predicted_atlas",
+            )
+            self.assertEqual(
+                row["remaining_primary_channel_blockers"],
+                ["predicted_geometry_top1_score_missing"],
+            )
+            for record in row["coordinate_records"]:
+                self.assertTrue(record["exists"])
+                self.assertRegex(record["sha256"], r"^[0-9a-f]{64}$")
+            sidecar = _load_json(ROOT / row["sidecar_path"])
+            self.assertFalse(sidecar["predictive_use_allowed"])
+            self.assertFalse(sidecar["ready_for_label_import"])
 
     def test_fmo_subtype_hard_negative_packet_current_counts(self) -> None:
         packet = _load_json(

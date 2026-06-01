@@ -6,11 +6,11 @@
     "packets_with_geometry_gaps": 3,
     "panel_packets": 7,
     "predicted_geometry_ok_rows": 12,
-    "rows_with_predicted_structure_fold_hits": 11,
+    "rows_with_predicted_structure_fold_hits": 21,
     "rows_with_selected_organic_cofactor_scores": 12,
     "rows_with_selected_pdb_fold_proxy": 5
   },
-  "created_utc": "2026-06-01T09:54:56Z",
+  "created_utc": "2026-06-01T11:05:32Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "imports_or_promotions_performed": false,
@@ -21,8 +21,8 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "headline": "12/22 family-panel rows now have predicted-geometry evidence; 11 have predicted-fold hits.",
-    "next_action": "Work remaining geometry gaps through source-backed sidecars and coordinate materialization; keep packets review-only."
+    "headline": "12/22 family-panel rows now have predicted-geometry evidence; 21 have predicted-fold hits.",
+    "next_action": "Materialize source-free predicted-geometry sidecars for the 10 source-backed fold-scored rows, starting with Q59490, A0A1M6T2I7, and Q6NSJ0."
   },
   "panel_summaries": [
     {
@@ -74,8 +74,8 @@
       ],
       "panel_id": "cobalamin_and_radical_rearrangement_panel",
       "predicted_geometry_ok_rows": 1,
-      "rows_with_predicted_structure_fold_hits": 1,
-      "sha256": "3a839bb055974abb454f9ee6f3282f01636cf149d2e853d4a067d63d0d8c70a2",
+      "rows_with_predicted_structure_fold_hits": 3,
+      "sha256": "c023cde98edae059b46936bd26f8271623402db4deea98991d4f6a6d7b9d19e1",
       "status": "evidence_packet_ready_with_geometry_gaps"
     },
     {
@@ -91,8 +91,8 @@
       ],
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_ok_rows": 0,
-      "rows_with_predicted_structure_fold_hits": 0,
-      "sha256": "9f1035f9cf892a323d1891a4fecf5f256f3a756ad8e34d649b0c6116bd032dcc",
+      "rows_with_predicted_structure_fold_hits": 6,
+      "sha256": "bda7cb4d68b888c15f9a0334dac7558f74e05c404a019303c7c6eb501d2116f2",
       "status": "evidence_packet_ready_with_geometry_gaps"
     },
     {
@@ -104,12 +104,12 @@
       ],
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "predicted_geometry_ok_rows": 2,
-      "rows_with_predicted_structure_fold_hits": 2,
-      "sha256": "345edc6a46eea591d6993be82918f56dd16fd924823c1b0bdcbc58d66b188268",
+      "rows_with_predicted_structure_fold_hits": 4,
+      "sha256": "f8694408c8856dc92640527db2c018f24934e95ea400293410572f41faf72bb9",
       "status": "evidence_packet_ready_with_geometry_gaps"
     }
   ],
   "schema_version": "northstar_next_levers.v0.coverage_refresh",
-  "scope": "Review-only coverage audit across family-expansion evidence packets after repaired M-CSA primary-channel scores.",
+  "scope": "Review-only coverage audit across family-expansion evidence packets after source-backed P0/P1 Foldseek/TM materialization.",
   "status": "coverage_audit_ready_review_only"
 }

@@ -7,11 +7,11 @@
       "secondary_probe::radical_sam_enzyme"
     ],
     "predicted_geometry_ok_rows": 1,
-    "rows_with_predicted_structure_fold_hits": 1,
+    "rows_with_predicted_structure_fold_hits": 3,
     "rows_with_selected_organic_cofactor_scores": 1,
     "rows_with_selected_pdb_fold_proxy": 0
   },
-  "created_utc": "2026-06-01T08:02:12Z",
+  "created_utc": "2026-06-01T11:03:56Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "heldout_splits_changed": false,
@@ -59,6 +59,7 @@
         "negative_nearest_class_centroid_robust_distance": null,
         "top1_score_raw": null
       },
+      "predicted_geometry_accession_repair": null,
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1": {
         "cofactor_context_score": null,
@@ -67,9 +68,10 @@
         "score": null
       },
       "predicted_structure_fold_channel": {
-        "nearest_atlas_entry_id": null,
-        "nearest_atlas_tm_score": null,
-        "nearest_atlas_true_fingerprint_id": null
+        "nearest_atlas_entry_id": "m_csa:697",
+        "nearest_atlas_tm_score": 0.4655,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
       },
       "selected_organic_cofactor_max": null,
       "selected_organic_cofactor_scores": {},
@@ -89,6 +91,7 @@
         "negative_nearest_class_centroid_robust_distance": null,
         "top1_score_raw": null
       },
+      "predicted_geometry_accession_repair": null,
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1": {
         "cofactor_context_score": null,
@@ -97,9 +100,10 @@
         "score": null
       },
       "predicted_structure_fold_channel": {
-        "nearest_atlas_entry_id": null,
-        "nearest_atlas_tm_score": null,
-        "nearest_atlas_true_fingerprint_id": null
+        "nearest_atlas_entry_id": "m_csa:358",
+        "nearest_atlas_tm_score": 0.7039,
+        "nearest_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+        "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
       },
       "selected_organic_cofactor_max": null,
       "selected_organic_cofactor_scores": {},
@@ -119,6 +123,7 @@
         "negative_nearest_class_centroid_robust_distance": -1.465543,
         "top1_score_raw": 0.3664
       },
+      "predicted_geometry_accession_repair": null,
       "predicted_geometry_status": "ok",
       "predicted_geometry_top1": {
         "cofactor_context_score": 0.2,
@@ -129,7 +134,8 @@
       "predicted_structure_fold_channel": {
         "nearest_atlas_entry_id": "m_csa:973",
         "nearest_atlas_tm_score": 0.7357,
-        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase"
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "score_source": "predicted_structure_fold_channel"
       },
       "selected_organic_cofactor_max": 0.703989,
       "selected_organic_cofactor_scores": {
@@ -157,6 +163,10 @@
       "path": "artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
       "sha256": "03515cb359fe0ebf4c673117201a2addf2d75e03af5f89ba58fc77891c47f85d"
     },
+    "m_csa_primary_channel_repair": {
+      "path": "artifacts/v3_fold_augmented_family_panel_m_csa_primary_channel_repair_current702_20260601.json",
+      "sha256": "d40aff436705c30dc143edbee77ee22a7076972bf887584b826a1d041a3632a9"
+    },
     "predicted_atlas_variants": {
       "path": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
       "sha256": "1c09f7cad3bec0da694e03ac1d60f9c6bc96e9208d13bbb06a90095170a2ef13"
@@ -172,6 +182,10 @@
     "selected_organic_cofactor_sidecar": {
       "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
       "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    },
+    "source_backed_sidecar_materialization": {
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json",
+      "sha256": "1c4eacb8b5917750f5ed6de7f614adcae55b1de1473942fc5efa9baeac4abbf6"
     }
   },
   "status": "evidence_packet_ready_with_geometry_gaps"

@@ -10,12 +10,11 @@
       "no_reliable_structure_metal_hydrolase_controls": 6
     },
     "score_blocker_counts": {
-      "predicted_geometry_top1_score_missing": 10,
-      "predicted_structure_fold_tm_missing": 10
+      "predicted_geometry_top1_score_missing": 10
     },
     "secondary_probe_rows": 2
   },
-  "created_utc": "2026-06-01T09:55:05Z",
+  "created_utc": "2026-06-01T11:03:57Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "imports_or_promotions_performed": false,
@@ -38,12 +37,11 @@
       "panel_id": "cobalamin_and_radical_rearrangement_panel",
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
       "rank": 1,
       "recommended_next_action": "materialize row-level secondary-probe sidecar, accession, geometry, and predicted coordinate before scoring",
       "score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
+        "predicted_geometry_top1_score_missing"
       ],
       "selected_organic_cofactor_max": null,
       "split_assignment": null
@@ -55,12 +53,11 @@
       "panel_id": "cobalamin_and_radical_rearrangement_panel",
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "plp_dependent_enzyme",
       "rank": 2,
       "recommended_next_action": "materialize row-level secondary-probe sidecar, accession, geometry, and predicted coordinate before scoring",
       "score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
+        "predicted_geometry_top1_score_missing"
       ],
       "selected_organic_cofactor_max": null,
       "split_assignment": null
@@ -72,12 +69,11 @@
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
       "rank": 3,
       "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
       "score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
+        "predicted_geometry_top1_score_missing"
       ],
       "selected_organic_cofactor_max": null,
       "split_assignment": null
@@ -89,12 +85,11 @@
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
       "rank": 4,
       "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
       "score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
+        "predicted_geometry_top1_score_missing"
       ],
       "selected_organic_cofactor_max": null,
       "split_assignment": null
@@ -106,12 +101,11 @@
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
       "rank": 5,
       "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
       "score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
+        "predicted_geometry_top1_score_missing"
       ],
       "selected_organic_cofactor_max": null,
       "split_assignment": null
@@ -123,12 +117,11 @@
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
       "rank": 6,
       "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
       "score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
+        "predicted_geometry_top1_score_missing"
       ],
       "selected_organic_cofactor_max": null,
       "split_assignment": null
@@ -140,12 +133,11 @@
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
       "rank": 7,
       "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
       "score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
+        "predicted_geometry_top1_score_missing"
       ],
       "selected_organic_cofactor_max": null,
       "split_assignment": null
@@ -157,12 +149,11 @@
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
       "rank": 8,
       "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
       "score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
+        "predicted_geometry_top1_score_missing"
       ],
       "selected_organic_cofactor_max": null,
       "split_assignment": null
@@ -174,12 +165,11 @@
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
       "rank": 9,
       "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
       "score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
+        "predicted_geometry_top1_score_missing"
       ],
       "selected_organic_cofactor_max": null,
       "split_assignment": null
@@ -191,12 +181,11 @@
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
       "rank": 10,
       "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
       "score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
+        "predicted_geometry_top1_score_missing"
       ],
       "selected_organic_cofactor_max": null,
       "split_assignment": null
@@ -208,7 +197,7 @@
     "family_panel_research_readout": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
-      "sha256": "74805c7c66180153319ad230c881416d6e99820985326b17bb023eb883fa12c0"
+      "sha256": "a275eac56ca808659d589b2a5bbd431688b9c91cc1b542690cd8702808380c61"
     }
   },
   "status": "missing_primary_channel_queue_ready_review_only"

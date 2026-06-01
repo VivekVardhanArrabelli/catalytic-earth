@@ -1,0 +1,75 @@
+{
+  "artifact_id": "v3_family_panel_source_backed_sidecar_materialization_current702_20260601_sidecar",
+  "catalytic_or_binding_site_evidence": {
+    "blockers_to_clear": [
+      "create row-level sidecar from source artifacts",
+      "verify local B12/adenosylcobalamin and radical-rearrangement context on selected coordinate",
+      "run duplicate/leakage checks before any future countable use",
+      "campaign remains blocked below 10-row source floor"
+    ],
+    "status": "source_backed_row_context_staged_local_site_not_extracted"
+  },
+  "coordinate_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1L1L.cif",
+  "coordinate_records": [
+    {
+      "coordinate_role": "selected_pdb_cif",
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1L1L.cif",
+      "sha256": "9b4d9b9b291b4ed3ee068e1d99bd7781d5d7628df1f9c76f693d6ad2090a4f18",
+      "size_bytes": 2587063
+    },
+    {
+      "coordinate_role": "alphafolddb_predicted_cif",
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q59490-F1-model_v6.cif",
+      "sha256": "cecf4f4c8cf9aeb92f1efa29458503b596830c52450f382865e70795fd560c00",
+      "size_bytes": 675706
+    }
+  ],
+  "coordinate_sha256": "9b4d9b9b291b4ed3ee068e1d99bd7781d5d7628df1f9c76f693d6ad2090a4f18",
+  "created_utc": "2026-06-01T11:03:56Z",
+  "current702_split_protection": {
+    "allowed_for_training_or_threshold_selection": false,
+    "countable_current702_label": false,
+    "review_only": true
+  },
+  "display_name": "Adenosylcobalamin-dependent ribonucleoside-triphosphate reductase (RTPR) (EC 1.17.4.2)",
+  "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+  "intended_review_role": "review_only_family_panel_primary_channel_gap_closure",
+  "ligand_or_cofactor_state": {
+    "manual_local_site_verification_required": true,
+    "state": "adenosylcobalamin_context_expected_from_source_row"
+  },
+  "panel_id": "cobalamin_and_radical_rearrangement_panel",
+  "predicted_fold_channel_status": "computed_foldseek_tm_against_frozen_predicted_atlas",
+  "predicted_geometry_status": "not_computed_source_free_geometry_sidecar_missing",
+  "predicted_structure_fold_channel": {
+    "nearest_atlas_entry_id": "m_csa:697",
+    "nearest_atlas_tm_score": 0.4655,
+    "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+    "score_source": "family_panel_source_backed_afdb_vs_predicted_atlas"
+  },
+  "predictive_use_allowed": false,
+  "ready_for_label_import": false,
+  "representative_selection_policy": "single eligible prior-pool-clean adenosylcobalamin/PDB row from terminal blocker artifact; suitable only as a review-only sidecar representative, not a campaign opener",
+  "representative_source_row_id": "uniprot:Q59490",
+  "schema_version": "northstar_next_levers.v0.source_backed_family_panel_sidecar",
+  "selected_structure_id": "1L1L",
+  "sidecar_path": "artifacts/family_panel_source_backed_sidecars_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+  "source_accession": "uniprot:Q59490",
+  "source_artifact_hashes": {
+    "materialization_plan": {
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601.json",
+      "sha256": "841a4a03d1564ab95329326d30bb1875e5561cf62801f11c9fecf48a65615601"
+    },
+    "representative_basis_artifact": {
+      "path": "artifacts/v3_prospective_external_cobalamin_radical_minicampaign_blocker_review_20260521.json",
+      "sha256": "52dad94795c92f4d8a0922fd90588e7c908d3ae21f0ab96ac6ba79c34b168406"
+    }
+  },
+  "source_urls": {
+    "rcsb_representative_structure": "https://www.rcsb.org/structure/1L1L",
+    "source_query_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28adenosylcobalamin%29+AND+%28database%3Apdb%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Cec%2Ccc_catalytic_activity%2Cft_act_site%2Cft_binding%2Cxref_pdb%2Csequence&format=tsv&size=100",
+    "uniprot_page": "https://www.uniprot.org/uniprotkb/Q59490/entry"
+  }
+}

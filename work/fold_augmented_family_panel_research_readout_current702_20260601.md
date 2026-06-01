@@ -1,6 +1,6 @@
 # Fold-Augmented Family-Panel Research Readout - current702
 
-Run: 2026-06-01T09:55:05Z
+Run: 2026-06-01T11:03:57Z
 
 Downstream fold-augmented research readout over review-only family-expansion packets. It applies the already selected combined_mean_geometry_fold threshold from the OOS-calibrated research contract to packet rows with both predicted geometry and predicted-structure Foldseek/TM evidence.
 

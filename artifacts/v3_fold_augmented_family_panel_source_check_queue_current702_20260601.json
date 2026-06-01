@@ -10,7 +10,7 @@
       "near_orphan_glycoside_or_nucleoside_hydrolase_controls": 1
     }
   },
-  "created_utc": "2026-06-01T09:55:05Z",
+  "created_utc": "2026-06-01T11:03:57Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "imports_or_promotions_performed": false,
@@ -224,7 +224,7 @@
     "family_panel_research_readout": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
-      "sha256": "74805c7c66180153319ad230c881416d6e99820985326b17bb023eb883fa12c0"
+      "sha256": "a275eac56ca808659d589b2a5bbd431688b9c91cc1b542690cd8702808380c61"
     }
   },
   "status": "source_check_queue_ready_review_only"
