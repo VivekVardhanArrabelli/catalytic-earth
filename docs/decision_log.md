@@ -3,6 +3,63 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-01: Lever 2 Learned Mechanism-Feature Embedding Is A Clean Negative With An Out-Of-Span Residual Lead
+
+Decision: implement Lever 2 (a learned mechanism-feature embedding) as a
+closed-form, information-preserving supervised metric rather than a trainable
+network, and report the result honestly at the operating point. The space is
+sequence-only (ESM2-150M), fit ONLY on the in-distribution atlas: robust
+standardize (atlas median/IQR) -> PCA over the atlas span (keep >=99% atlas
+variance, capped at 128 dims; here 128 dims capturing 0.9891) -> within-class
+whitening (a regularized full-rank Mahalanobis metric, fixed 0.10 shrinkage,
+condition number 99.4). All hyperparameters are fixed a priori, NOT tuned on
+heldout. A trainable GNN/classifier was explicitly rejected for this lever: the
+supervised surface is only 184 atlas rows across 7 represented classes (the 8th
+fingerprint, `radical_sam_enzyme`, has zero in-distribution rows; classes range
+1-66 rows), there is no deployment-valid per-residue graph on disk, the
+no-heldout-tuning guardrail forbids validation-based training, and a
+high-capacity discriminative model worsens novelty by pulling OOS confidently
+onto class manifolds.
+
+Result (deployment pool: 47 in-scope / 79 OOS; 6 confounded / 73 agnostic;
+baseline geometry top1_score reproduced live at AUC 0.757). The PREDECLARED
+primary signal (equal-weight percentile mean of nearest-prototype, kNN-density,
+and out-of-span residual) does NOT beat the baseline: AUC 0.616 and
+OOS-abstain-recall 0.165 at >=90% retention vs 0.757 / 0.215. The supervised
+whitening DISTANCE signals (prototype 0.606, kNN 0.613) are near the bare-PLM
+level, confirming that discriminative reshaping is the wrong lever for novelty
+(the linear discriminant-energy signal was already at chance, AUC 0.524). The
+one genuinely new, orthogonal signal is the UNSUPERVISED out-of-atlas-span
+residual (sequence-representation mass outside the directions known mechanism
+chemistry occupies): AUC 0.721, and at the operating point it abstains on 0.241
+of OOS at >=90% retention -- ABOVE the geometry baseline's 0.215 -- concentrated
+on the cofactor-agnostic OOS majority. It is NOT safe on the safety-critical
+cofactor-confounded subset (confounded abstain-recall 0.333 vs baseline 0.500;
+confounded AUC 0.663 vs 0.840), so it is a COMPLEMENTARY LIFT channel, not a
+replacement gate -- the same role the cofactor channel plays. The predeclared
+percentile combiner washes out the residual (every held-out row sits below the
+atlas residual distribution, so its atlas-percentile saturates to 0); the
+residual carries signal only in RAW form and must be used as its own channel.
+
+Consequence: Lever 2 does not by itself make de novo abstention operational, and
+that is a valid, expected outcome cleanly reported. The actionable lead is the
+out-of-span residual as a third, orthogonal lift channel (geometry-led gate +
+cofactor-agnostic-lift + residual-agnostic-lift), to be validated with a
+PREDECLARED confirmatory test (not the exploratory readout here) and paired with
+a confounded-safe channel before any threshold promotion. The committed row-keyed
+learned embedding (702 rows, 128-d whitened coords + residual) is reusable for
+downstream de novo work. No labels, registries, ontologies, splits, thresholds,
+or production scorers changed; M-CSA heldout rows were eval-only, never trained.
+
+Reproduce: `PYTHONPATH=src python -m catalytic_earth.cli
+eval-mechanism-feature-embedding`. Module:
+`src/catalytic_earth/mechanism_feature_embedding.py`. Tests:
+`tests/test_mechanism_feature_embedding.py` (10 fast + 1 slow integration gated
+behind `CATALYTIC_RUN_SLOW`). Artifacts:
+`artifacts/v3_mechanism_feature_embedding_eval_current702_20260601.json`,
+`artifacts/v3_mechanism_feature_embedding_current702_20260601.jsonl`,
+`work/mechanism_feature_embedding_current702_20260601.md`.
+
 ## 2026-06-01: Fold-Augmented Threshold Contract Selects Thresholds On Train/Calibration Rows, Not Heldout
 
 Decision: promote the fold-augmented heldout-only diagnostic into a bounded

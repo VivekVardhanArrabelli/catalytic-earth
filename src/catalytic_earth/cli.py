@@ -37,6 +37,7 @@ from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_grap
 from .geometry_retrieval import write_geometry_retrieval
 from .mechanism_relationship_surface_eval import write_mechanism_relationship_surface_eval
 from .mechanism_novelty_abstention_eval import write_mechanism_novelty_abstention_eval
+from .mechanism_feature_embedding import write_mechanism_feature_embedding_eval
 from .mechanism_abstention_gate_eval import (
     write_mechanism_abstention_gate_eval,
     write_mechanism_deployment_abstention_gate_eval,
@@ -10824,6 +10825,24 @@ def cmd_eval_mechanism_deployment_abstention_gate(args: argparse.Namespace) -> i
         f"{args.out} (best AUC: {res.get('best_overall_auc')}, "
         f"clears bar: {res.get('clears_abstention_bar')}, "
         f"safest: {res.get('safest_channel_no_stratum_below_chance')})"
+    )
+    return 0
+
+
+def cmd_eval_mechanism_feature_embedding(args: argparse.Namespace) -> int:
+    audit = write_mechanism_feature_embedding_eval(
+        esm2_150m_path=Path(args.esm2_150m_embeddings),
+        cofactor_sidecar_path=Path(args.cofactor_sidecar),
+        predicted_geometry_audit_path=Path(args.predicted_geometry_audit),
+        out_path=Path(args.out),
+        embedding_path=Path(args.embedding) if args.embedding else None,
+        report_path=Path(args.report) if args.report else None,
+    )
+    v = audit.get("result", {}).get("verdict", {})
+    print(
+        "Wrote mechanism feature embedding eval to "
+        f"{args.out} (primary AUC: {v.get('primary_auc_deployment')} vs baseline "
+        f"{v.get('baseline_top1_score_auc_deployment')}, overall: {v.get('overall')})"
     )
     return 0
 
@@ -22422,6 +22441,42 @@ def build_parser() -> argparse.ArgumentParser:
         default="work/mechanism_deployment_abstention_gate_eval_current702_20260531.md",
     )
     deployment_gate.set_defaults(func=cmd_eval_mechanism_deployment_abstention_gate)
+
+    feature_embedding = subparsers.add_parser(
+        "eval-mechanism-feature-embedding",
+        help=(
+            "D11 Lever 2: learn an information-preserving mechanism-feature embedding "
+            "(sequence-only ESM2-150M, atlas-fit within-class whitening) and report "
+            "novelty separation vs the top1_score baseline at the operating point"
+        ),
+    )
+    feature_embedding.add_argument(
+        "--esm2-150m-embeddings",
+        default="artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+    )
+    feature_embedding.add_argument(
+        "--cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+    )
+    feature_embedding.add_argument(
+        "--predicted-geometry-audit",
+        default="artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+        help="predicted-geometry robustness audit with predicted_geometry_retrieval.results",
+    )
+    feature_embedding.add_argument(
+        "--out",
+        default="artifacts/v3_mechanism_feature_embedding_eval_current702_20260601.json",
+    )
+    feature_embedding.add_argument(
+        "--embedding",
+        default="artifacts/v3_mechanism_feature_embedding_current702_20260601.jsonl",
+        help="row-keyed learned embedding (whitened coords + out-of-span residual)",
+    )
+    feature_embedding.add_argument(
+        "--report",
+        default="work/mechanism_feature_embedding_current702_20260601.md",
+    )
+    feature_embedding.set_defaults(func=cmd_eval_mechanism_feature_embedding)
 
     fold_novelty = subparsers.add_parser(
         "eval-fold-level-novelty-signal",

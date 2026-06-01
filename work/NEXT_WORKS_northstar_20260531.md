@@ -38,12 +38,25 @@ deployment regime). Action: regenerate `predicted_geometry_retrieval` for the
 and the atlas-Mahalanobis novelty path. This may itself lift the operating point
 and unblocks #2.
 
-### 2. Learned mechanism-feature embedding (the real northstar feature)
-Train a representation that answers to mechanism chemistry (electron flow,
-transition-state stabilization, proton transfer, bond making/breaking), not to
-the hand-feature list. Inputs sequence-only or sequence+predicted-geometry; label
-signal from the 8-fingerprint atlas. Evaluate novelty separation at the operating
-point. This is the de novo precondition's real lever; everything else is a probe.
+### 2. Learned mechanism-feature embedding (the real northstar feature) — DONE (2026-06-01): clean negative + residual lead
+Built as a closed-form, information-preserving supervised metric (sequence-only
+ESM2-150M; atlas-fit robust-standardize -> atlas-span PCA -> within-class
+whitening), evaluated at the operating point. See decision_log 2026-06-01 and
+`work/mechanism_feature_embedding_current702_20260601.md`.
+- The predeclared primary novelty score does NOT beat the top1_score baseline
+  (AUC 0.616 vs 0.757; OOS-abstain-recall 0.165 vs 0.215 at >=90% retention).
+  Supervised whitening distances (prototype/kNN ~0.61) confirm discriminative
+  reshaping is the wrong lever for novelty.
+- LEAD: the UNSUPERVISED out-of-atlas-span residual (representation mass outside
+  known-mechanism directions) is genuinely new and orthogonal — AUC 0.721, and at
+  the operating point abstains on 0.241 of OOS (> baseline 0.215), concentrated on
+  the cofactor-agnostic majority. It is NOT confounded-safe (0.333 vs 0.500), so
+  it is a complementary LIFT channel, not a gate.
+- NEXT: a PREDECLARED confirmatory test of the residual as a third orthogonal lift
+  channel (geometry-led + cofactor-agnostic-lift + residual-agnostic-lift), paired
+  with a confounded-safe channel (Lever 3, fold) before any threshold promotion.
+  A trainable GNN over active-site reaction graphs remains a future lever once a
+  deployment-valid predicted-geometry graph dataset and a larger family set exist.
 
 ### 3. Fold-level novelty signal (complementary, catches the confounded subset)
 The 6 cofactor-confounded OOS (novel chemistry reusing a known cofactor family)
