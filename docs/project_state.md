@@ -76,13 +76,15 @@ artifacts first.
   cofactor-confounded OOS rows. This is a research contract, not a production
   threshold.
 - A train/cal OOS-negative calibration surface now exists for the fold-augmented
-  gate. The hash-selected 76-row surface has 65 score-complete rows with
+  gate. The hash-selected 76-row surface has 71 score-complete rows with
   predicted geometry, selected organic cofactor scores, and exact Foldseek/TM
   nearest-train scores. The OOS-calibrated research contract keeps the primary
   `combined_mean_geometry_fold` threshold at `0.44155`; at that threshold it
-  abstains on 25/65 calibration OOS negatives while preserving the heldout final
-  readout above. The surface remains partial because 10 candidates lack
-  targetable predicted geometry and one AFDB query coordinate is unavailable.
+  abstains on 28/71 calibration OOS negatives while preserving the heldout final
+  readout above. The six accession-compatible active-site mapping blockers have
+  been cleared; the surface remains partial because `m_csa:78` lacks an AFDB
+  coordinate, `m_csa:204` and `m_csa:531` need source-geometry repair, and two
+  UniProt-only rows need active-site sidecars.
 - Learned-representation results are diagnostic, not decision-grade. ESM-2
   logistic is the strongest local learned comparator in the Wave 1.2 table but
   does not displace geometry. ESM-C logistic versus ESM-C cosine shows decoder
@@ -124,9 +126,10 @@ artifacts first.
 
 ## Next Gates
 
-1. Decide whether the partial 65-row train/cal OOS-negative calibration surface
+1. Decide whether the partial 71-row train/cal OOS-negative calibration surface
    is sufficient for the fold-augmented research gate, or clear the remaining
-   candidate geometry blockers before any stronger threshold claim.
+   five source-geometry/coordinate/sidecar blockers before any stronger
+   threshold claim.
 2. If representation work resumes, produce row-aligned local sidecars first,
    then train heads on train/cal rows only and evaluate heldout once, including
    a predicted-geometry robustness cell.

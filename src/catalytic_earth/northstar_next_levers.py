@@ -3836,6 +3836,28 @@ def build_fold_augmented_train_cal_oos_negative_surface_blocker_resolution(
     for row in blocker_rows:
         action_groups[row["recommended_action"]].append(row["entry_id"])
     counts = surface.get("counts", {})
+    if reason_counts.get("missing_accession_compatible_sequence_positions"):
+        headline = (
+            "The remaining OOS calibration gap is mostly active-site "
+            "mapping/geometry eligibility, not Foldseek runtime."
+        )
+        next_action = (
+            "Repair accession-compatible active-site mappings for the listed "
+            "M-CSA rows first; then rerun the scorer and OOS-calibrated "
+            "threshold contract."
+        )
+    else:
+        headline = (
+            "The accession-compatible active-site mapping blockers are cleared; "
+            "the remaining OOS calibration gap is source geometry, UniProt-only "
+            "active-site sidecars, or AFDB coordinate availability."
+        )
+        next_action = (
+            "Resolve the remaining five blockers by sourcing/replacing the "
+            "missing AFDB coordinate for `m_csa:78`, repairing source geometry "
+            "for `m_csa:204` and `m_csa:531`, and adding UniProt-only "
+            "active-site sidecars for `uniprot:P78549` and `uniprot:Q3LXA3`."
+        )
     return {
         "artifact_id": "v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601",
         "schema_version": SCHEMA_VERSION,
@@ -3870,15 +3892,8 @@ def build_fold_augmented_train_cal_oos_negative_surface_blocker_resolution(
             for action, ids in sorted(action_groups.items())
         },
         "interpretation": {
-            "headline": (
-                "The remaining OOS calibration gap is mostly active-site "
-                "mapping/geometry eligibility, not Foldseek runtime."
-            ),
-            "next_action": (
-                "Repair accession-compatible active-site mappings for the six "
-                "m_csa rows first; then rerun the scorer and OOS-calibrated "
-                "threshold contract."
-            ),
+            "headline": headline,
+            "next_action": next_action,
         },
         "source_artifacts": {
             "score_surface": _source_path_record(train_cal_oos_surface_path),

@@ -1,6 +1,6 @@
 # Fold-Augmented Train/Cal OOS Negative Surface Scores - current702
 
-Run: 2026-06-01T06:37:42Z
+Run: 2026-06-01T07:11:13Z
 
 Bounded predicted-geometry plus Foldseek feature surface for the hash-selected current702 in-distribution OOS calibration negatives needed by the fold-augmented threshold contract.
 
@@ -9,8 +9,8 @@ Bounded predicted-geometry plus Foldseek feature surface for the hash-selected c
 - computed_partial_train_cal_oos_negative_surface_scores
 - Candidate IDs requested: 76
 - Predicted geometry ok rows: 71
-- Foldseek rows with nearest train hits: 74
-- Full channel score rows: 70
+- Foldseek rows with nearest train hits: 75
+- Full channel score rows: 71
 - Foldseek TSV parse status: parsed
 
 ## Blockers
@@ -88,5 +88,5 @@ PYTHONPATH=src python -m catalytic_earth.cli score-fold-augmented-train-cal-oos-
 
 ## Interpretation
 
-- The train/cal OOS negative surface now has predicted-geometry, cofactor, and nearest-train Foldseek/TM channel scores for the 70 score-complete candidate rows.
+- The train/cal OOS negative surface now has predicted-geometry, cofactor, and nearest-train Foldseek/TM channel scores for the 71 score-complete candidate rows.
 - Extend the fold-augmented threshold contract to consume these calibration OOS negatives for OOS-aware threshold selection, while keeping heldout final-only.

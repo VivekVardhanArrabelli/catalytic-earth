@@ -48,23 +48,29 @@ selected organic cofactor sidecar. Heldout rows stayed final-only. No label,
 registry, ontology, import, split, production scorer, or production threshold
 changed.
 
-Result: 65/76 selected calibration OOS candidates have full channel scores
+Result: 71/76 selected calibration OOS candidates have full channel scores
 (`predicted_geometry`, selected organic cofactor, and nearest-train Foldseek/TM).
-Foldseek produced nearest-train hits for 75 candidates; 10 candidates lacked
-targetable predicted geometry and `m_csa:78`/`P23007` lacked an AFDB query
-coordinate. The OOS-calibrated primary channel,
+Foldseek produced nearest-train hits for 75 candidates. The six
+accession-compatible active-site mapping blockers (`m_csa:57`, `m_csa:106`,
+`m_csa:178`, `m_csa:284`, `m_csa:314`, and `m_csa:503`) have been cleared with
+bounded current702-safe accession/subset repair; `m_csa:284` uses `O66188` for
+predicted geometry and the Foldseek query because the manifest accession
+`O66186` has only one usable catalytic residue. `m_csa:78`/`P23007` still lacks
+an AFDB query coordinate. The OOS-calibrated primary channel,
 `combined_mean_geometry_fold`, keeps the same >=90% in-scope threshold,
 `0.44155`, as the in-scope-only contract. At that threshold calibration OOS
-abstain recall is 25/65 (`0.3846`), while heldout final readout remains
+abstain recall is 28/71 (`0.3944`), while heldout final readout remains
 45/47 in-scope retained, 44/79 OOS abstained, and 5/6 cofactor-confounded OOS
 abstained.
 
 Consequence: the fold-augmented gate now has a real train/cal OOS-negative
 surface, but it is partial and does not justify a production threshold. The next
-decision is whether the 65-row surface is sufficient for a research operating
-point or whether to clear the remaining candidate-geometry blockers first. Ten
-of the missing combined-channel rows have fold-only scores and are preserved in
-a separate diagnostic salvage surface.
+decision is whether the 71-row surface is sufficient for a research operating
+point or whether to clear the remaining five blockers first: AFDB coordinate
+replacement for `m_csa:78`, source-geometry repair for `m_csa:204` and
+`m_csa:531`, and active-site sidecars for `uniprot:P78549` and
+`uniprot:Q3LXA3`. Four of the missing combined-channel rows have fold-only
+scores and are preserved in a separate diagnostic salvage surface.
 
 Artifacts:
 `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json`,

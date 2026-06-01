@@ -1389,7 +1389,14 @@
     {
       "accession": "O66186",
       "benchmark_role": "oos_tier::unknown_oos",
-      "channel_scores": null,
+      "channel_scores": {
+        "cofactor_max_score": 0.036316,
+        "combined_mean_geometry_cofactor_fold": 0.312739,
+        "combined_mean_geometry_fold": 0.45095,
+        "combined_min_geometry_fold": 0.4067,
+        "fold_nearest_atlas_tm_score": 0.4067,
+        "geometry_top1_score": 0.4952
+      },
       "entry_id": "m_csa:284",
       "is_calibration_oos_negative": true,
       "label_type": "out_of_scope",
@@ -1412,11 +1419,11 @@
         "score": 0.4952
       },
       "predicted_structure_fold_channel": {
-        "nearest_train_atlas_entry_id": null,
-        "nearest_train_atlas_tm_score": null,
-        "nearest_train_atlas_true_fingerprint_id": null,
-        "raw_query_name": null,
-        "raw_target_name": null
+        "nearest_train_atlas_entry_id": "m_csa:546",
+        "nearest_train_atlas_tm_score": 0.4067,
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "raw_query_name": "afdb_O66188_v6",
+        "raw_target_name": "afdb_P00636_v6"
       },
       "selected_organic_cofactor_max_score": 0.036316,
       "split_assignment": "in_distribution"
@@ -2766,16 +2773,16 @@
     "candidate_manifest_rows_found": 76,
     "candidate_predicted_geometry_ok_rows": 71,
     "candidate_predicted_geometry_rows": 72,
-    "candidate_query_coordinate_files_missing": 2,
+    "candidate_query_coordinate_files_missing": 1,
     "candidate_query_coordinate_requests": 76,
-    "candidate_rows_with_full_channel_scores": 70,
-    "foldseek_rows_with_nearest_train_hits": 74,
+    "candidate_rows_with_full_channel_scores": 71,
+    "foldseek_rows_with_nearest_train_hits": 75,
     "missing_manifest_ids": 0,
     "train_atlas_target_coordinate_files_missing": 0,
     "train_atlas_target_coordinate_requests": 133,
     "train_atlas_target_rows": 134
   },
-  "created_utc": "2026-06-01T06:37:42Z",
+  "created_utc": "2026-06-01T07:11:13Z",
   "excluded_candidate_geometry_rows": [
     {
       "accession": "P10746",
@@ -2891,7 +2898,7 @@
             "m_csa:284"
           ],
           "expected_local_path": "/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek/calibration_oos_queries/afdb_O66188_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O66188-F1-model_v6",
           "role": "train_cal_oos_negative_calibration_query",
           "rows": [
@@ -7649,7 +7656,7 @@
     "score_fabrication": false
   },
   "interpretation": {
-    "headline": "The train/cal OOS negative surface now has predicted-geometry, cofactor, and nearest-train Foldseek/TM channel scores for the 70 score-complete candidate rows.",
+    "headline": "The train/cal OOS negative surface now has predicted-geometry, cofactor, and nearest-train Foldseek/TM channel scores for the 71 score-complete candidate rows.",
     "next_action": "Extend the fold-augmented threshold contract to consume these calibration OOS negatives for OOS-aware threshold selection, while keeping heldout final-only."
   },
   "missing_manifest_entry_ids": [],
@@ -8194,6 +8201,21 @@
         "raw_target_name": "afdb_P0AEZ1_v6",
         "tm_score": 0.7089,
         "ttmscore": 0.566
+      },
+      {
+        "alntmscore": 0.4067,
+        "bits": 32.0,
+        "nearest_atlas_accession": "P00636",
+        "nearest_atlas_entry_id": "m_csa:546",
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.106,
+        "qtmscore": 0.3259,
+        "query_accession": "O66188",
+        "query_entry_id": "m_csa:284",
+        "raw_query_name": "afdb_O66188_v6",
+        "raw_target_name": "afdb_P00636_v6",
+        "tm_score": 0.4067,
+        "ttmscore": 0.2593
       },
       {
         "alntmscore": 0.6511,
@@ -8771,10 +8793,10 @@
     "summary": {
       "alias_collision_count": 0,
       "alias_collisions": [],
-      "mapped_pair_count": 5582,
+      "mapped_pair_count": 5630,
       "max_nearest_atlas_tm_score": 0.8704,
       "min_nearest_atlas_tm_score": 0.375,
-      "query_entry_count_with_hits": 74,
+      "query_entry_count_with_hits": 75,
       "unmapped_names": [
         "afdb_O66186_v6"
       ],
@@ -80038,7 +80060,7 @@
     "train_cal_oos_foldseek_tsv": {
       "exists": true,
       "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/train_cal_oos_negatives_vs_train_atlas.tsv",
-      "sha256": "dc4a524b169ec1aa74405bc403f39619e00a88ab08f5ab70609185e4d1ee6d55"
+      "sha256": "b63ef5b03a1d2cf9cae7600f4b67f45bb6e1a0312a0aafb2a698ddb54c507ba4"
     }
   },
   "status": "computed_partial_train_cal_oos_negative_surface_scores"

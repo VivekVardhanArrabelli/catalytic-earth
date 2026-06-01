@@ -50,6 +50,104 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Train/Cal OOS Surface Accession Repair Completion
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T06:30:52Z`
+- STARTED_LOCAL: `Mon Jun  1 01:30:52 CDT 2026`
+- ENDED_AT: `2026-06-01T07:22:33Z`
+- ENDED_LOCAL: `Mon Jun  1 02:22:33 CDT 2026`
+- ELAPSED_MINUTES: `51.7`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "3837", "started_at": "2026-06-01T06:30:52Z", "status": "acquired"}`
+- Lock status during wrap before reacquire:
+  `{"acquired": false, "lock_dir": ".git/catalytic-earth-automation.lock", "status": "unlocked"}`
+- Wrap-time lock reacquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "49486", "started_at": "2026-06-01T06:30:52Z", "status": "acquired"}`
+- Lock release result: pending at handoff write; release command to run after
+  clean synced push:
+  `PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced`
+- Git branch at start: `main`
+- Git HEAD at initial start snapshot: `8d29f5617afe8f2f7c292d2bb388a70b3d6230e3`
+- Git HEAD after resume/current base before this wrap commit:
+  `35e41338beb855be00ddebfae807dc64a894b7f8`
+- Dirty files at start: none
+- Git branch at end before commit: `main`
+- Git HEAD at end before commit: `35e41338beb855be00ddebfae807dc64a894b7f8`
+- Dirty files at end before staging:
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json`,
+  `artifacts/v3_fold_only_train_cal_oos_negative_surface_current702_20260601.json`,
+  `docs/artifact_index.md`, `docs/decision_log.md`,
+  `docs/project_state.md`, `src/catalytic_earth/northstar_next_levers.py`,
+  `tests/test_geometry_artifact_regression.py`,
+  `work/fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.md`,
+  `work/fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.md`,
+  `work/fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.md`,
+  `work/fold_only_train_cal_oos_negative_surface_current702_20260601.md`,
+  and this handoff.
+- Input artifacts:
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_manifest_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json`,
+  `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`,
+  `artifacts/v3_geometry_features_1025.json`, `artifacts/v1_graph_1025.json`,
+  and the real Foldseek TSV at
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/train_cal_oos_negatives_vs_train_atlas.tsv`.
+- Output artifacts:
+  refreshed
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json`,
+  `work/fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.json`,
+  `work/fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.md`,
+  `artifacts/v3_fold_only_train_cal_oos_negative_surface_current702_20260601.json`,
+  `work/fold_only_train_cal_oos_negative_surface_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`,
+  `work/fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.md`,
+  updated `docs/project_state.md`, `docs/decision_log.md`,
+  `docs/artifact_index.md`, `src/catalytic_earth/northstar_next_levers.py`,
+  `tests/test_geometry_artifact_regression.py`, and this handoff.
+- Commands run:
+  automation memory read, lock acquire, required handoff/project-state/
+  decision-log/artifact-index/runbook reads, disk/status checks, `git fetch
+  origin`, `git pull --ff-only origin main`, OOS score-surface parser, one
+  bounded AFDB v6 CIF download for `O66188`, exact-TM Foldseek rerun for the
+  calibration OOS query directory against train targets, refreshed score,
+  blocker, fold-only, and OOS-calibrated threshold artifacts, JSON parse checks,
+  `python -m compileall -q src tests`, `PYTHONPATH=src python -m
+  catalytic_earth.cli validate`, `git diff --check`, focused pytest/unittest
+  passes, full pytest, full unittest discovery, timer checks, lock status, and
+  wrap-time lock reacquire.
+- Validation results:
+  JSON parsing passed for refreshed JSON artifacts; compileall passed; CLI
+  validate passed with 12 source records, 8 mechanism fingerprints, 15
+  mechanism ontology families, and 702 curated labels; `git diff --check`
+  passed; `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py
+  -q` passed with 19 tests; targeted artifact regression passed; full
+  `PYTHONPATH=src python -m pytest -q` passed with 1003 tests, 26 subtests, and
+  one known sklearn/scipy deprecation warning; `PYTHONPATH=src python -m
+  unittest discover -s tests` passed with 980 tests and the same warning;
+  focused `pytest`/`unittest` over artifact, next-lever, and CLI surfaces passed
+  with 156 tests and 7 subtests.
+- Commit/push result: pending at handoff write; commit and push after this
+  ledger, then verify `HEAD == origin/main`.
+- Exact next action for the next run:
+  decide whether the partial 71/76 train/cal OOS-negative surface is sufficient
+  for the fold-augmented research gate; if not, clear the remaining five
+  blockers in this order: replace/source an alternate coordinate for
+  `m_csa:78`/`P23007`, repair source geometry for `m_csa:204` and `m_csa:531`,
+  and add active-site sidecars for `uniprot:P78549` and `uniprot:Q3LXA3`.
+  After any blocker repair, rerun
+  `score-fold-augmented-train-cal-oos-negative-surface`,
+  `build-fold-augmented-train-cal-oos-negative-surface-blocker-resolution`,
+  `build-fold-only-train-cal-oos-negative-surface`, and
+  `eval-fold-augmented-oos-calibrated-threshold-contract`.
+
 ### 2026-06-01 Accession Repair Follow-Up For Train/Cal OOS Surface
 
 Manual follow-up after the automation wrap, before pushing the remaining local

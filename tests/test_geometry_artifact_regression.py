@@ -2605,6 +2605,65 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             )
         )
 
+    def test_fold_augmented_train_cal_oos_surface_current_counts(self) -> None:
+        surface = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json"
+        )
+        blockers = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.json"
+        )
+        oos_contract = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json"
+        )
+
+        self.assertEqual(surface["counts"]["candidate_ids_requested"], 76)
+        self.assertEqual(surface["counts"]["candidate_rows_with_full_channel_scores"], 71)
+        self.assertEqual(surface["counts"]["candidate_predicted_geometry_ok_rows"], 71)
+        self.assertEqual(surface["counts"]["foldseek_rows_with_nearest_train_hits"], 75)
+        self.assertEqual(blockers["counts"]["missing_full_score_rows"], 5)
+        self.assertNotIn(
+            "missing_accession_compatible_sequence_positions",
+            blockers["counts"]["blocker_reason_counts"],
+        )
+        repaired_rows = {
+            row["entry_id"]: row
+            for row in surface["candidate_row_scores"]
+            if row.get("predicted_geometry_accession_repair")
+        }
+        self.assertEqual(
+            {
+                "m_csa:57",
+                "m_csa:106",
+                "m_csa:178",
+                "m_csa:284",
+                "m_csa:314",
+                "m_csa:503",
+            },
+            set(repaired_rows),
+        )
+        self.assertEqual(
+            repaired_rows["m_csa:284"]["predicted_geometry_accession"],
+            "O66188",
+        )
+        self.assertEqual(
+            repaired_rows["m_csa:284"]["predicted_structure_fold_channel"][
+                "raw_query_name"
+            ],
+            "afdb_O66188_v6",
+        )
+        primary = oos_contract["primary_channel_readout"][
+            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain"
+        ]
+        self.assertEqual(primary["threshold"], 0.44155)
+        self.assertEqual(primary["calibration_oos_abstained"], 28)
+        self.assertEqual(primary["calibration_oos_total"], 71)
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

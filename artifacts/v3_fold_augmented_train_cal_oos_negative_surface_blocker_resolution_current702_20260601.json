@@ -8,30 +8,12 @@
       "m_csa:204",
       "m_csa:531"
     ],
-    "repair_or_add accession-compatible catalytic residue sequence-position mapping before predicted-geometry scoring": [
-      "m_csa:57",
-      "m_csa:106",
-      "m_csa:178",
-      "m_csa:284",
-      "m_csa:314",
-      "m_csa:503"
-    ],
     "verify replacement accession or alternate local coordinate source; AFDB has no v1-v6 model for this accession": [
       "m_csa:78"
     ]
   },
   "artifact_id": "v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601",
   "blocker_rows": [
-    {
-      "accession": "P13448",
-      "benchmark_role": "oos_tier::unknown_oos",
-      "blocker_reason": "missing_accession_compatible_sequence_positions",
-      "entry_id": "m_csa:57",
-      "fetch_failure": null,
-      "fold_tm_available": true,
-      "predicted_geometry_status": "missing",
-      "recommended_action": "repair_or_add accession-compatible catalytic residue sequence-position mapping before predicted-geometry scoring"
-    },
     {
       "accession": "P23007",
       "benchmark_role": "oos_tier::unknown_oos",
@@ -48,26 +30,6 @@
       "recommended_action": "verify replacement accession or alternate local coordinate source; AFDB has no v1-v6 model for this accession"
     },
     {
-      "accession": "P21873",
-      "benchmark_role": "oos_tier::unknown_oos",
-      "blocker_reason": "missing_accession_compatible_sequence_positions",
-      "entry_id": "m_csa:106",
-      "fetch_failure": null,
-      "fold_tm_available": true,
-      "predicted_geometry_status": "missing",
-      "recommended_action": "repair_or_add accession-compatible catalytic residue sequence-position mapping before predicted-geometry scoring"
-    },
-    {
-      "accession": "P00829",
-      "benchmark_role": "oos_tier::unknown_oos",
-      "blocker_reason": "missing_accession_compatible_sequence_positions",
-      "entry_id": "m_csa:178",
-      "fetch_failure": null,
-      "fold_tm_available": true,
-      "predicted_geometry_status": "missing",
-      "recommended_action": "repair_or_add accession-compatible catalytic residue sequence-position mapping before predicted-geometry scoring"
-    },
-    {
       "accession": "P10746",
       "benchmark_role": "oos_tier::unknown_oos",
       "blocker_reason": "experimental_geometry_not_ok:None",
@@ -76,36 +38,6 @@
       "fold_tm_available": true,
       "predicted_geometry_status": "missing",
       "recommended_action": "repair source geometry evidence or keep row excluded from geometry-calibrated OOS surface"
-    },
-    {
-      "accession": "O66186",
-      "benchmark_role": "oos_tier::unknown_oos",
-      "blocker_reason": "missing_accession_compatible_sequence_positions",
-      "entry_id": "m_csa:284",
-      "fetch_failure": null,
-      "fold_tm_available": true,
-      "predicted_geometry_status": "missing",
-      "recommended_action": "repair_or_add accession-compatible catalytic residue sequence-position mapping before predicted-geometry scoring"
-    },
-    {
-      "accession": "Q06128",
-      "benchmark_role": "oos_tier::unknown_oos",
-      "blocker_reason": "missing_accession_compatible_sequence_positions",
-      "entry_id": "m_csa:314",
-      "fetch_failure": null,
-      "fold_tm_available": true,
-      "predicted_geometry_status": "missing",
-      "recommended_action": "repair_or_add accession-compatible catalytic residue sequence-position mapping before predicted-geometry scoring"
-    },
-    {
-      "accession": "B9JNP7",
-      "benchmark_role": "oos_tier::unknown_oos",
-      "blocker_reason": "missing_accession_compatible_sequence_positions",
-      "entry_id": "m_csa:503",
-      "fetch_failure": null,
-      "fold_tm_available": true,
-      "predicted_geometry_status": "missing",
-      "recommended_action": "repair_or_add accession-compatible catalytic residue sequence-position mapping before predicted-geometry scoring"
     },
     {
       "accession": "P31572",
@@ -143,15 +75,14 @@
       "alphafold_db_coordinate_unavailable": 1,
       "experimental_geometry_not_ok:None": 1,
       "experimental_geometry_not_ok:insufficient_resolved_residues": 1,
-      "missing_accession_compatible_sequence_positions": 6,
       "not_m_csa_entry": 2
     },
     "candidate_ids_requested": 76,
-    "missing_full_score_rows": 11,
-    "rows_with_fold_only_no_geometry": 10,
-    "score_complete_rows": 65
+    "missing_full_score_rows": 5,
+    "rows_with_fold_only_no_geometry": 4,
+    "score_complete_rows": 71
   },
-  "created_utc": "2026-06-01T05:21:04Z",
+  "created_utc": "2026-06-01T07:12:19Z",
   "guardrails": {
     "frozen_current702_inputs_only": true,
     "heldout_rows_used_for_selection_or_scoring": false,
@@ -160,8 +91,8 @@
     "production_thresholds_changed": false
   },
   "interpretation": {
-    "headline": "The remaining OOS calibration gap is mostly active-site mapping/geometry eligibility, not Foldseek runtime.",
-    "next_action": "Repair accession-compatible active-site mappings for the six m_csa rows first; then rerun the scorer and OOS-calibrated threshold contract."
+    "headline": "The accession-compatible active-site mapping blockers are cleared; the remaining OOS calibration gap is source geometry, UniProt-only active-site sidecars, or AFDB coordinate availability.",
+    "next_action": "Resolve the remaining five blockers by sourcing/replacing the missing AFDB coordinate for `m_csa:78`, repairing source geometry for `m_csa:204` and `m_csa:531`, and adding UniProt-only active-site sidecars for `uniprot:P78549` and `uniprot:Q3LXA3`."
   },
   "schema_version": "northstar_next_levers.v0",
   "scope": "Row-level blocker-resolution packet for calibration OOS negatives missing full fold-augmented channel scores.",
@@ -169,7 +100,7 @@
     "score_surface": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json",
-      "sha256": "8a4928a5d6c530c9815b6d7607da7d4701e4e167f2d480213174d72243e74497"
+      "sha256": "05d4a70aada32d883b275de9d135d7650213d11c6ecfe7e61f570d023db7769e"
     }
   },
   "status": "blocker_resolution_packet_ready"
