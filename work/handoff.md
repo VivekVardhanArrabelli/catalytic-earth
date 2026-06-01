@@ -50,6 +50,85 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Wrap Reconciliation For Approved Locator Sidecars
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T13:39:42Z`
+- STARTED_LOCAL: `Mon Jun  1 08:39:42 CDT 2026`
+- ENDED_AT: `2026-06-01T14:35:16Z`
+- ENDED_LOCAL: `Mon Jun  1 09:35:16 CDT 2026`
+- ELAPSED_MINUTES: `55.6`
+- Lock acquire result:
+  initial acquire earlier in this run succeeded for
+  `2026-06-01T13:39:42Z`; an orphaned dead-PID lock was later inspected,
+  cleared, and reacquired with the original start timestamp:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "99807", "started_at": "2026-06-01T13:39:42Z", "status": "acquired"}`.
+  After the helper wrap released the lock, this corrective handoff reacquired it:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "81788", "started_at": "2026-06-01T13:39:42Z", "status": "acquired"}`.
+- Lock release result: pending at handoff write; run
+  `PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced`
+  after this handoff correction is committed, pushed, and verified synced.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `907aa319db962e00cdbbab311d014038172e7656`
+- Git HEAD at end before this corrective handoff commit:
+  `31e3d02b64f85e12b55840d24b75584b32e48545`
+- Dirty files at start: none
+- Dirty files at end before this corrective handoff commit: `work/handoff.md`
+- Input artifacts:
+  `artifacts/v3_family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601.json`,
+  `artifacts/v3_family_panel_source_free_active_site_locator_priority1_review_preflight_current702_20260601.json`,
+  `artifacts/v3_family_panel_source_free_locator_blocked_row_rescue_manifest_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`,
+  and `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`.
+- Output artifacts:
+  approved audited locator sidecars for `mh_066`, `mh_073`, and
+  `secondary_probe::radical_sam_enzyme`;
+  refreshed locator schema audit, source-free predicted-geometry sidecar
+  manifest, materialization plan, docs reference check, priority-1 preflight,
+  blocked-row rescue manifest, strict mechanism-feature contract audit, docs,
+  CLI/code, regression tests, and this handoff.
+- Commands run:
+  lock acquire/status/reacquire; `git fetch origin`; `git pull --ff-only origin main`;
+  required handoff/project-state/decision-log/artifact-index/runbook reads;
+  source-free locator schema audit; source-free predicted-geometry sidecar
+  manifest build; source-free locator materialization plan build; priority-1
+  preflight build; blocked-row rescue manifest build; strict mechanism-feature
+  contract audit; predicted-atlas novelty variants/grid refresh; family-panel
+  evidence packet refresh; docs artifact reference check; repo-wide JSON parse;
+  `compileall`; `catalytic_earth.cli validate`; `git diff --check`; focused
+  pytest; full pytest; full unittest.
+- Validation results:
+  focused
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py tests/test_northstar_next_levers.py tests/test_doc_reference_check.py -q`
+  passed 107 tests plus 7 subtests; full
+  `PYTHONPATH=src python -m pytest tests -q` passed 1071 tests plus 26 subtests
+  with one existing sklearn deprecation warning; final full
+  `PYTHONPATH=src python -m unittest discover -s tests` passed 1048 tests;
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed for 12 source
+  records, 8 fingerprints, 15 ontology families, and 702 curated labels;
+  `git diff --check` passed; repo-wide JSON parse passed for 3098 JSON files;
+  docs reference check reported 0 missing references.
+- Commit/push result:
+  main work committed and pushed as
+  `31e3d02b64f85e12b55840d24b75584b32e48545` (`Approve source-free locator sidecars`);
+  `HEAD == origin/main` verified before this corrective handoff commit.
+- Exact next action for the next run:
+  run review-only predicted-geometry retrieval for the three ready rows
+  (`mh_066`, `mh_073`, and `secondary_probe::radical_sam_enzyme`) using the
+  approved source-free locator sidecars; do not import labels, promote rows,
+  change thresholds, alter heldout splits, or use source-backed review prose as
+  predictive geometry input.
+
+Summary: this reconciliation entry corrects the wall-clock ledger for the
+55.6-minute run. The substantive work is in `31e3d02`: three approved locator
+sidecars are active, 3/10 source-free family-panel rows are ready for
+review-only predicted-geometry scoring, and 7/10 remain blocked on approved
+locator sidecars.
+
 ### 2026-06-01 Approved Source-Free Locator Sidecars
 
 Automation run: `catalytic-earth-work-loop`
