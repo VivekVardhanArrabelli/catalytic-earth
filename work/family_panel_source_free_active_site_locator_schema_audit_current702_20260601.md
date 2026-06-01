@@ -1,6 +1,6 @@
 # Family Panel Source-Free Active-Site Locator Schema Audit - current702
 
-Run: 2026-06-01T11:48:03Z
+Run: 2026-06-01T13:07:23Z
 
 Validation audit for source-free active-site locator sidecars. This checks schema compliance only; it does not score predicted geometry or alter family-panel labels/readouts.
 

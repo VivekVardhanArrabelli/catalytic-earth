@@ -50,6 +50,117 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Source-Free Locator Candidate Review Packet
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T12:37:46Z`
+- STARTED_LOCAL: `Mon Jun  1 07:37:46 CDT 2026`
+- ENDED_AT: `2026-06-01T13:28:35Z`
+- ENDED_LOCAL: `Mon Jun  1 08:28:35 CDT 2026`
+- ELAPSED_MINUTES: `50.8`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "63191", "started_at": "2026-06-01T12:37:46Z", "status": "acquired"}`
+- Lock release result: pending at handoff write; release command to run after
+  clean synced push:
+  `PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced`
+- Git branch at start: `main`
+- Git HEAD at start: `f3f8c61fcfd19318cdf096fc55eb60482ca574f8`
+- Dirty files at start: none
+- Git branch at end before commit: `main`
+- Git HEAD at end before commit: `f3f8c61fcfd19318cdf096fc55eb60482ca574f8`
+- Dirty files at end before staging:
+  tracked docs/code/test/artifact/report updates plus new locator candidate,
+  integrity, review-queue, manual-review-packet, feature-contract, and
+  docs-reference-check artifacts; no unrelated dirty files observed.
+- Input artifacts:
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
+  `artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json`,
+  `artifacts/v3_family_panel_source_free_active_site_locator_schema_current702_20260601.json`,
+  `artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json`,
+  `artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json`,
+  mechanism-feature sidecars and split manifests, current docs, and runbook
+  handoff inputs.
+- Output artifacts:
+  `artifacts/v3_family_panel_source_free_active_site_locator_candidate_audit_current702_20260601.json`,
+  `work/family_panel_source_free_active_site_locator_candidate_audit_current702_20260601.md`,
+  10 candidate sidecars under
+  `artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/`,
+  `artifacts/v3_family_panel_source_free_active_site_locator_candidate_integrity_audit_current702_20260601.json`,
+  `work/family_panel_source_free_active_site_locator_candidate_integrity_audit_current702_20260601.md`,
+  `artifacts/v3_family_panel_source_free_active_site_locator_review_queue_current702_20260601.json`,
+  `work/family_panel_source_free_active_site_locator_review_queue_current702_20260601.md`,
+  `artifacts/v3_family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601.json`,
+  `work/family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`,
+  `work/mechanism_feature_embedding_feature_contract_current702_20260601.md`,
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  `work/current_docs_artifact_reference_check_current702_20260601.md`,
+  refreshed fold/novelty/sidecar-manifest audit artifacts and updated
+  `docs/project_state.md`, `docs/decision_log.md`, `docs/artifact_index.md`,
+  `src/catalytic_earth/cli.py`, `src/catalytic_earth/northstar_next_levers.py`,
+  `src/catalytic_earth/doc_reference_check.py`, and tests.
+- Commands run:
+  lock acquire; `git fetch origin`; `git pull --ff-only origin main`; required
+  handoff/runbook/project-state/decision-log/artifact-index reads;
+  `audit-predicted-structure-fold-channel-contract`;
+  `build-family-panel-source-free-active-site-locator-candidate-audit`;
+  `audit-family-panel-source-free-active-site-locator-candidate-integrity`;
+  `build-family-panel-source-free-active-site-locator-review-queue`;
+  `build-family-panel-source-free-active-site-locator-manual-review-packet`;
+  `audit-family-panel-source-free-active-site-locator-schema`;
+  `build-family-panel-source-free-predicted-geometry-sidecar-manifest`;
+  `eval-predicted-atlas-geometry-novelty-variants`;
+  `build-predicted-atlas-geometry-novelty-operating-grid`;
+  `build-mechanism-feature-embedding-feature-contract`;
+  `build-current-docs-artifact-reference-check`; repo-wide JSON parsing;
+  disk checks; `compileall`; `git diff --check`; focused pytest; full pytest;
+  full unittest; exact wall-clock ledger checks.
+- Validation results:
+  predicted-structure fold-channel contract audit passed with 0 critical
+  violations; source-free locator schema audit still has 0 scoring-ready rows;
+  sidecar manifest still blocks 10/10 rows on approved locator sidecars;
+  predicted-atlas novelty variants refreshed with best AUC `0.776461`;
+  operating grid regenerated with 40 rows; current-doc reference check found
+  0 missing references; `PYTHONPATH=src python -m compileall -q src/catalytic_earth`
+  passed; `git diff --check` passed;
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed for 12 source
+  records, 8 fingerprints, 15 ontology families, and 702 curated labels;
+  repo-wide artifact JSON parse passed for 3088 JSON files; focused
+  `tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py`
+  passed 101 tests plus 7 subtests; `tests/test_doc_reference_check.py`,
+  `tests/test_northstar_next_levers.py`, and
+  `tests/test_geometry_artifact_regression.py` passed 99 tests plus 7
+  subtests before the final packet additions; full
+  `PYTHONPATH=src python -m pytest tests -q` passed 1067 tests and 26 subtests
+  in the final run with one existing sklearn deprecation warning; full
+  `PYTHONPATH=src python -m unittest discover -s tests` passed 1044 tests.
+- Commit/push result: pending at handoff write; commit, push, sync verification,
+  and lock release are the remaining wrap steps for this run.
+- Exact next action for the next run:
+  start from
+  `artifacts/v3_family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601.json`
+  and manually review the priority-1 rows (`mh_066`, `mh_073`, and
+  `secondary_probe::radical_sam_enzyme`) for forbidden-feature cleanliness and
+  scientific locator validity. Only after approval should rewritten locator
+  sidecars be copied into
+  `artifacts/family_panel_source_free_active_site_locators_current702_20260601/`
+  and schema-audited before any predicted-geometry scoring.
+
+Summary: the requested real predicted-structure fold channel was already
+present and contract-clean, so this run advanced the exact downstream blocker:
+staged coordinate-only locator candidates for the 10 fold-scored family-panel
+rows, audited their file/guardrail integrity, ranked the manual review queue,
+and produced the manual review packet. It also added a no-fit
+mechanism-feature feature contract and a current-doc artifact-reference check.
+All outputs remain review-only: no labels, registries, ontologies, heldout
+splits, thresholds, imports, or production scoring paths changed.
+
 ### 2026-06-01 Source-Free Geometry Locators And No-Fit Split Manifests
 
 Automation run: `catalytic-earth-work-loop`

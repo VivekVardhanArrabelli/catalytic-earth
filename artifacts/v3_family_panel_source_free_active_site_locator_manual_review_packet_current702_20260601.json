@@ -1,0 +1,378 @@
+{
+  "artifact_id": "v3_family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601",
+  "commands": {
+    "rebuild_candidate_audit": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-active-site-locator-candidate-audit",
+    "rebuild_manual_review_packet": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-active-site-locator-manual-review-packet",
+    "rebuild_review_queue": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-active-site-locator-review-queue",
+    "rerun_integrity_audit": "PYTHONPATH=src python -m catalytic_earth.cli audit-family-panel-source-free-active-site-locator-candidate-integrity"
+  },
+  "counts": {
+    "copy_to_audited_locator_dir_allowed_now": 0,
+    "integrity_passed_rows": 10,
+    "priority_1_manual_forbidden_feature_review_rows": 3,
+    "ready_for_predicted_geometry_scoring": 0,
+    "review_rows": 10
+  },
+  "created_utc": "2026-06-01T13:19:39Z",
+  "guardrails": {
+    "candidate_sidecars_written_outside_audited_locator_dir": true,
+    "copy_to_audited_locator_dir_allowed_now": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "locator_sidecars_created_in_audited_dir": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "ready_for_predicted_geometry_scoring": false,
+    "review_only": true
+  },
+  "interpretation": {
+    "headline": "3 rows can start manual forbidden-feature review; no row may be copied or scored yet.",
+    "next_action": "Review priority-1 rows first, then rewrite only approved source-free locator sidecars into the audited directory and rerun the schema audit."
+  },
+  "review_rows": [
+    {
+      "candidate_audit_status": "candidate_contacts_staged_review_required",
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_066_P52699.json",
+      "candidate_residue_locator_count": 3,
+      "candidate_sha256": "81b6e59b8956a4071f82ae84d1275921a90bb68b3a5e8effd662a06eab502a6a",
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "mh_066",
+      "integrity_critical_violations": [],
+      "integrity_status": "passed",
+      "manual_review_checklist": [
+        "confirm sidecar uses no source prose, label text, EC/Rhea IDs, or fingerprint IDs as predictive features",
+        "confirm residue locators are coordinate/sequence-position evidence rather than review-rationale evidence",
+        "do not copy to the audited locator directory until every blocker on this row is resolved"
+      ],
+      "next_action": "Manual review may start; copy to the audited locator directory only after forbidden-feature and scientific checks pass.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "503",
+        "structure_id": "1DD6"
+      },
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "uniprot:P52699"
+    },
+    {
+      "candidate_audit_status": "candidate_contacts_staged_review_required",
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_073_P01112.json",
+      "candidate_residue_locator_count": 2,
+      "candidate_sha256": "0e1b8c6c114354c02ed881258b44927cf63198978153c4afd1bfa05b0d616500",
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "mh_073",
+      "integrity_critical_violations": [],
+      "integrity_status": "passed",
+      "manual_review_checklist": [
+        "confirm sidecar uses no source prose, label text, EC/Rhea IDs, or fingerprint IDs as predictive features",
+        "confirm residue locators are coordinate/sequence-position evidence rather than review-rationale evidence",
+        "do not copy to the audited locator directory until every blocker on this row is resolved"
+      ],
+      "next_action": "Manual review may start; copy to the audited locator directory only after forbidden-feature and scientific checks pass.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "168",
+        "structure_id": "121P"
+      },
+      "sequence_position_validated_locator_count": 2,
+      "source_accession": "uniprot:P01112"
+    },
+    {
+      "candidate_audit_status": "candidate_contacts_staged_review_required",
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
+      "candidate_residue_locator_count": 8,
+      "candidate_sha256": "cae625e255aa109edfa330183860bd3ab3a60a73545c2c5cb78eeabfdb50fe3a",
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "integrity_critical_violations": [],
+      "integrity_status": "passed",
+      "manual_review_checklist": [
+        "confirm sidecar uses no source prose, label text, EC/Rhea IDs, or fingerprint IDs as predictive features",
+        "confirm residue locators are coordinate/sequence-position evidence rather than review-rationale evidence",
+        "do not copy to the audited locator directory until every blocker on this row is resolved"
+      ],
+      "next_action": "Manual review may start; copy to the audited locator directory only after forbidden-feature and scientific checks pass.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 8,
+        "chain_id": "A",
+        "comp_id": "SF4",
+        "residue_id": "501",
+        "structure_id": "8VPO"
+      },
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "uniprot:A0A1M6T2I7"
+    },
+    {
+      "candidate_audit_status": "candidate_contacts_staged_review_required",
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/external_glycoside_panel_Q6NSJ0.json",
+      "candidate_residue_locator_count": 8,
+      "candidate_sha256": "40f0b1498872808852c57146eb78a0b0255daf619b0fcffbe08701c0ef929c47",
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "external_glycoside_panel",
+      "integrity_critical_violations": [],
+      "integrity_status": "passed",
+      "manual_review_checklist": [
+        "confirm sidecar uses no source prose, label text, EC/Rhea IDs, or fingerprint IDs as predictive features",
+        "confirm selected coordinate ligand is biologically relevant to the intended active site",
+        "confirm residue locators are coordinate/sequence-position evidence rather than review-rationale evidence",
+        "do not copy to the audited locator directory until every blocker on this row is resolved"
+      ],
+      "next_action": "Review whether the selected coordinate ligand is biologically relevant before any audited sidecar copy.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 4,
+        "chain_id": "B",
+        "comp_id": "ACT",
+        "residue_id": "805",
+        "structure_id": "7QQF"
+      },
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "uniprot:Q6NSJ0"
+    },
+    {
+      "candidate_audit_status": "candidate_contacts_staged_review_required",
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "split_safe_train_cal_template_check_required"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_067_P00918.json",
+      "candidate_residue_locator_count": 3,
+      "candidate_sha256": "4dd8048ad5e72492502f86949758eff6373b85de7ebc76c3717fdb00fcd70bd3",
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "mh_067",
+      "integrity_critical_violations": [],
+      "integrity_status": "passed",
+      "manual_review_checklist": [
+        "confirm sidecar uses no source prose, label text, EC/Rhea IDs, or fingerprint IDs as predictive features",
+        "confirm same-accession train/cal template use cannot leak heldout evidence",
+        "confirm residue locators are coordinate/sequence-position evidence rather than review-rationale evidence",
+        "do not copy to the audited locator directory until every blocker on this row is resolved"
+      ],
+      "next_action": "Verify same-accession train/cal template use is split-safe before any audited sidecar copy.",
+      "priority": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_split_safe_template_check",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "262",
+        "structure_id": "12CA"
+      },
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "uniprot:P00918"
+    },
+    {
+      "candidate_audit_status": "candidate_contacts_staged_review_required",
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "split_safe_train_cal_template_check_required"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_068_P15289.json",
+      "candidate_residue_locator_count": 4,
+      "candidate_sha256": "b3fe6d9deb6d5d7cebc11d7af11019114b08d2f04a483579d37a3f391f696096",
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "mh_068",
+      "integrity_critical_violations": [],
+      "integrity_status": "passed",
+      "manual_review_checklist": [
+        "confirm sidecar uses no source prose, label text, EC/Rhea IDs, or fingerprint IDs as predictive features",
+        "confirm same-accession train/cal template use cannot leak heldout evidence",
+        "confirm residue locators are coordinate/sequence-position evidence rather than review-rationale evidence",
+        "do not copy to the audited locator directory until every blocker on this row is resolved"
+      ],
+      "next_action": "Verify same-accession train/cal template use is split-safe before any audited sidecar copy.",
+      "priority": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_split_safe_template_check",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "603",
+        "structure_id": "1AUK"
+      },
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "uniprot:P15289"
+    },
+    {
+      "candidate_audit_status": "candidate_contacts_staged_review_required",
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_065_Q79MP6.json",
+      "candidate_residue_locator_count": 3,
+      "candidate_sha256": "e515c38ce68e00f4dc0657684b75c110635eeb791ab2234eadfd8a3f82ec4ac9",
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "mh_065",
+      "integrity_critical_violations": [],
+      "integrity_status": "passed",
+      "manual_review_checklist": [
+        "confirm sidecar uses no source prose, label text, EC/Rhea IDs, or fingerprint IDs as predictive features",
+        "confirm every candidate residue position maps cleanly to UniProt sequence coordinates",
+        "confirm residue locators are coordinate/sequence-position evidence rather than review-rationale evidence",
+        "do not copy to the audited locator directory until every blocker on this row is resolved"
+      ],
+      "next_action": "Validate candidate sequence positions against UniProt mapping before any audited sidecar copy.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_uniprot_position_validation",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "500",
+        "structure_id": "1DDK"
+      },
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "uniprot:Q79MP6"
+    },
+    {
+      "candidate_audit_status": "candidate_contacts_staged_review_required",
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_072_P0A6P9.json",
+      "candidate_residue_locator_count": 3,
+      "candidate_sha256": "e354f51dd0328d8dee73173ff54d8a8b535d1c18f72b5d59c11447973b4d58dd",
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "mh_072",
+      "integrity_critical_violations": [],
+      "integrity_status": "passed",
+      "manual_review_checklist": [
+        "confirm sidecar uses no source prose, label text, EC/Rhea IDs, or fingerprint IDs as predictive features",
+        "confirm every candidate residue position maps cleanly to UniProt sequence coordinates",
+        "confirm residue locators are coordinate/sequence-position evidence rather than review-rationale evidence",
+        "do not copy to the audited locator directory until every blocker on this row is resolved"
+      ],
+      "next_action": "Validate candidate sequence positions against UniProt mapping before any audited sidecar copy.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_uniprot_position_validation",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "C",
+        "comp_id": "MG",
+        "residue_id": "1429",
+        "structure_id": "1E9I"
+      },
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "uniprot:P0A6P9"
+    },
+    {
+      "candidate_audit_status": "candidate_contacts_blocked_minimum_not_met",
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_064_C7C422.json",
+      "candidate_residue_locator_count": 0,
+      "candidate_sha256": "445aa8df4af5dae2f76c9600c006c3fd944e5c912ed6c379f190d43710f07c0e",
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "mh_064",
+      "integrity_critical_violations": [],
+      "integrity_status": "passed",
+      "manual_review_checklist": [
+        "confirm sidecar uses no source prose, label text, EC/Rhea IDs, or fingerprint IDs as predictive features",
+        "find an alternate source-free locator path before any audited sidecar copy",
+        "confirm residue locators are coordinate/sequence-position evidence rather than review-rationale evidence",
+        "do not copy to the audited locator directory until every blocker on this row is resolved"
+      ],
+      "next_action": "Find an alternate source-free locator path; current selected coordinate has fewer than two candidate locators.",
+      "priority": 5,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_needs_new_coordinate_or_nonlabel_locator",
+      "selected_ligand_site": null,
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "uniprot:C7C422"
+    },
+    {
+      "candidate_audit_status": "candidate_contacts_blocked_minimum_not_met",
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+      "candidate_residue_locator_count": 0,
+      "candidate_sha256": "e0520c245a8b016b3b457423bc136ceef2e12075aaddee7c780b29b6445d857b",
+      "copy_to_audited_locator_dir_allowed_now": false,
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "integrity_critical_violations": [],
+      "integrity_status": "passed",
+      "manual_review_checklist": [
+        "confirm sidecar uses no source prose, label text, EC/Rhea IDs, or fingerprint IDs as predictive features",
+        "find an alternate source-free locator path before any audited sidecar copy",
+        "confirm residue locators are coordinate/sequence-position evidence rather than review-rationale evidence",
+        "do not copy to the audited locator directory until every blocker on this row is resolved"
+      ],
+      "next_action": "Find an alternate source-free locator path; current selected coordinate has fewer than two candidate locators.",
+      "priority": 5,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_needs_new_coordinate_or_nonlabel_locator",
+      "selected_ligand_site": null,
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "uniprot:Q59490"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_active_site_locator_manual_review_packet",
+  "scope": "Manual review packet for source-free active-site locator candidate sidecars. It combines candidate extraction, file-integrity checks, and review priority without authorizing audited sidecar copies.",
+  "source_artifacts": {
+    "candidate_audit": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_active_site_locator_candidate_audit_current702_20260601.json",
+      "sha256": "b131401a9a647ebcb52aadbc1caeae8fa0840a0c240f473cf00eba432119b225"
+    },
+    "candidate_integrity_audit": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_active_site_locator_candidate_integrity_audit_current702_20260601.json",
+      "sha256": "d513e3a01fc9d270d02e1e1109a4dac5c0c30c97b2b2b6b904f858b814bad095"
+    },
+    "review_queue": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_active_site_locator_review_queue_current702_20260601.json",
+      "sha256": "aaba2c2140778be358a1bc92a64f0462b58a399c16662f2fd31764225a1078a1"
+    }
+  },
+  "status": "source_free_active_site_locator_manual_review_packet_ready_review_only"
+}

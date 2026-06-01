@@ -1,6 +1,6 @@
 # Predicted-Structure Fold Channel Contract Audit - current702
 
-Run: 2026-06-01T07:38:02Z
+Run: 2026-06-01T12:38:58Z
 
 Strict contract audit for the existing AlphaFoldDB-predicted Foldseek/TM channel: verify that the scored all-heldout and priority cofactor-confounded rows match frozen current702 inputs.
 

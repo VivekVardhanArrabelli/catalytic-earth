@@ -29,7 +29,12 @@ from catalytic_earth.northstar_next_levers import (
     build_predicted_structure_fold_channel,
     build_predicted_structure_fold_channel_contract_audit,
     build_selected_organic_cofactor_sidecar_schema_audit,
+    write_family_panel_source_free_active_site_locator_candidate_audit,
+    write_family_panel_source_free_active_site_locator_candidate_integrity_audit,
+    write_family_panel_source_free_active_site_locator_manual_review_packet,
+    write_family_panel_source_free_active_site_locator_review_queue,
     write_family_panel_source_backed_sidecar_materialization,
+    write_mechanism_feature_embedding_feature_contract,
 )
 from catalytic_earth.predicted_geometry_robustness import _target_manifest_row_selection
 
@@ -65,8 +70,395 @@ ATOM 4 C CA . HIS A 1 30 ? 5.0 0.0 0.0 1.00 90.0 ? 30 HIS A CA 1
 #
 """
 
+MINI_LOCATOR_CIF = """data_TEST
+#
+loop_
+_struct_ref_seq.align_id
+_struct_ref_seq.ref_id
+_struct_ref_seq.pdbx_PDB_id_code
+_struct_ref_seq.pdbx_strand_id
+_struct_ref_seq.seq_align_beg
+_struct_ref_seq.pdbx_seq_align_beg_ins_code
+_struct_ref_seq.seq_align_end
+_struct_ref_seq.pdbx_seq_align_end_ins_code
+_struct_ref_seq.pdbx_db_accession
+_struct_ref_seq.db_align_beg
+_struct_ref_seq.pdbx_db_align_beg_ins_code
+_struct_ref_seq.db_align_end
+_struct_ref_seq.pdbx_db_align_end_ins_code
+_struct_ref_seq.pdbx_auth_seq_align_beg
+_struct_ref_seq.pdbx_auth_seq_align_end
+1 1 TEST A 1 ? 100 ? PTEST 1 ? 100 ? 1 100
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_alt_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_entity_id
+_atom_site.label_seq_id
+_atom_site.pdbx_PDB_ins_code
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.occupancy
+_atom_site.B_iso_or_equiv
+_atom_site.pdbx_formal_charge
+_atom_site.auth_seq_id
+_atom_site.auth_comp_id
+_atom_site.auth_asym_id
+_atom_site.auth_atom_id
+_atom_site.pdbx_PDB_model_num
+ATOM 1 O OD1 . ASP A 1 10 ? 0.0 0.0 0.0 1.00 90.0 ? 10 ASP A OD1 1
+ATOM 2 C CA . ASP A 1 10 ? 0.2 0.0 0.0 1.00 90.0 ? 10 ASP A CA 1
+ATOM 3 N NE2 . HIS A 1 30 ? 1.0 0.0 0.0 1.00 90.0 ? 30 HIS A NE2 1
+ATOM 4 C CA . HIS A 1 30 ? 1.2 0.0 0.0 1.00 90.0 ? 30 HIS A CA 1
+HETATM 5 ZN ZN . ZN B 2 . ? 0.5 0.0 0.0 1.00 40.0 ? 1 ZN B ZN 1
+#
+"""
+
 
 class NorthstarNextLeversTests(unittest.TestCase):
+    def test_source_free_locator_candidate_audit_stages_non_scoring_sidecar(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            cif = root / "pdb_TEST.cif"
+            source_backed_sidecar = root / "source_backed.json"
+            manifest = root / "manifest.json"
+            schema = root / "schema.json"
+            out = root / "candidate_audit.json"
+            report = root / "candidate_audit.md"
+            candidate_dir = root / "candidates"
+            cif.write_text(MINI_LOCATOR_CIF, encoding="utf-8")
+            source_backed_sidecar.write_text(
+                json.dumps(
+                    {
+                        "coordinate_records": [
+                            {
+                                "coordinate_role": "selected_pdb_cif",
+                                "exists": True,
+                                "path": str(cif),
+                                "sha256": hashlib.sha256(cif.read_bytes()).hexdigest(),
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "row_manifests": [
+                            {
+                                "rank": 1,
+                                "entry_id": "mh_test",
+                                "panel_id": "review_panel",
+                                "source_accession": "uniprot:PTEST",
+                                "selected_structure_id": "TEST",
+                                "same_accession_current702_geometry_rows": [],
+                                "source_backed_sidecar": {
+                                    "exists": True,
+                                    "path": str(source_backed_sidecar),
+                                },
+                                "alphafolddb_predicted_cif": {
+                                    "exists": True,
+                                    "path": str(root / "AF-PTEST-F1-model_v6.cif"),
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            schema.write_text(
+                json.dumps(
+                    {
+                        "counts": {"required_residue_locator_minimum": 2},
+                        "forbidden_predictive_fields": [
+                            "entry_name",
+                            "source_prose",
+                            "label_type",
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = write_family_panel_source_free_active_site_locator_candidate_audit(
+                source_free_geometry_manifest_path=manifest,
+                locator_schema_path=schema,
+                candidate_dir=candidate_dir,
+                out_path=out,
+                report_path=report,
+            )
+            row = audit["row_audits"][0]
+            candidate_path_exists = Path(row["candidate_path"]).exists()
+            candidate = json.loads(
+                Path(row["candidate_path"]).read_text(encoding="utf-8")
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "source_free_active_site_locator_candidates_staged_review_only",
+        )
+        self.assertEqual(audit["counts"]["candidate_sidecars_staged"], 1)
+        self.assertEqual(audit["counts"]["rows_with_minimum_candidate_residue_locators"], 1)
+        self.assertEqual(audit["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertEqual(row["selected_ligand_site"]["comp_id"], "ZN")
+        self.assertEqual(row["candidate_residue_locator_count"], 2)
+        self.assertEqual(row["sequence_position_validated_locator_count"], 2)
+        self.assertTrue(candidate_path_exists)
+        self.assertFalse(candidate["ready_for_predicted_geometry_scoring"])
+        self.assertEqual(
+            [locator["sequence_position"] for locator in candidate["residue_locators"]],
+            [10, 30],
+        )
+        self.assertTrue(
+            candidate["residue_locators"][0]["coordinate_independent_provenance"][
+                "sequence_position_uniprot_validated"
+            ]
+        )
+        self.assertFalse(candidate["forbidden_feature_audit"]["source_prose"])
+
+    def test_source_free_locator_candidate_integrity_audit_passes_staged_sidecar(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            cif = root / "pdb_TEST.cif"
+            source_backed_sidecar = root / "source_backed.json"
+            manifest = root / "manifest.json"
+            schema = root / "schema.json"
+            candidate_audit_path = root / "candidate_audit.json"
+            candidate_dir = root / "candidates"
+            audited_locator_dir = root / "audited_locators"
+            out = root / "candidate_integrity.json"
+            cif.write_text(MINI_LOCATOR_CIF, encoding="utf-8")
+            source_backed_sidecar.write_text(
+                json.dumps(
+                    {
+                        "coordinate_records": [
+                            {
+                                "coordinate_role": "selected_pdb_cif",
+                                "exists": True,
+                                "path": str(cif),
+                                "sha256": hashlib.sha256(cif.read_bytes()).hexdigest(),
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "row_manifests": [
+                            {
+                                "rank": 1,
+                                "entry_id": "mh_test",
+                                "panel_id": "review_panel",
+                                "source_accession": "uniprot:PTEST",
+                                "selected_structure_id": "TEST",
+                                "same_accession_current702_geometry_rows": [],
+                                "source_backed_sidecar": {
+                                    "exists": True,
+                                    "path": str(source_backed_sidecar),
+                                },
+                                "alphafolddb_predicted_cif": {
+                                    "exists": True,
+                                    "path": str(root / "AF-PTEST-F1-model_v6.cif"),
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            schema.write_text(
+                json.dumps(
+                    {
+                        "counts": {"required_residue_locator_minimum": 2},
+                        "forbidden_predictive_fields": [
+                            "entry_name",
+                            "source_prose",
+                            "label_type",
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            write_family_panel_source_free_active_site_locator_candidate_audit(
+                source_free_geometry_manifest_path=manifest,
+                locator_schema_path=schema,
+                candidate_dir=candidate_dir,
+                out_path=candidate_audit_path,
+            )
+
+            audit = write_family_panel_source_free_active_site_locator_candidate_integrity_audit(
+                candidate_audit_path=candidate_audit_path,
+                candidate_dir=candidate_dir,
+                audited_locator_dir=audited_locator_dir,
+                out_path=out,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "source_free_active_site_locator_candidate_integrity_passed_review_only",
+        )
+        self.assertEqual(audit["counts"]["candidate_sidecars_expected"], 1)
+        self.assertEqual(audit["counts"]["candidate_sidecar_files_present"], 1)
+        self.assertEqual(audit["counts"]["integrity_passed_sidecars"], 1)
+        self.assertEqual(audit["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertEqual(audit["counts"]["critical_counts"], {})
+        self.assertTrue(audit["row_audits"][0]["payload_matches_candidate_audit"])
+        self.assertFalse(audit["row_audits"][0]["inside_audited_locator_dir"])
+
+    def test_source_free_locator_manual_review_packet_combines_review_inputs(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            candidate_audit = root / "candidate_audit.json"
+            candidate_integrity = root / "candidate_integrity.json"
+            review_queue = root / "review_queue.json"
+            out = root / "manual_review_packet.json"
+            candidate_audit.write_text(
+                json.dumps(
+                    {
+                        "row_audits": [
+                            {
+                                "entry_id": "ready",
+                                "source_accession": "uniprot:P1",
+                                "candidate_path": "ready.json",
+                                "status": "candidate_locators_staged_review_only",
+                                "candidate_residue_locator_count": 2,
+                                "sequence_position_validated_locator_count": 2,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            candidate_integrity.write_text(
+                json.dumps(
+                    {
+                        "row_audits": [
+                            {
+                                "entry_id": "ready",
+                                "source_accession": "uniprot:P1",
+                                "candidate_path": "ready.json",
+                                "sha256": "abc123",
+                                "status": "passed",
+                                "critical_violations": [],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            review_queue.write_text(
+                json.dumps(
+                    {
+                        "queue_rows": [
+                            {
+                                "priority": 1,
+                                "entry_id": "ready",
+                                "source_accession": "uniprot:P1",
+                                "candidate_path": "ready.json",
+                                "review_class": "ready_for_manual_forbidden_feature_review",
+                                "candidate_residue_locator_count": 2,
+                                "sequence_position_validated_locator_count": 2,
+                                "candidate_blockers": [],
+                                "next_action": "review row",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = write_family_panel_source_free_active_site_locator_manual_review_packet(
+                candidate_audit_path=candidate_audit,
+                candidate_integrity_audit_path=candidate_integrity,
+                review_queue_path=review_queue,
+                out_path=out,
+            )
+
+        self.assertEqual(
+            packet["status"],
+            "source_free_active_site_locator_manual_review_packet_ready_review_only",
+        )
+        self.assertEqual(packet["counts"]["review_rows"], 1)
+        self.assertEqual(packet["counts"]["integrity_passed_rows"], 1)
+        self.assertEqual(
+            packet["counts"]["priority_1_manual_forbidden_feature_review_rows"],
+            1,
+        )
+        self.assertEqual(packet["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertEqual(packet["review_rows"][0]["candidate_sha256"], "abc123")
+        self.assertFalse(
+            packet["review_rows"][0]["copy_to_audited_locator_dir_allowed_now"]
+        )
+
+    def test_source_free_locator_review_queue_ranks_manual_review_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            candidate_audit = root / "candidate_audit.json"
+            out = root / "queue.json"
+            candidate_audit.write_text(
+                json.dumps(
+                    {
+                        "row_audits": [
+                            {
+                                "entry_id": "ready",
+                                "source_accession": "uniprot:P1",
+                                "candidate_path": "ready.json",
+                                "candidate_residue_locator_count": 2,
+                                "sequence_position_validated_locator_count": 2,
+                                "candidate_blockers": [
+                                    "candidate_sidecar_not_in_audited_locator_dir",
+                                    "manual_review_required_before_copy_to_audited_dir",
+                                ],
+                            },
+                            {
+                                "entry_id": "blocked",
+                                "source_accession": "uniprot:P2",
+                                "candidate_path": "blocked.json",
+                                "candidate_residue_locator_count": 0,
+                                "sequence_position_validated_locator_count": 0,
+                                "candidate_blockers": [
+                                    "insufficient_candidate_residue_locators",
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            queue = write_family_panel_source_free_active_site_locator_review_queue(
+                candidate_audit_path=candidate_audit,
+                out_path=out,
+            )
+
+        self.assertEqual(
+            queue["status"],
+            "source_free_active_site_locator_review_queue_ready_review_only",
+        )
+        self.assertEqual(
+            queue["counts"]["ready_for_manual_forbidden_feature_review"],
+            1,
+        )
+        self.assertEqual(queue["queue_rows"][0]["entry_id"], "ready")
+        self.assertEqual(
+            queue["queue_rows"][0]["review_class"],
+            "ready_for_manual_forbidden_feature_review",
+        )
+        self.assertEqual(queue["queue_rows"][-1]["priority"], 5)
+
     def test_fold_augmented_gate_combines_fold_geometry_and_cofactor(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -1927,6 +2319,83 @@ class NorthstarNextLeversTests(unittest.TestCase):
             readiness["mechanism_feature_sidecar_schema_audit"][
                 "schema_safe_for_train_cal_pilot"
             ]
+        )
+
+    def test_mechanism_feature_embedding_feature_contract_strips_labels(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            input_manifest = root / "input.json"
+            split_manifest = root / "split.json"
+            out = root / "contract.json"
+            report = root / "contract.md"
+            input_manifest.write_text(
+                json.dumps(
+                    {
+                        "row_records": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "organic_cofactor_classes_available": [
+                                    "flavin",
+                                    "heme",
+                                    "plp",
+                                ],
+                                "reaction_chemical_operation": "hydrolysis",
+                            }
+                        ],
+                        "counts": {"heldout_excluded_rows": 1},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            split_manifest.write_text(
+                json.dumps(
+                    {
+                        "split_records": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "assigned_embedding_split": "train",
+                                "stratum": "fingerprint:test",
+                                "fingerprint_id": "test_fingerprint",
+                                "label_type": "primary",
+                                "active_site_residue_count": 3,
+                                "reaction_template_status": "template_available",
+                                "role_graph_status": "ok",
+                                "inorganic_locus_statuses": {
+                                    "metal_ion_locus": "proximal_metal_context_available",
+                                },
+                            }
+                        ],
+                        "counts": {"heldout_excluded_rows": 1},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = write_mechanism_feature_embedding_feature_contract(
+                train_cal_input_manifest_path=input_manifest,
+                train_cal_split_manifest_path=split_manifest,
+                out_path=out,
+                report_path=report,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "mechanism_feature_embedding_feature_contract_ready_no_model_fit",
+        )
+        self.assertEqual(audit["counts"]["feature_rows"], 1)
+        self.assertEqual(audit["counts"]["heldout_excluded_rows"], 1)
+        self.assertTrue(audit["guardrails"]["label_fields_excluded_from_feature_rows"])
+        feature_row = audit["feature_rows"][0]
+        self.assertNotIn("fingerprint_id", feature_row)
+        self.assertNotIn("label_type", feature_row)
+        self.assertEqual(
+            feature_row["active_site_role_graph"]["active_site_residue_count"],
+            3,
+        )
+        self.assertIn("fingerprint_id", audit["excluded_fields_as_features"])
+        self.assertIn(
+            "explicit_authorization_required_before_model_weights_are_fit",
+            audit["blockers_before_model_fit"],
         )
 
     def test_family_panel_evidence_packet_is_review_only(self) -> None:

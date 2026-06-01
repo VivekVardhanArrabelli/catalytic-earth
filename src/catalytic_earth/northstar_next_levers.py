@@ -32,6 +32,7 @@ from .predicted_geometry_robustness import (
     _target_manifest_row_selection,
     build_alphafold_predicted_geometry_features,
 )
+from .structure import METAL_ION_CODES, parse_atom_site_loop
 
 SCHEMA_VERSION = "northstar_next_levers.v0"
 DEFAULT_FOLDSEEK_BINARY = "/private/tmp/catalytic-foldseek-env/bin/foldseek"
@@ -86,8 +87,23 @@ FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_MATERIALIZATION_PLAN_ID = (
 FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_TEMPLATE_BUNDLE_ID = (
     "v3_family_panel_source_free_active_site_locator_template_bundle_current702_20260601"
 )
+FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_CANDIDATE_AUDIT_ID = (
+    "v3_family_panel_source_free_active_site_locator_candidate_audit_current702_20260601"
+)
+FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_CANDIDATE_INTEGRITY_AUDIT_ID = (
+    "v3_family_panel_source_free_active_site_locator_candidate_integrity_audit_current702_20260601"
+)
+FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_REVIEW_QUEUE_ID = (
+    "v3_family_panel_source_free_active_site_locator_review_queue_current702_20260601"
+)
+FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_MANUAL_REVIEW_PACKET_ID = (
+    "v3_family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601"
+)
 MECHANISM_FEATURE_SIDECAR_SCHEMA_AUDIT_ID = (
     "v3_mechanism_feature_sidecar_schema_audit_current702_20260601"
+)
+MECHANISM_FEATURE_EMBEDDING_FEATURE_CONTRACT_ID = (
+    "v3_mechanism_feature_embedding_feature_contract_current702_20260601"
 )
 
 
@@ -4820,6 +4836,1673 @@ def write_family_panel_source_free_active_site_locator_template_bundle(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_family_panel_source_free_active_site_locator_template_bundle_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+LOCATOR_CANDIDATE_STANDARD_AMINO_ACIDS = {
+    "ALA",
+    "ARG",
+    "ASN",
+    "ASP",
+    "CYS",
+    "GLN",
+    "GLU",
+    "GLY",
+    "HIS",
+    "ILE",
+    "LEU",
+    "LYS",
+    "MET",
+    "PHE",
+    "PRO",
+    "SER",
+    "THR",
+    "TRP",
+    "TYR",
+    "VAL",
+}
+LOCATOR_CANDIDATE_IGNORED_LIGAND_CODES = {
+    "DOD",
+    "HOH",
+    "MSE",
+    "SOL",
+    "WAT",
+}
+LOCATOR_CANDIDATE_PREFERRED_LIGAND_CODES = {
+    "5PA",
+    "B12",
+    "CNC",
+    "COB",
+    "FAD",
+    "FES",
+    "FMN",
+    "FS4",
+    "HEA",
+    "HEB",
+    "HEC",
+    "HEM",
+    "HEO",
+    "LLP",
+    "NAD",
+    "NADH",
+    "NADP",
+    "NAP",
+    "NPH",
+    "PLP",
+    "PMP",
+    "RBF",
+    "SAH",
+    "SAM",
+    "SF4",
+}
+LOCATOR_CANDIDATE_CONTACT_CUTOFF_ANGSTROM = 4.5
+LOCATOR_CANDIDATE_METAL_CONTACT_CUTOFF_ANGSTROM = 3.2
+
+
+def _candidate_atom_comp_id(atom: dict[str, Any]) -> str:
+    return str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+
+
+def _candidate_atom_chain_id(atom: dict[str, Any]) -> str:
+    return str(atom.get("auth_asym_id") or atom.get("label_asym_id") or "")
+
+
+def _candidate_atom_residue_id(atom: dict[str, Any]) -> str:
+    return str(atom.get("auth_seq_id") or atom.get("label_seq_id") or "")
+
+
+def _candidate_atom_name(atom: dict[str, Any]) -> str:
+    return str(atom.get("auth_atom_id") or atom.get("label_atom_id") or "").upper()
+
+
+def _candidate_atom_position(atom: dict[str, Any]) -> tuple[float, float, float] | None:
+    try:
+        return (
+            float(atom["Cartn_x"]),
+            float(atom["Cartn_y"]),
+            float(atom["Cartn_z"]),
+        )
+    except (KeyError, TypeError, ValueError):
+        return None
+
+
+def _candidate_atom_distance(
+    left: dict[str, Any],
+    right: dict[str, Any],
+) -> float | None:
+    left_pos = _candidate_atom_position(left)
+    right_pos = _candidate_atom_position(right)
+    if left_pos is None or right_pos is None:
+        return None
+    return math.sqrt(sum((a - b) ** 2 for a, b in zip(left_pos, right_pos)))
+
+
+def _candidate_sequence_position(
+    atoms: list[dict[str, Any]],
+) -> tuple[int | None, str | None]:
+    for key in ("label_seq_id", "auth_seq_id"):
+        for atom in atoms:
+            value = str(atom.get(key) or "").strip()
+            if re.fullmatch(r"\d+", value):
+                return int(value), key
+    return None, None
+
+
+def _candidate_atom_seq_ids(
+    atoms: list[dict[str, Any]],
+) -> dict[str, int | None]:
+    ids: dict[str, int | None] = {"label_seq_id": None, "auth_seq_id": None}
+    for key in tuple(ids):
+        for atom in atoms:
+            value = str(atom.get(key) or "").strip()
+            if re.fullmatch(r"\d+", value):
+                ids[key] = int(value)
+                break
+    return ids
+
+
+def _candidate_natural_residue_number(value: Any) -> tuple[int, str]:
+    text = str(value or "")
+    digits = ""
+    suffix = ""
+    for char in text:
+        if char.isdigit() and not suffix:
+            digits += char
+        else:
+            suffix += char
+    return (int(digits) if digits else -1, suffix)
+
+
+def _candidate_int(value: Any) -> int | None:
+    text = str(value or "").strip()
+    return int(text) if re.fullmatch(r"\d+", text) else None
+
+
+def _parse_mmcif_category_rows(cif_text: str, category_prefix: str) -> list[dict[str, Any]]:
+    lines = cif_text.splitlines()
+    rows: list[dict[str, Any]] = []
+    index = 0
+    while index < len(lines):
+        line = lines[index].strip()
+        if line == "loop_":
+            index += 1
+            headers: list[str] = []
+            while index < len(lines) and lines[index].strip().startswith("_"):
+                headers.append(lines[index].strip())
+                index += 1
+            if headers and all(header.startswith(category_prefix) for header in headers):
+                while index < len(lines):
+                    data_line = lines[index].strip()
+                    if not data_line or data_line == "#":
+                        break
+                    if (
+                        data_line == "loop_"
+                        or data_line.startswith("_")
+                        or data_line.startswith("data_")
+                    ):
+                        break
+                    values = shlex.split(data_line)
+                    if len(values) >= len(headers):
+                        rows.append(
+                            {
+                                header.removeprefix(category_prefix): value
+                                for header, value in zip(headers, values)
+                            }
+                        )
+                    index += 1
+            continue
+        if line.startswith(category_prefix):
+            record: dict[str, Any] = {}
+            while index < len(lines):
+                data_line = lines[index].strip()
+                if not data_line.startswith(category_prefix):
+                    break
+                parts = shlex.split(data_line, comments=False, posix=True)
+                if len(parts) >= 2:
+                    record[parts[0].removeprefix(category_prefix)] = parts[1]
+                index += 1
+            if record:
+                rows.append(record)
+            continue
+        index += 1
+    return rows
+
+
+def _struct_ref_sequence_maps(
+    cif_text: str,
+    source_accession: str | None,
+) -> list[dict[str, Any]]:
+    accession = str(source_accession or "").split(":", 1)[-1]
+    maps = []
+    for row in _parse_mmcif_category_rows(cif_text, "_struct_ref_seq."):
+        row_accession = str(row.get("pdbx_db_accession") or "")
+        if accession and row_accession and row_accession != accession:
+            continue
+        chain_id = str(row.get("pdbx_strand_id") or "")
+        auth_beg = _candidate_int(row.get("pdbx_auth_seq_align_beg"))
+        auth_end = _candidate_int(row.get("pdbx_auth_seq_align_end"))
+        seq_beg = _candidate_int(row.get("seq_align_beg"))
+        seq_end = _candidate_int(row.get("seq_align_end"))
+        db_beg = _candidate_int(row.get("db_align_beg"))
+        db_end = _candidate_int(row.get("db_align_end"))
+        if db_beg is None or db_end is None:
+            continue
+        maps.append(
+            {
+                "chain_id": chain_id,
+                "db_accession": row_accession or accession or None,
+                "auth_seq_align_beg": auth_beg,
+                "auth_seq_align_end": auth_end,
+                "seq_align_beg": seq_beg,
+                "seq_align_end": seq_end,
+                "db_align_beg": db_beg,
+                "db_align_end": db_end,
+            }
+        )
+    return maps
+
+
+def _map_contact_to_uniprot_position(
+    contact: dict[str, Any],
+    sequence_maps: list[dict[str, Any]],
+) -> tuple[int | None, dict[str, Any] | None]:
+    chain_id = str(contact.get("residue_chain_id") or "")
+    for mapping in sequence_maps:
+        if mapping.get("chain_id") and mapping.get("chain_id") != chain_id:
+            continue
+        auth_seq_id = contact.get("auth_seq_id")
+        auth_beg = mapping.get("auth_seq_align_beg")
+        auth_end = mapping.get("auth_seq_align_end")
+        if (
+            isinstance(auth_seq_id, int)
+            and isinstance(auth_beg, int)
+            and isinstance(auth_end, int)
+            and auth_beg <= auth_seq_id <= auth_end
+        ):
+            mapped = int(mapping["db_align_beg"]) + (auth_seq_id - auth_beg)
+            return mapped, {"mapping_basis": "struct_ref_seq.auth_seq_id", **mapping}
+        label_seq_id = contact.get("label_seq_id")
+        seq_beg = mapping.get("seq_align_beg")
+        seq_end = mapping.get("seq_align_end")
+        if (
+            isinstance(label_seq_id, int)
+            and isinstance(seq_beg, int)
+            and isinstance(seq_end, int)
+            and seq_beg <= label_seq_id <= seq_end
+        ):
+            mapped = int(mapping["db_align_beg"]) + (label_seq_id - seq_beg)
+            return mapped, {"mapping_basis": "struct_ref_seq.label_seq_id", **mapping}
+    return None, None
+
+
+def _candidate_protein_sites(
+    atoms: list[dict[str, Any]],
+) -> dict[tuple[str, str, str], list[dict[str, Any]]]:
+    sites: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    for atom in atoms:
+        if atom.get("group_PDB") != "ATOM":
+            continue
+        code = _candidate_atom_comp_id(atom)
+        if code not in LOCATOR_CANDIDATE_STANDARD_AMINO_ACIDS:
+            continue
+        key = (
+            code,
+            _candidate_atom_chain_id(atom),
+            _candidate_atom_residue_id(atom),
+        )
+        sites[key].append(atom)
+    return sites
+
+
+def _candidate_ligand_sites(
+    atoms: list[dict[str, Any]],
+) -> dict[tuple[str, str, str], list[dict[str, Any]]]:
+    sites: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    for atom in atoms:
+        if atom.get("group_PDB") != "HETATM":
+            continue
+        code = _candidate_atom_comp_id(atom)
+        if code in LOCATOR_CANDIDATE_IGNORED_LIGAND_CODES:
+            continue
+        key = (
+            code,
+            _candidate_atom_chain_id(atom),
+            _candidate_atom_residue_id(atom),
+        )
+        sites[key].append(atom)
+    return sites
+
+
+def _candidate_role_hint(residue_code: str, ligand_code: str) -> str:
+    if ligand_code in METAL_ION_CODES:
+        if residue_code in {"ASP", "GLU", "HIS", "CYS"}:
+            return "metal_ligand_or_water_activator_candidate"
+        return "metal_proximal_contact_candidate"
+    if ligand_code in {"FAD", "FMN", "RBF"}:
+        if residue_code in {"HIS", "GLU", "CYS", "TYR", "ARG"}:
+            return "flavin_redox_contact_candidate"
+        return "flavin_binding_contact_candidate"
+    if ligand_code in {"B12", "CNC", "COB"}:
+        return "cobalamin_pocket_contact_candidate"
+    if ligand_code in {"FES", "FS4", "SF4", "SAM", "SAH", "MTA"}:
+        return "radical_sam_or_fe_s_contact_candidate"
+    if residue_code in {"ASP", "GLU", "HIS", "LYS", "ARG", "TYR", "CYS", "SER", "THR"}:
+        return "polar_or_catalytic_ligand_contact_candidate"
+    return "ligand_contact_candidate"
+
+
+def _nearest_candidate_contact(
+    ligand_atoms: list[dict[str, Any]],
+    residue_atoms: list[dict[str, Any]],
+) -> tuple[float, dict[str, Any], dict[str, Any]] | None:
+    nearest: tuple[float, dict[str, Any], dict[str, Any]] | None = None
+    for ligand_atom in ligand_atoms:
+        for residue_atom in residue_atoms:
+            distance = _candidate_atom_distance(ligand_atom, residue_atom)
+            if distance is None:
+                continue
+            if nearest is None or distance < nearest[0]:
+                nearest = (distance, ligand_atom, residue_atom)
+    return nearest
+
+
+def _ligand_candidate_contacts(
+    *,
+    ligand_key: tuple[str, str, str],
+    ligand_atoms: list[dict[str, Any]],
+    protein_sites: dict[tuple[str, str, str], list[dict[str, Any]]],
+) -> list[dict[str, Any]]:
+    ligand_code = ligand_key[0]
+    cutoff = (
+        LOCATOR_CANDIDATE_METAL_CONTACT_CUTOFF_ANGSTROM
+        if ligand_code in METAL_ION_CODES
+        else LOCATOR_CANDIDATE_CONTACT_CUTOFF_ANGSTROM
+    )
+    contacts: list[dict[str, Any]] = []
+    for (residue_code, chain_id, residue_id), residue_atoms in protein_sites.items():
+        nearest = _nearest_candidate_contact(ligand_atoms, residue_atoms)
+        if nearest is None:
+            continue
+        distance, ligand_atom, residue_atom = nearest
+        if distance > cutoff:
+            continue
+        sequence_position, sequence_position_source = _candidate_sequence_position(
+            residue_atoms
+        )
+        seq_ids = _candidate_atom_seq_ids(residue_atoms)
+        contacts.append(
+            {
+                "distance_angstrom": round(distance, 3),
+                "ligand_atom": _candidate_atom_name(ligand_atom) or None,
+                "residue_atom": _candidate_atom_name(residue_atom) or None,
+                "residue_code": residue_code,
+                "residue_chain_id": chain_id or None,
+                "residue_id": residue_id or None,
+                "label_seq_id": seq_ids["label_seq_id"],
+                "auth_seq_id": seq_ids["auth_seq_id"],
+                "candidate_sequence_position": sequence_position,
+                "sequence_position_source": sequence_position_source,
+                "role_hint": _candidate_role_hint(residue_code, ligand_code),
+            }
+        )
+    contacts.sort(
+        key=lambda item: (
+            float(item["distance_angstrom"]),
+            str(item["residue_chain_id"] or ""),
+            _candidate_natural_residue_number(item["residue_id"]),
+            str(item["residue_code"]),
+        )
+    )
+    return contacts
+
+
+def _ligand_site_sort_key(site: dict[str, Any]) -> tuple[Any, ...]:
+    ligand = site.get("ligand_site", {})
+    comp_id = str(ligand.get("comp_id") or "")
+    contacts = site.get("contacts", [])
+    nearest = float(contacts[0]["distance_angstrom"]) if contacts else 999.0
+    return (
+        int(comp_id in METAL_ION_CODES or comp_id in LOCATOR_CANDIDATE_PREFERRED_LIGAND_CODES),
+        min(len(contacts), 20),
+        int(site.get("candidate_sequence_position_contact_count") or 0),
+        int(ligand.get("atom_count") or 0),
+        -nearest,
+        comp_id,
+    )
+
+
+def _extract_locator_candidate_from_selected_cif(
+    *,
+    cif_path: Path,
+    structure_id: str | None,
+    source_accession: str | None,
+) -> dict[str, Any]:
+    if not cif_path.exists():
+        return {
+            "status": "selected_structure_coordinate_missing",
+            "ligand_site_count": 0,
+            "selected_ligand_site": None,
+            "candidate_residue_locators": [],
+            "candidate_ligand_sites": [],
+            "sequence_position_mapping_records": [],
+            "sequence_position_validated_locator_count": 0,
+            "blockers": ["selected_structure_coordinate_missing"],
+        }
+    cif_text = cif_path.read_text(encoding="utf-8", errors="replace")
+    atoms = parse_atom_site_loop(cif_text)
+    sequence_maps = _struct_ref_sequence_maps(cif_text, source_accession)
+    protein_sites = _candidate_protein_sites(atoms)
+    ligand_sites = _candidate_ligand_sites(atoms)
+    summaries: list[dict[str, Any]] = []
+    for ligand_key, ligand_atoms in ligand_sites.items():
+        contacts = _ligand_candidate_contacts(
+            ligand_key=ligand_key,
+            ligand_atoms=ligand_atoms,
+            protein_sites=protein_sites,
+        )
+        summaries.append(
+            {
+                "ligand_site": {
+                    "comp_id": ligand_key[0],
+                    "chain_id": ligand_key[1] or None,
+                    "residue_id": ligand_key[2] or None,
+                    "atom_count": len(ligand_atoms),
+                    "structure_id": structure_id,
+                },
+                "contact_count": len(contacts),
+                "candidate_sequence_position_contact_count": sum(
+                    1
+                    for contact in contacts
+                    if contact.get("candidate_sequence_position") is not None
+                ),
+                "contacts": contacts[:16],
+            }
+        )
+    summaries.sort(key=_ligand_site_sort_key, reverse=True)
+    selected = summaries[0] if summaries else None
+    selected_contacts = list(selected.get("contacts", [])) if selected else []
+    locators = []
+    seen_positions: set[tuple[str, int]] = set()
+    ligand_code = str(selected.get("ligand_site", {}).get("comp_id") or "") if selected else ""
+    for contact in selected_contacts:
+        mapped_position, mapping_record = _map_contact_to_uniprot_position(
+            contact,
+            sequence_maps,
+        )
+        sequence_position = mapped_position or contact.get("candidate_sequence_position")
+        residue_code = str(contact.get("residue_code") or "")
+        if not isinstance(sequence_position, int):
+            continue
+        key = (residue_code, sequence_position)
+        if key in seen_positions:
+            continue
+        seen_positions.add(key)
+        locators.append(
+            {
+                "residue_code": residue_code,
+                "sequence_position": sequence_position,
+                "role_hint": contact.get("role_hint"),
+                "locator_confidence": 0.25,
+                "locator_evidence_class": (
+                    "structure_local_ligand_geometry_without_source_text"
+                ),
+                "coordinate_independent_provenance": {
+                    "method": "source_free_selected_structure_ligand_contact_candidate",
+                    "source_text_used": False,
+                    "heldout_rows_used": False,
+                    "sequence_position_source": (
+                        mapping_record.get("mapping_basis")
+                        if mapping_record
+                        else contact.get("sequence_position_source")
+                    ),
+                    "sequence_position_uniprot_validated": mapping_record is not None,
+                    "struct_ref_seq_mapping": mapping_record,
+                },
+                "candidate_contact_evidence": {
+                    "selected_structure_id": structure_id,
+                    "ligand_comp_id": ligand_code,
+                    "ligand_atom": contact.get("ligand_atom"),
+                    "residue_atom": contact.get("residue_atom"),
+                    "distance_angstrom": contact.get("distance_angstrom"),
+                    "residue_chain_id": contact.get("residue_chain_id"),
+                    "residue_id": contact.get("residue_id"),
+                    "label_seq_id": contact.get("label_seq_id"),
+                    "auth_seq_id": contact.get("auth_seq_id"),
+                },
+            }
+        )
+        if len(locators) >= 8:
+            break
+    blockers = [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+    ]
+    validated_count = sum(
+        1
+        for locator in locators
+        if locator.get("coordinate_independent_provenance", {}).get(
+            "sequence_position_uniprot_validated"
+        )
+    )
+    if validated_count < len(locators):
+        blockers.append("uniprot_sequence_position_validation_required")
+    if not summaries:
+        blockers.append("no_nonwater_ligand_or_metal_site_detected")
+    if (
+        selected
+        and ligand_code not in METAL_ION_CODES
+        and ligand_code not in LOCATOR_CANDIDATE_PREFERRED_LIGAND_CODES
+    ):
+        blockers.append("coordinate_ligand_specificity_review_required")
+    if len(locators) < 2:
+        blockers.append("insufficient_candidate_residue_locators")
+    status = (
+        "candidate_contacts_staged_review_required"
+        if len(locators) >= 2
+        else "candidate_contacts_blocked_minimum_not_met"
+    )
+    return {
+        "status": status,
+        "ligand_site_count": len(summaries),
+        "selected_ligand_site": selected.get("ligand_site") if selected else None,
+        "selected_ligand_contact_count": len(selected_contacts),
+        "candidate_residue_locators": locators,
+        "candidate_ligand_sites": summaries[:8],
+        "sequence_position_mapping_records": sequence_maps,
+        "sequence_position_validated_locator_count": validated_count,
+        "blockers": blockers,
+    }
+
+
+def _source_backed_selected_cif_record(row: dict[str, Any]) -> dict[str, Any]:
+    sidecar_info = row.get("source_backed_sidecar") or {}
+    sidecar_path = Path(str(sidecar_info.get("path") or ""))
+    if not sidecar_path.exists():
+        return {"exists": False, "path": str(sidecar_path), "role": "selected_pdb_cif"}
+    sidecar = _read_json(sidecar_path)
+    for record in sidecar.get("coordinate_records", []):
+        if isinstance(record, dict) and record.get("coordinate_role") == "selected_pdb_cif":
+            return record
+    coordinate_path = sidecar.get("coordinate_path")
+    return {
+        "coordinate_role": "selected_pdb_cif",
+        "exists": bool(coordinate_path and Path(str(coordinate_path)).exists()),
+        "path": str(coordinate_path or ""),
+    }
+
+
+def _build_locator_candidate_sidecar(
+    *,
+    row: dict[str, Any],
+    schema: dict[str, Any],
+    candidate_dir: Path,
+) -> dict[str, Any]:
+    entry_id = str(row.get("entry_id") or "")
+    source_accession = str(row.get("source_accession") or "")
+    candidate_path = _locator_sidecar_path(entry_id, source_accession, candidate_dir)
+    selected_record = _source_backed_selected_cif_record(row)
+    selected_cif_path = Path(str(selected_record.get("path") or ""))
+    extraction = _extract_locator_candidate_from_selected_cif(
+        cif_path=selected_cif_path,
+        structure_id=str(row.get("selected_structure_id") or "") or None,
+        source_accession=source_accession,
+    )
+    forbidden_fields = schema.get("forbidden_predictive_fields", [])
+    split_blockers = []
+    if row.get("same_accession_current702_geometry_rows"):
+        split_blockers.append("split_safe_train_cal_template_check_required")
+    blockers = sorted(set(extraction["blockers"] + split_blockers))
+    return {
+        "artifact_id": (
+            f"{FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_CANDIDATE_AUDIT_ID}"
+            "_candidate"
+        ),
+        "schema_version": f"{SCHEMA_VERSION}.source_free_active_site_locator_candidate",
+        "created_utc": _utc_now_iso(),
+        "status": "candidate_sidecar_not_ready_for_scoring",
+        "entry_id": entry_id,
+        "source_accession": source_accession,
+        "panel_id": row.get("panel_id"),
+        "rank": row.get("rank"),
+        "locator_policy": _suggest_locator_policy(row),
+        "locator_evidence_class": (
+            "structure_local_ligand_geometry_without_source_text"
+            if extraction.get("candidate_residue_locators")
+            else None
+        ),
+        "source_free_active_site_locator_status": extraction["status"],
+        "residue_locators": extraction["candidate_residue_locators"],
+        "forbidden_feature_audit": {field: False for field in forbidden_fields},
+        "split_protection": {
+            "review_only": True,
+            "allowed_for_training": False,
+            "allowed_for_threshold_selection": False,
+            "ready_for_label_import": False,
+            "same_accession_current702_geometry_rows": row.get(
+                "same_accession_current702_geometry_rows", []
+            ),
+        },
+        "ready_for_predicted_geometry_scoring": False,
+        "candidate_path": str(candidate_path),
+        "candidate_blockers": blockers,
+        "candidate_guardrails": {
+            "candidate_only": True,
+            "written_outside_audited_locator_dir": True,
+            "source_text_or_label_fields_used_as_predictive_features": False,
+            "copied_to_audited_locator_dir": False,
+            "predicted_geometry_scored": False,
+        },
+        "coordinate_candidate_evidence": {
+            "selected_structure_id": row.get("selected_structure_id"),
+            "selected_pdb_cif": selected_record,
+            "alphafolddb_predicted_cif": row.get("alphafolddb_predicted_cif"),
+            "extraction": extraction,
+        },
+    }
+
+
+def build_family_panel_source_free_active_site_locator_candidate_audit(
+    *,
+    source_free_geometry_manifest_path: Path,
+    locator_schema_path: Path,
+    candidate_dir: Path,
+) -> dict[str, Any]:
+    manifest = _read_json(source_free_geometry_manifest_path)
+    schema = _read_json(locator_schema_path)
+    candidate_dir = Path(candidate_dir)
+    candidates = [
+        _build_locator_candidate_sidecar(
+            row=row,
+            schema=schema,
+            candidate_dir=candidate_dir,
+        )
+        for row in manifest.get("row_manifests", [])
+        if isinstance(row, dict)
+    ]
+    row_audits = []
+    status_counts: Counter[str] = Counter()
+    selected_ligand_counts: Counter[str] = Counter()
+    for candidate in candidates:
+        extraction = candidate["coordinate_candidate_evidence"]["extraction"]
+        selected_ligand = extraction.get("selected_ligand_site") or {}
+        selected_ligand_code = selected_ligand.get("comp_id")
+        if selected_ligand_code:
+            selected_ligand_counts[str(selected_ligand_code)] += 1
+        status_counts[str(candidate["source_free_active_site_locator_status"])] += 1
+        row_audits.append(
+            {
+                "rank": candidate.get("rank"),
+                "entry_id": candidate.get("entry_id"),
+                "source_accession": candidate.get("source_accession"),
+                "candidate_path": candidate.get("candidate_path"),
+                "status": candidate.get("source_free_active_site_locator_status"),
+                "selected_ligand_site": selected_ligand or None,
+                "selected_ligand_contact_count": extraction.get(
+                    "selected_ligand_contact_count", 0
+                ),
+                "candidate_residue_locator_count": len(
+                    candidate.get("residue_locators", [])
+                ),
+                "sequence_position_validated_locator_count": extraction.get(
+                    "sequence_position_validated_locator_count", 0
+                ),
+                "ready_for_predicted_geometry_scoring": False,
+                "candidate_blockers": candidate.get("candidate_blockers", []),
+            }
+        )
+    minimum_ready_candidates = [
+        row
+        for row in row_audits
+        if int(row.get("candidate_residue_locator_count") or 0) >= int(
+            schema.get("counts", {}).get("required_residue_locator_minimum") or 2
+        )
+    ]
+    split_check_rows = [
+        row
+        for row in candidates
+        if row.get("split_protection", {}).get("same_accession_current702_geometry_rows")
+    ]
+    rows_with_all_candidate_positions_validated = [
+        row
+        for row in row_audits
+        if row.get("candidate_residue_locator_count")
+        and row.get("candidate_residue_locator_count")
+        == row.get("sequence_position_validated_locator_count")
+    ]
+    return {
+        "artifact_id": FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_CANDIDATE_AUDIT_ID,
+        "schema_version": f"{SCHEMA_VERSION}.source_free_active_site_locator_candidate_audit",
+        "created_utc": _utc_now_iso(),
+        "status": "source_free_active_site_locator_candidates_staged_review_only",
+        "scope": (
+            "Review-only source-free locator candidate audit for the 10 "
+            "fold-scored family-panel rows. Candidate sidecars are written "
+            "outside the audited locator directory and are never scoring-ready."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "candidate_sidecars_written_outside_audited_locator_dir": True,
+            "locator_sidecars_created_in_audited_dir": False,
+            "ready_for_predicted_geometry_scoring": False,
+            "predicted_geometry_scored": False,
+            "source_text_or_label_fields_allowed_as_predictive_features": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+        },
+        "candidate_dir": str(candidate_dir),
+        "counts": {
+            "target_rows": len(candidates),
+            "candidate_sidecars_staged": len(candidates),
+            "rows_with_minimum_candidate_residue_locators": len(
+                minimum_ready_candidates
+            ),
+            "ready_for_predicted_geometry_scoring": 0,
+            "rows_requiring_split_safe_template_check": len(split_check_rows),
+            "rows_with_all_candidate_sequence_positions_validated": len(
+                rows_with_all_candidate_positions_validated
+            ),
+            "candidate_status_counts": dict(sorted(status_counts.items())),
+            "selected_ligand_counts": dict(sorted(selected_ligand_counts.items())),
+        },
+        "row_audits": sorted(row_audits, key=lambda row: int(row.get("rank") or 0)),
+        "candidate_sidecars": candidates,
+        "commands": {
+            "rebuild_candidate_audit": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-active-site-locator-candidate-audit"
+            ),
+            "rerun_schema_audit_after_reviewed_sidecars_are_copied": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "audit-family-panel-source-free-active-site-locator-schema"
+            ),
+            "rerun_geometry_manifest_after_schema_passes": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-predicted-geometry-sidecar-manifest"
+            ),
+        },
+        "source_artifacts": {
+            "source_free_predicted_geometry_manifest": _source_path_record(
+                source_free_geometry_manifest_path
+            ),
+            "locator_schema": _source_path_record(locator_schema_path),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(minimum_ready_candidates)}/{len(candidates)} rows now have "
+                "at least two coordinate-only candidate locators, but none are "
+                "approved for predicted-geometry scoring."
+            ),
+            "next_action": (
+                "Review candidate sidecars for UniProt sequence-position validity "
+                "and forbidden-feature cleanliness; copy only approved sidecars "
+                "into the audited locator directory, then rerun the schema audit."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_free_active_site_locator_candidate_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Family Panel Source-Free Active-Site Locator Candidate Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Target rows: {counts['target_rows']}",
+        f"- Candidate sidecars staged: {counts['candidate_sidecars_staged']}",
+        (
+            "- Rows with >=2 candidate residue locators: "
+            f"{counts['rows_with_minimum_candidate_residue_locators']}"
+        ),
+        (
+            "- Ready for predicted-geometry scoring: "
+            f"{counts['ready_for_predicted_geometry_scoring']}"
+        ),
+        (
+            "- Rows requiring split-safe template check: "
+            f"{counts['rows_requiring_split_safe_template_check']}"
+        ),
+        (
+            "- Rows with all candidate sequence positions validated: "
+            f"{counts['rows_with_all_candidate_sequence_positions_validated']}"
+        ),
+        f"- Candidate status counts: {counts['candidate_status_counts']}",
+        "",
+        "## Row Candidates",
+        "",
+        (
+            "| rank | row | accession | candidate sidecar | selected ligand | "
+            "locators | UniProt-validated locators | blockers |"
+        ),
+        "| ---: | --- | --- | --- | --- | ---: | ---: | --- |",
+    ]
+    for row in audit["row_audits"]:
+        ligand = row.get("selected_ligand_site") or {}
+        ligand_label = (
+            f"{ligand.get('comp_id')}:{ligand.get('chain_id')}:{ligand.get('residue_id')}"
+            if ligand
+            else "none"
+        )
+        lines.append(
+            f"| {row['rank']} | {row['entry_id']} | {row['source_accession']} | "
+            f"{row['candidate_path']} | {ligand_label} | "
+            f"{row['candidate_residue_locator_count']} | "
+            f"{row['sequence_position_validated_locator_count']} | "
+            f"{', '.join(row['candidate_blockers'])} |"
+        )
+    lines += [
+        "",
+        "## Commands",
+        "",
+        "```bash",
+        audit["commands"]["rebuild_candidate_audit"],
+        "```",
+        "",
+        "```bash",
+        audit["commands"]["rerun_schema_audit_after_reviewed_sidecars_are_copied"],
+        "```",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_active_site_locator_candidate_audit(
+    *,
+    source_free_geometry_manifest_path: Path,
+    locator_schema_path: Path,
+    candidate_dir: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_free_active_site_locator_candidate_audit(
+        source_free_geometry_manifest_path=source_free_geometry_manifest_path,
+        locator_schema_path=locator_schema_path,
+        candidate_dir=candidate_dir,
+    )
+    candidate_dir.mkdir(parents=True, exist_ok=True)
+    for candidate in audit.get("candidate_sidecars", []):
+        path = Path(str(candidate["candidate_path"]))
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(
+            json.dumps(candidate, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_active_site_locator_candidate_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _locator_review_queue_class(row: dict[str, Any]) -> tuple[int, str, str]:
+    blockers = set(row.get("candidate_blockers", []))
+    locator_count = int(row.get("candidate_residue_locator_count") or 0)
+    validated_count = int(row.get("sequence_position_validated_locator_count") or 0)
+    if locator_count < 2:
+        return (
+            5,
+            "blocked_needs_new_coordinate_or_nonlabel_locator",
+            "Find an alternate source-free locator path; current selected coordinate has fewer than two candidate locators.",
+        )
+    if "coordinate_ligand_specificity_review_required" in blockers:
+        return (
+            2,
+            "needs_ligand_specificity_review",
+            "Review whether the selected coordinate ligand is biologically relevant before any audited sidecar copy.",
+        )
+    if "split_safe_train_cal_template_check_required" in blockers:
+        return (
+            3,
+            "needs_split_safe_template_check",
+            "Verify same-accession train/cal template use is split-safe before any audited sidecar copy.",
+        )
+    if validated_count < locator_count or "uniprot_sequence_position_validation_required" in blockers:
+        return (
+            4,
+            "needs_uniprot_position_validation",
+            "Validate candidate sequence positions against UniProt mapping before any audited sidecar copy.",
+        )
+    return (
+        1,
+        "ready_for_manual_forbidden_feature_review",
+        "Manual review may start; copy to the audited locator directory only after forbidden-feature and scientific checks pass.",
+    )
+
+
+def build_family_panel_source_free_active_site_locator_review_queue(
+    *,
+    candidate_audit_path: Path,
+) -> dict[str, Any]:
+    candidate_audit = _read_json(candidate_audit_path)
+    queue_rows = []
+    class_counts: Counter[str] = Counter()
+    for row in candidate_audit.get("row_audits", []):
+        if not isinstance(row, dict):
+            continue
+        priority, review_class, next_action = _locator_review_queue_class(row)
+        class_counts[review_class] += 1
+        queue_rows.append(
+            {
+                "priority": priority,
+                "entry_id": row.get("entry_id"),
+                "source_accession": row.get("source_accession"),
+                "candidate_path": row.get("candidate_path"),
+                "review_class": review_class,
+                "candidate_residue_locator_count": row.get(
+                    "candidate_residue_locator_count"
+                ),
+                "sequence_position_validated_locator_count": row.get(
+                    "sequence_position_validated_locator_count"
+                ),
+                "selected_ligand_site": row.get("selected_ligand_site"),
+                "candidate_blockers": row.get("candidate_blockers", []),
+                "next_action": next_action,
+                "ready_for_predicted_geometry_scoring": False,
+            }
+        )
+    queue_rows.sort(
+        key=lambda row: (
+            int(row.get("priority") or 99),
+            _entry_id_sort_key(str(row.get("entry_id"))),
+        )
+    )
+    return {
+        "artifact_id": FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_REVIEW_QUEUE_ID,
+        "schema_version": f"{SCHEMA_VERSION}.source_free_active_site_locator_review_queue",
+        "created_utc": _utc_now_iso(),
+        "status": "source_free_active_site_locator_review_queue_ready_review_only",
+        "scope": (
+            "Review queue for the source-free active-site locator candidates. "
+            "This ranks candidate sidecars for manual validation but does not "
+            "copy anything into the audited locator directory."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "candidate_sidecars_written_outside_audited_locator_dir": True,
+            "locator_sidecars_created_in_audited_dir": False,
+            "ready_for_predicted_geometry_scoring": False,
+            "predicted_geometry_scored": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+        },
+        "counts": {
+            "queue_rows": len(queue_rows),
+            "ready_for_manual_forbidden_feature_review": class_counts.get(
+                "ready_for_manual_forbidden_feature_review", 0
+            ),
+            "needs_ligand_specificity_review": class_counts.get(
+                "needs_ligand_specificity_review", 0
+            ),
+            "needs_split_safe_template_check": class_counts.get(
+                "needs_split_safe_template_check", 0
+            ),
+            "needs_uniprot_position_validation": class_counts.get(
+                "needs_uniprot_position_validation", 0
+            ),
+            "blocked_needs_new_coordinate_or_nonlabel_locator": class_counts.get(
+                "blocked_needs_new_coordinate_or_nonlabel_locator", 0
+            ),
+            "review_class_counts": dict(sorted(class_counts.items())),
+        },
+        "queue_rows": queue_rows,
+        "commands": {
+            "rebuild_candidate_audit": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-active-site-locator-candidate-audit"
+            ),
+            "rebuild_review_queue": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-active-site-locator-review-queue"
+            ),
+            "rerun_schema_audit_after_reviewed_sidecars_are_copied": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "audit-family-panel-source-free-active-site-locator-schema"
+            ),
+        },
+        "source_artifacts": {
+            "candidate_audit": _source_path_record(candidate_audit_path),
+        },
+        "interpretation": {
+            "headline": (
+                f"{class_counts.get('ready_for_manual_forbidden_feature_review', 0)} "
+                "candidate rows are ready for manual forbidden-feature review; "
+                "no row is scoring-ready."
+            ),
+            "next_action": (
+                "Start with priority-1 rows, review the candidate sidecar contents, "
+                "and copy only approved sidecars into the audited locator directory."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_free_active_site_locator_review_queue_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Family Panel Source-Free Active-Site Locator Review Queue - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Queue rows: {counts['queue_rows']}",
+        (
+            "- Ready for manual forbidden-feature review: "
+            f"{counts['ready_for_manual_forbidden_feature_review']}"
+        ),
+        f"- Review class counts: {counts['review_class_counts']}",
+        "",
+        "## Queue",
+        "",
+        "| priority | row | accession | class | locators | validated | next action |",
+        "| ---: | --- | --- | --- | ---: | ---: | --- |",
+    ]
+    for row in audit["queue_rows"]:
+        lines.append(
+            f"| {row['priority']} | {row['entry_id']} | {row['source_accession']} | "
+            f"{row['review_class']} | {row['candidate_residue_locator_count']} | "
+            f"{row['sequence_position_validated_locator_count']} | "
+            f"{row['next_action']} |"
+        )
+    lines += [
+        "",
+        "## Commands",
+        "",
+        "```bash",
+        audit["commands"]["rebuild_review_queue"],
+        "```",
+        "",
+        "```bash",
+        audit["commands"]["rerun_schema_audit_after_reviewed_sidecars_are_copied"],
+        "```",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_active_site_locator_review_queue(
+    *,
+    candidate_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_free_active_site_locator_review_queue(
+        candidate_audit_path=candidate_audit_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_active_site_locator_review_queue_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _path_is_relative_to(path: Path, parent: Path) -> bool:
+    try:
+        path.resolve().relative_to(parent.resolve())
+    except ValueError:
+        return False
+    return True
+
+
+def _candidate_sidecar_integrity_row(
+    *,
+    candidate: dict[str, Any],
+    row_audit: dict[str, Any],
+    candidate_dir: Path,
+    audited_locator_dir: Path,
+) -> dict[str, Any]:
+    candidate_path = Path(str(candidate.get("candidate_path") or ""))
+    violations: list[str] = []
+    loaded: dict[str, Any] | None = None
+    if not candidate_path.exists():
+        violations.append("candidate_sidecar_file_missing")
+    else:
+        loaded_value = _read_json(candidate_path)
+        if isinstance(loaded_value, dict):
+            loaded = loaded_value
+        else:
+            violations.append("candidate_sidecar_payload_not_object")
+        if loaded != candidate:
+            violations.append("candidate_sidecar_payload_mismatch_candidate_audit")
+
+    payload = loaded or candidate
+    if not _path_is_relative_to(candidate_path, candidate_dir):
+        violations.append("candidate_sidecar_not_under_candidate_dir")
+    if _path_is_relative_to(candidate_path, audited_locator_dir):
+        violations.append("candidate_sidecar_inside_audited_locator_dir")
+
+    guardrails = payload.get("candidate_guardrails") or {}
+    if guardrails.get("candidate_only") is not True:
+        violations.append("candidate_only_guardrail_not_true")
+    if guardrails.get("written_outside_audited_locator_dir") is not True:
+        violations.append("written_outside_audited_locator_dir_guardrail_not_true")
+    if guardrails.get("copied_to_audited_locator_dir") is not False:
+        violations.append("copied_to_audited_locator_dir_guardrail_not_false")
+    if guardrails.get("predicted_geometry_scored") is not False:
+        violations.append("predicted_geometry_scored_guardrail_not_false")
+    if (
+        guardrails.get("source_text_or_label_fields_used_as_predictive_features")
+        is not False
+    ):
+        violations.append("source_text_or_label_feature_guardrail_not_false")
+    if payload.get("ready_for_predicted_geometry_scoring") is not False:
+        violations.append("ready_for_predicted_geometry_scoring_not_false")
+
+    forbidden_feature_audit = payload.get("forbidden_feature_audit") or {}
+    active_forbidden = [
+        key for key, value in forbidden_feature_audit.items() if value is not False
+    ]
+    if active_forbidden:
+        violations.append("forbidden_feature_audit_has_nonfalse_flags")
+
+    split_protection = payload.get("split_protection") or {}
+    for split_key in (
+        "allowed_for_training",
+        "allowed_for_threshold_selection",
+        "ready_for_label_import",
+    ):
+        if split_protection.get(split_key) is not False:
+            violations.append(f"split_protection_{split_key}_not_false")
+
+    residue_locators = payload.get("residue_locators") or []
+    if not isinstance(residue_locators, list):
+        residue_locators = []
+        violations.append("residue_locators_not_list")
+    locator_count = len(residue_locators)
+    validated_count = sum(
+        1
+        for locator in residue_locators
+        if isinstance(locator, dict)
+        and (locator.get("coordinate_independent_provenance") or {}).get(
+            "sequence_position_uniprot_validated"
+        )
+        is True
+    )
+    if locator_count != int(row_audit.get("candidate_residue_locator_count") or 0):
+        violations.append("candidate_residue_locator_count_mismatch_row_audit")
+    if validated_count != int(
+        row_audit.get("sequence_position_validated_locator_count") or 0
+    ):
+        violations.append(
+            "sequence_position_validated_locator_count_mismatch_row_audit"
+        )
+
+    blockers = set(payload.get("candidate_blockers") or [])
+    if "candidate_sidecar_not_in_audited_locator_dir" not in blockers:
+        violations.append("candidate_blocker_missing_not_in_audited_locator_dir")
+    if "manual_review_required_before_copy_to_audited_dir" not in blockers:
+        violations.append("candidate_blocker_missing_manual_review_required")
+
+    return {
+        "entry_id": payload.get("entry_id") or candidate.get("entry_id"),
+        "source_accession": payload.get("source_accession")
+        or candidate.get("source_accession"),
+        "candidate_path": str(candidate_path),
+        "exists": candidate_path.exists(),
+        "sha256": _sha256(candidate_path) if candidate_path.exists() else None,
+        "payload_matches_candidate_audit": loaded == candidate,
+        "under_candidate_dir": _path_is_relative_to(candidate_path, candidate_dir),
+        "inside_audited_locator_dir": _path_is_relative_to(
+            candidate_path, audited_locator_dir
+        ),
+        "ready_for_predicted_geometry_scoring": payload.get(
+            "ready_for_predicted_geometry_scoring"
+        ),
+        "candidate_residue_locator_count": locator_count,
+        "sequence_position_validated_locator_count": validated_count,
+        "active_forbidden_feature_flags": active_forbidden,
+        "critical_violations": sorted(set(violations)),
+        "status": "passed" if not violations else "blocked",
+    }
+
+
+def build_family_panel_source_free_active_site_locator_candidate_integrity_audit(
+    *,
+    candidate_audit_path: Path,
+    candidate_dir: Path,
+    audited_locator_dir: Path,
+) -> dict[str, Any]:
+    candidate_audit = _read_json(candidate_audit_path)
+    row_by_path = {
+        str(row.get("candidate_path")): row
+        for row in candidate_audit.get("row_audits", [])
+        if isinstance(row, dict) and row.get("candidate_path")
+    }
+    integrity_rows = [
+        _candidate_sidecar_integrity_row(
+            candidate=candidate,
+            row_audit=row_by_path.get(str(candidate.get("candidate_path")), {}),
+            candidate_dir=candidate_dir,
+            audited_locator_dir=audited_locator_dir,
+        )
+        for candidate in candidate_audit.get("candidate_sidecars", [])
+        if isinstance(candidate, dict)
+    ]
+    critical_counts = Counter(
+        violation
+        for row in integrity_rows
+        for violation in row.get("critical_violations", [])
+    )
+    passed = [row for row in integrity_rows if row.get("status") == "passed"]
+    scoring_ready = [
+        row
+        for row in integrity_rows
+        if row.get("ready_for_predicted_geometry_scoring") is True
+    ]
+    status = (
+        "source_free_active_site_locator_candidate_integrity_passed_review_only"
+        if integrity_rows and len(passed) == len(integrity_rows) and not scoring_ready
+        else "source_free_active_site_locator_candidate_integrity_blocked_review_only"
+    )
+    return {
+        "artifact_id": (
+            FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_CANDIDATE_INTEGRITY_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_active_site_locator_candidate_integrity_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Integrity audit for review-only source-free locator candidate "
+            "sidecars. This checks file/payload/guardrail consistency and "
+            "does not copy candidates into the audited locator directory."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "candidate_sidecars_written_outside_audited_locator_dir": True,
+            "locator_sidecars_created_in_audited_dir": False,
+            "ready_for_predicted_geometry_scoring": False,
+            "predicted_geometry_scored": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+        },
+        "counts": {
+            "candidate_sidecars_expected": len(integrity_rows),
+            "candidate_sidecar_files_present": sum(
+                1 for row in integrity_rows if row.get("exists")
+            ),
+            "integrity_passed_sidecars": len(passed),
+            "integrity_blocked_sidecars": len(integrity_rows) - len(passed),
+            "payload_matches_candidate_audit": sum(
+                1
+                for row in integrity_rows
+                if row.get("payload_matches_candidate_audit") is True
+            ),
+            "ready_for_predicted_geometry_scoring": len(scoring_ready),
+            "critical_counts": dict(sorted(critical_counts.items())),
+        },
+        "candidate_dir": str(candidate_dir),
+        "audited_locator_dir": str(audited_locator_dir),
+        "row_audits": sorted(
+            integrity_rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "commands": {
+            "rebuild_candidate_audit": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-active-site-locator-candidate-audit"
+            ),
+            "rerun_integrity_audit": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "audit-family-panel-source-free-active-site-locator-candidate-integrity"
+            ),
+            "rerun_schema_audit_after_reviewed_sidecars_are_copied": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "audit-family-panel-source-free-active-site-locator-schema"
+            ),
+        },
+        "source_artifacts": {
+            "candidate_audit": _source_path_record(candidate_audit_path),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(passed)}/{len(integrity_rows)} candidate sidecars pass "
+                "review-only integrity checks; 0 are scoring-ready."
+            ),
+            "next_action": (
+                "Use the review queue for manual scientific review; only after "
+                "approval should any rewritten locator sidecar be copied into "
+                "the audited locator directory and schema-audited."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_free_active_site_locator_candidate_integrity_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Family Panel Source-Free Active-Site Locator Candidate Integrity Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Candidate sidecars expected: {counts['candidate_sidecars_expected']}",
+        f"- Candidate sidecar files present: {counts['candidate_sidecar_files_present']}",
+        f"- Integrity-passed sidecars: {counts['integrity_passed_sidecars']}",
+        f"- Integrity-blocked sidecars: {counts['integrity_blocked_sidecars']}",
+        (
+            "- Ready for predicted-geometry scoring: "
+            f"{counts['ready_for_predicted_geometry_scoring']}"
+        ),
+        f"- Critical counts: {counts['critical_counts']}",
+        "",
+        "## Candidate Sidecars",
+        "",
+        "| row | accession | candidate sidecar | status | locators | validated | violations |",
+        "| --- | --- | --- | --- | ---: | ---: | --- |",
+    ]
+    for row in audit["row_audits"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['source_accession']} | "
+            f"{row['candidate_path']} | {row['status']} | "
+            f"{row['candidate_residue_locator_count']} | "
+            f"{row['sequence_position_validated_locator_count']} | "
+            f"{', '.join(row['critical_violations'])} |"
+        )
+    lines += [
+        "",
+        "## Commands",
+        "",
+        "```bash",
+        audit["commands"]["rerun_integrity_audit"],
+        "```",
+        "",
+        "```bash",
+        audit["commands"]["rerun_schema_audit_after_reviewed_sidecars_are_copied"],
+        "```",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_active_site_locator_candidate_integrity_audit(
+    *,
+    candidate_audit_path: Path,
+    candidate_dir: Path,
+    audited_locator_dir: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_free_active_site_locator_candidate_integrity_audit(
+        candidate_audit_path=candidate_audit_path,
+        candidate_dir=candidate_dir,
+        audited_locator_dir=audited_locator_dir,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_active_site_locator_candidate_integrity_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _manual_locator_review_checklist(review_class: str) -> list[str]:
+    checklist = [
+        "confirm sidecar uses no source prose, label text, EC/Rhea IDs, or fingerprint IDs as predictive features",
+        "confirm residue locators are coordinate/sequence-position evidence rather than review-rationale evidence",
+        "do not copy to the audited locator directory until every blocker on this row is resolved",
+    ]
+    if review_class == "needs_ligand_specificity_review":
+        checklist.insert(
+            1,
+            "confirm selected coordinate ligand is biologically relevant to the intended active site",
+        )
+    if review_class == "needs_split_safe_template_check":
+        checklist.insert(
+            1,
+            "confirm same-accession train/cal template use cannot leak heldout evidence",
+        )
+    if review_class == "needs_uniprot_position_validation":
+        checklist.insert(
+            1,
+            "confirm every candidate residue position maps cleanly to UniProt sequence coordinates",
+        )
+    if review_class == "blocked_needs_new_coordinate_or_nonlabel_locator":
+        checklist.insert(
+            1,
+            "find an alternate source-free locator path before any audited sidecar copy",
+        )
+    return checklist
+
+
+def build_family_panel_source_free_active_site_locator_manual_review_packet(
+    *,
+    candidate_audit_path: Path,
+    candidate_integrity_audit_path: Path,
+    review_queue_path: Path,
+) -> dict[str, Any]:
+    candidate_audit = _read_json(candidate_audit_path)
+    integrity_audit = _read_json(candidate_integrity_audit_path)
+    review_queue = _read_json(review_queue_path)
+    row_audit_by_path = {
+        str(row.get("candidate_path")): row
+        for row in candidate_audit.get("row_audits", [])
+        if isinstance(row, dict) and row.get("candidate_path")
+    }
+    integrity_by_path = {
+        str(row.get("candidate_path")): row
+        for row in integrity_audit.get("row_audits", [])
+        if isinstance(row, dict) and row.get("candidate_path")
+    }
+    packet_rows = []
+    for queue_row in review_queue.get("queue_rows", []):
+        if not isinstance(queue_row, dict):
+            continue
+        candidate_path = str(queue_row.get("candidate_path") or "")
+        integrity_row = integrity_by_path.get(candidate_path, {})
+        row_audit = row_audit_by_path.get(candidate_path, {})
+        review_class = str(queue_row.get("review_class") or "")
+        packet_rows.append(
+            {
+                "priority": queue_row.get("priority"),
+                "entry_id": queue_row.get("entry_id"),
+                "source_accession": queue_row.get("source_accession"),
+                "candidate_path": candidate_path,
+                "candidate_sha256": integrity_row.get("sha256"),
+                "integrity_status": integrity_row.get("status"),
+                "review_class": review_class,
+                "selected_ligand_site": queue_row.get("selected_ligand_site"),
+                "candidate_residue_locator_count": queue_row.get(
+                    "candidate_residue_locator_count"
+                ),
+                "sequence_position_validated_locator_count": queue_row.get(
+                    "sequence_position_validated_locator_count"
+                ),
+                "candidate_blockers": queue_row.get("candidate_blockers", []),
+                "manual_review_checklist": _manual_locator_review_checklist(
+                    review_class
+                ),
+                "next_action": queue_row.get("next_action"),
+                "copy_to_audited_locator_dir_allowed_now": False,
+                "ready_for_predicted_geometry_scoring": False,
+                "candidate_audit_status": row_audit.get("status"),
+                "integrity_critical_violations": integrity_row.get(
+                    "critical_violations", []
+                ),
+            }
+        )
+    packet_rows.sort(
+        key=lambda row: (
+            int(row.get("priority") or 99),
+            _entry_id_sort_key(str(row.get("entry_id") or "")),
+        )
+    )
+    integrity_passed = [
+        row for row in packet_rows if row.get("integrity_status") == "passed"
+    ]
+    priority_1 = [
+        row
+        for row in packet_rows
+        if row.get("review_class") == "ready_for_manual_forbidden_feature_review"
+    ]
+    status = (
+        "source_free_active_site_locator_manual_review_packet_ready_review_only"
+        if packet_rows and len(integrity_passed) == len(packet_rows)
+        else "source_free_active_site_locator_manual_review_packet_blocked_review_only"
+    )
+    return {
+        "artifact_id": FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_MANUAL_REVIEW_PACKET_ID,
+        "schema_version": f"{SCHEMA_VERSION}.source_free_active_site_locator_manual_review_packet",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Manual review packet for source-free active-site locator candidate "
+            "sidecars. It combines candidate extraction, file-integrity checks, "
+            "and review priority without authorizing audited sidecar copies."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "candidate_sidecars_written_outside_audited_locator_dir": True,
+            "locator_sidecars_created_in_audited_dir": False,
+            "copy_to_audited_locator_dir_allowed_now": False,
+            "ready_for_predicted_geometry_scoring": False,
+            "predicted_geometry_scored": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+        },
+        "counts": {
+            "review_rows": len(packet_rows),
+            "integrity_passed_rows": len(integrity_passed),
+            "priority_1_manual_forbidden_feature_review_rows": len(priority_1),
+            "copy_to_audited_locator_dir_allowed_now": 0,
+            "ready_for_predicted_geometry_scoring": 0,
+        },
+        "review_rows": packet_rows,
+        "commands": {
+            "rebuild_candidate_audit": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-active-site-locator-candidate-audit"
+            ),
+            "rerun_integrity_audit": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "audit-family-panel-source-free-active-site-locator-candidate-integrity"
+            ),
+            "rebuild_review_queue": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-active-site-locator-review-queue"
+            ),
+            "rebuild_manual_review_packet": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-active-site-locator-manual-review-packet"
+            ),
+        },
+        "source_artifacts": {
+            "candidate_audit": _source_path_record(candidate_audit_path),
+            "candidate_integrity_audit": _source_path_record(
+                candidate_integrity_audit_path
+            ),
+            "review_queue": _source_path_record(review_queue_path),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(priority_1)} rows can start manual forbidden-feature "
+                "review; no row may be copied or scored yet."
+            ),
+            "next_action": (
+                "Review priority-1 rows first, then rewrite only approved "
+                "source-free locator sidecars into the audited directory and "
+                "rerun the schema audit."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_free_active_site_locator_manual_review_packet_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Family Panel Source-Free Active-Site Locator Manual Review Packet - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Review rows: {counts['review_rows']}",
+        f"- Integrity-passed rows: {counts['integrity_passed_rows']}",
+        (
+            "- Priority-1 manual forbidden-feature review rows: "
+            f"{counts['priority_1_manual_forbidden_feature_review_rows']}"
+        ),
+        (
+            "- Copy to audited locator dir allowed now: "
+            f"{counts['copy_to_audited_locator_dir_allowed_now']}"
+        ),
+        (
+            "- Ready for predicted-geometry scoring: "
+            f"{counts['ready_for_predicted_geometry_scoring']}"
+        ),
+        "",
+        "## Review Rows",
+        "",
+        "| priority | row | accession | class | integrity | sidecar sha256 | next action |",
+        "| ---: | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in audit["review_rows"]:
+        lines.append(
+            f"| {row['priority']} | {row['entry_id']} | {row['source_accession']} | "
+            f"{row['review_class']} | {row['integrity_status']} | "
+            f"{row['candidate_sha256']} | {row['next_action']} |"
+        )
+    lines += [
+        "",
+        "## Commands",
+        "",
+        "```bash",
+        audit["commands"]["rebuild_manual_review_packet"],
+        "```",
+        "",
+        "```bash",
+        audit["commands"]["rerun_integrity_audit"],
+        "```",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_active_site_locator_manual_review_packet(
+    *,
+    candidate_audit_path: Path,
+    candidate_integrity_audit_path: Path,
+    review_queue_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_free_active_site_locator_manual_review_packet(
+        candidate_audit_path=candidate_audit_path,
+        candidate_integrity_audit_path=candidate_integrity_audit_path,
+        review_queue_path=review_queue_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_active_site_locator_manual_review_packet_report(
                 audit
             ),
             encoding="utf-8",
@@ -10622,6 +12305,282 @@ def write_mechanism_feature_embedding_train_cal_split_manifest(
             _render_mechanism_feature_embedding_train_cal_split_manifest_report(
                 audit
             ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _embedding_feature_contract_row(
+    split_record: dict[str, Any],
+    input_by_entry: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    entry_id = str(split_record.get("entry_id") or "")
+    input_row = input_by_entry.get(entry_id, {})
+    return {
+        "entry_id": entry_id,
+        "assigned_embedding_split": split_record.get("assigned_embedding_split"),
+        "active_site_role_graph": {
+            "status": split_record.get("role_graph_status"),
+            "active_site_residue_count": split_record.get(
+                "active_site_residue_count"
+            ),
+        },
+        "reaction_center_template": {
+            "status": split_record.get("reaction_template_status"),
+            "reaction_chemical_operation": input_row.get(
+                "reaction_chemical_operation"
+            ),
+        },
+        "organic_cofactor_scores": {
+            "available_classes": input_row.get(
+                "organic_cofactor_classes_available", []
+            ),
+            "score_values_materialized_in_source_sidecar": True,
+        },
+        "inorganic_cofactor_loci": split_record.get("inorganic_locus_statuses")
+        or {},
+        "feature_guardrails": {
+            "fingerprint_id_excluded_from_features": True,
+            "label_type_excluded_from_features": True,
+            "stratum_excluded_from_features": True,
+            "heldout_row": False,
+        },
+    }
+
+
+def build_mechanism_feature_embedding_feature_contract(
+    *,
+    train_cal_input_manifest_path: Path,
+    train_cal_split_manifest_path: Path,
+) -> dict[str, Any]:
+    input_manifest = _read_json(train_cal_input_manifest_path)
+    split_manifest = _read_json(train_cal_split_manifest_path)
+    input_by_entry = {
+        str(row.get("entry_id")): row
+        for row in input_manifest.get("row_records", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    feature_rows = [
+        _embedding_feature_contract_row(row, input_by_entry)
+        for row in split_manifest.get("split_records", [])
+        if isinstance(row, dict)
+    ]
+    split_counts = Counter(
+        str(row.get("assigned_embedding_split") or "unknown")
+        for row in feature_rows
+    )
+    reaction_status_domain = sorted(
+        {
+            str(row.get("reaction_center_template", {}).get("status") or "")
+            for row in feature_rows
+            if row.get("reaction_center_template", {}).get("status")
+        }
+    )
+    locus_domains: dict[str, list[str]] = {}
+    for row in feature_rows:
+        for locus, status in row.get("inorganic_cofactor_loci", {}).items():
+            locus_domains.setdefault(str(locus), [])
+            locus_domains[str(locus)].append(str(status))
+    locus_domains = {
+        locus: sorted(set(statuses))
+        for locus, statuses in sorted(locus_domains.items())
+    }
+    organic_classes = sorted(
+        {
+            str(cofactor_class)
+            for row in feature_rows
+            for cofactor_class in row.get("organic_cofactor_scores", {}).get(
+                "available_classes", []
+            )
+        }
+    )
+    missing_input_records = [
+        row["entry_id"]
+        for row in feature_rows
+        if row["entry_id"] not in input_by_entry
+    ]
+    return {
+        "artifact_id": MECHANISM_FEATURE_EMBEDDING_FEATURE_CONTRACT_ID,
+        "schema_version": f"{SCHEMA_VERSION}.mechanism_feature_embedding_feature_contract",
+        "created_utc": _utc_now_iso(),
+        "status": "mechanism_feature_embedding_feature_contract_ready_no_model_fit",
+        "scope": (
+            "No-fit feature contract for the mechanism-feature embedding pilot. "
+            "It enumerates train/cal feature rows and permitted feature groups "
+            "while excluding labels and heldout rows from the feature surface."
+        ),
+        "guardrails": {
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_present_in_feature_rows": False,
+            "label_fields_excluded_from_feature_rows": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "review_only": True,
+        },
+        "counts": {
+            "feature_rows": len(feature_rows),
+            "train_rows": split_counts.get("train", 0),
+            "calibration_rows": split_counts.get("calibration", 0),
+            "heldout_excluded_rows": split_manifest.get("counts", {}).get(
+                "heldout_excluded_rows"
+            ),
+            "feature_groups": 4,
+            "numeric_feature_fields": 1,
+            "categorical_feature_fields": 6,
+            "organic_cofactor_classes": len(organic_classes),
+            "inorganic_locus_classes": len(locus_domains),
+            "missing_input_records": len(missing_input_records),
+        },
+        "feature_groups": [
+            {
+                "name": "active_site_role_graph",
+                "fields": ["status", "active_site_residue_count"],
+                "source": "mechanism_feature_active_site_role_graph_sidecar",
+                "notes": (
+                    "Ready split rows require role_graph_status=ok; status is "
+                    "retained only as a guardrail field."
+                ),
+            },
+            {
+                "name": "reaction_center_template",
+                "fields": ["status", "reaction_chemical_operation"],
+                "source": "mechanism_feature_reaction_center_template_sidecar",
+                "notes": (
+                    "Fingerprint-template chemistry remains non-row-specific "
+                    "and must not be interpreted as source-backed reaction evidence."
+                ),
+            },
+            {
+                "name": "organic_cofactor_scores",
+                "fields": [f"{cofactor_class}_selected_score" for cofactor_class in organic_classes],
+                "source": "selected_organic_cofactor_sidecar",
+                "notes": "Scores are materialized in the source sidecar; this contract records availability only.",
+            },
+            {
+                "name": "inorganic_cofactor_loci",
+                "fields": sorted(locus_domains),
+                "source": "metal/cobalamin/radical-SAM/Fe-S locus sidecars",
+                "status_domains": locus_domains,
+            },
+        ],
+        "excluded_fields_as_features": [
+            "entry_id",
+            "fingerprint_id",
+            "label_type",
+            "stratum",
+            "split_assignment",
+            "assigned_embedding_split",
+            "source_artifact_paths",
+            "heldout_labels_or_outcomes",
+        ],
+        "categorical_domains": {
+            "reaction_template_status": reaction_status_domain,
+            "organic_cofactor_classes": organic_classes,
+            "inorganic_loci": locus_domains,
+        },
+        "feature_rows": sorted(
+            feature_rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "blockers_before_model_fit": [
+            "explicit_authorization_required_before_model_weights_are_fit",
+            "feature_vector_materializer_not_written",
+            "directed_electron_or_proton_transfer_edges_not_materialized",
+            "row_specific_bond_change_mapping_not_materialized",
+            "heldout_final_evaluation_must_remain_once_only",
+        ],
+        "source_artifacts": {
+            "train_cal_input_manifest": _source_path_record(train_cal_input_manifest_path),
+            "train_cal_split_manifest": _source_path_record(train_cal_split_manifest_path),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(feature_rows)} train/cal rows have a label-stripped "
+                "feature-row contract; no model was fit."
+            ),
+            "next_action": (
+                "If authorized, implement a materializer that consumes only these "
+                "feature fields, fits on train rows, selects on calibration rows, "
+                "and evaluates heldout once."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_embedding_feature_contract_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism-Feature Embedding Feature Contract - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Feature rows: {counts['feature_rows']}",
+        f"- Train rows: {counts['train_rows']}",
+        f"- Calibration rows: {counts['calibration_rows']}",
+        f"- Heldout excluded rows: {counts['heldout_excluded_rows']}",
+        f"- Missing input records: {counts['missing_input_records']}",
+        "",
+        "## Feature Groups",
+        "",
+        "| group | fields | source |",
+        "| --- | --- | --- |",
+    ]
+    for group in audit["feature_groups"]:
+        lines.append(
+            f"| {group['name']} | {', '.join(group.get('fields', []))} | "
+            f"{group.get('source')} |"
+        )
+    lines += [
+        "",
+        "## Excluded As Features",
+        "",
+    ]
+    for field in audit["excluded_fields_as_features"]:
+        lines.append(f"- {field}")
+    lines += [
+        "",
+        "## Blockers Before Model Fit",
+        "",
+    ]
+    for blocker in audit["blockers_before_model_fit"]:
+        lines.append(f"- {blocker}")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_embedding_feature_contract(
+    *,
+    train_cal_input_manifest_path: Path,
+    train_cal_split_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_embedding_feature_contract(
+        train_cal_input_manifest_path=train_cal_input_manifest_path,
+        train_cal_split_manifest_path=train_cal_split_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_embedding_feature_contract_report(audit),
             encoding="utf-8",
         )
     return audit

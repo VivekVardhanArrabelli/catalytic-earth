@@ -49,7 +49,7 @@
     "priority_cofactor_confounded_oos_rows": 6,
     "priority_nearest_hits": 6
   },
-  "created_utc": "2026-06-01T07:38:02Z",
+  "created_utc": "2026-06-01T12:38:58Z",
   "foldseek_result_files": {
     "all_heldout_vs_atlas": {
       "exists": true,

@@ -1,0 +1,308 @@
+{
+  "artifact_id": "v3_current_docs_artifact_reference_check_current702_20260601",
+  "counts": {
+    "ignored_references": 7,
+    "missing_references": 0,
+    "references_checked": 371
+  },
+  "created_utc": "2026-06-01T13:20:49Z",
+  "docs_checked": [
+    "docs/artifact_index.md",
+    "docs/project_state.md",
+    "docs/decision_log.md",
+    "docs/agent_runbook.md"
+  ],
+  "guardrails": {
+    "artifacts_modified_by_check": false,
+    "docs_only_reference_check": true,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false
+  },
+  "ignored_references": [
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "docs/*.md"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "work/*.md"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/v3_*.json"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "glob_pattern",
+      "reference": "artifacts/v3_*.jsonl"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "template_placeholder",
+      "reference": "artifacts/v3_<topic>_<scope>_<date>.json"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "template_placeholder",
+      "reference": "work/<topic>_<date>.md"
+    },
+    {
+      "doc": "docs/agent_runbook.md",
+      "reason": "template_placeholder",
+      "reference": "tests/test_<topic>.py"
+    }
+  ],
+  "interpretation": {
+    "headline": "0 missing concrete references across current docs after excluding templates/globs.",
+    "next_action": "Keep this check focused on durable current docs; work/handoff.md intentionally contains historical paths and globs."
+  },
+  "missing_references": [],
+  "sample_checked_references": [
+    {
+      "checked_path": "docs/project_state.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/project_state.md"
+    },
+    {
+      "checked_path": "docs/decision_log.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/decision_log.md"
+    },
+    {
+      "checked_path": "docs/agent_runbook.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/agent_runbook.md"
+    },
+    {
+      "checked_path": "data/registries/curated_mechanism_labels.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "data/registries/curated_mechanism_labels.json"
+    },
+    {
+      "checked_path": "data/registries/mechanism_fingerprints.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "data/registries/mechanism_fingerprints.json"
+    },
+    {
+      "checked_path": "data/registries/mechanism_ontology.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "data/registries/mechanism_ontology.json"
+    },
+    {
+      "checked_path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json"
+    },
+    {
+      "checked_path": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_sequence_distance_holdout_eval_1025_current702_split_assignment_repaired_20260525.json"
+    },
+    {
+      "checked_path": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_mechanism_fingerprint_v1_coherence_audit_702.json"
+    },
+    {
+      "checked_path": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_mechanism_prediction_oos_and_diversity_eval_contract_702.json"
+    },
+    {
+      "checked_path": "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_wave1_2_decoder_join_confound_audit_702_20260528.json"
+    },
+    {
+      "checked_path": "work/wave1_2_decoder_join_confound_audit_702_20260528.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "work/wave1_2_decoder_join_confound_audit_702_20260528.md"
+    },
+    {
+      "checked_path": "artifacts/v3_wave1_1_model_by_cell_report_702_20260528.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_wave1_1_model_by_cell_report_702_20260528.json"
+    },
+    {
+      "checked_path": "artifacts/v3_wave1_representation_shootout_result_card_20260526.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_wave1_representation_shootout_result_card_20260526.json"
+    },
+    {
+      "checked_path": "docs/wave1_representation_shootout.md",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "docs/wave1_representation_shootout.md"
+    },
+    {
+      "checked_path": "artifacts/v3_sequence_nn_metrics_current702_20260525.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_sequence_nn_metrics_current702_20260525.json"
+    },
+    {
+      "checked_path": "artifacts/v3_mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_fold_level_novelty_signal_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_manifest_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_manifest_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_fold_only_train_cal_oos_negative_surface_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_fold_only_train_cal_oos_negative_surface_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_fold_augmented_train_cal_oos_remaining_blocker_clearance_attempts_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_predicted_atlas_geometry_novelty_operating_grid_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_predicted_atlas_geometry_novelty_operating_grid_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_selected_organic_cofactor_sidecar_schema_audit_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_selected_organic_cofactor_sidecar_schema_audit_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_mechanism_feature_inorganic_cofactor_locus_schema_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_mechanism_feature_inorganic_cofactor_locus_schema_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_current702_20260601.json"
+    },
+    {
+      "checked_path": "artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_schema_audit_current702_20260601.json",
+      "doc": "docs/artifact_index.md",
+      "exists": true,
+      "reference": "artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_schema_audit_current702_20260601.json"
+    }
+  ],
+  "schema_version": "current_docs_artifact_reference_check.v1",
+  "scope": "Checks current durable docs for backtick-referenced repo paths, excluding intentional globs and template placeholders.",
+  "status": "current_docs_artifact_references_passed"
+}

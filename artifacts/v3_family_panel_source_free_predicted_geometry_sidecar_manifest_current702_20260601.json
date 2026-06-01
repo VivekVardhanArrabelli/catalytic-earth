@@ -38,7 +38,7 @@
     "source_free_geometry_ready_rows": 0,
     "targeted_rows": 10
   },
-  "created_utc": "2026-06-01T11:42:53Z",
+  "created_utc": "2026-06-01T12:48:47Z",
   "guardrails": {
     "coordinates_or_large_models_downloaded": false,
     "entry_names_ec_rhea_or_labels_used_as_predictive_features": false,

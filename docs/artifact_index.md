@@ -80,6 +80,7 @@ Status terms:
 | `artifacts/v3_mechanism_feature_inorganic_cofactor_locus_completion_audit_current702_20260601.json` | Are all schema-named metal/cobalamin/radical-SAM/Fe-S locus sidecars materialized and schema-passing? | Current completion audit; 4/4 classes materialized, zero critical violations, still review-only |
 | `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json` | Which in-distribution rows can feed a no-fit train/cal-only mechanism-feature embedding pilot? | Current input manifest; 562 candidate rows, 524 minimal feature bundles, no model fit and heldout excluded |
 | `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json` | Which ready mechanism-feature rows are assigned to train versus calibration for a future pilot? | Current deterministic split; 418 train, 106 calibration, no model fit and heldout excluded |
+| `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json` | Which label-stripped feature rows and fields may a future mechanism-feature embedding pilot consume? | Current no-fit feature contract; 524 train/cal rows, labels excluded, heldout excluded |
 | `artifacts/v3_family_set_expansion_targets_current702_20260601.json` | Which targeted family expansions de-risk the 8-fingerprint bound without imports? | Proposal-only; no label/import mutation |
 | `artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json` | What frozen evidence supports the highest-value glycyl-radical/thiamine-lyase boundary panel? | Review-only evidence packet; no label/import mutation |
 | `artifacts/v3_family_panel_evidence_packet_thiol_disulfide_oxidoreductase_isomerase_boundary_current702_20260601.json` | What frozen evidence supports the thiol/disulfide oxidoreductase redox boundary panel? | Review-only evidence packet; no label/import mutation |
@@ -107,6 +108,10 @@ Status terms:
 | `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json` | Do any source-free locator sidecars currently pass the schema? | Current schema audit; 0/10 locator sidecars present, so no review row is ready for predicted-geometry scoring |
 | `artifacts/v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.json` | Which source-free locator sidecar files should be created next, and under which allowed policy candidates? | Current materialization plan; 10 planned sidecars, no locators created, no predicted geometry scored |
 | `artifacts/v3_family_panel_source_free_active_site_locator_template_bundle_current702_20260601.json` | Which review-only locator templates are staged for the 10 source-free predicted-geometry blockers? | Current template bundle; 10 sidecar shells outside the audited locator directory, none scoring-ready |
+| `artifacts/v3_family_panel_source_free_active_site_locator_candidate_audit_current702_20260601.json` | Which coordinate-only locator candidates can be staged from the source-backed selected structures? | Current review-only candidate audit; 8/10 rows have >=2 candidate locators, 6 have UniProt-position mapping, 0 are approved for scoring |
+| `artifacts/v3_family_panel_source_free_active_site_locator_candidate_integrity_audit_current702_20260601.json` | Do the staged locator candidate sidecars match the audit and preserve review-only guardrails? | Current integrity audit; 10/10 staged sidecars pass file/payload/guardrail checks, 0 scoring-ready |
+| `artifacts/v3_family_panel_source_free_active_site_locator_review_queue_current702_20260601.json` | Which candidate sidecars should be reviewed first before any audited locator copy? | Current review-only queue; 3 priority-1 rows, 0 scoring-ready |
+| `artifacts/v3_family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601.json` | What exact row packet should manual locator review use next? | Current review-only packet; combines candidate hashes, integrity status, priority class, and per-row checklist; 0 copy-ready |
 | `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json` | What FMO subtype and hard-negative packet is ready after the fold-panel readout? | Current review-only packet; repaired `m_csa:132` remains secondary-only; no primary FMO import/promotion authorized |
 
 ## Geometry And Active-Site Evidence
@@ -162,6 +167,7 @@ Status terms:
 | `artifacts/v3_artifact_storage_inventory_1025.json` | What artifacts exist and how large are they? | Trusted inventory |
 | `artifacts/v3_artifact_migration_execution_1025.json` | What migration/removal is authorized? | Fail-closed; authorizes no removal |
 | `artifacts/v3_artifact_admission_guard_1025.json` | Are current large artifacts classified? | Trusted guard |
+| `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json` | Do current durable docs point only to existing concrete repo paths? | Current maintenance check; zero missing concrete references after excluding templates/globs |
 
 ## Historical Or Confounded Artifacts
 

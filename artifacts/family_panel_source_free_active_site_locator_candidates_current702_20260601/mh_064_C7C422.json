@@ -1,0 +1,92 @@
+{
+  "artifact_id": "v3_family_panel_source_free_active_site_locator_candidate_audit_current702_20260601_candidate",
+  "candidate_blockers": [
+    "candidate_sidecar_not_in_audited_locator_dir",
+    "insufficient_candidate_residue_locators",
+    "manual_review_required_before_copy_to_audited_dir",
+    "no_nonwater_ligand_or_metal_site_detected"
+  ],
+  "candidate_guardrails": {
+    "candidate_only": true,
+    "copied_to_audited_locator_dir": false,
+    "predicted_geometry_scored": false,
+    "source_text_or_label_fields_used_as_predictive_features": false,
+    "written_outside_audited_locator_dir": true
+  },
+  "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_064_C7C422.json",
+  "coordinate_candidate_evidence": {
+    "alphafolddb_predicted_cif": {
+      "coordinate_role": "alphafolddb_predicted_cif",
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-C7C422-F1-model_v6.cif",
+      "sha256": "3f2b5927b626c5328eb214efc24b10924ec120c9c19a0f7c70e021e609caaa06",
+      "size_bytes": 244502
+    },
+    "extraction": {
+      "blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected",
+        "insufficient_candidate_residue_locators"
+      ],
+      "candidate_ligand_sites": [],
+      "candidate_residue_locators": [],
+      "ligand_site_count": 0,
+      "selected_ligand_contact_count": 0,
+      "selected_ligand_site": null,
+      "sequence_position_mapping_records": [
+        {
+          "auth_seq_align_beg": 49,
+          "auth_seq_align_end": 270,
+          "chain_id": "A",
+          "db_accession": "C7C422",
+          "db_align_beg": 49,
+          "db_align_end": 270,
+          "seq_align_beg": 2,
+          "seq_align_end": 223
+        }
+      ],
+      "sequence_position_validated_locator_count": 0,
+      "status": "candidate_contacts_blocked_minimum_not_met"
+    },
+    "selected_pdb_cif": {
+      "coordinate_role": "selected_pdb_cif",
+      "exists": true,
+      "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3PG4.cif",
+      "sha256": "77372ff429b15fc7753047610edfb1d908fb72379dbfa479a70da64201c171ea",
+      "size_bytes": 230180
+    },
+    "selected_structure_id": "3PG4"
+  },
+  "created_utc": "2026-06-01T12:56:53Z",
+  "entry_id": "mh_064",
+  "forbidden_feature_audit": {
+    "benchmark_role": false,
+    "ec_identifiers": false,
+    "entry_name": false,
+    "fingerprint_id": false,
+    "label_type": false,
+    "mechanism_text": false,
+    "panel_id_as_feature": false,
+    "rhea_identifiers": false,
+    "source_prose": false,
+    "source_review_rationale": false
+  },
+  "locator_evidence_class": null,
+  "locator_policy": "structure_local_ligand_geometry_without_source_text_candidate_requires_validator",
+  "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+  "rank": 5,
+  "ready_for_predicted_geometry_scoring": false,
+  "residue_locators": [],
+  "schema_version": "northstar_next_levers.v0.source_free_active_site_locator_candidate",
+  "source_accession": "uniprot:C7C422",
+  "source_free_active_site_locator_status": "candidate_contacts_blocked_minimum_not_met",
+  "split_protection": {
+    "allowed_for_threshold_selection": false,
+    "allowed_for_training": false,
+    "ready_for_label_import": false,
+    "review_only": true,
+    "same_accession_current702_geometry_rows": []
+  },
+  "status": "candidate_sidecar_not_ready_for_scoring"
+}

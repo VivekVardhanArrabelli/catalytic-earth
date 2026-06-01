@@ -1,0 +1,267 @@
+{
+  "artifact_id": "v3_family_panel_source_free_active_site_locator_review_queue_current702_20260601",
+  "commands": {
+    "rebuild_candidate_audit": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-active-site-locator-candidate-audit",
+    "rebuild_review_queue": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-active-site-locator-review-queue",
+    "rerun_schema_audit_after_reviewed_sidecars_are_copied": "PYTHONPATH=src python -m catalytic_earth.cli audit-family-panel-source-free-active-site-locator-schema"
+  },
+  "counts": {
+    "blocked_needs_new_coordinate_or_nonlabel_locator": 2,
+    "needs_ligand_specificity_review": 1,
+    "needs_split_safe_template_check": 2,
+    "needs_uniprot_position_validation": 2,
+    "queue_rows": 10,
+    "ready_for_manual_forbidden_feature_review": 3,
+    "review_class_counts": {
+      "blocked_needs_new_coordinate_or_nonlabel_locator": 2,
+      "needs_ligand_specificity_review": 1,
+      "needs_split_safe_template_check": 2,
+      "needs_uniprot_position_validation": 2,
+      "ready_for_manual_forbidden_feature_review": 3
+    }
+  },
+  "created_utc": "2026-06-01T13:00:07Z",
+  "guardrails": {
+    "candidate_sidecars_written_outside_audited_locator_dir": true,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "locator_sidecars_created_in_audited_dir": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "ready_for_predicted_geometry_scoring": false,
+    "review_only": true
+  },
+  "interpretation": {
+    "headline": "3 candidate rows are ready for manual forbidden-feature review; no row is scoring-ready.",
+    "next_action": "Start with priority-1 rows, review the candidate sidecar contents, and copy only approved sidecars into the audited locator directory."
+  },
+  "queue_rows": [
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_066_P52699.json",
+      "candidate_residue_locator_count": 3,
+      "entry_id": "mh_066",
+      "next_action": "Manual review may start; copy to the audited locator directory only after forbidden-feature and scientific checks pass.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "503",
+        "structure_id": "1DD6"
+      },
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "uniprot:P52699"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_073_P01112.json",
+      "candidate_residue_locator_count": 2,
+      "entry_id": "mh_073",
+      "next_action": "Manual review may start; copy to the audited locator directory only after forbidden-feature and scientific checks pass.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "168",
+        "structure_id": "121P"
+      },
+      "sequence_position_validated_locator_count": 2,
+      "source_accession": "uniprot:P01112"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
+      "candidate_residue_locator_count": 8,
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "next_action": "Manual review may start; copy to the audited locator directory only after forbidden-feature and scientific checks pass.",
+      "priority": 1,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "ready_for_manual_forbidden_feature_review",
+      "selected_ligand_site": {
+        "atom_count": 8,
+        "chain_id": "A",
+        "comp_id": "SF4",
+        "residue_id": "501",
+        "structure_id": "8VPO"
+      },
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "uniprot:A0A1M6T2I7"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "coordinate_ligand_specificity_review_required",
+        "manual_review_required_before_copy_to_audited_dir"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/external_glycoside_panel_Q6NSJ0.json",
+      "candidate_residue_locator_count": 8,
+      "entry_id": "external_glycoside_panel",
+      "next_action": "Review whether the selected coordinate ligand is biologically relevant before any audited sidecar copy.",
+      "priority": 2,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_ligand_specificity_review",
+      "selected_ligand_site": {
+        "atom_count": 4,
+        "chain_id": "B",
+        "comp_id": "ACT",
+        "residue_id": "805",
+        "structure_id": "7QQF"
+      },
+      "sequence_position_validated_locator_count": 8,
+      "source_accession": "uniprot:Q6NSJ0"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "split_safe_train_cal_template_check_required"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_067_P00918.json",
+      "candidate_residue_locator_count": 3,
+      "entry_id": "mh_067",
+      "next_action": "Verify same-accession train/cal template use is split-safe before any audited sidecar copy.",
+      "priority": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_split_safe_template_check",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "262",
+        "structure_id": "12CA"
+      },
+      "sequence_position_validated_locator_count": 3,
+      "source_accession": "uniprot:P00918"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "split_safe_train_cal_template_check_required"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_068_P15289.json",
+      "candidate_residue_locator_count": 4,
+      "entry_id": "mh_068",
+      "next_action": "Verify same-accession train/cal template use is split-safe before any audited sidecar copy.",
+      "priority": 3,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_split_safe_template_check",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "MG",
+        "residue_id": "603",
+        "structure_id": "1AUK"
+      },
+      "sequence_position_validated_locator_count": 4,
+      "source_accession": "uniprot:P15289"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_065_Q79MP6.json",
+      "candidate_residue_locator_count": 3,
+      "entry_id": "mh_065",
+      "next_action": "Validate candidate sequence positions against UniProt mapping before any audited sidecar copy.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_uniprot_position_validation",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "A",
+        "comp_id": "ZN",
+        "residue_id": "500",
+        "structure_id": "1DDK"
+      },
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "uniprot:Q79MP6"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "uniprot_sequence_position_validation_required"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_072_P0A6P9.json",
+      "candidate_residue_locator_count": 3,
+      "entry_id": "mh_072",
+      "next_action": "Validate candidate sequence positions against UniProt mapping before any audited sidecar copy.",
+      "priority": 4,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "needs_uniprot_position_validation",
+      "selected_ligand_site": {
+        "atom_count": 1,
+        "chain_id": "C",
+        "comp_id": "MG",
+        "residue_id": "1429",
+        "structure_id": "1E9I"
+      },
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "uniprot:P0A6P9"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_064_C7C422.json",
+      "candidate_residue_locator_count": 0,
+      "entry_id": "mh_064",
+      "next_action": "Find an alternate source-free locator path; current selected coordinate has fewer than two candidate locators.",
+      "priority": 5,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_needs_new_coordinate_or_nonlabel_locator",
+      "selected_ligand_site": null,
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "uniprot:C7C422"
+    },
+    {
+      "candidate_blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "insufficient_candidate_residue_locators",
+        "manual_review_required_before_copy_to_audited_dir",
+        "no_nonwater_ligand_or_metal_site_detected"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+      "candidate_residue_locator_count": 0,
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "next_action": "Find an alternate source-free locator path; current selected coordinate has fewer than two candidate locators.",
+      "priority": 5,
+      "ready_for_predicted_geometry_scoring": false,
+      "review_class": "blocked_needs_new_coordinate_or_nonlabel_locator",
+      "selected_ligand_site": null,
+      "sequence_position_validated_locator_count": 0,
+      "source_accession": "uniprot:Q59490"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_active_site_locator_review_queue",
+  "scope": "Review queue for the source-free active-site locator candidates. This ranks candidate sidecars for manual validation but does not copy anything into the audited locator directory.",
+  "source_artifacts": {
+    "candidate_audit": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_active_site_locator_candidate_audit_current702_20260601.json",
+      "sha256": "b131401a9a647ebcb52aadbc1caeae8fa0840a0c240f473cf00eba432119b225"
+    }
+  },
+  "status": "source_free_active_site_locator_review_queue_ready_review_only"
+}

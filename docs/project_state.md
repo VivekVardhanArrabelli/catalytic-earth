@@ -173,6 +173,28 @@ artifacts first.
   all 10 locator sidecar shells outside the audited locator directory; none are
   scoring-ready until validated source-free residue locators are added and the
   schema audit is rerun.
+- A review-only source-free locator candidate audit now stages coordinate-only
+  contact candidates outside the audited locator directory. Eight of the 10
+  rows have at least two selected-structure ligand/metal contact candidates;
+  Q59490 and C7C422 remain blocked by no non-water/non-metal ligand candidate
+  in the selected PDB coordinate. Six candidate rows have all candidate
+  positions prevalidated against matching `_struct_ref_seq` UniProt mapping;
+  Q79MP6 and P0A6P9 still need position validation. All 10 candidates remain
+  not ready for predicted-geometry scoring until manual review,
+  forbidden-feature review, and any split-safe template checks pass.
+- A companion candidate-integrity audit checks those 10 staged sidecar files
+  against the candidate audit payload and review-only guardrails. All 10 pass
+  file/payload/guardrail integrity checks, remain outside the audited locator
+  directory, and still have 0 scoring-ready rows.
+- A companion source-free locator review queue ranks those candidates: three
+  rows (`mh_066`, `mh_073`, and `secondary_probe::radical_sam_enzyme`) are
+  priority-1 for manual forbidden-feature review; Q6NSJ0 needs ligand
+  specificity review, P00918/P15289 need split-safe template checks,
+  Q79MP6/P0A6P9 need position validation, and Q59490/C7C422 need a new
+  source-free locator path or alternate coordinate.
+- The manual locator review packet now combines candidate sidecar SHA-256s,
+  integrity status, priority classes, and per-row review checklists. It is the
+  exact next human-review artifact; no row is copy-ready or scoring-ready.
 - A review-only FMO subtype/hard-negative packet keeps `m_csa:131` and repaired
   `m_csa:132` as secondary-probe support, `m_csa:551` and `m_csa:973` as future
   support only, and `m_csa:750` as radical flavin/Fe-S boundary negative. No
@@ -229,6 +251,12 @@ artifacts first.
   mechanism-feature rows into 418 train rows and 106 calibration rows across six
   strata. Heldout remains excluded, 38 train/cal candidates remain blocked by
   role-graph readiness, and no model weights or thresholds are fit.
+- A no-fit mechanism-feature embedding feature contract now strips labels from
+  the ready train/cal feature-row surface. It exposes 524 feature rows with 418
+  train and 106 calibration assignments, records allowed feature groups
+  (role-graph, reaction-template, organic cofactor, and inorganic cofactor
+  loci), excludes heldout rows, and keeps model fitting explicitly blocked until
+  authorized.
 - ProtT5 and SaProt have only NN/cosine-style local standardized exports today.
   Matched logistic-head reruns are blocked until raw local sidecars or weights
   exist; do not download large models for this by default.
@@ -326,6 +354,7 @@ artifacts first.
 - `artifacts/v3_mechanism_feature_inorganic_cofactor_locus_completion_audit_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`
+- `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json`
 - `artifacts/v3_fold_augmented_family_panel_source_check_m_csa267_current702_20260601.json`
@@ -344,6 +373,8 @@ artifacts first.
 - `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.json`
 - `artifacts/v3_family_panel_source_free_active_site_locator_template_bundle_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_active_site_locator_candidate_audit_current702_20260601.json`
+- `artifacts/v3_family_panel_source_free_active_site_locator_review_queue_current702_20260601.json`
 - `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`
 - `artifacts/v3_m_csa497_label_revision_702_20260527.json`
 - `artifacts/v3_m_csa750_label_revision_702_20260527.json`

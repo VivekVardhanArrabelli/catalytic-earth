@@ -1,6 +1,6 @@
 # Family Panel Source-Free Predicted-Geometry Sidecar Manifest - current702
 
-Run: 2026-06-01T11:42:53Z
+Run: 2026-06-01T12:48:47Z
 
 Review-only readiness manifest for materializing source-free predicted active-site geometry sidecars for the 10 family-panel rows that already have source-backed AFDB-vs-predicted-atlas Foldseek/TM scores.
 

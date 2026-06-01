@@ -163,6 +163,41 @@ stages the 10 planned locator sidecar shells outside the audited locator
 directory. The templates are review-only, contain no residue locators, create no
 audited sidecars, and are not ready for predicted-geometry scoring.
 
+Candidate-audit follow-up: a coordinate-only candidate extractor now stages
+review-only locator candidates outside the audited locator directory. It uses
+only selected mmCIF atom coordinates, residue/ligand comp IDs, atom names,
+distances, and `_struct_ref_seq` accession mappings; no source prose, labels,
+EC/Rhea IDs, or mechanism text are admitted as predictive features. Eight rows
+have at least two candidate locators from selected-structure ligand/metal
+contacts, and six of those rows have all candidate positions prevalidated
+against matching UniProt mapping metadata. Q59490 and C7C422 remain blocked
+because their selected PDB coordinates expose no non-water/non-metal ligand
+candidate under this extractor; Q79MP6 and P0A6P9 still need UniProt
+position-validation review. No candidate is scoring-ready: all still require
+manual forbidden-feature review, and `mh_067`/`mh_068` need a split-safe
+template check before any sidecar can be copied to the audited locator
+directory.
+
+Candidate-integrity follow-up: audit the staged locator candidate sidecar files
+against the candidate-audit payload before manual review. All 10 candidate files
+are present, payload-matched, outside the audited locator directory, and
+guardrail-clean; 0 are scoring-ready. This keeps the next step as manual
+scientific/forbidden-feature review rather than predicted-geometry scoring.
+
+Review-queue follow-up: rank the candidate sidecars by the next validation
+blocker. Three rows are priority-1 for manual forbidden-feature review
+(`mh_066`, `mh_073`, and `secondary_probe::radical_sam_enzyme`). Q6NSJ0 needs
+ligand-specificity review because the selected ligand candidate is acetate;
+P00918/P15289 need split-safe template checks; Q79MP6/P0A6P9 still need UniProt
+position-validation review; Q59490/C7C422 require a new source-free locator path
+or alternate coordinate. The queue still creates no audited locator sidecars and
+scores no predicted geometry.
+
+Manual-review packet follow-up: combine candidate sidecar SHA-256s, integrity
+status, review priority, and per-row checklists into a single handoff artifact.
+The packet is ready for human review with 10 integrity-passed rows, three
+priority-1 manual review rows, 0 copy-ready rows, and 0 scoring-ready rows.
+
 Artifacts:
 `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`,
 `work/fold_augmented_family_panel_research_readout_current702_20260601.md`,
@@ -200,6 +235,14 @@ Artifacts:
 `work/family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.md`,
 `artifacts/v3_family_panel_source_free_active_site_locator_template_bundle_current702_20260601.json`,
 `work/family_panel_source_free_active_site_locator_template_bundle_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_active_site_locator_candidate_audit_current702_20260601.json`,
+`work/family_panel_source_free_active_site_locator_candidate_audit_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_active_site_locator_candidate_integrity_audit_current702_20260601.json`,
+`work/family_panel_source_free_active_site_locator_candidate_integrity_audit_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_active_site_locator_review_queue_current702_20260601.json`,
+`work/family_panel_source_free_active_site_locator_review_queue_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601.json`,
+`work/family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601.md`,
 `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`,
 `work/fmo_subtype_hard_negative_packet_current702_20260601.md`.
 
@@ -425,6 +468,15 @@ six strata. The split manifest carries heldout only as an excluded count, record
 38 blocked train/cal candidates by role-graph readiness class, and still does
 not fit weights, select thresholds, or evaluate heldout rows.
 
+Feature-contract follow-up: add a no-fit, label-stripped feature contract for
+the 524 ready train/cal rows. It records four allowed feature groups
+(active-site role graph, reaction-center template, organic cofactor scores, and
+inorganic cofactor loci), strips `fingerprint_id`, `label_type`, stratum, and
+split fields out of the feature-row surface, and keeps heldout absent from
+feature rows. It is a materialization contract only; feature-vector code, model
+weights, thresholds, directed electron/proton-transfer edges, and row-specific
+bond-change mappings remain blocked until explicitly authorized.
+
 Artifacts:
 `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
 `work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
@@ -453,7 +505,9 @@ Artifacts:
 `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`,
 `work/mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.md`,
 `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`,
-`work/mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.md`.
+`work/mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`,
+`work/mechanism_feature_embedding_feature_contract_current702_20260601.md`.
 
 ## 2026-06-01: Thiol/Disulfide Redox Boundary Panel Packet Added
 

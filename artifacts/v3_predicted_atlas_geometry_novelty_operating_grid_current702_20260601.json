@@ -92,7 +92,7 @@
     "row_scores": 126,
     "signals": 10
   },
-  "created_utc": "2026-06-01T12:14:23Z",
+  "created_utc": "2026-06-01T12:49:30Z",
   "guardrails": {
     "heldout_threshold_tuning_for_deployment": false,
     "imports_or_promotions_performed": false,
@@ -512,7 +512,7 @@
   "source_artifacts": {
     "predicted_atlas_variants": {
       "path": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
-      "sha256": "f66bb6d993f5c390434f149cce4b81b5d0b1a95857c05c427ce260850687505f"
+      "sha256": "2e3c2aab1e697c084e0ace41fea3bc01c2b2bd72ff9160bb18f5803d43e3408a"
     }
   },
   "status": "predicted_atlas_geometry_novelty_operating_grid_ready_review_only"
