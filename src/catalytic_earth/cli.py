@@ -84,7 +84,11 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_materialization_priority,
     write_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit,
     write_mechanism_feature_row_specific_bond_change_p0_extraction_work_package,
+    write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar,
+    write_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue,
+    write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit,
     write_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness,
+    write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest,
     write_mechanism_feature_row_specific_bond_change_schema,
     write_mechanism_feature_sidecar_schema_audit,
     write_predicted_atlas_geometry_novelty_operating_grid,
@@ -11764,6 +11768,88 @@ def cmd_audit_mechanism_feature_row_specific_bond_change_p0_extraction_package_s
         f"{args.out} (status: {audit.get('status')}, "
         "critical violations: "
         f"{counts.get('strict_audit_critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
+    args: argparse.Namespace,
+) -> int:
+    sidecar = (
+        write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar(
+            worksheet_path=Path(args.worksheet),
+            source_evidence_schema_path=Path(args.source_evidence_schema),
+            graph_path=Path(args.graph),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = sidecar.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 source-evidence sidecar to "
+        f"{args.out} (status: {sidecar.get('status')}, "
+        f"draft rows: {counts.get('sidecar_rows')}, "
+        f"approved rows: {counts.get('approved_rows')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict(
+    args: argparse.Namespace,
+) -> int:
+    audit = (
+        write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit(
+            sidecar_path=Path(args.sidecar),
+            source_evidence_schema_path=Path(args.source_evidence_schema),
+            worksheet_path=Path(args.worksheet),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 source-evidence sidecar strict "
+        f"audit to {args.out} (status: {audit.get('status')}, "
+        "critical violations: "
+        f"{counts.get('strict_audit_critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue(
+    args: argparse.Namespace,
+) -> int:
+    queue = (
+        write_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue(
+            sidecar_path=Path(args.sidecar),
+            strict_audit_path=Path(args.strict_audit),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+        )
+    )
+    counts = queue.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 source-evidence review queue to "
+        f"{args.out} (status: {queue.get('status')}, "
+        f"queue rows: {counts.get('queue_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest(
+    args: argparse.Namespace,
+) -> int:
+    manifest = write_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest(
+        review_queue_path=Path(args.review_queue),
+        source_graph_readiness_path=Path(args.source_graph_readiness),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = manifest.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 Rhea lookup manifest to "
+        f"{args.out} (status: {manifest.get('status')}, "
+        f"lookup rows: {counts.get('rhea_lookup_rows')})"
     )
     return 0
 
@@ -24509,6 +24595,181 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_extraction_strict.set_defaults(
         func=(
             cmd_audit_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict
+        )
+    )
+
+    row_specific_bond_change_p0_source_sidecar = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-source-evidence-sidecar",
+        help=(
+            "build a draft source-evidence sidecar for P0 row-specific "
+            "bond-change extraction without feature-contract consumption"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar.add_argument(
+        "--worksheet",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_extraction_worksheet_current702_20260601.tsv"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar.add_argument(
+        "--source-evidence-schema",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_schema_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1025.json",
+    )
+    row_specific_bond_change_p0_source_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar
+        )
+    )
+
+    row_specific_bond_change_p0_source_sidecar_strict = subparsers.add_parser(
+        "audit-mechanism-feature-row-specific-bond-change-p0-source-evidence-sidecar-strict",
+        help=(
+            "strictly audit the P0 source-evidence sidecar for schema, "
+            "row alignment, and non-consumable draft guardrails"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar_strict.add_argument(
+        "--sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar_strict.add_argument(
+        "--source-evidence-schema",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_schema_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar_strict.add_argument(
+        "--worksheet",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_extraction_worksheet_current702_20260601.tsv"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar_strict.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_strict_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar_strict.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_strict_audit_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_source_sidecar_strict.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict
+        )
+    )
+
+    row_specific_bond_change_p0_source_review_queue = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-source-evidence-review-queue",
+        help=(
+            "rank draft P0 source-evidence sidecar rows for manual review "
+            "without approving rows or refreshing feature contracts"
+        ),
+    )
+    row_specific_bond_change_p0_source_review_queue.add_argument(
+        "--sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_review_queue.add_argument(
+        "--strict-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_strict_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_review_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_review_queue_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_source_review_queue.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_review_queue_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_source_review_queue.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue
+        )
+    )
+
+    row_specific_bond_change_p0_rhea_lookup = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-rhea-lookup-manifest",
+        help=(
+            "stage manual Rhea lookup targets for P0 source-evidence rows "
+            "missing local Rhea equations"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_lookup.add_argument(
+        "--review-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_review_queue_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_lookup.add_argument(
+        "--source-graph-readiness",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_graph_readiness_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_lookup.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_lookup.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_rhea_lookup_manifest_current702_20260601.md"
+        ),
+    )
+    row_specific_bond_change_p0_rhea_lookup.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest
         )
     )
 

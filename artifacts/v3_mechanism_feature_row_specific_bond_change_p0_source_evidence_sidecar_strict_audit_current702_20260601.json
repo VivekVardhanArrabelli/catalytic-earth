@@ -1,0 +1,247 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601",
+  "counts": {
+    "approved_rows": 0,
+    "critical_counts": {
+      "approved_row_evidence_violation_rows": 0,
+      "feature_contract_consumption_allowed_rows": 0,
+      "feature_contract_mutated": 0,
+      "forbidden_predictive_field_rows": 0,
+      "model_training_allowed_rows": 0,
+      "required_row_field_violation_rows": 0,
+      "sidecar_duplicate_entries": 0,
+      "sidecar_extra_entries": 0,
+      "worksheet_entry_missing_from_sidecar": 0
+    },
+    "draft_rows": 15,
+    "feature_contract_refresh_allowed": false,
+    "rows_with_events": 15,
+    "rows_with_source_spans": 15,
+    "sidecar_rows": 15,
+    "strict_audit_critical_violation_total": 0,
+    "violation_counts": {},
+    "worksheet_rows": 15
+  },
+  "created_utc": "2026-06-01T20:06:02Z",
+  "guardrails": {
+    "feature_contract_mutated": false,
+    "feature_contract_refresh_allowed": false,
+    "heldout_threshold_tuning_for_deployment": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "strict_audit_only": true
+  },
+  "interpretation": {
+    "next_action": "Manually review and, where justified, approve or reject each row's participant mapping and bond-change events; rerun this audit before any no-fit feature-contract refresh.",
+    "result": "The source-evidence sidecar is row-aligned and schema-valid as draft evidence, but no row is approved and the feature contract must remain unchanged."
+  },
+  "row_alignment": {
+    "duplicate_entry_count": 0,
+    "extra_entries": [],
+    "missing_entries": []
+  },
+  "row_audits": [
+    {
+      "entry_id": "m_csa:5",
+      "event_count": 1,
+      "event_source_span_count": 1,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 2,
+      "missing_row_fields": [],
+      "participant_mapping_count": 5,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:6",
+      "event_count": 5,
+      "event_source_span_count": 5,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 2,
+      "missing_row_fields": [],
+      "participant_mapping_count": 12,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:11",
+      "event_count": 4,
+      "event_source_span_count": 4,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 12,
+      "missing_row_fields": [],
+      "participant_mapping_count": 11,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:15",
+      "event_count": 2,
+      "event_source_span_count": 2,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 6,
+      "missing_row_fields": [],
+      "participant_mapping_count": 11,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:16",
+      "event_count": 2,
+      "event_source_span_count": 2,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 1,
+      "missing_row_fields": [],
+      "participant_mapping_count": 8,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:37",
+      "event_count": 2,
+      "event_source_span_count": 2,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 2,
+      "missing_row_fields": [],
+      "participant_mapping_count": 13,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:66",
+      "event_count": 3,
+      "event_source_span_count": 3,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 3,
+      "missing_row_fields": [],
+      "participant_mapping_count": 8,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:68",
+      "event_count": 3,
+      "event_source_span_count": 3,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 0,
+      "missing_row_fields": [],
+      "participant_mapping_count": 9,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:94",
+      "event_count": 2,
+      "event_source_span_count": 2,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 2,
+      "missing_row_fields": [],
+      "participant_mapping_count": 10,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:102",
+      "event_count": 5,
+      "event_source_span_count": 5,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 1,
+      "missing_row_fields": [],
+      "participant_mapping_count": 8,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:124",
+      "event_count": 5,
+      "event_source_span_count": 5,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 26,
+      "missing_row_fields": [],
+      "participant_mapping_count": 14,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:133",
+      "event_count": 5,
+      "event_source_span_count": 5,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 4,
+      "missing_row_fields": [],
+      "participant_mapping_count": 13,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:147",
+      "event_count": 4,
+      "event_source_span_count": 4,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 5,
+      "missing_row_fields": [],
+      "participant_mapping_count": 17,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:169",
+      "event_count": 4,
+      "event_source_span_count": 4,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 7,
+      "missing_row_fields": [],
+      "participant_mapping_count": 5,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:186",
+      "event_count": 2,
+      "event_source_span_count": 2,
+      "forbidden_fields_present": [],
+      "mapped_event_residue_count": 2,
+      "missing_row_fields": [],
+      "participant_mapping_count": 6,
+      "review_status": "draft",
+      "status": "passed",
+      "violations": []
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_source_evidence_sidecar_strict_audit",
+  "scope": "Strict audit for the P0 source-evidence sidecar. It checks row alignment, schema fields, forbidden predictive fields, and the approved-row evidence gate without authorizing feature-contract consumption.",
+  "source_artifacts": {
+    "sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+      "sha256": "0217582884d1a053393555cb27ac92ab380107b92363949ac9eb5a89ed97b8ac"
+    },
+    "source_evidence_schema": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json",
+      "sha256": "909686b9d6afafd105cc2c397c3de6b7af54508a1878a877b52164eedfa3d666"
+    },
+    "worksheet": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.tsv",
+      "sha256": "d1dc5f9edcdb5009c21e4e04a9253875280ec471216db8911435204c398e2a21"
+    }
+  },
+  "status": "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable"
+}

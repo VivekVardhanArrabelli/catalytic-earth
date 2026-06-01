@@ -716,6 +716,31 @@ four participant-mapping fields, names forbidden predictive fields, and defines
 evidence/leakage checks. This remains schema-only with 0 materialized source
 values.
 
+P0 source-evidence draft-sidecar follow-up: fill the 15-row P0 worksheet into a
+draft sidecar from frozen local M-CSA graph evidence. All rows now have M-CSA
+source spans and draft bond-change events; 11/15 also have Rhea equations and
+4/15 remain Rhea-missing. A strict audit confirms row alignment, required
+fields, forbidden-field absence, and 0 critical violations. The sidecar remains
+non-consumable: 0 rows are approved, no feature contract was refreshed, and no
+model, threshold, label, registry, ontology, import, or production scorer
+changed.
+
+P0 source-evidence review-queue follow-up: add a manual-only queue over the
+draft sidecar and strict audit. It ranks four Rhea-missing rows first
+(`m_csa:124`, `m_csa:11`, `m_csa:169`, and `m_csa:5`), then four
+high-complexity multi-event rows, then seven standard draft-review rows. This
+does not approve or reject any row, refresh a feature contract, fit a model,
+select a threshold, or mutate labels, registries, ontologies, imports, or
+production scoring.
+
+P0 Rhea lookup-manifest follow-up: stage exact manual lookup targets for those
+four Rhea-missing rows from the frozen source-graph readiness evidence. The
+manifest records `ec:1.9.3.1`, `ec:3.1.21.2`, `ec:3.4.14.5`, and
+`ec:3.4.16.6` as the lookup targets, with rerun instructions for the strict
+sidecar audit after any manual source update. No source fetch, source import,
+approval, feature-contract refresh, model fit, threshold selection, label edit,
+registry edit, ontology edit, or production-scorer change occurred.
+
 Artifacts:
 `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
 `work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
@@ -762,7 +787,15 @@ Artifacts:
 `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.tsv`,
 `work/mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.md`,
 `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json`,
-`work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.md`.
+`work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.md`.
 
 ## 2026-06-01: Thiol/Disulfide Redox Boundary Panel Packet Added
 

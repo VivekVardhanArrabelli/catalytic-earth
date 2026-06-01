@@ -3299,6 +3299,128 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             schema["sidecar_schema"]["forbidden_predictive_fields"],
         )
 
+    def test_row_specific_bond_change_p0_source_evidence_sidecar_current_counts(
+        self,
+    ) -> None:
+        sidecar = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            sidecar["status"],
+            "p0_source_evidence_sidecar_draft_review_required",
+        )
+        self.assertEqual(sidecar["counts"]["worksheet_rows"], 15)
+        self.assertEqual(sidecar["counts"]["sidecar_rows"], 15)
+        self.assertEqual(sidecar["counts"]["rows_with_source_spans"], 15)
+        self.assertEqual(sidecar["counts"]["rows_with_draft_bond_change_events"], 15)
+        self.assertEqual(sidecar["counts"]["rows_with_rhea_equations"], 11)
+        self.assertEqual(sidecar["counts"]["rows_missing_rhea_equations"], 4)
+        self.assertEqual(sidecar["counts"]["approved_rows"], 0)
+        self.assertEqual(sidecar["counts"]["feature_contract_consumable_rows"], 0)
+        self.assertEqual(sidecar["counts"]["review_status_counts"], {"draft": 15})
+        self.assertFalse(sidecar["guardrails"]["feature_contract_mutated"])
+        self.assertFalse(sidecar["guardrails"]["feature_contract_refresh_allowed"])
+        self.assertTrue(sidecar["guardrails"]["draft_source_evidence_not_training_input"])
+
+    def test_row_specific_bond_change_p0_source_evidence_sidecar_strict_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable",
+        )
+        self.assertEqual(audit["counts"]["worksheet_rows"], 15)
+        self.assertEqual(audit["counts"]["sidecar_rows"], 15)
+        self.assertEqual(audit["counts"]["draft_rows"], 15)
+        self.assertEqual(audit["counts"]["approved_rows"], 0)
+        self.assertEqual(audit["counts"]["rows_with_events"], 15)
+        self.assertEqual(audit["counts"]["rows_with_source_spans"], 15)
+        self.assertEqual(audit["counts"]["strict_audit_critical_violation_total"], 0)
+        self.assertEqual(audit["counts"]["violation_counts"], {})
+        self.assertFalse(audit["counts"]["feature_contract_refresh_allowed"])
+        self.assertTrue(
+            all(count == 0 for count in audit["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
+        self.assertFalse(audit["guardrails"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_source_evidence_review_queue_current_counts(
+        self,
+    ) -> None:
+        queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            queue["status"],
+            "p0_source_evidence_review_queue_ready_manual_only",
+        )
+        self.assertEqual(queue["counts"]["sidecar_rows"], 15)
+        self.assertEqual(queue["counts"]["queue_rows"], 15)
+        self.assertEqual(
+            queue["counts"]["category_counts"],
+            {
+                "high_complexity_multi_event_review": 4,
+                "rhea_lookup_required_before_approval": 4,
+                "standard_draft_event_review": 7,
+            },
+        )
+        self.assertEqual(queue["counts"]["approved_rows"], 0)
+        self.assertEqual(queue["counts"]["feature_contract_consumable_rows"], 0)
+        self.assertEqual(queue["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            [row["entry_id"] for row in queue["queue_rows"][:4]],
+            ["m_csa:124", "m_csa:11", "m_csa:169", "m_csa:5"],
+        )
+        self.assertTrue(
+            all(count == 0 for count in queue["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(queue["guardrails"]["feature_contract_mutated"])
+        self.assertFalse(queue["guardrails"]["feature_contract_refresh_allowed"])
+
+    def test_row_specific_bond_change_p0_rhea_lookup_manifest_current_counts(
+        self,
+    ) -> None:
+        manifest = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            manifest["status"],
+            "p0_rhea_lookup_manifest_ready_manual_only",
+        )
+        self.assertEqual(manifest["counts"]["review_queue_rows"], 15)
+        self.assertEqual(manifest["counts"]["rhea_lookup_rows"], 4)
+        self.assertEqual(manifest["counts"]["rows_with_ec_targets"], 4)
+        self.assertEqual(manifest["counts"]["lookup_target_count"], 4)
+        self.assertEqual(manifest["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            [row["entry_id"] for row in manifest["lookup_rows"]],
+            ["m_csa:124", "m_csa:11", "m_csa:169", "m_csa:5"],
+        )
+        self.assertEqual(
+            [row["ec_targets"][0] for row in manifest["lookup_rows"]],
+            ["ec:1.9.3.1", "ec:3.1.21.2", "ec:3.4.14.5", "ec:3.4.16.6"],
+        )
+        self.assertTrue(
+            all(count == 0 for count in manifest["counts"]["critical_counts"].values())
+        )
+        self.assertFalse(manifest["guardrails"]["source_fetch_performed"])
+        self.assertFalse(manifest["guardrails"]["feature_contract_refresh_allowed"])
+
     def test_mechanism_feature_inorganic_cofactor_locus_schema_current_counts(
         self,
     ) -> None:
@@ -3835,12 +3957,12 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
 
         self.assertEqual(audit["status"], "current_run_artifact_integrity_audit_passed")
         self.assertEqual(audit["schema_version"], "current_run_artifact_integrity.v2")
-        self.assertEqual(audit["counts"]["json_artifacts_checked"], 12)
-        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 12)
-        self.assertEqual(audit["counts"]["work_reports_checked"], 12)
-        self.assertEqual(audit["counts"]["work_reports_present"], 12)
+        self.assertEqual(audit["counts"]["json_artifacts_checked"], 16)
+        self.assertEqual(audit["counts"]["json_artifacts_parse_passed"], 16)
+        self.assertEqual(audit["counts"]["work_reports_checked"], 16)
+        self.assertEqual(audit["counts"]["work_reports_present"], 16)
         self.assertEqual(audit["counts"]["repo_json_artifacts_parse_checked"], 3123)
-        self.assertEqual(audit["counts"]["repo_jsonl_artifacts_parse_checked"], 26)
+        self.assertEqual(audit["counts"]["repo_jsonl_artifacts_parse_checked"], 25)
         self.assertEqual(audit["counts"]["repo_json_parse_error_count"], 0)
         self.assertEqual(audit["counts"]["label_registry_mutations"], 0)
         self.assertEqual(audit["counts"]["new_coordinates_fetched"], 0)
@@ -3852,7 +3974,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(
             all(count == 0 for count in audit["critical_counts"].values())
         )
-        self.assertEqual(len(audit["artifact_rows"]), 12)
+        self.assertEqual(len(audit["artifact_rows"]), 16)
         self.assertEqual(
             audit["artifact_rows"][-1]["category"],
             "docs_reference_check",

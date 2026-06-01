@@ -101,6 +101,50 @@
       "work_report_sha256": "040fdec6bf313b96e1c8659d84318056d68a4a655d00343cc41eb731501fa337"
     },
     {
+      "artifact_status": "p0_source_evidence_sidecar_draft_review_required",
+      "category": "mechanism_feature_p0_source_evidence_sidecar",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+      "json_sha256": "0217582884d1a053393555cb27ac92ab380107b92363949ac9eb5a89ed97b8ac",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.md",
+      "work_report_sha256": "05d0ed899e7fa05f7edd2d2c4e5b22e329a89223810127b1c01ca1df127df409"
+    },
+    {
+      "artifact_status": "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable",
+      "category": "mechanism_feature_p0_source_evidence_strict_audit",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json",
+      "json_sha256": "865514898eb63e74d8c2c5bae791add5077305b8fdfb41772824327dc4dd8475",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.md",
+      "work_report_sha256": "a70db70a8d5773dfd28f253a04ce0a1eed35c7e534e43dabf2b2b9e4a8086e15"
+    },
+    {
+      "artifact_status": "p0_source_evidence_review_queue_ready_manual_only",
+      "category": "mechanism_feature_p0_source_evidence_review_queue",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
+      "json_sha256": "d06811cb3c7bb1111e4b0b74b1eb49dc74134dbab7415939b2ca3d9e98b2a441",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.md",
+      "work_report_sha256": "10bb763aa26ee95712ffd5c79c36bcce5a726bd5126b1363c4c285ec4a1afd7e"
+    },
+    {
+      "artifact_status": "p0_rhea_lookup_manifest_ready_manual_only",
+      "category": "mechanism_feature_p0_rhea_lookup_manifest",
+      "json_exists": true,
+      "json_parse_ok": true,
+      "json_path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json",
+      "json_sha256": "c17c7663d8cb2d83e227cd603f71e70d06b1014e1e47b38e453c3a0f08196557",
+      "work_report_exists": true,
+      "work_report_path": "work/mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.md",
+      "work_report_sha256": "a802e76cff85e2197aed2239de95f42c452bf8bd1692a98dba91facae0118970"
+    },
+    {
       "artifact_status": "glycyl_radical_panel_ready_as_oos_boundary_review_only",
       "category": "family_panel_readiness",
       "json_exists": true,
@@ -128,10 +172,10 @@
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json",
-      "json_sha256": "43f8c5761fba4e1475a5db7f1b5ba8c85c165594ab8e6aa6238b252d0366bbe5",
+      "json_sha256": "4e2465a39ab34f808335a22fdca8a447140d85250e1049c56453bf41f569ac40",
       "work_report_exists": true,
       "work_report_path": "work/current_docs_artifact_reference_check_current702_20260601.md",
-      "work_report_sha256": "5d67e1722a9fcc0c1445d51989273ad317b07bae06438b7a38a72442a1e40f04"
+      "work_report_sha256": "9e8b299f91828352de4d82ecf27ebe588d009881a2cc06f787535bad663b16bf"
     }
   ],
   "counts": {
@@ -139,14 +183,18 @@
     "family_panel_readiness_artifacts": 1,
     "fold_channel_coordinate_provenance_artifacts": 1,
     "fold_channel_reproduction_manifest_artifacts": 1,
-    "json_artifacts_checked": 12,
-    "json_artifacts_parse_passed": 12,
+    "json_artifacts_checked": 16,
+    "json_artifacts_parse_passed": 16,
     "label_registry_mutations": 0,
     "mechanism_feature_gap_guardrail_artifacts": 1,
     "mechanism_feature_gap_priority_artifacts": 1,
     "mechanism_feature_p0_extraction_strict_audit_artifacts": 1,
     "mechanism_feature_p0_extraction_work_package_artifacts": 1,
+    "mechanism_feature_p0_rhea_lookup_manifest_artifacts": 1,
+    "mechanism_feature_p0_source_evidence_review_queue_artifacts": 1,
     "mechanism_feature_p0_source_evidence_schema_artifacts": 1,
+    "mechanism_feature_p0_source_evidence_sidecar_artifacts": 1,
+    "mechanism_feature_p0_source_evidence_strict_audit_artifacts": 1,
     "mechanism_feature_p0_source_graph_readiness_artifacts": 1,
     "mechanism_feature_schema_artifacts": 1,
     "model_fit_or_refit_artifacts": 0,
@@ -155,12 +203,12 @@
     "production_threshold_mutations": 0,
     "repo_json_artifacts_parse_checked": 3123,
     "repo_json_parse_error_count": 0,
-    "repo_jsonl_artifacts_parse_checked": 26,
+    "repo_jsonl_artifacts_parse_checked": 25,
     "source_free_locator_decision_matrix_artifacts": 1,
-    "work_reports_checked": 12,
-    "work_reports_present": 12
+    "work_reports_checked": 16,
+    "work_reports_present": 16
   },
-  "created_utc": "2026-06-01T19:11:20Z",
+  "created_utc": "2026-06-01T20:13:09Z",
   "critical_counts": {
     "json_parse_failures": 0,
     "missing_json_artifacts": 0,
@@ -177,18 +225,20 @@
     "predicted_geometry_scores_created": false,
     "production_thresholds_changed": false
   },
-  "next_action": "Fill the P0 row-specific bond-change extraction worksheet from source-backed M-CSA/Rhea/mechanism evidence, emit a sidecar conforming to the staged schema, and run a strict source-evidence sidecar audit before any no-fit feature-contract refresh.",
+  "next_action": "Manually resolve the P0 Rhea lookup manifest in order (`m_csa:124`, `m_csa:11`, `m_csa:169`, `m_csa:5`), update the draft source-evidence sidecar, then rerun strict audit and review queue before any feature-contract refresh.",
   "repo_parse_errors": [],
   "schema_version": "current_run_artifact_integrity.v2",
-  "scope": "Current automation-run integrity audit for fold reproduction, mechanism-feature bond-change gap closure artifacts, family-panel readiness, locator decision, and docs-reference maintenance outputs.",
+  "scope": "Current automation-run integrity audit for fold reproduction, mechanism-feature bond-change source-evidence draft artifacts, Rhea lookup handoff, family-panel readiness, locator decision, and docs-reference maintenance outputs.",
   "status": "current_run_artifact_integrity_audit_passed",
   "validation_summary": {
     "catalytic_earth_cli_validate": "passed; 702 curated mechanism labels",
     "compileall": "passed",
-    "current_docs_artifact_reference_check": "passed; 469 references checked, 0 missing",
-    "full_pytest": "passed; 1110 tests, 36 subtests, 1 sklearn deprecation warning",
+    "current_docs_artifact_reference_check": "passed; 481 references checked, 0 missing",
+    "disk_check": "passed; 28 GiB available",
+    "focused_source_evidence_tests": "passed",
+    "full_pytest": "passed; 1119 tests, 40 subtests, 1 sklearn warning",
     "git_diff_check": "passed",
-    "repo_json_parse_sweep": "passed; 3123 JSON and 26 JSONL files parsed with 0 errors",
-    "unittest_discovery": "passed; 1087 tests"
+    "repo_json_parse_sweep": "passed; 3123 JSON and 25 JSONL files parsed with 0 errors",
+    "unittest_discovery": "passed; 1096 tests"
   }
 }

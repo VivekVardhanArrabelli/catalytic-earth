@@ -368,6 +368,21 @@ artifacts first.
   for that worksheet: 12 required row fields, six event fields, four mapping
   fields, forbidden predictive fields, and strict evidence/leakage checks. It
   is schema-only and still materializes 0 source values.
+- The P0 worksheet now has a draft source-evidence sidecar derived from frozen
+  local M-CSA graph evidence. All 15 rows have source spans and draft
+  bond-change events, 11/15 have Rhea equations, and 4/15 remain Rhea-missing.
+  The strict sidecar audit passes with 0 critical violations, but 0 rows are
+  approved and feature-contract refresh remains blocked pending manual review.
+- A companion manual-review queue ranks those 15 draft rows without changing
+  review state. It prioritizes four Rhea-missing rows (`m_csa:124`,
+  `m_csa:11`, `m_csa:169`, and `m_csa:5`), then four high-complexity
+  multi-event rows, then seven standard draft reviews. It authorizes no
+  approval, feature-contract refresh, model use, label change, or threshold
+  change.
+- A follow-up Rhea lookup manifest stages the exact EC query targets for those
+  four Rhea-missing rows: `ec:1.9.3.1`, `ec:3.1.21.2`, `ec:3.4.14.5`, and
+  `ec:3.4.16.6`. It performs no source fetch and only hands off manual lookup
+  plus strict-audit rerun instructions.
 - The mechanism-feature role-graph and reaction-center sidecars now pass a
   strict schema and row-alignment audit over all 702 current rows with zero
   critical violations. This validates the current sidecars as schema-safe

@@ -120,6 +120,9 @@ the residual risk in the final status.
 - A manual extraction worksheet is not source evidence. Treat blank worksheet
   cells as a to-do list, not as a sidecar, and require a strict source-evidence
   audit before using any filled values in feature generation.
+- A draft source-evidence sidecar is still not model input. Rows must remain
+  non-consumable until `review_status: approved` carries reviewer provenance
+  and the strict source-evidence audit passes after that approval.
 - Existing ProtT5 and SaProt exports are not fair logistic-head peers for
   ESM-2/ESM-C until row-aligned local sidecars or local weights exist.
 

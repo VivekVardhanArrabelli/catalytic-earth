@@ -50,6 +50,110 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 P0 Source-Evidence Draft Sidecar And Rhea Lookup Handoff
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T19:48:14Z`
+- STARTED_LOCAL: `Mon Jun  1 14:48:14 CDT 2026`
+- ENDED_AT: `2026-06-01T20:38:41Z`
+- ENDED_LOCAL: `Mon Jun  1 15:38:41 CDT 2026`
+- ELAPSED_MINUTES: `50.5`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "60176", "started_at": "2026-06-01T19:48:14Z", "status": "acquired"}`
+- Lock release result: pending until this handoff, commit, push, and
+  sync verification complete from a clean worktree; final release result is
+  reported in the automation response.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `ab20f80212f6cea7f55cf36e852c3fd6f6fb4b56`
+- Git HEAD at end before commit:
+  `ab20f80212f6cea7f55cf36e852c3fd6f6fb4b56`
+- Dirty files at start: none
+- Dirty files at end before commit: code/tests/docs/work/artifacts for the P0
+  source-evidence sidecar, strict audit, manual review queue, Rhea lookup
+  manifest, refreshed docs-reference check, refreshed current-run integrity
+  audit, and this handoff.
+- Input artifacts:
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_extraction_worksheet_current702_20260601.tsv`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_graph_readiness_current702_20260601.json`,
+  and `artifacts/v1_graph_1025.json`.
+- Output artifacts:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.md`,
+  refreshed
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  refreshed
+  `work/current_docs_artifact_reference_check_current702_20260601.md`,
+  refreshed
+  `artifacts/v3_current_run_artifact_integrity_audit_current702_20260601.json`,
+  refreshed
+  `work/current_run_artifact_integrity_audit_current702_20260601.md`,
+  docs/code/tests for the new commands and strict approved-row reviewer gate,
+  and this handoff.
+- Commands run:
+  memory read; lock acquire; `git fetch origin`; `git pull --ff-only origin
+  main`; required context reads; pre-edit `PYTHONPATH=src python -m unittest
+  discover -s tests`; fold-channel JSON validation; focused source-evidence,
+  CLI, and artifact-regression tests; built
+  `build-mechanism-feature-row-specific-bond-change-p0-source-evidence-sidecar`;
+  ran
+  `audit-mechanism-feature-row-specific-bond-change-p0-source-evidence-sidecar-strict`;
+  built
+  `build-mechanism-feature-row-specific-bond-change-p0-source-evidence-review-queue`;
+  built
+  `build-mechanism-feature-row-specific-bond-change-p0-rhea-lookup-manifest`;
+  refreshed current-docs artifact reference check; refreshed current-run
+  artifact integrity audit; `PYTHONPATH=src python -m pytest tests -q`;
+  `PYTHONPATH=src python -m unittest discover -s tests`; `python -m
+  compileall -q src tests`; `PYTHONPATH=src python -m catalytic_earth.cli
+  validate`; repo JSON/JSONL parse sweep; `git diff --check`; `df -h .`;
+  measured wall-clock elapsed time; ran a lightweight validation soak to honor
+  the 50-minute work-block floor.
+- Validation results:
+  fold-channel JSON artifacts parsed successfully and were not rebuilt. Focused
+  source-evidence/unit/CLI/regression slices passed. Full pytest passed with
+  1119 tests, 40 subtests, and one sklearn deprecation warning. Unittest
+  discovery passed with 1096 tests. Compileall, CLI validate, current-docs
+  reference check (`481` checked, 0 missing), repo JSON parse sweep (`3123`
+  JSON and `25` JSONL files, 0 errors), git diff check, disk check (`28 GiB`
+  available), and the lightweight validation soak passed.
+- Commit/push result: pending at handoff write; commit and push this P0
+  source-evidence handoff work, verify `HEAD == origin/main`, then release the
+  automation lock.
+- Exact next action for the next run:
+  manually resolve the P0 Rhea lookup manifest in priority order
+  (`m_csa:124`, `m_csa:11`, `m_csa:169`, then `m_csa:5`), update the draft
+  source-evidence sidecar with source-backed Rhea IDs/equations or explicit
+  M-CSA-only rationale, rerun the strict sidecar audit and review queue, and do
+  not refresh the no-fit feature contract until approved rows carry reviewer
+  provenance and the strict audit passes.
+
+Summary:
+
+- Confirmed the requested real predicted-structure fold channel already exists
+  and validates, so the run did not recompute Foldseek/TM scores.
+- Filled the P0 worksheet into a draft source-evidence sidecar from frozen local
+  M-CSA graph evidence: 15/15 rows have source spans and draft events, 11/15
+  have Rhea equations, 4/15 remain Rhea-missing, and 0 rows are approved.
+- Added a strict sidecar audit, manual review queue, and Rhea lookup manifest.
+  All remain non-consumable and changed no labels, registries, ontologies,
+  imports, heldout splits, thresholds, production scorers, source imports,
+  coordinate files, or model weights.
+
 ### 2026-06-01 Mechanism Bond-Change P0 Extraction Package
 
 Automation run: `catalytic-earth-work-loop`

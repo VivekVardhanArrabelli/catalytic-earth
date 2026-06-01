@@ -172,6 +172,46 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-source-evidence-sidecar"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_source_evidence_sidecar"
+                ),
+            ),
+            (
+                (
+                    "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-source-evidence-sidecar-strict"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_source_evidence_sidecar_strict"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-source-evidence-review-queue"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_source_evidence_review_queue"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-rhea-lookup-manifest"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_rhea_lookup_manifest"
+                ),
+            ),
+            (
                 "build-family-panel-high-value-glycyl-radical-readiness-packet",
                 "cmd_build_family_panel_high_value_glycyl_radical_readiness_packet",
             ),
