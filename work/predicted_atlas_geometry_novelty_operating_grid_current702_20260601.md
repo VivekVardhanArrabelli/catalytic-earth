@@ -1,6 +1,6 @@
 # Predicted-Atlas Geometry Novelty Operating Grid - current702
 
-Run: 2026-06-01T12:49:30Z
+Run: 2026-06-01T13:59:25Z
 
 Review-only operating-grid readout over the existing predicted-atlas geometry novelty variants. It computes post-hoc diagnostic retention/OOS-abstention points for each frozen geometry signal and does not select or write a deployment threshold.
 

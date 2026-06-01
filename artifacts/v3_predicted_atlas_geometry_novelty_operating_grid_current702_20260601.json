@@ -92,7 +92,7 @@
     "row_scores": 126,
     "signals": 10
   },
-  "created_utc": "2026-06-01T12:49:30Z",
+  "created_utc": "2026-06-01T13:59:25Z",
   "guardrails": {
     "heldout_threshold_tuning_for_deployment": false,
     "imports_or_promotions_performed": false,

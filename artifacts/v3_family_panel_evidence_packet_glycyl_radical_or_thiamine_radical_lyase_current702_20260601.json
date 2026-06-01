@@ -8,7 +8,7 @@
     "rows_with_selected_organic_cofactor_scores": 2,
     "rows_with_selected_pdb_fold_proxy": 2
   },
-  "created_utc": "2026-06-01T03:11:05Z",
+  "created_utc": "2026-06-01T14:02:02Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "heldout_splits_changed": false,
@@ -42,7 +42,7 @@
     "required_human_validation": "expert decision on exact radical/cofactor locus and whether rows remain OOS controls or seed a future family"
   },
   "review_questions": [
-    "Do these rows share a coherent radical/thiamine-lyase mechanism locus, or should they stay OOS controls?",
+    "Do these rows share a coherent `glycyl_radical_or_thiamine_radical_lyase_boundary` mechanism locus, or should they stay OOS controls?",
     "Which row-level bond-change and cofactor-locus features must be normalized before any countable family addition?",
     "Does the real predicted-structure Foldseek/TM channel keep these rows outside occupied primary atlas folds?"
   ],
@@ -55,6 +55,7 @@
         "negative_nearest_class_centroid_robust_distance": -2.309839,
         "top1_score_raw": 0.2616
       },
+      "predicted_geometry_accession_repair": null,
       "predicted_geometry_status": "ok",
       "predicted_geometry_top1": {
         "cofactor_context_score": 0.2,
@@ -65,7 +66,8 @@
       "predicted_structure_fold_channel": {
         "nearest_atlas_entry_id": "m_csa:11",
         "nearest_atlas_tm_score": 0.4988,
-        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase"
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "predicted_structure_fold_channel"
       },
       "selected_organic_cofactor_max": 0.589255,
       "selected_organic_cofactor_scores": {
@@ -89,6 +91,7 @@
         "negative_nearest_class_centroid_robust_distance": -1.399238,
         "top1_score_raw": 0.3466
       },
+      "predicted_geometry_accession_repair": null,
       "predicted_geometry_status": "ok",
       "predicted_geometry_top1": {
         "cofactor_context_score": 0.2,
@@ -99,7 +102,8 @@
       "predicted_structure_fold_channel": {
         "nearest_atlas_entry_id": "m_csa:900",
         "nearest_atlas_tm_score": 0.3809,
-        "nearest_atlas_true_fingerprint_id": "ser_his_acid_hydrolase"
+        "nearest_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+        "score_source": "predicted_structure_fold_channel"
       },
       "selected_organic_cofactor_max": 0.808565,
       "selected_organic_cofactor_scores": {
@@ -117,7 +121,7 @@
     }
   ],
   "schema_version": "northstar_next_levers.v0",
-  "scope": "Review-only evidence packet for the highest-value family-set expansion panel: cofactor-confounded OOS radical/thiamine-lyase boundary rows that stress the current de novo abstention gate.",
+  "scope": "Review-only evidence packet for the highest-value family-set expansion panel `glycyl_radical_or_thiamine_radical_lyase_boundary`: cofactor-confounded OOS boundary rows that stress the current de novo abstention gate.",
   "source_artifacts": {
     "family_targets": {
       "path": "artifacts/v3_family_set_expansion_targets_current702_20260601.json",
@@ -127,9 +131,13 @@
       "path": "artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
       "sha256": "03515cb359fe0ebf4c673117201a2addf2d75e03af5f89ba58fc77891c47f85d"
     },
+    "m_csa_primary_channel_repair": {
+      "path": "artifacts/v3_fold_augmented_family_panel_m_csa_primary_channel_repair_current702_20260601.json",
+      "sha256": "d40aff436705c30dc143edbee77ee22a7076972bf887584b826a1d041a3632a9"
+    },
     "predicted_atlas_variants": {
       "path": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
-      "sha256": "1c09f7cad3bec0da694e03ac1d60f9c6bc96e9208d13bbb06a90095170a2ef13"
+      "sha256": "98d4cf7e21fc4b2e65551372b9b6923a6f04ef3bf57b7d4398a5756994e933f6"
     },
     "predicted_geometry_atlas": {
       "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
@@ -137,11 +145,15 @@
     },
     "predicted_structure_fold_channel": {
       "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
-      "sha256": "32389ae5d6abcc26cf6f0e8a57f3ae70c9f7ac482ec7b1138eb25c053382be24"
+      "sha256": "565266bfd8379c75104e1d7a74457ef40846563ea71988c4946d16c92f733582"
     },
     "selected_organic_cofactor_sidecar": {
       "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
       "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    },
+    "source_backed_sidecar_materialization": {
+      "path": "artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601.json",
+      "sha256": "1c4eacb8b5917750f5ed6de7f614adcae55b1de1473942fc5efa9baeac4abbf6"
     }
   },
   "status": "evidence_packet_ready_review_only"

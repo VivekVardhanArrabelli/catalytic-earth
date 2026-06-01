@@ -166,11 +166,11 @@ artifacts first.
   labels, benchmark roles, and panel IDs as predictive geometry features. The
   schema audit currently reports 0/10 locator sidecars present, with
   `locator_sidecar_missing` as the only critical violation class. A
-  materialization plan now names the exact locator sidecar paths and rerun
-  commands; eight rows start from structure-local ligand geometry candidates,
-  while `mh_067` and `mh_068` require split-safe train/cal-template checks due
-  to same-accession current702 geometry matches. A template-only bundle stages
-  all 10 locator sidecar shells outside the audited locator directory; none are
+  materialization plan names the exact locator sidecar paths and rerun commands;
+  eight rows start from structure-local ligand geometry candidates, while
+  `mh_067` and `mh_068` require split-safe train/cal-template checks due to
+  same-accession current702 geometry matches. A template-only bundle stages all
+  10 locator sidecar shells outside the audited locator directory; none are
   scoring-ready until validated source-free residue locators are added and the
   schema audit is rerun.
 - A review-only source-free locator candidate audit now stages coordinate-only
@@ -195,6 +195,18 @@ artifacts first.
 - The manual locator review packet now combines candidate sidecar SHA-256s,
   integrity status, priority classes, and per-row review checklists. It is the
   exact next human-review artifact; no row is copy-ready or scoring-ready.
+- A priority-1 locator review preflight dry-ran schema compatibility,
+  guardrail cleanliness, and coordinate-contact plausibility for `mh_066`,
+  `mh_073`, and `secondary_probe::radical_sam_enzyme`. All three passed the
+  automation preflight, with `mh_073` carrying a minimum-two-locator warning,
+  but human approval is still required before any sidecar copy; 0 rows are
+  copy-authorized or scoring-ready.
+- A blocked-row rescue manifest now inspects the two no-ligand locator rows.
+  Both selected coordinates contain only water HETATMs. `mh_064` has five
+  frozen source alternate PDB IDs (`3RKJ`, `3RKK`, `3SBL`, `3SFP`, and `3SPU`)
+  staged as exact fetch commands pending manual approval; Q59490 has no frozen
+  alternate beyond `1L1L` and needs a new nonlabel locator strategy or an
+  explicitly authorized alternate source row.
 - A review-only FMO subtype/hard-negative packet keeps `m_csa:131` and repaired
   `m_csa:132` as secondary-probe support, `m_csa:551` and `m_csa:973` as future
   support only, and `m_csa:750` as radical flavin/Fe-S boundary negative. No
@@ -257,6 +269,10 @@ artifacts first.
   (role-graph, reaction-template, organic cofactor, and inorganic cofactor
   loci), excludes heldout rows, and keeps model fitting explicitly blocked until
   authorized.
+- A strict audit now validates that feature contract against train/cal row
+  alignment, forbidden label/outcome field exclusion, no-heldout discipline, and
+  no-model-fit guardrails. It passes for 524/524 rows with zero critical
+  violations; model fitting remains blocked until explicitly authorized.
 - ProtT5 and SaProt have only NN/cosine-style local standardized exports today.
   Matched logistic-head reruns are blocked until raw local sidecars or weights
   exist; do not download large models for this by default.

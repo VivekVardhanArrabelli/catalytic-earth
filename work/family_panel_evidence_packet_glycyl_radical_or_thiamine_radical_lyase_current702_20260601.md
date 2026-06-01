@@ -1,8 +1,8 @@
-# Family Panel Evidence Packet - Glycyl Radical / Thiamine Lyase
+# Family Panel Evidence Packet - glycyl_radical_or_thiamine_radical_lyase_boundary
 
-Run: 2026-06-01T03:11:05Z
+Run: 2026-06-01T14:02:02Z
 
-Review-only evidence packet for the highest-value family-set expansion panel: cofactor-confounded OOS radical/thiamine-lyase boundary rows that stress the current de novo abstention gate.
+Review-only evidence packet for the highest-value family-set expansion panel `glycyl_radical_or_thiamine_radical_lyase_boundary`: cofactor-confounded OOS boundary rows that stress the current de novo abstention gate.
 
 ## Status
 
@@ -19,7 +19,7 @@ Review-only evidence packet for the highest-value family-set expansion panel: co
 
 ## Review Questions
 
-- Do these rows share a coherent radical/thiamine-lyase mechanism locus, or should they stay OOS controls?
+- Do these rows share a coherent `glycyl_radical_or_thiamine_radical_lyase_boundary` mechanism locus, or should they stay OOS controls?
 - Which row-level bond-change and cofactor-locus features must be normalized before any countable family addition?
 - Does the real predicted-structure Foldseek/TM channel keep these rows outside occupied primary atlas folds?
 

@@ -1,0 +1,144 @@
+{
+  "artifact_id": "v3_family_panel_source_free_locator_blocked_row_rescue_manifest_current702_20260601",
+  "commands": {
+    "alternate_coordinate_fetch_commands": [
+      "curl -L --fail https://files.rcsb.org/download/3RKJ.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3RKJ.cif",
+      "curl -L --fail https://files.rcsb.org/download/3RKK.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3RKK.cif",
+      "curl -L --fail https://files.rcsb.org/download/3SBL.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SBL.cif",
+      "curl -L --fail https://files.rcsb.org/download/3SFP.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SFP.cif",
+      "curl -L --fail https://files.rcsb.org/download/3SPU.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SPU.cif"
+    ],
+    "rebuild_rescue_manifest": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-locator-blocked-row-rescue-manifest",
+    "rerun_candidate_audit_after_coordinate_fetch": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-active-site-locator-candidate-audit",
+    "rerun_review_queue_after_candidate_audit": "PYTHONPATH=src python -m catalytic_earth.cli build-family-panel-source-free-active-site-locator-review-queue"
+  },
+  "counts": {
+    "alternate_fetch_commands": 5,
+    "alternate_pdb_ids_total": 5,
+    "blocked_rows": 2,
+    "ready_for_predicted_geometry_scoring": 0,
+    "rows_with_alternate_source_pdb_ids": 1,
+    "rows_with_selected_coordinate_only_water_hetatms": 2
+  },
+  "created_utc": "2026-06-01T14:01:09Z",
+  "guardrails": {
+    "coordinates_fetched": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "locator_sidecars_created_in_audited_dir": false,
+    "predicted_geometry_scored": false,
+    "production_thresholds_changed": false,
+    "ready_for_predicted_geometry_scoring": false,
+    "review_only": true
+  },
+  "interpretation": {
+    "headline": "1/2 blocked locator rows have frozen source alternate PDB IDs; no coordinates were fetched.",
+    "next_action": "If manual approval allows bounded coordinate fetches, start with `mh_064` alternates and rerun candidate extraction; Q59490 needs a new source-free nonlabel locator strategy or an explicitly authorized alternate source row."
+  },
+  "row_plans": [
+    {
+      "alternate_coordinate_fetch_commands": [
+        "curl -L --fail https://files.rcsb.org/download/3RKJ.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3RKJ.cif",
+        "curl -L --fail https://files.rcsb.org/download/3RKK.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3RKK.cif",
+        "curl -L --fail https://files.rcsb.org/download/3SBL.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SBL.cif",
+        "curl -L --fail https://files.rcsb.org/download/3SFP.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SFP.cif",
+        "curl -L --fail https://files.rcsb.org/download/3SPU.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3SPU.cif"
+      ],
+      "alternate_pdb_ids": [
+        "3RKJ",
+        "3RKK",
+        "3SBL",
+        "3SFP",
+        "3SPU"
+      ],
+      "blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "source_free_locator_not_ready_for_scoring",
+        "alternate_coordinate_fetch_requires_manual_approval"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/mh_064_C7C422.json",
+      "entry_id": "mh_064",
+      "materialized_alternate_pdb_ids": [],
+      "ready_for_predicted_geometry_scoring": false,
+      "rescue_status": "alternate_coordinate_fetch_manifested_review_only",
+      "selected_coordinate_hetatm_comp_counts": {
+        "HOH": 132
+      },
+      "selected_coordinate_nonwater_ligand_comp_counts": {},
+      "selected_pdb_cif": {
+        "coordinate_role": "selected_pdb_cif",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3PG4.cif",
+        "sha256": "77372ff429b15fc7753047610edfb1d908fb72379dbfa479a70da64201c171ea",
+        "size_bytes": 230180
+      },
+      "selected_structure_id": "3PG4",
+      "source_accession": "uniprot:C7C422",
+      "source_pdb_ids": [
+        "3PG4",
+        "3RKJ",
+        "3RKK",
+        "3SBL",
+        "3SFP",
+        "3SPU"
+      ]
+    },
+    {
+      "alternate_coordinate_fetch_commands": [],
+      "alternate_pdb_ids": [],
+      "blockers": [
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+        "source_free_locator_not_ready_for_scoring",
+        "new_nonlabel_locator_strategy_required"
+      ],
+      "candidate_path": "artifacts/family_panel_source_free_active_site_locator_candidates_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "materialized_alternate_pdb_ids": [],
+      "ready_for_predicted_geometry_scoring": false,
+      "rescue_status": "no_frozen_source_alternate_pdb_ids_found",
+      "selected_coordinate_hetatm_comp_counts": {
+        "HOH": 2875
+      },
+      "selected_coordinate_nonwater_ligand_comp_counts": {},
+      "selected_pdb_cif": {
+        "coordinate_role": "selected_pdb_cif",
+        "exists": true,
+        "path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1L1L.cif",
+        "sha256": "9b4d9b9b291b4ed3ee068e1d99bd7781d5d7628df1f9c76f693d6ad2090a4f18",
+        "size_bytes": 2587063
+      },
+      "selected_structure_id": "1L1L",
+      "source_accession": "uniprot:Q59490",
+      "source_pdb_ids": [
+        "1L1L"
+      ]
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.source_free_locator_blocked_row_rescue_manifest",
+  "scope": "Review-only rescue manifest for source-free locator rows blocked because their selected local coordinates expose no non-water ligand or metal site. It records frozen source alternate-coordinate options and exact commands without fetching or scoring them.",
+  "source_artifacts": {
+    "candidate_audit": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_active_site_locator_candidate_audit_current702_20260601.json",
+      "sha256": "b131401a9a647ebcb52aadbc1caeae8fa0840a0c240f473cf00eba432119b225"
+    },
+    "cobalamin_blocker_review": {
+      "exists": true,
+      "path": "artifacts/v3_prospective_external_cobalamin_radical_minicampaign_blocker_review_20260521.json",
+      "sha256": "52dad94795c92f4d8a0922fd90588e7c908d3ae21f0ab96ac6ba79c34b168406"
+    },
+    "external_identifier_scout": {
+      "exists": true,
+      "path": "artifacts/v3_external_identifier_resolution_scout_20260528.json",
+      "sha256": "0ccf352e3d5d8d1d6bfe786673a626fc0caf811806fe40de48c0291b7f9f30d2"
+    },
+    "review_queue": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_active_site_locator_review_queue_current702_20260601.json",
+      "sha256": "aaba2c2140778be358a1bc92a64f0462b58a399c16662f2fd31764225a1078a1"
+    }
+  },
+  "status": "source_free_locator_blocked_row_rescue_manifest_ready_review_only"
+}

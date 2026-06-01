@@ -198,6 +198,26 @@ status, review priority, and per-row checklists into a single handoff artifact.
 The packet is ready for human review with 10 integrity-passed rows, three
 priority-1 manual review rows, 0 copy-ready rows, and 0 scoring-ready rows.
 
+Priority-1 preflight follow-up: dry-run the three priority-1 manual-review
+rows (`mh_066`, `mh_073`, and
+`secondary_probe::radical_sam_enzyme`) against the locator schema, candidate
+guardrails, and coordinate-contact plausibility checks. All three pass this
+automation preflight, with `mh_073` flagged because it sits exactly at the
+minimum two-locator floor. This does not approve or copy sidecars: human
+approval remains required before rewriting any locator into the audited
+directory and rerunning the schema audit.
+
+Blocked-row rescue follow-up: inspect the two source-free locator rows blocked
+by no non-water/non-metal ligand candidate. Both selected local coordinates
+contain only water HETATMs. `mh_064` has five frozen source alternate PDB IDs
+from the existing identifier scout (`3RKJ`, `3RKK`, `3SBL`, `3SFP`, and
+`3SPU`), so the manifest stages exact fetch commands pending manual approval.
+Q59490 has only `1L1L` in the frozen cobalamin blocker artifact, so it remains
+blocked on a new nonlabel locator strategy or an explicitly authorized
+alternate source row. No coordinate fetch, locator copy, predicted geometry
+scoring, label/import, registry, ontology, split, threshold, or production
+scorer change occurred.
+
 Artifacts:
 `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`,
 `work/fold_augmented_family_panel_research_readout_current702_20260601.md`,
@@ -243,6 +263,10 @@ Artifacts:
 `work/family_panel_source_free_active_site_locator_review_queue_current702_20260601.md`,
 `artifacts/v3_family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601.json`,
 `work/family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_active_site_locator_priority1_review_preflight_current702_20260601.json`,
+`work/family_panel_source_free_active_site_locator_priority1_review_preflight_current702_20260601.md`,
+`artifacts/v3_family_panel_source_free_locator_blocked_row_rescue_manifest_current702_20260601.json`,
+`work/family_panel_source_free_locator_blocked_row_rescue_manifest_current702_20260601.md`,
 `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`,
 `work/fmo_subtype_hard_negative_packet_current702_20260601.md`.
 
@@ -477,6 +501,12 @@ feature rows. It is a materialization contract only; feature-vector code, model
 weights, thresholds, directed electron/proton-transfer edges, and row-specific
 bond-change mappings remain blocked until explicitly authorized.
 
+Strict-audit follow-up: add a no-fit audit for that feature contract. It
+validates 524/524 feature rows against the train/cal split manifest, confirms
+forbidden label/outcome fields are absent from feature groups, keeps heldout
+absent from feature rows, and reports zero critical violations. This does not
+authorize feature-vector materialization or model fitting.
+
 Artifacts:
 `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`,
 `work/mechanism_feature_sidecar_schema_audit_current702_20260601.md`,
@@ -507,7 +537,9 @@ Artifacts:
 `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`,
 `work/mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.md`,
 `artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json`,
-`work/mechanism_feature_embedding_feature_contract_current702_20260601.md`.
+`work/mechanism_feature_embedding_feature_contract_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601.json`,
+`work/mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601.md`.
 
 ## 2026-06-01: Thiol/Disulfide Redox Boundary Panel Packet Added
 

@@ -1,0 +1,3200 @@
+{
+  "artifact_id": "v3_mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601",
+  "commands": {
+    "rebuild_feature_contract": "PYTHONPATH=src python -m catalytic_earth.cli build-mechanism-feature-embedding-feature-contract",
+    "rerun_strict_audit": "PYTHONPATH=src python -m catalytic_earth.cli audit-mechanism-feature-embedding-feature-contract"
+  },
+  "counts": {
+    "calibration_rows": 106,
+    "critical_counts": {},
+    "critical_violation_total": 0,
+    "feature_rows": 524,
+    "heldout_excluded_rows": 140,
+    "input_manifest_rows": 562,
+    "row_audits_blocked": 0,
+    "row_audits_passed": 524,
+    "split_manifest_rows": 524,
+    "train_rows": 418
+  },
+  "created_utc": "2026-06-01T14:01:09Z",
+  "guardrails": {
+    "heldout_rows_present_in_feature_rows": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "headline": "524/524 feature rows pass strict label-exclusion and train/cal alignment checks; no model was fit.",
+    "next_action": "Keep model fitting blocked until explicitly authorized; a future materializer must consume only the audited feature groups, fit on train rows, select on calibration rows, and evaluate heldout once."
+  },
+  "row_audits": [
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:1",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:2",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:4",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:5",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:6",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:7",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:8",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:11",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:15",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:16",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:17",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:18",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:21",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:22",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:23",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:24",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:25",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:26",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:27",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:28",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:29",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:33",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:35",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:36",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:37",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:38",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:39",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:40",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:41",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:42",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:47",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:48",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:49",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:50",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:51",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:52",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:54",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:55",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:59",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:60",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:61",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:64",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:65",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:66",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:68",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:69",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:70",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:72",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:74",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:75",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:76",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:77",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:78",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:81",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:82",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:83",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:84",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:85",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:87",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:88",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:89",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:90",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:91",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:92",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:93",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:94",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:95",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:96",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:98",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:99",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:100",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:101",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:102",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:103",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:104",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:105",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:107",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:108",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:110",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:111",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:112",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:113",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:114",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:117",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:119",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:120",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:122",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:124",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:126",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:127",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:128",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:130",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:133",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:134",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:135",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:136",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:137",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:138",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:139",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:140",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:142",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:143",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:145",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:146",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:147",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:148",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:149",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:150",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:151",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:153",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:154",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:157",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:158",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:160",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:161",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:162",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:164",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:165",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:166",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:167",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:168",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:169",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:170",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:172",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:173",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:174",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:175",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:176",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:177",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:179",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:181",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:182",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:183",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:184",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:186",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:187",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:189",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:190",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:194",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:195",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:196",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:200",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:202",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:203",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:205",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:206",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:207",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:209",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:210",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:214",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:215",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:216",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:218",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:221",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:222",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:223",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:224",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:226",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:227",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:228",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:229",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:231",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:232",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:233",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:234",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:235",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:236",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:237",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:238",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:240",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:241",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:243",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:244",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:245",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:246",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:247",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:249",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:251",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:252",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:253",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:256",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:257",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:258",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:259",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:260",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:261",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:262",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:263",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:264",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:265",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:266",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:268",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:269",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:270",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:271",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:272",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:273",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:274",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:275",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:276",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:277",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:278",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:279",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:280",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:281",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:282",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:285",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:286",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:287",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:288",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:289",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:290",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:291",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:292",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:293",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:294",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:295",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:296",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:298",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:299",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:300",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:301",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:302",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:303",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:304",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:305",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:306",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:308",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:309",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:310",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:312",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:315",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:316",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:317",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:318",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:319",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:320",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:322",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:324",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:325",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:326",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:327",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:328",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:329",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:330",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:331",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:332",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:335",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:336",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:337",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:338",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:339",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:340",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:341",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:342",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:343",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:344",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:345",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:347",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:348",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:349",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:350",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:351",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:353",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:354",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:357",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:358",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:359",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:360",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:361",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:362",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:364",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:365",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:366",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:367",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:368",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:371",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:373",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:374",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:376",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:377",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:378",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:379",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:380",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:381",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:382",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:385",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:386",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:387",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:389",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:390",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:391",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:393",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:394",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:395",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:398",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:399",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:400",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:401",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:404",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:405",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:408",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:410",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:411",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:412",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:413",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:414",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:415",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:416",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:417",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:420",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:421",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:422",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:425",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:426",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:427",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:429",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:430",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:432",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:433",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:434",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:436",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:437",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:439",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:441",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:442",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:445",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:446",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:447",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:449",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:450",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:451",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:454",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:455",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:456",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:457",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:458",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:459",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:460",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:461",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:462",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:463",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:464",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:465",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:466",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:467",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:468",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:469",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:470",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:471",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:472",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:473",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:475",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:478",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:479",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:481",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:482",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:483",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:485",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:486",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:487",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:488",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:490",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:491",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:492",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:495",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:496",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:498",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:499",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:500",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:501",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:502",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:504",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:505",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:506",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:508",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:512",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:513",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:514",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:515",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:516",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:518",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:520",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:521",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:522",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:523",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:524",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:525",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:527",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:528",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:530",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:531",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:532",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:533",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:535",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:537",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:538",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:539",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:540",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:542",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:543",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:544",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:546",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:547",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:548",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:550",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:552",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:554",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:555",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:556",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:557",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:560",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:561",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:562",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:565",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:569",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:570",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:571",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:573",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:574",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:575",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:576",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:579",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:580",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:581",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:582",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:583",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:584",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:585",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:586",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:587",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:593",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:595",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:596",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:601",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:603",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:604",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:605",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:607",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:608",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:610",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:612",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:613",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:615",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:616",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:618",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:619",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:621",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:622",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:623",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:625",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:626",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:629",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:630",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:631",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:633",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:635",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:636",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:637",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:638",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:639",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:640",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:641",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:645",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:646",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:648",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:649",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:652",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:666",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:668",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:694",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:697",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:699",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:705",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:706",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:716",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:720",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:727",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:728",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:733",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:739",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:740",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:742",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:754",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:758",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:759",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:762",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:771",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:786",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:791",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:795",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:798",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:800",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:808",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:812",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:822",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:823",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:837",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:839",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:852",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:855",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:856",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:860",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:862",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:865",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:879",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:895",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:900",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:901",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:903",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:912",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:917",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:922",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:933",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:935",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:937",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:941",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:942",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:944",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:956",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:973",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:978",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "calibration",
+      "critical_violations": [],
+      "entry_id": "m_csa:988",
+      "status": "passed"
+    },
+    {
+      "assigned_embedding_split": "train",
+      "critical_violations": [],
+      "entry_id": "m_csa:998",
+      "status": "passed"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.mechanism_feature_embedding_feature_contract_strict_audit",
+  "scope": "Strict no-fit audit for the mechanism-feature embedding feature contract. It validates row alignment, split discipline, forbidden label/outcome field exclusion, and no-model-fit guardrails.",
+  "source_artifacts": {
+    "feature_contract": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json",
+      "sha256": "c38afb3dcb835750b857aab680129ea88077e37878568e8c3bef3947b585b583"
+    },
+    "train_cal_input_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json",
+      "sha256": "189ad77e0c3ca985a0a4fa4bc7efd07b6c94b2d4c7317efb77e9e1586cc18de6"
+    },
+    "train_cal_split_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json",
+      "sha256": "d06038f1faa9c42d98c409d949450c6cc953d6da325d98c0636ed4d9daf52d83"
+    }
+  },
+  "status": "mechanism_feature_embedding_feature_contract_strict_audit_passed_no_model_fit"
+}

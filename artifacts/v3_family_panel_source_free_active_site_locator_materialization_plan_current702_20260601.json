@@ -7,15 +7,15 @@
     "rerun_schema_audit": "PYTHONPATH=src python -m catalytic_earth.cli audit-family-panel-source-free-active-site-locator-schema"
   },
   "counts": {
-    "locator_sidecars_present_before_plan": 0,
-    "locator_sidecars_ready_before_plan": 0,
+    "locator_sidecars_present_before_plan": 3,
+    "locator_sidecars_ready_before_plan": 3,
     "planned_rows": 10,
     "suggested_locator_policy_counts": {
       "structure_local_ligand_geometry_without_source_text_candidate_requires_validator": 8,
       "train_cal_template_alignment_without_heldout_rows_candidate_requires_split_check": 2
     }
   },
-  "created_utc": "2026-06-01T11:54:14Z",
+  "created_utc": "2026-06-01T14:24:48Z",
   "guardrails": {
     "heldout_rows_used_for_training_or_threshold_tuning": false,
     "imports_or_promotions_performed": false,
@@ -27,7 +27,7 @@
     "source_text_or_label_fields_allowed_as_predictive_features": false
   },
   "interpretation": {
-    "headline": "10 locator sidecars are planned; 0 are currently ready.",
+    "headline": "10 locator sidecars are planned; 3 are currently ready.",
     "next_action": "Materialize the planned locator sidecars with only allowed source-free evidence, rerun the schema audit, then update the predicted-geometry manifest before any packet/readout refresh."
   },
   "locator_dir": "artifacts/family_panel_source_free_active_site_locators_current702_20260601",
@@ -560,12 +560,12 @@
     "locator_schema_audit": {
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json",
-      "sha256": "02378be68ab6fb6da600f69ff08b0409ec906a28999c04dfc73dc47b514bac5b"
+      "sha256": "33f488beb0f5fa77253b2c3abebc5aa2bc86a651caed9212d0113b611c094ba0"
     },
     "source_free_predicted_geometry_manifest": {
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json",
-      "sha256": "1b46bfcdd5cef37ea85a516dba8dbeda30b1f63f8622b6ca8f5643eec071551c"
+      "sha256": "058bb6e5d2e274490491fd498b30b1f44cd8e5f01fc105f744905bd8b73e7369"
     }
   },
   "status": "source_free_active_site_locator_materialization_plan_ready_review_only"

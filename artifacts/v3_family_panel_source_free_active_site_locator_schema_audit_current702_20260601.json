@@ -2,15 +2,15 @@
   "artifact_id": "v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601",
   "counts": {
     "critical_counts": {
-      "locator_sidecar_missing": 10
+      "locator_sidecar_missing": 7
     },
-    "locator_sidecars_missing": 10,
-    "locator_sidecars_present": 0,
-    "locator_sidecars_schema_passed": 0,
-    "ready_for_predicted_geometry_scoring": 0,
+    "locator_sidecars_missing": 7,
+    "locator_sidecars_present": 3,
+    "locator_sidecars_schema_passed": 3,
+    "ready_for_predicted_geometry_scoring": 3,
     "target_rows": 10
   },
-  "created_utc": "2026-06-01T13:07:23Z",
+  "created_utc": "2026-06-01T14:24:29Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "imports_or_promotions_performed": false,
@@ -22,7 +22,7 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "headline": "0/10 locator sidecars are ready for predicted-geometry scoring.",
+    "headline": "3/10 locator sidecars are ready for predicted-geometry scoring.",
     "next_action": "Materialize locator sidecars under the audited directory, rerun this audit, then rerun the predicted-geometry sidecar manifest before refreshing family-panel packets/readout."
   },
   "locator_dir": "artifacts/family_panel_source_free_active_site_locators_current702_20260601",
@@ -39,15 +39,16 @@
       "status": "missing"
     },
     {
-      "critical_violations": [
-        "locator_sidecar_missing"
-      ],
+      "critical_violations": [],
       "entry_id": "secondary_probe::radical_sam_enzyme",
-      "exists": false,
+      "exists": true,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
       "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
-      "ready_for_predicted_geometry_scoring": false,
+      "ready_for_predicted_geometry_scoring": true,
+      "residue_locator_count": 4,
+      "sha256": "3cd43b805e0d0e80fcd0c4d234c6428ae16b1916ae06369e906b4b305ec9f38a",
       "source_accession": "uniprot:A0A1M6T2I7",
-      "status": "missing"
+      "status": "passed"
     },
     {
       "critical_violations": [
@@ -61,15 +62,16 @@
       "status": "missing"
     },
     {
-      "critical_violations": [
-        "locator_sidecar_missing"
-      ],
+      "critical_violations": [],
       "entry_id": "mh_073",
-      "exists": false,
+      "exists": true,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
       "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_073_P01112.json",
-      "ready_for_predicted_geometry_scoring": false,
+      "ready_for_predicted_geometry_scoring": true,
+      "residue_locator_count": 2,
+      "sha256": "9340a15730268e23f8abc65c5efa88ca9d3545a0de57be45c1a52a34ac95ad86",
       "source_accession": "uniprot:P01112",
-      "status": "missing"
+      "status": "passed"
     },
     {
       "critical_violations": [
@@ -94,15 +96,16 @@
       "status": "missing"
     },
     {
-      "critical_violations": [
-        "locator_sidecar_missing"
-      ],
+      "critical_violations": [],
       "entry_id": "mh_066",
-      "exists": false,
+      "exists": true,
+      "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
       "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_066_P52699.json",
-      "ready_for_predicted_geometry_scoring": false,
+      "ready_for_predicted_geometry_scoring": true,
+      "residue_locator_count": 3,
+      "sha256": "3ee9c109b15001d10899c65c2a40066531d304462d580bc14d486d8361301621",
       "source_accession": "uniprot:P52699",
-      "status": "missing"
+      "status": "passed"
     },
     {
       "critical_violations": [

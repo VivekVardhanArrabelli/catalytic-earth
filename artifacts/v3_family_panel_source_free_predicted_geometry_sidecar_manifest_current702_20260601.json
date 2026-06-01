@@ -7,11 +7,11 @@
     },
     {
       "attempt": "checked_current702_label_manifest_membership",
-      "result": "All targeted rows are secondary/external family-panel rows, not current702 label-manifest rows with graph-backed residue locators."
+      "result": "Targeted rows may be secondary/external family-panel rows; this is recorded for provenance but is no longer a blocker once an approved source-free active-site locator is present."
     },
     {
-      "attempt": "checked_source_backed_sidecars_for_residue_locators",
-      "result": "The sidecars are present and fold-scored, but their catalytic or binding site evidence status remains `source_backed_row_context_staged_local_site_not_extracted`."
+      "attempt": "checked_source_backed_sidecars_and_approved_locator_audit",
+      "result": "Source-backed sidecars remain review-context only; approved source-free locator sidecars from the schema audit are the only mechanism allowed to clear active-site localization."
     },
     {
       "attempt": "checked_coordinate_and_fold_runtime_state",
@@ -26,19 +26,18 @@
   },
   "counts": {
     "blocker_counts": {
-      "approved_source_free_active_site_locator_missing": 10,
-      "not_current702_label_manifest_row": 10,
-      "source_backed_sidecar_lacks_residue_locator": 10,
-      "source_free_predicted_geometry_retrieval_missing": 10
+      "approved_source_free_active_site_locator_missing": 7,
+      "source_backed_sidecar_lacks_residue_locator": 7
     },
     "rows_with_afdb_predicted_cif": 10,
+    "rows_with_approved_source_free_active_site_locator": 3,
     "rows_with_same_accession_current702_geometry": 2,
     "rows_with_source_backed_fold_score": 10,
-    "source_free_geometry_blocked_rows": 10,
-    "source_free_geometry_ready_rows": 0,
+    "source_free_geometry_blocked_rows": 7,
+    "source_free_geometry_ready_rows": 3,
     "targeted_rows": 10
   },
-  "created_utc": "2026-06-01T12:48:47Z",
+  "created_utc": "2026-06-01T14:24:37Z",
   "guardrails": {
     "coordinates_or_large_models_downloaded": false,
     "entry_names_ec_rhea_or_labels_used_as_predictive_features": false,
@@ -52,8 +51,8 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "headline": "10/10 rows have source-backed fold scores and AFDB coordinate hashes, but 10 remain blocked for source-free predicted geometry because no approved active-site locator sidecar exists.",
-    "next_action": "Define and materialize the source-free active-site locator sidecar before refreshing family-panel packets/readout; do not promote rows or use source-backed review prose as scoring input."
+    "headline": "10/10 rows have source-backed fold scores and AFDB coordinate hashes; 3 now have approved source-free active-site locators and 7 remain blocked before predicted-geometry scoring.",
+    "next_action": "Run predicted-geometry retrieval only for ready rows using the approved locator sidecars; do not promote rows or use source-backed review prose as scoring input."
   },
   "row_manifests": [
     {
@@ -64,12 +63,23 @@
         "sha256": "cecf4f4c8cf9aeb92f1efa29458503b596830c52450f382865e70795fd560c00",
         "size_bytes": 675706
       },
+      "approved_source_free_active_site_locator": {
+        "critical_violations": [
+          "locator_sidecar_missing"
+        ],
+        "exists": false,
+        "locator_evidence_class": null,
+        "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
+        "ready_for_predicted_geometry_scoring": false,
+        "residue_locator_count": null,
+        "sha256": null,
+        "status": "missing"
+      },
       "blockers": [
         "approved_source_free_active_site_locator_missing",
-        "not_current702_label_manifest_row",
-        "source_backed_sidecar_lacks_residue_locator",
-        "source_free_predicted_geometry_retrieval_missing"
+        "source_backed_sidecar_lacks_residue_locator"
       ],
+      "current702_label_manifest_membership": false,
       "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
       "existing_source_free_geometry_row": null,
       "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
@@ -94,7 +104,11 @@
         "ready_for_label_import": false,
         "sha256": "b93b12303767c604fa5a944ffce9872f8bd24785bb3939cebd71c39d0126327c"
       },
-      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+      "source_free_predicted_geometry_retrieval": {
+        "exists": false,
+        "status": "missing_pending_scoring"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_geometry_preconditions"
     },
     {
       "alphafolddb_predicted_cif": {
@@ -104,15 +118,21 @@
         "sha256": "acda433793b8615254e09c9e8448bbc94ee9f0b6bdb755770e8b35e2d7726c13",
         "size_bytes": 469615
       },
-      "blockers": [
-        "approved_source_free_active_site_locator_missing",
-        "not_current702_label_manifest_row",
-        "source_backed_sidecar_lacks_residue_locator",
-        "source_free_predicted_geometry_retrieval_missing"
-      ],
+      "approved_source_free_active_site_locator": {
+        "critical_violations": [],
+        "exists": true,
+        "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+        "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
+        "ready_for_predicted_geometry_scoring": true,
+        "residue_locator_count": 4,
+        "sha256": "3cd43b805e0d0e80fcd0c4d234c6428ae16b1916ae06369e906b4b305ec9f38a",
+        "status": "passed"
+      },
+      "blockers": [],
+      "current702_label_manifest_membership": false,
       "entry_id": "secondary_probe::radical_sam_enzyme",
       "existing_source_free_geometry_row": null,
-      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "next_action": "run predicted-geometry retrieval for this row using the approved source-free active-site locator sidecar",
       "panel_id": "cobalamin_and_radical_rearrangement_panel",
       "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
       "rank": 2,
@@ -134,7 +154,11 @@
         "ready_for_label_import": false,
         "sha256": "422cde49363eb0a43e6ded3d4243337194f353b319d1781c08d3d2fd52342a17"
       },
-      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+      "source_free_predicted_geometry_retrieval": {
+        "exists": false,
+        "status": "missing_pending_scoring"
+      },
+      "source_free_predicted_geometry_status": "ready_to_score_source_free_predicted_geometry"
     },
     {
       "alphafolddb_predicted_cif": {
@@ -144,12 +168,23 @@
         "sha256": "0483a266d4e7d1cdda3fae7350670ae3115363f8cba0ae539c1837040d0cd1a3",
         "size_bytes": 669937
       },
+      "approved_source_free_active_site_locator": {
+        "critical_violations": [
+          "locator_sidecar_missing"
+        ],
+        "exists": false,
+        "locator_evidence_class": null,
+        "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/external_glycoside_panel_Q6NSJ0.json",
+        "ready_for_predicted_geometry_scoring": false,
+        "residue_locator_count": null,
+        "sha256": null,
+        "status": "missing"
+      },
       "blockers": [
         "approved_source_free_active_site_locator_missing",
-        "not_current702_label_manifest_row",
-        "source_backed_sidecar_lacks_residue_locator",
-        "source_free_predicted_geometry_retrieval_missing"
+        "source_backed_sidecar_lacks_residue_locator"
       ],
+      "current702_label_manifest_membership": false,
       "entry_id": "external_glycoside_panel",
       "existing_source_free_geometry_row": null,
       "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
@@ -174,7 +209,11 @@
         "ready_for_label_import": false,
         "sha256": "6e1619ff21305f2ba6fe2eff2ec7c35717a58a33eba355c2c4699d11905a6c7e"
       },
-      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+      "source_free_predicted_geometry_retrieval": {
+        "exists": false,
+        "status": "missing_pending_scoring"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_geometry_preconditions"
     },
     {
       "alphafolddb_predicted_cif": {
@@ -184,15 +223,21 @@
         "sha256": "b5359c737fe031a18359d836f805f5d291cefbb57ee06590601945c33140103e",
         "size_bytes": 184247
       },
-      "blockers": [
-        "approved_source_free_active_site_locator_missing",
-        "not_current702_label_manifest_row",
-        "source_backed_sidecar_lacks_residue_locator",
-        "source_free_predicted_geometry_retrieval_missing"
-      ],
+      "approved_source_free_active_site_locator": {
+        "critical_violations": [],
+        "exists": true,
+        "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+        "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_073_P01112.json",
+        "ready_for_predicted_geometry_scoring": true,
+        "residue_locator_count": 2,
+        "sha256": "9340a15730268e23f8abc65c5efa88ca9d3545a0de57be45c1a52a34ac95ad86",
+        "status": "passed"
+      },
+      "blockers": [],
+      "current702_label_manifest_membership": false,
       "entry_id": "mh_073",
       "existing_source_free_geometry_row": null,
-      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "next_action": "run predicted-geometry retrieval for this row using the approved source-free active-site locator sidecar",
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
       "rank": 4,
@@ -214,7 +259,11 @@
         "ready_for_label_import": false,
         "sha256": "63bafd9ed9456f9ef311f323dc6ad583216c1c188d9b8f43a134d3adf32c1272"
       },
-      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+      "source_free_predicted_geometry_retrieval": {
+        "exists": false,
+        "status": "missing_pending_scoring"
+      },
+      "source_free_predicted_geometry_status": "ready_to_score_source_free_predicted_geometry"
     },
     {
       "alphafolddb_predicted_cif": {
@@ -224,12 +273,23 @@
         "sha256": "3f2b5927b626c5328eb214efc24b10924ec120c9c19a0f7c70e021e609caaa06",
         "size_bytes": 244502
       },
+      "approved_source_free_active_site_locator": {
+        "critical_violations": [
+          "locator_sidecar_missing"
+        ],
+        "exists": false,
+        "locator_evidence_class": null,
+        "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_064_C7C422.json",
+        "ready_for_predicted_geometry_scoring": false,
+        "residue_locator_count": null,
+        "sha256": null,
+        "status": "missing"
+      },
       "blockers": [
         "approved_source_free_active_site_locator_missing",
-        "not_current702_label_manifest_row",
-        "source_backed_sidecar_lacks_residue_locator",
-        "source_free_predicted_geometry_retrieval_missing"
+        "source_backed_sidecar_lacks_residue_locator"
       ],
+      "current702_label_manifest_membership": false,
       "entry_id": "mh_064",
       "existing_source_free_geometry_row": null,
       "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
@@ -254,7 +314,11 @@
         "ready_for_label_import": false,
         "sha256": "e8de46c237aa6b2571126bf9a4e35ad26fde2b9a5febc8fb3bd34d8a723fb380"
       },
-      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+      "source_free_predicted_geometry_retrieval": {
+        "exists": false,
+        "status": "missing_pending_scoring"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_geometry_preconditions"
     },
     {
       "alphafolddb_predicted_cif": {
@@ -264,12 +328,23 @@
         "sha256": "26cde0b0a16e5fa8f051f86674f591ad3f156e210d929406258a249220a47c36",
         "size_bytes": 233491
       },
+      "approved_source_free_active_site_locator": {
+        "critical_violations": [
+          "locator_sidecar_missing"
+        ],
+        "exists": false,
+        "locator_evidence_class": null,
+        "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_065_Q79MP6.json",
+        "ready_for_predicted_geometry_scoring": false,
+        "residue_locator_count": null,
+        "sha256": null,
+        "status": "missing"
+      },
       "blockers": [
         "approved_source_free_active_site_locator_missing",
-        "not_current702_label_manifest_row",
-        "source_backed_sidecar_lacks_residue_locator",
-        "source_free_predicted_geometry_retrieval_missing"
+        "source_backed_sidecar_lacks_residue_locator"
       ],
+      "current702_label_manifest_membership": false,
       "entry_id": "mh_065",
       "existing_source_free_geometry_row": null,
       "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
@@ -294,7 +369,11 @@
         "ready_for_label_import": false,
         "sha256": "78e489d19595d170c4c9882377a04efbf078d496ef30754000a09a67c35e8372"
       },
-      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+      "source_free_predicted_geometry_retrieval": {
+        "exists": false,
+        "status": "missing_pending_scoring"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_geometry_preconditions"
     },
     {
       "alphafolddb_predicted_cif": {
@@ -304,15 +383,21 @@
         "sha256": "ebcc401fff928d6501c3d950d86c4791c26538f939f91e7c46ce0953d88a1aa0",
         "size_bytes": 233713
       },
-      "blockers": [
-        "approved_source_free_active_site_locator_missing",
-        "not_current702_label_manifest_row",
-        "source_backed_sidecar_lacks_residue_locator",
-        "source_free_predicted_geometry_retrieval_missing"
-      ],
+      "approved_source_free_active_site_locator": {
+        "critical_violations": [],
+        "exists": true,
+        "locator_evidence_class": "structure_local_ligand_geometry_without_source_text",
+        "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_066_P52699.json",
+        "ready_for_predicted_geometry_scoring": true,
+        "residue_locator_count": 3,
+        "sha256": "3ee9c109b15001d10899c65c2a40066531d304462d580bc14d486d8361301621",
+        "status": "passed"
+      },
+      "blockers": [],
+      "current702_label_manifest_membership": false,
       "entry_id": "mh_066",
       "existing_source_free_geometry_row": null,
-      "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
+      "next_action": "run predicted-geometry retrieval for this row using the approved source-free active-site locator sidecar",
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "prior_missing_channel_diagnosis": "source_backed_fold_scored_needs_predicted_geometry",
       "rank": 7,
@@ -334,7 +419,11 @@
         "ready_for_label_import": false,
         "sha256": "c94ca30b033a4adbe1a6be938a3bf55bbc8d245eb82c2d21a085733ecec7cad4"
       },
-      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+      "source_free_predicted_geometry_retrieval": {
+        "exists": false,
+        "status": "missing_pending_scoring"
+      },
+      "source_free_predicted_geometry_status": "ready_to_score_source_free_predicted_geometry"
     },
     {
       "alphafolddb_predicted_cif": {
@@ -344,12 +433,23 @@
         "sha256": "173c4f1fa81ffb1a288c881040217d1473ed2d08cd792671252ee116cac10c7d",
         "size_bytes": 252675
       },
+      "approved_source_free_active_site_locator": {
+        "critical_violations": [
+          "locator_sidecar_missing"
+        ],
+        "exists": false,
+        "locator_evidence_class": null,
+        "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_067_P00918.json",
+        "ready_for_predicted_geometry_scoring": false,
+        "residue_locator_count": null,
+        "sha256": null,
+        "status": "missing"
+      },
       "blockers": [
         "approved_source_free_active_site_locator_missing",
-        "not_current702_label_manifest_row",
-        "source_backed_sidecar_lacks_residue_locator",
-        "source_free_predicted_geometry_retrieval_missing"
+        "source_backed_sidecar_lacks_residue_locator"
       ],
+      "current702_label_manifest_membership": false,
       "entry_id": "mh_067",
       "existing_source_free_geometry_row": null,
       "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
@@ -382,7 +482,11 @@
         "ready_for_label_import": false,
         "sha256": "29b6c6285837d58c71f9aa6993cbc328b052cd7b08e19750f9de7e7facbad5aa"
       },
-      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+      "source_free_predicted_geometry_retrieval": {
+        "exists": false,
+        "status": "missing_pending_scoring"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_geometry_preconditions"
     },
     {
       "alphafolddb_predicted_cif": {
@@ -392,12 +496,23 @@
         "sha256": "92a63ccadbe5014407a5b2b735961c5b44fa3a0ebe8b2a97c79c4a486d3880e4",
         "size_bytes": 448908
       },
+      "approved_source_free_active_site_locator": {
+        "critical_violations": [
+          "locator_sidecar_missing"
+        ],
+        "exists": false,
+        "locator_evidence_class": null,
+        "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_068_P15289.json",
+        "ready_for_predicted_geometry_scoring": false,
+        "residue_locator_count": null,
+        "sha256": null,
+        "status": "missing"
+      },
       "blockers": [
         "approved_source_free_active_site_locator_missing",
-        "not_current702_label_manifest_row",
-        "source_backed_sidecar_lacks_residue_locator",
-        "source_free_predicted_geometry_retrieval_missing"
+        "source_backed_sidecar_lacks_residue_locator"
       ],
+      "current702_label_manifest_membership": false,
       "entry_id": "mh_068",
       "existing_source_free_geometry_row": null,
       "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
@@ -430,7 +545,11 @@
         "ready_for_label_import": false,
         "sha256": "92cea9fec31d85b9edaab1b5506b758741f809aef4df6bc0c80e594b6cb85de6"
       },
-      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+      "source_free_predicted_geometry_retrieval": {
+        "exists": false,
+        "status": "missing_pending_scoring"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_geometry_preconditions"
     },
     {
       "alphafolddb_predicted_cif": {
@@ -440,12 +559,23 @@
         "sha256": "ad6dc6116c071abf3ade1df3bfedd181d97334a5b5bbd625da5eadec6b8eed27",
         "size_bytes": 383406
       },
+      "approved_source_free_active_site_locator": {
+        "critical_violations": [
+          "locator_sidecar_missing"
+        ],
+        "exists": false,
+        "locator_evidence_class": null,
+        "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/mh_072_P0A6P9.json",
+        "ready_for_predicted_geometry_scoring": false,
+        "residue_locator_count": null,
+        "sha256": null,
+        "status": "missing"
+      },
       "blockers": [
         "approved_source_free_active_site_locator_missing",
-        "not_current702_label_manifest_row",
-        "source_backed_sidecar_lacks_residue_locator",
-        "source_free_predicted_geometry_retrieval_missing"
+        "source_backed_sidecar_lacks_residue_locator"
       ],
+      "current702_label_manifest_membership": false,
       "entry_id": "mh_072",
       "existing_source_free_geometry_row": null,
       "next_action": "create or approve a source-free active-site locator sidecar; do not reuse source prose, entry name, EC/Rhea identifiers, or review-only sidecar rationale as predictive geometry features",
@@ -470,12 +600,21 @@
         "ready_for_label_import": false,
         "sha256": "fd06afd9484d4e22d8d9a6a073cfedbf1243beccd00a028e43a3fc21c063eacb"
       },
-      "source_free_predicted_geometry_status": "blocked_source_free_active_site_locator_missing"
+      "source_free_predicted_geometry_retrieval": {
+        "exists": false,
+        "status": "missing_pending_scoring"
+      },
+      "source_free_predicted_geometry_status": "blocked_source_free_geometry_preconditions"
     }
   ],
   "schema_version": "northstar_next_levers.v0.source_free_predicted_geometry_manifest",
   "scope": "Review-only readiness manifest for materializing source-free predicted active-site geometry sidecars for the 10 family-panel rows that already have source-backed AFDB-vs-predicted-atlas Foldseek/TM scores.",
   "source_artifacts": {
+    "active_site_locator_schema_audit": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json",
+      "sha256": "33f488beb0f5fa77253b2c3abebc5aa2bc86a651caed9212d0113b611c094ba0"
+    },
     "label_manifest": {
       "exists": true,
       "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
@@ -497,5 +636,5 @@
       "sha256": "1c4eacb8b5917750f5ed6de7f614adcae55b1de1473942fc5efa9baeac4abbf6"
     }
   },
-  "status": "source_free_predicted_geometry_manifest_blocked_locator_missing_review_only"
+  "status": "source_free_predicted_geometry_manifest_partially_ready_to_score_review_only"
 }

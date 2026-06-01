@@ -49,10 +49,12 @@ from .northstar_next_levers import (
     write_family_panel_source_free_active_site_locator_candidate_integrity_audit,
     write_family_panel_source_free_active_site_locator_manual_review_packet,
     write_family_panel_source_free_active_site_locator_materialization_plan,
+    write_family_panel_source_free_active_site_locator_priority1_review_preflight,
     write_family_panel_source_free_active_site_locator_review_queue,
     write_family_panel_source_free_active_site_locator_schema,
     write_family_panel_source_free_active_site_locator_schema_audit,
     write_family_panel_source_free_active_site_locator_template_bundle,
+    write_family_panel_source_free_locator_blocked_row_rescue_manifest,
     write_family_panel_source_free_predicted_geometry_sidecar_manifest,
     write_fold_augmented_abstention_gate,
     write_fold_augmented_abstention_threshold_contract,
@@ -70,6 +72,7 @@ from .northstar_next_levers import (
     write_learned_mechanism_feature_embedding_plan,
     write_mechanism_feature_embedding_train_cal_input_manifest,
     write_mechanism_feature_embedding_feature_contract,
+    write_mechanism_feature_embedding_feature_contract_strict_audit,
     write_mechanism_feature_embedding_train_cal_split_manifest,
     write_mechanism_feature_active_site_role_graph_sidecar,
     write_mechanism_feature_reaction_center_template_sidecar,
@@ -10989,6 +10992,9 @@ def cmd_build_family_panel_source_free_predicted_geometry_sidecar_manifest(
         source_backed_materialization_path=Path(args.source_backed_materialization),
         predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
         label_manifest_path=Path(args.label_manifest),
+        locator_schema_audit_path=Path(args.locator_schema_audit)
+        if args.locator_schema_audit
+        else None,
         missing_primary_channel_diagnosis_path=Path(args.missing_primary_channel_diagnosis)
         if args.missing_primary_channel_diagnosis
         else None,
@@ -11145,6 +11151,47 @@ def cmd_build_family_panel_source_free_active_site_locator_manual_review_packet(
         f"packet to {args.out} (priority-1 rows: "
         f"{counts.get('priority_1_manual_forbidden_feature_review_rows')}, "
         f"ready rows: {counts.get('ready_for_predicted_geometry_scoring')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_free_active_site_locator_priority1_review_preflight(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_active_site_locator_priority1_review_preflight(
+        manual_review_packet_path=Path(args.manual_review_packet),
+        locator_schema_path=Path(args.locator_schema),
+        audited_locator_dir=Path(args.audited_locator_dir),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel source-free active-site locator priority-1 "
+        f"review preflight to {args.out} (passed pending human approval: "
+        f"{counts.get('preflight_passed_pending_human_approval')}, ready rows: "
+        f"{counts.get('ready_for_predicted_geometry_scoring')})"
+    )
+    return 0
+
+
+def cmd_build_family_panel_source_free_locator_blocked_row_rescue_manifest(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_family_panel_source_free_locator_blocked_row_rescue_manifest(
+        candidate_audit_path=Path(args.candidate_audit),
+        review_queue_path=Path(args.review_queue),
+        external_identifier_scout_path=Path(args.external_identifier_scout),
+        cobalamin_blocker_review_path=Path(args.cobalamin_blocker_review),
+        coordinate_dir=Path(args.coordinate_dir),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote family-panel source-free locator blocked-row rescue manifest to "
+        f"{args.out} (blocked rows: {counts.get('blocked_rows')}, "
+        f"alternate PDB IDs: {counts.get('alternate_pdb_ids_total')})"
     )
     return 0
 
@@ -11551,6 +11598,25 @@ def cmd_build_mechanism_feature_embedding_feature_contract(
         "Wrote mechanism-feature embedding feature contract to "
         f"{args.out} (feature rows: {counts.get('feature_rows')}, "
         f"heldout rows: {counts.get('heldout_excluded_rows')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_embedding_feature_contract(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_embedding_feature_contract_strict_audit(
+        feature_contract_path=Path(args.feature_contract),
+        train_cal_input_manifest_path=Path(args.train_cal_input_manifest),
+        train_cal_split_manifest_path=Path(args.train_cal_split_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote mechanism-feature embedding feature contract strict audit to "
+        f"{args.out} (passed rows: {counts.get('row_audits_passed')}, "
+        f"critical violations: {counts.get('critical_violation_total')})"
     )
     return 0
 
@@ -22522,6 +22588,13 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
     )
     family_panel_source_free_geometry_manifest.add_argument(
+        "--locator-schema-audit",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
+            "audit_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_geometry_manifest.add_argument(
         "--missing-primary-channel-diagnosis",
         default=(
             "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_"
@@ -22877,6 +22950,106 @@ def build_parser() -> argparse.ArgumentParser:
     )
     family_panel_source_free_locator_manual_review_packet.set_defaults(
         func=cmd_build_family_panel_source_free_active_site_locator_manual_review_packet
+    )
+
+    family_panel_source_free_locator_priority1_preflight = subparsers.add_parser(
+        "build-family-panel-source-free-active-site-locator-priority1-review-preflight",
+        help=(
+            "dry-run schema, guardrail, and coordinate-contact checks for "
+            "priority-1 source-free locator candidates without copying sidecars"
+        ),
+    )
+    family_panel_source_free_locator_priority1_preflight.add_argument(
+        "--manual-review-packet",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_"
+            "manual_review_packet_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_priority1_preflight.add_argument(
+        "--locator-schema",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_priority1_preflight.add_argument(
+        "--audited-locator-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locators_"
+            "current702_20260601"
+        ),
+    )
+    family_panel_source_free_locator_priority1_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_"
+            "priority1_review_preflight_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_priority1_preflight.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_active_site_locator_"
+            "priority1_review_preflight_current702_20260601.md"
+        ),
+    )
+    family_panel_source_free_locator_priority1_preflight.set_defaults(
+        func=cmd_build_family_panel_source_free_active_site_locator_priority1_review_preflight
+    )
+
+    family_panel_source_free_locator_blocked_row_rescue = subparsers.add_parser(
+        "build-family-panel-source-free-locator-blocked-row-rescue-manifest",
+        help=(
+            "stage review-only alternate-coordinate rescue commands for "
+            "source-free locator rows blocked by no local ligand candidate"
+        ),
+    )
+    family_panel_source_free_locator_blocked_row_rescue.add_argument(
+        "--candidate-audit",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_"
+            "candidate_audit_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_blocked_row_rescue.add_argument(
+        "--review-queue",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_"
+            "review_queue_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_blocked_row_rescue.add_argument(
+        "--external-identifier-scout",
+        default="artifacts/v3_external_identifier_resolution_scout_20260528.json",
+    )
+    family_panel_source_free_locator_blocked_row_rescue.add_argument(
+        "--cobalamin-blocker-review",
+        default=(
+            "artifacts/v3_prospective_external_cobalamin_radical_minicampaign_"
+            "blocker_review_20260521.json"
+        ),
+    )
+    family_panel_source_free_locator_blocked_row_rescue.add_argument(
+        "--coordinate-dir",
+        default="artifacts/family_panel_source_backed_coordinates_current702_20260601",
+    )
+    family_panel_source_free_locator_blocked_row_rescue.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_blocked_row_"
+            "rescue_manifest_current702_20260601.json"
+        ),
+    )
+    family_panel_source_free_locator_blocked_row_rescue.add_argument(
+        "--report",
+        default=(
+            "work/family_panel_source_free_locator_blocked_row_rescue_manifest_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_source_free_locator_blocked_row_rescue.set_defaults(
+        func=cmd_build_family_panel_source_free_locator_blocked_row_rescue_manifest
     )
 
     fold_augmented_gate = subparsers.add_parser(
@@ -23750,6 +23923,52 @@ def build_parser() -> argparse.ArgumentParser:
     )
     mechanism_embedding_feature_contract.set_defaults(
         func=cmd_build_mechanism_feature_embedding_feature_contract
+    )
+
+    mechanism_embedding_feature_contract_audit = subparsers.add_parser(
+        "audit-mechanism-feature-embedding-feature-contract",
+        help=(
+            "strictly audit the no-fit mechanism-feature embedding feature "
+            "contract for label exclusion and train/cal alignment"
+        ),
+    )
+    mechanism_embedding_feature_contract_audit.add_argument(
+        "--feature-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_feature_contract_audit.add_argument(
+        "--train-cal-input-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_input_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_feature_contract_audit.add_argument(
+        "--train-cal-split-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_split_"
+            "manifest_current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_feature_contract_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "strict_audit_current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_feature_contract_audit.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_embedding_feature_contract_strict_audit_"
+            "current702_20260601.md"
+        ),
+    )
+    mechanism_embedding_feature_contract_audit.set_defaults(
+        func=cmd_audit_mechanism_feature_embedding_feature_contract
     )
 
     family_expansion_targets = subparsers.add_parser(

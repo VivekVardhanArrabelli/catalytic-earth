@@ -99,11 +99,20 @@ FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_REVIEW_QUEUE_ID = (
 FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_MANUAL_REVIEW_PACKET_ID = (
     "v3_family_panel_source_free_active_site_locator_manual_review_packet_current702_20260601"
 )
+FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_PRIORITY1_REVIEW_PREFLIGHT_ID = (
+    "v3_family_panel_source_free_active_site_locator_priority1_review_preflight_current702_20260601"
+)
+FAMILY_PANEL_SOURCE_FREE_LOCATOR_BLOCKED_ROW_RESCUE_MANIFEST_ID = (
+    "v3_family_panel_source_free_locator_blocked_row_rescue_manifest_current702_20260601"
+)
 MECHANISM_FEATURE_SIDECAR_SCHEMA_AUDIT_ID = (
     "v3_mechanism_feature_sidecar_schema_audit_current702_20260601"
 )
 MECHANISM_FEATURE_EMBEDDING_FEATURE_CONTRACT_ID = (
     "v3_mechanism_feature_embedding_feature_contract_current702_20260601"
+)
+MECHANISM_FEATURE_EMBEDDING_FEATURE_CONTRACT_STRICT_AUDIT_ID = (
+    "v3_mechanism_feature_embedding_feature_contract_strict_audit_current702_20260601"
 )
 
 
@@ -3630,27 +3639,66 @@ def _source_free_geometry_manifest_sidecar_record(
     }
 
 
+def _locator_schema_audit_rows_by_entry(
+    locator_schema_audit: dict[str, Any],
+) -> dict[tuple[str, str], dict[str, Any]]:
+    return {
+        (str(row.get("entry_id") or ""), str(row.get("source_accession") or "")): row
+        for row in locator_schema_audit.get("row_audits", [])
+        if isinstance(row, dict) and row.get("entry_id") and row.get("source_accession")
+    }
+
+
+def _source_free_locator_manifest_record(
+    locator_audit_row: dict[str, Any] | None,
+) -> dict[str, Any]:
+    if not locator_audit_row:
+        return {
+            "exists": False,
+            "path": None,
+            "sha256": None,
+            "status": "missing",
+            "ready_for_predicted_geometry_scoring": False,
+            "residue_locator_count": 0,
+            "locator_evidence_class": None,
+            "critical_violations": ["locator_sidecar_missing"],
+        }
+    return {
+        "exists": locator_audit_row.get("exists"),
+        "path": locator_audit_row.get("path"),
+        "sha256": locator_audit_row.get("sha256"),
+        "status": locator_audit_row.get("status"),
+        "ready_for_predicted_geometry_scoring": locator_audit_row.get(
+            "ready_for_predicted_geometry_scoring"
+        ),
+        "residue_locator_count": locator_audit_row.get("residue_locator_count"),
+        "locator_evidence_class": locator_audit_row.get("locator_evidence_class"),
+        "critical_violations": locator_audit_row.get("critical_violations", []),
+    }
+
+
 def _source_free_geometry_manifest_blockers(
     *,
-    entry_id: str,
-    manifest_entry_ids: set[str],
     geometry_row: dict[str, Any] | None,
     sidecar_record: dict[str, Any] | None,
     afdb_record: dict[str, Any] | None,
+    source_free_locator_record: dict[str, Any] | None,
 ) -> list[str]:
     blockers: list[str] = []
-    if entry_id not in manifest_entry_ids:
-        blockers.append("not_current702_label_manifest_row")
-    if geometry_row is None:
-        blockers.append("source_free_predicted_geometry_retrieval_missing")
-    elif geometry_row.get("status") != "ok":
+    locator_ready = bool(
+        (source_free_locator_record or {}).get("ready_for_predicted_geometry_scoring")
+    )
+    if geometry_row is not None and geometry_row.get("status") != "ok":
         blockers.append(f"source_free_predicted_geometry_not_ok:{geometry_row.get('status')}")
     if not afdb_record or not afdb_record.get("exists"):
         blockers.append("alphafolddb_predicted_cif_missing")
-    status = (sidecar_record or {}).get("catalytic_or_binding_site_status")
-    if status != "source_free_active_site_locator_ready":
+    source_backed_status = (sidecar_record or {}).get("catalytic_or_binding_site_status")
+    if not locator_ready:
         blockers.append("approved_source_free_active_site_locator_missing")
-    if status == "source_backed_row_context_staged_local_site_not_extracted":
+    if (
+        source_backed_status == "source_backed_row_context_staged_local_site_not_extracted"
+        and not locator_ready
+    ):
         blockers.append("source_backed_sidecar_lacks_residue_locator")
     return sorted(set(blockers))
 
@@ -3660,6 +3708,7 @@ def build_family_panel_source_free_predicted_geometry_sidecar_manifest(
     source_backed_materialization_path: Path,
     predicted_geometry_atlas_path: Path,
     label_manifest_path: Path,
+    locator_schema_audit_path: Path | None = None,
     missing_primary_channel_diagnosis_path: Path | None = None,
 ) -> dict[str, Any]:
     materialization = _read_json(source_backed_materialization_path)
@@ -3671,6 +3720,13 @@ def build_family_panel_source_free_predicted_geometry_sidecar_manifest(
         and Path(missing_primary_channel_diagnosis_path).exists()
         else {}
     )
+    locator_schema_audit = (
+        _read_json(locator_schema_audit_path)
+        if locator_schema_audit_path is not None
+        and Path(locator_schema_audit_path).exists()
+        else {}
+    )
+    locator_audit_by_entry = _locator_schema_audit_rows_by_entry(locator_schema_audit)
     manifest_entry_ids = {
         str(row.get("entry_id") or "")
         for row in label_manifest.get("rows", [])
@@ -3703,6 +3759,9 @@ def build_family_panel_source_free_predicted_geometry_sidecar_manifest(
             for match in geometry_by_accession.get(accession or "", [])
         ]
         sidecar_record = _source_free_geometry_manifest_sidecar_record(row)
+        source_free_locator_record = _source_free_locator_manifest_record(
+            locator_audit_by_entry.get((entry_id, source_accession))
+        )
         coordinate_records = [
             record
             for record in row.get("coordinate_records", [])
@@ -3717,13 +3776,21 @@ def build_family_panel_source_free_predicted_geometry_sidecar_manifest(
             None,
         )
         blockers = _source_free_geometry_manifest_blockers(
-            entry_id=entry_id,
-            manifest_entry_ids=manifest_entry_ids,
             geometry_row=geometry_row,
             sidecar_record=sidecar_record,
             afdb_record=afdb_record,
+            source_free_locator_record=source_free_locator_record,
         )
         fold = row.get("predicted_structure_fold_channel") or {}
+        source_free_status = (
+            "blocked_source_free_geometry_preconditions"
+            if blockers
+            else (
+                "source_free_predicted_geometry_scored"
+                if geometry_row is not None
+                else "ready_to_score_source_free_predicted_geometry"
+            )
+        )
         row_manifests.append(
             {
                 "rank": row.get("rank"),
@@ -3731,13 +3798,23 @@ def build_family_panel_source_free_predicted_geometry_sidecar_manifest(
                 "panel_id": row.get("panel_id"),
                 "source_accession": source_accession,
                 "selected_structure_id": row.get("selected_structure_id"),
+                "current702_label_manifest_membership": entry_id in manifest_entry_ids,
                 "alphafolddb_predicted_cif": afdb_record,
                 "source_backed_sidecar": sidecar_record,
+                "approved_source_free_active_site_locator": source_free_locator_record,
                 "existing_source_free_geometry_row": (
                     _summarize_predicted_geometry_row(geometry_row)
                     if geometry_row
                     else None
                 ),
+                "source_free_predicted_geometry_retrieval": {
+                    "exists": geometry_row is not None,
+                    "status": (
+                        geometry_row.get("status")
+                        if geometry_row
+                        else "missing_pending_scoring"
+                    ),
+                },
                 "same_accession_current702_geometry_rows": accession_matches,
                 "source_backed_fold_score": {
                     "nearest_atlas_entry_id": fold.get("nearest_atlas_entry_id"),
@@ -3750,11 +3827,7 @@ def build_family_panel_source_free_predicted_geometry_sidecar_manifest(
                 "prior_missing_channel_diagnosis": (
                     diagnosis_by_entry.get(entry_id) or {}
                 ).get("diagnosis"),
-                "source_free_predicted_geometry_status": (
-                    "ready_to_score"
-                    if not blockers
-                    else "blocked_source_free_active_site_locator_missing"
-                ),
+                "source_free_predicted_geometry_status": source_free_status,
                 "blockers": blockers,
                 "next_action": (
                     "run predicted-geometry retrieval for this row using the approved "
@@ -3785,10 +3858,20 @@ def build_family_panel_source_free_predicted_geometry_sidecar_manifest(
     rows_with_same_accession_geometry = [
         row for row in row_manifests if row["same_accession_current702_geometry_rows"]
     ]
+    rows_with_approved_locators = [
+        row
+        for row in row_manifests
+        if row["approved_source_free_active_site_locator"][
+            "ready_for_predicted_geometry_scoring"
+        ]
+        is True
+    ]
 
     status = (
         "source_free_predicted_geometry_sidecar_ready_to_score_review_only"
         if ready_rows and not blocked_rows
+        else "source_free_predicted_geometry_manifest_partially_ready_to_score_review_only"
+        if ready_rows and blocked_rows
         else "source_free_predicted_geometry_manifest_blocked_locator_missing_review_only"
     )
     return {
@@ -3820,6 +3903,9 @@ def build_family_panel_source_free_predicted_geometry_sidecar_manifest(
             "rows_with_source_backed_fold_score": len(rows_with_fold),
             "source_free_geometry_ready_rows": len(ready_rows),
             "source_free_geometry_blocked_rows": len(blocked_rows),
+            "rows_with_approved_source_free_active_site_locator": len(
+                rows_with_approved_locators
+            ),
             "rows_with_same_accession_current702_geometry": len(
                 rows_with_same_accession_geometry
             ),
@@ -3841,17 +3927,17 @@ def build_family_panel_source_free_predicted_geometry_sidecar_manifest(
             {
                 "attempt": "checked_current702_label_manifest_membership",
                 "result": (
-                    "All targeted rows are secondary/external family-panel rows, "
-                    "not current702 label-manifest rows with graph-backed residue "
-                    "locators."
+                    "Targeted rows may be secondary/external family-panel rows; "
+                    "this is recorded for provenance but is no longer a blocker "
+                    "once an approved source-free active-site locator is present."
                 ),
             },
             {
-                "attempt": "checked_source_backed_sidecars_for_residue_locators",
+                "attempt": "checked_source_backed_sidecars_and_approved_locator_audit",
                 "result": (
-                    "The sidecars are present and fold-scored, but their catalytic "
-                    "or binding site evidence status remains "
-                    "`source_backed_row_context_staged_local_site_not_extracted`."
+                    "Source-backed sidecars remain review-context only; approved "
+                    "source-free locator sidecars from the schema audit are the "
+                    "only mechanism allowed to clear active-site localization."
                 ),
             },
             {
@@ -3900,18 +3986,25 @@ def build_family_panel_source_free_predicted_geometry_sidecar_manifest(
                 and Path(missing_primary_channel_diagnosis_path).exists()
                 else None
             ),
+            "active_site_locator_schema_audit": (
+                _source_path_record(locator_schema_audit_path)
+                if locator_schema_audit_path is not None
+                and Path(locator_schema_audit_path).exists()
+                else None
+            ),
         },
         "interpretation": {
             "headline": (
                 f"{len(rows_with_fold)}/{len(row_manifests)} rows have source-backed "
-                "fold scores and AFDB coordinate hashes, but "
-                f"{len(blocked_rows)} remain blocked for source-free predicted "
-                "geometry because no approved active-site locator sidecar exists."
+                "fold scores and AFDB coordinate hashes; "
+                f"{len(ready_rows)} now have approved source-free active-site "
+                f"locators and {len(blocked_rows)} remain blocked before "
+                "predicted-geometry scoring."
             ),
             "next_action": (
-                "Define and materialize the source-free active-site locator "
-                "sidecar before refreshing family-panel packets/readout; do not "
-                "promote rows or use source-backed review prose as scoring input."
+                "Run predicted-geometry retrieval only for ready rows using the "
+                "approved locator sidecars; do not promote rows or use source-backed "
+                "review prose as scoring input."
             ),
         },
     }
@@ -3934,6 +4027,10 @@ def _render_family_panel_source_free_predicted_geometry_sidecar_manifest_report(
         f"- Targeted rows: {counts['targeted_rows']}",
         f"- Rows with AFDB predicted CIFs: {counts['rows_with_afdb_predicted_cif']}",
         f"- Rows with source-backed fold scores: {counts['rows_with_source_backed_fold_score']}",
+        (
+            "- Rows with approved source-free active-site locator: "
+            f"{counts.get('rows_with_approved_source_free_active_site_locator', 0)}"
+        ),
         f"- Source-free geometry ready rows: {counts['source_free_geometry_ready_rows']}",
         f"- Source-free geometry blocked rows: {counts['source_free_geometry_blocked_rows']}",
         f"- Blocker counts: {counts['blocker_counts']}",
@@ -3986,12 +4083,14 @@ def write_family_panel_source_free_predicted_geometry_sidecar_manifest(
     label_manifest_path: Path,
     out_path: Path,
     report_path: Path | None = None,
+    locator_schema_audit_path: Path | None = None,
     missing_primary_channel_diagnosis_path: Path | None = None,
 ) -> dict[str, Any]:
     audit = build_family_panel_source_free_predicted_geometry_sidecar_manifest(
         source_backed_materialization_path=source_backed_materialization_path,
         predicted_geometry_atlas_path=predicted_geometry_atlas_path,
         label_manifest_path=label_manifest_path,
+        locator_schema_audit_path=locator_schema_audit_path,
         missing_primary_channel_diagnosis_path=missing_primary_channel_diagnosis_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -6503,6 +6602,866 @@ def write_family_panel_source_free_active_site_locator_manual_review_packet(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_family_panel_source_free_active_site_locator_manual_review_packet_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _planned_locator_sidecar_payload(
+    *,
+    candidate: dict[str, Any],
+    schema: dict[str, Any],
+    created_utc: str,
+) -> dict[str, Any]:
+    entry_id = str(candidate.get("entry_id") or "")
+    source_accession = str(candidate.get("source_accession") or "")
+    accession_token = str(source_accession).split(":", 1)[-1]
+    artifact_token = _safe_path_token(f"{entry_id}_{accession_token}")
+    forbidden_fields = schema.get("forbidden_predictive_fields", [])
+    return {
+        "artifact_id": (
+            "v3_family_panel_source_free_active_site_locator_"
+            f"{artifact_token}_current702_20260601"
+        ),
+        "schema_version": f"{SCHEMA_VERSION}.source_free_active_site_locator",
+        "created_utc": created_utc,
+        "entry_id": entry_id,
+        "source_accession": source_accession,
+        "locator_policy": candidate.get("locator_policy"),
+        "locator_evidence_class": candidate.get("locator_evidence_class"),
+        "source_free_active_site_locator_status": "ready",
+        "residue_locators": candidate.get("residue_locators", []),
+        "forbidden_feature_audit": {
+            field: False for field in sorted(str(field) for field in forbidden_fields)
+        },
+        "split_protection": {
+            "review_only": True,
+            "allowed_for_training": False,
+            "allowed_for_threshold_selection": False,
+            "ready_for_label_import": False,
+        },
+        "ready_for_predicted_geometry_scoring": False,
+    }
+
+
+def _schema_dry_run_violations(
+    *,
+    sidecar: dict[str, Any],
+    schema: dict[str, Any],
+) -> list[str]:
+    violations: list[str] = []
+    for field in schema.get("sidecar_required_top_level_fields", []):
+        if field not in sidecar:
+            violations.append(f"missing_top_level_field:{field}")
+    allowed_classes = set(
+        str(value)
+        for value in schema.get("allowed_locator_evidence_classes", [])
+    )
+    locator_class = sidecar.get("locator_evidence_class")
+    if locator_class not in allowed_classes:
+        violations.append("locator_evidence_class_not_allowed")
+    if sidecar.get("source_free_active_site_locator_status") != "ready":
+        violations.append("source_free_active_site_locator_status_not_ready")
+    residue_locators = [
+        row for row in sidecar.get("residue_locators", []) if isinstance(row, dict)
+    ]
+    minimum = int(schema.get("counts", {}).get("required_residue_locator_minimum") or 2)
+    if len(residue_locators) < minimum:
+        violations.append("insufficient_residue_locators")
+    required_residue_fields = set(schema.get("residue_locator_required_fields", []))
+    for index, locator in enumerate(residue_locators):
+        for field in required_residue_fields:
+            if field not in locator:
+                violations.append(f"residue_locator_{index}_missing_field:{field}")
+        if locator.get("locator_evidence_class") not in allowed_classes:
+            violations.append(f"residue_locator_{index}_evidence_class_not_allowed")
+        provenance = locator.get("coordinate_independent_provenance") or {}
+        if provenance.get("source_text_used") is not False:
+            violations.append(f"residue_locator_{index}_source_text_used")
+        if provenance.get("heldout_rows_used") is not False:
+            violations.append(f"residue_locator_{index}_heldout_rows_used")
+        if provenance.get("sequence_position_uniprot_validated") is not True:
+            violations.append(
+                f"residue_locator_{index}_sequence_position_not_uniprot_validated"
+            )
+        if not isinstance(locator.get("sequence_position"), int):
+            violations.append(f"residue_locator_{index}_sequence_position_not_int")
+    forbidden_feature_audit = sidecar.get("forbidden_feature_audit") or {}
+    active_forbidden = [
+        field for field, value in forbidden_feature_audit.items() if value is not False
+    ]
+    if active_forbidden:
+        violations.append("forbidden_feature_audit_has_nonfalse_flags")
+    split_protection = sidecar.get("split_protection") or {}
+    if split_protection.get("review_only") is not True:
+        violations.append("split_protection_review_only_not_true")
+    for split_key in (
+        "allowed_for_training",
+        "allowed_for_threshold_selection",
+        "ready_for_label_import",
+    ):
+        if split_protection.get(split_key) is not False:
+            violations.append(f"split_protection_{split_key}_not_false")
+    if sidecar.get("ready_for_predicted_geometry_scoring") is not False:
+        violations.append("ready_for_predicted_geometry_scoring_not_false")
+    return sorted(set(violations))
+
+
+def _priority1_candidate_guardrail_violations(
+    *,
+    candidate: dict[str, Any],
+    packet_row: dict[str, Any],
+    manual_review_packet_sha256: str | None,
+) -> list[str]:
+    violations: list[str] = []
+    if packet_row.get("integrity_status") != "passed":
+        violations.append("manual_packet_integrity_status_not_passed")
+    if packet_row.get("review_class") != "ready_for_manual_forbidden_feature_review":
+        violations.append("manual_packet_review_class_not_priority1_ready")
+    if packet_row.get("candidate_sha256") != manual_review_packet_sha256:
+        violations.append("candidate_sha256_mismatch_manual_packet")
+    guardrails = candidate.get("candidate_guardrails") or {}
+    if guardrails.get("candidate_only") is not True:
+        violations.append("candidate_only_guardrail_not_true")
+    if guardrails.get("written_outside_audited_locator_dir") is not True:
+        violations.append("written_outside_audited_locator_dir_guardrail_not_true")
+    if guardrails.get("copied_to_audited_locator_dir") is not False:
+        violations.append("copied_to_audited_locator_dir_guardrail_not_false")
+    if guardrails.get("predicted_geometry_scored") is not False:
+        violations.append("predicted_geometry_scored_guardrail_not_false")
+    if (
+        guardrails.get("source_text_or_label_fields_used_as_predictive_features")
+        is not False
+    ):
+        violations.append("source_text_or_label_feature_guardrail_not_false")
+    forbidden_feature_audit = candidate.get("forbidden_feature_audit") or {}
+    active_forbidden = [
+        key for key, value in forbidden_feature_audit.items() if value is not False
+    ]
+    if active_forbidden:
+        violations.append("candidate_forbidden_feature_audit_has_nonfalse_flags")
+    split_protection = candidate.get("split_protection") or {}
+    if split_protection.get("same_accession_current702_geometry_rows"):
+        violations.append("same_accession_current702_geometry_rows_present")
+    for split_key in (
+        "allowed_for_training",
+        "allowed_for_threshold_selection",
+        "ready_for_label_import",
+    ):
+        if split_protection.get(split_key) is not False:
+            violations.append(f"candidate_split_protection_{split_key}_not_false")
+    blockers = set(candidate.get("candidate_blockers") or [])
+    allowed_blockers = {
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+    }
+    extra_blockers = sorted(blockers - allowed_blockers)
+    for blocker in extra_blockers:
+        violations.append(f"unexpected_priority1_candidate_blocker:{blocker}")
+    return sorted(set(violations))
+
+
+def _priority1_scientific_preflight(
+    candidate: dict[str, Any],
+) -> dict[str, Any]:
+    extraction = (candidate.get("coordinate_candidate_evidence") or {}).get(
+        "extraction"
+    ) or {}
+    selected_ligand = extraction.get("selected_ligand_site") or {}
+    ligand_code = str(selected_ligand.get("comp_id") or "")
+    locators = [
+        row for row in candidate.get("residue_locators", []) if isinstance(row, dict)
+    ]
+    violations: list[str] = []
+    warnings: list[str] = []
+    if not selected_ligand:
+        violations.append("selected_ligand_site_missing")
+    if (
+        ligand_code not in METAL_ION_CODES
+        and ligand_code not in LOCATOR_CANDIDATE_PREFERRED_LIGAND_CODES
+    ):
+        violations.append("selected_ligand_not_preferred_or_metal")
+    minimum = 2
+    if len(locators) < minimum:
+        violations.append("fewer_than_two_candidate_locators")
+    if len(locators) == minimum:
+        warnings.append("minimum_two_locator_floor_only")
+    cutoff = (
+        LOCATOR_CANDIDATE_METAL_CONTACT_CUTOFF_ANGSTROM
+        if ligand_code in METAL_ION_CODES
+        else LOCATOR_CANDIDATE_CONTACT_CUTOFF_ANGSTROM
+    )
+    locator_summaries = []
+    for index, locator in enumerate(locators):
+        evidence = locator.get("candidate_contact_evidence") or {}
+        provenance = locator.get("coordinate_independent_provenance") or {}
+        distance = evidence.get("distance_angstrom")
+        if not isinstance(distance, int | float):
+            violations.append(f"locator_{index}_distance_missing")
+        elif float(distance) > cutoff:
+            violations.append(f"locator_{index}_distance_above_cutoff")
+        if provenance.get("sequence_position_uniprot_validated") is not True:
+            violations.append(f"locator_{index}_sequence_position_not_uniprot_validated")
+        if provenance.get("source_text_used") is not False:
+            violations.append(f"locator_{index}_source_text_used")
+        if provenance.get("heldout_rows_used") is not False:
+            violations.append(f"locator_{index}_heldout_rows_used")
+        locator_summaries.append(
+            {
+                "residue_code": locator.get("residue_code"),
+                "sequence_position": locator.get("sequence_position"),
+                "role_hint": locator.get("role_hint"),
+                "distance_angstrom": distance,
+                "ligand_atom": evidence.get("ligand_atom"),
+                "residue_atom": evidence.get("residue_atom"),
+                "sequence_position_source": provenance.get("sequence_position_source"),
+            }
+        )
+    status = (
+        "supported_by_coordinate_contact_preflight"
+        if not violations
+        else "blocked_by_coordinate_contact_preflight"
+    )
+    return {
+        "status": status,
+        "selected_ligand_site": selected_ligand or None,
+        "candidate_residue_locator_count": len(locators),
+        "sequence_position_validated_locator_count": sum(
+            1
+            for locator in locators
+            if (locator.get("coordinate_independent_provenance") or {}).get(
+                "sequence_position_uniprot_validated"
+            )
+            is True
+        ),
+        "locator_summaries": locator_summaries,
+        "warnings": warnings,
+        "violations": sorted(set(violations)),
+    }
+
+
+def build_family_panel_source_free_active_site_locator_priority1_review_preflight(
+    *,
+    manual_review_packet_path: Path,
+    locator_schema_path: Path,
+    audited_locator_dir: Path,
+) -> dict[str, Any]:
+    manual_packet = _read_json(manual_review_packet_path)
+    locator_schema = _read_json(locator_schema_path)
+    created_utc = _utc_now_iso()
+    preflight_rows = []
+    for packet_row in manual_packet.get("review_rows", []):
+        if not isinstance(packet_row, dict):
+            continue
+        if packet_row.get("review_class") != "ready_for_manual_forbidden_feature_review":
+            continue
+        candidate_path = Path(str(packet_row.get("candidate_path") or ""))
+        candidate = _read_json(candidate_path)
+        candidate_sha256 = _sha256(candidate_path) if candidate_path.exists() else None
+        planned_payload = _planned_locator_sidecar_payload(
+            candidate=candidate,
+            schema=locator_schema,
+            created_utc=created_utc,
+        )
+        planned_payload_text = json.dumps(planned_payload, indent=2, sort_keys=True) + "\n"
+        schema_violations = _schema_dry_run_violations(
+            sidecar=planned_payload,
+            schema=locator_schema,
+        )
+        guardrail_violations = _priority1_candidate_guardrail_violations(
+            candidate=candidate,
+            packet_row=packet_row,
+            manual_review_packet_sha256=candidate_sha256,
+        )
+        scientific_preflight = _priority1_scientific_preflight(candidate)
+        planned_path = _locator_sidecar_path(
+            str(candidate.get("entry_id") or ""),
+            str(candidate.get("source_accession") or ""),
+            audited_locator_dir,
+        )
+        blockers_after_preflight = [
+            "human_approval_required_before_copy_to_audited_locator_dir",
+            "candidate_sidecar_not_in_audited_locator_dir",
+        ]
+        if schema_violations:
+            blockers_after_preflight.append("schema_dry_run_violations_present")
+        if guardrail_violations:
+            blockers_after_preflight.append("guardrail_preflight_violations_present")
+        if scientific_preflight.get("violations"):
+            blockers_after_preflight.append("scientific_preflight_violations_present")
+        status = (
+            "preflight_passed_pending_human_approval"
+            if not schema_violations
+            and not guardrail_violations
+            and not scientific_preflight.get("violations")
+            else "preflight_blocked_review_only"
+        )
+        preflight_rows.append(
+            {
+                "entry_id": candidate.get("entry_id"),
+                "source_accession": candidate.get("source_accession"),
+                "candidate_path": str(candidate_path),
+                "candidate_sha256": candidate_sha256,
+                "manual_packet_candidate_sha256": packet_row.get("candidate_sha256"),
+                "planned_audited_locator_sidecar_path": str(planned_path),
+                "planned_locator_payload_sha256": hashlib.sha256(
+                    planned_payload_text.encode("utf-8")
+                ).hexdigest(),
+                "preflight_status": status,
+                "schema_dry_run_passed": not schema_violations,
+                "schema_dry_run_violations": schema_violations,
+                "guardrail_preflight_passed": not guardrail_violations,
+                "guardrail_preflight_violations": guardrail_violations,
+                "scientific_preflight": scientific_preflight,
+                "planned_locator_payload_preview": {
+                    "locator_policy": planned_payload.get("locator_policy"),
+                    "locator_evidence_class": planned_payload.get(
+                        "locator_evidence_class"
+                    ),
+                    "source_free_active_site_locator_status": planned_payload.get(
+                        "source_free_active_site_locator_status"
+                    ),
+                    "residue_locator_count": len(
+                        planned_payload.get("residue_locators", [])
+                    ),
+                    "residue_locators": [
+                        {
+                            "residue_code": locator.get("residue_code"),
+                            "sequence_position": locator.get("sequence_position"),
+                            "role_hint": locator.get("role_hint"),
+                            "locator_confidence": locator.get("locator_confidence"),
+                            "locator_evidence_class": locator.get(
+                                "locator_evidence_class"
+                            ),
+                        }
+                        for locator in planned_payload.get("residue_locators", [])
+                    ],
+                },
+                "copy_to_audited_locator_dir_allowed_now": False,
+                "ready_for_predicted_geometry_scoring": False,
+                "blockers_after_preflight": blockers_after_preflight,
+            }
+        )
+    preflight_passed = [
+        row
+        for row in preflight_rows
+        if row.get("preflight_status") == "preflight_passed_pending_human_approval"
+    ]
+    rows_with_warnings = [
+        row for row in preflight_rows if row.get("scientific_preflight", {}).get("warnings")
+    ]
+    status = (
+        "source_free_active_site_locator_priority1_preflight_passed_pending_human_approval"
+        if preflight_rows and len(preflight_passed) == len(preflight_rows)
+        else "source_free_active_site_locator_priority1_preflight_blocked_review_only"
+    )
+    return {
+        "artifact_id": (
+            FAMILY_PANEL_SOURCE_FREE_ACTIVE_SITE_LOCATOR_PRIORITY1_REVIEW_PREFLIGHT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_active_site_locator_priority1_review_preflight"
+        ),
+        "created_utc": created_utc,
+        "status": status,
+        "scope": (
+            "Review-only preflight for the priority-1 source-free active-site "
+            "locator candidates. This dry-runs schema compatibility, guardrails, "
+            "and coordinate-contact plausibility without copying sidecars into "
+            "the audited locator directory."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "candidate_sidecars_written_outside_audited_locator_dir": True,
+            "locator_sidecars_created_in_audited_dir": False,
+            "copy_to_audited_locator_dir_allowed_now": False,
+            "ready_for_predicted_geometry_scoring": False,
+            "predicted_geometry_scored": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "human_approval_required_before_copy": True,
+        },
+        "counts": {
+            "priority_1_rows": len(preflight_rows),
+            "preflight_passed_pending_human_approval": len(preflight_passed),
+            "schema_dry_run_passed_rows": sum(
+                1 for row in preflight_rows if row.get("schema_dry_run_passed")
+            ),
+            "guardrail_preflight_passed_rows": sum(
+                1 for row in preflight_rows if row.get("guardrail_preflight_passed")
+            ),
+            "scientific_preflight_supported_rows": sum(
+                1
+                for row in preflight_rows
+                if row.get("scientific_preflight", {}).get("status")
+                == "supported_by_coordinate_contact_preflight"
+            ),
+            "rows_with_preflight_warnings": len(rows_with_warnings),
+            "copy_to_audited_locator_dir_allowed_now": 0,
+            "ready_for_predicted_geometry_scoring": 0,
+        },
+        "preflight_rows": sorted(
+            preflight_rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "commands": {
+            "rebuild_manual_review_packet": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-active-site-locator-manual-review-packet"
+            ),
+            "rebuild_priority1_preflight": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-active-site-locator-priority1-review-preflight"
+            ),
+            "rerun_schema_audit_after_human_approved_sidecars_are_copied": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "audit-family-panel-source-free-active-site-locator-schema"
+            ),
+        },
+        "source_artifacts": {
+            "manual_review_packet": _source_path_record(manual_review_packet_path),
+            "locator_schema": _source_path_record(locator_schema_path),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(preflight_passed)}/{len(preflight_rows)} priority-1 "
+                "candidate rows pass schema, guardrail, and coordinate-contact "
+                "preflight, but 0 are copy-authorized."
+            ),
+            "next_action": (
+                "Human review should inspect the three preflight-passed rows and "
+                "only then rewrite/copy approved locator sidecars into the "
+                "audited directory before rerunning the schema audit."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_free_active_site_locator_priority1_review_preflight_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Family Panel Source-Free Active-Site Locator Priority-1 Review Preflight - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Priority-1 rows: {counts['priority_1_rows']}",
+        (
+            "- Preflight-passed pending human approval: "
+            f"{counts['preflight_passed_pending_human_approval']}"
+        ),
+        f"- Schema dry-run passed rows: {counts['schema_dry_run_passed_rows']}",
+        f"- Guardrail preflight passed rows: {counts['guardrail_preflight_passed_rows']}",
+        (
+            "- Coordinate-contact preflight supported rows: "
+            f"{counts['scientific_preflight_supported_rows']}"
+        ),
+        f"- Rows with preflight warnings: {counts['rows_with_preflight_warnings']}",
+        (
+            "- Copy to audited locator dir allowed now: "
+            f"{counts['copy_to_audited_locator_dir_allowed_now']}"
+        ),
+        (
+            "- Ready for predicted-geometry scoring: "
+            f"{counts['ready_for_predicted_geometry_scoring']}"
+        ),
+        "",
+        "## Priority-1 Rows",
+        "",
+        (
+            "| row | accession | selected ligand | locators | status | warnings | "
+            "planned audited path |"
+        ),
+        "| --- | --- | --- | ---: | --- | --- | --- |",
+    ]
+    for row in audit["preflight_rows"]:
+        scientific = row.get("scientific_preflight", {})
+        ligand = scientific.get("selected_ligand_site") or {}
+        ligand_label = (
+            f"{ligand.get('comp_id')}:{ligand.get('chain_id')}:{ligand.get('residue_id')}"
+            if ligand
+            else "none"
+        )
+        lines.append(
+            f"| {row['entry_id']} | {row['source_accession']} | {ligand_label} | "
+            f"{scientific.get('candidate_residue_locator_count')} | "
+            f"{row['preflight_status']} | "
+            f"{', '.join(scientific.get('warnings') or [])} | "
+            f"{row['planned_audited_locator_sidecar_path']} |"
+        )
+    lines += [
+        "",
+        "## Commands",
+        "",
+        "```bash",
+        audit["commands"]["rebuild_priority1_preflight"],
+        "```",
+        "",
+        "```bash",
+        audit["commands"][
+            "rerun_schema_audit_after_human_approved_sidecars_are_copied"
+        ],
+        "```",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_active_site_locator_priority1_review_preflight(
+    *,
+    manual_review_packet_path: Path,
+    locator_schema_path: Path,
+    audited_locator_dir: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_free_active_site_locator_priority1_review_preflight(
+        manual_review_packet_path=manual_review_packet_path,
+        locator_schema_path=locator_schema_path,
+        audited_locator_dir=audited_locator_dir,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_active_site_locator_priority1_review_preflight_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _hetatm_comp_counts(path: Path) -> dict[str, int]:
+    if not path.exists():
+        return {}
+    atoms = parse_atom_site_loop(path.read_text(encoding="utf-8", errors="replace"))
+    counts = Counter(
+        str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        for atom in atoms
+        if atom.get("group_PDB") == "HETATM"
+    )
+    return dict(sorted(counts.items()))
+
+
+def _external_identifier_source_pdb_ids(
+    *,
+    entry_id: str,
+    source_accession: str,
+    external_identifier_scout: dict[str, Any],
+    cobalamin_blocker_review: dict[str, Any],
+) -> list[str]:
+    accession_token = source_accession.split(":", 1)[-1]
+    for row in external_identifier_scout.get("first_materialization_tranche", []):
+        if not isinstance(row, dict):
+            continue
+        if row.get("candidate_id") != entry_id:
+            continue
+        resolution = row.get("identifier_resolution") or {}
+        return [str(pdb_id) for pdb_id in resolution.get("pdb_ids", [])]
+    for row in cobalamin_blocker_review.get("eligible_rows", []):
+        if not isinstance(row, dict):
+            continue
+        if row.get("accession") != accession_token:
+            continue
+        return [str(pdb_id) for pdb_id in row.get("pdb_ids_sample", [])]
+    return []
+
+
+def build_family_panel_source_free_locator_blocked_row_rescue_manifest(
+    *,
+    candidate_audit_path: Path,
+    review_queue_path: Path,
+    external_identifier_scout_path: Path,
+    cobalamin_blocker_review_path: Path,
+    coordinate_dir: Path,
+) -> dict[str, Any]:
+    candidate_audit = _read_json(candidate_audit_path)
+    review_queue = _read_json(review_queue_path)
+    external_identifier_scout = _read_json(external_identifier_scout_path)
+    cobalamin_blocker_review = _read_json(cobalamin_blocker_review_path)
+    candidate_by_path = {
+        str(candidate.get("candidate_path")): candidate
+        for candidate in candidate_audit.get("candidate_sidecars", [])
+        if isinstance(candidate, dict) and candidate.get("candidate_path")
+    }
+    blocked_queue_rows = [
+        row
+        for row in review_queue.get("queue_rows", [])
+        if isinstance(row, dict)
+        and row.get("review_class") == "blocked_needs_new_coordinate_or_nonlabel_locator"
+    ]
+    row_plans = []
+    for row in blocked_queue_rows:
+        entry_id = str(row.get("entry_id") or "")
+        source_accession = str(row.get("source_accession") or "")
+        candidate_path = str(row.get("candidate_path") or "")
+        candidate = candidate_by_path.get(candidate_path, {})
+        selected_record = (
+            (candidate.get("coordinate_candidate_evidence") or {}).get(
+                "selected_pdb_cif"
+            )
+            or {}
+        )
+        selected_pdb_path = Path(str(selected_record.get("path") or ""))
+        selected_structure_id = str(
+            ((candidate.get("coordinate_candidate_evidence") or {}).get("selected_structure_id"))
+            or ""
+        )
+        source_pdb_ids = _external_identifier_source_pdb_ids(
+            entry_id=entry_id,
+            source_accession=source_accession,
+            external_identifier_scout=external_identifier_scout,
+            cobalamin_blocker_review=cobalamin_blocker_review,
+        )
+        alternate_pdb_ids = [
+            pdb_id
+            for pdb_id in source_pdb_ids
+            if pdb_id and pdb_id.upper() != selected_structure_id.upper()
+        ]
+        materialized_alternates = [
+            pdb_id
+            for pdb_id in alternate_pdb_ids
+            if (coordinate_dir / f"pdb_{pdb_id}.cif").exists()
+        ]
+        fetch_commands = [
+            (
+                "curl -L --fail "
+                f"https://files.rcsb.org/download/{pdb_id}.cif "
+                f"-o {coordinate_dir / f'pdb_{pdb_id}.cif'}"
+            )
+            for pdb_id in alternate_pdb_ids
+            if pdb_id not in materialized_alternates
+        ]
+        hetatm_counts = _hetatm_comp_counts(selected_pdb_path)
+        nonwater_counts = {
+            code: count
+            for code, count in hetatm_counts.items()
+            if code not in LOCATOR_CANDIDATE_IGNORED_LIGAND_CODES
+        }
+        rescue_status = (
+            "alternate_coordinate_fetch_manifested_review_only"
+            if alternate_pdb_ids
+            else "no_frozen_source_alternate_pdb_ids_found"
+        )
+        blockers = [
+            "candidate_sidecar_not_in_audited_locator_dir",
+            "manual_review_required_before_copy_to_audited_dir",
+            "source_free_locator_not_ready_for_scoring",
+        ]
+        if fetch_commands:
+            blockers.append("alternate_coordinate_fetch_requires_manual_approval")
+        if not alternate_pdb_ids:
+            blockers.append("new_nonlabel_locator_strategy_required")
+        row_plans.append(
+            {
+                "entry_id": entry_id,
+                "source_accession": source_accession,
+                "candidate_path": candidate_path,
+                "selected_structure_id": selected_structure_id,
+                "selected_pdb_cif": selected_record,
+                "selected_coordinate_hetatm_comp_counts": hetatm_counts,
+                "selected_coordinate_nonwater_ligand_comp_counts": nonwater_counts,
+                "source_pdb_ids": source_pdb_ids,
+                "alternate_pdb_ids": alternate_pdb_ids,
+                "materialized_alternate_pdb_ids": materialized_alternates,
+                "alternate_coordinate_fetch_commands": fetch_commands,
+                "rescue_status": rescue_status,
+                "blockers": blockers,
+                "ready_for_predicted_geometry_scoring": False,
+            }
+        )
+    alternate_rows = [row for row in row_plans if row.get("alternate_pdb_ids")]
+    fetch_commands = [
+        command
+        for row in row_plans
+        for command in row.get("alternate_coordinate_fetch_commands", [])
+    ]
+    return {
+        "artifact_id": FAMILY_PANEL_SOURCE_FREE_LOCATOR_BLOCKED_ROW_RESCUE_MANIFEST_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.source_free_locator_blocked_row_rescue_manifest"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": "source_free_locator_blocked_row_rescue_manifest_ready_review_only",
+        "scope": (
+            "Review-only rescue manifest for source-free locator rows blocked "
+            "because their selected local coordinates expose no non-water "
+            "ligand or metal site. It records frozen source alternate-coordinate "
+            "options and exact commands without fetching or scoring them."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "coordinates_fetched": False,
+            "locator_sidecars_created_in_audited_dir": False,
+            "ready_for_predicted_geometry_scoring": False,
+            "predicted_geometry_scored": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+        },
+        "counts": {
+            "blocked_rows": len(row_plans),
+            "rows_with_selected_coordinate_only_water_hetatms": sum(
+                1
+                for row in row_plans
+                if row.get("selected_coordinate_hetatm_comp_counts")
+                and not row.get("selected_coordinate_nonwater_ligand_comp_counts")
+            ),
+            "rows_with_alternate_source_pdb_ids": len(alternate_rows),
+            "alternate_pdb_ids_total": sum(
+                len(row.get("alternate_pdb_ids", [])) for row in row_plans
+            ),
+            "alternate_fetch_commands": len(fetch_commands),
+            "ready_for_predicted_geometry_scoring": 0,
+        },
+        "row_plans": sorted(
+            row_plans,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "commands": {
+            "alternate_coordinate_fetch_commands": fetch_commands,
+            "rerun_candidate_audit_after_coordinate_fetch": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-active-site-locator-candidate-audit"
+            ),
+            "rerun_review_queue_after_candidate_audit": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-active-site-locator-review-queue"
+            ),
+            "rebuild_rescue_manifest": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-family-panel-source-free-locator-blocked-row-rescue-manifest"
+            ),
+        },
+        "source_artifacts": {
+            "candidate_audit": _source_path_record(candidate_audit_path),
+            "review_queue": _source_path_record(review_queue_path),
+            "external_identifier_scout": _source_path_record(
+                external_identifier_scout_path
+            ),
+            "cobalamin_blocker_review": _source_path_record(
+                cobalamin_blocker_review_path
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(alternate_rows)}/{len(row_plans)} blocked locator rows "
+                "have frozen source alternate PDB IDs; no coordinates were fetched."
+            ),
+            "next_action": (
+                "If manual approval allows bounded coordinate fetches, start with "
+                "`mh_064` alternates and rerun candidate extraction; Q59490 needs "
+                "a new source-free nonlabel locator strategy or an explicitly "
+                "authorized alternate source row."
+            ),
+        },
+    }
+
+
+def _render_family_panel_source_free_locator_blocked_row_rescue_manifest_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Family Panel Source-Free Locator Blocked-Row Rescue Manifest - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Blocked rows: {counts['blocked_rows']}",
+        (
+            "- Rows with selected-coordinate only-water HETATMs: "
+            f"{counts['rows_with_selected_coordinate_only_water_hetatms']}"
+        ),
+        f"- Rows with alternate source PDB IDs: {counts['rows_with_alternate_source_pdb_ids']}",
+        f"- Alternate PDB IDs total: {counts['alternate_pdb_ids_total']}",
+        f"- Alternate fetch commands: {counts['alternate_fetch_commands']}",
+        (
+            "- Ready for predicted-geometry scoring: "
+            f"{counts['ready_for_predicted_geometry_scoring']}"
+        ),
+        "",
+        "## Row Plans",
+        "",
+        (
+            "| row | accession | selected PDB | selected HETATM comps | "
+            "alternate PDB IDs | status |"
+        ),
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in audit["row_plans"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['source_accession']} | "
+            f"{row['selected_structure_id']} | "
+            f"{row['selected_coordinate_hetatm_comp_counts']} | "
+            f"{', '.join(row.get('alternate_pdb_ids') or [])} | "
+            f"{row['rescue_status']} |"
+        )
+    lines += [
+        "",
+        "## Commands",
+        "",
+    ]
+    if audit["commands"]["alternate_coordinate_fetch_commands"]:
+        for command in audit["commands"]["alternate_coordinate_fetch_commands"]:
+            lines += ["```bash", command, "```", ""]
+    else:
+        lines.append("- No alternate coordinate fetch commands are available.")
+    lines += [
+        "```bash",
+        audit["commands"]["rebuild_rescue_manifest"],
+        "```",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_family_panel_source_free_locator_blocked_row_rescue_manifest(
+    *,
+    candidate_audit_path: Path,
+    review_queue_path: Path,
+    external_identifier_scout_path: Path,
+    cobalamin_blocker_review_path: Path,
+    coordinate_dir: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_family_panel_source_free_locator_blocked_row_rescue_manifest(
+        candidate_audit_path=candidate_audit_path,
+        review_queue_path=review_queue_path,
+        external_identifier_scout_path=external_identifier_scout_path,
+        cobalamin_blocker_review_path=cobalamin_blocker_review_path,
+        coordinate_dir=coordinate_dir,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_family_panel_source_free_locator_blocked_row_rescue_manifest_report(
                 audit
             ),
             encoding="utf-8",
@@ -12581,6 +13540,389 @@ def write_mechanism_feature_embedding_feature_contract(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_mechanism_feature_embedding_feature_contract_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+MECHANISM_FEATURE_CONTRACT_ALLOWED_ROW_TOP_LEVEL_FIELDS = {
+    "active_site_role_graph",
+    "assigned_embedding_split",
+    "entry_id",
+    "feature_guardrails",
+    "inorganic_cofactor_loci",
+    "organic_cofactor_scores",
+    "reaction_center_template",
+}
+MECHANISM_FEATURE_CONTRACT_FORBIDDEN_FEATURE_KEYS = {
+    "fingerprint_id",
+    "heldout_labels_or_outcomes",
+    "label_type",
+    "source_artifact_paths",
+    "split_assignment",
+    "stratum",
+    "true_fingerprint_id",
+}
+
+
+def _forbidden_key_paths(
+    value: Any,
+    *,
+    forbidden_keys: set[str],
+    path: str = "$",
+) -> list[str]:
+    paths: list[str] = []
+    if isinstance(value, dict):
+        for key, child in value.items():
+            child_path = f"{path}.{key}"
+            if str(key) in forbidden_keys:
+                paths.append(child_path)
+            paths.extend(
+                _forbidden_key_paths(
+                    child,
+                    forbidden_keys=forbidden_keys,
+                    path=child_path,
+                )
+            )
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            paths.extend(
+                _forbidden_key_paths(
+                    child,
+                    forbidden_keys=forbidden_keys,
+                    path=f"{path}[{index}]",
+                )
+            )
+    return paths
+
+
+def _mechanism_feature_contract_row_audit(
+    *,
+    row: dict[str, Any],
+    split_record: dict[str, Any] | None,
+    input_record: dict[str, Any] | None,
+    locus_domains: dict[str, list[str]],
+    reaction_status_domain: set[str],
+    organic_classes: set[str],
+) -> dict[str, Any]:
+    violations: list[str] = []
+    entry_id = str(row.get("entry_id") or "")
+    if not entry_id:
+        violations.append("entry_id_missing")
+    extra_top = sorted(
+        set(row) - MECHANISM_FEATURE_CONTRACT_ALLOWED_ROW_TOP_LEVEL_FIELDS
+    )
+    for field in extra_top:
+        violations.append(f"unexpected_top_level_feature_row_field:{field}")
+    forbidden_paths = _forbidden_key_paths(
+        {
+            key: value
+            for key, value in row.items()
+            if key not in {"entry_id", "assigned_embedding_split"}
+        },
+        forbidden_keys=MECHANISM_FEATURE_CONTRACT_FORBIDDEN_FEATURE_KEYS,
+    )
+    for path in forbidden_paths:
+        violations.append(f"forbidden_feature_key_present:{path}")
+    if split_record is None:
+        violations.append("missing_split_record")
+    if input_record is None:
+        violations.append("missing_input_manifest_record")
+    split_assignment = row.get("assigned_embedding_split")
+    if split_assignment not in {"train", "calibration"}:
+        violations.append("assigned_embedding_split_not_train_or_calibration")
+    if (
+        split_record is not None
+        and split_record.get("assigned_embedding_split") != split_assignment
+    ):
+        violations.append("assigned_embedding_split_mismatch_split_manifest")
+    guardrails = row.get("feature_guardrails") or {}
+    expected_true = (
+        "fingerprint_id_excluded_from_features",
+        "label_type_excluded_from_features",
+        "stratum_excluded_from_features",
+    )
+    for key in expected_true:
+        if guardrails.get(key) is not True:
+            violations.append(f"feature_guardrail_{key}_not_true")
+    if guardrails.get("heldout_row") is not False:
+        violations.append("feature_guardrail_heldout_row_not_false")
+    role_graph = row.get("active_site_role_graph") or {}
+    if role_graph.get("status") != "ok":
+        violations.append("role_graph_status_not_ok")
+    if not isinstance(role_graph.get("active_site_residue_count"), int):
+        violations.append("active_site_residue_count_not_int")
+    if split_record is not None:
+        if role_graph.get("active_site_residue_count") != split_record.get(
+            "active_site_residue_count"
+        ):
+            violations.append("active_site_residue_count_mismatch_split_manifest")
+        if role_graph.get("status") != split_record.get("role_graph_status"):
+            violations.append("role_graph_status_mismatch_split_manifest")
+    reaction = row.get("reaction_center_template") or {}
+    reaction_status = str(reaction.get("status") or "")
+    if reaction_status not in reaction_status_domain:
+        violations.append("reaction_template_status_outside_domain")
+    if split_record is not None and reaction_status != split_record.get(
+        "reaction_template_status"
+    ):
+        violations.append("reaction_template_status_mismatch_split_manifest")
+    organic = row.get("organic_cofactor_scores") or {}
+    if set(str(value) for value in organic.get("available_classes", [])) != organic_classes:
+        violations.append("organic_cofactor_available_classes_mismatch_domain")
+    if organic.get("score_values_materialized_in_source_sidecar") is not True:
+        violations.append("organic_score_source_sidecar_guardrail_not_true")
+    loci = row.get("inorganic_cofactor_loci") or {}
+    if set(loci) != set(locus_domains):
+        violations.append("inorganic_locus_fields_mismatch_domain")
+    for locus, status in loci.items():
+        if str(status) not in set(locus_domains.get(str(locus), [])):
+            violations.append(f"inorganic_locus_status_outside_domain:{locus}")
+    if split_record is not None and loci != (
+        split_record.get("inorganic_locus_statuses") or {}
+    ):
+        violations.append("inorganic_locus_statuses_mismatch_split_manifest")
+    return {
+        "entry_id": entry_id,
+        "assigned_embedding_split": split_assignment,
+        "critical_violations": sorted(set(violations)),
+        "status": "passed" if not violations else "blocked",
+    }
+
+
+def build_mechanism_feature_embedding_feature_contract_strict_audit(
+    *,
+    feature_contract_path: Path,
+    train_cal_input_manifest_path: Path,
+    train_cal_split_manifest_path: Path,
+) -> dict[str, Any]:
+    contract = _read_json(feature_contract_path)
+    input_manifest = _read_json(train_cal_input_manifest_path)
+    split_manifest = _read_json(train_cal_split_manifest_path)
+    feature_rows = [
+        row for row in contract.get("feature_rows", []) if isinstance(row, dict)
+    ]
+    split_records = [
+        row for row in split_manifest.get("split_records", []) if isinstance(row, dict)
+    ]
+    input_records = [
+        row for row in input_manifest.get("row_records", []) if isinstance(row, dict)
+    ]
+    split_by_entry = {
+        str(row.get("entry_id")): row for row in split_records if row.get("entry_id")
+    }
+    input_by_entry = {
+        str(row.get("entry_id")): row for row in input_records if row.get("entry_id")
+    }
+    reaction_status_domain = set(
+        str(value)
+        for value in contract.get("categorical_domains", {}).get(
+            "reaction_template_status", []
+        )
+    )
+    organic_classes = set(
+        str(value)
+        for value in contract.get("categorical_domains", {}).get(
+            "organic_cofactor_classes", []
+        )
+    )
+    locus_domains = contract.get("categorical_domains", {}).get("inorganic_loci", {})
+    if not isinstance(locus_domains, dict):
+        locus_domains = {}
+    row_audits = [
+        _mechanism_feature_contract_row_audit(
+            row=row,
+            split_record=split_by_entry.get(str(row.get("entry_id") or "")),
+            input_record=input_by_entry.get(str(row.get("entry_id") or "")),
+            locus_domains=locus_domains,
+            reaction_status_domain=reaction_status_domain,
+            organic_classes=organic_classes,
+        )
+        for row in feature_rows
+    ]
+    critical_counts = Counter(
+        violation
+        for row in row_audits
+        for violation in row.get("critical_violations", [])
+    )
+    top_level_violations: list[str] = []
+    if contract.get("status") != "mechanism_feature_embedding_feature_contract_ready_no_model_fit":
+        top_level_violations.append("feature_contract_status_not_ready_no_model_fit")
+    if len(feature_rows) != len(split_records):
+        top_level_violations.append("feature_row_count_mismatch_split_manifest")
+    if set(row.get("entry_id") for row in feature_rows) != set(split_by_entry):
+        top_level_violations.append("feature_row_entry_set_mismatch_split_manifest")
+    counts = contract.get("counts", {})
+    split_counts = Counter(row.get("assigned_embedding_split") for row in feature_rows)
+    if counts.get("feature_rows") != len(feature_rows):
+        top_level_violations.append("contract_feature_rows_count_mismatch")
+    if counts.get("train_rows") != split_counts.get("train", 0):
+        top_level_violations.append("contract_train_rows_count_mismatch")
+    if counts.get("calibration_rows") != split_counts.get("calibration", 0):
+        top_level_violations.append("contract_calibration_rows_count_mismatch")
+    if counts.get("heldout_excluded_rows") != split_manifest.get("counts", {}).get(
+        "heldout_excluded_rows"
+    ):
+        top_level_violations.append("heldout_excluded_count_mismatch_split_manifest")
+    guardrails = contract.get("guardrails") or {}
+    expected_false_guardrails = (
+        "model_weights_fit_or_refit",
+        "threshold_selected_or_tuned",
+        "heldout_rows_used_for_training_or_threshold_tuning",
+        "heldout_rows_present_in_feature_rows",
+        "labels_registries_ontologies_changed",
+        "imports_or_promotions_performed",
+        "production_thresholds_changed",
+    )
+    for key in expected_false_guardrails:
+        if guardrails.get(key) is not False:
+            top_level_violations.append(f"contract_guardrail_{key}_not_false")
+    if guardrails.get("label_fields_excluded_from_feature_rows") is not True:
+        top_level_violations.append(
+            "contract_guardrail_label_fields_excluded_from_feature_rows_not_true"
+        )
+    if guardrails.get("review_only") is not True:
+        top_level_violations.append("contract_guardrail_review_only_not_true")
+    for blocker in (
+        "explicit_authorization_required_before_model_weights_are_fit",
+        "heldout_final_evaluation_must_remain_once_only",
+    ):
+        if blocker not in set(contract.get("blockers_before_model_fit", [])):
+            top_level_violations.append(f"required_blocker_missing:{blocker}")
+    all_critical_counts = critical_counts.copy()
+    all_critical_counts.update(top_level_violations)
+    passed_rows = [row for row in row_audits if row.get("status") == "passed"]
+    status = (
+        "mechanism_feature_embedding_feature_contract_strict_audit_passed_no_model_fit"
+        if not all_critical_counts and row_audits
+        else "mechanism_feature_embedding_feature_contract_strict_audit_blocked"
+    )
+    return {
+        "artifact_id": MECHANISM_FEATURE_EMBEDDING_FEATURE_CONTRACT_STRICT_AUDIT_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.mechanism_feature_embedding_feature_contract_strict_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Strict no-fit audit for the mechanism-feature embedding feature "
+            "contract. It validates row alignment, split discipline, forbidden "
+            "label/outcome field exclusion, and no-model-fit guardrails."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_present_in_feature_rows": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+        },
+        "counts": {
+            "feature_rows": len(feature_rows),
+            "split_manifest_rows": len(split_records),
+            "input_manifest_rows": len(input_records),
+            "row_audits_passed": len(passed_rows),
+            "row_audits_blocked": len(row_audits) - len(passed_rows),
+            "train_rows": split_counts.get("train", 0),
+            "calibration_rows": split_counts.get("calibration", 0),
+            "heldout_excluded_rows": counts.get("heldout_excluded_rows"),
+            "critical_violation_total": sum(all_critical_counts.values()),
+            "critical_counts": dict(sorted(all_critical_counts.items())),
+        },
+        "row_audits": sorted(
+            row_audits,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "source_artifacts": {
+            "feature_contract": _source_path_record(feature_contract_path),
+            "train_cal_input_manifest": _source_path_record(train_cal_input_manifest_path),
+            "train_cal_split_manifest": _source_path_record(train_cal_split_manifest_path),
+        },
+        "commands": {
+            "rebuild_feature_contract": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-mechanism-feature-embedding-feature-contract"
+            ),
+            "rerun_strict_audit": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "audit-mechanism-feature-embedding-feature-contract"
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(passed_rows)}/{len(row_audits)} feature rows pass strict "
+                "label-exclusion and train/cal alignment checks; no model was fit."
+            ),
+            "next_action": (
+                "Keep model fitting blocked until explicitly authorized; a future "
+                "materializer must consume only the audited feature groups, fit on "
+                "train rows, select on calibration rows, and evaluate heldout once."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_embedding_feature_contract_strict_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism-Feature Embedding Feature Contract Strict Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Feature rows: {counts['feature_rows']}",
+        f"- Split manifest rows: {counts['split_manifest_rows']}",
+        f"- Row audits passed: {counts['row_audits_passed']}",
+        f"- Row audits blocked: {counts['row_audits_blocked']}",
+        f"- Train rows: {counts['train_rows']}",
+        f"- Calibration rows: {counts['calibration_rows']}",
+        f"- Heldout excluded rows: {counts['heldout_excluded_rows']}",
+        f"- Critical violation total: {counts['critical_violation_total']}",
+        f"- Critical counts: {counts['critical_counts']}",
+        "",
+        "## Commands",
+        "",
+        "```bash",
+        audit["commands"]["rerun_strict_audit"],
+        "```",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_embedding_feature_contract_strict_audit(
+    *,
+    feature_contract_path: Path,
+    train_cal_input_manifest_path: Path,
+    train_cal_split_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_embedding_feature_contract_strict_audit(
+        feature_contract_path=feature_contract_path,
+        train_cal_input_manifest_path=train_cal_input_manifest_path,
+        train_cal_split_manifest_path=train_cal_split_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_embedding_feature_contract_strict_audit_report(
+                audit
+            ),
             encoding="utf-8",
         )
     return audit

@@ -50,6 +50,69 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Approved Source-Free Locator Sidecars
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T13:58:22Z`
+- STARTED_LOCAL: `Mon Jun  1 08:58:22 CDT 2026`
+- ENDED_AT: `2026-06-01T14:29:07Z`
+- ENDED_LOCAL: `Mon Jun  1 09:29:12 CDT 2026`
+- ELAPSED_MINUTES: `30.8`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "started_at": "2026-06-01T13:58:22Z", "status": "acquired"}`
+- Lock release result: pending at handoff write; release command to run after
+  clean synced push:
+  `PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced`
+- Git branch at start: `main`
+- Git HEAD at start: `907aa319db962e00cdbbab311d014038172e7656`
+- Dirty files at start: prior automation docs/code/test/artifact updates plus
+  untracked source-free locator preflight/rescue/strict-audit artifacts; no
+  unrelated user work was reverted.
+- Input review decision: user approved `mh_066`, `mh_073`, and
+  `secondary_probe::radical_sam_enzyme` for source-free active-site locator use.
+- Output artifacts:
+  three approved audited locator sidecars under
+  `artifacts/family_panel_source_free_active_site_locators_current702_20260601/`,
+  refreshed
+  `artifacts/v3_family_panel_source_free_active_site_locator_schema_audit_current702_20260601.json`,
+  refreshed
+  `artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json`,
+  refreshed
+  `artifacts/v3_family_panel_source_free_active_site_locator_materialization_plan_current702_20260601.json`,
+  refreshed
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  updated `docs/project_state.md`, `docs/decision_log.md`,
+  `docs/artifact_index.md`, `src/catalytic_earth/cli.py`,
+  `src/catalytic_earth/northstar_next_levers.py`, and
+  `tests/test_geometry_artifact_regression.py`.
+- Locator decisions captured:
+  `mh_066` has three approved Zn-contact residue locators; `mh_073` has the
+  approved two-locator Mg/nucleotide-site minimum; `secondary_probe::radical_sam_enzyme`
+  keeps only the four high-confidence Cys-SF4 contacts and strips candidate
+  `panel_id`/`rank` metadata from the audited sidecar.
+- Validation results:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py tests/test_northstar_next_levers.py tests/test_doc_reference_check.py -q`
+  passed 107 tests plus 7 subtests; `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed for 12 source records, 8 mechanism fingerprints, 15 ontology families,
+  and 702 curated labels; `git diff --check` passed; current-doc reference check
+  reports 0 missing concrete references.
+- Commit/push result: pending at handoff write; commit, push, sync verification,
+  and lock release are the remaining wrap steps for this run.
+- Exact next action for the next run:
+  run review-only predicted-geometry retrieval for `mh_066`, `mh_073`, and
+  `secondary_probe::radical_sam_enzyme` using the approved source-free locator
+  sidecars. Do not import labels, promote rows, change thresholds, or use the
+  source-backed review prose/sidecars as predictive geometry inputs.
+
+Summary: the human review approvals have been converted into audited,
+source-free locator sidecars and the readiness surface now shows 3/10 rows ready
+for predicted-geometry scoring, with the other 7 still blocked on approved
+locators. This only advances review-only scoring readiness; labels, registries,
+ontologies, heldout splits, and thresholds remain unchanged.
+
 ### 2026-06-01 Source-Free Locator Candidate Review Packet
 
 Automation run: `catalytic-earth-work-loop`

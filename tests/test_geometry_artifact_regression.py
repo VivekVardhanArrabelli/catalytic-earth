@@ -3320,6 +3320,39 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertNotIn("label_type", first)
         self.assertIn("active_site_role_graph", first)
 
+    def test_mechanism_feature_embedding_feature_contract_strict_audit_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_embedding_feature_contract_"
+                "strict_audit_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "mechanism_feature_embedding_feature_contract_strict_audit_passed_no_model_fit",
+        )
+        self.assertEqual(audit["counts"]["feature_rows"], 524)
+        self.assertEqual(audit["counts"]["split_manifest_rows"], 524)
+        self.assertEqual(audit["counts"]["row_audits_passed"], 524)
+        self.assertEqual(audit["counts"]["row_audits_blocked"], 0)
+        self.assertEqual(audit["counts"]["train_rows"], 418)
+        self.assertEqual(audit["counts"]["calibration_rows"], 106)
+        self.assertEqual(audit["counts"]["heldout_excluded_rows"], 140)
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertEqual(audit["counts"]["critical_counts"], {})
+        self.assertFalse(audit["guardrails"]["model_weights_fit_or_refit"])
+        self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+        self.assertFalse(
+            audit["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+        self.assertEqual(audit["row_audits"][0]["entry_id"], "m_csa:1")
+        self.assertEqual(audit["row_audits"][0]["critical_violations"], [])
+
     def test_thiol_disulfide_family_panel_packet_current_counts(self) -> None:
         packet = _load_json(
             ROOT
@@ -3827,20 +3860,22 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
 
         self.assertEqual(
             manifest["status"],
-            "source_free_predicted_geometry_manifest_blocked_locator_missing_review_only",
+            "source_free_predicted_geometry_manifest_partially_ready_to_score_review_only",
         )
         self.assertEqual(manifest["counts"]["targeted_rows"], 10)
         self.assertEqual(manifest["counts"]["rows_with_afdb_predicted_cif"], 10)
         self.assertEqual(manifest["counts"]["rows_with_source_backed_fold_score"], 10)
-        self.assertEqual(manifest["counts"]["source_free_geometry_ready_rows"], 0)
-        self.assertEqual(manifest["counts"]["source_free_geometry_blocked_rows"], 10)
+        self.assertEqual(
+            manifest["counts"]["rows_with_approved_source_free_active_site_locator"],
+            3,
+        )
+        self.assertEqual(manifest["counts"]["source_free_geometry_ready_rows"], 3)
+        self.assertEqual(manifest["counts"]["source_free_geometry_blocked_rows"], 7)
         self.assertEqual(
             manifest["counts"]["blocker_counts"],
             {
-                "approved_source_free_active_site_locator_missing": 10,
-                "not_current702_label_manifest_row": 10,
-                "source_backed_sidecar_lacks_residue_locator": 10,
-                "source_free_predicted_geometry_retrieval_missing": 10,
+                "approved_source_free_active_site_locator_missing": 7,
+                "source_backed_sidecar_lacks_residue_locator": 7,
             },
         )
         self.assertEqual(
@@ -3855,11 +3890,34 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "external_glycoside_panel",
             ],
         )
+        by_entry = {row["entry_id"]: row for row in manifest["row_manifests"]}
+        for entry_id in (
+            "mh_066",
+            "mh_073",
+            "secondary_probe::radical_sam_enzyme",
+        ):
+            self.assertEqual(
+                by_entry[entry_id]["source_free_predicted_geometry_status"],
+                "ready_to_score_source_free_predicted_geometry",
+            )
+            self.assertEqual(by_entry[entry_id]["blockers"], [])
+            self.assertTrue(
+                by_entry[entry_id]["approved_source_free_active_site_locator"][
+                    "ready_for_predicted_geometry_scoring"
+                ]
+            )
         for row in manifest["row_manifests"]:
             self.assertTrue(row["alphafolddb_predicted_cif"]["exists"])
-            self.assertEqual(
+            self.assertIn(
                 row["source_free_predicted_geometry_status"],
-                "blocked_source_free_active_site_locator_missing",
+                {
+                    "blocked_source_free_geometry_preconditions",
+                    "ready_to_score_source_free_predicted_geometry",
+                },
+            )
+            self.assertEqual(
+                row["source_free_predicted_geometry_retrieval"]["status"],
+                "missing_pending_scoring",
             )
             self.assertFalse(row["source_backed_sidecar"]["predictive_use_allowed"])
             self.assertIsNone(row["existing_source_free_geometry_row"])
@@ -3931,21 +3989,58 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "source_free_active_site_locator_schema_audit_blocked_missing_sidecars",
         )
         self.assertEqual(audit["counts"]["target_rows"], 10)
-        self.assertEqual(audit["counts"]["locator_sidecars_present"], 0)
-        self.assertEqual(audit["counts"]["locator_sidecars_missing"], 10)
-        self.assertEqual(audit["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertEqual(audit["counts"]["locator_sidecars_present"], 3)
+        self.assertEqual(audit["counts"]["locator_sidecars_missing"], 7)
+        self.assertEqual(audit["counts"]["ready_for_predicted_geometry_scoring"], 3)
         self.assertEqual(
             audit["counts"]["critical_counts"],
-            {"locator_sidecar_missing": 10},
+            {"locator_sidecar_missing": 7},
         )
         self.assertFalse(audit["guardrails"]["predicted_geometry_scored"])
+        by_entry = {row["entry_id"]: row for row in audit["row_audits"]}
+        self.assertEqual(by_entry["mh_066"]["status"], "passed")
+        self.assertEqual(by_entry["mh_073"]["status"], "passed")
         self.assertEqual(
-            [row["status"] for row in audit["row_audits"]],
-            ["missing"] * 10,
+            by_entry["secondary_probe::radical_sam_enzyme"]["status"],
+            "passed",
+        )
+        self.assertEqual(
+            by_entry["secondary_probe::radical_sam_enzyme"]["residue_locator_count"],
+            4,
         )
         self.assertIn(
             "secondary_probe_cobalamin_radical_rearrangement_Q59490.json",
             audit["row_audits"][0]["path"],
+        )
+
+    def test_family_panel_source_free_active_site_locator_audited_dir_after_approval(
+        self,
+    ) -> None:
+        locator_dir = (
+            ROOT
+            / "artifacts"
+            / "family_panel_source_free_active_site_locators_current702_20260601"
+        )
+
+        self.assertEqual(
+            sorted(path.name for path in locator_dir.glob("*.json")),
+            [
+                "mh_066_P52699.json",
+                "mh_073_P01112.json",
+                "secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json",
+            ],
+        )
+        radical_sam = _load_json(
+            locator_dir / "secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json"
+        )
+        self.assertNotIn("panel_id", radical_sam)
+        self.assertNotIn("rank", radical_sam)
+        self.assertEqual(len(radical_sam["residue_locators"]), 4)
+        self.assertTrue(
+            all(
+                locator["role_hint"] == "iron_sulfur_cluster_contact_candidate"
+                for locator in radical_sam["residue_locators"]
+            )
         )
 
     def test_family_panel_source_free_active_site_locator_materialization_plan_counts(
@@ -3962,8 +4057,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "source_free_active_site_locator_materialization_plan_ready_review_only",
         )
         self.assertEqual(plan["counts"]["planned_rows"], 10)
-        self.assertEqual(plan["counts"]["locator_sidecars_present_before_plan"], 0)
-        self.assertEqual(plan["counts"]["locator_sidecars_ready_before_plan"], 0)
+        self.assertEqual(plan["counts"]["locator_sidecars_present_before_plan"], 3)
+        self.assertEqual(plan["counts"]["locator_sidecars_ready_before_plan"], 3)
         self.assertEqual(
             plan["counts"]["suggested_locator_policy_counts"],
             {
@@ -4189,6 +4284,96 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             queue["queue_rows"][0]["review_class"],
             "ready_for_manual_forbidden_feature_review",
+        )
+
+    def test_family_panel_source_free_active_site_locator_priority1_review_preflight_counts(
+        self,
+    ) -> None:
+        preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_active_site_locator_"
+                "priority1_review_preflight_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            preflight["status"],
+            "source_free_active_site_locator_priority1_preflight_passed_pending_human_approval",
+        )
+        self.assertEqual(preflight["counts"]["priority_1_rows"], 3)
+        self.assertEqual(
+            preflight["counts"]["preflight_passed_pending_human_approval"], 3
+        )
+        self.assertEqual(preflight["counts"]["schema_dry_run_passed_rows"], 3)
+        self.assertEqual(preflight["counts"]["guardrail_preflight_passed_rows"], 3)
+        self.assertEqual(
+            preflight["counts"]["scientific_preflight_supported_rows"], 3
+        )
+        self.assertEqual(preflight["counts"]["copy_to_audited_locator_dir_allowed_now"], 0)
+        self.assertEqual(preflight["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertFalse(preflight["guardrails"]["locator_sidecars_created_in_audited_dir"])
+        self.assertFalse(preflight["guardrails"]["predicted_geometry_scored"])
+        self.assertTrue(preflight["guardrails"]["human_approval_required_before_copy"])
+        self.assertEqual(
+            [row["entry_id"] for row in preflight["preflight_rows"]],
+            ["mh_066", "mh_073", "secondary_probe::radical_sam_enzyme"],
+        )
+        self.assertTrue(
+            all(row["schema_dry_run_passed"] for row in preflight["preflight_rows"])
+        )
+        self.assertTrue(
+            all(row["guardrail_preflight_passed"] for row in preflight["preflight_rows"])
+        )
+        self.assertEqual(
+            preflight["preflight_rows"][1]["scientific_preflight"]["warnings"],
+            ["minimum_two_locator_floor_only"],
+        )
+
+    def test_family_panel_source_free_locator_blocked_row_rescue_manifest_counts(
+        self,
+    ) -> None:
+        manifest = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_family_panel_source_free_locator_blocked_row_"
+                "rescue_manifest_current702_20260601.json"
+            )
+        )
+
+        self.assertEqual(
+            manifest["status"],
+            "source_free_locator_blocked_row_rescue_manifest_ready_review_only",
+        )
+        self.assertEqual(manifest["counts"]["blocked_rows"], 2)
+        self.assertEqual(
+            manifest["counts"]["rows_with_selected_coordinate_only_water_hetatms"],
+            2,
+        )
+        self.assertEqual(manifest["counts"]["rows_with_alternate_source_pdb_ids"], 1)
+        self.assertEqual(manifest["counts"]["alternate_pdb_ids_total"], 5)
+        self.assertEqual(manifest["counts"]["alternate_fetch_commands"], 5)
+        self.assertEqual(manifest["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertFalse(manifest["guardrails"]["coordinates_fetched"])
+        self.assertFalse(manifest["guardrails"]["locator_sidecars_created_in_audited_dir"])
+        by_entry = {row["entry_id"]: row for row in manifest["row_plans"]}
+        self.assertEqual(
+            by_entry["mh_064"]["alternate_pdb_ids"],
+            ["3RKJ", "3RKK", "3SBL", "3SFP", "3SPU"],
+        )
+        self.assertEqual(
+            by_entry["secondary_probe::cobalamin_radical_rearrangement"][
+                "alternate_pdb_ids"
+            ],
+            [],
+        )
+        self.assertEqual(
+            by_entry["secondary_probe::cobalamin_radical_rearrangement"][
+                "rescue_status"
+            ],
+            "no_frozen_source_alternate_pdb_ids_found",
         )
 
     def test_fmo_subtype_hard_negative_packet_current_counts(self) -> None:

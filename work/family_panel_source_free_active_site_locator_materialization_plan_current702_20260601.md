@@ -1,6 +1,6 @@
 # Family Panel Source-Free Active-Site Locator Materialization Plan - current702
 
-Run: 2026-06-01T11:54:14Z
+Run: 2026-06-01T14:24:48Z
 
 Review-only plan for materializing source-free active-site locator sidecars for the 10 fold-scored family-panel rows. This creates no locator sidecars and does not score predicted geometry.
 
@@ -8,8 +8,8 @@ Review-only plan for materializing source-free active-site locator sidecars for 
 
 - source_free_active_site_locator_materialization_plan_ready_review_only
 - Planned rows: 10
-- Locator sidecars present before plan: 0
-- Locator sidecars ready before plan: 0
+- Locator sidecars present before plan: 3
+- Locator sidecars ready before plan: 3
 - Suggested locator policy counts: {'structure_local_ligand_geometry_without_source_text_candidate_requires_validator': 8, 'train_cal_template_alignment_without_heldout_rows_candidate_requires_split_check': 2}
 
 ## Row Plans
@@ -39,5 +39,5 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-family-panel-source-free-acti
 
 ## Interpretation
 
-- 10 locator sidecars are planned; 0 are currently ready.
+- 10 locator sidecars are planned; 3 are currently ready.
 - Materialize the planned locator sidecars with only allowed source-free evidence, rerun the schema audit, then update the predicted-geometry manifest before any packet/readout refresh.
