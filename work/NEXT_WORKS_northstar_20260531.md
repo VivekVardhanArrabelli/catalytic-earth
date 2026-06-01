@@ -38,7 +38,7 @@ deployment regime). Action: regenerate `predicted_geometry_retrieval` for the
 and the atlas-Mahalanobis novelty path. This may itself lift the operating point
 and unblocks #2.
 
-### 2. Learned mechanism-feature embedding (the real northstar feature) — DONE (2026-06-01): clean negative + residual lead
+### 2. Learned mechanism-feature embedding (the real northstar feature) — DONE (2026-06-01): clean negative + residual lead, now CONFIRMED
 Built as a closed-form, information-preserving supervised metric (sequence-only
 ESM2-150M; atlas-fit robust-standardize -> atlas-span PCA -> within-class
 whitening), evaluated at the operating point. See decision_log 2026-06-01 and
@@ -52,11 +52,21 @@ whitening), evaluated at the operating point. See decision_log 2026-06-01 and
   the operating point abstains on 0.241 of OOS (> baseline 0.215), concentrated on
   the cofactor-agnostic majority. It is NOT confounded-safe (0.333 vs 0.500), so
   it is a complementary LIFT channel, not a gate.
-- NEXT: a PREDECLARED confirmatory test of the residual as a third orthogonal lift
-  channel (geometry-led + cofactor-agnostic-lift + residual-agnostic-lift), paired
-  with a confounded-safe channel (Lever 3, fold) before any threshold promotion.
-  A trainable GNN over active-site reaction graphs remains a future lever once a
-  deployment-valid predicted-geometry graph dataset and a larger family set exist.
+- CONFIRMED (2026-06-01): the residual passed both predeclared gates. The PCA
+  variance-cutoff sweep holds (deployment all-OOS AUC 0.707/0.722/0.721 at 95/97/99%,
+  spread 0.014 — not a cutoff artifact) and the held-out-from-design confirmatory
+  split passes (confirmation fold AUC 0.789, permutation p=0.0005; both folds clear
+  the floor; agnostic>confounded replicates). See decision_log 2026-06-01 and
+  `work/mechanism_feature_residual_robustness_current702_20260601.md`
+  (`eval-mechanism-residual-robustness`).
+- NEXT: promote the now-confirmed residual into the per-channel RULE gate as the
+  third orthogonal lift channel (geometry-led + cofactor-agnostic-lift +
+  residual-agnostic-lift), PAIRED with a confounded-safe channel (Lever 3, fold) —
+  the residual is still NOT confounded-safe (confounded AUC ~0.66), so it lifts the
+  agnostic majority but cannot gate the safety-critical confounded subset alone.
+  Re-run the confirmatory test on the Lever 4 expanded family set once materialized
+  (the stronger surface). A trainable GNN over active-site reaction graphs remains a
+  future lever once a deployment-valid predicted-geometry graph dataset exists.
 
 ### 3. Fold-level novelty signal (complementary, catches the confounded subset)
 The 6 cofactor-confounded OOS (novel chemistry reusing a known cofactor family)

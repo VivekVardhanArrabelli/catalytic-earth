@@ -38,6 +38,7 @@ from .geometry_retrieval import write_geometry_retrieval
 from .mechanism_relationship_surface_eval import write_mechanism_relationship_surface_eval
 from .mechanism_novelty_abstention_eval import write_mechanism_novelty_abstention_eval
 from .mechanism_feature_embedding import write_mechanism_feature_embedding_eval
+from .mechanism_feature_residual_robustness import write_residual_robustness_audit
 from .mechanism_abstention_gate_eval import (
     write_mechanism_abstention_gate_eval,
     write_mechanism_deployment_abstention_gate_eval,
@@ -10843,6 +10844,27 @@ def cmd_eval_mechanism_feature_embedding(args: argparse.Namespace) -> int:
         "Wrote mechanism feature embedding eval to "
         f"{args.out} (primary AUC: {v.get('primary_auc_deployment')} vs baseline "
         f"{v.get('baseline_top1_score_auc_deployment')}, overall: {v.get('overall')})"
+    )
+    return 0
+
+
+def cmd_eval_mechanism_residual_robustness(args: argparse.Namespace) -> int:
+    audit = write_residual_robustness_audit(
+        esm2_150m_path=Path(args.esm2_150m_embeddings),
+        cofactor_sidecar_path=Path(args.cofactor_sidecar),
+        predicted_geometry_audit_path=Path(args.predicted_geometry_audit),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    res = audit.get("result", {})
+    sweep = res.get("pca_cutoff_sweep", {})
+    conf = res.get("confirmatory_split", {})
+    v = res.get("verdict", {})
+    print(
+        "Wrote residual robustness + confirmatory test to "
+        f"{args.out} (sweep AUC {sweep.get('auc_min')}-{sweep.get('auc_max')} holds: "
+        f"{v.get('sweep_holds')}; confirmatory pass: {conf.get('overall_pass')}; "
+        f"confirmed lever: {v.get('residual_confirmed_as_lever')})"
     )
     return 0
 
@@ -22477,6 +22499,37 @@ def build_parser() -> argparse.ArgumentParser:
         default="work/mechanism_feature_embedding_current702_20260601.md",
     )
     feature_embedding.set_defaults(func=cmd_eval_mechanism_feature_embedding)
+
+    residual_robust = subparsers.add_parser(
+        "eval-mechanism-residual-robustness",
+        help=(
+            "D11 Lever 2 follow-up: PCA variance-cutoff sweep (95/97/99%) plus a "
+            "predeclared held-out-from-design confirmatory split (with a label-permutation "
+            "null) of the out-of-span residual novelty lead (AUC 0.721)"
+        ),
+    )
+    residual_robust.add_argument(
+        "--esm2-150m-embeddings",
+        default="artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+    )
+    residual_robust.add_argument(
+        "--cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+    )
+    residual_robust.add_argument(
+        "--predicted-geometry-audit",
+        default="artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+        help="predicted-geometry robustness audit with predicted_geometry_retrieval.results",
+    )
+    residual_robust.add_argument(
+        "--out",
+        default="artifacts/v3_mechanism_feature_residual_robustness_current702_20260601.json",
+    )
+    residual_robust.add_argument(
+        "--report",
+        default="work/mechanism_feature_residual_robustness_current702_20260601.md",
+    )
+    residual_robust.set_defaults(func=cmd_eval_mechanism_residual_robustness)
 
     fold_novelty = subparsers.add_parser(
         "eval-fold-level-novelty-signal",

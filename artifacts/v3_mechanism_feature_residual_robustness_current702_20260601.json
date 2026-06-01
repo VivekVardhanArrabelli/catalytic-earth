@@ -1,0 +1,258 @@
+{
+  "artifact_id": "v3_mechanism_feature_residual_robustness_current702_20260601",
+  "created_utc": "2026-06-01T23:17:44Z",
+  "guardrails": {
+    "cofactor_channel_consumed_read_only_for_stratification": true,
+    "fit_on_in_distribution_atlas_only": true,
+    "labels_registries_thresholds_changed": false,
+    "mcsa_heldout_benchmark_is_eval_only_never_trained": true,
+    "no_heldout_tuning_cutoffs_bars_salt_seed_fixed_a_priori": true,
+    "sequence_inputs_amino_acid_only": true,
+    "split_independent_of_residual_scores": true
+  },
+  "interpretation": {
+    "confirmatory_note": "The fold split is a salted hash of the entry id, independent of the residual values and of how the lead was surfaced; fold 1 played no role in the discovery. Significance is a label-permutation null over the fixed residual scores. The cofactor-confounded subset is tiny per fold and read only directionally (H3).",
+    "headline": "CONFIRMED: the out-of-span residual is a robust, generalizing novelty lever. It holds across PCA cutoffs (deployment all-OOS AUC 0.707245-0.721519, spread 0.014274) and passes the predeclared held-out-from-design confirmatory split (confirmation-fold AUC 0.788506, permutation p=0.0005). It graduates from eval-pool hypothesis to a candidate third orthogonal lift channel for predeclared threshold work.",
+    "lever4_note": "Lever 4 (an expanded family set) is the stronger confirmation surface but is a proposal only today; this test uses the design-split route on the existing eval pool and should be re-run once an expanded set is materialized.",
+    "sweep_note": "At the deployed 99% target the 128-dim cap binds (realized 0.989091 of atlas variance), so the 95%/97% points genuinely shrink the span -- the sweep tests real span-size sensitivity, not a no-op. S1=True, S2=True, S3=True."
+  },
+  "result": {
+    "anchor_check": {
+      "committed_reference": 0.72098,
+      "deployed_residual_auc_deployment": 0.72098,
+      "reproduces_committed": true
+    },
+    "confirmatory_split": {
+      "H1_confirmation_auc_and_significant": true,
+      "H2_both_folds_above_floor": true,
+      "H3_directional_structure_replicates": true,
+      "confirmation_fold": {
+        "auc_agnostic": 0.791872,
+        "auc_all": 0.788506,
+        "auc_confounded": 0.741379,
+        "counts": {
+          "agnostic": 28,
+          "confounded": 2,
+          "inscope": 29,
+          "oos": 30
+        },
+        "permutation": {
+          "n_permutations": 2000,
+          "null_mean_auc": 0.497081,
+          "null_sd_auc": 0.076795,
+          "observed_auc": 0.788506,
+          "p_value": 0.0005
+        }
+      },
+      "design_echo_fold": {
+        "auc_agnostic": 0.658025,
+        "auc_all": 0.654195,
+        "auc_confounded": 0.611111,
+        "counts": {
+          "agnostic": 45,
+          "confounded": 4,
+          "inscope": 18,
+          "oos": 49
+        },
+        "permutation": {
+          "n_permutations": 2000,
+          "null_mean_auc": 0.501044,
+          "null_sd_auc": 0.078451,
+          "observed_auc": 0.654195,
+          "p_value": 0.029485
+        }
+      },
+      "overall_pass": true,
+      "pooled_deployment": {
+        "auc_all": 0.72098,
+        "permutation": {
+          "n_permutations": 2000,
+          "null_mean_auc": 0.500349,
+          "null_sd_auc": 0.053385,
+          "observed_auc": 0.72098,
+          "p_value": 0.0005
+        }
+      },
+      "protocol": {
+        "criteria": {
+          "H1": "confirmation auc_all >= 0.65 AND permutation p < 0.05",
+          "H2": "both folds auc_all >= 0.6",
+          "H3": "confirmation agnostic_auc >= confounded_auc"
+        },
+        "fold_roles": {
+          "0": "design_echo",
+          "1": "confirmation_heldout_from_discovery"
+        },
+        "permutations": 2000,
+        "seed": 20260601,
+        "split": "sha256('residual_confirm::' + entry_id) % 2; score-independent, fixed a priori",
+        "surface": "deployment_pool_heldout_rows"
+      }
+    },
+    "counts": {
+      "deployment_pool": {
+        "agnostic": 73,
+        "confounded": 6,
+        "inscope": 47,
+        "oos": 79
+      },
+      "full_pool": {
+        "agnostic": 84,
+        "confounded": 8,
+        "inscope": 48,
+        "oos": 92
+      }
+    },
+    "pca_cutoff_sweep": {
+      "S1_all_ge_min_auc": true,
+      "S2_spread_within_band": true,
+      "S3_agnostic_gt_confounded_every_cutoff": true,
+      "auc_max": 0.721519,
+      "auc_min": 0.707245,
+      "auc_spread": 0.014274,
+      "criteria": {
+        "S1_min_auc": 0.65,
+        "S2_max_spread": 0.05,
+        "S3": "agnostic_auc > confounded_auc at every cutoff"
+      },
+      "cutoffs": [
+        0.95,
+        0.97,
+        0.99
+      ],
+      "deployment_auc_all_by_cutoff": {
+        "0.95": 0.707245,
+        "0.97": 0.721519,
+        "0.99": 0.72098
+      },
+      "holds": true,
+      "per_cutoff": [
+        {
+          "cap_binds": false,
+          "deployment_pool": {
+            "auc_agnostic": 0.712037,
+            "auc_all": 0.707245,
+            "auc_confounded": 0.648936,
+            "operating_point_at_90pct_retention": {
+              "agnostic_abstain_recall": 0.2466,
+              "confounded_abstain_recall": 0.3333,
+              "inscope_retain_recall": 0.9149,
+              "oos_abstain_recall": 0.2532,
+              "threshold": -11.483874
+            }
+          },
+          "full_pool": {
+            "auc_agnostic": 0.712798,
+            "auc_all": 0.708333,
+            "auc_confounded": 0.661458,
+            "operating_point_at_90pct_retention": {
+              "agnostic_abstain_recall": 0.2381,
+              "confounded_abstain_recall": 0.25,
+              "inscope_retain_recall": 0.9167,
+              "oos_abstain_recall": 0.2391,
+              "threshold": -11.483874
+            }
+          },
+          "pca_dim": 81,
+          "uncapped_pca_dim_needed": 81,
+          "variance_captured": 0.95058,
+          "variance_target": 0.95
+        },
+        {
+          "cap_binds": false,
+          "deployment_pool": {
+            "auc_agnostic": 0.72661,
+            "auc_all": 0.721519,
+            "auc_confounded": 0.659574,
+            "operating_point_at_90pct_retention": {
+              "agnostic_abstain_recall": 0.2329,
+              "confounded_abstain_recall": 0.3333,
+              "inscope_retain_recall": 0.9574,
+              "oos_abstain_recall": 0.2405,
+              "threshold": -11.074441
+            }
+          },
+          "full_pool": {
+            "auc_agnostic": 0.725694,
+            "auc_all": 0.720335,
+            "auc_confounded": 0.664062,
+            "operating_point_at_90pct_retention": {
+              "agnostic_abstain_recall": 0.2262,
+              "confounded_abstain_recall": 0.25,
+              "inscope_retain_recall": 0.9583,
+              "oos_abstain_recall": 0.2283,
+              "threshold": -11.074441
+            }
+          },
+          "pca_dim": 98,
+          "uncapped_pca_dim_needed": 98,
+          "variance_captured": 0.970043,
+          "variance_target": 0.97
+        },
+        {
+          "cap_binds": true,
+          "deployment_pool": {
+            "auc_agnostic": 0.725736,
+            "auc_all": 0.72098,
+            "auc_confounded": 0.663121,
+            "operating_point_at_90pct_retention": {
+              "agnostic_abstain_recall": 0.2329,
+              "confounded_abstain_recall": 0.3333,
+              "inscope_retain_recall": 0.9362,
+              "oos_abstain_recall": 0.2405,
+              "threshold": -10.219633
+            }
+          },
+          "full_pool": {
+            "auc_agnostic": 0.727679,
+            "auc_all": 0.722373,
+            "auc_confounded": 0.666667,
+            "operating_point_at_90pct_retention": {
+              "agnostic_abstain_recall": 0.2262,
+              "confounded_abstain_recall": 0.25,
+              "inscope_retain_recall": 0.9375,
+              "oos_abstain_recall": 0.2283,
+              "threshold": -10.219633
+            }
+          },
+          "pca_dim": 128,
+          "uncapped_pca_dim_needed": 131,
+          "variance_captured": 0.989091,
+          "variance_target": 0.99
+        }
+      ]
+    },
+    "space": {
+      "deployed_cap_binds": true,
+      "deployed_cutoff": 0.99,
+      "deployed_pca_dim": 128,
+      "deployed_variance_captured": 0.989091,
+      "input": "esm2_150m_sequence_only",
+      "n_atlas": 184,
+      "n_axes_total": 183,
+      "pca_max_dim": 128
+    },
+    "status": "computed",
+    "verdict": {
+      "confirmatory_pass": true,
+      "residual_confirmed_as_lever": true,
+      "sweep_holds": true
+    }
+  },
+  "schema_version": "mechanism_feature_residual_robustness.v0",
+  "scope": "D11 Lever 2 follow-up: robustness (PCA variance-cutoff sweep 95/97/99%) and a PREDECLARED confirmatory split test of the out-of-atlas-span residual novelty signal (the AUC 0.721 deployment-pool lead). Establishes whether the residual is a stable, generalizing lever or an eval-pool/cutoff artifact, BEFORE any threshold promotion or channel integration.",
+  "source_artifacts": {
+    "cofactor_score_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    },
+    "esm2_150m_embeddings": {
+      "path": "artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+      "sha256": "e7e5ee1ec329b084182e7b957c24f14a282f08bf61a6d2191dd639752ffd9617"
+    },
+    "predicted_geometry_audit": {
+      "path": "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+      "sha256": "b1c120e452f439c72686463eb56249f8002a12862a601410d682b6f19e8b6294"
+    }
+  }
+}

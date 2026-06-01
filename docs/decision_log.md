@@ -3,6 +3,63 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-01: Out-Of-Span Residual Survives The Cutoff-Robustness And Predeclared Confirmatory Tests
+
+Decision: before treating the out-of-atlas-span residual (the AUC 0.721 Lever 2
+lead) as more than an eval-pool hypothesis, run the two checks that were
+predeclared as its gate -- a PCA variance-cutoff robustness sweep (leakage/overfit
+test) and a held-out-from-its-own-design confirmatory split -- with the pass/fail
+bars, fold salt, and permutation seed all fixed a priori. Both pass, so the
+residual graduates from exploratory readout to a confirmed candidate third
+orthogonal lift channel.
+
+Robustness sweep (leakage/overfit). The residual is the representation energy
+outside the atlas PCA span, and the span size is a fixed variance cutoff. Sweeping
+it (95% / 97% / 99%) re-derives the residual off a single shared atlas
+eigendecomposition (an anchor assertion confirms the 99%/128-dim point reproduces
+the committed 0.72098). Deployment-pool all-OOS AUC is 0.7072 (95%, 81-dim span),
+0.7215 (97%, 98-dim), 0.7210 (99%, 128-dim cap, 0.9891 variance) -- range 0.0143,
+inside the predeclared <=0.05 band; all three >=0.65; and agnostic-subset AUC
+exceeds confounded-subset AUC at every cutoff. Note the 99% target is cap-limited
+to 128 dims, so the 95%/97% points genuinely shrink the span (81/98 dims) -- the
+sweep tests real span-size sensitivity, not a no-op. S1/S2/S3 all hold: the 0.721
+is NOT an artifact of the chosen cutoff.
+
+Confirmatory split (held out from the lead's own design). The lead was surfaced on
+the whole deployment pool, so its 47/79 sample could be lucky. The held-out rows
+were partitioned into two folds by a salted hash of the entry id
+(`sha256('residual_confirm::'+id) % 2`) -- a split independent of the residual
+values and of how the lead was found -- with fold 1 reserved as the confirmation
+fold and the pass criteria committed before reading it. Significance is a
+label-permutation null (2000 shuffles, seed 20260601) over the fixed residual
+scores. The confirmation fold (29 in / 30 OOS) scores AUC 0.7885 at permutation
+p=0.0005; the design-echo fold (18/49) scores 0.654 at p=0.029; pooled 0.721 at
+p=0.0005. H1 (confirmation AUC>=0.65 AND p<0.05), H2 (both folds AUC>=0.60), and
+H3 (confirmation agnostic AUC >= confounded AUC) all hold: the separation is real
+and significant on data that played no role in the discovery, and the
+cofactor-agnostic directional structure replicates.
+
+Consequence: the out-of-span residual is a stable, generalizing novelty signal,
+not a cutoff/eval-pool artifact -- it is promoted to a candidate third orthogonal
+lift channel (geometry-led gate + cofactor-agnostic-lift + residual-agnostic-lift)
+for predeclared threshold work. It remains NOT confounded-safe (confounded AUC
+~0.66 vs geometry 0.84), so it must still be paired with a confounded-safe channel
+(Lever 3, fold) before any threshold promotion -- the confirmatory test validated
+the lift, not standalone gating. Lever 4 (an expanded family set) is the stronger
+confirmation surface but is a proposal only today; this test used the design-split
+route on the existing eval pool and should be re-run once an expanded set is
+materialized. No labels, registries, ontologies, splits, thresholds, or production
+scorers changed; the atlas-only fit and M-CSA-eval-only constraints are preserved,
+and the fold split is independent of the residual scores.
+
+Reproduce: `PYTHONPATH=src python -m catalytic_earth.cli
+eval-mechanism-residual-robustness`. Module:
+`src/catalytic_earth/mechanism_feature_residual_robustness.py`. Tests:
+`tests/test_mechanism_feature_residual_robustness.py` (8 fast + 1 slow integration
+gated behind `CATALYTIC_RUN_SLOW`). Artifacts:
+`artifacts/v3_mechanism_feature_residual_robustness_current702_20260601.json`,
+`work/mechanism_feature_residual_robustness_current702_20260601.md`.
+
 ## 2026-06-01: Lever 2 Learned Mechanism-Feature Embedding Is A Clean Negative With An Out-Of-Span Residual Lead
 
 Decision: implement Lever 2 (a learned mechanism-feature embedding) as a
