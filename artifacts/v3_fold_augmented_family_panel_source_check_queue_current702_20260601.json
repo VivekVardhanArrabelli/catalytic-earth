@@ -1,15 +1,16 @@
 {
   "artifact_id": "v3_fold_augmented_family_panel_source_check_queue_current702_20260601",
   "counts": {
-    "panels_represented": 3,
-    "source_check_rows": 4,
+    "panels_represented": 4,
+    "source_check_rows": 6,
     "source_check_rows_by_panel": {
       "cobalamin_and_radical_rearrangement_panel": 1,
-      "flavin_monooxygenase_and_flavin_oxygen_transfer": 2,
-      "lipoamide_or_sulfur_transfer_redox_boundary": 1
+      "flavin_monooxygenase_and_flavin_oxygen_transfer": 3,
+      "lipoamide_or_sulfur_transfer_redox_boundary": 1,
+      "near_orphan_glycoside_or_nucleoside_hydrolase_controls": 1
     }
   },
-  "created_utc": "2026-06-01T09:11:41Z",
+  "created_utc": "2026-06-01T09:55:05Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "imports_or_promotions_performed": false,
@@ -21,7 +22,7 @@
     "threshold_values_changed": false
   },
   "interpretation": {
-    "headline": "4 non-abstained family-panel rows need review-only source checking before any family-expansion decision.",
+    "headline": "6 non-abstained family-panel rows need review-only source checking before any family-expansion decision.",
     "next_action": "Work the queue in rank order, starting with the largest positive threshold margin, and record source-backed accept/reject/hold evidence without changing labels."
   },
   "queue_rows": [
@@ -152,6 +153,69 @@
       ],
       "split_assignment": "heldout",
       "threshold_margin": 0.10305
+    },
+    {
+      "allowed_next_action": "review-only source check and evidence packet annotation",
+      "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+      "combined_mean_geometry_fold": 0.53865,
+      "entry_id": "m_csa:132",
+      "forbidden_without_future_authorization": [
+        "label promotion",
+        "registry or ontology mutation",
+        "threshold retuning",
+        "training/calibration use"
+      ],
+      "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "rank": 5,
+      "required_evidence_before_family_decision": [
+        "source-backed row-level bond-change evidence",
+        "source-backed cofactor or redox-partner locus evidence",
+        "duplicate and split-leakage screen if a future import is proposed",
+        "expert mechanism-locus adjudication"
+      ],
+      "selected_organic_cofactor_max": 0.010805,
+      "source_check_focus": [
+        "row_specific_bond_change_and_mechanism_locus",
+        "cofactor_locus_and_redox_partner_identity",
+        "occupied_primary_fold_false_confidence_review",
+        "geometry_fold_fingerprint_disagreement",
+        "selected_organic_cofactor_confounding"
+      ],
+      "split_assignment": "in_distribution",
+      "threshold_margin": 0.0971
+    },
+    {
+      "allowed_next_action": "review-only source check and evidence packet annotation",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "combined_mean_geometry_fold": 0.45755,
+      "entry_id": "m_csa:116",
+      "forbidden_without_future_authorization": [
+        "label promotion",
+        "registry or ontology mutation",
+        "threshold retuning",
+        "training/calibration use"
+      ],
+      "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 6,
+      "required_evidence_before_family_decision": [
+        "source-backed row-level bond-change evidence",
+        "source-backed cofactor or redox-partner locus evidence",
+        "duplicate and split-leakage screen if a future import is proposed",
+        "expert mechanism-locus adjudication"
+      ],
+      "selected_organic_cofactor_max": 0.050535,
+      "source_check_focus": [
+        "row_specific_bond_change_and_mechanism_locus",
+        "cofactor_locus_and_redox_partner_identity",
+        "occupied_primary_fold_false_confidence_review",
+        "selected_organic_cofactor_confounding"
+      ],
+      "split_assignment": "heldout",
+      "threshold_margin": 0.016
     }
   ],
   "schema_version": "northstar_next_levers.v0",
@@ -160,7 +224,7 @@
     "family_panel_research_readout": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
-      "sha256": "3ef5aff8b38ce26f5a94af7e760cac78e49d00d2871c646f092422e36611956f"
+      "sha256": "74805c7c66180153319ad230c881416d6e99820985326b17bb023eb883fa12c0"
     }
   },
   "status": "source_check_queue_ready_review_only"

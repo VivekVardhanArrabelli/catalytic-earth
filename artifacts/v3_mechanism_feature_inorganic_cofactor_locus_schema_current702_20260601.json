@@ -1,0 +1,289 @@
+{
+  "artifact_id": "v3_mechanism_feature_inorganic_cofactor_locus_schema_current702_20260601",
+  "counts": {
+    "active_site_role_graph_ok_rows": 656,
+    "current702_manifest_rows": 702,
+    "geometry_feature_rows_in_current702": 698,
+    "geometry_status_counts": {
+      "insufficient_resolved_residues": 14,
+      "no_structure_positions": 2,
+      "ok": 682
+    },
+    "organic_cofactor_classes_schema_passed": [
+      "flavin",
+      "heme",
+      "plp"
+    ],
+    "organic_cofactor_row_class_records": 2106,
+    "proximal_context_counts": {
+      "cobalamin": 4,
+      "fe_s_cluster": 17,
+      "metal_ion": 176,
+      "sam": 8
+    },
+    "schema_classes": 4,
+    "structure_wide_context_counts": {
+      "cobalamin": 4,
+      "fe_s_cluster": 29,
+      "metal_ion": 264,
+      "sam": 11
+    }
+  },
+  "created_utc": "2026-06-01T10:11:44Z",
+  "guardrails": {
+    "heldout_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "new_coordinates_or_models_downloaded": false,
+    "production_thresholds_changed": false,
+    "review_only": true
+  },
+  "interpretation": {
+    "current_state": "Organic flavin/heme/PLP cofactor score sidecars pass strict schema, but inorganic/cobalamin/radical loci are only available as raw geometry ligand context today.",
+    "embedding_implication": "The mechanism-feature embedding pilot can use role graph and reaction-center templates, but cofactor_catalytic_locus should stay incomplete until these four sidecar classes are materialized or marked absent per row.",
+    "exact_next_action": "Implement a review-only metal_ion_locus sidecar first because it has the largest current702 surface and can be validated directly from geometry_features ligand_context without new downloads."
+  },
+  "materialization_queue": [
+    {
+      "blocked_by": "needs row-level schema implementation plus distance/provenance extraction",
+      "next_action": "Create review-only sidecar records for current702 rows with metal_ion ligand_context, marking proximal versus structure-wide-only status.",
+      "rank": 1,
+      "target_class": "metal_ion_locus",
+      "work_item": "derive_metal_ion_locus_sidecar_from_geometry_ligand_context"
+    },
+    {
+      "blocked_by": "needs explicit proximal-vs-structure-wide B12 evidence policy",
+      "next_action": "Materialize cobalamin rows with a structure_wide_only flag before any cobalamin/radical feature pilot.",
+      "rank": 2,
+      "target_class": "cobalamin_locus",
+      "work_item": "derive_cobalamin_locus_sidecar_with_structure_wide_only_guardrail"
+    },
+    {
+      "blocked_by": "needs SAM and Fe-S co-context separation plus source-role policy",
+      "next_action": "Materialize SAM and Fe-S context records separately, then add a copresence status for radical-SAM candidate rows.",
+      "rank": 3,
+      "target_class": "radical_sam_locus, iron_sulfur_locus",
+      "work_item": "derive_radical_sam_and_fe_s_locus_sidecars"
+    }
+  ],
+  "row_sampling_for_validation": {
+    "cobalamin": [
+      "m_csa:62",
+      "m_csa:63",
+      "m_csa:268",
+      "m_csa:853"
+    ],
+    "fe_s_cluster": [
+      "m_csa:105",
+      "m_csa:107",
+      "m_csa:108",
+      "m_csa:114",
+      "m_csa:119",
+      "m_csa:123",
+      "m_csa:126",
+      "m_csa:127",
+      "m_csa:130",
+      "m_csa:139",
+      "m_csa:142",
+      "m_csa:144"
+    ],
+    "metal_ion": [
+      "m_csa:4",
+      "m_csa:7",
+      "m_csa:8",
+      "m_csa:9",
+      "m_csa:11",
+      "m_csa:15",
+      "m_csa:16",
+      "m_csa:19",
+      "m_csa:21",
+      "m_csa:24",
+      "m_csa:27",
+      "m_csa:28"
+    ],
+    "sam": [
+      "m_csa:9",
+      "m_csa:23",
+      "m_csa:46",
+      "m_csa:244",
+      "m_csa:293",
+      "m_csa:332",
+      "m_csa:358",
+      "m_csa:392",
+      "m_csa:427",
+      "m_csa:604",
+      "m_csa:621"
+    ]
+  },
+  "schema_classes": [
+    {
+      "class_id": "metal_ion_locus",
+      "current702_rows_with_any_context": 264,
+      "materialization_rule": "Use geometry ligand_context first; require distance and ligand-code provenance before any train/cal feature use.",
+      "required_fields": [
+        "entry_id",
+        "split_assignment",
+        "source_artifacts",
+        "sidecar_status",
+        "evidence_scope",
+        "proximal_context_available",
+        "structure_wide_context_available",
+        "nearest_active_site_distance_angstrom",
+        "supporting_ligand_codes",
+        "supporting_structure_ids",
+        "active_site_residue_links",
+        "predictive_use_allowed",
+        "ready_for_label_import",
+        "metal_element_codes",
+        "metal_coordination_residue_roles",
+        "metal_water_or_ligand_bridge_flag",
+        "metal_role_policy"
+      ],
+      "source_family_keys": [
+        "metal_ion"
+      ],
+      "status_values": [
+        "proximal_metal_context_available",
+        "structure_wide_metal_context_only",
+        "no_metal_context_detected",
+        "unsupported_or_missing_geometry"
+      ]
+    },
+    {
+      "class_id": "cobalamin_locus",
+      "current702_rows_with_any_context": 4,
+      "materialization_rule": "Separate proximal B12 evidence from structure-wide B12 context; structure-wide only must not count as local catalytic evidence.",
+      "required_fields": [
+        "entry_id",
+        "split_assignment",
+        "source_artifacts",
+        "sidecar_status",
+        "evidence_scope",
+        "proximal_context_available",
+        "structure_wide_context_available",
+        "nearest_active_site_distance_angstrom",
+        "supporting_ligand_codes",
+        "supporting_structure_ids",
+        "active_site_residue_links",
+        "predictive_use_allowed",
+        "ready_for_label_import",
+        "cobalamin_codes",
+        "adenosyl_or_methyl_context_flag",
+        "structure_wide_only_flag",
+        "radical_rearrangement_source_flag"
+      ],
+      "source_family_keys": [
+        "cobalamin"
+      ],
+      "status_values": [
+        "proximal_cobalamin_context_available",
+        "structure_wide_cobalamin_context_only",
+        "no_cobalamin_context_detected",
+        "unsupported_or_missing_geometry"
+      ]
+    },
+    {
+      "class_id": "radical_sam_locus",
+      "current702_rows_with_any_context": 39,
+      "materialization_rule": "Require SAM plus Fe-S co-context for strong radical-SAM locus; partial evidence remains a separate weak/blocked status.",
+      "required_fields": [
+        "entry_id",
+        "split_assignment",
+        "source_artifacts",
+        "sidecar_status",
+        "evidence_scope",
+        "proximal_context_available",
+        "structure_wide_context_available",
+        "nearest_active_site_distance_angstrom",
+        "supporting_ligand_codes",
+        "supporting_structure_ids",
+        "active_site_residue_links",
+        "predictive_use_allowed",
+        "ready_for_label_import",
+        "sam_codes",
+        "fe_s_cluster_codes",
+        "sam_and_fe_s_copresence_flag",
+        "radical_sam_source_context_flag"
+      ],
+      "source_family_keys": [
+        "sam",
+        "fe_s_cluster"
+      ],
+      "status_values": [
+        "proximal_sam_and_fe_s_context_available",
+        "partial_sam_or_fe_s_context_available",
+        "structure_wide_context_only",
+        "no_radical_sam_context_detected",
+        "unsupported_or_missing_geometry"
+      ]
+    },
+    {
+      "class_id": "iron_sulfur_locus",
+      "current702_rows_with_any_context": 29,
+      "materialization_rule": "Keep Fe-S as a locus feature separate from radical-SAM class membership; source role must be explicit before train/cal use.",
+      "required_fields": [
+        "entry_id",
+        "split_assignment",
+        "source_artifacts",
+        "sidecar_status",
+        "evidence_scope",
+        "proximal_context_available",
+        "structure_wide_context_available",
+        "nearest_active_site_distance_angstrom",
+        "supporting_ligand_codes",
+        "supporting_structure_ids",
+        "active_site_residue_links",
+        "predictive_use_allowed",
+        "ready_for_label_import",
+        "fe_s_cluster_codes",
+        "cluster_type",
+        "coordinating_residue_links",
+        "cofactor_vs_substrate_role_policy"
+      ],
+      "source_family_keys": [
+        "fe_s_cluster"
+      ],
+      "status_values": [
+        "proximal_fe_s_context_available",
+        "structure_wide_fe_s_context_only",
+        "no_fe_s_context_detected",
+        "unsupported_or_missing_geometry"
+      ]
+    }
+  ],
+  "schema_version": "v3",
+  "scope": "Strict schema and materialization queue for the mechanism-feature cofactor_catalytic_locus gap left after organic flavin/heme/PLP sidecars passed validation.",
+  "source_artifacts": [
+    {
+      "path": "artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json",
+      "role": "embedding scaffold gap that names metal/cobalamin/radical/Fe-S loci",
+      "sha256": "b24c77243f2eb22d762c7f5cf80ab7923f4fce2650f0ff2c526e211c1121d7a5"
+    },
+    {
+      "path": "artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json",
+      "role": "current role-graph and reaction-center schema pass",
+      "sha256": "8c18e359045fd5ce84ab4415063cd10a8eed83d8e9f641d06c63b966c88e589b"
+    },
+    {
+      "path": "artifacts/v3_selected_organic_cofactor_sidecar_schema_audit_current702_20260601.json",
+      "role": "strict schema pass for flavin/heme/PLP organic cofactor score sidecars",
+      "sha256": "26f67fa0d9b4ace5bccfee20b66f006e57e12cbdb440e28ca3788388642beb0c"
+    },
+    {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "role": "current organic cofactor row-class records",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    },
+    {
+      "path": "artifacts/v3_geometry_features_1025.json",
+      "role": "local ligand/cofactor context for current702 rows",
+      "sha256": "be7af8462397425062075ff8df5959cc9b68b165d07017692099deb66db1f8f6"
+    },
+    {
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "role": "current702 row universe and split assignments",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    }
+  ],
+  "status": "inorganic_cofactor_locus_schema_ready_review_only"
+}

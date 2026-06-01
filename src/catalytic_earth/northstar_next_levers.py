@@ -65,6 +65,9 @@ FOLD_AUGMENTED_FAMILY_PANEL_MISSING_PRIMARY_CHANNEL_QUEUE_ID = (
 FOLD_AUGMENTED_FAMILY_PANEL_MISSING_PRIMARY_CHANNEL_DIAGNOSIS_ID = (
     "v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601"
 )
+FOLD_AUGMENTED_FAMILY_PANEL_M_CSA_PRIMARY_CHANNEL_REPAIR_ID = (
+    "v3_fold_augmented_family_panel_m_csa_primary_channel_repair_current702_20260601"
+)
 MECHANISM_FEATURE_SIDECAR_SCHEMA_AUDIT_ID = (
     "v3_mechanism_feature_sidecar_schema_audit_current702_20260601"
 )
@@ -2387,6 +2390,7 @@ def build_family_panel_evidence_packet(
     selected_organic_cofactor_sidecar_path: Path,
     predicted_atlas_variants_path: Path,
     predicted_structure_fold_channel_path: Path | None = None,
+    m_csa_primary_channel_repair_path: Path | None = None,
     panel_id: str = "glycyl_radical_or_thiamine_radical_lyase_boundary",
 ) -> dict[str, Any]:
     family_targets = _read_json(family_targets_path)
@@ -2398,6 +2402,12 @@ def build_family_panel_evidence_packet(
         _read_json(predicted_structure_fold_channel_path)
         if predicted_structure_fold_channel_path is not None
         and Path(predicted_structure_fold_channel_path).exists()
+        else {}
+    )
+    m_csa_repair = (
+        _read_json(m_csa_primary_channel_repair_path)
+        if m_csa_primary_channel_repair_path is not None
+        and Path(m_csa_primary_channel_repair_path).exists()
         else {}
     )
 
@@ -2445,27 +2455,59 @@ def build_family_panel_evidence_packet(
     predicted_fold_hits.update(
         _predicted_fold_hits("priority_cofactor_confounded_oos_vs_atlas")
     )
+    repair_by_entry = {
+        str(row.get("entry_id")): row
+        for row in m_csa_repair.get("row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
     rows = []
     for entry_id in panel.get("candidate_rows", []):
         geo = geometry_by_entry.get(entry_id, {})
+        repair = repair_by_entry.get(entry_id, {})
         top = _top1_fingerprint(geo) or {}
+        if repair and not top:
+            top = {
+                "fingerprint_id": repair.get("geometry_top1_fingerprint_id"),
+                "score": repair.get("geometry_top1_score"),
+                "role_match_fraction": None,
+                "cofactor_context_score": None,
+            }
         fold = fold_by_entry.get(entry_id, {})
         cof = _cofactor_scores_for_entry(cofactor_sidecar, entry_id)
         variant = variant_by_entry.get(entry_id, {})
         variant_scores = variant.get("variant_scores", {})
         cofactor_max = max(cof.values()) if cof else None
+        predicted_fold_hit = predicted_fold_hits.get(entry_id, {})
+        if repair and predicted_fold_hit.get("tm_score") is None:
+            predicted_fold_hit = {
+                "nearest_atlas_entry_id": repair.get("nearest_atlas_entry_id"),
+                "nearest_atlas_true_fingerprint_id": repair.get(
+                    "nearest_atlas_true_fingerprint_id"
+                ),
+                "tm_score": repair.get("nearest_atlas_tm_score"),
+                "score_source": "m_csa_primary_channel_repair",
+            }
         rows.append(
             {
                 "entry_id": entry_id,
-                "split_assignment": geo.get("split_assignment"),
-                "benchmark_role": geo.get("benchmark_role"),
-                "predicted_geometry_status": _predicted_row_status(geo) if geo else "missing",
+                "split_assignment": geo.get("split_assignment")
+                or repair.get("split_assignment"),
+                "benchmark_role": geo.get("benchmark_role")
+                or repair.get("benchmark_role"),
+                "predicted_geometry_status": (
+                    _predicted_row_status(geo)
+                    if geo
+                    else repair.get("predicted_geometry_status") or "missing"
+                ),
                 "predicted_geometry_top1": {
                     "fingerprint_id": top.get("fingerprint_id"),
                     "score": top.get("score"),
                     "role_match_fraction": top.get("role_match_fraction"),
                     "cofactor_context_score": top.get("cofactor_context_score"),
                 },
+                "predicted_geometry_accession_repair": repair.get(
+                    "predicted_geometry_accession_repair"
+                ),
                 "selected_organic_cofactor_scores": cof,
                 "selected_organic_cofactor_max": (
                     round(cofactor_max, 6) if cofactor_max is not None else None
@@ -2487,16 +2529,18 @@ def build_family_panel_evidence_packet(
                     ),
                 },
                 "predicted_structure_fold_channel": {
-                    "nearest_atlas_entry_id": (
-                        predicted_fold_hits.get(entry_id, {}).get("nearest_atlas_entry_id")
+                    "nearest_atlas_entry_id": predicted_fold_hit.get(
+                        "nearest_atlas_entry_id"
                     ),
-                    "nearest_atlas_true_fingerprint_id": (
-                        predicted_fold_hits.get(entry_id, {}).get(
-                            "nearest_atlas_true_fingerprint_id"
-                        )
+                    "nearest_atlas_true_fingerprint_id": predicted_fold_hit.get(
+                        "nearest_atlas_true_fingerprint_id"
                     ),
-                    "nearest_atlas_tm_score": (
-                        predicted_fold_hits.get(entry_id, {}).get("tm_score")
+                    "nearest_atlas_tm_score": predicted_fold_hit.get("tm_score"),
+                    "score_source": predicted_fold_hit.get("score_source")
+                    or (
+                        "predicted_structure_fold_channel"
+                        if predicted_fold_hit.get("tm_score") is not None
+                        else None
                     ),
                 },
                 "evidence_role": (
@@ -2615,6 +2659,15 @@ def build_family_panel_evidence_packet(
                 and Path(predicted_structure_fold_channel_path).exists()
                 else None
             ),
+            "m_csa_primary_channel_repair": (
+                {
+                    "path": str(m_csa_primary_channel_repair_path),
+                    "sha256": _sha256(m_csa_primary_channel_repair_path),
+                }
+                if m_csa_primary_channel_repair_path is not None
+                and Path(m_csa_primary_channel_repair_path).exists()
+                else None
+            ),
         },
     }
 
@@ -2674,6 +2727,7 @@ def write_family_panel_evidence_packet(
     predicted_atlas_variants_path: Path,
     out_path: Path,
     predicted_structure_fold_channel_path: Path | None = None,
+    m_csa_primary_channel_repair_path: Path | None = None,
     report_path: Path | None = None,
     panel_id: str = "glycyl_radical_or_thiamine_radical_lyase_boundary",
 ) -> dict[str, Any]:
@@ -2684,6 +2738,7 @@ def write_family_panel_evidence_packet(
         selected_organic_cofactor_sidecar_path=selected_organic_cofactor_sidecar_path,
         predicted_atlas_variants_path=predicted_atlas_variants_path,
         predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        m_csa_primary_channel_repair_path=m_csa_primary_channel_repair_path,
         panel_id=panel_id,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -6292,6 +6347,454 @@ def write_fold_augmented_family_panel_missing_primary_channel_diagnosis(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_family_panel_missing_primary_channel_diagnosis_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _combined_mean_geometry_fold_threshold(
+    oos_calibrated_threshold_contract: dict[str, Any],
+) -> float | None:
+    contract = (
+        oos_calibrated_threshold_contract.get("threshold_contract", {})
+        .get("combined_mean_geometry_fold", {})
+    )
+    for key in (
+        "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain",
+        "heldout_final_eval_at_90pct_oos_calibrated_threshold",
+        "prior_in_scope_only_selected_at_90pct",
+    ):
+        value = _parse_optional_float((contract.get(key) or {}).get("threshold"))
+        if value is not None:
+            return value
+    return None
+
+
+def _family_panel_m_csa_repair_target_ids(
+    diagnosis: dict[str, Any],
+) -> list[str]:
+    ids = [
+        str(row.get("entry_id") or "")
+        for row in diagnosis.get("diagnosed_rows", [])
+        if isinstance(row, dict)
+        and str(row.get("entry_id") or "").startswith("m_csa:")
+        and row.get("diagnosis") == "needs_predicted_geometry_materialization"
+    ]
+    return sorted({entry_id for entry_id in ids if entry_id}, key=_entry_id_sort_key)
+
+
+def _row_combined_mean_geometry_fold(
+    *,
+    geometry_top1_score: float | None,
+    fold_tm_score: float | None,
+) -> float | None:
+    if geometry_top1_score is None or fold_tm_score is None:
+        return None
+    return round((geometry_top1_score + fold_tm_score) / 2, 6)
+
+
+def build_fold_augmented_family_panel_m_csa_primary_channel_repair(
+    *,
+    missing_primary_channel_diagnosis_path: Path,
+    label_manifest_path: Path,
+    graph_path: Path,
+    experimental_geometry_features_path: Path,
+    predicted_structure_fold_channel_path: Path,
+    oos_calibrated_threshold_contract_path: Path,
+    coordinate_root: Path,
+    foldseek_result_tsv: Path,
+    foldseek_binary: str = DEFAULT_FOLDSEEK_BINARY,
+    target_atlas_dir: Path | None = None,
+    threads: int = 4,
+    alphafold_version: str = "auto",
+    fetcher: Any | None = None,
+) -> dict[str, Any]:
+    diagnosis = _read_json(missing_primary_channel_diagnosis_path)
+    label_manifest = _read_json(label_manifest_path)
+    graph = _read_json(graph_path)
+    experimental_geometry_features = _read_json(experimental_geometry_features_path)
+    fold_channel = _read_json(predicted_structure_fold_channel_path)
+    threshold_contract = _read_json(oos_calibrated_threshold_contract_path)
+
+    target_ids = _family_panel_m_csa_repair_target_ids(diagnosis)
+    target_id_set = set(target_ids)
+    selected_all, excluded_all = _target_manifest_row_selection(
+        label_manifest=label_manifest,
+        graph=graph,
+        experimental_geometry_features=experimental_geometry_features,
+        split_assignment=None,
+        max_rows=0,
+        allow_accession_compatible_residue_subset=True,
+        allow_best_real_sequence_accession=True,
+    )
+    selected_rows = [
+        row for row in selected_all if str(row.get("entry_id") or "") in target_id_set
+    ]
+    excluded_rows = [
+        row for row in excluded_all if str(row.get("entry_id") or "") in target_id_set
+    ]
+    selected_id_set = {str(row.get("entry_id") or "") for row in selected_rows}
+    missing_after_selection = [
+        entry_id for entry_id in target_ids if entry_id not in selected_id_set
+    ]
+
+    predicted_geometry = (
+        build_alphafold_predicted_geometry_features(
+            label_manifest_rows=selected_rows,
+            graph=graph,
+            experimental_geometry_features=experimental_geometry_features,
+            alphafold_version=alphafold_version,
+            fetcher=fetcher,
+        )
+        if selected_rows
+        else _empty_predicted_geometry_features()
+    )
+    predicted_retrieval = run_geometry_retrieval(predicted_geometry)
+    manifest_rows = [
+        row for row in label_manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    repaired_geometry_rows = _enriched_predicted_retrieval_results(
+        retrieval_results=predicted_retrieval.get("results", []),
+        manifest_rows=manifest_rows,
+        predicted_entries=predicted_geometry.get("entries", []),
+    )
+    query_rows = [row for row in repaired_geometry_rows if _predicted_row_ok(row)]
+    query_requests = _coordinate_requests(
+        query_rows,
+        coordinate_root=coordinate_root,
+        role="family_panel_m_csa_repair_query",
+        subdir="queries_repaired_m_csa",
+    )
+    target_requests = (
+        (fold_channel.get("foldseek_input_manifest") or {})
+        .get("coordinate_request_groups", {})
+        .get("atlas_in_distribution", [])
+    )
+    target_dir = target_atlas_dir or (
+        coordinate_root.parent
+        / "catalytic-earth-predicted-structure-fold-channel-current702"
+        / "atlas_in_distribution"
+    )
+    foldseek = _foldseek_binary_info(foldseek_binary)
+    parsed_foldseek = _parse_foldseek_tsv_hits(
+        result_tsv=foldseek_result_tsv,
+        query_requests=query_requests,
+        target_requests=target_requests,
+    )
+    hits_by_entry = {
+        str(hit.get("query_entry_id") or ""): hit
+        for hit in parsed_foldseek.get("nearest_atlas_hits", [])
+        if isinstance(hit, dict) and hit.get("query_entry_id")
+    }
+    threshold = _combined_mean_geometry_fold_threshold(threshold_contract)
+    row_scores: list[dict[str, Any]] = []
+    for row in sorted(
+        repaired_geometry_rows,
+        key=lambda item: _entry_id_sort_key(str(item.get("entry_id") or "")),
+    ):
+        entry_id = str(row.get("entry_id") or "")
+        hit = hits_by_entry.get(entry_id)
+        geometry_score = _parse_optional_float(row.get("top1_score"))
+        fold_tm_score = _parse_optional_float((hit or {}).get("tm_score"))
+        combined = _row_combined_mean_geometry_fold(
+            geometry_top1_score=geometry_score,
+            fold_tm_score=fold_tm_score,
+        )
+        if combined is None:
+            channel_status = "not_score_complete_for_primary_channel"
+        elif threshold is None:
+            channel_status = "score_complete_threshold_unavailable"
+        elif combined >= threshold:
+            channel_status = "nonabstained_at_research_threshold"
+        else:
+            channel_status = "abstained_at_research_threshold"
+        row_scores.append(
+            {
+                "entry_id": entry_id,
+                "split_assignment": row.get("split_assignment"),
+                "benchmark_role": row.get("benchmark_role"),
+                "true_fingerprint_id": row.get("true_fingerprint_id"),
+                "predicted_geometry_status": row.get("predicted_geometry_status")
+                or row.get("status"),
+                "predicted_geometry_accession": row.get(
+                    "predicted_geometry_accession"
+                )
+                or row.get("accession"),
+                "manifest_accession": row.get("manifest_accession"),
+                "sequence_id": row.get("sequence_id"),
+                "predicted_pdb_id": row.get("predicted_pdb_id"),
+                "predicted_geometry_accession_repair": row.get(
+                    "predicted_geometry_accession_repair"
+                ),
+                "predicted_resolved_residue_count": row.get(
+                    "predicted_resolved_residue_count"
+                ),
+                "predicted_missing_positions": row.get("predicted_missing_positions"),
+                "geometry_top1_fingerprint_id": row.get("top1_fingerprint_id"),
+                "geometry_top1_score": (
+                    round(geometry_score, 6) if geometry_score is not None else None
+                ),
+                "nearest_atlas_entry_id": (hit or {}).get("nearest_atlas_entry_id"),
+                "nearest_atlas_true_fingerprint_id": (hit or {}).get(
+                    "nearest_atlas_true_fingerprint_id"
+                ),
+                "nearest_atlas_tm_score": (
+                    round(fold_tm_score, 6) if fold_tm_score is not None else None
+                ),
+                "combined_mean_geometry_fold": combined,
+                "fixed_research_threshold": threshold,
+                "research_gate_status_if_readout_refreshed": channel_status,
+            }
+        )
+
+    ok_geometry_ids = {
+        str(row.get("entry_id") or "") for row in query_rows if row.get("entry_id")
+    }
+    score_complete_ids = {
+        row["entry_id"]
+        for row in row_scores
+        if row.get("combined_mean_geometry_fold") is not None
+    }
+    blockers = []
+    if missing_after_selection or excluded_rows:
+        blockers.append("some_target_rows_not_selected_for_repair")
+    if len(ok_geometry_ids) < len(target_ids):
+        blockers.append("some_target_rows_lack_ok_predicted_geometry")
+    if parsed_foldseek.get("status") != "parsed":
+        blockers.append("foldseek_result_tsv_missing_or_unparsed")
+    if len(score_complete_ids) < len(target_ids):
+        blockers.append("some_target_rows_still_missing_combined_channel_score")
+    status = (
+        "m_csa_primary_channel_repair_scored_review_only"
+        if target_ids and not blockers
+        else (
+            "m_csa_primary_channel_repair_ready_for_foldseek"
+            if target_ids and ok_geometry_ids and parsed_foldseek.get("status") == "result_tsv_missing"
+            else "m_csa_primary_channel_repair_blocked"
+        )
+    )
+    repair_policy_counts = Counter(
+        str((row.get("predicted_geometry_accession_repair") or {}).get("policy") or "none")
+        for row in row_scores
+    )
+    query_coordinate_command = "\n".join(
+        request.get("download_command", "")
+        for request in query_requests
+        if request.get("download_command")
+    )
+    result_tmp_dir = coordinate_root / "tmp_family_panel_m_csa_vs_atlas"
+    return {
+        "artifact_id": FOLD_AUGMENTED_FAMILY_PANEL_M_CSA_PRIMARY_CHANNEL_REPAIR_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Review-only primary-channel repair for family-panel M-CSA rows "
+            "diagnosed as missing predicted geometry. It applies frozen "
+            "current702 accession-repair policies, then parses Foldseek/TM "
+            "scores against the predicted in-distribution atlas."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "frozen_current702_inputs_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+            "primary_source_literature_fetched": False,
+            "alphafolddb_coordinates_fetched_transiently": True,
+            "raw_coordinates_committed": False,
+        },
+        "counts": {
+            "diagnosis_target_rows": len(target_ids),
+            "selected_for_accession_repair": len(selected_rows),
+            "excluded_target_rows": len(excluded_rows) + len(missing_after_selection),
+            "predicted_geometry_ok_rows": len(ok_geometry_ids),
+            "foldseek_query_requests": len(query_requests),
+            "foldseek_target_atlas_requests": len(target_requests),
+            "foldseek_hits": len(parsed_foldseek.get("nearest_atlas_hits", [])),
+            "primary_channel_score_complete_rows": len(score_complete_ids),
+            "repair_policy_counts": dict(sorted(repair_policy_counts.items())),
+            "research_gate_status_counts_if_readout_refreshed": dict(
+                sorted(
+                    Counter(
+                        row["research_gate_status_if_readout_refreshed"]
+                        for row in row_scores
+                    ).items()
+                )
+            ),
+        },
+        "target_entry_ids": target_ids,
+        "excluded_target_rows": sorted(
+            excluded_rows
+            + [
+                {"entry_id": entry_id, "reason": "not_selected_by_repair_policy"}
+                for entry_id in missing_after_selection
+            ],
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "row_scores": row_scores,
+        "predicted_geometry_metadata": predicted_geometry.get("metadata", {}),
+        "foldseek_parse": parsed_foldseek,
+        "runtime": {
+            "foldseek": foldseek,
+            "coordinate_root": str(coordinate_root),
+            "target_atlas_dir": str(target_dir),
+            "foldseek_result_tsv": str(foldseek_result_tsv),
+        },
+        "commands": {
+            "materialize_query_coordinates": query_coordinate_command,
+            "run_repaired_m_csa_vs_atlas_foldseek": _foldseek_easy_search_command(
+                binary=str(foldseek.get("resolved") or foldseek_binary),
+                query_dir=coordinate_root / "queries_repaired_m_csa",
+                target_dir=target_dir,
+                result_tsv=foldseek_result_tsv,
+                tmp_dir=result_tmp_dir,
+                threads=threads,
+            ),
+            "rerun_parser": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "build-fold-augmented-family-panel-m-csa-primary-channel-repair "
+                f"--foldseek-result-tsv {shlex.quote(str(foldseek_result_tsv))}"
+            ),
+        },
+        "blockers": blockers,
+        "interpretation": {
+            "headline": (
+                f"{len(score_complete_ids)}/{len(target_ids)} M-CSA missing-channel "
+                "rows now have repaired predicted geometry plus nearest-atlas "
+                "Foldseek/TM scores."
+            ),
+            "next_action": (
+                "Refresh the family-panel evidence packets and fold-augmented "
+                "family-panel readout so these repaired rows leave the missing "
+                "primary-channel queue; keep all decisions review-only."
+            )
+            if not blockers
+            else (
+                "Clear the listed blockers, rerun the repaired M-CSA Foldseek "
+                "pass, then refresh family-panel packets/readout."
+            ),
+        },
+        "source_artifacts": {
+            "missing_primary_channel_diagnosis": _source_path_record(
+                missing_primary_channel_diagnosis_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "graph": _source_path_record(graph_path),
+            "experimental_geometry_features": _source_path_record(
+                experimental_geometry_features_path
+            ),
+            "predicted_structure_fold_channel": _source_path_record(
+                predicted_structure_fold_channel_path
+            ),
+            "oos_calibrated_threshold_contract": _source_path_record(
+                oos_calibrated_threshold_contract_path
+            ),
+            "foldseek_result_tsv": _source_path_record(foldseek_result_tsv),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_m_csa_primary_channel_repair_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Family-Panel M-CSA Primary-Channel Repair - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Target rows: {counts['diagnosis_target_rows']}",
+        f"- Predicted-geometry ok rows: {counts['predicted_geometry_ok_rows']}",
+        f"- Foldseek hits: {counts['foldseek_hits']}",
+        f"- Primary-channel score-complete rows: {counts['primary_channel_score_complete_rows']}",
+        f"- Repair policy counts: {counts['repair_policy_counts']}",
+        "- Research-gate status counts if readout is refreshed: "
+        f"{counts['research_gate_status_counts_if_readout_refreshed']}",
+        "",
+        "## Row Scores",
+        "",
+        "| row | repair policy | accession | geometry top1 | geometry score | nearest atlas | atlas fingerprint | TM | combined | fixed gate |",
+        "| --- | --- | --- | --- | ---: | --- | --- | ---: | ---: | --- |",
+    ]
+    for row in audit["row_scores"]:
+        repair = row.get("predicted_geometry_accession_repair") or {}
+        lines.append(
+            f"| {row['entry_id']} | {repair.get('policy')} | "
+            f"{row.get('predicted_geometry_accession')} | "
+            f"{row.get('geometry_top1_fingerprint_id')} | "
+            f"{row.get('geometry_top1_score')} | "
+            f"{row.get('nearest_atlas_entry_id')} | "
+            f"{row.get('nearest_atlas_true_fingerprint_id')} | "
+            f"{row.get('nearest_atlas_tm_score')} | "
+            f"{row.get('combined_mean_geometry_fold')} | "
+            f"{row.get('research_gate_status_if_readout_refreshed')} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Review-only repair. No labels, registries, ontologies, imports, thresholds, training data, model weights, or production scoring changed.",
+        "- AlphaFoldDB coordinates were transient runtime inputs; raw coordinate files are not committed.",
+    ]
+    if audit.get("blockers"):
+        lines += ["", "## Blockers", ""]
+        lines.extend(f"- {blocker}" for blocker in audit["blockers"])
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_m_csa_primary_channel_repair(
+    *,
+    missing_primary_channel_diagnosis_path: Path,
+    label_manifest_path: Path,
+    graph_path: Path,
+    experimental_geometry_features_path: Path,
+    predicted_structure_fold_channel_path: Path,
+    oos_calibrated_threshold_contract_path: Path,
+    coordinate_root: Path,
+    foldseek_result_tsv: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    foldseek_binary: str = DEFAULT_FOLDSEEK_BINARY,
+    target_atlas_dir: Path | None = None,
+    threads: int = 4,
+    alphafold_version: str = "auto",
+) -> dict[str, Any]:
+    audit = build_fold_augmented_family_panel_m_csa_primary_channel_repair(
+        missing_primary_channel_diagnosis_path=missing_primary_channel_diagnosis_path,
+        label_manifest_path=label_manifest_path,
+        graph_path=graph_path,
+        experimental_geometry_features_path=experimental_geometry_features_path,
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        oos_calibrated_threshold_contract_path=oos_calibrated_threshold_contract_path,
+        coordinate_root=coordinate_root,
+        foldseek_result_tsv=foldseek_result_tsv,
+        foldseek_binary=foldseek_binary,
+        target_atlas_dir=target_atlas_dir,
+        threads=threads,
+        alphafold_version=alphafold_version,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_m_csa_primary_channel_repair_report(
                 audit
             ),
             encoding="utf-8",

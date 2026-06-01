@@ -1,0 +1,1008 @@
+{
+  "artifact_id": "v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601",
+  "commands_to_run_next": [
+    "mkdir -p artifacts/family_panel_source_backed_coordinates_current702_20260601 artifacts/family_panel_source_backed_sidecars_current702_20260601",
+    "curl -L --fail https://files.rcsb.org/download/1L1L.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1L1L.cif",
+    "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-Q59490-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q59490-F1-model_v4.cif",
+    "curl -L --fail https://files.rcsb.org/download/8VPO.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_8VPO.cif",
+    "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-A0A1M6T2I7-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-A0A1M6T2I7-F1-model_v4.cif",
+    "curl -L --fail https://files.rcsb.org/download/7QQF.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_7QQF.cif",
+    "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-Q6NSJ0-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q6NSJ0-F1-model_v4.cif",
+    "curl -L --fail https://files.rcsb.org/download/121P.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_121P.cif",
+    "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P01112-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P01112-F1-model_v4.cif",
+    "curl -L --fail https://files.rcsb.org/download/3PG4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3PG4.cif",
+    "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-C7C422-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-C7C422-F1-model_v4.cif",
+    "curl -L --fail https://files.rcsb.org/download/1DDK.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1DDK.cif",
+    "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-Q79MP6-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q79MP6-F1-model_v4.cif",
+    "curl -L --fail https://files.rcsb.org/download/1DD6.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1DD6.cif",
+    "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P52699-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P52699-F1-model_v4.cif",
+    "curl -L --fail https://files.rcsb.org/download/12CA.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_12CA.cif",
+    "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P00918-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P00918-F1-model_v4.cif",
+    "curl -L --fail https://files.rcsb.org/download/1AUK.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1AUK.cif",
+    "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P15289-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P15289-F1-model_v4.cif",
+    "curl -L --fail https://files.rcsb.org/download/1E9I.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1E9I.cif",
+    "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P0A6P9-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P0A6P9-F1-model_v4.cif",
+    "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search artifacts/family_panel_source_backed_coordinates_current702_20260601 /private/tmp/catalytic-earth-predicted-structure-fold-channel-current702/atlas_in_distribution artifacts/v3_family_panel_source_backed_sidecar_materialization_current702_20260601_foldseek.tsv /private/tmp/catalytic-earth-family-panel-sidecar-materialization-current702 --format-output query,target,qtmscore,ttmscore,alntmscore,prob,bits --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --threads 4 -v 1",
+    "PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-family-panel-research-readout",
+    "PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-family-panel-missing-primary-channel-queue"
+  ],
+  "counts": {
+    "glycoside_representatives": 1,
+    "labels_or_imports_changed": 0,
+    "manifest_only_fetch_commands": 30,
+    "planned_rows": 10,
+    "prior_identifier_resolution_rows": 7,
+    "rows_still_unscored": 10,
+    "secondary_probe_representatives": 2,
+    "source_backed_representatives_selected": 10
+  },
+  "created_utc": "2026-06-01T10:02:46Z",
+  "exact_next_action_for_next_run": "Materialize the two P0 secondary probes and external_glycoside_panel sidecars/coordinates first, record coordinate hashes, then run Foldseek/TM against the frozen atlas and refresh the review-only family-panel readout.",
+  "guardrails": [
+    "review-only manifest; no labels, registries, ontologies, imports, splits, thresholds, model weights, or production scoring changed",
+    "representatives were selected from frozen/current702-safe artifacts before any new scoring in this run",
+    "external rows remain non-countable until duplicate/leakage, source-free geometry, Foldseek/TM, expert review, and future split/import gates pass",
+    "AlphaFoldDB commands are materialization candidates only; each fetched coordinate must be hash-recorded before scoring"
+  ],
+  "interpretation": "All 10 remaining missing-primary-channel rows now have a concrete source-backed materialization path. This artifact does not score them; it removes ambiguity for the next run and keeps every row review-only until sidecars, coordinates, and source-free scoring are actually materialized and validated.",
+  "row_plan": [
+    {
+      "blockers_to_clear": [
+        "create row-level sidecar from source artifacts",
+        "verify local B12/adenosylcobalamin and radical-rearrangement context on selected coordinate",
+        "run duplicate/leakage checks before any future countable use",
+        "campaign remains blocked below 10-row source floor"
+      ],
+      "coordinate_materialization_manifest": {
+        "afdb_model_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q59490-F1-model_v4.cif",
+        "afdb_status": "existence_check_required",
+        "fetch_commands": [
+          "mkdir -p artifacts/family_panel_source_backed_coordinates_current702_20260601 artifacts/family_panel_source_backed_sidecars_current702_20260601",
+          "curl -L --fail https://files.rcsb.org/download/1L1L.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1L1L.cif",
+          "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-Q59490-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q59490-F1-model_v4.cif"
+        ],
+        "materialization_status": "not_run_manifest_only",
+        "pdb_cif_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1L1L.cif",
+        "preferred_coordinate_id": "1L1L"
+      },
+      "current_score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "diagnosis": "needs_source_backed_row_sidecar_and_coordinate_materialization",
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "exact_next_action": "Create artifacts/family_panel_source_backed_sidecars_current702_20260601/secondary_probe_cobalamin_radical_rearrangement_Q59490.json, fetch pdb_1L1L.cif, then score only as review-only family-panel evidence.",
+      "guardrail_note": "review-only manifest row; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "1L1L",
+        "pdb_ids": [
+          "1L1L"
+        ],
+        "source_accession": "uniprot:Q59490",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1L1L",
+          "source_query_url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Atrue%29+AND+%28adenosylcobalamin%29+AND+%28database%3Apdb%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Cec%2Ccc_catalytic_activity%2Cft_act_site%2Cft_binding%2Cxref_pdb%2Csequence&format=tsv&size=100",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/Q59490/entry"
+        },
+        "uniprot_id": "Q59490"
+      },
+      "materialization_category": "secondary_probe_representative_from_terminal_blocker_surface",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "priority": "P0",
+      "rank": 1,
+      "representative_selection": {
+        "basis_artifact": "artifacts/v3_prospective_external_cobalamin_radical_minicampaign_blocker_review_20260521.json",
+        "caveat": "Only one new prior-pool-clean row remains after source-context, prior-pool, and cap filters, below the 10-row prospective campaign floor.",
+        "confidence": "bounded_source_backed_but_campaign_blocked",
+        "display_name": "Adenosylcobalamin-dependent ribonucleoside-triphosphate reductase (RTPR) (EC 1.17.4.2)",
+        "selected_source_row_id": "uniprot:Q59490",
+        "selection_policy": "single eligible prior-pool-clean adenosylcobalamin/PDB row from terminal blocker artifact; suitable only as a review-only sidecar representative, not a campaign opener"
+      },
+      "representative_status": "source_backed_representative_selected_campaign_still_blocked",
+      "required_sidecar_fields": [
+        "entry_id",
+        "representative_source_row_id",
+        "source_accession",
+        "source_artifact_hashes",
+        "representative_selection_policy",
+        "display_name",
+        "source_urls",
+        "panel_id",
+        "intended_review_role",
+        "predictive_use_allowed=false",
+        "ready_for_label_import=false",
+        "selected_structure_id",
+        "coordinate_path",
+        "coordinate_sha256",
+        "catalytic_or_binding_site_evidence",
+        "ligand_or_cofactor_state",
+        "current702_split_protection",
+        "predicted_geometry_status",
+        "predicted_fold_channel_status"
+      ],
+      "validation_after_materialization": [
+        "json.tool sidecar parse",
+        "coordinate file exists and sha256 is recorded",
+        "query alias appears exactly once in the Foldseek query set",
+        "Foldseek/TM result joins to the frozen in-distribution atlas without mutating labels or splits",
+        "family-panel packet/readout rerun remains review-only"
+      ]
+    },
+    {
+      "blockers_to_clear": [
+        "create row-level sidecar from radical-SAM freeze and decision artifacts",
+        "verify Fe-S/SAM local context on selected coordinate",
+        "run source-free geometry and Foldseek/TM scoring before any panel interpretation"
+      ],
+      "coordinate_materialization_manifest": {
+        "afdb_model_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-A0A1M6T2I7-F1-model_v4.cif",
+        "afdb_status": "existence_check_required",
+        "fetch_commands": [
+          "mkdir -p artifacts/family_panel_source_backed_coordinates_current702_20260601 artifacts/family_panel_source_backed_sidecars_current702_20260601",
+          "curl -L --fail https://files.rcsb.org/download/8VPO.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_8VPO.cif",
+          "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-A0A1M6T2I7-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-A0A1M6T2I7-F1-model_v4.cif"
+        ],
+        "materialization_status": "not_run_manifest_only",
+        "pdb_cif_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_8VPO.cif",
+        "preferred_coordinate_id": "8VPO"
+      },
+      "current_score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "diagnosis": "needs_source_backed_row_sidecar_and_coordinate_materialization",
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "exact_next_action": "Create artifacts/family_panel_source_backed_sidecars_current702_20260601/secondary_probe_radical_sam_enzyme_A0A1M6T2I7.json, fetch pdb_8VPO.cif, then score only as review-only family-panel evidence.",
+      "guardrail_note": "review-only manifest row; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "identifier_resolution": {
+        "alphafold_id": null,
+        "best_coordinate_id": "8VPO",
+        "pdb_ids": [
+          "8VPO"
+        ],
+        "source_accession": "uniprot:A0A1M6T2I7",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/8VPO",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/A0A1M6T2I7/entry"
+        },
+        "uniprot_id": "A0A1M6T2I7"
+      },
+      "materialization_category": "secondary_probe_representative_from_frozen_radical_sam_surface",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "priority": "P0",
+      "rank": 2,
+      "representative_selection": {
+        "basis_artifact": "artifacts/v3_prospective_external_radical_sam_minicampaign_freeze_20260521.json",
+        "caveat": "not_scored_review_only_external_source_free_geometry_missing",
+        "confidence": "high_source_backed_review_only",
+        "display_name": "Radical SAM cyclopropyl synthase TigE (EC 4.1.-.-) (Ribosomally synthesized and post-translationally modified peptide-modifying enzyme TigE) (RiPP-modifying enzyme TigE) (TigB maturase)",
+        "selected_source_row_id": "uniprot:A0A1M6T2I7",
+        "selection_policy": "freeze-rank-1 Swiss-Prot radical-SAM row selected before scoring with PDB cross-reference and radical SAM/Fe-S/SAM source context"
+      },
+      "representative_status": "source_backed_representative_selected_review_only",
+      "required_sidecar_fields": [
+        "entry_id",
+        "representative_source_row_id",
+        "source_accession",
+        "source_artifact_hashes",
+        "representative_selection_policy",
+        "display_name",
+        "source_urls",
+        "panel_id",
+        "intended_review_role",
+        "predictive_use_allowed=false",
+        "ready_for_label_import=false",
+        "selected_structure_id",
+        "coordinate_path",
+        "coordinate_sha256",
+        "catalytic_or_binding_site_evidence",
+        "ligand_or_cofactor_state",
+        "current702_split_protection",
+        "predicted_geometry_status",
+        "predicted_fold_channel_status"
+      ],
+      "validation_after_materialization": [
+        "json.tool sidecar parse",
+        "coordinate file exists and sha256 is recorded",
+        "query alias appears exactly once in the Foldseek query set",
+        "Foldseek/TM result joins to the frozen in-distribution atlas without mutating labels or splits",
+        "family-panel packet/readout rerun remains review-only"
+      ]
+    },
+    {
+      "blockers_to_clear": [
+        "create row-level sidecar from glycoside panel source evidence",
+        "verify current-reference sequence and Foldseek screens remain review-only",
+        "do not collapse glycoside hydrolase into generic metal-hydrolase label"
+      ],
+      "coordinate_materialization_manifest": {
+        "afdb_model_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q6NSJ0-F1-model_v4.cif",
+        "afdb_status": "available_in_source_artifact",
+        "fetch_commands": [
+          "mkdir -p artifacts/family_panel_source_backed_coordinates_current702_20260601 artifacts/family_panel_source_backed_sidecars_current702_20260601",
+          "curl -L --fail https://files.rcsb.org/download/7QQF.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_7QQF.cif",
+          "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-Q6NSJ0-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q6NSJ0-F1-model_v4.cif"
+        ],
+        "materialization_status": "not_run_manifest_only",
+        "pdb_cif_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_7QQF.cif",
+        "preferred_coordinate_id": "7QQF"
+      },
+      "current_score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "diagnosis": "needs_source_backed_row_sidecar_and_coordinate_materialization",
+      "entry_id": "external_glycoside_panel",
+      "exact_next_action": "Create artifacts/family_panel_source_backed_sidecars_current702_20260601/external_glycoside_panel_Q6NSJ0.json, fetch pdb_7QQF.cif and AF-Q6NSJ0 model, then score against the frozen atlas as review-only evidence.",
+      "guardrail_note": "review-only manifest row; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "identifier_resolution": {
+        "alphafold_id": "Q6NSJ0",
+        "best_coordinate_id": "7QQF",
+        "pdb_ids": [
+          "7QQF",
+          "7QQG",
+          "7QQH"
+        ],
+        "source_accession": "uniprot:Q6NSJ0",
+        "source_urls": {
+          "rcsb_pdb": "https://www.rcsb.org/structure/7QQH",
+          "uniprotkb": "https://www.uniprot.org/uniprotkb/Q6NSJ0/entry"
+        },
+        "uniprot_id": "Q6NSJ0"
+      },
+      "materialization_category": "external_glycoside_representative_from_frozen_panel",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "priority": "P0",
+      "rank": 3,
+      "representative_selection": {
+        "basis_artifact": "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
+        "caveat": "heuristic_metal_hydrolase_collapse; representation_boundary_requires_glycoside_split; broader_duplicate_screen_required",
+        "confidence": "high_source_backed_review_only",
+        "display_name": "Alpha-galactosidase MYORG",
+        "selected_source_row_id": "uniprot:Q6NSJ0",
+        "selection_policy": "panel-rank-1 external positive glycoside lead with sourced acidic dyad, glycan binding context, PDB structures, and prior no-near-duplicate signal"
+      },
+      "representative_status": "source_backed_representative_selected_review_only",
+      "required_sidecar_fields": [
+        "entry_id",
+        "representative_source_row_id",
+        "source_accession",
+        "source_artifact_hashes",
+        "representative_selection_policy",
+        "display_name",
+        "source_urls",
+        "panel_id",
+        "intended_review_role",
+        "predictive_use_allowed=false",
+        "ready_for_label_import=false",
+        "selected_structure_id",
+        "coordinate_path",
+        "coordinate_sha256",
+        "catalytic_or_binding_site_evidence",
+        "ligand_or_cofactor_state",
+        "current702_split_protection",
+        "predicted_geometry_status",
+        "predicted_fold_channel_status"
+      ],
+      "validation_after_materialization": [
+        "json.tool sidecar parse",
+        "coordinate file exists and sha256 is recorded",
+        "query alias appears exactly once in the Foldseek query set",
+        "Foldseek/TM result joins to the frozen in-distribution atlas without mutating labels or splits",
+        "family-panel packet/readout rerun remains review-only"
+      ]
+    },
+    {
+      "blockers_to_clear": [
+        "create source-backed row sidecar from identifier scout and targeted expansion provenance",
+        "fetch or verify coordinate locally and record sha256",
+        "run duplicate/leakage, source-free geometry, and Foldseek/TM checks before interpretation",
+        "keep external row non-countable until future split/import gates pass"
+      ],
+      "coordinate_materialization_manifest": {
+        "afdb_model_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P01112-F1-model_v4.cif",
+        "afdb_status": "available_by_prior_identifier_resolution",
+        "fetch_commands": [
+          "mkdir -p artifacts/family_panel_source_backed_coordinates_current702_20260601 artifacts/family_panel_source_backed_sidecars_current702_20260601",
+          "curl -L --fail https://files.rcsb.org/download/121P.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_121P.cif",
+          "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P01112-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P01112-F1-model_v4.cif"
+        ],
+        "materialization_status": "not_run_manifest_only",
+        "pdb_cif_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_121P.cif",
+        "preferred_coordinate_id": "121P",
+        "prior_fetch_pack_command": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 121P --candidate-id mh_073 --out-dir artifacts/external_coordinates_20260528",
+        "prior_fetch_pack_fallback_afdb_command": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P01112-F1-model_v4.cif -o artifacts/external_coordinates_20260528/AF-P01112-F1-model_v4.cif"
+      },
+      "current_score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "diagnosis": "needs_source_backed_row_sidecar_and_coordinate_materialization",
+      "entry_id": "mh_073",
+      "exact_next_action": "Create artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_073.json, fetch pdb_121P.cif and AF-P01112 model if needed, then score only as review-only family-panel evidence.",
+      "guardrail_note": "review-only manifest row; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "identifier_resolution": {
+        "alphafold_id": "P01112",
+        "best_coordinate_id": "121P",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "121P",
+          "1AA9",
+          "1AGP",
+          "1BKD",
+          "1CLU",
+          "1CRP"
+        ],
+        "source_accession": "uniprot:P01112",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/121P",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P01112.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P01112/entry"
+        },
+        "uniprot_id": "P01112"
+      },
+      "materialization_category": "external_metal_hydrolase_or_boundary_candidate",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "priority": "P1",
+      "rank": 4,
+      "representative_selection": {
+        "basis_artifact": "artifacts/v3_external_identifier_resolution_scout_20260528.json",
+        "caveat": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+        "confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+        "display_name": "GTPase HRas",
+        "selected_source_row_id": "mh_073",
+        "selection_policy": "prior external identifier scout row already resolved to UniProt accession plus representative public structure before current scoring"
+      },
+      "representative_status": "prior_identifier_resolution_ready_coordinate_not_materialized",
+      "required_sidecar_fields": [
+        "entry_id",
+        "representative_source_row_id",
+        "source_accession",
+        "source_artifact_hashes",
+        "representative_selection_policy",
+        "display_name",
+        "source_urls",
+        "panel_id",
+        "intended_review_role",
+        "predictive_use_allowed=false",
+        "ready_for_label_import=false",
+        "selected_structure_id",
+        "coordinate_path",
+        "coordinate_sha256",
+        "catalytic_or_binding_site_evidence",
+        "ligand_or_cofactor_state",
+        "current702_split_protection",
+        "predicted_geometry_status",
+        "predicted_fold_channel_status"
+      ],
+      "validation_after_materialization": [
+        "json.tool sidecar parse",
+        "coordinate file exists and sha256 is recorded",
+        "query alias appears exactly once in the Foldseek query set",
+        "Foldseek/TM result joins to the frozen in-distribution atlas without mutating labels or splits",
+        "family-panel packet/readout rerun remains review-only"
+      ]
+    },
+    {
+      "blockers_to_clear": [
+        "create source-backed row sidecar from identifier scout and targeted expansion provenance",
+        "fetch or verify coordinate locally and record sha256",
+        "run duplicate/leakage, source-free geometry, and Foldseek/TM checks before interpretation",
+        "keep external row non-countable until future split/import gates pass"
+      ],
+      "coordinate_materialization_manifest": {
+        "afdb_model_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-C7C422-F1-model_v4.cif",
+        "afdb_status": "available_by_prior_identifier_resolution",
+        "fetch_commands": [
+          "mkdir -p artifacts/family_panel_source_backed_coordinates_current702_20260601 artifacts/family_panel_source_backed_sidecars_current702_20260601",
+          "curl -L --fail https://files.rcsb.org/download/3PG4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3PG4.cif",
+          "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-C7C422-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-C7C422-F1-model_v4.cif"
+        ],
+        "materialization_status": "not_run_manifest_only",
+        "pdb_cif_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_3PG4.cif",
+        "preferred_coordinate_id": "3PG4",
+        "prior_fetch_pack_command": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 3PG4 --candidate-id mh_064 --out-dir artifacts/external_coordinates_20260528",
+        "prior_fetch_pack_fallback_afdb_command": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-C7C422-F1-model_v4.cif -o artifacts/external_coordinates_20260528/AF-C7C422-F1-model_v4.cif"
+      },
+      "current_score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "diagnosis": "needs_source_backed_row_sidecar_and_coordinate_materialization",
+      "entry_id": "mh_064",
+      "exact_next_action": "Create artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_064.json, fetch pdb_3PG4.cif and AF-C7C422 model if needed, then score only as review-only family-panel evidence.",
+      "guardrail_note": "review-only manifest row; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "identifier_resolution": {
+        "alphafold_id": "C7C422",
+        "best_coordinate_id": "3PG4",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "3PG4",
+          "3RKJ",
+          "3RKK",
+          "3SBL",
+          "3SFP",
+          "3SPU"
+        ],
+        "source_accession": "uniprot:C7C422",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/3PG4",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/C7C422.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/C7C422/entry"
+        },
+        "uniprot_id": "C7C422"
+      },
+      "materialization_category": "external_metal_hydrolase_or_boundary_candidate",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "priority": "P1",
+      "rank": 5,
+      "representative_selection": {
+        "basis_artifact": "artifacts/v3_external_identifier_resolution_scout_20260528.json",
+        "caveat": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+        "confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+        "display_name": "Metallo-beta-lactamase NDM-1",
+        "selected_source_row_id": "mh_064",
+        "selection_policy": "prior external identifier scout row already resolved to UniProt accession plus representative public structure before current scoring"
+      },
+      "representative_status": "prior_identifier_resolution_ready_coordinate_not_materialized",
+      "required_sidecar_fields": [
+        "entry_id",
+        "representative_source_row_id",
+        "source_accession",
+        "source_artifact_hashes",
+        "representative_selection_policy",
+        "display_name",
+        "source_urls",
+        "panel_id",
+        "intended_review_role",
+        "predictive_use_allowed=false",
+        "ready_for_label_import=false",
+        "selected_structure_id",
+        "coordinate_path",
+        "coordinate_sha256",
+        "catalytic_or_binding_site_evidence",
+        "ligand_or_cofactor_state",
+        "current702_split_protection",
+        "predicted_geometry_status",
+        "predicted_fold_channel_status"
+      ],
+      "validation_after_materialization": [
+        "json.tool sidecar parse",
+        "coordinate file exists and sha256 is recorded",
+        "query alias appears exactly once in the Foldseek query set",
+        "Foldseek/TM result joins to the frozen in-distribution atlas without mutating labels or splits",
+        "family-panel packet/readout rerun remains review-only"
+      ]
+    },
+    {
+      "blockers_to_clear": [
+        "create source-backed row sidecar from identifier scout and targeted expansion provenance",
+        "fetch or verify coordinate locally and record sha256",
+        "run duplicate/leakage, source-free geometry, and Foldseek/TM checks before interpretation",
+        "keep external row non-countable until future split/import gates pass"
+      ],
+      "coordinate_materialization_manifest": {
+        "afdb_model_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q79MP6-F1-model_v4.cif",
+        "afdb_status": "available_by_prior_identifier_resolution",
+        "fetch_commands": [
+          "mkdir -p artifacts/family_panel_source_backed_coordinates_current702_20260601 artifacts/family_panel_source_backed_sidecars_current702_20260601",
+          "curl -L --fail https://files.rcsb.org/download/1DDK.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1DDK.cif",
+          "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-Q79MP6-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-Q79MP6-F1-model_v4.cif"
+        ],
+        "materialization_status": "not_run_manifest_only",
+        "pdb_cif_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1DDK.cif",
+        "preferred_coordinate_id": "1DDK",
+        "prior_fetch_pack_command": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 1DDK --candidate-id mh_065 --out-dir artifacts/external_coordinates_20260528",
+        "prior_fetch_pack_fallback_afdb_command": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-Q79MP6-F1-model_v4.cif -o artifacts/external_coordinates_20260528/AF-Q79MP6-F1-model_v4.cif"
+      },
+      "current_score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "diagnosis": "needs_source_backed_row_sidecar_and_coordinate_materialization",
+      "entry_id": "mh_065",
+      "exact_next_action": "Create artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_065.json, fetch pdb_1DDK.cif and AF-Q79MP6 model if needed, then score only as review-only family-panel evidence.",
+      "guardrail_note": "review-only manifest row; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "identifier_resolution": {
+        "alphafold_id": "Q79MP6",
+        "best_coordinate_id": "1DDK",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1DDK",
+          "1JJE",
+          "1JJT",
+          "3WXC",
+          "4F6H",
+          "4F6Z"
+        ],
+        "source_accession": "uniprot:Q79MP6",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1DDK",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/Q79MP6.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/Q79MP6/entry"
+        },
+        "uniprot_id": "Q79MP6"
+      },
+      "materialization_category": "external_metal_hydrolase_or_boundary_candidate",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "priority": "P1",
+      "rank": 6,
+      "representative_selection": {
+        "basis_artifact": "artifacts/v3_external_identifier_resolution_scout_20260528.json",
+        "caveat": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+        "confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+        "display_name": "Metallo-beta-lactamase VIM-like enzyme",
+        "selected_source_row_id": "mh_065",
+        "selection_policy": "prior external identifier scout row already resolved to UniProt accession plus representative public structure before current scoring"
+      },
+      "representative_status": "prior_identifier_resolution_ready_coordinate_not_materialized",
+      "required_sidecar_fields": [
+        "entry_id",
+        "representative_source_row_id",
+        "source_accession",
+        "source_artifact_hashes",
+        "representative_selection_policy",
+        "display_name",
+        "source_urls",
+        "panel_id",
+        "intended_review_role",
+        "predictive_use_allowed=false",
+        "ready_for_label_import=false",
+        "selected_structure_id",
+        "coordinate_path",
+        "coordinate_sha256",
+        "catalytic_or_binding_site_evidence",
+        "ligand_or_cofactor_state",
+        "current702_split_protection",
+        "predicted_geometry_status",
+        "predicted_fold_channel_status"
+      ],
+      "validation_after_materialization": [
+        "json.tool sidecar parse",
+        "coordinate file exists and sha256 is recorded",
+        "query alias appears exactly once in the Foldseek query set",
+        "Foldseek/TM result joins to the frozen in-distribution atlas without mutating labels or splits",
+        "family-panel packet/readout rerun remains review-only"
+      ]
+    },
+    {
+      "blockers_to_clear": [
+        "create source-backed row sidecar from identifier scout and targeted expansion provenance",
+        "fetch or verify coordinate locally and record sha256",
+        "run duplicate/leakage, source-free geometry, and Foldseek/TM checks before interpretation",
+        "keep external row non-countable until future split/import gates pass"
+      ],
+      "coordinate_materialization_manifest": {
+        "afdb_model_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P52699-F1-model_v4.cif",
+        "afdb_status": "available_by_prior_identifier_resolution",
+        "fetch_commands": [
+          "mkdir -p artifacts/family_panel_source_backed_coordinates_current702_20260601 artifacts/family_panel_source_backed_sidecars_current702_20260601",
+          "curl -L --fail https://files.rcsb.org/download/1DD6.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1DD6.cif",
+          "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P52699-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P52699-F1-model_v4.cif"
+        ],
+        "materialization_status": "not_run_manifest_only",
+        "pdb_cif_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1DD6.cif",
+        "preferred_coordinate_id": "1DD6",
+        "prior_fetch_pack_command": "curl -L --fail https://files.rcsb.org/download/1DD6.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1DD6.cif",
+        "prior_fetch_pack_fallback_afdb_command": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P52699-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P52699-F1-model_v4.cif"
+      },
+      "current_score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "diagnosis": "needs_source_backed_row_sidecar_and_coordinate_materialization",
+      "entry_id": "mh_066",
+      "exact_next_action": "Create artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_066.json, fetch pdb_1DD6.cif and AF-P52699 model if needed, then score only as review-only family-panel evidence.",
+      "guardrail_note": "review-only manifest row; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "identifier_resolution": {
+        "alphafold_id": "P52699",
+        "best_coordinate_id": "1DD6",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1DD6",
+          "1VGN",
+          "1WUO",
+          "1WUP",
+          "2DOO",
+          "4C1F"
+        ],
+        "source_accession": "uniprot:P52699",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1DD6",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P52699.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P52699/entry"
+        },
+        "uniprot_id": "P52699"
+      },
+      "materialization_category": "external_metal_hydrolase_or_boundary_candidate",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "priority": "P1",
+      "rank": 7,
+      "representative_selection": {
+        "basis_artifact": "artifacts/v3_external_identifier_resolution_scout_20260528.json",
+        "caveat": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+        "confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+        "display_name": "Metallo-beta-lactamase IMP-1",
+        "selected_source_row_id": "mh_066",
+        "selection_policy": "prior external identifier scout row already resolved to UniProt accession plus representative public structure before current scoring"
+      },
+      "representative_status": "prior_identifier_resolution_ready_coordinate_not_materialized",
+      "required_sidecar_fields": [
+        "entry_id",
+        "representative_source_row_id",
+        "source_accession",
+        "source_artifact_hashes",
+        "representative_selection_policy",
+        "display_name",
+        "source_urls",
+        "panel_id",
+        "intended_review_role",
+        "predictive_use_allowed=false",
+        "ready_for_label_import=false",
+        "selected_structure_id",
+        "coordinate_path",
+        "coordinate_sha256",
+        "catalytic_or_binding_site_evidence",
+        "ligand_or_cofactor_state",
+        "current702_split_protection",
+        "predicted_geometry_status",
+        "predicted_fold_channel_status"
+      ],
+      "validation_after_materialization": [
+        "json.tool sidecar parse",
+        "coordinate file exists and sha256 is recorded",
+        "query alias appears exactly once in the Foldseek query set",
+        "Foldseek/TM result joins to the frozen in-distribution atlas without mutating labels or splits",
+        "family-panel packet/readout rerun remains review-only"
+      ]
+    },
+    {
+      "blockers_to_clear": [
+        "create source-backed row sidecar from identifier scout and targeted expansion provenance",
+        "fetch or verify coordinate locally and record sha256",
+        "run duplicate/leakage, source-free geometry, and Foldseek/TM checks before interpretation",
+        "keep external row non-countable until future split/import gates pass"
+      ],
+      "coordinate_materialization_manifest": {
+        "afdb_model_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P00918-F1-model_v4.cif",
+        "afdb_status": "available_by_prior_identifier_resolution",
+        "fetch_commands": [
+          "mkdir -p artifacts/family_panel_source_backed_coordinates_current702_20260601 artifacts/family_panel_source_backed_sidecars_current702_20260601",
+          "curl -L --fail https://files.rcsb.org/download/12CA.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_12CA.cif",
+          "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P00918-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P00918-F1-model_v4.cif"
+        ],
+        "materialization_status": "not_run_manifest_only",
+        "pdb_cif_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_12CA.cif",
+        "preferred_coordinate_id": "12CA",
+        "prior_fetch_pack_command": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 12CA --candidate-id mh_067 --out-dir artifacts/external_coordinates_20260528",
+        "prior_fetch_pack_fallback_afdb_command": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P00918-F1-model_v4.cif -o artifacts/external_coordinates_20260528/AF-P00918-F1-model_v4.cif"
+      },
+      "current_score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "diagnosis": "needs_source_backed_row_sidecar_and_coordinate_materialization",
+      "entry_id": "mh_067",
+      "exact_next_action": "Create artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_067.json, fetch pdb_12CA.cif and AF-P00918 model if needed, then score only as review-only family-panel evidence.",
+      "guardrail_note": "review-only manifest row; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "identifier_resolution": {
+        "alphafold_id": "P00918",
+        "best_coordinate_id": "12CA",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "12CA",
+          "1A42",
+          "1AM6",
+          "1AVN",
+          "1BCD",
+          "1BIC"
+        ],
+        "source_accession": "uniprot:P00918",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/12CA",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P00918.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P00918/entry"
+        },
+        "uniprot_id": "P00918"
+      },
+      "materialization_category": "external_metal_hydrolase_or_boundary_candidate",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "priority": "P1",
+      "rank": 8,
+      "representative_selection": {
+        "basis_artifact": "artifacts/v3_external_identifier_resolution_scout_20260528.json",
+        "caveat": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+        "confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+        "display_name": "Carbonic anhydrase 2",
+        "selected_source_row_id": "mh_067",
+        "selection_policy": "prior external identifier scout row already resolved to UniProt accession plus representative public structure before current scoring"
+      },
+      "representative_status": "prior_identifier_resolution_ready_coordinate_not_materialized",
+      "required_sidecar_fields": [
+        "entry_id",
+        "representative_source_row_id",
+        "source_accession",
+        "source_artifact_hashes",
+        "representative_selection_policy",
+        "display_name",
+        "source_urls",
+        "panel_id",
+        "intended_review_role",
+        "predictive_use_allowed=false",
+        "ready_for_label_import=false",
+        "selected_structure_id",
+        "coordinate_path",
+        "coordinate_sha256",
+        "catalytic_or_binding_site_evidence",
+        "ligand_or_cofactor_state",
+        "current702_split_protection",
+        "predicted_geometry_status",
+        "predicted_fold_channel_status"
+      ],
+      "validation_after_materialization": [
+        "json.tool sidecar parse",
+        "coordinate file exists and sha256 is recorded",
+        "query alias appears exactly once in the Foldseek query set",
+        "Foldseek/TM result joins to the frozen in-distribution atlas without mutating labels or splits",
+        "family-panel packet/readout rerun remains review-only"
+      ]
+    },
+    {
+      "blockers_to_clear": [
+        "create source-backed row sidecar from identifier scout and targeted expansion provenance",
+        "fetch or verify coordinate locally and record sha256",
+        "run duplicate/leakage, source-free geometry, and Foldseek/TM checks before interpretation",
+        "keep external row non-countable until future split/import gates pass"
+      ],
+      "coordinate_materialization_manifest": {
+        "afdb_model_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P15289-F1-model_v4.cif",
+        "afdb_status": "available_by_prior_identifier_resolution",
+        "fetch_commands": [
+          "mkdir -p artifacts/family_panel_source_backed_coordinates_current702_20260601 artifacts/family_panel_source_backed_sidecars_current702_20260601",
+          "curl -L --fail https://files.rcsb.org/download/1AUK.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1AUK.cif",
+          "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P15289-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P15289-F1-model_v4.cif"
+        ],
+        "materialization_status": "not_run_manifest_only",
+        "pdb_cif_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1AUK.cif",
+        "preferred_coordinate_id": "1AUK",
+        "prior_fetch_pack_command": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 1AUK --candidate-id mh_068 --out-dir artifacts/external_coordinates_20260528",
+        "prior_fetch_pack_fallback_afdb_command": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P15289-F1-model_v4.cif -o artifacts/external_coordinates_20260528/AF-P15289-F1-model_v4.cif"
+      },
+      "current_score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "diagnosis": "needs_source_backed_row_sidecar_and_coordinate_materialization",
+      "entry_id": "mh_068",
+      "exact_next_action": "Create artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_068.json, fetch pdb_1AUK.cif and AF-P15289 model if needed, then score only as review-only family-panel evidence.",
+      "guardrail_note": "review-only manifest row; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "identifier_resolution": {
+        "alphafold_id": "P15289",
+        "best_coordinate_id": "1AUK",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1AUK",
+          "1E1Z",
+          "1E2S",
+          "1E33",
+          "1E3C",
+          "1N2K"
+        ],
+        "source_accession": "uniprot:P15289",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1AUK",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P15289.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P15289/entry"
+        },
+        "uniprot_id": "P15289"
+      },
+      "materialization_category": "external_metal_hydrolase_or_boundary_candidate",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "priority": "P1",
+      "rank": 9,
+      "representative_selection": {
+        "basis_artifact": "artifacts/v3_external_identifier_resolution_scout_20260528.json",
+        "caveat": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+        "confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+        "display_name": "Arylsulfatase A",
+        "selected_source_row_id": "mh_068",
+        "selection_policy": "prior external identifier scout row already resolved to UniProt accession plus representative public structure before current scoring"
+      },
+      "representative_status": "prior_identifier_resolution_ready_coordinate_not_materialized",
+      "required_sidecar_fields": [
+        "entry_id",
+        "representative_source_row_id",
+        "source_accession",
+        "source_artifact_hashes",
+        "representative_selection_policy",
+        "display_name",
+        "source_urls",
+        "panel_id",
+        "intended_review_role",
+        "predictive_use_allowed=false",
+        "ready_for_label_import=false",
+        "selected_structure_id",
+        "coordinate_path",
+        "coordinate_sha256",
+        "catalytic_or_binding_site_evidence",
+        "ligand_or_cofactor_state",
+        "current702_split_protection",
+        "predicted_geometry_status",
+        "predicted_fold_channel_status"
+      ],
+      "validation_after_materialization": [
+        "json.tool sidecar parse",
+        "coordinate file exists and sha256 is recorded",
+        "query alias appears exactly once in the Foldseek query set",
+        "Foldseek/TM result joins to the frozen in-distribution atlas without mutating labels or splits",
+        "family-panel packet/readout rerun remains review-only"
+      ]
+    },
+    {
+      "blockers_to_clear": [
+        "create source-backed row sidecar from identifier scout and targeted expansion provenance",
+        "fetch or verify coordinate locally and record sha256",
+        "run duplicate/leakage, source-free geometry, and Foldseek/TM checks before interpretation",
+        "keep external row non-countable until future split/import gates pass"
+      ],
+      "coordinate_materialization_manifest": {
+        "afdb_model_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P0A6P9-F1-model_v4.cif",
+        "afdb_status": "available_by_prior_identifier_resolution",
+        "fetch_commands": [
+          "mkdir -p artifacts/family_panel_source_backed_coordinates_current702_20260601 artifacts/family_panel_source_backed_sidecars_current702_20260601",
+          "curl -L --fail https://files.rcsb.org/download/1E9I.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1E9I.cif",
+          "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P0A6P9-F1-model_v4.cif -o artifacts/family_panel_source_backed_coordinates_current702_20260601/AF-P0A6P9-F1-model_v4.cif"
+        ],
+        "materialization_status": "not_run_manifest_only",
+        "pdb_cif_path": "artifacts/family_panel_source_backed_coordinates_current702_20260601/pdb_1E9I.cif",
+        "preferred_coordinate_id": "1E9I",
+        "prior_fetch_pack_command": "PYTHONPATH=src python -m catalytic_earth.cli materialize-external-coordinate --pdb-id 1E9I --candidate-id mh_072 --out-dir artifacts/external_coordinates_20260528",
+        "prior_fetch_pack_fallback_afdb_command": "curl -L --fail https://alphafold.ebi.ac.uk/files/AF-P0A6P9-F1-model_v4.cif -o artifacts/external_coordinates_20260528/AF-P0A6P9-F1-model_v4.cif"
+      },
+      "current_score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "diagnosis": "needs_source_backed_row_sidecar_and_coordinate_materialization",
+      "entry_id": "mh_072",
+      "exact_next_action": "Create artifacts/family_panel_source_backed_sidecars_current702_20260601/mh_072.json, fetch pdb_1E9I.cif and AF-P0A6P9 model if needed, then score only as review-only family-panel evidence.",
+      "guardrail_note": "review-only manifest row; do not use as training, label promotion, threshold selection, or production scoring evidence",
+      "identifier_resolution": {
+        "alphafold_id": "P0A6P9",
+        "best_coordinate_id": "1E9I",
+        "m_csa_id": null,
+        "pdb_ids": [
+          "1E9I",
+          "2FYM",
+          "3H8A",
+          "5OHG",
+          "6BFY",
+          "6BFZ"
+        ],
+        "source_accession": "uniprot:P0A6P9",
+        "source_urls": {
+          "rcsb_representative_structure": "https://www.rcsb.org/structure/1E9I",
+          "uniprot": "https://rest.uniprot.org/uniprotkb/P0A6P9.json",
+          "uniprot_page": "https://www.uniprot.org/uniprotkb/P0A6P9/entry"
+        },
+        "uniprot_id": "P0A6P9"
+      },
+      "materialization_category": "external_metal_hydrolase_or_boundary_candidate",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "priority": "P1",
+      "rank": 10,
+      "representative_selection": {
+        "basis_artifact": "artifacts/v3_external_identifier_resolution_scout_20260528.json",
+        "caveat": "external coordinate not yet materialized locally; fetch approval and pocket extraction needed",
+        "confidence": "high_uniprot_spot_check_with_pdb_and_afdb",
+        "display_name": "Enolase",
+        "selected_source_row_id": "mh_072",
+        "selection_policy": "prior external identifier scout row already resolved to UniProt accession plus representative public structure before current scoring"
+      },
+      "representative_status": "prior_identifier_resolution_ready_coordinate_not_materialized",
+      "required_sidecar_fields": [
+        "entry_id",
+        "representative_source_row_id",
+        "source_accession",
+        "source_artifact_hashes",
+        "representative_selection_policy",
+        "display_name",
+        "source_urls",
+        "panel_id",
+        "intended_review_role",
+        "predictive_use_allowed=false",
+        "ready_for_label_import=false",
+        "selected_structure_id",
+        "coordinate_path",
+        "coordinate_sha256",
+        "catalytic_or_binding_site_evidence",
+        "ligand_or_cofactor_state",
+        "current702_split_protection",
+        "predicted_geometry_status",
+        "predicted_fold_channel_status"
+      ],
+      "validation_after_materialization": [
+        "json.tool sidecar parse",
+        "coordinate file exists and sha256 is recorded",
+        "query alias appears exactly once in the Foldseek query set",
+        "Foldseek/TM result joins to the frozen in-distribution atlas without mutating labels or splits",
+        "family-panel packet/readout rerun remains review-only"
+      ]
+    }
+  ],
+  "schema_version": "v3",
+  "scope": {
+    "coordinate_output_dir": "artifacts/family_panel_source_backed_coordinates_current702_20260601",
+    "current_queue_rows": [
+      "secondary_probe::cobalamin_radical_rearrangement",
+      "secondary_probe::radical_sam_enzyme",
+      "external_glycoside_panel",
+      "mh_073",
+      "mh_064",
+      "mh_065",
+      "mh_066",
+      "mh_067",
+      "mh_068",
+      "mh_072"
+    ],
+    "purpose": "Bound the next carryover step after M-CSA primary-channel repair: materialize source-backed row sidecars and coordinates for the remaining 10 family-panel rows before any geometry or Foldseek/TM scoring.",
+    "queue_source": "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json",
+    "sidecar_output_dir": "artifacts/family_panel_source_backed_sidecars_current702_20260601"
+  },
+  "source_artifacts": [
+    {
+      "path": "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json",
+      "role": "current 10-row missing primary-channel queue",
+      "sha256": "61470de4460ae204e76bc235211f802719139d0fe7cf6a5ace15ddf11ef3359c"
+    },
+    {
+      "path": "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.json",
+      "role": "diagnosis confirming sidecar/coordinate materialization is the remaining blocker",
+      "sha256": "a28fc9f5d4f06b8a5b64cf47db3f2cf81606f440fb13ca99f98b79ca6ffc8d59"
+    },
+    {
+      "path": "artifacts/v3_external_identifier_resolution_scout_20260528.json",
+      "role": "prior external identifier resolution for metal-hydrolase rows",
+      "sha256": "0ccf352e3d5d8d1d6bfe786673a626fc0caf811806fe40de48c0291b7f9f30d2"
+    },
+    {
+      "path": "artifacts/v3_external_materialization_fetch_pack_20260528.json",
+      "role": "prior fetch manifest for first materialization tranche",
+      "sha256": "92e026eaec814131185ab8b536ea9dbac7bbe179a1fa0111f0090e4ff7d30632"
+    },
+    {
+      "path": "artifacts/v3_targeted_bin_expansion_proposal_current702_20260530.json",
+      "role": "current702-safe targeted expansion proposal",
+      "sha256": "0706b0258d61e06601568f0f3efe1133bfbc724ec73cccaf06d5ebd3790d374d"
+    },
+    {
+      "path": "artifacts/v3_external_glycoside_carbohydrate_panel_20260528.json",
+      "role": "source-backed glycoside representative surface",
+      "sha256": "5fd73c1a47a68047433476e5b04ffd94062117d8710139b8616e8ac38872e20a"
+    },
+    {
+      "path": "artifacts/v3_prospective_external_cobalamin_radical_minicampaign_blocker_review_20260521.json",
+      "role": "cobalamin radical source blocker and eligible representative",
+      "sha256": "52dad94795c92f4d8a0922fd90588e7c908d3ae21f0ab96ac6ba79c34b168406"
+    },
+    {
+      "path": "artifacts/v3_prospective_external_radical_sam_minicampaign_freeze_20260521.json",
+      "role": "frozen radical-SAM source candidates before scoring",
+      "sha256": "e5b2686dba305b74e765ae0fe1300fb9cd1ea715903ac7001ee780c9cbe0448c"
+    },
+    {
+      "path": "artifacts/v3_prospective_external_radical_sam_minicampaign_decision_packet_20260521.json",
+      "role": "radical-SAM terminal review status and sequence-neighbor context",
+      "sha256": "03569b6b26f1e3652caffd95b0ed634fd29f838ff4f7d5108a3b9de47280d1d3"
+    }
+  ],
+  "status": "source_backed_sidecar_materialization_plan_ready_review_only",
+  "validation_plan": [
+    "Validate this JSON with python -m json.tool.",
+    "Before fetching, confirm disk remains above 10 GiB.",
+    "After fetching, record sha256 for every coordinate and sidecar.",
+    "Run Foldseek/TM only against the frozen in-distribution atlas directory used by v3_predicted_structure_fold_channel_current702_20260601.",
+    "Rerun only review-only family-panel packets/readout/queues; do not mutate production artifacts."
+  ]
+}

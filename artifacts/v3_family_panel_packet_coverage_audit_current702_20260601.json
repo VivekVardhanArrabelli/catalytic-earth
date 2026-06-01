@@ -1,96 +1,115 @@
 {
   "artifact_id": "v3_family_panel_packet_coverage_audit_current702_20260601",
-  "created_utc": "2026-06-01T08:07:00Z",
-  "schema_version": "northstar_next_levers.v0",
-  "status": "coverage_audit_ready_review_only",
-  "scope": "Review-only coverage audit across all family-set expansion evidence packets generated for current702.",
-  "guardrails": {
-    "labels_registries_ontologies_changed": false,
-    "imports_or_promotions_performed": false,
-    "production_thresholds_changed": false,
-    "heldout_rows_used_for_training": false,
-    "review_only": true
-  },
   "counts": {
-    "panel_packets": 7,
     "candidate_rows": 22,
-    "predicted_geometry_ok_rows": 10,
-    "rows_with_predicted_structure_fold_hits": 9,
+    "packets_ready_without_geometry_gaps": 4,
+    "packets_with_geometry_gaps": 3,
+    "panel_packets": 7,
+    "predicted_geometry_ok_rows": 12,
+    "rows_with_predicted_structure_fold_hits": 11,
     "rows_with_selected_organic_cofactor_scores": 12,
-    "rows_with_selected_pdb_fold_proxy": 5,
-    "packets_ready_without_geometry_gaps": 3,
-    "packets_with_geometry_gaps": 4
+    "rows_with_selected_pdb_fold_proxy": 5
+  },
+  "created_utc": "2026-06-01T09:54:56Z",
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "12/22 family-panel rows now have predicted-geometry evidence; 11 have predicted-fold hits.",
+    "next_action": "Work remaining geometry gaps through source-backed sidecars and coordinate materialization; keep packets review-only."
   },
   "panel_summaries": [
     {
-      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
       "artifact": "artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json",
-      "status": "evidence_packet_ready_review_only",
       "candidate_rows": 2,
+      "missing_geometry_entry_ids": [],
+      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
       "predicted_geometry_ok_rows": 2,
       "rows_with_predicted_structure_fold_hits": 2,
-      "missing_geometry_entry_ids": []
+      "sha256": "1e19133aba7ba14fc1929e9f3192c84b34afa8aa0ae776ebb8d29e446515cbf9",
+      "status": "evidence_packet_ready_review_only"
     },
     {
-      "panel_id": "thiol_disulfide_oxidoreductase_isomerase_boundary",
       "artifact": "artifacts/v3_family_panel_evidence_packet_thiol_disulfide_oxidoreductase_isomerase_boundary_current702_20260601.json",
-      "status": "evidence_packet_ready_review_only",
       "candidate_rows": 1,
+      "missing_geometry_entry_ids": [],
+      "panel_id": "thiol_disulfide_oxidoreductase_isomerase_boundary",
       "predicted_geometry_ok_rows": 1,
       "rows_with_predicted_structure_fold_hits": 1,
-      "missing_geometry_entry_ids": []
+      "sha256": "a6fe62a2cdd2927e4e0faecf473f6fe5aa2c4bf9616e8086a754f33f4cfa451c",
+      "status": "evidence_packet_ready_review_only"
     },
     {
-      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
       "artifact": "artifacts/v3_family_panel_evidence_packet_lipoamide_or_sulfur_transfer_redox_boundary_current702_20260601.json",
-      "status": "evidence_packet_ready_review_only",
       "candidate_rows": 2,
+      "missing_geometry_entry_ids": [],
+      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
       "predicted_geometry_ok_rows": 2,
       "rows_with_predicted_structure_fold_hits": 2,
-      "missing_geometry_entry_ids": []
+      "sha256": "78b3032f6f9b3f381da700cdab3df55f18256d0da9412298e4368637c5d38c1c",
+      "status": "evidence_packet_ready_review_only"
     },
     {
-      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
       "artifact": "artifacts/v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.json",
-      "status": "evidence_packet_ready_with_geometry_gaps",
       "candidate_rows": 4,
-      "predicted_geometry_ok_rows": 3,
-      "rows_with_predicted_structure_fold_hits": 2,
-      "missing_geometry_entry_ids": ["m_csa:132"]
+      "missing_geometry_entry_ids": [],
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "predicted_geometry_ok_rows": 4,
+      "rows_with_predicted_structure_fold_hits": 3,
+      "sha256": "814d11f6dfba81eb22525d10566f4f5888e0513e0c437002f9a9eff0d10ea121",
+      "status": "evidence_packet_ready_review_only"
     },
     {
-      "panel_id": "cobalamin_and_radical_rearrangement_panel",
       "artifact": "artifacts/v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json",
-      "status": "evidence_packet_ready_with_geometry_gaps",
       "candidate_rows": 3,
-      "predicted_geometry_ok_rows": 1,
-      "rows_with_predicted_structure_fold_hits": 1,
       "missing_geometry_entry_ids": [
         "secondary_probe::cobalamin_radical_rearrangement",
         "secondary_probe::radical_sam_enzyme"
-      ]
-    },
-    {
-      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
-      "artifact": "artifacts/v3_family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.json",
-      "status": "evidence_packet_ready_with_geometry_gaps",
-      "candidate_rows": 6,
-      "predicted_geometry_ok_rows": 0,
-      "rows_with_predicted_structure_fold_hits": 0,
-      "missing_geometry_entry_ids": ["mh_064", "mh_065", "mh_066", "mh_067", "mh_068", "mh_072"]
-    },
-    {
-      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
-      "artifact": "artifacts/v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json",
-      "status": "evidence_packet_ready_with_geometry_gaps",
-      "candidate_rows": 4,
+      ],
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
       "predicted_geometry_ok_rows": 1,
       "rows_with_predicted_structure_fold_hits": 1,
-      "missing_geometry_entry_ids": ["m_csa:116", "mh_073", "external_glycoside_panel"]
+      "sha256": "3a839bb055974abb454f9ee6f3282f01636cf149d2e853d4a067d63d0d8c70a2",
+      "status": "evidence_packet_ready_with_geometry_gaps"
+    },
+    {
+      "artifact": "artifacts/v3_family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.json",
+      "candidate_rows": 6,
+      "missing_geometry_entry_ids": [
+        "mh_064",
+        "mh_065",
+        "mh_066",
+        "mh_067",
+        "mh_068",
+        "mh_072"
+      ],
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_ok_rows": 0,
+      "rows_with_predicted_structure_fold_hits": 0,
+      "sha256": "9f1035f9cf892a323d1891a4fecf5f256f3a756ad8e34d649b0c6116bd032dcc",
+      "status": "evidence_packet_ready_with_geometry_gaps"
+    },
+    {
+      "artifact": "artifacts/v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json",
+      "candidate_rows": 4,
+      "missing_geometry_entry_ids": [
+        "mh_073",
+        "external_glycoside_panel"
+      ],
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_ok_rows": 2,
+      "rows_with_predicted_structure_fold_hits": 2,
+      "sha256": "345edc6a46eea591d6993be82918f56dd16fd924823c1b0bdcbc58d66b188268",
+      "status": "evidence_packet_ready_with_geometry_gaps"
     }
   ],
-  "interpretation": {
-    "result": "The review-only family expansion evidence set is complete for the seven proposed panels. Three panels are fully populated with current predicted-geometry evidence; four are materialization/source-evidence queues.",
-    "next_action": "Prioritize materialization for FMO m_csa:132, secondary radical/cobalamin probes, no-reliable-structure metal hydrolase controls, and near-orphan glycoside/nucleoside gaps before any family expansion gate."
-  }
+  "schema_version": "northstar_next_levers.v0.coverage_refresh",
+  "scope": "Review-only coverage audit across family-expansion evidence packets after repaired M-CSA primary-channel scores.",
+  "status": "coverage_audit_ready_review_only"
 }

@@ -1,0 +1,224 @@
+{
+  "artifact_id": "v3_fold_augmented_family_panel_m_csa_primary_channel_repair_current702_20260601",
+  "blockers": [],
+  "commands": {
+    "materialize_query_coordinates": "curl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-P07740-F1-model_v6.cif -o /private/tmp/catalytic-earth-family-panel-mcsa-primary-channel-repair-current702/queries_repaired_m_csa/afdb_P07740_v6.cif\ncurl -fL --retry 3 https://alphafold.ebi.ac.uk/files/AF-Q2RSB2-F1-model_v6.cif -o /private/tmp/catalytic-earth-family-panel-mcsa-primary-channel-repair-current702/queries_repaired_m_csa/afdb_Q2RSB2_v6.cif",
+    "rerun_parser": "PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-family-panel-m-csa-primary-channel-repair --foldseek-result-tsv artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/family_panel_m_csa_repair_vs_atlas.tsv",
+    "run_repaired_m_csa_vs_atlas_foldseek": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic-earth-family-panel-mcsa-primary-channel-repair-current702/queries_repaired_m_csa /private/tmp/catalytic-earth-predicted-structure-fold-channel-current702/atlas_in_distribution artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/family_panel_m_csa_repair_vs_atlas.tsv /private/tmp/catalytic-earth-family-panel-mcsa-primary-channel-repair-current702/tmp_family_panel_m_csa_vs_atlas --format-output query,target,qtmscore,ttmscore,alntmscore,prob,bits --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --threads 4 -v 1"
+  },
+  "counts": {
+    "diagnosis_target_rows": 2,
+    "excluded_target_rows": 0,
+    "foldseek_hits": 2,
+    "foldseek_query_requests": 2,
+    "foldseek_target_atlas_requests": 167,
+    "predicted_geometry_ok_rows": 2,
+    "primary_channel_score_complete_rows": 2,
+    "repair_policy_counts": {
+      "best_real_sequence_accession_by_active_site_coverage": 1,
+      "manifest_accession_compatible_residue_subset": 1
+    },
+    "research_gate_status_counts_if_readout_refreshed": {
+      "nonabstained_at_research_threshold": 2
+    },
+    "selected_for_accession_repair": 2
+  },
+  "created_utc": "2026-06-01T09:44:14Z",
+  "excluded_target_rows": [],
+  "foldseek_parse": {
+    "nearest_atlas_hits": [
+      {
+        "alntmscore": 0.5417,
+        "bits": 26.0,
+        "nearest_atlas_accession": "Q58989",
+        "nearest_atlas_entry_id": "m_csa:727",
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.063,
+        "qtmscore": 0.2655,
+        "query_accession": "Q2RSB2",
+        "query_entry_id": "m_csa:116",
+        "raw_query_name": "afdb_Q2RSB2_v6",
+        "raw_target_name": "afdb_Q58989_v6",
+        "tm_score": 0.5417,
+        "ttmscore": 0.4347
+      },
+      {
+        "alntmscore": 0.6879,
+        "bits": 54.0,
+        "nearest_atlas_accession": "P0AEZ1",
+        "nearest_atlas_entry_id": "m_csa:120",
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "prob": 0.601,
+        "qtmscore": 0.5455,
+        "query_accession": "P07740",
+        "query_entry_id": "m_csa:132",
+        "raw_query_name": "afdb_P07740_v6",
+        "raw_target_name": "afdb_P0AEZ1_v6",
+        "tm_score": 0.6879,
+        "ttmscore": 0.6357
+      }
+    ],
+    "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/family_panel_m_csa_repair_vs_atlas.tsv",
+    "status": "parsed",
+    "summary": {
+      "alias_collision_count": 0,
+      "alias_collisions": [],
+      "mapped_pair_count": 205,
+      "max_nearest_atlas_tm_score": 0.6879,
+      "min_nearest_atlas_tm_score": 0.5417,
+      "query_entry_count_with_hits": 2,
+      "unmapped_names": [],
+      "unmapped_pair_count": 0
+    }
+  },
+  "guardrails": {
+    "alphafolddb_coordinates_fetched_transiently": true,
+    "frozen_current702_inputs_only": true,
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "primary_source_literature_fetched": false,
+    "production_thresholds_changed": false,
+    "raw_coordinates_committed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "2/2 M-CSA missing-channel rows now have repaired predicted geometry plus nearest-atlas Foldseek/TM scores.",
+    "next_action": "Refresh the family-panel evidence packets and fold-augmented family-panel readout so these repaired rows leave the missing primary-channel queue; keep all decisions review-only."
+  },
+  "predicted_geometry_metadata": {
+    "active_site_roles_source": "M-CSA catalytic residue annotations are retained to isolate coordinate-source degradation; this is not a bare-sequence active-site localization test",
+    "artifact": "alphafold_predicted_active_site_geometry_features",
+    "entries_with_pairwise_geometry": 2,
+    "entries_with_pocket_context": 2,
+    "entries_with_proximal_ligands": 0,
+    "entry_count": 2,
+    "entry_names_used_for_score": false,
+    "fetch_failure_count": 0,
+    "fetch_failures_sample": [],
+    "mechanism_text_snippets_used": false,
+    "ok_entry_count": 2,
+    "schema_version": "predicted_geometry_features.v1",
+    "source": "AlphaFoldDB mmCIF by current702 UniProt accession",
+    "unique_accession_count": 2
+  },
+  "row_scores": [
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "combined_mean_geometry_fold": 0.45755,
+      "entry_id": "m_csa:116",
+      "fixed_research_threshold": 0.44155,
+      "geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "geometry_top1_score": 0.3734,
+      "manifest_accession": "Q2RSB2",
+      "nearest_atlas_entry_id": "m_csa:727",
+      "nearest_atlas_tm_score": 0.5417,
+      "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_accession": "Q2RSB2",
+      "predicted_geometry_accession_repair": {
+        "original_accession": "Q2RSB2",
+        "policy": "manifest_accession_compatible_residue_subset",
+        "selected_accession": "Q2RSB2",
+        "selected_residue_count": 5,
+        "skipped_nonmatching_residue_count": 1,
+        "total_residue_node_count": 6
+      },
+      "predicted_geometry_status": "ok",
+      "predicted_missing_positions": 0,
+      "predicted_pdb_id": "AF-Q2RSB2-F1-model_v6",
+      "predicted_resolved_residue_count": 5,
+      "research_gate_status_if_readout_refreshed": "nonabstained_at_research_threshold",
+      "sequence_id": "Q2RSB2",
+      "split_assignment": "heldout",
+      "true_fingerprint_id": null
+    },
+    {
+      "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+      "combined_mean_geometry_fold": 0.53865,
+      "entry_id": "m_csa:132",
+      "fixed_research_threshold": 0.44155,
+      "geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "geometry_top1_score": 0.3894,
+      "manifest_accession": "P07739",
+      "nearest_atlas_entry_id": "m_csa:120",
+      "nearest_atlas_tm_score": 0.6879,
+      "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_geometry_accession": "P07740",
+      "predicted_geometry_accession_repair": {
+        "original_accession": "P07739",
+        "policy": "best_real_sequence_accession_by_active_site_coverage",
+        "selected_accession": "P07740",
+        "selected_residue_count": 5,
+        "skipped_nonmatching_residue_count": 0,
+        "total_residue_node_count": 5
+      },
+      "predicted_geometry_status": "ok",
+      "predicted_missing_positions": 0,
+      "predicted_pdb_id": "AF-P07740-F1-model_v6",
+      "predicted_resolved_residue_count": 5,
+      "research_gate_status_if_readout_refreshed": "nonabstained_at_research_threshold",
+      "sequence_id": "P07739",
+      "split_assignment": "in_distribution",
+      "true_fingerprint_id": "flavin_monooxygenase"
+    }
+  ],
+  "runtime": {
+    "coordinate_root": "/private/tmp/catalytic-earth-family-panel-mcsa-primary-channel-repair-current702",
+    "foldseek": {
+      "available": true,
+      "error": null,
+      "requested": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+      "resolved": "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+      "version": "718d42176d2f67d36a60866fedfb881f8d5a7ebf",
+      "version_command": "/private/tmp/catalytic-foldseek-env/bin/foldseek version"
+    },
+    "foldseek_result_tsv": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/family_panel_m_csa_repair_vs_atlas.tsv",
+    "target_atlas_dir": "/private/tmp/catalytic-earth-predicted-structure-fold-channel-current702/atlas_in_distribution"
+  },
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Review-only primary-channel repair for family-panel M-CSA rows diagnosed as missing predicted geometry. It applies frozen current702 accession-repair policies, then parses Foldseek/TM scores against the predicted in-distribution atlas.",
+  "source_artifacts": {
+    "experimental_geometry_features": {
+      "exists": true,
+      "path": "artifacts/v3_geometry_features_1025.json",
+      "sha256": "be7af8462397425062075ff8df5959cc9b68b165d07017692099deb66db1f8f6"
+    },
+    "foldseek_result_tsv": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/family_panel_m_csa_repair_vs_atlas.tsv",
+      "sha256": "9bb62a78fa24bf81a7d28d890f45e4c2ea5a755e3002b557eccadf08b2a921c7"
+    },
+    "graph": {
+      "exists": true,
+      "path": "artifacts/v1_graph_1025.json",
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "missing_primary_channel_diagnosis": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.json",
+      "sha256": "ad3eb30b007f841e8a983e2a1223c09977c694e6d15dd06a1fa786d4d2a9f3bf"
+    },
+    "oos_calibrated_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json",
+      "sha256": "8bd974b131270091502c9a6b9d06354a1fac937f1b3a4f02a2035ee88c95d829"
+    },
+    "predicted_structure_fold_channel": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+      "sha256": "565266bfd8379c75104e1d7a74457ef40846563ea71988c4946d16c92f733582"
+    }
+  },
+  "status": "m_csa_primary_channel_repair_scored_review_only",
+  "target_entry_ids": [
+    "m_csa:116",
+    "m_csa:132"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "artifact_id": "v3_fold_augmented_family_panel_source_check_m_csa116_current702_20260601",
+  "created_utc": "2026-06-01T09:49:59Z",
+  "fold_augmented_readout": {
+    "combined_mean_geometry_fold": 0.45755,
+    "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+    "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+    "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+    "queue_rank": 6,
+    "selected_organic_cofactor_max": 0.050535,
+    "source_check_focus": [
+      "row_specific_bond_change_and_mechanism_locus",
+      "cofactor_locus_and_redox_partner_identity",
+      "occupied_primary_fold_false_confidence_review",
+      "selected_organic_cofactor_confounding"
+    ],
+    "threshold_margin": 0.016
+  },
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_source_data_fetched": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "local_source_evidence": {
+    "catalytic_residue_count": 6,
+    "curated_label_rationale": "NAD(P)+ transhydrogenase performs nicotinamide hydride transfer coupled to proton translocation outside the current seed fingerprints.",
+    "entry_node_source": "artifacts/v1_graph_1025.json",
+    "mechanism_interpretation": "M-CSA mechanism text describes NADH/NADP+ alignment, C4 hydride transfer between nicotinamide rings, and proton-translocation-linked conformational change, outside current seed fingerprints.",
+    "mechanism_text_count": 1
+  },
+  "repair_evidence": {
+    "combined_mean_geometry_fold": 0.45755,
+    "geometry_top1_score": 0.3734,
+    "manifest_accession": "Q2RSB2",
+    "nearest_atlas_entry_id": "m_csa:727",
+    "nearest_atlas_tm_score": 0.5417,
+    "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+    "predicted_geometry_accession": "Q2RSB2",
+    "predicted_geometry_accession_repair": {
+      "original_accession": "Q2RSB2",
+      "policy": "manifest_accession_compatible_residue_subset",
+      "selected_accession": "Q2RSB2",
+      "selected_residue_count": 5,
+      "skipped_nonmatching_residue_count": 1,
+      "total_residue_node_count": 6
+    },
+    "predicted_missing_positions": 0,
+    "predicted_resolved_residue_count": 5
+  },
+  "row": {
+    "benchmark_role": "oos_tier::unknown_oos",
+    "curated_label_rationale": "NAD(P)+ transhydrogenase performs nicotinamide hydride transfer coupled to proton translocation outside the current seed fingerprints.",
+    "current_fingerprint_id": null,
+    "current_label_type": "out_of_scope",
+    "current_review_status": "automation_curated",
+    "entry_id": "m_csa:116",
+    "name": "NAD(P)+ transhydrogenase (AB-specific)",
+    "probe_role": "unknown_oos_abstention_diagnostic",
+    "reference_uniprot_id": "Q2RSB2, Q2RSB4",
+    "split_assignment": "heldout"
+  },
+  "schema_version": "northstar_next_levers.v0.repaired_m_csa_source_check",
+  "scope": "Review-only frozen-local source check for repaired fold-augmented family-panel row m_csa:116.",
+  "source_artifacts": {
+    "curated_labels": {
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "family_panel_research_readout": {
+      "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
+      "sha256": "12dd69fc5890b68eb05577cf3a021657757598f2021e34ee45a33ff1ba451759"
+    },
+    "graph": {
+      "path": "artifacts/v1_graph_1025.json",
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "label_manifest": {
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "m_csa_primary_channel_repair": {
+      "path": "artifacts/v3_fold_augmented_family_panel_m_csa_primary_channel_repair_current702_20260601.json",
+      "sha256": "d40aff436705c30dc143edbee77ee22a7076972bf887584b826a1d041a3632a9"
+    },
+    "source_check_queue": {
+      "path": "artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json",
+      "sha256": "cf10fef43fff8f1128a9c6687807f56559399c574473aa15446b93d7f3e06ff5"
+    }
+  },
+  "source_check_decision": {
+    "family_promotion_ready": false,
+    "next_action": "Keep m_csa:116 as an OOS near-orphan/transhydrogenase control; prioritize source-backed sidecars for the remaining non-M-CSA missing-channel rows.",
+    "reason": "Frozen M-CSA mechanism evidence describes NAD(P)+ transhydrogenase hydride transfer coupled to proton translocation. The repaired fold-augmented non-abstention is a boundary false-confidence signal against occupied hydrolase/metal-like atlas neighborhoods, not support for a current seed-family promotion.",
+    "source_check_result": "keep_as_review_only_oos_transhydrogenase_control"
+  },
+  "status": "source_check_completed_review_only_no_label_change"
+}

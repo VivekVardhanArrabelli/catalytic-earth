@@ -3,16 +3,15 @@
   "counts": {
     "candidate_rows": 4,
     "missing_geometry_entry_ids": [
-      "m_csa:116",
       "mh_073",
       "external_glycoside_panel"
     ],
-    "predicted_geometry_ok_rows": 1,
-    "rows_with_predicted_structure_fold_hits": 1,
+    "predicted_geometry_ok_rows": 2,
+    "rows_with_predicted_structure_fold_hits": 2,
     "rows_with_selected_organic_cofactor_scores": 2,
     "rows_with_selected_pdb_fold_proxy": 0
   },
-  "created_utc": "2026-06-01T08:02:12Z",
+  "created_utc": "2026-06-01T09:47:29Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "heldout_splits_changed": false,
@@ -61,6 +60,7 @@
         "negative_nearest_class_centroid_robust_distance": -1.534108,
         "top1_score_raw": 0.356
       },
+      "predicted_geometry_accession_repair": null,
       "predicted_geometry_status": "ok",
       "predicted_geometry_top1": {
         "cofactor_context_score": 0.0,
@@ -71,7 +71,8 @@
       "predicted_structure_fold_channel": {
         "nearest_atlas_entry_id": "m_csa:740",
         "nearest_atlas_tm_score": 0.4733,
-        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase"
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "predicted_structure_fold_channel"
       },
       "selected_organic_cofactor_max": 0.017518,
       "selected_organic_cofactor_scores": {
@@ -88,24 +89,33 @@
       "split_assignment": "heldout"
     },
     {
-      "benchmark_role": null,
+      "benchmark_role": "oos_tier::unknown_oos",
       "entry_id": "m_csa:116",
       "evidence_role": "cofactor-confounded OOS control: known organic cofactor-like signal with weak/novel fold or geometry support against occupied primary mechanisms",
       "predicted_atlas_geometry_variant_scores": {
         "negative_nearest_class_centroid_robust_distance": null,
         "top1_score_raw": null
       },
-      "predicted_geometry_status": "missing",
+      "predicted_geometry_accession_repair": {
+        "original_accession": "Q2RSB2",
+        "policy": "manifest_accession_compatible_residue_subset",
+        "selected_accession": "Q2RSB2",
+        "selected_residue_count": 5,
+        "skipped_nonmatching_residue_count": 1,
+        "total_residue_node_count": 6
+      },
+      "predicted_geometry_status": "ok",
       "predicted_geometry_top1": {
         "cofactor_context_score": null,
-        "fingerprint_id": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
         "role_match_fraction": null,
-        "score": null
+        "score": 0.3734
       },
       "predicted_structure_fold_channel": {
-        "nearest_atlas_entry_id": null,
-        "nearest_atlas_tm_score": null,
-        "nearest_atlas_true_fingerprint_id": null
+        "nearest_atlas_entry_id": "m_csa:727",
+        "nearest_atlas_tm_score": 0.5417,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "score_source": "m_csa_primary_channel_repair"
       },
       "selected_organic_cofactor_max": 0.050535,
       "selected_organic_cofactor_scores": {
@@ -119,7 +129,7 @@
         "nearest_train_label_group": null,
         "top3_primary_foldseek_prob": null
       },
-      "split_assignment": null
+      "split_assignment": "heldout"
     },
     {
       "benchmark_role": null,
@@ -129,6 +139,7 @@
         "negative_nearest_class_centroid_robust_distance": null,
         "top1_score_raw": null
       },
+      "predicted_geometry_accession_repair": null,
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1": {
         "cofactor_context_score": null,
@@ -139,7 +150,8 @@
       "predicted_structure_fold_channel": {
         "nearest_atlas_entry_id": null,
         "nearest_atlas_tm_score": null,
-        "nearest_atlas_true_fingerprint_id": null
+        "nearest_atlas_true_fingerprint_id": null,
+        "score_source": null
       },
       "selected_organic_cofactor_max": null,
       "selected_organic_cofactor_scores": {},
@@ -159,6 +171,7 @@
         "negative_nearest_class_centroid_robust_distance": null,
         "top1_score_raw": null
       },
+      "predicted_geometry_accession_repair": null,
       "predicted_geometry_status": "missing",
       "predicted_geometry_top1": {
         "cofactor_context_score": null,
@@ -169,7 +182,8 @@
       "predicted_structure_fold_channel": {
         "nearest_atlas_entry_id": null,
         "nearest_atlas_tm_score": null,
-        "nearest_atlas_true_fingerprint_id": null
+        "nearest_atlas_true_fingerprint_id": null,
+        "score_source": null
       },
       "selected_organic_cofactor_max": null,
       "selected_organic_cofactor_scores": {},
@@ -192,6 +206,10 @@
     "fold_level_signal": {
       "path": "artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
       "sha256": "03515cb359fe0ebf4c673117201a2addf2d75e03af5f89ba58fc77891c47f85d"
+    },
+    "m_csa_primary_channel_repair": {
+      "path": "artifacts/v3_fold_augmented_family_panel_m_csa_primary_channel_repair_current702_20260601.json",
+      "sha256": "d40aff436705c30dc143edbee77ee22a7076972bf887584b826a1d041a3632a9"
     },
     "predicted_atlas_variants": {
       "path": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",

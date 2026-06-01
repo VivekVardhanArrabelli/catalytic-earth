@@ -4,14 +4,14 @@
   "counts": {
     "abstained_at_research_threshold": 6,
     "candidate_rows": 22,
-    "non_abstained_at_research_threshold": 4,
-    "not_score_complete_for_primary_channel": 12,
+    "non_abstained_at_research_threshold": 6,
+    "not_score_complete_for_primary_channel": 10,
     "panel_packets": 7,
     "panels_blocked_no_primary_channel_scores": 1,
-    "panels_with_non_abstained_rows": 3,
-    "primary_score_complete_rows": 10
+    "panels_with_non_abstained_rows": 4,
+    "primary_score_complete_rows": 12
   },
-  "created_utc": "2026-06-01T09:11:35Z",
+  "created_utc": "2026-06-01T09:55:05Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "imports_or_promotions_performed": false,
@@ -25,7 +25,7 @@
   },
   "interpretation": {
     "caveat": "This is a downstream review readout only. It does not promote family rows, retune thresholds, train on heldout rows, or change production scoring.",
-    "headline": "4/10 score-complete review rows remain non-abstained at the bounded fold-augmented research threshold.",
+    "headline": "6/12 score-complete review rows remain non-abstained at the bounded fold-augmented research threshold.",
     "next_action": "Source-check the non-abstained review-priority rows and keep geometry/fold-missing packet rows in the coordinate or sidecar materialization queue before any family-expansion decision."
   },
   "panel_summaries": [
@@ -74,18 +74,17 @@
       "abstained_at_research_threshold": 1,
       "artifact": "artifacts/v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.json",
       "candidate_rows": 4,
-      "missing_primary_score_entry_ids": [
-        "m_csa:132"
-      ],
-      "non_abstained_at_research_threshold": 2,
+      "missing_primary_score_entry_ids": [],
+      "non_abstained_at_research_threshold": 3,
       "non_abstained_entry_ids": [
         "m_csa:131",
+        "m_csa:132",
         "m_csa:551"
       ],
-      "not_score_complete_for_primary_channel": 1,
-      "packet_status": "evidence_packet_ready_with_geometry_gaps",
+      "not_score_complete_for_primary_channel": 0,
+      "packet_status": "evidence_packet_ready_review_only",
       "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
-      "primary_score_complete_rows": 3,
+      "primary_score_complete_rows": 4,
       "research_readout_status": "has_non_abstained_review_rows"
     },
     {
@@ -132,16 +131,17 @@
       "candidate_rows": 4,
       "missing_primary_score_entry_ids": [
         "external_glycoside_panel",
-        "m_csa:116",
         "mh_073"
       ],
-      "non_abstained_at_research_threshold": 0,
-      "non_abstained_entry_ids": [],
-      "not_score_complete_for_primary_channel": 3,
+      "non_abstained_at_research_threshold": 1,
+      "non_abstained_entry_ids": [
+        "m_csa:116"
+      ],
+      "not_score_complete_for_primary_channel": 2,
       "packet_status": "evidence_packet_ready_with_geometry_gaps",
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
-      "primary_score_complete_rows": 1,
-      "research_readout_status": "score_complete_rows_all_abstained"
+      "primary_score_complete_rows": 2,
+      "research_readout_status": "has_non_abstained_review_rows"
     }
   ],
   "review_priority_rows": [
@@ -180,6 +180,24 @@
       "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
       "selected_organic_cofactor_max": 0.922628,
       "threshold_margin": 0.10305
+    },
+    {
+      "combined_mean_geometry_fold": 0.53865,
+      "entry_id": "m_csa:132",
+      "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "selected_organic_cofactor_max": 0.010805,
+      "threshold_margin": 0.0971
+    },
+    {
+      "combined_mean_geometry_fold": 0.45755,
+      "entry_id": "m_csa:116",
+      "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "selected_organic_cofactor_max": 0.050535,
+      "threshold_margin": 0.016
     }
   ],
   "row_scores": [
@@ -280,26 +298,30 @@
       "split_assignment": "heldout"
     },
     {
-      "benchmark_role": null,
-      "channel_scores": null,
+      "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+      "channel_scores": {
+        "cofactor_max_score": 0.010805,
+        "combined_mean_geometry_cofactor_fold": 0.362702,
+        "combined_mean_geometry_fold": 0.53865,
+        "combined_min_geometry_fold": 0.3894,
+        "fold_nearest_atlas_tm_score": 0.6879,
+        "geometry_top1_score": 0.3894
+      },
       "entry_id": "m_csa:132",
       "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
-      "predicted_geometry_status": "missing",
-      "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_fold_score_source": null,
-      "predicted_structure_nearest_atlas_entry_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "predicted_structure_fold_score_source": "family_panel_packet_predicted_structure_fold_channel",
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:120",
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
       "primary_channel": "combined_mean_geometry_fold",
       "primary_threshold": 0.44155,
-      "primary_threshold_margin": null,
-      "research_gate_status": "not_score_complete_for_primary_channel",
-      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
-      "score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
-      ],
+      "primary_threshold_margin": 0.0971,
+      "research_gate_status": "non_abstained_at_research_threshold",
+      "review_only_interpretation": "score-complete row stays above the bounded research threshold; source-check as a review-priority boundary row, not as a promotion",
+      "score_blockers": [],
       "selected_organic_cofactor_max": 0.010805,
-      "split_assignment": null
+      "split_assignment": "in_distribution"
     },
     {
       "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
@@ -506,26 +528,30 @@
       "split_assignment": "heldout"
     },
     {
-      "benchmark_role": null,
-      "channel_scores": null,
+      "benchmark_role": "oos_tier::unknown_oos",
+      "channel_scores": {
+        "cofactor_max_score": 0.050535,
+        "combined_mean_geometry_cofactor_fold": 0.321878,
+        "combined_mean_geometry_fold": 0.45755,
+        "combined_min_geometry_fold": 0.3734,
+        "fold_nearest_atlas_tm_score": 0.5417,
+        "geometry_top1_score": 0.3734
+      },
       "entry_id": "m_csa:116",
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
-      "predicted_geometry_status": "missing",
-      "predicted_geometry_top1_fingerprint_id": null,
-      "predicted_structure_fold_score_source": null,
-      "predicted_structure_nearest_atlas_entry_id": null,
-      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_structure_fold_score_source": "family_panel_packet_predicted_structure_fold_channel",
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:727",
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
       "primary_channel": "combined_mean_geometry_fold",
       "primary_threshold": 0.44155,
-      "primary_threshold_margin": null,
-      "research_gate_status": "not_score_complete_for_primary_channel",
-      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
-      "score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
-      ],
+      "primary_threshold_margin": 0.016,
+      "research_gate_status": "non_abstained_at_research_threshold",
+      "review_only_interpretation": "score-complete row stays above the bounded research threshold; source-check as a review-priority boundary row, not as a promotion",
+      "score_blockers": [],
       "selected_organic_cofactor_max": 0.050535,
-      "split_assignment": null
+      "split_assignment": "heldout"
     },
     {
       "benchmark_role": null,
@@ -714,7 +740,7 @@
     "family_panel_coverage_audit": {
       "exists": true,
       "path": "artifacts/v3_family_panel_packet_coverage_audit_current702_20260601.json",
-      "sha256": "4955b7f4237d36fcfdea169ec5e4835a3960eeca16c317a01f7f7c342e87dc3e"
+      "sha256": "aa1607c3a287b0e9b209bd14b1e8d14c30c0366ebd4aa72e1750290ab5fad0b0"
     },
     "family_panel_packets": [
       {
@@ -735,7 +761,7 @@
       {
         "exists": true,
         "path": "artifacts/v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.json",
-        "sha256": "879759d1978c63272b7eb539c74e07494d00624edfd7d09f4e8c3534816bd2d8"
+        "sha256": "814d11f6dfba81eb22525d10566f4f5888e0513e0c437002f9a9eff0d10ea121"
       },
       {
         "exists": true,
@@ -750,7 +776,7 @@
       {
         "exists": true,
         "path": "artifacts/v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json",
-        "sha256": "00cc96f4b7f226c04d91630ee1cf2fa12feb63801bd678fab511534ff8cd3c8e"
+        "sha256": "345edc6a46eea591d6993be82918f56dd16fd924823c1b0bdcbc58d66b188268"
       }
     ],
     "oos_calibrated_threshold_contract": {

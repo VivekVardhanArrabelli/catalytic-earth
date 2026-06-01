@@ -10,6 +10,7 @@ from catalytic_earth.northstar_next_levers import (
     _predicted_model_parts,
     build_family_panel_evidence_packet,
     build_fold_augmented_abstention_gate,
+    build_fold_augmented_family_panel_m_csa_primary_channel_repair,
     build_fold_augmented_family_panel_missing_primary_channel_diagnosis,
     build_fold_augmented_family_panel_missing_primary_channel_queue,
     build_fold_augmented_family_panel_research_readout,
@@ -30,6 +31,38 @@ from catalytic_earth.northstar_next_levers import (
     build_selected_organic_cofactor_sidecar_schema_audit,
 )
 from catalytic_earth.predicted_geometry_robustness import _target_manifest_row_selection
+
+
+MINI_AF_CIF = """data_AF-TEST-F1
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_alt_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_entity_id
+_atom_site.label_seq_id
+_atom_site.pdbx_PDB_ins_code
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.occupancy
+_atom_site.B_iso_or_equiv
+_atom_site.pdbx_formal_charge
+_atom_site.auth_seq_id
+_atom_site.auth_comp_id
+_atom_site.auth_asym_id
+_atom_site.auth_atom_id
+_atom_site.pdbx_PDB_model_num
+ATOM 1 N N . ASP A 1 10 ? 0.0 0.0 0.0 1.00 90.0 ? 10 ASP A N 1
+ATOM 2 C CA . ASP A 1 10 ? 1.0 0.0 0.0 1.00 90.0 ? 10 ASP A CA 1
+ATOM 3 N N . HIS A 1 30 ? 4.0 0.0 0.0 1.00 90.0 ? 30 HIS A N 1
+ATOM 4 C CA . HIS A 1 30 ? 5.0 0.0 0.0 1.00 90.0 ? 30 HIS A CA 1
+#
+"""
 
 
 class NorthstarNextLeversTests(unittest.TestCase):
@@ -1171,6 +1204,175 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertFalse(audit["guardrails"]["foldseek_or_tmsearch_recomputed"])
 
+    def test_fold_augmented_family_panel_m_csa_repair_scores_repaired_row(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            diagnosis = root / "diagnosis.json"
+            manifest = root / "manifest.json"
+            graph = root / "graph.json"
+            experimental = root / "experimental.json"
+            fold_channel = root / "fold_channel.json"
+            threshold = root / "threshold.json"
+            tsv = root / "repair.tsv"
+            diagnosis.write_text(
+                json.dumps(
+                    {
+                        "status": "missing_primary_channel_diagnosis_ready_review_only",
+                        "diagnosed_rows": [
+                            {
+                                "entry_id": "m_csa:132",
+                                "diagnosis": "needs_predicted_geometry_materialization",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:132",
+                                "accession": "P0",
+                                "sequence_id": "P0",
+                                "real_sequence_accessions": ["P0", "ALT"],
+                                "split_assignment": "in_distribution",
+                                "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+                                "fingerprint_id": "flavin_monooxygenase",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "nodes": [
+                            {
+                                "id": "m_csa:132:residue:1",
+                                "type": "catalytic_residue",
+                                "roles": ["proton acceptor"],
+                                "sequence_positions": [
+                                    {
+                                        "is_reference": True,
+                                        "resid": 10,
+                                        "code": "Asp",
+                                        "uniprot_id": "ALT",
+                                    }
+                                ],
+                            },
+                            {
+                                "id": "m_csa:132:residue:2",
+                                "type": "catalytic_residue",
+                                "roles": ["proton donor"],
+                                "sequence_positions": [
+                                    {
+                                        "is_reference": True,
+                                        "resid": 30,
+                                        "code": "His",
+                                        "uniprot_id": "ALT",
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            experimental.write_text(
+                json.dumps({"entries": [{"entry_id": "m_csa:132", "status": "ok"}]}),
+                encoding="utf-8",
+            )
+            fold_channel.write_text(
+                json.dumps(
+                    {
+                        "foldseek_input_manifest": {
+                            "coordinate_request_groups": {
+                                "atlas_in_distribution": [
+                                    {
+                                        "accession": "ATLAS",
+                                        "alphafold_version": 6,
+                                        "predicted_pdb_id": "AF-ATLAS-F1-model_v6",
+                                        "expected_local_path": str(
+                                            root / "atlas" / "afdb_ATLAS_v6.cif"
+                                        ),
+                                        "entry_ids": ["m_csa:1"],
+                                        "rows": [
+                                            {
+                                                "entry_id": "m_csa:1",
+                                                "true_fingerprint_id": "metal_dependent_hydrolase",
+                                            }
+                                        ],
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold.write_text(
+                json.dumps(
+                    {
+                        "threshold_contract": {
+                            "combined_mean_geometry_fold": {
+                                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                    "threshold": 0.44155
+                                }
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            tsv.write_text(
+                "afdb_ALT_v6\tafdb_ATLAS_v6\t0.6\t0.55\t0.5\t0.9\t100\n",
+                encoding="utf-8",
+            )
+
+            def fake_fetcher(accession: str, version: str = "auto") -> tuple[str, dict]:
+                return MINI_AF_CIF, {
+                    "backend": "alphafold_db",
+                    "accession": accession,
+                    "alphafold_version": 6,
+                    "url": f"memory://{accession}",
+                }
+
+            audit = build_fold_augmented_family_panel_m_csa_primary_channel_repair(
+                missing_primary_channel_diagnosis_path=diagnosis,
+                label_manifest_path=manifest,
+                graph_path=graph,
+                experimental_geometry_features_path=experimental,
+                predicted_structure_fold_channel_path=fold_channel,
+                oos_calibrated_threshold_contract_path=threshold,
+                coordinate_root=root / "coordinates",
+                target_atlas_dir=root / "atlas",
+                foldseek_result_tsv=tsv,
+                foldseek_binary="/bin/echo",
+                fetcher=fake_fetcher,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "m_csa_primary_channel_repair_scored_review_only",
+        )
+        self.assertEqual(audit["counts"]["primary_channel_score_complete_rows"], 1)
+        row = audit["row_scores"][0]
+        self.assertEqual(row["entry_id"], "m_csa:132")
+        self.assertEqual(row["predicted_geometry_accession"], "ALT")
+        self.assertEqual(
+            row["predicted_geometry_accession_repair"]["policy"],
+            "best_real_sequence_accession_by_active_site_coverage",
+        )
+        self.assertEqual(row["nearest_atlas_entry_id"], "m_csa:1")
+        self.assertEqual(row["nearest_atlas_tm_score"], 0.6)
+        self.assertIsNotNone(row["combined_mean_geometry_fold"])
+        self.assertTrue(audit["guardrails"]["review_only"])
+
     def test_train_cal_oos_geometry_selection_allows_accession_subset(self) -> None:
         label_manifest = {
             "rows": [
@@ -1785,6 +1987,78 @@ class NorthstarNextLeversTests(unittest.TestCase):
             ],
             0.42,
         )
+
+    def test_family_panel_evidence_packet_consumes_m_csa_repair_scores(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            family_targets = root / "family_targets.json"
+            empty = root / "empty.json"
+            repair = root / "repair.json"
+            family_targets.write_text(
+                json.dumps(
+                    {
+                        "candidate_families": [
+                            {
+                                "candidate_family": "flavin_panel",
+                                "candidate_rows": ["m_csa:132"],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            empty.write_text(
+                json.dumps({"results": [], "confounded_row_details": [], "row_class_records": [], "row_scores": []}),
+                encoding="utf-8",
+            )
+            repair.write_text(
+                json.dumps(
+                    {
+                        "status": "m_csa_primary_channel_repair_scored_review_only",
+                        "row_scores": [
+                            {
+                                "entry_id": "m_csa:132",
+                                "split_assignment": "in_distribution",
+                                "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+                                "predicted_geometry_status": "ok",
+                                "geometry_top1_fingerprint_id": "ser_his_acid_hydrolase",
+                                "geometry_top1_score": 0.3894,
+                                "nearest_atlas_entry_id": "m_csa:120",
+                                "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+                                "nearest_atlas_tm_score": 0.6879,
+                                "predicted_geometry_accession_repair": {
+                                    "policy": "best_real_sequence_accession_by_active_site_coverage"
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_family_panel_evidence_packet(
+                family_targets_path=family_targets,
+                predicted_geometry_atlas_path=empty,
+                fold_level_signal_path=empty,
+                selected_organic_cofactor_sidecar_path=empty,
+                predicted_atlas_variants_path=empty,
+                m_csa_primary_channel_repair_path=repair,
+                panel_id="flavin_panel",
+            )
+
+        row = audit["row_evidence"][0]
+        self.assertEqual(audit["status"], "evidence_packet_ready_review_only")
+        self.assertEqual(row["predicted_geometry_status"], "ok")
+        self.assertEqual(row["predicted_geometry_top1"]["score"], 0.3894)
+        self.assertEqual(
+            row["predicted_structure_fold_channel"]["nearest_atlas_tm_score"],
+            0.6879,
+        )
+        self.assertEqual(
+            row["predicted_structure_fold_channel"]["score_source"],
+            "m_csa_primary_channel_repair",
+        )
+        self.assertEqual(audit["counts"]["missing_geometry_entry_ids"], [])
 
     def test_family_panel_evidence_packet_uses_nondefault_panel_id(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

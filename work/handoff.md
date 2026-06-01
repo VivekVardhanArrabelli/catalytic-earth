@@ -50,6 +50,100 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 M-CSA Fold-Channel Repair And Cofactor-Locus Sidecars
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T09:35:11Z`
+- STARTED_LOCAL: `Mon Jun  1 04:35:11 CDT 2026`
+- ENDED_AT: `2026-06-01T10:25:08Z`
+- ENDED_LOCAL: `Mon Jun  1 05:25:08 CDT 2026`
+- ELAPSED_MINUTES: `50.0`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "52579", "started_at": "2026-06-01T09:35:11Z", "status": "acquired"}`
+- Lock release result: pending at handoff write; release command to run after
+  clean synced push:
+  `PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced`
+- Git branch at start: `main`
+- Git HEAD at start: `3200aea9ebf7a4c775c300e96d418f2c638a9413`
+- Dirty files at start: none
+- Git branch at end before commit: `main`
+- Git HEAD at end before commit: `3200aea9ebf7a4c775c300e96d418f2c638a9413`
+- Dirty files at end before staging:
+  23 tracked files plus new artifacts/reports under `artifacts/` and `work/`;
+  see `git status --short` in the run log. No unrelated dirty files were present.
+- Input artifacts:
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.json`,
+  family-panel packets/readouts, current702 label manifest, graph, geometry
+  features, organic cofactor sidecars, mechanism-feature sidecars/schema audits,
+  external identifier/materialization/glycoside/cobalamin/radical-SAM source
+  artifacts, and prior FMO/source-check artifacts referenced in docs.
+- Output artifacts:
+  `artifacts/v3_fold_augmented_family_panel_m_csa_primary_channel_repair_current702_20260601.json`,
+  `work/fold_augmented_family_panel_m_csa_primary_channel_repair_current702_20260601.md`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/family_panel_m_csa_repair_vs_atlas.tsv`,
+  refreshed FMO and near-orphan family packets, refreshed family-panel coverage
+  audit/readout/source-check queue/missing queue/diagnosis,
+  `artifacts/v3_fold_augmented_family_panel_source_check_m_csa132_current702_20260601.json`,
+  `work/fold_augmented_family_panel_source_check_m_csa132_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_source_check_m_csa116_current702_20260601.json`,
+  `work/fold_augmented_family_panel_source_check_m_csa116_current702_20260601.md`,
+  refreshed `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`,
+  `artifacts/v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601.json`,
+  `work/family_panel_source_backed_sidecar_materialization_plan_current702_20260601.md`,
+  `artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json`,
+  `work/predicted_structure_fold_augmented_novelty_variants_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_inorganic_cofactor_locus_schema_current702_20260601.json`,
+  `work/mechanism_feature_inorganic_cofactor_locus_schema_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_current702_20260601.json`,
+  `work/mechanism_feature_metal_ion_locus_sidecar_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_metal_ion_locus_sidecar_schema_audit_current702_20260601.json`,
+  `work/mechanism_feature_metal_ion_locus_sidecar_schema_audit_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_current702_20260601.json`,
+  `work/mechanism_feature_cobalamin_locus_sidecar_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_cobalamin_locus_sidecar_schema_audit_current702_20260601.json`,
+  `work/mechanism_feature_cobalamin_locus_sidecar_schema_audit_current702_20260601.md`,
+  updated `docs/project_state.md`, `docs/decision_log.md`,
+  `docs/artifact_index.md`, `src/catalytic_earth/cli.py`,
+  `src/catalytic_earth/northstar_next_levers.py`, and regression tests.
+- Commands run:
+  lock acquire, `git fetch origin`, `git pull --ff-only origin main`, required
+  doc reads, JSON probes with `jq`, real Foldseek exact-TM M-CSA repair search
+  against `/private/tmp/catalytic-earth-predicted-structure-fold-channel-current702/atlas_in_distribution`,
+  `build-fold-augmented-family-panel-m-csa-primary-channel-repair`, refreshed
+  family-panel packet/readout/queue commands, generated static source-check and
+  sidecar/materialization/novelty/cofactor-locus artifacts, JSON validation,
+  doc artifact-reference check, `compileall`, `git diff --check`, focused pytest
+  runs, `tests/test_cli.py`, `tests/test_transfer_scope.py`,
+  `tests/test_automation_small_win_artifacts.py`, full `PYTHONPATH=src python -m pytest tests`,
+  and the exact wall-clock ledger check.
+- Validation results:
+  new/changed JSON artifacts parsed; repo-wide `artifacts/*.json` parse check
+  passed for 2991 JSON artifacts; `git diff --check` passed;
+  `PYTHONPATH=src python -m compileall -q src/catalytic_earth` passed;
+  focused `tests/test_geometry_artifact_regression.py` and
+  `tests/test_northstar_next_levers.py` passed; `tests/test_cli.py` passed
+  117 tests; `tests/test_transfer_scope.py` passed 122 tests;
+  `tests/test_automation_small_win_artifacts.py` passed 231 tests; full
+  `PYTHONPATH=src python -m pytest tests` passed 1040 tests with 1 upstream
+  sklearn deprecation warning.
+- Commit/push result: pending at handoff write; commit, push, sync verification,
+  and lock release run immediately after this handoff is staged.
+- Exact next action for the next run:
+  materialize the P0 sidecars/coordinates from
+  `artifacts/v3_family_panel_source_backed_sidecar_materialization_plan_current702_20260601.json`
+  (`Q59490`, `A0A1M6T2I7`, and `Q6NSJ0` first), record coordinate hashes, run
+  Foldseek/TM against the frozen predicted atlas, and refresh only review-only
+  family-panel readouts. For mechanism features, repeat the audited sidecar
+  pattern for `radical_sam_locus` and `iron_sulfur_locus`.
+
 ### 2026-06-01 Fold-Augmented Family Panel Readout And FMO Subtype Packet
 
 Automation run: `catalytic-earth-work-loop`

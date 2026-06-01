@@ -45,6 +45,7 @@ from .northstar_next_levers import (
     write_family_panel_evidence_packet,
     write_fold_augmented_abstention_gate,
     write_fold_augmented_abstention_threshold_contract,
+    write_fold_augmented_family_panel_m_csa_primary_channel_repair,
     write_fold_augmented_family_panel_missing_primary_channel_diagnosis,
     write_fold_augmented_family_panel_missing_primary_channel_queue,
     write_fold_augmented_family_panel_research_readout,
@@ -10902,6 +10903,9 @@ def cmd_build_family_panel_evidence_packet(args: argparse.Namespace) -> int:
         selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
         predicted_atlas_variants_path=Path(args.predicted_atlas_variants),
         predicted_structure_fold_channel_path=Path(args.predicted_structure_fold_channel),
+        m_csa_primary_channel_repair_path=Path(args.m_csa_primary_channel_repair)
+        if args.m_csa_primary_channel_repair
+        else None,
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
         panel_id=args.panel_id,
@@ -11136,6 +11140,41 @@ def cmd_build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
         "Wrote fold-augmented family-panel missing primary-channel diagnosis to "
         f"{args.out} (status: {audit.get('status')}, "
         f"diagnosed rows: {counts.get('diagnosed_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_family_panel_m_csa_primary_channel_repair(
+    args: argparse.Namespace,
+) -> int:
+    target_atlas_dir = Path(args.target_atlas_dir) if args.target_atlas_dir else None
+    audit = write_fold_augmented_family_panel_m_csa_primary_channel_repair(
+        missing_primary_channel_diagnosis_path=Path(
+            args.missing_primary_channel_diagnosis
+        ),
+        label_manifest_path=Path(args.label_manifest),
+        graph_path=Path(args.graph),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        predicted_structure_fold_channel_path=Path(
+            args.predicted_structure_fold_channel
+        ),
+        oos_calibrated_threshold_contract_path=Path(
+            args.oos_calibrated_threshold_contract
+        ),
+        coordinate_root=Path(args.coordinate_root),
+        foldseek_result_tsv=Path(args.foldseek_result_tsv),
+        foldseek_binary=args.foldseek_binary,
+        target_atlas_dir=target_atlas_dir,
+        threads=args.threads,
+        alphafold_version=args.alphafold_version,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel M-CSA primary-channel repair to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"score-complete rows: {counts.get('primary_channel_score_complete_rows')})"
     )
     return 0
 
@@ -21985,6 +22024,13 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
     )
     family_panel_packet.add_argument(
+        "--m-csa-primary-channel-repair",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_m_csa_primary_channel_"
+            "repair_current702_20260601.json"
+        ),
+    )
+    family_panel_packet.add_argument(
         "--out",
         default="artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json",
     )
@@ -22467,6 +22513,89 @@ def build_parser() -> argparse.ArgumentParser:
     )
     family_panel_missing_channel_diagnosis.set_defaults(
         func=cmd_build_fold_augmented_family_panel_missing_primary_channel_diagnosis
+    )
+
+    family_panel_m_csa_repair = subparsers.add_parser(
+        "build-fold-augmented-family-panel-m-csa-primary-channel-repair",
+        help=(
+            "repair and score review-only M-CSA rows missing the family-panel "
+            "primary geometry plus predicted-fold channel"
+        ),
+    )
+    family_panel_m_csa_repair.add_argument(
+        "--missing-primary-channel-diagnosis",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_"
+            "diagnosis_current702_20260601.json"
+        ),
+    )
+    family_panel_m_csa_repair.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    family_panel_m_csa_repair.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1025.json",
+    )
+    family_panel_m_csa_repair.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    family_panel_m_csa_repair.add_argument(
+        "--predicted-structure-fold-channel",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    )
+    family_panel_m_csa_repair.add_argument(
+        "--oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "oos_calibrated_current702_20260601.json"
+        ),
+    )
+    family_panel_m_csa_repair.add_argument(
+        "--coordinate-root",
+        default=(
+            "/private/tmp/catalytic-earth-family-panel-mcsa-primary-channel-"
+            "repair-current702"
+        ),
+    )
+    family_panel_m_csa_repair.add_argument(
+        "--target-atlas-dir",
+        default=(
+            "/private/tmp/catalytic-earth-predicted-structure-fold-channel-"
+            "current702/atlas_in_distribution"
+        ),
+    )
+    family_panel_m_csa_repair.add_argument(
+        "--foldseek-result-tsv",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_current702_"
+            "20260601_coordinates_foldseek_results/"
+            "family_panel_m_csa_repair_vs_atlas.tsv"
+        ),
+    )
+    family_panel_m_csa_repair.add_argument(
+        "--foldseek-binary",
+        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    )
+    family_panel_m_csa_repair.add_argument("--threads", type=int, default=4)
+    family_panel_m_csa_repair.add_argument("--alphafold-version", default="auto")
+    family_panel_m_csa_repair.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_m_csa_primary_channel_"
+            "repair_current702_20260601.json"
+        ),
+    )
+    family_panel_m_csa_repair.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_m_csa_primary_channel_repair_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_m_csa_repair.set_defaults(
+        func=cmd_build_fold_augmented_family_panel_m_csa_primary_channel_repair
     )
 
     active_site_role_sidecar = subparsers.add_parser(

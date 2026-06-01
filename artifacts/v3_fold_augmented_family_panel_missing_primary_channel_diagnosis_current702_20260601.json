@@ -1,16 +1,15 @@
 {
   "artifact_id": "v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601",
   "counts": {
-    "diagnosed_rows": 12,
+    "diagnosed_rows": 10,
     "diagnosis_counts": {
-      "needs_predicted_geometry_materialization": 2,
       "needs_source_backed_row_sidecar_and_coordinate_materialization": 10
     },
     "rows_with_heldout_fold_channel_score": 0,
     "rows_with_predicted_geometry_evidence": 0,
     "rows_with_train_calibration_fold_score": 0
   },
-  "created_utc": "2026-06-01T09:11:48Z",
+  "created_utc": "2026-06-01T09:55:09Z",
   "diagnosed_rows": [
     {
       "benchmark_role": null,
@@ -48,23 +47,6 @@
     },
     {
       "benchmark_role": null,
-      "diagnosis": "needs_predicted_geometry_materialization",
-      "entry_id": "m_csa:132",
-      "fold_score_evidence": null,
-      "guardrail_note": "review-only materialization diagnosis; no labels, registries, imports, thresholds, training data, or production scoring changed",
-      "local_review_evidence": null,
-      "original_score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
-      ],
-      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
-      "predicted_geometry_evidence": null,
-      "rank": 3,
-      "recommended_next_action": "repair or materialize predicted active-site geometry before attempting predicted-fold lookup",
-      "split_assignment": null
-    },
-    {
-      "benchmark_role": null,
       "diagnosis": "needs_source_backed_row_sidecar_and_coordinate_materialization",
       "entry_id": "external_glycoside_panel",
       "fold_score_evidence": null,
@@ -76,25 +58,8 @@
       ],
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "predicted_geometry_evidence": null,
-      "rank": 4,
+      "rank": 3,
       "recommended_next_action": "create a source-backed row sidecar with accession and coordinate materialization scope before geometry or fold scoring",
-      "split_assignment": null
-    },
-    {
-      "benchmark_role": null,
-      "diagnosis": "needs_predicted_geometry_materialization",
-      "entry_id": "m_csa:116",
-      "fold_score_evidence": null,
-      "guardrail_note": "review-only materialization diagnosis; no labels, registries, imports, thresholds, training data, or production scoring changed",
-      "local_review_evidence": null,
-      "original_score_blockers": [
-        "predicted_geometry_top1_score_missing",
-        "predicted_structure_fold_tm_missing"
-      ],
-      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
-      "predicted_geometry_evidence": null,
-      "rank": 5,
-      "recommended_next_action": "repair or materialize predicted active-site geometry before attempting predicted-fold lookup",
       "split_assignment": null
     },
     {
@@ -110,7 +75,7 @@
       ],
       "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
       "predicted_geometry_evidence": null,
-      "rank": 6,
+      "rank": 4,
       "recommended_next_action": "create a source-backed row sidecar with accession and coordinate materialization scope before geometry or fold scoring",
       "split_assignment": null
     },
@@ -127,7 +92,7 @@
       ],
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_evidence": null,
-      "rank": 7,
+      "rank": 5,
       "recommended_next_action": "create a source-backed row sidecar with accession and coordinate materialization scope before geometry or fold scoring",
       "split_assignment": null
     },
@@ -144,7 +109,7 @@
       ],
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_evidence": null,
-      "rank": 8,
+      "rank": 6,
       "recommended_next_action": "create a source-backed row sidecar with accession and coordinate materialization scope before geometry or fold scoring",
       "split_assignment": null
     },
@@ -161,7 +126,7 @@
       ],
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_evidence": null,
-      "rank": 9,
+      "rank": 7,
       "recommended_next_action": "create a source-backed row sidecar with accession and coordinate materialization scope before geometry or fold scoring",
       "split_assignment": null
     },
@@ -178,7 +143,7 @@
       ],
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_evidence": null,
-      "rank": 10,
+      "rank": 8,
       "recommended_next_action": "create a source-backed row sidecar with accession and coordinate materialization scope before geometry or fold scoring",
       "split_assignment": null
     },
@@ -195,7 +160,7 @@
       ],
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_evidence": null,
-      "rank": 11,
+      "rank": 9,
       "recommended_next_action": "create a source-backed row sidecar with accession and coordinate materialization scope before geometry or fold scoring",
       "split_assignment": null
     },
@@ -212,7 +177,7 @@
       ],
       "panel_id": "no_reliable_structure_metal_hydrolase_controls",
       "predicted_geometry_evidence": null,
-      "rank": 12,
+      "rank": 10,
       "recommended_next_action": "create a source-backed row sidecar with accession and coordinate materialization scope before geometry or fold scoring",
       "split_assignment": null
     }
@@ -244,7 +209,7 @@
     "missing_primary_channel_queue": {
       "exists": true,
       "path": "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json",
-      "sha256": "ca53def92b76ea3c056128a815f1d427641be7b4e3cd251d8c72df7f71ee05ee"
+      "sha256": "61470de4460ae204e76bc235211f802719139d0fe7cf6a5ace15ddf11ef3359c"
     },
     "predicted_geometry_atlas_retrieval": {
       "exists": true,

@@ -1,6 +1,6 @@
 # Family Panel Evidence Packet - near_orphan_glycoside_or_nucleoside_hydrolase_controls
 
-Run: 2026-06-01T08:02:12Z
+Run: 2026-06-01T09:47:29Z
 
 Review-only evidence packet for the highest-value family-set expansion panel `near_orphan_glycoside_or_nucleoside_hydrolase_controls`: cofactor-confounded OOS boundary rows that stress the current de novo abstention gate.
 
@@ -8,14 +8,14 @@ Review-only evidence packet for the highest-value family-set expansion panel `ne
 
 - evidence_packet_ready_with_geometry_gaps
 - Candidate rows: 4
-- Predicted geometry ok rows: 1
+- Predicted geometry ok rows: 2
 
 ## Row Evidence
 
 | Row | geometry top1 | geom score | cofactor max | selected-PDB fold prob | predicted-fold TM | robust atlas distance signal |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | m_csa:10 | heme_peroxidase_oxidase | 0.356 | 0.017518 | None | 0.4733 | -1.534108 |
-| m_csa:116 | None | None | 0.050535 | None | None | None |
+| m_csa:116 | metal_dependent_hydrolase | 0.3734 | 0.050535 | None | 0.5417 | None |
 | mh_073 | None | None | None | None | None | None |
 | external_glycoside_panel | None | None | None | None | None | None |
 

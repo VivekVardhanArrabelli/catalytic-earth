@@ -1,131 +1,137 @@
 {
   "artifact_id": "v3_fmo_subtype_hard_negative_packet_current702_20260601",
-  "schema_version": "northstar_next_levers.v0.fmo_subtype_hard_negative_packet",
-  "created_utc": "2026-06-01T09:17:00Z",
-  "status": "fmo_subtype_hard_negative_packet_ready_review_only",
-  "scope": "Review-only FMO subtype and hard-negative packet built from frozen current702 family-panel readouts, source checks, and local adjudications. It does not authorize a family promotion.",
-  "guardrails": {
-    "review_only": true,
-    "labels_registries_ontologies_changed": false,
-    "imports_or_promotions_performed": false,
-    "production_thresholds_changed": false,
-    "threshold_values_changed": false,
-    "new_source_data_fetched": false,
-    "model_weights_fit_or_refit": false,
-    "heldout_rows_used_for_training": false
-  },
   "counts": {
-    "rows": 5,
     "current_primary_fmo_rows": 0,
-    "secondary_or_future_support_rows": 3,
-    "hard_negative_or_boundary_rows": 2,
+    "geometry_or_coordinate_blocked_rows": 1,
+    "hard_negative_or_boundary_rows": 1,
     "import_ready_rows": 0,
     "registry_edit_allowed_rows": 0,
-    "geometry_or_coordinate_blocked_rows": 2,
+    "rows": 5,
+    "secondary_or_future_support_rows": 4,
     "subtype_lanes": {
       "canonical_phbh_like_single_component_fmo": 1,
-      "two_component_fmnh2_sulfur_monooxygenase": 2,
       "phenol_monooxygenase_future_support": 1,
-      "radical_flavin_fe_s_boundary_negative": 1
+      "radical_flavin_fe_s_boundary_negative": 1,
+      "two_component_fmnh2_sulfur_monooxygenase": 2
     }
   },
-  "panel_rows": [
-    {
-      "entry_id": "m_csa:131",
-      "current_role": "secondary_probe",
-      "subtype_lane": "canonical_phbh_like_single_component_fmo",
-      "fold_augmented_readout": {
-        "research_gate_status": "non_abstained_at_research_threshold",
-        "combined_mean_geometry_fold": 0.63575,
-        "source_check_result": "confirm_secondary_fmo_probe_support_no_primary_promotion"
-      },
-      "decision": "keep_as_secondary_probe_support",
-      "hard_negative_role": "positive_support_not_primary_import",
-      "next_action": "Use as source-checked FMO support only after subtype, coordinate, hard-negative, and expert-admission gates are satisfied."
-    },
-    {
-      "entry_id": "m_csa:132",
-      "current_role": "current702_m_csa_geometry_gap",
-      "subtype_lane": "two_component_fmnh2_sulfur_monooxygenase",
-      "fold_augmented_readout": {
-        "research_gate_status": "not_score_complete_for_primary_channel",
-        "score_blockers": [
-          "predicted_geometry_top1_score_missing",
-          "predicted_structure_fold_tm_missing"
-        ]
-      },
-      "decision": "repair_geometry_before_fmo_use",
-      "hard_negative_role": "blocked_positive_candidate",
-      "next_action": "Repair or materialize predicted active-site geometry before predicted-fold lookup or FMO subtype evidence use."
-    },
-    {
-      "entry_id": "m_csa:551",
-      "current_role": "future_support_review_only",
-      "subtype_lane": "phenol_monooxygenase_future_support",
-      "fold_augmented_readout": {
-        "research_gate_status": "non_abstained_at_research_threshold",
-        "combined_mean_geometry_fold": 0.60245,
-        "source_check_result": "confirm_future_fmo_support_no_registry_change"
-      },
-      "local_adjudication": {
-        "mechanism_clean": true,
-        "coordinate_clean": true,
-        "import_ready": false,
-        "registry_edit_allowed": false
-      },
-      "decision": "future_support_only_no_registry_change",
-      "hard_negative_role": "future_positive_support_not_countable",
-      "next_action": "Keep as future FMO support and pair with hard negatives before any promotion reconsideration."
-    },
-    {
-      "entry_id": "m_csa:973",
-      "current_role": "future_support_review_only",
-      "subtype_lane": "two_component_fmnh2_sulfur_monooxygenase",
-      "fold_augmented_readout": {
-        "research_gate_status": "abstained_at_research_threshold",
-        "combined_mean_geometry_fold": 0.41,
-        "fold_score_source": "fold_augmented_train_cal_threshold_contract_calibration_row"
-      },
-      "local_adjudication": {
-        "mechanism_clean": true,
-        "coordinate_clean": false,
-        "import_ready": false,
-        "registry_edit_allowed": false
-      },
-      "decision": "mechanism_clean_but_coordinate_blocked_and_threshold_abstained",
-      "hard_negative_role": "future_positive_support_not_countable",
-      "next_action": "Carry as mechanism-clean support only; keep coordinate caveat and no label, registry, or import change."
-    },
-    {
-      "entry_id": "m_csa:750",
-      "current_role": "oos_boundary_negative",
-      "subtype_lane": "radical_flavin_fe_s_boundary_negative",
-      "fold_augmented_readout": {
-        "research_gate_status": "non_abstained_at_research_threshold",
-        "combined_mean_geometry_fold": 0.4995,
-        "source_check_result": "keep_as_oos_boundary_and_future_radical_flavin_fe_s_candidate"
-      },
-      "decision": "keep_as_oos_boundary_negative_for_current_fmo_scope",
-      "hard_negative_role": "radical_flavin_fe_s_boundary",
-      "next_action": "Use as review-only hard-negative/boundary evidence, not as FMO, cobalamin, radical-SAM, or flavin-family promotion support."
-    }
-  ],
+  "created_utc": "2026-06-01T09:50:41Z",
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_source_data_fetched": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
   "hard_negative_requirements_before_fmo_promotion": [
     "subtype lanes must distinguish PHBH-like single-component monooxygenases from two-component FMNH2 sulfur monooxygenases and phenol monooxygenases",
     "hard negatives must include flavin dehydrogenase/reductase, radical flavin Fe-S, and generic metal/hydrolase false-positive contexts",
     "all countable support rows need coordinate-clean active-site materialization and source-backed cofactor/redox-partner evidence",
     "future import requires label-factory gate, duplicate/leakage screen, registry summary refresh, and explicit expert acceptance"
   ],
+  "interpretation": {
+    "headline": "m_csa:132 is now score-complete and source-checked as secondary FMO support, while m_csa:973 remains coordinate/threshold blocked and m_csa:750 remains the radical flavin/Fe-S boundary negative.",
+    "next_action": "Keep all FMO rows review-only; next clear coordinate/subtype/hard-negative and expert-admission blockers before any primary FMO promotion discussion."
+  },
+  "panel_rows": [
+    {
+      "current_role": "secondary_probe",
+      "decision": "keep_as_secondary_probe_support",
+      "entry_id": "m_csa:131",
+      "fold_augmented_readout": {
+        "combined_mean_geometry_fold": 0.63575,
+        "research_gate_status": "non_abstained_at_research_threshold",
+        "source_check_result": "confirm_secondary_fmo_probe_support_no_primary_promotion"
+      },
+      "hard_negative_role": "positive_support_not_primary_import",
+      "next_action": "Use as source-checked FMO support only after subtype, coordinate, hard-negative, and expert-admission gates are satisfied.",
+      "subtype_lane": "canonical_phbh_like_single_component_fmo"
+    },
+    {
+      "current_role": "secondary_probe_geometry_repaired_review_only",
+      "decision": "keep_as_secondary_fmo_support_after_geometry_repair_no_primary_promotion",
+      "entry_id": "m_csa:132",
+      "fold_augmented_readout": {
+        "combined_mean_geometry_fold": 0.53865,
+        "fold_score_source": "family_panel_packet_predicted_structure_fold_channel",
+        "research_gate_status": "non_abstained_at_research_threshold",
+        "source_check_result": "confirm_secondary_fmo_support_after_geometry_repair_no_primary_promotion"
+      },
+      "hard_negative_role": "positive_support_not_primary_import",
+      "next_action": "Use as source-checked secondary FMO support only; do not promote primary FMO or edit registries until subtype, hard-negative, duplicate/leakage, coordinate, and expert-admission gates are satisfied.",
+      "subtype_lane": "two_component_fmnh2_sulfur_monooxygenase"
+    },
+    {
+      "current_role": "future_support_review_only",
+      "decision": "future_support_only_no_registry_change",
+      "entry_id": "m_csa:551",
+      "fold_augmented_readout": {
+        "combined_mean_geometry_fold": 0.60245,
+        "research_gate_status": "non_abstained_at_research_threshold",
+        "source_check_result": "confirm_future_fmo_support_no_registry_change"
+      },
+      "hard_negative_role": "future_positive_support_not_countable",
+      "local_adjudication": {
+        "coordinate_clean": true,
+        "import_ready": false,
+        "mechanism_clean": true,
+        "registry_edit_allowed": false
+      },
+      "next_action": "Keep as future FMO support and pair with hard negatives before any promotion reconsideration.",
+      "subtype_lane": "phenol_monooxygenase_future_support"
+    },
+    {
+      "current_role": "future_support_review_only",
+      "decision": "mechanism_clean_but_coordinate_blocked_and_threshold_abstained",
+      "entry_id": "m_csa:973",
+      "fold_augmented_readout": {
+        "combined_mean_geometry_fold": 0.41,
+        "fold_score_source": "fold_augmented_train_cal_threshold_contract_calibration_row",
+        "research_gate_status": "abstained_at_research_threshold"
+      },
+      "hard_negative_role": "future_positive_support_not_countable",
+      "local_adjudication": {
+        "coordinate_clean": false,
+        "import_ready": false,
+        "mechanism_clean": true,
+        "registry_edit_allowed": false
+      },
+      "next_action": "Carry as mechanism-clean support only; keep coordinate caveat and no label, registry, or import change.",
+      "subtype_lane": "two_component_fmnh2_sulfur_monooxygenase"
+    },
+    {
+      "current_role": "oos_boundary_negative",
+      "decision": "keep_as_oos_boundary_negative_for_current_fmo_scope",
+      "entry_id": "m_csa:750",
+      "fold_augmented_readout": {
+        "combined_mean_geometry_fold": 0.4995,
+        "research_gate_status": "non_abstained_at_research_threshold",
+        "source_check_result": "keep_as_oos_boundary_and_future_radical_flavin_fe_s_candidate"
+      },
+      "hard_negative_role": "radical_flavin_fe_s_boundary",
+      "next_action": "Use as review-only hard-negative/boundary evidence, not as FMO, cobalamin, radical-SAM, or flavin-family promotion support.",
+      "subtype_lane": "radical_flavin_fe_s_boundary_negative"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fmo_subtype_hard_negative_packet",
+  "scope": "Review-only FMO subtype and hard-negative packet built from frozen current702 family-panel readouts, source checks, and local adjudications. It does not authorize a family promotion.",
   "source_artifacts": {
-    "family_panel_research_readout": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
-    "missing_primary_channel_queue": "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json",
+    "family_panel_research_readout": {
+      "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
+      "sha256": "12dd69fc5890b68eb05577cf3a021657757598f2021e34ee45a33ff1ba451759"
+    },
+    "fmo_local_candidate_adjudication": "artifacts/v3_fmo_local_candidate_adjudication_551_973_702_20260528.json",
     "m_csa131_source_check": "artifacts/v3_fold_augmented_family_panel_source_check_m_csa131_current702_20260601.json",
+    "m_csa132_source_check": {
+      "path": "artifacts/v3_fold_augmented_family_panel_source_check_m_csa132_current702_20260601.json",
+      "sha256": "4febdb5ebe262ccd2c722dd3a9990f16a0726826a7c1808057908e7f5de5f429"
+    },
     "m_csa551_source_check": "artifacts/v3_fold_augmented_family_panel_source_check_m_csa551_current702_20260601.json",
     "m_csa750_source_check": "artifacts/v3_fold_augmented_family_panel_source_check_m_csa750_current702_20260601.json",
-    "fmo_local_candidate_adjudication": "artifacts/v3_fmo_local_candidate_adjudication_551_973_702_20260528.json"
+    "missing_primary_channel_queue": "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json"
   },
-  "interpretation": {
-    "headline": "The FMO panel remains review-only: no row is import-ready or registry-edit-ready, and current support is subtype- and coordinate-blocked.",
-    "next_action": "Repair m_csa:132 geometry and build source-backed subtype/hard-negative sidecars before any FMO promotion reconsideration."
-  }
+  "status": "fmo_subtype_hard_negative_packet_ready_review_only"
 }

@@ -2,15 +2,13 @@
   "artifact_id": "v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601",
   "counts": {
     "candidate_rows": 4,
-    "missing_geometry_entry_ids": [
-      "m_csa:132"
-    ],
-    "predicted_geometry_ok_rows": 3,
-    "rows_with_predicted_structure_fold_hits": 2,
+    "missing_geometry_entry_ids": [],
+    "predicted_geometry_ok_rows": 4,
+    "rows_with_predicted_structure_fold_hits": 3,
     "rows_with_selected_organic_cofactor_scores": 4,
     "rows_with_selected_pdb_fold_proxy": 0
   },
-  "created_utc": "2026-06-01T07:47:14Z",
+  "created_utc": "2026-06-01T09:47:29Z",
   "guardrails": {
     "heldout_rows_used_for_training": false,
     "heldout_splits_changed": false,
@@ -59,6 +57,7 @@
         "negative_nearest_class_centroid_robust_distance": -1.376203,
         "top1_score_raw": 0.3522
       },
+      "predicted_geometry_accession_repair": null,
       "predicted_geometry_status": "ok",
       "predicted_geometry_top1": {
         "cofactor_context_score": 0.2,
@@ -69,7 +68,8 @@
       "predicted_structure_fold_channel": {
         "nearest_atlas_entry_id": "m_csa:281",
         "nearest_atlas_tm_score": 0.751,
-        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase"
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "score_source": "predicted_structure_fold_channel"
       },
       "selected_organic_cofactor_max": 0.980908,
       "selected_organic_cofactor_scores": {
@@ -86,24 +86,33 @@
       "split_assignment": "heldout"
     },
     {
-      "benchmark_role": null,
+      "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
       "entry_id": "m_csa:132",
       "evidence_role": "cofactor-confounded OOS control: known organic cofactor-like signal with weak/novel fold or geometry support against occupied primary mechanisms",
       "predicted_atlas_geometry_variant_scores": {
         "negative_nearest_class_centroid_robust_distance": null,
         "top1_score_raw": null
       },
-      "predicted_geometry_status": "missing",
+      "predicted_geometry_accession_repair": {
+        "original_accession": "P07739",
+        "policy": "best_real_sequence_accession_by_active_site_coverage",
+        "selected_accession": "P07740",
+        "selected_residue_count": 5,
+        "skipped_nonmatching_residue_count": 0,
+        "total_residue_node_count": 5
+      },
+      "predicted_geometry_status": "ok",
       "predicted_geometry_top1": {
         "cofactor_context_score": null,
-        "fingerprint_id": null,
+        "fingerprint_id": "ser_his_acid_hydrolase",
         "role_match_fraction": null,
-        "score": null
+        "score": 0.3894
       },
       "predicted_structure_fold_channel": {
-        "nearest_atlas_entry_id": null,
-        "nearest_atlas_tm_score": null,
-        "nearest_atlas_true_fingerprint_id": null
+        "nearest_atlas_entry_id": "m_csa:120",
+        "nearest_atlas_tm_score": 0.6879,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "score_source": "m_csa_primary_channel_repair"
       },
       "selected_organic_cofactor_max": 0.010805,
       "selected_organic_cofactor_scores": {
@@ -117,7 +126,7 @@
         "nearest_train_label_group": null,
         "top3_primary_foldseek_prob": null
       },
-      "split_assignment": null
+      "split_assignment": "in_distribution"
     },
     {
       "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
@@ -127,6 +136,7 @@
         "negative_nearest_class_centroid_robust_distance": -1.385598,
         "top1_score_raw": 0.3583
       },
+      "predicted_geometry_accession_repair": null,
       "predicted_geometry_status": "ok",
       "predicted_geometry_top1": {
         "cofactor_context_score": 0.2,
@@ -137,7 +147,8 @@
       "predicted_structure_fold_channel": {
         "nearest_atlas_entry_id": "m_csa:281",
         "nearest_atlas_tm_score": 0.7309,
-        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase"
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "score_source": "predicted_structure_fold_channel"
       },
       "selected_organic_cofactor_max": 0.922628,
       "selected_organic_cofactor_scores": {
@@ -161,6 +172,7 @@
         "negative_nearest_class_centroid_robust_distance": null,
         "top1_score_raw": null
       },
+      "predicted_geometry_accession_repair": null,
       "predicted_geometry_status": "ok",
       "predicted_geometry_top1": {
         "cofactor_context_score": 0.2,
@@ -171,7 +183,8 @@
       "predicted_structure_fold_channel": {
         "nearest_atlas_entry_id": null,
         "nearest_atlas_tm_score": null,
-        "nearest_atlas_true_fingerprint_id": null
+        "nearest_atlas_true_fingerprint_id": null,
+        "score_source": null
       },
       "selected_organic_cofactor_max": 0.993434,
       "selected_organic_cofactor_scores": {
@@ -199,6 +212,10 @@
       "path": "artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
       "sha256": "03515cb359fe0ebf4c673117201a2addf2d75e03af5f89ba58fc77891c47f85d"
     },
+    "m_csa_primary_channel_repair": {
+      "path": "artifacts/v3_fold_augmented_family_panel_m_csa_primary_channel_repair_current702_20260601.json",
+      "sha256": "d40aff436705c30dc143edbee77ee22a7076972bf887584b826a1d041a3632a9"
+    },
     "predicted_atlas_variants": {
       "path": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
       "sha256": "1c09f7cad3bec0da694e03ac1d60f9c6bc96e9208d13bbb06a90095170a2ef13"
@@ -216,5 +233,5 @@
       "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
     }
   },
-  "status": "evidence_packet_ready_with_geometry_gaps"
+  "status": "evidence_packet_ready_review_only"
 }
