@@ -1,0 +1,139 @@
+{
+  "artifact_id": "v3_fold_only_train_cal_oos_negative_surface_current702_20260601",
+  "counts": {
+    "fold_only_rows": 10,
+    "max_nearest_train_tm": 0.6857,
+    "mean_nearest_train_tm": 0.53259,
+    "min_nearest_train_tm": 0.419,
+    "nearest_train_fingerprint_counts": {
+      "flavin_dehydrogenase_reductase": 3,
+      "metal_dependent_hydrolase": 3,
+      "plp_dependent_enzyme": 1,
+      "ser_his_acid_hydrolase": 3
+    }
+  },
+  "created_utc": "2026-06-01T05:14:00Z",
+  "guardrails": {
+    "fold_only_not_combined_geometry_threshold": true,
+    "heldout_rows_used_for_selection_or_scoring": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false
+  },
+  "interpretation": {
+    "headline": "Calibration OOS candidates with fold evidence but missing geometry are available for fold-only sensitivity checks.",
+    "next_action": "Use these only for fold-only diagnostics or repair active-site geometry eligibility before combined threshold calibration."
+  },
+  "rows": [
+    {
+      "accession": "P13448",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:57",
+      "fold_novelty_direction": "lower_nearest_train_tm_is_more_fold_novel",
+      "nearest_train_atlas_entry_id": "m_csa:472",
+      "nearest_train_atlas_tm_score": 0.4255,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "P21873",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:106",
+      "fold_novelty_direction": "lower_nearest_train_tm_is_more_fold_novel",
+      "nearest_train_atlas_entry_id": "m_csa:275",
+      "nearest_train_atlas_tm_score": 0.6479,
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "P00829",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:178",
+      "fold_novelty_direction": "lower_nearest_train_tm_is_more_fold_novel",
+      "nearest_train_atlas_entry_id": "m_csa:94",
+      "nearest_train_atlas_tm_score": 0.4969,
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "P10746",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:204",
+      "fold_novelty_direction": "lower_nearest_train_tm_is_more_fold_novel",
+      "nearest_train_atlas_entry_id": "m_csa:337",
+      "nearest_train_atlas_tm_score": 0.5651,
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "O66186",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:284",
+      "fold_novelty_direction": "lower_nearest_train_tm_is_more_fold_novel",
+      "nearest_train_atlas_entry_id": "m_csa:430",
+      "nearest_train_atlas_tm_score": 0.4309,
+      "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+      "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "Q06128",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:314",
+      "fold_novelty_direction": "lower_nearest_train_tm_is_more_fold_novel",
+      "nearest_train_atlas_entry_id": "m_csa:353",
+      "nearest_train_atlas_tm_score": 0.419,
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "B9JNP7",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:503",
+      "fold_novelty_direction": "lower_nearest_train_tm_is_more_fold_novel",
+      "nearest_train_atlas_entry_id": "m_csa:11",
+      "nearest_train_atlas_tm_score": 0.6857,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "P31572",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:531",
+      "fold_novelty_direction": "lower_nearest_train_tm_is_more_fold_novel",
+      "nearest_train_atlas_entry_id": "m_csa:862",
+      "nearest_train_atlas_tm_score": 0.611,
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "P78549",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "uniprot:P78549",
+      "fold_novelty_direction": "lower_nearest_train_tm_is_more_fold_novel",
+      "nearest_train_atlas_entry_id": "m_csa:83",
+      "nearest_train_atlas_tm_score": 0.4411,
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_geometry_status": "missing"
+    },
+    {
+      "accession": "Q3LXA3",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "uniprot:Q3LXA3",
+      "fold_novelty_direction": "lower_nearest_train_tm_is_more_fold_novel",
+      "nearest_train_atlas_entry_id": "m_csa:518",
+      "nearest_train_atlas_tm_score": 0.6028,
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "predicted_geometry_status": "missing"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Fold-only salvage surface for train/cal OOS negatives with real Foldseek/TM hits but missing predicted-geometry channel scores.",
+  "source_artifacts": {
+    "train_cal_oos_surface": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json",
+      "sha256": "8a4928a5d6c530c9815b6d7607da7d4701e4e167f2d480213174d72243e74497"
+    }
+  },
+  "status": "fold_only_negative_surface_ready"
+}

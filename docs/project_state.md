@@ -1,6 +1,6 @@
 # Project State
 
-Last refreshed: 2026-05-29
+Last refreshed: 2026-06-01
 
 This file is the durable state summary for agents who do not have chat context.
 Treat it as an orientation layer, not as a replacement for the referenced
@@ -74,12 +74,26 @@ artifacts first.
   in-scope retention. Heldout final readout at that fixed threshold retains
   45/47 in-scope rows, abstains on 44/79 OOS rows, and abstains on 5/6
   cofactor-confounded OOS rows. This is a research contract, not a production
-  threshold, because train/cal OOS negatives are not yet available for threshold
-  optimization.
+  threshold.
+- A train/cal OOS-negative calibration surface now exists for the fold-augmented
+  gate. The hash-selected 76-row surface has 65 score-complete rows with
+  predicted geometry, selected organic cofactor scores, and exact Foldseek/TM
+  nearest-train scores. The OOS-calibrated research contract keeps the primary
+  `combined_mean_geometry_fold` threshold at `0.44155`; at that threshold it
+  abstains on 25/65 calibration OOS negatives while preserving the heldout final
+  readout above. The surface remains partial because 10 candidates lack
+  targetable predicted geometry and one AFDB query coordinate is unavailable.
 - Learned-representation results are diagnostic, not decision-grade. ESM-2
   logistic is the strongest local learned comparator in the Wave 1.2 table but
   does not displace geometry. ESM-C logistic versus ESM-C cosine shows decoder
   choice is a real confound.
+- Mechanism-feature embedding readiness now includes a normalized row-level
+  active-site residue-role graph sidecar for 656 current702 rows. This closes
+  the role-vocabulary sidecar gap only; directed electron/proton-transfer edges
+  and row-specific bond-change mapping remain future feature work. A separate
+  reaction-center template sidecar row-aligns fingerprint-level chemical
+  operations and bond-change descriptors for 232 rows, but it is not
+  row-specific reaction evidence.
 - ProtT5 and SaProt have only NN/cosine-style local standardized exports today.
   Matched logistic-head reruns are blocked until raw local sidecars or weights
   exist; do not download large models for this by default.
@@ -110,9 +124,9 @@ artifacts first.
 
 ## Next Gates
 
-1. Score the staged 76-row in-distribution OOS calibration-negative surface for
-   the fold-augmented gate, or explicitly keep the current threshold contract as
-   an in-scope retention-only research gate.
+1. Decide whether the partial 65-row train/cal OOS-negative calibration surface
+   is sufficient for the fold-augmented research gate, or clear the remaining
+   candidate geometry blockers before any stronger threshold claim.
 2. If representation work resumes, produce row-aligned local sidecars first,
    then train heads on train/cal rows only and evaluate heldout once, including
    a predicted-geometry robustness cell.

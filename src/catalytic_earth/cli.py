@@ -45,8 +45,14 @@ from .northstar_next_levers import (
     write_family_panel_evidence_packet,
     write_fold_augmented_abstention_gate,
     write_fold_augmented_abstention_threshold_contract,
+    write_fold_augmented_oos_calibrated_threshold_contract,
+    write_fold_augmented_train_cal_oos_negative_surface_blocker_resolution,
+    write_fold_augmented_train_cal_oos_negative_surface_scores,
     write_fold_level_novelty_signal,
+    write_fold_only_train_cal_oos_negative_surface,
     write_learned_mechanism_feature_embedding_plan,
+    write_mechanism_feature_active_site_role_graph_sidecar,
+    write_mechanism_feature_reaction_center_template_sidecar,
     write_predicted_atlas_geometry_novelty_variants,
     write_predicted_structure_fold_channel,
     write_selected_organic_cofactor_sidecar_schema_audit,
@@ -10922,6 +10928,113 @@ def cmd_eval_fold_augmented_abstention_threshold_contract(args: argparse.Namespa
     return 0
 
 
+def cmd_score_fold_augmented_train_cal_oos_negative_surface(args: argparse.Namespace) -> int:
+    audit = write_fold_augmented_train_cal_oos_negative_surface_scores(
+        negative_surface_manifest_path=Path(args.negative_surface_manifest),
+        label_manifest_path=Path(args.label_manifest),
+        graph_path=Path(args.graph),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        threshold_contract_path=Path(args.threshold_contract),
+        predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
+        selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
+        coordinate_root=Path(args.coordinate_root),
+        train_cal_oos_foldseek_tsv=Path(args.train_cal_oos_foldseek_tsv),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        foldseek_binary=args.foldseek_binary,
+        alphafold_version=args.alphafold_version,
+        threads=args.threads,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented train/cal OOS negative surface scores to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"full score rows: {counts.get('candidate_rows_with_full_channel_scores')})"
+    )
+    return 0
+
+
+def cmd_eval_fold_augmented_oos_calibrated_threshold_contract(args: argparse.Namespace) -> int:
+    audit = write_fold_augmented_oos_calibrated_threshold_contract(
+        threshold_contract_path=Path(args.threshold_contract),
+        train_cal_oos_surface_path=Path(args.train_cal_oos_surface),
+        fold_augmented_gate_path=Path(args.fold_augmented_gate),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    primary = audit.get("primary_channel_readout", {})
+    selected = (
+        primary.get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain")
+        or {}
+    )
+    print(
+        "Wrote fold-augmented OOS-calibrated threshold contract to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"primary threshold: {selected.get('threshold')})"
+    )
+    return 0
+
+
+def cmd_build_fold_only_train_cal_oos_negative_surface(args: argparse.Namespace) -> int:
+    audit = write_fold_only_train_cal_oos_negative_surface(
+        train_cal_oos_surface_path=Path(args.train_cal_oos_surface),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-only train/cal OOS negative surface to "
+        f"{args.out} (rows: {counts.get('fold_only_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_train_cal_oos_negative_surface_blocker_resolution(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_train_cal_oos_negative_surface_blocker_resolution(
+        train_cal_oos_surface_path=Path(args.train_cal_oos_surface),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented train/cal OOS blocker resolution to "
+        f"{args.out} (missing rows: {counts.get('missing_full_score_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_active_site_role_graph_sidecar(args: argparse.Namespace) -> int:
+    audit = write_mechanism_feature_active_site_role_graph_sidecar(
+        label_manifest_path=Path(args.label_manifest),
+        graph_path=Path(args.graph),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote mechanism-feature active-site role graph sidecar to "
+        f"{args.out} (ok rows: {counts.get('rows_with_ok_role_graph')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_reaction_center_template_sidecar(args: argparse.Namespace) -> int:
+    audit = write_mechanism_feature_reaction_center_template_sidecar(
+        label_manifest_path=Path(args.label_manifest),
+        mechanism_fingerprints_path=Path(args.mechanism_fingerprints),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote mechanism-feature reaction-center template sidecar to "
+        f"{args.out} (template rows: {counts.get('rows_with_template')})"
+    )
+    return 0
+
+
 def cmd_build_learned_mechanism_feature_embedding_plan(args: argparse.Namespace) -> int:
     audit = write_learned_mechanism_feature_embedding_plan(
         mechanism_fingerprints_path=Path(args.mechanism_fingerprints),
@@ -10930,6 +11043,16 @@ def cmd_build_learned_mechanism_feature_embedding_plan(args: argparse.Namespace)
         predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
+        active_site_role_graph_sidecar_path=(
+            Path(args.active_site_role_graph_sidecar)
+            if args.active_site_role_graph_sidecar
+            else None
+        ),
+        reaction_center_template_sidecar_path=(
+            Path(args.reaction_center_template_sidecar)
+            if args.reaction_center_template_sidecar
+            else None
+        ),
     )
     coverage = audit.get("available_feature_spec", {}).get("feature_coverage", {})
     print(
@@ -21752,6 +21875,228 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_eval_fold_augmented_abstention_threshold_contract
     )
 
+    train_cal_oos_surface = subparsers.add_parser(
+        "score-fold-augmented-train-cal-oos-negative-surface",
+        help=(
+            "score hash-selected in-distribution OOS calibration negatives with "
+            "predicted geometry plus Foldseek/TM against the threshold-contract train atlas"
+        ),
+    )
+    train_cal_oos_surface.add_argument(
+        "--negative-surface-manifest",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    train_cal_oos_surface.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    train_cal_oos_surface.add_argument("--graph", default="artifacts/v1_graph_1025.json")
+    train_cal_oos_surface.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    train_cal_oos_surface.add_argument(
+        "--threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    train_cal_oos_surface.add_argument(
+        "--predicted-geometry-atlas",
+        default="artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+    )
+    train_cal_oos_surface.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+    )
+    train_cal_oos_surface.add_argument(
+        "--coordinate-root",
+        default="/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek",
+    )
+    train_cal_oos_surface.add_argument(
+        "--train-cal-oos-foldseek-tsv",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_current702_20260601_"
+            "coordinates_foldseek_results/train_cal_oos_negatives_vs_train_atlas.tsv"
+        ),
+    )
+    train_cal_oos_surface.add_argument(
+        "--foldseek-binary",
+        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    )
+    train_cal_oos_surface.add_argument("--alphafold-version", default="auto")
+    train_cal_oos_surface.add_argument("--threads", type=int, default=4)
+    train_cal_oos_surface.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_"
+            "current702_20260601.json"
+        ),
+    )
+    train_cal_oos_surface.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_train_cal_oos_negative_surface_scores_"
+            "current702_20260601.md"
+        ),
+    )
+    train_cal_oos_surface.set_defaults(
+        func=cmd_score_fold_augmented_train_cal_oos_negative_surface
+    )
+
+    oos_calibrated_threshold = subparsers.add_parser(
+        "eval-fold-augmented-oos-calibrated-threshold-contract",
+        help=(
+            "select fold-augmented abstention thresholds using calibration "
+            "in-scope rows plus train/cal OOS negative scores"
+        ),
+    )
+    oos_calibrated_threshold.add_argument(
+        "--threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    oos_calibrated_threshold.add_argument(
+        "--train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_"
+            "current702_20260601.json"
+        ),
+    )
+    oos_calibrated_threshold.add_argument(
+        "--fold-augmented-gate",
+        default="artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json",
+    )
+    oos_calibrated_threshold.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "oos_calibrated_current702_20260601.json"
+        ),
+    )
+    oos_calibrated_threshold.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_abstention_threshold_contract_oos_calibrated_"
+            "current702_20260601.md"
+        ),
+    )
+    oos_calibrated_threshold.set_defaults(
+        func=cmd_eval_fold_augmented_oos_calibrated_threshold_contract
+    )
+
+    fold_only_oos_surface = subparsers.add_parser(
+        "build-fold-only-train-cal-oos-negative-surface",
+        help="write a fold-only salvage surface for train/cal OOS negatives missing combined geometry+fold scores",
+    )
+    fold_only_oos_surface.add_argument(
+        "--train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_"
+            "current702_20260601.json"
+        ),
+    )
+    fold_only_oos_surface.add_argument(
+        "--out",
+        default="artifacts/v3_fold_only_train_cal_oos_negative_surface_current702_20260601.json",
+    )
+    fold_only_oos_surface.add_argument(
+        "--report",
+        default="work/fold_only_train_cal_oos_negative_surface_current702_20260601.md",
+    )
+    fold_only_oos_surface.set_defaults(
+        func=cmd_build_fold_only_train_cal_oos_negative_surface
+    )
+
+    train_cal_oos_blockers = subparsers.add_parser(
+        "build-fold-augmented-train-cal-oos-negative-surface-blocker-resolution",
+        help="write row-level blocker resolution for train/cal OOS negatives missing combined channel scores",
+    )
+    train_cal_oos_blockers.add_argument(
+        "--train-cal-oos-surface",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_"
+            "current702_20260601.json"
+        ),
+    )
+    train_cal_oos_blockers.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_"
+            "current702_20260601.json"
+        ),
+    )
+    train_cal_oos_blockers.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_train_cal_oos_negative_surface_blocker_resolution_"
+            "current702_20260601.md"
+        ),
+    )
+    train_cal_oos_blockers.set_defaults(
+        func=cmd_build_fold_augmented_train_cal_oos_negative_surface_blocker_resolution
+    )
+
+    active_site_role_sidecar = subparsers.add_parser(
+        "build-mechanism-feature-active-site-role-graph-sidecar",
+        help="write a row-level active-site residue-role graph sidecar for mechanism-feature embedding readiness",
+    )
+    active_site_role_sidecar.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    active_site_role_sidecar.add_argument("--graph", default="artifacts/v1_graph_1025.json")
+    active_site_role_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    active_site_role_sidecar.add_argument(
+        "--report",
+        default="work/mechanism_feature_active_site_role_graph_sidecar_current702_20260601.md",
+    )
+    active_site_role_sidecar.set_defaults(
+        func=cmd_build_mechanism_feature_active_site_role_graph_sidecar
+    )
+
+    reaction_center_sidecar = subparsers.add_parser(
+        "build-mechanism-feature-reaction-center-template-sidecar",
+        help="write a row-level fingerprint-template reaction-center sidecar for mechanism-feature embedding readiness",
+    )
+    reaction_center_sidecar.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    reaction_center_sidecar.add_argument(
+        "--mechanism-fingerprints",
+        default="data/registries/mechanism_fingerprints.json",
+    )
+    reaction_center_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    reaction_center_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_reaction_center_template_sidecar_"
+            "current702_20260601.md"
+        ),
+    )
+    reaction_center_sidecar.set_defaults(
+        func=cmd_build_mechanism_feature_reaction_center_template_sidecar
+    )
+
     mechanism_embedding_plan = subparsers.add_parser(
         "build-learned-mechanism-feature-embedding-plan",
         help="write the leakage-safe learned mechanism-feature embedding scaffold",
@@ -21771,6 +22116,20 @@ def build_parser() -> argparse.ArgumentParser:
     mechanism_embedding_plan.add_argument(
         "--predicted-geometry-atlas",
         default="artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+    )
+    mechanism_embedding_plan.add_argument(
+        "--active-site-role-graph-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    mechanism_embedding_plan.add_argument(
+        "--reaction-center-template-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_"
+            "current702_20260601.json"
+        ),
     )
     mechanism_embedding_plan.add_argument(
         "--out",

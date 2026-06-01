@@ -50,6 +50,128 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Train/Cal OOS Fold Calibration Surface And Mechanism Sidecars
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T05:37:09Z`
+- STARTED_LOCAL: `Mon Jun  1 00:37:09 CDT 2026`
+- ENDED_AT: `2026-06-01T06:27:51Z`
+- ENDED_LOCAL: `Mon Jun  1 01:27:51 CDT 2026`
+- ELAPSED_MINUTES: `50.7`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "49302", "started_at": "2026-06-01T04:35:45Z", "status": "acquired"}`
+- Lock metadata note: the live lock still recorded
+  `2026-06-01T04:35:45Z` and was later reported by status as stale because
+  its age exceeded the 75 minute threshold during wrap. The timer file used by
+  the required end check read `2026-06-01T05:37:09Z` after resume, so this
+  ledger records the exact required timer-file check while preserving the actual
+  lock-acquire timestamp in the lock result.
+- Lock release result: pending at handoff write; release command to run after
+  clean synced push:
+  `PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced`
+- Git branch at start: `main`
+- Git HEAD at start: `b90929dc89c5cbef36a02eebf3a550b530f356fb`
+- Dirty files at start: none
+- Git branch at end before commit: `main`
+- Git HEAD at end before commit: `b90929dc89c5cbef36a02eebf3a550b530f356fb`
+- Dirty files at end before staging:
+  `artifacts/v3_learned_mechanism_feature_embedding_plan_current702_20260601.json`,
+  `docs/artifact_index.md`, `docs/decision_log.md`,
+  `docs/project_state.md`, `src/catalytic_earth/cli.py`,
+  `src/catalytic_earth/northstar_next_levers.py`,
+  `tests/test_northstar_next_levers.py`,
+  `work/learned_mechanism_feature_embedding_plan_current702_20260601.md`,
+  `artifacts/v3_family_panel_evidence_packet_lipoamide_or_sulfur_transfer_redox_boundary_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json`,
+  `artifacts/v3_fold_only_train_cal_oos_negative_surface_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json`,
+  `artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/train_cal_oos_negatives_vs_train_atlas.tsv`,
+  `work/family_panel_evidence_packet_lipoamide_or_sulfur_transfer_redox_boundary_current702_20260601.md`,
+  `work/fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.md`,
+  `work/fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.md`,
+  `work/fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.md`,
+  `work/fold_only_train_cal_oos_negative_surface_current702_20260601.md`,
+  `work/mechanism_feature_active_site_role_graph_sidecar_current702_20260601.md`,
+  `work/mechanism_feature_reaction_center_template_sidecar_current702_20260601.md`,
+  and this handoff.
+- Input artifacts:
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_manifest_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json`,
+  `artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json`,
+  `artifacts/v3_family_set_expansion_targets_current702_20260601.json`,
+  `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`,
+  `artifacts/v1_graph_1025.json`, and
+  `data/registries/mechanism_fingerprints.json`.
+- Output artifacts:
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json`,
+  `work/fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.md`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/train_cal_oos_negatives_vs_train_atlas.tsv`,
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`,
+  `work/fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.json`,
+  `work/fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.md`,
+  `artifacts/v3_fold_only_train_cal_oos_negative_surface_current702_20260601.json`,
+  `work/fold_only_train_cal_oos_negative_surface_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json`,
+  `work/mechanism_feature_active_site_role_graph_sidecar_current702_20260601.md`,
+  `artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json`,
+  `work/mechanism_feature_reaction_center_template_sidecar_current702_20260601.md`,
+  updated learned mechanism-feature embedding plan JSON/report,
+  `artifacts/v3_family_panel_evidence_packet_lipoamide_or_sulfur_transfer_redox_boundary_current702_20260601.json`,
+  `work/family_panel_evidence_packet_lipoamide_or_sulfur_transfer_redox_boundary_current702_20260601.md`,
+  and updated `docs/project_state.md`, `docs/decision_log.md`,
+  `docs/artifact_index.md`, `src/catalytic_earth/cli.py`,
+  `src/catalytic_earth/northstar_next_levers.py`, and
+  `tests/test_northstar_next_levers.py`.
+- Commands run:
+  lock acquire, automation memory read, required handoff/project-state/
+  decision-log/artifact-index/runbook reads, `git fetch origin` and
+  `git pull --ff-only origin main` with an initial transient DNS failure,
+  later successful `git fetch origin`, train/cal OOS coordinate materialization
+  under `/private/tmp/catalytic_train_cal_oos_negative_surface_foldseek`,
+  AFDB CIF downloads for 208 requested structures, exact-TM Foldseek search for
+  75 selected OOS queries against 133 train atlas targets, parser rerun for
+  `score-fold-augmented-train-cal-oos-negative-surface`,
+  `eval-fold-augmented-oos-calibrated-threshold-contract`,
+  `build-fold-augmented-train-cal-oos-negative-surface-blocker-resolution`,
+  `build-fold-only-train-cal-oos-negative-surface`,
+  `build-mechanism-feature-active-site-role-graph-sidecar`,
+  `build-mechanism-feature-reaction-center-template-sidecar`,
+  `build-learned-mechanism-feature-embedding-plan`,
+  `build-family-panel-evidence-packet`, JSON parse checks, compile checks,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  `git diff --check`, focused pytest, full pytest, unittest discovery, timer
+  checks, and lock status checks.
+- Validation results:
+  JSON parsing passed for all new/updated JSON artifacts; `python -m compileall
+  -q src tests` passed; `git diff --check` passed; `PYTHONPATH=src python -m
+  catalytic_earth.cli validate` passed with 12 source records, 8 mechanism
+  fingerprints, 15 mechanism ontology families, and 702 curated labels;
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -q`
+  passed with 16 tests; `PYTHONPATH=src python -m pytest -q` passed with 999
+  tests, 26 subtests, and one known sklearn/scipy deprecation warning;
+  `PYTHONPATH=src python -m unittest discover -s tests` passed with 976 tests
+  and the same warning.
+- Commit/push result: pending at handoff write.
+- Exact next action for the next run:
+  repair accession-compatible active-site mappings for the six M-CSA train/cal
+  OOS blocker rows (`m_csa:57`, `m_csa:106`, `m_csa:178`, `m_csa:284`,
+  `m_csa:314`, `m_csa:503`) and rerun
+  `score-fold-augmented-train-cal-oos-negative-surface`,
+  `build-fold-augmented-train-cal-oos-negative-surface-blocker-resolution`, and
+  `eval-fold-augmented-oos-calibrated-threshold-contract`; only then decide
+  whether the partial 65-row OOS calibration surface is sufficient for the
+  research threshold contract.
+
 ### 2026-06-01 Fold-Augmented Threshold Contract And Train/Cal OOS Negative Manifest
 
 Automation run: `catalytic-earth-work-loop`

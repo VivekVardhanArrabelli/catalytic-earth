@@ -202,8 +202,14 @@
       "radical_sam_enzyme"
     ]
   },
-  "created_utc": "2026-06-01T02:15:51Z",
+  "created_utc": "2026-06-01T05:16:57Z",
   "current_data_readiness": {
+    "active_site_role_graph_sidecar": {
+      "rows_with_ok_role_graph": 656,
+      "status": "active_site_role_graph_sidecar_ready",
+      "unique_role_edges": 669,
+      "unique_roles": 53
+    },
     "fingerprint_row_counts_raw": {
       "cobalamin_radical_rearrangement": 3,
       "flavin_dehydrogenase_reductase": 50,
@@ -246,6 +252,12 @@
       }
     },
     "predicted_geometry_atlas_status": "complete",
+    "reaction_center_template_sidecar": {
+      "rows_with_template": 232,
+      "status": "reaction_center_template_sidecar_ready",
+      "unique_bond_change_templates": 10,
+      "unique_chemical_operations": 8
+    },
     "row_level_selected_organic_cofactor_records": 2106
   },
   "feature_extraction_gaps": [
@@ -256,8 +268,8 @@
     },
     {
       "feature": "transition_state_stabilization_role",
-      "gap": "role text exists in fingerprints but not as normalized row-level graph edges",
-      "next_action": "normalize active_site_signature roles into residue-role graph vocabulary"
+      "gap": "row-level role graph vocabulary exists, but directed transition-state/proton/electron-flow edges are not inferred",
+      "next_action": "consume the role graph sidecar on train/cal rows only, then add directed mechanism-edge features"
     },
     {
       "feature": "proton_transfer_connectivity",
@@ -266,8 +278,8 @@
     },
     {
       "feature": "bond_making_breaking",
-      "gap": "fingerprint reaction-center descriptors exist; row-specific Rhea/M-CSA bond-change mapping is not normalized here",
-      "next_action": "build a source-backed bond-change sidecar before any supervised pilot"
+      "gap": "fingerprint-template reaction-center descriptors are row-aligned, but row-specific Rhea/M-CSA bond-change mapping is not normalized here",
+      "next_action": "build a source-backed row-specific bond-change sidecar before any supervised pilot"
     },
     {
       "feature": "cofactor_catalytic_locus",
@@ -303,6 +315,11 @@
   "schema_version": "northstar_next_levers.v0",
   "scope": "Leakage-safe learned mechanism-feature embedding scaffold for the D11 continuous mechanism-space target. This is a spec plus coverage audit, not a heldout-trained or threshold-tuned model.",
   "source_artifacts": {
+    "active_site_role_graph_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json",
+      "sha256": "8c58a6de59dde646dc3d3c4995fcda23ac3fe7f5190d1c4d19481859e7451e2b"
+    },
     "label_manifest": {
       "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
       "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
@@ -314,6 +331,11 @@
     "predicted_geometry_atlas": {
       "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
       "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    },
+    "reaction_center_template_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json",
+      "sha256": "eef4112405b230efd37e15dfba0bc5075ae6760723ef4d115d9e72a45faabac6"
     },
     "selected_organic_cofactor_sidecar": {
       "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",

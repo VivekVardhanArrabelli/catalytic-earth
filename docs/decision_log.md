@@ -37,6 +37,72 @@ Artifacts:
 `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/in_distribution_atlas_self_vs_atlas.tsv`,
 `work/fold_augmented_abstention_threshold_contract_current702_20260601.md`.
 
+## 2026-06-01: Train/Cal OOS Negatives Add A Partial OOS Calibration Surface For The Fold-Augmented Gate
+
+Decision: score the hash-selected in-distribution OOS calibration negatives
+staged by the train/cal negative-surface manifest, then build a separate
+OOS-calibrated research threshold contract. The run used frozen current702
+inputs, transient AlphaFoldDB v6 CIF materialization under `/private/tmp`, exact
+Foldseek/TM scoring against the threshold-contract train atlas, and the existing
+selected organic cofactor sidecar. Heldout rows stayed final-only. No label,
+registry, ontology, import, split, production scorer, or production threshold
+changed.
+
+Result: 65/76 selected calibration OOS candidates have full channel scores
+(`predicted_geometry`, selected organic cofactor, and nearest-train Foldseek/TM).
+Foldseek produced nearest-train hits for 75 candidates; 10 candidates lacked
+targetable predicted geometry and `m_csa:78`/`P23007` lacked an AFDB query
+coordinate. The OOS-calibrated primary channel,
+`combined_mean_geometry_fold`, keeps the same >=90% in-scope threshold,
+`0.44155`, as the in-scope-only contract. At that threshold calibration OOS
+abstain recall is 25/65 (`0.3846`), while heldout final readout remains
+45/47 in-scope retained, 44/79 OOS abstained, and 5/6 cofactor-confounded OOS
+abstained.
+
+Consequence: the fold-augmented gate now has a real train/cal OOS-negative
+surface, but it is partial and does not justify a production threshold. The next
+decision is whether the 65-row surface is sufficient for a research operating
+point or whether to clear the remaining candidate-geometry blockers first. Ten
+of the missing combined-channel rows have fold-only scores and are preserved in
+a separate diagnostic salvage surface.
+
+Artifacts:
+`artifacts/v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.json`,
+`artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/train_cal_oos_negatives_vs_train_atlas.tsv`,
+`artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`,
+`artifacts/v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.json`,
+`artifacts/v3_fold_only_train_cal_oos_negative_surface_current702_20260601.json`,
+`work/fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601.md`,
+`work/fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601.md`,
+`work/fold_only_train_cal_oos_negative_surface_current702_20260601.md`,
+`work/fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.md`.
+
+## 2026-06-01: Active-Site Role Graph Sidecar Closes One Mechanism-Feature Embedding Gap
+
+Decision: materialize a normalized row-level active-site residue-role graph
+sidecar from the frozen current702 manifest and existing M-CSA graph. This is a
+feature-readiness artifact only: it does not fit a model, tune a threshold, edit
+labels, import rows, or change registries.
+
+Result: 656/702 current702 rows have an accession-compatible active-site role
+graph. The sidecar normalizes 53 residue-role vocabulary terms and 669
+same-entry role co-occurrence edges. Remaining gaps are not inferred here:
+directed proton/electron-transfer edges and row-specific bond-change mappings
+still need a source-backed sidecar before a learned mechanism-feature embedding
+pilot. A companion reaction-center template sidecar row-aligns fingerprint-level
+chemical operations and bond-change descriptors for 232 rows, but it remains
+template evidence rather than row-specific reaction evidence.
+
+Consequence: the learned mechanism-feature embedding plan has one concrete
+row-level feature sidecar available for future train/cal-only pilots, but it is
+not itself model evidence and must not be used to train on heldout rows.
+
+Artifacts:
+`artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json`,
+`artifacts/v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601.json`,
+`work/mechanism_feature_active_site_role_graph_sidecar_current702_20260601.md`,
+`work/mechanism_feature_reaction_center_template_sidecar_current702_20260601.md`.
+
 ## 2026-06-01: Real Predicted-Structure Foldseek Channel Is Scored For All Ok Heldout Rows
 
 Decision: move beyond the selected-PDB fold proxy by staging the real

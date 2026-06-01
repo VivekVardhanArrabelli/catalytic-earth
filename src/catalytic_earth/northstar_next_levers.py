@@ -26,6 +26,12 @@ from .mechanism_novelty_abstention_eval import (
     load_cofactor_scores,
     load_plm_rows,
 )
+from .geometry_retrieval import run_geometry_retrieval
+from .predicted_geometry_robustness import (
+    _enriched_predicted_retrieval_results,
+    _target_manifest_row_selection,
+    build_alphafold_predicted_geometry_features,
+)
 
 SCHEMA_VERSION = "northstar_next_levers.v0"
 DEFAULT_FOLDSEEK_BINARY = "/private/tmp/catalytic-foldseek-env/bin/foldseek"
@@ -34,6 +40,12 @@ PREDICTED_STRUCTURE_FOLD_CHANNEL_ID = (
 )
 FOLD_AUGMENTED_THRESHOLD_CONTRACT_ID = (
     "v3_fold_augmented_abstention_threshold_contract_current702_20260601"
+)
+FOLD_AUGMENTED_TRAIN_CAL_OOS_NEGATIVE_SURFACE_SCORES_ID = (
+    "v3_fold_augmented_train_cal_oos_negative_surface_scores_current702_20260601"
+)
+FOLD_AUGMENTED_OOS_CALIBRATED_THRESHOLD_CONTRACT_ID = (
+    "v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601"
 )
 
 
@@ -1977,8 +1989,13 @@ def build_family_panel_evidence_packet(
     missing_geometry = [
         row["entry_id"] for row in rows if row["predicted_geometry_status"] != "ok"
     ]
+    artifact_slug = (
+        "glycyl_radical_or_thiamine_radical_lyase"
+        if panel_id == "glycyl_radical_or_thiamine_radical_lyase_boundary"
+        else _safe_path_token(panel_id)
+    )
     return {
-        "artifact_id": "v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601",
+        "artifact_id": f"v3_family_panel_evidence_packet_{artifact_slug}_current702_20260601",
         "schema_version": SCHEMA_VERSION,
         "created_utc": _utc_now_iso(),
         "status": (
@@ -1987,7 +2004,7 @@ def build_family_panel_evidence_packet(
         ),
         "scope": (
             "Review-only evidence packet for the highest-value family-set expansion "
-            "panel: cofactor-confounded OOS radical/thiamine-lyase boundary rows "
+            f"panel `{panel_id}`: cofactor-confounded OOS boundary rows "
             "that stress the current de novo abstention gate."
         ),
         "guardrails": {
@@ -2022,7 +2039,7 @@ def build_family_panel_evidence_packet(
         },
         "row_evidence": rows,
         "review_questions": [
-            "Do these rows share a coherent radical/thiamine-lyase mechanism locus, or should they stay OOS controls?",
+            f"Do these rows share a coherent `{panel_id}` mechanism locus, or should they stay OOS controls?",
             "Which row-level bond-change and cofactor-locus features must be normalized before any countable family addition?",
             "Does the real predicted-structure Foldseek/TM channel keep these rows outside occupied primary atlas folds?",
         ],
@@ -2082,8 +2099,9 @@ def build_family_panel_evidence_packet(
 
 
 def _render_family_panel_evidence_packet_report(audit: dict[str, Any]) -> str:
+    panel_id = (audit.get("panel") or {}).get("candidate_family") or "family_panel"
     lines = [
-        "# Family Panel Evidence Packet - Glycyl Radical / Thiamine Lyase",
+        f"# Family Panel Evidence Packet - {panel_id}",
         "",
         f"Run: {audit['created_utc']}",
         "",
@@ -3047,6 +3065,1588 @@ def write_fold_augmented_abstention_threshold_contract(
     return audit
 
 
+def _source_path_record(path: Path) -> dict[str, Any]:
+    path = Path(path)
+    return {
+        "path": str(path),
+        "exists": path.exists(),
+        "sha256": _sha256(path) if path.exists() else None,
+    }
+
+
+def _train_cal_oos_candidate_ids(surface_manifest: dict[str, Any]) -> list[str]:
+    groups = surface_manifest.get("candidate_entry_ids") or {}
+    candidates = groups.get("calibration_oos_candidates_hash20pct")
+    if candidates is None:
+        candidates = surface_manifest.get("calibration_oos_candidate_entry_ids") or []
+    return [str(entry_id) for entry_id in candidates if entry_id]
+
+
+def _empty_predicted_geometry_features() -> dict[str, Any]:
+    return {
+        "metadata": {
+            "artifact": "alphafold_predicted_active_site_geometry_features",
+            "schema_version": "predicted_geometry_features.v1",
+            "source": "AlphaFoldDB mmCIF by current702 UniProt accession",
+            "entry_count": 0,
+            "ok_entry_count": 0,
+            "entries_with_pairwise_geometry": 0,
+            "entries_with_proximal_ligands": 0,
+            "entries_with_pocket_context": 0,
+            "unique_accession_count": 0,
+            "fetch_failure_count": 0,
+            "fetch_failures_sample": [],
+            "mechanism_text_snippets_used": False,
+            "entry_names_used_for_score": False,
+        },
+        "entries": [],
+    }
+
+
+def _candidate_coordinate_rows(
+    candidate_rows: list[dict[str, Any]],
+    predicted_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    predicted_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in predicted_rows
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    out = []
+    for row in candidate_rows:
+        entry_id = str(row.get("entry_id") or "")
+        predicted = predicted_by_entry.get(entry_id, {})
+        merged = dict(row)
+        if predicted.get("predicted_pdb_id") or predicted.get("pdb_id"):
+            merged["predicted_pdb_id"] = predicted.get("predicted_pdb_id") or predicted.get("pdb_id")
+        out.append(merged)
+    return out
+
+
+def _materialize_train_cal_oos_coordinates_command(artifact_path: Path) -> str:
+    return (
+        "python - <<'PY'\n"
+        "import json\n"
+        "import urllib.request\n"
+        "from pathlib import Path\n"
+        f"artifact = json.loads(Path({str(artifact_path)!r}).read_text())\n"
+        "groups = artifact['foldseek_input_manifest']['coordinate_request_groups']\n"
+        "for group in groups.values():\n"
+        "    for item in group:\n"
+        "        path = item.get('expected_local_path')\n"
+        "        url = item.get('url')\n"
+        "        if not path or not url:\n"
+        "            continue\n"
+        "        target = Path(path)\n"
+        "        target.parent.mkdir(parents=True, exist_ok=True)\n"
+        "        if target.exists():\n"
+        "            continue\n"
+        "        urllib.request.urlretrieve(url, target)\n"
+        "PY"
+    )
+
+
+def build_fold_augmented_train_cal_oos_negative_surface_scores(
+    *,
+    negative_surface_manifest_path: Path,
+    label_manifest_path: Path,
+    graph_path: Path,
+    experimental_geometry_features_path: Path,
+    threshold_contract_path: Path,
+    predicted_geometry_atlas_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    coordinate_root: Path,
+    train_cal_oos_foldseek_tsv: Path,
+    out_path: Path | None = None,
+    foldseek_binary: str = DEFAULT_FOLDSEEK_BINARY,
+    alphafold_version: str = "auto",
+    threads: int = 4,
+    fetcher: Any | None = None,
+) -> dict[str, Any]:
+    surface_manifest = _read_json(negative_surface_manifest_path)
+    label_manifest = _read_json(label_manifest_path)
+    graph = _read_json(graph_path)
+    experimental_geometry_features = _read_json(experimental_geometry_features_path)
+    threshold_contract = _read_json(threshold_contract_path)
+    predicted_atlas = _read_json(predicted_geometry_atlas_path)
+    cofactor_sidecar = _read_json(selected_organic_cofactor_sidecar_path)
+
+    candidate_ids = _train_cal_oos_candidate_ids(surface_manifest)
+    candidate_id_set = set(candidate_ids)
+    manifest_rows = [
+        row for row in label_manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    manifest_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in manifest_rows
+        if row.get("entry_id")
+    }
+    candidate_manifest_rows = [
+        manifest_by_entry[entry_id]
+        for entry_id in candidate_ids
+        if entry_id in manifest_by_entry
+    ]
+    missing_manifest_ids = [
+        entry_id for entry_id in candidate_ids if entry_id not in manifest_by_entry
+    ]
+    selected_geometry_rows_all, excluded_geometry_rows_all = _target_manifest_row_selection(
+        label_manifest=label_manifest,
+        graph=graph,
+        experimental_geometry_features=experimental_geometry_features,
+        split_assignment=None,
+        max_rows=0,
+    )
+    geometry_target_rows = [
+        row
+        for row in selected_geometry_rows_all
+        if str(row.get("entry_id") or "") in candidate_id_set
+    ]
+    excluded_geometry_rows = [
+        row
+        for row in excluded_geometry_rows_all
+        if str(row.get("entry_id") or "") in candidate_id_set
+    ]
+    predicted_geometry = (
+        build_alphafold_predicted_geometry_features(
+            label_manifest_rows=geometry_target_rows,
+            graph=graph,
+            experimental_geometry_features=experimental_geometry_features,
+            alphafold_version=alphafold_version,
+            fetcher=fetcher,
+        )
+        if geometry_target_rows
+        else _empty_predicted_geometry_features()
+    )
+    predicted_retrieval = run_geometry_retrieval(predicted_geometry)
+    candidate_predicted_rows = _enriched_predicted_retrieval_results(
+        retrieval_results=predicted_retrieval.get("results", []),
+        manifest_rows=manifest_rows,
+        predicted_entries=predicted_geometry.get("entries", []),
+    )
+    predicted_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in candidate_predicted_rows
+        if row.get("entry_id")
+    }
+
+    train_entry_ids = set(
+        threshold_contract.get("train_cal_partition", {}).get("train_entry_ids", [])
+    )
+    train_atlas_rows = [
+        row
+        for row in predicted_atlas.get("results", [])
+        if (
+            isinstance(row, dict)
+            and str(row.get("entry_id") or "") in train_entry_ids
+            and row.get("split_assignment") == "in_distribution"
+            and row.get("true_fingerprint_id")
+            and _predicted_row_ok(row)
+        )
+    ]
+    coordinate_root = Path(coordinate_root)
+    query_requests = _coordinate_requests(
+        _candidate_coordinate_rows(candidate_manifest_rows, candidate_predicted_rows),
+        coordinate_root=coordinate_root,
+        role="train_cal_oos_negative_calibration_query",
+        subdir="calibration_oos_queries",
+    )
+    target_requests = _coordinate_requests(
+        train_atlas_rows,
+        coordinate_root=coordinate_root,
+        role="threshold_contract_train_atlas_target",
+        subdir="train_targets",
+    )
+    parsed_foldseek = _parse_foldseek_tsv_hits(
+        result_tsv=train_cal_oos_foldseek_tsv,
+        query_requests=query_requests,
+        target_requests=target_requests,
+    )
+    fold_by_entry = {
+        str(row.get("query_entry_id") or ""): row
+        for row in parsed_foldseek.get("nearest_atlas_hits", [])
+    }
+
+    candidate_row_scores: list[dict[str, Any]] = []
+    for entry_id in candidate_ids:
+        manifest_row = manifest_by_entry.get(entry_id, {})
+        geo = predicted_by_entry.get(entry_id, {})
+        fold_hit = fold_by_entry.get(entry_id)
+        cofactor_scores = _cofactor_scores_for_entry(cofactor_sidecar, entry_id)
+        top = _top1_fingerprint(geo) if geo else None
+        geom_score = float(top.get("score")) if top and top.get("score") is not None else None
+        fold_score = (
+            float(fold_hit.get("tm_score"))
+            if fold_hit and fold_hit.get("tm_score") is not None
+            else None
+        )
+        cofactor_max = max(cofactor_scores.values()) if cofactor_scores else None
+        channel_scores = (
+            _fold_augmented_channel_scores(
+                geometry_score=geom_score,
+                cofactor_max_score=float(cofactor_max),
+                fold_tm_score=fold_score,
+            )
+            if geom_score is not None and fold_score is not None and cofactor_max is not None
+            else None
+        )
+        candidate_row_scores.append(
+            {
+                "entry_id": entry_id,
+                "accession": manifest_row.get("accession") or manifest_row.get("sequence_id"),
+                "split_assignment": manifest_row.get("split_assignment"),
+                "benchmark_role": manifest_row.get("benchmark_role"),
+                "oos_tier": manifest_row.get("oos_tier"),
+                "label_type": manifest_row.get("label_type"),
+                "is_calibration_oos_negative": True,
+                "predicted_geometry_status": _predicted_row_status(geo) if geo else "missing",
+                "predicted_geometry_top1": {
+                    "fingerprint_id": top.get("fingerprint_id") if top else None,
+                    "score": geom_score,
+                    "role_match_fraction": top.get("role_match_fraction") if top else None,
+                    "cofactor_context_score": top.get("cofactor_context_score") if top else None,
+                },
+                "selected_organic_cofactor_max_score": cofactor_max,
+                "predicted_structure_fold_channel": {
+                    "nearest_train_atlas_entry_id": (
+                        fold_hit.get("nearest_atlas_entry_id") if fold_hit else None
+                    ),
+                    "nearest_train_atlas_true_fingerprint_id": (
+                        fold_hit.get("nearest_atlas_true_fingerprint_id") if fold_hit else None
+                    ),
+                    "nearest_train_atlas_tm_score": fold_score,
+                    "raw_query_name": fold_hit.get("raw_query_name") if fold_hit else None,
+                    "raw_target_name": fold_hit.get("raw_target_name") if fold_hit else None,
+                },
+                "channel_scores": channel_scores,
+            }
+        )
+
+    rows_with_geometry = [
+        row for row in candidate_row_scores if row["predicted_geometry_status"] == "ok"
+    ]
+    rows_with_fold = [
+        row
+        for row in candidate_row_scores
+        if row["predicted_structure_fold_channel"]["nearest_train_atlas_tm_score"] is not None
+    ]
+    rows_with_full_scores = [row for row in candidate_row_scores if row["channel_scores"]]
+    foldseek = _foldseek_binary_info(foldseek_binary)
+    query_missing = _missing_coordinate_count(query_requests)
+    target_missing = _missing_coordinate_count(target_requests)
+    blockers: list[str] = []
+    if missing_manifest_ids:
+        blockers.append("some_calibration_oos_candidates_missing_from_label_manifest")
+    if len(rows_with_geometry) < len(candidate_ids):
+        blockers.append("some_calibration_oos_candidates_missing_predicted_geometry")
+    if parsed_foldseek["status"] != "parsed":
+        blockers.append("train_cal_oos_foldseek_tsv_missing_or_unparsed")
+    if len(rows_with_fold) < len(candidate_ids):
+        blockers.append("some_calibration_oos_candidates_missing_fold_scores")
+    if query_missing:
+        blockers.append("candidate_query_coordinate_files_missing")
+    if target_missing:
+        blockers.append("train_atlas_target_coordinate_files_missing")
+    if not rows_with_full_scores:
+        blockers.append("no_calibration_oos_negative_rows_have_full_channel_scores")
+
+    if rows_with_full_scores and parsed_foldseek["status"] == "parsed":
+        status = (
+            "computed_train_cal_oos_negative_surface_scores"
+            if len(rows_with_full_scores) == len(candidate_ids)
+            else "computed_partial_train_cal_oos_negative_surface_scores"
+        )
+    elif foldseek["available"] and not query_missing and not target_missing:
+        status = "ready_to_run_train_cal_oos_negative_foldseek"
+    else:
+        status = "manifest_staged_train_cal_oos_negative_surface_scoring"
+
+    result_tsv = Path(train_cal_oos_foldseek_tsv)
+    result_root = result_tsv.parent
+    output_artifact_path = out_path or Path(
+        f"artifacts/{FOLD_AUGMENTED_TRAIN_CAL_OOS_NEGATIVE_SURFACE_SCORES_ID}.json"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_TRAIN_CAL_OOS_NEGATIVE_SURFACE_SCORES_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Bounded predicted-geometry plus Foldseek feature surface for the "
+            "hash-selected current702 in-distribution OOS calibration negatives "
+            "needed by the fold-augmented threshold contract."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_selection_or_scoring": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "frozen_current702_inputs_only": True,
+            "large_model_downloads_performed": False,
+            "raw_coordinates_committed": False,
+            "score_fabrication": False,
+        },
+        "selection_policy": {
+            "candidate_source": str(negative_surface_manifest_path),
+            "candidate_selector": surface_manifest.get("selection_policy", {}).get(
+                "calibration_negative_selector"
+            ),
+            "candidate_definition": surface_manifest.get("selection_policy", {}).get(
+                "candidate_definition"
+            ),
+            "train_target_policy": surface_manifest.get("selection_policy", {}).get(
+                "train_target_policy"
+            ),
+            "threshold_use": (
+                "These rows may be used as train/cal OOS negatives for threshold "
+                "selection in a future contract; no threshold is selected here."
+            ),
+        },
+        "counts": {
+            "candidate_ids_requested": len(candidate_ids),
+            "candidate_manifest_rows_found": len(candidate_manifest_rows),
+            "candidate_geometry_target_rows": len(geometry_target_rows),
+            "candidate_geometry_excluded_rows": len(excluded_geometry_rows),
+            "candidate_predicted_geometry_rows": len(candidate_predicted_rows),
+            "candidate_predicted_geometry_ok_rows": len(rows_with_geometry),
+            "train_atlas_target_rows": len(train_atlas_rows),
+            "candidate_query_coordinate_requests": len(query_requests),
+            "train_atlas_target_coordinate_requests": len(target_requests),
+            "candidate_query_coordinate_files_missing": query_missing,
+            "train_atlas_target_coordinate_files_missing": target_missing,
+            "foldseek_rows_with_nearest_train_hits": len(rows_with_fold),
+            "candidate_rows_with_full_channel_scores": len(rows_with_full_scores),
+            "missing_manifest_ids": len(missing_manifest_ids),
+        },
+        "blockers": blockers,
+        "candidate_entry_ids": candidate_ids,
+        "missing_manifest_entry_ids": missing_manifest_ids,
+        "excluded_candidate_geometry_rows": excluded_geometry_rows,
+        "predicted_geometry_candidate_retrieval": {
+            "metadata": predicted_retrieval.get("metadata", {}),
+            "predicted_geometry_metadata": predicted_geometry.get("metadata", {}),
+            "results": candidate_predicted_rows,
+        },
+        "parsed_train_cal_oos_foldseek": parsed_foldseek,
+        "candidate_row_scores": candidate_row_scores,
+        "foldseek_input_manifest": {
+            "coordinate_root": str(coordinate_root),
+            "calibration_oos_query_dir": str(coordinate_root / "calibration_oos_queries"),
+            "train_atlas_target_dir": str(coordinate_root / "train_targets"),
+            "result_root": str(result_root),
+            "coordinate_request_groups": {
+                "calibration_oos_queries": query_requests,
+                "train_atlas_targets": target_requests,
+            },
+        },
+        "runtime": {
+            "foldseek": foldseek,
+            "threads": max(1, int(threads)),
+            "alphafold_version": alphafold_version,
+        },
+        "commands": {
+            "materialize_coordinate_bundle": _materialize_train_cal_oos_coordinates_command(
+                output_artifact_path
+            ),
+            "run_train_cal_oos_negatives_vs_train_atlas": _foldseek_easy_search_command(
+                binary=str(foldseek.get("resolved") or foldseek_binary),
+                query_dir=coordinate_root / "calibration_oos_queries",
+                target_dir=coordinate_root / "train_targets",
+                result_tsv=result_tsv,
+                tmp_dir=result_root / "tmp_train_cal_oos_negatives_vs_train_atlas",
+                threads=threads,
+            ),
+            "rerun_parser": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "score-fold-augmented-train-cal-oos-negative-surface "
+                f"--train-cal-oos-foldseek-tsv {shlex.quote(str(result_tsv))}"
+            ),
+            "foldseek_tsv_columns": [
+                "query",
+                "target",
+                "qtmscore",
+                "ttmscore",
+                "alntmscore",
+                "prob",
+                "bits",
+            ],
+        },
+        "source_artifacts": {
+            "negative_surface_manifest": _source_path_record(negative_surface_manifest_path),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "graph": _source_path_record(graph_path),
+            "experimental_geometry_features": _source_path_record(experimental_geometry_features_path),
+            "threshold_contract": _source_path_record(threshold_contract_path),
+            "predicted_geometry_atlas": _source_path_record(predicted_geometry_atlas_path),
+            "selected_organic_cofactor_sidecar": _source_path_record(selected_organic_cofactor_sidecar_path),
+            "train_cal_oos_foldseek_tsv": _source_path_record(train_cal_oos_foldseek_tsv),
+        },
+        "interpretation": {
+            "headline": (
+                "The train/cal OOS negative surface now has predicted-geometry, "
+                "cofactor, and nearest-train Foldseek/TM channel scores for the "
+                f"{len(rows_with_full_scores)} score-complete candidate rows."
+                if rows_with_full_scores
+                else "The train/cal OOS negative surface is staged, but no full channel scores are available yet."
+            ),
+            "next_action": (
+                "Extend the fold-augmented threshold contract to consume these "
+                "calibration OOS negatives for OOS-aware threshold selection, "
+                "while keeping heldout final-only."
+                if rows_with_full_scores
+                else "Materialize candidate and train-atlas coordinates, run Foldseek, then rerun this parser."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_train_cal_oos_negative_surface_scores_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    parsed = audit.get("parsed_train_cal_oos_foldseek", {})
+    lines = [
+        "# Fold-Augmented Train/Cal OOS Negative Surface Scores - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Candidate IDs requested: {counts['candidate_ids_requested']}",
+        f"- Predicted geometry ok rows: {counts['candidate_predicted_geometry_ok_rows']}",
+        f"- Foldseek rows with nearest train hits: {counts['foldseek_rows_with_nearest_train_hits']}",
+        f"- Full channel score rows: {counts['candidate_rows_with_full_channel_scores']}",
+        f"- Foldseek TSV parse status: {parsed.get('status')}",
+        "",
+        "## Blockers",
+        "",
+    ]
+    if audit["blockers"]:
+        lines += [f"- {blocker}" for blocker in audit["blockers"]]
+    else:
+        lines.append("- None")
+    lines += [
+        "",
+        "## Score Preview",
+        "",
+        "| Entry | geometry top1 | geometry score | nearest train atlas | fold TM | combined mean geometry/fold |",
+        "| --- | --- | ---: | --- | ---: | ---: |",
+    ]
+    for row in audit["candidate_row_scores"][:25]:
+        channel = row.get("channel_scores") or {}
+        geo = row.get("predicted_geometry_top1") or {}
+        fold = row.get("predicted_structure_fold_channel") or {}
+        lines.append(
+            f"| {row['entry_id']} | {geo.get('fingerprint_id')} | {geo.get('score')} | "
+            f"{fold.get('nearest_train_atlas_entry_id')} | "
+            f"{fold.get('nearest_train_atlas_tm_score')} | "
+            f"{channel.get('combined_mean_geometry_fold')} |"
+        )
+    lines += [
+        "",
+        "## Commands",
+        "",
+        "Materialize the candidate query and train-atlas target coordinate bundle:",
+        "",
+        "```bash",
+        audit["commands"]["materialize_coordinate_bundle"],
+        "```",
+        "",
+        "Run Foldseek for calibration OOS negatives versus the train atlas:",
+        "",
+        "```bash",
+        audit["commands"]["run_train_cal_oos_negatives_vs_train_atlas"],
+        "```",
+        "",
+        "Rerun the parser:",
+        "",
+        "```bash",
+        audit["commands"]["rerun_parser"],
+        "```",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_train_cal_oos_negative_surface_scores(
+    *,
+    negative_surface_manifest_path: Path,
+    label_manifest_path: Path,
+    graph_path: Path,
+    experimental_geometry_features_path: Path,
+    threshold_contract_path: Path,
+    predicted_geometry_atlas_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    coordinate_root: Path,
+    train_cal_oos_foldseek_tsv: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    foldseek_binary: str = DEFAULT_FOLDSEEK_BINARY,
+    alphafold_version: str = "auto",
+    threads: int = 4,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_train_cal_oos_negative_surface_scores(
+        negative_surface_manifest_path=negative_surface_manifest_path,
+        label_manifest_path=label_manifest_path,
+        graph_path=graph_path,
+        experimental_geometry_features_path=experimental_geometry_features_path,
+        threshold_contract_path=threshold_contract_path,
+        predicted_geometry_atlas_path=predicted_geometry_atlas_path,
+        selected_organic_cofactor_sidecar_path=selected_organic_cofactor_sidecar_path,
+        coordinate_root=coordinate_root,
+        train_cal_oos_foldseek_tsv=train_cal_oos_foldseek_tsv,
+        out_path=out_path,
+        foldseek_binary=foldseek_binary,
+        alphafold_version=alphafold_version,
+        threads=threads,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_train_cal_oos_negative_surface_scores_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_only_train_cal_oos_negative_surface(
+    *,
+    train_cal_oos_surface_path: Path,
+) -> dict[str, Any]:
+    surface = _read_json(train_cal_oos_surface_path)
+    rows = []
+    for row in surface.get("candidate_row_scores", []):
+        if not isinstance(row, dict) or row.get("channel_scores") is not None:
+            continue
+        fold = row.get("predicted_structure_fold_channel") or {}
+        tm_score = fold.get("nearest_train_atlas_tm_score")
+        if tm_score is None:
+            continue
+        rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "accession": row.get("accession"),
+                "benchmark_role": row.get("benchmark_role"),
+                "predicted_geometry_status": row.get("predicted_geometry_status"),
+                "nearest_train_atlas_entry_id": fold.get("nearest_train_atlas_entry_id"),
+                "nearest_train_atlas_true_fingerprint_id": fold.get(
+                    "nearest_train_atlas_true_fingerprint_id"
+                ),
+                "nearest_train_atlas_tm_score": float(tm_score),
+                "fold_novelty_direction": "lower_nearest_train_tm_is_more_fold_novel",
+            }
+        )
+    values = [float(row["nearest_train_atlas_tm_score"]) for row in rows]
+    return {
+        "artifact_id": "v3_fold_only_train_cal_oos_negative_surface_current702_20260601",
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": "fold_only_negative_surface_ready" if rows else "no_fold_only_rows_available",
+        "scope": (
+            "Fold-only salvage surface for train/cal OOS negatives with real "
+            "Foldseek/TM hits but missing predicted-geometry channel scores."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_selection_or_scoring": False,
+            "fold_only_not_combined_geometry_threshold": True,
+        },
+        "counts": {
+            "fold_only_rows": len(rows),
+            "nearest_train_fingerprint_counts": dict(
+                sorted(
+                    Counter(
+                        str(row.get("nearest_train_atlas_true_fingerprint_id"))
+                        for row in rows
+                    ).items()
+                )
+            ),
+            "min_nearest_train_tm": round(min(values), 6) if values else None,
+            "max_nearest_train_tm": round(max(values), 6) if values else None,
+            "mean_nearest_train_tm": round(sum(values) / len(values), 6) if values else None,
+        },
+        "rows": sorted(rows, key=lambda row: _entry_id_sort_key(str(row.get("entry_id")))),
+        "interpretation": {
+            "headline": (
+                "Calibration OOS candidates with fold evidence but missing geometry "
+                "are available for fold-only sensitivity checks."
+            ),
+            "next_action": (
+                "Use these only for fold-only diagnostics or repair active-site "
+                "geometry eligibility before combined threshold calibration."
+            ),
+        },
+        "source_artifacts": {
+            "train_cal_oos_surface": _source_path_record(train_cal_oos_surface_path),
+        },
+    }
+
+
+def _render_fold_only_train_cal_oos_negative_surface_report(audit: dict[str, Any]) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Only Train/Cal OOS Negative Surface - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Fold-only rows: {counts['fold_only_rows']}",
+        f"- Mean nearest-train TM: {counts['mean_nearest_train_tm']}",
+        f"- Nearest train fingerprint counts: {counts['nearest_train_fingerprint_counts']}",
+        "",
+        "## Rows",
+        "",
+        "| Entry | geometry status | nearest train atlas | nearest train fingerprint | TM |",
+        "| --- | --- | --- | --- | ---: |",
+    ]
+    for row in audit["rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['predicted_geometry_status']} | "
+            f"{row['nearest_train_atlas_entry_id']} | "
+            f"{row['nearest_train_atlas_true_fingerprint_id']} | "
+            f"{row['nearest_train_atlas_tm_score']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_only_train_cal_oos_negative_surface(
+    *,
+    train_cal_oos_surface_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_only_train_cal_oos_negative_surface(
+        train_cal_oos_surface_path=train_cal_oos_surface_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_only_train_cal_oos_negative_surface_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_train_cal_oos_negative_surface_blocker_resolution(
+    *,
+    train_cal_oos_surface_path: Path,
+) -> dict[str, Any]:
+    surface = _read_json(train_cal_oos_surface_path)
+    excluded = {
+        str(row.get("entry_id")): row
+        for row in surface.get("excluded_candidate_geometry_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    fetch_failures = {
+        str(row.get("entry_id")): row
+        for row in (
+            surface.get("predicted_geometry_candidate_retrieval", {})
+            .get("predicted_geometry_metadata", {})
+            .get("fetch_failures_sample", [])
+        )
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    blocker_rows = []
+    for row in surface.get("candidate_row_scores", []):
+        if not isinstance(row, dict) or row.get("channel_scores") is not None:
+            continue
+        entry_id = str(row.get("entry_id") or "")
+        if entry_id in excluded:
+            reason = str(excluded[entry_id].get("reason"))
+        elif entry_id in fetch_failures:
+            reason = "alphafold_db_coordinate_unavailable"
+        else:
+            reason = "fold_or_cofactor_score_missing"
+        if reason == "missing_accession_compatible_sequence_positions":
+            action = (
+                "repair_or_add accession-compatible catalytic residue "
+                "sequence-position mapping before predicted-geometry scoring"
+            )
+        elif reason.startswith("experimental_geometry_not_ok"):
+            action = (
+                "repair source geometry evidence or keep row excluded from "
+                "geometry-calibrated OOS surface"
+            )
+        elif reason == "not_m_csa_entry":
+            action = (
+                "provide an active-site residue sidecar for UniProt-only rows "
+                "or score them in a fold-only negative surface"
+            )
+        elif reason == "alphafold_db_coordinate_unavailable":
+            action = (
+                "verify replacement accession or alternate local coordinate source; "
+                "AFDB has no v1-v6 model for this accession"
+            )
+        else:
+            action = "inspect row-level fold/cofactor availability and rerun scorer after repair"
+        fold = row.get("predicted_structure_fold_channel") or {}
+        blocker_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": row.get("accession"),
+                "benchmark_role": row.get("benchmark_role"),
+                "predicted_geometry_status": row.get("predicted_geometry_status"),
+                "fold_tm_available": fold.get("nearest_train_atlas_tm_score") is not None,
+                "blocker_reason": reason,
+                "recommended_action": action,
+                "fetch_failure": fetch_failures.get(entry_id),
+            }
+        )
+    reason_counts = Counter(row["blocker_reason"] for row in blocker_rows)
+    action_groups: dict[str, list[str]] = defaultdict(list)
+    for row in blocker_rows:
+        action_groups[row["recommended_action"]].append(row["entry_id"])
+    counts = surface.get("counts", {})
+    return {
+        "artifact_id": "v3_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_current702_20260601",
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": "blocker_resolution_packet_ready",
+        "scope": (
+            "Row-level blocker-resolution packet for calibration OOS negatives "
+            "missing full fold-augmented channel scores."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_selection_or_scoring": False,
+            "frozen_current702_inputs_only": True,
+        },
+        "counts": {
+            "candidate_ids_requested": counts.get("candidate_ids_requested"),
+            "score_complete_rows": counts.get("candidate_rows_with_full_channel_scores"),
+            "missing_full_score_rows": len(blocker_rows),
+            "rows_with_fold_only_no_geometry": sum(
+                1 for row in blocker_rows if row["fold_tm_available"]
+            ),
+            "blocker_reason_counts": dict(sorted(reason_counts.items())),
+        },
+        "blocker_rows": sorted(
+            blocker_rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "action_groups": {
+            action: sorted(ids, key=_entry_id_sort_key)
+            for action, ids in sorted(action_groups.items())
+        },
+        "interpretation": {
+            "headline": (
+                "The remaining OOS calibration gap is mostly active-site "
+                "mapping/geometry eligibility, not Foldseek runtime."
+            ),
+            "next_action": (
+                "Repair accession-compatible active-site mappings for the six "
+                "m_csa rows first; then rerun the scorer and OOS-calibrated "
+                "threshold contract."
+            ),
+        },
+        "source_artifacts": {
+            "score_surface": _source_path_record(train_cal_oos_surface_path),
+        },
+    }
+
+
+def _render_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Train/Cal OOS Negative Surface Blocker Resolution - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Score-complete rows: {counts['score_complete_rows']} / {counts['candidate_ids_requested']}",
+        f"- Missing full-score rows: {counts['missing_full_score_rows']}",
+        f"- Rows with fold-only but no geometry: {counts['rows_with_fold_only_no_geometry']}",
+        f"- Blocker reason counts: {counts['blocker_reason_counts']}",
+        "",
+        "## Blocker Rows",
+        "",
+        "| Entry | accession | reason | fold TM available | recommended action |",
+        "| --- | --- | --- | ---: | --- |",
+    ]
+    for row in audit["blocker_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | {row['blocker_reason']} | "
+            f"{row['fold_tm_available']} | {row['recommended_action']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_train_cal_oos_negative_surface_blocker_resolution(
+    *,
+    train_cal_oos_surface_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_train_cal_oos_negative_surface_blocker_resolution(
+        train_cal_oos_surface_path=train_cal_oos_surface_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_train_cal_oos_negative_surface_blocker_resolution_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _score_threshold_for_min_retain_max_oos(
+    calibration_in_scope_rows: list[dict[str, Any]],
+    calibration_oos_rows: list[dict[str, Any]],
+    channel_name: str,
+    *,
+    min_retain: float,
+) -> dict[str, Any] | None:
+    in_scope_scores = [
+        float(row["channel_scores"][channel_name])
+        for row in calibration_in_scope_rows
+        if row.get("channel_scores") and channel_name in row["channel_scores"]
+    ]
+    oos_scores = [
+        float(row["channel_scores"][channel_name])
+        for row in calibration_oos_rows
+        if row.get("channel_scores") and channel_name in row["channel_scores"]
+    ]
+    if not in_scope_scores or not oos_scores:
+        return None
+    candidates = sorted({round(score, 6) for score in in_scope_scores + oos_scores})
+    best: tuple[tuple[float, float], dict[str, Any]] | None = None
+    for threshold in candidates:
+        retained = sum(1 for score in in_scope_scores if score >= threshold)
+        retain = retained / len(in_scope_scores)
+        if retain < min_retain:
+            continue
+        abstained = sum(1 for score in oos_scores if score < threshold)
+        abstain = abstained / len(oos_scores)
+        item = {
+            "threshold": threshold,
+            "min_retain_target": min_retain,
+            "calibration_in_scope_retain_recall": round(retain, 4),
+            "calibration_in_scope_retained": retained,
+            "calibration_in_scope_total": len(in_scope_scores),
+            "calibration_oos_abstain_recall": round(abstain, 4),
+            "calibration_oos_abstained": abstained,
+            "calibration_oos_total": len(oos_scores),
+            "objective": "maximize_calibration_oos_abstain_recall_subject_to_in_scope_retention",
+        }
+        key = (abstain, threshold)
+        if best is None or key > best[0]:
+            best = (key, item)
+    return best[1] if best else None
+
+
+def build_fold_augmented_oos_calibrated_threshold_contract(
+    *,
+    threshold_contract_path: Path,
+    train_cal_oos_surface_path: Path,
+    fold_augmented_gate_path: Path,
+) -> dict[str, Any]:
+    threshold_contract = _read_json(threshold_contract_path)
+    oos_surface = _read_json(train_cal_oos_surface_path)
+    fold_gate = _read_json(fold_augmented_gate_path)
+    calibration_in_scope_rows = [
+        row
+        for row in threshold_contract.get("calibration_row_scores", [])
+        if isinstance(row, dict) and row.get("channel_scores")
+    ]
+    calibration_oos_rows = [
+        row
+        for row in oos_surface.get("candidate_row_scores", [])
+        if isinstance(row, dict) and row.get("channel_scores")
+    ]
+    heldout_rows = [
+        row
+        for row in fold_gate.get("row_scores", [])
+        if isinstance(row, dict) and row.get("channel_scores")
+    ]
+    channel_names = sorted(
+        {
+            name
+            for row in calibration_in_scope_rows + calibration_oos_rows + heldout_rows
+            for name in (row.get("channel_scores") or {})
+        }
+    ) or [
+        "geometry_top1_score",
+        "cofactor_max_score",
+        "fold_nearest_atlas_tm_score",
+        "combined_mean_geometry_cofactor_fold",
+        "combined_mean_geometry_fold",
+        "combined_min_geometry_fold",
+    ]
+    contract: dict[str, Any] = {}
+    prior = threshold_contract.get("threshold_contract", {})
+    for channel_name in channel_names:
+        at90 = _score_threshold_for_min_retain_max_oos(
+            calibration_in_scope_rows,
+            calibration_oos_rows,
+            channel_name,
+            min_retain=0.90,
+        )
+        at85 = _score_threshold_for_min_retain_max_oos(
+            calibration_in_scope_rows,
+            calibration_oos_rows,
+            channel_name,
+            min_retain=0.85,
+        )
+        prior_channel = prior.get(channel_name, {})
+        prior90 = prior_channel.get("selected_at_90pct_calibration_in_scope_retention")
+        contract[channel_name] = {
+            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": at90,
+            "selected_at_85pct_calibration_in_scope_retention_max_oos_abstain": at85,
+            "prior_in_scope_only_selected_at_90pct": prior90,
+            "threshold_changed_from_in_scope_only_90pct": (
+                bool(
+                    at90
+                    and prior90
+                    and float(at90["threshold"]) != float(prior90["threshold"])
+                )
+                if at90 and prior90
+                else None
+            ),
+            "heldout_final_eval_at_90pct_oos_calibrated_threshold": (
+                _evaluate_threshold_on_heldout(
+                    heldout_rows,
+                    channel_name,
+                    float(at90["threshold"]),
+                )
+                if at90
+                else None
+            ),
+            "heldout_final_eval_at_85pct_oos_calibrated_threshold": (
+                _evaluate_threshold_on_heldout(
+                    heldout_rows,
+                    channel_name,
+                    float(at85["threshold"]),
+                )
+                if at85
+                else None
+            ),
+        }
+    blockers: list[str] = []
+    if not calibration_in_scope_rows:
+        blockers.append("no_calibration_in_scope_rows_available")
+    if not calibration_oos_rows:
+        blockers.append("no_calibration_oos_negative_rows_available")
+    if not heldout_rows:
+        blockers.append("no_heldout_final_eval_rows_available")
+    if oos_surface.get("status") != "computed_train_cal_oos_negative_surface_scores":
+        blockers.append("train_cal_oos_negative_surface_is_partial")
+    primary = contract.get("combined_mean_geometry_fold", {})
+    status = (
+        "computed_oos_calibrated_threshold_contract"
+        if calibration_in_scope_rows and calibration_oos_rows and heldout_rows
+        else "blocked_missing_oos_calibration_surface"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_OOS_CALIBRATED_THRESHOLD_CONTRACT_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Leakage-safe OOS-calibrated fold-augmented threshold contract. "
+            "Thresholds are selected using deterministic in-distribution calibration "
+            "in-scope rows plus hash-selected in-distribution OOS calibration negatives; "
+            "heldout rows remain final evaluation only."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "thresholds_selected_on_heldout": False,
+            "heldout_used_for_final_eval_only": True,
+            "train_cal_oos_negatives_used_for_threshold": True,
+            "frozen_current702_inputs_only": True,
+        },
+        "selection_policy": {
+            "objective": "maximize_calibration_oos_abstain_recall_subject_to_in_scope_retention",
+            "target_retention_levels": [0.90, 0.85],
+            "calibration_in_scope_source": str(threshold_contract_path),
+            "calibration_oos_negative_source": str(train_cal_oos_surface_path),
+            "heldout_policy": "heldout rows are evaluated after threshold selection and do not affect thresholds",
+            "production_status": "research_contract_not_production_threshold",
+        },
+        "counts": {
+            "calibration_in_scope_rows": len(calibration_in_scope_rows),
+            "calibration_oos_negative_rows": len(calibration_oos_rows),
+            "calibration_oos_negative_candidates_requested": oos_surface.get("counts", {}).get(
+                "candidate_ids_requested"
+            ),
+            "heldout_rows_final_eval": len(heldout_rows),
+            "heldout_in_scope": sum(1 for row in heldout_rows if row.get("is_inscope")),
+            "heldout_oos": sum(1 for row in heldout_rows if row.get("is_oos")),
+            "heldout_confounded_oos": sum(
+                1 for row in heldout_rows if row.get("is_confounded_predicted_geometry_oos")
+            ),
+        },
+        "blockers": blockers,
+        "threshold_contract": contract,
+        "primary_channel_readout": {
+            "channel": "combined_mean_geometry_fold",
+            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": primary.get(
+                "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain"
+            ),
+            "heldout_final_eval_at_90pct_oos_calibrated_threshold": primary.get(
+                "heldout_final_eval_at_90pct_oos_calibrated_threshold"
+            ),
+            "prior_in_scope_only_selected_at_90pct": primary.get(
+                "prior_in_scope_only_selected_at_90pct"
+            ),
+        },
+        "calibration_oos_negative_row_scores": calibration_oos_rows,
+        "source_artifacts": {
+            "threshold_contract": _source_path_record(threshold_contract_path),
+            "train_cal_oos_negative_surface": _source_path_record(train_cal_oos_surface_path),
+            "fold_augmented_gate": _source_path_record(fold_augmented_gate_path),
+        },
+        "interpretation": {
+            "headline": (
+                "The fold-augmented threshold contract now has an OOS-negative calibration surface."
+                if status == "computed_oos_calibrated_threshold_contract"
+                else "OOS-calibrated threshold selection remains blocked by missing calibration surfaces."
+            ),
+            "production_status": "research_contract_not_production_threshold; no production scorer or global threshold was changed",
+            "next_action": (
+                "Review the primary channel's calibration-OOS and heldout final readout, "
+                "then decide whether the partial 65-row OOS calibration surface is enough "
+                "or whether to clear the remaining candidate geometry blockers first."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_oos_calibrated_threshold_contract_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    primary = audit["primary_channel_readout"]
+    lines = [
+        "# Fold-Augmented OOS-Calibrated Threshold Contract - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Blockers: {audit['blockers']}",
+        f"- Calibration in-scope rows: {counts['calibration_in_scope_rows']}",
+        f"- Calibration OOS negative rows: {counts['calibration_oos_negative_rows']}",
+        f"- Heldout final-eval rows: {counts['heldout_rows_final_eval']}",
+        "",
+        "## Primary Channel",
+        "",
+        f"- Channel: {primary['channel']}",
+        f"- OOS-calibrated 90% threshold: {primary['selected_at_90pct_calibration_in_scope_retention_max_oos_abstain']}",
+        f"- Prior in-scope-only 90% threshold: {primary['prior_in_scope_only_selected_at_90pct']}",
+        f"- Heldout final eval at OOS-calibrated threshold: {primary['heldout_final_eval_at_90pct_oos_calibrated_threshold']}",
+        "",
+        "## Thresholds",
+        "",
+        "| Channel | OOS-cal >=90 threshold | cal OOS abstain | heldout in-scope retain | heldout OOS abstain | heldout confounded abstain |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for name, row in audit["threshold_contract"].items():
+        selected = row.get("selected_at_90pct_calibration_in_scope_retention_max_oos_abstain") or {}
+        heldout = row.get("heldout_final_eval_at_90pct_oos_calibrated_threshold") or {}
+        lines.append(
+            f"| {name} | {selected.get('threshold')} | "
+            f"{selected.get('calibration_oos_abstain_recall')} | "
+            f"{heldout.get('heldout_in_scope_retain_recall')} | "
+            f"{heldout.get('heldout_oos_abstain_recall')} | "
+            f"{heldout.get('heldout_confounded_oos_abstain_recall')} |"
+        )
+    lines += [
+        "",
+        "## Contract",
+        "",
+        f"- {audit['selection_policy']['objective']}",
+        f"- {audit['selection_policy']['heldout_policy']}",
+        f"- {audit['interpretation']['production_status']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_oos_calibrated_threshold_contract(
+    *,
+    threshold_contract_path: Path,
+    train_cal_oos_surface_path: Path,
+    fold_augmented_gate_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_oos_calibrated_threshold_contract(
+        threshold_contract_path=threshold_contract_path,
+        train_cal_oos_surface_path=train_cal_oos_surface_path,
+        fold_augmented_gate_path=fold_augmented_gate_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_oos_calibrated_threshold_contract_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _normalize_feature_token(value: Any) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", str(value).strip().lower()).strip("_")
+
+
+def _catalytic_residue_nodes_by_entry(graph: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
+    by_entry: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for node in graph.get("nodes", []):
+        if not isinstance(node, dict) or node.get("type") != "catalytic_residue":
+            continue
+        node_id = str(node.get("id") or "")
+        parts = node_id.split(":")
+        if len(parts) < 3:
+            continue
+        by_entry[f"{parts[0]}:{parts[1]}"].append(node)
+    return {
+        entry_id: sorted(nodes, key=lambda item: str(item.get("id") or ""))
+        for entry_id, nodes in by_entry.items()
+    }
+
+
+def _has_accession_compatible_sequence_positions(
+    residue_nodes: list[dict[str, Any]],
+    accession: str,
+) -> bool:
+    if not residue_nodes:
+        return False
+    for node in residue_nodes:
+        candidates = [
+            item
+            for item in node.get("sequence_positions", [])
+            if isinstance(item, dict) and item.get("is_reference", True) and item.get("resid")
+        ]
+        usable = [
+            item
+            for item in candidates
+            if not item.get("uniprot_id") or str(item.get("uniprot_id")) == accession
+        ]
+        if not usable:
+            return False
+    return True
+
+
+def build_mechanism_feature_active_site_role_graph_sidecar(
+    *,
+    label_manifest_path: Path,
+    graph_path: Path,
+) -> dict[str, Any]:
+    manifest = _read_json(label_manifest_path)
+    graph = _read_json(graph_path)
+    manifest_rows = [
+        row for row in manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    residues_by_entry = _catalytic_residue_nodes_by_entry(graph)
+    sidecar_rows: list[dict[str, Any]] = []
+    role_counter: Counter[str] = Counter()
+    edge_counter: Counter[tuple[str, str]] = Counter()
+    status_counter: Counter[str] = Counter()
+    split_status_counter: Counter[str] = Counter()
+    for row in manifest_rows:
+        entry_id = str(row.get("entry_id") or "")
+        accession = str(row.get("accession") or row.get("sequence_id") or "")
+        residue_nodes = residues_by_entry.get(entry_id, [])
+        residue_records = []
+        row_roles: list[str] = []
+        for node in residue_nodes:
+            roles = [
+                token
+                for token in (_normalize_feature_token(role) for role in node.get("roles", []))
+                if token
+            ]
+            row_roles.extend(roles)
+            role_counter.update(roles)
+            residue_records.append(
+                {
+                    "residue_node_id": node.get("id"),
+                    "roles": roles,
+                    "roles_raw": node.get("roles", []),
+                    "sequence_positions": node.get("sequence_positions", []),
+                    "structure_positions": node.get("structure_positions", []),
+                }
+            )
+        unique_roles = sorted(set(row_roles))
+        role_edges = []
+        for index, left in enumerate(unique_roles):
+            for right in unique_roles[index + 1:]:
+                role_edges.append(
+                    {
+                        "left_role": left,
+                        "right_role": right,
+                        "edge_type": "same_entry_active_site_cooccurrence",
+                    }
+                )
+                edge_counter[(left, right)] += 1
+        compatible = _has_accession_compatible_sequence_positions(
+            residue_nodes,
+            accession,
+        )
+        if not entry_id.startswith("m_csa:"):
+            status = "not_m_csa_no_curated_active_site_roles"
+        elif not residue_nodes:
+            status = "missing_catalytic_residue_nodes"
+        elif not compatible:
+            status = "missing_accession_compatible_sequence_positions"
+        else:
+            status = "ok"
+        status_counter[status] += 1
+        split_status_counter[f"{row.get('split_assignment') or 'unknown'}::{status}"] += 1
+        sidecar_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": accession,
+                "split_assignment": row.get("split_assignment"),
+                "benchmark_role": row.get("benchmark_role"),
+                "fingerprint_id": row.get("fingerprint_id")
+                or row.get("mechanism_fingerprint_id"),
+                "label_type": row.get("label_type"),
+                "status": status,
+                "active_site_residue_count": len(residue_records),
+                "accession_compatible_sequence_positions": compatible,
+                "role_counts": dict(sorted(Counter(row_roles).items())),
+                "role_edges": role_edges,
+                "residues": residue_records,
+            }
+        )
+    return {
+        "artifact_id": "v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601",
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": "active_site_role_graph_sidecar_ready",
+        "scope": (
+            "Row-level active-site residue-role graph sidecar for current702 "
+            "mechanism-feature embedding gap closure."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "feature_sidecar_only": True,
+        },
+        "counts": {
+            "manifest_rows": len(manifest_rows),
+            "rows_by_status": dict(sorted(status_counter.items())),
+            "rows_with_ok_role_graph": status_counter.get("ok", 0),
+            "unique_roles": len(role_counter),
+            "unique_role_edges": len(edge_counter),
+            "top_roles": role_counter.most_common(20),
+            "split_status_counts": dict(sorted(split_status_counter.items())),
+        },
+        "role_vocabulary": dict(sorted(role_counter.items())),
+        "role_edge_vocabulary": [
+            {"left_role": left, "right_role": right, "row_count": count}
+            for (left, right), count in sorted(edge_counter.items())
+        ],
+        "rows": sidecar_rows,
+        "interpretation": {
+            "embedding_gap_closed": "row_level_active_site_residue_role_graph_vocabulary_normalized",
+            "remaining_gap": (
+                "directed proton-transfer/electron-flow edges and row-specific "
+                "bond-change mapping are not inferred here"
+            ),
+            "next_action": (
+                "Use this sidecar as a train/cal-only feature source in a future "
+                "mechanism-feature embedding pilot; do not train on heldout rows."
+            ),
+        },
+        "source_artifacts": {
+            "label_manifest": _source_path_record(label_manifest_path),
+            "graph": _source_path_record(graph_path),
+        },
+    }
+
+
+def _render_mechanism_feature_active_site_role_graph_sidecar_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Active-Site Role Graph Sidecar - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Manifest rows: {counts['manifest_rows']}",
+        f"- Rows with ok role graph: {counts['rows_with_ok_role_graph']}",
+        f"- Rows by status: {counts['rows_by_status']}",
+        f"- Unique roles: {counts['unique_roles']}",
+        f"- Unique role co-occurrence edges: {counts['unique_role_edges']}",
+        "",
+        "## Top Roles",
+        "",
+    ]
+    for role, count in counts["top_roles"]:
+        lines.append(f"- {role}: {count}")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['embedding_gap_closed']}",
+        f"- {audit['interpretation']['remaining_gap']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_active_site_role_graph_sidecar(
+    *,
+    label_manifest_path: Path,
+    graph_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_active_site_role_graph_sidecar(
+        label_manifest_path=label_manifest_path,
+        graph_path=graph_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_active_site_role_graph_sidecar_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_mechanism_feature_reaction_center_template_sidecar(
+    *,
+    label_manifest_path: Path,
+    mechanism_fingerprints_path: Path,
+) -> dict[str, Any]:
+    manifest = _read_json(label_manifest_path)
+    fingerprints = _read_json(mechanism_fingerprints_path)
+    fingerprints_by_id = {
+        str(fp.get("id")): fp
+        for fp in fingerprints
+        if isinstance(fp, dict) and fp.get("id")
+    }
+    manifest_rows = [
+        row for row in manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    sidecar_rows = []
+    operation_counter: Counter[str] = Counter()
+    bond_counter: Counter[str] = Counter()
+    status_counter: Counter[str] = Counter()
+    split_status_counter: Counter[str] = Counter()
+    for row in manifest_rows:
+        fp_id = row.get("fingerprint_id") or row.get("mechanism_fingerprint_id")
+        fp = fingerprints_by_id.get(str(fp_id)) if fp_id else None
+        if fp:
+            reaction_center = fp.get("reaction_center") or {}
+            operation = reaction_center.get("chemical_operation")
+            bond_changes = reaction_center.get("bond_changes") or []
+            cofactors = fp.get("cofactors") or []
+            status = "template_available"
+            if operation:
+                operation_counter[_normalize_feature_token(operation)] += 1
+            bond_counter.update(
+                token
+                for token in (_normalize_feature_token(item) for item in bond_changes)
+                if token
+            )
+        elif fp_id:
+            operation = None
+            bond_changes = []
+            cofactors = []
+            status = "fingerprint_template_missing"
+        else:
+            operation = None
+            bond_changes = []
+            cofactors = []
+            status = "no_mechanism_fingerprint_oos_or_unlabeled"
+        status_counter[status] += 1
+        split_status_counter[f"{row.get('split_assignment') or 'unknown'}::{status}"] += 1
+        sidecar_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "accession": row.get("accession") or row.get("sequence_id"),
+                "split_assignment": row.get("split_assignment"),
+                "benchmark_role": row.get("benchmark_role"),
+                "label_type": row.get("label_type"),
+                "fingerprint_id": fp_id,
+                "status": status,
+                "reaction_center_template": {
+                    "chemical_operation": operation,
+                    "chemical_operation_normalized": (
+                        _normalize_feature_token(operation) if operation else None
+                    ),
+                    "bond_changes": bond_changes,
+                    "bond_changes_normalized": [
+                        token
+                        for token in (
+                            _normalize_feature_token(item) for item in bond_changes
+                        )
+                        if token
+                    ],
+                    "cofactors": cofactors,
+                    "active_site_signature_roles": [
+                        item.get("role")
+                        for item in ((fp or {}).get("active_site_signature") or [])
+                    ],
+                },
+            }
+        )
+    return {
+        "artifact_id": "v3_mechanism_feature_reaction_center_template_sidecar_current702_20260601",
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": "reaction_center_template_sidecar_ready",
+        "scope": (
+            "Row-level fingerprint-template reaction-center sidecar for "
+            "mechanism-feature embedding readiness; not row-specific reaction evidence."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "template_features_only_not_row_specific_bond_evidence": True,
+        },
+        "counts": {
+            "manifest_rows": len(manifest_rows),
+            "rows_by_status": dict(sorted(status_counter.items())),
+            "rows_with_template": status_counter.get("template_available", 0),
+            "unique_chemical_operations": len(operation_counter),
+            "unique_bond_change_templates": len(bond_counter),
+            "chemical_operation_counts": dict(sorted(operation_counter.items())),
+            "bond_change_counts": dict(sorted(bond_counter.items())),
+            "split_status_counts": dict(sorted(split_status_counter.items())),
+        },
+        "rows": sidecar_rows,
+        "interpretation": {
+            "embedding_gap_partially_closed": "fingerprint_template_reaction_center_descriptors_are_row_aligned",
+            "remaining_gap": "row-specific source-backed Rhea/M-CSA bond-change sidecar is still missing",
+            "next_action": (
+                "Use only train/cal rows for any future embedding pilot and add "
+                "row-specific bond-change evidence before claiming mechanism-level supervision."
+            ),
+        },
+        "source_artifacts": {
+            "label_manifest": _source_path_record(label_manifest_path),
+            "mechanism_fingerprints": _source_path_record(mechanism_fingerprints_path),
+        },
+    }
+
+
+def _render_mechanism_feature_reaction_center_template_sidecar_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Reaction-Center Template Sidecar - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Rows with template: {counts['rows_with_template']} / {counts['manifest_rows']}",
+        f"- Rows by status: {counts['rows_by_status']}",
+        f"- Unique chemical operations: {counts['unique_chemical_operations']}",
+        f"- Unique bond-change templates: {counts['unique_bond_change_templates']}",
+        "",
+        "## Chemical Operations",
+        "",
+    ]
+    for key, count in counts["chemical_operation_counts"].items():
+        lines.append(f"- {key}: {count}")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['embedding_gap_partially_closed']}",
+        f"- {audit['interpretation']['remaining_gap']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_reaction_center_template_sidecar(
+    *,
+    label_manifest_path: Path,
+    mechanism_fingerprints_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_reaction_center_template_sidecar(
+        label_manifest_path=label_manifest_path,
+        mechanism_fingerprints_path=mechanism_fingerprints_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_reaction_center_template_sidecar_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
 def _feature_flags_for_fingerprint(fp: dict[str, Any]) -> dict[str, Any]:
     fp_id = fp["id"]
     cofs = [str(c).lower() for c in fp.get("cofactors", [])]
@@ -3085,11 +4685,25 @@ def build_learned_mechanism_feature_embedding_plan(
     label_manifest_path: Path,
     selected_organic_cofactor_sidecar_path: Path,
     predicted_geometry_atlas_path: Path,
+    active_site_role_graph_sidecar_path: Path | None = None,
+    reaction_center_template_sidecar_path: Path | None = None,
 ) -> dict[str, Any]:
     fingerprints = _read_json(mechanism_fingerprints_path)
     manifest = _read_json(label_manifest_path)
     cofactor = _read_json(selected_organic_cofactor_sidecar_path)
     predicted_atlas = _read_json(predicted_geometry_atlas_path)
+    active_site_role_graph = (
+        _read_json(active_site_role_graph_sidecar_path)
+        if active_site_role_graph_sidecar_path is not None
+        and Path(active_site_role_graph_sidecar_path).exists()
+        else {}
+    )
+    reaction_center_template = (
+        _read_json(reaction_center_template_sidecar_path)
+        if reaction_center_template_sidecar_path is not None
+        and Path(reaction_center_template_sidecar_path).exists()
+        else {}
+    )
 
     rows = manifest.get("labels") or manifest.get("rows") or manifest.get("records") or []
     row_counts = Counter(
@@ -3184,6 +4798,28 @@ def build_learned_mechanism_feature_embedding_plan(
             "row_level_selected_organic_cofactor_records": len(row_class_records),
             "predicted_geometry_atlas_status": predicted_atlas.get("status"),
             "predicted_geometry_atlas_counts": atlas_counts,
+            "active_site_role_graph_sidecar": {
+                "status": active_site_role_graph.get("status"),
+                "rows_with_ok_role_graph": active_site_role_graph.get("counts", {}).get(
+                    "rows_with_ok_role_graph"
+                ),
+                "unique_roles": active_site_role_graph.get("counts", {}).get("unique_roles"),
+                "unique_role_edges": active_site_role_graph.get("counts", {}).get(
+                    "unique_role_edges"
+                ),
+            },
+            "reaction_center_template_sidecar": {
+                "status": reaction_center_template.get("status"),
+                "rows_with_template": reaction_center_template.get("counts", {}).get(
+                    "rows_with_template"
+                ),
+                "unique_chemical_operations": reaction_center_template.get("counts", {}).get(
+                    "unique_chemical_operations"
+                ),
+                "unique_bond_change_templates": reaction_center_template.get("counts", {}).get(
+                    "unique_bond_change_templates"
+                ),
+            },
         },
         "feature_extraction_gaps": [
             {
@@ -3193,8 +4829,8 @@ def build_learned_mechanism_feature_embedding_plan(
             },
             {
                 "feature": "transition_state_stabilization_role",
-                "gap": "role text exists in fingerprints but not as normalized row-level graph edges",
-                "next_action": "normalize active_site_signature roles into residue-role graph vocabulary",
+                "gap": "row-level role graph vocabulary exists, but directed transition-state/proton/electron-flow edges are not inferred",
+                "next_action": "consume the role graph sidecar on train/cal rows only, then add directed mechanism-edge features",
             },
             {
                 "feature": "proton_transfer_connectivity",
@@ -3203,8 +4839,8 @@ def build_learned_mechanism_feature_embedding_plan(
             },
             {
                 "feature": "bond_making_breaking",
-                "gap": "fingerprint reaction-center descriptors exist; row-specific Rhea/M-CSA bond-change mapping is not normalized here",
-                "next_action": "build a source-backed bond-change sidecar before any supervised pilot",
+                "gap": "fingerprint-template reaction-center descriptors are row-aligned, but row-specific Rhea/M-CSA bond-change mapping is not normalized here",
+                "next_action": "build a source-backed row-specific bond-change sidecar before any supervised pilot",
             },
             {
                 "feature": "cofactor_catalytic_locus",
@@ -3233,6 +4869,16 @@ def build_learned_mechanism_feature_embedding_plan(
                 "path": str(predicted_geometry_atlas_path),
                 "sha256": _sha256(predicted_geometry_atlas_path),
             },
+            "active_site_role_graph_sidecar": (
+                _source_path_record(active_site_role_graph_sidecar_path)
+                if active_site_role_graph_sidecar_path is not None
+                else None
+            ),
+            "reaction_center_template_sidecar": (
+                _source_path_record(reaction_center_template_sidecar_path)
+                if reaction_center_template_sidecar_path is not None
+                else None
+            ),
         },
     }
 
@@ -3264,6 +4910,11 @@ def _render_embedding_plan_report(audit: dict[str, Any]) -> str:
         f"- Forbidden rows: {audit['pilot_design']['forbidden_training_rows']}",
         "- Evaluation target: operating-point novelty/abstention and relationship eval, not only AUC.",
         "",
+        "## Row-Level Sidecars",
+        "",
+        f"- Active-site role graph: {audit['current_data_readiness']['active_site_role_graph_sidecar']}",
+        f"- Reaction-center template: {audit['current_data_readiness']['reaction_center_template_sidecar']}",
+        "",
         "## Extraction Gaps",
         "",
     ]
@@ -3280,12 +4931,16 @@ def write_learned_mechanism_feature_embedding_plan(
     predicted_geometry_atlas_path: Path,
     out_path: Path,
     report_path: Path | None = None,
+    active_site_role_graph_sidecar_path: Path | None = None,
+    reaction_center_template_sidecar_path: Path | None = None,
 ) -> dict[str, Any]:
     audit = build_learned_mechanism_feature_embedding_plan(
         mechanism_fingerprints_path=mechanism_fingerprints_path,
         label_manifest_path=label_manifest_path,
         selected_organic_cofactor_sidecar_path=selected_organic_cofactor_sidecar_path,
         predicted_geometry_atlas_path=predicted_geometry_atlas_path,
+        active_site_role_graph_sidecar_path=active_site_role_graph_sidecar_path,
+        reaction_center_template_sidecar_path=reaction_center_template_sidecar_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")

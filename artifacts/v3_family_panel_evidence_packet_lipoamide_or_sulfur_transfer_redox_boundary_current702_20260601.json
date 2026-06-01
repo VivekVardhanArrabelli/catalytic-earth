@@ -1,0 +1,147 @@
+{
+  "artifact_id": "v3_family_panel_evidence_packet_lipoamide_or_sulfur_transfer_redox_boundary_current702_20260601",
+  "counts": {
+    "candidate_rows": 2,
+    "missing_geometry_entry_ids": [],
+    "predicted_geometry_ok_rows": 2,
+    "rows_with_predicted_structure_fold_hits": 2,
+    "rows_with_selected_organic_cofactor_scores": 2,
+    "rows_with_selected_pdb_fold_proxy": 2
+  },
+  "created_utc": "2026-06-01T05:04:22Z",
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "heldout_splits_changed": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "proposal_only": true
+  },
+  "next_actions": [
+    "use the completed all-heldout predicted Foldseek/TM signal in the next abstention combiner diagnostic",
+    "source-check mechanism locus and bond-change evidence before any panel promotion discussion",
+    "keep rows review-only and out of training/calibration until a future frozen split is explicitly authorized"
+  ],
+  "panel": {
+    "candidate_family": "lipoamide_or_sulfur_transfer_redox_boundary",
+    "candidate_rows": [
+      "m_csa:267",
+      "m_csa:448"
+    ],
+    "candidate_sources": [
+      "M-CSA current heldout canaries",
+      "Swiss-Prot lipoamide/sulfur-transfer enzymes",
+      "Rhea sulfur-transfer/redox reactions"
+    ],
+    "expected_eval_bin_impact": "adds hard OOS controls for known-cofactor leakage and Fe-S/sulfur chemistry",
+    "priority_bins": [
+      "cofactor_confounded_oos",
+      "radical_cobalamin_FeS"
+    ],
+    "required_human_validation": "expert review of catalytic locus and cofactor identity; keep review-only until duplicate and split gates pass"
+  },
+  "review_questions": [
+    "Do these rows share a coherent `lipoamide_or_sulfur_transfer_redox_boundary` mechanism locus, or should they stay OOS controls?",
+    "Which row-level bond-change and cofactor-locus features must be normalized before any countable family addition?",
+    "Does the real predicted-structure Foldseek/TM channel keep these rows outside occupied primary atlas folds?"
+  ],
+  "row_evidence": [
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:267",
+      "evidence_role": "cofactor-confounded OOS control: known organic cofactor-like signal with weak/novel fold or geometry support against occupied primary mechanisms",
+      "predicted_atlas_geometry_variant_scores": {
+        "negative_nearest_class_centroid_robust_distance": -1.475892,
+        "top1_score_raw": 0.3969
+      },
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1": {
+        "cofactor_context_score": 0.0,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "role_match_fraction": 0.6667,
+        "score": 0.3969
+      },
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:800",
+        "nearest_atlas_tm_score": 0.7389,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      "selected_organic_cofactor_max": 0.834847,
+      "selected_organic_cofactor_scores": {
+        "flavin": 0.002346,
+        "heme": 0.003092,
+        "plp": 0.834847
+      },
+      "selected_pdb_fold_proxy": {
+        "nearest_primary_foldseek_prob": 0.0,
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": "out_of_scope",
+        "top3_primary_foldseek_prob": 0.0
+      },
+      "split_assignment": "heldout"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:448",
+      "evidence_role": "cofactor-confounded OOS control: known organic cofactor-like signal with weak/novel fold or geometry support against occupied primary mechanisms",
+      "predicted_atlas_geometry_variant_scores": {
+        "negative_nearest_class_centroid_robust_distance": -1.350762,
+        "top1_score_raw": 0.3576
+      },
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1": {
+        "cofactor_context_score": 0.2,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "role_match_fraction": 0.0,
+        "score": 0.3576
+      },
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:528",
+        "nearest_atlas_tm_score": 0.5106,
+        "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase"
+      },
+      "selected_organic_cofactor_max": 0.904927,
+      "selected_organic_cofactor_scores": {
+        "flavin": 0.15474,
+        "heme": 0.904927,
+        "plp": 0.000594
+      },
+      "selected_pdb_fold_proxy": {
+        "nearest_primary_foldseek_prob": 0.0,
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": "out_of_scope",
+        "top3_primary_foldseek_prob": 0.009
+      },
+      "split_assignment": "heldout"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Review-only evidence packet for the highest-value family-set expansion panel `lipoamide_or_sulfur_transfer_redox_boundary`: cofactor-confounded OOS boundary rows that stress the current de novo abstention gate.",
+  "source_artifacts": {
+    "family_targets": {
+      "path": "artifacts/v3_family_set_expansion_targets_current702_20260601.json",
+      "sha256": "1df9c3b2c7c2e9348b0e1798424886b91d7ddfa0ca142ad18fd05a8e8d6da7ff"
+    },
+    "fold_level_signal": {
+      "path": "artifacts/v3_fold_level_novelty_signal_current702_20260601.json",
+      "sha256": "03515cb359fe0ebf4c673117201a2addf2d75e03af5f89ba58fc77891c47f85d"
+    },
+    "predicted_atlas_variants": {
+      "path": "artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json",
+      "sha256": "1c09f7cad3bec0da694e03ac1d60f9c6bc96e9208d13bbb06a90095170a2ef13"
+    },
+    "predicted_geometry_atlas": {
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    },
+    "predicted_structure_fold_channel": {
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+      "sha256": "565266bfd8379c75104e1d7a74457ef40846563ea71988c4946d16c92f733582"
+    },
+    "selected_organic_cofactor_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    }
+  },
+  "status": "evidence_packet_ready_review_only"
+}

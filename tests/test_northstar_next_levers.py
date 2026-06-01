@@ -8,7 +8,14 @@ from pathlib import Path
 from catalytic_earth.northstar_next_levers import (
     build_family_panel_evidence_packet,
     build_fold_augmented_abstention_gate,
+    build_fold_augmented_oos_calibrated_threshold_contract,
     build_fold_augmented_abstention_threshold_contract,
+    build_fold_augmented_train_cal_oos_negative_surface_blocker_resolution,
+    build_fold_augmented_train_cal_oos_negative_surface_scores,
+    build_fold_only_train_cal_oos_negative_surface,
+    build_learned_mechanism_feature_embedding_plan,
+    build_mechanism_feature_active_site_role_graph_sidecar,
+    build_mechanism_feature_reaction_center_template_sidecar,
     build_predicted_atlas_geometry_novelty_variants,
     build_predicted_structure_fold_channel,
     build_selected_organic_cofactor_sidecar_schema_audit,
@@ -346,6 +353,484 @@ class NorthstarNextLeversTests(unittest.TestCase):
             ]
         )
 
+    def test_train_cal_oos_negative_surface_stages_missing_scores(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest = root / "negative_surface.json"
+            labels = root / "labels.json"
+            graph = root / "graph.json"
+            geometry = root / "geometry.json"
+            contract = root / "contract.json"
+            predicted_atlas = root / "predicted_atlas.json"
+            sidecar = root / "cofactor.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "candidate_entry_ids": {
+                            "calibration_oos_candidates_hash20pct": ["uniprot:P12345"]
+                        },
+                        "selection_policy": {
+                            "calibration_negative_selector": "test selector",
+                            "candidate_definition": "split_assignment == in_distribution and no fingerprint",
+                            "train_target_policy": "test train targets",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            labels.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "uniprot:P12345",
+                                "accession": "P12345",
+                                "sequence_id": "P12345",
+                                "split_assignment": "in_distribution",
+                                "benchmark_role": "oos_tier::unknown_oos",
+                                "label_type": "out_of_scope",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(json.dumps({"nodes": []}), encoding="utf-8")
+            geometry.write_text(json.dumps({"entries": []}), encoding="utf-8")
+            contract.write_text(
+                json.dumps({"train_cal_partition": {"train_entry_ids": ["m_csa:1"]}}),
+                encoding="utf-8",
+            )
+            predicted_atlas.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "Q11111",
+                                "split_assignment": "in_distribution",
+                                "true_fingerprint_id": "metal_dependent_hydrolase",
+                                "predicted_geometry_status": "ok",
+                                "predicted_pdb_id": "AF-Q11111-F1-model_v6",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "row_class_records": [
+                            {
+                                "entry_id": "uniprot:P12345",
+                                "class": "flavin",
+                                "selected_score": 0.1,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_train_cal_oos_negative_surface_scores(
+                negative_surface_manifest_path=manifest,
+                label_manifest_path=labels,
+                graph_path=graph,
+                experimental_geometry_features_path=geometry,
+                threshold_contract_path=contract,
+                predicted_geometry_atlas_path=predicted_atlas,
+                selected_organic_cofactor_sidecar_path=sidecar,
+                coordinate_root=root / "coords",
+                train_cal_oos_foldseek_tsv=root / "missing.tsv",
+                out_path=root / "scores.json",
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "manifest_staged_train_cal_oos_negative_surface_scoring",
+        )
+        self.assertTrue(audit["guardrails"]["frozen_current702_inputs_only"])
+        self.assertEqual(audit["counts"]["candidate_ids_requested"], 1)
+        self.assertEqual(audit["counts"]["candidate_geometry_target_rows"], 0)
+        self.assertIn(
+            "train_cal_oos_foldseek_tsv_missing_or_unparsed",
+            audit["blockers"],
+        )
+
+    def test_oos_calibrated_threshold_contract_uses_negative_surface(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            threshold_contract = root / "threshold_contract.json"
+            oos_surface = root / "oos_surface.json"
+            fold_gate = root / "fold_gate.json"
+            threshold_contract.write_text(
+                json.dumps(
+                    {
+                        "threshold_contract": {
+                            "combined_mean_geometry_fold": {
+                                "selected_at_90pct_calibration_in_scope_retention": {
+                                    "threshold": 0.5
+                                }
+                            }
+                        },
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "channel_scores": {"combined_mean_geometry_fold": 0.8},
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "channel_scores": {"combined_mean_geometry_fold": 0.6},
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            oos_surface.write_text(
+                json.dumps(
+                    {
+                        "status": "computed_train_cal_oos_negative_surface_scores",
+                        "counts": {"candidate_ids_requested": 2},
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:3",
+                                "channel_scores": {"combined_mean_geometry_fold": 0.4},
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "channel_scores": {"combined_mean_geometry_fold": 0.7},
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_gate.write_text(
+                json.dumps(
+                    {
+                        "row_scores": [
+                            {
+                                "entry_id": "m_csa:10",
+                                "is_inscope": True,
+                                "is_oos": False,
+                                "is_confounded_predicted_geometry_oos": False,
+                                "channel_scores": {"combined_mean_geometry_fold": 0.65},
+                            },
+                            {
+                                "entry_id": "m_csa:11",
+                                "is_inscope": False,
+                                "is_oos": True,
+                                "is_confounded_predicted_geometry_oos": True,
+                                "channel_scores": {"combined_mean_geometry_fold": 0.5},
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_oos_calibrated_threshold_contract(
+                threshold_contract_path=threshold_contract,
+                train_cal_oos_surface_path=oos_surface,
+                fold_augmented_gate_path=fold_gate,
+            )
+
+        self.assertEqual(audit["status"], "computed_oos_calibrated_threshold_contract")
+        self.assertTrue(audit["guardrails"]["train_cal_oos_negatives_used_for_threshold"])
+        primary = audit["primary_channel_readout"]
+        selected = primary[
+            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain"
+        ]
+        self.assertEqual(selected["threshold"], 0.6)
+        self.assertEqual(selected["calibration_oos_abstain_recall"], 0.5)
+        self.assertEqual(
+            primary["heldout_final_eval_at_90pct_oos_calibrated_threshold"][
+                "heldout_confounded_oos_abstain_recall"
+            ],
+            1.0,
+        )
+
+    def test_fold_only_negative_surface_keeps_fold_scored_geometry_gaps(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            surface = root / "surface.json"
+            surface.write_text(
+                json.dumps(
+                    {
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:57",
+                                "accession": "P13448",
+                                "benchmark_role": "oos_tier::unknown_oos",
+                                "predicted_geometry_status": "missing",
+                                "channel_scores": None,
+                                "predicted_structure_fold_channel": {
+                                    "nearest_train_atlas_entry_id": "m_csa:1",
+                                    "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+                                    "nearest_train_atlas_tm_score": 0.42,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "channel_scores": {"combined_mean_geometry_fold": 0.5},
+                                "predicted_structure_fold_channel": {
+                                    "nearest_train_atlas_tm_score": 0.4,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_only_train_cal_oos_negative_surface(
+                train_cal_oos_surface_path=surface,
+            )
+
+        self.assertEqual(audit["status"], "fold_only_negative_surface_ready")
+        self.assertEqual(audit["counts"]["fold_only_rows"], 1)
+        self.assertEqual(audit["rows"][0]["entry_id"], "m_csa:57")
+
+    def test_train_cal_oos_blocker_resolution_groups_missing_scores(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            surface = root / "surface.json"
+            surface.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "candidate_ids_requested": 1,
+                            "candidate_rows_with_full_channel_scores": 0,
+                        },
+                        "excluded_candidate_geometry_rows": [
+                            {
+                                "entry_id": "m_csa:57",
+                                "reason": "missing_accession_compatible_sequence_positions",
+                            }
+                        ],
+                        "candidate_row_scores": [
+                            {
+                                "entry_id": "m_csa:57",
+                                "accession": "P13448",
+                                "predicted_geometry_status": "missing",
+                                "channel_scores": None,
+                                "predicted_structure_fold_channel": {
+                                    "nearest_train_atlas_tm_score": 0.42,
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_train_cal_oos_negative_surface_blocker_resolution(
+                train_cal_oos_surface_path=surface,
+            )
+
+        self.assertEqual(audit["status"], "blocker_resolution_packet_ready")
+        self.assertEqual(audit["counts"]["missing_full_score_rows"], 1)
+        self.assertEqual(
+            audit["blocker_rows"][0]["blocker_reason"],
+            "missing_accession_compatible_sequence_positions",
+        )
+
+    def test_active_site_role_graph_sidecar_normalizes_roles(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest = root / "manifest.json"
+            graph = root / "graph.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "split_assignment": "in_distribution",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "nodes": [
+                            {
+                                "id": "m_csa:1:residue:1",
+                                "type": "catalytic_residue",
+                                "roles": ["Proton donor", "Metal ligand"],
+                                "sequence_positions": [
+                                    {
+                                        "resid": 10,
+                                        "code": "His",
+                                        "uniprot_id": "P11111",
+                                        "is_reference": True,
+                                    }
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_active_site_role_graph_sidecar(
+                label_manifest_path=manifest,
+                graph_path=graph,
+            )
+
+        self.assertEqual(audit["status"], "active_site_role_graph_sidecar_ready")
+        self.assertEqual(audit["counts"]["rows_with_ok_role_graph"], 1)
+        self.assertEqual(
+            audit["rows"][0]["role_counts"],
+            {"metal_ligand": 1, "proton_donor": 1},
+        )
+
+    def test_reaction_center_template_sidecar_row_aligns_fingerprints(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            manifest = root / "manifest.json"
+            fingerprints = root / "fingerprints.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "fingerprint_id": "fp1",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "fingerprint_id": None,
+                                "split_assignment": "in_distribution",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fingerprints.write_text(
+                json.dumps(
+                    [
+                        {
+                            "id": "fp1",
+                            "active_site_signature": [{"role": "nucleophile"}],
+                            "cofactors": ["PLP"],
+                            "reaction_center": {
+                                "chemical_operation": "C-C bond cleavage",
+                                "bond_changes": ["C-C bond broken"],
+                            },
+                        }
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_reaction_center_template_sidecar(
+                label_manifest_path=manifest,
+                mechanism_fingerprints_path=fingerprints,
+            )
+
+        self.assertEqual(audit["status"], "reaction_center_template_sidecar_ready")
+        self.assertEqual(audit["counts"]["rows_with_template"], 1)
+        self.assertEqual(
+            audit["rows"][0]["reaction_center_template"]["chemical_operation_normalized"],
+            "c_c_bond_cleavage",
+        )
+
+    def test_embedding_plan_reads_feature_sidecar_readiness(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            fingerprints = root / "fingerprints.json"
+            manifest = root / "manifest.json"
+            cofactor = root / "cofactor.json"
+            atlas = root / "atlas.json"
+            role_sidecar = root / "role.json"
+            reaction_sidecar = root / "reaction.json"
+            fingerprints.write_text(
+                json.dumps(
+                    [
+                        {
+                            "id": "fp1",
+                            "active_site_signature": [{"role": "nucleophile"}],
+                            "cofactors": [],
+                            "reaction_center": {
+                                "chemical_operation": "hydrolysis",
+                                "bond_changes": ["bond broken"],
+                            },
+                        }
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "fingerprint_id": "fp1",
+                                "split_assignment": "in_distribution",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cofactor.write_text(json.dumps({"row_class_records": []}), encoding="utf-8")
+            atlas.write_text(json.dumps({"status": "complete", "counts": {}}), encoding="utf-8")
+            role_sidecar.write_text(
+                json.dumps(
+                    {
+                        "status": "active_site_role_graph_sidecar_ready",
+                        "counts": {
+                            "rows_with_ok_role_graph": 1,
+                            "unique_roles": 1,
+                            "unique_role_edges": 0,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            reaction_sidecar.write_text(
+                json.dumps(
+                    {
+                        "status": "reaction_center_template_sidecar_ready",
+                        "counts": {
+                            "rows_with_template": 1,
+                            "unique_chemical_operations": 1,
+                            "unique_bond_change_templates": 1,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_learned_mechanism_feature_embedding_plan(
+                mechanism_fingerprints_path=fingerprints,
+                label_manifest_path=manifest,
+                selected_organic_cofactor_sidecar_path=cofactor,
+                predicted_geometry_atlas_path=atlas,
+                active_site_role_graph_sidecar_path=role_sidecar,
+                reaction_center_template_sidecar_path=reaction_sidecar,
+            )
+
+        readiness = audit["current_data_readiness"]
+        self.assertEqual(
+            readiness["active_site_role_graph_sidecar"]["rows_with_ok_role_graph"],
+            1,
+        )
+        self.assertEqual(
+            readiness["reaction_center_template_sidecar"]["rows_with_template"],
+            1,
+        )
+
     def test_family_panel_evidence_packet_is_review_only(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -452,6 +937,45 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(
             audit["row_evidence"][0]["selected_pdb_fold_proxy"]["nearest_primary_foldseek_prob"],
             0.057,
+        )
+
+    def test_family_panel_evidence_packet_uses_nondefault_panel_id(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            family_targets = root / "family_targets.json"
+            empty = root / "empty.json"
+            family_targets.write_text(
+                json.dumps(
+                    {
+                        "candidate_families": [
+                            {
+                                "candidate_family": "lipoamide_or_sulfur_transfer_redox_boundary",
+                                "priority_bins": ["cofactor_confounded_oos"],
+                                "candidate_rows": ["m_csa:267"],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            empty.write_text(json.dumps({"results": [], "row_class_records": []}), encoding="utf-8")
+
+            audit = build_family_panel_evidence_packet(
+                family_targets_path=family_targets,
+                predicted_geometry_atlas_path=empty,
+                fold_level_signal_path=empty,
+                selected_organic_cofactor_sidecar_path=empty,
+                predicted_atlas_variants_path=empty,
+                panel_id="lipoamide_or_sulfur_transfer_redox_boundary",
+            )
+
+        self.assertEqual(
+            audit["artifact_id"],
+            "v3_family_panel_evidence_packet_lipoamide_or_sulfur_transfer_redox_boundary_current702_20260601",
+        )
+        self.assertEqual(
+            audit["panel"]["candidate_family"],
+            "lipoamide_or_sulfur_transfer_redox_boundary",
         )
 
     def test_selected_organic_cofactor_sidecar_schema_audit_passes_complete_grid(self) -> None:
