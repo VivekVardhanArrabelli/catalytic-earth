@@ -1,0 +1,1560 @@
+{
+  "artifact_id": "v3_fold_augmented_abstention_threshold_contract_current702_20260601",
+  "blockers": [],
+  "calibration_row_scores": [
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.201874,
+        "combined_mean_geometry_cofactor_fold": 0.510558,
+        "combined_mean_geometry_fold": 0.6649,
+        "combined_min_geometry_fold": 0.5899,
+        "fold_nearest_atlas_tm_score": 0.7399,
+        "geometry_top1_score": 0.5899
+      },
+      "entry_id": "m_csa:27",
+      "nearest_train_atlas_entry_id": "m_csa:395",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.048425,
+        "combined_mean_geometry_cofactor_fold": 0.364075,
+        "combined_mean_geometry_fold": 0.5219,
+        "combined_min_geometry_fold": 0.4325,
+        "fold_nearest_atlas_tm_score": 0.4325,
+        "geometry_top1_score": 0.6113
+      },
+      "entry_id": "m_csa:38",
+      "nearest_train_atlas_entry_id": "m_csa:169",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.000825,
+        "combined_mean_geometry_cofactor_fold": 0.367475,
+        "combined_mean_geometry_fold": 0.5508,
+        "combined_min_geometry_fold": 0.5107,
+        "fold_nearest_atlas_tm_score": 0.5107,
+        "geometry_top1_score": 0.5909
+      },
+      "entry_id": "m_csa:41",
+      "nearest_train_atlas_entry_id": "m_csa:697",
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.037101,
+        "combined_mean_geometry_cofactor_fold": 0.454667,
+        "combined_mean_geometry_fold": 0.66345,
+        "combined_min_geometry_fold": 0.5857,
+        "fold_nearest_atlas_tm_score": 0.7412,
+        "geometry_top1_score": 0.5857
+      },
+      "entry_id": "m_csa:87",
+      "nearest_train_atlas_entry_id": "m_csa:172",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.994716,
+        "combined_mean_geometry_cofactor_fold": 0.752272,
+        "combined_mean_geometry_fold": 0.63105,
+        "combined_min_geometry_fold": 0.3708,
+        "fold_nearest_atlas_tm_score": 0.8913,
+        "geometry_top1_score": 0.3708
+      },
+      "entry_id": "m_csa:102",
+      "nearest_train_atlas_entry_id": "m_csa:852",
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "partition": "calibration",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.040154,
+        "combined_mean_geometry_cofactor_fold": 0.393518,
+        "combined_mean_geometry_fold": 0.5702,
+        "combined_min_geometry_fold": 0.5447,
+        "fold_nearest_atlas_tm_score": 0.5447,
+        "geometry_top1_score": 0.5957
+      },
+      "entry_id": "m_csa:160",
+      "nearest_train_atlas_entry_id": "m_csa:839",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.02412,
+        "combined_mean_geometry_cofactor_fold": 0.293073,
+        "combined_mean_geometry_fold": 0.42755,
+        "combined_min_geometry_fold": 0.4222,
+        "fold_nearest_atlas_tm_score": 0.4329,
+        "geometry_top1_score": 0.4222
+      },
+      "entry_id": "m_csa:165",
+      "nearest_train_atlas_entry_id": "m_csa:258",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.052671,
+        "combined_mean_geometry_cofactor_fold": 0.61509,
+        "combined_mean_geometry_fold": 0.8963,
+        "combined_min_geometry_fold": 0.8856,
+        "fold_nearest_atlas_tm_score": 0.907,
+        "geometry_top1_score": 0.8856
+      },
+      "entry_id": "m_csa:173",
+      "nearest_train_atlas_entry_id": "m_csa:798",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.258807,
+        "combined_mean_geometry_cofactor_fold": 0.398402,
+        "combined_mean_geometry_fold": 0.4682,
+        "combined_min_geometry_fold": 0.3909,
+        "fold_nearest_atlas_tm_score": 0.3909,
+        "geometry_top1_score": 0.5455
+      },
+      "entry_id": "m_csa:216",
+      "nearest_train_atlas_entry_id": "m_csa:636",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.023841,
+        "combined_mean_geometry_cofactor_fold": 0.302314,
+        "combined_mean_geometry_fold": 0.44155,
+        "combined_min_geometry_fold": 0.433,
+        "fold_nearest_atlas_tm_score": 0.4501,
+        "geometry_top1_score": 0.433
+      },
+      "entry_id": "m_csa:233",
+      "nearest_train_atlas_entry_id": "m_csa:528",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.998062,
+        "combined_mean_geometry_cofactor_fold": 0.715921,
+        "combined_mean_geometry_fold": 0.57485,
+        "combined_min_geometry_fold": 0.3019,
+        "fold_nearest_atlas_tm_score": 0.8478,
+        "geometry_top1_score": 0.3019
+      },
+      "entry_id": "m_csa:277",
+      "nearest_train_atlas_entry_id": "m_csa:6",
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "partition": "calibration",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.939477,
+        "combined_mean_geometry_cofactor_fold": 0.744859,
+        "combined_mean_geometry_fold": 0.64755,
+        "combined_min_geometry_fold": 0.3851,
+        "fold_nearest_atlas_tm_score": 0.91,
+        "geometry_top1_score": 0.3851
+      },
+      "entry_id": "m_csa:305",
+      "nearest_train_atlas_entry_id": "m_csa:66",
+      "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+      "partition": "calibration",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.992993,
+        "combined_mean_geometry_cofactor_fold": 0.746298,
+        "combined_mean_geometry_fold": 0.62295,
+        "combined_min_geometry_fold": 0.3607,
+        "fold_nearest_atlas_tm_score": 0.8852,
+        "geometry_top1_score": 0.3607
+      },
+      "entry_id": "m_csa:319",
+      "nearest_train_atlas_entry_id": "m_csa:697",
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "partition": "calibration",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.999197,
+        "combined_mean_geometry_cofactor_fold": 0.699166,
+        "combined_mean_geometry_fold": 0.54915,
+        "combined_min_geometry_fold": 0.338,
+        "fold_nearest_atlas_tm_score": 0.7603,
+        "geometry_top1_score": 0.338
+      },
+      "entry_id": "m_csa:320",
+      "nearest_train_atlas_entry_id": "m_csa:895",
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "partition": "calibration",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.111205,
+        "combined_mean_geometry_cofactor_fold": 0.357468,
+        "combined_mean_geometry_fold": 0.4806,
+        "combined_min_geometry_fold": 0.3672,
+        "fold_nearest_atlas_tm_score": 0.3672,
+        "geometry_top1_score": 0.594
+      },
+      "entry_id": "m_csa:338",
+      "nearest_train_atlas_entry_id": "m_csa:812",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.007337,
+        "combined_mean_geometry_cofactor_fold": 0.577946,
+        "combined_mean_geometry_fold": 0.86325,
+        "combined_min_geometry_fold": 0.8004,
+        "fold_nearest_atlas_tm_score": 0.9261,
+        "geometry_top1_score": 0.8004
+      },
+      "entry_id": "m_csa:387",
+      "nearest_train_atlas_entry_id": "m_csa:425",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.973849,
+        "combined_mean_geometry_cofactor_fold": 0.618283,
+        "combined_mean_geometry_fold": 0.4405,
+        "combined_min_geometry_fold": 0.3932,
+        "fold_nearest_atlas_tm_score": 0.4878,
+        "geometry_top1_score": 0.3932
+      },
+      "entry_id": "m_csa:399",
+      "nearest_train_atlas_entry_id": "m_csa:944",
+      "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+      "partition": "calibration",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.999895,
+        "combined_mean_geometry_cofactor_fold": 0.714298,
+        "combined_mean_geometry_fold": 0.5715,
+        "combined_min_geometry_fold": 0.3483,
+        "fold_nearest_atlas_tm_score": 0.7947,
+        "geometry_top1_score": 0.3483
+      },
+      "entry_id": "m_csa:410",
+      "nearest_train_atlas_entry_id": "m_csa:430",
+      "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+      "partition": "calibration",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.999611,
+        "combined_mean_geometry_cofactor_fold": 0.819004,
+        "combined_mean_geometry_fold": 0.7287,
+        "combined_min_geometry_fold": 0.5946,
+        "fold_nearest_atlas_tm_score": 0.8628,
+        "geometry_top1_score": 0.5946
+      },
+      "entry_id": "m_csa:473",
+      "nearest_train_atlas_entry_id": "m_csa:133",
+      "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+      "partition": "calibration",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.98981,
+        "combined_mean_geometry_cofactor_fold": 0.745937,
+        "combined_mean_geometry_fold": 0.624,
+        "combined_min_geometry_fold": 0.3595,
+        "fold_nearest_atlas_tm_score": 0.8885,
+        "geometry_top1_score": 0.3595
+      },
+      "entry_id": "m_csa:482",
+      "nearest_train_atlas_entry_id": "m_csa:249",
+      "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+      "partition": "calibration",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.031953,
+        "combined_mean_geometry_cofactor_fold": 0.502918,
+        "combined_mean_geometry_fold": 0.7384,
+        "combined_min_geometry_fold": 0.6798,
+        "fold_nearest_atlas_tm_score": 0.797,
+        "geometry_top1_score": 0.6798
+      },
+      "entry_id": "m_csa:556",
+      "nearest_train_atlas_entry_id": "m_csa:94",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.070279,
+        "combined_mean_geometry_cofactor_fold": 0.450026,
+        "combined_mean_geometry_fold": 0.6399,
+        "combined_min_geometry_fold": 0.5893,
+        "fold_nearest_atlas_tm_score": 0.6905,
+        "geometry_top1_score": 0.5893
+      },
+      "entry_id": "m_csa:630",
+      "nearest_train_atlas_entry_id": "m_csa:172",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.999982,
+        "combined_mean_geometry_cofactor_fold": 0.774727,
+        "combined_mean_geometry_fold": 0.6621,
+        "combined_min_geometry_fold": 0.4153,
+        "fold_nearest_atlas_tm_score": 0.9089,
+        "geometry_top1_score": 0.4153
+      },
+      "entry_id": "m_csa:694",
+      "nearest_train_atlas_entry_id": "m_csa:133",
+      "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+      "partition": "calibration",
+      "true_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.022422,
+        "combined_mean_geometry_cofactor_fold": 0.352374,
+        "combined_mean_geometry_fold": 0.51735,
+        "combined_min_geometry_fold": 0.4482,
+        "fold_nearest_atlas_tm_score": 0.4482,
+        "geometry_top1_score": 0.5865
+      },
+      "entry_id": "m_csa:754",
+      "nearest_train_atlas_entry_id": "m_csa:379",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.964799,
+        "combined_mean_geometry_cofactor_fold": 0.7035,
+        "combined_mean_geometry_fold": 0.57285,
+        "combined_min_geometry_fold": 0.343,
+        "fold_nearest_atlas_tm_score": 0.8027,
+        "geometry_top1_score": 0.343
+      },
+      "entry_id": "m_csa:800",
+      "nearest_train_atlas_entry_id": "m_csa:381",
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "partition": "calibration",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.164533,
+        "combined_mean_geometry_cofactor_fold": 0.368011,
+        "combined_mean_geometry_fold": 0.46975,
+        "combined_min_geometry_fold": 0.3871,
+        "fold_nearest_atlas_tm_score": 0.3871,
+        "geometry_top1_score": 0.5524
+      },
+      "entry_id": "m_csa:837",
+      "nearest_train_atlas_entry_id": "m_csa:37",
+      "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.988808,
+        "combined_mean_geometry_cofactor_fold": 0.714303,
+        "combined_mean_geometry_fold": 0.57705,
+        "combined_min_geometry_fold": 0.269,
+        "fold_nearest_atlas_tm_score": 0.8851,
+        "geometry_top1_score": 0.269
+      },
+      "entry_id": "m_csa:865",
+      "nearest_train_atlas_entry_id": "m_csa:330",
+      "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+      "partition": "calibration",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.992841,
+        "combined_mean_geometry_cofactor_fold": 0.72068,
+        "combined_mean_geometry_fold": 0.5846,
+        "combined_min_geometry_fold": 0.2967,
+        "fold_nearest_atlas_tm_score": 0.8725,
+        "geometry_top1_score": 0.2967
+      },
+      "entry_id": "m_csa:879",
+      "nearest_train_atlas_entry_id": "m_csa:113",
+      "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "partition": "calibration",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.078776,
+        "combined_mean_geometry_cofactor_fold": 0.615859,
+        "combined_mean_geometry_fold": 0.8844,
+        "combined_min_geometry_fold": 0.8791,
+        "fold_nearest_atlas_tm_score": 0.8791,
+        "geometry_top1_score": 0.8897
+      },
+      "entry_id": "m_csa:900",
+      "nearest_train_atlas_entry_id": "m_csa:520",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.117036,
+        "combined_mean_geometry_cofactor_fold": 0.503045,
+        "combined_mean_geometry_fold": 0.69605,
+        "combined_min_geometry_fold": 0.5625,
+        "fold_nearest_atlas_tm_score": 0.5625,
+        "geometry_top1_score": 0.8296
+      },
+      "entry_id": "m_csa:912",
+      "nearest_train_atlas_entry_id": "m_csa:808",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.015569,
+        "combined_mean_geometry_cofactor_fold": 0.599956,
+        "combined_mean_geometry_fold": 0.89215,
+        "combined_min_geometry_fold": 0.8892,
+        "fold_nearest_atlas_tm_score": 0.8951,
+        "geometry_top1_score": 0.8892
+      },
+      "entry_id": "m_csa:922",
+      "nearest_train_atlas_entry_id": "m_csa:401",
+      "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.999942,
+        "combined_mean_geometry_cofactor_fold": 0.720181,
+        "combined_mean_geometry_fold": 0.5803,
+        "combined_min_geometry_fold": 0.3809,
+        "fold_nearest_atlas_tm_score": 0.7797,
+        "geometry_top1_score": 0.3809
+      },
+      "entry_id": "m_csa:933",
+      "nearest_train_atlas_entry_id": "m_csa:430",
+      "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+      "partition": "calibration",
+      "true_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.993434,
+        "combined_mean_geometry_cofactor_fold": 0.604478,
+        "combined_mean_geometry_fold": 0.41,
+        "combined_min_geometry_fold": 0.3625,
+        "fold_nearest_atlas_tm_score": 0.4575,
+        "geometry_top1_score": 0.3625
+      },
+      "entry_id": "m_csa:973",
+      "nearest_train_atlas_entry_id": "m_csa:795",
+      "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+      "partition": "calibration",
+      "true_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "channel_scores": {
+        "cofactor_max_score": 0.035737,
+        "combined_mean_geometry_cofactor_fold": 0.418246,
+        "combined_mean_geometry_fold": 0.6095,
+        "combined_min_geometry_fold": 0.4231,
+        "fold_nearest_atlas_tm_score": 0.7959,
+        "geometry_top1_score": 0.4231
+      },
+      "entry_id": "m_csa:988",
+      "nearest_train_atlas_entry_id": "m_csa:823",
+      "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "partition": "calibration",
+      "true_fingerprint_id": "metal_dependent_hydrolase"
+    }
+  ],
+  "commands": {
+    "foldseek_tsv_columns": [
+      "query",
+      "target",
+      "qtmscore",
+      "ttmscore",
+      "alntmscore",
+      "prob",
+      "bits"
+    ],
+    "materialize_atlas_coordinate_bundle": "python - <<'PY'\nimport json\nimport urllib.request\nfrom pathlib import Path\nartifact = json.loads(Path('artifacts/v3_predicted_structure_fold_channel_current702_20260601.json').read_text())\natlas = artifact['foldseek_input_manifest']['coordinate_request_groups']['atlas_in_distribution']\nfor item in atlas:\n    path = item.get('expected_local_path')\n    url = item.get('url')\n    if not path or not url:\n        continue\n    target = Path(path)\n    target.parent.mkdir(parents=True, exist_ok=True)\n    if target.exists():\n        continue\n    urllib.request.urlretrieve(url, target)\nPY",
+    "rerun_contract_parser": "PYTHONPATH=src python -m catalytic_earth.cli eval-fold-augmented-abstention-threshold-contract --train-cal-foldseek-tsv artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/in_distribution_atlas_self_vs_atlas.tsv",
+    "run_in_distribution_atlas_self_vs_atlas": "/private/tmp/catalytic-foldseek-env/bin/foldseek easy-search /private/tmp/catalytic_threshold_train_cal_foldseek/calibration_queries /private/tmp/catalytic_threshold_train_cal_foldseek/train_targets artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/in_distribution_atlas_self_vs_atlas.tsv artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/tmp_in_distribution_atlas_self_vs_atlas --format-output query,target,qtmscore,ttmscore,alntmscore,prob,bits --exhaustive-search 1 --alignment-type 1 --tmalign-fast 0 --exact-tmscore 1 --threads 4 -v 1",
+    "stage_train_calibration_foldseek_dirs": "python - <<'PY'\nimport json\nimport shutil\nfrom pathlib import Path\ncontract = json.loads(Path('artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json').read_text())\nfold = json.loads(Path('artifacts/v3_predicted_structure_fold_channel_current702_20260601.json').read_text())\nroot = Path('/private/tmp/catalytic_threshold_train_cal_foldseek')\nif root.exists():\n    shutil.rmtree(root)\nquery_dir = root / 'calibration_queries'\ntarget_dir = root / 'train_targets'\nquery_dir.mkdir(parents=True)\ntarget_dir.mkdir(parents=True)\ncal = set(contract['train_cal_partition']['calibration_entry_ids'])\ntrain = set(contract['train_cal_partition']['train_entry_ids'])\natlas = fold['foldseek_input_manifest']['coordinate_request_groups']['atlas_in_distribution']\nfor item in atlas:\n    src = Path(item['expected_local_path'])\n    if not src.exists():\n        continue\n    ids = set(item.get('entry_ids') or [])\n    if ids & cal:\n        dst = query_dir / src.name\n        if not dst.exists():\n            dst.symlink_to(src.resolve())\n    if ids & train:\n        dst = target_dir / src.name\n        if not dst.exists():\n            dst.symlink_to(src.resolve())\nprint({'queries': len(list(query_dir.iterdir())), 'targets': len(list(target_dir.iterdir()))})\nPY"
+  },
+  "counts": {
+    "atlas_in_distribution_rows_ok_with_fingerprint": 168,
+    "calibration_rows_expected": 34,
+    "calibration_rows_scored": 34,
+    "heldout_confounded_oos": 6,
+    "heldout_in_scope": 47,
+    "heldout_oos": 79,
+    "heldout_rows_final_eval": 126,
+    "train_rows": 134
+  },
+  "created_utc": "2026-06-01T04:11:52Z",
+  "guardrails": {
+    "frozen_current702_inputs_only": true,
+    "heldout_used_for_final_eval_only": true,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "thresholds_selected_on_heldout": false,
+    "train_cal_oos_negatives_used_for_threshold": false
+  },
+  "interpretation": {
+    "headline": "Train/cal thresholds were selected without heldout threshold tuning.",
+    "production_status": "research_contract_not_production_threshold; no production scorer or global threshold was changed"
+  },
+  "parsed_train_cal_foldseek": {
+    "nearest_train_atlas_hits": [
+      {
+        "alntmscore": 0.7399,
+        "bits": 65.0,
+        "nearest_train_atlas_accession": "P24289",
+        "nearest_train_atlas_entry_id": "m_csa:395",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.872,
+        "qtmscore": 0.6501,
+        "query_accession": "P09598",
+        "query_entry_id": "m_csa:27",
+        "raw_query_name": "afdb_P09598_v6",
+        "raw_target_name": "afdb_P24289_v6",
+        "tm_score": 0.7399,
+        "ttmscore": 0.6774
+      },
+      {
+        "alntmscore": 0.4325,
+        "bits": 36.0,
+        "nearest_train_atlas_accession": "P27487",
+        "nearest_train_atlas_entry_id": "m_csa:169",
+        "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+        "prob": 0.15,
+        "qtmscore": 0.3685,
+        "query_accession": "P0A6T5",
+        "query_entry_id": "m_csa:38",
+        "raw_query_name": "afdb_P0A6T5_v6",
+        "raw_target_name": "afdb_P27487_v6",
+        "tm_score": 0.4325,
+        "ttmscore": 0.1395
+      },
+      {
+        "alntmscore": 0.5107,
+        "bits": 48.0,
+        "nearest_train_atlas_accession": "Q9FEW9",
+        "nearest_train_atlas_entry_id": "m_csa:697",
+        "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "prob": 0.411,
+        "qtmscore": 0.4867,
+        "query_accession": "P00639",
+        "query_entry_id": "m_csa:41",
+        "raw_query_name": "afdb_P00639_v6",
+        "raw_target_name": "afdb_Q9FEW9_v6",
+        "tm_score": 0.5107,
+        "ttmscore": 0.3798
+      },
+      {
+        "alntmscore": 0.7412,
+        "bits": 52.0,
+        "nearest_train_atlas_accession": "P39377",
+        "nearest_train_atlas_entry_id": "m_csa:172",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.537,
+        "qtmscore": 0.5216,
+        "query_accession": "P18314",
+        "query_entry_id": "m_csa:87",
+        "raw_query_name": "afdb_P18314_v6",
+        "raw_target_name": "afdb_P39377_v6",
+        "tm_score": 0.7412,
+        "ttmscore": 0.7327
+      },
+      {
+        "alntmscore": 0.8913,
+        "bits": 54.0,
+        "nearest_train_atlas_accession": "P05414",
+        "nearest_train_atlas_entry_id": "m_csa:852",
+        "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "prob": 0.601,
+        "qtmscore": 0.5483,
+        "query_accession": "P00175",
+        "query_entry_id": "m_csa:102",
+        "raw_query_name": "afdb_P00175_v6",
+        "raw_target_name": "afdb_P05414_v6",
+        "tm_score": 0.8913,
+        "ttmscore": 0.87
+      },
+      {
+        "alntmscore": 0.5447,
+        "bits": 29.0,
+        "nearest_train_atlas_accession": "P09184",
+        "nearest_train_atlas_entry_id": "m_csa:839",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.082,
+        "qtmscore": 0.2919,
+        "query_accession": "P09030",
+        "query_entry_id": "m_csa:160",
+        "raw_query_name": "afdb_P09030_v6",
+        "raw_target_name": "afdb_P09184_v6",
+        "tm_score": 0.5447,
+        "ttmscore": 0.4559
+      },
+      {
+        "alntmscore": 0.4329,
+        "bits": 27.0,
+        "nearest_train_atlas_accession": "P52700",
+        "nearest_train_atlas_entry_id": "m_csa:258",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.069,
+        "qtmscore": 0.2743,
+        "query_accession": "P00644",
+        "query_entry_id": "m_csa:165",
+        "raw_query_name": "afdb_P00644_v6",
+        "raw_target_name": "afdb_P52700_v6",
+        "tm_score": 0.4329,
+        "ttmscore": 0.2315
+      },
+      {
+        "alntmscore": 0.907,
+        "bits": 83.0,
+        "nearest_train_atlas_accession": "P00750",
+        "nearest_train_atlas_entry_id": "m_csa:798",
+        "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+        "prob": 0.99,
+        "qtmscore": 0.8382,
+        "query_accession": "P35049",
+        "query_entry_id": "m_csa:173",
+        "raw_query_name": "afdb_P35049_v6",
+        "raw_target_name": "afdb_P00750_v6",
+        "tm_score": 0.907,
+        "ttmscore": 0.3836
+      },
+      {
+        "alntmscore": 0.3909,
+        "bits": 27.0,
+        "nearest_train_atlas_accession": "Q12178",
+        "nearest_train_atlas_entry_id": "m_csa:636",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.069,
+        "qtmscore": 0.274,
+        "query_accession": "P00918",
+        "query_entry_id": "m_csa:216",
+        "raw_query_name": "afdb_P00918_v6",
+        "raw_target_name": "afdb_Q12178_v6",
+        "tm_score": 0.3909,
+        "ttmscore": 0.3894
+      },
+      {
+        "alntmscore": 0.4501,
+        "bits": 34.0,
+        "nearest_train_atlas_accession": "Q6UV28",
+        "nearest_train_atlas_entry_id": "m_csa:528",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.126,
+        "qtmscore": 0.3492,
+        "query_accession": "P05725",
+        "query_entry_id": "m_csa:233",
+        "raw_query_name": "afdb_P05725_v6",
+        "raw_target_name": "afdb_Q6UV28_v6",
+        "tm_score": 0.4501,
+        "ttmscore": 0.3704
+      },
+      {
+        "alntmscore": 0.8478,
+        "bits": 76.0,
+        "nearest_train_atlas_accession": "P00390",
+        "nearest_train_atlas_entry_id": "m_csa:6",
+        "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "prob": 0.971,
+        "qtmscore": 0.7649,
+        "query_accession": "P00392",
+        "query_entry_id": "m_csa:277",
+        "raw_query_name": "afdb_P00392_v6",
+        "raw_target_name": "afdb_P00390_v6",
+        "tm_score": 0.8478,
+        "ttmscore": 0.8198
+      },
+      {
+        "alntmscore": 0.91,
+        "bits": 90.0,
+        "nearest_train_atlas_accession": "P19938",
+        "nearest_train_atlas_entry_id": "m_csa:66",
+        "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+        "prob": 0.996,
+        "qtmscore": 0.9068,
+        "query_accession": "P28305",
+        "query_entry_id": "m_csa:305",
+        "raw_query_name": "afdb_P28305_v6",
+        "raw_target_name": "afdb_P19938_v6",
+        "tm_score": 0.91,
+        "ttmscore": 0.8646
+      },
+      {
+        "alntmscore": 0.8852,
+        "bits": 85.0,
+        "nearest_train_atlas_accession": "Q9FEW9",
+        "nearest_train_atlas_entry_id": "m_csa:697",
+        "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "prob": 0.992,
+        "qtmscore": 0.8581,
+        "query_accession": "Q02899",
+        "query_entry_id": "m_csa:319",
+        "raw_query_name": "afdb_Q02899_v6",
+        "raw_target_name": "afdb_Q9FEW9_v6",
+        "tm_score": 0.8852,
+        "ttmscore": 0.8661
+      },
+      {
+        "alntmscore": 0.7603,
+        "bits": 71.0,
+        "nearest_train_atlas_accession": "P37062",
+        "nearest_train_atlas_entry_id": "m_csa:895",
+        "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "prob": 0.941,
+        "qtmscore": 0.7135,
+        "query_accession": "Q7ZAG8",
+        "query_entry_id": "m_csa:320",
+        "raw_query_name": "afdb_Q7ZAG8_v6",
+        "raw_target_name": "afdb_P37062_v6",
+        "tm_score": 0.7603,
+        "ttmscore": 0.6585
+      },
+      {
+        "alntmscore": 0.3672,
+        "bits": 14.0,
+        "nearest_train_atlas_accession": "Q9NPB1",
+        "nearest_train_atlas_entry_id": "m_csa:812",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.01,
+        "qtmscore": 0.141,
+        "query_accession": "P30850",
+        "query_entry_id": "m_csa:338",
+        "raw_query_name": "afdb_P30850_v6",
+        "raw_target_name": "afdb_Q9NPB1_v6",
+        "tm_score": 0.3672,
+        "ttmscore": 0.3106
+      },
+      {
+        "alntmscore": 0.9261,
+        "bits": 91.0,
+        "nearest_train_atlas_accession": "P00747",
+        "nearest_train_atlas_entry_id": "m_csa:425",
+        "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+        "prob": 0.997,
+        "qtmscore": 0.9188,
+        "query_accession": "P00766",
+        "query_entry_id": "m_csa:387",
+        "raw_query_name": "afdb_P00766_v6",
+        "raw_target_name": "afdb_P00747_v6",
+        "tm_score": 0.9261,
+        "ttmscore": 0.2855
+      },
+      {
+        "alntmscore": 0.4878,
+        "bits": 48.0,
+        "nearest_train_atlas_accession": "A5JUY8",
+        "nearest_train_atlas_entry_id": "m_csa:944",
+        "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+        "prob": 0.411,
+        "qtmscore": 0.4819,
+        "query_accession": "P48534",
+        "query_entry_id": "m_csa:399",
+        "raw_query_name": "afdb_P48534_v6",
+        "raw_target_name": "afdb_A5JUY8_v6",
+        "tm_score": 0.4878,
+        "ttmscore": 0.2047
+      },
+      {
+        "alntmscore": 0.7947,
+        "bits": 63.0,
+        "nearest_train_atlas_accession": "P12998",
+        "nearest_train_atlas_entry_id": "m_csa:430",
+        "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+        "prob": 0.837,
+        "qtmscore": 0.6378,
+        "query_accession": "P28796",
+        "query_entry_id": "m_csa:410",
+        "raw_query_name": "afdb_P28796_v6",
+        "raw_target_name": "afdb_P12998_v6",
+        "tm_score": 0.7947,
+        "ttmscore": 0.7613
+      },
+      {
+        "alntmscore": 0.8628,
+        "bits": 83.0,
+        "nearest_train_atlas_accession": "P00183",
+        "nearest_train_atlas_entry_id": "m_csa:133",
+        "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+        "prob": 0.99,
+        "qtmscore": 0.8371,
+        "query_accession": "P23295",
+        "query_entry_id": "m_csa:473",
+        "raw_query_name": "afdb_P23295_v6",
+        "raw_target_name": "afdb_P00183_v6",
+        "tm_score": 0.8628,
+        "ttmscore": 0.8148
+      },
+      {
+        "alntmscore": 0.8885,
+        "bits": 87.0,
+        "nearest_train_atlas_accession": "P12995",
+        "nearest_train_atlas_entry_id": "m_csa:249",
+        "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+        "prob": 0.994,
+        "qtmscore": 0.8712,
+        "query_accession": "P16932",
+        "query_entry_id": "m_csa:482",
+        "raw_query_name": "afdb_P16932_v6",
+        "raw_target_name": "afdb_P12995_v6",
+        "tm_score": 0.8885,
+        "ttmscore": 0.8788
+      },
+      {
+        "alntmscore": 0.797,
+        "bits": 44.0,
+        "nearest_train_atlas_accession": "Q29460",
+        "nearest_train_atlas_entry_id": "m_csa:94",
+        "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+        "prob": 0.301,
+        "qtmscore": 0.4478,
+        "query_accession": "P22266",
+        "query_entry_id": "m_csa:556",
+        "raw_query_name": "afdb_P22266_v6",
+        "raw_target_name": "afdb_Q29460_v6",
+        "tm_score": 0.797,
+        "ttmscore": 0.639
+      },
+      {
+        "alntmscore": 0.6905,
+        "bits": 64.0,
+        "nearest_train_atlas_accession": "P39377",
+        "nearest_train_atlas_entry_id": "m_csa:172",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.855,
+        "qtmscore": 0.6489,
+        "query_accession": "P05020",
+        "query_entry_id": "m_csa:630",
+        "raw_query_name": "afdb_P05020_v6",
+        "raw_target_name": "afdb_P39377_v6",
+        "tm_score": 0.6905,
+        "ttmscore": 0.5872
+      },
+      {
+        "alntmscore": 0.9089,
+        "bits": 87.0,
+        "nearest_train_atlas_accession": "P00183",
+        "nearest_train_atlas_entry_id": "m_csa:133",
+        "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+        "prob": 0.994,
+        "qtmscore": 0.8749,
+        "query_accession": "Q00441",
+        "query_entry_id": "m_csa:694",
+        "raw_query_name": "afdb_Q00441_v6",
+        "raw_target_name": "afdb_P00183_v6",
+        "tm_score": 0.9089,
+        "ttmscore": 0.8529
+      },
+      {
+        "alntmscore": 0.4482,
+        "bits": 33.0,
+        "nearest_train_atlas_accession": "P15034",
+        "nearest_train_atlas_entry_id": "m_csa:379",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.116,
+        "qtmscore": 0.3399,
+        "query_accession": "P03007",
+        "query_entry_id": "m_csa:754",
+        "raw_query_name": "afdb_P03007_v6",
+        "raw_target_name": "afdb_P15034_v6",
+        "tm_score": 0.4482,
+        "ttmscore": 0.2089
+      },
+      {
+        "alntmscore": 0.8027,
+        "bits": 26.0,
+        "nearest_train_atlas_accession": "P0A9P4",
+        "nearest_train_atlas_entry_id": "m_csa:381",
+        "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "prob": 0.063,
+        "qtmscore": 0.2648,
+        "query_accession": "Q28943",
+        "query_entry_id": "m_csa:800",
+        "raw_query_name": "afdb_Q28943_v6",
+        "raw_target_name": "afdb_P0A9P4_v6",
+        "tm_score": 0.8027,
+        "ttmscore": 0.7869
+      },
+      {
+        "alntmscore": 0.3871,
+        "bits": 37.0,
+        "nearest_train_atlas_accession": "Q05769",
+        "nearest_train_atlas_entry_id": "m_csa:37",
+        "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+        "prob": 0.164,
+        "qtmscore": 0.3728,
+        "query_accession": "Q94702",
+        "query_entry_id": "m_csa:837",
+        "raw_query_name": "afdb_Q94702_v6",
+        "raw_target_name": "afdb_Q05769_v6",
+        "tm_score": 0.3871,
+        "ttmscore": 0.143
+      },
+      {
+        "alntmscore": 0.8851,
+        "bits": 83.0,
+        "nearest_train_atlas_accession": "O59791",
+        "nearest_train_atlas_entry_id": "m_csa:330",
+        "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+        "prob": 0.99,
+        "qtmscore": 0.8341,
+        "query_accession": "P0A1E3",
+        "query_entry_id": "m_csa:865",
+        "raw_query_name": "afdb_P0A1E3_v6",
+        "raw_target_name": "afdb_O59791_v6",
+        "tm_score": 0.8851,
+        "ttmscore": 0.8341
+      },
+      {
+        "alntmscore": 0.8725,
+        "bits": 42.0,
+        "nearest_train_atlas_accession": "P40859",
+        "nearest_train_atlas_entry_id": "m_csa:113",
+        "nearest_train_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "prob": 0.254,
+        "qtmscore": 0.4236,
+        "query_accession": "Q9AGP8",
+        "query_entry_id": "m_csa:879",
+        "raw_query_name": "afdb_Q9AGP8_v6",
+        "raw_target_name": "afdb_P40859_v6",
+        "tm_score": 0.8725,
+        "ttmscore": 0.8621
+      },
+      {
+        "alntmscore": 0.8791,
+        "bits": 87.0,
+        "nearest_train_atlas_accession": "P22394",
+        "nearest_train_atlas_entry_id": "m_csa:520",
+        "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+        "prob": 0.994,
+        "qtmscore": 0.8724,
+        "query_accession": "P37967",
+        "query_entry_id": "m_csa:900",
+        "raw_query_name": "afdb_P37967_v6",
+        "raw_target_name": "afdb_P22394_v6",
+        "tm_score": 0.8791,
+        "ttmscore": 0.7637
+      },
+      {
+        "alntmscore": 0.5625,
+        "bits": 56.0,
+        "nearest_train_atlas_accession": "P96086",
+        "nearest_train_atlas_entry_id": "m_csa:808",
+        "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+        "prob": 0.663,
+        "qtmscore": 0.5604,
+        "query_accession": "P0A6G7",
+        "query_entry_id": "m_csa:912",
+        "raw_query_name": "afdb_P0A6G7_v6",
+        "raw_target_name": "afdb_P96086_v6",
+        "tm_score": 0.5625,
+        "ttmscore": 0.1315
+      },
+      {
+        "alntmscore": 0.8951,
+        "bits": 78.0,
+        "nearest_train_atlas_accession": "P30122",
+        "nearest_train_atlas_entry_id": "m_csa:401",
+        "nearest_train_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+        "prob": 0.978,
+        "qtmscore": 0.7894,
+        "query_accession": "P21836",
+        "query_entry_id": "m_csa:922",
+        "raw_query_name": "afdb_P21836_v6",
+        "raw_target_name": "afdb_P30122_v6",
+        "tm_score": 0.8951,
+        "ttmscore": 0.8108
+      },
+      {
+        "alntmscore": 0.7797,
+        "bits": 64.0,
+        "nearest_train_atlas_accession": "P12998",
+        "nearest_train_atlas_entry_id": "m_csa:430",
+        "nearest_train_atlas_true_fingerprint_id": "plp_dependent_enzyme",
+        "prob": 0.855,
+        "qtmscore": 0.6455,
+        "query_accession": "P31013",
+        "query_entry_id": "m_csa:933",
+        "raw_query_name": "afdb_P31013_v6",
+        "raw_target_name": "afdb_P12998_v6",
+        "tm_score": 0.7797,
+        "ttmscore": 0.7526
+      },
+      {
+        "alntmscore": 0.4575,
+        "bits": 22.0,
+        "nearest_train_atlas_accession": "P71119",
+        "nearest_train_atlas_entry_id": "m_csa:795",
+        "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+        "prob": 0.04,
+        "qtmscore": 0.2234,
+        "query_accession": "A0A0C6DRW4",
+        "query_entry_id": "m_csa:973",
+        "raw_query_name": "afdb_A0A0C6DRW4_v6",
+        "raw_target_name": "afdb_P71119_v6",
+        "tm_score": 0.4575,
+        "ttmscore": 0.3731
+      },
+      {
+        "alntmscore": 0.7959,
+        "bits": 74.0,
+        "nearest_train_atlas_accession": "O33199",
+        "nearest_train_atlas_entry_id": "m_csa:823",
+        "nearest_train_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+        "prob": 0.961,
+        "qtmscore": 0.7422,
+        "query_accession": "A1AA28",
+        "query_entry_id": "m_csa:988",
+        "raw_query_name": "afdb_A1AA28_v6",
+        "raw_target_name": "afdb_O33199_v6",
+        "tm_score": 0.7959,
+        "ttmscore": 0.5698
+      }
+    ],
+    "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/in_distribution_atlas_self_vs_atlas.tsv",
+    "status": "parsed",
+    "summary": {
+      "alias_collision_count": 0,
+      "alias_collisions": [],
+      "calibration_entry_count_with_hits": 34,
+      "mapped_pair_count": 2445,
+      "skipped_non_contract_pair_count": 0,
+      "unmapped_names": [],
+      "unmapped_pair_count": 0
+    }
+  },
+  "primary_channel_readout": {
+    "channel": "combined_mean_geometry_fold",
+    "heldout_final_eval_at_90pct_threshold": {
+      "heldout_confounded_oos_abstain_recall": 0.8333,
+      "heldout_confounded_oos_abstained": 5,
+      "heldout_confounded_oos_total": 6,
+      "heldout_in_scope_retain_recall": 0.9574,
+      "heldout_in_scope_retained": 45,
+      "heldout_in_scope_total": 47,
+      "heldout_oos_abstain_recall": 0.557,
+      "heldout_oos_abstained": 44,
+      "heldout_oos_total": 79,
+      "threshold": 0.44155
+    },
+    "selected_at_90pct_calibration_in_scope_retention": {
+      "calibration_in_scope_retain_recall": 0.9118,
+      "calibration_in_scope_retained": 31,
+      "calibration_in_scope_total": 34,
+      "min_retain_target": 0.9,
+      "threshold": 0.44155
+    }
+  },
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Leakage-safe thresholding contract for the fold-augmented abstention diagnostic. Thresholds are selected on deterministic in-distribution calibration rows only; heldout rows are final evaluation diagnostics.",
+  "selection_policy": {
+    "calibration_objective": "highest_score_threshold_retaining_at_least_target_fraction_of_in_scope_calibration_rows",
+    "calibration_rows_select_thresholds": true,
+    "heldout_policy": "heldout rows are evaluated after threshold selection and do not affect thresholds",
+    "limitation": "The current predicted-geometry atlas contains in-distribution fingerprint rows, not train/cal OOS negatives. Thresholds therefore control in-scope retention only; OOS abstain recall remains a final heldout diagnostic.",
+    "partition_source": "deterministic_hash_stratified_by_true_fingerprint_over_in_distribution_predicted_atlas_rows",
+    "target_retention_levels": [
+      0.9,
+      0.85
+    ],
+    "train_rows_are_foldseek_targets": true,
+    "weights_policy": "no_weights_fit_prespecified_channels_only"
+  },
+  "source_artifacts": {
+    "fold_augmented_gate": {
+      "path": "artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json",
+      "sha256": "a7b2dcfd151c1ad4eb4f3d8ec8d0bd22819535a3deb68236c794f19b2fce98bc"
+    },
+    "predicted_geometry_atlas": {
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    },
+    "predicted_structure_fold_channel": {
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+      "sha256": "565266bfd8379c75104e1d7a74457ef40846563ea71988c4946d16c92f733582"
+    },
+    "selected_organic_cofactor_sidecar": {
+      "path": "artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+      "sha256": "840d572b92cf61c1d1038e777bb432f8efa1ce29e8c21090f84442f48701e61a"
+    }
+  },
+  "status": "computed_train_cal_threshold_contract",
+  "threshold_contract": {
+    "cofactor_max_score": {
+      "heldout_final_eval_at_85pct_threshold": {
+        "heldout_confounded_oos_abstain_recall": 0.0,
+        "heldout_confounded_oos_abstained": 0,
+        "heldout_confounded_oos_total": 6,
+        "heldout_in_scope_retain_recall": 0.8723,
+        "heldout_in_scope_retained": 41,
+        "heldout_in_scope_total": 47,
+        "heldout_oos_abstain_recall": 0.2532,
+        "heldout_oos_abstained": 20,
+        "heldout_oos_total": 79,
+        "threshold": 0.02412
+      },
+      "heldout_final_eval_at_90pct_threshold": {
+        "heldout_confounded_oos_abstain_recall": 0.0,
+        "heldout_confounded_oos_abstained": 0,
+        "heldout_confounded_oos_total": 6,
+        "heldout_in_scope_retain_recall": 0.8723,
+        "heldout_in_scope_retained": 41,
+        "heldout_in_scope_total": 47,
+        "heldout_oos_abstain_recall": 0.2532,
+        "heldout_oos_abstained": 20,
+        "heldout_oos_total": 79,
+        "threshold": 0.022422
+      },
+      "selected_at_85pct_calibration_in_scope_retention": {
+        "calibration_in_scope_retain_recall": 0.8529,
+        "calibration_in_scope_retained": 29,
+        "calibration_in_scope_total": 34,
+        "min_retain_target": 0.85,
+        "threshold": 0.02412
+      },
+      "selected_at_90pct_calibration_in_scope_retention": {
+        "calibration_in_scope_retain_recall": 0.9118,
+        "calibration_in_scope_retained": 31,
+        "calibration_in_scope_total": 34,
+        "min_retain_target": 0.9,
+        "threshold": 0.022422
+      }
+    },
+    "combined_mean_geometry_cofactor_fold": {
+      "heldout_final_eval_at_85pct_threshold": {
+        "heldout_confounded_oos_abstain_recall": 0.0,
+        "heldout_confounded_oos_abstained": 0,
+        "heldout_confounded_oos_total": 6,
+        "heldout_in_scope_retain_recall": 0.8936,
+        "heldout_in_scope_retained": 42,
+        "heldout_in_scope_total": 47,
+        "heldout_oos_abstain_recall": 0.7215,
+        "heldout_oos_abstained": 57,
+        "heldout_oos_total": 79,
+        "threshold": 0.367475
+      },
+      "heldout_final_eval_at_90pct_threshold": {
+        "heldout_confounded_oos_abstain_recall": 0.0,
+        "heldout_confounded_oos_abstained": 0,
+        "heldout_confounded_oos_total": 6,
+        "heldout_in_scope_retain_recall": 0.9574,
+        "heldout_in_scope_retained": 45,
+        "heldout_in_scope_total": 47,
+        "heldout_oos_abstain_recall": 0.6329,
+        "heldout_oos_abstained": 50,
+        "heldout_oos_total": 79,
+        "threshold": 0.357468
+      },
+      "selected_at_85pct_calibration_in_scope_retention": {
+        "calibration_in_scope_retain_recall": 0.8529,
+        "calibration_in_scope_retained": 29,
+        "calibration_in_scope_total": 34,
+        "min_retain_target": 0.85,
+        "threshold": 0.367475
+      },
+      "selected_at_90pct_calibration_in_scope_retention": {
+        "calibration_in_scope_retain_recall": 0.9118,
+        "calibration_in_scope_retained": 31,
+        "calibration_in_scope_total": 34,
+        "min_retain_target": 0.9,
+        "threshold": 0.357468
+      }
+    },
+    "combined_mean_geometry_fold": {
+      "heldout_final_eval_at_85pct_threshold": {
+        "heldout_confounded_oos_abstain_recall": 0.8333,
+        "heldout_confounded_oos_abstained": 5,
+        "heldout_confounded_oos_total": 6,
+        "heldout_in_scope_retain_recall": 0.9362,
+        "heldout_in_scope_retained": 44,
+        "heldout_in_scope_total": 47,
+        "heldout_oos_abstain_recall": 0.6835,
+        "heldout_oos_abstained": 54,
+        "heldout_oos_total": 79,
+        "threshold": 0.46975
+      },
+      "heldout_final_eval_at_90pct_threshold": {
+        "heldout_confounded_oos_abstain_recall": 0.8333,
+        "heldout_confounded_oos_abstained": 5,
+        "heldout_confounded_oos_total": 6,
+        "heldout_in_scope_retain_recall": 0.9574,
+        "heldout_in_scope_retained": 45,
+        "heldout_in_scope_total": 47,
+        "heldout_oos_abstain_recall": 0.557,
+        "heldout_oos_abstained": 44,
+        "heldout_oos_total": 79,
+        "threshold": 0.44155
+      },
+      "selected_at_85pct_calibration_in_scope_retention": {
+        "calibration_in_scope_retain_recall": 0.8529,
+        "calibration_in_scope_retained": 29,
+        "calibration_in_scope_total": 34,
+        "min_retain_target": 0.85,
+        "threshold": 0.46975
+      },
+      "selected_at_90pct_calibration_in_scope_retention": {
+        "calibration_in_scope_retain_recall": 0.9118,
+        "calibration_in_scope_retained": 31,
+        "calibration_in_scope_total": 34,
+        "min_retain_target": 0.9,
+        "threshold": 0.44155
+      }
+    },
+    "combined_min_geometry_fold": {
+      "heldout_final_eval_at_85pct_threshold": {
+        "heldout_confounded_oos_abstain_recall": 0.3333,
+        "heldout_confounded_oos_abstained": 2,
+        "heldout_confounded_oos_total": 6,
+        "heldout_in_scope_retain_recall": 0.9149,
+        "heldout_in_scope_retained": 43,
+        "heldout_in_scope_total": 47,
+        "heldout_oos_abstain_recall": 0.1646,
+        "heldout_oos_abstained": 13,
+        "heldout_oos_total": 79,
+        "threshold": 0.3483
+      },
+      "heldout_final_eval_at_90pct_threshold": {
+        "heldout_confounded_oos_abstain_recall": 0.1667,
+        "heldout_confounded_oos_abstained": 1,
+        "heldout_confounded_oos_total": 6,
+        "heldout_in_scope_retain_recall": 0.9362,
+        "heldout_in_scope_retained": 44,
+        "heldout_in_scope_total": 47,
+        "heldout_oos_abstain_recall": 0.1266,
+        "heldout_oos_abstained": 10,
+        "heldout_oos_total": 79,
+        "threshold": 0.338
+      },
+      "selected_at_85pct_calibration_in_scope_retention": {
+        "calibration_in_scope_retain_recall": 0.8529,
+        "calibration_in_scope_retained": 29,
+        "calibration_in_scope_total": 34,
+        "min_retain_target": 0.85,
+        "threshold": 0.3483
+      },
+      "selected_at_90pct_calibration_in_scope_retention": {
+        "calibration_in_scope_retain_recall": 0.9118,
+        "calibration_in_scope_retained": 31,
+        "calibration_in_scope_total": 34,
+        "min_retain_target": 0.9,
+        "threshold": 0.338
+      }
+    },
+    "fold_nearest_atlas_tm_score": {
+      "heldout_final_eval_at_85pct_threshold": {
+        "heldout_confounded_oos_abstain_recall": 0.3333,
+        "heldout_confounded_oos_abstained": 2,
+        "heldout_confounded_oos_total": 6,
+        "heldout_in_scope_retain_recall": 0.9362,
+        "heldout_in_scope_retained": 44,
+        "heldout_in_scope_total": 47,
+        "heldout_oos_abstain_recall": 0.3291,
+        "heldout_oos_abstained": 26,
+        "heldout_oos_total": 79,
+        "threshold": 0.4482
+      },
+      "heldout_final_eval_at_90pct_threshold": {
+        "heldout_confounded_oos_abstain_recall": 0.3333,
+        "heldout_confounded_oos_abstained": 2,
+        "heldout_confounded_oos_total": 6,
+        "heldout_in_scope_retain_recall": 0.9574,
+        "heldout_in_scope_retained": 45,
+        "heldout_in_scope_total": 47,
+        "heldout_oos_abstain_recall": 0.2785,
+        "heldout_oos_abstained": 22,
+        "heldout_oos_total": 79,
+        "threshold": 0.4325
+      },
+      "selected_at_85pct_calibration_in_scope_retention": {
+        "calibration_in_scope_retain_recall": 0.8529,
+        "calibration_in_scope_retained": 29,
+        "calibration_in_scope_total": 34,
+        "min_retain_target": 0.85,
+        "threshold": 0.4482
+      },
+      "selected_at_90pct_calibration_in_scope_retention": {
+        "calibration_in_scope_retain_recall": 0.9118,
+        "calibration_in_scope_retained": 31,
+        "calibration_in_scope_total": 34,
+        "min_retain_target": 0.9,
+        "threshold": 0.4325
+      }
+    },
+    "geometry_top1_score": {
+      "heldout_final_eval_at_85pct_threshold": {
+        "heldout_confounded_oos_abstain_recall": 0.3333,
+        "heldout_confounded_oos_abstained": 2,
+        "heldout_confounded_oos_total": 6,
+        "heldout_in_scope_retain_recall": 0.9149,
+        "heldout_in_scope_retained": 43,
+        "heldout_in_scope_total": 47,
+        "heldout_oos_abstain_recall": 0.1646,
+        "heldout_oos_abstained": 13,
+        "heldout_oos_total": 79,
+        "threshold": 0.3483
+      },
+      "heldout_final_eval_at_90pct_threshold": {
+        "heldout_confounded_oos_abstain_recall": 0.1667,
+        "heldout_confounded_oos_abstained": 1,
+        "heldout_confounded_oos_total": 6,
+        "heldout_in_scope_retain_recall": 0.9362,
+        "heldout_in_scope_retained": 44,
+        "heldout_in_scope_total": 47,
+        "heldout_oos_abstain_recall": 0.1266,
+        "heldout_oos_abstained": 10,
+        "heldout_oos_total": 79,
+        "threshold": 0.338
+      },
+      "selected_at_85pct_calibration_in_scope_retention": {
+        "calibration_in_scope_retain_recall": 0.8529,
+        "calibration_in_scope_retained": 29,
+        "calibration_in_scope_total": 34,
+        "min_retain_target": 0.85,
+        "threshold": 0.3483
+      },
+      "selected_at_90pct_calibration_in_scope_retention": {
+        "calibration_in_scope_retain_recall": 0.9118,
+        "calibration_in_scope_retained": 31,
+        "calibration_in_scope_total": 34,
+        "min_retain_target": 0.9,
+        "threshold": 0.338
+      }
+    }
+  },
+  "train_cal_partition": {
+    "calibration_entry_ids": [
+      "m_csa:27",
+      "m_csa:38",
+      "m_csa:41",
+      "m_csa:87",
+      "m_csa:102",
+      "m_csa:160",
+      "m_csa:165",
+      "m_csa:173",
+      "m_csa:216",
+      "m_csa:233",
+      "m_csa:277",
+      "m_csa:305",
+      "m_csa:319",
+      "m_csa:320",
+      "m_csa:338",
+      "m_csa:387",
+      "m_csa:399",
+      "m_csa:410",
+      "m_csa:473",
+      "m_csa:482",
+      "m_csa:556",
+      "m_csa:630",
+      "m_csa:694",
+      "m_csa:754",
+      "m_csa:800",
+      "m_csa:837",
+      "m_csa:865",
+      "m_csa:879",
+      "m_csa:900",
+      "m_csa:912",
+      "m_csa:922",
+      "m_csa:933",
+      "m_csa:973",
+      "m_csa:988"
+    ],
+    "fingerprint_counts": {
+      "flavin_dehydrogenase_reductase": 37,
+      "heme_peroxidase_oxidase": 14,
+      "metal_dependent_hydrolase": 63,
+      "plp_dependent_enzyme": 24,
+      "ser_his_acid_hydrolase": 30
+    },
+    "train_entry_ids": [
+      "m_csa:5",
+      "m_csa:6",
+      "m_csa:11",
+      "m_csa:15",
+      "m_csa:16",
+      "m_csa:28",
+      "m_csa:37",
+      "m_csa:42",
+      "m_csa:66",
+      "m_csa:83",
+      "m_csa:94",
+      "m_csa:98",
+      "m_csa:103",
+      "m_csa:108",
+      "m_csa:110",
+      "m_csa:111",
+      "m_csa:113",
+      "m_csa:114",
+      "m_csa:117",
+      "m_csa:120",
+      "m_csa:124",
+      "m_csa:133",
+      "m_csa:142",
+      "m_csa:147",
+      "m_csa:157",
+      "m_csa:158",
+      "m_csa:166",
+      "m_csa:167",
+      "m_csa:168",
+      "m_csa:169",
+      "m_csa:170",
+      "m_csa:172",
+      "m_csa:176",
+      "m_csa:181",
+      "m_csa:183",
+      "m_csa:186",
+      "m_csa:195",
+      "m_csa:205",
+      "m_csa:218",
+      "m_csa:249",
+      "m_csa:258",
+      "m_csa:274",
+      "m_csa:275",
+      "m_csa:281",
+      "m_csa:286",
+      "m_csa:294",
+      "m_csa:300",
+      "m_csa:304",
+      "m_csa:330",
+      "m_csa:337",
+      "m_csa:353",
+      "m_csa:354",
+      "m_csa:358",
+      "m_csa:376",
+      "m_csa:378",
+      "m_csa:379",
+      "m_csa:381",
+      "m_csa:395",
+      "m_csa:401",
+      "m_csa:411",
+      "m_csa:412",
+      "m_csa:425",
+      "m_csa:430",
+      "m_csa:437",
+      "m_csa:445",
+      "m_csa:446",
+      "m_csa:447",
+      "m_csa:449",
+      "m_csa:465",
+      "m_csa:472",
+      "m_csa:486",
+      "m_csa:495",
+      "m_csa:506",
+      "m_csa:516",
+      "m_csa:518",
+      "m_csa:520",
+      "m_csa:522",
+      "m_csa:523",
+      "m_csa:528",
+      "m_csa:535",
+      "m_csa:546",
+      "m_csa:573",
+      "m_csa:581",
+      "m_csa:596",
+      "m_csa:608",
+      "m_csa:623",
+      "m_csa:626",
+      "m_csa:631",
+      "m_csa:636",
+      "m_csa:641",
+      "m_csa:666",
+      "m_csa:668",
+      "m_csa:697",
+      "m_csa:699",
+      "m_csa:705",
+      "m_csa:706",
+      "m_csa:716",
+      "m_csa:720",
+      "m_csa:727",
+      "m_csa:728",
+      "m_csa:733",
+      "m_csa:739",
+      "m_csa:740",
+      "m_csa:742",
+      "m_csa:758",
+      "m_csa:759",
+      "m_csa:762",
+      "m_csa:771",
+      "m_csa:786",
+      "m_csa:791",
+      "m_csa:795",
+      "m_csa:798",
+      "m_csa:808",
+      "m_csa:812",
+      "m_csa:822",
+      "m_csa:823",
+      "m_csa:839",
+      "m_csa:852",
+      "m_csa:855",
+      "m_csa:856",
+      "m_csa:860",
+      "m_csa:862",
+      "m_csa:895",
+      "m_csa:901",
+      "m_csa:903",
+      "m_csa:917",
+      "m_csa:935",
+      "m_csa:937",
+      "m_csa:941",
+      "m_csa:942",
+      "m_csa:944",
+      "m_csa:956",
+      "m_csa:978",
+      "m_csa:998"
+    ]
+  }
+}

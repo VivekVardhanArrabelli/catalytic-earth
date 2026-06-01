@@ -32,6 +32,9 @@ DEFAULT_FOLDSEEK_BINARY = "/private/tmp/catalytic-foldseek-env/bin/foldseek"
 PREDICTED_STRUCTURE_FOLD_CHANNEL_ID = (
     "v3_predicted_structure_fold_channel_current702_20260601"
 )
+FOLD_AUGMENTED_THRESHOLD_CONTRACT_ID = (
+    "v3_fold_augmented_abstention_threshold_contract_current702_20260601"
+)
 
 
 def _utc_now_iso() -> str:
@@ -2352,6 +2355,695 @@ def write_fold_augmented_abstention_gate(
     if report_path is not None:
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(_render_fold_augmented_abstention_gate_report(audit), encoding="utf-8")
+    return audit
+
+
+def _stable_hash_int(value: str) -> int:
+    return int(hashlib.sha256(value.encode("utf-8")).hexdigest(), 16)
+
+
+def _partition_train_calibration_rows(
+    rows: list[dict[str, Any]],
+    *,
+    calibration_fraction: float = 0.2,
+) -> dict[str, str]:
+    """Deterministic in-distribution partition for threshold selection."""
+    by_fp: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        fp = str(row.get("true_fingerprint_id") or "")
+        if fp:
+            by_fp[fp].append(row)
+    partition: dict[str, str] = {}
+    for fp, members in by_fp.items():
+        ordered = sorted(
+            members,
+            key=lambda row: (
+                _stable_hash_int(f"{fp}::{row.get('entry_id')}"),
+                str(row.get("entry_id")),
+            ),
+        )
+        if len(ordered) < 2:
+            partition[str(ordered[0].get("entry_id"))] = "train"
+            continue
+        cal_count = max(1, min(len(ordered) - 1, round(len(ordered) * calibration_fraction)))
+        cal_ids = {str(row.get("entry_id")) for row in ordered[:cal_count]}
+        for row in ordered:
+            entry_id = str(row.get("entry_id"))
+            partition[entry_id] = "calibration" if entry_id in cal_ids else "train"
+    return partition
+
+
+def _score_threshold_for_min_retain(
+    rows: list[dict[str, Any]],
+    score_name: str,
+    *,
+    min_retain: float,
+) -> dict[str, Any] | None:
+    if not rows:
+        return None
+    candidates = sorted({float(row["channel_scores"][score_name]) for row in rows})
+    best = None
+    for threshold in candidates:
+        retained = sum(
+            1 for row in rows if float(row["channel_scores"][score_name]) >= threshold
+        )
+        retain = retained / len(rows)
+        if retain >= min_retain:
+            candidate = {
+                "threshold": round(threshold, 6),
+                "min_retain_target": min_retain,
+                "calibration_in_scope_retain_recall": round(retain, 4),
+                "calibration_in_scope_retained": retained,
+                "calibration_in_scope_total": len(rows),
+            }
+            if best is None or candidate["threshold"] > best["threshold"]:
+                best = candidate
+    return best
+
+
+def _evaluate_threshold_on_heldout(
+    rows: list[dict[str, Any]],
+    score_name: str,
+    threshold: float,
+) -> dict[str, Any]:
+    inscope = [row for row in rows if row["is_inscope"]]
+    oos = [row for row in rows if row["is_oos"]]
+    conf = [row for row in rows if row["is_confounded_predicted_geometry_oos"]]
+
+    def keep(row: dict[str, Any]) -> bool:
+        return float(row["channel_scores"][score_name]) >= threshold
+
+    inscope_kept = sum(1 for row in inscope if keep(row))
+    oos_abstained = sum(1 for row in oos if not keep(row))
+    conf_abstained = sum(1 for row in conf if not keep(row))
+    return {
+        "threshold": round(float(threshold), 6),
+        "heldout_in_scope_retained": inscope_kept,
+        "heldout_in_scope_total": len(inscope),
+        "heldout_in_scope_retain_recall": (
+            round(inscope_kept / len(inscope), 4) if inscope else None
+        ),
+        "heldout_oos_abstained": oos_abstained,
+        "heldout_oos_total": len(oos),
+        "heldout_oos_abstain_recall": (
+            round(oos_abstained / len(oos), 4) if oos else None
+        ),
+        "heldout_confounded_oos_abstained": conf_abstained,
+        "heldout_confounded_oos_total": len(conf),
+        "heldout_confounded_oos_abstain_recall": (
+            round(conf_abstained / len(conf), 4) if conf else None
+        ),
+    }
+
+
+def _parse_train_calibration_foldseek_tsv(
+    *,
+    result_tsv: Path,
+    query_requests: list[dict[str, Any]],
+    target_requests: list[dict[str, Any]],
+    train_entry_ids: set[str],
+    calibration_entry_ids: set[str],
+) -> dict[str, Any]:
+    if not result_tsv.exists():
+        return {
+            "status": "result_tsv_missing",
+            "path": str(result_tsv),
+            "nearest_train_atlas_hits": [],
+            "summary": {
+                "mapped_pair_count": 0,
+                "unmapped_pair_count": 0,
+                "calibration_entry_count_with_hits": 0,
+            },
+        }
+    query_aliases, query_collisions = _alias_map(query_requests)
+    target_aliases, target_collisions = _alias_map(target_requests)
+    nearest: dict[str, dict[str, Any]] = {}
+    mapped_pair_count = 0
+    skipped_non_contract_pair_count = 0
+    unmapped_pair_count = 0
+    unmapped_names: set[str] = set()
+    for line in result_tsv.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        parts = line.split("\t")
+        if parts[0] == "query":
+            continue
+        if len(parts) < 5:
+            unmapped_pair_count += 1
+            continue
+        raw_query, raw_target = parts[0], parts[1]
+        query_request = query_aliases.get(raw_query)
+        target_request = target_aliases.get(raw_target)
+        if query_request is None or target_request is None:
+            unmapped_pair_count += 1
+            if query_request is None:
+                unmapped_names.add(raw_query)
+            if target_request is None:
+                unmapped_names.add(raw_target)
+            continue
+        qtmscore = _parse_optional_float(parts[2])
+        ttmscore = _parse_optional_float(parts[3])
+        alntmscore = _parse_optional_float(parts[4])
+        scores = [score for score in (qtmscore, ttmscore, alntmscore) if score is not None]
+        if not scores:
+            unmapped_pair_count += 1
+            continue
+        tm_score = max(scores)
+        prob = _parse_optional_float(parts[5]) if len(parts) > 5 else None
+        bits = _parse_optional_float(parts[6]) if len(parts) > 6 else None
+        for query_row in query_request.get("rows") or []:
+            query_entry_id = str(query_row.get("entry_id"))
+            if query_entry_id not in calibration_entry_ids:
+                skipped_non_contract_pair_count += 1
+                continue
+            for target_row in target_request.get("rows") or []:
+                target_entry_id = str(target_row.get("entry_id"))
+                if target_entry_id not in train_entry_ids:
+                    skipped_non_contract_pair_count += 1
+                    continue
+                if target_entry_id == query_entry_id:
+                    skipped_non_contract_pair_count += 1
+                    continue
+                if (
+                    query_request.get("accession")
+                    and query_request.get("accession") == target_request.get("accession")
+                ):
+                    skipped_non_contract_pair_count += 1
+                    continue
+                mapped_pair_count += 1
+                candidate = {
+                    "query_entry_id": query_entry_id,
+                    "query_accession": query_request.get("accession"),
+                    "raw_query_name": raw_query,
+                    "nearest_train_atlas_entry_id": target_entry_id,
+                    "nearest_train_atlas_accession": target_request.get("accession"),
+                    "nearest_train_atlas_true_fingerprint_id": target_row.get(
+                        "true_fingerprint_id"
+                    ),
+                    "raw_target_name": raw_target,
+                    "tm_score": round(tm_score, 6),
+                    "qtmscore": qtmscore,
+                    "ttmscore": ttmscore,
+                    "alntmscore": alntmscore,
+                    "prob": prob,
+                    "bits": bits,
+                }
+                previous = nearest.get(query_entry_id)
+                if previous is None or candidate["tm_score"] > previous["tm_score"]:
+                    nearest[query_entry_id] = candidate
+    hits = sorted(nearest.values(), key=lambda row: _entry_id_sort_key(row["query_entry_id"]))
+    return {
+        "status": "parsed" if hits else "parsed_no_mapped_hits",
+        "path": str(result_tsv),
+        "nearest_train_atlas_hits": hits,
+        "summary": {
+            "mapped_pair_count": mapped_pair_count,
+            "skipped_non_contract_pair_count": skipped_non_contract_pair_count,
+            "unmapped_pair_count": unmapped_pair_count,
+            "calibration_entry_count_with_hits": len(hits),
+            "alias_collision_count": len(query_collisions) + len(target_collisions),
+            "alias_collisions": query_collisions + target_collisions,
+            "unmapped_names": sorted(unmapped_names),
+        },
+    }
+
+
+def _fold_augmented_channel_scores(
+    *,
+    geometry_score: float,
+    cofactor_max_score: float,
+    fold_tm_score: float,
+) -> dict[str, float]:
+    return {
+        "geometry_top1_score": round(geometry_score, 6),
+        "cofactor_max_score": round(cofactor_max_score, 6),
+        "fold_nearest_atlas_tm_score": round(fold_tm_score, 6),
+        "combined_mean_geometry_cofactor_fold": round(
+            (geometry_score + cofactor_max_score + fold_tm_score) / 3,
+            6,
+        ),
+        "combined_mean_geometry_fold": round((geometry_score + fold_tm_score) / 2, 6),
+        "combined_min_geometry_fold": round(min(geometry_score, fold_tm_score), 6),
+    }
+
+
+def _calibration_foldseek_command(
+    *,
+    foldseek_binary: str,
+    result_tsv: Path,
+    threads: int,
+) -> str:
+    root = Path("/private/tmp/catalytic_threshold_train_cal_foldseek")
+    result_root = result_tsv.parent
+    return _foldseek_easy_search_command(
+        binary=foldseek_binary,
+        query_dir=root / "calibration_queries",
+        target_dir=root / "train_targets",
+        result_tsv=result_tsv,
+        tmp_dir=result_root / "tmp_in_distribution_atlas_self_vs_atlas",
+        threads=threads,
+    )
+
+
+def _atlas_coordinate_materialization_command() -> str:
+    return (
+        "python - <<'PY'\n"
+        "import json\n"
+        "import urllib.request\n"
+        "from pathlib import Path\n"
+        f"artifact = json.loads(Path('artifacts/{PREDICTED_STRUCTURE_FOLD_CHANNEL_ID}.json').read_text())\n"
+        "atlas = artifact['foldseek_input_manifest']['coordinate_request_groups']['atlas_in_distribution']\n"
+        "for item in atlas:\n"
+        "    path = item.get('expected_local_path')\n"
+        "    url = item.get('url')\n"
+        "    if not path or not url:\n"
+        "        continue\n"
+        "    target = Path(path)\n"
+        "    target.parent.mkdir(parents=True, exist_ok=True)\n"
+        "    if target.exists():\n"
+        "        continue\n"
+        "    urllib.request.urlretrieve(url, target)\n"
+        "PY"
+    )
+
+
+def _stage_train_calibration_dirs_command() -> str:
+    return (
+        "python - <<'PY'\n"
+        "import json\n"
+        "import shutil\n"
+        "from pathlib import Path\n"
+        f"contract = json.loads(Path('artifacts/{FOLD_AUGMENTED_THRESHOLD_CONTRACT_ID}.json').read_text())\n"
+        f"fold = json.loads(Path('artifacts/{PREDICTED_STRUCTURE_FOLD_CHANNEL_ID}.json').read_text())\n"
+        "root = Path('/private/tmp/catalytic_threshold_train_cal_foldseek')\n"
+        "if root.exists():\n"
+        "    shutil.rmtree(root)\n"
+        "query_dir = root / 'calibration_queries'\n"
+        "target_dir = root / 'train_targets'\n"
+        "query_dir.mkdir(parents=True)\n"
+        "target_dir.mkdir(parents=True)\n"
+        "cal = set(contract['train_cal_partition']['calibration_entry_ids'])\n"
+        "train = set(contract['train_cal_partition']['train_entry_ids'])\n"
+        "atlas = fold['foldseek_input_manifest']['coordinate_request_groups']['atlas_in_distribution']\n"
+        "for item in atlas:\n"
+        "    src = Path(item['expected_local_path'])\n"
+        "    if not src.exists():\n"
+        "        continue\n"
+        "    ids = set(item.get('entry_ids') or [])\n"
+        "    if ids & cal:\n"
+        "        dst = query_dir / src.name\n"
+        "        if not dst.exists():\n"
+        "            dst.symlink_to(src.resolve())\n"
+        "    if ids & train:\n"
+        "        dst = target_dir / src.name\n"
+        "        if not dst.exists():\n"
+        "            dst.symlink_to(src.resolve())\n"
+        "print({'queries': len(list(query_dir.iterdir())), 'targets': len(list(target_dir.iterdir()))})\n"
+        "PY"
+    )
+
+
+def build_fold_augmented_abstention_threshold_contract(
+    *,
+    fold_augmented_gate_path: Path,
+    predicted_structure_fold_channel_path: Path,
+    predicted_geometry_atlas_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    train_cal_foldseek_tsv: Path,
+    foldseek_binary: str = DEFAULT_FOLDSEEK_BINARY,
+    threads: int = 4,
+) -> dict[str, Any]:
+    fold_gate = _read_json(fold_augmented_gate_path)
+    fold_channel = _read_json(predicted_structure_fold_channel_path)
+    predicted_atlas = _read_json(predicted_geometry_atlas_path)
+    cofactor_sidecar = _read_json(selected_organic_cofactor_sidecar_path)
+
+    atlas_rows = [
+        row
+        for row in predicted_atlas.get("results", [])
+        if (
+            isinstance(row, dict)
+            and row.get("split_assignment") == "in_distribution"
+            and row.get("true_fingerprint_id")
+            and _predicted_row_ok(row)
+            and _top1_fingerprint(row)
+        )
+    ]
+    partition = _partition_train_calibration_rows(atlas_rows)
+    train_entry_ids = {
+        entry_id for entry_id, split in partition.items() if split == "train"
+    }
+    calibration_entry_ids = {
+        entry_id for entry_id, split in partition.items() if split == "calibration"
+    }
+    coordinate_root = Path(
+        str(
+            (fold_channel.get("foldseek_input_manifest") or {}).get("coordinate_root")
+            or "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates"
+        )
+    )
+    atlas_requests = _coordinate_requests(
+        atlas_rows,
+        coordinate_root=coordinate_root,
+        role="in_distribution_train_cal_query_or_target",
+        subdir="atlas_in_distribution",
+    )
+    parsed_train_cal = _parse_train_calibration_foldseek_tsv(
+        result_tsv=train_cal_foldseek_tsv,
+        query_requests=atlas_requests,
+        target_requests=atlas_requests,
+        train_entry_ids=train_entry_ids,
+        calibration_entry_ids=calibration_entry_ids,
+    )
+    geometry_by_entry = {str(row.get("entry_id")): row for row in atlas_rows}
+    fold_by_entry = {
+        str(row.get("query_entry_id")): row
+        for row in parsed_train_cal.get("nearest_train_atlas_hits", [])
+    }
+    calibration_rows = []
+    for entry_id in sorted(calibration_entry_ids, key=_entry_id_sort_key):
+        geo = geometry_by_entry.get(entry_id, {})
+        fold_hit = fold_by_entry.get(entry_id)
+        cofactor_scores = _cofactor_scores_for_entry(cofactor_sidecar, entry_id)
+        top = _top1_fingerprint(geo) or {}
+        if not fold_hit or not top or not cofactor_scores:
+            continue
+        geom = float(top.get("score") or 0.0)
+        cof = max(cofactor_scores.values())
+        fold = float(fold_hit.get("tm_score") or 0.0)
+        calibration_rows.append(
+            {
+                "entry_id": entry_id,
+                "true_fingerprint_id": geo.get("true_fingerprint_id"),
+                "partition": "calibration",
+                "nearest_train_atlas_entry_id": fold_hit.get("nearest_train_atlas_entry_id"),
+                "nearest_train_atlas_true_fingerprint_id": fold_hit.get(
+                    "nearest_train_atlas_true_fingerprint_id"
+                ),
+                "channel_scores": _fold_augmented_channel_scores(
+                    geometry_score=geom,
+                    cofactor_max_score=cof,
+                    fold_tm_score=fold,
+                ),
+            }
+        )
+    heldout_rows = [
+        row
+        for row in fold_gate.get("row_scores", [])
+        if isinstance(row, dict) and row.get("channel_scores")
+    ]
+    channel_names = list(heldout_rows[0]["channel_scores"]) if heldout_rows else [
+        "geometry_top1_score",
+        "cofactor_max_score",
+        "fold_nearest_atlas_tm_score",
+        "combined_mean_geometry_cofactor_fold",
+        "combined_mean_geometry_fold",
+        "combined_min_geometry_fold",
+    ]
+    threshold_contract: dict[str, Any] = {}
+    for channel_name in channel_names:
+        at90 = _score_threshold_for_min_retain(
+            calibration_rows,
+            channel_name,
+            min_retain=0.90,
+        )
+        at85 = _score_threshold_for_min_retain(
+            calibration_rows,
+            channel_name,
+            min_retain=0.85,
+        )
+        threshold_contract[channel_name] = {
+            "selected_at_90pct_calibration_in_scope_retention": at90,
+            "selected_at_85pct_calibration_in_scope_retention": at85,
+            "heldout_final_eval_at_90pct_threshold": (
+                _evaluate_threshold_on_heldout(
+                    heldout_rows,
+                    channel_name,
+                    float(at90["threshold"]),
+                )
+                if at90
+                else None
+            ),
+            "heldout_final_eval_at_85pct_threshold": (
+                _evaluate_threshold_on_heldout(
+                    heldout_rows,
+                    channel_name,
+                    float(at85["threshold"]),
+                )
+                if at85
+                else None
+            ),
+        }
+    blockers: list[str] = []
+    if parsed_train_cal["status"] != "parsed":
+        blockers.append("train_cal_foldseek_tsv_missing_or_unparsed")
+    if calibration_entry_ids and len(calibration_rows) < len(calibration_entry_ids):
+        blockers.append("some_calibration_rows_missing_fold_geometry_or_cofactor_scores")
+    if not calibration_rows:
+        blockers.append("no_calibration_rows_scored")
+    status = (
+        "computed_train_cal_threshold_contract"
+        if not blockers
+        else "blocked_missing_train_cal_fold_scores"
+    )
+    primary = threshold_contract.get("combined_mean_geometry_fold", {})
+    return {
+        "artifact_id": FOLD_AUGMENTED_THRESHOLD_CONTRACT_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Leakage-safe thresholding contract for the fold-augmented abstention "
+            "diagnostic. Thresholds are selected on deterministic in-distribution "
+            "calibration rows only; heldout rows are final evaluation diagnostics."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "thresholds_selected_on_heldout": False,
+            "heldout_used_for_final_eval_only": True,
+            "train_cal_oos_negatives_used_for_threshold": False,
+            "frozen_current702_inputs_only": True,
+        },
+        "selection_policy": {
+            "partition_source": "deterministic_hash_stratified_by_true_fingerprint_over_in_distribution_predicted_atlas_rows",
+            "train_rows_are_foldseek_targets": True,
+            "calibration_rows_select_thresholds": True,
+            "calibration_objective": "highest_score_threshold_retaining_at_least_target_fraction_of_in_scope_calibration_rows",
+            "target_retention_levels": [0.90, 0.85],
+            "weights_policy": "no_weights_fit_prespecified_channels_only",
+            "heldout_policy": "heldout rows are evaluated after threshold selection and do not affect thresholds",
+            "limitation": (
+                "The current predicted-geometry atlas contains in-distribution "
+                "fingerprint rows, not train/cal OOS negatives. Thresholds therefore "
+                "control in-scope retention only; OOS abstain recall remains a final "
+                "heldout diagnostic."
+            ),
+        },
+        "counts": {
+            "atlas_in_distribution_rows_ok_with_fingerprint": len(atlas_rows),
+            "train_rows": len(train_entry_ids),
+            "calibration_rows_expected": len(calibration_entry_ids),
+            "calibration_rows_scored": len(calibration_rows),
+            "heldout_rows_final_eval": len(heldout_rows),
+            "heldout_in_scope": sum(1 for row in heldout_rows if row.get("is_inscope")),
+            "heldout_oos": sum(1 for row in heldout_rows if row.get("is_oos")),
+            "heldout_confounded_oos": sum(
+                1 for row in heldout_rows if row.get("is_confounded_predicted_geometry_oos")
+            ),
+        },
+        "blockers": blockers,
+        "train_cal_partition": {
+            "train_entry_ids": sorted(train_entry_ids, key=_entry_id_sort_key),
+            "calibration_entry_ids": sorted(calibration_entry_ids, key=_entry_id_sort_key),
+            "fingerprint_counts": dict(
+                sorted(
+                    Counter(str(row.get("true_fingerprint_id")) for row in atlas_rows).items()
+                )
+            ),
+        },
+        "parsed_train_cal_foldseek": parsed_train_cal,
+        "threshold_contract": threshold_contract,
+        "primary_channel_readout": {
+            "channel": "combined_mean_geometry_fold",
+            "selected_at_90pct_calibration_in_scope_retention": primary.get(
+                "selected_at_90pct_calibration_in_scope_retention"
+            ),
+            "heldout_final_eval_at_90pct_threshold": primary.get(
+                "heldout_final_eval_at_90pct_threshold"
+            ),
+        },
+        "calibration_row_scores": calibration_rows,
+        "commands": {
+            "materialize_atlas_coordinate_bundle": _atlas_coordinate_materialization_command(),
+            "stage_train_calibration_foldseek_dirs": (
+                _stage_train_calibration_dirs_command()
+            ),
+            "run_in_distribution_atlas_self_vs_atlas": _calibration_foldseek_command(
+                foldseek_binary=str(
+                    _foldseek_binary_info(foldseek_binary).get("resolved")
+                    or foldseek_binary
+                ),
+                result_tsv=train_cal_foldseek_tsv,
+                threads=threads,
+            ),
+            "rerun_contract_parser": (
+                "PYTHONPATH=src python -m catalytic_earth.cli "
+                "eval-fold-augmented-abstention-threshold-contract "
+                f"--train-cal-foldseek-tsv {shlex.quote(str(train_cal_foldseek_tsv))}"
+            ),
+            "foldseek_tsv_columns": [
+                "query",
+                "target",
+                "qtmscore",
+                "ttmscore",
+                "alntmscore",
+                "prob",
+                "bits",
+            ],
+        },
+        "interpretation": {
+            "headline": (
+                "Train/cal thresholds were selected without heldout threshold tuning."
+                if not blockers
+                else "Train/cal threshold selection is blocked until the in-distribution Foldseek TSV is available."
+            ),
+            "production_status": (
+                "research_contract_not_production_threshold; no production scorer or global threshold was changed"
+            ),
+        },
+        "source_artifacts": {
+            "fold_augmented_gate": {
+                "path": str(fold_augmented_gate_path),
+                "sha256": _sha256(fold_augmented_gate_path),
+            },
+            "predicted_structure_fold_channel": {
+                "path": str(predicted_structure_fold_channel_path),
+                "sha256": _sha256(predicted_structure_fold_channel_path),
+            },
+            "predicted_geometry_atlas": {
+                "path": str(predicted_geometry_atlas_path),
+                "sha256": _sha256(predicted_geometry_atlas_path),
+            },
+            "selected_organic_cofactor_sidecar": {
+                "path": str(selected_organic_cofactor_sidecar_path),
+                "sha256": _sha256(selected_organic_cofactor_sidecar_path),
+            },
+        },
+    }
+
+
+def _render_fold_augmented_abstention_threshold_contract_report(audit: dict[str, Any]) -> str:
+    counts = audit["counts"]
+    primary = audit["primary_channel_readout"]
+    lines = [
+        "# Fold-Augmented Abstention Threshold Contract - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Blockers: {audit['blockers']}",
+        f"- Train rows: {counts['train_rows']}",
+        f"- Calibration rows scored: {counts['calibration_rows_scored']} / {counts['calibration_rows_expected']}",
+        f"- Heldout final-eval rows: {counts['heldout_rows_final_eval']}",
+        "",
+        "## Primary Channel",
+        "",
+        f"- Channel: {primary['channel']}",
+        f"- Calibration-selected 90% threshold: {primary['selected_at_90pct_calibration_in_scope_retention']}",
+        f"- Heldout final eval at that threshold: {primary['heldout_final_eval_at_90pct_threshold']}",
+        "",
+        "## Thresholds",
+        "",
+        "| Channel | cal >=90 threshold | heldout in-scope retain | heldout OOS abstain | heldout confounded abstain |",
+        "| --- | ---: | ---: | ---: | ---: |",
+    ]
+    for name, row in audit["threshold_contract"].items():
+        selected = row.get("selected_at_90pct_calibration_in_scope_retention") or {}
+        heldout = row.get("heldout_final_eval_at_90pct_threshold") or {}
+        lines.append(
+            f"| {name} | {selected.get('threshold')} | "
+            f"{heldout.get('heldout_in_scope_retain_recall')} | "
+            f"{heldout.get('heldout_oos_abstain_recall')} | "
+            f"{heldout.get('heldout_confounded_oos_abstain_recall')} |"
+        )
+    lines += [
+        "",
+        "## Contract",
+        "",
+        f"- {audit['selection_policy']['calibration_objective']}",
+        f"- {audit['selection_policy']['limitation']}",
+        f"- {audit['interpretation']['production_status']}",
+        "",
+        "## Commands",
+        "",
+        "Materialize the atlas coordinate bundle:",
+        "",
+        "```bash",
+        audit["commands"]["materialize_atlas_coordinate_bundle"],
+        "```",
+        "",
+        "Stage the calibration-query and train-target Foldseek directories:",
+        "",
+        "```bash",
+        audit["commands"]["stage_train_calibration_foldseek_dirs"],
+        "```",
+        "",
+        "Run the in-distribution Foldseek pass:",
+        "",
+        "```bash",
+        audit["commands"]["run_in_distribution_atlas_self_vs_atlas"],
+        "```",
+        "",
+        "Rerun the parser:",
+        "",
+        "```bash",
+        audit["commands"]["rerun_contract_parser"],
+        "```",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_abstention_threshold_contract(
+    *,
+    fold_augmented_gate_path: Path,
+    predicted_structure_fold_channel_path: Path,
+    predicted_geometry_atlas_path: Path,
+    selected_organic_cofactor_sidecar_path: Path,
+    train_cal_foldseek_tsv: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    foldseek_binary: str = DEFAULT_FOLDSEEK_BINARY,
+    threads: int = 4,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_abstention_threshold_contract(
+        fold_augmented_gate_path=fold_augmented_gate_path,
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        predicted_geometry_atlas_path=predicted_geometry_atlas_path,
+        selected_organic_cofactor_sidecar_path=selected_organic_cofactor_sidecar_path,
+        train_cal_foldseek_tsv=train_cal_foldseek_tsv,
+        foldseek_binary=foldseek_binary,
+        threads=threads,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_abstention_threshold_contract_report(audit),
+            encoding="utf-8",
+        )
     return audit
 
 

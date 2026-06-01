@@ -68,6 +68,14 @@ artifacts first.
   in-scope from all OOS at AUC 0.814301; a no-fit mean of predicted geometry
   confidence and fold TM reaches AUC 0.907622 overall and 0.911348 on the six
   cofactor-confounded OOS rows. These are diagnostics, not production thresholds.
+- The fold-augmented gate now has a leakage-safe thresholding contract. A
+  deterministic in-distribution train/cal split selected the
+  `combined_mean_geometry_fold` threshold `0.44155` at >=90% calibration
+  in-scope retention. Heldout final readout at that fixed threshold retains
+  45/47 in-scope rows, abstains on 44/79 OOS rows, and abstains on 5/6
+  cofactor-confounded OOS rows. This is a research contract, not a production
+  threshold, because train/cal OOS negatives are not yet available for threshold
+  optimization.
 - Learned-representation results are diagnostic, not decision-grade. ESM-2
   logistic is the strongest local learned comparator in the Wave 1.2 table but
   does not displace geometry. ESM-C logistic versus ESM-C cosine shows decoder
@@ -102,9 +110,9 @@ artifacts first.
 
 ## Next Gates
 
-1. Promote the fold-augmented abstention diagnostic into a leakage-safe
-   train/cal/heldout thresholding contract; keep the current heldout operating
-   points non-production until then.
+1. Score the staged 76-row in-distribution OOS calibration-negative surface for
+   the fold-augmented gate, or explicitly keep the current threshold contract as
+   an in-scope retention-only research gate.
 2. If representation work resumes, produce row-aligned local sidecars first,
    then train heads on train/cal rows only and evaluate heldout once, including
    a predicted-geometry robustness cell.

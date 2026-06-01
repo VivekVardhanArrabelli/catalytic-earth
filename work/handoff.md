@@ -50,6 +50,116 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Fold-Augmented Threshold Contract And Train/Cal OOS Negative Manifest
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T03:34:37Z`
+- STARTED_LOCAL: `Sun May 31 22:34:37 CDT 2026`
+- ENDED_AT: `2026-06-01T04:26:12Z`
+- ENDED_LOCAL: `Sun May 31 23:26:12 CDT 2026`
+- ELAPSED_MINUTES: `51.6`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "8002", "started_at": "2026-06-01T03:34:37Z", "status": "acquired"}`
+- Lock release result: pending at handoff write; release command to run after
+  clean synced push:
+  `PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced`
+- Git branch at start: `main`
+- Git HEAD at start: `39cc03f6be3bff738ef346b8638db734079bbef4`
+- Dirty files at start: none
+- Git branch at end before commit: `main`
+- Git HEAD at end before commit: `39cc03f6be3bff738ef346b8638db734079bbef4`
+- Dirty files at end before staging:
+  `docs/artifact_index.md`, `docs/decision_log.md`,
+  `docs/project_state.md`, `src/catalytic_earth/cli.py`,
+  `src/catalytic_earth/northstar_next_levers.py`,
+  `tests/test_northstar_next_levers.py`,
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_manifest_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/in_distribution_atlas_self_vs_atlas.tsv`,
+  `work/fold_augmented_abstention_threshold_contract_current702_20260601.md`,
+  `work/fold_augmented_train_cal_oos_negative_surface_manifest_current702_20260601.md`,
+  and this handoff.
+- Input artifacts:
+  `artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json`,
+  `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`.
+- Output artifacts:
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/in_distribution_atlas_self_vs_atlas.tsv`,
+  `work/fold_augmented_abstention_threshold_contract_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_manifest_current702_20260601.json`,
+  `work/fold_augmented_train_cal_oos_negative_surface_manifest_current702_20260601.md`,
+  plus updated project-state, decision-log, artifact-index, CLI, and tests.
+- Commands run:
+  `git fetch origin`, `git pull --ff-only origin main`,
+  `PYTHONPATH=src python -m catalytic_earth.cli eval-fold-augmented-abstention-threshold-contract`,
+  transient AFDB v6 atlas CIF materialization under
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/`,
+  an interrupted over-broad all-atlas Foldseek exact-TM attempt,
+  a reduced Foldseek exact-TM pass for 34 calibration queries against 133 train
+  targets via `/private/tmp/catalytic_threshold_train_cal_foldseek`,
+  `PYTHONPATH=src python -m catalytic_earth.cli eval-fold-augmented-abstention-threshold-contract`
+  again to parse the real TSV, JSON/report generation for the train/cal OOS
+  negative surface manifest, JSON parse checks, CLI help check, compile checks,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`, `git diff --check`,
+  focused pytest, full pytest, and unittest discovery.
+- Validation results:
+  JSON parsing passed for both new JSON artifacts;
+  `python -m compileall -q src tests` passed;
+  `git diff --check` passed;
+  `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with 12 source
+  records, 8 mechanism fingerprints, 15 mechanism ontology families, and 702
+  curated labels;
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_mechanism_abstention_gate_eval.py tests/test_predicted_geometry_robustness.py`
+  passed with 20 tests before the final blocker-path test;
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py` passed
+  with 8 tests after the blocker-path test;
+  `PYTHONPATH=src python -m pytest` passed with 991 tests and one upstream
+  sklearn/scipy deprecation warning;
+  `PYTHONPATH=src python -m unittest discover -s tests` passed with 968 tests
+  and the same upstream warning.
+- Commit/push result: pending at handoff write; commit and push after this
+  ledger, then verify `HEAD == origin/main`.
+- Exact next action for the next run: score or stage predicted-geometry plus
+  Foldseek features for the 76 hash-selected in-distribution OOS calibration
+  negatives listed in
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_manifest_current702_20260601.json`,
+  using the fold-augmented threshold contract's train atlas target set; do not
+  treat the current `0.44155` threshold as OOS-optimized until that train/cal
+  negative surface exists.
+
+Work completed:
+
+- Added `eval-fold-augmented-abstention-threshold-contract`, which parses a
+  train/cal Foldseek TSV, partitions in-distribution predicted-atlas fingerprint
+  rows into train and calibration sets, selects thresholds only on calibration
+  in-scope retention, and evaluates heldout rows once as final diagnostics.
+- Materialized the 167 predicted atlas CIF requests transiently, reduced the
+  Foldseek pass to 34 calibration queries against 133 train-target CIFs, and
+  committed only the small 2,427-line TSV. The transient CIF bundle and Foldseek
+  temp database were removed before staging.
+- Generated the fold-augmented threshold contract. Primary channel
+  `combined_mean_geometry_fold` selected threshold `0.44155` at >=90%
+  calibration in-scope retention (`31/34`, `0.9118`). Heldout final readout at
+  that fixed threshold retains `45/47` in-scope rows (`0.9574`), abstains on
+  `44/79` OOS rows (`0.557`), and abstains on `5/6` cofactor-confounded OOS rows
+  (`0.8333`). This remains a research threshold contract, not a production
+  threshold, because no train/cal OOS negatives were available for threshold
+  optimization.
+- Staged the next blocker-clearing manifest for train/cal OOS negatives: 378
+  current702 in-distribution OOS candidates exist, 76 are hash-selected as a
+  calibration-negative surface, and none currently have predicted-geometry/fold
+  scores in the atlas channel.
+- Updated `docs/project_state.md`, `docs/decision_log.md`, and
+  `docs/artifact_index.md`. No labels, registries, ontologies, production
+  imports, production thresholds, production scorers, heldout splits, or
+  persistent coordinate bundles were changed.
+
 ### 2026-06-01 Predicted-Structure Fold Channel And Fold-Augmented Gate
 
 Automation run: `catalytic-earth-work-loop`

@@ -3,6 +3,40 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-01: Fold-Augmented Threshold Contract Selects Thresholds On Train/Calibration Rows, Not Heldout
+
+Decision: promote the fold-augmented heldout-only diagnostic into a bounded
+thresholding contract. The run used deterministic, fingerprint-stratified
+partitioning over the in-distribution predicted atlas rows: 134 train targets and
+34 calibration queries. AlphaFoldDB v6 CIFs were materialized transiently, and
+Foldseek exact TM scoring was run only for the 34 calibration queries against the
+133 available train-target CIFs. The resulting small TSV and parsed
+JSON/report are committed; persistent coordinate files are not. No label,
+registry, ontology, import, split, production scorer, or production threshold
+changed.
+
+Result: the primary predeclared channel, `combined_mean_geometry_fold`, selected
+threshold `0.44155` at the >=90% calibration in-scope retention target, retaining
+31/34 calibration rows (`0.9118`). Applying that threshold once to heldout rows
+retains 45/47 in-scope rows (`0.9574`), abstains on 44/79 OOS rows (`0.557`),
+and abstains on 5/6 cofactor-confounded OOS rows (`0.8333`). The
+cofactor-including mean abstains on more all-OOS heldout rows (`0.6329`) but
+still abstains on none of the cofactor-confounded OOS rows, matching the earlier
+safety warning.
+
+Consequence: the fold-augmented gate now has a leakage-safe research threshold
+contract rather than a post-hoc heldout threshold. It is still not an authorized
+production threshold because train/cal provides in-scope retention calibration
+only: the current predicted atlas does not include train/cal OOS negatives for
+threshold optimization. Next work should either add a frozen train/cal OOS
+negative surface for threshold selection or move to the mechanism-feature
+embedding gap with this threshold contract as the current fold-aware baseline.
+
+Artifacts:
+`artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json`,
+`artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/in_distribution_atlas_self_vs_atlas.tsv`,
+`work/fold_augmented_abstention_threshold_contract_current702_20260601.md`.
+
 ## 2026-06-01: Real Predicted-Structure Foldseek Channel Is Scored For All Ok Heldout Rows
 
 Decision: move beyond the selected-PDB fold proxy by staging the real

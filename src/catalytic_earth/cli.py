@@ -44,6 +44,7 @@ from .northstar_next_levers import (
     write_family_set_expansion_targets,
     write_family_panel_evidence_packet,
     write_fold_augmented_abstention_gate,
+    write_fold_augmented_abstention_threshold_contract,
     write_fold_level_novelty_signal,
     write_learned_mechanism_feature_embedding_plan,
     write_predicted_atlas_geometry_novelty_variants,
@@ -10899,6 +10900,28 @@ def cmd_eval_fold_augmented_abstention_gate(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_eval_fold_augmented_abstention_threshold_contract(args: argparse.Namespace) -> int:
+    audit = write_fold_augmented_abstention_threshold_contract(
+        fold_augmented_gate_path=Path(args.fold_augmented_gate),
+        predicted_structure_fold_channel_path=Path(args.predicted_structure_fold_channel),
+        predicted_geometry_atlas_path=Path(args.predicted_geometry_atlas),
+        selected_organic_cofactor_sidecar_path=Path(args.selected_organic_cofactor_sidecar),
+        train_cal_foldseek_tsv=Path(args.train_cal_foldseek_tsv),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        foldseek_binary=args.foldseek_binary,
+        threads=args.threads,
+    )
+    primary = audit.get("primary_channel_readout", {})
+    selected = primary.get("selected_at_90pct_calibration_in_scope_retention") or {}
+    print(
+        "Wrote fold-augmented threshold contract to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"primary threshold: {selected.get('threshold')})"
+    )
+    return 0
+
+
 def cmd_build_learned_mechanism_feature_embedding_plan(args: argparse.Namespace) -> int:
     audit = write_learned_mechanism_feature_embedding_plan(
         mechanism_fingerprints_path=Path(args.mechanism_fingerprints),
@@ -21678,6 +21701,56 @@ def build_parser() -> argparse.ArgumentParser:
         default="work/fold_augmented_abstention_gate_current702_20260601.md",
     )
     fold_augmented_gate.set_defaults(func=cmd_eval_fold_augmented_abstention_gate)
+
+    fold_threshold_contract = subparsers.add_parser(
+        "eval-fold-augmented-abstention-threshold-contract",
+        help=(
+            "select leakage-safe fold-augmented abstention thresholds from "
+            "train/cal in-distribution rows and evaluate heldout once"
+        ),
+    )
+    fold_threshold_contract.add_argument(
+        "--fold-augmented-gate",
+        default="artifacts/v3_fold_augmented_abstention_gate_current702_20260601.json",
+    )
+    fold_threshold_contract.add_argument(
+        "--predicted-structure-fold-channel",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    )
+    fold_threshold_contract.add_argument(
+        "--predicted-geometry-atlas",
+        default="artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+    )
+    fold_threshold_contract.add_argument(
+        "--selected-organic-cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+    )
+    fold_threshold_contract.add_argument(
+        "--train-cal-foldseek-tsv",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_current702_20260601_"
+            "coordinates_foldseek_results/in_distribution_atlas_self_vs_atlas.tsv"
+        ),
+    )
+    fold_threshold_contract.add_argument(
+        "--foldseek-binary",
+        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    )
+    fold_threshold_contract.add_argument("--threads", type=int, default=4)
+    fold_threshold_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    fold_threshold_contract.add_argument(
+        "--report",
+        default="work/fold_augmented_abstention_threshold_contract_current702_20260601.md",
+    )
+    fold_threshold_contract.set_defaults(
+        func=cmd_eval_fold_augmented_abstention_threshold_contract
+    )
 
     mechanism_embedding_plan = subparsers.add_parser(
         "build-learned-mechanism-feature-embedding-plan",

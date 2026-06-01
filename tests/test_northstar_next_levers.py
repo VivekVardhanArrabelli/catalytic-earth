@@ -8,6 +8,7 @@ from pathlib import Path
 from catalytic_earth.northstar_next_levers import (
     build_family_panel_evidence_packet,
     build_fold_augmented_abstention_gate,
+    build_fold_augmented_abstention_threshold_contract,
     build_predicted_atlas_geometry_novelty_variants,
     build_predicted_structure_fold_channel,
     build_selected_organic_cofactor_sidecar_schema_audit,
@@ -90,6 +91,259 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertEqual(
             audit["channels"]["combined_mean_geometry_fold"]["auc_in_gt_oos_all"],
             1.0,
+        )
+
+    def test_fold_augmented_threshold_contract_uses_calibration_threshold(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            fold_gate = root / "fold_gate.json"
+            fold_channel = root / "fold_channel.json"
+            predicted_atlas = root / "predicted_atlas.json"
+            sidecar = root / "cofactor.json"
+            train_cal_tsv = root / "train_cal.tsv"
+            fold_gate.write_text(
+                json.dumps(
+                    {
+                        "row_scores": [
+                            {
+                                "entry_id": "m_csa:101",
+                                "is_inscope": True,
+                                "is_oos": False,
+                                "is_confounded_predicted_geometry_oos": False,
+                                "channel_scores": {
+                                    "geometry_top1_score": 0.8,
+                                    "cofactor_max_score": 0.1,
+                                    "fold_nearest_atlas_tm_score": 0.8,
+                                    "combined_mean_geometry_cofactor_fold": 0.566667,
+                                    "combined_mean_geometry_fold": 0.8,
+                                    "combined_min_geometry_fold": 0.8,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:102",
+                                "is_inscope": False,
+                                "is_oos": True,
+                                "is_confounded_predicted_geometry_oos": True,
+                                "channel_scores": {
+                                    "geometry_top1_score": 0.2,
+                                    "cofactor_max_score": 0.9,
+                                    "fold_nearest_atlas_tm_score": 0.2,
+                                    "combined_mean_geometry_cofactor_fold": 0.433333,
+                                    "combined_mean_geometry_fold": 0.2,
+                                    "combined_min_geometry_fold": 0.2,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_channel.write_text(
+                json.dumps(
+                    {
+                        "foldseek_input_manifest": {
+                            "coordinate_root": str(root / "coords"),
+                            "atlas_database_dir": str(root / "coords" / "atlas_in_distribution"),
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            predicted_atlas.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "split_assignment": "in_distribution",
+                                "predicted_geometry_status": "ok",
+                                "predicted_pdb_id": "AF-P11111-F1-model_v6",
+                                "true_fingerprint_id": "metal_dependent_hydrolase",
+                                "top_fingerprints": [{"score": 0.8}],
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "P22222",
+                                "split_assignment": "in_distribution",
+                                "predicted_geometry_status": "ok",
+                                "predicted_pdb_id": "AF-P22222-F1-model_v6",
+                                "true_fingerprint_id": "metal_dependent_hydrolase",
+                                "top_fingerprints": [{"score": 0.7}],
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "accession": "P33333",
+                                "split_assignment": "in_distribution",
+                                "predicted_geometry_status": "ok",
+                                "predicted_pdb_id": "AF-P33333-F1-model_v6",
+                                "true_fingerprint_id": "ser_his_acid_hydrolase",
+                                "top_fingerprints": [{"score": 0.6}],
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "accession": "P44444",
+                                "split_assignment": "in_distribution",
+                                "predicted_geometry_status": "ok",
+                                "predicted_pdb_id": "AF-P44444-F1-model_v6",
+                                "true_fingerprint_id": "ser_his_acid_hydrolase",
+                                "top_fingerprints": [{"score": 0.5}],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "row_class_records": [
+                            {
+                                "entry_id": entry_id,
+                                "class": cls,
+                                "selected_score": score,
+                            }
+                            for entry_id, score in [
+                                ("m_csa:1", 0.1),
+                                ("m_csa:2", 0.2),
+                                ("m_csa:3", 0.3),
+                                ("m_csa:4", 0.4),
+                            ]
+                            for cls in ("flavin", "heme", "plp")
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            train_cal_tsv.write_text(
+                "\n".join(
+                    [
+                        "afdb_P11111_v6\tafdb_P22222_v6\t0.1\t0.2\t0.9\t0.8\t40",
+                        "afdb_P22222_v6\tafdb_P11111_v6\t0.1\t0.2\t0.7\t0.8\t40",
+                        "afdb_P33333_v6\tafdb_P44444_v6\t0.1\t0.2\t0.6\t0.8\t40",
+                        "afdb_P44444_v6\tafdb_P33333_v6\t0.1\t0.2\t0.5\t0.8\t40",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_abstention_threshold_contract(
+                fold_augmented_gate_path=fold_gate,
+                predicted_structure_fold_channel_path=fold_channel,
+                predicted_geometry_atlas_path=predicted_atlas,
+                selected_organic_cofactor_sidecar_path=sidecar,
+                train_cal_foldseek_tsv=train_cal_tsv,
+                foldseek_binary=str(root / "missing-foldseek"),
+            )
+
+        self.assertEqual(audit["status"], "computed_train_cal_threshold_contract")
+        self.assertTrue(audit["guardrails"]["heldout_used_for_final_eval_only"])
+        self.assertGreater(audit["counts"]["calibration_rows_scored"], 0)
+        primary = audit["primary_channel_readout"]
+        self.assertIsNotNone(
+            primary["selected_at_90pct_calibration_in_scope_retention"]
+        )
+        self.assertEqual(
+            primary["heldout_final_eval_at_90pct_threshold"][
+                "heldout_confounded_oos_abstain_recall"
+            ],
+            1.0,
+        )
+
+    def test_fold_augmented_threshold_contract_blocks_without_train_cal_tsv(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            fold_gate = root / "fold_gate.json"
+            fold_channel = root / "fold_channel.json"
+            predicted_atlas = root / "predicted_atlas.json"
+            sidecar = root / "cofactor.json"
+            fold_gate.write_text(
+                json.dumps(
+                    {
+                        "row_scores": [
+                            {
+                                "entry_id": "m_csa:101",
+                                "is_inscope": True,
+                                "is_oos": False,
+                                "is_confounded_predicted_geometry_oos": False,
+                                "channel_scores": {
+                                    "combined_mean_geometry_fold": 0.8,
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_channel.write_text(
+                json.dumps(
+                    {
+                        "foldseek_input_manifest": {
+                            "coordinate_root": str(root / "coords"),
+                            "atlas_database_dir": str(root / "coords" / "atlas_in_distribution"),
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            predicted_atlas.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "accession": "P11111",
+                                "split_assignment": "in_distribution",
+                                "predicted_geometry_status": "ok",
+                                "predicted_pdb_id": "AF-P11111-F1-model_v6",
+                                "true_fingerprint_id": "metal_dependent_hydrolase",
+                                "top_fingerprints": [{"score": 0.8}],
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "P22222",
+                                "split_assignment": "in_distribution",
+                                "predicted_geometry_status": "ok",
+                                "predicted_pdb_id": "AF-P22222-F1-model_v6",
+                                "true_fingerprint_id": "metal_dependent_hydrolase",
+                                "top_fingerprints": [{"score": 0.7}],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "row_class_records": [
+                            {"entry_id": "m_csa:1", "class": "flavin", "selected_score": 0.1},
+                            {"entry_id": "m_csa:1", "class": "heme", "selected_score": 0.1},
+                            {"entry_id": "m_csa:1", "class": "plp", "selected_score": 0.1},
+                            {"entry_id": "m_csa:2", "class": "flavin", "selected_score": 0.1},
+                            {"entry_id": "m_csa:2", "class": "heme", "selected_score": 0.1},
+                            {"entry_id": "m_csa:2", "class": "plp", "selected_score": 0.1},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_abstention_threshold_contract(
+                fold_augmented_gate_path=fold_gate,
+                predicted_structure_fold_channel_path=fold_channel,
+                predicted_geometry_atlas_path=predicted_atlas,
+                selected_organic_cofactor_sidecar_path=sidecar,
+                train_cal_foldseek_tsv=root / "missing.tsv",
+            )
+
+        self.assertEqual(audit["status"], "blocked_missing_train_cal_fold_scores")
+        self.assertIn("train_cal_foldseek_tsv_missing_or_unparsed", audit["blockers"])
+        self.assertIsNone(
+            audit["primary_channel_readout"][
+                "selected_at_90pct_calibration_in_scope_retention"
+            ]
         )
 
     def test_family_panel_evidence_packet_is_review_only(self) -> None:
