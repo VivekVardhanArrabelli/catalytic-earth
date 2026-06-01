@@ -51,6 +51,7 @@ Status terms:
 | `artifacts/v3_geometry_retrieval_1025.json` | What did geometry retrieval produce on the 1,025 surface? | Trusted existing retrieval source |
 | `artifacts/v3_geometry_label_eval_1025_preview_batch.json` | What is the existing geometry abstention threshold source? | Trusted for threshold source; not current702-native heldout join |
 | `artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json` | Does the clean experimental-geometry 45/45 hand-router result survive AlphaFoldDB-predicted geometry? | Current diagnostic; shows predicted-geometry degradation |
+| `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json` | What predicted-geometry retrieval rows are available for current702 in-distribution atlas percentile/novelty methods? | Current deployment-regime atlas retrieval |
 | `artifacts/v3_predicted_geometry_robustness_audit_current702_esmfold_20260529.json` | Was ESMFold available locally for the same predicted-geometry audit? | Blocked; no local runtime/weights and no large download attempted |
 | `artifacts/v3_selected_pdb_override_plan_700.json` | Which selected-PDB override path was planned? | Repair evidence |
 | `docs/geometry_features.md` | What does the geometry feature layer mean? | Design/reference doc |

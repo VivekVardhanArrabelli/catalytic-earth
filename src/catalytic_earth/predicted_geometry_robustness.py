@@ -610,6 +610,382 @@ def write_predicted_geometry_distillation_audit(
     return audit
 
 
+def build_predicted_geometry_in_distribution_atlas_retrieval(
+    *,
+    label_manifest: dict[str, Any],
+    graph: dict[str, Any],
+    experimental_geometry_features: dict[str, Any],
+    heldout_predicted_geometry_audit: dict[str, Any] | None = None,
+    backend: str = "alphafold_db",
+    alphafold_version: str = "auto",
+    max_rows: int = 0,
+    fetcher: Any | None = None,
+) -> dict[str, Any]:
+    """Build predicted-geometry retrieval for current702 in-distribution atlas rows.
+
+    The atlas here is the train/in-distribution rows with a mechanism
+    fingerprint. This is the missing deployment-regime normalization surface for
+    atlas-percentile novelty methods; heldout labels are not used for fitting or
+    threshold selection.
+    """
+    if backend != "alphafold_db":
+        return _blocked_audit(
+            blocker="unsupported_predicted_structure_backend",
+            detail=f"backend={backend!r}; only alphafold_db is implemented",
+            label_manifest=label_manifest,
+            split_assignment="in_distribution",
+            backend=backend,
+            artifact_id=(
+                "v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601"
+            ),
+            schema_version="predicted_geometry_atlas_retrieval.v1",
+        )
+
+    manifest_rows = [
+        row for row in label_manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    atlas_expected_rows = [
+        row
+        for row in manifest_rows
+        if row.get("split_assignment") == "in_distribution"
+        and (row.get("fingerprint_id") or row.get("mechanism_fingerprint_id"))
+    ]
+    selected_all, excluded_all = _target_manifest_row_selection(
+        label_manifest=label_manifest,
+        graph=graph,
+        experimental_geometry_features=experimental_geometry_features,
+        split_assignment="in_distribution",
+        max_rows=0,
+    )
+    atlas_expected_ids = {
+        str(row.get("entry_id") or "") for row in atlas_expected_rows
+    }
+    selected_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in selected_all
+        if str(row.get("entry_id") or "") in atlas_expected_ids
+    }
+    excluded_rows = [
+        row
+        for row in excluded_all
+        if str(row.get("entry_id") or "") in atlas_expected_ids
+    ]
+    selected_rows = [
+        selected_by_entry[str(row.get("entry_id") or "")]
+        for row in atlas_expected_rows
+        if str(row.get("entry_id") or "") in selected_by_entry
+    ]
+    truncated = False
+    if max_rows and len(selected_rows) > max_rows:
+        selected_rows = selected_rows[:max_rows]
+        truncated = True
+
+    predicted_geometry = build_alphafold_predicted_geometry_features(
+        label_manifest_rows=selected_rows,
+        graph=graph,
+        experimental_geometry_features=experimental_geometry_features,
+        alphafold_version=alphafold_version,
+        fetcher=fetcher,
+    )
+    atlas_retrieval = run_geometry_retrieval(predicted_geometry)
+    atlas_results = _enriched_predicted_retrieval_results(
+        retrieval_results=atlas_retrieval.get("results", []),
+        manifest_rows=manifest_rows,
+        predicted_entries=predicted_geometry.get("entries", []),
+    )
+    heldout_results = _heldout_predicted_retrieval_results(
+        heldout_predicted_geometry_audit or {}, manifest_rows=manifest_rows
+    )
+    combined_results = sorted(
+        heldout_results + atlas_results,
+        key=lambda row: _entry_sort_key(str(row.get("entry_id") or "")),
+    )
+
+    status_counts = Counter(
+        str(entry.get("status")) for entry in predicted_geometry.get("entries", [])
+    )
+    missing_reasons = Counter(str(row.get("reason")) for row in excluded_rows)
+    for entry in predicted_geometry.get("entries", []):
+        status = str(entry.get("status"))
+        if status != "ok":
+            missing_reasons[status] += 1
+    atlas_ok_ids = {
+        str(row.get("entry_id") or "")
+        for row in atlas_results
+        if row.get("status") == "ok"
+        and row.get("top_fingerprints")
+    }
+    top1_counts = Counter(
+        str(row.get("top1_fingerprint_id"))
+        for row in atlas_results
+        if row.get("status") == "ok" and row.get("top1_fingerprint_id")
+    )
+
+    return {
+        "artifact_id": (
+            "v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601"
+        ),
+        "schema_version": "predicted_geometry_atlas_retrieval.v1",
+        "created_utc": _utc_now_iso(),
+        "status": "complete",
+        "scope": {
+            "split_assignment": "in_distribution",
+            "atlas_definition": (
+                "current702 in_distribution rows with a non-null mechanism "
+                "fingerprint_id/mechanism_fingerprint_id"
+            ),
+            "backend": backend,
+            "alphafold_version": alphafold_version,
+            "max_rows": max_rows,
+            "truncated_by_max_rows": truncated,
+        },
+        "guardrails": {
+            "label_registry_edited": False,
+            "fingerprint_registry_edited": False,
+            "ontology_registry_edited": False,
+            "production_scoring_changed": False,
+            "global_threshold_changed": False,
+            "heldout_labels_used_for_fit_or_threshold": False,
+            "large_model_downloads_performed": False,
+            "raw_coordinates_committed": False,
+            "coordinate_download_scope": (
+                "AlphaFoldDB mmCIF coordinate files fetched transiently for "
+                "current702 in_distribution atlas accessions; raw coordinates "
+                "are not committed"
+            ),
+        },
+        "source_artifacts": {
+            "label_manifest": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+            "graph": "artifacts/v1_graph_1025.json",
+            "experimental_geometry_features": "artifacts/v3_geometry_features_1025.json",
+            "heldout_predicted_geometry_audit": (
+                "artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json"
+                if heldout_predicted_geometry_audit
+                else None
+            ),
+        },
+        "counts": {
+            "atlas_rows_expected": len(atlas_expected_rows),
+            "atlas_rows_selected_for_predicted_geometry": len(selected_rows),
+            "atlas_retrieval_result_count": len(atlas_results),
+            "atlas_rows_scored_ok": len(atlas_ok_ids),
+            "atlas_rows_missing": max(len(atlas_expected_rows) - len(atlas_ok_ids), 0),
+            "heldout_predicted_retrieval_rows_carried": len(heldout_results),
+            "combined_results_count": len(combined_results),
+            "atlas_status_counts": dict(sorted(status_counts.items())),
+            "missing_reason_counts": dict(sorted(missing_reasons.items())),
+            "atlas_top1_fingerprint_counts": dict(sorted(top1_counts.items())),
+        },
+        "predicted_geometry_summary": {
+            "metadata": predicted_geometry.get("metadata", {}),
+            "lightweight_rows": _lightweight_predicted_geometry_rows(
+                predicted_geometry.get("entries", [])
+            ),
+        },
+        "atlas_predicted_geometry_retrieval": {
+            **{k: v for k, v in atlas_retrieval.items() if k != "results"},
+            "results": atlas_results,
+        },
+        "result_sets": {
+            "atlas_entry_ids": sorted(atlas_expected_ids, key=_entry_sort_key),
+            "atlas_scored_ok_entry_ids": sorted(atlas_ok_ids, key=_entry_sort_key),
+            "heldout_entry_ids_carried": sorted(
+                {str(row.get("entry_id") or "") for row in heldout_results},
+                key=_entry_sort_key,
+            ),
+        },
+        "next_methods_unblocked": [
+            "eval-mechanism-abstention-gate with predicted-geometry atlas percentiles",
+            "atlas Mahalanobis / percentile novelty diagnostics in deployment geometry",
+        ],
+        "results": combined_results,
+    }
+
+
+def write_predicted_geometry_in_distribution_atlas_retrieval(
+    *,
+    label_manifest_path: Path,
+    graph_path: Path,
+    experimental_geometry_features_path: Path,
+    heldout_predicted_geometry_audit_path: Path | None,
+    out_path: Path,
+    report_path: Path | None = None,
+    backend: str = "alphafold_db",
+    alphafold_version: str = "auto",
+    max_rows: int = 0,
+) -> dict[str, Any]:
+    with label_manifest_path.open("r", encoding="utf-8") as handle:
+        label_manifest = json.load(handle)
+    with graph_path.open("r", encoding="utf-8") as handle:
+        graph = json.load(handle)
+    with experimental_geometry_features_path.open("r", encoding="utf-8") as handle:
+        experimental_geometry_features = json.load(handle)
+    heldout_audit = None
+    if heldout_predicted_geometry_audit_path is not None:
+        with heldout_predicted_geometry_audit_path.open("r", encoding="utf-8") as handle:
+            heldout_audit = json.load(handle)
+    audit = build_predicted_geometry_in_distribution_atlas_retrieval(
+        label_manifest=label_manifest,
+        graph=graph,
+        experimental_geometry_features=experimental_geometry_features,
+        heldout_predicted_geometry_audit=heldout_audit,
+        backend=backend,
+        alphafold_version=alphafold_version,
+        max_rows=max_rows,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _predicted_geometry_atlas_retrieval_markdown_report(audit, out_path),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _enriched_predicted_retrieval_results(
+    *,
+    retrieval_results: list[dict[str, Any]],
+    manifest_rows: list[dict[str, Any]],
+    predicted_entries: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    manifest_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in manifest_rows
+        if row.get("entry_id")
+    }
+    predicted_by_entry = {
+        str(row.get("entry_id") or ""): row
+        for row in predicted_entries
+        if row.get("entry_id")
+    }
+    out: list[dict[str, Any]] = []
+    for row in retrieval_results:
+        entry_id = str(row.get("entry_id") or "")
+        manifest = manifest_by_entry.get(entry_id, {})
+        predicted = predicted_by_entry.get(entry_id, {})
+        top = (row.get("top_fingerprints") or [{}])[0]
+        enriched = dict(row)
+        enriched.update(
+            {
+                "accession": manifest.get("accession") or predicted.get("accession"),
+                "sequence_id": manifest.get("sequence_id") or predicted.get("sequence_id"),
+                "sequence_sha256": manifest.get("sequence_sha256"),
+                "split_assignment": manifest.get("split_assignment")
+                or predicted.get("split_assignment"),
+                "benchmark_role": manifest.get("benchmark_role")
+                or predicted.get("benchmark_role"),
+                "true_fingerprint_id": manifest.get("fingerprint_id")
+                or manifest.get("mechanism_fingerprint_id"),
+                "predicted_geometry_status": predicted.get("status") or row.get("status"),
+                "predicted_pdb_id": predicted.get("pdb_id") or row.get("pdb_id"),
+                "experimental_pdb_id": predicted.get("experimental_pdb_id"),
+                "predicted_resolved_residue_count": predicted.get(
+                    "resolved_residue_count"
+                ),
+                "predicted_missing_positions": predicted.get("missing_positions"),
+                "top1_fingerprint_id": top.get("fingerprint_id"),
+                "top1_score": top.get("score"),
+                "top1_role_match_fraction": top.get("role_match_fraction"),
+                "top1_cofactor_context_score": top.get("cofactor_context_score"),
+                "top1_cofactor_evidence_level": top.get("cofactor_evidence_level"),
+                "missingness_reason": (
+                    None if row.get("status") == "ok" else row.get("status")
+                ),
+            }
+        )
+        out.append(enriched)
+    return sorted(out, key=lambda item: _entry_sort_key(str(item.get("entry_id") or "")))
+
+
+def _heldout_predicted_retrieval_results(
+    heldout_audit: dict[str, Any],
+    *,
+    manifest_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    retrieval = heldout_audit.get("predicted_geometry_retrieval", {})
+    features = heldout_audit.get("predicted_geometry_features", {})
+    return _enriched_predicted_retrieval_results(
+        retrieval_results=retrieval.get("results", []),
+        manifest_rows=manifest_rows,
+        predicted_entries=features.get("entries", []),
+    )
+
+
+def _predicted_geometry_atlas_retrieval_markdown_report(
+    audit: dict[str, Any],
+    out_path: Path,
+) -> str:
+    counts = audit.get("counts", {})
+    missing = counts.get("missing_reason_counts", {})
+    top1 = counts.get("atlas_top1_fingerprint_counts", {})
+    command = (
+        "PYTHONPATH=src python -m catalytic_earth.cli "
+        "eval-mechanism-abstention-gate "
+        f"--geometry-retrieval {out_path} "
+        "--out artifacts/v3_mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.json "
+        "--report work/mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.md"
+    )
+    lines = [
+        "# Predicted-Geometry In-Distribution Atlas Retrieval",
+        "",
+        f"Run: {audit.get('created_utc')}",
+        "",
+        "Deployment-regime AlphaFoldDB retrieval for the current702 "
+        "`in_distribution` fingerprint atlas rows. No labels, registries, "
+        "thresholds, production scoring, or splits were changed.",
+        "",
+        "## Counts",
+        "",
+        f"- Atlas rows expected: {counts.get('atlas_rows_expected')}",
+        "- Rows selected for predicted-geometry coordinate swap: "
+        f"{counts.get('atlas_rows_selected_for_predicted_geometry')}",
+        f"- Retrieval rows emitted for atlas: {counts.get('atlas_retrieval_result_count')}",
+        f"- Rows scored ok: {counts.get('atlas_rows_scored_ok')}",
+        f"- Rows missing/unusable: {counts.get('atlas_rows_missing')}",
+        "- Heldout predicted retrieval rows carried for direct gate reruns: "
+        f"{counts.get('heldout_predicted_retrieval_rows_carried')}",
+        f"- Combined retrieval rows: {counts.get('combined_results_count')}",
+        "",
+        "## Missingness",
+        "",
+    ]
+    if missing:
+        for reason, count in missing.items():
+            lines.append(f"- {reason}: {count}")
+    else:
+        lines.append("- none")
+    lines.extend(["", "## Atlas Top1 Fingerprints", ""])
+    if top1:
+        for fingerprint_id, count in top1.items():
+            lines.append(f"- {fingerprint_id}: {count}")
+    else:
+        lines.append("- none")
+    lines.extend(
+        [
+            "",
+            "## Output",
+            "",
+            f"- Artifact: `{out_path}`",
+            "- The top-level `results` array combines the new atlas rows with the "
+            "previous heldout predicted-geometry retrieval rows so the existing "
+            "`eval-mechanism-abstention-gate` loader can consume one path.",
+            "- The atlas-only rows are also preserved under "
+            "`atlas_predicted_geometry_retrieval.results`.",
+            "",
+            "## Next Method Unblocked",
+            "",
+            "Run the predicted-geometry atlas-percentile gate:",
+            "",
+            "```bash",
+            command,
+            "```",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
 def _target_manifest_row_selection(
     *,
     label_manifest: dict[str, Any],

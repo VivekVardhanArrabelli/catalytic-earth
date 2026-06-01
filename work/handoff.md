@@ -50,6 +50,188 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Predicted-Geometry In-Distribution Atlas Retrieval
+
+Automation run: `catalytic-earth-work-loop`
+
+Wall-clock:
+
+- STARTED_AT: `2026-06-01T01:00:52Z`
+- Local start: `Sun May 31 20:00:52 CDT 2026`
+- Handoff write time: `2026-06-01T01:10:47Z`
+- Local handoff write time: `Sun May 31 20:10:47 CDT 2026`
+- Elapsed at handoff write: ~9.9 minutes
+- Stop reason before minute 50: Priority 1 stop condition met with a valid
+  nonzero predicted-geometry atlas retrieval artifact.
+
+Lock:
+
+- First intended command and first repo command:
+
+```bash
+STARTED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" --stale-after-minutes 75 acquire --started-at "$STARTED_AT"
+```
+
+- Acquire result:
+
+```json
+{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "9948", "started_at": "2026-06-01T01:00:52Z", "status": "acquired"}
+```
+
+- Release status at handoff write: pending commit/push verification. Release
+  command planned after push:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced
+```
+
+Startup repository state:
+
+- Branch: `main`
+- Git HEAD at start: `306835619aaf4072e07deb6c9afdeb84d7042974`
+- Dirty files at start: none (`git status --short` empty)
+- Recent commits checked: top commit `3068356 Move D11 northstar bundle handoff
+  into main handoff`
+- Disk at start: 31 GiB free; disk at handoff write: 30 GiB free
+- Automation memory: no existing memory file was present.
+
+Continuity read before new work:
+
+- `docs/session_decision_record_20260530.md`
+- `docs/project_state.md`
+- `docs/decision_log.md`
+- `docs/artifact_index.md`
+- `docs/agent_runbook.md`
+- `work/handoff.md`
+- `work/NEXT_WORKS_northstar_20260531.md`
+- Task-specific handoff: no prior
+  `work/predicted_geometry_in_distribution_atlas_retrieval_current702_*.md`
+  existed before this run.
+
+Input artifacts:
+
+- `artifacts/v3_sequence_nn_label_manifest_current702_20260525.json`
+- `artifacts/v1_graph_1025.json`
+- `artifacts/v3_geometry_features_1025.json`
+- `artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json`
+- `artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json`
+- `artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl`
+
+Work completed:
+
+- Added a reproducible CLI:
+  `build-predicted-geometry-in-distribution-atlas-retrieval`.
+- The builder scores only current702 `in_distribution` rows with non-null
+  mechanism fingerprints, preserving the atlas definition used by the existing
+  D11 two-channel gate.
+- It fetches AlphaFoldDB mmCIFs transiently, commits no raw coordinates, runs
+  the existing predicted-geometry active-site feature extraction and
+  `run_geometry_retrieval`, enriches rows with row IDs/provenance/top1 fields,
+  and carries the previous heldout predicted retrieval rows into top-level
+  `results` so the existing gate loader can consume one path.
+- Added focused unit coverage for the atlas-only fingerprint-row selection and
+  combined result surface.
+- Indexed the new artifact in `docs/artifact_index.md`.
+
+Output artifacts:
+
+- `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`
+- `work/predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.md`
+
+Priority 1 counts:
+
+- Atlas rows expected: 184
+- Rows selected for predicted-geometry coordinate swap: 171
+- Atlas retrieval rows emitted: 171
+- Atlas rows scored ok: 168
+- Atlas rows missing/unusable: 16
+- Missing reason categories:
+  `missing_accession_compatible_sequence_positions=13`,
+  `predicted_structure_fetch_failed=2`,
+  `insufficient_resolved_residues=1`
+- Heldout predicted retrieval rows carried: 128
+- Combined retrieval rows: 299
+- Atlas top1 fingerprint counts:
+  `metal_dependent_hydrolase=98`,
+  `ser_his_acid_hydrolase=36`,
+  `flavin_dehydrogenase_reductase=16`,
+  `heme_peroxidase_oxidase=13`,
+  `plp_dependent_enzyme=4`,
+  `flavin_monooxygenase=1`
+
+Loader validation:
+
+```text
+compute_two_channel_gate status: computed
+counts: {'atlas': 168, 'inscope': 47, 'oos': 79, 'confounded_oos': 6, 'agnostic_oos': 73}
+best_overall_auc: 0.847697
+```
+
+Validation commands/results:
+
+```bash
+PYTHONPATH=src python -m pytest tests/test_predicted_geometry_robustness.py tests/test_mechanism_abstention_gate_eval.py
+# 13 passed
+
+python -m compileall -q src tests
+# passed
+
+python -m json.tool artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json >/dev/null
+# passed
+
+PYTHONPATH=src python -m catalytic_earth.cli validate
+# Validated 12 source records, 8 mechanism fingerprints, 15 ontology families, 702 curated labels
+
+git diff --check
+# passed
+
+PYTHONPATH=src python -m unittest discover -s tests
+# Ran 960 tests in 36.365s, OK
+```
+
+Key commands run:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-predicted-geometry-in-distribution-atlas-retrieval --max-rows 3 --out /tmp/v3_predicted_geometry_in_distribution_atlas_retrieval_smoke.json --report /tmp/predicted_geometry_in_distribution_atlas_retrieval_smoke.md
+PYTHONPATH=src python -m catalytic_earth.cli build-predicted-geometry-in-distribution-atlas-retrieval --out artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json --report work/predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.md
+```
+
+Dirty files at handoff write before staging/commit:
+
+```text
+M docs/artifact_index.md
+M src/catalytic_earth/cli.py
+M src/catalytic_earth/predicted_geometry_robustness.py
+M tests/test_predicted_geometry_robustness.py
+?? artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json
+?? work/predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.md
+```
+
+Blockers:
+
+- No blocking condition. The three missingness categories above are row-level
+  expected/unusable cases, not run blockers.
+- No labels, registries, ontologies, production imports, thresholds, scoring
+  thresholds, or heldout splits were changed.
+
+Commit/push status at handoff write:
+
+- Commit not yet created at this exact handoff-write point.
+- Planned commit message: `Add predicted geometry atlas retrieval`
+- Push and `HEAD == origin/main` verification to be attempted immediately after
+  this handoff update.
+
+Exact next action for the next run:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli eval-mechanism-abstention-gate --geometry-retrieval artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json --out artifacts/v3_mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.json --report work/mechanism_abstention_gate_eval_predicted_atlas_current702_20260601.md
+```
+
+Next run should continue, not retarget. Start by running the exact command above
+to materialize the predicted-geometry atlas-percentile abstention gate, then
+decide whether atlas Mahalanobis/percentile novelty is still needed.
+
 ### 2026-05-31 D11 Northstar Bundle Import And Retarget
 
 Manual repo-sync handoff for the D11/northstar commits imported from local

@@ -43,6 +43,7 @@ from .mechanism_abstention_gate_eval import (
 from .geometry_reports import write_geometry_slice_summary
 from .geometry_head import write_geometry_nonlinear_head_audit
 from .predicted_geometry_robustness import (
+    write_predicted_geometry_in_distribution_atlas_retrieval,
     write_predicted_geometry_distillation_audit,
     write_predicted_geometry_robustness_audit,
 )
@@ -2132,6 +2133,34 @@ def cmd_build_predicted_geometry_distillation_audit(args: argparse.Namespace) ->
         "Wrote predicted geometry distillation audit to "
         f"{args.out} ({audit.get('status')}; "
         f"mlp_primary={answer.get('mlp_32_oos_aware_predicted_primary_accuracy_available')})"
+    )
+    return 0
+
+
+def cmd_build_predicted_geometry_in_distribution_atlas_retrieval(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_predicted_geometry_in_distribution_atlas_retrieval(
+        label_manifest_path=Path(args.label_manifest),
+        graph_path=Path(args.graph),
+        experimental_geometry_features_path=Path(args.experimental_geometry_features),
+        heldout_predicted_geometry_audit_path=(
+            Path(args.heldout_predicted_geometry_audit)
+            if args.heldout_predicted_geometry_audit
+            else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        backend=args.backend,
+        alphafold_version=args.alphafold_version,
+        max_rows=args.max_rows,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote predicted geometry in-distribution atlas retrieval to "
+        f"{args.out} ({audit.get('status')}; "
+        f"atlas_ok={counts.get('atlas_rows_scored_ok')}/"
+        f"{counts.get('atlas_rows_expected')})"
     )
     return 0
 
@@ -12449,6 +12478,54 @@ def build_parser() -> argparse.ArgumentParser:
     )
     predicted_geometry_distillation.set_defaults(
         func=cmd_build_predicted_geometry_distillation_audit
+    )
+
+    predicted_geometry_atlas = subparsers.add_parser(
+        "build-predicted-geometry-in-distribution-atlas-retrieval",
+        help=(
+            "score current702 in-distribution fingerprint atlas rows on "
+            "AlphaFoldDB predicted geometry"
+        ),
+    )
+    predicted_geometry_atlas.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    predicted_geometry_atlas.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1025.json",
+    )
+    predicted_geometry_atlas.add_argument(
+        "--experimental-geometry-features",
+        default="artifacts/v3_geometry_features_1025.json",
+    )
+    predicted_geometry_atlas.add_argument(
+        "--heldout-predicted-geometry-audit",
+        default="artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+    )
+    predicted_geometry_atlas.add_argument(
+        "--backend",
+        default="alphafold_db",
+        choices=("alphafold_db",),
+    )
+    predicted_geometry_atlas.add_argument("--alphafold-version", default="auto")
+    predicted_geometry_atlas.add_argument("--max-rows", type=int, default=0)
+    predicted_geometry_atlas.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json"
+        ),
+    )
+    predicted_geometry_atlas.add_argument(
+        "--report",
+        default=(
+            "work/"
+            "predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.md"
+        ),
+    )
+    predicted_geometry_atlas.set_defaults(
+        func=cmd_build_predicted_geometry_in_distribution_atlas_retrieval
     )
 
     mechanism_relationship_eval = subparsers.add_parser(
