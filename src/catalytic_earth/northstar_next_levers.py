@@ -53,6 +53,18 @@ FOLD_AUGMENTED_TRAIN_CAL_OOS_NEGATIVE_SURFACE_SUFFICIENCY_DECISION_ID = (
 FOLD_AUGMENTED_OOS_CALIBRATED_THRESHOLD_CONTRACT_ID = (
     "v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601"
 )
+FOLD_AUGMENTED_FAMILY_PANEL_RESEARCH_READOUT_ID = (
+    "v3_fold_augmented_family_panel_research_readout_current702_20260601"
+)
+FOLD_AUGMENTED_FAMILY_PANEL_SOURCE_CHECK_QUEUE_ID = (
+    "v3_fold_augmented_family_panel_source_check_queue_current702_20260601"
+)
+FOLD_AUGMENTED_FAMILY_PANEL_MISSING_PRIMARY_CHANNEL_QUEUE_ID = (
+    "v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601"
+)
+FOLD_AUGMENTED_FAMILY_PANEL_MISSING_PRIMARY_CHANNEL_DIAGNOSIS_ID = (
+    "v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601"
+)
 MECHANISM_FEATURE_SIDECAR_SCHEMA_AUDIT_ID = (
     "v3_mechanism_feature_sidecar_schema_audit_current702_20260601"
 )
@@ -4979,6 +4991,1309 @@ def write_fold_augmented_oos_calibrated_threshold_contract(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_oos_calibrated_threshold_contract_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _primary_fold_augmented_threshold(contract: dict[str, Any]) -> float | None:
+    primary = contract.get("primary_channel_readout") or {}
+    selected = primary.get(
+        "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain"
+    ) or primary.get("prior_in_scope_only_selected_at_90pct") or {}
+    return _parse_optional_float(selected.get("threshold"))
+
+
+def _family_panel_packet_paths_from_coverage(coverage: dict[str, Any]) -> list[Path]:
+    return [
+        Path(str(panel.get("artifact")))
+        for panel in coverage.get("panel_summaries", [])
+        if isinstance(panel, dict) and panel.get("artifact")
+    ]
+
+
+def _family_panel_channel_row(
+    *,
+    panel_id: str,
+    row: dict[str, Any],
+    threshold: float,
+    fallback_fold_score: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    entry_id = str(row.get("entry_id") or "")
+    geometry_top1 = row.get("predicted_geometry_top1") or {}
+    predicted_fold = row.get("predicted_structure_fold_channel") or {}
+    geom = _parse_optional_float(geometry_top1.get("score"))
+    fold = _parse_optional_float(predicted_fold.get("nearest_atlas_tm_score"))
+    fold_score_source = (
+        "family_panel_packet_predicted_structure_fold_channel"
+        if fold is not None
+        else None
+    )
+    if fold is None and fallback_fold_score is not None:
+        fallback_fold = _parse_optional_float(
+            fallback_fold_score.get("nearest_atlas_tm_score")
+        )
+        if fallback_fold is not None:
+            fold = fallback_fold
+            predicted_fold = {
+                "nearest_atlas_entry_id": fallback_fold_score.get(
+                    "nearest_atlas_entry_id"
+                ),
+                "nearest_atlas_true_fingerprint_id": fallback_fold_score.get(
+                    "nearest_atlas_true_fingerprint_id"
+                ),
+                "nearest_atlas_tm_score": fallback_fold,
+            }
+            fold_score_source = str(fallback_fold_score.get("source") or "")
+    cofactor = _parse_optional_float(row.get("selected_organic_cofactor_max"))
+    missing = []
+    if geom is None:
+        missing.append("predicted_geometry_top1_score_missing")
+    if fold is None:
+        missing.append("predicted_structure_fold_tm_missing")
+    channel_scores = None
+    gate_status = "not_score_complete_for_primary_channel"
+    margin = None
+    if geom is not None and fold is not None:
+        combined_mean_geometry_fold = round((geom + fold) / 2, 6)
+        channel_scores = {
+            "geometry_top1_score": round(geom, 6),
+            "fold_nearest_atlas_tm_score": round(fold, 6),
+            "combined_mean_geometry_fold": combined_mean_geometry_fold,
+            "combined_min_geometry_fold": round(min(geom, fold), 6),
+        }
+        if cofactor is not None:
+            channel_scores["cofactor_max_score"] = round(cofactor, 6)
+            channel_scores["combined_mean_geometry_cofactor_fold"] = round(
+                (geom + cofactor + fold) / 3,
+                6,
+            )
+        margin = round(combined_mean_geometry_fold - threshold, 6)
+        gate_status = (
+            "non_abstained_at_research_threshold"
+            if combined_mean_geometry_fold >= threshold
+            else "abstained_at_research_threshold"
+        )
+    return {
+        "panel_id": panel_id,
+        "entry_id": entry_id,
+        "split_assignment": row.get("split_assignment"),
+        "benchmark_role": row.get("benchmark_role"),
+        "predicted_geometry_status": row.get("predicted_geometry_status"),
+        "predicted_geometry_top1_fingerprint_id": geometry_top1.get("fingerprint_id"),
+        "predicted_structure_nearest_atlas_entry_id": predicted_fold.get(
+            "nearest_atlas_entry_id"
+        ),
+        "predicted_structure_nearest_atlas_true_fingerprint_id": predicted_fold.get(
+            "nearest_atlas_true_fingerprint_id"
+        ),
+        "predicted_structure_fold_score_source": fold_score_source,
+        "selected_organic_cofactor_max": (
+            round(cofactor, 6) if cofactor is not None else None
+        ),
+        "channel_scores": channel_scores,
+        "primary_channel": "combined_mean_geometry_fold",
+        "primary_threshold": round(threshold, 6),
+        "primary_threshold_margin": margin,
+        "research_gate_status": gate_status,
+        "score_blockers": missing,
+        "review_only_interpretation": (
+            "score-complete row stays above the bounded research threshold; "
+            "source-check as a review-priority boundary row, not as a promotion"
+            if gate_status == "non_abstained_at_research_threshold"
+            else (
+                "score-complete row is abstained by the bounded research threshold"
+                if gate_status == "abstained_at_research_threshold"
+                else (
+                    "primary channel cannot be evaluated until geometry and "
+                    "predicted-fold scores both exist"
+                )
+            )
+        ),
+    }
+
+
+def build_fold_augmented_family_panel_research_readout(
+    *,
+    oos_calibrated_threshold_contract_path: Path,
+    sufficiency_decision_path: Path,
+    family_panel_coverage_audit_path: Path,
+    family_panel_packet_paths: list[Path] | None = None,
+    train_cal_threshold_contract_path: Path | None = None,
+) -> dict[str, Any]:
+    threshold_contract = _read_json(oos_calibrated_threshold_contract_path)
+    sufficiency = _read_json(sufficiency_decision_path)
+    coverage = _read_json(family_panel_coverage_audit_path)
+    train_cal_contract = (
+        _read_json(train_cal_threshold_contract_path)
+        if train_cal_threshold_contract_path is not None
+        and train_cal_threshold_contract_path.exists()
+        else None
+    )
+    threshold = _primary_fold_augmented_threshold(threshold_contract)
+    packet_paths = (
+        list(family_panel_packet_paths)
+        if family_panel_packet_paths is not None
+        else _family_panel_packet_paths_from_coverage(coverage)
+    )
+    fallback_fold_scores_by_entry = {
+        entry_id: _summarize_train_calibration_score_row(row)
+        for entry_id, row in _train_calibration_scores_by_entry(
+            train_cal_contract or {}
+        ).items()
+    }
+
+    rows: list[dict[str, Any]] = []
+    panel_summaries: list[dict[str, Any]] = []
+    blockers: list[str] = []
+    if threshold is None:
+        blockers.append("primary_combined_mean_geometry_fold_threshold_missing")
+        threshold = 0.0
+    if (
+        sufficiency.get("status")
+        != "research_contract_sufficient_with_blocker_disclosure"
+    ):
+        blockers.append("train_cal_oos_surface_not_marked_research_sufficient")
+    if not packet_paths:
+        blockers.append("family_panel_packet_paths_missing")
+
+    for packet_path in packet_paths:
+        packet = _read_json(packet_path) if Path(packet_path).exists() else {}
+        panel = packet.get("panel") or {}
+        panel_id = str(
+            panel.get("candidate_family")
+            or packet.get("panel_id")
+            or Path(packet_path).stem
+        )
+        panel_rows = [
+            _family_panel_channel_row(
+                panel_id=panel_id,
+                row=row,
+                threshold=threshold,
+                fallback_fold_score=fallback_fold_scores_by_entry.get(
+                    str(row.get("entry_id") or "")
+                ),
+            )
+            for row in packet.get("row_evidence", [])
+            if isinstance(row, dict)
+        ]
+        rows.extend(panel_rows)
+        complete = [
+            row
+            for row in panel_rows
+            if row["research_gate_status"] != "not_score_complete_for_primary_channel"
+        ]
+        non_abstained = [
+            row
+            for row in complete
+            if row["research_gate_status"] == "non_abstained_at_research_threshold"
+        ]
+        abstained = [
+            row
+            for row in complete
+            if row["research_gate_status"] == "abstained_at_research_threshold"
+        ]
+        missing = [
+            row
+            for row in panel_rows
+            if row["research_gate_status"] == "not_score_complete_for_primary_channel"
+        ]
+        if not panel_rows:
+            status = "packet_missing_or_empty"
+        elif non_abstained:
+            status = "has_non_abstained_review_rows"
+        elif complete:
+            status = "score_complete_rows_all_abstained"
+        else:
+            status = "blocked_no_primary_channel_scores"
+        panel_summaries.append(
+            {
+                "panel_id": panel_id,
+                "artifact": str(packet_path),
+                "packet_status": packet.get("status"),
+                "research_readout_status": status,
+                "candidate_rows": len(panel_rows),
+                "primary_score_complete_rows": len(complete),
+                "non_abstained_at_research_threshold": len(non_abstained),
+                "abstained_at_research_threshold": len(abstained),
+                "not_score_complete_for_primary_channel": len(missing),
+                "non_abstained_entry_ids": [
+                    row["entry_id"]
+                    for row in sorted(
+                        non_abstained,
+                        key=lambda item: _entry_id_sort_key(item["entry_id"]),
+                    )
+                ],
+                "missing_primary_score_entry_ids": [
+                    row["entry_id"]
+                    for row in sorted(
+                        missing,
+                        key=lambda item: _entry_id_sort_key(item["entry_id"]),
+                    )
+                ],
+            }
+        )
+
+    complete_rows = [
+        row
+        for row in rows
+        if row["research_gate_status"] != "not_score_complete_for_primary_channel"
+    ]
+    non_abstained_rows = [
+        row
+        for row in complete_rows
+        if row["research_gate_status"] == "non_abstained_at_research_threshold"
+    ]
+    abstained_rows = [
+        row
+        for row in complete_rows
+        if row["research_gate_status"] == "abstained_at_research_threshold"
+    ]
+    missing_rows = [
+        row
+        for row in rows
+        if row["research_gate_status"] == "not_score_complete_for_primary_channel"
+    ]
+    non_abstained_sorted = sorted(
+        non_abstained_rows,
+        key=lambda row: (
+            -(row["primary_threshold_margin"] or 0.0),
+            _entry_id_sort_key(row["entry_id"]),
+        ),
+    )
+    status = (
+        "family_panel_research_readout_ready_review_only"
+        if rows
+        and threshold_contract.get("status")
+        == "computed_oos_calibrated_threshold_contract"
+        and not blockers
+        else "family_panel_research_readout_blocked"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_FAMILY_PANEL_RESEARCH_READOUT_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Downstream fold-augmented research readout over review-only "
+            "family-expansion packets. It applies the already selected "
+            "combined_mean_geometry_fold threshold from the OOS-calibrated "
+            "research contract to packet rows with both predicted geometry and "
+            "predicted-structure Foldseek/TM evidence."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "thresholds_selected_on_family_panel_rows": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+            "train_cal_oos_surface_reused_as_research_contract": True,
+        },
+        "threshold_source": {
+            "channel": "combined_mean_geometry_fold",
+            "threshold": round(threshold, 6),
+            "source_artifact": str(oos_calibrated_threshold_contract_path),
+            "source_status": threshold_contract.get("status"),
+            "sufficiency_status": sufficiency.get("status"),
+        },
+        "counts": {
+            "panel_packets": len(packet_paths),
+            "candidate_rows": len(rows),
+            "primary_score_complete_rows": len(complete_rows),
+            "non_abstained_at_research_threshold": len(non_abstained_rows),
+            "abstained_at_research_threshold": len(abstained_rows),
+            "not_score_complete_for_primary_channel": len(missing_rows),
+            "panels_with_non_abstained_rows": sum(
+                1
+                for panel in panel_summaries
+                if panel["non_abstained_at_research_threshold"] > 0
+            ),
+            "panels_blocked_no_primary_channel_scores": sum(
+                1
+                for panel in panel_summaries
+                if panel["research_readout_status"] == "blocked_no_primary_channel_scores"
+            ),
+        },
+        "blockers": blockers,
+        "panel_summaries": panel_summaries,
+        "row_scores": sorted(
+            rows,
+            key=lambda row: (
+                row["panel_id"],
+                _entry_id_sort_key(row["entry_id"]),
+            ),
+        ),
+        "review_priority_rows": [
+            {
+                "entry_id": row["entry_id"],
+                "panel_id": row["panel_id"],
+                "combined_mean_geometry_fold": (
+                    row["channel_scores"] or {}
+                ).get("combined_mean_geometry_fold"),
+                "threshold_margin": row["primary_threshold_margin"],
+                "predicted_geometry_top1_fingerprint_id": row[
+                    "predicted_geometry_top1_fingerprint_id"
+                ],
+                "nearest_atlas_true_fingerprint_id": row[
+                    "predicted_structure_nearest_atlas_true_fingerprint_id"
+                ],
+                "selected_organic_cofactor_max": row["selected_organic_cofactor_max"],
+            }
+            for row in non_abstained_sorted
+        ],
+        "source_artifacts": {
+            "oos_calibrated_threshold_contract": _source_path_record(
+                oos_calibrated_threshold_contract_path
+            ),
+            "train_cal_oos_sufficiency_decision": _source_path_record(
+                sufficiency_decision_path
+            ),
+            "family_panel_coverage_audit": _source_path_record(
+                family_panel_coverage_audit_path
+            ),
+            "train_cal_threshold_contract": (
+                _source_path_record(train_cal_threshold_contract_path)
+                if train_cal_threshold_contract_path is not None
+                and train_cal_threshold_contract_path.exists()
+                else None
+            ),
+            "family_panel_packets": [
+                _source_path_record(path) for path in packet_paths
+            ],
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(non_abstained_rows)}/{len(complete_rows)} score-complete "
+                "review rows remain non-abstained at the bounded fold-augmented "
+                "research threshold."
+            ),
+            "caveat": (
+                "This is a downstream review readout only. It does not promote "
+                "family rows, retune thresholds, train on heldout rows, or change "
+                "production scoring."
+            ),
+            "next_action": (
+                "Source-check the non-abstained review-priority rows and keep "
+                "geometry/fold-missing packet rows in the coordinate or sidecar "
+                "materialization queue before any family-expansion decision."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_research_readout_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    threshold = audit["threshold_source"]
+    lines = [
+        "# Fold-Augmented Family-Panel Research Readout - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Blockers: {audit['blockers']}",
+        f"- Primary threshold: {threshold['channel']} >= {threshold['threshold']}",
+        f"- Train/cal OOS sufficiency: {threshold['sufficiency_status']}",
+        "",
+        "## Counts",
+        "",
+        f"- Panel packets: {counts['panel_packets']}",
+        f"- Candidate rows: {counts['candidate_rows']}",
+        f"- Primary score-complete rows: {counts['primary_score_complete_rows']}",
+        f"- Non-abstained review rows: {counts['non_abstained_at_research_threshold']}",
+        f"- Abstained review rows: {counts['abstained_at_research_threshold']}",
+        f"- Missing primary-channel scores: {counts['not_score_complete_for_primary_channel']}",
+        "",
+        "## Panel Readout",
+        "",
+        "| Panel | status | rows | complete | non-abstained | abstained | missing |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for panel in audit["panel_summaries"]:
+        lines.append(
+            f"| {panel['panel_id']} | {panel['research_readout_status']} | "
+            f"{panel['candidate_rows']} | {panel['primary_score_complete_rows']} | "
+            f"{panel['non_abstained_at_research_threshold']} | "
+            f"{panel['abstained_at_research_threshold']} | "
+            f"{panel['not_score_complete_for_primary_channel']} |"
+        )
+    lines += [
+        "",
+        "## Review-Priority Rows",
+        "",
+        "| Row | panel | combined mean geometry+fold | margin | geometry top1 | nearest fold fingerprint | cofactor max |",
+        "| --- | --- | ---: | ---: | --- | --- | ---: |",
+    ]
+    for row in audit["review_priority_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['panel_id']} | "
+            f"{row['combined_mean_geometry_fold']} | {row['threshold_margin']} | "
+            f"{row['predicted_geometry_top1_fingerprint_id']} | "
+            f"{row['nearest_atlas_true_fingerprint_id']} | "
+            f"{row['selected_organic_cofactor_max']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['caveat']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_research_readout(
+    *,
+    oos_calibrated_threshold_contract_path: Path,
+    sufficiency_decision_path: Path,
+    family_panel_coverage_audit_path: Path,
+    family_panel_packet_paths: list[Path] | None = None,
+    train_cal_threshold_contract_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_family_panel_research_readout(
+        oos_calibrated_threshold_contract_path=oos_calibrated_threshold_contract_path,
+        sufficiency_decision_path=sufficiency_decision_path,
+        family_panel_coverage_audit_path=family_panel_coverage_audit_path,
+        family_panel_packet_paths=family_panel_packet_paths,
+        train_cal_threshold_contract_path=train_cal_threshold_contract_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_research_readout_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _source_check_focus(row: dict[str, Any]) -> list[str]:
+    focus = [
+        "row_specific_bond_change_and_mechanism_locus",
+        "cofactor_locus_and_redox_partner_identity",
+        "occupied_primary_fold_false_confidence_review",
+    ]
+    geom_fp = row.get("predicted_geometry_top1_fingerprint_id")
+    fold_fp = row.get("predicted_structure_nearest_atlas_true_fingerprint_id")
+    if geom_fp and fold_fp and geom_fp != fold_fp:
+        focus.append("geometry_fold_fingerprint_disagreement")
+    if _parse_optional_float(row.get("selected_organic_cofactor_max")) is not None:
+        focus.append("selected_organic_cofactor_confounding")
+    return focus
+
+
+def build_fold_augmented_family_panel_source_check_queue(
+    *,
+    family_panel_research_readout_path: Path,
+) -> dict[str, Any]:
+    readout = _read_json(family_panel_research_readout_path)
+    rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in readout.get("row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    priority_rows = [
+        row
+        for row in readout.get("review_priority_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    queue_rows = []
+    for index, priority in enumerate(priority_rows, start=1):
+        entry_id = str(priority["entry_id"])
+        detail = rows_by_entry.get(entry_id, {})
+        queue_rows.append(
+            {
+                "rank": index,
+                "entry_id": entry_id,
+                "panel_id": priority.get("panel_id"),
+                "combined_mean_geometry_fold": priority.get(
+                    "combined_mean_geometry_fold"
+                ),
+                "threshold_margin": priority.get("threshold_margin"),
+                "predicted_geometry_top1_fingerprint_id": priority.get(
+                    "predicted_geometry_top1_fingerprint_id"
+                ),
+                "nearest_atlas_true_fingerprint_id": priority.get(
+                    "nearest_atlas_true_fingerprint_id"
+                ),
+                "selected_organic_cofactor_max": priority.get(
+                    "selected_organic_cofactor_max"
+                ),
+                "split_assignment": detail.get("split_assignment"),
+                "benchmark_role": detail.get("benchmark_role"),
+                "source_check_focus": _source_check_focus(detail or priority),
+                "required_evidence_before_family_decision": [
+                    "source-backed row-level bond-change evidence",
+                    "source-backed cofactor or redox-partner locus evidence",
+                    "duplicate and split-leakage screen if a future import is proposed",
+                    "expert mechanism-locus adjudication",
+                ],
+                "allowed_next_action": (
+                    "review-only source check and evidence packet annotation"
+                ),
+                "forbidden_without_future_authorization": [
+                    "label promotion",
+                    "registry or ontology mutation",
+                    "threshold retuning",
+                    "training/calibration use",
+                ],
+            }
+        )
+    panel_counts = Counter(str(row.get("panel_id")) for row in queue_rows)
+    status = (
+        "source_check_queue_ready_review_only"
+        if queue_rows
+        and readout.get("status") == "family_panel_research_readout_ready_review_only"
+        else "source_check_queue_blocked"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_FAMILY_PANEL_SOURCE_CHECK_QUEUE_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Review-only source-check queue for family-panel rows that remain "
+            "non-abstained under the fixed fold-augmented research threshold."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "new_source_data_fetched": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+        },
+        "counts": {
+            "source_check_rows": len(queue_rows),
+            "panels_represented": len(panel_counts),
+            "source_check_rows_by_panel": dict(sorted(panel_counts.items())),
+        },
+        "queue_rows": queue_rows,
+        "source_artifacts": {
+            "family_panel_research_readout": _source_path_record(
+                family_panel_research_readout_path
+            )
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(queue_rows)} non-abstained family-panel rows need "
+                "review-only source checking before any family-expansion decision."
+            ),
+            "next_action": (
+                "Work the queue in rank order, starting with the largest positive "
+                "threshold margin, and record source-backed accept/reject/hold "
+                "evidence without changing labels."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_source_check_queue_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Family-Panel Source-Check Queue - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Source-check rows: {counts['source_check_rows']}",
+        f"- Panels represented: {counts['panels_represented']}",
+        "",
+        "## Queue",
+        "",
+        "| rank | row | panel | combined mean geometry+fold | margin | geometry top1 | nearest fold fingerprint | focus |",
+        "| ---: | --- | --- | ---: | ---: | --- | --- | --- |",
+    ]
+    for row in audit["queue_rows"]:
+        lines.append(
+            f"| {row['rank']} | {row['entry_id']} | {row['panel_id']} | "
+            f"{row['combined_mean_geometry_fold']} | {row['threshold_margin']} | "
+            f"{row['predicted_geometry_top1_fingerprint_id']} | "
+            f"{row['nearest_atlas_true_fingerprint_id']} | "
+            f"{', '.join(row['source_check_focus'])} |"
+        )
+    lines += [
+        "",
+        "## Guardrails",
+        "",
+        "- Review-only source checking only. No labels, registries, ontologies, imports, thresholds, training data, or production scoring changed.",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_source_check_queue(
+    *,
+    family_panel_research_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_family_panel_source_check_queue(
+        family_panel_research_readout_path=family_panel_research_readout_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_source_check_queue_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _missing_primary_channel_queue_next_action(
+    entry_id: str,
+    blockers: list[str],
+) -> str:
+    if entry_id.startswith("secondary_probe::"):
+        return (
+            "materialize row-level secondary-probe sidecar, accession, geometry, "
+            "and predicted coordinate before scoring"
+        )
+    if not entry_id.startswith("m_csa:"):
+        return (
+            "create source-backed external row sidecar and coordinate "
+            "materialization plan before any scoring or family decision"
+        )
+    if "predicted_geometry_top1_score_missing" in blockers:
+        return (
+            "repair or materialize predicted active-site geometry, then rerun "
+            "predicted-fold lookup if the row becomes ok predicted geometry"
+        )
+    return (
+        "rerun or extend predicted-structure Foldseek/TM lookup for this "
+        "current702 row against the in-distribution atlas"
+    )
+
+
+def build_fold_augmented_family_panel_missing_primary_channel_queue(
+    *,
+    family_panel_research_readout_path: Path,
+) -> dict[str, Any]:
+    readout = _read_json(family_panel_research_readout_path)
+    missing_rows = [
+        row
+        for row in readout.get("row_scores", [])
+        if isinstance(row, dict)
+        and row.get("research_gate_status")
+        == "not_score_complete_for_primary_channel"
+    ]
+    queue_rows = []
+    for rank, row in enumerate(missing_rows, start=1):
+        entry_id = str(row.get("entry_id") or "")
+        blockers = [
+            str(blocker)
+            for blocker in row.get("score_blockers", [])
+            if blocker is not None
+        ]
+        queue_rows.append(
+            {
+                "rank": rank,
+                "entry_id": entry_id,
+                "panel_id": row.get("panel_id"),
+                "split_assignment": row.get("split_assignment"),
+                "benchmark_role": row.get("benchmark_role"),
+                "predicted_geometry_status": row.get("predicted_geometry_status"),
+                "predicted_geometry_top1_fingerprint_id": row.get(
+                    "predicted_geometry_top1_fingerprint_id"
+                ),
+                "predicted_structure_nearest_atlas_true_fingerprint_id": row.get(
+                    "predicted_structure_nearest_atlas_true_fingerprint_id"
+                ),
+                "selected_organic_cofactor_max": row.get(
+                    "selected_organic_cofactor_max"
+                ),
+                "score_blockers": blockers,
+                "recommended_next_action": _missing_primary_channel_queue_next_action(
+                    entry_id,
+                    blockers,
+                ),
+                "guardrail_note": (
+                    "review-only materialization queue; do not use as training, "
+                    "label promotion, or threshold-selection evidence"
+                ),
+            }
+        )
+
+    panel_counts = Counter(str(row.get("panel_id")) for row in queue_rows)
+    blocker_counts = Counter(
+        blocker for row in queue_rows for blocker in row["score_blockers"]
+    )
+    m_csa_rows = [row for row in queue_rows if row["entry_id"].startswith("m_csa:")]
+    secondary_rows = [
+        row for row in queue_rows if row["entry_id"].startswith("secondary_probe::")
+    ]
+    status = (
+        "missing_primary_channel_queue_ready_review_only"
+        if readout.get("status") == "family_panel_research_readout_ready_review_only"
+        else "missing_primary_channel_queue_blocked"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_FAMILY_PANEL_MISSING_PRIMARY_CHANNEL_QUEUE_ID,
+        "schema_version": f"{SCHEMA_VERSION}.missing_primary_channel_queue",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Review-only materialization queue for family-panel rows that lack "
+            "either predicted geometry or predicted-structure fold evidence "
+            "needed by the primary combined channel."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "new_source_data_fetched": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+        },
+        "counts": {
+            "missing_primary_channel_rows": len(queue_rows),
+            "m_csa_rows": len(m_csa_rows),
+            "secondary_probe_rows": len(secondary_rows),
+            "external_or_placeholder_rows": len(queue_rows)
+            - len(m_csa_rows)
+            - len(secondary_rows),
+            "missing_rows_by_panel": dict(sorted(panel_counts.items())),
+            "score_blocker_counts": dict(sorted(blocker_counts.items())),
+        },
+        "queue_rows": queue_rows,
+        "source_artifacts": {
+            "family_panel_research_readout": _source_path_record(
+                family_panel_research_readout_path
+            )
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(queue_rows)} family-panel rows lack the primary "
+                "geometry+predicted-fold channel."
+            ),
+            "next_action": (
+                "Start with current702 M-CSA rows that need predicted-geometry "
+                "repair, then handle secondary-probe and external placeholder "
+                "rows through source-backed sidecars."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_missing_primary_channel_queue_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Family-Panel Missing Primary-Channel Queue - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Missing primary-channel rows: {counts['missing_primary_channel_rows']}",
+        f"- M-CSA rows: {counts['m_csa_rows']}",
+        f"- Secondary-probe rows: {counts['secondary_probe_rows']}",
+        f"- External or placeholder rows: {counts['external_or_placeholder_rows']}",
+        f"- Score blocker counts: {counts['score_blocker_counts']}",
+        "",
+        "## Queue",
+        "",
+        "| rank | row | panel | blockers | next action |",
+        "| ---: | --- | --- | --- | --- |",
+    ]
+    for row in audit["queue_rows"]:
+        lines.append(
+            f"| {row['rank']} | {row['entry_id']} | {row['panel_id']} | "
+            f"{', '.join(row['score_blockers'])} | "
+            f"{row['recommended_next_action']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['next_action']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Review-only queue. No labels, registries, ontologies, imports, thresholds, training data, source fetching, or production scoring changed.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_missing_primary_channel_queue(
+    *,
+    family_panel_research_readout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_family_panel_missing_primary_channel_queue(
+        family_panel_research_readout_path=family_panel_research_readout_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_missing_primary_channel_queue_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _predicted_geometry_rows_by_entry(audit: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    return {
+        str(row["entry_id"]): row
+        for row in audit.get("results", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+
+def _fold_channel_rows_by_entry(audit: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    rows: dict[str, dict[str, Any]] = {}
+    signals = audit.get("fold_channel_signal") or {}
+    signal_values = signals.values() if isinstance(signals, dict) else signals
+    for signal in signal_values:
+        if not isinstance(signal, dict):
+            continue
+        for row in signal.get("row_scores", []):
+            if isinstance(row, dict) and row.get("entry_id"):
+                rows[str(row["entry_id"])] = row
+    return rows
+
+
+def _train_calibration_scores_by_entry(
+    audit: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    return {
+        str(row["entry_id"]): row
+        for row in audit.get("calibration_row_scores", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+
+def _local_adjudication_rows_by_entry(audit: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
+    if not audit:
+        return {}
+    return {
+        str(row["entry_id"]): row
+        for row in audit.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+
+def _summarize_predicted_geometry_row(row: dict[str, Any] | None) -> dict[str, Any] | None:
+    if not row:
+        return None
+    score = _parse_optional_float(row.get("top1_score"))
+    return {
+        "source": "predicted_geometry_in_distribution_atlas_retrieval",
+        "status": row.get("status") or row.get("predicted_geometry_status"),
+        "split_assignment": row.get("split_assignment"),
+        "benchmark_role": row.get("benchmark_role"),
+        "accession": row.get("accession") or row.get("sequence_id"),
+        "predicted_pdb_id": row.get("predicted_pdb_id") or row.get("pdb_id"),
+        "top1_fingerprint_id": row.get("top1_fingerprint_id"),
+        "top1_score": round(score, 6) if score is not None else None,
+        "true_fingerprint_id": row.get("true_fingerprint_id"),
+        "predicted_resolved_residue_count": row.get("predicted_resolved_residue_count"),
+        "missingness_reason": row.get("missingness_reason"),
+    }
+
+
+def _summarize_heldout_fold_channel_row(row: dict[str, Any] | None) -> dict[str, Any] | None:
+    if not row:
+        return None
+    fold_signals = row.get("fold_signals") or {}
+    tm_score = _parse_optional_float(fold_signals.get("nearest_atlas_tm_score"))
+    return {
+        "source": "predicted_structure_fold_channel_heldout_signal",
+        "partition": "heldout_final_eval",
+        "true_fingerprint_id": row.get("true_fingerprint_id"),
+        "nearest_atlas_entry_id": row.get("nearest_atlas_entry_id"),
+        "nearest_atlas_true_fingerprint_id": row.get(
+            "nearest_atlas_true_fingerprint_id"
+        ),
+        "nearest_atlas_tm_score": round(tm_score, 6) if tm_score is not None else None,
+        "is_inscope": row.get("is_inscope"),
+        "is_oos": row.get("is_oos"),
+        "is_confounded_predicted_geometry_oos": row.get(
+            "is_confounded_predicted_geometry_oos"
+        ),
+    }
+
+
+def _summarize_train_calibration_score_row(
+    row: dict[str, Any] | None,
+) -> dict[str, Any] | None:
+    if not row:
+        return None
+    scores = row.get("channel_scores") or {}
+    tm_score = _parse_optional_float(scores.get("fold_nearest_atlas_tm_score"))
+    geom_score = _parse_optional_float(scores.get("geometry_top1_score"))
+    combined_mean = _parse_optional_float(scores.get("combined_mean_geometry_fold"))
+    return {
+        "source": "fold_augmented_train_cal_threshold_contract_calibration_row",
+        "partition": row.get("partition"),
+        "true_fingerprint_id": row.get("true_fingerprint_id"),
+        "nearest_atlas_entry_id": row.get("nearest_train_atlas_entry_id"),
+        "nearest_atlas_true_fingerprint_id": row.get(
+            "nearest_train_atlas_true_fingerprint_id"
+        ),
+        "nearest_atlas_tm_score": round(tm_score, 6) if tm_score is not None else None,
+        "geometry_top1_score": round(geom_score, 6) if geom_score is not None else None,
+        "combined_mean_geometry_fold": (
+            round(combined_mean, 6) if combined_mean is not None else None
+        ),
+    }
+
+
+def _summarize_local_adjudication_row(row: dict[str, Any] | None) -> dict[str, Any] | None:
+    if not row:
+        return None
+    return {
+        "source": "fmo_local_candidate_adjudication_551_973",
+        "mechanism_clean": row.get("mechanism_clean"),
+        "coordinate_clean": row.get("coordinate_clean"),
+        "accepted_for_clean_support_readiness": row.get(
+            "accepted_for_clean_support_readiness"
+        ),
+        "import_ready": row.get("import_ready"),
+        "registry_edit_allowed": row.get("registry_edit_allowed"),
+        "mechanism_decision": row.get("mechanism_decision"),
+        "coordinate_decision": row.get("coordinate_decision"),
+    }
+
+
+def _missing_primary_channel_diagnosis(
+    *,
+    entry_id: str,
+    blockers: list[str],
+    predicted_geometry: dict[str, Any] | None,
+    fold_score: dict[str, Any] | None,
+) -> tuple[str, str]:
+    if "predicted_structure_fold_tm_missing" in blockers and fold_score is not None:
+        return (
+            "family_panel_lookup_scope_gap",
+            "extend the family-panel readout join to reuse the existing "
+            "train/calibration or heldout fold score, then rerun the readout",
+        )
+    if not entry_id.startswith("m_csa:"):
+        return (
+            "needs_source_backed_row_sidecar_and_coordinate_materialization",
+            "create a source-backed row sidecar with accession and coordinate "
+            "materialization scope before geometry or fold scoring",
+        )
+    if predicted_geometry is None or predicted_geometry.get("status") != "ok":
+        return (
+            "needs_predicted_geometry_materialization",
+            "repair or materialize predicted active-site geometry before "
+            "attempting predicted-fold lookup",
+        )
+    if fold_score is None:
+        return (
+            "needs_predicted_fold_lookup_extension",
+            "extend the predicted-structure Foldseek/TM lookup to this "
+            "current702 row against the in-distribution atlas",
+        )
+    return (
+        "score_available_but_family_panel_packet_not_refreshed",
+        "rerun the family-panel packet/readout with the available primary "
+        "channel scores",
+    )
+
+
+def build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
+    *,
+    missing_primary_channel_queue_path: Path,
+    train_cal_threshold_contract_path: Path,
+    predicted_structure_fold_channel_path: Path,
+    predicted_geometry_atlas_retrieval_path: Path,
+    local_candidate_adjudication_path: Path | None = None,
+) -> dict[str, Any]:
+    queue = _read_json(missing_primary_channel_queue_path)
+    train_cal_contract = _read_json(train_cal_threshold_contract_path)
+    fold_channel = _read_json(predicted_structure_fold_channel_path)
+    predicted_geometry = _read_json(predicted_geometry_atlas_retrieval_path)
+    local_adjudication = (
+        _read_json(local_candidate_adjudication_path)
+        if local_candidate_adjudication_path is not None
+        and local_candidate_adjudication_path.exists()
+        else None
+    )
+
+    predicted_geometry_by_entry = _predicted_geometry_rows_by_entry(predicted_geometry)
+    heldout_fold_by_entry = _fold_channel_rows_by_entry(fold_channel)
+    train_cal_by_entry = _train_calibration_scores_by_entry(train_cal_contract)
+    local_by_entry = _local_adjudication_rows_by_entry(local_adjudication)
+
+    diagnosed_rows: list[dict[str, Any]] = []
+    for queue_row in queue.get("queue_rows", []):
+        if not isinstance(queue_row, dict) or not queue_row.get("entry_id"):
+            continue
+        entry_id = str(queue_row["entry_id"])
+        blockers = [
+            str(blocker)
+            for blocker in queue_row.get("score_blockers", [])
+            if blocker is not None
+        ]
+        geometry_summary = _summarize_predicted_geometry_row(
+            predicted_geometry_by_entry.get(entry_id)
+        )
+        heldout_fold_summary = _summarize_heldout_fold_channel_row(
+            heldout_fold_by_entry.get(entry_id)
+        )
+        train_cal_summary = _summarize_train_calibration_score_row(
+            train_cal_by_entry.get(entry_id)
+        )
+        fold_score_summary = heldout_fold_summary or train_cal_summary
+        diagnosis, next_action = _missing_primary_channel_diagnosis(
+            entry_id=entry_id,
+            blockers=blockers,
+            predicted_geometry=geometry_summary,
+            fold_score=fold_score_summary,
+        )
+        diagnosed_rows.append(
+            {
+                "rank": queue_row.get("rank"),
+                "entry_id": entry_id,
+                "panel_id": queue_row.get("panel_id"),
+                "split_assignment": queue_row.get("split_assignment"),
+                "benchmark_role": queue_row.get("benchmark_role"),
+                "original_score_blockers": blockers,
+                "diagnosis": diagnosis,
+                "recommended_next_action": next_action,
+                "predicted_geometry_evidence": geometry_summary,
+                "fold_score_evidence": fold_score_summary,
+                "local_review_evidence": _summarize_local_adjudication_row(
+                    local_by_entry.get(entry_id)
+                ),
+                "guardrail_note": (
+                    "review-only materialization diagnosis; no labels, "
+                    "registries, imports, thresholds, training data, or "
+                    "production scoring changed"
+                ),
+            }
+        )
+
+    diagnosis_counts = Counter(row["diagnosis"] for row in diagnosed_rows)
+    rows_with_geometry = [
+        row for row in diagnosed_rows if row["predicted_geometry_evidence"] is not None
+    ]
+    rows_with_train_cal_fold = [
+        row
+        for row in diagnosed_rows
+        if (row["fold_score_evidence"] or {}).get("source")
+        == "fold_augmented_train_cal_threshold_contract_calibration_row"
+    ]
+    rows_with_heldout_fold = [
+        row
+        for row in diagnosed_rows
+        if (row["fold_score_evidence"] or {}).get("source")
+        == "predicted_structure_fold_channel_heldout_signal"
+    ]
+    status = (
+        "missing_primary_channel_diagnosis_ready_review_only"
+        if diagnosed_rows
+        and queue.get("status") == "missing_primary_channel_queue_ready_review_only"
+        else "missing_primary_channel_diagnosis_blocked"
+    )
+    m_csa_973_row = next(
+        (row for row in diagnosed_rows if row["entry_id"] == "m_csa:973"),
+        None,
+    )
+    if m_csa_973_row and m_csa_973_row.get("fold_score_evidence"):
+        m_csa_973_result = (
+            "m_csa:973 is not missing runtime fold evidence; its "
+            "train/calibration threshold-contract row already carries "
+            "fold_nearest_atlas_tm_score=0.4575, so the family-panel "
+            "packet/readout needs a broader lookup join."
+        )
+    elif m_csa_973_row is None:
+        m_csa_973_result = (
+            "m_csa:973 is no longer in the missing primary-channel queue, "
+            "consistent with the family-panel readout consuming its frozen "
+            "train/calibration fold score."
+        )
+    else:
+        m_csa_973_result = (
+            "m_csa:973 remains queued and still needs primary-channel evidence "
+            "before any review-only family-panel decision."
+        )
+    return {
+        "artifact_id": FOLD_AUGMENTED_FAMILY_PANEL_MISSING_PRIMARY_CHANNEL_DIAGNOSIS_ID,
+        "schema_version": SCHEMA_VERSION,
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Review-only diagnosis for family-panel rows missing the primary "
+            "combined geometry plus predicted-fold channel. It checks whether "
+            "frozen current702 geometry and fold scores already exist in "
+            "upstream artifacts before requesting new runtime work."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "new_source_data_fetched": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+            "foldseek_or_tmsearch_recomputed": False,
+        },
+        "counts": {
+            "diagnosed_rows": len(diagnosed_rows),
+            "rows_with_predicted_geometry_evidence": len(rows_with_geometry),
+            "rows_with_train_calibration_fold_score": len(rows_with_train_cal_fold),
+            "rows_with_heldout_fold_channel_score": len(rows_with_heldout_fold),
+            "diagnosis_counts": dict(sorted(diagnosis_counts.items())),
+        },
+        "diagnosed_rows": sorted(
+            diagnosed_rows,
+            key=lambda row: int(row["rank"] or 0),
+        ),
+        "source_artifacts": {
+            "missing_primary_channel_queue": _source_path_record(
+                missing_primary_channel_queue_path
+            ),
+            "train_cal_threshold_contract": _source_path_record(
+                train_cal_threshold_contract_path
+            ),
+            "predicted_structure_fold_channel": _source_path_record(
+                predicted_structure_fold_channel_path
+            ),
+            "predicted_geometry_atlas_retrieval": _source_path_record(
+                predicted_geometry_atlas_retrieval_path
+            ),
+            "local_candidate_adjudication": (
+                _source_path_record(local_candidate_adjudication_path)
+                if local_candidate_adjudication_path is not None
+                and local_candidate_adjudication_path.exists()
+                else None
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(rows_with_train_cal_fold) + len(rows_with_heldout_fold)} "
+                "queued rows already have a frozen fold score upstream; the rest "
+                "need geometry, sidecar, or fold-lookup materialization."
+            ),
+            "m_csa_973_result": m_csa_973_result,
+            "next_action": (
+                "Work the remaining missing rows by first repairing "
+                "current702 M-CSA predicted geometry, then materializing "
+                "source-backed sidecars for secondary and external rows."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_missing_primary_channel_diagnosis_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Family-Panel Missing Primary-Channel Diagnosis - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Diagnosed rows: {counts['diagnosed_rows']}",
+        f"- Rows with predicted geometry evidence: {counts['rows_with_predicted_geometry_evidence']}",
+        f"- Rows with train/cal fold score: {counts['rows_with_train_calibration_fold_score']}",
+        f"- Rows with heldout fold score: {counts['rows_with_heldout_fold_channel_score']}",
+        f"- Diagnosis counts: {counts['diagnosis_counts']}",
+        "",
+        "## Diagnosed Rows",
+        "",
+        "| rank | row | panel | blockers | diagnosis | geometry | fold score | next action |",
+        "| ---: | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in audit["diagnosed_rows"]:
+        geometry = row["predicted_geometry_evidence"] or {}
+        fold = row["fold_score_evidence"] or {}
+        lines.append(
+            f"| {row['rank']} | {row['entry_id']} | {row['panel_id']} | "
+            f"{', '.join(row['original_score_blockers'])} | "
+            f"{row['diagnosis']} | "
+            f"{geometry.get('status')}:{geometry.get('top1_score')} | "
+            f"{fold.get('source')}:{fold.get('nearest_atlas_tm_score')} | "
+            f"{row['recommended_next_action']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['m_csa_973_result']}",
+        f"- {audit['interpretation']['next_action']}",
+        "",
+        "## Guardrails",
+        "",
+        "- Review-only diagnosis. No labels, registries, ontologies, imports, thresholds, training data, production scoring, source fetching, or Foldseek/TM recomputation changed.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_missing_primary_channel_diagnosis(
+    *,
+    missing_primary_channel_queue_path: Path,
+    train_cal_threshold_contract_path: Path,
+    predicted_structure_fold_channel_path: Path,
+    predicted_geometry_atlas_retrieval_path: Path,
+    local_candidate_adjudication_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
+        missing_primary_channel_queue_path=missing_primary_channel_queue_path,
+        train_cal_threshold_contract_path=train_cal_threshold_contract_path,
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        predicted_geometry_atlas_retrieval_path=predicted_geometry_atlas_retrieval_path,
+        local_candidate_adjudication_path=local_candidate_adjudication_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_missing_primary_channel_diagnosis_report(
+                audit
+            ),
             encoding="utf-8",
         )
     return audit

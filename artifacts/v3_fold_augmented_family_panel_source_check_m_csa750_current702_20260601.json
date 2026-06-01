@@ -1,0 +1,129 @@
+{
+  "artifact_id": "v3_fold_augmented_family_panel_source_check_m_csa750_current702_20260601",
+  "created_utc": "2026-06-01T08:54:29Z",
+  "fold_augmented_readout": {
+    "combined_mean_geometry_fold": 0.55105,
+    "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+    "panel_id": "cobalamin_and_radical_rearrangement_panel",
+    "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+    "queue_rank": 3,
+    "selected_organic_cofactor_max": 0.703989,
+    "source_check_focus": [
+      "row_specific_bond_change_and_mechanism_locus",
+      "cofactor_locus_and_redox_partner_identity",
+      "occupied_primary_fold_false_confidence_review",
+      "geometry_fold_fingerprint_disagreement",
+      "selected_organic_cofactor_confounding"
+    ],
+    "threshold_margin": 0.1095
+  },
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_source_data_fetched": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "local_source_evidence": {
+    "catalytic_residue_count": 8,
+    "catalytic_residue_role_counts": {
+      "electrostatic stabiliser": 1,
+      "proton acceptor": 3,
+      "proton donor": 2,
+      "proton relay": 1,
+      "radical stabiliser": 1
+    },
+    "label_revision_decision": "relabel_out_of_scope",
+    "label_revision_mechanism_class": "radical_flavin_fe_s_dehydratase",
+    "m_csa_entry_name": "4-hydroxybutanoyl-CoA dehydratase",
+    "mechanism_evidence_summary": "Frozen M-CSA and the existing m_csa750 revision support FAD semiquinone radical plus Fe-S coupled dehydration, including substrate hydrogen abstraction, ketyl radical chemistry, iron coordination of the hydroxy group, water elimination, and final protonation.",
+    "mechanism_text_source_count": 1,
+    "panel_packet_scores": {
+      "predicted_geometry_top1": {
+        "cofactor_context_score": 0.2,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "role_match_fraction": 0.0,
+        "score": 0.3664
+      },
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:973",
+        "nearest_atlas_tm_score": 0.7357,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      "selected_organic_cofactor_scores": {
+        "flavin": 0.703989,
+        "heme": 0.000724,
+        "plp": 0.445905
+      },
+      "selected_pdb_fold_proxy": {
+        "nearest_primary_foldseek_prob": null,
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": null,
+        "top3_primary_foldseek_prob": null
+      }
+    },
+    "readout_research_gate_status": "non_abstained_at_research_threshold",
+    "recommended_future_family_candidate": "radical_flavin_fe_s_dehydratase",
+    "retain_as_oos_or_boundary_negative": true
+  },
+  "row": {
+    "curated_label_rationale": "4-hydroxybutanoyl-CoA dehydratase is outside the v1 seed fingerprints: M-CSA mechanism text describes FAD semiquinone radical/Fe-S coupled dehydration rather than ordinary flavin hydride-transfer dehydrogenase-reductase chemistry.",
+    "current_fingerprint_id": null,
+    "current_label_type": "out_of_scope",
+    "current_review_status": "expert_reviewed",
+    "entry_id": "m_csa:750",
+    "manifest_benchmark_role_stale_readthrough_required": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+    "manifest_split_assignment": "heldout",
+    "name": "4-hydroxybutanoyl-CoA dehydratase",
+    "reference_uniprot_id": "P55792"
+  },
+  "schema_version": "northstar_next_levers.v0.source_check_packet",
+  "scope": "Review-only frozen-local source check for non-abstained fold-augmented radical/cobalamin panel row m_csa:750.",
+  "source_artifacts": {
+    "curated_labels": {
+      "exists": true,
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "family_panel_packet": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json",
+      "sha256": "3a839bb055974abb454f9ee6f3282f01636cf149d2e853d4a067d63d0d8c70a2"
+    },
+    "family_panel_research_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
+      "sha256": "0eb9ff0963353a69fe03fb690d5d0b2ce26685c82351b7330e959252f7f46e73"
+    },
+    "family_panel_source_check_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json",
+      "sha256": "0c7f401d6677ece55a1a65914a26f6f3bc53bb78558ad97c69805f0c78e3e0b2"
+    },
+    "graph": {
+      "exists": true,
+      "path": "artifacts/v1_graph_1025.json",
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "m_csa750_label_revision": {
+      "exists": true,
+      "path": "artifacts/v3_m_csa750_label_revision_702_20260527.json",
+      "sha256": "6d965d2b4d64ebe1ec1a6e704ac0b7824dbc53d1b79e489181569f452e07de6d"
+    }
+  },
+  "source_check_decision": {
+    "family_promotion_ready": false,
+    "next_action": "Continue the source-check queue with m_csa:551; treat m_csa:750 only as a future radical_flavin_fe_s_dehydratase candidate if a new authorized family panel is scoped.",
+    "reason": "The current registry and dedicated m_csa750 revision already relabel this row out_of_scope. The non-abstained fold readout is expected false-confidence pressure from flavin-like fold/cofactor signals, not evidence for current v1 flavin_dehydrogenase_reductase, FMO, cobalamin, or radical-SAM promotion.",
+    "source_check_result": "keep_as_oos_boundary_and_future_radical_flavin_fe_s_candidate"
+  },
+  "status": "source_check_completed_review_only_no_label_change"
+}

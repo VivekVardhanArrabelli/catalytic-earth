@@ -2734,6 +2734,28 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             6,
         )
 
+    def test_predicted_atlas_geometry_novelty_variants_current_counts(self) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json"
+        )
+
+        self.assertEqual(audit["status"], "computed_predicted_atlas_geometry_variants")
+        self.assertEqual(audit["counts"]["atlas_rows"], 168)
+        self.assertEqual(audit["counts"]["heldout_rows"], 126)
+        self.assertEqual(audit["counts"]["inscope"], 47)
+        self.assertEqual(audit["counts"]["oos"], 79)
+        self.assertEqual(audit["counts"]["confounded_predicted_geometry_oos"], 6)
+        self.assertEqual(
+            audit["best_signal"]["name"],
+            "negative_nearest_class_centroid_robust_distance",
+        )
+        self.assertEqual(audit["best_signal"]["auc_in_gt_oos_all"], 0.776461)
+        self.assertTrue(
+            audit["guardrails"]["atlas_statistics_only_for_normalization"]
+        )
+
     def test_mechanism_feature_sidecar_schema_audit_current_counts(self) -> None:
         audit = _load_json(
             ROOT
@@ -2852,6 +2874,262 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             self.assertEqual(packet["status"], "evidence_packet_ready_with_geometry_gaps")
             for key, value in counts.items():
                 self.assertEqual(packet["counts"][key], value)
+
+    def test_fold_augmented_family_panel_research_readout_current_counts(self) -> None:
+        readout = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_family_panel_research_readout_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            readout["status"],
+            "family_panel_research_readout_ready_review_only",
+        )
+        self.assertEqual(readout["threshold_source"]["threshold"], 0.44155)
+        self.assertEqual(readout["counts"]["panel_packets"], 7)
+        self.assertEqual(readout["counts"]["candidate_rows"], 22)
+        self.assertEqual(readout["counts"]["primary_score_complete_rows"], 10)
+        self.assertEqual(readout["counts"]["non_abstained_at_research_threshold"], 4)
+        self.assertEqual(readout["counts"]["abstained_at_research_threshold"], 6)
+        self.assertEqual(readout["counts"]["not_score_complete_for_primary_channel"], 12)
+        self.assertEqual(
+            [row["entry_id"] for row in readout["review_priority_rows"]],
+            ["m_csa:267", "m_csa:131", "m_csa:750", "m_csa:551"],
+        )
+        by_entry = {row["entry_id"]: row for row in readout["row_scores"]}
+        self.assertEqual(
+            by_entry["m_csa:973"]["predicted_structure_fold_score_source"],
+            "fold_augmented_train_cal_threshold_contract_calibration_row",
+        )
+        self.assertEqual(
+            by_entry["m_csa:973"]["research_gate_status"],
+            "abstained_at_research_threshold",
+        )
+        self.assertTrue(readout["guardrails"]["review_only"])
+        self.assertFalse(readout["guardrails"]["thresholds_selected_on_family_panel_rows"])
+
+    def test_fold_augmented_family_panel_source_check_queue_current_counts(self) -> None:
+        queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json"
+        )
+
+        self.assertEqual(queue["status"], "source_check_queue_ready_review_only")
+        self.assertEqual(queue["counts"]["source_check_rows"], 4)
+        self.assertEqual(queue["counts"]["panels_represented"], 3)
+        self.assertEqual(
+            queue["counts"]["source_check_rows_by_panel"],
+            {
+                "cobalamin_and_radical_rearrangement_panel": 1,
+                "flavin_monooxygenase_and_flavin_oxygen_transfer": 2,
+                "lipoamide_or_sulfur_transfer_redox_boundary": 1,
+            },
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in queue["queue_rows"]],
+            ["m_csa:267", "m_csa:131", "m_csa:750", "m_csa:551"],
+        )
+        self.assertTrue(queue["guardrails"]["review_only"])
+        self.assertFalse(queue["guardrails"]["new_source_data_fetched"])
+
+    def test_fold_augmented_family_panel_m_csa267_source_check_current_result(self) -> None:
+        check = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_family_panel_source_check_m_csa267_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            check["status"],
+            "source_check_completed_review_only_no_label_change",
+        )
+        self.assertEqual(check["row"]["entry_id"], "m_csa:267")
+        self.assertEqual(check["row"]["label_type"], "out_of_scope")
+        self.assertIsNone(check["row"]["fingerprint_id"])
+        self.assertEqual(
+            check["source_check_decision"]["source_check_result"],
+            "keep_as_review_only_oos_boundary_control",
+        )
+        self.assertFalse(check["source_check_decision"]["family_promotion_ready"])
+        self.assertEqual(check["local_source_evidence"]["catalytic_residue_count"], 6)
+        self.assertTrue(check["guardrails"]["review_only"])
+        self.assertFalse(check["guardrails"]["new_source_data_fetched"])
+
+    def test_fold_augmented_family_panel_m_csa131_source_check_current_result(self) -> None:
+        check = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_family_panel_source_check_m_csa131_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            check["status"],
+            "source_check_completed_review_only_no_label_change",
+        )
+        self.assertEqual(check["row"]["entry_id"], "m_csa:131")
+        self.assertEqual(check["row"]["benchmark_role"], "secondary_ood_probe::flavin_monooxygenase")
+        self.assertEqual(check["row"]["label_type"], "seed_fingerprint")
+        self.assertEqual(check["row"]["fingerprint_id"], "flavin_monooxygenase")
+        self.assertEqual(
+            check["source_check_decision"]["source_check_result"],
+            "confirm_secondary_fmo_probe_support_no_primary_promotion",
+        )
+        self.assertFalse(check["source_check_decision"]["family_promotion_ready"])
+        self.assertEqual(check["local_source_evidence"]["catalytic_residue_count"], 5)
+        self.assertTrue(check["guardrails"]["review_only"])
+        self.assertFalse(check["guardrails"]["new_source_data_fetched"])
+
+    def test_fold_augmented_family_panel_m_csa750_source_check_current_result(self) -> None:
+        check = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_family_panel_source_check_m_csa750_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            check["status"],
+            "source_check_completed_review_only_no_label_change",
+        )
+        self.assertEqual(check["row"]["entry_id"], "m_csa:750")
+        self.assertEqual(check["row"]["current_label_type"], "out_of_scope")
+        self.assertIsNone(check["row"]["current_fingerprint_id"])
+        self.assertEqual(
+            check["local_source_evidence"]["label_revision_decision"],
+            "relabel_out_of_scope",
+        )
+        self.assertEqual(
+            check["local_source_evidence"]["label_revision_mechanism_class"],
+            "radical_flavin_fe_s_dehydratase",
+        )
+        self.assertEqual(
+            check["source_check_decision"]["source_check_result"],
+            "keep_as_oos_boundary_and_future_radical_flavin_fe_s_candidate",
+        )
+        self.assertFalse(check["source_check_decision"]["family_promotion_ready"])
+        self.assertTrue(check["guardrails"]["review_only"])
+        self.assertFalse(check["guardrails"]["new_source_data_fetched"])
+
+    def test_fold_augmented_family_panel_m_csa551_source_check_current_result(self) -> None:
+        check = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_family_panel_source_check_m_csa551_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            check["status"],
+            "source_check_completed_review_only_no_label_change",
+        )
+        self.assertEqual(check["row"]["entry_id"], "m_csa:551")
+        self.assertEqual(check["row"]["current_label_type"], "seed_fingerprint")
+        self.assertEqual(
+            check["row"]["current_fingerprint_id"],
+            "flavin_dehydrogenase_reductase",
+        )
+        self.assertEqual(
+            check["local_source_evidence"]["adjudication_mechanism_decision"],
+            "mechanism_clean_fmo_support",
+        )
+        self.assertFalse(check["local_source_evidence"]["import_ready"])
+        self.assertFalse(check["local_source_evidence"]["registry_edit_allowed"])
+        self.assertEqual(
+            check["source_check_decision"]["source_check_result"],
+            "confirm_future_fmo_support_no_registry_change",
+        )
+        self.assertFalse(check["source_check_decision"]["family_promotion_ready"])
+        self.assertTrue(check["guardrails"]["review_only"])
+        self.assertFalse(check["guardrails"]["new_source_data_fetched"])
+
+    def test_fold_augmented_family_panel_missing_primary_channel_queue_current_counts(self) -> None:
+        queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            queue["status"],
+            "missing_primary_channel_queue_ready_review_only",
+        )
+        self.assertEqual(queue["counts"]["missing_primary_channel_rows"], 12)
+        self.assertEqual(queue["counts"]["m_csa_rows"], 2)
+        self.assertEqual(queue["counts"]["secondary_probe_rows"], 2)
+        self.assertEqual(queue["counts"]["external_or_placeholder_rows"], 8)
+        self.assertEqual(
+            queue["counts"]["score_blocker_counts"],
+            {
+                "predicted_geometry_top1_score_missing": 12,
+                "predicted_structure_fold_tm_missing": 12,
+            },
+        )
+        self.assertNotIn("m_csa:973", {row["entry_id"] for row in queue["queue_rows"]})
+        self.assertTrue(queue["guardrails"]["review_only"])
+        self.assertFalse(queue["guardrails"]["new_source_data_fetched"])
+
+    def test_fold_augmented_family_panel_missing_primary_channel_diagnosis_current_counts(
+        self,
+    ) -> None:
+        diagnosis = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            diagnosis["status"],
+            "missing_primary_channel_diagnosis_ready_review_only",
+        )
+        self.assertEqual(diagnosis["counts"]["diagnosed_rows"], 12)
+        self.assertEqual(
+            diagnosis["counts"]["diagnosis_counts"],
+            {
+                "needs_predicted_geometry_materialization": 2,
+                "needs_source_backed_row_sidecar_and_coordinate_materialization": 10,
+            },
+        )
+        self.assertEqual(
+            diagnosis["counts"]["rows_with_train_calibration_fold_score"],
+            0,
+        )
+        by_entry = {row["entry_id"]: row for row in diagnosis["diagnosed_rows"]}
+        self.assertNotIn("m_csa:973", by_entry)
+        self.assertIn("m_csa:973 is no longer in the missing primary-channel queue", diagnosis["interpretation"]["m_csa_973_result"])
+        self.assertFalse(diagnosis["guardrails"]["foldseek_or_tmsearch_recomputed"])
+
+    def test_fmo_subtype_hard_negative_packet_current_counts(self) -> None:
+        packet = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_fmo_subtype_hard_negative_packet_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            packet["status"],
+            "fmo_subtype_hard_negative_packet_ready_review_only",
+        )
+        self.assertEqual(packet["counts"]["rows"], 5)
+        self.assertEqual(packet["counts"]["current_primary_fmo_rows"], 0)
+        self.assertEqual(packet["counts"]["secondary_or_future_support_rows"], 3)
+        self.assertEqual(packet["counts"]["hard_negative_or_boundary_rows"], 2)
+        self.assertEqual(packet["counts"]["import_ready_rows"], 0)
+        self.assertEqual(packet["counts"]["registry_edit_allowed_rows"], 0)
+        by_entry = {row["entry_id"]: row for row in packet["panel_rows"]}
+        self.assertEqual(
+            by_entry["m_csa:973"]["fold_augmented_readout"]["research_gate_status"],
+            "abstained_at_research_threshold",
+        )
+        self.assertEqual(
+            by_entry["m_csa:132"]["decision"],
+            "repair_geometry_before_fmo_use",
+        )
+        self.assertEqual(
+            by_entry["m_csa:750"]["hard_negative_role"],
+            "radical_flavin_fe_s_boundary",
+        )
+        self.assertTrue(packet["guardrails"]["review_only"])
+        self.assertFalse(packet["guardrails"]["imports_or_promotions_performed"])
 
 
 def _load_json(path: Path) -> dict:

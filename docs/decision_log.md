@@ -37,6 +37,89 @@ Artifacts:
 `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates_foldseek_results/in_distribution_atlas_self_vs_atlas.tsv`,
 `work/fold_augmented_abstention_threshold_contract_current702_20260601.md`.
 
+## 2026-06-01: Fold-Augmented Research Gate Applied To Review-Only Family Panels
+
+Decision: add a downstream readout that applies the already selected
+OOS-calibrated `combined_mean_geometry_fold` research threshold to the seven
+review-only family-expansion evidence packets. This consumes the
+research-sufficient 71/76 train/cal OOS-negative surface decision and the
+family-panel coverage audit. It does not select thresholds on family-panel rows,
+fit a model, promote rows, import labels, or mutate registries/ontologies.
+
+Result: 10/22 review rows are score-complete for the primary
+geometry-plus-predicted-fold channel. Of those, 4 remain non-abstained at the
+fixed `0.44155` research threshold: `m_csa:267`, `m_csa:131`, `m_csa:750`, and
+`m_csa:551`. Six score-complete rows abstain, including `m_csa:973` after
+joining its frozen train/calibration fold score, and 12 rows remain blocked by
+missing predicted geometry and/or predicted-fold channel evidence.
+
+Consequence: the next review work should source-check those four
+non-abstained boundary rows as review priorities, while keeping the 12
+primary-channel-missing rows in the coordinate or sidecar materialization queue.
+This readout is review-only and must not be interpreted as a family promotion,
+production threshold, or training signal.
+
+Follow-up: the rank-1 queue row, `m_csa:267`, was source-checked against frozen
+local M-CSA graph and label artifacts. The check keeps it as a review-only OOS
+boundary control: local mechanism evidence supports dihydrodipicolinate
+synthase lysine Schiff-base aldol/cyclization chemistry, not a current
+seed-family promotion.
+
+Second follow-up: the rank-2 row, `m_csa:131`, was source-checked against
+frozen local M-CSA graph and label artifacts. The check confirms direct flavin
+monooxygenase/oxygen-transfer support for the existing secondary-probe row, but
+does not authorize primary FMO promotion while the project-state FMO blockers
+remain active.
+
+Third follow-up: the rank-3 row, `m_csa:750`, was source-checked through the
+current registry and the existing `m_csa:750` revision artifact. The check
+keeps it as OOS/boundary evidence and a future radical flavin/Fe-S dehydratase
+candidate, not a current v1 flavin, FMO, cobalamin, or radical-SAM promotion.
+
+Fourth follow-up: the rank-4 row, `m_csa:551`, was source-checked through
+frozen M-CSA graph evidence and the existing FMO local-candidate adjudication.
+The check confirms mechanism-clean future FMO support, but the prior
+adjudication explicitly blocks import and registry edits, so no label or
+promotion state changed. This completes the non-abstained family-panel
+source-check queue.
+
+Queue follow-up: add a separate review-only materialization queue for the
+family-panel rows that lack primary geometry-plus-predicted-fold channel scores.
+The first queue/diagnosis showed `m_csa:973` already had frozen train/calibration
+fold evidence in the threshold contract. The family-panel readout now joins that
+score without rerunning Foldseek/TM, so `m_csa:973` becomes score-complete and
+abstained at the fixed research threshold (`combined_mean_geometry_fold=0.41`
+versus `0.44155`). The remaining queue has 12 rows, all missing predicted
+geometry and predicted-structure fold TM scores; it prioritizes current702
+M-CSA geometry repair (`m_csa:132`, `m_csa:116`) before secondary-probe and
+external placeholder sidecars. No downloads or source fetches were performed.
+
+FMO subtype follow-up: add a review-only subtype/hard-negative packet for the
+FMO lane. It keeps `m_csa:131` as secondary-probe support, `m_csa:551` and
+`m_csa:973` as future support only, `m_csa:132` as geometry-blocked, and
+`m_csa:750` as radical flavin/Fe-S boundary negative. No row is import-ready or
+registry-edit-ready, so primary FMO promotion remains blocked.
+
+Artifacts:
+`artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`,
+`work/fold_augmented_family_panel_research_readout_current702_20260601.md`,
+`artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json`,
+`work/fold_augmented_family_panel_source_check_queue_current702_20260601.md`,
+`artifacts/v3_fold_augmented_family_panel_source_check_m_csa267_current702_20260601.json`,
+`work/fold_augmented_family_panel_source_check_m_csa267_current702_20260601.md`,
+`artifacts/v3_fold_augmented_family_panel_source_check_m_csa131_current702_20260601.json`,
+`work/fold_augmented_family_panel_source_check_m_csa131_current702_20260601.md`,
+`artifacts/v3_fold_augmented_family_panel_source_check_m_csa750_current702_20260601.json`,
+`work/fold_augmented_family_panel_source_check_m_csa750_current702_20260601.md`,
+`artifacts/v3_fold_augmented_family_panel_source_check_m_csa551_current702_20260601.json`,
+`work/fold_augmented_family_panel_source_check_m_csa551_current702_20260601.md`,
+`artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json`,
+`work/fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.md`,
+`artifacts/v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.json`,
+`work/fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.md`,
+`artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`,
+`work/fmo_subtype_hard_negative_packet_current702_20260601.md`.
+
 ## 2026-06-01: Predicted-Structure Fold Channel Contract Audit Passes
 
 Decision: add a strict validation layer for the already-scored AlphaFoldDB

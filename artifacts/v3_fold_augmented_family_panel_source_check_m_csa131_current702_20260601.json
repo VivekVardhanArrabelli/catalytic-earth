@@ -1,0 +1,262 @@
+{
+  "artifact_id": "v3_fold_augmented_family_panel_source_check_m_csa131_current702_20260601",
+  "created_utc": "2026-06-01T08:51:58Z",
+  "fold_augmented_readout": {
+    "combined_mean_geometry_fold": 0.5516,
+    "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+    "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+    "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+    "queue_rank": 2,
+    "selected_organic_cofactor_max": 0.980908,
+    "source_check_focus": [
+      "row_specific_bond_change_and_mechanism_locus",
+      "cofactor_locus_and_redox_partner_identity",
+      "occupied_primary_fold_false_confidence_review",
+      "geometry_fold_fingerprint_disagreement",
+      "selected_organic_cofactor_confounding"
+    ],
+    "threshold_margin": 0.11005
+  },
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_source_data_fetched": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "local_source_evidence": {
+    "catalytic_residue_count": 5,
+    "catalytic_residue_role_counts": {
+      "attractive charge-charge interaction": 1,
+      "electrostatic stabiliser": 2,
+      "hydrogen bond acceptor": 4,
+      "hydrogen bond donor": 3,
+      "proton acceptor": 3,
+      "proton donor": 3,
+      "proton relay": 3,
+      "steric role": 1
+    },
+    "catalytic_residues": [
+      {
+        "residue_node_id": "m_csa:131:residue:1",
+        "roles": [
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "proton acceptor",
+          "proton donor",
+          "proton relay"
+        ],
+        "sequence_positions": [
+          {
+            "code": "Tyr",
+            "is_reference": true,
+            "resid": 201,
+            "uniprot_id": "P20586"
+          }
+        ],
+        "structure_positions": [
+          {
+            "chain_name": "A",
+            "code": "Tyr",
+            "is_reference": true,
+            "pdb_id": "1doc",
+            "resid": 201
+          }
+        ]
+      },
+      {
+        "residue_node_id": "m_csa:131:residue:2",
+        "roles": [
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor"
+        ],
+        "sequence_positions": [
+          {
+            "code": "Pro",
+            "is_reference": true,
+            "resid": 293,
+            "uniprot_id": "P20586"
+          }
+        ],
+        "structure_positions": [
+          {
+            "chain_name": "A",
+            "code": "Pro",
+            "is_reference": true,
+            "pdb_id": "1doc",
+            "resid": 293
+          }
+        ]
+      },
+      {
+        "residue_node_id": "m_csa:131:residue:3",
+        "roles": [
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "proton acceptor",
+          "proton donor",
+          "proton relay"
+        ],
+        "sequence_positions": [
+          {
+            "code": "His",
+            "is_reference": true,
+            "resid": 72,
+            "uniprot_id": "P20586"
+          }
+        ],
+        "structure_positions": [
+          {
+            "chain_name": "A",
+            "code": "His",
+            "is_reference": true,
+            "pdb_id": "1doc",
+            "resid": 72
+          }
+        ]
+      },
+      {
+        "residue_node_id": "m_csa:131:residue:4",
+        "roles": [
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "proton acceptor",
+          "proton donor",
+          "proton relay"
+        ],
+        "sequence_positions": [
+          {
+            "code": "Tyr",
+            "is_reference": true,
+            "resid": 385,
+            "uniprot_id": "P20586"
+          }
+        ],
+        "structure_positions": [
+          {
+            "chain_name": "A",
+            "code": "Tyr",
+            "is_reference": true,
+            "pdb_id": "1doc",
+            "resid": 385
+          }
+        ]
+      },
+      {
+        "residue_node_id": "m_csa:131:residue:5",
+        "roles": [
+          "attractive charge-charge interaction",
+          "electrostatic stabiliser",
+          "steric role"
+        ],
+        "sequence_positions": [
+          {
+            "code": "Lys",
+            "is_reference": true,
+            "resid": 297,
+            "uniprot_id": "P20586"
+          }
+        ],
+        "structure_positions": [
+          {
+            "chain_name": "A",
+            "code": "Lys",
+            "is_reference": true,
+            "pdb_id": "1doc",
+            "resid": 297
+          }
+        ]
+      }
+    ],
+    "curated_label_rationale": "4-hydroxybenzoate 3-monooxygenase is an FAD-dependent aromatic hydroxylase matching the flavin monooxygenase seed fingerprint.",
+    "fmo_audit_status": "review_only_definition_audit_complete",
+    "m_csa_entry_name": "4-hydroxybenzoate 3-monooxygenase",
+    "mechanism_evidence_summary": "Frozen M-CSA mechanism text supports FAD/NADP redox activation, FAD-peroxo formation, aromatic substrate hydroxylation, O-O bond cleavage, and FAD regeneration through proton-relay chemistry; this is direct flavin monooxygenase/oxygen-transfer support.",
+    "mechanism_text_source_count": 1,
+    "panel_packet_scores": {
+      "predicted_geometry_top1": {
+        "cofactor_context_score": 0.2,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "role_match_fraction": 0.0,
+        "score": 0.3522
+      },
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:281",
+        "nearest_atlas_tm_score": 0.751,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      "selected_organic_cofactor_scores": {
+        "flavin": 0.980908,
+        "heme": 0.011285,
+        "plp": 2.6e-05
+      },
+      "selected_pdb_fold_proxy": {
+        "nearest_primary_foldseek_prob": null,
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": null,
+        "top3_primary_foldseek_prob": null
+      }
+    },
+    "readout_research_gate_status": "non_abstained_at_research_threshold"
+  },
+  "row": {
+    "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+    "curated_label_rationale": "4-hydroxybenzoate 3-monooxygenase is an FAD-dependent aromatic hydroxylase matching the flavin monooxygenase seed fingerprint.",
+    "entry_id": "m_csa:131",
+    "fingerprint_id": "flavin_monooxygenase",
+    "label_type": "seed_fingerprint",
+    "name": "4-hydroxybenzoate 3-monooxygenase",
+    "probe_role": "near_oos_against_flavin_redox_diagnostic",
+    "reference_uniprot_id": "P20586",
+    "split_assignment": "heldout"
+  },
+  "schema_version": "northstar_next_levers.v0.source_check_packet",
+  "scope": "Review-only frozen-local source check for non-abstained fold-augmented FMO panel row m_csa:131.",
+  "source_artifacts": {
+    "curated_labels": {
+      "exists": true,
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "family_panel_packet": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.json",
+      "sha256": "879759d1978c63272b7eb539c74e07494d00624edfd7d09f4e8c3534816bd2d8"
+    },
+    "family_panel_research_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
+      "sha256": "0eb9ff0963353a69fe03fb690d5d0b2ce26685c82351b7330e959252f7f46e73"
+    },
+    "family_panel_source_check_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json",
+      "sha256": "0c7f401d6677ece55a1a65914a26f6f3bc53bb78558ad97c69805f0c78e3e0b2"
+    },
+    "fmo_fingerprint_definition_audit": {
+      "exists": true,
+      "path": "artifacts/v3_fmo_fingerprint_definition_audit_702_20260528.json",
+      "sha256": "618b7fc8516cfebc1e8aa41e8fd4c67e7dfbaf5a8dd9c5481003d2847ffa4900"
+    },
+    "graph": {
+      "exists": true,
+      "path": "artifacts/v1_graph_1025.json",
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    }
+  },
+  "source_check_decision": {
+    "family_promotion_ready": false,
+    "next_action": "Continue the source-check queue with m_csa:750 or run an FMO subtype/hard-negative packet before any primary promotion discussion.",
+    "reason": "Local source-backed mechanism evidence confirms m_csa:131 as a flavin monooxygenase secondary-probe row, but current project state keeps FMO secondary/review-only and blocks primary promotion until subtype, coordinate/materialization, hard-negative, and expert admission gates are completed.",
+    "source_check_result": "confirm_secondary_fmo_probe_support_no_primary_promotion"
+  },
+  "status": "source_check_completed_review_only_no_label_change"
+}

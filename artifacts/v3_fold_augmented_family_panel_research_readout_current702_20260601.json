@@ -1,0 +1,780 @@
+{
+  "artifact_id": "v3_fold_augmented_family_panel_research_readout_current702_20260601",
+  "blockers": [],
+  "counts": {
+    "abstained_at_research_threshold": 6,
+    "candidate_rows": 22,
+    "non_abstained_at_research_threshold": 4,
+    "not_score_complete_for_primary_channel": 12,
+    "panel_packets": 7,
+    "panels_blocked_no_primary_channel_scores": 1,
+    "panels_with_non_abstained_rows": 3,
+    "primary_score_complete_rows": 10
+  },
+  "created_utc": "2026-06-01T09:11:35Z",
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false,
+    "thresholds_selected_on_family_panel_rows": false,
+    "train_cal_oos_surface_reused_as_research_contract": true
+  },
+  "interpretation": {
+    "caveat": "This is a downstream review readout only. It does not promote family rows, retune thresholds, train on heldout rows, or change production scoring.",
+    "headline": "4/10 score-complete review rows remain non-abstained at the bounded fold-augmented research threshold.",
+    "next_action": "Source-check the non-abstained review-priority rows and keep geometry/fold-missing packet rows in the coordinate or sidecar materialization queue before any family-expansion decision."
+  },
+  "panel_summaries": [
+    {
+      "abstained_at_research_threshold": 2,
+      "artifact": "artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json",
+      "candidate_rows": 2,
+      "missing_primary_score_entry_ids": [],
+      "non_abstained_at_research_threshold": 0,
+      "non_abstained_entry_ids": [],
+      "not_score_complete_for_primary_channel": 0,
+      "packet_status": "evidence_packet_ready_review_only",
+      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+      "primary_score_complete_rows": 2,
+      "research_readout_status": "score_complete_rows_all_abstained"
+    },
+    {
+      "abstained_at_research_threshold": 1,
+      "artifact": "artifacts/v3_family_panel_evidence_packet_thiol_disulfide_oxidoreductase_isomerase_boundary_current702_20260601.json",
+      "candidate_rows": 1,
+      "missing_primary_score_entry_ids": [],
+      "non_abstained_at_research_threshold": 0,
+      "non_abstained_entry_ids": [],
+      "not_score_complete_for_primary_channel": 0,
+      "packet_status": "evidence_packet_ready_review_only",
+      "panel_id": "thiol_disulfide_oxidoreductase_isomerase_boundary",
+      "primary_score_complete_rows": 1,
+      "research_readout_status": "score_complete_rows_all_abstained"
+    },
+    {
+      "abstained_at_research_threshold": 1,
+      "artifact": "artifacts/v3_family_panel_evidence_packet_lipoamide_or_sulfur_transfer_redox_boundary_current702_20260601.json",
+      "candidate_rows": 2,
+      "missing_primary_score_entry_ids": [],
+      "non_abstained_at_research_threshold": 1,
+      "non_abstained_entry_ids": [
+        "m_csa:267"
+      ],
+      "not_score_complete_for_primary_channel": 0,
+      "packet_status": "evidence_packet_ready_review_only",
+      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
+      "primary_score_complete_rows": 2,
+      "research_readout_status": "has_non_abstained_review_rows"
+    },
+    {
+      "abstained_at_research_threshold": 1,
+      "artifact": "artifacts/v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.json",
+      "candidate_rows": 4,
+      "missing_primary_score_entry_ids": [
+        "m_csa:132"
+      ],
+      "non_abstained_at_research_threshold": 2,
+      "non_abstained_entry_ids": [
+        "m_csa:131",
+        "m_csa:551"
+      ],
+      "not_score_complete_for_primary_channel": 1,
+      "packet_status": "evidence_packet_ready_with_geometry_gaps",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "primary_score_complete_rows": 3,
+      "research_readout_status": "has_non_abstained_review_rows"
+    },
+    {
+      "abstained_at_research_threshold": 0,
+      "artifact": "artifacts/v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json",
+      "candidate_rows": 3,
+      "missing_primary_score_entry_ids": [
+        "secondary_probe::cobalamin_radical_rearrangement",
+        "secondary_probe::radical_sam_enzyme"
+      ],
+      "non_abstained_at_research_threshold": 1,
+      "non_abstained_entry_ids": [
+        "m_csa:750"
+      ],
+      "not_score_complete_for_primary_channel": 2,
+      "packet_status": "evidence_packet_ready_with_geometry_gaps",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "primary_score_complete_rows": 1,
+      "research_readout_status": "has_non_abstained_review_rows"
+    },
+    {
+      "abstained_at_research_threshold": 0,
+      "artifact": "artifacts/v3_family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.json",
+      "candidate_rows": 6,
+      "missing_primary_score_entry_ids": [
+        "mh_064",
+        "mh_065",
+        "mh_066",
+        "mh_067",
+        "mh_068",
+        "mh_072"
+      ],
+      "non_abstained_at_research_threshold": 0,
+      "non_abstained_entry_ids": [],
+      "not_score_complete_for_primary_channel": 6,
+      "packet_status": "evidence_packet_ready_with_geometry_gaps",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "primary_score_complete_rows": 0,
+      "research_readout_status": "blocked_no_primary_channel_scores"
+    },
+    {
+      "abstained_at_research_threshold": 1,
+      "artifact": "artifacts/v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json",
+      "candidate_rows": 4,
+      "missing_primary_score_entry_ids": [
+        "external_glycoside_panel",
+        "m_csa:116",
+        "mh_073"
+      ],
+      "non_abstained_at_research_threshold": 0,
+      "non_abstained_entry_ids": [],
+      "not_score_complete_for_primary_channel": 3,
+      "packet_status": "evidence_packet_ready_with_geometry_gaps",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "primary_score_complete_rows": 1,
+      "research_readout_status": "score_complete_rows_all_abstained"
+    }
+  ],
+  "review_priority_rows": [
+    {
+      "combined_mean_geometry_fold": 0.5679,
+      "entry_id": "m_csa:267",
+      "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
+      "predicted_geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "selected_organic_cofactor_max": 0.834847,
+      "threshold_margin": 0.12635
+    },
+    {
+      "combined_mean_geometry_fold": 0.5516,
+      "entry_id": "m_csa:131",
+      "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "selected_organic_cofactor_max": 0.980908,
+      "threshold_margin": 0.11005
+    },
+    {
+      "combined_mean_geometry_fold": 0.55105,
+      "entry_id": "m_csa:750",
+      "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "selected_organic_cofactor_max": 0.703989,
+      "threshold_margin": 0.1095
+    },
+    {
+      "combined_mean_geometry_fold": 0.5446,
+      "entry_id": "m_csa:551",
+      "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "selected_organic_cofactor_max": 0.922628,
+      "threshold_margin": 0.10305
+    }
+  ],
+  "row_scores": [
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "channel_scores": {
+        "cofactor_max_score": 0.703989,
+        "combined_mean_geometry_cofactor_fold": 0.60203,
+        "combined_mean_geometry_fold": 0.55105,
+        "combined_min_geometry_fold": 0.3664,
+        "fold_nearest_atlas_tm_score": 0.7357,
+        "geometry_top1_score": 0.3664
+      },
+      "entry_id": "m_csa:750",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_structure_fold_score_source": "family_panel_packet_predicted_structure_fold_channel",
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:973",
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": 0.1095,
+      "research_gate_status": "non_abstained_at_research_threshold",
+      "review_only_interpretation": "score-complete row stays above the bounded research threshold; source-check as a review-priority boundary row, not as a promotion",
+      "score_blockers": [],
+      "selected_organic_cofactor_max": 0.703989,
+      "split_assignment": "heldout"
+    },
+    {
+      "benchmark_role": null,
+      "channel_scores": null,
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_fold_score_source": null,
+      "predicted_structure_nearest_atlas_entry_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": null,
+      "research_gate_status": "not_score_complete_for_primary_channel",
+      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "channel_scores": null,
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_fold_score_source": null,
+      "predicted_structure_nearest_atlas_entry_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": null,
+      "research_gate_status": "not_score_complete_for_primary_channel",
+      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+      "channel_scores": {
+        "cofactor_max_score": 0.980908,
+        "combined_mean_geometry_cofactor_fold": 0.694703,
+        "combined_mean_geometry_fold": 0.5516,
+        "combined_min_geometry_fold": 0.3522,
+        "fold_nearest_atlas_tm_score": 0.751,
+        "geometry_top1_score": 0.3522
+      },
+      "entry_id": "m_csa:131",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_structure_fold_score_source": "family_panel_packet_predicted_structure_fold_channel",
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:281",
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": 0.11005,
+      "research_gate_status": "non_abstained_at_research_threshold",
+      "review_only_interpretation": "score-complete row stays above the bounded research threshold; source-check as a review-priority boundary row, not as a promotion",
+      "score_blockers": [],
+      "selected_organic_cofactor_max": 0.980908,
+      "split_assignment": "heldout"
+    },
+    {
+      "benchmark_role": null,
+      "channel_scores": null,
+      "entry_id": "m_csa:132",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_fold_score_source": null,
+      "predicted_structure_nearest_atlas_entry_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": null,
+      "research_gate_status": "not_score_complete_for_primary_channel",
+      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": 0.010805,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "channel_scores": {
+        "cofactor_max_score": 0.922628,
+        "combined_mean_geometry_cofactor_fold": 0.670609,
+        "combined_mean_geometry_fold": 0.5446,
+        "combined_min_geometry_fold": 0.3583,
+        "fold_nearest_atlas_tm_score": 0.7309,
+        "geometry_top1_score": 0.3583
+      },
+      "entry_id": "m_csa:551",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_structure_fold_score_source": "family_panel_packet_predicted_structure_fold_channel",
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:281",
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": 0.10305,
+      "research_gate_status": "non_abstained_at_research_threshold",
+      "review_only_interpretation": "score-complete row stays above the bounded research threshold; source-check as a review-priority boundary row, not as a promotion",
+      "score_blockers": [],
+      "selected_organic_cofactor_max": 0.922628,
+      "split_assignment": "heldout"
+    },
+    {
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "channel_scores": {
+        "cofactor_max_score": 0.993434,
+        "combined_mean_geometry_cofactor_fold": 0.604478,
+        "combined_mean_geometry_fold": 0.41,
+        "combined_min_geometry_fold": 0.3625,
+        "fold_nearest_atlas_tm_score": 0.4575,
+        "geometry_top1_score": 0.3625
+      },
+      "entry_id": "m_csa:973",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_structure_fold_score_source": "fold_augmented_train_cal_threshold_contract_calibration_row",
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:795",
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": -0.03155,
+      "research_gate_status": "abstained_at_research_threshold",
+      "review_only_interpretation": "score-complete row is abstained by the bounded research threshold",
+      "score_blockers": [],
+      "selected_organic_cofactor_max": 0.993434,
+      "split_assignment": "in_distribution"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "channel_scores": {
+        "cofactor_max_score": 0.589255,
+        "combined_mean_geometry_cofactor_fold": 0.449885,
+        "combined_mean_geometry_fold": 0.3802,
+        "combined_min_geometry_fold": 0.2616,
+        "fold_nearest_atlas_tm_score": 0.4988,
+        "geometry_top1_score": 0.2616
+      },
+      "entry_id": "m_csa:30",
+      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_structure_fold_score_source": "family_panel_packet_predicted_structure_fold_channel",
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:11",
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": -0.06135,
+      "research_gate_status": "abstained_at_research_threshold",
+      "review_only_interpretation": "score-complete row is abstained by the bounded research threshold",
+      "score_blockers": [],
+      "selected_organic_cofactor_max": 0.589255,
+      "split_assignment": "heldout"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "channel_scores": {
+        "cofactor_max_score": 0.808565,
+        "combined_mean_geometry_cofactor_fold": 0.512022,
+        "combined_mean_geometry_fold": 0.36375,
+        "combined_min_geometry_fold": 0.3466,
+        "fold_nearest_atlas_tm_score": 0.3809,
+        "geometry_top1_score": 0.3466
+      },
+      "entry_id": "m_csa:31",
+      "panel_id": "glycyl_radical_or_thiamine_radical_lyase_boundary",
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_structure_fold_score_source": "family_panel_packet_predicted_structure_fold_channel",
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:900",
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": -0.0778,
+      "research_gate_status": "abstained_at_research_threshold",
+      "review_only_interpretation": "score-complete row is abstained by the bounded research threshold",
+      "score_blockers": [],
+      "selected_organic_cofactor_max": 0.808565,
+      "split_assignment": "heldout"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "channel_scores": {
+        "cofactor_max_score": 0.834847,
+        "combined_mean_geometry_cofactor_fold": 0.656882,
+        "combined_mean_geometry_fold": 0.5679,
+        "combined_min_geometry_fold": 0.3969,
+        "fold_nearest_atlas_tm_score": 0.7389,
+        "geometry_top1_score": 0.3969
+      },
+      "entry_id": "m_csa:267",
+      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "predicted_structure_fold_score_source": "family_panel_packet_predicted_structure_fold_channel",
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:800",
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": 0.12635,
+      "research_gate_status": "non_abstained_at_research_threshold",
+      "review_only_interpretation": "score-complete row stays above the bounded research threshold; source-check as a review-priority boundary row, not as a promotion",
+      "score_blockers": [],
+      "selected_organic_cofactor_max": 0.834847,
+      "split_assignment": "heldout"
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "channel_scores": {
+        "cofactor_max_score": 0.904927,
+        "combined_mean_geometry_cofactor_fold": 0.591042,
+        "combined_mean_geometry_fold": 0.4341,
+        "combined_min_geometry_fold": 0.3576,
+        "fold_nearest_atlas_tm_score": 0.5106,
+        "geometry_top1_score": 0.3576
+      },
+      "entry_id": "m_csa:448",
+      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_structure_fold_score_source": "family_panel_packet_predicted_structure_fold_channel",
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:528",
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": -0.00745,
+      "research_gate_status": "abstained_at_research_threshold",
+      "review_only_interpretation": "score-complete row is abstained by the bounded research threshold",
+      "score_blockers": [],
+      "selected_organic_cofactor_max": 0.904927,
+      "split_assignment": "heldout"
+    },
+    {
+      "benchmark_role": null,
+      "channel_scores": null,
+      "entry_id": "external_glycoside_panel",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_fold_score_source": null,
+      "predicted_structure_nearest_atlas_entry_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": null,
+      "research_gate_status": "not_score_complete_for_primary_channel",
+      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "channel_scores": {
+        "cofactor_max_score": 0.017518,
+        "combined_mean_geometry_cofactor_fold": 0.282273,
+        "combined_mean_geometry_fold": 0.41465,
+        "combined_min_geometry_fold": 0.356,
+        "fold_nearest_atlas_tm_score": 0.4733,
+        "geometry_top1_score": 0.356
+      },
+      "entry_id": "m_csa:10",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "predicted_structure_fold_score_source": "family_panel_packet_predicted_structure_fold_channel",
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:740",
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": -0.0269,
+      "research_gate_status": "abstained_at_research_threshold",
+      "review_only_interpretation": "score-complete row is abstained by the bounded research threshold",
+      "score_blockers": [],
+      "selected_organic_cofactor_max": 0.017518,
+      "split_assignment": "heldout"
+    },
+    {
+      "benchmark_role": null,
+      "channel_scores": null,
+      "entry_id": "m_csa:116",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_fold_score_source": null,
+      "predicted_structure_nearest_atlas_entry_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": null,
+      "research_gate_status": "not_score_complete_for_primary_channel",
+      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": 0.050535,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "channel_scores": null,
+      "entry_id": "mh_073",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_fold_score_source": null,
+      "predicted_structure_nearest_atlas_entry_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": null,
+      "research_gate_status": "not_score_complete_for_primary_channel",
+      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "channel_scores": null,
+      "entry_id": "mh_064",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_fold_score_source": null,
+      "predicted_structure_nearest_atlas_entry_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": null,
+      "research_gate_status": "not_score_complete_for_primary_channel",
+      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "channel_scores": null,
+      "entry_id": "mh_065",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_fold_score_source": null,
+      "predicted_structure_nearest_atlas_entry_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": null,
+      "research_gate_status": "not_score_complete_for_primary_channel",
+      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "channel_scores": null,
+      "entry_id": "mh_066",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_fold_score_source": null,
+      "predicted_structure_nearest_atlas_entry_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": null,
+      "research_gate_status": "not_score_complete_for_primary_channel",
+      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "channel_scores": null,
+      "entry_id": "mh_067",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_fold_score_source": null,
+      "predicted_structure_nearest_atlas_entry_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": null,
+      "research_gate_status": "not_score_complete_for_primary_channel",
+      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "channel_scores": null,
+      "entry_id": "mh_068",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_fold_score_source": null,
+      "predicted_structure_nearest_atlas_entry_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": null,
+      "research_gate_status": "not_score_complete_for_primary_channel",
+      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "channel_scores": null,
+      "entry_id": "mh_072",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_fold_score_source": null,
+      "predicted_structure_nearest_atlas_entry_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": null,
+      "research_gate_status": "not_score_complete_for_primary_channel",
+      "review_only_interpretation": "primary channel cannot be evaluated until geometry and predicted-fold scores both exist",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": "oos_tier::unknown_oos",
+      "channel_scores": {
+        "cofactor_max_score": 0.555321,
+        "combined_mean_geometry_cofactor_fold": 0.437807,
+        "combined_mean_geometry_fold": 0.37905,
+        "combined_min_geometry_fold": 0.3718,
+        "fold_nearest_atlas_tm_score": 0.3863,
+        "geometry_top1_score": 0.3718
+      },
+      "entry_id": "m_csa:191",
+      "panel_id": "thiol_disulfide_oxidoreductase_isomerase_boundary",
+      "predicted_geometry_status": "ok",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "predicted_structure_fold_score_source": "family_panel_packet_predicted_structure_fold_channel",
+      "predicted_structure_nearest_atlas_entry_id": "m_csa:631",
+      "predicted_structure_nearest_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+      "primary_channel": "combined_mean_geometry_fold",
+      "primary_threshold": 0.44155,
+      "primary_threshold_margin": -0.0625,
+      "research_gate_status": "abstained_at_research_threshold",
+      "review_only_interpretation": "score-complete row is abstained by the bounded research threshold",
+      "score_blockers": [],
+      "selected_organic_cofactor_max": 0.555321,
+      "split_assignment": "heldout"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Downstream fold-augmented research readout over review-only family-expansion packets. It applies the already selected combined_mean_geometry_fold threshold from the OOS-calibrated research contract to packet rows with both predicted geometry and predicted-structure Foldseek/TM evidence.",
+  "source_artifacts": {
+    "family_panel_coverage_audit": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_packet_coverage_audit_current702_20260601.json",
+      "sha256": "4955b7f4237d36fcfdea169ec5e4835a3960eeca16c317a01f7f7c342e87dc3e"
+    },
+    "family_panel_packets": [
+      {
+        "exists": true,
+        "path": "artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json",
+        "sha256": "1e19133aba7ba14fc1929e9f3192c84b34afa8aa0ae776ebb8d29e446515cbf9"
+      },
+      {
+        "exists": true,
+        "path": "artifacts/v3_family_panel_evidence_packet_thiol_disulfide_oxidoreductase_isomerase_boundary_current702_20260601.json",
+        "sha256": "a6fe62a2cdd2927e4e0faecf473f6fe5aa2c4bf9616e8086a754f33f4cfa451c"
+      },
+      {
+        "exists": true,
+        "path": "artifacts/v3_family_panel_evidence_packet_lipoamide_or_sulfur_transfer_redox_boundary_current702_20260601.json",
+        "sha256": "78b3032f6f9b3f381da700cdab3df55f18256d0da9412298e4368637c5d38c1c"
+      },
+      {
+        "exists": true,
+        "path": "artifacts/v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.json",
+        "sha256": "879759d1978c63272b7eb539c74e07494d00624edfd7d09f4e8c3534816bd2d8"
+      },
+      {
+        "exists": true,
+        "path": "artifacts/v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json",
+        "sha256": "3a839bb055974abb454f9ee6f3282f01636cf149d2e853d4a067d63d0d8c70a2"
+      },
+      {
+        "exists": true,
+        "path": "artifacts/v3_family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.json",
+        "sha256": "9f1035f9cf892a323d1891a4fecf5f256f3a756ad8e34d649b0c6116bd032dcc"
+      },
+      {
+        "exists": true,
+        "path": "artifacts/v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json",
+        "sha256": "00cc96f4b7f226c04d91630ee1cf2fa12feb63801bd678fab511534ff8cd3c8e"
+      }
+    ],
+    "oos_calibrated_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json",
+      "sha256": "8bd974b131270091502c9a6b9d06354a1fac937f1b3a4f02a2035ee88c95d829"
+    },
+    "train_cal_oos_sufficiency_decision": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json",
+      "sha256": "f8e3f32b0586b328b946736df01a127455827ba62066059047d18feb5c131c80"
+    },
+    "train_cal_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json",
+      "sha256": "3e3b172dbac1d57dbc2113e7f73ee60d41deac551c208ce25e3061e74a32fa73"
+    }
+  },
+  "status": "family_panel_research_readout_ready_review_only",
+  "threshold_source": {
+    "channel": "combined_mean_geometry_fold",
+    "source_artifact": "artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json",
+    "source_status": "computed_oos_calibrated_threshold_contract",
+    "sufficiency_status": "research_contract_sufficient_with_blocker_disclosure",
+    "threshold": 0.44155
+  }
+}

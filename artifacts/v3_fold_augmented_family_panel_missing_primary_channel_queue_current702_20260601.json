@@ -1,0 +1,250 @@
+{
+  "artifact_id": "v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601",
+  "counts": {
+    "external_or_placeholder_rows": 8,
+    "m_csa_rows": 2,
+    "missing_primary_channel_rows": 12,
+    "missing_rows_by_panel": {
+      "cobalamin_and_radical_rearrangement_panel": 2,
+      "flavin_monooxygenase_and_flavin_oxygen_transfer": 1,
+      "near_orphan_glycoside_or_nucleoside_hydrolase_controls": 3,
+      "no_reliable_structure_metal_hydrolase_controls": 6
+    },
+    "score_blocker_counts": {
+      "predicted_geometry_top1_score_missing": 12,
+      "predicted_structure_fold_tm_missing": 12
+    },
+    "secondary_probe_rows": 2
+  },
+  "created_utc": "2026-06-01T09:11:44Z",
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_source_data_fetched": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "12 family-panel rows lack the primary geometry+predicted-fold channel.",
+    "next_action": "Start with current702 M-CSA rows that need predicted-geometry repair, then handle secondary-probe and external placeholder rows through source-backed sidecars."
+  },
+  "queue_rows": [
+    {
+      "benchmark_role": null,
+      "entry_id": "secondary_probe::cobalamin_radical_rearrangement",
+      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "rank": 1,
+      "recommended_next_action": "materialize row-level secondary-probe sidecar, accession, geometry, and predicted coordinate before scoring",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "entry_id": "secondary_probe::radical_sam_enzyme",
+      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "rank": 2,
+      "recommended_next_action": "materialize row-level secondary-probe sidecar, accession, geometry, and predicted coordinate before scoring",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "entry_id": "m_csa:132",
+      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "rank": 3,
+      "recommended_next_action": "repair or materialize predicted active-site geometry, then rerun predicted-fold lookup if the row becomes ok predicted geometry",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": 0.010805,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "entry_id": "external_glycoside_panel",
+      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "rank": 4,
+      "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "entry_id": "m_csa:116",
+      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "rank": 5,
+      "recommended_next_action": "repair or materialize predicted active-site geometry, then rerun predicted-fold lookup if the row becomes ok predicted geometry",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": 0.050535,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "entry_id": "mh_073",
+      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
+      "panel_id": "near_orphan_glycoside_or_nucleoside_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "rank": 6,
+      "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "entry_id": "mh_064",
+      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "rank": 7,
+      "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "entry_id": "mh_065",
+      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "rank": 8,
+      "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "entry_id": "mh_066",
+      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "rank": 9,
+      "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "entry_id": "mh_067",
+      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "rank": 10,
+      "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "entry_id": "mh_068",
+      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "rank": 11,
+      "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    },
+    {
+      "benchmark_role": null,
+      "entry_id": "mh_072",
+      "guardrail_note": "review-only materialization queue; do not use as training, label promotion, or threshold-selection evidence",
+      "panel_id": "no_reliable_structure_metal_hydrolase_controls",
+      "predicted_geometry_status": "missing",
+      "predicted_geometry_top1_fingerprint_id": null,
+      "predicted_structure_nearest_atlas_true_fingerprint_id": null,
+      "rank": 12,
+      "recommended_next_action": "create source-backed external row sidecar and coordinate materialization plan before any scoring or family decision",
+      "score_blockers": [
+        "predicted_geometry_top1_score_missing",
+        "predicted_structure_fold_tm_missing"
+      ],
+      "selected_organic_cofactor_max": null,
+      "split_assignment": null
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.missing_primary_channel_queue",
+  "scope": "Review-only materialization queue for family-panel rows that lack either predicted geometry or predicted-structure fold evidence needed by the primary combined channel.",
+  "source_artifacts": {
+    "family_panel_research_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
+      "sha256": "3ef5aff8b38ce26f5a94af7e760cac78e49d00d2871c646f092422e36611956f"
+    }
+  },
+  "status": "missing_primary_channel_queue_ready_review_only"
+}

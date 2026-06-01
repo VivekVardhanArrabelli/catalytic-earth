@@ -1,0 +1,136 @@
+{
+  "artifact_id": "v3_fold_augmented_family_panel_source_check_m_csa551_current702_20260601",
+  "created_utc": "2026-06-01T08:57:00Z",
+  "fold_augmented_readout": {
+    "combined_mean_geometry_fold": 0.5446,
+    "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+    "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+    "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+    "queue_rank": 4,
+    "selected_organic_cofactor_max": 0.922628,
+    "source_check_focus": [
+      "row_specific_bond_change_and_mechanism_locus",
+      "cofactor_locus_and_redox_partner_identity",
+      "occupied_primary_fold_false_confidence_review",
+      "geometry_fold_fingerprint_disagreement",
+      "selected_organic_cofactor_confounding"
+    ],
+    "threshold_margin": 0.10305
+  },
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_source_data_fetched": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "local_source_evidence": {
+    "accepted_for_clean_support_readiness": true,
+    "adjudication_coordinate_decision": "coordinate_fixable_use_productive_1FOH_chain_C_copy",
+    "adjudication_mechanism_decision": "mechanism_clean_fmo_support",
+    "blockers_or_caveats": [
+      "Future pocket extraction must use author chain C, not the prior mapped chain A, to avoid carrying forward the 7.10 A nonproductive FAD C4X-to-IPH O1 distance.",
+      "No NADPH/NADP ligand is present in the coordinate; this is a structural-state caveat and not a mechanism disqualifier.",
+      "No C4a-hydroperoxy/peroxide flavin state is present in the coordinate; this is a structural-state caveat and not a mechanism disqualifier.",
+      "Do not relabel, import, or count as a canonical FMO positive in this closure."
+    ],
+    "catalytic_residue_count": 4,
+    "catalytic_residue_role_counts": {
+      "activator": 1,
+      "electrostatic stabiliser": 3,
+      "steric role": 1
+    },
+    "coordinate_fix_required": true,
+    "exact_next_action_from_prior_adjudication": "Record pdb:1FOH author chain C as the productive copy for future pocket extraction, with FAD label_asym I/auth_seq_id 801 and IPH label_asym J/auth_seq_id 802; keep chain D as corroborating geometry only; make no label, registry, import, ontology, threshold, scoring, or model-output changes.",
+    "import_ready": false,
+    "m_csa_entry_name": "phenol 2-monooxygenase",
+    "mechanism_evidence_summary": "Frozen M-CSA mechanism text and the existing FMO local adjudication support NADPH-reduced FAD reacting with oxygen to form C4a-hydroperoxyflavin, followed by phenol ortho hydroxylation and FAD regeneration.",
+    "mechanism_text_source_count": 1,
+    "panel_packet_scores": {
+      "predicted_geometry_top1": {
+        "cofactor_context_score": 0.2,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "role_match_fraction": 0.0,
+        "score": 0.3583
+      },
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:281",
+        "nearest_atlas_tm_score": 0.7309,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      "selected_organic_cofactor_scores": {
+        "flavin": 0.922628,
+        "heme": 0.068798,
+        "plp": 0.001487
+      },
+      "selected_pdb_fold_proxy": {
+        "nearest_primary_foldseek_prob": null,
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": null,
+        "top3_primary_foldseek_prob": null
+      }
+    },
+    "readout_research_gate_status": "non_abstained_at_research_threshold",
+    "registry_edit_allowed": false
+  },
+  "row": {
+    "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+    "curated_label_rationale": "phenol 2-monooxygenase is provisionally assigned to flavin_dehydrogenase_reductase: retrieval score 0.6700 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+    "current_fingerprint_id": "flavin_dehydrogenase_reductase",
+    "current_label_type": "seed_fingerprint",
+    "current_review_status": "automation_curated",
+    "entry_id": "m_csa:551",
+    "name": "phenol 2-monooxygenase",
+    "reference_uniprot_id": "P15245",
+    "split_assignment": "heldout"
+  },
+  "schema_version": "northstar_next_levers.v0.source_check_packet",
+  "scope": "Review-only frozen-local source check for non-abstained fold-augmented FMO panel row m_csa:551.",
+  "source_artifacts": {
+    "curated_labels": {
+      "exists": true,
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "family_panel_packet": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.json",
+      "sha256": "879759d1978c63272b7eb539c74e07494d00624edfd7d09f4e8c3534816bd2d8"
+    },
+    "family_panel_research_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
+      "sha256": "0eb9ff0963353a69fe03fb690d5d0b2ce26685c82351b7330e959252f7f46e73"
+    },
+    "family_panel_source_check_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json",
+      "sha256": "0c7f401d6677ece55a1a65914a26f6f3bc53bb78558ad97c69805f0c78e3e0b2"
+    },
+    "fmo_local_candidate_adjudication": {
+      "exists": true,
+      "path": "artifacts/v3_fmo_local_candidate_adjudication_551_973_702_20260528.json",
+      "sha256": "3cf0e39f335bf6d2f60a80b18457c59128f1f97359723211cac05017d30e833c"
+    },
+    "graph": {
+      "exists": true,
+      "path": "artifacts/v1_graph_1025.json",
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    }
+  },
+  "source_check_decision": {
+    "family_promotion_ready": false,
+    "next_action": "The non-abstained source-check queue is now complete; next work should either materialize geometry/fold-missing panel rows or run a dedicated FMO subtype/hard-negative packet before any promotion discussion.",
+    "reason": "Local source-backed evidence and prior adjudication make m_csa:551 mechanism-clean FMO support for future review, but the adjudication explicitly blocks import and registry edits; current project state also keeps FMO secondary/review-only with n>=6, hard-negative, duplicate/leakage, subtype, and expert-admission blockers.",
+    "source_check_result": "confirm_future_fmo_support_no_registry_change"
+  },
+  "status": "source_check_completed_review_only_no_label_change"
+}

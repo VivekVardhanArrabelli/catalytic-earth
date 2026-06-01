@@ -1,0 +1,167 @@
+{
+  "artifact_id": "v3_fold_augmented_family_panel_source_check_queue_current702_20260601",
+  "counts": {
+    "panels_represented": 3,
+    "source_check_rows": 4,
+    "source_check_rows_by_panel": {
+      "cobalamin_and_radical_rearrangement_panel": 1,
+      "flavin_monooxygenase_and_flavin_oxygen_transfer": 2,
+      "lipoamide_or_sulfur_transfer_redox_boundary": 1
+    }
+  },
+  "created_utc": "2026-06-01T09:11:41Z",
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_source_data_fetched": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "interpretation": {
+    "headline": "4 non-abstained family-panel rows need review-only source checking before any family-expansion decision.",
+    "next_action": "Work the queue in rank order, starting with the largest positive threshold margin, and record source-backed accept/reject/hold evidence without changing labels."
+  },
+  "queue_rows": [
+    {
+      "allowed_next_action": "review-only source check and evidence packet annotation",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "combined_mean_geometry_fold": 0.5679,
+      "entry_id": "m_csa:267",
+      "forbidden_without_future_authorization": [
+        "label promotion",
+        "registry or ontology mutation",
+        "threshold retuning",
+        "training/calibration use"
+      ],
+      "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
+      "predicted_geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "rank": 1,
+      "required_evidence_before_family_decision": [
+        "source-backed row-level bond-change evidence",
+        "source-backed cofactor or redox-partner locus evidence",
+        "duplicate and split-leakage screen if a future import is proposed",
+        "expert mechanism-locus adjudication"
+      ],
+      "selected_organic_cofactor_max": 0.834847,
+      "source_check_focus": [
+        "row_specific_bond_change_and_mechanism_locus",
+        "cofactor_locus_and_redox_partner_identity",
+        "occupied_primary_fold_false_confidence_review",
+        "geometry_fold_fingerprint_disagreement",
+        "selected_organic_cofactor_confounding"
+      ],
+      "split_assignment": "heldout",
+      "threshold_margin": 0.12635
+    },
+    {
+      "allowed_next_action": "review-only source check and evidence packet annotation",
+      "benchmark_role": "secondary_ood_probe::flavin_monooxygenase",
+      "combined_mean_geometry_fold": 0.5516,
+      "entry_id": "m_csa:131",
+      "forbidden_without_future_authorization": [
+        "label promotion",
+        "registry or ontology mutation",
+        "threshold retuning",
+        "training/calibration use"
+      ],
+      "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 2,
+      "required_evidence_before_family_decision": [
+        "source-backed row-level bond-change evidence",
+        "source-backed cofactor or redox-partner locus evidence",
+        "duplicate and split-leakage screen if a future import is proposed",
+        "expert mechanism-locus adjudication"
+      ],
+      "selected_organic_cofactor_max": 0.980908,
+      "source_check_focus": [
+        "row_specific_bond_change_and_mechanism_locus",
+        "cofactor_locus_and_redox_partner_identity",
+        "occupied_primary_fold_false_confidence_review",
+        "geometry_fold_fingerprint_disagreement",
+        "selected_organic_cofactor_confounding"
+      ],
+      "split_assignment": "heldout",
+      "threshold_margin": 0.11005
+    },
+    {
+      "allowed_next_action": "review-only source check and evidence packet annotation",
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "combined_mean_geometry_fold": 0.55105,
+      "entry_id": "m_csa:750",
+      "forbidden_without_future_authorization": [
+        "label promotion",
+        "registry or ontology mutation",
+        "threshold retuning",
+        "training/calibration use"
+      ],
+      "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "panel_id": "cobalamin_and_radical_rearrangement_panel",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 3,
+      "required_evidence_before_family_decision": [
+        "source-backed row-level bond-change evidence",
+        "source-backed cofactor or redox-partner locus evidence",
+        "duplicate and split-leakage screen if a future import is proposed",
+        "expert mechanism-locus adjudication"
+      ],
+      "selected_organic_cofactor_max": 0.703989,
+      "source_check_focus": [
+        "row_specific_bond_change_and_mechanism_locus",
+        "cofactor_locus_and_redox_partner_identity",
+        "occupied_primary_fold_false_confidence_review",
+        "geometry_fold_fingerprint_disagreement",
+        "selected_organic_cofactor_confounding"
+      ],
+      "split_assignment": "heldout",
+      "threshold_margin": 0.1095
+    },
+    {
+      "allowed_next_action": "review-only source check and evidence packet annotation",
+      "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+      "combined_mean_geometry_fold": 0.5446,
+      "entry_id": "m_csa:551",
+      "forbidden_without_future_authorization": [
+        "label promotion",
+        "registry or ontology mutation",
+        "threshold retuning",
+        "training/calibration use"
+      ],
+      "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "panel_id": "flavin_monooxygenase_and_flavin_oxygen_transfer",
+      "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "rank": 4,
+      "required_evidence_before_family_decision": [
+        "source-backed row-level bond-change evidence",
+        "source-backed cofactor or redox-partner locus evidence",
+        "duplicate and split-leakage screen if a future import is proposed",
+        "expert mechanism-locus adjudication"
+      ],
+      "selected_organic_cofactor_max": 0.922628,
+      "source_check_focus": [
+        "row_specific_bond_change_and_mechanism_locus",
+        "cofactor_locus_and_redox_partner_identity",
+        "occupied_primary_fold_false_confidence_review",
+        "geometry_fold_fingerprint_disagreement",
+        "selected_organic_cofactor_confounding"
+      ],
+      "split_assignment": "heldout",
+      "threshold_margin": 0.10305
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0",
+  "scope": "Review-only source-check queue for family-panel rows that remain non-abstained under the fixed fold-augmented research threshold.",
+  "source_artifacts": {
+    "family_panel_research_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
+      "sha256": "3ef5aff8b38ce26f5a94af7e760cac78e49d00d2871c646f092422e36611956f"
+    }
+  },
+  "status": "source_check_queue_ready_review_only"
+}

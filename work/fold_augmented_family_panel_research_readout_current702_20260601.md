@@ -1,0 +1,48 @@
+# Fold-Augmented Family-Panel Research Readout - current702
+
+Run: 2026-06-01T09:11:35Z
+
+Downstream fold-augmented research readout over review-only family-expansion packets. It applies the already selected combined_mean_geometry_fold threshold from the OOS-calibrated research contract to packet rows with both predicted geometry and predicted-structure Foldseek/TM evidence.
+
+## Status
+
+- family_panel_research_readout_ready_review_only
+- Blockers: []
+- Primary threshold: combined_mean_geometry_fold >= 0.44155
+- Train/cal OOS sufficiency: research_contract_sufficient_with_blocker_disclosure
+
+## Counts
+
+- Panel packets: 7
+- Candidate rows: 22
+- Primary score-complete rows: 10
+- Non-abstained review rows: 4
+- Abstained review rows: 6
+- Missing primary-channel scores: 12
+
+## Panel Readout
+
+| Panel | status | rows | complete | non-abstained | abstained | missing |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| glycyl_radical_or_thiamine_radical_lyase_boundary | score_complete_rows_all_abstained | 2 | 2 | 0 | 2 | 0 |
+| thiol_disulfide_oxidoreductase_isomerase_boundary | score_complete_rows_all_abstained | 1 | 1 | 0 | 1 | 0 |
+| lipoamide_or_sulfur_transfer_redox_boundary | has_non_abstained_review_rows | 2 | 2 | 1 | 1 | 0 |
+| flavin_monooxygenase_and_flavin_oxygen_transfer | has_non_abstained_review_rows | 4 | 3 | 2 | 1 | 1 |
+| cobalamin_and_radical_rearrangement_panel | has_non_abstained_review_rows | 3 | 1 | 1 | 0 | 2 |
+| no_reliable_structure_metal_hydrolase_controls | blocked_no_primary_channel_scores | 6 | 0 | 0 | 0 | 6 |
+| near_orphan_glycoside_or_nucleoside_hydrolase_controls | score_complete_rows_all_abstained | 4 | 1 | 0 | 1 | 3 |
+
+## Review-Priority Rows
+
+| Row | panel | combined mean geometry+fold | margin | geometry top1 | nearest fold fingerprint | cofactor max |
+| --- | --- | ---: | ---: | --- | --- | ---: |
+| m_csa:267 | lipoamide_or_sulfur_transfer_redox_boundary | 0.5679 | 0.12635 | heme_peroxidase_oxidase | flavin_dehydrogenase_reductase | 0.834847 |
+| m_csa:131 | flavin_monooxygenase_and_flavin_oxygen_transfer | 0.5516 | 0.11005 | metal_dependent_hydrolase | flavin_dehydrogenase_reductase | 0.980908 |
+| m_csa:750 | cobalamin_and_radical_rearrangement_panel | 0.55105 | 0.1095 | metal_dependent_hydrolase | flavin_dehydrogenase_reductase | 0.703989 |
+| m_csa:551 | flavin_monooxygenase_and_flavin_oxygen_transfer | 0.5446 | 0.10305 | metal_dependent_hydrolase | flavin_dehydrogenase_reductase | 0.922628 |
+
+## Interpretation
+
+- 4/10 score-complete review rows remain non-abstained at the bounded fold-augmented research threshold.
+- This is a downstream review readout only. It does not promote family rows, retune thresholds, train on heldout rows, or change production scoring.
+- Source-check the non-abstained review-priority rows and keep geometry/fold-missing packet rows in the coordinate or sidecar materialization queue before any family-expansion decision.

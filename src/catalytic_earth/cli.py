@@ -45,6 +45,10 @@ from .northstar_next_levers import (
     write_family_panel_evidence_packet,
     write_fold_augmented_abstention_gate,
     write_fold_augmented_abstention_threshold_contract,
+    write_fold_augmented_family_panel_missing_primary_channel_diagnosis,
+    write_fold_augmented_family_panel_missing_primary_channel_queue,
+    write_fold_augmented_family_panel_research_readout,
+    write_fold_augmented_family_panel_source_check_queue,
     write_fold_augmented_oos_calibrated_threshold_contract,
     write_fold_augmented_train_cal_oos_negative_surface_blocker_resolution,
     write_fold_augmented_train_cal_oos_negative_surface_scores,
@@ -11040,6 +11044,98 @@ def cmd_build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision
         "Wrote fold-augmented train/cal OOS surface sufficiency decision to "
         f"{args.out} (status: {audit.get('status')}, "
         f"research sufficient: {audit.get('decision', {}).get('research_surface_sufficient')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_family_panel_research_readout(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_family_panel_research_readout(
+        oos_calibrated_threshold_contract_path=Path(
+            args.oos_calibrated_threshold_contract
+        ),
+        sufficiency_decision_path=Path(args.sufficiency_decision),
+        family_panel_coverage_audit_path=Path(args.family_panel_coverage_audit),
+        family_panel_packet_paths=[
+            Path(path) for path in args.family_panel_packets
+        ],
+        train_cal_threshold_contract_path=Path(args.train_cal_threshold_contract)
+        if args.train_cal_threshold_contract
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel research readout to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"non-abstained review rows: "
+        f"{counts.get('non_abstained_at_research_threshold')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_family_panel_source_check_queue(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_family_panel_source_check_queue(
+        family_panel_research_readout_path=Path(args.family_panel_research_readout),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel source-check queue to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"rows: {counts.get('source_check_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_family_panel_missing_primary_channel_queue(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_family_panel_missing_primary_channel_queue(
+        family_panel_research_readout_path=Path(args.family_panel_research_readout),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel missing primary-channel queue to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"rows: {counts.get('missing_primary_channel_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
+    args: argparse.Namespace,
+) -> int:
+    local_candidate_adjudication = (
+        Path(args.local_candidate_adjudication)
+        if args.local_candidate_adjudication
+        else None
+    )
+    audit = write_fold_augmented_family_panel_missing_primary_channel_diagnosis(
+        missing_primary_channel_queue_path=Path(args.missing_primary_channel_queue),
+        train_cal_threshold_contract_path=Path(args.train_cal_threshold_contract),
+        predicted_structure_fold_channel_path=Path(
+            args.predicted_structure_fold_channel
+        ),
+        predicted_geometry_atlas_retrieval_path=Path(
+            args.predicted_geometry_atlas_retrieval
+        ),
+        local_candidate_adjudication_path=local_candidate_adjudication,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel missing primary-channel diagnosis to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"diagnosed rows: {counts.get('diagnosed_rows')})"
     )
     return 0
 
@@ -22190,6 +22286,187 @@ def build_parser() -> argparse.ArgumentParser:
     )
     train_cal_oos_sufficiency.set_defaults(
         func=cmd_build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision
+    )
+
+    family_panel_readout = subparsers.add_parser(
+        "build-fold-augmented-family-panel-research-readout",
+        help=(
+            "apply the bounded fold-augmented research threshold to review-only "
+            "family panel packets"
+        ),
+    )
+    family_panel_readout.add_argument(
+        "--oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "oos_calibrated_current702_20260601.json"
+        ),
+    )
+    family_panel_readout.add_argument(
+        "--sufficiency-decision",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_"
+            "sufficiency_decision_current702_20260601.json"
+        ),
+    )
+    family_panel_readout.add_argument(
+        "--family-panel-coverage-audit",
+        default="artifacts/v3_family_panel_packet_coverage_audit_current702_20260601.json",
+    )
+    family_panel_readout.add_argument(
+        "--family-panel-packets",
+        nargs="+",
+        default=[
+            "artifacts/v3_family_panel_evidence_packet_glycyl_radical_or_thiamine_radical_lyase_current702_20260601.json",
+            "artifacts/v3_family_panel_evidence_packet_thiol_disulfide_oxidoreductase_isomerase_boundary_current702_20260601.json",
+            "artifacts/v3_family_panel_evidence_packet_lipoamide_or_sulfur_transfer_redox_boundary_current702_20260601.json",
+            "artifacts/v3_family_panel_evidence_packet_flavin_monooxygenase_and_flavin_oxygen_transfer_current702_20260601.json",
+            "artifacts/v3_family_panel_evidence_packet_cobalamin_and_radical_rearrangement_panel_current702_20260601.json",
+            "artifacts/v3_family_panel_evidence_packet_no_reliable_structure_metal_hydrolase_controls_current702_20260601.json",
+            "artifacts/v3_family_panel_evidence_packet_near_orphan_glycoside_or_nucleoside_hydrolase_controls_current702_20260601.json",
+        ],
+    )
+    family_panel_readout.add_argument(
+        "--train-cal-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_readout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_research_readout_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_readout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_research_readout_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_readout.set_defaults(
+        func=cmd_build_fold_augmented_family_panel_research_readout
+    )
+
+    family_panel_source_queue = subparsers.add_parser(
+        "build-fold-augmented-family-panel-source-check-queue",
+        help=(
+            "write a review-only source-check queue for family panel rows that "
+            "remain non-abstained under the fold-augmented research threshold"
+        ),
+    )
+    family_panel_source_queue.add_argument(
+        "--family-panel-research-readout",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_research_readout_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_source_check_queue_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_queue.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_source_check_queue_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_source_queue.set_defaults(
+        func=cmd_build_fold_augmented_family_panel_source_check_queue
+    )
+
+    family_panel_missing_queue = subparsers.add_parser(
+        "build-fold-augmented-family-panel-missing-primary-channel-queue",
+        help=(
+            "write a review-only materialization queue for family panel rows "
+            "missing predicted geometry or predicted-fold primary-channel scores"
+        ),
+    )
+    family_panel_missing_queue.add_argument(
+        "--family-panel-research-readout",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_research_readout_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_missing_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_missing_queue.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_missing_primary_channel_queue_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_missing_queue.set_defaults(
+        func=cmd_build_fold_augmented_family_panel_missing_primary_channel_queue
+    )
+
+    family_panel_missing_channel_diagnosis = subparsers.add_parser(
+        "build-fold-augmented-family-panel-missing-primary-channel-diagnosis",
+        help=(
+            "diagnose missing family-panel primary-channel scores against "
+            "existing frozen current702 geometry and fold artifacts"
+        ),
+    )
+    family_panel_missing_channel_diagnosis.add_argument(
+        "--missing-primary-channel-queue",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_missing_channel_diagnosis.add_argument(
+        "--train-cal-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_missing_channel_diagnosis.add_argument(
+        "--predicted-structure-fold-channel",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    )
+    family_panel_missing_channel_diagnosis.add_argument(
+        "--predicted-geometry-atlas-retrieval",
+        default=(
+            "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_missing_channel_diagnosis.add_argument(
+        "--local-candidate-adjudication",
+        default="artifacts/v3_fmo_local_candidate_adjudication_551_973_702_20260528.json",
+    )
+    family_panel_missing_channel_diagnosis.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_missing_channel_diagnosis.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_missing_primary_channel_diagnosis_"
+            "current702_20260601.md"
+        ),
+    )
+    family_panel_missing_channel_diagnosis.set_defaults(
+        func=cmd_build_fold_augmented_family_panel_missing_primary_channel_diagnosis
     )
 
     active_site_role_sidecar = subparsers.add_parser(

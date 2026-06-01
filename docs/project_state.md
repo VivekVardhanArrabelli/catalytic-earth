@@ -100,6 +100,44 @@ artifacts first.
   frozen inputs. None can be safely cleared without new source-backed
   active-site evidence, an alternate predicted coordinate, or an explicitly
   authorized experimental-coordinate-only policy.
+- A downstream fold-augmented research readout now applies the fixed
+  OOS-calibrated `combined_mean_geometry_fold` threshold to the seven
+  review-only family expansion packets. It finds 10/22 primary score-complete
+  rows, with 4 non-abstained review-priority rows (`m_csa:267`, `m_csa:131`,
+  `m_csa:750`, and `m_csa:551`), 6 abstained rows, and 12 geometry/fold-missing
+  rows. `m_csa:973` is score-complete via its frozen train/calibration fold
+  score and abstains at the fixed threshold. A paired source-check queue ranks
+  those four rows for review-only
+  source-backed accept/reject/hold evidence. This is a triage signal only, not
+  a family promotion or threshold change.
+- The rank-1 family-panel source check for `m_csa:267` is complete from frozen
+  local artifacts and keeps the row as a review-only OOS boundary control:
+  local M-CSA graph evidence supports dihydrodipicolinate synthase lysine
+  Schiff-base aldol/cyclization chemistry rather than any current seed-family
+  promotion.
+- The rank-2 family-panel source check for `m_csa:131` confirms source-backed
+  flavin monooxygenase/oxygen-transfer support for the existing secondary-probe
+  row, but does not authorize primary FMO promotion while subtype,
+  coordinate/materialization, hard-negative, and expert-admission blockers
+  remain active.
+- The rank-3 family-panel source check for `m_csa:750` reads through the current
+  registry and existing label-revision artifact, keeping it as OOS/boundary
+  evidence and a future radical flavin/Fe-S dehydratase candidate, not a
+  current v1 flavin, FMO, cobalamin, or radical-SAM promotion.
+- The rank-4 family-panel source check for `m_csa:551` confirms mechanism-clean
+  future FMO support, but the prior local adjudication explicitly blocks import
+  and registry edits. The non-abstained family-panel source-check queue is now
+  complete with no label, threshold, split, import, or registry changes.
+- The remaining family-panel primary-channel gaps are queued separately: 12
+  rows lack geometry-plus-predicted-fold scores, with all 12 missing predicted
+  geometry top1 scores and predicted-structure Foldseek/TM scores. The
+  diagnosis confirms no remaining queued row has an upstream frozen fold score;
+  the queue prioritizes current702 M-CSA geometry repair before secondary-probe
+  and external placeholder sidecars.
+- A review-only FMO subtype/hard-negative packet keeps `m_csa:131` as
+  secondary-probe support, `m_csa:551` and `m_csa:973` as future support only,
+  `m_csa:132` as geometry-blocked, and `m_csa:750` as radical flavin/Fe-S
+  boundary negative. No FMO row is import-ready or registry-edit-ready.
 - Learned-representation results are diagnostic, not decision-grade. ESM-2
   logistic is the strongest local learned comparator in the Wave 1.2 table but
   does not displace geometry. ESM-C logistic versus ESM-C cosine shows decoder
@@ -149,12 +187,19 @@ artifacts first.
    OOS-negative surface when running downstream diagnostics; clear the remaining
    five source-geometry/coordinate/sidecar blockers before any stronger
    threshold or production-like claim.
-2. If representation work resumes, produce row-aligned local sidecars first,
+2. For family-panel review, the four non-abstained fold-augmented rows are
+   source-checked and remain review-only. `m_csa:973` now reuses its frozen
+   train/calibration fold score, is score-complete, and abstains under the fixed
+   research threshold. Next work the 12-row missing primary-channel queue,
+   starting with current702 M-CSA geometry repairs `m_csa:132` and `m_csa:116`,
+   or run a dedicated FMO subtype/hard-negative packet before any family
+   expansion decision.
+3. If representation work resumes, produce row-aligned local sidecars first,
    then train heads on train/cal rows only and evaluate heldout once, including
    a predicted-geometry robustness cell.
-3. For FMO, revise the review/silver evidence gate into subtype panels, finish
+4. For FMO, revise the review/silver evidence gate into subtype panels, finish
    coordinate/materialization blockers, and keep candidate rows review-only.
-4. For label growth, require explicit expert decision, no-import safety checks
+5. For label growth, require explicit expert decision, no-import safety checks
    where applicable, label-factory gate pass, batch acceptance, and registry
    summary refresh before any countable import.
 
@@ -180,6 +225,15 @@ artifacts first.
 - `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`
 - `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json`
 - `artifacts/v3_mechanism_feature_sidecar_schema_audit_current702_20260601.json`
+- `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`
+- `artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json`
+- `artifacts/v3_fold_augmented_family_panel_source_check_m_csa267_current702_20260601.json`
+- `artifacts/v3_fold_augmented_family_panel_source_check_m_csa131_current702_20260601.json`
+- `artifacts/v3_fold_augmented_family_panel_source_check_m_csa750_current702_20260601.json`
+- `artifacts/v3_fold_augmented_family_panel_source_check_m_csa551_current702_20260601.json`
+- `artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json`
+- `artifacts/v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.json`
+- `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`
 - `artifacts/v3_m_csa497_label_revision_702_20260527.json`
 - `artifacts/v3_m_csa750_label_revision_702_20260527.json`
 - `artifacts/v3_fmo_fingerprint_definition_audit_702_20260528.json`

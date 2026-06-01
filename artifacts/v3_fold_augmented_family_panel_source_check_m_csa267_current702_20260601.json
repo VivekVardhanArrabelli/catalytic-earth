@@ -1,0 +1,287 @@
+{
+  "artifact_id": "v3_fold_augmented_family_panel_source_check_m_csa267_current702_20260601",
+  "created_utc": "2026-06-01T08:48:57Z",
+  "fold_augmented_readout": {
+    "combined_mean_geometry_fold": 0.5679,
+    "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+    "panel_id": "lipoamide_or_sulfur_transfer_redox_boundary",
+    "predicted_geometry_top1_fingerprint_id": "heme_peroxidase_oxidase",
+    "queue_rank": 1,
+    "selected_organic_cofactor_max": 0.834847,
+    "source_check_focus": [
+      "row_specific_bond_change_and_mechanism_locus",
+      "cofactor_locus_and_redox_partner_identity",
+      "occupied_primary_fold_false_confidence_review",
+      "geometry_fold_fingerprint_disagreement",
+      "selected_organic_cofactor_confounding"
+    ],
+    "threshold_margin": 0.12635
+  },
+  "guardrails": {
+    "heldout_rows_used_for_training": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "new_source_data_fetched": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_values_changed": false
+  },
+  "local_source_evidence": {
+    "catalytic_residue_count": 6,
+    "catalytic_residue_role_counts": {
+      "activator": 2,
+      "covalently attached": 1,
+      "electron pair acceptor": 1,
+      "electron pair donor": 1,
+      "electrostatic stabiliser": 2,
+      "hydrogen bond acceptor": 2,
+      "hydrogen bond donor": 4,
+      "increase electrophilicity": 1,
+      "nucleofuge": 1,
+      "nucleophile": 1,
+      "polar interaction": 1,
+      "proton acceptor": 2,
+      "proton donor": 2,
+      "proton relay": 1,
+      "steric role": 1
+    },
+    "catalytic_residues": [
+      {
+        "residue_node_id": "m_csa:267:residue:1",
+        "roles": [
+          "electrostatic stabiliser"
+        ],
+        "sequence_positions": [
+          {
+            "code": "Arg",
+            "is_reference": true,
+            "resid": 138,
+            "uniprot_id": "P0A6L2"
+          }
+        ],
+        "structure_positions": [
+          {
+            "chain_name": "A",
+            "code": "Arg",
+            "is_reference": true,
+            "pdb_id": "1dhp",
+            "resid": 138
+          }
+        ]
+      },
+      {
+        "residue_node_id": "m_csa:267:residue:2",
+        "roles": [
+          "hydrogen bond acceptor",
+          "hydrogen bond donor"
+        ],
+        "sequence_positions": [
+          {
+            "code": "Thr",
+            "is_reference": true,
+            "resid": 44,
+            "uniprot_id": "P0A6L2"
+          }
+        ],
+        "structure_positions": [
+          {
+            "chain_name": "A",
+            "code": "Thr",
+            "is_reference": true,
+            "pdb_id": "1dhp",
+            "resid": 44
+          }
+        ]
+      },
+      {
+        "residue_node_id": "m_csa:267:residue:3",
+        "roles": [
+          "activator",
+          "increase electrophilicity",
+          "polar interaction",
+          "steric role"
+        ],
+        "sequence_positions": [
+          {
+            "code": "Ile",
+            "is_reference": true,
+            "resid": 203,
+            "uniprot_id": "P0A6L2"
+          }
+        ],
+        "structure_positions": [
+          {
+            "chain_name": "A",
+            "code": "Ile",
+            "is_reference": true,
+            "pdb_id": "1dhp",
+            "resid": 203
+          }
+        ]
+      },
+      {
+        "residue_node_id": "m_csa:267:residue:4",
+        "roles": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond donor",
+          "proton acceptor",
+          "proton donor",
+          "proton relay"
+        ],
+        "sequence_positions": [
+          {
+            "code": "Tyr",
+            "is_reference": true,
+            "resid": 133,
+            "uniprot_id": "P0A6L2"
+          }
+        ],
+        "structure_positions": [
+          {
+            "chain_name": "A",
+            "code": "Tyr",
+            "is_reference": true,
+            "pdb_id": "1dhp",
+            "resid": 133
+          }
+        ]
+      },
+      {
+        "residue_node_id": "m_csa:267:residue:5",
+        "roles": [
+          "covalently attached",
+          "electron pair acceptor",
+          "electron pair donor",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "sequence_positions": [
+          {
+            "code": "Lys",
+            "is_reference": true,
+            "resid": 161,
+            "uniprot_id": "P0A6L2"
+          }
+        ],
+        "structure_positions": [
+          {
+            "chain_name": "A",
+            "code": "Lys",
+            "is_reference": true,
+            "pdb_id": "1dhp",
+            "resid": 161
+          }
+        ]
+      },
+      {
+        "residue_node_id": "m_csa:267:residue:6",
+        "roles": [
+          "hydrogen bond donor"
+        ],
+        "sequence_positions": [
+          {
+            "code": "Tyr",
+            "is_reference": true,
+            "resid": 107,
+            "uniprot_id": "P0A6L2"
+          }
+        ],
+        "structure_positions": [
+          {
+            "chain_name": "B",
+            "code": "Tyr",
+            "is_reference": true,
+            "pdb_id": "1dhp",
+            "resid": 107
+          }
+        ]
+      }
+    ],
+    "curated_label_rationale": "Dihydrodipicolinate synthase uses lysine Schiff-base aldol condensation and cyclization chemistry rather than PLP-dependent or hydrolase seed chemistry.",
+    "m_csa_entry_name": "dihydrodipicolinate synthase",
+    "mechanism_evidence_summary": "Frozen M-CSA mechanism text describes Lys161 Schiff-base formation with pyruvate, enamine addition to dehydrated (S)-ASA, and cyclization to HTPA; this supports lysine Schiff-base aldol/cyclization chemistry rather than the occupied seed mechanisms used by the current fold-augmented gate.",
+    "mechanism_text_source_count": 1,
+    "panel_packet_scores": {
+      "predicted_geometry_top1": {
+        "cofactor_context_score": 0.0,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "role_match_fraction": 0.6667,
+        "score": 0.3969
+      },
+      "predicted_structure_fold_channel": {
+        "nearest_atlas_entry_id": "m_csa:800",
+        "nearest_atlas_tm_score": 0.7389,
+        "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase"
+      },
+      "selected_organic_cofactor_scores": {
+        "flavin": 0.002346,
+        "heme": 0.003092,
+        "plp": 0.834847
+      },
+      "selected_pdb_fold_proxy": {
+        "nearest_primary_foldseek_prob": 0.0,
+        "nearest_train_fingerprint_id": null,
+        "nearest_train_label_group": "out_of_scope",
+        "top3_primary_foldseek_prob": 0.0
+      }
+    },
+    "readout_research_gate_status": "non_abstained_at_research_threshold"
+  },
+  "row": {
+    "benchmark_role": "oos_tier::unknown_oos",
+    "curated_label_rationale": "Dihydrodipicolinate synthase uses lysine Schiff-base aldol condensation and cyclization chemistry rather than PLP-dependent or hydrolase seed chemistry.",
+    "entry_id": "m_csa:267",
+    "fingerprint_id": null,
+    "label_type": "out_of_scope",
+    "name": "dihydrodipicolinate synthase",
+    "reference_uniprot_id": "P0A6L2",
+    "split_assignment": "heldout"
+  },
+  "schema_version": "northstar_next_levers.v0.source_check_packet",
+  "scope": "Review-only frozen-local source check for the top-ranked non-abstained fold-augmented family-panel row m_csa:267.",
+  "source_artifacts": {
+    "curated_labels": {
+      "exists": true,
+      "path": "data/registries/curated_mechanism_labels.json",
+      "sha256": "5eec9bef56baed7f68a82daa3b3dbc854fcf88f91c915ff5b48a42050c272505"
+    },
+    "family_panel_packet": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_evidence_packet_lipoamide_or_sulfur_transfer_redox_boundary_current702_20260601.json",
+      "sha256": "78b3032f6f9b3f381da700cdab3df55f18256d0da9412298e4368637c5d38c1c"
+    },
+    "family_panel_research_readout": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json",
+      "sha256": "0eb9ff0963353a69fe03fb690d5d0b2ce26685c82351b7330e959252f7f46e73"
+    },
+    "family_panel_source_check_queue": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json",
+      "sha256": "0c7f401d6677ece55a1a65914a26f6f3bc53bb78558ad97c69805f0c78e3e0b2"
+    },
+    "graph": {
+      "exists": true,
+      "path": "artifacts/v1_graph_1025.json",
+      "sha256": "efaf0e97e740373f647fdb8ace87f4d693eb40356e929ac1e5de1f25a0d56a25"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    }
+  },
+  "source_check_decision": {
+    "family_promotion_ready": false,
+    "next_action": "Continue the source-check queue with m_csa:131; keep m_csa:267 as an OOS boundary control unless a future explicitly authorized Schiff-base aldol/cyclization panel is scoped with expert review.",
+    "reason": "Local source-backed mechanism evidence supports dihydrodipicolinate synthase lysine Schiff-base aldol/cyclization chemistry. The fold-augmented non-abstention is useful as a false-confidence review signal, but it does not support lipoamide/sulfur-transfer, flavin, heme, PLP, hydrolase, or other current seed-family promotion.",
+    "source_check_result": "keep_as_review_only_oos_boundary_control"
+  },
+  "status": "source_check_completed_review_only_no_label_change"
+}

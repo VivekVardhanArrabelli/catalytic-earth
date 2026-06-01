@@ -50,6 +50,131 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Fold-Augmented Family Panel Readout And FMO Subtype Packet
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T08:33:37Z`
+- STARTED_LOCAL: `Mon Jun  1 03:33:37 CDT 2026`
+- ENDED_AT: `2026-06-01T09:23:45Z`
+- ENDED_LOCAL: `Mon Jun  1 04:23:45 CDT 2026`
+- ELAPSED_MINUTES: `50.1`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "5827", "started_at": "2026-06-01T08:33:37Z", "status": "acquired"}`
+- Lock release result: pending at handoff write; release command to run after
+  clean synced push:
+  `PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock --repo-root "$PWD" release --require-clean --require-no-merge --require-synced`
+- Git branch at start: `main`
+- Git HEAD at start: `e7c99c34b6498bcb6e46021bd5b14f47bac252d1`
+- Dirty files at start: none
+- Git branch at end before commit: `main`
+- Git HEAD at end before commit: `e7c99c34b6498bcb6e46021bd5b14f47bac252d1`
+- Dirty files at end before staging:
+  `docs/artifact_index.md`, `docs/decision_log.md`,
+  `docs/project_state.md`, `src/catalytic_earth/cli.py`,
+  `src/catalytic_earth/northstar_next_levers.py`,
+  `tests/test_geometry_artifact_regression.py`,
+  `tests/test_northstar_next_levers.py`,
+  `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`,
+  `work/fold_augmented_family_panel_research_readout_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json`,
+  `work/fold_augmented_family_panel_source_check_queue_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_source_check_m_csa267_current702_20260601.json`,
+  `work/fold_augmented_family_panel_source_check_m_csa267_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_source_check_m_csa131_current702_20260601.json`,
+  `work/fold_augmented_family_panel_source_check_m_csa131_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_source_check_m_csa750_current702_20260601.json`,
+  `work/fold_augmented_family_panel_source_check_m_csa750_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_source_check_m_csa551_current702_20260601.json`,
+  `work/fold_augmented_family_panel_source_check_m_csa551_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json`,
+  `work/fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.json`,
+  `work/fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.md`,
+  `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`,
+  `work/fmo_subtype_hard_negative_packet_current702_20260601.md`, and
+  this handoff.
+- Input artifacts:
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json`,
+  `artifacts/v3_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision_current702_20260601.json`,
+  `artifacts/v3_family_panel_packet_coverage_audit_current702_20260601.json`,
+  seven `artifacts/v3_family_panel_evidence_packet_*current702_20260601.json`
+  panel packets, `artifacts/v3_fmo_local_candidate_adjudication_551_973_702_20260528.json`,
+  and the current702 label/graph/fingerprint registries used by validation.
+- Output artifacts:
+  `artifacts/v3_fold_augmented_family_panel_research_readout_current702_20260601.json`,
+  `work/fold_augmented_family_panel_research_readout_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_source_check_queue_current702_20260601.json`,
+  `work/fold_augmented_family_panel_source_check_queue_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_source_check_m_csa267_current702_20260601.json`,
+  `work/fold_augmented_family_panel_source_check_m_csa267_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_source_check_m_csa131_current702_20260601.json`,
+  `work/fold_augmented_family_panel_source_check_m_csa131_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_source_check_m_csa750_current702_20260601.json`,
+  `work/fold_augmented_family_panel_source_check_m_csa750_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_source_check_m_csa551_current702_20260601.json`,
+  `work/fold_augmented_family_panel_source_check_m_csa551_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.json`,
+  `work/fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601.md`,
+  `artifacts/v3_fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.json`,
+  `work/fold_augmented_family_panel_missing_primary_channel_diagnosis_current702_20260601.md`,
+  `artifacts/v3_fmo_subtype_hard_negative_packet_current702_20260601.json`,
+  `work/fmo_subtype_hard_negative_packet_current702_20260601.md`,
+  updated `docs/project_state.md`, `docs/decision_log.md`, and
+  `docs/artifact_index.md`.
+- Commands run:
+  lock acquire/status, `git fetch origin`, `git pull --ff-only origin main`,
+  `df -h .`, required doc reads, `PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-family-panel-research-readout`,
+  `PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-family-panel-source-check-queue`,
+  `PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-family-panel-missing-primary-channel-queue`,
+  `PYTHONPATH=src python -m catalytic_earth.cli build-fold-augmented-family-panel-missing-primary-channel-diagnosis`,
+  `python -m json.tool` on new JSON artifacts, doc reference checks,
+  `python -m compileall -q src tests`, `git diff --check`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -q`,
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`,
+  `PYTHONPATH=src python -m pytest -q`, and
+  `PYTHONPATH=src python -m unittest discover -s tests`.
+- Validation results:
+  `tests/test_northstar_next_levers.py`: 27 passed; focused combined
+  regression suite: 64 passed and 7 subtests passed; full pytest:
+  1029 passed, 1 warning, 26 subtests passed; unittest discovery:
+  1006 tests OK; CLI validate passed for 12 source records, 8 mechanism
+  fingerprints, 15 ontology families, and 702 curated labels; compileall and
+  `git diff --check` passed; doc artifact references had 0 missing paths; disk
+  free was 30 GiB.
+- Commit/push result: pending at handoff write; stage, commit, push, verify
+  `HEAD == origin/main`, then release the lock.
+- Exact next action for the next run: work the remaining 12-row
+  family-panel missing primary-channel queue by repairing current702 M-CSA
+  predicted-geometry gaps for `m_csa:132` and `m_csa:116`, then materialize
+  source-backed sidecars for secondary-probe and external placeholder rows.
+
+#### Work Completed
+
+- Added code-backed fold-augmented family-panel readout, source-check queue,
+  missing-primary-channel queue, and missing-channel diagnosis builders and CLI
+  commands.
+- Reused the frozen train/calibration fold score for `m_csa:973` in the
+  family-panel readout. It is now score-complete and abstains at the fixed
+  research threshold (`combined_mean_geometry_fold=0.41 < 0.44155`), so it is
+  no longer in the missing queue.
+- Source-checked the four non-abstained review rows: `m_csa:267`,
+  `m_csa:131`, `m_csa:750`, and `m_csa:551`. All remain review-only with no
+  label, registry, import, ontology, threshold, split, or training change.
+- Added the review-only FMO subtype/hard-negative packet. It keeps
+  `m_csa:131` as secondary support, `m_csa:551` and `m_csa:973` as future
+  support only, `m_csa:132` as geometry-blocked, and `m_csa:750` as a radical
+  flavin/Fe-S boundary negative.
+- Updated regression coverage and project docs for the new artifacts and
+  current next gate.
+
 ### 2026-06-01 Fold Channel Validation And Research Gate Handoff
 
 Automation run: `catalytic-earth-work-loop`

@@ -10,6 +10,10 @@ from catalytic_earth.northstar_next_levers import (
     _predicted_model_parts,
     build_family_panel_evidence_packet,
     build_fold_augmented_abstention_gate,
+    build_fold_augmented_family_panel_missing_primary_channel_diagnosis,
+    build_fold_augmented_family_panel_missing_primary_channel_queue,
+    build_fold_augmented_family_panel_research_readout,
+    build_fold_augmented_family_panel_source_check_queue,
     build_fold_augmented_oos_calibrated_threshold_contract,
     build_fold_augmented_abstention_threshold_contract,
     build_fold_augmented_train_cal_oos_negative_surface_blocker_resolution,
@@ -725,6 +729,447 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertTrue(audit["decision"]["research_surface_sufficient"])
         self.assertFalse(audit["decision"]["production_surface_sufficient"])
         self.assertEqual(audit["counts"]["score_complete_fraction"], 0.9)
+
+    def test_fold_augmented_family_panel_readout_applies_research_threshold(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            contract = root / "contract.json"
+            sufficiency = root / "sufficiency.json"
+            coverage = root / "coverage.json"
+            packet = root / "packet.json"
+            contract.write_text(
+                json.dumps(
+                    {
+                        "status": "computed_oos_calibrated_threshold_contract",
+                        "primary_channel_readout": {
+                            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                "threshold": 0.5
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sufficiency.write_text(
+                json.dumps(
+                    {
+                        "status": "research_contract_sufficient_with_blocker_disclosure"
+                    }
+                ),
+                encoding="utf-8",
+            )
+            coverage.write_text(
+                json.dumps(
+                    {
+                        "panel_summaries": [
+                            {"panel_id": "panel_a", "artifact": str(packet)}
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            packet.write_text(
+                json.dumps(
+                    {
+                        "status": "evidence_packet_ready_review_only",
+                        "panel": {"candidate_family": "panel_a"},
+                        "row_evidence": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "predicted_geometry_status": "ok",
+                                "predicted_geometry_top1": {
+                                    "fingerprint_id": "metal_dependent_hydrolase",
+                                    "score": 0.7,
+                                },
+                                "predicted_structure_fold_channel": {
+                                    "nearest_atlas_entry_id": "m_csa:2",
+                                    "nearest_atlas_true_fingerprint_id": "metal_dependent_hydrolase",
+                                    "nearest_atlas_tm_score": 0.6,
+                                },
+                                "selected_organic_cofactor_max": 0.2,
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "predicted_geometry_status": "ok",
+                                "predicted_geometry_top1": {
+                                    "fingerprint_id": "ser_his_acid_hydrolase",
+                                    "score": 0.3,
+                                },
+                                "predicted_structure_fold_channel": {
+                                    "nearest_atlas_entry_id": "m_csa:4",
+                                    "nearest_atlas_true_fingerprint_id": "ser_his_acid_hydrolase",
+                                    "nearest_atlas_tm_score": 0.4,
+                                },
+                                "selected_organic_cofactor_max": 0.1,
+                            },
+                            {
+                                "entry_id": "m_csa:5",
+                                "predicted_geometry_status": "missing",
+                                "predicted_geometry_top1": {"score": None},
+                                "predicted_structure_fold_channel": {
+                                    "nearest_atlas_tm_score": None
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_family_panel_research_readout(
+                oos_calibrated_threshold_contract_path=contract,
+                sufficiency_decision_path=sufficiency,
+                family_panel_coverage_audit_path=coverage,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "family_panel_research_readout_ready_review_only",
+        )
+        self.assertEqual(audit["threshold_source"]["threshold"], 0.5)
+        self.assertEqual(audit["counts"]["primary_score_complete_rows"], 2)
+        self.assertEqual(audit["counts"]["non_abstained_at_research_threshold"], 1)
+        self.assertEqual(audit["counts"]["abstained_at_research_threshold"], 1)
+        self.assertEqual(audit["counts"]["not_score_complete_for_primary_channel"], 1)
+        self.assertEqual(audit["review_priority_rows"][0]["entry_id"], "m_csa:1")
+        self.assertEqual(
+            audit["panel_summaries"][0]["research_readout_status"],
+            "has_non_abstained_review_rows",
+        )
+
+    def test_fold_augmented_family_panel_readout_reuses_train_cal_fold_scores(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            contract = root / "contract.json"
+            sufficiency = root / "sufficiency.json"
+            coverage = root / "coverage.json"
+            packet = root / "packet.json"
+            train_cal = root / "train_cal.json"
+            contract.write_text(
+                json.dumps(
+                    {
+                        "status": "computed_oos_calibrated_threshold_contract",
+                        "primary_channel_readout": {
+                            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain": {
+                                "threshold": 0.5
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sufficiency.write_text(
+                json.dumps(
+                    {
+                        "status": "research_contract_sufficient_with_blocker_disclosure"
+                    }
+                ),
+                encoding="utf-8",
+            )
+            coverage.write_text(
+                json.dumps(
+                    {
+                        "panel_summaries": [
+                            {"panel_id": "panel_a", "artifact": str(packet)}
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            packet.write_text(
+                json.dumps(
+                    {
+                        "status": "evidence_packet_ready_review_only",
+                        "panel": {"candidate_family": "panel_a"},
+                        "row_evidence": [
+                            {
+                                "entry_id": "m_csa:973",
+                                "predicted_geometry_status": "ok",
+                                "predicted_geometry_top1": {
+                                    "fingerprint_id": "metal_dependent_hydrolase",
+                                    "score": 0.7,
+                                },
+                                "predicted_structure_fold_channel": {},
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            train_cal.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "m_csa:973",
+                                "partition": "calibration",
+                                "nearest_train_atlas_entry_id": "m_csa:795",
+                                "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+                                "channel_scores": {
+                                    "fold_nearest_atlas_tm_score": 0.4575,
+                                    "geometry_top1_score": 0.3625,
+                                    "combined_mean_geometry_fold": 0.41,
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_family_panel_research_readout(
+                oos_calibrated_threshold_contract_path=contract,
+                sufficiency_decision_path=sufficiency,
+                family_panel_coverage_audit_path=coverage,
+                train_cal_threshold_contract_path=train_cal,
+            )
+
+        row = audit["row_scores"][0]
+        self.assertEqual(audit["counts"]["primary_score_complete_rows"], 1)
+        self.assertEqual(row["research_gate_status"], "non_abstained_at_research_threshold")
+        self.assertEqual(
+            row["predicted_structure_fold_score_source"],
+            "fold_augmented_train_cal_threshold_contract_calibration_row",
+        )
+        self.assertEqual(
+            row["channel_scores"]["fold_nearest_atlas_tm_score"],
+            0.4575,
+        )
+
+    def test_fold_augmented_family_panel_source_check_queue_uses_priority_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            readout = root / "readout.json"
+            readout.write_text(
+                json.dumps(
+                    {
+                        "status": "family_panel_research_readout_ready_review_only",
+                        "review_priority_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "panel_id": "panel_a",
+                                "combined_mean_geometry_fold": 0.6,
+                                "threshold_margin": 0.1,
+                                "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+                                "selected_organic_cofactor_max": 0.9,
+                            }
+                        ],
+                        "row_scores": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "panel_id": "panel_a",
+                                "split_assignment": "heldout",
+                                "benchmark_role": "oos_tier::unknown_oos",
+                                "predicted_geometry_top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "predicted_structure_nearest_atlas_true_fingerprint_id": "flavin_dehydrogenase_reductase",
+                                "selected_organic_cofactor_max": 0.9,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_family_panel_source_check_queue(
+                family_panel_research_readout_path=readout,
+            )
+
+        self.assertEqual(audit["status"], "source_check_queue_ready_review_only")
+        self.assertEqual(audit["counts"]["source_check_rows"], 1)
+        self.assertEqual(audit["queue_rows"][0]["entry_id"], "m_csa:1")
+        self.assertIn(
+            "geometry_fold_fingerprint_disagreement",
+            audit["queue_rows"][0]["source_check_focus"],
+        )
+        self.assertFalse(audit["guardrails"]["new_source_data_fetched"])
+
+    def test_fold_augmented_family_panel_missing_primary_channel_queue_uses_readout_blockers(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            readout = root / "readout.json"
+            readout.write_text(
+                json.dumps(
+                    {
+                        "status": "family_panel_research_readout_ready_review_only",
+                        "row_scores": [
+                            {
+                                "entry_id": "m_csa:132",
+                                "panel_id": "fmo",
+                                "research_gate_status": "not_score_complete_for_primary_channel",
+                                "score_blockers": [
+                                    "predicted_geometry_top1_score_missing",
+                                    "predicted_structure_fold_tm_missing",
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:973",
+                                "panel_id": "fmo",
+                                "research_gate_status": "abstained_at_research_threshold",
+                                "score_blockers": [],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_family_panel_missing_primary_channel_queue(
+                family_panel_research_readout_path=readout,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "missing_primary_channel_queue_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["missing_primary_channel_rows"], 1)
+        self.assertEqual(audit["counts"]["m_csa_rows"], 1)
+        self.assertEqual(audit["queue_rows"][0]["entry_id"], "m_csa:132")
+        self.assertIn(
+            "repair or materialize predicted active-site geometry",
+            audit["queue_rows"][0]["recommended_next_action"],
+        )
+
+    def test_fold_augmented_family_panel_missing_primary_channel_diagnosis_reuses_train_cal_fold_score(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue = root / "queue.json"
+            train_cal = root / "train_cal.json"
+            fold_channel = root / "fold_channel.json"
+            predicted_geometry = root / "predicted_geometry.json"
+            adjudication = root / "adjudication.json"
+            queue.write_text(
+                json.dumps(
+                    {
+                        "status": "missing_primary_channel_queue_ready_review_only",
+                        "queue_rows": [
+                            {
+                                "rank": 1,
+                                "entry_id": "m_csa:973",
+                                "panel_id": "fmo",
+                                "split_assignment": "in_distribution",
+                                "benchmark_role": "primary_supervised_metric::flavin_dehydrogenase_reductase",
+                                "score_blockers": [
+                                    "predicted_structure_fold_tm_missing"
+                                ],
+                            },
+                            {
+                                "rank": 2,
+                                "entry_id": "external_panel_row",
+                                "panel_id": "external",
+                                "score_blockers": [
+                                    "predicted_geometry_top1_score_missing",
+                                    "predicted_structure_fold_tm_missing",
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            train_cal.write_text(
+                json.dumps(
+                    {
+                        "calibration_row_scores": [
+                            {
+                                "entry_id": "m_csa:973",
+                                "partition": "calibration",
+                                "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+                                "nearest_train_atlas_entry_id": "m_csa:795",
+                                "nearest_train_atlas_true_fingerprint_id": "heme_peroxidase_oxidase",
+                                "channel_scores": {
+                                    "geometry_top1_score": 0.3625,
+                                    "fold_nearest_atlas_tm_score": 0.4575,
+                                    "combined_mean_geometry_fold": 0.41,
+                                },
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_channel.write_text(
+                json.dumps({"fold_channel_signal": {}}),
+                encoding="utf-8",
+            )
+            predicted_geometry.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "m_csa:973",
+                                "status": "ok",
+                                "split_assignment": "in_distribution",
+                                "accession": "A0A0C6DRW4",
+                                "predicted_pdb_id": "AF-A0A0C6DRW4-F1-model_v6",
+                                "top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "top1_score": 0.3625,
+                                "true_fingerprint_id": "flavin_dehydrogenase_reductase",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            adjudication.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:973",
+                                "mechanism_clean": True,
+                                "coordinate_clean": False,
+                                "accepted_for_clean_support_readiness": True,
+                                "import_ready": False,
+                                "registry_edit_allowed": False,
+                                "mechanism_decision": "mechanism_clean_two_component_FMNH2_sulfur_monooxygenase_support",
+                                "coordinate_decision": "structure_resolved_source_text_typo_pending_external_source_check",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_family_panel_missing_primary_channel_diagnosis(
+                missing_primary_channel_queue_path=queue,
+                train_cal_threshold_contract_path=train_cal,
+                predicted_structure_fold_channel_path=fold_channel,
+                predicted_geometry_atlas_retrieval_path=predicted_geometry,
+                local_candidate_adjudication_path=adjudication,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "missing_primary_channel_diagnosis_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["diagnosed_rows"], 2)
+        self.assertEqual(audit["counts"]["rows_with_train_calibration_fold_score"], 1)
+        by_entry = {row["entry_id"]: row for row in audit["diagnosed_rows"]}
+        self.assertEqual(
+            by_entry["m_csa:973"]["diagnosis"],
+            "family_panel_lookup_scope_gap",
+        )
+        self.assertEqual(
+            by_entry["m_csa:973"]["fold_score_evidence"][
+                "nearest_atlas_tm_score"
+            ],
+            0.4575,
+        )
+        self.assertFalse(
+            by_entry["m_csa:973"]["local_review_evidence"]["registry_edit_allowed"]
+        )
+        self.assertEqual(
+            by_entry["external_panel_row"]["diagnosis"],
+            "needs_source_backed_row_sidecar_and_coordinate_materialization",
+        )
+        self.assertFalse(audit["guardrails"]["foldseek_or_tmsearch_recomputed"])
 
     def test_train_cal_oos_geometry_selection_allows_accession_subset(self) -> None:
         label_manifest = {
