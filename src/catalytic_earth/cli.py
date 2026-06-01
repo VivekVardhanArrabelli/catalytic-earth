@@ -89,6 +89,7 @@ from .northstar_next_levers import (
     write_predicted_structure_fold_channel,
     write_predicted_structure_fold_channel_contract_audit,
     write_predicted_structure_fold_channel_coordinate_provenance_audit,
+    write_predicted_structure_fold_channel_reproduction_manifest,
     write_selected_organic_cofactor_sidecar_schema_audit,
 )
 from .geometry_reports import write_geometry_slice_summary
@@ -10902,6 +10903,29 @@ def cmd_audit_predicted_structure_fold_channel_coordinate_provenance(
     print(
         "Wrote predicted-structure fold channel coordinate provenance audit to "
         f"{args.out} (status: {audit.get('status')}, "
+        f"missing coordinates: {counts.get('unique_coordinate_files_missing')})"
+    )
+    return 0
+
+
+def cmd_build_predicted_structure_fold_channel_reproduction_manifest(
+    args: argparse.Namespace,
+) -> int:
+    manifest = write_predicted_structure_fold_channel_reproduction_manifest(
+        predicted_structure_fold_channel_path=Path(args.predicted_structure_fold_channel),
+        contract_audit_path=Path(args.contract_audit) if args.contract_audit else None,
+        coordinate_provenance_audit_path=(
+            Path(args.coordinate_provenance_audit)
+            if args.coordinate_provenance_audit
+            else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = manifest.get("counts", {})
+    print(
+        "Wrote predicted-structure fold channel reproduction manifest to "
+        f"{args.out} (status: {manifest.get('status')}, "
         f"missing coordinates: {counts.get('unique_coordinate_files_missing')})"
     )
     return 0
@@ -22553,6 +22577,49 @@ def build_parser() -> argparse.ArgumentParser:
     )
     predicted_structure_fold_coordinate_provenance.set_defaults(
         func=cmd_audit_predicted_structure_fold_channel_coordinate_provenance
+    )
+
+    predicted_structure_fold_reproduction = subparsers.add_parser(
+        "build-predicted-structure-fold-channel-reproduction-manifest",
+        help=(
+            "record exact coordinate, TSV, runtime, and rerun commands for "
+            "byte-level reproduction of the scored predicted-structure fold channel"
+        ),
+    )
+    predicted_structure_fold_reproduction.add_argument(
+        "--predicted-structure-fold-channel",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    )
+    predicted_structure_fold_reproduction.add_argument(
+        "--contract-audit",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_contract_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_structure_fold_reproduction.add_argument(
+        "--coordinate-provenance-audit",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_structure_fold_reproduction.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    predicted_structure_fold_reproduction.add_argument(
+        "--report",
+        default=(
+            "work/predicted_structure_fold_channel_reproduction_manifest_"
+            "current702_20260601.md"
+        ),
+    )
+    predicted_structure_fold_reproduction.set_defaults(
+        func=cmd_build_predicted_structure_fold_channel_reproduction_manifest
     )
 
     predicted_atlas_geometry_variants = subparsers.add_parser(

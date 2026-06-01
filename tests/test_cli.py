@@ -114,6 +114,13 @@ class CliTests(unittest.TestCase):
                 "cmd_audit_predicted_structure_fold_channel_coordinate_provenance",
             ),
             (
+                "build-predicted-structure-fold-channel-reproduction-manifest",
+                (
+                    "cmd_build_predicted_structure_fold_channel_"
+                    "reproduction_manifest"
+                ),
+            ),
+            (
                 "build-mechanism-feature-row-specific-bond-change-schema",
                 "cmd_build_mechanism_feature_row_specific_bond_change_schema",
             ),

@@ -2761,6 +2761,49 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(audit["counts"]["result_files_parseable"])
         self.assertEqual(audit["contract_audit"]["critical_violation_total"], 0)
 
+    def test_predicted_structure_fold_channel_reproduction_manifest_current_counts(
+        self,
+    ) -> None:
+        manifest = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json"
+        )
+
+        self.assertEqual(
+            manifest["status"],
+            "fold_channel_reproduction_manifest_ready_missing_coordinates",
+        )
+        self.assertEqual(manifest["counts"]["heldout_rows_ok"], 126)
+        self.assertEqual(
+            manifest["counts"]["priority_cofactor_confounded_oos_rows"],
+            6,
+        )
+        self.assertEqual(manifest["counts"]["total_coordinate_requests"], 299)
+        self.assertEqual(manifest["counts"]["unique_coordinate_files_expected"], 299)
+        self.assertEqual(manifest["counts"]["unique_coordinate_files_observed"], 0)
+        self.assertEqual(manifest["counts"]["unique_coordinate_files_missing"], 299)
+        self.assertEqual(manifest["counts"]["unique_accessions_expected"], 293)
+        self.assertEqual(
+            manifest["counts"]["unique_accessions_without_any_local_file"],
+            293,
+        )
+        self.assertEqual(manifest["counts"]["duplicate_accession_requests"], 6)
+        self.assertEqual(manifest["counts"]["foldseek_result_files"], 2)
+        self.assertTrue(manifest["counts"]["result_files_parseable"])
+        self.assertTrue(manifest["counts"]["foldseek_runtime_available"])
+        self.assertFalse(manifest["counts"]["byte_reproduction_ready"])
+        self.assertEqual(
+            manifest["blocker_classes"],
+            ["persistent_afdb_v6_coordinate_bundle_missing"],
+        )
+        self.assertEqual(
+            manifest["scored_channel_contract"]["critical_violation_total"],
+            0,
+        )
+        self.assertFalse(manifest["guardrails"]["coordinate_downloads_performed"])
+        self.assertFalse(manifest["guardrails"]["foldseek_or_tmsearch_recomputed"])
+
     def test_predicted_atlas_geometry_novelty_variants_current_counts(self) -> None:
         audit = _load_json(
             ROOT

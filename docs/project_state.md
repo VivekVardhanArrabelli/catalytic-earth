@@ -78,6 +78,11 @@ artifacts first.
   are present and parseable, the contract audit still has zero critical
   violations, and byte-level reproduction would require persisting 299 expected
   AFDB-v6 coordinate paths across 293 deduplicated accessions.
+- A reproduction manifest now ties that fold channel together for future reruns:
+  it records exact AFDB-v6 coordinate requests, scored TSV hashes, Foldseek
+  commands, contract/provenance audit hashes, and the single blocker class
+  `persistent_afdb_v6_coordinate_bundle_missing`. No coordinates were
+  downloaded and no Foldseek/TM score was recomputed.
 - The fold-augmented gate now has a leakage-safe thresholding contract. A
   deterministic in-distribution train/cal split selected the
   `combined_mean_geometry_fold` threshold `0.44155` at >=90% calibration
@@ -473,6 +478,7 @@ artifacts first.
 - `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`
 - `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`
 - `artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json`
+- `artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`
 - `artifacts/v3_predicted_structure_fold_augmented_novelty_variants_current702_20260601.json`
 - `artifacts/v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601.json`
 - `artifacts/v3_predicted_atlas_geometry_novelty_variants_current702_20260601.json`

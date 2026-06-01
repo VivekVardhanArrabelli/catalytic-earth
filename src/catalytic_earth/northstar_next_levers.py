@@ -54,6 +54,9 @@ PREDICTED_STRUCTURE_FOLD_CHANNEL_CONTRACT_AUDIT_ID = (
 PREDICTED_STRUCTURE_FOLD_CHANNEL_COORDINATE_PROVENANCE_AUDIT_ID = (
     "v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601"
 )
+PREDICTED_STRUCTURE_FOLD_CHANNEL_REPRODUCTION_MANIFEST_ID = (
+    "v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601"
+)
 PREDICTED_STRUCTURE_FOLD_AUGMENTED_NOVELTY_OPERATING_GRID_ID = (
     "v3_predicted_structure_fold_augmented_novelty_operating_grid_current702_20260601"
 )
@@ -2307,6 +2310,512 @@ def write_predicted_structure_fold_channel_coordinate_provenance_audit(
             encoding="utf-8",
         )
     return audit
+
+
+def _compact_coordinate_reproduction_record(
+    group_name: str, item: dict[str, Any]
+) -> dict[str, Any]:
+    record = _coordinate_request_record(item)
+    return {
+        "group": group_name,
+        "accession": record["accession"],
+        "predicted_pdb_id": record["predicted_pdb_id"],
+        "entry_ids": record["entry_ids"],
+        "role": record["role"],
+        "expected_local_path": record["expected_local_path"],
+        "url": record["url"],
+        "download_command": record["download_command"],
+        "local_file_exists_observed": record["local_file_exists_observed"],
+        "sha256": record["sha256"],
+    }
+
+
+def build_predicted_structure_fold_channel_reproduction_manifest(
+    *,
+    predicted_structure_fold_channel_path: Path,
+    contract_audit_path: Path | None = None,
+    coordinate_provenance_audit_path: Path | None = None,
+) -> dict[str, Any]:
+    fold_channel = _read_json(predicted_structure_fold_channel_path)
+    request_groups = (
+        (fold_channel.get("foldseek_input_manifest") or {}).get(
+            "coordinate_request_groups"
+        )
+        or {}
+    )
+
+    coordinate_requests_by_group: dict[str, list[dict[str, Any]]] = {}
+    malformed_coordinate_groups: list[dict[str, Any]] = []
+    unique_by_path: dict[str, dict[str, Any]] = {}
+    accession_to_paths: dict[str, set[str]] = defaultdict(set)
+    accession_to_groups: dict[str, set[str]] = defaultdict(set)
+    accession_to_entry_ids: dict[str, set[str]] = defaultdict(set)
+
+    for group_name, raw_items in sorted(request_groups.items()):
+        group_records = []
+        if not isinstance(raw_items, list):
+            malformed_coordinate_groups.append(
+                {"group": group_name, "reason": "coordinate_group_not_list"}
+            )
+            raw_items = []
+        for raw_item in raw_items:
+            if not isinstance(raw_item, dict):
+                malformed_coordinate_groups.append(
+                    {"group": group_name, "reason": "coordinate_request_not_object"}
+                )
+                continue
+            record = _compact_coordinate_reproduction_record(group_name, raw_item)
+            group_records.append(record)
+            path = record["expected_local_path"]
+            accession = record["accession"]
+            if path:
+                aggregate = unique_by_path.setdefault(
+                    path,
+                    {
+                        "expected_local_path": path,
+                        "accessions": set(),
+                        "entry_ids": set(),
+                        "groups": set(),
+                        "urls": set(),
+                        "download_commands": set(),
+                        "local_file_exists_observed": record[
+                            "local_file_exists_observed"
+                        ],
+                        "sha256": record["sha256"],
+                    },
+                )
+                if accession:
+                    aggregate["accessions"].add(str(accession))
+                for entry_id in record["entry_ids"]:
+                    aggregate["entry_ids"].add(str(entry_id))
+                aggregate["groups"].add(group_name)
+                if record["url"]:
+                    aggregate["urls"].add(str(record["url"]))
+                if record["download_command"]:
+                    aggregate["download_commands"].add(str(record["download_command"]))
+            if accession and path:
+                accession_to_paths[str(accession)].add(path)
+                accession_to_groups[str(accession)].add(group_name)
+                for entry_id in record["entry_ids"]:
+                    accession_to_entry_ids[str(accession)].add(str(entry_id))
+        coordinate_requests_by_group[group_name] = group_records
+
+    unique_coordinates = []
+    for path, record in sorted(unique_by_path.items()):
+        unique_coordinates.append(
+            {
+                "expected_local_path": path,
+                "accessions": sorted(record["accessions"]),
+                "entry_ids": sorted(record["entry_ids"], key=_entry_id_sort_key),
+                "groups": sorted(record["groups"]),
+                "urls": sorted(record["urls"]),
+                "download_commands": sorted(record["download_commands"]),
+                "local_file_exists_observed": bool(
+                    record["local_file_exists_observed"]
+                ),
+                "sha256": record["sha256"],
+            }
+        )
+
+    missing_unique_coordinates = [
+        record
+        for record in unique_coordinates
+        if not record["local_file_exists_observed"]
+    ]
+    observed_unique_coordinates = [
+        record for record in unique_coordinates if record["local_file_exists_observed"]
+    ]
+    missing_accessions = sorted(
+        {
+            accession
+            for accession, paths in accession_to_paths.items()
+            if not any(Path(path).is_file() for path in paths)
+        }
+    )
+    duplicate_accession_requests = [
+        {
+            "accession": accession,
+            "expected_local_paths": sorted(paths),
+            "entry_ids": sorted(
+                accession_to_entry_ids[accession], key=_entry_id_sort_key
+            ),
+            "groups": sorted(accession_to_groups[accession]),
+        }
+        for accession, paths in sorted(accession_to_paths.items())
+        if len(paths) > 1 or len(accession_to_groups[accession]) > 1
+    ]
+
+    group_summaries = {}
+    for group_name, records in coordinate_requests_by_group.items():
+        missing = [
+            record for record in records if not record["local_file_exists_observed"]
+        ]
+        group_summaries[group_name] = {
+            "request_count": len(records),
+            "missing_file_count": len(missing),
+            "observed_file_count": len(records) - len(missing),
+            "unique_expected_path_count": len(
+                {record["expected_local_path"] for record in records}
+            ),
+            "unique_accession_count": len(
+                {record["accession"] for record in records if record["accession"]}
+            ),
+        }
+
+    result_files = {
+        name: _summarize_foldseek_result_path(parsed_result)
+        for name, parsed_result in (
+            (fold_channel.get("parsed_foldseek_results") or {}).items()
+        )
+        if isinstance(parsed_result, dict)
+    }
+    result_files_parseable = all(
+        summary.get("exists") and summary.get("parsed_status") == "parsed"
+        for summary in result_files.values()
+    )
+    missing_result_files = [
+        {"name": name, "path": summary.get("path")}
+        for name, summary in result_files.items()
+        if not summary.get("exists")
+    ]
+
+    contract_summary = None
+    contract_passed = False
+    contract_missing = False
+    if contract_audit_path is not None and contract_audit_path.exists():
+        contract_audit = _read_json(contract_audit_path)
+        critical_counts = (contract_audit.get("counts") or {}).get(
+            "critical_counts"
+        ) or {}
+        contract_summary = {
+            "path": str(contract_audit_path),
+            "sha256": _sha256(contract_audit_path),
+            "status": contract_audit.get("status"),
+            "critical_violation_total": sum(critical_counts.values()),
+            "critical_counts": critical_counts,
+        }
+        contract_passed = (
+            contract_audit.get("status") == "fold_channel_contract_passed_current702"
+            and sum(critical_counts.values()) == 0
+        )
+    elif contract_audit_path is not None:
+        contract_missing = True
+
+    coordinate_provenance_summary = None
+    coordinate_provenance_missing = False
+    if (
+        coordinate_provenance_audit_path is not None
+        and coordinate_provenance_audit_path.exists()
+    ):
+        coordinate_provenance = _read_json(coordinate_provenance_audit_path)
+        coordinate_provenance_summary = {
+            "path": str(coordinate_provenance_audit_path),
+            "sha256": _sha256(coordinate_provenance_audit_path),
+            "status": coordinate_provenance.get("status"),
+            "counts": {
+                key: (coordinate_provenance.get("counts") or {}).get(key)
+                for key in (
+                    "unique_coordinate_files_expected",
+                    "unique_coordinate_files_missing",
+                    "unique_accessions_without_any_local_file",
+                    "result_files_parseable",
+                )
+            },
+        }
+    elif coordinate_provenance_audit_path is not None:
+        coordinate_provenance_missing = True
+
+    runtime = fold_channel.get("runtime") or {}
+    foldseek_runtime = runtime.get("foldseek") or {}
+    foldseek_available = bool(foldseek_runtime.get("available"))
+    coordinate_bundle_complete = not missing_unique_coordinates
+    byte_reproduction_ready = (
+        result_files_parseable
+        and contract_passed
+        and coordinate_bundle_complete
+        and foldseek_available
+        and not malformed_coordinate_groups
+    )
+
+    critical_counts = {
+        "malformed_coordinate_groups": len(malformed_coordinate_groups),
+        "contract_audit_missing": 1 if contract_missing else 0,
+        "contract_audit_not_passing": 0 if contract_passed else 1,
+        "coordinate_provenance_audit_missing": (
+            1 if coordinate_provenance_missing else 0
+        ),
+        "missing_result_files": len(missing_result_files),
+    }
+    if not result_files_parseable or not contract_passed:
+        status = "fold_channel_reproduction_manifest_blocked_by_score_contract"
+    elif byte_reproduction_ready:
+        status = "fold_channel_byte_reproduction_ready"
+    else:
+        status = "fold_channel_reproduction_manifest_ready_missing_coordinates"
+
+    blocker_classes = []
+    if missing_unique_coordinates:
+        blocker_classes.append("persistent_afdb_v6_coordinate_bundle_missing")
+    if not foldseek_available:
+        blocker_classes.append("foldseek_runtime_not_available")
+    if malformed_coordinate_groups:
+        blocker_classes.append("malformed_coordinate_request_manifest")
+    if missing_result_files:
+        blocker_classes.append("foldseek_result_tsv_missing")
+    if not contract_passed:
+        blocker_classes.append("scored_fold_channel_contract_not_passing")
+
+    commands = fold_channel.get("commands") or {}
+    reproduction_commands = {
+        "materialize_all_missing_afdb_v6_coordinates": commands.get(
+            "materialize_coordinate_bundle"
+        ),
+        "run_priority_cofactor_confounded_oos_vs_atlas": commands.get(
+            "run_priority_cofactor_confounded_oos_vs_atlas"
+        ),
+        "run_all_heldout_vs_atlas_when_cheap": commands.get(
+            "run_all_heldout_vs_atlas_when_cheap"
+        ),
+        "rerun_contract_audit": (
+            "PYTHONPATH=src python -m catalytic_earth.cli "
+            "audit-predicted-structure-fold-channel-contract"
+        ),
+        "rerun_coordinate_provenance_audit": (
+            "PYTHONPATH=src python -m catalytic_earth.cli "
+            "audit-predicted-structure-fold-channel-coordinate-provenance"
+        ),
+        "rerun_reproduction_manifest": (
+            "PYTHONPATH=src python -m catalytic_earth.cli "
+            "build-predicted-structure-fold-channel-reproduction-manifest"
+        ),
+    }
+
+    return {
+        "artifact_id": PREDICTED_STRUCTURE_FOLD_CHANNEL_REPRODUCTION_MANIFEST_ID,
+        "schema_version": f"{SCHEMA_VERSION}.predicted_structure_fold_reproduction",
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Validation-only reproduction manifest for the already scored "
+            "AlphaFoldDB-predicted Foldseek/TM channel. It records exact "
+            "coordinate inputs, scored TSV hashes, rerun commands, and the "
+            "remaining byte-level reproduction blockers without downloading "
+            "coordinates or rerunning Foldseek/TM."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_threshold_tuning_for_deployment": False,
+            "coordinate_downloads_performed": False,
+            "foldseek_or_tmsearch_recomputed": False,
+            "uses_existing_scored_tsvs_only": True,
+            "frozen_current702_inputs_only": True,
+            "validation_only": True,
+        },
+        "counts": {
+            "coordinate_request_groups": len(coordinate_requests_by_group),
+            "total_coordinate_requests": sum(
+                len(records) for records in coordinate_requests_by_group.values()
+            ),
+            "unique_coordinate_files_expected": len(unique_coordinates),
+            "unique_coordinate_files_observed": len(observed_unique_coordinates),
+            "unique_coordinate_files_missing": len(missing_unique_coordinates),
+            "unique_accessions_expected": len(accession_to_paths),
+            "unique_accessions_without_any_local_file": len(missing_accessions),
+            "duplicate_accession_requests": len(duplicate_accession_requests),
+            "foldseek_result_files": len(result_files),
+            "foldseek_result_files_missing": len(missing_result_files),
+            "result_files_parseable": result_files_parseable,
+            "foldseek_runtime_available": foldseek_available,
+            "byte_reproduction_ready": byte_reproduction_ready,
+            "critical_counts": critical_counts,
+            "heldout_rows_ok": (fold_channel.get("counts") or {}).get(
+                "heldout_rows_ok"
+            ),
+            "priority_cofactor_confounded_oos_rows": (
+                fold_channel.get("counts") or {}
+            ).get("priority_cofactor_confounded_oos_rows"),
+        },
+        "coordinate_request_group_summaries": group_summaries,
+        "missing_coordinate_manifest": missing_unique_coordinates,
+        "duplicate_accession_requests": duplicate_accession_requests,
+        "foldseek_result_files": result_files,
+        "foldseek_runtime": foldseek_runtime,
+        "scored_channel_contract": contract_summary,
+        "coordinate_provenance_audit": coordinate_provenance_summary,
+        "reproduction_commands": reproduction_commands,
+        "blocker_classes": blocker_classes,
+        "violations": {
+            "malformed_coordinate_groups": malformed_coordinate_groups[:50],
+            "missing_result_files": missing_result_files[:50],
+            "contract_audit_missing": (
+                [{"path": str(contract_audit_path)}] if contract_missing else []
+            ),
+            "coordinate_provenance_audit_missing": (
+                [{"path": str(coordinate_provenance_audit_path)}]
+                if coordinate_provenance_missing
+                else []
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The scored Foldseek/TM channel remains usable for downstream "
+                "diagnostics because the TSVs parse and the scoring contract "
+                "passes; byte-level reproduction is blocked only by the missing "
+                "persistent AFDB-v6 coordinate bundle."
+                if status
+                == "fold_channel_reproduction_manifest_ready_missing_coordinates"
+                else (
+                    "The coordinate bundle, Foldseek runtime, result TSVs, and "
+                    "contract audit are all present for byte-level reproduction."
+                    if status == "fold_channel_byte_reproduction_ready"
+                    else "The scored fold-channel contract or TSV availability must be repaired before reproduction."
+                )
+            ),
+            "next_action": (
+                "Materialize the missing AFDB-v6 CIF paths with the recorded "
+                "download command only if byte-level Foldseek reproduction is "
+                "needed; otherwise continue downstream diagnostics from the "
+                "existing scored TSVs and contract audit."
+                if missing_unique_coordinates and result_files_parseable
+                else "Rerun the reproduction manifest after any Foldseek/TM score refresh."
+            ),
+        },
+        "source_artifacts": {
+            "predicted_structure_fold_channel": {
+                "path": str(predicted_structure_fold_channel_path),
+                "sha256": _sha256(predicted_structure_fold_channel_path),
+            },
+            "contract_audit": (
+                _source_path_record(contract_audit_path)
+                if contract_audit_path is not None
+                else None
+            ),
+            "coordinate_provenance_audit": (
+                _source_path_record(coordinate_provenance_audit_path)
+                if coordinate_provenance_audit_path is not None
+                else None
+            ),
+        },
+    }
+
+
+def _render_predicted_structure_fold_channel_reproduction_manifest_report(
+    manifest: dict[str, Any],
+) -> str:
+    counts = manifest["counts"]
+    lines = [
+        "# Predicted-Structure Fold Channel Reproduction Manifest - current702",
+        "",
+        f"Run: {manifest['created_utc']}",
+        "",
+        manifest["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {manifest['status']}",
+        f"- Heldout ok rows: {counts['heldout_rows_ok']}",
+        f"- Priority cofactor-confounded rows: {counts['priority_cofactor_confounded_oos_rows']}",
+        f"- Result TSVs parseable: {counts['result_files_parseable']}",
+        f"- Foldseek runtime available: {counts['foldseek_runtime_available']}",
+        f"- Unique coordinate files expected: {counts['unique_coordinate_files_expected']}",
+        f"- Unique coordinate files missing: {counts['unique_coordinate_files_missing']}",
+        f"- Deduplicated missing AFDB accessions: {counts['unique_accessions_without_any_local_file']}",
+        f"- Byte-level reproduction ready: {counts['byte_reproduction_ready']}",
+        "",
+        "## Coordinate Groups",
+        "",
+    ]
+    for group_name, summary in manifest["coordinate_request_group_summaries"].items():
+        lines.append(
+            f"- {group_name}: requests={summary['request_count']}, "
+            f"observed={summary['observed_file_count']}, "
+            f"missing={summary['missing_file_count']}, "
+            f"unique_paths={summary['unique_expected_path_count']}"
+        )
+    lines += [
+        "",
+        "## Foldseek Result Files",
+        "",
+    ]
+    for name, summary in manifest["foldseek_result_files"].items():
+        lines.append(
+            f"- {name}: exists={summary['exists']}, "
+            f"parsed={summary['parsed_status']}, "
+            f"lines={summary['nonempty_line_count']}, "
+            f"hits={summary['query_entry_count_with_hits']}, "
+            f"sha256={summary['sha256']}"
+        )
+    contract = manifest.get("scored_channel_contract")
+    if contract:
+        lines += [
+            "",
+            "## Contract Audit",
+            "",
+            f"- Status: {contract['status']}",
+            f"- Critical violations: {contract['critical_violation_total']}",
+        ]
+    lines += [
+        "",
+        "## Blockers",
+        "",
+    ]
+    blockers = manifest.get("blocker_classes") or []
+    if blockers:
+        lines.extend(f"- {blocker}" for blocker in blockers)
+    else:
+        lines.append("- none")
+    lines += [
+        "",
+        "## Commands",
+        "",
+        "- Materialize coordinates: "
+        "`reproduction_commands.materialize_all_missing_afdb_v6_coordinates`",
+        "- Rerun priority Foldseek/TM: "
+        "`reproduction_commands.run_priority_cofactor_confounded_oos_vs_atlas`",
+        "- Rerun all-heldout Foldseek/TM: "
+        "`reproduction_commands.run_all_heldout_vs_atlas_when_cheap`",
+        "- Rerun audits: "
+        "`reproduction_commands.rerun_contract_audit`, "
+        "`reproduction_commands.rerun_coordinate_provenance_audit`, "
+        "then `reproduction_commands.rerun_reproduction_manifest`",
+        "",
+        "## Interpretation",
+        "",
+        f"- {manifest['interpretation']['result']}",
+        f"- {manifest['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_predicted_structure_fold_channel_reproduction_manifest(
+    *,
+    predicted_structure_fold_channel_path: Path,
+    contract_audit_path: Path | None,
+    coordinate_provenance_audit_path: Path | None,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    manifest = build_predicted_structure_fold_channel_reproduction_manifest(
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+        contract_audit_path=contract_audit_path,
+        coordinate_provenance_audit_path=coordinate_provenance_audit_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_predicted_structure_fold_channel_reproduction_manifest_report(
+                manifest
+            ),
+            encoding="utf-8",
+        )
+    return manifest
 
 
 GEOMETRY_VARIANT_FEATURES = (

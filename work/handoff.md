@@ -50,6 +50,98 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-01 Predicted Fold Reproduction Manifest Interrupted Stop
+
+Automation run: `catalytic-earth-work-loop`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-01T17:46:43Z`
+- STARTED_LOCAL: `Mon Jun  1 12:46:43 CDT 2026`
+- ENDED_AT: `2026-06-01T17:55:01Z`
+- ENDED_LOCAL: `Mon Jun  1 12:55:01 CDT 2026`
+- ELAPSED_MINUTES: `8.3`
+- EARLY_STOP_REASON: user explicitly requested: "please stop working and also
+  stop the automation." This superseded the 50-minute work-loop contract.
+- CARRYOVER_ATTEMPTS:
+  validated that the requested real predicted-structure fold channel already
+  exists and passes its contract; built a bounded reproduction manifest for its
+  remaining AFDB-v6 coordinate-bundle blocker; did not continue to predicted
+  atlas variants, mechanism-feature gap closure, family-set expansion, or
+  further docs cleanup after the stop request.
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "89194", "started_at": "2026-06-01T17:46:43Z", "status": "acquired"}`
+- Lock release result: pending at handoff write; release after commit, push,
+  sync verification, and clean worktree.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `7a7b5855fafc7f93cdd074940123083a2d2f2485`
+- Git HEAD at end before commit: `7a7b5855fafc7f93cdd074940123083a2d2f2485`
+- Dirty files at start: none
+- Dirty files at end before commit:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  `docs/artifact_index.md`, `docs/decision_log.md`,
+  `docs/project_state.md`, `src/catalytic_earth/cli.py`,
+  `src/catalytic_earth/northstar_next_levers.py`, `tests/test_cli.py`,
+  `tests/test_geometry_artifact_regression.py`,
+  `tests/test_northstar_next_levers.py`,
+  `work/current_docs_artifact_reference_check_current702_20260601.md`,
+  `artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`,
+  `work/predicted_structure_fold_channel_reproduction_manifest_current702_20260601.md`,
+  and this handoff.
+- Input artifacts:
+  `artifacts/v3_fold_level_novelty_signal_current702_20260601.json`,
+  `artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
+  and
+  `artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json`.
+- Output artifacts:
+  `artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`,
+  `work/predicted_structure_fold_channel_reproduction_manifest_current702_20260601.md`,
+  refreshed
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`,
+  refreshed
+  `work/current_docs_artifact_reference_check_current702_20260601.md`,
+  docs/code/tests for the reproduction-manifest CLI, and this handoff.
+- Commands run:
+  memory read; lock acquire; `git fetch origin`; `git pull --ff-only origin
+  main`; required context reads; fold-channel artifact/report inspection;
+  focused CLI/unit test slices; built
+  `build-predicted-structure-fold-channel-reproduction-manifest`; JSON parse
+  checks for the new manifest and source fold artifacts; refreshed current-docs
+  artifact reference check; measured elapsed wall clock after user stop;
+  `git diff --check`; `PYTHONPATH=src python -m catalytic_earth.cli validate`.
+- Validation results:
+  focused reproduction-manifest unit test passed; focused CLI registration test
+  passed; focused current-artifact regression test for the new reproduction
+  manifest passed; new/related JSON parse checks passed; current-docs artifact
+  reference check passed with 445 references checked and 0 missing;
+  `git diff --check` passed; `PYTHONPATH=src python -m catalytic_earth.cli
+  validate` passed with 702 curated mechanism labels. Full pytest/unittest were
+  skipped because the user requested the automation stop at 8.3 minutes.
+- Commit/push result: pending at handoff write; commit the interrupted
+  fold-manifest work, push `main`, verify `HEAD == origin/main`, then release
+  the lock.
+- Exact next action for the next run:
+  do not auto-resume unless the automation is restarted. If restarted, first
+  verify the interrupted commit and run the broader validation that was skipped
+  due to the stop request; then continue from
+  `artifacts/v3_family_panel_source_free_locator_human_decision_matrix_current702_20260601.json`
+  by choosing exactly one human/policy decision class before any source-free
+  predicted-geometry scoring.
+
+Summary:
+
+- Confirmed the requested real predicted-structure fold channel already exists
+  and is contract-passing, so the run did not overwrite it.
+- Added a bounded reproduction manifest that records exact coordinate requests,
+  scored Foldseek TSV hashes, rerun commands, contract/provenance audit hashes,
+  and the single byte-reproduction blocker:
+  `persistent_afdb_v6_coordinate_bundle_missing`.
+- Stopped immediately after the user requested automation shutdown; no
+  coordinate downloads, Foldseek/TM reruns, labels, registries, ontologies,
+  imports, splits, thresholds, model weights, or production scorers changed.
+
 ### 2026-06-01 Predicted Fold Provenance And Decision Matrix Carryover
 
 Automation run: `catalytic-earth-work-loop`

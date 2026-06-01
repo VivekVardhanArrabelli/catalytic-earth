@@ -440,6 +440,18 @@ Artifacts:
 `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
 `work/predicted_structure_fold_channel_contract_audit_current702_20260601.md`.
 
+Reproduction-manifest follow-up: add a validation-only reproduction manifest
+for the same scored channel. It records the 299 expected AFDB-v6 coordinate
+paths across 293 deduplicated accessions, exact Foldseek rerun commands, scored
+TSV SHA-256 hashes, contract/provenance audit hashes, and the single blocker
+class `persistent_afdb_v6_coordinate_bundle_missing`. No coordinate download,
+Foldseek/TM rerun, label, registry, ontology, import, split, threshold, or
+production scorer change occurred.
+
+Artifacts:
+`artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`,
+`work/predicted_structure_fold_channel_reproduction_manifest_current702_20260601.md`.
+
 ## 2026-06-01: Train/Cal OOS Negatives Add A Partial OOS Calibration Surface For The Fold-Augmented Gate
 
 Decision: score the hash-selected in-distribution OOS calibration negatives

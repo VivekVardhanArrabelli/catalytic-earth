@@ -36,6 +36,7 @@ from catalytic_earth.northstar_next_levers import (
     build_predicted_structure_fold_channel,
     build_predicted_structure_fold_channel_contract_audit,
     build_predicted_structure_fold_channel_coordinate_provenance_audit,
+    build_predicted_structure_fold_channel_reproduction_manifest,
     build_selected_organic_cofactor_sidecar_schema_audit,
     write_family_panel_source_free_active_site_locator_candidate_audit,
     write_family_panel_source_free_active_site_locator_candidate_integrity_audit,
@@ -130,6 +131,126 @@ HETATM 5 ZN ZN . ZN B 2 . ? 0.5 0.0 0.0 1.00 40.0 ? 1 ZN B ZN 1
 
 
 class NorthstarNextLeversTests(unittest.TestCase):
+    def test_predicted_structure_fold_reproduction_manifest_tracks_missing_bundle(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            tsv = root / "all_heldout_vs_atlas.tsv"
+            fold_channel_path = root / "fold_channel.json"
+            contract_path = root / "contract.json"
+            provenance_path = root / "provenance.json"
+            tsv.write_text(
+                "afdb_Q1_v6\tafdb_A1_v6\t0.4\t0.5\t0.45\t0.9\t100\n",
+                encoding="utf-8",
+            )
+            fold_channel_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "heldout_rows_ok": 1,
+                            "priority_cofactor_confounded_oos_rows": 1,
+                        },
+                        "commands": {
+                            "materialize_coordinate_bundle": "python fetch.py",
+                            "run_priority_cofactor_confounded_oos_vs_atlas": (
+                                "foldseek easy-search priority atlas out tmp "
+                                "--exact-tmscore 1"
+                            ),
+                            "run_all_heldout_vs_atlas_when_cheap": (
+                                "foldseek easy-search heldout atlas out tmp "
+                                "--exact-tmscore 1"
+                            ),
+                        },
+                        "foldseek_input_manifest": {
+                            "coordinate_request_groups": {
+                                "atlas_in_distribution": [
+                                    {
+                                        "accession": "A1",
+                                        "entry_ids": ["m_csa:1"],
+                                        "expected_local_path": str(root / "afdb_A1.cif"),
+                                        "url": "https://example.invalid/AF-A1.cif",
+                                        "download_command": "curl A1",
+                                    }
+                                ],
+                                "queries_all_heldout": [
+                                    {
+                                        "accession": "Q1",
+                                        "entry_ids": ["m_csa:2"],
+                                        "expected_local_path": str(root / "afdb_Q1.cif"),
+                                        "url": "https://example.invalid/AF-Q1.cif",
+                                        "download_command": "curl Q1",
+                                    }
+                                ],
+                            }
+                        },
+                        "parsed_foldseek_results": {
+                            "all_heldout_vs_atlas": {
+                                "path": str(tsv),
+                                "status": "parsed",
+                                "summary": {
+                                    "mapped_pair_count": 1,
+                                    "query_entry_count_with_hits": 1,
+                                },
+                            }
+                        },
+                        "runtime": {
+                            "foldseek": {
+                                "available": True,
+                                "requested": "/bin/foldseek",
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "status": "fold_channel_contract_passed_current702",
+                        "counts": {"critical_counts": {"missing_result_files": 0}},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            provenance_path.write_text(
+                json.dumps(
+                    {
+                        "status": "coordinate_bundle_not_persisted_results_parseable",
+                        "counts": {
+                            "unique_coordinate_files_expected": 2,
+                            "unique_coordinate_files_missing": 2,
+                            "unique_accessions_without_any_local_file": 2,
+                            "result_files_parseable": True,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            manifest = build_predicted_structure_fold_channel_reproduction_manifest(
+                predicted_structure_fold_channel_path=fold_channel_path,
+                contract_audit_path=contract_path,
+                coordinate_provenance_audit_path=provenance_path,
+            )
+
+        self.assertEqual(
+            manifest["status"],
+            "fold_channel_reproduction_manifest_ready_missing_coordinates",
+        )
+        self.assertEqual(manifest["counts"]["unique_coordinate_files_expected"], 2)
+        self.assertEqual(manifest["counts"]["unique_coordinate_files_missing"], 2)
+        self.assertTrue(manifest["counts"]["result_files_parseable"])
+        self.assertFalse(manifest["counts"]["byte_reproduction_ready"])
+        self.assertIn(
+            "persistent_afdb_v6_coordinate_bundle_missing",
+            manifest["blocker_classes"],
+        )
+        self.assertEqual(
+            manifest["scored_channel_contract"]["critical_violation_total"],
+            0,
+        )
+
     def test_source_free_locator_candidate_audit_stages_non_scoring_sidecar(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
