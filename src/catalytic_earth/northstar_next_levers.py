@@ -113,8 +113,17 @@ PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
 FOLD_AUGMENTED_FAMILY_PANEL_RESEARCH_READOUT_ID = (
     "v3_fold_augmented_family_panel_research_readout_current702_20260601"
 )
+FOLD_AUGMENTED_FAMILY_PANEL_COUNTABILITY_GATE_PREFLIGHT_ID = (
+    "v3_fold_augmented_family_panel_countability_gate_preflight_current702_20260602"
+)
+FOLD_AUGMENTED_FAMILY_PANEL_IMPORT_PREVIEW_BLOCKER_GATE_ID = (
+    "v3_fold_augmented_family_panel_import_preview_blocker_gate_current702_20260602"
+)
 FOLD_AUGMENTED_FAMILY_PANEL_SOURCE_CHECK_QUEUE_ID = (
     "v3_fold_augmented_family_panel_source_check_queue_current702_20260601"
+)
+FOLD_AUGMENTED_FAMILY_PANEL_SOURCE_CHECK_COMPLETION_RECONCILIATION_ID = (
+    "v3_fold_augmented_family_panel_source_check_completion_reconciliation_current702_20260602"
 )
 FOLD_AUGMENTED_FAMILY_PANEL_MISSING_PRIMARY_CHANNEL_QUEUE_ID = (
     "v3_fold_augmented_family_panel_missing_primary_channel_queue_current702_20260601"
@@ -16882,6 +16891,862 @@ def write_fold_augmented_family_panel_research_readout(
     return audit
 
 
+def build_fold_augmented_family_panel_countability_gate_preflight(
+    *,
+    family_panel_research_readout_path: Path,
+    family_panel_coverage_audit_path: Path,
+    source_check_queue_path: Path | None = None,
+    locator_blocker_status_path: Path | None = None,
+    source_check_completion_reconciliation_path: Path | None = None,
+) -> dict[str, Any]:
+    readout = _read_json(family_panel_research_readout_path)
+    coverage = _read_json(family_panel_coverage_audit_path)
+    source_check_queue = (
+        _read_json(source_check_queue_path)
+        if source_check_queue_path is not None
+        and source_check_queue_path.exists()
+        else None
+    )
+    locator_status = (
+        _read_json(locator_blocker_status_path)
+        if locator_blocker_status_path is not None
+        and locator_blocker_status_path.exists()
+        else None
+    )
+    source_check_completion = (
+        _read_json(source_check_completion_reconciliation_path)
+        if source_check_completion_reconciliation_path is not None
+        and source_check_completion_reconciliation_path.exists()
+        else None
+    )
+    source_check_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (source_check_queue or {}).get("queue_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    locator_blocker_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (locator_status or {}).get("resolution_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    completion_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (source_check_completion or {}).get("reconciliation_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    gate_rows: list[dict[str, Any]] = []
+    blocker_counter: Counter[str] = Counter()
+    panel_counter: Counter[str] = Counter()
+    panel_score_complete_counter: Counter[str] = Counter()
+    panel_non_abstained_counter: Counter[str] = Counter()
+    panel_geometry_blocker_counter: Counter[str] = Counter()
+
+    for row in readout.get("row_scores", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        entry_id = str(row["entry_id"])
+        panel_id = str(row.get("panel_id") or "")
+        gate_status = str(row.get("research_gate_status") or "")
+        score_complete = gate_status != "not_score_complete_for_primary_channel"
+        non_abstained = gate_status == "non_abstained_at_research_threshold"
+        row_blockers = [
+            "review_packet_not_expert_import_decision",
+            "countable_import_preview_missing",
+            "label_factory_gate_not_run_for_family_panel_row",
+        ]
+        completion_row = completion_by_entry.get(entry_id)
+        if non_abstained:
+            if completion_row is None:
+                row_blockers.append(
+                    "source_check_required_for_non_abstained_review_row"
+                )
+            elif (
+                completion_row.get("completion_status")
+                == "completed_review_only_no_label_change"
+            ):
+                if completion_row.get("family_promotion_ready"):
+                    row_blockers.append(
+                        "source_check_completed_import_preview_still_required"
+                    )
+                else:
+                    row_blockers.append(
+                        "completed_source_check_not_family_promotion_ready"
+                    )
+            else:
+                row_blockers.append(
+                    "source_check_required_for_non_abstained_review_row"
+                )
+        if not score_complete:
+            row_blockers.append("primary_channel_score_missing")
+        locator_blocker = locator_blocker_by_entry.get(entry_id)
+        if locator_blocker is not None:
+            row_blockers.append("source_free_locator_human_or_policy_decision_required")
+        panel_counter[panel_id] += 1
+        if score_complete:
+            panel_score_complete_counter[panel_id] += 1
+        if non_abstained:
+            panel_non_abstained_counter[panel_id] += 1
+        if locator_blocker is not None or not score_complete:
+            panel_geometry_blocker_counter[panel_id] += 1
+        blocker_counter.update(row_blockers)
+        gate_rows.append(
+            {
+                "entry_id": entry_id,
+                "panel_id": panel_id,
+                "research_gate_status": gate_status,
+                "primary_score_complete": score_complete,
+                "non_abstained_at_research_threshold": non_abstained,
+                "source_check_queue_rank": (
+                    source_check_by_entry.get(entry_id, {}).get("rank")
+                ),
+                "source_check_completion_status": (
+                    completion_row.get("completion_status")
+                    if completion_row is not None
+                    else None
+                ),
+                "source_check_family_promotion_ready": (
+                    completion_row.get("family_promotion_ready")
+                    if completion_row is not None
+                    else None
+                ),
+                "locator_resolution_class": (
+                    locator_blocker.get("resolution_class")
+                    if locator_blocker is not None
+                    else None
+                ),
+                "locator_resolution_status": (
+                    locator_blocker.get("resolution_status")
+                    if locator_blocker is not None
+                    else None
+                ),
+                "countable_label_candidate": False,
+                "ready_for_import_preview": False,
+                "ready_for_label_factory_gate": False,
+                "gate_blockers": sorted(set(row_blockers)),
+            }
+        )
+
+    panel_rows = []
+    for panel_id in sorted(panel_counter):
+        panel_rows.append(
+            {
+                "panel_id": panel_id,
+                "candidate_rows": panel_counter[panel_id],
+                "primary_score_complete_rows": panel_score_complete_counter[
+                    panel_id
+                ],
+                "non_abstained_review_rows": panel_non_abstained_counter[
+                    panel_id
+                ],
+                "geometry_or_locator_blocked_rows": (
+                    panel_geometry_blocker_counter[panel_id]
+                ),
+                "countable_label_candidate_count": 0,
+                "next_gate": (
+                    "source_check_non_abstained_rows_then_import_preview"
+                    if panel_non_abstained_counter[panel_id]
+                    else (
+                        "clear_source_free_geometry_or_locator_blockers"
+                        if panel_geometry_blocker_counter[panel_id]
+                        else "expert_family_decision_before_import_preview"
+                    )
+                ),
+            }
+        )
+
+    status = (
+        "family_panel_countability_gate_preflight_ready_no_countable_rows"
+        if gate_rows
+        else "family_panel_countability_gate_preflight_blocked_no_rows"
+    )
+    countable_rows = [
+        row for row in gate_rows if row["countable_label_candidate"]
+    ]
+    source_check_rows = [
+        row for row in gate_rows if row["source_check_queue_rank"] is not None
+    ]
+    completed_source_check_rows = [
+        row
+        for row in gate_rows
+        if row["source_check_completion_status"]
+        == "completed_review_only_no_label_change"
+    ]
+    pending_source_check_rows = [
+        row
+        for row in gate_rows
+        if row["source_check_completion_status"]
+        == "pending_source_check_artifact"
+    ]
+    locator_blocked_rows = [
+        row
+        for row in gate_rows
+        if row["locator_resolution_status"] is not None
+    ]
+    source_checks_fully_reconciled = (
+        bool(source_check_rows) and not pending_source_check_rows
+    )
+    if pending_source_check_rows:
+        next_gate = (
+            "Keep family-panel rows review-only. Finish source checks for the "
+            "remaining non-abstained review rows, then clear source-free "
+            "geometry/locator blockers before any import preview or "
+            "label-factory countability gate."
+        )
+    elif locator_blocked_rows:
+        next_gate = (
+            "Source checks are fully reconciled. Clear source-free "
+            "geometry/locator blockers for missing-primary-channel rows, then "
+            "run an explicit import-preview blocker gate before any "
+            "label-factory countability action."
+        )
+    else:
+        next_gate = (
+            "Source checks are fully reconciled. Run an explicit import-preview "
+            "blocker gate before any label-factory countability action."
+        )
+    return {
+        "artifact_id": (
+            FOLD_AUGMENTED_FAMILY_PANEL_COUNTABILITY_GATE_PREFLIGHT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.family_panel_countability_gate_preflight"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 4 countability preflight for the existing review-only "
+            "family-panel packets. It maps packet rows to the import-preview "
+            "and label-factory gates without creating labels, importing rows, "
+            "changing registries, or treating research readout scores as "
+            "countable evidence."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+            "family_panel_rows_countable_now": False,
+            "source_text_or_label_fields_used_as_predictive_features": False,
+        },
+        "counts": {
+            "coverage_candidate_rows": (
+                coverage.get("counts", {}).get("candidate_rows")
+            ),
+            "readout_candidate_rows": len(gate_rows),
+            "primary_score_complete_rows": sum(
+                1 for row in gate_rows if row["primary_score_complete"]
+            ),
+            "non_abstained_review_rows": sum(
+                1
+                for row in gate_rows
+                if row["non_abstained_at_research_threshold"]
+            ),
+            "abstained_review_rows": sum(
+                1
+                for row in gate_rows
+                if row["research_gate_status"]
+                == "abstained_at_research_threshold"
+            ),
+            "missing_primary_channel_rows": sum(
+                1 for row in gate_rows if not row["primary_score_complete"]
+            ),
+            "source_check_queue_rows_joined": len(source_check_rows),
+            "source_check_completed_rows_joined": len(
+                completed_source_check_rows
+            ),
+            "source_check_pending_rows_joined": len(pending_source_check_rows),
+            "source_check_completed_no_family_promotion_rows": sum(
+                1
+                for row in completed_source_check_rows
+                if row["source_check_family_promotion_ready"] is False
+            ),
+            "locator_human_or_policy_blocked_rows_joined": len(
+                locator_blocked_rows
+            ),
+            "import_preview_ready_rows": sum(
+                1 for row in gate_rows if row["ready_for_import_preview"]
+            ),
+            "label_factory_gate_ready_rows": sum(
+                1 for row in gate_rows if row["ready_for_label_factory_gate"]
+            ),
+            "countable_label_candidate_count": len(countable_rows),
+            "blocker_counts": dict(sorted(blocker_counter.items())),
+        },
+        "decision": {
+            "new_countable_labels_authorized": False,
+            "countable_label_import_ready": False,
+            "label_factory_gate_ready": False,
+            "countable_label_candidate_entry_ids": [
+                row["entry_id"] for row in countable_rows
+            ],
+            "source_checks_fully_reconciled": source_checks_fully_reconciled,
+            "next_gate": next_gate,
+        },
+        "panel_gate_summaries": panel_rows,
+        "row_gate_status": sorted(
+            gate_rows,
+            key=lambda row: (
+                row["panel_id"],
+                _entry_id_sort_key(row["entry_id"]),
+            ),
+        ),
+        "source_artifacts": {
+            "family_panel_research_readout": _source_path_record(
+                family_panel_research_readout_path
+            ),
+            "family_panel_coverage_audit": _source_path_record(
+                family_panel_coverage_audit_path
+            ),
+            "source_check_queue": (
+                _source_path_record(source_check_queue_path)
+                if source_check_queue_path is not None
+                and source_check_queue_path.exists()
+                else None
+            ),
+            "locator_blocker_status": (
+                _source_path_record(locator_blocker_status_path)
+                if locator_blocker_status_path is not None
+                and locator_blocker_status_path.exists()
+                else None
+            ),
+            "source_check_completion_reconciliation": (
+                _source_path_record(source_check_completion_reconciliation_path)
+                if source_check_completion_reconciliation_path is not None
+                and source_check_completion_reconciliation_path.exists()
+                else None
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"0/{len(gate_rows)} family-panel review rows are countable "
+                "label candidates under the import/label-factory gate."
+            ),
+            "result": (
+                "The family-panel packets widen review evidence, but every row "
+                "is still blocked before countability by missing expert import "
+                "decisions and label-factory gates; the remaining mechanical "
+                "blockers are source-free locator/geometry decisions for "
+                "missing-primary-channel rows."
+                if source_checks_fully_reconciled
+                else (
+                    "The family-panel packets widen review evidence, but every row "
+                    "is still blocked before countability by missing expert import "
+                    "decisions and label-factory gates; several rows additionally "
+                    "need source checks or source-free locator policy decisions."
+                )
+            ),
+            "next_action": (
+                "Use this preflight as the Lever 4 gate: choose one panel, "
+                "clear its source-check or locator blockers, then generate an "
+                "explicit import preview before any label can count."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_countability_gate_preflight_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Family-Panel Countability Gate Preflight - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Readout candidate rows: {counts['readout_candidate_rows']}",
+        f"- Primary score-complete rows: {counts['primary_score_complete_rows']}",
+        f"- Non-abstained review rows: {counts['non_abstained_review_rows']}",
+        f"- Missing primary-channel rows: {counts['missing_primary_channel_rows']}",
+        f"- Source-check queue rows joined: {counts['source_check_queue_rows_joined']}",
+        f"- Source-check completed rows joined: {counts['source_check_completed_rows_joined']}",
+        f"- Source-check pending rows joined: {counts['source_check_pending_rows_joined']}",
+        "- Completed source checks still not promotion-ready: "
+        f"{counts['source_check_completed_no_family_promotion_rows']}",
+        "- Locator human/policy blocked rows joined: "
+        f"{counts['locator_human_or_policy_blocked_rows_joined']}",
+        f"- Countable label candidates: {counts['countable_label_candidate_count']}",
+        f"- Blocker counts: {counts['blocker_counts']}",
+        "",
+        "## Decision",
+        "",
+        f"- New countable labels authorized: {decision['new_countable_labels_authorized']}",
+        f"- Import ready: {decision['countable_label_import_ready']}",
+        f"- Label-factory gate ready: {decision['label_factory_gate_ready']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Panel Gates",
+        "",
+        "| panel | rows | complete | non-abstained | geometry/locator blocked | countable | next gate |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for row in audit["panel_gate_summaries"]:
+        lines.append(
+            f"| {row['panel_id']} | {row['candidate_rows']} | "
+            f"{row['primary_score_complete_rows']} | "
+            f"{row['non_abstained_review_rows']} | "
+            f"{row['geometry_or_locator_blocked_rows']} | "
+            f"{row['countable_label_candidate_count']} | {row['next_gate']} |"
+        )
+    lines += [
+        "",
+        "## Row Gates",
+        "",
+        "| row | panel | status | source-check | locator status | blockers |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in audit["row_gate_status"]:
+        source_check_status = row.get("source_check_completion_status")
+        if source_check_status is None:
+            source_check_status = row.get("source_check_queue_rank")
+        lines.append(
+            f"| {row['entry_id']} | {row['panel_id']} | "
+            f"{row['research_gate_status']} | "
+            f"{source_check_status} | "
+            f"{row['locator_resolution_status']} | "
+            f"{', '.join(row['gate_blockers'])} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_countability_gate_preflight(
+    *,
+    family_panel_research_readout_path: Path,
+    family_panel_coverage_audit_path: Path,
+    source_check_queue_path: Path | None = None,
+    locator_blocker_status_path: Path | None = None,
+    source_check_completion_reconciliation_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_family_panel_countability_gate_preflight(
+        family_panel_research_readout_path=family_panel_research_readout_path,
+        family_panel_coverage_audit_path=family_panel_coverage_audit_path,
+        source_check_queue_path=source_check_queue_path,
+        locator_blocker_status_path=locator_blocker_status_path,
+        source_check_completion_reconciliation_path=source_check_completion_reconciliation_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_countability_gate_preflight_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _family_panel_import_preview_primary_blocker(
+    row: dict[str, Any],
+) -> str:
+    blockers = set(row.get("gate_blockers") or [])
+    if (
+        "source_free_locator_human_or_policy_decision_required" in blockers
+        or "primary_channel_score_missing" in blockers
+    ):
+        return "source_free_locator_or_primary_channel_missing"
+    if "completed_source_check_not_family_promotion_ready" in blockers:
+        return "completed_source_check_review_only_no_promotion"
+    return "expert_family_admission_decision_required"
+
+
+def _family_panel_import_preview_required_actions(
+    row: dict[str, Any],
+) -> list[str]:
+    actions = [
+        "expert_import_decision_required",
+        "label_factory_gate_required_after_import_preview",
+    ]
+    blockers = set(row.get("gate_blockers") or [])
+    if "source_free_locator_human_or_policy_decision_required" in blockers:
+        actions.append("resolve_source_free_locator_or_coordinate_policy")
+    if "primary_channel_score_missing" in blockers:
+        actions.append("materialize_primary_channel_score")
+    if "completed_source_check_not_family_promotion_ready" in blockers:
+        actions.append("family_promotion_decision_required")
+    if "source_check_required_for_non_abstained_review_row" in blockers:
+        actions.append("complete_review_only_source_check")
+    return sorted(set(actions))
+
+
+def build_fold_augmented_family_panel_import_preview_blocker_gate(
+    *,
+    countability_gate_preflight_path: Path,
+    locator_human_decision_matrix_path: Path | None = None,
+) -> dict[str, Any]:
+    preflight = _read_json(countability_gate_preflight_path)
+    locator_decision_matrix = (
+        _read_json(locator_human_decision_matrix_path)
+        if locator_human_decision_matrix_path is not None
+        and locator_human_decision_matrix_path.exists()
+        else None
+    )
+    locator_decision_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (locator_decision_matrix or {}).get("row_decisions", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    locator_decision_class_by_id = {
+        str(row.get("resolution_class")): row
+        for row in (locator_decision_matrix or {}).get("decision_classes", [])
+        if isinstance(row, dict) and row.get("resolution_class")
+    }
+    blocker_rows = []
+    primary_blocker_counter: Counter[str] = Counter()
+    panel_counter: Counter[str] = Counter()
+    panel_primary_blockers: defaultdict[str, Counter[str]] = defaultdict(Counter)
+    for row in preflight.get("row_gate_status", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        entry_id = str(row["entry_id"])
+        panel_id = str(row.get("panel_id") or "")
+        primary_blocker = _family_panel_import_preview_primary_blocker(row)
+        required_actions = _family_panel_import_preview_required_actions(row)
+        locator_decision = locator_decision_by_entry.get(entry_id)
+        locator_decision_class = (
+            str(locator_decision.get("resolution_class"))
+            if locator_decision is not None
+            and locator_decision.get("resolution_class")
+            else None
+        )
+        locator_decision_class_row = (
+            locator_decision_class_by_id.get(locator_decision_class)
+            if locator_decision_class is not None
+            else None
+        )
+        panel_counter[panel_id] += 1
+        primary_blocker_counter[primary_blocker] += 1
+        panel_primary_blockers[panel_id][primary_blocker] += 1
+        blocker_rows.append(
+            {
+                "entry_id": entry_id,
+                "panel_id": panel_id,
+                "research_gate_status": row.get("research_gate_status"),
+                "primary_blocker_class": primary_blocker,
+                "source_check_completion_status": row.get(
+                    "source_check_completion_status"
+                ),
+                "source_check_family_promotion_ready": row.get(
+                    "source_check_family_promotion_ready"
+                ),
+                "locator_resolution_status": row.get(
+                    "locator_resolution_status"
+                ),
+                "locator_decision_class": locator_decision_class,
+                "locator_decision_priority": (
+                    locator_decision_class_row.get("priority")
+                    if locator_decision_class_row is not None
+                    else None
+                ),
+                "locator_decision_needed": (
+                    locator_decision_class_row.get("decision_needed")
+                    if locator_decision_class_row is not None
+                    else None
+                ),
+                "automation_can_continue_without_locator_decision": (
+                    locator_decision_class_row.get(
+                        "automation_can_continue_without_decision"
+                    )
+                    if locator_decision_class_row is not None
+                    else None
+                ),
+                "ready_for_import_preview": False,
+                "ready_for_label_factory_gate": False,
+                "countable_label_candidate": False,
+                "required_actions_before_import_preview": required_actions,
+                "gate_blockers": row.get("gate_blockers") or [],
+            }
+        )
+
+    priority_next_rows = [
+        row
+        for row in blocker_rows
+        if row["primary_blocker_class"]
+        == "source_free_locator_or_primary_channel_missing"
+    ]
+    priority_rows_with_decisions = [
+        row for row in priority_next_rows if row["locator_decision_class"]
+    ]
+    priority_rows_automation_clearable = [
+        row
+        for row in priority_next_rows
+        if row["automation_can_continue_without_locator_decision"] is True
+    ]
+    panel_rows = [
+        {
+            "panel_id": panel_id,
+            "rows": panel_counter[panel_id],
+            "primary_blocker_counts": dict(
+                sorted(panel_primary_blockers[panel_id].items())
+            ),
+            "import_preview_ready_rows": 0,
+        }
+        for panel_id in sorted(panel_counter)
+    ]
+    status = (
+        "family_panel_import_preview_blocker_gate_ready_blocked"
+        if blocker_rows
+        else "family_panel_import_preview_blocker_gate_blocked_no_rows"
+    )
+    return {
+        "artifact_id": (
+            FOLD_AUGMENTED_FAMILY_PANEL_IMPORT_PREVIEW_BLOCKER_GATE_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.family_panel_import_preview_blocker_gate"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 4 import-preview blocker gate for the review-only "
+            "family-panel packets. It consumes the countability preflight and "
+            "records exactly why no family-panel row can enter an import "
+            "preview or label-factory countability gate yet."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+            "family_panel_rows_countable_now": False,
+            "import_preview_written": False,
+            "label_factory_gate_run": False,
+        },
+        "counts": {
+            "review_rows_evaluated": len(blocker_rows),
+            "panels_represented": len(panel_counter),
+            "rows_blocked_before_import_preview": len(blocker_rows),
+            "import_preview_ready_rows": 0,
+            "label_factory_gate_ready_rows": 0,
+            "countable_label_candidate_count": 0,
+            "rows_blocked_by_expert_import_decision": sum(
+                1
+                for row in blocker_rows
+                if "expert_import_decision_required"
+                in row["required_actions_before_import_preview"]
+            ),
+            "rows_blocked_by_locator_or_primary_channel": len(
+                priority_next_rows
+            ),
+            "rows_with_completed_review_only_source_check": sum(
+                1
+                for row in blocker_rows
+                if row["source_check_completion_status"]
+                == "completed_review_only_no_label_change"
+            ),
+            "rows_blocked_by_completed_source_check_no_promotion": sum(
+                1
+                for row in blocker_rows
+                if row["primary_blocker_class"]
+                == "completed_source_check_review_only_no_promotion"
+            ),
+            "primary_blocker_class_counts": dict(
+                sorted(primary_blocker_counter.items())
+            ),
+            "priority_rows_with_locator_decision_class": len(
+                priority_rows_with_decisions
+            ),
+            "priority_rows_requiring_human_or_policy_decision": (
+                len(priority_next_rows) - len(priority_rows_automation_clearable)
+            ),
+            "priority_rows_mechanically_clearable_now": len(
+                priority_rows_automation_clearable
+            ),
+        },
+        "decision": {
+            "source_checks_fully_reconciled": bool(
+                preflight.get("decision", {}).get(
+                    "source_checks_fully_reconciled"
+                )
+            ),
+            "import_preview_can_run": False,
+            "label_factory_gate_ready": False,
+            "new_countable_labels_authorized": False,
+            "all_priority_rows_human_or_policy_blocked": (
+                bool(priority_next_rows)
+                and len(priority_rows_with_decisions) == len(priority_next_rows)
+                and not priority_rows_automation_clearable
+            ),
+            "priority_next_entry_ids": [
+                row["entry_id"] for row in priority_next_rows
+            ],
+            "next_gate": (
+                "Pick one locator decision class from the joined human "
+                "decision matrix and record an explicit approval/rejection; "
+                "then rerun this blocker gate before any family-panel import "
+                "preview."
+                if priority_next_rows
+                else (
+                    "Resolve expert family-admission and family-promotion "
+                    "decisions, then rerun this blocker gate before any "
+                    "family-panel import preview."
+                )
+            ),
+        },
+        "panel_blocker_summaries": panel_rows,
+        "row_blockers": sorted(
+            blocker_rows,
+            key=lambda row: (
+                row["primary_blocker_class"],
+                row["panel_id"],
+                _entry_id_sort_key(row["entry_id"]),
+            ),
+        ),
+        "source_artifacts": {
+            "countability_gate_preflight": _source_path_record(
+                countability_gate_preflight_path
+            ),
+            "locator_human_decision_matrix": (
+                _source_path_record(locator_human_decision_matrix_path)
+                if locator_human_decision_matrix_path is not None
+                and locator_human_decision_matrix_path.exists()
+                else None
+            ),
+        },
+        "interpretation": {
+            "headline": (
+                f"0/{len(blocker_rows)} family-panel review rows can enter "
+                "an import preview."
+            ),
+            "result": (
+                "The source-check queue is reconciled, but countability is "
+                "still blocked by expert import decisions, label-factory gate "
+                "absence, completed source checks that explicitly remain "
+                "review-only, and source-free locator/primary-channel gaps. "
+                "The priority locator rows are all joined to human or policy "
+                "decision classes."
+            ),
+            "next_action": (
+                "Start with the highest-priority locator decision class: "
+                "approve or reject copying the mh_067/mh_068 locators, then "
+                "rerun the locator schema audit before scoring."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_import_preview_blocker_gate_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Family-Panel Import-Preview Blocker Gate - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Review rows evaluated: {counts['review_rows_evaluated']}",
+        f"- Rows blocked before import preview: {counts['rows_blocked_before_import_preview']}",
+        f"- Import-preview-ready rows: {counts['import_preview_ready_rows']}",
+        f"- Label-factory-ready rows: {counts['label_factory_gate_ready_rows']}",
+        f"- Countable label candidates: {counts['countable_label_candidate_count']}",
+        f"- Primary blocker classes: {counts['primary_blocker_class_counts']}",
+        "- Priority rows with locator decision class: "
+        f"{counts['priority_rows_with_locator_decision_class']}",
+        "- Priority rows mechanically clearable now: "
+        f"{counts['priority_rows_mechanically_clearable_now']}",
+        "",
+        "## Decision",
+        "",
+        f"- Source checks fully reconciled: {decision['source_checks_fully_reconciled']}",
+        f"- Import preview can run: {decision['import_preview_can_run']}",
+        f"- New countable labels authorized: {decision['new_countable_labels_authorized']}",
+        "- All priority rows human/policy blocked: "
+        f"{decision['all_priority_rows_human_or_policy_blocked']}",
+        f"- Priority next rows: {decision['priority_next_entry_ids']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Panel Blockers",
+        "",
+        "| panel | rows | primary blocker counts |",
+        "| --- | ---: | --- |",
+    ]
+    for row in audit["panel_blocker_summaries"]:
+        lines.append(
+            f"| {row['panel_id']} | {row['rows']} | "
+            f"{row['primary_blocker_counts']} |"
+        )
+    lines += [
+        "",
+        "## Row Blockers",
+        "",
+        "| row | panel | primary blocker | locator decision | required actions |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in audit["row_blockers"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['panel_id']} | "
+            f"{row['primary_blocker_class']} | "
+            f"{row['locator_decision_class']} | "
+            f"{', '.join(row['required_actions_before_import_preview'])} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_import_preview_blocker_gate(
+    *,
+    countability_gate_preflight_path: Path,
+    locator_human_decision_matrix_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_family_panel_import_preview_blocker_gate(
+        countability_gate_preflight_path=countability_gate_preflight_path,
+        locator_human_decision_matrix_path=locator_human_decision_matrix_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_import_preview_blocker_gate_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
 def _source_check_focus(row: dict[str, Any]) -> list[str]:
     focus = [
         "row_specific_bond_change_and_mechanism_locus",
@@ -17064,6 +17929,278 @@ def write_fold_augmented_family_panel_source_check_queue(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_family_panel_source_check_queue_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _source_check_artifact_entry_id(check: dict[str, Any]) -> str | None:
+    row = check.get("row")
+    if isinstance(row, dict) and row.get("entry_id"):
+        return str(row["entry_id"])
+    readout = check.get("fold_augmented_readout")
+    if isinstance(readout, dict) and readout.get("entry_id"):
+        return str(readout["entry_id"])
+    return None
+
+
+def build_fold_augmented_family_panel_source_check_completion_reconciliation(
+    *,
+    source_check_queue_path: Path,
+    source_check_artifact_paths: list[Path],
+) -> dict[str, Any]:
+    queue = _read_json(source_check_queue_path)
+    completed_by_entry: dict[str, dict[str, Any]] = {}
+    source_records = []
+    for path in source_check_artifact_paths:
+        if not Path(path).exists():
+            source_records.append(
+                {"path": str(path), "exists": False, "entry_id": None}
+            )
+            continue
+        check = _read_json(path)
+        entry_id = _source_check_artifact_entry_id(check)
+        source_records.append(
+            {
+                "path": str(path),
+                "exists": True,
+                "entry_id": entry_id,
+                "status": check.get("status"),
+                "sha256": _sha256(path),
+            }
+        )
+        if entry_id:
+            completed_by_entry[entry_id] = check
+
+    reconciliation_rows = []
+    completed_rows = []
+    pending_rows = []
+    promotion_ready_rows = []
+    panel_pending_counter: Counter[str] = Counter()
+    panel_completed_counter: Counter[str] = Counter()
+    for queue_row in queue.get("queue_rows", []):
+        if not isinstance(queue_row, dict) or not queue_row.get("entry_id"):
+            continue
+        entry_id = str(queue_row["entry_id"])
+        panel_id = str(queue_row.get("panel_id") or "")
+        check = completed_by_entry.get(entry_id)
+        decision = (check or {}).get("source_check_decision") or {}
+        completed = (
+            check is not None
+            and check.get("status")
+            == "source_check_completed_review_only_no_label_change"
+        )
+        family_promotion_ready = bool(decision.get("family_promotion_ready"))
+        row = {
+            "rank": queue_row.get("rank"),
+            "entry_id": entry_id,
+            "panel_id": panel_id,
+            "queue_threshold_margin": queue_row.get("threshold_margin"),
+            "completion_status": (
+                "completed_review_only_no_label_change"
+                if completed
+                else "pending_source_check_artifact"
+            ),
+            "source_check_result": decision.get("source_check_result"),
+            "family_promotion_ready": family_promotion_ready,
+            "countable_label_candidate": False,
+            "ready_for_import_preview": False,
+            "next_action": (
+                decision.get("next_action")
+                if completed
+                else (
+                    "Create a review-only source-check artifact for this row "
+                    "using frozen/local source evidence; do not promote, "
+                    "import, retune, or train."
+                )
+            ),
+        }
+        reconciliation_rows.append(row)
+        if completed:
+            completed_rows.append(row)
+            panel_completed_counter[panel_id] += 1
+        else:
+            pending_rows.append(row)
+            panel_pending_counter[panel_id] += 1
+        if family_promotion_ready:
+            promotion_ready_rows.append(row)
+
+    reconciliation_rows.sort(key=lambda row: int(row.get("rank") or 999999))
+    completed_rows.sort(key=lambda row: int(row.get("rank") or 999999))
+    pending_rows.sort(key=lambda row: int(row.get("rank") or 999999))
+    if not reconciliation_rows:
+        status = "family_panel_source_check_completion_reconciliation_blocked_no_queue"
+    elif pending_rows:
+        status = "family_panel_source_check_completion_reconciliation_ready_partial"
+    else:
+        status = "family_panel_source_check_completion_reconciliation_ready_complete"
+    return {
+        "artifact_id": (
+            FOLD_AUGMENTED_FAMILY_PANEL_SOURCE_CHECK_COMPLETION_RECONCILIATION_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.family_panel_source_check_completion_reconciliation"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Lever 4 reconciliation of the non-abstained family-panel "
+            "source-check queue against completed review-only source-check "
+            "artifacts. It records which source checks are complete and which "
+            "rows remain pending before any import-preview or label-factory gate."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "threshold_values_changed": False,
+            "model_weights_fit_or_refit": False,
+            "heldout_rows_used_for_training": False,
+            "new_source_data_fetched": False,
+            "countable_labels_authorized": False,
+        },
+        "counts": {
+            "source_check_queue_rows": len(reconciliation_rows),
+            "source_check_artifact_paths_supplied": len(source_check_artifact_paths),
+            "source_check_artifacts_found": sum(
+                1 for record in source_records if record.get("exists")
+            ),
+            "completed_review_only_no_label_change_rows": len(completed_rows),
+            "pending_source_check_rows": len(pending_rows),
+            "family_promotion_ready_rows": len(promotion_ready_rows),
+            "countable_label_candidate_count": 0,
+            "import_preview_ready_rows": 0,
+            "completed_rows_by_panel": dict(sorted(panel_completed_counter.items())),
+            "pending_rows_by_panel": dict(sorted(panel_pending_counter.items())),
+        },
+        "decision": {
+            "source_check_queue_fully_reconciled": not pending_rows,
+            "new_countable_labels_authorized": False,
+            "countable_label_import_ready": False,
+            "pending_source_check_entry_ids": [
+                row["entry_id"] for row in pending_rows
+            ],
+            "completed_source_check_entry_ids": [
+                row["entry_id"] for row in completed_rows
+            ],
+            "next_gate": (
+                "Finish review-only source-check artifacts for mh_066, "
+                "mh_073, and secondary_probe::radical_sam_enzyme before any "
+                "family-panel import preview."
+                if pending_rows
+                else (
+                    "All source-check queue rows have review-only artifacts; "
+                    "run an explicit import-preview blocker gate before any "
+                    "countable-label action."
+                )
+            ),
+        },
+        "reconciliation_rows": reconciliation_rows,
+        "source_check_artifact_records": source_records,
+        "source_artifacts": {
+            "source_check_queue": _source_path_record(source_check_queue_path),
+            "source_check_artifacts": [
+                _source_path_record(path)
+                for path in source_check_artifact_paths
+                if Path(path).exists()
+            ],
+        },
+        "interpretation": {
+            "headline": (
+                f"{len(completed_rows)}/{len(reconciliation_rows)} "
+                "non-abstained family-panel source checks have completed "
+                "review-only artifacts."
+            ),
+            "result": (
+                "Completed source checks authorize no labels or imports; they "
+                "only reduce the unresolved source-check queue."
+            ),
+            "next_action": (
+                "Run an explicit import-preview blocker gate before any "
+                "family-panel label can count."
+                if not pending_rows
+                else (
+                    "Work the pending rows in rank order, starting with "
+                    "mh_066, then mh_073 and "
+                    "secondary_probe::radical_sam_enzyme."
+                )
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_family_panel_source_check_completion_reconciliation_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Fold-Augmented Family-Panel Source-Check Completion Reconciliation - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Source-check queue rows: {counts['source_check_queue_rows']}",
+        f"- Completed review-only rows: {counts['completed_review_only_no_label_change_rows']}",
+        f"- Pending source-check rows: {counts['pending_source_check_rows']}",
+        f"- Family-promotion-ready rows: {counts['family_promotion_ready_rows']}",
+        f"- Countable label candidates: {counts['countable_label_candidate_count']}",
+        "",
+        "## Decision",
+        "",
+        f"- Source-check queue fully reconciled: {decision['source_check_queue_fully_reconciled']}",
+        f"- New countable labels authorized: {decision['new_countable_labels_authorized']}",
+        f"- Pending rows: {decision['pending_source_check_entry_ids']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Rows",
+        "",
+        "| rank | row | panel | status | source-check result | promotion ready | next action |",
+        "| ---: | --- | --- | --- | --- | ---: | --- |",
+    ]
+    for row in audit["reconciliation_rows"]:
+        lines.append(
+            f"| {row['rank']} | {row['entry_id']} | {row['panel_id']} | "
+            f"{row['completion_status']} | {row['source_check_result']} | "
+            f"{row['family_promotion_ready']} | {row['next_action']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['headline']}",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_family_panel_source_check_completion_reconciliation(
+    *,
+    source_check_queue_path: Path,
+    source_check_artifact_paths: list[Path],
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_family_panel_source_check_completion_reconciliation(
+        source_check_queue_path=source_check_queue_path,
+        source_check_artifact_paths=source_check_artifact_paths,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_family_panel_source_check_completion_reconciliation_report(
+                audit
+            ),
             encoding="utf-8",
         )
     return audit

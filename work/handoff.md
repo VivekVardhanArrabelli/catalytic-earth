@@ -50,6 +50,105 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-02 Lever 3/2/4 Forward Push Active Run
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-02T18:02:40Z`
+- STARTED_LOCAL: `2026-06-02T13:02:40-0500 CDT`
+- ENDED_AT: `2026-06-02T18:27:06Z`
+- ENDED_LOCAL: `2026-06-02T13:27:06-0500 CDT`
+- ELAPSED_MINUTES: `24.4`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "started_at": "2026-06-02T18:02:40Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue from the previous Lever 3 source-sidecar / coordinate-policy blocker
+state and convert the highest-value deployability or countability move into a
+concrete artifact, test, or explicit next gate inside Levers 2, 3, or 4.
+
+#### What changed
+
+- Lever 4: added a source-check completion reconciliation for the
+  fold-augmented family-panel source-check queue. The queued non-abstained
+  family-panel rows are now fully reconciled against completed review-only
+  source-check artifacts: 9/9 complete, 0 pending, 0 family-promotion-ready,
+  0 import-preview-ready, and 0 countable-label candidates.
+- Lever 4: added a countability gate preflight that maps the 22 review-only
+  family-panel rows to import-preview and label-factory blockers. The result is
+  0/22 countable label candidates, 15/22 primary score-complete rows, 9/9
+  source-check rows completed, 7 locator/primary-channel blocked rows, and no
+  label/import/registry/threshold/model change.
+- Lever 4: added an explicit import-preview blocker gate. It shows 0/22 rows
+  can enter an import preview, 9 rows are blocked by completed source checks
+  that remain review-only/no-promotion, 6 rows need expert family-admission
+  decisions, and 7 priority rows remain blocked on source-free
+  locator/primary-channel decisions.
+- Joined the import-preview blocker gate to the existing source-free locator
+  human-decision matrix. All 7 priority locator rows have a human/policy
+  decision class and 0 are mechanically clearable by automation right now:
+  `secondary_probe::cobalamin_radical_rearrangement`,
+  `external_glycoside_panel`, `mh_064`, `mh_065`, `mh_067`, `mh_068`, and
+  `mh_072`.
+- Ended before 55 minutes because the selected Lever 4 path is complete and
+  validated, and the remaining next action is an explicit human/policy
+  approval or rejection. No labels, registries, ontologies, imports,
+  production thresholds, training surfaces, model weights, or heldout M-CSA
+  tuning surfaces changed.
+
+#### Artifacts and reports
+
+- New:
+  `artifacts/v3_fold_augmented_family_panel_source_check_completion_reconciliation_current702_20260602.json`
+  and
+  `work/fold_augmented_family_panel_source_check_completion_reconciliation_current702_20260602.md`.
+- New:
+  `artifacts/v3_fold_augmented_family_panel_countability_gate_preflight_current702_20260602.json`
+  and
+  `work/fold_augmented_family_panel_countability_gate_preflight_current702_20260602.md`.
+- New:
+  `artifacts/v3_fold_augmented_family_panel_import_preview_blocker_gate_current702_20260602.json`
+  and
+  `work/fold_augmented_family_panel_import_preview_blocker_gate_current702_20260602.md`.
+- Updated code/coverage:
+  `src/catalytic_earth/northstar_next_levers.py`,
+  `src/catalytic_earth/cli.py`, and
+  `tests/test_geometry_artifact_regression.py`.
+
+#### Tests run
+
+- `python -m compileall -q src/catalytic_earth/northstar_next_levers.py src/catalytic_earth/cli.py tests/test_geometry_artifact_regression.py`
+- `python -m json.tool` on the three new Lever 4 JSON artifacts.
+- Focused family-panel regression:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'family_panel_countability_gate_preflight or import_preview_blocker_gate or source_check_completion_reconciliation or fold_augmented_family_panel_source_check_queue or fold_augmented_family_panel_research_readout' -q`
+  (5 passed, 132 deselected)
+- Relevant suites:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`
+  (358 passed, 81 subtests passed)
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  (12 source records, 8 fingerprints, 15 ontology families, 702 curated labels)
+- `PYTHONPATH=src python -m unittest discover -s tests`
+  (1184 passed; existing sklearn/SciPy deprecation warning)
+- `PYTHONPATH=src python -m pytest -q`
+  (1229 passed, 100 subtests passed; existing sklearn/SciPy deprecation warning)
+- `git diff --check`
+
+#### Exact next action
+
+- Lever 4: start from
+  `work/fold_augmented_family_panel_import_preview_blocker_gate_current702_20260602.md`
+  and
+  `work/family_panel_source_free_locator_human_decision_matrix_current702_20260601.md`.
+  Pick exactly one source-free locator decision class and record an explicit
+  approval or rejection before any locator copy, coordinate fetch, scoring,
+  import preview, or label-factory action. Recommended first decision is
+  `human_locator_copy_approval_after_split_safe_pass` for `mh_067`/`mh_068`,
+  because the split-safe check already passed and no coordinate fetch is
+  needed; after a decision, rerun the locator schema audit before scoring.
+
 ### 2026-06-02 Lever 2/3/4 Forward Push Active Run
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

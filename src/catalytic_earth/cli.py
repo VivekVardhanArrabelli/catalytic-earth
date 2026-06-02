@@ -65,10 +65,13 @@ from .northstar_next_levers import (
     write_family_panel_source_free_predicted_geometry_sidecar_manifest,
     write_fold_augmented_abstention_gate,
     write_fold_augmented_abstention_threshold_contract,
+    write_fold_augmented_family_panel_countability_gate_preflight,
+    write_fold_augmented_family_panel_import_preview_blocker_gate,
     write_fold_augmented_family_panel_m_csa_primary_channel_repair,
     write_fold_augmented_family_panel_missing_primary_channel_diagnosis,
     write_fold_augmented_family_panel_missing_primary_channel_queue,
     write_fold_augmented_family_panel_research_readout,
+    write_fold_augmented_family_panel_source_check_completion_reconciliation,
     write_fold_augmented_family_panel_source_check_queue,
     write_fold_augmented_confounded_deployment_closure_audit,
     write_fold_augmented_fold_only_deployment_contract_decision,
@@ -11896,6 +11899,59 @@ def cmd_build_fold_augmented_family_panel_research_readout(
     return 0
 
 
+def cmd_build_fold_augmented_family_panel_countability_gate_preflight(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_family_panel_countability_gate_preflight(
+        family_panel_research_readout_path=Path(
+            args.family_panel_research_readout
+        ),
+        family_panel_coverage_audit_path=Path(args.family_panel_coverage_audit),
+        source_check_queue_path=Path(args.source_check_queue)
+        if args.source_check_queue
+        else None,
+        locator_blocker_status_path=Path(args.locator_blocker_status)
+        if args.locator_blocker_status
+        else None,
+        source_check_completion_reconciliation_path=Path(
+            args.source_check_completion_reconciliation
+        )
+        if args.source_check_completion_reconciliation
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel countability gate preflight to "
+        f"{args.out} (status: {audit.get('status')}, countable candidates: "
+        f"{counts.get('countable_label_candidate_count')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_family_panel_import_preview_blocker_gate(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_family_panel_import_preview_blocker_gate(
+        countability_gate_preflight_path=Path(args.countability_gate_preflight),
+        locator_human_decision_matrix_path=Path(
+            args.locator_human_decision_matrix
+        )
+        if args.locator_human_decision_matrix
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel import-preview blocker gate to "
+        f"{args.out} (status: {audit.get('status')}, import-ready rows: "
+        f"{counts.get('import_preview_ready_rows')})"
+    )
+    return 0
+
+
 def cmd_build_family_panel_high_value_glycyl_radical_readiness_packet(
     args: argparse.Namespace,
 ) -> int:
@@ -11929,6 +11985,27 @@ def cmd_build_fold_augmented_family_panel_source_check_queue(
         "Wrote fold-augmented family-panel source-check queue to "
         f"{args.out} (status: {audit.get('status')}, "
         f"rows: {counts.get('source_check_rows')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_family_panel_source_check_completion_reconciliation(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_family_panel_source_check_completion_reconciliation(
+        source_check_queue_path=Path(args.source_check_queue),
+        source_check_artifact_paths=[
+            Path(path) for path in args.source_check_artifacts
+        ],
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented family-panel source-check completion "
+        f"reconciliation to {args.out} (status: {audit.get('status')}, "
+        f"completed: {counts.get('completed_review_only_no_label_change_rows')}, "
+        f"pending: {counts.get('pending_source_check_rows')})"
     )
     return 0
 
@@ -26300,6 +26377,102 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_fold_augmented_family_panel_research_readout
     )
 
+    family_panel_countability_gate = subparsers.add_parser(
+        "build-fold-augmented-family-panel-countability-gate-preflight",
+        help=(
+            "map review-only family-panel rows to the import/label-factory "
+            "countability gates without authorizing labels"
+        ),
+    )
+    family_panel_countability_gate.add_argument(
+        "--family-panel-research-readout",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_research_readout_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_countability_gate.add_argument(
+        "--family-panel-coverage-audit",
+        default="artifacts/v3_family_panel_packet_coverage_audit_current702_20260601.json",
+    )
+    family_panel_countability_gate.add_argument(
+        "--source-check-queue",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_source_check_queue_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_countability_gate.add_argument(
+        "--locator-blocker-status",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_blocker_resolution_status_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_countability_gate.add_argument(
+        "--source-check-completion-reconciliation",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_source_check_completion_"
+            "reconciliation_current702_20260602.json"
+        ),
+    )
+    family_panel_countability_gate.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_countability_gate_"
+            "preflight_current702_20260602.json"
+        ),
+    )
+    family_panel_countability_gate.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_countability_gate_preflight_"
+            "current702_20260602.md"
+        ),
+    )
+    family_panel_countability_gate.set_defaults(
+        func=cmd_build_fold_augmented_family_panel_countability_gate_preflight
+    )
+
+    family_panel_import_blockers = subparsers.add_parser(
+        "build-fold-augmented-family-panel-import-preview-blocker-gate",
+        help=(
+            "record why review-only family-panel rows cannot enter an import "
+            "preview or label-factory countability gate yet"
+        ),
+    )
+    family_panel_import_blockers.add_argument(
+        "--countability-gate-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_countability_gate_"
+            "preflight_current702_20260602.json"
+        ),
+    )
+    family_panel_import_blockers.add_argument(
+        "--locator-human-decision-matrix",
+        default=(
+            "artifacts/v3_family_panel_source_free_locator_human_decision_"
+            "matrix_current702_20260601.json"
+        ),
+    )
+    family_panel_import_blockers.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_import_preview_"
+            "blocker_gate_current702_20260602.json"
+        ),
+    )
+    family_panel_import_blockers.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_import_preview_blocker_gate_"
+            "current702_20260602.md"
+        ),
+    )
+    family_panel_import_blockers.set_defaults(
+        func=cmd_build_fold_augmented_family_panel_import_preview_blocker_gate
+    )
+
     family_panel_source_queue = subparsers.add_parser(
         "build-fold-augmented-family-panel-source-check-queue",
         help=(
@@ -26330,6 +26503,53 @@ def build_parser() -> argparse.ArgumentParser:
     )
     family_panel_source_queue.set_defaults(
         func=cmd_build_fold_augmented_family_panel_source_check_queue
+    )
+
+    family_panel_source_completion = subparsers.add_parser(
+        "build-fold-augmented-family-panel-source-check-completion-reconciliation",
+        help=(
+            "reconcile non-abstained family-panel source-check queue rows "
+            "against completed review-only source-check artifacts"
+        ),
+    )
+    family_panel_source_completion.add_argument(
+        "--source-check-queue",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_source_check_queue_"
+            "current702_20260601.json"
+        ),
+    )
+    family_panel_source_completion.add_argument(
+        "--source-check-artifacts",
+        nargs="+",
+        default=[
+            "artifacts/v3_fold_augmented_family_panel_source_check_m_csa267_current702_20260601.json",
+            "artifacts/v3_fold_augmented_family_panel_source_check_m_csa131_current702_20260601.json",
+            "artifacts/v3_fold_augmented_family_panel_source_check_m_csa132_current702_20260601.json",
+            "artifacts/v3_fold_augmented_family_panel_source_check_m_csa116_current702_20260601.json",
+            "artifacts/v3_fold_augmented_family_panel_source_check_m_csa750_current702_20260601.json",
+            "artifacts/v3_fold_augmented_family_panel_source_check_m_csa551_current702_20260601.json",
+            "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_066_current702_20260601.json",
+            "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_mh_073_current702_20260601.json",
+            "artifacts/v3_family_panel_source_free_predicted_geometry_source_check_secondary_probe_radical_sam_enzyme_current702_20260601.json",
+        ],
+    )
+    family_panel_source_completion.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_family_panel_source_check_completion_"
+            "reconciliation_current702_20260602.json"
+        ),
+    )
+    family_panel_source_completion.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_family_panel_source_check_completion_"
+            "reconciliation_current702_20260602.md"
+        ),
+    )
+    family_panel_source_completion.set_defaults(
+        func=cmd_build_fold_augmented_family_panel_source_check_completion_reconciliation
     )
 
     family_panel_missing_queue = subparsers.add_parser(

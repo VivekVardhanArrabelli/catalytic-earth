@@ -6761,6 +6761,205 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(readout["guardrails"]["review_only"])
         self.assertFalse(readout["guardrails"]["thresholds_selected_on_family_panel_rows"])
 
+    def test_fold_augmented_family_panel_countability_gate_preflight_current_counts(
+        self,
+    ) -> None:
+        preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_family_panel_countability_gate_preflight_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            preflight["status"],
+            "family_panel_countability_gate_preflight_ready_no_countable_rows",
+        )
+        self.assertEqual(preflight["counts"]["coverage_candidate_rows"], 22)
+        self.assertEqual(preflight["counts"]["readout_candidate_rows"], 22)
+        self.assertEqual(preflight["counts"]["primary_score_complete_rows"], 15)
+        self.assertEqual(preflight["counts"]["non_abstained_review_rows"], 9)
+        self.assertEqual(preflight["counts"]["abstained_review_rows"], 6)
+        self.assertEqual(preflight["counts"]["missing_primary_channel_rows"], 7)
+        self.assertEqual(preflight["counts"]["source_check_queue_rows_joined"], 9)
+        self.assertEqual(
+            preflight["counts"]["source_check_completed_rows_joined"], 9
+        )
+        self.assertEqual(
+            preflight["counts"]["source_check_pending_rows_joined"], 0
+        )
+        self.assertEqual(
+            preflight["counts"][
+                "source_check_completed_no_family_promotion_rows"
+            ],
+            9,
+        )
+        self.assertEqual(
+            preflight["counts"]["locator_human_or_policy_blocked_rows_joined"],
+            7,
+        )
+        self.assertEqual(preflight["counts"]["import_preview_ready_rows"], 0)
+        self.assertEqual(preflight["counts"]["label_factory_gate_ready_rows"], 0)
+        self.assertEqual(
+            preflight["counts"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(
+            preflight["counts"]["blocker_counts"],
+            {
+                "completed_source_check_not_family_promotion_ready": 9,
+                "countable_import_preview_missing": 22,
+                "label_factory_gate_not_run_for_family_panel_row": 22,
+                "primary_channel_score_missing": 7,
+                "review_packet_not_expert_import_decision": 22,
+                "source_free_locator_human_or_policy_decision_required": 7,
+            },
+        )
+        self.assertFalse(preflight["decision"]["new_countable_labels_authorized"])
+        self.assertFalse(preflight["decision"]["countable_label_import_ready"])
+        self.assertFalse(preflight["decision"]["label_factory_gate_ready"])
+        self.assertTrue(preflight["decision"]["source_checks_fully_reconciled"])
+        self.assertEqual(
+            preflight["decision"]["countable_label_candidate_entry_ids"], []
+        )
+        panel_by_id = {
+            row["panel_id"]: row for row in preflight["panel_gate_summaries"]
+        }
+        self.assertEqual(
+            panel_by_id["no_reliable_structure_metal_hydrolase_controls"][
+                "geometry_or_locator_blocked_rows"
+            ],
+            5,
+        )
+        by_entry = {
+            row["entry_id"]: row for row in preflight["row_gate_status"]
+        }
+        self.assertIn(
+            "completed_source_check_not_family_promotion_ready",
+            by_entry["mh_066"]["gate_blockers"],
+        )
+        self.assertIn(
+            "source_free_locator_human_or_policy_decision_required",
+            by_entry["mh_064"]["gate_blockers"],
+        )
+        self.assertFalse(
+            any(row["countable_label_candidate"] for row in preflight["row_gate_status"])
+        )
+        self.assertTrue(preflight["guardrails"]["review_only"])
+        self.assertFalse(
+            preflight["guardrails"]["labels_registries_ontologies_changed"]
+        )
+
+    def test_fold_augmented_family_panel_import_preview_blocker_gate_current_counts(
+        self,
+    ) -> None:
+        gate = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_family_panel_import_preview_blocker_gate_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            gate["status"],
+            "family_panel_import_preview_blocker_gate_ready_blocked",
+        )
+        self.assertEqual(gate["counts"]["review_rows_evaluated"], 22)
+        self.assertEqual(gate["counts"]["panels_represented"], 7)
+        self.assertEqual(
+            gate["counts"]["rows_blocked_before_import_preview"], 22
+        )
+        self.assertEqual(gate["counts"]["import_preview_ready_rows"], 0)
+        self.assertEqual(gate["counts"]["label_factory_gate_ready_rows"], 0)
+        self.assertEqual(gate["counts"]["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            gate["counts"]["rows_blocked_by_expert_import_decision"], 22
+        )
+        self.assertEqual(
+            gate["counts"]["rows_blocked_by_locator_or_primary_channel"], 7
+        )
+        self.assertEqual(
+            gate["counts"]["rows_with_completed_review_only_source_check"], 9
+        )
+        self.assertEqual(
+            gate["counts"][
+                "rows_blocked_by_completed_source_check_no_promotion"
+            ],
+            9,
+        )
+        self.assertEqual(
+            gate["counts"]["primary_blocker_class_counts"],
+            {
+                "completed_source_check_review_only_no_promotion": 9,
+                "expert_family_admission_decision_required": 6,
+                "source_free_locator_or_primary_channel_missing": 7,
+            },
+        )
+        self.assertEqual(
+            gate["counts"]["priority_rows_with_locator_decision_class"], 7
+        )
+        self.assertEqual(
+            gate["counts"][
+                "priority_rows_requiring_human_or_policy_decision"
+            ],
+            7,
+        )
+        self.assertEqual(
+            gate["counts"]["priority_rows_mechanically_clearable_now"], 0
+        )
+        self.assertTrue(gate["decision"]["source_checks_fully_reconciled"])
+        self.assertFalse(gate["decision"]["import_preview_can_run"])
+        self.assertFalse(gate["decision"]["new_countable_labels_authorized"])
+        self.assertTrue(
+            gate["decision"]["all_priority_rows_human_or_policy_blocked"]
+        )
+        self.assertEqual(
+            gate["decision"]["priority_next_entry_ids"],
+            [
+                "secondary_probe::cobalamin_radical_rearrangement",
+                "external_glycoside_panel",
+                "mh_064",
+                "mh_065",
+                "mh_067",
+                "mh_068",
+                "mh_072",
+            ],
+        )
+        by_entry = {row["entry_id"]: row for row in gate["row_blockers"]}
+        self.assertEqual(
+            by_entry["m_csa:131"]["primary_blocker_class"],
+            "completed_source_check_review_only_no_promotion",
+        )
+        self.assertEqual(
+            by_entry["m_csa:30"]["primary_blocker_class"],
+            "expert_family_admission_decision_required",
+        )
+        self.assertEqual(
+            by_entry["mh_064"]["primary_blocker_class"],
+            "source_free_locator_or_primary_channel_missing",
+        )
+        self.assertEqual(
+            by_entry["mh_067"]["locator_decision_class"],
+            "human_locator_copy_approval_after_split_safe_pass",
+        )
+        self.assertIs(
+            by_entry["mh_067"][
+                "automation_can_continue_without_locator_decision"
+            ],
+            False,
+        )
+        self.assertEqual(
+            by_entry["secondary_probe::cobalamin_radical_rearrangement"][
+                "locator_decision_class"
+            ],
+            "nonlabel_locator_strategy_or_alternate_source_required",
+        )
+        self.assertTrue(gate["guardrails"]["review_only"])
+        self.assertFalse(gate["guardrails"]["imports_or_promotions_performed"])
+
     def test_fold_augmented_family_panel_source_check_queue_current_counts(self) -> None:
         queue = _load_json(
             ROOT
@@ -6797,6 +6996,92 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertTrue(queue["guardrails"]["review_only"])
         self.assertFalse(queue["guardrails"]["new_source_data_fetched"])
+
+    def test_fold_augmented_family_panel_source_check_completion_reconciliation_current_counts(
+        self,
+    ) -> None:
+        reconciliation = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_family_panel_source_check_completion_"
+                "reconciliation_current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            reconciliation["status"],
+            "family_panel_source_check_completion_reconciliation_ready_complete",
+        )
+        self.assertEqual(reconciliation["counts"]["source_check_queue_rows"], 9)
+        self.assertEqual(
+            reconciliation["counts"]["source_check_artifact_paths_supplied"],
+            9,
+        )
+        self.assertEqual(
+            reconciliation["counts"]["source_check_artifacts_found"], 9
+        )
+        self.assertEqual(
+            reconciliation["counts"][
+                "completed_review_only_no_label_change_rows"
+            ],
+            9,
+        )
+        self.assertEqual(reconciliation["counts"]["pending_source_check_rows"], 0)
+        self.assertEqual(
+            reconciliation["counts"]["family_promotion_ready_rows"], 0
+        )
+        self.assertEqual(
+            reconciliation["counts"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(
+            reconciliation["decision"]["pending_source_check_entry_ids"],
+            [],
+        )
+        self.assertEqual(
+            reconciliation["decision"]["completed_source_check_entry_ids"],
+            [
+                "mh_066",
+                "m_csa:267",
+                "m_csa:131",
+                "m_csa:750",
+                "m_csa:551",
+                "m_csa:132",
+                "mh_073",
+                "secondary_probe::radical_sam_enzyme",
+                "m_csa:116",
+            ],
+        )
+        self.assertTrue(
+            reconciliation["decision"]["source_check_queue_fully_reconciled"]
+        )
+        self.assertFalse(reconciliation["decision"]["new_countable_labels_authorized"])
+        by_entry = {
+            row["entry_id"]: row
+            for row in reconciliation["reconciliation_rows"]
+        }
+        self.assertEqual(
+            by_entry["mh_066"]["completion_status"],
+            "completed_review_only_no_label_change",
+        )
+        self.assertEqual(
+            by_entry["mh_066"]["source_check_result"],
+            "hold_as_review_only_metal_hydrolase_expansion_candidate",
+        )
+        self.assertEqual(
+            by_entry["m_csa:267"]["source_check_result"],
+            "keep_as_review_only_oos_boundary_control",
+        )
+        self.assertFalse(
+            any(
+                row["countable_label_candidate"]
+                for row in reconciliation["reconciliation_rows"]
+            )
+        )
+        self.assertTrue(reconciliation["guardrails"]["review_only"])
+        self.assertFalse(
+            reconciliation["guardrails"]["labels_registries_ontologies_changed"]
+        )
 
     def test_family_panel_m_csa_primary_channel_repair_current_scores(self) -> None:
         repair = _load_json(
