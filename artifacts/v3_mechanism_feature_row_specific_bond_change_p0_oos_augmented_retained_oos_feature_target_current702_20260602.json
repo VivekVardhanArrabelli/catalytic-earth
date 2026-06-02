@@ -1,0 +1,5743 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target_current702_20260602",
+  "candidate_feature_tokens": [
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:40",
+        "m_csa:287",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:133"
+      ],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|electrostatic_stabiliser",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "primary_hit_rows": [
+        "m_csa:133"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "score": 20
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:253",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|electrostatic_stabiliser=1",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "score": 14
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:85",
+        "m_csa:154",
+        "m_csa:221",
+        "m_csa:222",
+        "m_csa:224",
+        "m_csa:241",
+        "m_csa:287",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_family": "residue_role_present",
+      "feature_token": "residue_role_present:hydrogen_bond_acceptor",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273",
+        "m_csa:312"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:6",
+        "m_csa:16",
+        "m_csa:37",
+        "m_csa:66",
+        "m_csa:68",
+        "m_csa:94",
+        "m_csa:102",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:169",
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273",
+        "m_csa:312"
+      ],
+      "score": 13
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:85",
+        "m_csa:194",
+        "m_csa:222",
+        "m_csa:253",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:proton_transfer|electrostatic_stabiliser",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:318"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:70",
+        "m_csa:263"
+      ],
+      "primary_hit_rows": [
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "score": 13
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:40",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:133"
+      ],
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:bond_formed|electrostatic_stabiliser=1",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "primary_hit_rows": [
+        "m_csa:133"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "score": 13
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:40",
+        "m_csa:85",
+        "m_csa:154",
+        "m_csa:194",
+        "m_csa:221",
+        "m_csa:222",
+        "m_csa:224",
+        "m_csa:241",
+        "m_csa:287",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_family": "residue_role_present",
+      "feature_token": "residue_role_present:hydrogen_bond_donor",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:318"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:6",
+        "m_csa:15",
+        "m_csa:16",
+        "m_csa:37",
+        "m_csa:66",
+        "m_csa:68",
+        "m_csa:94",
+        "m_csa:102",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:169",
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:318"
+      ],
+      "score": 12
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:85",
+        "m_csa:222",
+        "m_csa:241",
+        "m_csa:253",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_family": "residue_role_present",
+      "feature_token": "residue_role_present:activator",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:49"
+      ],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:66",
+        "m_csa:94",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49"
+      ],
+      "score": 12
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:40",
+        "m_csa:85",
+        "m_csa:222",
+        "m_csa:241",
+        "m_csa:253",
+        "m_csa:287"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:186"
+      ],
+      "feature_family": "participant_role_count",
+      "feature_token": "participant_role_count:product=2",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:149",
+        "m_csa:263"
+      ],
+      "primary_hit_rows": [
+        "m_csa:66",
+        "m_csa:68",
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:149",
+        "m_csa:263"
+      ],
+      "score": 12
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:221",
+        "m_csa:224"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:hydrogen_bond_donor=2",
+      "nearest_primary_conflict_rows": [
+        "m_csa:273"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:101",
+        "m_csa:256"
+      ],
+      "primary_hit_rows": [
+        "m_csa:16",
+        "m_csa:66",
+        "m_csa:102",
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:101",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "score": 11
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:222"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:proton_transfer|tyr",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:70",
+        "m_csa:273"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:70",
+        "m_csa:273"
+      ],
+      "score": 11
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:85",
+        "m_csa:154",
+        "m_csa:194",
+        "m_csa:221",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:proton_transfer|his",
+      "nearest_primary_conflict_rows": [
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:149"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:312"
+      ],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:15",
+        "m_csa:16",
+        "m_csa:102",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:149",
+        "m_csa:312"
+      ],
+      "score": 11
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:85",
+        "m_csa:154",
+        "m_csa:221",
+        "m_csa:222",
+        "m_csa:224",
+        "m_csa:241",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147"
+      ],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:proton_transfer|hydrogen_bond_acceptor",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:273",
+        "m_csa:312"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:16",
+        "m_csa:68",
+        "m_csa:102",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:273",
+        "m_csa:312"
+      ],
+      "score": 10
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:85",
+        "m_csa:154",
+        "m_csa:221",
+        "m_csa:222",
+        "m_csa:224",
+        "m_csa:241",
+        "m_csa:287",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_family": "residue_role_present",
+      "feature_token": "residue_role_present:proton_acceptor",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:6",
+        "m_csa:16",
+        "m_csa:37",
+        "m_csa:66",
+        "m_csa:68",
+        "m_csa:94",
+        "m_csa:102",
+        "m_csa:124",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:169",
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "score": 10
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:85",
+        "m_csa:154",
+        "m_csa:221",
+        "m_csa:222",
+        "m_csa:224",
+        "m_csa:241",
+        "m_csa:287",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_family": "residue_role_present",
+      "feature_token": "residue_role_present:proton_donor",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:6",
+        "m_csa:16",
+        "m_csa:37",
+        "m_csa:66",
+        "m_csa:68",
+        "m_csa:94",
+        "m_csa:102",
+        "m_csa:124",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:169",
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "score": 10
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:241",
+        "m_csa:287"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "participant_role_count",
+      "feature_token": "participant_role_count:catalytic_residue=5",
+      "nearest_primary_conflict_rows": [
+        "m_csa:23",
+        "m_csa:78",
+        "m_csa:273"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:256"
+      ],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:16",
+        "m_csa:94",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:78",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "score": 10
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:221",
+        "m_csa:241"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:147"
+      ],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:proton_acceptor=2",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:6",
+        "m_csa:94",
+        "m_csa:147",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:59",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "score": 10
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:221",
+        "m_csa:241"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:147"
+      ],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:proton_donor=2",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:6",
+        "m_csa:94",
+        "m_csa:147",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:59",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "score": 10
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:40",
+        "m_csa:154",
+        "m_csa:241",
+        "m_csa:253"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_family": "participant_role_count",
+      "feature_token": "participant_role_count:substrate=2",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:49",
+        "m_csa:312"
+      ],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:15",
+        "m_csa:16",
+        "m_csa:66",
+        "m_csa:94",
+        "m_csa:102"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:312"
+      ],
+      "score": 9
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:253",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:147"
+      ],
+      "feature_family": "event_type_count",
+      "feature_token": "event_type_count:proton_transfer=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:263"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:15",
+        "m_csa:68",
+        "m_csa:147"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:263",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "score": 9
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:147"
+      ],
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|hydrogen_bond_acceptor=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:78"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:312"
+      ],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:16",
+        "m_csa:68",
+        "m_csa:147"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:78",
+        "m_csa:312"
+      ],
+      "score": 9
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:253"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:metal_ligand=3",
+      "nearest_primary_conflict_rows": [
+        "m_csa:273"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:256",
+        "m_csa:312"
+      ],
+      "primary_hit_rows": [
+        "m_csa:16"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:59",
+        "m_csa:256",
+        "m_csa:273",
+        "m_csa:312"
+      ],
+      "score": 9
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:253"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:proton_transfer|activator",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "score": 9
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:253"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|activator=1",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "score": 9
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:85",
+        "m_csa:194",
+        "m_csa:221",
+        "m_csa:222"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:186"
+      ],
+      "feature_family": "participant_role_count",
+      "feature_token": "participant_role_count:substrate=1",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:263",
+        "m_csa:273"
+      ],
+      "primary_hit_rows": [
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:59",
+        "m_csa:263",
+        "m_csa:273"
+      ],
+      "score": 9
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:222",
+        "m_csa:241",
+        "m_csa:253",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:activator=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:23"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:49"
+      ],
+      "primary_hit_rows": [
+        "m_csa:66",
+        "m_csa:94",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:49"
+      ],
+      "score": 9
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:85",
+        "m_csa:194",
+        "m_csa:221",
+        "m_csa:222",
+        "m_csa:224",
+        "m_csa:241",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147"
+      ],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:proton_transfer|hydrogen_bond_donor",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:318"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:16",
+        "m_csa:68",
+        "m_csa:102",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:318"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:85",
+        "m_csa:154",
+        "m_csa:194",
+        "m_csa:221",
+        "m_csa:222",
+        "m_csa:224",
+        "m_csa:241",
+        "m_csa:253",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147"
+      ],
+      "feature_family": "event_type_present",
+      "feature_token": "event_type_present:proton_transfer",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:15",
+        "m_csa:16",
+        "m_csa:68",
+        "m_csa:102",
+        "m_csa:124",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:222",
+        "m_csa:287",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133"
+      ],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|hydrogen_bond_acceptor",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:78",
+        "m_csa:149"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:16",
+        "m_csa:94",
+        "m_csa:133",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:78",
+        "m_csa:149"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:85",
+        "m_csa:154",
+        "m_csa:221",
+        "m_csa:222",
+        "m_csa:224",
+        "m_csa:241",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147"
+      ],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:proton_transfer|proton_acceptor",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:273"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:16",
+        "m_csa:68",
+        "m_csa:102",
+        "m_csa:124",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:273"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:85",
+        "m_csa:154",
+        "m_csa:221",
+        "m_csa:222",
+        "m_csa:224",
+        "m_csa:241",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147"
+      ],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:proton_transfer|proton_donor",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:273"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:16",
+        "m_csa:68",
+        "m_csa:102",
+        "m_csa:124",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:273"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:40",
+        "m_csa:194",
+        "m_csa:222",
+        "m_csa:241",
+        "m_csa:287",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133"
+      ],
+      "feature_family": "event_type_present",
+      "feature_token": "event_type_present:bond_formed",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:11",
+        "m_csa:15",
+        "m_csa:16",
+        "m_csa:94",
+        "m_csa:133",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:40",
+        "m_csa:85",
+        "m_csa:154",
+        "m_csa:194",
+        "m_csa:221",
+        "m_csa:222",
+        "m_csa:224",
+        "m_csa:241",
+        "m_csa:253",
+        "m_csa:287",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_family": "residue_role_present",
+      "feature_token": "residue_role_present:electrostatic_stabiliser",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:6",
+        "m_csa:15",
+        "m_csa:16",
+        "m_csa:37",
+        "m_csa:66",
+        "m_csa:68",
+        "m_csa:94",
+        "m_csa:102",
+        "m_csa:124",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:169",
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:241"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:cys=2",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:149",
+        "m_csa:256"
+      ],
+      "primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149",
+        "m_csa:256"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:149",
+        "m_csa:256"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:electrostatic_stabiliser=6",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:194",
+        "m_csa:221"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "participant_role_count",
+      "feature_token": "participant_role_count:product=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:273"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2"
+      ],
+      "primary_hit_rows": [
+        "m_csa:15",
+        "m_csa:16"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:273"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:222",
+        "m_csa:241",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|covalently_attached",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:94",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:40",
+        "m_csa:287"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:bond_formed|arg",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:78",
+        "m_csa:263"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:78",
+        "m_csa:263"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:221",
+        "m_csa:222",
+        "m_csa:224"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:147"
+      ],
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:proton_transfer|glu",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:59"
+      ],
+      "primary_hit_rows": [
+        "m_csa:68",
+        "m_csa:147"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:59"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:154",
+        "m_csa:224",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_mapped_residue_bucket",
+      "feature_token": "event_mapped_residue_bucket:proton_transfer|one",
+      "nearest_primary_conflict_rows": [
+        "m_csa:78",
+        "m_csa:246"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:149",
+        "m_csa:318"
+      ],
+      "primary_hit_rows": [
+        "m_csa:16",
+        "m_csa:68",
+        "m_csa:102"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:318"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:154",
+        "m_csa:224",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_mapped_residue_count",
+      "feature_token": "event_mapped_residue_count:proton_transfer=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:78",
+        "m_csa:246"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:149",
+        "m_csa:318"
+      ],
+      "primary_hit_rows": [
+        "m_csa:16",
+        "m_csa:68",
+        "m_csa:102"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:318"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:40",
+        "m_csa:253",
+        "m_csa:287",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:electrostatic_stabiliser=4",
+      "nearest_primary_conflict_rows": [
+        "m_csa:23"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:78",
+        "m_csa:263"
+      ],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:94",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:78",
+        "m_csa:263"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:154",
+        "m_csa:224",
+        "m_csa:287",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:186"
+      ],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:proton_acceptor=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:78",
+        "m_csa:246"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:101",
+        "m_csa:149"
+      ],
+      "primary_hit_rows": [
+        "m_csa:16",
+        "m_csa:37",
+        "m_csa:66",
+        "m_csa:68",
+        "m_csa:102",
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:154",
+        "m_csa:224",
+        "m_csa:287",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:186"
+      ],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:proton_donor=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:78",
+        "m_csa:246"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:101",
+        "m_csa:149"
+      ],
+      "primary_hit_rows": [
+        "m_csa:16",
+        "m_csa:37",
+        "m_csa:66",
+        "m_csa:68",
+        "m_csa:102",
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246"
+      ],
+      "score": 8
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:25",
+        "m_csa:40",
+        "m_csa:222",
+        "m_csa:287",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133"
+      ],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|hydrogen_bond_donor",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:16",
+        "m_csa:94",
+        "m_csa:133",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:147"
+      ],
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|hydrogen_bond_donor=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:263"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:318"
+      ],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:16",
+        "m_csa:68",
+        "m_csa:147"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:154",
+        "m_csa:221",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:his=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:70"
+      ],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:6",
+        "m_csa:94",
+        "m_csa:102",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:149"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:222",
+        "m_csa:241",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:covalently_attached=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:49"
+      ],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:66",
+        "m_csa:94",
+        "m_csa:147",
+        "m_csa:169",
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:149"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:194",
+        "m_csa:222",
+        "m_csa:241",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|nucleofuge",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:101",
+        "m_csa:149"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:94",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:101",
+        "m_csa:149"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:194",
+        "m_csa:222",
+        "m_csa:241",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|nucleophile",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:101",
+        "m_csa:149"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:94",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:101",
+        "m_csa:149"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_mapped_residue_count",
+      "feature_token": "event_mapped_residue_count:proton_transfer=4",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:263",
+        "m_csa:312"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:263",
+        "m_csa:312"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:40"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_code_count",
+      "feature_token": "event_residue_code_count:bond_formed|arg=1",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:78",
+        "m_csa:263"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:78",
+        "m_csa:263"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:194",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_mapped_residue_bucket",
+      "feature_token": "event_mapped_residue_bucket:electron_transfer|five_plus",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:256"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:59",
+        "m_csa:256"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:241",
+        "m_csa:253"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_participant_arity",
+      "feature_token": "event_participant_arity:proton_transfer|before_2|after_2|delta_0",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:49",
+        "m_csa:149"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:49",
+        "m_csa:149"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:194",
+        "m_csa:222",
+        "m_csa:253"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:147"
+      ],
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:proton_transfer|lys",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:318"
+      ],
+      "primary_hit_rows": [
+        "m_csa:124",
+        "m_csa:147"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:318"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:222",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|hydrogen_bond_acceptor=3",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:222",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|hydrogen_bond_donor=3",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:222",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|proton_acceptor=3",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:222",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|proton_donor=3",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:222",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_type_count",
+      "feature_token": "event_type_count:proton_transfer=3",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:222",
+        "m_csa:253"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:lys=2",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:59"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:59"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|activator",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:23"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:85",
+        "m_csa:194",
+        "m_csa:287",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:his=2",
+      "nearest_primary_conflict_rows": [
+        "m_csa:256"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:78"
+      ],
+      "primary_hit_rows": [
+        "m_csa:37"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:78",
+        "m_csa:256"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:40",
+        "m_csa:194",
+        "m_csa:241"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:hydrogen_bond_donor=4",
+      "nearest_primary_conflict_rows": [
+        "m_csa:149"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:78"
+      ],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:94",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:78",
+        "m_csa:149"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:287",
+        "m_csa:292",
+        "m_csa:317"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "participant_role_count",
+      "feature_token": "participant_role_count:substrate=3",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:318"
+      ],
+      "primary_hit_rows": [
+        "m_csa:37",
+        "m_csa:68",
+        "m_csa:124"
+      ],
+      "priority_retained_oos_hit_rows": [],
+      "retained_oos_hit_rows": [
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:318"
+      ],
+      "score": 7
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:25"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:133"
+      ],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:hydrogen_bond_acceptor=3",
+      "nearest_primary_conflict_rows": [
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:78"
+      ],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:66",
+        "m_csa:94",
+        "m_csa:133",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:78",
+        "m_csa:149"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:222",
+        "m_csa:241",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_mapped_residue_bucket",
+      "feature_token": "event_mapped_residue_bucket:bond_formed|one",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:318"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:94",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:318"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:222",
+        "m_csa:241",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_mapped_residue_count",
+      "feature_token": "event_mapped_residue_count:bond_formed=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:318"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:94",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:318"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:194",
+        "m_csa:222",
+        "m_csa:241",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:nucleofuge=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:101",
+        "m_csa:149"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:66",
+        "m_csa:94",
+        "m_csa:147",
+        "m_csa:169",
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:101",
+        "m_csa:149"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:25",
+        "m_csa:194",
+        "m_csa:222",
+        "m_csa:241",
+        "m_csa:292"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:nucleophile=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:2",
+        "m_csa:101",
+        "m_csa:149"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:66",
+        "m_csa:94",
+        "m_csa:147",
+        "m_csa:169",
+        "m_csa:186"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:101",
+        "m_csa:149"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_code_count",
+      "feature_token": "event_residue_code_count:proton_transfer|tyr=1",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:70"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:70"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:his=3",
+      "nearest_primary_conflict_rows": [
+        "m_csa:273"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:101",
+        "m_csa:312"
+      ],
+      "primary_hit_rows": [
+        "m_csa:16"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:59",
+        "m_csa:101",
+        "m_csa:273",
+        "m_csa:312"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:287"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_mapped_residue_count",
+      "feature_token": "event_mapped_residue_count:bond_formed=5",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:78"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:78"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:bond_formed|tyr",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:70"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:70"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:194"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:electron_transfer|ser",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:49",
+        "m_csa:256"
+      ],
+      "primary_hit_rows": [
+        "m_csa:68"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:49",
+        "m_csa:256"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:194",
+        "m_csa:253"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_mapped_residue_bucket",
+      "feature_token": "event_mapped_residue_bucket:proton_transfer|five_plus",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:23"
+      ],
+      "primary_hit_rows": [
+        "m_csa:15",
+        "m_csa:124"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:40",
+        "m_csa:241"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_participant_arity",
+      "feature_token": "event_participant_arity:bond_formed|before_2|after_2|delta_0",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:149"
+      ],
+      "primary_hit_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:194",
+        "m_csa:221"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_participant_arity",
+      "feature_token": "event_participant_arity:proton_transfer|before_1|after_1|delta_0",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:273"
+      ],
+      "primary_hit_rows": [
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:17",
+        "m_csa:221",
+        "m_csa:224"
+      ],
+      "calibration_primary_hit_rows": [
+        "m_csa:147"
+      ],
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:glu=1",
+      "nearest_primary_conflict_rows": [],
+      "nearest_primary_contrast_rows": [
+        "m_csa:2"
+      ],
+      "primary_hit_rows": [
+        "m_csa:66",
+        "m_csa:68",
+        "m_csa:124",
+        "m_csa:147"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:2"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:154",
+        "m_csa:194",
+        "m_csa:222"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:ser=1",
+      "nearest_primary_conflict_rows": [
+        "m_csa:256"
+      ],
+      "nearest_primary_contrast_rows": [
+        "m_csa:78"
+      ],
+      "primary_hit_rows": [
+        "m_csa:5",
+        "m_csa:37",
+        "m_csa:68",
+        "m_csa:94",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:78",
+        "m_csa:256"
+      ],
+      "score": 6
+    },
+    {
+      "abstained_oos_hit_rows": [
+        "m_csa:85",
+        "m_csa:154",
+        "m_csa:194",
+        "m_csa:221"
+      ],
+      "calibration_primary_hit_rows": [],
+      "feature_family": "event_residue_code_count",
+      "feature_token": "event_residue_code_count:proton_transfer|his=2",
+      "nearest_primary_conflict_rows": [
+        "m_csa:149"
+      ],
+      "nearest_primary_contrast_rows": [],
+      "primary_hit_rows": [
+        "m_csa:102",
+        "m_csa:169"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "score": 6
+    }
+  ],
+  "counts": {
+    "abstained_oos_rows": 14,
+    "approved_consumable_source_rows": 43,
+    "calibration_primary_rows_for_conflict_check": 4,
+    "candidate_feature_tokens_scanned": 426,
+    "critical_counts": {
+      "calibration_error_analysis_not_ready": 0,
+      "no_template_rerun_not_ready": 0,
+      "retained_oos_failure_rows_missing_source_features": 0,
+      "source_sidecar_not_ready": 0
+    },
+    "critical_violation_total": 0,
+    "feature_families_scanned": 14,
+    "primary_rows_for_contrast": 15,
+    "priority_retained_oos_failure_rows": 5,
+    "ready_candidate_feature_families": 8,
+    "retained_oos_failure_rows": 14
+  },
+  "created_utc": "2026-06-02T11:10:26Z",
+  "decision": {
+    "feature_family_ready_for_expanded_sidecar": true,
+    "next_gate": "Materialize the highest-coverage ready candidate families in a strict train/cal-only expanded sidecar, then rerun the no-template centroid and residual methods without changing the frozen residual contract until the new calibration artifact explicitly replaces it.",
+    "ready_candidate_feature_families": [
+      "event_residue_code",
+      "event_residue_code_count",
+      "event_residue_role_count",
+      "residue_role_count",
+      "event_mapped_residue_count",
+      "event_participant_arity",
+      "event_type_sequence",
+      "event_mapped_residue_bucket"
+    ]
+  },
+  "excluded_predictive_fields": [
+    "entry_id",
+    "accession",
+    "reviewer_id",
+    "source_record_id",
+    "source_database",
+    "source_evidence_span",
+    "source_identifier",
+    "mapped_atom_or_group",
+    "participant_id",
+    "mechanism_text",
+    "EC_or_Rhea_identifier",
+    "true_label",
+    "nearest_primary_label",
+    "target_name"
+  ],
+  "feature_families": [
+    {
+      "candidate_tokens_with_retained_contrast": 8,
+      "feature_family": "event_residue_code",
+      "priority_retained_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_code:proton_transfer|tyr",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:49",
+            "m_csa:70",
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:23",
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6"
+          ],
+          "feature_token": "event_residue_code:proton_transfer|his",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:312"
+          ],
+          "priority_hits": [
+            "m_csa:23",
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_code:bond_formed|arg",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:78",
+            "m_csa:263"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:147"
+          ],
+          "feature_token": "event_residue_code:proton_transfer|glu",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2",
+            "m_csa:49",
+            "m_csa:59"
+          ],
+          "priority_hits": [
+            "m_csa:2"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:147"
+          ],
+          "feature_token": "event_residue_code:proton_transfer|lys",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2",
+            "m_csa:318"
+          ],
+          "priority_hits": [
+            "m_csa:2"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_code:bond_formed|tyr",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:70"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_code:electron_transfer|ser",
+          "nearest_primary_contrast_rows": [
+            "m_csa:49",
+            "m_csa:256"
+          ],
+          "priority_hits": [
+            "m_csa:256"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_code:bond_broken|tyr",
+          "nearest_primary_contrast_rows": [
+            "m_csa:70",
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 8,
+      "feature_family": "event_residue_code_count",
+      "priority_retained_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_code_count:bond_formed|arg=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:78",
+            "m_csa:263"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_code_count:proton_transfer|tyr=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:49",
+            "m_csa:70"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_code_count:bond_broken|tyr=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:70",
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:133"
+          ],
+          "feature_token": "event_residue_code_count:bond_formed|gly=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:70"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_code_count:bond_formed|tyr=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:70"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_code_count:proton_transfer|arg=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:263"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_code_count:proton_transfer|gly=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:70"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6"
+          ],
+          "feature_token": "event_residue_code_count:proton_transfer|his=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:312"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 8,
+      "feature_family": "event_residue_role_count",
+      "priority_retained_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_role_count:proton_transfer|electrostatic_stabiliser=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2",
+            "m_csa:23",
+            "m_csa:70",
+            "m_csa:263",
+            "m_csa:318"
+          ],
+          "priority_hits": [
+            "m_csa:2",
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:133"
+          ],
+          "feature_token": "event_residue_role_count:bond_formed|electrostatic_stabiliser=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:70",
+            "m_csa:78",
+            "m_csa:149",
+            "m_csa:263",
+            "m_csa:318"
+          ],
+          "priority_hits": [
+            "m_csa:23",
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6",
+            "m_csa:147"
+          ],
+          "feature_token": "event_residue_role_count:proton_transfer|hydrogen_bond_acceptor=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2",
+            "m_csa:23",
+            "m_csa:49",
+            "m_csa:312"
+          ],
+          "priority_hits": [
+            "m_csa:2",
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_role_count:proton_transfer|activator=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2",
+            "m_csa:23"
+          ],
+          "priority_hits": [
+            "m_csa:2",
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6",
+            "m_csa:147"
+          ],
+          "feature_token": "event_residue_role_count:proton_transfer|hydrogen_bond_donor=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2",
+            "m_csa:23",
+            "m_csa:49",
+            "m_csa:318"
+          ],
+          "priority_hits": [
+            "m_csa:2",
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_role_count:proton_transfer|hydrogen_bond_acceptor=3",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_role_count:proton_transfer|hydrogen_bond_donor=3",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_role_count:proton_transfer|proton_acceptor=3",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 8,
+      "feature_family": "residue_role_count",
+      "priority_retained_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [
+            "m_csa:147",
+            "m_csa:186"
+          ],
+          "feature_token": "residue_role_count:hydrogen_bond_donor=2",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:101",
+            "m_csa:256"
+          ],
+          "priority_hits": [
+            "m_csa:23",
+            "m_csa:256",
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6",
+            "m_csa:147"
+          ],
+          "feature_token": "residue_role_count:proton_acceptor=2",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:256",
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:256",
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6",
+            "m_csa:147"
+          ],
+          "feature_token": "residue_role_count:proton_donor=2",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:256",
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:256",
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_role_count:metal_ligand=3",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:256",
+            "m_csa:312"
+          ],
+          "priority_hits": [
+            "m_csa:256",
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_role_count:activator=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:49"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_role_count:electrostatic_stabiliser=6",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2",
+            "m_csa:149"
+          ],
+          "priority_hits": [
+            "m_csa:2",
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_role_count:electrostatic_stabiliser=4",
+          "nearest_primary_contrast_rows": [
+            "m_csa:78",
+            "m_csa:263"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:186"
+          ],
+          "feature_token": "residue_role_count:proton_acceptor=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:101",
+            "m_csa:149"
+          ],
+          "priority_hits": [
+            "m_csa:149"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 8,
+      "feature_family": "event_mapped_residue_count",
+      "priority_retained_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_mapped_residue_count:proton_transfer=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:149",
+            "m_csa:318"
+          ],
+          "priority_hits": [
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_mapped_residue_count:proton_transfer=4",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2",
+            "m_csa:49",
+            "m_csa:263",
+            "m_csa:312"
+          ],
+          "priority_hits": [
+            "m_csa:2"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_mapped_residue_count:bond_formed=5",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:78"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6",
+            "m_csa:147"
+          ],
+          "feature_token": "event_mapped_residue_count:proton_transfer=2",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_mapped_residue_count:electron_transfer=5",
+          "nearest_primary_contrast_rows": [
+            "m_csa:256"
+          ],
+          "priority_hits": [
+            "m_csa:256"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_mapped_residue_count:proton_transfer=5",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:186"
+          ],
+          "feature_token": "event_mapped_residue_count:bond_broken=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:78"
+          ],
+          "priority_hits": []
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_mapped_residue_count:electron_transfer=6",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59"
+          ],
+          "priority_hits": []
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 8,
+      "feature_family": "event_participant_arity",
+      "priority_retained_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_participant_arity:proton_transfer|before_2|after_2|delta_0",
+          "nearest_primary_contrast_rows": [
+            "m_csa:49",
+            "m_csa:149"
+          ],
+          "priority_hits": [
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_participant_arity:bond_formed|before_2|after_2|delta_0",
+          "nearest_primary_contrast_rows": [
+            "m_csa:149"
+          ],
+          "priority_hits": [
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_participant_arity:proton_transfer|before_1|after_1|delta_0",
+          "nearest_primary_contrast_rows": [
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_participant_arity:bond_formed|before_3|after_3|delta_0",
+          "nearest_primary_contrast_rows": [
+            "m_csa:70",
+            "m_csa:78",
+            "m_csa:318"
+          ],
+          "priority_hits": []
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6"
+          ],
+          "feature_token": "event_participant_arity:proton_transfer|before_2|after_3|delta_1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:312"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_participant_arity:bond_formed|before_2|after_1|delta_-1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2"
+          ],
+          "priority_hits": [
+            "m_csa:2"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_participant_arity:electron_transfer|before_4|after_4|delta_0",
+          "nearest_primary_contrast_rows": [
+            "m_csa:256"
+          ],
+          "priority_hits": [
+            "m_csa:256"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_participant_arity:proton_transfer|before_2|after_1|delta_-1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2"
+          ],
+          "priority_hits": [
+            "m_csa:2"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 8,
+      "feature_family": "event_type_sequence",
+      "priority_retained_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_type_sequence:bond_formed>proton_transfer",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23",
+            "m_csa:318"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_type_sequence:bond_formed>proton_transfer>bond_formed",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2"
+          ],
+          "priority_hits": [
+            "m_csa:2"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_type_sequence:bond_formed>proton_transfer>proton_transfer",
+          "nearest_primary_contrast_rows": [
+            "m_csa:149"
+          ],
+          "priority_hits": [
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_type_sequence:electron_transfer>electron_transfer>electron_transfer",
+          "nearest_primary_contrast_rows": [
+            "m_csa:256"
+          ],
+          "priority_hits": [
+            "m_csa:256"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_type_sequence:proton_transfer>bond_broken>proton_transfer>proton_transfer",
+          "nearest_primary_contrast_rows": [
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_type_sequence:bond_broken>bond_formed>electron_transfer>proton_transfer",
+          "nearest_primary_contrast_rows": [
+            "m_csa:263"
+          ],
+          "priority_hits": []
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_type_sequence:bond_broken>proton_transfer>electron_transfer>proton_transfer",
+          "nearest_primary_contrast_rows": [
+            "m_csa:246"
+          ],
+          "priority_hits": []
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_type_sequence:bond_formed>bond_broken",
+          "nearest_primary_contrast_rows": [
+            "m_csa:101"
+          ],
+          "priority_hits": []
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 8,
+      "feature_family": "event_mapped_residue_bucket",
+      "priority_retained_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:59",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_mapped_residue_bucket:proton_transfer|one",
+          "nearest_primary_contrast_rows": [
+            "m_csa:149",
+            "m_csa:318"
+          ],
+          "priority_hits": [
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_mapped_residue_bucket:electron_transfer|five_plus",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:256"
+          ],
+          "priority_hits": [
+            "m_csa:256"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_mapped_residue_bucket:proton_transfer|five_plus",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6",
+            "m_csa:147"
+          ],
+          "feature_token": "event_mapped_residue_bucket:proton_transfer|two",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_mapped_residue_bucket:bond_formed|five_plus",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:186"
+          ],
+          "feature_token": "event_mapped_residue_bucket:bond_broken|one",
+          "nearest_primary_contrast_rows": [
+            "m_csa:78"
+          ],
+          "priority_hits": []
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:133"
+          ],
+          "feature_token": "event_mapped_residue_bucket:proton_transfer|three_to_four",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2"
+          ],
+          "priority_hits": [
+            "m_csa:2"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6",
+            "m_csa:133"
+          ],
+          "feature_token": "event_mapped_residue_bucket:electron_transfer|three_to_four",
+          "nearest_primary_contrast_rows": [
+            "m_csa:263"
+          ],
+          "priority_hits": []
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 8,
+      "feature_family": "residue_code_count",
+      "priority_retained_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256"
+      ],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [
+            "m_csa:6"
+          ],
+          "feature_token": "residue_code_count:cys=2",
+          "nearest_primary_contrast_rows": [
+            "m_csa:149",
+            "m_csa:256"
+          ],
+          "priority_hits": [
+            "m_csa:149",
+            "m_csa:256"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6"
+          ],
+          "feature_token": "residue_code_count:his=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:70"
+          ],
+          "priority_hits": [
+            "m_csa:23",
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_code_count:lys=2",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2",
+            "m_csa:59"
+          ],
+          "priority_hits": [
+            "m_csa:2"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_code_count:his=2",
+          "nearest_primary_contrast_rows": [
+            "m_csa:78"
+          ],
+          "priority_hits": [
+            "m_csa:256"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_code_count:his=3",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:101",
+            "m_csa:312"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:147"
+          ],
+          "feature_token": "residue_code_count:glu=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2"
+          ],
+          "priority_hits": [
+            "m_csa:2"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_code_count:ser=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:78"
+          ],
+          "priority_hits": [
+            "m_csa:256"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:186"
+          ],
+          "feature_token": "residue_code_count:ala=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2"
+          ],
+          "priority_hits": [
+            "m_csa:2"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 8,
+      "feature_family": "participant_role_count",
+      "priority_retained_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [
+            "m_csa:186"
+          ],
+          "feature_token": "participant_role_count:product=2",
+          "nearest_primary_contrast_rows": [
+            "m_csa:49",
+            "m_csa:59",
+            "m_csa:149",
+            "m_csa:263"
+          ],
+          "priority_hits": [
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "participant_role_count:catalytic_residue=5",
+          "nearest_primary_contrast_rows": [
+            "m_csa:256"
+          ],
+          "priority_hits": [
+            "m_csa:23",
+            "m_csa:256",
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6"
+          ],
+          "feature_token": "participant_role_count:substrate=2",
+          "nearest_primary_contrast_rows": [
+            "m_csa:49",
+            "m_csa:312"
+          ],
+          "priority_hits": [
+            "m_csa:2",
+            "m_csa:23",
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:186"
+          ],
+          "feature_token": "participant_role_count:substrate=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:263",
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "participant_role_count:product=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2"
+          ],
+          "priority_hits": [
+            "m_csa:2",
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "participant_role_count:substrate=3",
+          "nearest_primary_contrast_rows": [
+            "m_csa:70",
+            "m_csa:78",
+            "m_csa:318"
+          ],
+          "priority_hits": []
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6"
+          ],
+          "feature_token": "participant_role_count:catalytic_residue=7",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2"
+          ],
+          "priority_hits": [
+            "m_csa:2"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "participant_role_count:product=9",
+          "nearest_primary_contrast_rows": [
+            "m_csa:256"
+          ],
+          "priority_hits": [
+            "m_csa:256"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 4,
+      "feature_family": "event_type_count",
+      "priority_retained_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [
+            "m_csa:6",
+            "m_csa:147"
+          ],
+          "feature_token": "event_type_count:proton_transfer=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2",
+            "m_csa:23",
+            "m_csa:49",
+            "m_csa:312",
+            "m_csa:318"
+          ],
+          "priority_hits": [
+            "m_csa:2",
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_type_count:proton_transfer=3",
+          "nearest_primary_contrast_rows": [
+            "m_csa:59",
+            "m_csa:273"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_type_count:electron_transfer=3",
+          "nearest_primary_contrast_rows": [
+            "m_csa:256"
+          ],
+          "priority_hits": [
+            "m_csa:256"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:6"
+          ],
+          "feature_token": "event_type_count:electron_transfer=1",
+          "nearest_primary_contrast_rows": [
+            "m_csa:263"
+          ],
+          "priority_hits": []
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 8,
+      "feature_family": "event_residue_role",
+      "priority_retained_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:263",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [
+            "m_csa:133"
+          ],
+          "feature_token": "event_residue_role:bond_formed|electrostatic_stabiliser",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2",
+            "m_csa:23",
+            "m_csa:70",
+            "m_csa:78",
+            "m_csa:149",
+            "m_csa:263",
+            "m_csa:318"
+          ],
+          "priority_hits": [
+            "m_csa:2",
+            "m_csa:23",
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_role:proton_transfer|electrostatic_stabiliser",
+          "nearest_primary_contrast_rows": [
+            "m_csa:70",
+            "m_csa:263"
+          ],
+          "priority_hits": [
+            "m_csa:2",
+            "m_csa:23",
+            "m_csa:149"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_role:proton_transfer|activator",
+          "nearest_primary_contrast_rows": [
+            "m_csa:2",
+            "m_csa:23"
+          ],
+          "priority_hits": [
+            "m_csa:2",
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_role:bond_formed|activator",
+          "nearest_primary_contrast_rows": [
+            "m_csa:23"
+          ],
+          "priority_hits": [
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_role:bond_broken|metal_ligand",
+          "nearest_primary_contrast_rows": [
+            "m_csa:101",
+            "m_csa:246"
+          ],
+          "priority_hits": [
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:147"
+          ],
+          "feature_token": "event_residue_role:proton_transfer|covalently_attached",
+          "nearest_primary_contrast_rows": [
+            "m_csa:49"
+          ],
+          "priority_hits": [
+            "m_csa:2"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_role:bond_broken|steric_role",
+          "nearest_primary_contrast_rows": [
+            "m_csa:70",
+            "m_csa:246",
+            "m_csa:263"
+          ],
+          "priority_hits": []
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "event_residue_role:bond_formed|steric_role",
+          "nearest_primary_contrast_rows": [
+            "m_csa:70",
+            "m_csa:263"
+          ],
+          "priority_hits": []
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 8,
+      "feature_family": "residue_role_present",
+      "priority_retained_rows_with_nearest_primary_contrast": [],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [
+        "m_csa:49",
+        "m_csa:101",
+        "m_csa:246",
+        "m_csa:263",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "top_candidate_tokens": [
+        {
+          "calibration_primary_hits": [
+            "m_csa:6"
+          ],
+          "feature_token": "residue_role_present:activator",
+          "nearest_primary_contrast_rows": [
+            "m_csa:49"
+          ],
+          "priority_hits": [
+            "m_csa:2",
+            "m_csa:23"
+          ]
+        },
+        {
+          "calibration_primary_hits": [
+            "m_csa:133"
+          ],
+          "feature_token": "residue_role_present:metal_ligand",
+          "nearest_primary_contrast_rows": [
+            "m_csa:101",
+            "m_csa:246"
+          ],
+          "priority_hits": [
+            "m_csa:256",
+            "m_csa:273"
+          ]
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_role_present:increase_nucleophilicity",
+          "nearest_primary_contrast_rows": [
+            "m_csa:101",
+            "m_csa:246",
+            "m_csa:318"
+          ],
+          "priority_hits": []
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_role_present:increase_electrophilicity",
+          "nearest_primary_contrast_rows": [
+            "m_csa:101",
+            "m_csa:246"
+          ],
+          "priority_hits": []
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_role_present:increase_basicity",
+          "nearest_primary_contrast_rows": [
+            "m_csa:312"
+          ],
+          "priority_hits": []
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_role_present:promote_heterolysis",
+          "nearest_primary_contrast_rows": [
+            "m_csa:246",
+            "m_csa:263"
+          ],
+          "priority_hits": []
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_role_present:attractive_charge_charge_interaction",
+          "nearest_primary_contrast_rows": [
+            "m_csa:318"
+          ],
+          "priority_hits": []
+        },
+        {
+          "calibration_primary_hits": [],
+          "feature_token": "residue_role_present:polar_non_polar_interaction",
+          "nearest_primary_contrast_rows": [
+            "m_csa:263"
+          ],
+          "priority_hits": []
+        }
+      ]
+    },
+    {
+      "candidate_tokens_with_retained_contrast": 0,
+      "feature_family": "event_type_present",
+      "priority_retained_rows_with_nearest_primary_contrast": [],
+      "retained_oos_rows_with_family": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:101",
+        "m_csa:149",
+        "m_csa:246",
+        "m_csa:256",
+        "m_csa:263",
+        "m_csa:273",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "retained_oos_rows_with_nearest_primary_contrast": [],
+      "top_candidate_tokens": []
+    }
+  ],
+  "guardrails": {
+    "ec_rhea_ids_used_as_predictive_features": false,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "labels_used_as_predictive_features": false,
+    "labels_used_only_for_train_cal_contrast_accounting": true,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Promote the top ready feature families into a train/cal-only expanded feature sidecar and rerun the calibration diagnostics.",
+    "result": "8 candidate feature families cover every borderline/near retained OOS miss with at least one token not seen in that row's nearest-primary train/cal contrast set."
+  },
+  "missing_source_feature_rows": [],
+  "retained_row_feature_contrasts": [
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_bucket": [
+          "event_mapped_residue_bucket:proton_transfer|three_to_four"
+        ],
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:proton_transfer=4"
+        ],
+        "event_participant_arity": [
+          "event_participant_arity:bond_formed|before_2|after_1|delta_-1",
+          "event_participant_arity:proton_transfer|before_2|after_1|delta_-1"
+        ],
+        "event_residue_code": [
+          "event_residue_code:proton_transfer|glu",
+          "event_residue_code:proton_transfer|lys"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:proton_transfer|glu=1",
+          "event_residue_code_count:proton_transfer|lys=1",
+          "event_residue_code_count:proton_transfer|ser=1"
+        ],
+        "event_residue_role": [
+          "event_residue_role:bond_formed|electrostatic_stabiliser",
+          "event_residue_role:proton_transfer|activator"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:bond_formed|electrostatic_stabiliser=2",
+          "event_residue_role_count:proton_transfer|activator=1",
+          "event_residue_role_count:proton_transfer|covalently_attached=1",
+          "event_residue_role_count:proton_transfer|electrostatic_stabiliser=1",
+          "event_residue_role_count:proton_transfer|hydrogen_bond_acceptor=1",
+          "event_residue_role_count:proton_transfer|hydrogen_bond_donor=1",
+          "event_residue_role_count:proton_transfer|nucleofuge=1",
+          "event_residue_role_count:proton_transfer|nucleophile=1",
+          "event_residue_role_count:proton_transfer|proton_acceptor=1",
+          "event_residue_role_count:proton_transfer|proton_donor=1"
+        ],
+        "event_type_count": [
+          "event_type_count:proton_transfer=1"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:bond_formed>proton_transfer>bond_formed"
+        ],
+        "participant_role_count": [
+          "participant_role_count:catalytic_residue=7",
+          "participant_role_count:product=1"
+        ],
+        "residue_code_count": [
+          "residue_code_count:ala=1",
+          "residue_code_count:glu=1",
+          "residue_code_count:lys=2",
+          "residue_code_count:ser=3"
+        ],
+        "residue_role_count": [
+          "residue_role_count:activator=2",
+          "residue_role_count:electrostatic_stabiliser=6",
+          "residue_role_count:hydrogen_bond_acceptor=4",
+          "residue_role_count:hydrogen_bond_donor=5",
+          "residue_role_count:proton_acceptor=4",
+          "residue_role_count:proton_donor=4"
+        ]
+      },
+      "entry_id": "m_csa:2",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_bucket",
+        "event_mapped_residue_count",
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role",
+        "event_residue_role_count",
+        "event_type_count",
+        "event_type_sequence",
+        "participant_role_count",
+        "residue_code_count",
+        "residue_role_count"
+      ],
+      "nearest_primary_label": "ser_his_acid_hydrolase",
+      "priority": "borderline_contract_miss"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_bucket": [
+          "event_mapped_residue_bucket:bond_formed|five_plus",
+          "event_mapped_residue_bucket:proton_transfer|five_plus"
+        ],
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:bond_formed=5",
+          "event_mapped_residue_count:proton_transfer=5"
+        ],
+        "event_participant_arity": [
+          "event_participant_arity:proton_transfer|before_2|after_3|delta_1"
+        ],
+        "event_residue_code": [
+          "event_residue_code:bond_formed|arg",
+          "event_residue_code:bond_formed|gly",
+          "event_residue_code:bond_formed|his",
+          "event_residue_code:bond_formed|tyr",
+          "event_residue_code:proton_transfer|arg",
+          "event_residue_code:proton_transfer|gly",
+          "event_residue_code:proton_transfer|tyr"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:bond_formed|arg=1",
+          "event_residue_code_count:bond_formed|gly=1",
+          "event_residue_code_count:bond_formed|his=1",
+          "event_residue_code_count:bond_formed|tyr=1",
+          "event_residue_code_count:proton_transfer|arg=1",
+          "event_residue_code_count:proton_transfer|gly=1",
+          "event_residue_code_count:proton_transfer|his=1",
+          "event_residue_code_count:proton_transfer|tyr=1"
+        ],
+        "event_residue_role": [
+          "event_residue_role:bond_formed|activator",
+          "event_residue_role:bond_formed|electrostatic_stabiliser",
+          "event_residue_role:proton_transfer|activator"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:bond_formed|activator=1",
+          "event_residue_role_count:bond_formed|electrostatic_stabiliser=1",
+          "event_residue_role_count:proton_transfer|activator=1",
+          "event_residue_role_count:proton_transfer|electrostatic_stabiliser=1",
+          "event_residue_role_count:proton_transfer|hydrogen_bond_acceptor=1",
+          "event_residue_role_count:proton_transfer|hydrogen_bond_donor=1"
+        ],
+        "event_type_count": [
+          "event_type_count:proton_transfer=1"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:bond_formed>proton_transfer"
+        ],
+        "residue_code_count": [
+          "residue_code_count:arg=1"
+        ],
+        "residue_role_count": [
+          "residue_role_count:hydrogen_bond_donor=2"
+        ]
+      },
+      "entry_id": "m_csa:23",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_bucket",
+        "event_mapped_residue_count",
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role",
+        "event_residue_role_count",
+        "event_type_count",
+        "event_type_sequence",
+        "residue_code_count",
+        "residue_role_count"
+      ],
+      "nearest_primary_label": "ser_his_acid_hydrolase",
+      "priority": "near_contract_miss"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:proton_transfer=4"
+        ],
+        "event_participant_arity": [
+          "event_participant_arity:electron_transfer|before_2|after_2|delta_0",
+          "event_participant_arity:proton_transfer|before_2|after_2|delta_0"
+        ],
+        "event_residue_code": [
+          "event_residue_code:electron_transfer|ser",
+          "event_residue_code:proton_transfer|glu",
+          "event_residue_code:proton_transfer|tyr"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:electron_transfer|ser=2",
+          "event_residue_code_count:proton_transfer|glu=1",
+          "event_residue_code_count:proton_transfer|ser=1",
+          "event_residue_code_count:proton_transfer|tyr=1"
+        ],
+        "event_residue_role": [
+          "event_residue_role:electron_transfer|electrofuge",
+          "event_residue_role:electron_transfer|electron_pair_acceptor",
+          "event_residue_role:electron_transfer|electron_pair_donor",
+          "event_residue_role:electron_transfer|electrophile",
+          "event_residue_role:proton_transfer|covalently_attached",
+          "event_residue_role:proton_transfer|electrofuge",
+          "event_residue_role:proton_transfer|electron_pair_acceptor",
+          "event_residue_role:proton_transfer|electron_pair_donor",
+          "event_residue_role:proton_transfer|electrophile"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:electron_transfer|covalently_attached=2",
+          "event_residue_role_count:electron_transfer|electrofuge=2",
+          "event_residue_role_count:electron_transfer|electron_pair_acceptor=2",
+          "event_residue_role_count:electron_transfer|electron_pair_donor=2",
+          "event_residue_role_count:electron_transfer|electrophile=2",
+          "event_residue_role_count:electron_transfer|proton_acceptor=2",
+          "event_residue_role_count:electron_transfer|proton_donor=2",
+          "event_residue_role_count:electron_transfer|proton_relay=2",
+          "event_residue_role_count:proton_transfer|covalently_attached=1",
+          "event_residue_role_count:proton_transfer|electrofuge=1",
+          "event_residue_role_count:proton_transfer|electron_pair_acceptor=1",
+          "event_residue_role_count:proton_transfer|electron_pair_donor=1"
+        ],
+        "event_type_count": [
+          "event_type_count:proton_transfer=1"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:proton_transfer>electron_transfer>electron_transfer"
+        ],
+        "participant_role_count": [
+          "participant_role_count:product=2",
+          "participant_role_count:substrate=2"
+        ],
+        "residue_code_count": [
+          "residue_code_count:glu=2",
+          "residue_code_count:phe=1",
+          "residue_code_count:ser=2"
+        ],
+        "residue_role_count": [
+          "residue_role_count:activator=1",
+          "residue_role_count:covalently_attached=1",
+          "residue_role_count:electrofuge=1",
+          "residue_role_count:electron_pair_acceptor=1",
+          "residue_role_count:electron_pair_donor=1",
+          "residue_role_count:electrophile=1",
+          "residue_role_count:hydrogen_bond_acceptor=5",
+          "residue_role_count:proton_acceptor=4",
+          "residue_role_count:proton_donor=4",
+          "residue_role_count:proton_relay=1",
+          "residue_role_count:steric_role=1"
+        ],
+        "residue_role_present": [
+          "residue_role_present:activator",
+          "residue_role_present:electrofuge",
+          "residue_role_present:electron_pair_acceptor",
+          "residue_role_present:electron_pair_donor",
+          "residue_role_present:electrophile"
+        ]
+      },
+      "entry_id": "m_csa:49",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_count",
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role",
+        "event_residue_role_count",
+        "event_type_count",
+        "event_type_sequence",
+        "participant_role_count",
+        "residue_code_count",
+        "residue_role_count",
+        "residue_role_present"
+      ],
+      "nearest_primary_label": "heme_peroxidase_oxidase",
+      "priority": "strong_primary_alias"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_bucket": [
+          "event_mapped_residue_bucket:electron_transfer|five_plus",
+          "event_mapped_residue_bucket:proton_transfer|two"
+        ],
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:electron_transfer=6",
+          "event_mapped_residue_count:proton_transfer=2"
+        ],
+        "event_participant_arity": [
+          "event_participant_arity:electron_transfer|before_1|after_2|delta_1",
+          "event_participant_arity:proton_transfer|before_1|after_2|delta_1"
+        ],
+        "event_residue_code": [
+          "event_residue_code:electron_transfer|glu",
+          "event_residue_code:electron_transfer|lys",
+          "event_residue_code:proton_transfer|glu",
+          "event_residue_code:proton_transfer|his"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:electron_transfer|arg=2",
+          "event_residue_code_count:electron_transfer|glu=2",
+          "event_residue_code_count:electron_transfer|his=2",
+          "event_residue_code_count:electron_transfer|lys=2",
+          "event_residue_code_count:proton_transfer|glu=3",
+          "event_residue_code_count:proton_transfer|his=3"
+        ],
+        "event_residue_role": [
+          "event_residue_role:electron_transfer|steric_role"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:electron_transfer|proton_acceptor=2",
+          "event_residue_role_count:electron_transfer|proton_donor=2",
+          "event_residue_role_count:electron_transfer|steric_role=2",
+          "event_residue_role_count:proton_transfer|hydrogen_bond_acceptor=3",
+          "event_residue_role_count:proton_transfer|hydrogen_bond_donor=3",
+          "event_residue_role_count:proton_transfer|proton_acceptor=3",
+          "event_residue_role_count:proton_transfer|proton_donor=3"
+        ],
+        "event_type_count": [
+          "event_type_count:proton_transfer=3"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:proton_transfer>electron_transfer>proton_transfer>electron_transfer>proton_transfer"
+        ],
+        "participant_role_count": [
+          "participant_role_count:catalytic_residue=10",
+          "participant_role_count:product=2",
+          "participant_role_count:substrate=1"
+        ],
+        "residue_code_count": [
+          "residue_code_count:arg=2",
+          "residue_code_count:asn=1",
+          "residue_code_count:glu=2",
+          "residue_code_count:his=3",
+          "residue_code_count:lys=2"
+        ],
+        "residue_role_count": [
+          "residue_role_count:hydrogen_bond_donor=6",
+          "residue_role_count:metal_ligand=3",
+          "residue_role_count:proton_acceptor=2",
+          "residue_role_count:proton_donor=2",
+          "residue_role_count:steric_role=4"
+        ]
+      },
+      "entry_id": "m_csa:59",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_bucket",
+        "event_mapped_residue_count",
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role",
+        "event_residue_role_count",
+        "event_type_count",
+        "event_type_sequence",
+        "participant_role_count",
+        "residue_code_count",
+        "residue_role_count"
+      ],
+      "nearest_primary_label": "heme_peroxidase_oxidase",
+      "priority": "strong_primary_alias"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:bond_broken=3",
+          "event_mapped_residue_count:bond_formed=3"
+        ],
+        "event_participant_arity": [
+          "event_participant_arity:bond_broken|before_3|after_3|delta_0",
+          "event_participant_arity:bond_formed|before_3|after_3|delta_0",
+          "event_participant_arity:proton_transfer|before_3|after_3|delta_0"
+        ],
+        "event_residue_code": [
+          "event_residue_code:bond_broken|gly",
+          "event_residue_code:bond_broken|tyr",
+          "event_residue_code:bond_formed|gly",
+          "event_residue_code:bond_formed|tyr",
+          "event_residue_code:proton_transfer|gly",
+          "event_residue_code:proton_transfer|tyr"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:bond_broken|gly=1",
+          "event_residue_code_count:bond_broken|tyr=1",
+          "event_residue_code_count:bond_formed|gly=1",
+          "event_residue_code_count:bond_formed|tyr=1",
+          "event_residue_code_count:proton_transfer|gly=1",
+          "event_residue_code_count:proton_transfer|tyr=1"
+        ],
+        "event_residue_role": [
+          "event_residue_role:bond_broken|electrostatic_stabiliser",
+          "event_residue_role:bond_broken|steric_role",
+          "event_residue_role:bond_formed|electrostatic_stabiliser",
+          "event_residue_role:bond_formed|steric_role",
+          "event_residue_role:proton_transfer|electrostatic_stabiliser",
+          "event_residue_role:proton_transfer|steric_role"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:bond_broken|electrostatic_stabiliser=1",
+          "event_residue_role_count:bond_broken|steric_role=1",
+          "event_residue_role_count:bond_formed|electrostatic_stabiliser=1",
+          "event_residue_role_count:bond_formed|steric_role=1",
+          "event_residue_role_count:proton_transfer|electrostatic_stabiliser=1",
+          "event_residue_role_count:proton_transfer|steric_role=1"
+        ],
+        "participant_role_count": [
+          "participant_role_count:catalytic_residue=3",
+          "participant_role_count:product=3",
+          "participant_role_count:substrate=3"
+        ],
+        "residue_code_count": [
+          "residue_code_count:gly=1",
+          "residue_code_count:his=1"
+        ],
+        "residue_role_count": [
+          "residue_role_count:hydrogen_bond_donor=3"
+        ]
+      },
+      "entry_id": "m_csa:70",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_count",
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role",
+        "event_residue_role_count",
+        "participant_role_count",
+        "residue_code_count",
+        "residue_role_count"
+      ],
+      "nearest_primary_label": "metal_dependent_hydrolase",
+      "priority": "strong_primary_alias"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_bucket": [
+          "event_mapped_residue_bucket:bond_broken|one"
+        ],
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:bond_broken=1",
+          "event_mapped_residue_count:bond_formed=5"
+        ],
+        "event_participant_arity": [
+          "event_participant_arity:bond_broken|before_3|after_3|delta_0",
+          "event_participant_arity:bond_formed|before_3|after_3|delta_0",
+          "event_participant_arity:proton_transfer|before_3|after_3|delta_0"
+        ],
+        "event_residue_code": [
+          "event_residue_code:bond_formed|arg",
+          "event_residue_code:bond_formed|ser"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:bond_formed|arg=1",
+          "event_residue_code_count:bond_formed|ser=1"
+        ],
+        "event_residue_role": [
+          "event_residue_role:bond_formed|electrostatic_stabiliser"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:bond_formed|electrostatic_stabiliser=1"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:proton_transfer>bond_formed>bond_broken"
+        ],
+        "participant_role_count": [
+          "participant_role_count:product=3",
+          "participant_role_count:substrate=3"
+        ],
+        "residue_code_count": [
+          "residue_code_count:his=2",
+          "residue_code_count:ser=1"
+        ],
+        "residue_role_count": [
+          "residue_role_count:electrostatic_stabiliser=4",
+          "residue_role_count:hydrogen_bond_acceptor=3",
+          "residue_role_count:hydrogen_bond_donor=4"
+        ]
+      },
+      "entry_id": "m_csa:78",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_bucket",
+        "event_mapped_residue_count",
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role",
+        "event_residue_role_count",
+        "event_type_sequence",
+        "participant_role_count",
+        "residue_code_count",
+        "residue_role_count"
+      ],
+      "nearest_primary_label": "metal_dependent_hydrolase",
+      "priority": "strong_primary_alias"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_participant_arity": [
+          "event_participant_arity:bond_broken|before_2|after_3|delta_1"
+        ],
+        "event_residue_code": [
+          "event_residue_code:bond_formed|his"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:bond_formed|his=1"
+        ],
+        "event_residue_role": [
+          "event_residue_role:bond_broken|metal_ligand",
+          "event_residue_role:bond_formed|metal_ligand"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:bond_broken|metal_ligand=1",
+          "event_residue_role_count:bond_formed|metal_ligand=1"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:bond_formed>bond_broken"
+        ],
+        "participant_role_count": [
+          "participant_role_count:catalytic_residue=4"
+        ],
+        "residue_code_count": [
+          "residue_code_count:gln=1",
+          "residue_code_count:his=3"
+        ],
+        "residue_role_count": [
+          "residue_role_count:electrostatic_stabiliser=3",
+          "residue_role_count:hydrogen_bond_donor=2",
+          "residue_role_count:increase_electrophilicity=1",
+          "residue_role_count:increase_nucleophilicity=1",
+          "residue_role_count:metal_ligand=1",
+          "residue_role_count:proton_acceptor=1",
+          "residue_role_count:proton_donor=1"
+        ],
+        "residue_role_present": [
+          "residue_role_present:increase_electrophilicity",
+          "residue_role_present:increase_nucleophilicity",
+          "residue_role_present:metal_ligand"
+        ]
+      },
+      "entry_id": "m_csa:101",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role",
+        "event_residue_role_count",
+        "event_type_sequence",
+        "participant_role_count",
+        "residue_code_count",
+        "residue_role_count",
+        "residue_role_present"
+      ],
+      "nearest_primary_label": "ser_his_acid_hydrolase",
+      "priority": "strong_primary_alias"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_bucket": [
+          "event_mapped_residue_bucket:proton_transfer|one"
+        ],
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:proton_transfer=1"
+        ],
+        "event_participant_arity": [
+          "event_participant_arity:bond_formed|before_2|after_2|delta_0",
+          "event_participant_arity:proton_transfer|before_2|after_2|delta_0"
+        ],
+        "event_residue_code": [
+          "event_residue_code:bond_formed|cys"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:bond_formed|cys=1"
+        ],
+        "event_residue_role": [
+          "event_residue_role:bond_formed|electrostatic_stabiliser"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:bond_formed|electrostatic_stabiliser=1"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:bond_formed>proton_transfer>proton_transfer"
+        ],
+        "participant_role_count": [
+          "participant_role_count:catalytic_residue=6",
+          "participant_role_count:product=2"
+        ],
+        "residue_code_count": [
+          "residue_code_count:cys=2",
+          "residue_code_count:trp=1"
+        ],
+        "residue_role_count": [
+          "residue_role_count:electrostatic_stabiliser=6",
+          "residue_role_count:proton_acceptor=1",
+          "residue_role_count:proton_donor=1"
+        ]
+      },
+      "entry_id": "m_csa:149",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_bucket",
+        "event_mapped_residue_count",
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role",
+        "event_residue_role_count",
+        "event_type_sequence",
+        "participant_role_count",
+        "residue_code_count",
+        "residue_role_count"
+      ],
+      "nearest_primary_label": "ser_his_acid_hydrolase",
+      "priority": "near_contract_miss"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:electron_transfer=4"
+        ],
+        "event_residue_code": [
+          "event_residue_code:bond_broken|asn",
+          "event_residue_code:electron_transfer|arg",
+          "event_residue_code:electron_transfer|asn",
+          "event_residue_code:proton_transfer|asp"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:bond_broken|asn=1",
+          "event_residue_code_count:electron_transfer|arg=1",
+          "event_residue_code_count:electron_transfer|asn=1",
+          "event_residue_code_count:proton_transfer|asp=2"
+        ],
+        "event_residue_role": [
+          "event_residue_role:bond_broken|increase_nucleophilicity",
+          "event_residue_role:bond_broken|metal_ligand",
+          "event_residue_role:bond_broken|steric_role",
+          "event_residue_role:electron_transfer|increase_electrophilicity",
+          "event_residue_role:electron_transfer|increase_nucleophilicity",
+          "event_residue_role:electron_transfer|metal_ligand",
+          "event_residue_role:electron_transfer|promote_heterolysis",
+          "event_residue_role:proton_transfer|increase_nucleophilicity"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:bond_broken|increase_nucleophilicity=1",
+          "event_residue_role_count:bond_broken|metal_ligand=1",
+          "event_residue_role_count:bond_broken|steric_role=1",
+          "event_residue_role_count:electron_transfer|increase_electrophilicity=1",
+          "event_residue_role_count:electron_transfer|increase_nucleophilicity=1",
+          "event_residue_role_count:electron_transfer|metal_ligand=1",
+          "event_residue_role_count:electron_transfer|promote_heterolysis=1",
+          "event_residue_role_count:proton_transfer|increase_nucleophilicity=2",
+          "event_residue_role_count:proton_transfer|steric_role=2"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:bond_broken>proton_transfer>electron_transfer>proton_transfer"
+        ],
+        "residue_code_count": [
+          "residue_code_count:asn=1",
+          "residue_code_count:asp=2"
+        ],
+        "residue_role_count": [
+          "residue_role_count:electrostatic_stabiliser=1",
+          "residue_role_count:increase_electrophilicity=1",
+          "residue_role_count:increase_nucleophilicity=1",
+          "residue_role_count:metal_ligand=2",
+          "residue_role_count:promote_heterolysis=1"
+        ],
+        "residue_role_present": [
+          "residue_role_present:increase_electrophilicity",
+          "residue_role_present:increase_nucleophilicity",
+          "residue_role_present:metal_ligand",
+          "residue_role_present:promote_heterolysis"
+        ]
+      },
+      "entry_id": "m_csa:246",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_count",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role",
+        "event_residue_role_count",
+        "event_type_sequence",
+        "residue_code_count",
+        "residue_role_count",
+        "residue_role_present"
+      ],
+      "nearest_primary_label": "flavin_dehydrogenase_reductase",
+      "priority": "strong_primary_alias"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_bucket": [
+          "event_mapped_residue_bucket:electron_transfer|five_plus"
+        ],
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:electron_transfer=5"
+        ],
+        "event_participant_arity": [
+          "event_participant_arity:electron_transfer|before_4|after_4|delta_0"
+        ],
+        "event_residue_code": [
+          "event_residue_code:electron_transfer|ser"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:electron_transfer|cys=3",
+          "event_residue_code_count:electron_transfer|his=3",
+          "event_residue_code_count:electron_transfer|ser=3"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:electron_transfer|hydrogen_bond_acceptor=3",
+          "event_residue_role_count:electron_transfer|hydrogen_bond_donor=3",
+          "event_residue_role_count:electron_transfer|metal_ligand=3",
+          "event_residue_role_count:electron_transfer|proton_acceptor=3",
+          "event_residue_role_count:electron_transfer|proton_donor=3",
+          "event_residue_role_count:electron_transfer|proton_relay=3"
+        ],
+        "event_type_count": [
+          "event_type_count:electron_transfer=3"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:electron_transfer>electron_transfer>electron_transfer"
+        ],
+        "participant_role_count": [
+          "participant_role_count:catalytic_residue=5",
+          "participant_role_count:product=9",
+          "participant_role_count:substrate=6"
+        ],
+        "residue_code_count": [
+          "residue_code_count:cys=2"
+        ],
+        "residue_role_count": [
+          "residue_role_count:hydrogen_bond_donor=2",
+          "residue_role_count:metal_ligand=3",
+          "residue_role_count:proton_acceptor=2",
+          "residue_role_count:proton_donor=2",
+          "residue_role_count:proton_relay=2"
+        ]
+      },
+      "entry_id": "m_csa:256",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_bucket",
+        "event_mapped_residue_count",
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role_count",
+        "event_type_count",
+        "event_type_sequence",
+        "participant_role_count",
+        "residue_code_count",
+        "residue_role_count"
+      ],
+      "nearest_primary_label": "heme_peroxidase_oxidase",
+      "priority": "near_contract_miss"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_bucket": [
+          "event_mapped_residue_bucket:electron_transfer|three_to_four"
+        ],
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:electron_transfer=4",
+          "event_mapped_residue_count:proton_transfer=4"
+        ],
+        "event_participant_arity": [
+          "event_participant_arity:bond_broken|before_1|after_2|delta_1",
+          "event_participant_arity:bond_formed|before_1|after_2|delta_1",
+          "event_participant_arity:electron_transfer|before_1|after_2|delta_1",
+          "event_participant_arity:proton_transfer|before_1|after_2|delta_1"
+        ],
+        "event_residue_code": [
+          "event_residue_code:bond_broken|arg",
+          "event_residue_code:bond_broken|phe",
+          "event_residue_code:bond_formed|arg",
+          "event_residue_code:bond_formed|phe",
+          "event_residue_code:electron_transfer|arg",
+          "event_residue_code:electron_transfer|phe",
+          "event_residue_code:proton_transfer|arg",
+          "event_residue_code:proton_transfer|phe"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:bond_broken|arg=1",
+          "event_residue_code_count:bond_broken|phe=1",
+          "event_residue_code_count:bond_formed|arg=1",
+          "event_residue_code_count:bond_formed|phe=1",
+          "event_residue_code_count:electron_transfer|arg=1",
+          "event_residue_code_count:electron_transfer|phe=1",
+          "event_residue_code_count:proton_transfer|arg=1",
+          "event_residue_code_count:proton_transfer|phe=1"
+        ],
+        "event_residue_role": [
+          "event_residue_role:bond_broken|electrostatic_stabiliser",
+          "event_residue_role:bond_broken|polar_non_polar_interaction",
+          "event_residue_role:bond_broken|promote_heterolysis",
+          "event_residue_role:bond_broken|steric_role",
+          "event_residue_role:bond_formed|electrostatic_stabiliser",
+          "event_residue_role:bond_formed|polar_non_polar_interaction",
+          "event_residue_role:bond_formed|promote_heterolysis",
+          "event_residue_role:bond_formed|steric_role",
+          "event_residue_role:electron_transfer|electrostatic_stabiliser",
+          "event_residue_role:electron_transfer|hydrogen_bond_donor",
+          "event_residue_role:electron_transfer|polar_non_polar_interaction",
+          "event_residue_role:electron_transfer|promote_heterolysis"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:bond_broken|electrostatic_stabiliser=1",
+          "event_residue_role_count:bond_broken|polar_non_polar_interaction=1",
+          "event_residue_role_count:bond_broken|promote_heterolysis=1",
+          "event_residue_role_count:bond_broken|steric_role=1",
+          "event_residue_role_count:bond_formed|electrostatic_stabiliser=1",
+          "event_residue_role_count:bond_formed|polar_non_polar_interaction=1",
+          "event_residue_role_count:bond_formed|promote_heterolysis=1",
+          "event_residue_role_count:bond_formed|steric_role=1",
+          "event_residue_role_count:electron_transfer|electrostatic_stabiliser=1",
+          "event_residue_role_count:electron_transfer|hydrogen_bond_donor=1",
+          "event_residue_role_count:electron_transfer|polar_non_polar_interaction=1",
+          "event_residue_role_count:electron_transfer|promote_heterolysis=1"
+        ],
+        "event_type_count": [
+          "event_type_count:electron_transfer=1"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:bond_broken>bond_formed>electron_transfer>proton_transfer"
+        ],
+        "participant_role_count": [
+          "participant_role_count:catalytic_residue=4",
+          "participant_role_count:product=2",
+          "participant_role_count:substrate=1"
+        ],
+        "residue_code_count": [
+          "residue_code_count:phe=3"
+        ],
+        "residue_role_count": [
+          "residue_role_count:electrostatic_stabiliser=4",
+          "residue_role_count:polar_non_polar_interaction=3",
+          "residue_role_count:promote_heterolysis=1",
+          "residue_role_count:steric_role=3"
+        ],
+        "residue_role_present": [
+          "residue_role_present:polar_non_polar_interaction",
+          "residue_role_present:promote_heterolysis"
+        ]
+      },
+      "entry_id": "m_csa:263",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_bucket",
+        "event_mapped_residue_count",
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role",
+        "event_residue_role_count",
+        "event_type_count",
+        "event_type_sequence",
+        "participant_role_count",
+        "residue_code_count",
+        "residue_role_count",
+        "residue_role_present"
+      ],
+      "nearest_primary_label": "metal_dependent_hydrolase",
+      "priority": "strong_primary_alias"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_bucket": [
+          "event_mapped_residue_bucket:proton_transfer|two"
+        ],
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:proton_transfer=2"
+        ],
+        "event_participant_arity": [
+          "event_participant_arity:proton_transfer|before_1|after_1|delta_0"
+        ],
+        "event_residue_code": [
+          "event_residue_code:bond_broken|tyr",
+          "event_residue_code:proton_transfer|tyr"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:bond_broken|tyr=1",
+          "event_residue_code_count:proton_transfer|asp=3",
+          "event_residue_code_count:proton_transfer|tyr=3"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:proton_transfer|hydrogen_bond_acceptor=3",
+          "event_residue_role_count:proton_transfer|hydrogen_bond_donor=3",
+          "event_residue_role_count:proton_transfer|proton_acceptor=3",
+          "event_residue_role_count:proton_transfer|proton_donor=3"
+        ],
+        "event_type_count": [
+          "event_type_count:proton_transfer=3"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:proton_transfer>bond_broken>proton_transfer>proton_transfer"
+        ],
+        "participant_role_count": [
+          "participant_role_count:substrate=1"
+        ],
+        "residue_role_count": [
+          "residue_role_count:hydrogen_bond_acceptor=2",
+          "residue_role_count:proton_acceptor=2",
+          "residue_role_count:proton_donor=2"
+        ]
+      },
+      "entry_id": "m_csa:273",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_bucket",
+        "event_mapped_residue_count",
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role_count",
+        "event_type_count",
+        "event_type_sequence",
+        "participant_role_count",
+        "residue_role_count"
+      ],
+      "nearest_primary_label": "metal_dependent_hydrolase",
+      "priority": "borderline_contract_miss"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:proton_transfer=4"
+        ],
+        "event_participant_arity": [
+          "event_participant_arity:electron_transfer|before_2|after_3|delta_1",
+          "event_participant_arity:proton_transfer|before_2|after_3|delta_1"
+        ],
+        "event_residue_code": [
+          "event_residue_code:proton_transfer|his"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:proton_transfer|asp=1",
+          "event_residue_code_count:proton_transfer|his=1"
+        ],
+        "event_residue_role": [
+          "event_residue_role:electron_transfer|increase_basicity",
+          "event_residue_role:proton_transfer|increase_basicity",
+          "event_residue_role:proton_transfer|metal_ligand"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:electron_transfer|hydrogen_bond_acceptor=1",
+          "event_residue_role_count:electron_transfer|increase_basicity=1",
+          "event_residue_role_count:proton_transfer|hydrogen_bond_acceptor=1",
+          "event_residue_role_count:proton_transfer|increase_basicity=1",
+          "event_residue_role_count:proton_transfer|metal_ligand=1"
+        ],
+        "event_type_count": [
+          "event_type_count:proton_transfer=1"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:proton_transfer>electron_transfer"
+        ],
+        "participant_role_count": [
+          "participant_role_count:catalytic_residue=4",
+          "participant_role_count:substrate=2"
+        ],
+        "residue_code_count": [
+          "residue_code_count:his=3"
+        ],
+        "residue_role_count": [
+          "residue_role_count:hydrogen_bond_acceptor=1",
+          "residue_role_count:increase_basicity=1",
+          "residue_role_count:metal_ligand=3"
+        ],
+        "residue_role_present": [
+          "residue_role_present:increase_basicity"
+        ]
+      },
+      "entry_id": "m_csa:312",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_count",
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role",
+        "event_residue_role_count",
+        "event_type_count",
+        "event_type_sequence",
+        "participant_role_count",
+        "residue_code_count",
+        "residue_role_count",
+        "residue_role_present"
+      ],
+      "nearest_primary_label": "heme_peroxidase_oxidase",
+      "priority": "strong_primary_alias"
+    },
+    {
+      "contrast_feature_tokens": {
+        "event_mapped_residue_bucket": [
+          "event_mapped_residue_bucket:proton_transfer|one"
+        ],
+        "event_mapped_residue_count": [
+          "event_mapped_residue_count:proton_transfer=1"
+        ],
+        "event_participant_arity": [
+          "event_participant_arity:bond_formed|before_3|after_3|delta_0",
+          "event_participant_arity:proton_transfer|before_3|after_3|delta_0"
+        ],
+        "event_residue_code": [
+          "event_residue_code:bond_formed|lys",
+          "event_residue_code:proton_transfer|lys"
+        ],
+        "event_residue_code_count": [
+          "event_residue_code_count:bond_formed|lys=1",
+          "event_residue_code_count:proton_transfer|lys=1"
+        ],
+        "event_residue_role": [
+          "event_residue_role:bond_formed|attractive_charge_charge_interaction",
+          "event_residue_role:bond_formed|electrostatic_stabiliser",
+          "event_residue_role:bond_formed|increase_nucleophilicity",
+          "event_residue_role:proton_transfer|attractive_charge_charge_interaction",
+          "event_residue_role:proton_transfer|increase_nucleophilicity"
+        ],
+        "event_residue_role_count": [
+          "event_residue_role_count:bond_formed|attractive_charge_charge_interaction=1",
+          "event_residue_role_count:bond_formed|electrostatic_stabiliser=1",
+          "event_residue_role_count:bond_formed|increase_nucleophilicity=1",
+          "event_residue_role_count:proton_transfer|attractive_charge_charge_interaction=1",
+          "event_residue_role_count:proton_transfer|electrostatic_stabiliser=1",
+          "event_residue_role_count:proton_transfer|hydrogen_bond_donor=1",
+          "event_residue_role_count:proton_transfer|increase_nucleophilicity=1"
+        ],
+        "event_type_count": [
+          "event_type_count:proton_transfer=1"
+        ],
+        "event_type_sequence": [
+          "event_type_sequence:bond_formed>proton_transfer"
+        ],
+        "participant_role_count": [
+          "participant_role_count:catalytic_residue=1",
+          "participant_role_count:substrate=3"
+        ],
+        "residue_code_count": [
+          "residue_code_count:lys=1"
+        ],
+        "residue_role_count": [
+          "residue_role_count:attractive_charge_charge_interaction=1",
+          "residue_role_count:electrostatic_stabiliser=1",
+          "residue_role_count:hydrogen_bond_donor=1",
+          "residue_role_count:increase_nucleophilicity=1"
+        ],
+        "residue_role_present": [
+          "residue_role_present:attractive_charge_charge_interaction",
+          "residue_role_present:increase_nucleophilicity"
+        ]
+      },
+      "entry_id": "m_csa:318",
+      "feature_families_with_nearest_primary_contrast": [
+        "event_mapped_residue_bucket",
+        "event_mapped_residue_count",
+        "event_participant_arity",
+        "event_residue_code",
+        "event_residue_code_count",
+        "event_residue_role",
+        "event_residue_role_count",
+        "event_type_count",
+        "event_type_sequence",
+        "participant_role_count",
+        "residue_code_count",
+        "residue_role_count",
+        "residue_role_present"
+      ],
+      "nearest_primary_label": "ser_his_acid_hydrolase",
+      "priority": "strong_primary_alias"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target",
+  "scope": "Review-only target analysis for richer label-stripped row-specific bond/proton/electron feature families on retained calibration OOS misses. Candidate tokens are derived from approved event types, event/residue-role links, residue-code counts, participant-role counts, and event arity; source text, source IDs, EC/Rhea IDs, accessions, names, and labels are excluded from predictive tokens.",
+  "source_artifacts": {
+    "calibration_error_analysis": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis_current702_20260602.json",
+      "sha256": "084f9830f1992aff4a49af6813e420de266b28958f9d3e6a41db484bad281e82"
+    },
+    "no_template_rerun": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_no_template_rerun_current702_20260602.json",
+      "sha256": "d6c30bf096b97c6e9eed9ddee1c6480de416fa731719d86a1f1e541ac98ab562"
+    },
+    "source_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar_current702_20260602.json",
+      "sha256": "72c40b0d7a292def6e790f73279f362aefd3881cbec2a2122f89cdda8fdacf67"
+    }
+  },
+  "status": "p0_oos_augmented_retained_oos_feature_target_ready"
+}

@@ -1,0 +1,192 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_family_ablation_current702_20260602",
+  "counts": {
+    "ablation_family_rows": 8,
+    "candidate_feature_families": 8,
+    "coarse_feature_dimensions": 17,
+    "coarse_residual_auc_oos_gt_primary": 0.669643,
+    "coarse_residual_oos_abstain_recall": 0.5,
+    "critical_counts": {
+      "coarse_rerun_not_operating_point_ready": 0,
+      "family_ablation_rerun_failures": 0,
+      "ready_candidate_feature_families_missing": 0,
+      "retained_oos_feature_target_not_ready": 0
+    },
+    "critical_violation_total": 0,
+    "families_beating_coarse_residual_contract": 0
+  },
+  "created_utc": "2026-06-02T11:22:46Z",
+  "decision": {
+    "best_family_by_residual_oos_abstain_recall": "event_type_sequence",
+    "families_beating_coarse_residual_contract": [],
+    "keep_existing_residual_threshold": true,
+    "next_gate": "No single ready expanded family beats the coarse residual contract. Do not promote these family-token expansions; next try narrower token-level ablations or regularized calibration while keeping heldout unread.",
+    "single_family_expansion_replaces_frozen_residual_contract": false
+  },
+  "family_ablation_rows": [
+    {
+      "beats_coarse_residual_contract": false,
+      "expanded_feature_dimensions": 40,
+      "feature_dimensions": 57,
+      "feature_family": "event_type_sequence",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.071429,
+      "residual_auc_oos_gt_primary": 0.598214,
+      "residual_oos_abstain_recall": 0.285714,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.214286,
+      "residual_threshold": 4.40324718,
+      "sidecar_status": "p0_oos_augmented_expanded_train_cal_row_specific_feature_sidecar_ready_no_fit"
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "expanded_feature_dimensions": 27,
+      "feature_dimensions": 44,
+      "feature_family": "event_mapped_residue_count",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.160714,
+      "residual_auc_oos_gt_primary": 0.508929,
+      "residual_oos_abstain_recall": 0.142857,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.357143,
+      "residual_threshold": 6.19224831,
+      "sidecar_status": "p0_oos_augmented_expanded_train_cal_row_specific_feature_sidecar_ready_no_fit"
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "expanded_feature_dimensions": 77,
+      "feature_dimensions": 94,
+      "feature_family": "residue_role_count",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.267857,
+      "residual_auc_oos_gt_primary": 0.401786,
+      "residual_oos_abstain_recall": 0.107143,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.392857,
+      "residual_threshold": 8.39222609,
+      "sidecar_status": "p0_oos_augmented_expanded_train_cal_row_specific_feature_sidecar_ready_no_fit"
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "expanded_feature_dimensions": 40,
+      "feature_dimensions": 57,
+      "feature_family": "event_participant_arity",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.142857,
+      "residual_auc_oos_gt_primary": 0.526786,
+      "residual_oos_abstain_recall": 0.071429,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.428571,
+      "residual_threshold": 6.33397052,
+      "sidecar_status": "p0_oos_augmented_expanded_train_cal_row_specific_feature_sidecar_ready_no_fit"
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "expanded_feature_dimensions": 56,
+      "feature_dimensions": 73,
+      "feature_family": "event_residue_code",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.160714,
+      "residual_auc_oos_gt_primary": 0.508929,
+      "residual_oos_abstain_recall": 0.035714,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.464286,
+      "residual_threshold": 8.1321666,
+      "sidecar_status": "p0_oos_augmented_expanded_train_cal_row_specific_feature_sidecar_ready_no_fit"
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "expanded_feature_dimensions": 97,
+      "feature_dimensions": 114,
+      "feature_family": "event_residue_code_count",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.160714,
+      "residual_auc_oos_gt_primary": 0.508929,
+      "residual_oos_abstain_recall": 0.035714,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.464286,
+      "residual_threshold": 8.30681476,
+      "sidecar_status": "p0_oos_augmented_expanded_train_cal_row_specific_feature_sidecar_ready_no_fit"
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "expanded_feature_dimensions": 187,
+      "feature_dimensions": 204,
+      "feature_family": "event_residue_role_count",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.3125,
+      "residual_auc_oos_gt_primary": 0.357143,
+      "residual_oos_abstain_recall": 0.035714,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.464286,
+      "residual_threshold": 10.70474728,
+      "sidecar_status": "p0_oos_augmented_expanded_train_cal_row_specific_feature_sidecar_ready_no_fit"
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "expanded_feature_dimensions": 19,
+      "feature_dimensions": 36,
+      "feature_family": "event_mapped_residue_bucket",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.25,
+      "residual_auc_oos_gt_primary": 0.419643,
+      "residual_oos_abstain_recall": 0.0,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.5,
+      "residual_threshold": 7.33632858,
+      "sidecar_status": "p0_oos_augmented_expanded_train_cal_row_specific_feature_sidecar_ready_no_fit"
+    }
+  ],
+  "guardrails": {
+    "ablation_only": true,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_fit_rows": "train_only_per_family_ablation",
+    "model_weights_fit_or_refit": true,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": true,
+    "threshold_selection_rows": "calibration_only_per_family_ablation"
+  },
+  "interpretation": {
+    "next_action": "Keep the coarse residual threshold frozen and pivot to token-level or regularized feature-family ablations before any heldout read.",
+    "result": "No single retained-OOS expanded feature family beats the coarse residual operating point on calibration OOS abstention while preserving residual AUC."
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_expanded_family_ablation",
+  "scope": "Calibration-only single-family ablation for the retained-OOS expanded feature families. Each family is materialized separately on the approved train/cal surface, guardrail-audited, and scored with the existing no-template centroid/residual method; heldout remains unread.",
+  "source_artifacts": {
+    "coarse_no_template_rerun": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_no_template_rerun_current702_20260602.json",
+      "sha256": "d6c30bf096b97c6e9eed9ddee1c6480de416fa731719d86a1f1e541ac98ab562"
+    },
+    "feature_contract": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_embedding_feature_contract_current702_20260601.json",
+      "sha256": "59c6782c620fb50f00b75af1820cce0daee0f10b604e2805550d972f5880cd6b"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "retained_oos_feature_target": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target_current702_20260602.json",
+      "sha256": "a8c29b3126640dcc98729b8364365a8b30678f81538b8d9925eb952123ea4f96"
+    },
+    "source_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar_current702_20260602.json",
+      "sha256": "72c40b0d7a292def6e790f73279f362aefd3881cbec2a2122f89cdda8fdacf67"
+    },
+    "train_cal_split_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json",
+      "sha256": "d06038f1faa9c42d98c409d949450c6cc953d6da325d98c0636ed4d9daf52d83"
+    }
+  },
+  "status": "p0_oos_augmented_expanded_family_ablation_ready"
+}

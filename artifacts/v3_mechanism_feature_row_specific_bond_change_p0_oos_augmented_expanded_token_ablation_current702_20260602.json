@@ -1,0 +1,2263 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_token_ablation_current702_20260602",
+  "counts": {
+    "candidate_tokens_available": 80,
+    "candidate_tokens_scored": 80,
+    "coarse_feature_dimensions": 17,
+    "coarse_residual_auc_oos_gt_primary": 0.669643,
+    "coarse_residual_oos_abstain_recall": 0.5,
+    "critical_counts": {
+      "base_feature_sidecar_not_ready": 0,
+      "candidate_tokens_missing": 0,
+      "coarse_rerun_not_operating_point_ready": 0,
+      "retained_oos_feature_target_not_ready": 0,
+      "token_ablation_rerun_failures": 0
+    },
+    "critical_violation_total": 0,
+    "tokens_beating_coarse_residual_contract": 33
+  },
+  "created_utc": "2026-06-02T11:26:28Z",
+  "decision": {
+    "best_token": "event_residue_role:proton_transfer|electrostatic_stabiliser",
+    "best_token_feature_family": "event_residue_role",
+    "best_token_residual_auc_oos_gt_primary": 0.776786,
+    "best_token_residual_oos_abstain_recall": 0.714286,
+    "best_token_residual_threshold": 3.21469422,
+    "keep_existing_residual_threshold": false,
+    "next_gate": "Materialize the best beating token as a durable train/cal sidecar and write an explicit calibration contract before any heldout read.",
+    "single_token_expansion_replaces_frozen_residual_contract": true,
+    "tokens_beating_coarse_residual_contract": [
+      {
+        "feature_family": "event_residue_role",
+        "feature_token": "event_residue_role:proton_transfer|electrostatic_stabiliser",
+        "residual_auc_oos_gt_primary": 0.776786,
+        "residual_oos_abstain_recall": 0.714286
+      },
+      {
+        "feature_family": "residue_code_count",
+        "feature_token": "residue_code_count:his=3",
+        "residual_auc_oos_gt_primary": 0.758929,
+        "residual_oos_abstain_recall": 0.642857
+      },
+      {
+        "feature_family": "residue_role_present",
+        "feature_token": "residue_role_present:proton_acceptor",
+        "residual_auc_oos_gt_primary": 0.741071,
+        "residual_oos_abstain_recall": 0.642857
+      },
+      {
+        "feature_family": "residue_role_present",
+        "feature_token": "residue_role_present:proton_donor",
+        "residual_auc_oos_gt_primary": 0.741071,
+        "residual_oos_abstain_recall": 0.642857
+      },
+      {
+        "feature_family": "participant_role_count",
+        "feature_token": "participant_role_count:catalytic_residue=5",
+        "residual_auc_oos_gt_primary": 0.732143,
+        "residual_oos_abstain_recall": 0.642857
+      },
+      {
+        "feature_family": "residue_role_count",
+        "feature_token": "residue_role_count:metal_ligand=3",
+        "residual_auc_oos_gt_primary": 0.732143,
+        "residual_oos_abstain_recall": 0.642857
+      },
+      {
+        "feature_family": "residue_role_count",
+        "feature_token": "residue_role_count:hydrogen_bond_donor=2",
+        "residual_auc_oos_gt_primary": 0.696429,
+        "residual_oos_abstain_recall": 0.607143
+      },
+      {
+        "feature_family": "residue_role_present",
+        "feature_token": "residue_role_present:electrostatic_stabiliser",
+        "residual_auc_oos_gt_primary": 0.696429,
+        "residual_oos_abstain_recall": 0.607143
+      },
+      {
+        "feature_family": "event_type_present",
+        "feature_token": "event_type_present:proton_transfer",
+        "residual_auc_oos_gt_primary": 0.6875,
+        "residual_oos_abstain_recall": 0.607143
+      },
+      {
+        "feature_family": "residue_role_present",
+        "feature_token": "residue_role_present:hydrogen_bond_acceptor",
+        "residual_auc_oos_gt_primary": 0.794643,
+        "residual_oos_abstain_recall": 0.571429
+      },
+      {
+        "feature_family": "residue_code_count",
+        "feature_token": "residue_code_count:his=2",
+        "residual_auc_oos_gt_primary": 0.776786,
+        "residual_oos_abstain_recall": 0.571429
+      },
+      {
+        "feature_family": "event_mapped_residue_bucket",
+        "feature_token": "event_mapped_residue_bucket:proton_transfer|five_plus",
+        "residual_auc_oos_gt_primary": 0.723214,
+        "residual_oos_abstain_recall": 0.571429
+      },
+      {
+        "feature_family": "event_residue_role",
+        "feature_token": "event_residue_role:proton_transfer|hydrogen_bond_acceptor",
+        "residual_auc_oos_gt_primary": 0.705357,
+        "residual_oos_abstain_recall": 0.571429
+      },
+      {
+        "feature_family": "event_residue_role",
+        "feature_token": "event_residue_role:proton_transfer|hydrogen_bond_donor",
+        "residual_auc_oos_gt_primary": 0.705357,
+        "residual_oos_abstain_recall": 0.571429
+      },
+      {
+        "feature_family": "event_participant_arity",
+        "feature_token": "event_participant_arity:proton_transfer|before_1|after_1|delta_0",
+        "residual_auc_oos_gt_primary": 0.6875,
+        "residual_oos_abstain_recall": 0.571429
+      },
+      {
+        "feature_family": "participant_role_count",
+        "feature_token": "participant_role_count:product=1",
+        "residual_auc_oos_gt_primary": 0.669643,
+        "residual_oos_abstain_recall": 0.571429
+      },
+      {
+        "feature_family": "participant_role_count",
+        "feature_token": "participant_role_count:substrate=3",
+        "residual_auc_oos_gt_primary": 0.8125,
+        "residual_oos_abstain_recall": 0.535714
+      },
+      {
+        "feature_family": "residue_role_count",
+        "feature_token": "residue_role_count:covalently_attached=1",
+        "residual_auc_oos_gt_primary": 0.75,
+        "residual_oos_abstain_recall": 0.535714
+      },
+      {
+        "feature_family": "event_residue_code",
+        "feature_token": "event_residue_code:proton_transfer|his",
+        "residual_auc_oos_gt_primary": 0.741071,
+        "residual_oos_abstain_recall": 0.535714
+      },
+      {
+        "feature_family": "residue_role_present",
+        "feature_token": "residue_role_present:hydrogen_bond_donor",
+        "residual_auc_oos_gt_primary": 0.741071,
+        "residual_oos_abstain_recall": 0.535714
+      }
+    ]
+  },
+  "guardrails": {
+    "ablation_only": true,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_fit_rows": "train_only_per_token_ablation",
+    "model_weights_fit_or_refit": true,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": true,
+    "threshold_selection_rows": "calibration_only_per_token_ablation"
+  },
+  "interpretation": {
+    "next_action": "Promote only the top token through a durable calibration contract gate; do not read heldout yet.",
+    "result": "At least one retained-OOS token beats the coarse residual operating point on calibration OOS abstention while preserving or improving residual AUC."
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_expanded_token_ablation",
+  "scope": "Calibration-only single-token ablation for retained-OOS candidate feature tokens. Each token is added as one sanitized boolean feature to the coarse train/cal sidecar, guardrail-audited, and scored with the existing no-template centroid/residual method; heldout remains unread.",
+  "source_artifacts": {
+    "base_train_cal_feature_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_sidecar_current702_20260602.json",
+      "sha256": "1b408f5ed67caf39d56e1f99aa609c0d520021af1e696921eedc995f8ffca8e0"
+    },
+    "coarse_no_template_rerun": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_no_template_rerun_current702_20260602.json",
+      "sha256": "d6c30bf096b97c6e9eed9ddee1c6480de416fa731719d86a1f1e541ac98ab562"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "retained_oos_feature_target": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target_current702_20260602.json",
+      "sha256": "a8c29b3126640dcc98729b8364365a8b30678f81538b8d9925eb952123ea4f96"
+    },
+    "source_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar_current702_20260602.json",
+      "sha256": "72c40b0d7a292def6e790f73279f362aefd3881cbec2a2122f89cdda8fdacf67"
+    }
+  },
+  "status": "p0_oos_augmented_expanded_token_ablation_ready",
+  "token_ablation_rows": [
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:proton_transfer|electrostatic_stabiliser",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:70",
+        "m_csa:263"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.107143,
+      "residual_auc_oos_gt_primary": 0.776786,
+      "residual_oos_abstain_recall": 0.714286,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.214286,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 13,
+      "token_hit_rows": 13
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:his=3",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:101",
+        "m_csa:312"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.089286,
+      "residual_auc_oos_gt_primary": 0.758929,
+      "residual_oos_abstain_recall": 0.642857,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.142857,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 6
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_present",
+      "feature_token": "residue_role_present:proton_acceptor",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.071428,
+      "residual_auc_oos_gt_primary": 0.741071,
+      "residual_oos_abstain_recall": 0.642857,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.142857,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 10,
+      "token_hit_rows": 33
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_present",
+      "feature_token": "residue_role_present:proton_donor",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.071428,
+      "residual_auc_oos_gt_primary": 0.741071,
+      "residual_oos_abstain_recall": 0.642857,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.142857,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 10,
+      "token_hit_rows": 33
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "participant_role_count",
+      "feature_token": "participant_role_count:catalytic_residue=5",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:256"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0625,
+      "residual_auc_oos_gt_primary": 0.732143,
+      "residual_oos_abstain_recall": 0.642857,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.142857,
+      "residual_threshold": 3.29672855,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 10,
+      "token_hit_rows": 11
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:metal_ligand=3",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:256",
+        "m_csa:312"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0625,
+      "residual_auc_oos_gt_primary": 0.732143,
+      "residual_oos_abstain_recall": 0.642857,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.142857,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 9,
+      "token_hit_rows": 6
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:hydrogen_bond_donor=2",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:101",
+        "m_csa:256"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.026786,
+      "residual_auc_oos_gt_primary": 0.696429,
+      "residual_oos_abstain_recall": 0.607143,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.107143,
+      "residual_threshold": 3.40509553,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 11,
+      "token_hit_rows": 11
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_present",
+      "feature_token": "residue_role_present:electrostatic_stabiliser",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.026786,
+      "residual_auc_oos_gt_primary": 0.696429,
+      "residual_oos_abstain_recall": 0.607143,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.107143,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 39
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_type_present",
+      "feature_token": "event_type_present:proton_transfer",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.017857,
+      "residual_auc_oos_gt_primary": 0.6875,
+      "residual_oos_abstain_recall": 0.607143,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.107143,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 32
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_present",
+      "feature_token": "residue_role_present:hydrogen_bond_acceptor",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.125,
+      "residual_auc_oos_gt_primary": 0.794643,
+      "residual_oos_abstain_recall": 0.571429,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.071429,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 13,
+      "token_hit_rows": 32
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:his=2",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:78"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.107143,
+      "residual_auc_oos_gt_primary": 0.776786,
+      "residual_oos_abstain_recall": 0.571429,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.071429,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 7
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_mapped_residue_bucket",
+      "feature_token": "event_mapped_residue_bucket:proton_transfer|five_plus",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:23"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.053571,
+      "residual_auc_oos_gt_primary": 0.723214,
+      "residual_oos_abstain_recall": 0.571429,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.071429,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 5
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:proton_transfer|hydrogen_bond_acceptor",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.035714,
+      "residual_auc_oos_gt_primary": 0.705357,
+      "residual_oos_abstain_recall": 0.571429,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.071429,
+      "residual_threshold": 3.25730169,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 10,
+      "token_hit_rows": 24
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:proton_transfer|hydrogen_bond_donor",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.035714,
+      "residual_auc_oos_gt_primary": 0.705357,
+      "residual_oos_abstain_recall": 0.571429,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.071429,
+      "residual_threshold": 3.25730169,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 26
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_participant_arity",
+      "feature_token": "event_participant_arity:proton_transfer|before_1|after_1|delta_0",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:273"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.017857,
+      "residual_auc_oos_gt_primary": 0.6875,
+      "residual_oos_abstain_recall": 0.571429,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.071429,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "participant_role_count",
+      "feature_token": "participant_role_count:product=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0,
+      "residual_auc_oos_gt_primary": 0.669643,
+      "residual_oos_abstain_recall": 0.571429,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.071429,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 6
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "participant_role_count",
+      "feature_token": "participant_role_count:substrate=3",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:318"
+      ],
+      "priority_retained_oos_hit_rows": [],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.142857,
+      "residual_auc_oos_gt_primary": 0.8125,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.40509553,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 10
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:covalently_attached=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:49"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.080357,
+      "residual_auc_oos_gt_primary": 0.75,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 13
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:proton_transfer|his",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:312"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.071428,
+      "residual_auc_oos_gt_primary": 0.741071,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.37855236,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 11,
+      "token_hit_rows": 17
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_present",
+      "feature_token": "residue_role_present:hydrogen_bond_donor",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.071428,
+      "residual_auc_oos_gt_primary": 0.741071,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 12,
+      "token_hit_rows": 38
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "participant_role_count",
+      "feature_token": "participant_role_count:substrate=2",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:49",
+        "m_csa:312"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.035714,
+      "residual_auc_oos_gt_primary": 0.705357,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.36787652,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 9,
+      "token_hit_rows": 17
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|hydrogen_bond_acceptor=3",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.026786,
+      "residual_auc_oos_gt_primary": 0.696429,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|hydrogen_bond_donor=3",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.026786,
+      "residual_auc_oos_gt_primary": 0.696429,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|proton_acceptor=3",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.026786,
+      "residual_auc_oos_gt_primary": 0.696429,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|proton_donor=3",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.026786,
+      "residual_auc_oos_gt_primary": 0.696429,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_type_count",
+      "feature_token": "event_type_count:proton_transfer=3",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:273"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.026786,
+      "residual_auc_oos_gt_primary": 0.696429,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:nucleofuge=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.026786,
+      "residual_auc_oos_gt_primary": 0.696429,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 14
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:147",
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:nucleophile=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.026786,
+      "residual_auc_oos_gt_primary": 0.696429,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 14
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:proton_transfer|tyr",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:70",
+        "m_csa:273"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.017857,
+      "residual_auc_oos_gt_primary": 0.6875,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 11,
+      "token_hit_rows": 5
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|covalently_attached",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.008928,
+      "residual_auc_oos_gt_primary": 0.678571,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 8
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "participant_role_count",
+      "feature_token": "participant_role_count:substrate=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:263",
+        "m_csa:273"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.008928,
+      "residual_auc_oos_gt_primary": 0.678571,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 9,
+      "token_hit_rows": 8
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_mapped_residue_bucket",
+      "feature_token": "event_mapped_residue_bucket:bond_formed|one",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0,
+      "residual_auc_oos_gt_primary": 0.669643,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 10
+    },
+    {
+      "beats_coarse_residual_contract": true,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_mapped_residue_count",
+      "feature_token": "event_mapped_residue_count:bond_formed=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0,
+      "residual_auc_oos_gt_primary": 0.669643,
+      "residual_oos_abstain_recall": 0.535714,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.035714,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 10
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:proton_acceptor=2",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.008929,
+      "residual_auc_oos_gt_primary": 0.660714,
+      "residual_oos_abstain_recall": 0.571429,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.071429,
+      "residual_threshold": 3.40421168,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 10,
+      "token_hit_rows": 11
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:proton_donor=2",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.008929,
+      "residual_auc_oos_gt_primary": 0.660714,
+      "residual_oos_abstain_recall": 0.571429,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.071429,
+      "residual_threshold": 3.40421168,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 10,
+      "token_hit_rows": 11
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:proton_transfer|proton_acceptor",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.026786,
+      "residual_auc_oos_gt_primary": 0.642857,
+      "residual_oos_abstain_recall": 0.571429,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.071429,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 24
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133",
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:proton_transfer|proton_donor",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149",
+        "m_csa:273"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.026786,
+      "residual_auc_oos_gt_primary": 0.642857,
+      "residual_oos_abstain_recall": 0.571429,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.071429,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 24
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:glu=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.044643,
+      "residual_auc_oos_gt_primary": 0.714286,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.40509553,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 8
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:133"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|electrostatic_stabiliser",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.035714,
+      "residual_auc_oos_gt_primary": 0.705357,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.36663911,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 20,
+      "token_hit_rows": 13
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:133"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:bond_formed|electrostatic_stabiliser=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:78",
+        "m_csa:149",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.035714,
+      "residual_auc_oos_gt_primary": 0.705357,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.36663911,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 13,
+      "token_hit_rows": 9
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:electrostatic_stabiliser=4",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:78",
+        "m_csa:263"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.035714,
+      "residual_auc_oos_gt_primary": 0.705357,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.40421168,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 10
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|electrostatic_stabiliser=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:70",
+        "m_csa:263",
+        "m_csa:318"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.026786,
+      "residual_auc_oos_gt_primary": 0.696429,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 14,
+      "token_hit_rows": 8
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_mapped_residue_bucket",
+      "feature_token": "event_mapped_residue_bucket:electron_transfer|five_plus",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:59",
+        "m_csa:256"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.017857,
+      "residual_auc_oos_gt_primary": 0.6875,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_mapped_residue_count",
+      "feature_token": "event_mapped_residue_count:proton_transfer=4",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:263",
+        "m_csa:312"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.017857,
+      "residual_auc_oos_gt_primary": 0.6875,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:lys=2",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:59"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.017857,
+      "residual_auc_oos_gt_primary": 0.6875,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_mapped_residue_count",
+      "feature_token": "event_mapped_residue_count:bond_formed=5",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:78"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.008928,
+      "residual_auc_oos_gt_primary": 0.678571,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 3
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:bond_formed|arg",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:78",
+        "m_csa:263"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.008928,
+      "residual_auc_oos_gt_primary": 0.678571,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 5
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:bond_formed|tyr",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:70"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.008928,
+      "residual_auc_oos_gt_primary": 0.678571,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 3
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_code_count",
+      "feature_token": "event_residue_code_count:bond_formed|arg=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:78",
+        "m_csa:263"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.008928,
+      "residual_auc_oos_gt_primary": 0.678571,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_code_count",
+      "feature_token": "event_residue_code_count:proton_transfer|tyr=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:70"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.008928,
+      "residual_auc_oos_gt_primary": 0.678571,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 3
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_participant_arity",
+      "feature_token": "event_participant_arity:bond_formed|before_2|after_2|delta_0",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:149"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0,
+      "residual_auc_oos_gt_primary": 0.669643,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 3
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_participant_arity",
+      "feature_token": "event_participant_arity:proton_transfer|before_2|after_2|delta_0",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:49",
+        "m_csa:149"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0,
+      "residual_auc_oos_gt_primary": 0.669643,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|activator",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:23"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0,
+      "residual_auc_oos_gt_primary": 0.669643,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:proton_transfer|activator",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0,
+      "residual_auc_oos_gt_primary": 0.669643,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 9,
+      "token_hit_rows": 3
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|activator=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0,
+      "residual_auc_oos_gt_primary": 0.669643,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 9,
+      "token_hit_rows": 3
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:electrostatic_stabiliser=6",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0,
+      "residual_auc_oos_gt_primary": 0.669643,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 2
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:cys=2",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:149",
+        "m_csa:256"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149",
+        "m_csa:256"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.008929,
+      "residual_auc_oos_gt_primary": 0.660714,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.21469422,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:activator=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:49"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.026786,
+      "residual_auc_oos_gt_primary": 0.642857,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.36604402,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 9,
+      "token_hit_rows": 11
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:his=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:70"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.0625,
+      "residual_auc_oos_gt_primary": 0.607143,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.37855236,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 11
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_present",
+      "feature_token": "residue_role_present:activator",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:49"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.125,
+      "residual_auc_oos_gt_primary": 0.544643,
+      "residual_oos_abstain_recall": 0.5,
+      "residual_oos_abstain_recall_delta_vs_coarse": 0.0,
+      "residual_threshold": 3.36604402,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 12,
+      "token_hit_rows": 15
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:ser=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:78"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.035714,
+      "residual_auc_oos_gt_primary": 0.705357,
+      "residual_oos_abstain_recall": 0.464286,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.035714,
+      "residual_threshold": 3.36787652,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 10
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:electron_transfer|ser",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:49",
+        "m_csa:256"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:256"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.026786,
+      "residual_auc_oos_gt_primary": 0.696429,
+      "residual_oos_abstain_recall": 0.464286,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.035714,
+      "residual_threshold": 3.655032,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 4
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:hydrogen_bond_donor=4",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:78"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.017857,
+      "residual_auc_oos_gt_primary": 0.6875,
+      "residual_oos_abstain_recall": 0.464286,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.035714,
+      "residual_threshold": 3.40421168,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 9
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_code_count",
+      "feature_token": "event_residue_code_count:proton_transfer|his=2",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0,
+      "residual_auc_oos_gt_primary": 0.669643,
+      "residual_oos_abstain_recall": 0.464286,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.035714,
+      "residual_threshold": 3.46623924,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 7
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_type_count",
+      "feature_token": "event_type_count:proton_transfer=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:312",
+        "m_csa:318"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": 0.0,
+      "residual_auc_oos_gt_primary": 0.669643,
+      "residual_oos_abstain_recall": 0.464286,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.035714,
+      "residual_threshold": 3.60704975,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 9,
+      "token_hit_rows": 15
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|hydrogen_bond_donor=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:318"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.026786,
+      "residual_auc_oos_gt_primary": 0.642857,
+      "residual_oos_abstain_recall": 0.464286,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.035714,
+      "residual_threshold": 3.60704975,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 13
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role_count",
+      "feature_token": "event_residue_role_count:proton_transfer|hydrogen_bond_acceptor=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:49",
+        "m_csa:312"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.053572,
+      "residual_auc_oos_gt_primary": 0.616071,
+      "residual_oos_abstain_recall": 0.464286,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.035714,
+      "residual_threshold": 3.60704975,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 9,
+      "token_hit_rows": 11
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|nucleofuge",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.089286,
+      "residual_auc_oos_gt_primary": 0.580357,
+      "residual_oos_abstain_recall": 0.464286,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.035714,
+      "residual_threshold": 3.39536729,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 11
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|nucleophile",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.089286,
+      "residual_auc_oos_gt_primary": 0.580357,
+      "residual_oos_abstain_recall": 0.464286,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.035714,
+      "residual_threshold": 3.39536729,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 11
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "participant_role_count",
+      "feature_token": "participant_role_count:product=2",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:49",
+        "m_csa:59",
+        "m_csa:149",
+        "m_csa:263"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.080357,
+      "residual_auc_oos_gt_primary": 0.589286,
+      "residual_oos_abstain_recall": 0.428571,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.071429,
+      "residual_threshold": 3.60704975,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 12,
+      "token_hit_rows": 13
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_type_present",
+      "feature_token": "event_type_present:bond_formed",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.053572,
+      "residual_auc_oos_gt_primary": 0.616071,
+      "residual_oos_abstain_recall": 0.321429,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.178571,
+      "residual_threshold": 3.79046069,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 24
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:proton_transfer|lys",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:318"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.026786,
+      "residual_auc_oos_gt_primary": 0.642857,
+      "residual_oos_abstain_recall": 0.285714,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.214286,
+      "residual_threshold": 4.28819142,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 7
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:147"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_code",
+      "feature_token": "event_residue_code:proton_transfer|glu",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:2",
+        "m_csa:49",
+        "m_csa:59"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.071429,
+      "residual_auc_oos_gt_primary": 0.598214,
+      "residual_oos_abstain_recall": 0.285714,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.214286,
+      "residual_threshold": 4.27802133,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 8
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:proton_acceptor=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:101",
+        "m_csa:149"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.098214,
+      "residual_auc_oos_gt_primary": 0.571429,
+      "residual_oos_abstain_recall": 0.285714,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.214286,
+      "residual_threshold": 3.79046069,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 16
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:186"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:proton_donor=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:101",
+        "m_csa:149"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.098214,
+      "residual_auc_oos_gt_primary": 0.571429,
+      "residual_oos_abstain_recall": 0.285714,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.214286,
+      "residual_threshold": 3.79046069,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 16
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:133"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "residue_role_count",
+      "feature_token": "residue_role_count:hydrogen_bond_acceptor=3",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:78"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.107143,
+      "residual_auc_oos_gt_primary": 0.5625,
+      "residual_oos_abstain_recall": 0.285714,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.214286,
+      "residual_threshold": 3.82827474,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 6,
+      "token_hit_rows": 10
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_mapped_residue_bucket",
+      "feature_token": "event_mapped_residue_bucket:proton_transfer|one",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:149",
+        "m_csa:318"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.026786,
+      "residual_auc_oos_gt_primary": 0.642857,
+      "residual_oos_abstain_recall": 0.25,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.25,
+      "residual_threshold": 3.89473223,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 12
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [],
+      "feature_dimensions": 18,
+      "feature_family": "event_mapped_residue_count",
+      "feature_token": "event_mapped_residue_count:proton_transfer=1",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [
+        "m_csa:149",
+        "m_csa:318"
+      ],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.026786,
+      "residual_auc_oos_gt_primary": 0.642857,
+      "residual_oos_abstain_recall": 0.25,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.25,
+      "residual_threshold": 3.89473223,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 12
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|hydrogen_bond_donor",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.080357,
+      "residual_auc_oos_gt_primary": 0.589286,
+      "residual_oos_abstain_recall": 0.25,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.25,
+      "residual_threshold": 3.92121481,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 7,
+      "token_hit_rows": 19
+    },
+    {
+      "beats_coarse_residual_contract": false,
+      "calibration_primary_hit_rows": [
+        "m_csa:6",
+        "m_csa:133"
+      ],
+      "feature_dimensions": 18,
+      "feature_family": "event_residue_role",
+      "feature_token": "event_residue_role:bond_formed|hydrogen_bond_acceptor",
+      "guardrail_status": "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+      "nearest_primary_contrast_rows": [],
+      "priority_retained_oos_hit_rows": [
+        "m_csa:2",
+        "m_csa:23",
+        "m_csa:149"
+      ],
+      "rerun_status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+      "residual_auc_delta_vs_coarse": -0.089286,
+      "residual_auc_oos_gt_primary": 0.580357,
+      "residual_oos_abstain_recall": 0.25,
+      "residual_oos_abstain_recall_delta_vs_coarse": -0.25,
+      "residual_threshold": 3.92121481,
+      "sidecar_status": "p0_oos_augmented_expanded_token_ablation_working_sidecar_ready_no_fit",
+      "source_target_score": 8,
+      "token_hit_rows": 14
+    }
+  ]
+}

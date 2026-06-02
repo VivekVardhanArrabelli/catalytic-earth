@@ -1,0 +1,89 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison_current702_20260602",
+  "coarse_oos_augmented_surface": {
+    "calibration_oos_rows": 28,
+    "calibration_primary_rows": 4,
+    "calibration_rows": 32,
+    "centroid_auc_primary_vs_oos": 0.669643,
+    "centroid_oos_abstain_recall": 0.5,
+    "centroid_threshold": 0.23726514,
+    "feature_dimensions": 17,
+    "residual_auc_oos_gt_primary": 0.669643,
+    "residual_mean_oos": 3.16051,
+    "residual_mean_primary": 2.618359,
+    "residual_oos_abstain_recall": 0.5,
+    "residual_primary_retain_recall": 1.0,
+    "residual_threshold": 3.21469422,
+    "status": "p0_row_specific_no_template_train_cal_operating_point_ready"
+  },
+  "counts": {
+    "calibration_oos_rows": 28,
+    "calibration_rows": 32,
+    "coarse_feature_dimensions": 17,
+    "critical_counts": {
+      "calibration_row_count_mismatch": 0,
+      "coarse_rerun_not_operating_point_ready": 0,
+      "expanded_rerun_not_operating_point_ready": 0
+    },
+    "critical_violation_total": 0,
+    "expanded_feature_dimensions": 560
+  },
+  "created_utc": "2026-06-02T11:18:35Z",
+  "decision": {
+    "existing_residual_threshold": 3.21469422,
+    "expanded_surface_replaces_frozen_residual_contract": false,
+    "keep_existing_residual_threshold": true,
+    "next_gate": "Do not promote the all-family expanded surface. Use the retained-OOS target artifact for a narrower ablation or regularized feature-family pass, and keep the coarse residual threshold frozen until a calibration contract beats it.",
+    "recommended_operating_point_surface": "coarse_oos_augmented_residual_contract"
+  },
+  "deltas_expanded_minus_coarse": {
+    "residual_auc_oos_gt_primary": -0.383929,
+    "residual_oos_abstain_recall": -0.464286
+  },
+  "expanded_retained_oos_surface": {
+    "calibration_oos_rows": 28,
+    "calibration_primary_rows": 4,
+    "calibration_rows": 32,
+    "centroid_auc_primary_vs_oos": 0.285714,
+    "centroid_oos_abstain_recall": 0.035714,
+    "centroid_threshold": 0.0492274,
+    "feature_dimensions": 560,
+    "residual_auc_oos_gt_primary": 0.285714,
+    "residual_mean_oos": 15.213428,
+    "residual_mean_primary": 16.981108,
+    "residual_oos_abstain_recall": 0.035714,
+    "residual_primary_retain_recall": 1.0,
+    "residual_threshold": 19.31389136,
+    "status": "p0_row_specific_no_template_train_cal_operating_point_ready"
+  },
+  "guardrails": {
+    "comparison_only": true,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Keep the coarse residual operating-point contract as the deployable candidate and run a narrower expanded-family ablation before any heldout read.",
+    "result": "The expanded retained-OOS feature surface underperforms the coarse surface at the calibration operating point: residual OOS abstain recall delta is -0.464286 and residual AUC delta is -0.383929."
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison",
+  "scope": "Calibration-only comparison between the coarse OOS-augmented row-specific feature surface and the expanded retained-OOS target surface. It compares already-written rerun artifacts only; it does not fit new models, tune thresholds, or read heldout.",
+  "source_artifacts": {
+    "coarse_no_template_rerun": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_no_template_rerun_current702_20260602.json",
+      "sha256": "d6c30bf096b97c6e9eed9ddee1c6480de416fa731719d86a1f1e541ac98ab562"
+    },
+    "expanded_no_template_rerun": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_no_template_rerun_current702_20260602.json",
+      "sha256": "2e0855477aef39ab83b268c0f1f240d8f17eee39a47c29a7747e3c6bfc8c3fa2"
+    }
+  },
+  "status": "p0_oos_augmented_expanded_calibration_comparison_ready"
+}

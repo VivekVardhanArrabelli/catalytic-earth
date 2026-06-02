@@ -37,6 +37,9 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_extraction_work_package,
     build_mechanism_feature_row_specific_bond_change_p0_no_template_rerun,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target,
     build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar,
     build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package,
     build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit,
@@ -6170,6 +6173,386 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 "priority": "borderline_contract_miss",
                 "residual_margin_below_threshold": 0.05,
             },
+        )
+
+    def test_oos_augmented_retained_oos_feature_target_finds_contrast_tokens(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source_sidecar_path = root / "source.json"
+            error_analysis_path = root / "error.json"
+            rerun_path = root / "rerun.json"
+            source_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_oos_augmented_source_evidence_sidecar_ready",
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "review_status": "approved",
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "active_site_residue_role_support": [
+                                    {
+                                        "residue_node_id": "m_csa:1:residue:1",
+                                        "code": "Ser",
+                                        "roles": ["nucleophile"],
+                                    }
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "bond_formed",
+                                        "participants_before": ["substrate"],
+                                        "participants_after": ["product"],
+                                        "mapped_active_site_residues": [
+                                            "m_csa:1:residue:1"
+                                        ],
+                                    }
+                                ],
+                                "row_specific_reaction_participant_mapping": [
+                                    {"role": "substrate"},
+                                    {"role": "product"},
+                                    {"role": "catalytic_residue"},
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "review_status": "approved",
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "active_site_residue_role_support": [
+                                    {
+                                        "residue_node_id": "m_csa:2:residue:1",
+                                        "code": "His",
+                                        "roles": ["metal ligand"],
+                                    },
+                                    {
+                                        "residue_node_id": "m_csa:2:residue:2",
+                                        "code": "Tyr",
+                                        "roles": ["proton donor"],
+                                    },
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "electron_transfer",
+                                        "participants_before": [
+                                            "substrate",
+                                            "cofactor",
+                                        ],
+                                        "participants_after": [
+                                            "product",
+                                            "reduced cofactor",
+                                        ],
+                                        "mapped_active_site_residues": [
+                                            "m_csa:2:residue:1",
+                                            "m_csa:2:residue:2",
+                                        ],
+                                    }
+                                ],
+                                "row_specific_reaction_participant_mapping": [
+                                    {"role": "substrate"},
+                                    {"role": "product"},
+                                    {"role": "cofactor"},
+                                    {"role": "catalytic_residue"},
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            error_analysis_path.write_text(
+                json.dumps(
+                    {
+                        "status": "p0_oos_augmented_calibration_error_analysis_ready",
+                        "retained_oos_failure_set": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "priority": "borderline_contract_miss",
+                                "nearest_primary_label": "ser_his_acid_hydrolase",
+                            }
+                        ],
+                        "all_calibration_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "operating_point_outcome": "primary_retained",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "operating_point_outcome": "oos_non_abstained",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            rerun_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_row_specific_no_template_train_cal_operating_point_ready"
+                        ),
+                        "scored_rows": {
+                            "train": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "is_primary": True,
+                                    "true_label": "ser_his_acid_hydrolase",
+                                }
+                            ],
+                            "calibration": [
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "is_primary": False,
+                                    "true_label": "none_of_above",
+                                }
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            target = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target(
+                source_sidecar_path=source_sidecar_path,
+                calibration_error_analysis_path=error_analysis_path,
+                no_template_rerun_path=rerun_path,
+            )
+
+        self.assertEqual(
+            target["status"], "p0_oos_augmented_retained_oos_feature_target_ready"
+        )
+        self.assertTrue(
+            target["decision"]["feature_family_ready_for_expanded_sidecar"]
+        )
+        self.assertIn(
+            "event_type_present",
+            target["decision"]["ready_candidate_feature_families"],
+        )
+        self.assertEqual(target["counts"]["critical_violation_total"], 0)
+        self.assertEqual(target["counts"]["priority_retained_oos_failure_rows"], 1)
+        self.assertEqual(
+            target["retained_row_feature_contrasts"][0]["entry_id"], "m_csa:2"
+        )
+
+    def test_oos_augmented_expanded_feature_sidecar_materializes_target_family(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source_sidecar_path = root / "source.json"
+            target_path = root / "target.json"
+            split_path = root / "split.json"
+            contract_path = root / "contract.json"
+            label_manifest_path = root / "labels.json"
+            source_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "review_status": "approved",
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "active_site_residue_role_support": [
+                                    {
+                                        "residue_node_id": "m_csa:1:residue:1",
+                                        "code": "Ser",
+                                        "roles": ["nucleophile"],
+                                    }
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "bond_formed",
+                                        "mapped_active_site_residues": [
+                                            "m_csa:1:residue:1"
+                                        ],
+                                    }
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "review_status": "approved",
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "active_site_residue_role_support": [
+                                    {
+                                        "residue_node_id": "m_csa:2:residue:1",
+                                        "code": "His",
+                                        "roles": ["metal ligand"],
+                                    }
+                                ],
+                                "row_specific_bond_change_events": [
+                                    {
+                                        "event_type": "electron_transfer",
+                                        "mapped_active_site_residues": [
+                                            "m_csa:2:residue:1"
+                                        ],
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            target_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_oos_augmented_retained_oos_feature_target_ready"
+                        ),
+                        "decision": {
+                            "ready_candidate_feature_families": [
+                                "event_type_present"
+                            ]
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            split_path.write_text(
+                json.dumps(
+                    {
+                        "split_records": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "assigned_embedding_split": "train",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "assigned_embedding_split": "calibration",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {"entry_id": "m_csa:1"},
+                            {"entry_id": "m_csa:2"},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            label_manifest_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "split_assignment": "in_distribution",
+                                "label_type": "primary",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "split_assignment": "in_distribution",
+                                "label_type": "out_of_scope",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            sidecar = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar(
+                source_sidecar_path=source_sidecar_path,
+                retained_oos_feature_target_path=target_path,
+                train_cal_split_manifest_path=split_path,
+                feature_contract_path=contract_path,
+                label_manifest_path=label_manifest_path,
+            )
+
+        self.assertEqual(
+            sidecar["status"],
+            "p0_oos_augmented_expanded_train_cal_row_specific_feature_sidecar_ready_no_fit",
+        )
+        self.assertEqual(sidecar["counts"]["materialized_feature_rows"], 2)
+        self.assertEqual(sidecar["counts"]["expanded_feature_dimensions"], 2)
+        self.assertTrue(
+            any(
+                key.startswith("expanded_event_type_present__")
+                for key in sidecar["feature_rows"][0][
+                    "row_specific_event_features"
+                ]
+            )
+        )
+
+    def test_oos_augmented_expanded_calibration_comparison_keeps_coarse_contract(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            coarse_path = root / "coarse.json"
+            expanded_path = root / "expanded.json"
+            base_payload = {
+                "status": "p0_row_specific_no_template_train_cal_operating_point_ready",
+                "counts": {
+                    "feature_dimensions": 17,
+                    "calibration_rows": 32,
+                    "calibration_primary_rows": 4,
+                    "calibration_oos_rows": 28,
+                },
+                "residual_variant": {
+                    "calibration_summary": {
+                        "auc_oos_gt_primary": 0.67,
+                        "mean_primary_residual": 2.6,
+                        "mean_oos_residual": 3.1,
+                    },
+                    "calibration_selected_residual_threshold": {
+                        "threshold": 3.2,
+                        "primary_retain_recall": 1.0,
+                        "oos_abstain_recall": 0.5,
+                    },
+                },
+                "centroid_variant": {
+                    "calibration_summary": {"auc_primary_vs_oos": 0.67},
+                    "calibration_selected_similarity_threshold": {
+                        "threshold": 0.23,
+                        "oos_abstain_recall": 0.5,
+                    },
+                },
+            }
+            expanded_payload = json.loads(json.dumps(base_payload))
+            expanded_payload["counts"]["feature_dimensions"] = 560
+            expanded_payload["residual_variant"]["calibration_summary"][
+                "auc_oos_gt_primary"
+            ] = 0.28
+            expanded_payload["residual_variant"][
+                "calibration_selected_residual_threshold"
+            ]["threshold"] = 19.3
+            expanded_payload["residual_variant"][
+                "calibration_selected_residual_threshold"
+            ]["oos_abstain_recall"] = 0.04
+            coarse_path.write_text(json.dumps(base_payload), encoding="utf-8")
+            expanded_path.write_text(
+                json.dumps(expanded_payload), encoding="utf-8"
+            )
+
+            comparison = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison(
+                coarse_no_template_rerun_path=coarse_path,
+                expanded_no_template_rerun_path=expanded_path,
+            )
+
+        self.assertEqual(
+            comparison["status"],
+            "p0_oos_augmented_expanded_calibration_comparison_ready",
+        )
+        self.assertFalse(
+            comparison["decision"][
+                "expanded_surface_replaces_frozen_residual_contract"
+            ]
+        )
+        self.assertEqual(
+            comparison["decision"]["recommended_operating_point_surface"],
+            "coarse_oos_augmented_residual_contract",
+        )
+        self.assertEqual(
+            comparison["deltas_expanded_minus_coarse"][
+                "residual_oos_abstain_recall"
+            ],
+            -0.46,
         )
 
     def test_mechanism_feature_sidecar_schema_audit_passes_aligned_sidecars(self) -> None:

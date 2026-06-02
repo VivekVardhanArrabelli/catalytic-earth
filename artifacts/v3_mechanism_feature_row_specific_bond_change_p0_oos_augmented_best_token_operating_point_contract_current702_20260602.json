@@ -1,0 +1,67 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_operating_point_contract_current702_20260602",
+  "calibration_contract": {
+    "centroid_similarity": {
+      "calibration_auc_primary_vs_oos": 0.776786,
+      "decision_rule": "abstain_as_novel_when_nearest_primary_similarity_below_threshold",
+      "oos_abstain_recall": 0.714286,
+      "primary_retain_recall": 1.0,
+      "retention_target": 0.9,
+      "threshold": 0.23726514
+    },
+    "residual_distance": {
+      "calibration_auc_oos_gt_primary": 0.776786,
+      "decision_rule": "abstain_as_novel_when_out_of_atlas_span_residual_above_threshold",
+      "oos_abstain_recall": 0.714286,
+      "primary_retain_recall": 1.0,
+      "retention_target": 0.9,
+      "threshold": 3.21469422
+    }
+  },
+  "counts": {
+    "blockers": 0,
+    "calibration_oos_rows": 28,
+    "calibration_primary_rows": 4,
+    "calibration_rows": 32,
+    "critical_violation_total": 0,
+    "feature_dimensions": 18,
+    "feature_rows": 43,
+    "train_rows": 11
+  },
+  "created_utc": "2026-06-02T11:35:01Z",
+  "decision": {
+    "centroid_calibration_contract_ready": true,
+    "heldout_read_once_performed": false,
+    "known_vs_novel_operating_point_evaluable": true,
+    "next_gate": "Apply the frozen residual threshold to a heldout-safe feature surface exactly once; do not retune on heldout.",
+    "preferred_contract": "residual_distance_threshold",
+    "residual_calibration_contract_ready": true
+  },
+  "guardrails": {
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_fit_rows": "train_only",
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": true,
+    "threshold_selection_rows": "calibration_only"
+  },
+  "interpretation": {
+    "next_action": "Use this best-token residual-distance contract as the next heldout-safe candidate only after a heldout-safe feature surface is materialized; do not retune on heldout.",
+    "result": "The OOS-augmented train/cal surface has a calibration-only operating point: both centroid similarity and residual distance retain all calibration primaries and abstain on 20/28 OOS rows."
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_operating_point_contract",
+  "scope": "Calibration-only operating-point contract for the best-token OOS-augmented row-specific feature surface. It freezes thresholds on calibration rows only and leaves heldout unread.",
+  "source_artifacts": {
+    "no_template_rerun": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_no_template_rerun_current702_20260602.json",
+      "sha256": "cbe2d4b4bbf3736cf4df0b07a3db787687b03505e2785d62b7a4e8f64213d008"
+    }
+  },
+  "status": "p0_oos_augmented_best_token_operating_point_contract_ready_calibration_only"
+}

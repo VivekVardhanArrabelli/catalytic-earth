@@ -4419,6 +4419,298 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(analysis["guardrails"]["heldout_rows_evaluated"])
 
+    def test_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target_current_counts(
+        self,
+    ) -> None:
+        target = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_retained_oos_feature_target_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            target["status"],
+            "p0_oos_augmented_retained_oos_feature_target_ready",
+        )
+        self.assertEqual(target["counts"]["retained_oos_failure_rows"], 14)
+        self.assertEqual(
+            target["counts"]["priority_retained_oos_failure_rows"], 5
+        )
+        self.assertEqual(target["counts"]["feature_families_scanned"], 14)
+        self.assertEqual(target["counts"]["candidate_feature_tokens_scanned"], 426)
+        self.assertEqual(target["counts"]["ready_candidate_feature_families"], 8)
+        self.assertEqual(target["counts"]["critical_violation_total"], 0)
+        self.assertTrue(
+            target["decision"]["feature_family_ready_for_expanded_sidecar"]
+        )
+        self.assertEqual(
+            target["decision"]["ready_candidate_feature_families"][:4],
+            [
+                "event_residue_code",
+                "event_residue_code_count",
+                "event_residue_role_count",
+                "residue_role_count",
+            ],
+        )
+        self.assertFalse(target["guardrails"]["heldout_rows_evaluated"])
+
+    def test_row_specific_bond_change_p0_oos_augmented_expanded_surface_current_counts(
+        self,
+    ) -> None:
+        sidecar = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_expanded_train_cal_feature_sidecar_"
+                "current702_20260602.json"
+            )
+        )
+        guardrail = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_"
+                "current702_20260602.json"
+            )
+        )
+        rerun = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_expanded_no_template_rerun_"
+                "current702_20260602.json"
+            )
+        )
+        comparison = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_expanded_calibration_comparison_"
+                "current702_20260602.json"
+            )
+        )
+        ablation = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_expanded_family_ablation_"
+                "current702_20260602.json"
+            )
+        )
+        token_ablation = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_expanded_token_ablation_"
+                "current702_20260602.json"
+            )
+        )
+        best_sidecar = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_train_cal_feature_sidecar_"
+                "current702_20260602.json"
+            )
+        )
+        best_guardrail = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_train_cal_feature_guardrail_audit_"
+                "current702_20260602.json"
+            )
+        )
+        best_rerun = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_no_template_rerun_"
+                "current702_20260602.json"
+            )
+        )
+        best_contract = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_operating_point_contract_"
+                "current702_20260602.json"
+            )
+        )
+        best_error = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_calibration_error_analysis_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            sidecar["status"],
+            "p0_oos_augmented_expanded_train_cal_row_specific_feature_sidecar_ready_no_fit",
+        )
+        self.assertEqual(sidecar["counts"]["materialized_feature_rows"], 43)
+        self.assertEqual(sidecar["counts"]["base_feature_dimensions"], 17)
+        self.assertEqual(sidecar["counts"]["expanded_feature_dimensions"], 543)
+        self.assertEqual(sidecar["counts"]["total_feature_dimensions"], 560)
+        self.assertEqual(sidecar["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            guardrail["status"],
+            "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_passed",
+        )
+        self.assertEqual(guardrail["counts"]["critical_violation_total"], 0)
+        self.assertTrue(guardrail["decision"]["safe_to_run_no_template_methods_now"])
+        self.assertEqual(
+            rerun["status"],
+            "p0_row_specific_no_template_train_cal_operating_point_ready",
+        )
+        self.assertEqual(rerun["counts"]["feature_dimensions"], 560)
+        self.assertEqual(
+            rerun["residual_variant"]["calibration_selected_residual_threshold"][
+                "oos_abstain_recall"
+            ],
+            0.035714,
+        )
+        self.assertEqual(
+            comparison["status"],
+            "p0_oos_augmented_expanded_calibration_comparison_ready",
+        )
+        self.assertFalse(
+            comparison["decision"][
+                "expanded_surface_replaces_frozen_residual_contract"
+            ]
+        )
+        self.assertEqual(
+            comparison["decision"]["recommended_operating_point_surface"],
+            "coarse_oos_augmented_residual_contract",
+        )
+        self.assertEqual(
+            comparison["deltas_expanded_minus_coarse"][
+                "residual_oos_abstain_recall"
+            ],
+            -0.464286,
+        )
+        self.assertTrue(comparison["decision"]["keep_existing_residual_threshold"])
+        self.assertEqual(
+            ablation["status"],
+            "p0_oos_augmented_expanded_family_ablation_ready",
+        )
+        self.assertEqual(ablation["counts"]["ablation_family_rows"], 8)
+        self.assertEqual(
+            ablation["counts"]["families_beating_coarse_residual_contract"], 0
+        )
+        self.assertEqual(
+            ablation["decision"]["best_family_by_residual_oos_abstain_recall"],
+            "event_type_sequence",
+        )
+        self.assertEqual(
+            ablation["family_ablation_rows"][0]["residual_oos_abstain_recall"],
+            0.285714,
+        )
+        self.assertTrue(ablation["decision"]["keep_existing_residual_threshold"])
+        self.assertEqual(
+            token_ablation["status"],
+            "p0_oos_augmented_expanded_token_ablation_ready",
+        )
+        self.assertEqual(token_ablation["counts"]["candidate_tokens_scored"], 80)
+        self.assertEqual(
+            token_ablation["counts"]["tokens_beating_coarse_residual_contract"],
+            33,
+        )
+        self.assertTrue(
+            token_ablation["decision"][
+                "single_token_expansion_replaces_frozen_residual_contract"
+            ]
+        )
+        self.assertEqual(
+            token_ablation["decision"]["best_token"],
+            "event_residue_role:proton_transfer|electrostatic_stabiliser",
+        )
+        self.assertEqual(
+            token_ablation["decision"]["best_token_residual_oos_abstain_recall"],
+            0.714286,
+        )
+        self.assertEqual(
+            token_ablation["decision"]["best_token_residual_auc_oos_gt_primary"],
+            0.776786,
+        )
+        self.assertFalse(token_ablation["decision"]["keep_existing_residual_threshold"])
+        self.assertEqual(
+            best_sidecar["status"],
+            "p0_oos_augmented_best_token_train_cal_feature_sidecar_ready_no_fit",
+        )
+        self.assertEqual(best_sidecar["counts"]["materialized_feature_rows"], 43)
+        self.assertEqual(best_sidecar["counts"]["expanded_feature_dimensions"], 1)
+        self.assertEqual(best_sidecar["counts"]["total_feature_dimensions"], 18)
+        self.assertEqual(best_sidecar["counts"]["token_hit_rows"], 13)
+        self.assertEqual(
+            best_sidecar["decision"]["selected_feature_token"],
+            "event_residue_role:proton_transfer|electrostatic_stabiliser",
+        )
+        self.assertEqual(
+            best_guardrail["status"],
+            "p0_oos_augmented_best_token_train_cal_feature_guardrail_audit_passed",
+        )
+        self.assertEqual(best_guardrail["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            best_rerun["status"],
+            "p0_row_specific_no_template_train_cal_operating_point_ready",
+        )
+        self.assertEqual(best_rerun["counts"]["feature_dimensions"], 18)
+        self.assertEqual(
+            best_contract["status"],
+            "p0_oos_augmented_best_token_operating_point_contract_ready_calibration_only",
+        )
+        self.assertEqual(
+            best_contract["calibration_contract"]["residual_distance"][
+                "threshold"
+            ],
+            3.21469422,
+        )
+        self.assertEqual(
+            best_contract["calibration_contract"]["residual_distance"][
+                "oos_abstain_recall"
+            ],
+            0.714286,
+        )
+        self.assertEqual(
+            best_contract["calibration_contract"]["residual_distance"][
+                "calibration_auc_oos_gt_primary"
+            ],
+            0.776786,
+        )
+        self.assertEqual(
+            best_error["status"],
+            "p0_oos_augmented_best_token_calibration_error_analysis_ready",
+        )
+        self.assertEqual(
+            best_error["counts"]["outcome_counts"],
+            {
+                "oos_abstained": 20,
+                "oos_non_abstained": 8,
+                "primary_retained": 4,
+            },
+        )
+        self.assertEqual(best_error["counts"]["critical_violation_total"], 0)
+        self.assertEqual(len(best_error["retained_oos_failure_set"]), 8)
+        self.assertEqual(best_error["retained_oos_failure_set"][0]["entry_id"], "m_csa:273")
+
     def test_high_value_glycyl_radical_no_template_guardrail_current_counts(
         self,
     ) -> None:

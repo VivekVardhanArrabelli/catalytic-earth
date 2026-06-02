@@ -56,6 +56,128 @@ Automation run: `catalytic-earth-lever-3-2-forward-push`
 
 #### Wall-clock ledger
 
+- STARTED_AT: `2026-06-02T11:01:38.393916+00:00`
+- STARTED_LOCAL: `2026-06-02T06:01:38.394013-05:00`
+- ENDED_AT: `2026-06-02T11:42:12Z`
+- ENDED_LOCAL: `2026-06-02T06:42:12-0500 CDT`
+- ELAPSED_MINUTES: `40.6`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "current-run", "started_at": "2026-06-02T11:01:38.393916+00:00", "status": "acquired"}`
+
+#### Current intent
+
+Continue from the previous Lever 2 gate and convert the retained-OOS
+calibration failure set into the next row-specific feature-target pass. Then
+materialize and calibrate the best retained-OOS token if the target pass finds
+a real train/cal operating-point lift.
+
+#### What changed
+
+- Added a retained-OOS feature-target artifact over approved row-specific
+  source evidence. It scans richer label-stripped event/residue/participant
+  token families for the 14 retained calibration OOS misses and finds 8 ready
+  family-level candidates covering all 5 borderline/near misses.
+- Materialized the all-family expanded train/cal sidecar from those candidates
+  and reran the no-template centroid/residual methods. This 560-dimensional
+  surface is guardrail-clean but underperforms the coarse 17-dimensional
+  surface: residual OOS abstain recall drops from 0.5 to 0.035714 and residual
+  AUC drops from 0.669643 to 0.285714, so it is not promoted.
+- Ran single-family ablations over the 8 ready families. No family beats the
+  coarse residual contract; the best family is `event_type_sequence` with OOS
+  abstain recall 0.285714 and residual AUC 0.598214.
+- Ran single-token ablations over the top 80 retained-OOS candidate tokens.
+  33/80 beat the coarse residual contract. The best token is
+  `event_residue_role:proton_transfer|electrostatic_stabiliser`, which raises
+  residual OOS abstain recall to 0.714286 and residual AUC to 0.776786 with an
+  18-dimensional sidecar.
+- Materialized the best-token train/cal sidecar, strict guardrail, no-template
+  rerun, calibration-only operating-point contract, and calibration error
+  analysis. The frozen best-token residual threshold is still `3.21469422`,
+  retains all 4 calibration primaries, and abstains on 20/28 calibration OOS
+  rows. The remaining retained OOS rows are `m_csa:246`, `m_csa:49`,
+  `m_csa:78`, `m_csa:101`, `m_csa:59`, `m_csa:312`, `m_csa:256`, and
+  `m_csa:273`.
+- No labels, registries, ontologies, imports, production thresholds, heldout
+  thresholds, or heldout M-CSA row-specific feature rows changed. Heldout was
+  not read.
+
+#### Artifacts and reports
+
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_no_template_rerun_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_no_template_rerun_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_family_ablation_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_family_ablation_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_token_ablation_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_token_ablation_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_sidecar_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_sidecar_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_guardrail_audit_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_guardrail_audit_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_no_template_rerun_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_no_template_rerun_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_operating_point_contract_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_operating_point_contract_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_calibration_error_analysis_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_calibration_error_analysis_current702_20260602.md`
+- Refreshed `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`
+  and `work/current_docs_artifact_reference_check_current702_20260601.md`
+  with 0 missing references.
+
+#### Tests run
+
+- Startup `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  1150 tests in 38.899s with the existing sklearn/scipy deprecation warning.
+- Focused new-path checks passed:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_oos_augmented_retained_oos_feature_target_finds_contrast_tokens tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_oos_augmented_expanded_feature_sidecar_materializes_target_family tests/test_northstar_next_levers.py::NorthstarNextLeversTests::test_oos_augmented_expanded_calibration_comparison_keeps_coarse_contract tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target_current_counts tests/test_geometry_artifact_regression.py::GeometryArtifactRegressionTests::test_row_specific_bond_change_p0_oos_augmented_expanded_surface_current_counts -q`
+  passed: 6 tests and 50 subtests.
+- Broader Lever 2/CLI/regression suite
+  `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`
+  passed after final code: 329 tests and 61 subtests.
+- `python -m compileall -q src/catalytic_earth/northstar_next_levers.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py`
+  passed.
+- Final `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  1155 tests in 39.012s with the existing sklearn/scipy deprecation warning.
+- Final `PYTHONPATH=src python -m pytest tests -q` passed: 1200 tests, 81
+  subtests, and the same existing warning.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with 12 source
+  records, 8 mechanism fingerprints, 15 ontology families, and 702 curated
+  labels.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  passed with 0 missing references.
+- OOS-augmented artifact JSON parse check passed for 18 JSON artifacts.
+- Repo JSON/JSONL parse sweep passed: 3173 JSON and 27 JSONL files, 0 parse
+  errors.
+- `git diff --check` passed.
+
+#### Exact next action
+
+Continue Lever 2 from the best-token contract:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_operating_point_contract_current702_20260602.json`.
+Do not read heldout yet. First materialize a heldout-safe application surface
+for the single added token
+`event_residue_role:proton_transfer|electrostatic_stabiliser` that does not use
+M-CSA heldout row-specific mechanism text. Then apply the frozen residual
+threshold `3.21469422` exactly once. If that heldout-safe surface is not
+mechanically available, use the remaining retained calibration OOS rows from
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_calibration_error_analysis_current702_20260602.json`
+(`m_csa:246`, `m_csa:49`, `m_csa:78`, `m_csa:101`, `m_csa:59`, `m_csa:312`,
+`m_csa:256`, `m_csa:273`) for the next token-level calibration ablation without
+touching labels, registries, production thresholds, or heldout rows.
+
+### 2026-06-02 Lever 2/3/4 Forward Push Active Run
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
 - STARTED_AT: `2026-06-02T10:02:54Z`
 - STARTED_LOCAL: `2026-06-02T05:02:54-0500 CDT`
 - ENDED_AT: `2026-06-02T10:58:16Z`

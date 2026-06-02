@@ -89,13 +89,25 @@ from .northstar_next_levers import (
     write_mechanism_feature_reaction_center_template_sidecar,
     write_mechanism_feature_row_specific_bond_change_feature_contract_gap_audit,
     write_mechanism_feature_row_specific_bond_change_materialization_priority,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_calibration_error_analysis,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_no_template_rerun,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_operating_point_contract,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_guardrail_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_sidecar,
     write_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet,
     write_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit,
     write_mechanism_feature_row_specific_bond_change_p0_extraction_work_package,
     write_mechanism_feature_row_specific_bond_change_p0_no_template_rerun,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_no_template_rerun,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_family_ablation,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_no_template_rerun,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_token_ablation,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_guardrail_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_operating_point_contract,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_guardrail_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_sidecar,
@@ -12521,6 +12533,267 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibr
     print(
         "Wrote row-specific bond-change P0 OOS-augmented calibration error "
         f"analysis to {args.out} (status: {analysis.get('status')}, "
+        f"OOS retained: {outcomes.get('oos_non_abstained')}, "
+        f"OOS abstained: {outcomes.get('oos_abstained')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target(
+    args: argparse.Namespace,
+) -> int:
+    target = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target(
+        source_sidecar_path=Path(args.source_sidecar),
+        calibration_error_analysis_path=Path(args.calibration_error_analysis),
+        no_template_rerun_path=Path(args.no_template_rerun),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = target.get("counts", {})
+    decision = target.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented retained-OOS "
+        f"feature target to {args.out} (status: {target.get('status')}, "
+        f"feature families: {counts.get('feature_families_scanned')}, "
+        "ready families: "
+        f"{decision.get('ready_candidate_feature_families')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar(
+    args: argparse.Namespace,
+) -> int:
+    sidecar = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar(
+        source_sidecar_path=Path(args.source_sidecar),
+        retained_oos_feature_target_path=Path(args.retained_oos_feature_target),
+        train_cal_split_manifest_path=Path(args.train_cal_split_manifest),
+        feature_contract_path=Path(args.feature_contract),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = sidecar.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented expanded train/cal "
+        f"feature sidecar to {args.out} (status: {sidecar.get('status')}, "
+        f"feature rows: {counts.get('materialized_feature_rows')}, "
+        f"total dimensions: {counts.get('total_feature_dimensions')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_guardrail(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_guardrail_audit(
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        source_sidecar_path=Path(args.source_sidecar),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented expanded train/cal "
+        f"guardrail audit to {args.out} (status: {audit.get('status')}, "
+        f"feature rows: {counts.get('feature_rows')}, "
+        f"critical violations: {counts.get('critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_no_template_rerun(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_no_template_rerun(
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        train_cal_feature_guardrail_path=Path(args.train_cal_feature_guardrail),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    residual = audit.get("residual_variant", {}).get(
+        "calibration_selected_residual_threshold", {}
+    )
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented expanded no-template "
+        f"rerun to {args.out} (status: {audit.get('status')}, "
+        f"feature dimensions: {counts.get('feature_dimensions')}, "
+        f"OOS abstain recall: {residual.get('oos_abstain_recall')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison(
+    args: argparse.Namespace,
+) -> int:
+    comparison = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison(
+        coarse_no_template_rerun_path=Path(args.coarse_no_template_rerun),
+        expanded_no_template_rerun_path=Path(args.expanded_no_template_rerun),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    decision = comparison.get("decision", {})
+    deltas = comparison.get("deltas_expanded_minus_coarse", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented expanded calibration "
+        f"comparison to {args.out} (status: {comparison.get('status')}, "
+        "recommended surface: "
+        f"{decision.get('recommended_operating_point_surface')}, "
+        "residual OOS recall delta: "
+        f"{deltas.get('residual_oos_abstain_recall')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_family_ablation(
+    args: argparse.Namespace,
+) -> int:
+    ablation = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_family_ablation(
+        source_sidecar_path=Path(args.source_sidecar),
+        retained_oos_feature_target_path=Path(args.retained_oos_feature_target),
+        train_cal_split_manifest_path=Path(args.train_cal_split_manifest),
+        feature_contract_path=Path(args.feature_contract),
+        label_manifest_path=Path(args.label_manifest),
+        coarse_no_template_rerun_path=Path(args.coarse_no_template_rerun),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = ablation.get("counts", {})
+    decision = ablation.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented expanded family "
+        f"ablation to {args.out} (status: {ablation.get('status')}, "
+        "families beating coarse: "
+        f"{counts.get('families_beating_coarse_residual_contract')}, "
+        "best family: "
+        f"{decision.get('best_family_by_residual_oos_abstain_recall')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_token_ablation(
+    args: argparse.Namespace,
+) -> int:
+    ablation = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_token_ablation(
+        source_sidecar_path=Path(args.source_sidecar),
+        retained_oos_feature_target_path=Path(args.retained_oos_feature_target),
+        base_train_cal_feature_sidecar_path=Path(args.base_train_cal_feature_sidecar),
+        label_manifest_path=Path(args.label_manifest),
+        coarse_no_template_rerun_path=Path(args.coarse_no_template_rerun),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+        max_candidate_tokens=args.max_candidate_tokens,
+    )
+    counts = ablation.get("counts", {})
+    decision = ablation.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented expanded token "
+        f"ablation to {args.out} (status: {ablation.get('status')}, "
+        "tokens beating coarse: "
+        f"{counts.get('tokens_beating_coarse_residual_contract')}, "
+        f"best token: {decision.get('best_token')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_sidecar(
+    args: argparse.Namespace,
+) -> int:
+    sidecar = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_sidecar(
+        source_sidecar_path=Path(args.source_sidecar),
+        token_ablation_path=Path(args.token_ablation),
+        base_train_cal_feature_sidecar_path=Path(args.base_train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = sidecar.get("counts", {})
+    decision = sidecar.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token train/cal "
+        f"feature sidecar to {args.out} (status: {sidecar.get('status')}, "
+        f"total dimensions: {counts.get('total_feature_dimensions')}, "
+        f"token: {decision.get('selected_feature_token')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_guardrail(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_guardrail_audit(
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        source_sidecar_path=Path(args.source_sidecar),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token train/cal "
+        f"guardrail audit to {args.out} (status: {audit.get('status')}, "
+        f"critical violations: {counts.get('critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_no_template_rerun(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_no_template_rerun(
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        train_cal_feature_guardrail_path=Path(args.train_cal_feature_guardrail),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    residual = audit.get("residual_variant", {}).get(
+        "calibration_selected_residual_threshold", {}
+    )
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token no-template "
+        f"rerun to {args.out} (status: {audit.get('status')}, "
+        f"feature dimensions: {counts.get('feature_dimensions')}, "
+        f"OOS abstain recall: {residual.get('oos_abstain_recall')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_operating_point_contract(
+    args: argparse.Namespace,
+) -> int:
+    contract = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_operating_point_contract(
+        no_template_rerun_path=Path(args.no_template_rerun),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    residual = contract.get("calibration_contract", {}).get("residual_distance", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"operating-point contract to {args.out} (status: {contract.get('status')}, "
+        f"residual threshold: {residual.get('threshold')}, "
+        f"OOS abstain recall: {residual.get('oos_abstain_recall')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_calibration_error_analysis(
+    args: argparse.Namespace,
+) -> int:
+    analysis = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_calibration_error_analysis(
+        no_template_rerun_path=Path(args.no_template_rerun),
+        operating_point_contract_path=Path(args.operating_point_contract),
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    outcomes = analysis.get("counts", {}).get("outcome_counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"calibration error analysis to {args.out} (status: {analysis.get('status')}, "
         f"OOS retained: {outcomes.get('oos_non_abstained')}, "
         f"OOS abstained: {outcomes.get('oos_abstained')})"
     )
@@ -26957,6 +27230,668 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_oos_augmented_error.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_feature_target = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-retained-oos-feature-target"
+        ),
+        help=(
+            "target richer label-stripped row-specific feature families for "
+            "retained calibration OOS misses under the frozen residual contract"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_feature_target.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_source_evidence_sidecar_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_feature_target.add_argument(
+        "--calibration-error-analysis",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_calibration_error_analysis_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_feature_target.add_argument(
+        "--no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_no_template_rerun_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_feature_target.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_retained_oos_feature_target_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_feature_target.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_retained_oos_feature_target_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_feature_target.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_expanded_sidecar = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-expanded-train-cal-feature-sidecar"
+        ),
+        help=(
+            "materialize the retained-OOS target feature families as an "
+            "expanded train/cal-only row-specific feature sidecar"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_sidecar.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_source_evidence_sidecar_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_sidecar.add_argument(
+        "--retained-oos-feature-target",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_retained_oos_feature_target_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_sidecar.add_argument(
+        "--train-cal-split-manifest",
+        default=(
+            "artifacts/"
+            "v3_mechanism_feature_embedding_train_cal_split_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_sidecar.add_argument(
+        "--feature-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_sidecar.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_train_cal_feature_sidecar_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_sidecar.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_expanded_guardrail = subparsers.add_parser(
+        (
+            "audit-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-expanded-train-cal-feature-guardrail"
+        ),
+        help=(
+            "audit leakage and split safety for the expanded OOS-augmented "
+            "train/cal row-specific feature sidecar"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_guardrail.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_guardrail.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_source_evidence_sidecar_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_guardrail.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_guardrail.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_guardrail.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_guardrail.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_guardrail
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_expanded_no_template = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-expanded-no-template-rerun"
+        ),
+        help=(
+            "run train/cal-only no-template centroid and residual diagnostics "
+            "on the expanded OOS-augmented P0 feature surface"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_no_template.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_no_template.add_argument(
+        "--train-cal-feature-guardrail",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_train_cal_feature_guardrail_audit_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_no_template.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_no_template.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_no_template_rerun_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_no_template.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_no_template_rerun_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_no_template.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_no_template_rerun
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_expanded_comparison = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-expanded-calibration-comparison"
+        ),
+        help=(
+            "compare coarse versus expanded OOS-augmented train/cal residual "
+            "operating points without changing thresholds or reading heldout"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_comparison.add_argument(
+        "--coarse-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_no_template_rerun_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_comparison.add_argument(
+        "--expanded-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_no_template_rerun_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_comparison.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_calibration_comparison_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_comparison.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_calibration_comparison_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_comparison.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_expanded_family_ablation = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-expanded-family-ablation"
+        ),
+        help=(
+            "run calibration-only single-family ablations for retained-OOS "
+            "expanded feature families"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_family_ablation.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_source_evidence_sidecar_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_family_ablation.add_argument(
+        "--retained-oos-feature-target",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_retained_oos_feature_target_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_family_ablation.add_argument(
+        "--train-cal-split-manifest",
+        default=(
+            "artifacts/"
+            "v3_mechanism_feature_embedding_train_cal_split_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_family_ablation.add_argument(
+        "--feature-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_family_ablation.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_family_ablation.add_argument(
+        "--coarse-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_no_template_rerun_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_family_ablation.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_family_ablation_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_family_ablation.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_family_ablation_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_family_ablation.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_family_ablation
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_expanded_token_ablation = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-expanded-token-ablation"
+        ),
+        help=(
+            "run calibration-only single-token ablations for retained-OOS "
+            "expanded feature tokens"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_token_ablation.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_source_evidence_sidecar_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_token_ablation.add_argument(
+        "--retained-oos-feature-target",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_retained_oos_feature_target_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_token_ablation.add_argument(
+        "--base-train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_train_cal_feature_sidecar_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_token_ablation.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_token_ablation.add_argument(
+        "--coarse-no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_no_template_rerun_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_token_ablation.add_argument(
+        "--max-candidate-tokens",
+        type=int,
+        default=80,
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_token_ablation.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_token_ablation_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_token_ablation.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_token_ablation_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_expanded_token_ablation.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_token_ablation
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_sidecar = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-train-cal-feature-sidecar"
+        ),
+        help=(
+            "materialize the best retained-OOS token as a train/cal-only "
+            "row-specific feature sidecar"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_sidecar.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_source_evidence_sidecar_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_sidecar.add_argument(
+        "--token-ablation",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_token_ablation_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_sidecar.add_argument(
+        "--base-train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_train_cal_feature_sidecar_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_sidecar.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_sidecar.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_train_cal_feature_sidecar_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_sidecar.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_sidecar
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_guardrail = subparsers.add_parser(
+        (
+            "audit-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-train-cal-feature-guardrail"
+        ),
+        help=(
+            "audit leakage and split safety for the best-token train/cal "
+            "row-specific feature sidecar"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_guardrail.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_guardrail.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_source_evidence_sidecar_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_guardrail.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_guardrail.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_train_cal_feature_guardrail_audit_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_guardrail.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_train_cal_feature_guardrail_audit_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_guardrail.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_train_cal_feature_guardrail
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_no_template = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-no-template-rerun"
+        ),
+        help=(
+            "run train/cal-only no-template diagnostics on the best-token "
+            "OOS-augmented P0 feature surface"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_no_template.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_no_template.add_argument(
+        "--train-cal-feature-guardrail",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_train_cal_feature_guardrail_audit_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_no_template.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_no_template.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_no_template.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_no_template_rerun_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_no_template.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_no_template_rerun
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_contract = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-operating-point-contract"
+        ),
+        help=(
+            "freeze calibration-only centroid and residual thresholds for the "
+            "best-token OOS-augmented P0 row-specific feature surface"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_contract.add_argument(
+        "--no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_contract.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_operating_point_contract_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_contract.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_operating_point_contract
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_error = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-calibration-error-analysis"
+        ),
+        help=(
+            "analyze retained versus abstained calibration OOS rows under the "
+            "best-token residual contract"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_error.add_argument(
+        "--no-template-rerun",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_no_template_rerun_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_error.add_argument(
+        "--operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_error.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_error.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_calibration_error_analysis_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_error.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_calibration_error_analysis_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_error.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_calibration_error_analysis
         )
     )
 
