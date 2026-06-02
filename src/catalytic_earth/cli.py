@@ -98,6 +98,7 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue,
@@ -157,6 +158,7 @@ from .northstar_next_levers import (
     write_predicted_structure_fold_channel,
     write_predicted_structure_fold_channel_carryover_resolution,
     write_predicted_structure_fold_channel_contract_audit,
+    write_predicted_structure_fold_channel_deployment_input_audit,
     write_predicted_structure_fold_channel_coordinate_provenance_audit,
     write_predicted_structure_fold_channel_reproduction_manifest,
     write_selected_organic_cofactor_sidecar_schema_audit,
@@ -11018,6 +11020,23 @@ def cmd_audit_predicted_structure_fold_channel_contract(args: argparse.Namespace
     return 0
 
 
+def cmd_audit_predicted_structure_fold_channel_deployment_input(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_predicted_structure_fold_channel_deployment_input_audit(
+        predicted_structure_fold_channel_path=Path(args.predicted_structure_fold_channel),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote predicted-structure fold channel deployment input audit to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"critical violations: {counts.get('critical_violation_total')})"
+    )
+    return 0
+
+
 def cmd_audit_predicted_structure_fold_channel_coordinate_provenance(
     args: argparse.Namespace,
 ) -> int:
@@ -11706,6 +11725,9 @@ def cmd_audit_predicted_structure_fold_confounded_operating_point_readiness(
             args.oos_calibrated_threshold_contract
         ),
         coordinate_provenance_audit_path=Path(args.coordinate_provenance_audit),
+        deployment_input_audit_path=Path(args.deployment_input_audit)
+        if args.deployment_input_audit
+        else None,
         remaining_blocker_coordinate_reprobe_path=Path(
             args.remaining_blocker_coordinate_reprobe
         )
@@ -13211,6 +13233,31 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
     return 0
 
 
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight(
+    args: argparse.Namespace,
+) -> int:
+    preflight = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight(
+        coordinate_anchor_priority1_review_worksheet_path=Path(
+            args.coordinate_anchor_priority1_review_worksheet
+        ),
+        source_free_locator_schema_path=Path(args.source_free_locator_schema),
+        audited_locator_dir=Path(args.audited_locator_dir),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = preflight.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        "follow-up pair source-free coordinate anchor priority-1 rewrite "
+        f"preflight to {args.out} (status: {preflight.get('status')}, "
+        "preflight-passed pending explicit approval: "
+        f"{counts.get('preflight_passed_pending_explicit_approval')}, "
+        f"clean queue: {counts.get('explicit_approval_queue_clean_rows')}, "
+        f"warning queue: {counts.get('explicit_approval_queue_warning_rows')})"
+    )
+    return 0
+
+
 def cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input(
     args: argparse.Namespace,
 ) -> int:
@@ -13222,6 +13269,11 @@ def cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         else None,
         coordinate_anchor_candidate_audit_path=Path(args.coordinate_anchor_candidate_audit)
         if args.coordinate_anchor_candidate_audit
+        else None,
+        coordinate_anchor_priority1_rewrite_preflight_path=Path(
+            args.coordinate_anchor_priority1_rewrite_preflight
+        )
+        if args.coordinate_anchor_priority1_rewrite_preflight
         else None,
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
@@ -24234,6 +24286,35 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_predicted_structure_fold_channel_contract
     )
 
+    predicted_structure_fold_deployment_input = subparsers.add_parser(
+        "audit-predicted-structure-fold-channel-deployment-input",
+        help=(
+            "validate that the scored fold channel uses predicted-structure "
+            "AFDB-vs-atlas inputs rather than selected experimental-PDB metadata"
+        ),
+    )
+    predicted_structure_fold_deployment_input.add_argument(
+        "--predicted-structure-fold-channel",
+        default="artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+    )
+    predicted_structure_fold_deployment_input.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_deployment_input_audit_"
+            "current702_20260602.json"
+        ),
+    )
+    predicted_structure_fold_deployment_input.add_argument(
+        "--report",
+        default=(
+            "work/predicted_structure_fold_channel_deployment_input_audit_"
+            "current702_20260602.md"
+        ),
+    )
+    predicted_structure_fold_deployment_input.set_defaults(
+        func=cmd_audit_predicted_structure_fold_channel_deployment_input
+    )
+
     predicted_structure_fold_coordinate_provenance = subparsers.add_parser(
         "audit-predicted-structure-fold-channel-coordinate-provenance",
         help=(
@@ -25799,6 +25880,13 @@ def build_parser() -> argparse.ArgumentParser:
         default=(
             "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_"
             "current702_20260601.json"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--deployment-input-audit",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_deployment_input_audit_"
+            "current702_20260602.json"
         ),
     )
     fold_confounded_readiness.add_argument(
@@ -29282,6 +29370,58 @@ def build_parser() -> argparse.ArgumentParser:
         )
     )
 
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_preflight = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "coordinate-anchor-priority1-rewrite-preflight"
+        ),
+        help=(
+            "dry-run priority-1 coordinate-anchor locator rewrites without "
+            "approving, copying, scoring, or evaluating heldout rows"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_preflight.add_argument(
+        "--coordinate-anchor-priority1-review-worksheet",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_priority1_review_worksheet_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_preflight.add_argument(
+        "--source-free-locator-schema",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_preflight.add_argument(
+        "--audited-locator-dir",
+        default="artifacts/family_panel_source_free_active_site_locators_current702_20260601",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_priority1_rewrite_preflight_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_preflight.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_priority1_rewrite_preflight_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_coordinate_anchor_priority1_preflight.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight
+        )
+    )
+
     row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input = subparsers.add_parser(
         (
             "audit-mechanism-feature-row-specific-bond-change-"
@@ -29321,6 +29461,14 @@ def build_parser() -> argparse.ArgumentParser:
             "artifacts/v3_mechanism_feature_row_specific_bond_change_"
             "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
             "anchor_candidate_audit_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input.add_argument(
+        "--coordinate-anchor-priority1-rewrite-preflight",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+            "anchor_priority1_rewrite_preflight_current702_20260602.json"
         ),
     )
     row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input.add_argument(

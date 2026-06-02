@@ -1,20 +1,34 @@
 # Predicted-Structure Fold Confounded Operating-Point Readiness - current702
 
-Run: 2026-06-02T13:41:35Z
+Run: 2026-06-02T15:35:45Z
 
-Read-only readiness audit for the Lever 3 predicted-structure-vs-atlas fold channel at the existing operating point. It composes the contract audit, confounded closure, fold-only no-go decision, OOS-calibrated threshold contract, and coordinate provenance audit without selecting thresholds or rerunning Foldseek/TM.
+Read-only readiness audit for the Lever 3 predicted-structure-vs-atlas fold channel at the existing operating point. It composes the contract audit, confounded closure, fold-only no-go decision, OOS-calibrated threshold contract, deployment-input contract, and coordinate provenance audit without selecting thresholds or rerunning Foldseek/TM.
 
 ## Status
 
 - predicted_structure_fold_confounded_operating_point_research_ready_deployment_blocked
 - Research confounded operating point ready: True
 - Deployment closed: False
+- Deployment input contract passed: True
+- Deployment input critical violations: 0
 - Confounded OOS abstained: 5/6
 - Remaining production blocker rows: 5
 - Fold-only rows abstained at 90% threshold: 0/4
 - Unique coordinate files missing: 299
 - Remaining-blocker coordinate reprobe rows cleared: 0
 - Critical violations: 7
+
+## Deployment Closure Gate
+
+| gate | status | key value |
+| --- | --- | --- |
+| predicted_structure_vs_atlas_input_contract | passed | 0 |
+| fixed_oos_calibrated_operating_threshold | fixed_no_change | 0.44155 |
+| confounded_oos_operating_point | passed | None |
+| in_scope_retention_at_operating_point | passed | None |
+| production_blocker_rows | blocked | 5 |
+| persistent_afdb_coordinate_bundle | blocked | 299 |
+| fold_only_escape_hatch | rejected | None |
 
 ## Remaining Blocker Rows
 
@@ -32,5 +46,5 @@ Read-only readiness audit for the Lever 3 predicted-structure-vs-atlas fold chan
 
 ## Interpretation
 
-- The predicted-structure-vs-atlas fold channel is research-ready for the confounded subset at the existing operating point, but deployment closure remains blocked by production blocker rows, a rejected fold-only escape hatch, and the missing persistent AFDB coordinate bundle.
+- The predicted-structure-vs-atlas fold channel is research-ready for the confounded subset at the existing operating point with a predicted-only deployment input contract, but deployment closure remains blocked by production blocker rows, a rejected fold-only escape hatch, and the missing persistent AFDB coordinate bundle.
 - Use this audit as the Lever 3 gate: clear source-backed active-site sidecars for coordinate-available blocker rows, resolve or exclude the coordinate-unavailable P23007 row by policy, and persist coordinate provenance before any deployment-valid claim.

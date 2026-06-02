@@ -4,12 +4,17 @@
     "critical_counts": {
       "confounded_research_target_not_met": 0,
       "coordinate_bundle_not_persisted": 1,
+      "deployment_input_contract_not_passing": 0,
       "fold_contract_not_passing": 0,
       "fold_only_escape_hatch_not_authorized": 1,
       "in_scope_retention_not_ok": 0,
       "production_blocker_rows_remaining": 5
     },
     "critical_violation_total": 7,
+    "deployment_input_contract_passed": true,
+    "deployment_input_coordinate_request_rows": 299,
+    "deployment_input_critical_violation_total": 0,
+    "deployment_input_row_score_rows": 126,
     "fold_only_blocker_rows": 4,
     "fold_only_rows_abstained_at_90pct_threshold": 0,
     "heldout_confounded_oos_abstained": 5,
@@ -23,7 +28,7 @@
     "unique_accessions_without_any_local_file": 293,
     "unique_coordinate_files_missing": 299
   },
-  "created_utc": "2026-06-02T13:41:35Z",
+  "created_utc": "2026-06-02T15:35:45Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "deployment_closed": false,
@@ -31,6 +36,51 @@
     "next_gate": "Keep the fixed operating point unchanged. Clear the remaining production blocker rows and persistent AFDB coordinate bundle before claiming deployment closure; do not use the fold-only escape hatch.",
     "research_confounded_operating_point_ready": true
   },
+  "deployment_closure_gate": [
+    {
+      "critical_violation_total": 0,
+      "gate": "predicted_structure_vs_atlas_input_contract",
+      "status": "passed"
+    },
+    {
+      "apply_or_change_threshold_now": false,
+      "calibration_in_scope_retain_recall": 0.9118,
+      "calibration_oos_abstain_recall": 0.3944,
+      "gate": "fixed_oos_calibrated_operating_threshold",
+      "status": "fixed_no_change",
+      "threshold": 0.44155
+    },
+    {
+      "gate": "confounded_oos_operating_point",
+      "heldout_confounded_oos_abstain_recall": 0.8333,
+      "heldout_confounded_oos_abstained": 5,
+      "heldout_confounded_oos_total": 6,
+      "status": "passed"
+    },
+    {
+      "gate": "in_scope_retention_at_operating_point",
+      "heldout_in_scope_retain_recall": 0.9574,
+      "heldout_in_scope_retained": 45,
+      "heldout_in_scope_total": 47,
+      "status": "passed"
+    },
+    {
+      "gate": "production_blocker_rows",
+      "remaining_production_blocker_rows": 5,
+      "status": "blocked"
+    },
+    {
+      "gate": "persistent_afdb_coordinate_bundle",
+      "status": "blocked",
+      "unique_coordinate_files_missing": 299
+    },
+    {
+      "fold_only_blocker_rows": 4,
+      "fold_only_rows_abstained_at_90pct_threshold": 0,
+      "gate": "fold_only_escape_hatch",
+      "status": "rejected"
+    }
+  ],
   "guardrails": {
     "experimental_pdb_metadata_used_as_channel_input": false,
     "foldseek_or_tm_rerun_performed": false,
@@ -46,18 +96,26 @@
   },
   "interpretation": {
     "next_action": "Use this audit as the Lever 3 gate: clear source-backed active-site sidecars for coordinate-available blocker rows, resolve or exclude the coordinate-unavailable P23007 row by policy, and persist coordinate provenance before any deployment-valid claim.",
-    "result": "The predicted-structure-vs-atlas fold channel is research-ready for the confounded subset at the existing operating point, but deployment closure remains blocked by production blocker rows, a rejected fold-only escape hatch, and the missing persistent AFDB coordinate bundle."
+    "result": "The predicted-structure-vs-atlas fold channel is research-ready for the confounded subset at the existing operating point with a predicted-only deployment input contract, but deployment closure remains blocked by production blocker rows, a rejected fold-only escape hatch, and the missing persistent AFDB coordinate bundle."
   },
   "operating_point_summary": {
+    "calibration_in_scope_retain_recall": 0.9118,
+    "calibration_oos_abstain_recall": 0.3944,
     "confounded_subset_target_met_for_research": true,
     "coordinate_bundle_complete": false,
     "coordinate_result_files_parseable": true,
+    "deployment_input_contract_passed": true,
+    "deployment_input_critical_violation_total": 0,
+    "deployment_input_predicted_structure_vs_atlas_only": true,
+    "fixed_operating_threshold": 0.44155,
     "fold_contract_passed": true,
     "fold_only_blocker_rows": 4,
     "fold_only_deployment_contract_authorized": false,
     "fold_only_rows_abstained_at_90pct_threshold": 0,
+    "heldout_confounded_oos_abstain_recall": 0.8333,
     "heldout_confounded_oos_abstained": 5,
     "heldout_confounded_oos_total": 6,
+    "heldout_in_scope_retain_recall": 0.9574,
     "in_scope_retention_ok_at_operating_point": true,
     "priority_confounded_nearest_hits": 6,
     "priority_confounded_oos_rows": 6,
@@ -130,7 +188,7 @@
     }
   ],
   "schema_version": "northstar_next_levers.v0.predicted_structure_fold_confounded_operating_point_readiness",
-  "scope": "Read-only readiness audit for the Lever 3 predicted-structure-vs-atlas fold channel at the existing operating point. It composes the contract audit, confounded closure, fold-only no-go decision, OOS-calibrated threshold contract, and coordinate provenance audit without selecting thresholds or rerunning Foldseek/TM.",
+  "scope": "Read-only readiness audit for the Lever 3 predicted-structure-vs-atlas fold channel at the existing operating point. It composes the contract audit, confounded closure, fold-only no-go decision, OOS-calibrated threshold contract, deployment-input contract, and coordinate provenance audit without selecting thresholds or rerunning Foldseek/TM.",
   "source_artifacts": {
     "confounded_deployment_closure": {
       "exists": true,
@@ -146,6 +204,11 @@
       "exists": true,
       "path": "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json",
       "sha256": "d1308a0eef73866a233dd4399e2cee6870b0c0f4626e97da3395bc66fb3e84df"
+    },
+    "deployment_input_audit": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_deployment_input_audit_current702_20260602.json",
+      "sha256": "19abe914ce1891571b742d90e00e6d3e32369e0ca11fc58a7615cc37e4f8945d"
     },
     "fold_only_deployment_decision": {
       "exists": true,

@@ -2761,6 +2761,39 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertFalse(audit["decision"]["deployment_closed"])
         self.assertEqual(audit["counts"]["priority_confounded_oos_rows"], 6)
         self.assertEqual(audit["counts"]["priority_confounded_nearest_hits"], 6)
+        self.assertTrue(audit["counts"]["deployment_input_contract_passed"])
+        self.assertEqual(
+            audit["counts"]["deployment_input_coordinate_request_rows"], 299
+        )
+        self.assertEqual(audit["counts"]["deployment_input_row_score_rows"], 126)
+        self.assertEqual(
+            audit["counts"]["deployment_input_critical_violation_total"], 0
+        )
+        self.assertEqual(
+            audit["operating_point_summary"]["fixed_operating_threshold"], 0.44155
+        )
+        self.assertEqual(
+            audit["operating_point_summary"][
+                "heldout_confounded_oos_abstain_recall"
+            ],
+            0.8333,
+        )
+        gate_statuses = {
+            row["gate"]: row["status"] for row in audit["deployment_closure_gate"]
+        }
+        self.assertEqual(
+            gate_statuses["predicted_structure_vs_atlas_input_contract"],
+            "passed",
+        )
+        self.assertEqual(
+            gate_statuses["fixed_oos_calibrated_operating_threshold"],
+            "fixed_no_change",
+        )
+        self.assertEqual(gate_statuses["production_blocker_rows"], "blocked")
+        self.assertEqual(
+            gate_statuses["persistent_afdb_coordinate_bundle"], "blocked"
+        )
+        self.assertEqual(gate_statuses["fold_only_escape_hatch"], "rejected")
         self.assertEqual(audit["counts"]["heldout_confounded_oos_abstained"], 5)
         self.assertEqual(audit["counts"]["heldout_confounded_oos_total"], 6)
         self.assertEqual(audit["counts"]["remaining_production_blocker_rows"], 5)
@@ -2895,6 +2928,46 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "query_entry_count_with_hits"
             ],
             6,
+        )
+
+    def test_predicted_structure_fold_channel_deployment_input_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_predicted_structure_fold_channel_deployment_input_audit_current702_20260602.json"
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "predicted_structure_fold_channel_deployment_inputs_predicted_only",
+        )
+        self.assertTrue(
+            audit["decision"]["deployment_input_contract_passed"]
+        )
+        self.assertTrue(
+            audit["deployment_validity"]["predicted_structure_vs_atlas_only"]
+        )
+        self.assertEqual(audit["counts"]["coordinate_request_rows"], 299)
+        self.assertEqual(audit["counts"]["afdb_url_requests"], 299)
+        self.assertEqual(audit["counts"]["afdb_local_path_requests"], 299)
+        self.assertEqual(audit["counts"]["row_score_rows"], 126)
+        self.assertEqual(
+            audit["counts"]["row_scores_with_nearest_atlas_tm_score"], 126
+        )
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertTrue(
+            all(
+                count == 0
+                for count in audit["counts"]["critical_counts"].values()
+            )
+        )
+        self.assertFalse(
+            audit["guardrails"]["foldseek_or_tm_rerun_performed"]
+        )
+        self.assertFalse(
+            audit["guardrails"]["experimental_pdb_metadata_used_as_channel_input"]
         )
 
     def test_predicted_structure_fold_channel_coordinate_provenance_current_counts(
@@ -4768,6 +4841,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "anchor_priority1_review_worksheet_current702_20260602.json"
             )
         )
+        pair_coordinate_anchor_priority1_rewrite_preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_"
+                "anchor_priority1_rewrite_preflight_current702_20260602.json"
+            )
+        )
 
         self.assertEqual(
             sidecar["status"],
@@ -5068,6 +5150,24 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             pair_surface_plan["counts"][
+                "source_free_locator_input_priority1_preflight_passed_pending_explicit_approval"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_surface_plan["counts"][
+                "source_free_locator_input_priority1_preflight_rows_with_warnings"
+            ],
+            6,
+        )
+        self.assertEqual(
+            pair_surface_plan["counts"][
+                "source_free_locator_input_priority1_preflight_approved_rewrites"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_surface_plan["counts"][
                 "source_free_locator_input_auto_create_allowed_rows"
             ],
             0,
@@ -5090,7 +5190,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 for row in pair_surface_plan["required_extractors"]
                 if row["extractor"] == "source_free_active_site_residue_identity_counter"
             ],
-            ["blocked_source_free_coordinate_anchor_review_pending"],
+            ["blocked_source_free_coordinate_anchor_explicit_approval_pending"],
         )
         self.assertFalse(pair_surface_plan["guardrails"]["heldout_rows_evaluated"])
         self.assertEqual(
@@ -5185,6 +5285,28 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "priority1_rows_without_source_free_anchor"
             ],
             24,
+        )
+        self.assertEqual(
+            pair_locator_input["counts"][
+                "priority1_coordinate_anchor_preflight_passed_pending_explicit_approval"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_locator_input["counts"][
+                "priority1_coordinate_anchor_preflight_rows_with_warnings"
+            ],
+            6,
+        )
+        self.assertEqual(
+            pair_locator_input["counts"][
+                "priority1_coordinate_anchor_preflight_approved_rewrites"
+            ],
+            0,
+        )
+        self.assertIn(
+            "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
+            pair_locator_input["blockers"],
         )
         self.assertEqual(
             pair_locator_input["counts"]["source_free_locator_schema_available"],
@@ -5407,6 +5529,139 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_coordinate_anchor_priority1_review_worksheet["worksheet_rows"][0][
                 "ready_for_predicted_geometry_scoring"
             ]
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_passed_pending_explicit_approval",
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "priority1_review_rows"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "preflight_passed_pending_explicit_approval"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "schema_dry_run_passed_rows"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "guardrail_preflight_passed_rows"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "coordinate_contact_supported_rows"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "rows_with_preflight_warnings"
+            ],
+            6,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "preflight_clean_pending_explicit_approval"
+            ],
+            49,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "preflight_warning_pending_explicit_approval"
+            ],
+            6,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "preflight_blocked_before_approval"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "explicit_approval_queue_rows"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "explicit_approval_queue_clean_rows"
+            ],
+            49,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "explicit_approval_queue_warning_rows"
+            ],
+            6,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight[
+                "explicit_approval_queue"
+            ][0]["approval_review_class"],
+            "candidate_clean_pending_explicit_approval",
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight[
+                "explicit_approval_queue"
+            ][48]["approval_review_class"],
+            "candidate_clean_pending_explicit_approval",
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight[
+                "explicit_approval_queue"
+            ][49]["approval_review_class"],
+            "candidate_minimum_locator_warning_pending_explicit_approval",
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "critical_violation_total"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "copy_to_audited_locator_dir_allowed_now"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["counts"][
+                "explicitly_approved_locator_rewrites"
+            ],
+            0,
+        )
+        self.assertFalse(
+            pair_coordinate_anchor_priority1_rewrite_preflight["decision"][
+                "copy_to_audited_locator_dir_allowed_now"
+            ]
+        )
+        self.assertFalse(
+            pair_coordinate_anchor_priority1_rewrite_preflight["guardrails"][
+                "heldout_rows_evaluated"
+            ]
+        )
+        self.assertFalse(
+            pair_coordinate_anchor_priority1_rewrite_preflight["guardrails"][
+                "locator_sidecars_created_or_copied"
+            ]
+        )
+        self.assertEqual(
+            pair_coordinate_anchor_priority1_rewrite_preflight["preflight_rows"][0][
+                "preflight_status"
+            ],
+            "preflight_passed_pending_explicit_approval",
         )
 
     def test_high_value_glycyl_radical_no_template_guardrail_current_counts(

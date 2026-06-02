@@ -1,0 +1,64 @@
+{
+  "artifact_id": "v3_predicted_structure_fold_channel_deployment_input_audit_current702_20260602",
+  "counts": {
+    "afdb_local_path_requests": 299,
+    "afdb_url_requests": 299,
+    "coordinate_request_groups": 3,
+    "coordinate_request_rows": 299,
+    "critical_counts": {
+      "coordinate_request_local_path_not_afdb_v6_cif": 0,
+      "coordinate_request_url_not_afdb_v6_cif": 0,
+      "coordinate_requests_with_experimental_pdb_metadata_keys": 0,
+      "row_scores_with_experimental_pdb_metadata_keys": 0,
+      "unexpected_fold_signal_keys": 0
+    },
+    "critical_violation_total": 0,
+    "evaluation_label_rows": 126,
+    "row_score_rows": 126,
+    "row_scores_with_nearest_atlas_tm_score": 126
+  },
+  "created_utc": "2026-06-02T15:24:31Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_input_contract_passed": true,
+    "next_gate": "Use this audit with the confounded readiness artifact: the fold channel input surface is predicted-only, while deployment closure still requires the five production blockers and persistent coordinate bundle to be resolved."
+  },
+  "deployment_validity": {
+    "coordinate_source": "AlphaFoldDB v6 CIF requests",
+    "evaluation_label_fields_present_but_not_fold_signals": 126,
+    "fold_signal_fields": [
+      "nearest_atlas_tm_score"
+    ],
+    "predicted_structure_vs_atlas_only": true
+  },
+  "guardrails": {
+    "experimental_pdb_metadata_used_as_channel_input": false,
+    "foldseek_or_tm_rerun_performed": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "threshold_selected_or_tuned": false,
+    "validation_only": true
+  },
+  "interpretation": {
+    "next_action": "Keep using the fixed operating point; clear production blockers and coordinate persistence before deployment-closed claims.",
+    "result": "The current fold channel coordinate requests and scored row signals are predicted-structure-vs-atlas inputs; experimental PDB metadata does not appear in the checked channel fields."
+  },
+  "schema_version": "northstar_next_levers.v0.predicted_structure_fold_channel_deployment_input_audit",
+  "scope": "Validation-only audit that the current fold channel is a predicted-structure-vs-atlas signal. It checks coordinate request provenance and scored row payload fields without rerunning Foldseek/TM, changing thresholds, or editing labels.",
+  "source_artifacts": {
+    "predicted_structure_fold_channel": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
+      "sha256": "565266bfd8379c75104e1d7a74457ef40846563ea71988c4946d16c92f733582"
+    }
+  },
+  "status": "predicted_structure_fold_channel_deployment_inputs_predicted_only",
+  "violations": {
+    "coordinate_forbidden_metadata_key_paths": [],
+    "coordinate_violations": [],
+    "row_score_forbidden_metadata_key_paths": [],
+    "unexpected_fold_signal_keys": []
+  }
+}

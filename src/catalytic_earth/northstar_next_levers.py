@@ -56,6 +56,9 @@ PREDICTED_STRUCTURE_FOLD_CHANNEL_ID = (
 PREDICTED_STRUCTURE_FOLD_CHANNEL_CONTRACT_AUDIT_ID = (
     "v3_predicted_structure_fold_channel_contract_audit_current702_20260601"
 )
+PREDICTED_STRUCTURE_FOLD_CHANNEL_DEPLOYMENT_INPUT_AUDIT_ID = (
+    "v3_predicted_structure_fold_channel_deployment_input_audit_current702_20260602"
+)
 PREDICTED_STRUCTURE_FOLD_CHANNEL_COORDINATE_PROVENANCE_AUDIT_ID = (
     "v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601"
 )
@@ -352,6 +355,9 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_
 )
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_PRIORITY1_REVIEW_WORKSHEET_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_PRIORITY1_REWRITE_PREFLIGHT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_current702_20260602"
 )
 RHEA_REST_URL = "https://www.rhea-db.org/rhea"
 RHEA_QUERY_COLUMNS = "rhea-id,equation,ec,uniprot"
@@ -2029,6 +2035,314 @@ def write_predicted_structure_fold_channel_contract_audit(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_predicted_structure_fold_channel_contract_audit_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _nested_key_paths_with_tokens(
+    value: Any,
+    *,
+    tokens: tuple[str, ...],
+    prefix: str = "",
+) -> list[str]:
+    paths: list[str] = []
+    if isinstance(value, dict):
+        for key, nested in value.items():
+            key_text = str(key)
+            path = f"{prefix}.{key_text}" if prefix else key_text
+            lowered = key_text.lower()
+            if any(token in lowered for token in tokens):
+                paths.append(path)
+            paths.extend(
+                _nested_key_paths_with_tokens(nested, tokens=tokens, prefix=path)
+            )
+    elif isinstance(value, list):
+        for index, nested in enumerate(value):
+            path = f"{prefix}[{index}]" if prefix else f"[{index}]"
+            paths.extend(
+                _nested_key_paths_with_tokens(nested, tokens=tokens, prefix=path)
+            )
+    return paths
+
+
+def build_predicted_structure_fold_channel_deployment_input_audit(
+    *,
+    predicted_structure_fold_channel_path: Path,
+) -> dict[str, Any]:
+    fold_channel = _read_json(predicted_structure_fold_channel_path)
+    coordinate_groups = (
+        (fold_channel.get("foldseek_input_manifest") or {}).get(
+            "coordinate_request_groups"
+        )
+        or {}
+    )
+    coordinate_requests: list[dict[str, Any]] = []
+    for group_name, group_rows in coordinate_groups.items():
+        if not isinstance(group_rows, list):
+            continue
+        for row in group_rows:
+            if not isinstance(row, dict):
+                continue
+            record = dict(row)
+            record["coordinate_group"] = str(group_name)
+            coordinate_requests.append(record)
+
+    coordinate_violations = []
+    afdb_url_requests = 0
+    afdb_local_path_requests = 0
+    forbidden_coordinate_key_paths = []
+    for index, request in enumerate(coordinate_requests):
+        url = str(request.get("url") or "")
+        local_path = str(request.get("expected_local_path") or "")
+        if url.startswith("https://alphafold.ebi.ac.uk/files/AF-") and url.endswith(
+            "-F1-model_v6.cif"
+        ):
+            afdb_url_requests += 1
+        else:
+            coordinate_violations.append(
+                {
+                    "index": index,
+                    "entry_id": request.get("entry_id"),
+                    "violation": "coordinate_request_url_not_afdb_v6_cif",
+                    "url": url,
+                }
+            )
+        if "/afdb_" in local_path and local_path.endswith("_v6.cif"):
+            afdb_local_path_requests += 1
+        else:
+            coordinate_violations.append(
+                {
+                    "index": index,
+                    "entry_id": request.get("entry_id"),
+                    "violation": "coordinate_request_local_path_not_afdb_v6_cif",
+                    "expected_local_path": local_path,
+                }
+            )
+        forbidden_coordinate_key_paths.extend(
+            [
+                f"coordinate_requests[{index}].{path}"
+                for path in _nested_key_paths_with_tokens(
+                    request,
+                    tokens=("selected_pdb", "experimental_pdb"),
+                )
+            ]
+        )
+
+    row_scores = (
+        (
+            (fold_channel.get("fold_channel_signal") or {})
+            .get("nearest_atlas_tm_score")
+            or {}
+        )
+        .get("row_scores")
+        or []
+    )
+    row_score_records = [row for row in row_scores if isinstance(row, dict)]
+    row_score_forbidden_paths = []
+    row_scores_with_fold_signal = 0
+    unexpected_fold_signal_keys = []
+    evaluation_label_rows = 0
+    for index, row in enumerate(row_score_records):
+        row_score_forbidden_paths.extend(
+            [
+                f"row_scores[{index}].{path}"
+                for path in _nested_key_paths_with_tokens(
+                    row,
+                    tokens=("selected_pdb", "experimental_pdb"),
+                )
+            ]
+        )
+        fold_signals = row.get("fold_signals") or {}
+        if fold_signals.get("nearest_atlas_tm_score") is not None:
+            row_scores_with_fold_signal += 1
+        extra_signal_keys = sorted(set(fold_signals) - {"nearest_atlas_tm_score"})
+        for key in extra_signal_keys:
+            unexpected_fold_signal_keys.append(
+                {"entry_id": row.get("entry_id"), "fold_signal_key": key}
+            )
+        if (
+            row.get("true_fingerprint_id") is not None
+            or row.get("nearest_atlas_true_fingerprint_id") is not None
+        ):
+            evaluation_label_rows += 1
+
+    critical_counts = {
+        "coordinate_request_url_not_afdb_v6_cif": len(
+            [
+                row
+                for row in coordinate_violations
+                if row["violation"] == "coordinate_request_url_not_afdb_v6_cif"
+            ]
+        ),
+        "coordinate_request_local_path_not_afdb_v6_cif": len(
+            [
+                row
+                for row in coordinate_violations
+                if row["violation"]
+                == "coordinate_request_local_path_not_afdb_v6_cif"
+            ]
+        ),
+        "coordinate_requests_with_experimental_pdb_metadata_keys": len(
+            forbidden_coordinate_key_paths
+        ),
+        "row_scores_with_experimental_pdb_metadata_keys": len(
+            row_score_forbidden_paths
+        ),
+        "unexpected_fold_signal_keys": len(unexpected_fold_signal_keys),
+    }
+    critical_violation_total = sum(critical_counts.values())
+    return {
+        "artifact_id": PREDICTED_STRUCTURE_FOLD_CHANNEL_DEPLOYMENT_INPUT_AUDIT_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.predicted_structure_fold_channel_deployment_input_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "predicted_structure_fold_channel_deployment_inputs_predicted_only"
+            if critical_violation_total == 0
+            else "predicted_structure_fold_channel_deployment_inputs_blocked"
+        ),
+        "scope": (
+            "Validation-only audit that the current fold channel is a "
+            "predicted-structure-vs-atlas signal. It checks coordinate request "
+            "provenance and scored row payload fields without rerunning "
+            "Foldseek/TM, changing thresholds, or editing labels."
+        ),
+        "deployment_validity": {
+            "predicted_structure_vs_atlas_only": critical_violation_total == 0,
+            "coordinate_source": "AlphaFoldDB v6 CIF requests",
+            "fold_signal_fields": ["nearest_atlas_tm_score"],
+            "evaluation_label_fields_present_but_not_fold_signals": (
+                evaluation_label_rows
+            ),
+        },
+        "counts": {
+            "coordinate_request_rows": len(coordinate_requests),
+            "coordinate_request_groups": len(coordinate_groups),
+            "afdb_url_requests": afdb_url_requests,
+            "afdb_local_path_requests": afdb_local_path_requests,
+            "row_score_rows": len(row_score_records),
+            "row_scores_with_nearest_atlas_tm_score": row_scores_with_fold_signal,
+            "evaluation_label_rows": evaluation_label_rows,
+            "critical_counts": critical_counts,
+            "critical_violation_total": critical_violation_total,
+        },
+        "violations": {
+            "coordinate_violations": coordinate_violations,
+            "coordinate_forbidden_metadata_key_paths": sorted(
+                forbidden_coordinate_key_paths
+            ),
+            "row_score_forbidden_metadata_key_paths": sorted(
+                row_score_forbidden_paths
+            ),
+            "unexpected_fold_signal_keys": unexpected_fold_signal_keys,
+        },
+        "guardrails": {
+            "validation_only": True,
+            "foldseek_or_tm_rerun_performed": False,
+            "experimental_pdb_metadata_used_as_channel_input": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "threshold_selected_or_tuned": False,
+            "production_thresholds_changed": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+        },
+        "decision": {
+            "deployment_input_contract_passed": critical_violation_total == 0,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Use this audit with the confounded readiness artifact: the "
+                "fold channel input surface is predicted-only, while deployment "
+                "closure still requires the five production blockers and "
+                "persistent coordinate bundle to be resolved."
+            ),
+        },
+        "source_artifacts": {
+            "predicted_structure_fold_channel": _source_path_record(
+                predicted_structure_fold_channel_path
+            )
+        },
+        "interpretation": {
+            "result": (
+                "The current fold channel coordinate requests and scored row "
+                "signals are predicted-structure-vs-atlas inputs; experimental "
+                "PDB metadata does not appear in the checked channel fields."
+                if critical_violation_total == 0
+                else "The current fold channel has deployment-input provenance violations."
+            ),
+            "next_action": (
+                "Keep using the fixed operating point; clear production "
+                "blockers and coordinate persistence before deployment-closed "
+                "claims."
+            ),
+        },
+    }
+
+
+def _render_predicted_structure_fold_channel_deployment_input_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    critical = counts["critical_counts"]
+    lines = [
+        "# Predicted-Structure Fold Channel Deployment Input Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Coordinate request rows: {counts['coordinate_request_rows']}",
+        f"- AFDB URL requests: {counts['afdb_url_requests']}",
+        f"- AFDB local path requests: {counts['afdb_local_path_requests']}",
+        f"- Row-score rows: {counts['row_score_rows']}",
+        "- Row scores with nearest-atlas TM score: "
+        f"{counts['row_scores_with_nearest_atlas_tm_score']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Critical Counts",
+        "",
+    ]
+    for key, value in sorted(critical.items()):
+        lines.append(f"- {key}: {value}")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        "- Deployment input contract passed: "
+        f"{audit['decision']['deployment_input_contract_passed']}",
+        f"- Next gate: {audit['decision']['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_predicted_structure_fold_channel_deployment_input_audit(
+    *,
+    predicted_structure_fold_channel_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_predicted_structure_fold_channel_deployment_input_audit(
+        predicted_structure_fold_channel_path=predicted_structure_fold_channel_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_predicted_structure_fold_channel_deployment_input_audit_report(
+                audit
+            ),
             encoding="utf-8",
         )
     return audit
@@ -13820,6 +14134,7 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
     fold_only_deployment_decision_path: Path,
     oos_calibrated_threshold_contract_path: Path,
     coordinate_provenance_audit_path: Path,
+    deployment_input_audit_path: Path | None = None,
     remaining_blocker_coordinate_reprobe_path: Path | None = None,
 ) -> dict[str, Any]:
     contract_audit = _read_json(contract_audit_path)
@@ -13833,6 +14148,12 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
         and remaining_blocker_coordinate_reprobe_path.exists()
         else None
     )
+    deployment_input_audit = (
+        _read_json(deployment_input_audit_path)
+        if deployment_input_audit_path is not None
+        and deployment_input_audit_path.exists()
+        else None
+    )
 
     contract_counts = contract_audit.get("counts") or {}
     closure_counts = closure.get("counts") or {}
@@ -13840,7 +14161,41 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
     fold_only_counts = fold_only.get("counts") or {}
     fold_only_decision = fold_only.get("decision") or {}
     threshold_counts = threshold.get("counts") or {}
+    threshold_primary = threshold.get("primary_channel_readout") or {}
+    threshold_selected = (
+        threshold_primary.get(
+            "selected_at_90pct_calibration_in_scope_retention_max_oos_abstain"
+        )
+        or {}
+    )
+    threshold_heldout = (
+        threshold_primary.get("heldout_final_eval_at_90pct_oos_calibrated_threshold")
+        or {}
+    )
+    fixed_operating_threshold = threshold_selected.get(
+        "threshold"
+    ) or threshold_heldout.get("threshold")
     coordinate_counts = coordinate_provenance.get("counts") or {}
+    deployment_input_counts = (
+        deployment_input_audit.get("counts")
+        if isinstance(deployment_input_audit, dict)
+        else {}
+    ) or {}
+    deployment_input_decision = (
+        deployment_input_audit.get("decision")
+        if isinstance(deployment_input_audit, dict)
+        else {}
+    ) or {}
+    deployment_input_validity = (
+        deployment_input_audit.get("deployment_validity")
+        if isinstance(deployment_input_audit, dict)
+        else {}
+    ) or {}
+    deployment_input_guardrails = (
+        deployment_input_audit.get("guardrails")
+        if isinstance(deployment_input_audit, dict)
+        else {}
+    ) or {}
     coordinate_reprobe_counts = (
         coordinate_reprobe.get("counts") if isinstance(coordinate_reprobe, dict) else {}
     ) or {}
@@ -13876,17 +14231,96 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
     coordinate_bundle_complete = (
         int(coordinate_counts.get("unique_coordinate_files_missing") or 0) == 0
     )
+    deployment_input_critical_total = (
+        int(deployment_input_counts.get("critical_violation_total") or 0)
+        if isinstance(deployment_input_audit, dict)
+        else None
+    )
+    deployment_input_contract_passed = bool(
+        isinstance(deployment_input_audit, dict)
+        and deployment_input_audit.get("status")
+        == "predicted_structure_fold_channel_deployment_inputs_predicted_only"
+        and deployment_input_decision.get("deployment_input_contract_passed")
+        and deployment_input_critical_total == 0
+        and deployment_input_validity.get("predicted_structure_vs_atlas_only")
+    )
     production_blockers = int(
         closure_counts.get("remaining_production_blocker_rows") or 0
     )
     critical_counts = {
         "fold_contract_not_passing": 0 if contract_passed else 1,
+        "deployment_input_contract_not_passing": (
+            0 if deployment_input_contract_passed else 1
+        ),
         "confounded_research_target_not_met": 0 if confounded_target_met else 1,
         "in_scope_retention_not_ok": 0 if in_scope_retention_ok else 1,
         "production_blocker_rows_remaining": production_blockers,
         "fold_only_escape_hatch_not_authorized": 0 if fold_only_authorized else 1,
         "coordinate_bundle_not_persisted": 0 if coordinate_bundle_complete else 1,
     }
+    deployment_closure_gate = [
+        {
+            "gate": "predicted_structure_vs_atlas_input_contract",
+            "status": "passed" if deployment_input_contract_passed else "blocked",
+            "critical_violation_total": deployment_input_critical_total,
+        },
+        {
+            "gate": "fixed_oos_calibrated_operating_threshold",
+            "status": "fixed_no_change",
+            "threshold": fixed_operating_threshold,
+            "calibration_in_scope_retain_recall": threshold_selected.get(
+                "calibration_in_scope_retain_recall"
+            ),
+            "calibration_oos_abstain_recall": threshold_selected.get(
+                "calibration_oos_abstain_recall"
+            ),
+            "apply_or_change_threshold_now": False,
+        },
+        {
+            "gate": "confounded_oos_operating_point",
+            "status": "passed" if confounded_target_met else "blocked",
+            "heldout_confounded_oos_abstained": closure_counts.get(
+                "heldout_confounded_oos_abstained"
+            ),
+            "heldout_confounded_oos_total": closure_counts.get(
+                "heldout_confounded_oos_total"
+            ),
+            "heldout_confounded_oos_abstain_recall": threshold_heldout.get(
+                "heldout_confounded_oos_abstain_recall"
+            ),
+        },
+        {
+            "gate": "in_scope_retention_at_operating_point",
+            "status": "passed" if in_scope_retention_ok else "blocked",
+            "heldout_in_scope_retained": threshold_heldout.get(
+                "heldout_in_scope_retained"
+            ),
+            "heldout_in_scope_total": threshold_heldout.get("heldout_in_scope_total"),
+            "heldout_in_scope_retain_recall": threshold_heldout.get(
+                "heldout_in_scope_retain_recall"
+            ),
+        },
+        {
+            "gate": "production_blocker_rows",
+            "status": "passed" if production_blockers == 0 else "blocked",
+            "remaining_production_blocker_rows": production_blockers,
+        },
+        {
+            "gate": "persistent_afdb_coordinate_bundle",
+            "status": "passed" if coordinate_bundle_complete else "blocked",
+            "unique_coordinate_files_missing": coordinate_counts.get(
+                "unique_coordinate_files_missing"
+            ),
+        },
+        {
+            "gate": "fold_only_escape_hatch",
+            "status": "authorized" if fold_only_authorized else "rejected",
+            "fold_only_rows_abstained_at_90pct_threshold": fold_only_counts.get(
+                "fold_only_rows_abstained_at_90pct_threshold"
+            ),
+            "fold_only_blocker_rows": fold_only_counts.get("fold_only_blocker_rows"),
+        },
+    ]
     return {
         "artifact_id": (
             PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID
@@ -13897,18 +14331,42 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
         "created_utc": _utc_now_iso(),
         "status": (
             "predicted_structure_fold_confounded_operating_point_research_ready_deployment_blocked"
-            if contract_passed and confounded_target_met and in_scope_retention_ok
+            if contract_passed
+            and deployment_input_contract_passed
+            and confounded_target_met
+            and in_scope_retention_ok
             else "predicted_structure_fold_confounded_operating_point_blocked"
         ),
         "scope": (
             "Read-only readiness audit for the Lever 3 predicted-structure-vs-atlas "
             "fold channel at the existing operating point. It composes the "
             "contract audit, confounded closure, fold-only no-go decision, "
-            "OOS-calibrated threshold contract, and coordinate provenance audit "
-            "without selecting thresholds or rerunning Foldseek/TM."
+            "OOS-calibrated threshold contract, deployment-input contract, "
+            "and coordinate provenance audit without selecting thresholds or "
+            "rerunning Foldseek/TM."
         ),
         "operating_point_summary": {
             "fold_contract_passed": contract_passed,
+            "deployment_input_contract_passed": deployment_input_contract_passed,
+            "deployment_input_predicted_structure_vs_atlas_only": (
+                deployment_input_validity.get("predicted_structure_vs_atlas_only")
+            ),
+            "deployment_input_critical_violation_total": (
+                deployment_input_critical_total
+            ),
+            "fixed_operating_threshold": fixed_operating_threshold,
+            "calibration_in_scope_retain_recall": threshold_selected.get(
+                "calibration_in_scope_retain_recall"
+            ),
+            "calibration_oos_abstain_recall": threshold_selected.get(
+                "calibration_oos_abstain_recall"
+            ),
+            "heldout_in_scope_retain_recall": threshold_heldout.get(
+                "heldout_in_scope_retain_recall"
+            ),
+            "heldout_confounded_oos_abstain_recall": threshold_heldout.get(
+                "heldout_confounded_oos_abstain_recall"
+            ),
             "priority_confounded_oos_rows": contract_counts.get(
                 "priority_cofactor_confounded_oos_rows"
             ),
@@ -13976,6 +14434,7 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
             }
             for row in remaining_blocker_rows
         ],
+        "deployment_closure_gate": deployment_closure_gate,
         "guardrails": {
             "labels_registries_ontologies_changed": False,
             "imports_or_promotions_performed": False,
@@ -13985,11 +14444,25 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
             "threshold_values_changed": False,
             "heldout_rows_used_for_training_or_threshold_tuning": False,
             "foldseek_or_tm_rerun_performed": False,
-            "experimental_pdb_metadata_used_as_channel_input": False,
+            "experimental_pdb_metadata_used_as_channel_input": bool(
+                deployment_input_guardrails.get(
+                    "experimental_pdb_metadata_used_as_channel_input"
+                )
+            ),
             "validation_only": True,
             "review_only": True,
         },
         "counts": {
+            "deployment_input_contract_passed": deployment_input_contract_passed,
+            "deployment_input_coordinate_request_rows": deployment_input_counts.get(
+                "coordinate_request_rows"
+            ),
+            "deployment_input_row_score_rows": deployment_input_counts.get(
+                "row_score_rows"
+            ),
+            "deployment_input_critical_violation_total": (
+                deployment_input_critical_total
+            ),
             "priority_confounded_oos_rows": contract_counts.get(
                 "priority_cofactor_confounded_oos_rows"
             ),
@@ -14029,9 +14502,13 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
         },
         "decision": {
             "research_confounded_operating_point_ready": (
-                contract_passed and confounded_target_met and in_scope_retention_ok
+                contract_passed
+                and deployment_input_contract_passed
+                and confounded_target_met
+                and in_scope_retention_ok
             ),
             "deployment_closed": deployable_without_caveat
+            and deployment_input_contract_passed
             and fold_only_authorized
             and coordinate_bundle_complete,
             "fold_only_escape_hatch_authorized": fold_only_authorized,
@@ -14057,6 +14534,11 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
             "coordinate_provenance_audit": _source_path_record(
                 coordinate_provenance_audit_path
             ),
+            "deployment_input_audit": (
+                _source_path_record(deployment_input_audit_path)
+                if deployment_input_audit_path is not None
+                else None
+            ),
             "remaining_blocker_coordinate_reprobe": (
                 _source_path_record(remaining_blocker_coordinate_reprobe_path)
                 if remaining_blocker_coordinate_reprobe_path is not None
@@ -14066,10 +14548,11 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
         "interpretation": {
             "result": (
                 "The predicted-structure-vs-atlas fold channel is research-ready "
-                "for the confounded subset at the existing operating point, but "
-                "deployment closure remains blocked by production blocker rows, "
-                "a rejected fold-only escape hatch, and the missing persistent "
-                "AFDB coordinate bundle."
+                "for the confounded subset at the existing operating point with "
+                "a predicted-only deployment input contract, but deployment "
+                "closure remains blocked by production blocker rows, a rejected "
+                "fold-only escape hatch, and the missing persistent AFDB "
+                "coordinate bundle."
             ),
             "next_action": (
                 "Use this audit as the Lever 3 gate: clear source-backed "
@@ -14100,6 +14583,10 @@ def _render_predicted_structure_fold_confounded_operating_point_readiness_report
         "- Research confounded operating point ready: "
         f"{decision['research_confounded_operating_point_ready']}",
         f"- Deployment closed: {decision['deployment_closed']}",
+        "- Deployment input contract passed: "
+        f"{counts.get('deployment_input_contract_passed')}",
+        "- Deployment input critical violations: "
+        f"{counts.get('deployment_input_critical_violation_total')}",
         "- Confounded OOS abstained: "
         f"{counts['heldout_confounded_oos_abstained']}/"
         f"{counts['heldout_confounded_oos_total']}",
@@ -14113,6 +14600,26 @@ def _render_predicted_structure_fold_confounded_operating_point_readiness_report
         "- Remaining-blocker coordinate reprobe rows cleared: "
         f"{counts.get('remaining_blocker_coordinate_reprobe_rows_cleared')}",
         f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Deployment Closure Gate",
+        "",
+        "| gate | status | key value |",
+        "| --- | --- | --- |",
+    ]
+    for gate in audit.get("deployment_closure_gate", []):
+        key_value = (
+            gate.get("threshold")
+            if gate.get("threshold") is not None
+            else gate.get("remaining_production_blocker_rows")
+            if gate.get("remaining_production_blocker_rows") is not None
+            else gate.get("unique_coordinate_files_missing")
+            if gate.get("unique_coordinate_files_missing") is not None
+            else gate.get("critical_violation_total")
+        )
+        lines.append(
+            f"| {gate.get('gate')} | {gate.get('status')} | {key_value} |"
+        )
+    lines += [
         "",
         "## Remaining Blocker Rows",
         "",
@@ -14149,6 +14656,7 @@ def write_predicted_structure_fold_confounded_operating_point_readiness(
     fold_only_deployment_decision_path: Path,
     oos_calibrated_threshold_contract_path: Path,
     coordinate_provenance_audit_path: Path,
+    deployment_input_audit_path: Path | None = None,
     remaining_blocker_coordinate_reprobe_path: Path | None = None,
     out_path: Path,
     report_path: Path | None = None,
@@ -14159,6 +14667,7 @@ def write_predicted_structure_fold_confounded_operating_point_readiness(
         fold_only_deployment_decision_path=fold_only_deployment_decision_path,
         oos_calibrated_threshold_contract_path=oos_calibrated_threshold_contract_path,
         coordinate_provenance_audit_path=coordinate_provenance_audit_path,
+        deployment_input_audit_path=deployment_input_audit_path,
         remaining_blocker_coordinate_reprobe_path=remaining_blocker_coordinate_reprobe_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -30109,6 +30618,23 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         and int(locator_input_counts.get("auto_create_locator_sidecar_allowed_rows") or 0)
         == 0
     )
+    locator_input_coordinate_anchor_explicit_approval_pending = bool(
+        locator_input_audit
+        and int(
+            locator_input_counts.get(
+                "priority1_coordinate_anchor_preflight_passed_pending_explicit_approval"
+            )
+            or 0
+        )
+        > 0
+        and int(
+            locator_input_counts.get(
+                "priority1_coordinate_anchor_preflight_approved_rewrites"
+            )
+            or 0
+        )
+        == 0
+    )
     previous_token = pair_sidecar.get("decision", {}).get(
         "previous_selected_feature_token"
     )
@@ -30121,6 +30647,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         else {}
     )
     residue_count_extractor_status = (
+        "blocked_source_free_coordinate_anchor_explicit_approval_pending"
+        if locator_input_coordinate_anchor_explicit_approval_pending
+        else
         "blocked_source_free_coordinate_anchor_review_pending"
         if locator_input_coordinate_anchor_review_pending
         else "blocked_source_free_locator_anchor_inputs_missing"
@@ -30256,6 +30785,24 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "source_free_locator_input_auto_create_allowed_rows": (
                 locator_input_counts.get("auto_create_locator_sidecar_allowed_rows")
             ),
+            "source_free_locator_input_priority1_preflight_rows": (
+                locator_input_counts.get("priority1_coordinate_anchor_preflight_rows")
+            ),
+            "source_free_locator_input_priority1_preflight_passed_pending_explicit_approval": (
+                locator_input_counts.get(
+                    "priority1_coordinate_anchor_preflight_passed_pending_explicit_approval"
+                )
+            ),
+            "source_free_locator_input_priority1_preflight_rows_with_warnings": (
+                locator_input_counts.get(
+                    "priority1_coordinate_anchor_preflight_rows_with_warnings"
+                )
+            ),
+            "source_free_locator_input_priority1_preflight_approved_rewrites": (
+                locator_input_counts.get(
+                    "priority1_coordinate_anchor_preflight_approved_rewrites"
+                )
+            ),
             "source_free_locator_schema_required_residue_locator_minimum": (
                 locator_input_counts.get(
                     "source_free_locator_schema_required_residue_locator_minimum"
@@ -30382,6 +30929,12 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         f"{counts.get('source_free_locator_input_priority1_rows_without_anchor')}",
         "- Source-free locator priority-1 rows with coordinate-anchor candidate: "
         f"{counts.get('source_free_locator_input_priority1_rows_with_coordinate_anchor_candidate')}",
+        "- Source-free locator preflight-passed pending explicit approval: "
+        f"{counts.get('source_free_locator_input_priority1_preflight_passed_pending_explicit_approval')}",
+        "- Source-free locator preflight rows with warnings: "
+        f"{counts.get('source_free_locator_input_priority1_preflight_rows_with_warnings')}",
+        "- Source-free locator approved rewrites now: "
+        f"{counts.get('source_free_locator_input_priority1_preflight_approved_rewrites')}",
         "- Source-free locator auto-create allowed rows: "
         f"{counts.get('source_free_locator_input_auto_create_allowed_rows')}",
         "- Required residue locators per approved sidecar: "
@@ -32538,6 +33091,576 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     return worksheet
 
 
+def _coordinate_anchor_priority1_planned_locator_sidecar_payload(
+    *,
+    candidate: dict[str, Any],
+    schema: dict[str, Any],
+    created_utc: str,
+) -> dict[str, Any]:
+    entry_id = str(candidate.get("entry_id") or "")
+    source_accession = str(candidate.get("source_accession") or "")
+    accession_token = str(source_accession).split(":", 1)[-1]
+    artifact_token = _safe_path_token(f"{entry_id}_{accession_token}")
+    forbidden_fields = schema.get("forbidden_predictive_fields", [])
+    return {
+        "artifact_id": (
+            "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_"
+            "best_token_followup_pair_source_free_locator_"
+            f"{artifact_token}_current702_20260602"
+        ),
+        "schema_version": f"{SCHEMA_VERSION}.source_free_active_site_locator",
+        "created_utc": created_utc,
+        "entry_id": entry_id,
+        "source_accession": source_accession,
+        "locator_policy": "structure_local_ligand_geometry_without_source_text",
+        "locator_evidence_class": candidate.get("locator_evidence_class"),
+        "source_free_active_site_locator_status": "ready",
+        "residue_locators": candidate.get("residue_locators", []),
+        "forbidden_feature_audit": {
+            field: False for field in sorted(str(field) for field in forbidden_fields)
+        },
+        "split_protection": {
+            "review_only": True,
+            "allowed_for_training": False,
+            "allowed_for_threshold_selection": False,
+            "ready_for_label_import": False,
+        },
+        "ready_for_predicted_geometry_scoring": False,
+    }
+
+
+def _coordinate_anchor_priority1_guardrail_preflight_violations(
+    *,
+    candidate: dict[str, Any],
+    worksheet_row: dict[str, Any],
+    candidate_sha256: str | None,
+) -> list[str]:
+    violations: list[str] = []
+    if worksheet_row.get("priority") != 1:
+        violations.append("worksheet_row_not_priority1")
+    if worksheet_row.get("candidate_file_exists") is not True:
+        violations.append("worksheet_candidate_file_missing")
+    if worksheet_row.get("candidate_sha256") != candidate_sha256:
+        violations.append("candidate_sha256_mismatch_worksheet")
+    if (
+        candidate.get("status")
+        != "source_free_coordinate_anchor_candidate_staged_review_required"
+    ):
+        violations.append("candidate_status_not_staged_review_required")
+    guardrails = candidate.get("candidate_guardrails") or {}
+    expected_true_guardrails = {
+        "candidate_only",
+        "written_outside_audited_locator_dir",
+    }
+    for key in sorted(expected_true_guardrails):
+        if guardrails.get(key) is not True:
+            violations.append(f"candidate_guardrail_not_true:{key}")
+    expected_false_guardrails = {
+        "copied_to_audited_locator_dir",
+        "heldout_rows_evaluated",
+        "m_csa_heldout_active_site_roles_used_as_locator_source",
+        "predicted_geometry_scored",
+        "source_text_or_label_fields_used_as_predictive_features",
+    }
+    for key in sorted(expected_false_guardrails):
+        if guardrails.get(key) is not False:
+            violations.append(f"candidate_guardrail_not_false:{key}")
+    forbidden_feature_audit = candidate.get("forbidden_feature_audit") or {}
+    for key, value in sorted(forbidden_feature_audit.items()):
+        if value is not False:
+            violations.append(f"forbidden_feature_audit_active:{key}")
+    split_protection = candidate.get("split_protection") or {}
+    if split_protection.get("review_only") is not True:
+        violations.append("split_protection_review_only_not_true")
+    for split_key in (
+        "allowed_for_training",
+        "allowed_for_threshold_selection",
+        "ready_for_label_import",
+    ):
+        if split_protection.get(split_key) is not False:
+            violations.append(f"split_protection_{split_key}_not_false")
+    if candidate.get("ready_for_predicted_geometry_scoring") is not False:
+        violations.append("candidate_ready_for_predicted_geometry_scoring_not_false")
+    blockers = set(candidate.get("candidate_blockers") or [])
+    required_blockers = {
+        "candidate_sidecar_not_approved_for_scoring",
+        "candidate_sidecar_not_in_audited_locator_dir",
+        "manual_review_required_before_copy_to_audited_dir",
+    }
+    missing_blockers = sorted(required_blockers - blockers)
+    for blocker in missing_blockers:
+        violations.append(f"candidate_blocker_missing:{blocker}")
+    allowed_blockers = required_blockers
+    extra_blockers = sorted(blockers - allowed_blockers)
+    for blocker in extra_blockers:
+        violations.append(f"unexpected_priority1_candidate_blocker:{blocker}")
+    summary = candidate.get("coordinate_anchor_summary") or {}
+    if summary.get("has_source_free_coordinate_local_anchor_candidate") is not True:
+        violations.append("coordinate_anchor_summary_not_source_free_anchor_candidate")
+    if summary.get("selected_pdb_coordinate_found") is not True:
+        violations.append("selected_pdb_coordinate_not_found")
+    if not str(candidate.get("candidate_path") or "").startswith(
+        "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_"
+        "best_token_followup_pair_source_free_coordinate_anchor_candidates_"
+    ):
+        violations.append("candidate_path_not_staged_coordinate_anchor_dir")
+    return sorted(set(violations))
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight(
+    *,
+    coordinate_anchor_priority1_review_worksheet_path: Path,
+    source_free_locator_schema_path: Path,
+    audited_locator_dir: Path,
+) -> dict[str, Any]:
+    worksheet = _read_json(coordinate_anchor_priority1_review_worksheet_path)
+    locator_schema = _read_json(source_free_locator_schema_path)
+    created_utc = _utc_now_iso()
+    preflight_rows = []
+    for worksheet_row in worksheet.get("worksheet_rows", []):
+        if not isinstance(worksheet_row, dict):
+            continue
+        candidate_path = Path(str(worksheet_row.get("candidate_path") or ""))
+        candidate = _read_json(candidate_path) if candidate_path.exists() else {}
+        candidate_sha256 = _sha256(candidate_path) if candidate_path.exists() else None
+        planned_payload = _coordinate_anchor_priority1_planned_locator_sidecar_payload(
+            candidate=candidate,
+            schema=locator_schema,
+            created_utc=created_utc,
+        )
+        planned_payload_text = (
+            json.dumps(planned_payload, indent=2, sort_keys=True) + "\n"
+        )
+        schema_violations = _schema_dry_run_violations(
+            sidecar=planned_payload,
+            schema=locator_schema,
+        )
+        guardrail_violations = (
+            _coordinate_anchor_priority1_guardrail_preflight_violations(
+                candidate=candidate,
+                worksheet_row=worksheet_row,
+                candidate_sha256=candidate_sha256,
+            )
+        )
+        coordinate_contact_preflight = _priority1_scientific_preflight(candidate)
+        planned_path = _locator_sidecar_path(
+            str(candidate.get("entry_id") or worksheet_row.get("entry_id") or ""),
+            str(
+                candidate.get("source_accession")
+                or worksheet_row.get("source_accession")
+                or ""
+            ),
+            audited_locator_dir,
+        )
+        blockers_after_preflight = [
+            "explicit_approval_required_before_copy_to_audited_locator_dir",
+            "candidate_sidecar_not_in_audited_locator_dir",
+        ]
+        if schema_violations:
+            blockers_after_preflight.append("schema_dry_run_violations_present")
+        if guardrail_violations:
+            blockers_after_preflight.append("guardrail_preflight_violations_present")
+        if coordinate_contact_preflight.get("violations"):
+            blockers_after_preflight.append(
+                "coordinate_contact_preflight_violations_present"
+            )
+        status = (
+            "preflight_passed_pending_explicit_approval"
+            if not schema_violations
+            and not guardrail_violations
+            and not coordinate_contact_preflight.get("violations")
+            else "preflight_blocked_review_only"
+        )
+        coordinate_contact_warnings = coordinate_contact_preflight.get("warnings", [])
+        approval_review_class = (
+            "candidate_clean_pending_explicit_approval"
+            if status == "preflight_passed_pending_explicit_approval"
+            and not coordinate_contact_warnings
+            else "candidate_minimum_locator_warning_pending_explicit_approval"
+            if status == "preflight_passed_pending_explicit_approval"
+            else "candidate_blocked_before_approval"
+        )
+        preflight_rows.append(
+            {
+                "entry_id": candidate.get("entry_id") or worksheet_row.get("entry_id"),
+                "source_accession": candidate.get("source_accession")
+                or worksheet_row.get("source_accession"),
+                "candidate_path": str(candidate_path),
+                "candidate_sha256": candidate_sha256,
+                "worksheet_candidate_sha256": worksheet_row.get("candidate_sha256"),
+                "selected_structure_id": worksheet_row.get("selected_structure_id"),
+                "selected_ligand_site": worksheet_row.get("selected_ligand_site"),
+                "planned_audited_locator_sidecar_path": str(planned_path),
+                "planned_locator_payload_sha256": hashlib.sha256(
+                    planned_payload_text.encode("utf-8")
+                ).hexdigest(),
+                "preflight_status": status,
+                "approval_review_class": approval_review_class,
+                "schema_dry_run_passed": not schema_violations,
+                "schema_dry_run_violations": schema_violations,
+                "guardrail_preflight_passed": not guardrail_violations,
+                "guardrail_preflight_violations": guardrail_violations,
+                "coordinate_contact_preflight": coordinate_contact_preflight,
+                "planned_locator_payload_preview": {
+                    "locator_policy": planned_payload.get("locator_policy"),
+                    "locator_evidence_class": planned_payload.get(
+                        "locator_evidence_class"
+                    ),
+                    "source_free_active_site_locator_status": planned_payload.get(
+                        "source_free_active_site_locator_status"
+                    ),
+                    "residue_locator_count": len(
+                        planned_payload.get("residue_locators", [])
+                    ),
+                    "residue_locators": [
+                        {
+                            "residue_code": locator.get("residue_code"),
+                            "sequence_position": locator.get("sequence_position"),
+                            "role_hint": locator.get("role_hint"),
+                            "locator_confidence": locator.get("locator_confidence"),
+                            "locator_evidence_class": locator.get(
+                                "locator_evidence_class"
+                            ),
+                        }
+                        for locator in planned_payload.get("residue_locators", [])
+                    ],
+                },
+                "copy_to_audited_locator_dir_allowed_now": False,
+                "ready_for_predicted_geometry_scoring": False,
+                "blockers_after_preflight": blockers_after_preflight,
+            }
+        )
+    preflight_passed = [
+        row
+        for row in preflight_rows
+        if row.get("preflight_status")
+        == "preflight_passed_pending_explicit_approval"
+    ]
+    rows_with_warnings = [
+        row
+        for row in preflight_rows
+        if row.get("coordinate_contact_preflight", {}).get("warnings")
+    ]
+    approval_review_class_counts = Counter(
+        str(row.get("approval_review_class") or "unknown")
+        for row in preflight_rows
+    )
+    critical_violation_total = sum(
+        len(row.get("schema_dry_run_violations", []))
+        + len(row.get("guardrail_preflight_violations", []))
+        + len(row.get("coordinate_contact_preflight", {}).get("violations", []))
+        for row in preflight_rows
+    )
+    approval_class_order = {
+        "candidate_clean_pending_explicit_approval": 0,
+        "candidate_minimum_locator_warning_pending_explicit_approval": 1,
+        "candidate_blocked_before_approval": 2,
+    }
+    explicit_approval_queue = []
+    for review_order, row in enumerate(
+        sorted(
+            preflight_rows,
+            key=lambda item: (
+                approval_class_order.get(
+                    str(item.get("approval_review_class") or ""), 99
+                ),
+                _entry_id_sort_key(str(item.get("entry_id") or "")),
+            ),
+        ),
+        start=1,
+    ):
+        contact = row.get("coordinate_contact_preflight") or {}
+        explicit_approval_queue.append(
+            {
+                "review_order": review_order,
+                "entry_id": row.get("entry_id"),
+                "source_accession": row.get("source_accession"),
+                "candidate_path": row.get("candidate_path"),
+                "candidate_sha256": row.get("candidate_sha256"),
+                "planned_audited_locator_sidecar_path": row.get(
+                    "planned_audited_locator_sidecar_path"
+                ),
+                "planned_locator_payload_sha256": row.get(
+                    "planned_locator_payload_sha256"
+                ),
+                "selected_structure_id": row.get("selected_structure_id"),
+                "selected_ligand_site": row.get("selected_ligand_site"),
+                "approval_review_class": row.get("approval_review_class"),
+                "preflight_status": row.get("preflight_status"),
+                "coordinate_contact_warning_count": len(contact.get("warnings", [])),
+                "coordinate_contact_warnings": contact.get("warnings", []),
+                "candidate_residue_locator_count": contact.get(
+                    "candidate_residue_locator_count"
+                ),
+                "sequence_position_validated_locator_count": contact.get(
+                    "sequence_position_validated_locator_count"
+                ),
+                "required_reviewer_decision": (
+                    "explicit_approve_locator_rewrite_or_reject"
+                ),
+                "copy_to_audited_locator_dir_allowed_now": False,
+                "ready_for_predicted_geometry_scoring": False,
+            }
+        )
+    status = (
+        "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_passed_pending_explicit_approval"
+        if preflight_rows and len(preflight_passed) == len(preflight_rows)
+        else "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_blocked_review_only"
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_COORDINATE_ANCHOR_PRIORITY1_REWRITE_PREFLIGHT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight"
+        ),
+        "created_utc": created_utc,
+        "status": status,
+        "scope": (
+            "Review-only rewrite preflight for priority-1 current702 heldout "
+            "coordinate-anchor candidates. It dry-runs source-free locator "
+            "schema compatibility, guardrails, and coordinate-contact support "
+            "without approving, copying, scoring, evaluating heldout rows, or "
+            "tuning thresholds."
+        ),
+        "preflight_rows": sorted(
+            preflight_rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "explicit_approval_queue": explicit_approval_queue,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "locator_sidecars_created_or_copied": False,
+            "copy_to_audited_locator_dir_allowed_now": False,
+            "ready_for_predicted_geometry_scoring": False,
+            "explicit_approval_required_before_copy": True,
+            "review_only": True,
+        },
+        "counts": {
+            "priority1_review_rows": len(preflight_rows),
+            "preflight_passed_pending_explicit_approval": len(preflight_passed),
+            "schema_dry_run_passed_rows": sum(
+                1 for row in preflight_rows if row.get("schema_dry_run_passed")
+            ),
+            "guardrail_preflight_passed_rows": sum(
+                1 for row in preflight_rows if row.get("guardrail_preflight_passed")
+            ),
+            "coordinate_contact_supported_rows": sum(
+                1
+                for row in preflight_rows
+                if row.get("coordinate_contact_preflight", {}).get("status")
+                == "supported_by_coordinate_contact_preflight"
+            ),
+            "rows_with_preflight_warnings": len(rows_with_warnings),
+            "preflight_clean_pending_explicit_approval": (
+                approval_review_class_counts.get(
+                    "candidate_clean_pending_explicit_approval", 0
+                )
+            ),
+            "preflight_warning_pending_explicit_approval": (
+                approval_review_class_counts.get(
+                    "candidate_minimum_locator_warning_pending_explicit_approval", 0
+                )
+            ),
+            "preflight_blocked_before_approval": (
+                approval_review_class_counts.get("candidate_blocked_before_approval", 0)
+            ),
+            "explicit_approval_queue_rows": len(explicit_approval_queue),
+            "explicit_approval_queue_clean_rows": (
+                approval_review_class_counts.get(
+                    "candidate_clean_pending_explicit_approval", 0
+                )
+            ),
+            "explicit_approval_queue_warning_rows": (
+                approval_review_class_counts.get(
+                    "candidate_minimum_locator_warning_pending_explicit_approval", 0
+                )
+            ),
+            "explicit_approval_queue_blocked_rows": (
+                approval_review_class_counts.get("candidate_blocked_before_approval", 0)
+            ),
+            "critical_violation_total": critical_violation_total,
+            "copy_to_audited_locator_dir_allowed_now": 0,
+            "ready_for_predicted_geometry_scoring": 0,
+            "explicitly_approved_locator_rewrites": 0,
+        },
+        "decision": {
+            "priority1_rewrite_preflight_ready": bool(preflight_rows),
+            "preflight_passed_rows_need_explicit_approval": len(preflight_passed),
+            "copy_to_audited_locator_dir_allowed_now": False,
+            "approved_source_free_locator_surface_ready": False,
+            "heldout_safe_pair_application_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Use the preflight-passed rows as the explicit-approval review "
+                "queue. Only approved locator rewrites should enter the audited "
+                "locator directory, followed by strict audit, locator input "
+                "audit, and heldout-safe surface plan reruns."
+            ),
+        },
+        "source_artifacts": {
+            "coordinate_anchor_priority1_review_worksheet": _source_path_record(
+                coordinate_anchor_priority1_review_worksheet_path
+            ),
+            "source_free_locator_schema": _source_path_record(
+                source_free_locator_schema_path
+            ),
+            "audited_locator_dir": _source_free_locator_dir_record(
+                audited_locator_dir
+            ),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(preflight_passed)}/{len(preflight_rows)} priority-1 "
+                "candidate rows pass schema, guardrail, and coordinate-contact "
+                "rewrite preflight, but 0 rows are approved or copy-authorized."
+            ),
+            "next_action": (
+                "Inspect preflight-passed rows for explicit approval; do not "
+                "copy sidecars or apply the frozen residual threshold until "
+                "approved locator sidecars exist in the audited directory."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_report(
+    preflight: dict[str, Any],
+) -> str:
+    counts = preflight["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Coordinate Anchor Priority-1 Rewrite Preflight - current702",
+        "",
+        f"Run: {preflight['created_utc']}",
+        "",
+        preflight["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {preflight['status']}",
+        f"- Priority-1 review rows: {counts['priority1_review_rows']}",
+        "- Preflight-passed pending explicit approval: "
+        f"{counts['preflight_passed_pending_explicit_approval']}",
+        f"- Schema dry-run passed rows: {counts['schema_dry_run_passed_rows']}",
+        f"- Guardrail preflight passed rows: {counts['guardrail_preflight_passed_rows']}",
+        "- Coordinate-contact supported rows: "
+        f"{counts['coordinate_contact_supported_rows']}",
+        f"- Rows with preflight warnings: {counts['rows_with_preflight_warnings']}",
+        "- Clean approval candidates: "
+        f"{counts['preflight_clean_pending_explicit_approval']}",
+        "- Minimum-locator warning approval candidates: "
+        f"{counts['preflight_warning_pending_explicit_approval']}",
+        "- Blocked before approval: "
+        f"{counts['preflight_blocked_before_approval']}",
+        "- Explicit approval queue rows: "
+        f"{counts['explicit_approval_queue_rows']}",
+        "- Copy to audited locator dir allowed now: "
+        f"{counts['copy_to_audited_locator_dir_allowed_now']}",
+        "",
+        "## Explicit Approval Queue",
+        "",
+        "| order | row | accession | PDB | ligand | class | warnings | locators | reviewer decision |",
+        "| ---: | --- | --- | --- | --- | --- | ---: | ---: | --- |",
+    ]
+    for row in preflight.get("explicit_approval_queue", []):
+        ligand = row.get("selected_ligand_site") or {}
+        ligand_label = (
+            f"{ligand.get('comp_id')}:{ligand.get('chain_id')}:{ligand.get('residue_id')}"
+            if ligand
+            else "none"
+        )
+        lines.append(
+            f"| {row['review_order']} | {row['entry_id']} | "
+            f"{row['source_accession']} | {row['selected_structure_id']} | "
+            f"{ligand_label} | {row['approval_review_class']} | "
+            f"{row['coordinate_contact_warning_count']} | "
+            f"{row['candidate_residue_locator_count']} | "
+            f"{row['required_reviewer_decision']} |"
+        )
+    lines += [
+        "",
+        "## Preflight Rows",
+        "",
+        "| row | accession | PDB | ligand | approval class | status | schema | guardrail | contact | warnings | blockers |",
+        "| --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for row in preflight["preflight_rows"]:
+        ligand = row.get("selected_ligand_site") or {}
+        ligand_label = (
+            f"{ligand.get('comp_id')}:{ligand.get('chain_id')}:{ligand.get('residue_id')}"
+            if ligand
+            else "none"
+        )
+        contact = row.get("coordinate_contact_preflight") or {}
+        warnings = len(contact.get("warnings", []))
+        blockers = [
+            blocker
+            for blocker in row.get("blockers_after_preflight", [])
+            if blocker
+            not in {
+                "explicit_approval_required_before_copy_to_audited_locator_dir",
+                "candidate_sidecar_not_in_audited_locator_dir",
+            }
+        ]
+        lines.append(
+            f"| {row['entry_id']} | {row['source_accession']} | "
+            f"{row['selected_structure_id']} | {ligand_label} | "
+            f"{row['approval_review_class']} | "
+            f"{row['preflight_status']} | "
+            f"{int(bool(row['schema_dry_run_passed']))} | "
+            f"{int(bool(row['guardrail_preflight_passed']))} | "
+            f"{int(contact.get('status') == 'supported_by_coordinate_contact_preflight')} | "
+            f"{warnings} | {', '.join(blockers) if blockers else 'approval_required'} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {preflight['interpretation']['result']}",
+        f"- {preflight['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight(
+    *,
+    coordinate_anchor_priority1_review_worksheet_path: Path,
+    source_free_locator_schema_path: Path,
+    audited_locator_dir: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    preflight = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight(
+        coordinate_anchor_priority1_review_worksheet_path=coordinate_anchor_priority1_review_worksheet_path,
+        source_free_locator_schema_path=source_free_locator_schema_path,
+        audited_locator_dir=audited_locator_dir,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(preflight, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_report(
+                preflight
+            ),
+            encoding="utf-8",
+        )
+    return preflight
+
+
 def _predicted_geometry_source_free_anchor_summary(
     row: dict[str, Any],
 ) -> dict[str, Any]:
@@ -32590,6 +33713,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     predicted_geometry_retrieval_path: Path,
     source_free_locator_schema_path: Path | None = None,
     coordinate_anchor_candidate_audit_path: Path | None = None,
+    coordinate_anchor_priority1_rewrite_preflight_path: Path | None = None,
 ) -> dict[str, Any]:
     locator_queue = _read_json(locator_action_queue_path)
     predicted_geometry = _read_json(predicted_geometry_retrieval_path)
@@ -32639,6 +33763,26 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         if isinstance(coordinate_anchor_audit, dict)
         else {}
     )
+    coordinate_anchor_preflight = (
+        _read_json(coordinate_anchor_priority1_rewrite_preflight_path)
+        if coordinate_anchor_priority1_rewrite_preflight_path is not None
+        and coordinate_anchor_priority1_rewrite_preflight_path.exists()
+        else None
+    )
+    coordinate_anchor_preflight_by_entry = (
+        {
+            str(row.get("entry_id")): row
+            for row in coordinate_anchor_preflight.get("preflight_rows", [])
+            if isinstance(row, dict) and row.get("entry_id")
+        }
+        if isinstance(coordinate_anchor_preflight, dict)
+        else {}
+    )
+    coordinate_anchor_preflight_counts = (
+        coordinate_anchor_preflight.get("counts")
+        if isinstance(coordinate_anchor_preflight, dict)
+        else {}
+    ) or {}
     predicted_by_entry = {
         str(row.get("entry_id")): row
         for row in predicted_geometry.get("results", [])
@@ -32662,6 +33806,13 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 "has_source_free_coordinate_local_anchor_candidate"
             )
         )
+        coordinate_anchor_preflight_row = coordinate_anchor_preflight_by_entry.get(
+            entry_id, {}
+        )
+        coordinate_anchor_preflight_passed = (
+            coordinate_anchor_preflight_row.get("preflight_status")
+            == "preflight_passed_pending_explicit_approval"
+        )
         blockers: list[str] = []
         if (
             not anchor["has_source_free_ligand_or_cofactor_anchor"]
@@ -32669,7 +33820,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         ):
             blockers.append("source_free_ligand_or_cofactor_contact_anchor_missing")
         if has_coordinate_anchor_candidate:
-            blockers.append("source_free_coordinate_anchor_candidate_needs_review")
+            blockers.append(
+                "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval"
+                if coordinate_anchor_preflight_passed
+                else "source_free_coordinate_anchor_candidate_needs_review"
+            )
         blockers.append("source_free_event_axis_missing_for_pair_token")
         audit_rows.append(
             {
@@ -32704,6 +33859,29 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                         "candidate_blockers", []
                     ),
                 },
+                "coordinate_anchor_rewrite_preflight_summary": {
+                    "preflight_present": bool(coordinate_anchor_preflight_row),
+                    "preflight_status": coordinate_anchor_preflight_row.get(
+                        "preflight_status"
+                    ),
+                    "planned_audited_locator_sidecar_path": (
+                        coordinate_anchor_preflight_row.get(
+                            "planned_audited_locator_sidecar_path"
+                        )
+                    ),
+                    "coordinate_contact_warnings": (
+                        (
+                            coordinate_anchor_preflight_row.get(
+                                "coordinate_contact_preflight"
+                            )
+                            or {}
+                        ).get("warnings", [])
+                    ),
+                    "copy_to_audited_locator_dir_allowed_now": False,
+                    "explicit_approval_required_before_copy": (
+                        bool(coordinate_anchor_preflight_row)
+                    ),
+                },
                 "auto_create_locator_sidecar_allowed": False,
                 "blockers": blockers,
             }
@@ -32722,6 +33900,14 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "has_source_free_coordinate_local_anchor_candidate"
         )
     ]
+    rows_with_coordinate_anchor_preflight_passed = [
+        row
+        for row in audit_rows
+        if row.get("coordinate_anchor_rewrite_preflight_summary", {}).get(
+            "preflight_status"
+        )
+        == "preflight_passed_pending_explicit_approval"
+    ]
     rows_with_any_source_free_anchor = [
         row
         for row in audit_rows
@@ -32735,8 +33921,16 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     blockers = []
     if len(rows_with_any_source_free_anchor) < len(audit_rows):
         blockers.append("priority1_rows_lack_source_free_contact_or_coordinate_anchor")
+    if rows_with_coordinate_anchor_preflight_passed:
+        blockers.append(
+            "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval"
+        )
     if rows_with_coordinate_anchor_candidate:
-        blockers.append("source_free_coordinate_anchor_candidates_need_review")
+        rows_still_needing_review = len(rows_with_coordinate_anchor_candidate) - len(
+            rows_with_coordinate_anchor_preflight_passed
+        )
+        if rows_still_needing_review > 0:
+            blockers.append("source_free_coordinate_anchor_candidates_need_review")
     blockers.append("source_free_event_axis_missing_for_pair_token")
     return {
         "artifact_id": (
@@ -32788,6 +33982,22 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             ),
             "priority1_rows_without_source_free_anchor": len(audit_rows)
             - len(rows_with_any_source_free_anchor),
+            "priority1_coordinate_anchor_preflight_rows": (
+                coordinate_anchor_preflight_counts.get("priority1_review_rows")
+            ),
+            "priority1_coordinate_anchor_preflight_passed_pending_explicit_approval": (
+                coordinate_anchor_preflight_counts.get(
+                    "preflight_passed_pending_explicit_approval"
+                )
+            ),
+            "priority1_coordinate_anchor_preflight_rows_with_warnings": (
+                coordinate_anchor_preflight_counts.get("rows_with_preflight_warnings")
+            ),
+            "priority1_coordinate_anchor_preflight_approved_rewrites": (
+                coordinate_anchor_preflight_counts.get(
+                    "explicitly_approved_locator_rewrites"
+                )
+            ),
             "auto_create_locator_sidecar_allowed_rows": 0,
             "source_free_locator_schema_available": (
                 1 if locator_schema_summary is not None else 0
@@ -32805,10 +34015,10 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "apply_frozen_pair_threshold_now": False,
             "heldout_read_once_performed": False,
             "next_gate": (
-                "Do not create locator sidecars from predicted-geometry rows "
-                "alone. Add a source-free coordinate-local anchor policy or "
-                "source-free structure-local ligand/contact evidence, then "
-                "rerun this audit before sidecar materialization."
+                "Use the preflight-passed coordinate-anchor rows as the "
+                "explicit-approval queue. Do not copy locator sidecars or "
+                "apply the frozen threshold until approved rewrites exist in "
+                "the audited locator directory and this audit is rerun."
             ),
         },
         "source_artifacts": {
@@ -32826,18 +34036,26 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 if coordinate_anchor_candidate_audit_path is not None
                 else None
             ),
+            "coordinate_anchor_priority1_rewrite_preflight": (
+                _source_path_record(coordinate_anchor_priority1_rewrite_preflight_path)
+                if coordinate_anchor_priority1_rewrite_preflight_path is not None
+                else None
+            ),
         },
         "interpretation": {
             "result": (
                 "The priority-1 queue rows have predicted-geometry coordinates, "
                 f"{len(rows_with_coordinate_anchor_candidate)} now expose "
-                "review-only coordinate-local anchor candidates, but none are "
+                "review-only coordinate-local anchor candidates, "
+                f"{len(rows_with_coordinate_anchor_preflight_passed)} pass "
+                "rewrite preflight pending explicit approval, and none are "
                 "approved locator sidecars for scoring."
             ),
             "next_action": (
-                "Review coordinate-anchor candidates, rewrite only approved "
-                "sidecars into the audited locator directory, and keep the "
-                "event-axis blocker separate before any heldout read."
+                "Approve only reviewed locator rewrites, copy those sidecars "
+                "into the audited locator directory, rerun strict/input/surface "
+                "audits, and keep the event-axis blocker separate before any "
+                "heldout read."
             ),
         },
     }
@@ -32863,6 +34081,14 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         f"{counts['priority1_rows_with_source_free_ligand_or_cofactor_anchor']}",
         "- Rows with source-free coordinate-local anchor candidate: "
         f"{counts['priority1_rows_with_source_free_coordinate_local_anchor_candidate']}",
+        "- Coordinate-anchor preflight rows: "
+        f"{counts['priority1_coordinate_anchor_preflight_rows']}",
+        "- Preflight-passed pending explicit approval: "
+        f"{counts['priority1_coordinate_anchor_preflight_passed_pending_explicit_approval']}",
+        "- Preflight rows with warnings: "
+        f"{counts['priority1_coordinate_anchor_preflight_rows_with_warnings']}",
+        "- Approved locator rewrites now: "
+        f"{counts['priority1_coordinate_anchor_preflight_approved_rewrites']}",
         "- Rows without source-free anchor: "
         f"{counts['priority1_rows_without_source_free_anchor']}",
         "- Auto-create locator sidecars now: "
@@ -32895,6 +34121,7 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     predicted_geometry_retrieval_path: Path,
     source_free_locator_schema_path: Path | None = None,
     coordinate_anchor_candidate_audit_path: Path | None = None,
+    coordinate_anchor_priority1_rewrite_preflight_path: Path | None = None,
     out_path: Path,
     report_path: Path | None = None,
 ) -> dict[str, Any]:
@@ -32903,6 +34130,7 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         predicted_geometry_retrieval_path=predicted_geometry_retrieval_path,
         source_free_locator_schema_path=source_free_locator_schema_path,
         coordinate_anchor_candidate_audit_path=coordinate_anchor_candidate_audit_path,
+        coordinate_anchor_priority1_rewrite_preflight_path=coordinate_anchor_priority1_rewrite_preflight_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(

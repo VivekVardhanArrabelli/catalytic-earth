@@ -24,6 +24,10 @@
     "source_free_application_surface_current702_heldout_locator_sidecars": 0,
     "source_free_application_surface_residue_count_rows": 0,
     "source_free_locator_input_auto_create_allowed_rows": 0,
+    "source_free_locator_input_priority1_preflight_approved_rewrites": 0,
+    "source_free_locator_input_priority1_preflight_passed_pending_explicit_approval": 55,
+    "source_free_locator_input_priority1_preflight_rows": 55,
+    "source_free_locator_input_priority1_preflight_rows_with_warnings": 6,
     "source_free_locator_input_priority1_rows_with_coordinate_anchor_candidate": 102,
     "source_free_locator_input_priority1_rows_without_anchor": 24,
     "source_free_locator_position_blockers": 8,
@@ -31,7 +35,7 @@
     "source_free_locator_schema_required_residue_locator_minimum": 2,
     "source_free_predicted_geometry_ready_rows": 3
   },
-  "created_utc": "2026-06-02T14:18:10Z",
+  "created_utc": "2026-06-02T15:33:18Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
@@ -86,7 +90,7 @@
         "source_free_active_site_residue_locator",
         "accession_compatible_residue_identity_mapping"
       ],
-      "status": "blocked_source_free_coordinate_anchor_review_pending"
+      "status": "blocked_source_free_coordinate_anchor_explicit_approval_pending"
     }
   ],
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan",
@@ -139,7 +143,7 @@
     "source_free_locator_input_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602.json",
-      "sha256": "a1f81c7407e2551c06c253974bee7174feb292a1671b011852c2e34a538444a2"
+      "sha256": "db61bdf91ee10f2ead7edca6655d9e0738162bc6a0eba26d499e3c040d9a6e8c"
     },
     "source_free_predicted_geometry_manifest": {
       "exists": true,

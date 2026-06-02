@@ -44,6 +44,7 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_review_queue,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue,
@@ -80,6 +81,7 @@ from catalytic_earth.northstar_next_levers import (
     build_predicted_structure_fold_channel_carryover_resolution,
     build_predicted_structure_fold_channel_contract_audit,
     build_predicted_structure_fold_channel_coordinate_provenance_audit,
+    build_predicted_structure_fold_channel_deployment_input_audit,
     build_predicted_structure_fold_channel_reproduction_manifest,
     build_selected_organic_cofactor_sidecar_schema_audit,
     write_family_panel_source_free_active_site_locator_candidate_audit,
@@ -1904,6 +1906,7 @@ class NorthstarNextLeversTests(unittest.TestCase):
             fold_only = root / "fold_only.json"
             threshold = root / "threshold.json"
             coordinate = root / "coordinate.json"
+            deployment_input = root / "deployment_input.json"
             coordinate_reprobe = root / "coordinate_reprobe.json"
             contract.write_text(
                 json.dumps(
@@ -1965,6 +1968,30 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            deployment_input.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "predicted_structure_fold_channel_deployment_inputs_predicted_only"
+                        ),
+                        "deployment_validity": {
+                            "predicted_structure_vs_atlas_only": True
+                        },
+                        "counts": {
+                            "coordinate_request_rows": 2,
+                            "row_score_rows": 2,
+                            "critical_violation_total": 0,
+                        },
+                        "guardrails": {
+                            "experimental_pdb_metadata_used_as_channel_input": False
+                        },
+                        "decision": {
+                            "deployment_input_contract_passed": True
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
             coordinate_reprobe.write_text(
                 json.dumps(
                     {
@@ -1995,6 +2022,7 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 fold_only_deployment_decision_path=fold_only,
                 oos_calibrated_threshold_contract_path=threshold,
                 coordinate_provenance_audit_path=coordinate,
+                deployment_input_audit_path=deployment_input,
                 remaining_blocker_coordinate_reprobe_path=coordinate_reprobe,
             )
 
@@ -2008,6 +2036,10 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(audit["decision"]["deployment_closed"])
         self.assertFalse(audit["decision"]["apply_or_change_threshold_now"])
         self.assertEqual(audit["counts"]["remaining_production_blocker_rows"], 1)
+        self.assertTrue(audit["counts"]["deployment_input_contract_passed"])
+        self.assertEqual(
+            audit["counts"]["deployment_input_critical_violation_total"], 0
+        )
         self.assertEqual(audit["counts"]["unique_coordinate_files_missing"], 3)
         self.assertEqual(
             audit["counts"]["remaining_blocker_coordinate_reprobe_rows_cleared"], 0
@@ -7474,6 +7506,311 @@ class NorthstarNextLeversTests(unittest.TestCase):
             worksheet["worksheet_rows"][0]["locator_evidence"][0]["source_text_used"]
         )
 
+    def test_followup_pair_coordinate_anchor_priority1_rewrite_preflight_dry_runs_clean_candidates(
+        self,
+    ) -> None:
+        def candidate_payload(
+            *,
+            entry_id: str,
+            accession: str,
+            forbidden_source_prose: bool,
+        ) -> dict[str, object]:
+            return {
+                "status": "source_free_coordinate_anchor_candidate_staged_review_required",
+                "entry_id": entry_id,
+                "source_accession": accession,
+                "selected_structure_id": "1ABC",
+                "locator_policy": (
+                    "candidate_structure_local_ligand_geometry_without_source_text_review_required"
+                ),
+                "locator_evidence_class": (
+                    "structure_local_ligand_geometry_without_source_text"
+                ),
+                "source_free_active_site_locator_status": (
+                    "candidate_contacts_staged_review_required"
+                ),
+                "residue_locators": [
+                    {
+                        "candidate_contact_evidence": {
+                            "distance_angstrom": 2.5,
+                            "ligand_atom": "N1",
+                            "ligand_comp_id": "FAD",
+                            "residue_atom": "NE2",
+                            "selected_structure_id": "1ABC",
+                        },
+                        "coordinate_independent_provenance": {
+                            "heldout_rows_used": False,
+                            "method": "source_free_selected_structure_ligand_contact_candidate",
+                            "sequence_position_source": "struct_ref_seq.auth_seq_id",
+                            "sequence_position_uniprot_validated": True,
+                            "source_text_used": False,
+                        },
+                        "locator_confidence": 0.25,
+                        "locator_evidence_class": (
+                            "structure_local_ligand_geometry_without_source_text"
+                        ),
+                        "residue_code": "HIS",
+                        "role_hint": "flavin_redox_contact_candidate",
+                        "sequence_position": 42,
+                    },
+                    {
+                        "candidate_contact_evidence": {
+                            "distance_angstrom": 2.8,
+                            "ligand_atom": "O2",
+                            "ligand_comp_id": "FAD",
+                            "residue_atom": "OD1",
+                            "selected_structure_id": "1ABC",
+                        },
+                        "coordinate_independent_provenance": {
+                            "heldout_rows_used": False,
+                            "method": "source_free_selected_structure_ligand_contact_candidate",
+                            "sequence_position_source": "struct_ref_seq.auth_seq_id",
+                            "sequence_position_uniprot_validated": True,
+                            "source_text_used": False,
+                        },
+                        "locator_confidence": 0.25,
+                        "locator_evidence_class": (
+                            "structure_local_ligand_geometry_without_source_text"
+                        ),
+                        "residue_code": "ASP",
+                        "role_hint": "flavin_binding_contact_candidate",
+                        "sequence_position": 81,
+                    },
+                ],
+                "forbidden_feature_audit": {
+                    "source_prose": forbidden_source_prose,
+                    "mechanism_text": False,
+                },
+                "split_protection": {
+                    "review_only": True,
+                    "allowed_for_training": False,
+                    "allowed_for_threshold_selection": False,
+                    "ready_for_label_import": False,
+                },
+                "ready_for_predicted_geometry_scoring": False,
+                "candidate_path": (
+                    "artifacts/mechanism_feature_row_specific_bond_change_p0_oos_augmented_"
+                    "best_token_followup_pair_source_free_coordinate_anchor_candidates_"
+                    f"current702_20260602/{entry_id.replace(':', '_')}_{accession}.json"
+                ),
+                "candidate_blockers": [
+                    "candidate_sidecar_not_approved_for_scoring",
+                    "candidate_sidecar_not_in_audited_locator_dir",
+                    "manual_review_required_before_copy_to_audited_dir",
+                ],
+                "candidate_guardrails": {
+                    "candidate_only": True,
+                    "written_outside_audited_locator_dir": True,
+                    "copied_to_audited_locator_dir": False,
+                    "heldout_rows_evaluated": False,
+                    "m_csa_heldout_active_site_roles_used_as_locator_source": False,
+                    "predicted_geometry_scored": False,
+                    "source_text_or_label_fields_used_as_predictive_features": False,
+                },
+                "coordinate_anchor_summary": {
+                    "candidate_residue_locator_count": 2,
+                    "has_source_free_coordinate_local_anchor_candidate": True,
+                    "selected_ligand_site": {
+                        "chain_id": "A",
+                        "comp_id": "FAD",
+                        "residue_id": "500",
+                        "structure_id": "1ABC",
+                    },
+                    "selected_pdb_coordinate_found": True,
+                    "sequence_position_validated_locator_count": 2,
+                },
+                "coordinate_candidate_evidence": {
+                    "extraction": {
+                        "selected_ligand_site": {
+                            "chain_id": "A",
+                            "comp_id": "FAD",
+                            "residue_id": "500",
+                            "structure_id": "1ABC",
+                        }
+                    }
+                },
+            }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            schema_path = root / "schema.json"
+            worksheet_path = root / "worksheet.json"
+            candidate_1_path = root / "candidate_1.json"
+            candidate_2_path = root / "candidate_2.json"
+            candidate_1_path.write_text(
+                json.dumps(
+                    candidate_payload(
+                        entry_id="m_csa:1",
+                        accession="P00001",
+                        forbidden_source_prose=False,
+                    )
+                ),
+                encoding="utf-8",
+            )
+            candidate_2_path.write_text(
+                json.dumps(
+                    candidate_payload(
+                        entry_id="m_csa:2",
+                        accession="P00002",
+                        forbidden_source_prose=True,
+                    )
+                ),
+                encoding="utf-8",
+            )
+            schema_path.write_text(
+                json.dumps(
+                    {
+                        "allowed_locator_evidence_classes": [
+                            "structure_local_ligand_geometry_without_source_text"
+                        ],
+                        "counts": {"required_residue_locator_minimum": 2},
+                        "forbidden_predictive_fields": [
+                            "source_prose",
+                            "mechanism_text",
+                        ],
+                        "residue_locator_required_fields": [
+                            "residue_code",
+                            "sequence_position",
+                            "role_hint",
+                            "locator_confidence",
+                            "locator_evidence_class",
+                            "coordinate_independent_provenance",
+                        ],
+                        "sidecar_required_top_level_fields": [
+                            "artifact_id",
+                            "schema_version",
+                            "created_utc",
+                            "entry_id",
+                            "source_accession",
+                            "locator_policy",
+                            "locator_evidence_class",
+                            "source_free_active_site_locator_status",
+                            "residue_locators",
+                            "forbidden_feature_audit",
+                            "split_protection",
+                            "ready_for_predicted_geometry_scoring",
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            worksheet_path.write_text(
+                json.dumps(
+                    {
+                        "worksheet_rows": [
+                            {
+                                "priority": 1,
+                                "entry_id": "m_csa:1",
+                                "source_accession": "P00001",
+                                "candidate_path": str(candidate_1_path),
+                                "candidate_sha256": hashlib.sha256(
+                                    candidate_1_path.read_bytes()
+                                ).hexdigest(),
+                                "candidate_file_exists": True,
+                                "selected_structure_id": "1ABC",
+                                "selected_ligand_site": {
+                                    "chain_id": "A",
+                                    "comp_id": "FAD",
+                                    "residue_id": "500",
+                                },
+                            },
+                            {
+                                "priority": 1,
+                                "entry_id": "m_csa:2",
+                                "source_accession": "P00002",
+                                "candidate_path": str(candidate_2_path),
+                                "candidate_sha256": hashlib.sha256(
+                                    candidate_2_path.read_bytes()
+                                ).hexdigest(),
+                                "candidate_file_exists": True,
+                                "selected_structure_id": "1ABC",
+                                "selected_ligand_site": {
+                                    "chain_id": "A",
+                                    "comp_id": "FAD",
+                                    "residue_id": "500",
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            preflight = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight(
+                coordinate_anchor_priority1_review_worksheet_path=worksheet_path,
+                source_free_locator_schema_path=schema_path,
+                audited_locator_dir=root / "audited",
+            )
+
+        self.assertEqual(
+            preflight["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_blocked_review_only",
+        )
+        self.assertEqual(preflight["counts"]["priority1_review_rows"], 2)
+        self.assertEqual(
+            preflight["counts"]["preflight_passed_pending_explicit_approval"], 1
+        )
+        self.assertEqual(preflight["counts"]["schema_dry_run_passed_rows"], 2)
+        self.assertEqual(preflight["counts"]["guardrail_preflight_passed_rows"], 1)
+        self.assertEqual(preflight["counts"]["coordinate_contact_supported_rows"], 2)
+        self.assertEqual(
+            preflight["counts"]["preflight_clean_pending_explicit_approval"], 0
+        )
+        self.assertEqual(
+            preflight["counts"]["preflight_warning_pending_explicit_approval"], 1
+        )
+        self.assertEqual(preflight["counts"]["preflight_blocked_before_approval"], 1)
+        self.assertEqual(preflight["counts"]["explicit_approval_queue_rows"], 2)
+        self.assertEqual(preflight["counts"]["explicit_approval_queue_clean_rows"], 0)
+        self.assertEqual(
+            preflight["counts"]["explicit_approval_queue_warning_rows"], 1
+        )
+        self.assertEqual(
+            preflight["counts"]["explicit_approval_queue_blocked_rows"], 1
+        )
+        self.assertEqual(
+            preflight["counts"]["copy_to_audited_locator_dir_allowed_now"], 0
+        )
+        self.assertFalse(
+            preflight["decision"]["copy_to_audited_locator_dir_allowed_now"]
+        )
+        self.assertFalse(preflight["guardrails"]["heldout_rows_evaluated"])
+        self.assertEqual(
+            [
+                row["approval_review_class"]
+                for row in preflight["explicit_approval_queue"]
+            ],
+            [
+                "candidate_minimum_locator_warning_pending_explicit_approval",
+                "candidate_blocked_before_approval",
+            ],
+        )
+        self.assertEqual(
+            preflight["explicit_approval_queue"][0]["required_reviewer_decision"],
+            "explicit_approve_locator_rewrite_or_reject",
+        )
+        self.assertFalse(
+            preflight["explicit_approval_queue"][0][
+                "copy_to_audited_locator_dir_allowed_now"
+            ]
+        )
+        self.assertEqual(
+            preflight["preflight_rows"][0]["preflight_status"],
+            "preflight_passed_pending_explicit_approval",
+        )
+        self.assertEqual(
+            preflight["preflight_rows"][0]["approval_review_class"],
+            "candidate_minimum_locator_warning_pending_explicit_approval",
+        )
+        self.assertIn(
+            "forbidden_feature_audit_active:source_prose",
+            preflight["preflight_rows"][1]["guardrail_preflight_violations"],
+        )
+        self.assertEqual(
+            preflight["preflight_rows"][1]["approval_review_class"],
+            "candidate_blocked_before_approval",
+        )
+
     def test_followup_pair_source_free_locator_input_audit_blocks_without_anchors(
         self,
     ) -> None:
@@ -7588,6 +7925,7 @@ class NorthstarNextLeversTests(unittest.TestCase):
             queue_path = root / "queue.json"
             predicted_path = root / "predicted.json"
             coordinate_anchor_path = root / "coordinate_anchor.json"
+            preflight_path = root / "coordinate_anchor_preflight.json"
             queue_path.write_text(
                 json.dumps(
                     {
@@ -7644,8 +7982,44 @@ class NorthstarNextLeversTests(unittest.TestCase):
                                 "status": (
                                     "source_free_coordinate_anchor_candidate_staged_review_required"
                                 ),
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "candidate_path": "candidate/m_csa_2.json",
+                                "selected_structure_id": "1DEF",
+                                "has_source_free_coordinate_local_anchor_candidate": True,
+                                "candidate_residue_locator_count": 2,
+                                "sequence_position_validated_locator_count": 2,
+                                "status": (
+                                    "source_free_coordinate_anchor_candidate_staged_review_required"
+                                ),
                             }
                         ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            preflight_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "explicitly_approved_locator_rewrites": 0,
+                            "preflight_passed_pending_explicit_approval": 1,
+                            "priority1_review_rows": 1,
+                            "rows_with_preflight_warnings": 0,
+                        },
+                        "preflight_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "planned_audited_locator_sidecar_path": (
+                                    "audited/m_csa_1.json"
+                                ),
+                                "preflight_status": (
+                                    "preflight_passed_pending_explicit_approval"
+                                ),
+                                "coordinate_contact_preflight": {"warnings": []},
+                            }
+                        ],
                     }
                 ),
                 encoding="utf-8",
@@ -7655,16 +8029,31 @@ class NorthstarNextLeversTests(unittest.TestCase):
                 locator_action_queue_path=queue_path,
                 predicted_geometry_retrieval_path=predicted_path,
                 coordinate_anchor_candidate_audit_path=coordinate_anchor_path,
+                coordinate_anchor_priority1_rewrite_preflight_path=preflight_path,
             )
 
         self.assertEqual(
             audit["counts"][
                 "priority1_rows_with_source_free_coordinate_local_anchor_candidate"
             ],
+            2,
+        )
+        self.assertEqual(
+            audit["counts"]["priority1_rows_without_source_free_anchor"], 0
+        )
+        self.assertIn(
+            "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
+            audit["blockers"],
+        )
+        self.assertEqual(
+            audit["counts"][
+                "priority1_coordinate_anchor_preflight_passed_pending_explicit_approval"
+            ],
             1,
         )
         self.assertEqual(
-            audit["counts"]["priority1_rows_without_source_free_anchor"], 1
+            audit["counts"]["priority1_coordinate_anchor_preflight_approved_rewrites"],
+            0,
         )
         self.assertIn(
             "source_free_coordinate_anchor_candidates_need_review",
@@ -9705,6 +10094,97 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertTrue(
             all(count == 0 for count in audit["counts"]["critical_counts"].values())
         )
+
+    def test_predicted_structure_fold_channel_deployment_input_audit_blocks_experimental_metadata(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            fold_channel = root / "fold_channel.json"
+            fold_channel.write_text(
+                json.dumps(
+                    {
+                        "foldseek_input_manifest": {
+                            "coordinate_request_groups": {
+                                "queries": [
+                                    {
+                                        "entry_id": "m_csa:1",
+                                        "url": (
+                                            "https://alphafold.ebi.ac.uk/files/"
+                                            "AF-P11111-F1-model_v6.cif"
+                                        ),
+                                        "expected_local_path": (
+                                            "artifacts/fold/queries/afdb_P11111_v6.cif"
+                                        ),
+                                    },
+                                    {
+                                        "entry_id": "m_csa:2",
+                                        "url": "https://files.rcsb.org/download/1ABC.cif",
+                                        "expected_local_path": (
+                                            "artifacts/fold/queries/selected_1ABC.cif"
+                                        ),
+                                        "selected_pdb_id": "1ABC",
+                                    },
+                                ]
+                            }
+                        },
+                        "fold_channel_signal": {
+                            "nearest_atlas_tm_score": {
+                                "row_scores": [
+                                    {
+                                        "entry_id": "m_csa:1",
+                                        "fold_signals": {
+                                            "nearest_atlas_tm_score": 0.7
+                                        },
+                                    },
+                                    {
+                                        "entry_id": "m_csa:2",
+                                        "fold_signals": {
+                                            "nearest_atlas_tm_score": 0.5,
+                                            "selected_pdb_prob": 0.9,
+                                        },
+                                        "selected_pdb_id": "1ABC",
+                                    },
+                                ]
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_predicted_structure_fold_channel_deployment_input_audit(
+                predicted_structure_fold_channel_path=fold_channel,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "predicted_structure_fold_channel_deployment_inputs_blocked",
+        )
+        self.assertEqual(audit["counts"]["coordinate_request_rows"], 2)
+        self.assertEqual(audit["counts"]["afdb_url_requests"], 1)
+        self.assertEqual(
+            audit["counts"]["critical_counts"][
+                "coordinate_request_url_not_afdb_v6_cif"
+            ],
+            1,
+        )
+        self.assertEqual(
+            audit["counts"]["critical_counts"][
+                "coordinate_requests_with_experimental_pdb_metadata_keys"
+            ],
+            1,
+        )
+        self.assertEqual(
+            audit["counts"]["critical_counts"][
+                "row_scores_with_experimental_pdb_metadata_keys"
+            ],
+            2,
+        )
+        self.assertEqual(
+            audit["counts"]["critical_counts"]["unexpected_fold_signal_keys"], 1
+        )
+        self.assertFalse(audit["decision"]["deployment_input_contract_passed"])
 
     def test_predicted_structure_fold_channel_coordinate_provenance_audit(
         self,

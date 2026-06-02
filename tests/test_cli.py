@@ -110,6 +110,10 @@ class CliTests(unittest.TestCase):
         parser = build_parser()
         cases = [
             (
+                "audit-predicted-structure-fold-channel-deployment-input",
+                "cmd_audit_predicted_structure_fold_channel_deployment_input",
+            ),
+            (
                 "audit-predicted-structure-fold-channel-coordinate-provenance",
                 "cmd_audit_predicted_structure_fold_channel_coordinate_provenance",
             ),
@@ -729,6 +733,17 @@ class CliTests(unittest.TestCase):
                 (
                     "cmd_build_mechanism_feature_row_specific_bond_change_"
                     "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_review_worksheet"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "coordinate-anchor-priority1-rewrite-preflight"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight"
                 ),
             ),
             (

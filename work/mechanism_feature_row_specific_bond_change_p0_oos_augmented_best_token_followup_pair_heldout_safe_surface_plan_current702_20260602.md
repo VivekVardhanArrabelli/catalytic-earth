@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Heldout-Safe Surface Plan - current702
 
-Run: 2026-06-02T14:18:10Z
+Run: 2026-06-02T15:33:18Z
 
 Review-only materialization plan for a heldout-safe application surface for the best-token follow-up pair. It records the source-free extractors needed before applying the frozen residual threshold to heldout exactly once.
 
@@ -13,6 +13,9 @@ Review-only materialization plan for a heldout-safe application surface for the 
 - Source-free locator priority-1 candidates: 126
 - Source-free locator priority-1 rows without anchor: 24
 - Source-free locator priority-1 rows with coordinate-anchor candidate: 102
+- Source-free locator preflight-passed pending explicit approval: 55
+- Source-free locator preflight rows with warnings: 6
+- Source-free locator approved rewrites now: 0
 - Source-free locator auto-create allowed rows: 0
 - Required residue locators per approved sidecar: 2
 - Pair calibration OOS abstain recall: 0.857143
@@ -24,7 +27,7 @@ Review-only materialization plan for a heldout-safe application surface for the 
 | token | extractor | status |
 | --- | --- | --- |
 | event_residue_role:proton_transfer|electrostatic_stabiliser | source_free_event_residue_role_linker | missing_source_free_event_axis |
-| residue_code_count:his=3 | source_free_active_site_residue_identity_counter | blocked_source_free_coordinate_anchor_review_pending |
+| residue_code_count:his=3 | source_free_active_site_residue_identity_counter | blocked_source_free_coordinate_anchor_explicit_approval_pending |
 
 ## Decision
 

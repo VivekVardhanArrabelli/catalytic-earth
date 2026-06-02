@@ -12,7 +12,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -35,6 +35,14 @@
         "selected_structure_id": "1D4A",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_3_P15559.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:3",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P15559-F1-model_v6",
@@ -51,7 +59,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -73,6 +81,14 @@
         },
         "selected_structure_id": "5A1I",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_9_P31153.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:9",
       "predicted_geometry_status": "ok",
@@ -108,6 +124,14 @@
         "selected_ligand_site": null,
         "selected_structure_id": "1MKB",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:10",
       "predicted_geometry_status": "ok",
@@ -149,6 +173,14 @@
         "selected_structure_id": "1OTH",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:12",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P00480-F1-model_v6",
@@ -188,6 +220,14 @@
         },
         "selected_structure_id": "1VNC",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:14",
       "predicted_geometry_status": "ok",
@@ -229,6 +269,14 @@
         "selected_structure_id": "1QJD",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:20",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q07WU7-F1-model_v6",
@@ -268,6 +316,14 @@
         },
         "selected_structure_id": "2PFL",
         "sequence_position_validated_locator_count": 7
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:30",
       "predicted_geometry_status": "ok",
@@ -309,6 +365,14 @@
         "selected_structure_id": "1LCB",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:31",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P00469-F1-model_v6",
@@ -325,7 +389,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -347,6 +411,14 @@
         },
         "selected_structure_id": "1QIN",
         "sequence_position_validated_locator_count": 3
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_32_Q04760.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:32",
       "predicted_geometry_status": "ok",
@@ -388,6 +460,14 @@
         "selected_structure_id": "1MPY",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:34",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P06622-F1-model_v6",
@@ -404,7 +484,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -427,6 +507,14 @@
         "selected_structure_id": "4KBP",
         "sequence_position_validated_locator_count": 4
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_43_P80366.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:43",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P80366-F1-model_v6",
@@ -443,7 +531,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -466,6 +554,14 @@
         "selected_structure_id": "1ALK",
         "sequence_position_validated_locator_count": 4
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_44_P00634.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:44",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P00634-F1-model_v6",
@@ -482,7 +578,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -505,6 +601,14 @@
         "selected_structure_id": "1CDG",
         "sequence_position_validated_locator_count": 6
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_45_P43379.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:45",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P43379-F1-model_v6",
@@ -521,7 +625,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -544,6 +648,14 @@
         "selected_structure_id": "2ADM",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_46_P14385.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:46",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P14385-F1-model_v6",
@@ -560,7 +672,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -582,6 +694,16 @@
         },
         "selected_structure_id": "1ZE1",
         "sequence_position_validated_locator_count": 2
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [
+          "minimum_two_locator_floor_only"
+        ],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_56_Q9WZW0.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:56",
       "predicted_geometry_status": "ok",
@@ -618,6 +740,14 @@
         "selected_structure_id": "1PJB",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:67",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-O52942-F1-model_v6",
@@ -653,6 +783,14 @@
         "selected_structure_id": "1EUG",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:71",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P12295-F1-model_v6",
@@ -687,6 +825,14 @@
         "selected_ligand_site": null,
         "selected_structure_id": "1DCO",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:73",
       "predicted_geometry_status": "ok",
@@ -728,6 +874,14 @@
         "selected_structure_id": "1D0S",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:79",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q05603-F1-model_v6",
@@ -762,6 +916,14 @@
         "selected_ligand_site": null,
         "selected_structure_id": "1C3C",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:80",
       "predicted_geometry_status": "ok",
@@ -803,6 +965,14 @@
         "selected_structure_id": "1BG0",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:86",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P51541-F1-model_v6",
@@ -819,7 +989,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -842,6 +1012,14 @@
         "selected_structure_id": "1CTT",
         "sequence_position_validated_locator_count": 3
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_97_P0ABF6.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:97",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P0ABF6-F1-model_v6",
@@ -858,7 +1036,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -881,6 +1059,14 @@
         "selected_structure_id": "1D3G",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_109_Q02127.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:109",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q02127-F1-model_v6",
@@ -897,7 +1083,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -919,6 +1105,14 @@
         },
         "selected_structure_id": "1W1O",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_115_Q9T0N8.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:115",
       "predicted_geometry_status": "ok",
@@ -960,6 +1154,14 @@
         "selected_structure_id": "1WRR",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:118",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q00511-F1-model_v6",
@@ -976,7 +1178,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -998,6 +1200,14 @@
         },
         "selected_structure_id": "1SOX",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_121_P07850.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:121",
       "predicted_geometry_status": "ok",
@@ -1039,6 +1249,14 @@
         "selected_structure_id": "1BT3",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:125",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q9ZP19-F1-model_v6",
@@ -1079,6 +1297,14 @@
         "selected_structure_id": "1OS7",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:129",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P37610-F1-model_v6",
@@ -1095,7 +1321,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -1117,6 +1343,14 @@
         },
         "selected_structure_id": "1DOC",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_131_P20586.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:131",
       "predicted_geometry_status": "ok",
@@ -1158,6 +1392,14 @@
         "selected_structure_id": "1T4C",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:155",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-O06644-F1-model_v6",
@@ -1174,7 +1416,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -1197,6 +1439,14 @@
         "selected_structure_id": "1HZY",
         "sequence_position_validated_locator_count": 3
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_159_P0A434.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:159",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P0A434-F1-model_v6",
@@ -1213,7 +1463,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -1236,6 +1486,14 @@
         "selected_structure_id": "1RDD",
         "sequence_position_validated_locator_count": 3
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_163_P0A7Y4.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:163",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P0A7Y4-F1-model_v6",
@@ -1252,7 +1510,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -1275,6 +1533,14 @@
         "selected_structure_id": "1M4L",
         "sequence_position_validated_locator_count": 3
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_171_P00730.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:171",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P00730-F1-model_v6",
@@ -1291,7 +1557,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -1313,6 +1579,14 @@
         },
         "selected_structure_id": "1HYO",
         "sequence_position_validated_locator_count": 5
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_180_P35505.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:180",
       "predicted_geometry_status": "ok",
@@ -1354,6 +1628,14 @@
         "selected_structure_id": "1LWY",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:185",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-O15527-F1-model_v6",
@@ -1370,7 +1652,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -1392,6 +1674,14 @@
         },
         "selected_structure_id": "1XEL",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_188_P09147.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:188",
       "predicted_geometry_status": "ok",
@@ -1427,6 +1717,14 @@
         "selected_ligand_site": null,
         "selected_structure_id": "1MEK",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:191",
       "predicted_geometry_status": "ok",
@@ -1468,6 +1766,14 @@
         "selected_structure_id": "1Z9H",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:192",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q9N0A4-F1-model_v6",
@@ -1502,6 +1808,14 @@
         "selected_ligand_site": null,
         "selected_structure_id": "2TS1",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:197",
       "predicted_geometry_status": "ok",
@@ -1543,6 +1857,14 @@
         "selected_structure_id": "1V25",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:198",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q5SKN9-F1-model_v6",
@@ -1559,7 +1881,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -1581,6 +1903,16 @@
         },
         "selected_structure_id": "1GSA",
         "sequence_position_validated_locator_count": 2
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [
+          "minimum_two_locator_floor_only"
+        ],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_199_P04425.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:199",
       "predicted_geometry_status": "ok",
@@ -1622,6 +1954,14 @@
         "selected_structure_id": "1XNY",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:201",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q9X4K7-F1-model_v6",
@@ -1638,7 +1978,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -1660,6 +2000,14 @@
         },
         "selected_structure_id": "1IDT",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_211_P38489.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:211",
       "predicted_geometry_status": "ok",
@@ -1701,6 +2049,14 @@
         "selected_structure_id": "1L6G",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:213",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P10724-F1-model_v6",
@@ -1741,6 +2097,14 @@
         "selected_structure_id": "1SC9",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:217",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P52704-F1-model_v6",
@@ -1757,7 +2121,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -1779,6 +2143,14 @@
         },
         "selected_structure_id": "1MCZ",
         "sequence_position_validated_locator_count": 3
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_220_P20906.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:220",
       "predicted_geometry_status": "ok",
@@ -1820,6 +2192,14 @@
         "selected_structure_id": "1VR7",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:225",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q9WZC3-F1-model_v6",
@@ -1860,6 +2240,14 @@
         "selected_structure_id": "1GZG",
         "sequence_position_validated_locator_count": 1
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:230",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q59643-F1-model_v6",
@@ -1876,7 +2264,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -1899,6 +2287,14 @@
         "selected_structure_id": "7ATJ",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_239_P00433.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:239",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P00433-F1-model_v6",
@@ -1915,7 +2311,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -1938,6 +2334,14 @@
         "selected_structure_id": "2F9R",
         "sequence_position_validated_locator_count": 3
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_242_Q8I914.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:242",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q8I914-F1-model_v6",
@@ -1954,7 +2358,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -1976,6 +2380,14 @@
         },
         "selected_structure_id": "2CPO",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_250_P04963.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:250",
       "predicted_geometry_status": "ok",
@@ -2017,6 +2429,14 @@
         "selected_structure_id": "1H3B",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:254",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P33247-F1-model_v6",
@@ -2056,6 +2476,14 @@
         },
         "selected_structure_id": "1MG5",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:255",
       "predicted_geometry_status": "ok",
@@ -2097,6 +2525,14 @@
         "selected_structure_id": "1DHP",
         "sequence_position_validated_locator_count": 4
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:267",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P0A6L2-F1-model_v6",
@@ -2132,6 +2568,14 @@
         "selected_structure_id": "1S6L",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:297",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P77072-F1-model_v6",
@@ -2148,7 +2592,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -2170,6 +2614,14 @@
         },
         "selected_structure_id": "7ENL",
         "sequence_position_validated_locator_count": 3
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_311_P00924.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:311",
       "predicted_geometry_status": "ok",
@@ -2211,6 +2663,14 @@
         "selected_structure_id": "1DIZ",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:313",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P04395-F1-model_v6",
@@ -2227,7 +2687,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -2250,6 +2710,14 @@
         "selected_structure_id": "1YT3",
         "sequence_position_validated_locator_count": 4
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_321_P09155.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:321",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P09155-F1-model_v6",
@@ -2266,7 +2734,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -2289,6 +2757,14 @@
         "selected_structure_id": "2AKJ",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_323_P05314.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:323",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P05314-F1-model_v6",
@@ -2305,7 +2781,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -2327,6 +2803,14 @@
         },
         "selected_structure_id": "2O1X",
         "sequence_position_validated_locator_count": 3
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_333_Q9RUB5.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:333",
       "predicted_geometry_status": "ok",
@@ -2362,6 +2846,14 @@
         "selected_ligand_site": null,
         "selected_structure_id": "1BWZ",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:334",
       "predicted_geometry_status": "ok",
@@ -2404,6 +2896,14 @@
         "selected_structure_id": "1Q51",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:346",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P9WNP5-F1-model_v6",
@@ -2420,7 +2920,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -2442,6 +2942,14 @@
         },
         "selected_structure_id": "3PMG",
         "sequence_position_validated_locator_count": 3
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_352_P00949.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:352",
       "predicted_geometry_status": "ok",
@@ -2483,6 +2991,14 @@
         "selected_structure_id": "1CGK",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:355",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P30074-F1-model_v6",
@@ -2499,7 +3015,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -2521,6 +3037,16 @@
         },
         "selected_structure_id": "1VZX",
         "sequence_position_validated_locator_count": 2
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [
+          "minimum_two_locator_floor_only"
+        ],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_356_P14769.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:356",
       "predicted_geometry_status": "ok",
@@ -2562,6 +3088,14 @@
         "selected_structure_id": "1GRC",
         "sequence_position_validated_locator_count": 7
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:363",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P08179-F1-model_v6",
@@ -2602,6 +3136,14 @@
         "selected_structure_id": "1DLG",
         "sequence_position_validated_locator_count": 4
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:369",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P33038-F1-model_v6",
@@ -2618,7 +3160,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -2640,6 +3182,14 @@
         },
         "selected_structure_id": "2YBP",
         "sequence_position_validated_locator_count": 4
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_370_O75164.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:370",
       "predicted_geometry_status": "ok",
@@ -2682,6 +3232,14 @@
         "selected_structure_id": "4TS9",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:375",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P0ABP8-F1-model_v6",
@@ -2698,7 +3256,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -2721,6 +3279,14 @@
         "selected_structure_id": "1A8H",
         "sequence_position_validated_locator_count": 4
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_384_P23395.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:384",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P23395-F1-model_v6",
@@ -2737,7 +3303,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -2759,6 +3325,14 @@
         },
         "selected_structure_id": "1AF7",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_392_P07801.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:392",
       "predicted_geometry_status": "ok",
@@ -2795,6 +3369,14 @@
         "selected_structure_id": "1AM5",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:396",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P56272-F1-model_v6",
@@ -2811,7 +3393,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -2833,6 +3415,14 @@
         },
         "selected_structure_id": "1AMY",
         "sequence_position_validated_locator_count": 5
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_397_P04063.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:397",
       "predicted_geometry_status": "ok",
@@ -2874,6 +3464,14 @@
         "selected_structure_id": "1ARZ",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:402",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P04036-F1-model_v6",
@@ -2890,7 +3488,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -2912,6 +3510,14 @@
         },
         "selected_structure_id": "1AST",
         "sequence_position_validated_locator_count": 4
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_403_P07584.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:403",
       "predicted_geometry_status": "ok",
@@ -2953,6 +3559,14 @@
         "selected_structure_id": "2O7R",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:407",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q0ZPV7-F1-model_v6",
@@ -2993,6 +3607,14 @@
         "selected_structure_id": "1AW8",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:409",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P0A790-F1-model_v6",
@@ -3009,7 +3631,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -3032,6 +3654,14 @@
         "selected_structure_id": "1B8G",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_418_P37821.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:418",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P37821-F1-model_v6",
@@ -3048,7 +3678,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -3070,6 +3700,14 @@
         },
         "selected_structure_id": "1B9H",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_419_O52552.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:419",
       "predicted_geometry_status": "ok",
@@ -3111,6 +3749,14 @@
         "selected_structure_id": "1BHG",
         "sequence_position_validated_locator_count": 7
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:423",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P08236-F1-model_v6",
@@ -3151,6 +3797,14 @@
         "selected_structure_id": "1BJO",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:424",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P23721-F1-model_v6",
@@ -3185,6 +3839,14 @@
         "selected_ligand_site": null,
         "selected_structure_id": "1BQC",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:428",
       "predicted_geometry_status": "ok",
@@ -3226,6 +3888,14 @@
         "selected_structure_id": "1BS9",
         "sequence_position_validated_locator_count": 5
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:431",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-O59893-F1-model_v6",
@@ -3265,6 +3935,14 @@
         },
         "selected_structure_id": "1QK2",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:440",
       "predicted_geometry_status": "ok",
@@ -3306,6 +3984,14 @@
         "selected_structure_id": "1CEL",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:444",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P62694-F1-model_v6",
@@ -3340,6 +4026,14 @@
         "selected_ligand_site": null,
         "selected_structure_id": "1CHK",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:448",
       "predicted_geometry_status": "ok",
@@ -3376,6 +4070,14 @@
         "selected_structure_id": "1JKM",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:453",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-O68884-F1-model_v6",
@@ -3411,6 +4113,14 @@
         "selected_structure_id": "3ZO8",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:474",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P19080-F1-model_v6",
@@ -3427,7 +4137,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -3449,6 +4159,16 @@
         },
         "selected_structure_id": "1CZF",
         "sequence_position_validated_locator_count": 2
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [
+          "minimum_two_locator_floor_only"
+        ],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_480_P26214.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:480",
       "predicted_geometry_status": "ok",
@@ -3490,6 +4210,14 @@
         "selected_structure_id": "1DJ0",
         "sequence_position_validated_locator_count": 5
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:493",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P07649-F1-model_v6",
@@ -3506,7 +4234,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -3528,6 +4256,14 @@
         },
         "selected_structure_id": "1YCF",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_497_Q9FDN7.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:497",
       "predicted_geometry_status": "ok",
@@ -3569,6 +4305,14 @@
         "selected_structure_id": "1R76",
         "sequence_position_validated_locator_count": 7
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:509",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q9X592-F1-model_v6",
@@ -3609,6 +4353,14 @@
         "selected_structure_id": "1NMW",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:511",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q13526-F1-model_v6",
@@ -3625,7 +4377,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -3648,6 +4400,14 @@
         "selected_structure_id": "1I6P",
         "sequence_position_validated_locator_count": 4
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_517_P61517.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:517",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P61517-F1-model_v6",
@@ -3664,7 +4424,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -3687,6 +4447,14 @@
         "selected_structure_id": "4MDH",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_526_P11708.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:526",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P11708-F1-model_v6",
@@ -3703,7 +4471,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -3726,6 +4494,16 @@
         "selected_structure_id": "1U3F",
         "sequence_position_validated_locator_count": 2
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [
+          "minimum_two_locator_floor_only"
+        ],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_541_P75430.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:541",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P75430-F1-model_v6",
@@ -3742,7 +4520,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -3765,6 +4543,14 @@
         "selected_structure_id": "1F2D",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_545_Q7M523.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:545",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q7M523-F1-model_v6",
@@ -3781,7 +4567,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -3803,6 +4589,14 @@
         },
         "selected_structure_id": "1FOH",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_551_P15245.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:551",
       "predicted_geometry_status": "ok",
@@ -3838,6 +4632,14 @@
         "selected_ligand_site": null,
         "selected_structure_id": "1GCU",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:566",
       "predicted_geometry_status": "ok",
@@ -3879,6 +4681,14 @@
         "selected_structure_id": "1IMA",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:577",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P29218-F1-model_v6",
@@ -3913,6 +4723,14 @@
         "selected_ligand_site": null,
         "selected_structure_id": "1IDJ",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:590",
       "predicted_geometry_status": "ok",
@@ -3949,6 +4767,14 @@
         "selected_structure_id": "1WD8",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:594",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q9UM07-F1-model_v6",
@@ -3965,7 +4791,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -3987,6 +4813,16 @@
         },
         "selected_structure_id": "1FY2",
         "sequence_position_validated_locator_count": 2
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [
+          "minimum_two_locator_floor_only"
+        ],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_599_P36936.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:599",
       "predicted_geometry_status": "ok",
@@ -4028,6 +4864,14 @@
         "selected_structure_id": "1QSG",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:606",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P0AEK4-F1-model_v6",
@@ -4067,6 +4911,14 @@
         },
         "selected_structure_id": "1SSX",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:609",
       "predicted_geometry_status": "ok",
@@ -4108,6 +4960,14 @@
         "selected_structure_id": "1Q3N",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:614",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P0A715-F1-model_v6",
@@ -4143,6 +5003,14 @@
         "selected_structure_id": "1BG6",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:617",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q44297-F1-model_v6",
@@ -4177,6 +5045,14 @@
         "selected_ligand_site": null,
         "selected_structure_id": "1L6P",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:627",
       "predicted_geometry_status": "ok",
@@ -4219,6 +5095,14 @@
         "selected_structure_id": "1V0Y",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:634",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P84147-F1-model_v6",
@@ -4258,6 +5142,14 @@
         },
         "selected_structure_id": "1KNY",
         "sequence_position_validated_locator_count": 1
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:647",
       "predicted_geometry_status": "ok",
@@ -4299,6 +5191,14 @@
         "selected_structure_id": "1IG8",
         "sequence_position_validated_locator_count": 4
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:651",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P04807-F1-model_v6",
@@ -4338,6 +5238,14 @@
         },
         "selected_structure_id": "1E1A",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:686",
       "predicted_geometry_status": "ok",
@@ -4380,6 +5288,14 @@
         "selected_structure_id": "2ODQ",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:688",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q5JP69-F1-model_v6",
@@ -4396,7 +5312,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -4419,6 +5335,14 @@
         "selected_structure_id": "1DJ1",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_709_P00431.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:709",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P00431-F1-model_v6",
@@ -4435,7 +5359,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -4458,6 +5382,14 @@
         "selected_structure_id": "1RA0",
         "sequence_position_validated_locator_count": 4
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_710_P25524.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:710",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P25524-F1-model_v6",
@@ -4474,7 +5406,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -4497,6 +5429,14 @@
         "selected_structure_id": "1FFT",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_714_P0ABI8.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:714",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P0ABI8-F1-model_v6",
@@ -4513,7 +5453,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -4536,6 +5476,14 @@
         "selected_structure_id": "1S01",
         "sequence_position_validated_locator_count": 6
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_723_P00782.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:723",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P00782-F1-model_v6",
@@ -4552,7 +5500,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -4575,6 +5523,14 @@
         "selected_structure_id": "1U8V",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_750_P55792.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:750",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P55792-F1-model_v6",
@@ -4591,7 +5547,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -4614,6 +5570,14 @@
         "selected_structure_id": "1G64",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_853_P31570.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:853",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P31570-F1-model_v6",
@@ -4630,7 +5594,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -4652,6 +5616,14 @@
         },
         "selected_structure_id": "1OHV",
         "sequence_position_validated_locator_count": 8
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_854_P80147.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
       },
       "entry_id": "m_csa:854",
       "predicted_geometry_status": "ok",
@@ -4687,6 +5659,14 @@
         "selected_ligand_site": null,
         "selected_structure_id": "1L7A",
         "sequence_position_validated_locator_count": 0
+      },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
       },
       "entry_id": "m_csa:866",
       "predicted_geometry_status": "ok",
@@ -4728,6 +5708,14 @@
         "selected_structure_id": "2DOR",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:892",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-A2RJT9-F1-model_v6",
@@ -4763,6 +5751,14 @@
         "selected_structure_id": "1PVI",
         "sequence_position_validated_locator_count": 0
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": false,
+        "planned_audited_locator_sidecar_path": null,
+        "preflight_present": false,
+        "preflight_status": null
+      },
       "entry_id": "m_csa:897",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P23657-F1-model_v6",
@@ -4779,7 +5775,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -4802,6 +5798,14 @@
         "selected_structure_id": "4Z71",
         "sequence_position_validated_locator_count": 3
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_916_P9WI55.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:916",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-P9WI55-F1-model_v6",
@@ -4818,7 +5822,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -4841,6 +5845,14 @@
         "selected_structure_id": "5DQR",
         "sequence_position_validated_locator_count": 8
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_990_Q8GS60.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:990",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q8GS60-F1-model_v6",
@@ -4857,7 +5869,7 @@
       },
       "auto_create_locator_sidecar_allowed": false,
       "blockers": [
-        "source_free_coordinate_anchor_candidate_needs_review",
+        "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
         "source_free_event_axis_missing_for_pair_token"
       ],
       "coordinate_anchor_candidate_summary": {
@@ -4880,6 +5892,14 @@
         "selected_structure_id": "4BZC",
         "sequence_position_validated_locator_count": 4
       },
+      "coordinate_anchor_rewrite_preflight_summary": {
+        "coordinate_contact_warnings": [],
+        "copy_to_audited_locator_dir_allowed_now": false,
+        "explicit_approval_required_before_copy": true,
+        "planned_audited_locator_sidecar_path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601/m_csa_994_Q9Y3Z3.json",
+        "preflight_present": true,
+        "preflight_status": "preflight_passed_pending_explicit_approval"
+      },
       "entry_id": "m_csa:994",
       "predicted_geometry_status": "ok",
       "predicted_model_id": "AF-Q9Y3Z3-F1-model_v6",
@@ -4888,13 +5908,18 @@
   ],
   "blockers": [
     "priority1_rows_lack_source_free_contact_or_coordinate_anchor",
+    "source_free_coordinate_anchor_preflight_passed_requires_explicit_approval",
     "source_free_coordinate_anchor_candidates_need_review",
     "source_free_event_axis_missing_for_pair_token"
   ],
   "counts": {
     "auto_create_locator_sidecar_allowed_rows": 0,
-    "blockers": 3,
+    "blockers": 4,
     "critical_violation_total": 0,
+    "priority1_coordinate_anchor_preflight_approved_rewrites": 0,
+    "priority1_coordinate_anchor_preflight_passed_pending_explicit_approval": 55,
+    "priority1_coordinate_anchor_preflight_rows": 55,
+    "priority1_coordinate_anchor_preflight_rows_with_warnings": 6,
     "priority1_locator_queue_rows": 126,
     "priority1_rows_with_source_free_coordinate_local_anchor_candidate": 102,
     "priority1_rows_with_source_free_ligand_or_cofactor_anchor": 0,
@@ -4902,14 +5927,14 @@
     "source_free_locator_schema_available": 1,
     "source_free_locator_schema_required_residue_locator_minimum": 2
   },
-  "created_utc": "2026-06-02T14:18:02Z",
+  "created_utc": "2026-06-02T15:33:18Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "approved_source_free_locator_surface_ready": false,
     "auto_create_locator_sidecars_now": false,
     "heldout_read_once_performed": false,
     "heldout_safe_pair_application_surface_ready": false,
-    "next_gate": "Do not create locator sidecars from predicted-geometry rows alone. Add a source-free coordinate-local anchor policy or source-free structure-local ligand/contact evidence, then rerun this audit before sidecar materialization."
+    "next_gate": "Use the preflight-passed coordinate-anchor rows as the explicit-approval queue. Do not copy locator sidecars or apply the frozen threshold until approved rewrites exist in the audited locator directory and this audit is rerun."
   },
   "guardrails": {
     "auto_locator_creation_allowed": false,
@@ -4929,8 +5954,8 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Review coordinate-anchor candidates, rewrite only approved sidecars into the audited locator directory, and keep the event-axis blocker separate before any heldout read.",
-    "result": "The priority-1 queue rows have predicted-geometry coordinates, 102 now expose review-only coordinate-local anchor candidates, but none are approved locator sidecars for scoring."
+    "next_action": "Approve only reviewed locator rewrites, copy those sidecars into the audited locator directory, rerun strict/input/surface audits, and keep the event-axis blocker separate before any heldout read.",
+    "result": "The priority-1 queue rows have predicted-geometry coordinates, 102 now expose review-only coordinate-local anchor candidates, 55 pass rewrite preflight pending explicit approval, and none are approved locator sidecars for scoring."
   },
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit",
   "scope": "Input audit for priority-1 source-free locator queue rows. It checks whether the predicted-geometry artifact already contains source-free local ligand/cofactor anchors, and whether the selected-PDB coordinate anchor candidate audit has staged coordinate-local ligand/metal contact anchors, without M-CSA heldout mechanism text, heldout labels, source IDs, target names, or EC/Rhea IDs.",
@@ -4939,6 +5964,11 @@
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit_current702_20260602.json",
       "sha256": "c65fc769b690caa190093ff54c04ad4294c1fe0f7700d2e2a1660f63eb13d475"
+    },
+    "coordinate_anchor_priority1_rewrite_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_current702_20260602.json",
+      "sha256": "bd95968062927021260e6c8354bd0a867c82a9a6949f980d0f54b8eca70bb889"
     },
     "locator_action_queue": {
       "exists": true,

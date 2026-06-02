@@ -56,6 +56,115 @@ Automation run: `catalytic-earth-lever-3-2-forward-push`
 
 #### Wall-clock ledger
 
+- STARTED_AT: `2026-06-02T15:01:56Z`
+- STARTED_LOCAL: `2026-06-02T10:01:56-0500 CDT`
+- ENDED_AT: `2026-06-02T15:36:56Z`
+- ENDED_LOCAL: `2026-06-02T10:36:56-0500 CDT`
+- ELAPSED_MINUTES: `35.0`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "43050", "started_at": "2026-06-02T15:01:56Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue from the Lever 2 source-free coordinate-anchor priority-1 manual
+review worksheet. Dry-run source-free locator rewrites for the 55 review-ready
+rows, propagate the approval-pending state into the locator/surface gates, and
+make the Lever 3 fold channel deployment-readiness gate explicitly
+predicted-structure-vs-atlas only.
+
+#### What changed
+
+- Lever 2: added a rebuildable source-free coordinate-anchor priority-1
+  rewrite preflight. It dry-runs planned locator sidecar payloads against the
+  approved source-free locator schema and guardrails without approving,
+  copying, scoring, importing, evaluating heldout rows, or tuning thresholds.
+- The preflight passes all 55 priority-1 rows: 49 clean approval candidates
+  and 6 minimum-locator warning candidates. It now emits an explicit approval
+  queue ordered with the 49 clean rows first, followed by the 6 warning rows.
+  No row is copy-authorized and `explicitly_approved_locator_rewrites` remains
+  0.
+- Lever 2 propagation: the source-free locator input audit now consumes the
+  preflight artifact and distinguishes `source_free_coordinate_anchor_preflight_passed_requires_explicit_approval`
+  from the remaining unreviewed coordinate-anchor candidates. The heldout-safe
+  surface plan now reports `blocked_source_free_coordinate_anchor_explicit_approval_pending`
+  for the residue-count extractor and keeps the frozen residual threshold
+  unapplied.
+- Lever 3: added a predicted-structure fold channel deployment-input audit. It
+  verifies that current fold-channel coordinate requests are AlphaFoldDB v6 CIF
+  requests and scored row fold signals contain only `nearest_atlas_tm_score`;
+  critical violations are 0.
+- Lever 3 readiness now composes that deployment-input contract and exposes a
+  deployment-closure gate at the fixed OOS-calibrated threshold `0.44155`.
+  The confounded operating point remains research-ready with 5/6 confounded
+  OOS rows abstained and in-scope retention intact, but deployment closure is
+  still blocked by 5 production blocker rows, missing persistent AFDB
+  coordinate provenance, and the rejected fold-only escape hatch.
+- Ended before the nominal 55-minute block because the selected mechanical
+  gates are complete; the remaining work is explicit locator approval and
+  production-blocker/coordinate-policy clearance, not a safe automated
+  approval, threshold, label, import, or heldout-scoring action.
+
+#### Artifacts and reports
+
+- New:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_current702_20260602.json`
+  and
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_current702_20260602.md`.
+- New:
+  `artifacts/v3_predicted_structure_fold_channel_deployment_input_audit_current702_20260602.json`
+  and
+  `work/predicted_structure_fold_channel_deployment_input_audit_current702_20260602.md`.
+- Regenerated:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602.md`,
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.json`,
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.md`,
+  `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`,
+  and
+  `work/predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.md`.
+
+#### Tests run
+
+- `python -m compileall -q src/catalytic_earth/northstar_next_levers.py src/catalytic_earth/cli.py tests/test_northstar_next_levers.py tests/test_cli.py tests/test_geometry_artifact_regression.py`
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'coordinate_anchor_priority1_rewrite_preflight or locator_input_audit_counts_coordinate_candidates or deployment_input_audit or confounded_readiness' -q`
+  (4 passed, 94 deselected)
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'row_specific_bond_change_p0_oos_augmented_expanded_surface_current_counts or predicted_structure_fold_channel_deployment_input_audit_current_counts or predicted_structure_fold_confounded_operating_point_readiness_current_counts' -q`
+  (3 passed, 126 deselected)
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -q`
+  (98 passed)
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -q`
+  (129 passed, 7 subtests passed)
+- `PYTHONPATH=src python -m pytest tests/test_cli.py -q`
+  (118 passed, 74 subtests passed)
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`
+  (345 passed, 81 subtests passed)
+- `python -m json.tool` on the two new JSON artifacts and the three regenerated
+  JSON artifacts
+- `git diff --check`
+
+#### Exact next action
+
+- Start with
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_current702_20260602.md`.
+  Review the explicit approval queue in order: approve or reject the 49 clean
+  candidates first, then the 6 minimum-locator warning candidates. Only
+  explicitly approved locator rewrites may be copied into the audited
+  source-free locator directory; after that, rerun strict/input/surface audits.
+- Do not apply the frozen residual threshold or perform any heldout read until
+  approved locator sidecars exist in the audited directory and the
+  heldout-safe surface plan reports ready.
+- For Lever 3, continue from
+  `work/predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.md`.
+  Keep the fixed threshold `0.44155`; clear the five production blocker rows
+  and persist/resolve the AFDB coordinate bundle before claiming deployment
+  closure.
+
+### 2026-06-02 Lever 2/3/4 Forward Push Active Run
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
 - STARTED_AT: `2026-06-02T14:03:39Z`
 - STARTED_LOCAL: `2026-06-02T09:03:39-0500 CDT`
 - ENDED_AT: `2026-06-02T14:45:33Z`
