@@ -4150,6 +4150,275 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(audit["guardrails"]["validation_only"])
         self.assertFalse(audit["guardrails"]["feature_contract_mutated"])
 
+    def test_row_specific_bond_change_p0_oos_approved_sidecar_current_counts(
+        self,
+    ) -> None:
+        sidecar = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_calibration_approved_source_evidence_sidecar_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            sidecar["status"],
+            "p0_oos_calibration_approved_source_evidence_sidecar_ready",
+        )
+        self.assertEqual(sidecar["counts"]["selected_oos_rows"], 28)
+        self.assertEqual(sidecar["counts"]["approved_rows"], 28)
+        self.assertEqual(sidecar["counts"]["calibration_rows"], 28)
+        self.assertEqual(sidecar["counts"]["rows_with_rhea_equations"], 28)
+        self.assertEqual(sidecar["counts"]["skipped_candidate_rows"], 2)
+        self.assertEqual(sidecar["counts"]["model_training_allowed_rows"], 0)
+        self.assertEqual(
+            [row["entry_id"] for row in sidecar["sidecar_rows"]],
+            [
+                "m_csa:2",
+                "m_csa:17",
+                "m_csa:23",
+                "m_csa:25",
+                "m_csa:40",
+                "m_csa:49",
+                "m_csa:59",
+                "m_csa:70",
+                "m_csa:78",
+                "m_csa:85",
+                "m_csa:101",
+                "m_csa:149",
+                "m_csa:154",
+                "m_csa:194",
+                "m_csa:221",
+                "m_csa:222",
+                "m_csa:224",
+                "m_csa:241",
+                "m_csa:246",
+                "m_csa:253",
+                "m_csa:256",
+                "m_csa:263",
+                "m_csa:273",
+                "m_csa:287",
+                "m_csa:292",
+                "m_csa:312",
+                "m_csa:317",
+                "m_csa:318",
+            ],
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in sidecar["skipped_rows"]],
+            ["m_csa:76", "m_csa:202"],
+        )
+        self.assertTrue(
+            all(
+                row["allowed_for_feature_contract_consumption_now"]
+                for row in sidecar["sidecar_rows"]
+            )
+        )
+
+    def test_row_specific_bond_change_p0_oos_approved_sidecar_strict_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_passed",
+        )
+        self.assertEqual(audit["counts"]["sidecar_rows"], 28)
+        self.assertEqual(audit["counts"]["approved_rows"], 28)
+        self.assertEqual(
+            audit["counts"]["strict_audit_critical_violation_total"], 0
+        )
+        self.assertEqual(audit["counts"]["violation_counts"], {})
+        self.assertTrue(
+            all(row["status"] == "passed" for row in audit["row_audits"])
+        )
+
+    def test_row_specific_bond_change_p0_oos_augmented_no_template_current_counts(
+        self,
+    ) -> None:
+        feature_sidecar = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_train_cal_feature_sidecar_current702_20260602.json"
+            )
+        )
+        guardrail = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_train_cal_feature_guardrail_audit_"
+                "current702_20260602.json"
+            )
+        )
+        rerun = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_no_template_rerun_current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            feature_sidecar["status"],
+            "p0_oos_augmented_train_cal_row_specific_feature_sidecar_ready_no_fit",
+        )
+        self.assertEqual(feature_sidecar["counts"]["materialized_feature_rows"], 43)
+        self.assertEqual(feature_sidecar["counts"]["train_rows"], 11)
+        self.assertEqual(feature_sidecar["counts"]["calibration_rows"], 32)
+        self.assertEqual(
+            feature_sidecar["counts"]["materialized_label_type_counts"],
+            {"out_of_scope": 28, "seed_fingerprint": 15},
+        )
+        self.assertEqual(
+            guardrail["status"],
+            "p0_oos_augmented_train_cal_feature_guardrail_audit_passed",
+        )
+        self.assertEqual(guardrail["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            rerun["status"],
+            "p0_row_specific_no_template_train_cal_operating_point_ready",
+        )
+        self.assertTrue(
+            rerun["decision"]["known_vs_novel_operating_point_evaluable"]
+        )
+        self.assertEqual(rerun["counts"]["calibration_primary_rows"], 4)
+        self.assertEqual(rerun["counts"]["calibration_oos_rows"], 28)
+        self.assertEqual(
+            rerun["centroid_variant"]["calibration_selected_similarity_threshold"][
+                "oos_abstain_recall"
+            ],
+            0.5,
+        )
+        self.assertEqual(
+            rerun["residual_variant"]["calibration_selected_residual_threshold"][
+                "oos_abstain_recall"
+            ],
+            0.5,
+        )
+
+    def test_row_specific_bond_change_p0_oos_augmented_operating_point_contract_current_counts(
+        self,
+    ) -> None:
+        contract = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_operating_point_contract_current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            contract["status"],
+            "p0_oos_augmented_operating_point_contract_ready_calibration_only",
+        )
+        self.assertTrue(
+            contract["decision"]["known_vs_novel_operating_point_evaluable"]
+        )
+        self.assertTrue(
+            contract["decision"]["residual_calibration_contract_ready"]
+        )
+        self.assertFalse(contract["decision"]["heldout_read_once_performed"])
+        self.assertEqual(contract["counts"]["calibration_oos_rows"], 28)
+        self.assertEqual(contract["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            contract["calibration_contract"]["residual_distance"]["threshold"],
+            3.21469422,
+        )
+        self.assertEqual(
+            contract["calibration_contract"]["residual_distance"][
+                "primary_retain_recall"
+            ],
+            1.0,
+        )
+        self.assertEqual(
+            contract["calibration_contract"]["residual_distance"][
+                "oos_abstain_recall"
+            ],
+            0.5,
+        )
+        self.assertFalse(
+            contract["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+
+    def test_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis_current_counts(
+        self,
+    ) -> None:
+        analysis = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_calibration_error_analysis_current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            analysis["status"],
+            "p0_oos_augmented_calibration_error_analysis_ready",
+        )
+        self.assertEqual(analysis["counts"]["calibration_oos_rows"], 28)
+        self.assertEqual(analysis["counts"]["calibration_primary_rows"], 4)
+        self.assertEqual(
+            analysis["counts"]["outcome_counts"],
+            {
+                "oos_abstained": 14,
+                "oos_non_abstained": 14,
+                "primary_retained": 4,
+            },
+        )
+        self.assertEqual(analysis["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            analysis["oos_non_abstained_rows"][0]["entry_id"], "m_csa:101"
+        )
+        self.assertEqual(
+            analysis["oos_abstained_rows"][0]["entry_id"], "m_csa:292"
+        )
+        self.assertEqual(
+            analysis["counts"]["retained_oos_nearest_primary_counts"],
+            {
+                "flavin_dehydrogenase_reductase": 1,
+                "heme_peroxidase_oxidase": 4,
+                "metal_dependent_hydrolase": 4,
+                "ser_his_acid_hydrolase": 5,
+            },
+        )
+        self.assertEqual(len(analysis["retained_oos_failure_set"]), 14)
+        self.assertEqual(
+            analysis["counts"]["retained_oos_priority_counts"],
+            {
+                "borderline_contract_miss": 2,
+                "near_contract_miss": 3,
+                "strong_primary_alias": 9,
+            },
+        )
+        self.assertEqual(
+            analysis["retained_oos_failure_set"][0],
+            {
+                "entry_id": "m_csa:273",
+                "event_profile": "events=4;bond=1;proton=3;electron=0",
+                "nearest_primary_label": "metal_dependent_hydrolase",
+                "priority": "borderline_contract_miss",
+                "residual_margin_below_threshold": 0.04711835,
+            },
+        )
+        self.assertFalse(analysis["guardrails"]["heldout_rows_evaluated"])
+
     def test_high_value_glycyl_radical_no_template_guardrail_current_counts(
         self,
     ) -> None:

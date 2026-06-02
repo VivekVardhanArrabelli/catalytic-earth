@@ -1,0 +1,334 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_current702_20260602",
+  "counts": {
+    "approved_rows": 28,
+    "critical_counts": {
+      "failed_row_audits": 0,
+      "feature_contract_consumption_without_review_rows": 0,
+      "heldout_rows": 0,
+      "model_training_allowed_rows": 0,
+      "sidecar_rows_missing": 0
+    },
+    "feature_contract_consumable_rows": 28,
+    "model_training_allowed_rows": 0,
+    "sidecar_rows": 28,
+    "strict_audit_critical_violation_total": 0,
+    "violation_counts": {}
+  },
+  "created_utc": "2026-06-02T10:28:17Z",
+  "guardrails": {
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "strict_audit_only": true,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Merge audited OOS rows with approved P0 rows, materialize label-stripped train/cal event features, and rerun no-template centroid/residual calibration.",
+    "result": "The approved OOS calibration rows pass source-evidence and split-safety audit."
+  },
+  "row_audits": [
+    {
+      "entry_id": "m_csa:2",
+      "event_count": 3,
+      "event_source_span_count": 3,
+      "mapped_event_residue_count": 6,
+      "participant_mapping_count": 10,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:17",
+      "event_count": 5,
+      "event_source_span_count": 5,
+      "mapped_event_residue_count": 15,
+      "participant_mapping_count": 47,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:23",
+      "event_count": 2,
+      "event_source_span_count": 2,
+      "mapped_event_residue_count": 10,
+      "participant_mapping_count": 10,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:25",
+      "event_count": 3,
+      "event_source_span_count": 3,
+      "mapped_event_residue_count": 5,
+      "participant_mapping_count": 11,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:40",
+      "event_count": 1,
+      "event_source_span_count": 1,
+      "mapped_event_residue_count": 4,
+      "participant_mapping_count": 8,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:49",
+      "event_count": 3,
+      "event_source_span_count": 3,
+      "mapped_event_residue_count": 6,
+      "participant_mapping_count": 11,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:59",
+      "event_count": 5,
+      "event_source_span_count": 5,
+      "mapped_event_residue_count": 18,
+      "participant_mapping_count": 13,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:70",
+      "event_count": 3,
+      "event_source_span_count": 3,
+      "mapped_event_residue_count": 9,
+      "participant_mapping_count": 9,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:78",
+      "event_count": 3,
+      "event_source_span_count": 3,
+      "mapped_event_residue_count": 7,
+      "participant_mapping_count": 11,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:85",
+      "event_count": 2,
+      "event_source_span_count": 2,
+      "mapped_event_residue_count": 6,
+      "participant_mapping_count": 10,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:101",
+      "event_count": 2,
+      "event_source_span_count": 2,
+      "mapped_event_residue_count": 3,
+      "participant_mapping_count": 9,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:149",
+      "event_count": 3,
+      "event_source_span_count": 3,
+      "mapped_event_residue_count": 3,
+      "participant_mapping_count": 10,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:154",
+      "event_count": 4,
+      "event_source_span_count": 4,
+      "mapped_event_residue_count": 4,
+      "participant_mapping_count": 8,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:194",
+      "event_count": 5,
+      "event_source_span_count": 5,
+      "mapped_event_residue_count": 26,
+      "participant_mapping_count": 11,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:221",
+      "event_count": 4,
+      "event_source_span_count": 4,
+      "mapped_event_residue_count": 8,
+      "participant_mapping_count": 6,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:222",
+      "event_count": 5,
+      "event_source_span_count": 5,
+      "mapped_event_residue_count": 11,
+      "participant_mapping_count": 10,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:224",
+      "event_count": 2,
+      "event_source_span_count": 2,
+      "mapped_event_residue_count": 2,
+      "participant_mapping_count": 12,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:241",
+      "event_count": 5,
+      "event_source_span_count": 5,
+      "mapped_event_residue_count": 9,
+      "participant_mapping_count": 9,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:246",
+      "event_count": 4,
+      "event_source_span_count": 4,
+      "mapped_event_residue_count": 9,
+      "participant_mapping_count": 9,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:253",
+      "event_count": 2,
+      "event_source_span_count": 2,
+      "mapped_event_residue_count": 12,
+      "participant_mapping_count": 14,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:256",
+      "event_count": 3,
+      "event_source_span_count": 3,
+      "mapped_event_residue_count": 15,
+      "participant_mapping_count": 20,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:263",
+      "event_count": 4,
+      "event_source_span_count": 4,
+      "mapped_event_residue_count": 16,
+      "participant_mapping_count": 7,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:273",
+      "event_count": 4,
+      "event_source_span_count": 4,
+      "mapped_event_residue_count": 11,
+      "participant_mapping_count": 7,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:287",
+      "event_count": 3,
+      "event_source_span_count": 3,
+      "mapped_event_residue_count": 15,
+      "participant_mapping_count": 10,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:292",
+      "event_count": 5,
+      "event_source_span_count": 5,
+      "mapped_event_residue_count": 10,
+      "participant_mapping_count": 12,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:312",
+      "event_count": 2,
+      "event_source_span_count": 2,
+      "mapped_event_residue_count": 8,
+      "participant_mapping_count": 9,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:317",
+      "event_count": 5,
+      "event_source_span_count": 5,
+      "mapped_event_residue_count": 7,
+      "participant_mapping_count": 10,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    },
+    {
+      "entry_id": "m_csa:318",
+      "event_count": 2,
+      "event_source_span_count": 2,
+      "mapped_event_residue_count": 2,
+      "participant_mapping_count": 7,
+      "review_status": "approved",
+      "status": "passed",
+      "violations": []
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_strict_audit",
+  "scope": "Strict audit for approved OOS calibration source-evidence rows. It verifies OOS train/cal split safety, source spans, Rhea spans, review provenance, and non-training guardrails.",
+  "source_artifacts": {
+    "extraction_work_package": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_current702_20260602.json",
+      "sha256": "032558d9dd82b47a232d02a962d7d6185e3385146684d6d7c4ac0c8b3b201bda"
+    },
+    "sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_current702_20260602.json",
+      "sha256": "eef4c4c5cde7f0b14ee2c54666a8384c4b82fa6384aa389b5bfeac90e65eefd7"
+    },
+    "source_evidence_schema": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_schema_current702_20260601.json",
+      "sha256": "909686b9d6afafd105cc2c397c3de6b7af54508a1878a877b52164eedfa3d666"
+    }
+  },
+  "status": "p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_passed"
+}

@@ -36,6 +36,8 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit,
     build_mechanism_feature_row_specific_bond_change_p0_extraction_work_package,
     build_mechanism_feature_row_specific_bond_change_p0_no_template_rerun,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar,
     build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package,
     build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit,
     build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap,
@@ -5859,6 +5861,140 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertFalse(row["allowed_for_feature_contract_consumption_now"])
         self.assertFalse(row["allowed_for_model_training_now"])
 
+    def test_row_specific_bond_change_p0_oos_approved_sidecar_skips_rhea_missing_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            package_path = root / "package.json"
+            graph_path = root / "graph.json"
+            package_rows = [
+                {
+                    "entry_id": "m_csa:1",
+                    "accession": "P11111",
+                    "assigned_embedding_split": "calibration",
+                    "label_manifest_type": "out_of_scope",
+                    "label_manifest_split": "in_distribution",
+                    "oos_tier": "boundary_oos",
+                },
+                {
+                    "entry_id": "m_csa:2",
+                    "accession": "P22222",
+                    "assigned_embedding_split": "calibration",
+                    "label_manifest_type": "out_of_scope",
+                    "label_manifest_split": "in_distribution",
+                    "oos_tier": "unknown_oos",
+                },
+            ]
+            package_path.write_text(
+                json.dumps({"extraction_rows": package_rows}),
+                encoding="utf-8",
+            )
+            graph_path.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"generated_at": "2026-06-02T00:00:00Z"},
+                        "nodes": [
+                            {"id": "m_csa:1"},
+                            {"id": "m_csa:2"},
+                            {
+                                "id": "m_csa:1:mechanism:1",
+                                "text": "A serine residue attacks the substrate carbonyl.",
+                            },
+                            {
+                                "id": "m_csa:2:mechanism:1",
+                                "text": "A cysteine residue attacks the substrate carbonyl.",
+                            },
+                            {
+                                "id": "m_csa:1:residue:1",
+                                "roles": ["nucleophile"],
+                                "sequence_positions": [
+                                    {
+                                        "code": "Ser",
+                                        "resid": 10,
+                                        "uniprot_id": "P11111",
+                                    }
+                                ],
+                            },
+                            {
+                                "id": "m_csa:2:residue:1",
+                                "roles": ["nucleophile"],
+                                "sequence_positions": [
+                                    {
+                                        "code": "Cys",
+                                        "resid": 20,
+                                        "uniprot_id": "P22222",
+                                    }
+                                ],
+                            },
+                            {"id": "ec:1.1.1.1"},
+                            {"id": "ec:2.2.2.2"},
+                            {
+                                "id": "rhea:RHEA:1",
+                                "equation": "substrate + H2O = product",
+                            },
+                        ],
+                        "edges": [
+                            {
+                                "source": "m_csa:1",
+                                "target": "m_csa:1:mechanism:1",
+                                "predicate": "has_mechanism_text",
+                            },
+                            {
+                                "source": "m_csa:2",
+                                "target": "m_csa:2:mechanism:1",
+                                "predicate": "has_mechanism_text",
+                            },
+                            {
+                                "source": "m_csa:1",
+                                "target": "m_csa:1:residue:1",
+                                "predicate": "has_catalytic_residue",
+                            },
+                            {
+                                "source": "m_csa:2",
+                                "target": "m_csa:2:residue:1",
+                                "predicate": "has_catalytic_residue",
+                            },
+                            {
+                                "source": "m_csa:1",
+                                "target": "ec:1.1.1.1",
+                                "predicate": "has_ec",
+                            },
+                            {
+                                "source": "m_csa:2",
+                                "target": "ec:2.2.2.2",
+                                "predicate": "has_ec",
+                            },
+                            {
+                                "source": "ec:1.1.1.1",
+                                "target": "rhea:RHEA:1",
+                                "predicate": "maps_to_reaction",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            sidecar = build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar(
+                extraction_work_package_path=package_path,
+                graph_path=graph_path,
+                max_rows=2,
+            )
+
+        self.assertEqual(sidecar["counts"]["approved_rows"], 1)
+        self.assertEqual(sidecar["counts"]["skipped_candidate_rows"], 1)
+        self.assertEqual(sidecar["sidecar_rows"][0]["entry_id"], "m_csa:1")
+        self.assertEqual(sidecar["skipped_rows"][0]["entry_id"], "m_csa:2")
+        self.assertIn(
+            "rhea_equation_missing", sidecar["skipped_rows"][0]["blockers"]
+        )
+        self.assertTrue(
+            sidecar["sidecar_rows"][0][
+                "allowed_for_feature_contract_consumption_now"
+            ]
+        )
+
     def test_row_specific_bond_change_p0_oos_calibration_extraction_strict_audit_blocks_unsafe_rows(
         self,
     ) -> None:
@@ -5914,6 +6050,127 @@ class NorthstarNextLeversTests(unittest.TestCase):
             1,
         )
         self.assertFalse(audit["decision"]["feature_consumption_allowed_now"])
+
+    def test_row_specific_bond_change_p0_oos_augmented_error_analysis_names_retained_failure_set(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            rerun_path = root / "rerun.json"
+            contract_path = root / "contract.json"
+            feature_sidecar_path = root / "features.json"
+            rerun_path.write_text(
+                json.dumps(
+                    {
+                        "scored_rows": {
+                            "calibration": [
+                                {
+                                    "entry_id": "m_csa:1",
+                                    "is_primary": False,
+                                    "true_label": "none_of_above",
+                                    "nearest_primary_label": "ser_his_acid_hydrolase",
+                                    "nearest_primary_similarity": 0.3,
+                                    "out_of_atlas_span_residual": 2.95,
+                                },
+                                {
+                                    "entry_id": "m_csa:2",
+                                    "is_primary": False,
+                                    "true_label": "none_of_above",
+                                    "nearest_primary_label": "metal_dependent_hydrolase",
+                                    "nearest_primary_similarity": 0.1,
+                                    "out_of_atlas_span_residual": 3.4,
+                                },
+                                {
+                                    "entry_id": "m_csa:3",
+                                    "is_primary": True,
+                                    "true_label": "ser_his_acid_hydrolase",
+                                    "nearest_primary_label": "ser_his_acid_hydrolase",
+                                    "nearest_primary_similarity": 0.5,
+                                    "out_of_atlas_span_residual": 1.0,
+                                },
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_oos_augmented_operating_point_contract_ready_calibration_only"
+                        ),
+                        "calibration_contract": {
+                            "residual_distance": {"threshold": 3.0},
+                            "centroid_similarity": {"threshold": 0.2},
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            feature_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "row_specific_event_features": {
+                                    "event_count": 3,
+                                    "bond_change_event_count": 1,
+                                    "proton_transfer_count": 1,
+                                    "electron_transfer_count": 1,
+                                },
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "row_specific_event_features": {
+                                    "event_count": 4,
+                                    "bond_change_event_count": 2,
+                                    "proton_transfer_count": 0,
+                                    "electron_transfer_count": 2,
+                                },
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            analysis = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis(
+                no_template_rerun_path=rerun_path,
+                operating_point_contract_path=contract_path,
+                train_cal_feature_sidecar_path=feature_sidecar_path,
+            )
+
+        self.assertEqual(
+            analysis["status"], "p0_oos_augmented_calibration_error_analysis_ready"
+        )
+        self.assertEqual(
+            analysis["counts"]["outcome_counts"],
+            {"oos_abstained": 1, "oos_non_abstained": 1, "primary_retained": 1},
+        )
+        self.assertEqual(
+            analysis["counts"]["retained_oos_nearest_primary_counts"],
+            {"ser_his_acid_hydrolase": 1},
+        )
+        self.assertEqual(
+            analysis["counts"]["retained_oos_event_profile_counts"],
+            {"events=3;bond=1;proton=1;electron=1": 1},
+        )
+        self.assertEqual(
+            analysis["counts"]["retained_oos_priority_counts"],
+            {"borderline_contract_miss": 1},
+        )
+        self.assertEqual(
+            analysis["retained_oos_failure_set"][0],
+            {
+                "entry_id": "m_csa:1",
+                "event_profile": "events=3;bond=1;proton=1;electron=1",
+                "nearest_primary_label": "ser_his_acid_hydrolase",
+                "priority": "borderline_contract_miss",
+                "residual_margin_below_threshold": 0.05,
+            },
+        )
 
     def test_mechanism_feature_sidecar_schema_audit_passes_aligned_sidecars(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

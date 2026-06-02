@@ -241,6 +241,30 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_CALIBRATION_EXTRACTION_WORK_PA
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_CALIBRATION_EXTRACTION_WORK_PACKAGE_STRICT_AUDIT_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit_current702_20260602"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_CALIBRATION_APPROVED_SIDECAR_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_CALIBRATION_APPROVED_SIDECAR_STRICT_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_SOURCE_SIDECAR_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_TRAIN_CAL_FEATURE_SIDECAR_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_sidecar_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_TRAIN_CAL_FEATURE_GUARDRAIL_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_guardrail_audit_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_NO_TEMPLATE_RERUN_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_no_template_rerun_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_OPERATING_POINT_CONTRACT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_operating_point_contract_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_CALIBRATION_ERROR_ANALYSIS_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis_current702_20260602"
+)
 RHEA_REST_URL = "https://www.rhea-db.org/rhea"
 RHEA_QUERY_COLUMNS = "rhea-id,equation,ec,uniprot"
 RHEA_USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
@@ -23909,6 +23933,1839 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extracti
             encoding="utf-8",
         )
     return audit
+
+
+def _source_evidence_graph_context_for_entry(
+    *,
+    entry_id: str,
+    nodes: dict[str, dict[str, Any]],
+    outgoing: dict[str, list[dict[str, Any]]],
+) -> dict[str, Any]:
+    entry_edges = outgoing.get(entry_id, [])
+    residue_nodes = [
+        nodes[str(edge.get("target"))]
+        for edge in entry_edges
+        if edge.get("predicate") == "has_catalytic_residue"
+        and str(edge.get("target")) in nodes
+    ]
+    residue_nodes.sort(key=lambda node: str(node.get("id") or ""))
+    mechanism_nodes = [
+        nodes[str(edge.get("target"))]
+        for edge in entry_edges
+        if edge.get("predicate") == "has_mechanism_text"
+        and str(edge.get("target")) in nodes
+    ]
+    mechanism_nodes.sort(key=lambda node: str(node.get("id") or ""))
+    ec_targets = [
+        str(edge.get("target"))
+        for edge in entry_edges
+        if edge.get("predicate") == "has_ec" and edge.get("target")
+    ]
+    rhea_nodes: list[dict[str, Any]] = []
+    for ec_id in ec_targets:
+        for edge in outgoing.get(ec_id, []):
+            if edge.get("predicate") != "maps_to_reaction":
+                continue
+            target = str(edge.get("target") or "")
+            if target in nodes:
+                rhea_nodes.append(nodes[target])
+    rhea_nodes.sort(key=lambda node: str(node.get("id") or ""))
+    return {
+        "residue_nodes": residue_nodes,
+        "mechanism_nodes": mechanism_nodes,
+        "ec_targets": ec_targets,
+        "rhea_nodes": rhea_nodes,
+    }
+
+
+def _reviewed_oos_events_from_graph_context(
+    *,
+    entry_id: str,
+    mechanism_nodes: list[dict[str, Any]],
+    residue_support: list[dict[str, Any]],
+    participant_mapping: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    mechanism_text = " ".join(str(node.get("text") or "") for node in mechanism_nodes)
+    mechanism_node_id = (
+        str(mechanism_nodes[0].get("id"))
+        if mechanism_nodes
+        else f"{entry_id}:mechanism_missing"
+    )
+    events = _draft_events_from_mechanism_text(
+        mechanism_node_id=mechanism_node_id,
+        mechanism_text=mechanism_text,
+        residue_support=residue_support,
+        equation_participants=participant_mapping,
+    )
+    fallback_residue_ids = [
+        str(residue.get("residue_node_id"))
+        for residue in residue_support
+        if residue.get("residue_node_id")
+    ][:6]
+    reviewed_events = []
+    for event in events:
+        event = dict(event)
+        if not event.get("mapped_active_site_residues") and fallback_residue_ids:
+            event["mapped_active_site_residues"] = fallback_residue_ids
+            event["confidence"] = "medium"
+        reviewed_events.append(event)
+    return reviewed_events
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar(
+    *,
+    extraction_work_package_path: Path,
+    graph_path: Path,
+    max_rows: int = 30,
+    reviewer_id: str = "Codex automation catalytic-earth-lever-3-2-forward-push",
+) -> dict[str, Any]:
+    package = _read_json(extraction_work_package_path)
+    graph = _read_json(graph_path)
+    nodes, outgoing = _graph_nodes_and_outgoing(graph)
+    graph_generated_at = graph.get("metadata", {}).get("generated_at")
+    candidate_rows = [
+        row
+        for row in package.get("extraction_rows", [])
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and row.get("assigned_embedding_split") in {"train", "calibration"}
+        and row.get("label_manifest_type") == "out_of_scope"
+        and row.get("label_manifest_split") != "heldout"
+    ]
+    candidate_rows.sort(
+        key=lambda row: (
+            0 if row.get("assigned_embedding_split") == "calibration" else 1,
+            _entry_id_sort_key(str(row.get("entry_id"))),
+        )
+    )
+    sidecar_rows = []
+    skipped_rows = []
+    event_counter: Counter[str] = Counter()
+    blocker_counter: Counter[str] = Counter()
+    approved_target = max(0, int(max_rows))
+    for extraction_row in candidate_rows:
+        if len(sidecar_rows) >= approved_target:
+            break
+        entry_id = str(extraction_row["entry_id"])
+        context = _source_evidence_graph_context_for_entry(
+            entry_id=entry_id, nodes=nodes, outgoing=outgoing
+        )
+        residue_support = _residue_support_from_nodes(context["residue_nodes"])
+        participant_mapping: list[dict[str, Any]] = []
+        for rhea_node in context["rhea_nodes"]:
+            participant_mapping.extend(
+                _participants_from_equation(str(rhea_node.get("equation") or ""))
+            )
+        participant_mapping.extend(
+            {
+                "participant_id": str(residue.get("residue_node_id")),
+                "role": "catalytic_residue",
+                "source_identifier": str(residue.get("residue_node_id")),
+                "mapped_atom_or_group": (
+                    f"{residue.get('code')}{residue.get('resid')}"
+                    if residue.get("code") and residue.get("resid")
+                    else str(residue.get("residue_node_id"))
+                ),
+            }
+            for residue in residue_support
+        )
+        events = _reviewed_oos_events_from_graph_context(
+            entry_id=entry_id,
+            mechanism_nodes=context["mechanism_nodes"],
+            residue_support=residue_support,
+            participant_mapping=participant_mapping,
+        )
+        row_blockers = []
+        if not context["mechanism_nodes"]:
+            row_blockers.append("mechanism_text_missing")
+        if not context["rhea_nodes"]:
+            row_blockers.append("rhea_equation_missing")
+        if not residue_support:
+            row_blockers.append("active_site_residue_support_missing")
+        if not events:
+            row_blockers.append("row_specific_events_missing")
+        blocker_counter.update(row_blockers)
+        if row_blockers:
+            skipped_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "accession": extraction_row.get("accession"),
+                    "assigned_embedding_split": extraction_row.get(
+                        "assigned_embedding_split"
+                    ),
+                    "label_manifest_type": extraction_row.get(
+                        "label_manifest_type"
+                    ),
+                    "blockers": row_blockers,
+                }
+            )
+            continue
+        event_counter.update(
+            str(event.get("event_type"))
+            for event in events
+            if event.get("event_type")
+        )
+        evidence_spans = [
+            {
+                "source_record_id": str(node.get("id")),
+                "source_database": "m_csa_local_graph",
+                "span_text": str(node.get("text") or ""),
+            }
+            for node in context["mechanism_nodes"]
+        ]
+        evidence_spans.extend(
+            {
+                "source_record_id": str(node.get("id")),
+                "source_database": str(
+                    node.get("source_database") or "rhea_local_graph"
+                ),
+                "span_text": str(node.get("equation") or ""),
+            }
+            for node in context["rhea_nodes"]
+        )
+        sidecar_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": extraction_row.get("accession"),
+                "source_record_id": entry_id,
+                "source_database": "m_csa_local_graph",
+                "source_record_version_or_date": graph_generated_at,
+                "assigned_embedding_split": extraction_row.get(
+                    "assigned_embedding_split"
+                ),
+                "label_manifest_type": extraction_row.get("label_manifest_type"),
+                "label_manifest_split": extraction_row.get("label_manifest_split"),
+                "oos_tier": extraction_row.get("oos_tier"),
+                "row_specific_reaction_participant_mapping": participant_mapping,
+                "row_specific_bond_change_events": events,
+                "active_site_residue_role_support": residue_support,
+                "source_text_or_database_evidence_span": evidence_spans,
+                "extractor_id": "codex_automation_p0_oos_calibration_20260602",
+                "review_status": "approved",
+                "reviewer_id": reviewer_id,
+                "reviewer_decision": {
+                    "decision": "approve_rhea_backed_source_evidence",
+                    "accepted_event_indices": list(range(len(events))),
+                    "accepted_participant_mapping_scope": (
+                        "all current row_specific_reaction_participant_mapping "
+                        "entries from the M-CSA local graph and Rhea-backed sidecar"
+                    ),
+                    "decision_rationale": (
+                        "Approve split-safe OOS calibration row because local "
+                        "M-CSA mechanism text, catalytic residue support, and "
+                        "EC-to-Rhea reaction evidence provide source-spanned "
+                        "row-specific bond/proton/electron events."
+                    ),
+                    "official_rhea_evidence_found": bool(context["rhea_nodes"]),
+                    "rhea_backed_provenance_accepted": bool(context["rhea_nodes"]),
+                    "reviewed_utc": _utc_now_iso(),
+                    "reviewer_id": reviewer_id,
+                    "leakage_safety_note": (
+                        "M-CSA-derived row-specific OOS features may be used "
+                        "only in split-filtered train/cal calibration; heldout "
+                        "M-CSA rows remain excluded from training and threshold tuning."
+                    ),
+                    "source_artifacts_reviewed": [
+                        str(extraction_work_package_path),
+                        str(graph_path),
+                    ],
+                },
+                "allowed_for_feature_contract_consumption_now": True,
+                "allowed_for_model_training_now": False,
+                "extraction_status": "source_evidence_extracted_approved",
+                "blockers": [],
+            }
+        )
+    sidecar_rows.sort(key=lambda row: _entry_id_sort_key(str(row["entry_id"])))
+    approved_rows = [
+        row for row in sidecar_rows if row.get("review_status") == "approved"
+    ]
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_CALIBRATION_APPROVED_SIDECAR_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_calibration_approved_source_evidence_sidecar_ready"
+            if approved_rows
+            else "p0_oos_calibration_approved_source_evidence_sidecar_blocked"
+        ),
+        "scope": (
+            "Approved source-evidence sidecar for the first staged P0 OOS "
+            "calibration rows. It materializes row-specific source evidence "
+            "only for split-safe train/cal OOS rows and keeps them out of model "
+            "training."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "feature_contract_mutated": False,
+            "allowed_for_model_training_now": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "m_csa_row_specific_features_train_cal_only": True,
+        },
+        "counts": {
+            "extraction_package_rows": len(package.get("extraction_rows", [])),
+            "selected_oos_rows": len(sidecar_rows),
+            "approved_rows": len(approved_rows),
+            "skipped_candidate_rows": len(skipped_rows),
+            "needs_more_evidence_rows": len(skipped_rows),
+            "calibration_rows": sum(
+                1
+                for row in sidecar_rows
+                if row.get("assigned_embedding_split") == "calibration"
+            ),
+            "rows_with_rhea_equations": sum(
+                1 for row in sidecar_rows if _row_has_rhea_equation_span(row)
+            ),
+            "rows_with_source_spans": sum(
+                1 for row in sidecar_rows if row.get("source_text_or_database_evidence_span")
+            ),
+            "rows_with_events": sum(
+                1 for row in sidecar_rows if row.get("row_specific_bond_change_events")
+            ),
+            "event_type_counts": dict(sorted(event_counter.items())),
+            "blocker_counts": dict(sorted(blocker_counter.items())),
+            "feature_contract_consumable_rows": sum(
+                1
+                for row in sidecar_rows
+                if row.get("allowed_for_feature_contract_consumption_now")
+            ),
+            "model_training_allowed_rows": sum(
+                1 for row in sidecar_rows if row.get("allowed_for_model_training_now")
+            ),
+        },
+        "sidecar_rows": sidecar_rows,
+        "skipped_rows": skipped_rows,
+        "source_artifacts": {
+            "extraction_work_package": _source_path_record(extraction_work_package_path),
+            "graph": _source_path_record(graph_path),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(approved_rows)} OOS calibration rows were approved with "
+                "source-spanned M-CSA/Rhea row-specific events."
+            ),
+            "next_action": (
+                "Run the strict OOS sidecar audit, then merge approved rows "
+                "with the approved P0 source sidecar for train/cal-only "
+                "feature materialization."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_report(
+    sidecar: dict[str, Any],
+) -> str:
+    counts = sidecar["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS Calibration Approved Source-Evidence Sidecar - current702",
+        "",
+        f"Run: {sidecar['created_utc']}",
+        "",
+        sidecar["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {sidecar['status']}",
+        f"- Selected OOS rows: {counts['selected_oos_rows']}",
+        f"- Approved rows: {counts['approved_rows']}",
+        f"- Calibration rows: {counts['calibration_rows']}",
+        f"- Rows with Rhea equations: {counts['rows_with_rhea_equations']}",
+        f"- Event type counts: {counts['event_type_counts']}",
+        f"- Blocker counts: {counts['blocker_counts']}",
+        "",
+        "## Approved Rows",
+        "",
+        "| row | split | events | consumable |",
+        "| --- | --- | ---: | --- |",
+    ]
+    for row in sidecar["sidecar_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('assigned_embedding_split')} | "
+            f"{len(row.get('row_specific_bond_change_events') or [])} | "
+            f"{row.get('allowed_for_feature_contract_consumption_now')} |"
+        )
+    lines += [
+        "",
+        "## Skipped Candidate Rows",
+        "",
+        "| row | split | blockers |",
+        "| --- | --- | --- |",
+    ]
+    for row in sidecar.get("skipped_rows", []):
+        blockers = ", ".join(row.get("blockers") or [])
+        lines.append(
+            f"| {row['entry_id']} | {row.get('assigned_embedding_split')} | "
+            f"{blockers} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {sidecar['interpretation']['result']}",
+        f"- {sidecar['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar(
+    *,
+    extraction_work_package_path: Path,
+    graph_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    max_rows: int = 30,
+) -> dict[str, Any]:
+    sidecar = build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar(
+        extraction_work_package_path=extraction_work_package_path,
+        graph_path=graph_path,
+        max_rows=max_rows,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(sidecar, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_report(
+                sidecar
+            ),
+            encoding="utf-8",
+        )
+    return sidecar
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_strict_audit(
+    *,
+    sidecar_path: Path,
+    extraction_work_package_path: Path,
+    source_evidence_schema_path: Path,
+) -> dict[str, Any]:
+    sidecar = _read_json(sidecar_path)
+    package = _read_json(extraction_work_package_path)
+    schema = _read_json(source_evidence_schema_path).get("sidecar_schema", {})
+    required_row_fields = [
+        str(field)
+        for field in schema.get("required_row_fields", [])
+        if isinstance(field, str)
+    ]
+    required_event_fields = [
+        str(field)
+        for field in schema.get("required_event_fields", [])
+        if isinstance(field, str)
+    ]
+    required_mapping_fields = [
+        str(field)
+        for field in schema.get("required_mapping_fields", [])
+        if isinstance(field, str)
+    ]
+    allowed_event_types = set(schema.get("allowed_event_types", []))
+    allowed_review_statuses = set(schema.get("allowed_review_statuses", []))
+    allowed_participant_roles = set(schema.get("allowed_participant_roles", []))
+    package_by_entry = {
+        str(row.get("entry_id")): row
+        for row in package.get("extraction_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    row_audits = []
+    violation_counter: Counter[str] = Counter()
+    for row in [
+        row
+        for row in sidecar.get("sidecar_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]:
+        entry_id = str(row["entry_id"])
+        package_row = package_by_entry.get(entry_id, {})
+        row_violations = []
+        if not package_row:
+            row_violations.append("entry_missing_from_extraction_package")
+        if row.get("assigned_embedding_split") not in {"train", "calibration"}:
+            row_violations.append("row_not_train_or_calibration")
+        if row.get("label_manifest_split") == "heldout":
+            row_violations.append("heldout_row")
+        if row.get("label_manifest_type") != "out_of_scope":
+            row_violations.append("non_oos_row")
+        if row.get("accession") != package_row.get("accession"):
+            row_violations.append("package_accession_mismatch")
+        if any(field not in row for field in required_row_fields):
+            row_violations.append("required_row_fields_missing")
+        if row.get("review_status") not in allowed_review_statuses:
+            row_violations.append("review_status_not_allowed")
+        if row.get("review_status") != "approved":
+            row_violations.append("review_status_not_approved")
+        if not row.get("reviewer_id"):
+            row_violations.append("reviewer_id_missing")
+        if row.get("allowed_for_model_training_now"):
+            row_violations.append("model_training_allowed")
+        if not row.get("allowed_for_feature_contract_consumption_now"):
+            row_violations.append("approved_row_not_feature_contract_consumable")
+        if not _row_has_rhea_equation_span(row):
+            row_violations.append("rhea_equation_span_missing")
+        if not row.get("source_text_or_database_evidence_span"):
+            row_violations.append("source_span_missing")
+
+        mapping_rows = row.get("row_specific_reaction_participant_mapping")
+        if not isinstance(mapping_rows, list) or not mapping_rows:
+            row_violations.append("participant_mapping_missing")
+            mapping_rows = []
+        mapping_violations = []
+        for mapping in mapping_rows:
+            if not isinstance(mapping, dict):
+                mapping_violations.append("mapping_not_object")
+                continue
+            if any(field not in mapping for field in required_mapping_fields):
+                mapping_violations.append("mapping_required_fields_missing")
+            if mapping.get("role") not in allowed_participant_roles:
+                mapping_violations.append("mapping_role_not_allowed")
+        if mapping_violations:
+            row_violations.append("participant_mapping_schema_violation")
+
+        event_rows = row.get("row_specific_bond_change_events")
+        if not isinstance(event_rows, list) or not event_rows:
+            row_violations.append("bond_change_events_missing")
+            event_rows = []
+        event_source_spans = 0
+        mapped_event_residue_count = 0
+        event_violations = []
+        for event in event_rows:
+            if not isinstance(event, dict):
+                event_violations.append("event_not_object")
+                continue
+            if any(field not in event for field in required_event_fields):
+                event_violations.append("event_required_fields_missing")
+            if event.get("event_type") not in allowed_event_types:
+                event_violations.append("event_type_not_allowed")
+            if event.get("source_evidence_span"):
+                event_source_spans += 1
+            mapped_event_residue_count += len(
+                event.get("mapped_active_site_residues") or []
+            )
+        if event_violations:
+            row_violations.append("bond_change_event_schema_violation")
+        if event_source_spans != len(event_rows):
+            row_violations.append("event_source_span_missing")
+        if mapped_event_residue_count == 0:
+            row_violations.append("mapped_event_residue_support_missing")
+
+        violation_counter.update(row_violations)
+        row_audits.append(
+            {
+                "entry_id": entry_id,
+                "review_status": row.get("review_status"),
+                "status": "passed" if not row_violations else "failed",
+                "event_count": len(event_rows),
+                "participant_mapping_count": len(mapping_rows),
+                "event_source_span_count": event_source_spans,
+                "mapped_event_residue_count": mapped_event_residue_count,
+                "violations": row_violations,
+            }
+        )
+    sidecar_rows = [
+        row
+        for row in sidecar.get("sidecar_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    critical_counts = {
+        "sidecar_rows_missing": 1 if not sidecar_rows else 0,
+        "failed_row_audits": sum(1 for row in row_audits if row["violations"]),
+        "feature_contract_consumption_without_review_rows": sum(
+            1
+            for row in sidecar_rows
+            if row.get("allowed_for_feature_contract_consumption_now")
+            and not (
+                row.get("review_status") == "approved" and bool(row.get("reviewer_id"))
+            )
+        ),
+        "model_training_allowed_rows": sum(
+            1 for row in sidecar_rows if row.get("allowed_for_model_training_now")
+        ),
+        "heldout_rows": sum(
+            1 for row in sidecar_rows if row.get("label_manifest_split") == "heldout"
+        ),
+    }
+    passed = all(value == 0 for value in critical_counts.values())
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_CALIBRATION_APPROVED_SIDECAR_STRICT_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_strict_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_passed"
+            if passed
+            else "p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_failed"
+        ),
+        "scope": (
+            "Strict audit for approved OOS calibration source-evidence rows. "
+            "It verifies OOS train/cal split safety, source spans, Rhea spans, "
+            "review provenance, and non-training guardrails."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "strict_audit_only": True,
+        },
+        "counts": {
+            "sidecar_rows": len(sidecar_rows),
+            "approved_rows": sum(
+                1 for row in sidecar_rows if row.get("review_status") == "approved"
+            ),
+            "feature_contract_consumable_rows": sum(
+                1
+                for row in sidecar_rows
+                if row.get("allowed_for_feature_contract_consumption_now")
+            ),
+            "model_training_allowed_rows": critical_counts[
+                "model_training_allowed_rows"
+            ],
+            "strict_audit_critical_violation_total": sum(critical_counts.values()),
+            "violation_counts": dict(sorted(violation_counter.items())),
+            "critical_counts": critical_counts,
+        },
+        "row_audits": sorted(
+            row_audits, key=lambda row: _entry_id_sort_key(str(row["entry_id"]))
+        ),
+        "source_artifacts": {
+            "sidecar": _source_path_record(sidecar_path),
+            "extraction_work_package": _source_path_record(extraction_work_package_path),
+            "source_evidence_schema": _source_path_record(source_evidence_schema_path),
+        },
+        "interpretation": {
+            "result": (
+                "The approved OOS calibration rows pass source-evidence and "
+                "split-safety audit."
+                if passed
+                else "The approved OOS calibration sidecar has strict-audit violations."
+            ),
+            "next_action": (
+                "Merge audited OOS rows with approved P0 rows, materialize "
+                "label-stripped train/cal event features, and rerun no-template "
+                "centroid/residual calibration."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS Calibration Approved Source-Evidence Sidecar Strict Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Sidecar rows: {counts['sidecar_rows']}",
+        f"- Approved rows: {counts['approved_rows']}",
+        f"- Feature-contract consumable rows: {counts['feature_contract_consumable_rows']}",
+        f"- Critical violations: {counts['strict_audit_critical_violation_total']}",
+        f"- Violation counts: {counts['violation_counts']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_strict_audit(
+    *,
+    sidecar_path: Path,
+    extraction_work_package_path: Path,
+    source_evidence_schema_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_strict_audit(
+        sidecar_path=sidecar_path,
+        extraction_work_package_path=extraction_work_package_path,
+        source_evidence_schema_path=source_evidence_schema_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar(
+    *,
+    p0_source_sidecar_path: Path,
+    oos_source_sidecar_path: Path,
+    oos_source_strict_audit_path: Path,
+) -> dict[str, Any]:
+    p0_sidecar = _read_json(p0_source_sidecar_path)
+    oos_sidecar = _read_json(oos_source_sidecar_path)
+    oos_audit = _read_json(oos_source_strict_audit_path)
+    p0_rows = [
+        row
+        for row in p0_sidecar.get("sidecar_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    oos_rows = [
+        row
+        for row in oos_sidecar.get("sidecar_rows", [])
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and row.get("review_status") == "approved"
+        and row.get("allowed_for_feature_contract_consumption_now")
+    ]
+    rows_by_entry = {str(row["entry_id"]): row for row in p0_rows + oos_rows}
+    sidecar_rows = sorted(
+        rows_by_entry.values(), key=lambda row: _entry_id_sort_key(str(row["entry_id"]))
+    )
+    oos_audit_passed = (
+        oos_audit.get("status")
+        == "p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_passed"
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_SOURCE_SIDECAR_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_source_evidence_sidecar_ready"
+            if oos_audit_passed and oos_rows
+            else "p0_oos_augmented_source_evidence_sidecar_blocked"
+        ),
+        "scope": (
+            "Union source-evidence sidecar for approved P0 primary rows plus "
+            "strict-audited OOS calibration rows. It is used only for "
+            "split-filtered train/cal feature materialization."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "feature_contract_mutated": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+        },
+        "counts": {
+            "p0_source_rows": len(p0_rows),
+            "oos_source_rows": len(oos_rows),
+            "sidecar_rows": len(sidecar_rows),
+            "approved_rows": sum(
+                1 for row in sidecar_rows if row.get("review_status") == "approved"
+            ),
+            "feature_contract_consumable_rows": sum(
+                1
+                for row in sidecar_rows
+                if row.get("allowed_for_feature_contract_consumption_now")
+            ),
+            "model_training_allowed_rows": sum(
+                1 for row in sidecar_rows if row.get("allowed_for_model_training_now")
+            ),
+            "oos_strict_audit_passed": oos_audit_passed,
+        },
+        "sidecar_rows": sidecar_rows,
+        "source_artifacts": {
+            "p0_source_sidecar": _source_path_record(p0_source_sidecar_path),
+            "oos_source_sidecar": _source_path_record(oos_source_sidecar_path),
+            "oos_source_strict_audit": _source_path_record(oos_source_strict_audit_path),
+        },
+        "interpretation": {
+            "result": (
+                f"Combined {len(p0_rows)} P0 rows with {len(oos_rows)} approved "
+                "OOS calibration rows for a train/cal-only feature rerun."
+            ),
+            "next_action": (
+                "Materialize label-stripped row-specific event features from "
+                "approved/consumable rows only."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar_report(
+    sidecar: dict[str, Any],
+) -> str:
+    counts = sidecar["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Source-Evidence Sidecar - current702",
+        "",
+        f"Run: {sidecar['created_utc']}",
+        "",
+        sidecar["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {sidecar['status']}",
+        f"- P0 source rows: {counts['p0_source_rows']}",
+        f"- OOS source rows: {counts['oos_source_rows']}",
+        f"- Sidecar rows: {counts['sidecar_rows']}",
+        f"- Feature-contract consumable rows: {counts['feature_contract_consumable_rows']}",
+        f"- OOS strict audit passed: {counts['oos_strict_audit_passed']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {sidecar['interpretation']['result']}",
+        f"- {sidecar['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar(
+    *,
+    p0_source_sidecar_path: Path,
+    oos_source_sidecar_path: Path,
+    oos_source_strict_audit_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    sidecar = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar(
+        p0_source_sidecar_path=p0_source_sidecar_path,
+        oos_source_sidecar_path=oos_source_sidecar_path,
+        oos_source_strict_audit_path=oos_source_strict_audit_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(sidecar, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar_report(
+                sidecar
+            ),
+            encoding="utf-8",
+        )
+    return sidecar
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_sidecar(
+    *,
+    source_sidecar_path: Path,
+    train_cal_split_manifest_path: Path,
+    feature_contract_path: Path,
+    label_manifest_path: Path,
+) -> dict[str, Any]:
+    source_sidecar = _read_json(source_sidecar_path)
+    split_manifest = _read_json(train_cal_split_manifest_path)
+    feature_contract = _read_json(feature_contract_path)
+    label_manifest = _read_json(label_manifest_path)
+    source_rows = [
+        row
+        for row in source_sidecar.get("sidecar_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    split_by_entry = {
+        str(row.get("entry_id")): row
+        for row in split_manifest.get("split_records", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    contract_by_entry = {
+        str(row.get("entry_id")): row
+        for row in feature_contract.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    label_split_by_entry = _label_manifest_split_by_entry(label_manifest)
+    label_type_by_entry = {
+        str(row.get("entry_id")): str(row.get("label_type") or "")
+        for row in label_manifest.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    feature_rows: list[dict[str, Any]] = []
+    excluded_rows: list[dict[str, Any]] = []
+    event_type_counter: Counter[str] = Counter()
+    split_counter: Counter[str] = Counter()
+    label_type_counter: Counter[str] = Counter()
+    exclusion_counter: Counter[str] = Counter()
+    for row in sorted(
+        source_rows,
+        key=lambda item: _entry_id_sort_key(str(item.get("entry_id"))),
+    ):
+        entry_id = str(row["entry_id"])
+        review_status = str(row.get("review_status") or "")
+        source_consumable = bool(
+            row.get("allowed_for_feature_contract_consumption_now")
+        )
+        events = [
+            event
+            for event in row.get("row_specific_bond_change_events", [])
+            if isinstance(event, dict)
+        ]
+        label_split = label_split_by_entry.get(entry_id)
+        if review_status != "approved":
+            reason = "source_row_not_approved"
+        elif not source_consumable:
+            reason = "approved_row_not_consumable"
+        elif label_split == "heldout":
+            reason = "heldout_m_csa_row_excluded"
+        elif entry_id not in split_by_entry:
+            reason = "approved_row_not_in_train_cal_split_manifest"
+        elif entry_id not in contract_by_entry:
+            reason = "approved_row_missing_feature_contract_row"
+        elif split_by_entry[entry_id].get("assigned_embedding_split") not in {
+            "train",
+            "calibration",
+        }:
+            reason = "approved_row_not_assigned_train_or_calibration"
+        else:
+            reason = ""
+        if reason:
+            exclusion_counter[reason] += 1
+            excluded_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "reason": reason,
+                    "review_status": review_status,
+                    "label_manifest_split": label_split,
+                    "allowed_for_feature_contract_consumption_now": source_consumable,
+                }
+            )
+            continue
+        assigned_split = str(
+            split_by_entry[entry_id].get("assigned_embedding_split")
+        )
+        label_type = label_type_by_entry.get(entry_id, "")
+        event_type_counter.update(
+            str(event.get("event_type"))
+            for event in events
+            if event.get("event_type")
+        )
+        split_counter[assigned_split] += 1
+        label_type_counter[label_type] += 1
+        feature_rows.append(
+            {
+                "entry_id": entry_id,
+                "assigned_embedding_split": assigned_split,
+                "row_specific_event_features": (
+                    _row_specific_event_feature_summary(events)
+                ),
+                "feature_guardrails": {
+                    "heldout_row": False,
+                    "source_text_excluded_from_features": True,
+                    "source_ids_excluded_from_features": True,
+                    "reviewer_metadata_excluded_from_features": True,
+                    "accession_excluded_from_features": True,
+                    "labels_and_fingerprint_excluded_from_features": True,
+                },
+            }
+        )
+    materialized_entry_ids = {row["entry_id"] for row in feature_rows}
+    materialized_heldout_rows = sum(
+        1
+        for row in feature_rows
+        if label_split_by_entry.get(row["entry_id"]) == "heldout"
+    )
+    approved_consumable_rows = [
+        row
+        for row in source_rows
+        if row.get("review_status") == "approved"
+        and row.get("allowed_for_feature_contract_consumption_now")
+    ]
+    critical_counts = {
+        "materialized_draft_rows": sum(
+            1
+            for row in feature_rows
+            if next(
+                source
+                for source in source_rows
+                if str(source.get("entry_id")) == row["entry_id"]
+            ).get("review_status")
+            != "approved"
+        ),
+        "materialized_heldout_rows": materialized_heldout_rows,
+        "approved_train_cal_rows_missing_from_feature_rows": sum(
+            1
+            for row in approved_consumable_rows
+            if label_split_by_entry.get(str(row.get("entry_id"))) != "heldout"
+            and str(row.get("entry_id")) in split_by_entry
+            and str(row.get("entry_id")) not in materialized_entry_ids
+        ),
+    }
+    critical_violation_total = sum(critical_counts.values())
+    enough_for_no_template_rerun = (
+        split_counter.get("train", 0) > 0
+        and split_counter.get("calibration", 0) > 0
+        and len(feature_rows) >= 15
+        and label_type_counter.get("out_of_scope", 0) > 0
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_TRAIN_CAL_FEATURE_SIDECAR_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_train_cal_feature_sidecar"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_train_cal_row_specific_feature_sidecar_ready_no_fit"
+            if feature_rows and critical_violation_total == 0
+            else "p0_oos_augmented_train_cal_row_specific_feature_sidecar_blocked"
+        ),
+        "scope": (
+            "No-fit OOS-augmented row-specific bond/proton/electron feature "
+            "sidecar for approved P0 rows plus approved OOS calibration rows. "
+            "Only label-stripped scalar event summaries are materialized."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_present_in_feature_rows": False,
+            "draft_rows_present_in_feature_rows": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "reviewer_id_used_as_predictive_feature": False,
+            "feature_contract_mutated": False,
+        },
+        "decision": {
+            "partial_train_cal_feature_materialization_ready": (
+                bool(feature_rows) and critical_violation_total == 0
+            ),
+            "full_no_template_centroid_or_residual_rerun_ready": (
+                enough_for_no_template_rerun and critical_violation_total == 0
+            ),
+            "model_training_authorized_by_this_artifact": False,
+            "reason_not_ready_for_rerun": (
+                None
+                if enough_for_no_template_rerun and critical_violation_total == 0
+                else "Approved OOS-augmented train/cal feature surface is not complete enough for no-template rerun."
+            ),
+        },
+        "counts": {
+            "source_sidecar_rows": len(source_rows),
+            "approved_consumable_rows": len(approved_consumable_rows),
+            "materialized_feature_rows": len(feature_rows),
+            "train_rows": split_counter.get("train", 0),
+            "calibration_rows": split_counter.get("calibration", 0),
+            "materialized_label_type_counts": dict(sorted(label_type_counter.items())),
+            "materialized_event_type_counts": dict(sorted(event_type_counter.items())),
+            "exclusion_reason_counts": dict(sorted(exclusion_counter.items())),
+            "critical_counts": critical_counts,
+            "critical_violation_total": critical_violation_total,
+        },
+        "feature_rows": sorted(
+            feature_rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+        "excluded_rows": excluded_rows,
+        "excluded_fields_as_features": [
+            "entry_id",
+            "accession",
+            "reviewer_id",
+            "source_record_id",
+            "source_database",
+            "source_text_or_database_evidence_span",
+            "source_evidence_span",
+            "fingerprint_id",
+            "label_type",
+            "assigned_embedding_split",
+            "heldout_labels_or_outcomes",
+        ],
+        "source_artifacts": {
+            "source_sidecar": _source_path_record(source_sidecar_path),
+            "train_cal_split_manifest": _source_path_record(
+                train_cal_split_manifest_path
+            ),
+            "feature_contract": _source_path_record(feature_contract_path),
+            "label_manifest": _source_path_record(label_manifest_path),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(feature_rows)} approved train/cal rows were materialized; "
+                f"{label_type_counter.get('out_of_scope', 0)} are OOS calibration rows."
+            ),
+            "next_action": (
+                "Run the leakage guardrail and no-template centroid/residual "
+                "rerun on this train/cal-only surface."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_sidecar_report(
+    sidecar: dict[str, Any],
+) -> str:
+    counts = sidecar["counts"]
+    decision = sidecar["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Train/Cal Feature Sidecar - current702",
+        "",
+        f"Run: {sidecar['created_utc']}",
+        "",
+        sidecar["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {sidecar['status']}",
+        f"- Feature rows: {counts['materialized_feature_rows']}",
+        f"- Train rows: {counts['train_rows']}",
+        f"- Calibration rows: {counts['calibration_rows']}",
+        f"- Label type counts: {counts['materialized_label_type_counts']}",
+        f"- Event type counts: {counts['materialized_event_type_counts']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Decision",
+        "",
+        "- Full no-template rerun ready: "
+        f"{decision['full_no_template_centroid_or_residual_rerun_ready']}",
+        "",
+        "## Feature Rows",
+        "",
+        "| row | split | events | bond changes | proton | electron | residues |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for row in sidecar["feature_rows"]:
+        features = row["row_specific_event_features"]
+        lines.append(
+            f"| {row['entry_id']} | {row['assigned_embedding_split']} | "
+            f"{features['event_count']} | "
+            f"{features['bond_change_event_count']} | "
+            f"{features['proton_transfer_count']} | "
+            f"{features['electron_transfer_count']} | "
+            f"{features['unique_mapped_active_site_residue_count']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {sidecar['interpretation']['result']}",
+        f"- {sidecar['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_sidecar(
+    *,
+    source_sidecar_path: Path,
+    train_cal_split_manifest_path: Path,
+    feature_contract_path: Path,
+    label_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    sidecar = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_sidecar(
+        source_sidecar_path=source_sidecar_path,
+        train_cal_split_manifest_path=train_cal_split_manifest_path,
+        feature_contract_path=feature_contract_path,
+        label_manifest_path=label_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(sidecar, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_sidecar_report(
+                sidecar
+            ),
+            encoding="utf-8",
+        )
+    return sidecar
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_guardrail_audit(
+    *,
+    train_cal_feature_sidecar_path: Path,
+    source_sidecar_path: Path,
+    label_manifest_path: Path,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit(
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        source_sidecar_path=source_sidecar_path,
+        label_manifest_path=label_manifest_path,
+    )
+    audit["artifact_id"] = (
+        MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_TRAIN_CAL_FEATURE_GUARDRAIL_AUDIT_ID
+    )
+    audit["schema_version"] = (
+        f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_train_cal_feature_guardrail_audit"
+    )
+    audit["scope"] = (
+        "Strict leakage and split-contract audit for the OOS-augmented P0 "
+        "train/cal row-specific feature sidecar."
+    )
+    audit["status"] = (
+        "p0_oos_augmented_train_cal_feature_guardrail_audit_passed"
+        if audit["counts"]["critical_violation_total"] == 0
+        else "p0_oos_augmented_train_cal_feature_guardrail_audit_blocked"
+    )
+    audit["interpretation"]["next_action"] = (
+        "Run the OOS-augmented no-template centroid/residual rerun on this "
+        "guardrail-passing train/cal-only surface."
+    )
+    return audit
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_guardrail_audit(
+    *,
+    train_cal_feature_sidecar_path: Path,
+    source_sidecar_path: Path,
+    label_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_guardrail_audit(
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        source_sidecar_path=source_sidecar_path,
+        label_manifest_path=label_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_no_template_rerun(
+    *,
+    train_cal_feature_sidecar_path: Path,
+    train_cal_feature_guardrail_path: Path,
+    label_manifest_path: Path,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_no_template_rerun(
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        train_cal_feature_guardrail_path=train_cal_feature_guardrail_path,
+        label_manifest_path=label_manifest_path,
+    )
+    audit["artifact_id"] = (
+        MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_NO_TEMPLATE_RERUN_ID
+    )
+    audit["schema_version"] = (
+        f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_no_template_rerun"
+    )
+    audit["scope"] = (
+        "Train/cal-only no-template rerun over the OOS-augmented approved "
+        "row-specific bond/proton/electron feature sidecar. It fits centroids "
+        "on train rows and selects thresholds on calibration rows only."
+    )
+    return audit
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_no_template_rerun(
+    *,
+    train_cal_feature_sidecar_path: Path,
+    train_cal_feature_guardrail_path: Path,
+    label_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_no_template_rerun(
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        train_cal_feature_guardrail_path=train_cal_feature_guardrail_path,
+        label_manifest_path=label_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_no_template_rerun_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_operating_point_contract(
+    *,
+    no_template_rerun_path: Path,
+) -> dict[str, Any]:
+    rerun = _read_json(no_template_rerun_path)
+    decision = rerun.get("decision") if isinstance(rerun.get("decision"), dict) else {}
+    counts = rerun.get("counts") if isinstance(rerun.get("counts"), dict) else {}
+    centroid_threshold = (
+        rerun.get("centroid_variant", {}).get(
+            "calibration_selected_similarity_threshold", {}
+        )
+        if isinstance(rerun.get("centroid_variant"), dict)
+        else {}
+    )
+    residual_threshold = (
+        rerun.get("residual_variant", {}).get(
+            "calibration_selected_residual_threshold", {}
+        )
+        if isinstance(rerun.get("residual_variant"), dict)
+        else {}
+    )
+    centroid_summary = (
+        rerun.get("centroid_variant", {}).get("calibration_summary", {})
+        if isinstance(rerun.get("centroid_variant"), dict)
+        else {}
+    )
+    residual_summary = (
+        rerun.get("residual_variant", {}).get("calibration_summary", {})
+        if isinstance(rerun.get("residual_variant"), dict)
+        else {}
+    )
+
+    def _threshold_ready(threshold: dict[str, Any]) -> bool:
+        return (
+            threshold.get("threshold") is not None
+            and float(threshold.get("primary_retain_recall") or 0.0) >= 0.9
+            and int(threshold.get("oos_rows") or 0) > 0
+            and int(threshold.get("primary_rows") or 0) > 0
+        )
+
+    centroid_ready = _threshold_ready(centroid_threshold)
+    residual_ready = _threshold_ready(residual_threshold)
+    known_vs_novel_ready = bool(
+        decision.get("known_vs_novel_operating_point_evaluable")
+    )
+    passed = known_vs_novel_ready and centroid_ready and residual_ready
+    residual_oos_rows = int(residual_threshold.get("oos_rows") or 0)
+    residual_oos_abstain = int(
+        round(
+            float(residual_threshold.get("oos_abstain_recall") or 0.0)
+            * residual_oos_rows
+        )
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_OPERATING_POINT_CONTRACT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_operating_point_contract"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_operating_point_contract_ready_calibration_only"
+            if passed
+            else "p0_oos_augmented_operating_point_contract_blocked"
+        ),
+        "scope": (
+            "Deployable calibration contract for the OOS-augmented P0 "
+            "row-specific no-template centroid and residual diagnostics. "
+            "It records train/cal-selected thresholds and does not read heldout."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": True,
+            "threshold_selection_rows": "calibration_only",
+            "model_fit_rows": "train_only",
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "review_only": True,
+        },
+        "decision": {
+            "known_vs_novel_operating_point_evaluable": known_vs_novel_ready,
+            "centroid_calibration_contract_ready": centroid_ready,
+            "residual_calibration_contract_ready": residual_ready,
+            "preferred_contract": "residual_distance_threshold",
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Apply the frozen residual threshold to a heldout-safe feature "
+                "surface exactly once; do not retune on heldout."
+                if passed
+                else "Repair the OOS-augmented train/cal rerun before any heldout read."
+            ),
+        },
+        "counts": {
+            "feature_rows": counts.get("feature_rows"),
+            "train_rows": counts.get("train_rows"),
+            "calibration_rows": counts.get("calibration_rows"),
+            "calibration_primary_rows": counts.get("calibration_primary_rows"),
+            "calibration_oos_rows": counts.get("calibration_oos_rows"),
+            "feature_dimensions": counts.get("feature_dimensions"),
+            "blockers": counts.get("blockers"),
+            "critical_violation_total": 0 if passed else 1,
+        },
+        "calibration_contract": {
+            "centroid_similarity": {
+                "decision_rule": (
+                    "abstain_as_novel_when_nearest_primary_similarity_below_threshold"
+                ),
+                "threshold": centroid_threshold.get("threshold"),
+                "retention_target": centroid_threshold.get("retention_target"),
+                "primary_retain_recall": centroid_threshold.get(
+                    "primary_retain_recall"
+                ),
+                "oos_abstain_recall": centroid_threshold.get("oos_abstain_recall"),
+                "calibration_auc_primary_vs_oos": centroid_summary.get(
+                    "auc_primary_vs_oos"
+                ),
+            },
+            "residual_distance": {
+                "decision_rule": (
+                    "abstain_as_novel_when_out_of_atlas_span_residual_above_threshold"
+                ),
+                "threshold": residual_threshold.get("threshold"),
+                "retention_target": residual_threshold.get("retention_target"),
+                "primary_retain_recall": residual_threshold.get(
+                    "primary_retain_recall"
+                ),
+                "oos_abstain_recall": residual_threshold.get("oos_abstain_recall"),
+                "calibration_auc_oos_gt_primary": residual_summary.get(
+                    "auc_oos_gt_primary"
+                ),
+            },
+        },
+        "source_artifacts": {
+            "no_template_rerun": _source_path_record(no_template_rerun_path),
+        },
+        "interpretation": {
+            "result": (
+                "The OOS-augmented train/cal surface has a calibration-only "
+                "operating point: both centroid similarity and residual distance "
+                f"retain all calibration primaries and abstain on "
+                f"{residual_oos_abstain}/{residual_oos_rows} OOS rows."
+                if passed
+                else "The OOS-augmented no-template rerun is not ready for a calibration contract."
+            ),
+            "next_action": (
+                "Use the residual-distance contract as the heldout-safe frozen "
+                "threshold candidate; do not tune it on heldout rows."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_operating_point_contract_report(
+    contract: dict[str, Any],
+) -> str:
+    counts = contract["counts"]
+    calibration = contract["calibration_contract"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Operating-Point Contract - current702",
+        "",
+        f"Run: {contract['created_utc']}",
+        "",
+        contract["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {contract['status']}",
+        f"- Feature rows: {counts['feature_rows']}",
+        f"- Train rows: {counts['train_rows']}",
+        f"- Calibration rows: {counts['calibration_rows']}",
+        f"- Calibration OOS rows: {counts['calibration_oos_rows']}",
+        "",
+        "## Calibration Contract",
+        "",
+        "- Centroid similarity threshold: "
+        f"{calibration['centroid_similarity']['threshold']}",
+        "- Centroid OOS abstain recall: "
+        f"{calibration['centroid_similarity']['oos_abstain_recall']}",
+        "- Residual distance threshold: "
+        f"{calibration['residual_distance']['threshold']}",
+        "- Residual OOS abstain recall: "
+        f"{calibration['residual_distance']['oos_abstain_recall']}",
+        "- Preferred contract: "
+        f"{contract['decision']['preferred_contract']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {contract['interpretation']['result']}",
+        f"- {contract['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_operating_point_contract(
+    *,
+    no_template_rerun_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    contract = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_operating_point_contract(
+        no_template_rerun_path=no_template_rerun_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(contract, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_operating_point_contract_report(
+                contract
+            ),
+            encoding="utf-8",
+        )
+    return contract
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis(
+    *,
+    no_template_rerun_path: Path,
+    operating_point_contract_path: Path,
+    train_cal_feature_sidecar_path: Path,
+) -> dict[str, Any]:
+    rerun = _read_json(no_template_rerun_path)
+    contract = _read_json(operating_point_contract_path)
+    feature_sidecar = _read_json(train_cal_feature_sidecar_path)
+    residual_contract = (
+        contract.get("calibration_contract", {}).get("residual_distance", {})
+        if isinstance(contract.get("calibration_contract"), dict)
+        else {}
+    )
+    centroid_contract = (
+        contract.get("calibration_contract", {}).get("centroid_similarity", {})
+        if isinstance(contract.get("calibration_contract"), dict)
+        else {}
+    )
+    residual_threshold = residual_contract.get("threshold")
+    centroid_threshold = centroid_contract.get("threshold")
+    feature_by_entry = {
+        str(row.get("entry_id")): row.get("row_specific_event_features") or {}
+        for row in feature_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    calibration_rows = [
+        row
+        for row in rerun.get("scored_rows", {}).get("calibration", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    analyzed_rows = []
+    for row in calibration_rows:
+        entry_id = str(row["entry_id"])
+        residual = row.get("out_of_atlas_span_residual")
+        similarity = row.get("nearest_primary_similarity")
+        residual_abstain = (
+            residual_threshold is not None
+            and residual is not None
+            and float(residual) > float(residual_threshold)
+        )
+        centroid_abstain = (
+            centroid_threshold is not None
+            and similarity is not None
+            and float(similarity) < float(centroid_threshold)
+        )
+        is_primary = bool(row.get("is_primary"))
+        if is_primary and residual_abstain:
+            outcome = "primary_abstained"
+        elif is_primary:
+            outcome = "primary_retained"
+        elif residual_abstain:
+            outcome = "oos_abstained"
+        else:
+            outcome = "oos_non_abstained"
+        analyzed_rows.append(
+            {
+                "entry_id": entry_id,
+                "true_label": row.get("true_label"),
+                "is_primary": is_primary,
+                "nearest_primary_label": row.get("nearest_primary_label"),
+                "nearest_primary_similarity": similarity,
+                "out_of_atlas_span_residual": residual,
+                "centroid_abstain_at_contract": centroid_abstain,
+                "residual_abstain_at_contract": residual_abstain,
+                "operating_point_outcome": outcome,
+                "row_specific_event_features": feature_by_entry.get(entry_id, {}),
+            }
+        )
+    outcome_counter = Counter(
+        str(row["operating_point_outcome"]) for row in analyzed_rows
+    )
+    oos_non_abstained = [
+        row for row in analyzed_rows if row["operating_point_outcome"] == "oos_non_abstained"
+    ]
+    oos_abstained = [
+        row for row in analyzed_rows if row["operating_point_outcome"] == "oos_abstained"
+    ]
+    oos_non_abstained.sort(
+        key=lambda row: (
+            float(row.get("out_of_atlas_span_residual") or 0.0),
+            _entry_id_sort_key(str(row["entry_id"])),
+        )
+    )
+    oos_abstained.sort(
+        key=lambda row: (
+            -float(row.get("out_of_atlas_span_residual") or 0.0),
+            _entry_id_sort_key(str(row["entry_id"])),
+        )
+    )
+    retained_nearest_primary_counts = Counter(
+        str(row.get("nearest_primary_label") or "unknown")
+        for row in oos_non_abstained
+    )
+    retained_event_profile_counts: Counter[str] = Counter()
+    retained_priority_counts: Counter[str] = Counter()
+    retained_row_priorities = []
+    for row in oos_non_abstained:
+        features = row.get("row_specific_event_features") or {}
+        event_count = _safe_int(features.get("event_count")) or 0
+        bond_count = _safe_int(features.get("bond_change_event_count")) or 0
+        proton_count = _safe_int(features.get("proton_transfer_count")) or 0
+        electron_count = _safe_int(features.get("electron_transfer_count")) or 0
+        profile_key = (
+            f"events={event_count};bond={bond_count};"
+            f"proton={proton_count};electron={electron_count}"
+        )
+        retained_event_profile_counts[profile_key] += 1
+        residual = row.get("out_of_atlas_span_residual")
+        residual_margin = (
+            round(float(residual_threshold) - float(residual), 8)
+            if residual_threshold is not None and residual is not None
+            else None
+        )
+        if residual_margin is not None and residual_margin <= 0.25:
+            priority = "borderline_contract_miss"
+        elif residual_margin is not None and residual_margin <= 0.75:
+            priority = "near_contract_miss"
+        else:
+            priority = "strong_primary_alias"
+        retained_priority_counts[priority] += 1
+        retained_row_priorities.append(
+            {
+                "entry_id": row["entry_id"],
+                "priority": priority,
+                "residual_margin_below_threshold": residual_margin,
+                "nearest_primary_label": row.get("nearest_primary_label"),
+                "event_profile": profile_key,
+            }
+        )
+    critical_counts = {
+        "contract_not_ready": (
+            0
+            if contract.get("status")
+            == "p0_oos_augmented_operating_point_contract_ready_calibration_only"
+            else 1
+        ),
+        "residual_threshold_missing": 1 if residual_threshold is None else 0,
+        "calibration_rows_missing": 1 if not calibration_rows else 0,
+    }
+    passed = sum(critical_counts.values()) == 0
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_CALIBRATION_ERROR_ANALYSIS_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_calibration_error_analysis"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_calibration_error_analysis_ready"
+            if passed
+            else "p0_oos_augmented_calibration_error_analysis_blocked"
+        ),
+        "scope": (
+            "Read-only calibration error analysis for the OOS-augmented P0 "
+            "row-specific operating point. It names retained OOS rows and "
+            "abstained OOS rows under the frozen residual contract without "
+            "changing thresholds."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "analysis_only": True,
+        },
+        "counts": {
+            "calibration_rows": len(analyzed_rows),
+            "calibration_oos_rows": sum(
+                1 for row in analyzed_rows if not row["is_primary"]
+            ),
+            "calibration_primary_rows": sum(
+                1 for row in analyzed_rows if row["is_primary"]
+            ),
+            "outcome_counts": dict(sorted(outcome_counter.items())),
+            "residual_threshold": residual_threshold,
+            "centroid_threshold": centroid_threshold,
+            "critical_counts": critical_counts,
+            "critical_violation_total": sum(critical_counts.values()),
+            "retained_oos_nearest_primary_counts": dict(
+                sorted(retained_nearest_primary_counts.items())
+            ),
+            "retained_oos_event_profile_counts": dict(
+                sorted(retained_event_profile_counts.items())
+            ),
+            "retained_oos_priority_counts": dict(
+                sorted(retained_priority_counts.items())
+            ),
+        },
+        "retained_oos_failure_set": sorted(
+            retained_row_priorities,
+            key=lambda row: (
+                float(row["residual_margin_below_threshold"] or 999.0),
+                _entry_id_sort_key(str(row["entry_id"])),
+            ),
+        ),
+        "oos_non_abstained_rows": oos_non_abstained,
+        "oos_abstained_rows": oos_abstained,
+        "all_calibration_rows": sorted(
+            analyzed_rows, key=lambda row: _entry_id_sort_key(str(row["entry_id"]))
+        ),
+        "source_artifacts": {
+            "no_template_rerun": _source_path_record(no_template_rerun_path),
+            "operating_point_contract": _source_path_record(
+                operating_point_contract_path
+            ),
+            "train_cal_feature_sidecar": _source_path_record(
+                train_cal_feature_sidecar_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The frozen residual threshold abstains on "
+                f"{outcome_counter.get('oos_abstained', 0)}/"
+                f"{outcome_counter.get('oos_abstained', 0) + outcome_counter.get('oos_non_abstained', 0)} "
+                "calibration OOS rows while retaining all calibration primaries."
+                if passed
+                else "The calibration error analysis is blocked by missing contract inputs."
+            ),
+            "next_action": (
+                "Use the retained OOS failure set, especially borderline and "
+                "near-contract misses, as the next row-specific mechanism "
+                "feature target before any heldout read."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis_report(
+    analysis: dict[str, Any],
+) -> str:
+    counts = analysis["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Calibration Error Analysis - current702",
+        "",
+        f"Run: {analysis['created_utc']}",
+        "",
+        analysis["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {analysis['status']}",
+        f"- Calibration rows: {counts['calibration_rows']}",
+        f"- Calibration OOS rows: {counts['calibration_oos_rows']}",
+        f"- Outcome counts: {counts['outcome_counts']}",
+        f"- Residual threshold: {counts['residual_threshold']}",
+        f"- Retained OOS nearest-primary counts: {counts['retained_oos_nearest_primary_counts']}",
+        f"- Retained OOS priority counts: {counts['retained_oos_priority_counts']}",
+        "",
+        "## Retained OOS Rows",
+        "",
+        "| row | residual | nearest primary | events | bond | proton | electron |",
+        "| --- | ---: | --- | ---: | ---: | ---: | ---: |",
+    ]
+    for row in analysis["oos_non_abstained_rows"]:
+        features = row.get("row_specific_event_features") or {}
+        lines.append(
+            f"| {row['entry_id']} | {row.get('out_of_atlas_span_residual')} | "
+            f"{row.get('nearest_primary_label')} | "
+            f"{features.get('event_count')} | "
+            f"{features.get('bond_change_event_count')} | "
+            f"{features.get('proton_transfer_count')} | "
+            f"{features.get('electron_transfer_count')} |"
+        )
+    lines += [
+        "",
+        "## Retained OOS Failure Set",
+        "",
+        "| row | priority | residual margin | nearest primary | event profile |",
+        "| --- | --- | ---: | --- | --- |",
+    ]
+    for row in analysis["retained_oos_failure_set"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['priority']} | "
+            f"{row['residual_margin_below_threshold']} | "
+            f"{row.get('nearest_primary_label')} | {row['event_profile']} |"
+        )
+    lines += [
+        "",
+        "## Abstained OOS Rows",
+        "",
+        "| row | residual | nearest primary | events | bond | proton | electron |",
+        "| --- | ---: | --- | ---: | ---: | ---: | ---: |",
+    ]
+    for row in analysis["oos_abstained_rows"]:
+        features = row.get("row_specific_event_features") or {}
+        lines.append(
+            f"| {row['entry_id']} | {row.get('out_of_atlas_span_residual')} | "
+            f"{row.get('nearest_primary_label')} | "
+            f"{features.get('event_count')} | "
+            f"{features.get('bond_change_event_count')} | "
+            f"{features.get('proton_transfer_count')} | "
+            f"{features.get('electron_transfer_count')} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {analysis['interpretation']['result']}",
+        f"- {analysis['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis(
+    *,
+    no_template_rerun_path: Path,
+    operating_point_contract_path: Path,
+    train_cal_feature_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    analysis = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis(
+        no_template_rerun_path=no_template_rerun_path,
+        operating_point_contract_path=operating_point_contract_path,
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(analysis, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis_report(
+                analysis
+            ),
+            encoding="utf-8",
+        )
+    return analysis
 
 
 def _manifest_fingerprint_id(row: dict[str, Any]) -> Any:

@@ -56,6 +56,118 @@ Automation run: `catalytic-earth-lever-3-2-forward-push`
 
 #### Wall-clock ledger
 
+- STARTED_AT: `2026-06-02T10:02:54Z`
+- STARTED_LOCAL: `2026-06-02T05:02:54-0500 CDT`
+- ENDED_AT: `2026-06-02T10:58:16Z`
+- ENDED_LOCAL: `2026-06-02T05:58:16-0500 CDT`
+- ELAPSED_MINUTES: `55.4`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "39231", "started_at": "2026-06-02T10:02:54Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue from the previous Lever 2 gate: source-backed extraction and approval
+for staged OOS calibration rows so the row-specific mechanism surface can gain
+calibration OOS/novel operating-point evidence.
+
+#### What changed
+
+- Built a source-evidence extraction/approval path for the staged OOS
+  calibration packet. The approved sidecar now consumes only split-safe
+  train/cal `none_of_above` rows with M-CSA mechanism evidence, catalytic
+  residue support, and Rhea-backed reaction evidence.
+- Approved 28 of the staged 30 OOS calibration candidates for feature-contract
+  consumption, all with `allowed_for_model_training_now=false`. The two skipped
+  candidates are `m_csa:76` and `m_csa:202`, both blocked by
+  `rhea_equation_missing`; the markdown report now lists them explicitly.
+- Added and ran a strict approved-sidecar audit. It passed with 28 approved
+  rows, 28 feature-contract consumable rows, and 0 critical violations.
+- Merged the 15 approved P0 rows with the 28 approved OOS calibration rows and
+  materialized a label-stripped OOS-augmented train/cal feature surface: 43
+  rows total, 11 train rows, 32 calibration rows, 28 calibration OOS rows, 4
+  calibration primary rows, and 17 scalar event-count dimensions.
+- Reran the no-template centroid and out-of-atlas-span residual methods on the
+  OOS-augmented surface under train/cal discipline. The rerun is operating-point
+  evaluable without reading heldout: both methods have calibration AUC 0.669643
+  and select calibration-only thresholds retaining all 4 calibration primary
+  rows while abstaining on 14/28 calibration OOS rows.
+- Added a calibration-only operating-point contract for the residual threshold.
+  The frozen residual rule is `abstain_as_novel_when_out_of_atlas_span_residual_above_threshold`
+  with threshold `3.21469422`, primary retain recall `1.0`, and OOS abstain
+  recall `0.5`. It is review-only and records heldout as unread.
+- Added a calibration error-analysis packet. It names 14 retained OOS rows and
+  14 abstained OOS rows, groups retained rows by nearest-primary alias, and
+  marks 2 borderline contract misses, 3 near-contract misses, and 9 strong
+  primary aliases for the next feature-target pass.
+- Added CLI dispatches, builder tests, and artifact regressions for the new OOS
+  approval, OOS-augmented feature surface, operating-point contract, and
+  retained-OOS failure-set artifacts. No labels, registries, ontologies,
+  imports, production thresholds, heldout thresholds, or heldout M-CSA feature
+  rows changed.
+
+#### Artifacts and reports
+
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar_strict_audit_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_source_evidence_sidecar_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_sidecar_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_sidecar_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_guardrail_audit_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_train_cal_feature_guardrail_audit_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_no_template_rerun_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_no_template_rerun_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_operating_point_contract_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_operating_point_contract_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis_current702_20260602.md`
+- Refreshed `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`
+  and `work/current_docs_artifact_reference_check_current702_20260601.md`
+  with 0 missing references.
+
+#### Tests and validation
+
+- Startup `PYTHONPATH=src python -m unittest discover -s tests` passed: 1143
+  tests in 39.585s.
+- Final `PYTHONPATH=src python -m pytest tests -q` passed on the final code
+  state: 1195 tests, 69 subtests, and one existing sklearn/scipy deprecation
+  warning.
+- Final `PYTHONPATH=src python -m unittest discover -s tests` passed: 1150
+  tests in 38.840s and the same existing warning.
+- Final `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`
+  passed: 324 tests and 50 subtests.
+- `python -m compileall -q src/catalytic_earth/northstar_next_levers.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_geometry_artifact_regression.py tests/test_northstar_next_levers.py`
+  passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with 12 source
+  records, 8 mechanism fingerprints, 15 ontology families, and 702 curated
+  labels.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  passed with 0 missing references.
+- Repo JSON/JSONL parse sweep passed: 3161 JSON and 27 JSONL files, 0 parse
+  errors.
+- `git diff --check` passed.
+
+#### Exact next action
+
+Continue Lever 2 with the retained OOS failure set from
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_calibration_error_analysis_current702_20260602.json`.
+Start with the borderline/near-contract retained rows (`m_csa:273`,
+`m_csa:2`, `m_csa:23`, `m_csa:256`, and `m_csa:149`) and determine whether a
+new label-stripped row-specific feature family can separate these OOS aliases
+from their nearest primaries without using mechanism text, source IDs, EC/Rhea
+IDs, labels, target names, or heldout rows as predictive features. Keep the
+residual threshold `3.21469422` frozen unless a new train/cal calibration
+artifact explicitly replaces it; do not read heldout M-CSA rows until the
+heldout-safe surface is ready for a single read-once application.
+
+### 2026-06-02 Lever 2/3/4 Forward Push Active Run
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
 - STARTED_AT: `2026-06-02T09:03:04Z`
 - STARTED_LOCAL: `2026-06-02T04:03:04-0500 CDT`
 - ENDED_AT: `2026-06-02T09:56:08Z`
