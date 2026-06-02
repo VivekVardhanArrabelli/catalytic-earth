@@ -3,6 +3,50 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-02: Lever 2 Integrated — Two Independent Builds Become One Result; The Closed-Form Residual Is The Live Deployable Signal, The Centroid Pilot's Discipline And Feature Track Are Retained
+
+Decision: integrate the two independent Lever 2 implementations rather than
+choosing one and discarding the other. The closed-form information-preserving
+metric (the "residual line") and the standardized nearest-primary centroid pilot
+(the "centroid line") are both agent-built, treated as equals, and kept; the
+genuine advancement of each is carried forward into a single Lever 2 result.
+
+Synthesis:
+- Consolidated negative (robust precisely because two independent builds agree):
+  a learned or standardized embedding over the CURRENT feature surface does not
+  deployably beat the geometry baseline. The metric's predeclared primary is a
+  clean negative (AUC 0.616 vs top1_score 0.757). The centroid pilot's strong
+  numbers (calibration AUC 0.948, heldout 0.881) are reaction-template dependent;
+  its deployment-valid no-template ablation is at chance (heldout AUC 0.489).
+  Neither full-contract score is deployment evidence.
+- Live deployable signal: the residual line's unsupervised out-of-atlas-span
+  residual is the surviving win — deployment-valid (sequence-only), confirmed
+  (PCA cutoff-robust sweep + a held-out-from-design confirmatory split with a
+  label-permutation null, p=0.0005), and integrated into the per-channel rule
+  gate for a +0.076 confounded-safe OOS-abstain lift at the >=85% retention floor.
+  The residual threshold remains research-grade pending deployable calibration.
+- Retained from the centroid line (genuine advancements, not discarded): (1) its
+  train/cal/heldout fitting discipline (fit on 418 train rows, threshold on 106
+  calibration rows, once-only heldout readout) becomes the standard the residual's
+  deployable calibration must meet; (2) the audited mechanism-feature contract
+  surface and the P0 source-evidence sidecar / bond-change / proton-transfer /
+  electron-flow feature-materialization track (with Rhea provenance) is the kept
+  forward path to the genuinely-new mechanism feature.
+
+Consequence / unified next: materialize the row-specific bond-change/proton/
+electron features (resolve open Rhea rows `m_csa:11`, `m_csa:169`, `m_csa:5` and
+reviewer provenance first), then re-run BOTH the no-template centroid pilot and
+the out-of-span residual on that template-free surface under the centroid line's
+train/cal/heldout discipline; give the residual a deployable calibration; and
+close a deployment-valid confounded-safe channel (Lever 3). No code or artifacts
+from either build were removed.
+
+Work/artifacts: `work/mechanism_feature_embedding_current702_20260601.md`,
+`work/mechanism_feature_residual_robustness_current702_20260601.md`,
+`work/mechanism_residual_gate_integration_current702_20260601.md`,
+`artifacts/v3_mechanism_feature_embedding_pilot_current702_20260601.json`,
+`artifacts/v3_mechanism_feature_embedding_heldout_readout_current702_20260601.json`.
+
 ## 2026-06-02: Confirmed Residual Adds A Confounded-Safe Operating-Point Lift To The Rule Gate (Research-Grade Threshold)
 
 Decision: integrate the now-confirmed out-of-span residual into the per-channel

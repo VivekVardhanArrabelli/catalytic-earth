@@ -45,69 +45,76 @@ all four matched retention targets, including +0.5444 OOS abstention and +0.5
 cofactor-confounded OOS abstention at the 90% retention diagnostic. This does
 not select a threshold.
 
-### 2. Learned mechanism-feature embedding (the real northstar feature) — DONE (2026-06-01): clean negative + residual lead, now CONFIRMED + INTEGRATED
-Two parallel implementations of this lever were pursued; both are recorded — (A) the
-closed-form information-preserving metric (residual line), and (B) the standardized
-nearest-primary centroid pilot (template-feature line, addenda below).
+### 2. Learned mechanism-feature embedding (the real northstar feature) — DONE (2026-06): two builds integrated into one result
+Two independent agent builds attacked this lever and are now integrated as a single
+result, not two competing silos: a **closed-form information-preserving metric** (the
+"residual line", sequence-only ESM2-150M; atlas-fit robust-standardize -> atlas-span PCA
+-> within-class whitening) and a **standardized nearest-primary centroid pilot** (the
+"centroid line", train/cal-fit with a once-only heldout readout). Both are kept; each
+contributed a genuine advancement. See decision_log 2026-06-02 ("Lever 2 Integrated") for
+the synthesis.
 
-**(A) Closed-form information-preserving metric (residual line).** Built as a closed-form
-supervised metric (sequence-only ESM2-150M; atlas-fit robust-standardize -> atlas-span PCA
--> within-class whitening), evaluated at the operating point. See decision_log 2026-06-01/02
-and `work/mechanism_feature_embedding_current702_20260601.md`.
-- The predeclared primary novelty score does NOT beat the top1_score baseline
-  (AUC 0.616 vs 0.757; OOS-abstain-recall 0.165 vs 0.215 at >=90% retention).
-  Supervised whitening distances (prototype/kNN ~0.61) confirm discriminative
-  reshaping is the wrong lever for novelty.
-- LEAD: the UNSUPERVISED out-of-atlas-span residual (representation mass outside
-  known-mechanism directions) is genuinely new and orthogonal — AUC 0.721, and at
-  the operating point abstains on 0.241 of OOS (> baseline 0.215), concentrated on
-  the cofactor-agnostic majority. It is NOT confounded-safe (0.333 vs 0.500), so
-  it is a complementary LIFT channel, not a gate.
-- CONFIRMED (2026-06-01): the residual passed both predeclared gates. The PCA
-  variance-cutoff sweep holds (deployment all-OOS AUC 0.707/0.722/0.721 at 95/97/99%,
-  spread 0.014 — not a cutoff artifact) and the held-out-from-design confirmatory
-  split passes (confirmation fold AUC 0.789, permutation p=0.0005; both folds clear
-  the floor; agnostic>confounded replicates). See decision_log 2026-06-01 and
-  `work/mechanism_feature_residual_robustness_current702_20260601.md`
+CONSOLIDATED NEGATIVE (robust because two independent builds agree): a learned or
+standardized embedding over the CURRENT feature surface does NOT deployably beat the
+geometry baseline.
+- Residual line: the predeclared primary novelty score AUC 0.616 vs top1_score 0.757
+  (OOS-abstain-recall 0.165 vs 0.215 at >=90% retention); supervised whitening distances
+  (prototype/kNN ~0.61) confirm discriminative reshaping is the wrong lever. See
+  `work/mechanism_feature_embedding_current702_20260601.md`.
+- Centroid line: the full contract looks strong (calibration AUC 0.948, heldout 0.881)
+  ONLY because of the reaction-template field; the deployment-valid no-template ablation
+  is at chance (heldout AUC 0.489, 9.5% OOS abstention). Its own log says not to cite the
+  full-contract scores as deployment evidence. Two independent negatives make this robust.
+  See `artifacts/v3_mechanism_feature_embedding_pilot_current702_20260601.json` and
+  `artifacts/v3_mechanism_feature_embedding_heldout_readout_current702_20260601.json`.
+
+LIVE DEPLOYABLE SIGNAL (the surviving win, from the residual line): the UNSUPERVISED
+out-of-atlas-span residual (representation mass outside known-mechanism directions) is
+genuinely new, orthogonal, and deployment-valid (sequence-only) — AUC 0.721, abstains on
+0.241 of OOS at the operating point (> baseline 0.215), concentrated on the cofactor-agnostic
+majority. It is NOT confounded-safe (0.333 vs 0.500), so it is a LIFT channel, not a gate.
+- CONFIRMED (2026-06-01): passes both predeclared gates — the PCA variance-cutoff sweep
+  holds (deployment all-OOS AUC 0.707/0.722/0.721 at 95/97/99%, spread 0.014, not a cutoff
+  artifact) and the held-out-from-design confirmatory split passes (confirmation fold
+  AUC 0.789, permutation p=0.0005; both folds clear the floor; agnostic>confounded
+  replicates). See `work/mechanism_feature_residual_robustness_current702_20260601.md`
   (`eval-mechanism-residual-robustness`).
-- INTEGRATED (2026-06-02): the confirmed residual is wired into the per-channel RULE
-  gate as a third confounded-safe agnostic-lift channel. At the operative >=85%
-  retention floor it lifts OOS-abstain-recall 0.3038 -> 0.3797 (+0.076), entirely
-  from the cofactor-agnostic subset, with the confounded subset UNCHANGED at 0.1667
-  (confounded-safe). Caveat: the residual threshold is research-grade — 100% of
-  held-out rows saturate the atlas residual range, so it is eval-pool-relative, not a
-  deployable constant. See decision_log 2026-06-02 and
+- INTEGRATED (2026-06-02): wired into the per-channel RULE gate as a third confounded-safe
+  agnostic-lift channel. At the operative >=85% retention floor it lifts OOS-abstain-recall
+  0.3038 -> 0.3797 (+0.076), entirely from the cofactor-agnostic subset, the confounded
+  subset UNCHANGED at 0.1667 (confounded-safe). Caveat: the residual THRESHOLD is
+  research-grade — 100% of held-out rows saturate the atlas residual range, so it is
+  eval-pool-relative, not yet a deployable constant. See
   `work/mechanism_residual_gate_integration_current702_20260601.md`
   (`eval-mechanism-residual-gate-integration`).
-- NEXT (residual line): the operational gap is now precisely the confounded subset
-  (still 0.1667). (a) close Lever 3 — a DEPLOYMENT-VALID confounded-safe channel
-  (predicted-structure Foldseek/TM vs the atlas; the current fold eval uses
-  experimental-PDB metadata and is not deployable); and (b) a deployable residual
-  calibration (or the Lever 4 expanded family set) so the residual lift survives
-  outside an eval-relative threshold. A trainable GNN over active-site reaction
-  graphs remains a future lever once a deployment-valid predicted-geometry graph
-  dataset exists.
 
-**(B) Standardized nearest-primary centroid pilot (template-feature line).** A separate
-take on the same lever (decision_log 2026-06-01, "Mechanism-Feature Embedding Pilot Is
-Implemented, But Template-Dependent"); status below.
+KEPT FROM THE CENTROID LINE (genuine advancements, retained and reused — not discarded):
+- Stronger fitting hygiene: centroids fit on 418 train rows, threshold selected on 106
+  calibration rows, with a once-only heldout readout — no heldout used for fitting or
+  selection. This train/cal/heldout protocol is the standard the residual's deployable
+  calibration should adopt.
+- The forward feature path: the audited mechanism-feature contract surface plus the P0
+  source-evidence sidecar with a feature-readiness audit over draft bond/proton/electron
+  events (currently 0/15 rows approved/consumable). A bounded official Rhea lookup resolved
+  `m_csa:124` to `RHEA:11436` / EC `7.1.1.9` (strict consumption audit confirms draft-only);
+  `m_csa:11`, `m_csa:169`, `m_csa:5` and reviewer provenance remain open. This is the route
+  to the genuinely-new mechanism feature the northstar actually wants.
 
-Current status addendum, 2026-06-01: the train/cal feature contract has now
-been consumed by a real standardized nearest-primary centroid pilot, with a
-once-only heldout readout. The full contract scores well only while the
-reaction-template field is present; the no-reaction-template ablation is weak
-on both calibration and heldout. The next embedding-gap action is no longer
-another plan: materialize row-specific bond-change, proton-transfer, and
-electron-flow features, rerun the no-template pilot/readout, and use the
-template-dependent full-contract score only as a ceiling diagnostic.
-
-Readiness addendum, 2026-06-01: the P0 source-evidence sidecar now has a
-feature-readiness audit over draft bond/proton/electron events, but 0/15 rows
-are approved or consumable. A bounded official Rhea lookup resolved `m_csa:124`
-by accession to `RHEA:11436` / EC `7.1.1.9`, and a strict consumption audit
-confirms it entered only the draft sidecar. Resolve the remaining three Rhea
-lookup rows (`m_csa:11`, `m_csa:169`, and `m_csa:5`) and reviewer provenance
-before any no-template feature-contract refresh.
+UNIFIED NEXT (one path; both lines feed it):
+(a) Materialize the centroid line's row-specific bond-change / proton-transfer /
+    electron-flow features (resolve the three open Rhea rows + provenance first) — the
+    genuinely-new, template-free mechanism feature.
+(b) On that richer surface, re-run BOTH methods under the centroid line's train/cal/heldout
+    discipline: the no-template centroid pilot AND the out-of-span residual. Use the
+    template-dependent full contract only as a ceiling diagnostic.
+(c) Give the confirmed residual a deployable calibration (or the Lever 4 expanded family
+    set) so its +0.076 agnostic lift survives outside an eval-relative threshold.
+(d) Close Lever 3 — a DEPLOYMENT-VALID confounded-safe channel (predicted-structure
+    Foldseek/TM vs the atlas; the current fold eval uses experimental-PDB metadata and is
+    not deployable) — since the residual is agnostic-only and the confounded subset is
+    still 0.1667.
+A trainable GNN over active-site reaction graphs remains a future lever once a
+deployment-valid predicted-geometry graph dataset exists.
 
 ### 3. Fold-level novelty signal (complementary, catches the confounded subset)
 The 6 cofactor-confounded OOS (novel chemistry reusing a known cofactor family)
