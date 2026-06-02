@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601",
   "counts": {
-    "approved_rows": 0,
+    "approved_rows": 3,
     "draft_event_type_counts": {
       "bond_broken": 5,
       "bond_formed": 6,
@@ -9,32 +9,38 @@
       "electron_transfer": 21,
       "proton_transfer": 10
     },
-    "feature_contract_consumable_rows": 0,
+    "feature_contract_consumable_rows": 3,
+    "model_training_allowed_rows": 0,
     "review_status_counts": {
-      "draft": 15
+      "approved": 3,
+      "draft": 12
     },
     "rows_missing_rhea_equations": 3,
     "rows_with_draft_bond_change_events": 15,
     "rows_with_rhea_equations": 12,
     "rows_with_source_spans": 15,
     "sidecar_rows": 15,
-    "worksheet_rows": 15
+    "worksheet_rows": 15,
+    "m_csa_only_reviewer_approved_rows": 3
   },
-  "created_utc": "2026-06-01T23:00:43Z",
+  "created_utc": "2026-06-02T05:12:36Z",
   "guardrails": {
     "draft_source_evidence_not_training_input": true,
     "feature_contract_mutated": false,
     "feature_contract_refresh_allowed": false,
+    "heldout_m_csa_rows_excluded_from_training_required": true,
     "heldout_threshold_tuning_for_deployment": false,
     "imports_or_promotions_performed": false,
     "labels_registries_ontologies_changed": false,
+    "m_csa_source_evidence_train_cal_only_requires_split_filter": true,
     "mechanism_text_used_only_as_source_evidence": true,
     "model_weights_fit_or_refit": false,
-    "production_thresholds_changed": false
+    "production_thresholds_changed": false,
+    "reviewer_provenance_recorded": true
   },
   "interpretation": {
-    "next_action": "Run the strict sidecar audit, then manually review each draft event and participant mapping before any no-fit feature contract refresh.",
-    "result": "The P0 worksheet now has a draft, source-backed evidence sidecar over all 15 rows. It closes the blank-worksheet formatting gap but not the review gate: zero rows are approved for feature-contract consumption."
+    "next_action": "Rerun strict sidecar, review queue, Rhea manifest, feature-readiness, Rhea consumption, reviewer-decision, and refresh-blocker audits before materializing any row-specific feature-contract fields.",
+    "result": "Three previously Rhea-missing P0 rows now carry reviewer-approved M-CSA-only provenance and are feature-contract-consumable only through train/cal split filtering; the remaining rows stay draft."
   },
   "schema_snapshot": {
     "allowed_event_types": [
@@ -137,12 +143,32 @@
           "uniprot_id": "P08819"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:5",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "approved",
+      "reviewer_decision": {
+        "accepted_event_indices": [
+          0
+        ],
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph sidecar",
+        "decision": "approve_m_csa_only_source_evidence",
+        "decision_rationale": "Approve M-CSA-only source evidence for carboxypeptidase D because official Rhea/UniProt lookup found no Rhea cross-reference, UniProt confirms matching EC activity, and the M-CSA mechanism/residue evidence gives a coherent serine-carboxypeptidase peptide-bond cleavage event.",
+        "leakage_safety_note": "M-CSA-derived bond-change features may feed only split-filtered train/cal feature-contract materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "m_csa_only_provenance_accepted": true,
+        "official_rhea_evidence_found": false,
+        "official_source_status": "official_ec_activity_present_without_rhea_cross_reference",
+        "reviewed_utc": "2026-06-02T05:12:36Z",
+        "reviewer_id": "Vivek Vardhan Arrabelli",
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Vivek Vardhan Arrabelli",
       "row_specific_bond_change_events": [
         {
           "confidence": "medium",
@@ -604,12 +630,35 @@
           "uniprot_id": "P0A6C1"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:11",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "approved",
+      "reviewer_decision": {
+        "accepted_event_indices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph sidecar",
+        "decision": "approve_m_csa_only_source_evidence",
+        "decision_rationale": "Approve M-CSA-only source evidence for deoxyribonuclease IV because official Rhea/UniProt lookup found no Rhea cross-reference, UniProt confirms matching EC activity, and the M-CSA mechanism/residue evidence captures metal-assisted phosphate hydrolysis. Low-confidence draft event labels are accepted as review-provenance source features, not as a production ontology rewrite.",
+        "leakage_safety_note": "M-CSA-derived bond-change features may feed only split-filtered train/cal feature-contract materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "m_csa_only_provenance_accepted": true,
+        "official_rhea_evidence_found": false,
+        "official_source_status": "official_ec_activity_present_without_rhea_cross_reference",
+        "reviewed_utc": "2026-06-02T05:12:36Z",
+        "reviewer_id": "Vivek Vardhan Arrabelli",
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Vivek Vardhan Arrabelli",
       "row_specific_bond_change_events": [
         {
           "confidence": "medium",
@@ -3260,12 +3309,35 @@
           "uniprot_id": "P27487"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:169",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "draft",
-      "reviewer_id": null,
+      "review_status": "approved",
+      "reviewer_decision": {
+        "accepted_event_indices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph sidecar",
+        "decision": "approve_m_csa_only_source_evidence",
+        "decision_rationale": "Approve M-CSA-only source evidence for dipeptidyl-peptidase IV because official Rhea/UniProt lookup found no Rhea cross-reference, UniProt confirms matching EC activity, and the M-CSA mechanism/residue evidence gives a coherent Ser-His-Asp peptide cleavage cycle with bond/proton-transfer events.",
+        "leakage_safety_note": "M-CSA-derived bond-change features may feed only split-filtered train/cal feature-contract materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "m_csa_only_provenance_accepted": true,
+        "official_rhea_evidence_found": false,
+        "official_source_status": "official_ec_activity_present_without_rhea_cross_reference",
+        "reviewed_utc": "2026-06-02T05:12:36Z",
+        "reviewer_id": "Vivek Vardhan Arrabelli",
+        "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json"
+        ]
+      },
+      "reviewer_id": "Vivek Vardhan Arrabelli",
       "row_specific_bond_change_events": [
         {
           "confidence": "medium",
@@ -3547,5 +3619,5 @@
       "sha256": "d1dc5f9edcdb5009c21e4e04a9253875280ec471216db8911435204c398e2a21"
     }
   },
-  "status": "p0_source_evidence_sidecar_draft_review_required"
+  "status": "p0_source_evidence_sidecar_partially_approved_review_required"
 }

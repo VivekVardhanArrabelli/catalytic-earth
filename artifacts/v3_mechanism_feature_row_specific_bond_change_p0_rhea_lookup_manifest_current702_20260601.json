@@ -1,21 +1,19 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601",
   "counts": {
-    "blocker_counts": {
-      "rhea_equation_missing": 3
-    },
+    "blocker_counts": {},
     "critical_counts": {
       "feature_contract_consumption_allowed_rows": 0,
       "review_queue_not_ready": 0,
       "rhea_missing_rows_absent": 0
     },
     "critical_violation_total": 0,
-    "lookup_target_count": 3,
+    "lookup_target_count": 0,
     "review_queue_rows": 15,
-    "rhea_lookup_rows": 3,
-    "rows_with_ec_targets": 3
+    "rhea_lookup_rows": 0,
+    "rows_with_ec_targets": 0
   },
-  "created_utc": "2026-06-01T23:00:43Z",
+  "created_utc": "2026-06-02T05:15:15Z",
   "guardrails": {
     "feature_contract_mutated": false,
     "feature_contract_refresh_allowed": false,
@@ -28,87 +26,17 @@
     "source_fetch_performed": false
   },
   "interpretation": {
-    "next_action": "Resolve the remaining rows from the staged query URLs, then rerun the sidecar, strict audit, review queue, and feature readiness audit after edits.",
-    "result": "3 P1 review-queue rows have EC targets but still lack local or resolved official Rhea equations. The next blocker-clearing step is bounded Rhea lookup and sidecar update, not feature use."
+    "next_action": "Resolve any staged query URLs, or proceed to feature-readiness audit when no lookup rows remain after reviewer approval.",
+    "result": "0 P1 review-queue rows have EC targets but still lack local or resolved official Rhea equations. If this count is zero, the remaining Rhea gap has been cleared by reviewer-approved M-CSA-only provenance."
   },
-  "lookup_rows": [
-    {
-      "accession": "P0A6C1",
-      "allowed_for_feature_contract_consumption_now": false,
-      "allowed_for_model_training_now": false,
-      "draft_event_count": 4,
-      "ec_targets": [
-        "ec:3.1.21.2"
-      ],
-      "entry_id": "m_csa:11",
-      "lookup_blockers": [
-        "rhea_equation_missing"
-      ],
-      "lookup_targets": [
-        {
-          "ec_target": "ec:3.1.21.2",
-          "local_graph_expectation": "no existing ec_to_rhea mapping in artifacts/v1_graph_1025.json",
-          "rhea_query_url": "https://www.rhea-db.org/rhea?query=3.1.21.2"
-        }
-      ],
-      "m_csa_entry_name": "deoxyribonuclease IV (phage-T4-induced)",
-      "manual_review_command_template": "Open the Rhea EC query URL, record matching RHEA IDs and equations in the P0 source-evidence sidecar, then rerun audit-mechanism-feature-row-specific-bond-change-p0-source-evidence-sidecar-strict.",
-      "review_queue_priority_rank": 1
-    },
-    {
-      "accession": "P27487",
-      "allowed_for_feature_contract_consumption_now": false,
-      "allowed_for_model_training_now": false,
-      "draft_event_count": 4,
-      "ec_targets": [
-        "ec:3.4.14.5"
-      ],
-      "entry_id": "m_csa:169",
-      "lookup_blockers": [
-        "rhea_equation_missing"
-      ],
-      "lookup_targets": [
-        {
-          "ec_target": "ec:3.4.14.5",
-          "local_graph_expectation": "no existing ec_to_rhea mapping in artifacts/v1_graph_1025.json",
-          "rhea_query_url": "https://www.rhea-db.org/rhea?query=3.4.14.5"
-        }
-      ],
-      "m_csa_entry_name": "dipeptidyl-peptidase IV",
-      "manual_review_command_template": "Open the Rhea EC query URL, record matching RHEA IDs and equations in the P0 source-evidence sidecar, then rerun audit-mechanism-feature-row-specific-bond-change-p0-source-evidence-sidecar-strict.",
-      "review_queue_priority_rank": 1
-    },
-    {
-      "accession": "P08819",
-      "allowed_for_feature_contract_consumption_now": false,
-      "allowed_for_model_training_now": false,
-      "draft_event_count": 1,
-      "ec_targets": [
-        "ec:3.4.16.6"
-      ],
-      "entry_id": "m_csa:5",
-      "lookup_blockers": [
-        "rhea_equation_missing"
-      ],
-      "lookup_targets": [
-        {
-          "ec_target": "ec:3.4.16.6",
-          "local_graph_expectation": "no existing ec_to_rhea mapping in artifacts/v1_graph_1025.json",
-          "rhea_query_url": "https://www.rhea-db.org/rhea?query=3.4.16.6"
-        }
-      ],
-      "m_csa_entry_name": "carboxypeptidase D",
-      "manual_review_command_template": "Open the Rhea EC query URL, record matching RHEA IDs and equations in the P0 source-evidence sidecar, then rerun audit-mechanism-feature-row-specific-bond-change-p0-source-evidence-sidecar-strict.",
-      "review_queue_priority_rank": 1
-    }
-  ],
+  "lookup_rows": [],
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_rhea_lookup_manifest",
   "scope": "Manual-only lookup manifest for P0 source-evidence draft rows that lack local EC-to-Rhea equations. It stages exact EC query targets and rerun instructions without fetching source data or approving rows.",
   "source_artifacts": {
     "review_queue": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-      "sha256": "98c49ed319d631d1dd862ac4aaacf8f41b810dda49b2d41615002d3d6fc27b64"
+      "sha256": "7403fbe7d0b0d18b624b9c5da746353370b3a6dd7a6360d6410e0c3243584e6a"
     },
     "source_graph_readiness": {
       "exists": true,

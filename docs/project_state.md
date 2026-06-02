@@ -387,51 +387,53 @@ artifacts first.
 - The P0 worksheet now has a draft source-evidence sidecar derived from frozen
   local M-CSA graph evidence. All 15 rows have source spans and draft
   bond-change events. After the bounded official Rhea lookup resolution, 12/15
-  have Rhea equations and 3/15 remain Rhea-missing. The strict sidecar audit
-  passes with 0 critical violations, but 0 rows are approved and
-  feature-contract refresh remains blocked pending manual review.
+  have Rhea equations and 3/15 remain Rhea-missing. `m_csa:5`, `m_csa:11`,
+  and `m_csa:169` now carry reviewer-approved M-CSA-only provenance from
+  Vivek Vardhan Arrabelli, so 3/15 rows are feature-contract-consumable only
+  through train/cal split filtering. The remaining 12 rows stay draft.
 - A companion manual-review queue ranks those 15 draft rows without changing
-  review state. It now prioritizes three Rhea-missing rows (`m_csa:11`,
-  `m_csa:169`, and `m_csa:5`), then five high-complexity multi-event rows
-  including Rhea-resolved `m_csa:124`, then seven standard draft reviews. It authorizes no
-  approval, feature-contract refresh, model use, label change, or threshold
+  review state. It now separates the three approved M-CSA-only rows from the
+  12 remaining draft rows: five high-complexity multi-event rows including
+  Rhea-resolved `m_csa:124`, then seven standard draft reviews. It authorizes
+  no full feature-contract refresh, model use, label change, or threshold
   change.
 - A bounded official Rhea lookup resolution queried the four staged EC/accession
   rows. Exact EC queries returned no Rhea records, but accession `P00396`
   resolves `m_csa:124` to `RHEA:11436` with Rhea EC `7.1.1.9`, reflecting an
   EC reclassification away from the worksheet `ec:1.9.3.1`. The remaining Rhea
-  lookup manifest now stages only `ec:3.1.21.2`, `ec:3.4.14.5`, and
-  `ec:3.4.16.6` for `m_csa:11`, `m_csa:169`, and `m_csa:5`.
+  lookup manifest is now empty because the three unresolved official Rhea rows
+  are reviewer-resolved as M-CSA-only source evidence, not Rhea-resolved.
 - A bounded official-source audit rechecked those three remaining rows against
   Rhea EC queries with and without the `ec:` prefix, Rhea accession queries, and
   current UniProtKB catalytic-activity records. Rhea still returns 0 records;
   UniProt confirms matching EC activity for all three accessions but provides
   no Rhea cross-references. These rows are not automation-resolvable from
-  official Rhea/UniProt alone and now need reviewer provenance for M-CSA-only
-  approval, rejection/hold, or an explicitly authorized alternate reaction
-  source.
+  official Rhea/UniProt alone; the sidecar now records the human decision to
+  approve M-CSA-only source evidence for all three with reviewer provenance.
 - A companion reviewer decision matrix now makes that human gate explicit for
   `m_csa:11`, `m_csa:169`, and `m_csa:5`. Each row has three allowed decision
   options: approve M-CSA-only source evidence with reviewer provenance,
   reject/rewrite draft events, or hold for an authorized alternate reaction
-  source. The matrix records 0 approvals, 0 reviewer IDs, 0 copy-ready rows, and
-  0 feature-contract-consumable rows.
+  source. The matrix now records 3 reviewer IDs, 3 copy-ready approved
+  decisions, and 3 feature-contract-consumable rows.
 - A strict consumption audit confirms that the Rhea lookup resolution is used
-  only as draft review evidence: `m_csa:124` carries `RHEA:11436` in the
-  sidecar, the three unresolved rows remain in lookup/readiness blockers, and
-  0 rows are approved, consumable, or model-training eligible.
+  only as review evidence: `m_csa:124` carries `RHEA:11436` in the sidecar,
+  the three Rhea-absent rows are reviewer-approved M-CSA-only evidence, and
+  there are 0 unresolved lookup rows, 3 feature-contract-consumable rows, and
+  0 model-training-eligible rows.
 - A P0 feature-readiness audit now makes the no-template embedding blocker
-  exact. All 15 draft rows are structurally ready as source-evidence drafts,
+  exact. All 15 rows are structurally ready as source-evidence rows,
   with 10 rows carrying bond-change events, 6 carrying proton-transfer events,
-  and 9 carrying electron-transfer events. Zero rows are approved or consumable,
-  the feature contract contains no row-specific bond/proton/electron fields,
-  and refresh remains blocked on reviewer provenance plus the three remaining Rhea lookup
-  rows.
+  and 9 carrying electron-transfer events. Three rows are approved and
+  consumable for split-filtered train/cal materialization, but the feature
+  contract contains no row-specific bond/proton/electron fields and the full
+  15-row refresh remains blocked until the remaining 12 draft rows are reviewed.
 - A companion P0 refresh-blocker audit now packages that into the automation
-  decision: no-template feature-contract refresh is not allowed from the draft
-  sidecar. `m_csa:5`, `m_csa:11`, and `m_csa:169` need reviewer provenance
-  and one explicit decision each before any strict rerun or train/cal feature
-  refresh.
+  decision: full no-template feature-contract refresh is not allowed from the
+  P0 sidecar, but partial train/cal feature materialization is allowed for only
+  the 3 approved rows. The load-bearing guardrail is that M-CSA-derived
+  row-specific bond-change features must remain train/cal-only; heldout M-CSA
+  rows must not be used for training or threshold tuning.
 - The mechanism-feature role-graph and reaction-center sidecars now pass a
   strict schema and row-alignment audit over all 702 current rows with zero
   critical violations. This validates the current sidecars as schema-safe
@@ -582,12 +584,14 @@ artifacts first.
    `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`,
    then
    `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`,
-   then re-run BOTH the no-template centroid pilot and the confirmed out-of-span
-   residual on that template-free surface under the same train/cal/heldout
-   discipline (train heads on train/cal rows only, evaluate heldout once, include a
+   then materialize only the three reviewer-approved P0 M-CSA-only source rows
+   into train/cal row-specific feature sidecars before re-running BOTH the
+   no-template centroid pilot and the confirmed out-of-span residual on that
+   template-free surface under the same train/cal/heldout discipline (train
+   heads on train/cal rows only, evaluate heldout once, include a
    predicted-geometry robustness cell), and give the residual a deployable
-   calibration. This is the unified Lever 2 forward path; see `docs/decision_log.md`
-   2026-06-02.
+   calibration. This is the unified Lever 2 forward path; see
+   `docs/decision_log.md` 2026-06-02.
 4. For FMO, revise the review/silver evidence gate into subtype panels, finish
    coordinate/materialization blockers, and keep candidate rows review-only.
 5. For label growth, require explicit expert decision, no-import safety checks

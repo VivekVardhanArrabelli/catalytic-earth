@@ -3,6 +3,40 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-02: P0 Rhea-Absent Rows Approved As M-CSA-Only Source Evidence With Split-Filtered Use Only
+
+Decision: approve all three P0 row-specific bond-change rows that official
+Rhea/UniProt lookup could not Rhea-resolve: `m_csa:5`, `m_csa:11`, and
+`m_csa:169`. The reviewer decision is `approve_m_csa_only_source_evidence`,
+with reviewer provenance recorded as Vivek Vardhan Arrabelli in the P0 source
+evidence sidecar. UniProt confirms matching EC activity for all three rows, but
+Rhea returns no EC/accession cross-reference; these are explicitly
+reviewer-approved M-CSA-only source-evidence rows, not Rhea-resolved rows.
+
+Consequence: the strict sidecar audit now passes with 3 approved consumable rows
+and 12 remaining draft rows. The Rhea lookup manifest has 0 remaining rows, the
+Rhea consumption audit reports 3 reviewer-approved M-CSA-only rows, and the
+reviewer decision matrix is copy-ready for those three rows. Full 15-row
+no-template feature-contract refresh remains blocked until the remaining draft
+rows are reviewed, but partial train/cal feature materialization is allowed for
+only the three approved rows.
+
+Load-bearing guardrail: these bond-change/proton/electron features are
+M-CSA-derived. They are safe only because the feature materialization path must
+filter to train/cal rows and keep the 140 heldout M-CSA rows excluded from
+training and threshold selection. Do not train, calibrate, or tune deployment
+thresholds on heldout M-CSA rows using these features.
+
+Artifacts:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json`,
+and
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601.json`.
+
 ## 2026-06-02: Lever 2 Integrated — Two Independent Builds Become One Result; The Closed-Form Residual Is The Live Deployable Signal, The Centroid Pilot's Discipline And Feature Track Are Retained
 
 Decision: integrate the two independent Lever 2 implementations rather than

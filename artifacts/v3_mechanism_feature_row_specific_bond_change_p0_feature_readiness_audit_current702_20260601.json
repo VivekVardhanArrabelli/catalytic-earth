@@ -1,18 +1,20 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601",
   "counts": {
-    "approved_consumable_rows": 0,
-    "approved_event_type_counts": {},
+    "approved_consumable_rows": 3,
+    "approved_event_type_counts": {
+      "bond_broken": 3,
+      "bond_formed": 2,
+      "electron_transfer": 2,
+      "proton_transfer": 2
+    },
     "blocker_counts": {
-      "low_confidence_event_review": 7,
-      "multi_event_mechanism_review": 7,
-      "review_status_not_approved": 15,
-      "reviewer_id_missing": 15,
-      "rhea_equation_missing": 3,
-      "rhea_lookup_unresolved": 3
+      "low_confidence_event_review": 6,
+      "multi_event_mechanism_review": 5,
+      "review_status_not_approved": 12,
+      "reviewer_id_missing": 12
     },
     "critical_counts": {
-      "feature_contract_refresh_allowed_rows": 0,
       "review_queue_not_ready": 0,
       "rhea_lookup_manifest_not_ready": 0,
       "strict_audit_not_passed": 0,
@@ -33,7 +35,7 @@
     "sidecar_rows": 15,
     "structurally_ready_draft_rows": 15
   },
-  "created_utc": "2026-06-01T23:00:43Z",
+  "created_utc": "2026-06-02T05:15:15Z",
   "guardrails": {
     "draft_source_evidence_not_training_input": true,
     "feature_contract_mutated": false,
@@ -47,18 +49,13 @@
   },
   "interpretation": {
     "next_action": "Resolve the Rhea-missing rows, manually approve or reject each draft event with reviewer provenance, rerun the strict audit and this readiness audit, then refresh only train/cal feature contracts if the refresh gate passes.",
-    "result": "The P0 sidecar has structural draft coverage for bond-change, proton-transfer, and electron-transfer signals, but zero rows are approved or consumable, so the no-template embedding contract must remain unchanged."
+    "result": "The P0 sidecar has approved consumable rows for bounded split-filtered materialization, but the full 15-row refresh remains blocked until all draft rows are reviewed."
   },
   "row_readiness": [
     {
       "accession": "P08819",
-      "approved_and_consumable": false,
-      "blockers": [
-        "review_status_not_approved",
-        "reviewer_id_missing",
-        "rhea_equation_missing",
-        "rhea_lookup_unresolved"
-      ],
+      "approved_and_consumable": true,
+      "blockers": [],
       "entry_id": "m_csa:5",
       "event_count": 1,
       "event_types": [
@@ -69,7 +66,7 @@
       "has_bond_change_event": true,
       "has_electron_transfer_event": false,
       "has_proton_transfer_event": false,
-      "review_status": "draft",
+      "review_status": "approved",
       "structurally_ready_draft": true
     },
     {
@@ -97,15 +94,8 @@
     },
     {
       "accession": "P0A6C1",
-      "approved_and_consumable": false,
-      "blockers": [
-        "low_confidence_event_review",
-        "multi_event_mechanism_review",
-        "review_status_not_approved",
-        "reviewer_id_missing",
-        "rhea_equation_missing",
-        "rhea_lookup_unresolved"
-      ],
+      "approved_and_consumable": true,
+      "blockers": [],
       "entry_id": "m_csa:11",
       "event_count": 4,
       "event_types": [
@@ -118,7 +108,7 @@
       "has_bond_change_event": true,
       "has_electron_transfer_event": true,
       "has_proton_transfer_event": false,
-      "review_status": "draft",
+      "review_status": "approved",
       "structurally_ready_draft": true
     },
     {
@@ -339,14 +329,8 @@
     },
     {
       "accession": "P27487",
-      "approved_and_consumable": false,
-      "blockers": [
-        "multi_event_mechanism_review",
-        "review_status_not_approved",
-        "reviewer_id_missing",
-        "rhea_equation_missing",
-        "rhea_lookup_unresolved"
-      ],
+      "approved_and_consumable": true,
+      "blockers": [],
       "entry_id": "m_csa:169",
       "event_count": 4,
       "event_types": [
@@ -359,7 +343,7 @@
       "has_bond_change_event": true,
       "has_electron_transfer_event": false,
       "has_proton_transfer_event": true,
-      "review_status": "draft",
+      "review_status": "approved",
       "structurally_ready_draft": true
     },
     {
@@ -395,22 +379,22 @@
     "review_queue": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-      "sha256": "98c49ed319d631d1dd862ac4aaacf8f41b810dda49b2d41615002d3d6fc27b64"
+      "sha256": "7403fbe7d0b0d18b624b9c5da746353370b3a6dd7a6360d6410e0c3243584e6a"
     },
     "rhea_lookup_manifest": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json",
-      "sha256": "a0deb4bd32a422bff59ee7c53c73047badd7458295f6505e421f5d1daf3de914"
+      "sha256": "70062e11d6152bcc22f840ae187a1367917721b63293fd88d9bb1dae5ac6f509"
     },
     "sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "73480b483045649ec44fb8b77871faa80b646ea19bcfb3169ec784cd71b0e482"
+      "sha256": "094be1a43e2754ec873926d8f67c66a38914c734517f09dd49a4ef8d1fd23273"
     },
     "strict_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json",
-      "sha256": "cd5f870c3f9d73feed25105e64b54364a2e171045d5bf55de36b71254431117c"
+      "sha256": "d56b118f9964340280c4d80c152a43cedf830e11af69bf796de492e65df0950b"
     }
   },
   "status": "p0_feature_readiness_audit_blocked_review_required"

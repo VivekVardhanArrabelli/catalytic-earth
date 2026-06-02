@@ -50,6 +50,78 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-02 P0 M-CSA-Only Reviewer Approval And Partial Feature Unblock
+
+Interactive run on `main` with the automation lock acquired.
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-02T05:04:18Z`
+- STARTED_LOCAL: `Tue Jun  2 00:04:18 CDT 2026`
+- ENDED_AT: `2026-06-02T05:22:37Z`
+- ENDED_LOCAL: `Tue Jun  2 00:22:37 CDT 2026`
+- ELAPSED_MINUTES: `18.3`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "27655", "started_at": "2026-06-02T05:04:18Z", "status": "acquired"}`
+- Lock release result: pending until commit, push, clean/synced verification, and
+  lock release complete.
+- Git branch at start/end: `main` / `main`
+- Git HEAD at start: `4314bced222d9a04de55e2dccb9ace352be864f2`
+- Dirty files at start: source sidecar/work markdown and P0 code edits from the
+  interrupted reviewer-approval run.
+
+#### What changed
+
+- Recorded Vivek Vardhan Arrabelli's human decision to approve all three
+  Rhea-absent P0 rows as M-CSA-only source evidence: `m_csa:5`, `m_csa:11`,
+  and `m_csa:169`.
+- Preserved the scientific guardrail explicitly: these M-CSA-derived
+  row-specific bond/proton/electron features are feature-contract consumable
+  only after train/cal split filtering; the 140 heldout M-CSA rows must remain
+  excluded from training and threshold selection.
+- Updated the P0 source-evidence pipeline so reviewer-approved M-CSA-only rows
+  are not treated as unresolved Rhea blockers, while unapproved draft rows
+  remain blocked.
+- Regenerated the strict sidecar audit, manual review queue, Rhea lookup
+  manifest, feature-readiness audit, Rhea consumption audit, reviewer decision
+  matrix, and refresh-blocker audit.
+- Updated durable docs and regression expectations to reflect the new state.
+
+#### Result state
+
+- Sidecar: 15 rows total, 3 approved M-CSA-only rows, 12 draft rows,
+  3 feature-contract-consumable rows, 0 model-training-eligible rows.
+- Strict sidecar audit:
+  `p0_source_evidence_sidecar_strict_audit_passed_reviewed_consumable` with 0
+  critical violations.
+- Rhea lookup manifest: 0 remaining lookup rows.
+- Rhea consumption audit: 1 Rhea-resolved row (`m_csa:124`), 3
+  reviewer-approved M-CSA-only rows, 0 unresolved rows.
+- Reviewer matrix:
+  `p0_reviewer_decision_matrix_copy_ready_reviewed` with 3 copy-ready approved
+  decisions.
+- Refresh blocker:
+  `p0_no_template_feature_refresh_partially_unblocked_review_remaining`. Full
+  15-row no-template feature-contract refresh remains blocked, but partial
+  train/cal feature materialization is allowed for only the 3 approved rows.
+
+#### Tests
+
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`
+  passed: 172 tests, 7 subtests.
+- `PYTHONPATH=src python -m pytest tests -q` passed: 1161 tests, 50 subtests,
+  one existing sklearn deprecation warning.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  passed with 0 missing references.
+
+#### Exact next action
+
+Materialize only the three reviewer-approved P0 M-CSA-only rows into
+train/cal-filtered row-specific feature sidecars. Do not copy draft rows, do not
+train or tune on heldout M-CSA rows, and do not run a full 15-row feature refresh
+until the remaining 12 draft rows are reviewed.
+
 ### 2026-06-02 Lever 2 Integration — Two Independent Builds Folded Into One Result
 
 Interactive session (not an automation work-loop run). No automation lock was

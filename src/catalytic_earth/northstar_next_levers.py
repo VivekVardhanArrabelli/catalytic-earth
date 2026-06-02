@@ -17546,6 +17546,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumpt
         resolved = str(accepted.get("status", "")).startswith("resolved_")
         rhea_id = str(accepted.get("rhea_id") or "")
         sidecar_row = sidecar_by_entry.get(entry_id, {})
+        approved_m_csa_only = _row_has_approved_m_csa_only_reviewer_decision(
+            sidecar_row
+        )
         queue_row = queue_by_entry.get(entry_id, {})
         readiness_row = readiness_by_entry.get(entry_id, {})
         sidecar_rhea_ids = _rhea_span_ids(sidecar_row)
@@ -17554,18 +17557,30 @@ def build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumpt
             violations.append("resolved_rhea_id_missing_from_sidecar")
         if resolved and entry_id in manifest_entries:
             violations.append("resolved_row_still_in_lookup_manifest")
-        if not resolved and entry_id not in manifest_entries:
+        if not resolved and not approved_m_csa_only and entry_id not in manifest_entries:
             violations.append("unresolved_row_missing_from_lookup_manifest")
-        if not resolved and queue_row.get("review_category") != "rhea_lookup_required_before_approval":
+        if (
+            not resolved
+            and not approved_m_csa_only
+            and queue_row.get("review_category") != "rhea_lookup_required_before_approval"
+        ):
             violations.append("unresolved_row_not_prioritized_for_rhea_lookup")
         readiness_blockers = set(readiness_row.get("blockers") or [])
-        if not resolved and "rhea_lookup_unresolved" not in readiness_blockers:
+        if (
+            not resolved
+            and not approved_m_csa_only
+            and "rhea_lookup_unresolved" not in readiness_blockers
+        ):
             violations.append("unresolved_row_missing_readiness_blocker")
-        if sidecar_row.get("allowed_for_feature_contract_consumption_now"):
+        if sidecar_row.get("allowed_for_feature_contract_consumption_now") and not (
+            approved_m_csa_only or resolved
+        ):
             violations.append("feature_contract_consumption_allowed")
         if sidecar_row.get("allowed_for_model_training_now"):
             violations.append("model_training_allowed")
-        if sidecar_row.get("review_status") == "approved":
+        if sidecar_row.get("review_status") == "approved" and not (
+            approved_m_csa_only or resolved
+        ):
             violations.append("resolved_or_unresolved_row_approved_without_review_gate")
         critical_counter.update(violations)
         row_audits.append(
@@ -17573,6 +17588,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumpt
                 "entry_id": entry_id,
                 "accepted_resolution_status": accepted.get("status"),
                 "resolved": resolved,
+                "reviewer_approved_m_csa_only": approved_m_csa_only,
                 "rhea_id": rhea_id or None,
                 "sidecar_rhea_ids": sorted(sidecar_rhea_ids),
                 "in_remaining_lookup_manifest": entry_id in manifest_entries,
@@ -17624,7 +17640,14 @@ def build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumpt
         "counts": {
             "resolution_rows": len(row_audits),
             "resolved_rows": sum(1 for row in row_audits if row["resolved"]),
-            "unresolved_rows": sum(1 for row in row_audits if not row["resolved"]),
+            "unresolved_rows": sum(
+                1
+                for row in row_audits
+                if not row["resolved"] and not row["reviewer_approved_m_csa_only"]
+            ),
+            "reviewer_approved_m_csa_only_rows": sum(
+                1 for row in row_audits if row["reviewer_approved_m_csa_only"]
+            ),
             "remaining_lookup_manifest_rows": len(manifest_entries),
             "approved_rows": sum(1 for row in row_audits if row["review_status"] == "approved"),
             "feature_contract_consumable_rows": sum(
@@ -17648,15 +17671,16 @@ def build_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumpt
         },
         "interpretation": {
             "result": (
-                "The Rhea lookup resolution is consumed only as draft review "
-                "evidence; remaining unresolved rows stay blocked and no row "
-                "is feature-contract consumable."
+                "The Rhea lookup resolution and reviewer decisions are consumed "
+                "as review evidence; unresolved rows without reviewer approval "
+                "stay blocked, while approved M-CSA-only rows may be used only "
+                "by split-filtered feature materialization."
                 if critical_total == 0
                 else "The Rhea lookup resolution consumption audit found critical violations."
             ),
             "next_action": (
-                "Resolve the remaining Rhea lookup rows and add reviewer "
-                "provenance before any train/cal no-template feature-contract refresh."
+                "Continue with feature-readiness and refresh-blocker audits; do "
+                "not train on heldout rows or use unapproved draft rows."
             ),
         },
     }
@@ -18243,6 +18267,13 @@ def build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix
             for event in sidecar_row.get("row_specific_bond_change_events", [])
             if isinstance(event, dict)
         ]
+        approved_m_csa_only = _row_has_approved_m_csa_only_reviewer_decision(
+            sidecar_row
+        )
+        copy_ready = bool(
+            approved_m_csa_only
+            and sidecar_row.get("allowed_for_feature_contract_consumption_now")
+        )
         event_summaries = [
             {
                 "event_index": index,
@@ -18276,14 +18307,22 @@ def build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix
                 "event_summaries": event_summaries,
                 "readiness_blockers": sorted(readiness_row.get("blockers") or []),
                 "decision_options": options,
-                "copy_ready_approved_decision_present": False,
-                "allowed_for_feature_contract_consumption_now": False,
+                "copy_ready_approved_decision_present": copy_ready,
+                "reviewer_decision": sidecar_row.get("reviewer_decision"),
+                "allowed_for_feature_contract_consumption_now": bool(
+                    sidecar_row.get("allowed_for_feature_contract_consumption_now")
+                ),
                 "allowed_for_model_training_now": False,
                 "recommended_next_action": (
-                    "Pick exactly one decision option, add reviewer provenance "
-                    "to a future reviewed sidecar, then rerun strict sidecar, "
-                    "review-queue, Rhea manifest, feature-readiness, and "
-                    "consumption audits."
+                    "Reviewer decision is copy-ready for split-filtered feature "
+                    "materialization."
+                    if copy_ready
+                    else (
+                        "Pick exactly one decision option, add reviewer provenance "
+                        "to a future reviewed sidecar, then rerun strict sidecar, "
+                        "review-queue, Rhea manifest, feature-readiness, and "
+                        "consumption audits."
+                    )
                 ),
             }
         )
@@ -18296,7 +18335,12 @@ def build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix
             f"{SCHEMA_VERSION}.row_specific_bond_change_p0_reviewer_decision_matrix"
         ),
         "created_utc": _utc_now_iso(),
-        "status": "p0_reviewer_decision_matrix_ready_review_only",
+        "status": (
+            "p0_reviewer_decision_matrix_copy_ready_reviewed"
+            if decision_rows
+            and all(row["copy_ready_approved_decision_present"] for row in decision_rows)
+            else "p0_reviewer_decision_matrix_ready_review_only"
+        ),
         "scope": (
             "Review-only decision matrix for P0 source-evidence rows where "
             "official Rhea/UniProt checks did not provide a Rhea "
@@ -18314,6 +18358,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix
             "feature_contract_mutated": False,
             "feature_contract_refresh_allowed": False,
             "reviewer_decision_recorded_by_this_artifact": False,
+            "reviewer_decision_recorded_by_sidecar": any(
+                row["copy_ready_approved_decision_present"] for row in decision_rows
+            ),
         },
         "counts": {
             "decision_rows": len(decision_rows),
@@ -18326,8 +18373,14 @@ def build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix
             "rows_with_existing_reviewer_id": sum(
                 1 for row in decision_rows if row.get("reviewer_id")
             ),
-            "copy_ready_approved_decisions": 0,
-            "feature_contract_consumable_rows": 0,
+            "copy_ready_approved_decisions": sum(
+                1 for row in decision_rows if row["copy_ready_approved_decision_present"]
+            ),
+            "feature_contract_consumable_rows": sum(
+                1
+                for row in decision_rows
+                if row["allowed_for_feature_contract_consumption_now"]
+            ),
             "model_training_allowed_rows": 0,
             "decision_options_per_row": len(options),
         },
@@ -18342,13 +18395,12 @@ def build_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix
         "interpretation": {
             "result": (
                 f"{len(decision_rows)} unresolved P0 Rhea rows now have an "
-                "explicit reviewer decision matrix; zero decisions are recorded "
-                "by this artifact."
+                "explicit reviewer decision matrix; copy-ready rows reflect "
+                "reviewer provenance recorded in the sidecar."
             ),
             "next_action": (
-                "Human review must choose approve/reject/hold for each row with "
-                "reviewer provenance before any no-template feature-contract "
-                "refresh."
+                "Use copy-ready decisions only through split-filtered train/cal "
+                "feature materialization; heldout M-CSA rows remain excluded."
             ),
         },
     }
@@ -18849,8 +18901,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_
         if event_violations:
             row_violations.append("bond_change_event_schema_violation")
 
-        if row.get("allowed_for_feature_contract_consumption_now"):
-            row_violations.append("feature_contract_consumption_allowed")
+        approved_m_csa_only = _row_has_approved_m_csa_only_reviewer_decision(row)
+        if row.get("allowed_for_feature_contract_consumption_now") and not (
+            review_status == "approved" and bool(row.get("reviewer_id"))
+        ):
+            row_violations.append("feature_contract_consumption_without_review")
         if row.get("allowed_for_model_training_now"):
             row_violations.append("model_training_allowed")
         if review_status == "approved":
@@ -18864,6 +18919,10 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_
                 row_violations.append("approved_row_event_source_span_missing")
             if mapped_event_residue_count == 0:
                 row_violations.append("approved_row_residue_support_missing")
+            if not row.get("allowed_for_feature_contract_consumption_now"):
+                row_violations.append("approved_row_not_feature_contract_consumable")
+            if not approved_m_csa_only and not _row_has_rhea_equation_span(row):
+                row_violations.append("approved_row_missing_rhea_or_m_csa_only_decision")
 
         violation_counter.update(row_violations)
         row_audits.append(
@@ -18912,10 +18971,14 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_
             if "forbidden_predictive_fields_present" in row["violations"]
         ),
         "approved_row_evidence_violation_rows": approved_row_evidence_violation_rows,
-        "feature_contract_consumption_allowed_rows": sum(
+        "feature_contract_consumption_without_review_rows": sum(
             1
             for row in sidecar_rows
             if row.get("allowed_for_feature_contract_consumption_now")
+            and not (
+                row.get("review_status") == "approved"
+                and bool(row.get("reviewer_id"))
+            )
         ),
         "model_training_allowed_rows": sum(
             1 for row in sidecar_rows if row.get("allowed_for_model_training_now")
@@ -18925,6 +18988,12 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_
         ),
     }
     passed = all(value == 0 for value in critical_counts.values())
+    reviewed_consumable_rows = [
+        row
+        for row in sidecar_rows
+        if row.get("review_status") == "approved"
+        and row.get("allowed_for_feature_contract_consumption_now")
+    ]
     return {
         "artifact_id": (
             MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_SOURCE_EVIDENCE_SIDECAR_STRICT_AUDIT_ID
@@ -18934,7 +19003,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_
         ),
         "created_utc": _utc_now_iso(),
         "status": (
-            "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable"
+            (
+                "p0_source_evidence_sidecar_strict_audit_passed_reviewed_consumable"
+                if reviewed_consumable_rows
+                else "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable"
+            )
             if passed
             else "p0_source_evidence_sidecar_strict_audit_failed"
         ),
@@ -18969,6 +19042,14 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_
                 for row in sidecar_rows
                 if row.get("source_text_or_database_evidence_span")
             ),
+            "feature_contract_consumable_rows": sum(
+                1
+                for row in sidecar_rows
+                if row.get("allowed_for_feature_contract_consumption_now")
+            ),
+            "model_training_allowed_rows": sum(
+                1 for row in sidecar_rows if row.get("allowed_for_model_training_now")
+            ),
             "strict_audit_critical_violation_total": sum(critical_counts.values()),
             "violation_counts": dict(sorted(violation_counter.items())),
             "critical_counts": critical_counts,
@@ -18984,16 +19065,22 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_
         },
         "interpretation": {
             "result": (
-                "The source-evidence sidecar is row-aligned and schema-valid "
-                "as draft evidence, but no row is approved and the feature "
-                "contract must remain unchanged."
-                if passed
-                else "The source-evidence sidecar has strict audit violations."
+                "The source-evidence sidecar is row-aligned and schema-valid; "
+                "reviewer-approved rows are consumable only by a future "
+                "split-filtered feature-contract materialization."
+                if passed and reviewed_consumable_rows
+                else (
+                    "The source-evidence sidecar is row-aligned and schema-valid "
+                    "as draft evidence, but no row is approved and the feature "
+                    "contract must remain unchanged."
+                    if passed
+                    else "The source-evidence sidecar has strict audit violations."
+                )
             ),
             "next_action": (
-                "Manually review and, where justified, approve or reject each "
-                "row's participant mapping and bond-change events; rerun this "
-                "audit before any no-fit feature-contract refresh."
+                "Use approved rows only after train/cal split filtering; continue "
+                "manual review for remaining draft rows before any full P0 "
+                "feature-contract refresh."
             ),
         },
         "source_artifacts": {
@@ -19080,6 +19167,23 @@ def _row_has_rhea_equation_span(row: dict[str, Any]) -> bool:
     return bool(_source_span_databases(row).intersection({"rhea_local_graph", "rhea_official_lookup"}))
 
 
+def _row_has_approved_m_csa_only_reviewer_decision(row: dict[str, Any]) -> bool:
+    decision = row.get("reviewer_decision")
+    return (
+        isinstance(decision, dict)
+        and row.get("review_status") == "approved"
+        and bool(row.get("reviewer_id"))
+        and decision.get("decision") == "approve_m_csa_only_source_evidence"
+    )
+
+
+def _p0_source_evidence_strict_audit_passed(status: object) -> bool:
+    return str(status) in {
+        "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable",
+        "p0_source_evidence_sidecar_strict_audit_passed_reviewed_consumable",
+    }
+
+
 def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue(
     *,
     sidecar_path: Path,
@@ -19092,10 +19196,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_q
         for row in sidecar.get("sidecar_rows", [])
         if isinstance(row, dict) and row.get("entry_id")
     ]
-    audit_passed = (
-        strict_audit.get("status")
-        == "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable"
-    )
+    audit_passed = _p0_source_evidence_strict_audit_passed(strict_audit.get("status"))
     queue_rows = []
     category_counter: Counter[str] = Counter()
     blocker_counter: Counter[str] = Counter()
@@ -19109,19 +19210,23 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_q
             {str(event.get("event_type")) for event in events if event.get("event_type")}
         )
         span_databases = _source_span_databases(row)
-        blockers = ["review_status_not_approved"]
-        if not _row_has_rhea_equation_span(row):
+        approved_m_csa_only = _row_has_approved_m_csa_only_reviewer_decision(row)
+        blockers = []
+        if row.get("review_status") != "approved":
+            blockers.append("review_status_not_approved")
+        if not _row_has_rhea_equation_span(row) and not approved_m_csa_only:
             blockers.append("rhea_equation_missing")
-        if len(events) >= 4:
+        if len(events) >= 4 and not approved_m_csa_only:
             blockers.append("multi_event_mechanism_review")
-        if any(event.get("confidence") == "low" for event in events):
+        if any(event.get("confidence") == "low" for event in events) and not approved_m_csa_only:
             blockers.append("low_confidence_event_review")
         if not events:
             blockers.append("draft_event_missing")
-        if row.get("allowed_for_feature_contract_consumption_now"):
-            blockers.append("feature_contract_consumption_allowed")
 
-        if "rhea_equation_missing" in blockers:
+        if approved_m_csa_only:
+            review_category = "approved_m_csa_only_source_evidence"
+            priority_rank = 9
+        elif "rhea_equation_missing" in blockers:
             review_category = "rhea_lookup_required_before_approval"
             priority_rank = 1
         elif "multi_event_mechanism_review" in blockers:
@@ -19143,7 +19248,10 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_q
                 "source_databases": sorted(span_databases),
                 "blockers": blockers,
                 "recommended_action": (
-                    "resolve missing Rhea reaction mapping or document why "
+                    "reviewer-approved M-CSA-only evidence; eligible for "
+                    "split-filtered feature-contract materialization"
+                    if review_category == "approved_m_csa_only_source_evidence"
+                    else "resolve missing Rhea reaction mapping or document why "
                     "M-CSA-only evidence is sufficient before row approval"
                     if review_category == "rhea_lookup_required_before_approval"
                     else (
@@ -19153,7 +19261,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_q
                         else "review participant mapping and residue support before any approval"
                     )
                 ),
-                "allowed_for_feature_contract_consumption_now": False,
+                "allowed_for_feature_contract_consumption_now": bool(
+                    row.get("allowed_for_feature_contract_consumption_now")
+                ),
                 "allowed_for_model_training_now": False,
             }
         )
@@ -19166,13 +19276,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_q
     )
     critical_counts = {
         "strict_audit_not_passed": 0 if audit_passed else 1,
-        "feature_contract_consumption_allowed_rows": sum(
+        "unreviewed_feature_contract_consumption_allowed_rows": sum(
             1
             for row in sidecar_rows
             if row.get("allowed_for_feature_contract_consumption_now")
-        ),
-        "approved_rows_present": sum(
-            1 for row in sidecar_rows if row.get("review_status") == "approved"
+            and not _row_has_approved_m_csa_only_reviewer_decision(row)
         ),
     }
     passed = all(value == 0 for value in critical_counts.values())
@@ -19209,24 +19317,37 @@ def build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_q
             "queue_rows": len(queue_rows),
             "category_counts": dict(sorted(category_counter.items())),
             "blocker_counts": dict(sorted(blocker_counter.items())),
-            "approved_rows": critical_counts["approved_rows_present"],
-            "feature_contract_consumable_rows": critical_counts[
-                "feature_contract_consumption_allowed_rows"
+            "approved_rows": sum(
+                1 for row in sidecar_rows if row.get("review_status") == "approved"
+            ),
+            "feature_contract_consumable_rows": sum(
+                1
+                for row in sidecar_rows
+                if row.get("allowed_for_feature_contract_consumption_now")
+            ),
+            "unreviewed_feature_contract_consumable_rows": critical_counts[
+                "unreviewed_feature_contract_consumption_allowed_rows"
             ],
+            "approved_feature_contract_consumable_rows": sum(
+                1
+                for row in sidecar_rows
+                if row.get("allowed_for_feature_contract_consumption_now")
+                and _row_has_approved_m_csa_only_reviewer_decision(row)
+            ),
             "critical_counts": critical_counts,
             "critical_violation_total": sum(critical_counts.values()),
         },
         "queue_rows": queue_rows,
         "interpretation": {
             "result": (
-                "The draft P0 sidecar is ready for manual review ordering, not "
-                "for feature consumption. Rows with missing Rhea equations come "
-                "first, followed by multi-event mechanism reviews."
+                "The P0 sidecar has a manual-review ordering surface; rows with "
+                "reviewer-approved M-CSA-only provenance are separated from "
+                "remaining draft review rows."
             ),
             "next_action": (
-                "Start with the Rhea-missing rows in priority order; update "
-                "row review_status only after source-backed manual review and "
-                "rerun the strict sidecar audit."
+                "Materialize only approved train/cal rows into the feature "
+                "contract after strict split filtering; continue manual review "
+                "for remaining draft rows."
             ),
         },
         "source_artifacts": {
@@ -19381,7 +19502,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest(
             if queue.get("status") == "p0_source_evidence_review_queue_ready_manual_only"
             else 1
         ),
-        "rhea_missing_rows_absent": 0 if lookup_rows else 1,
+        "rhea_missing_rows_absent": 0,
         "feature_contract_consumption_allowed_rows": sum(
             1
             for row in lookup_rows
@@ -19432,14 +19553,13 @@ def build_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest(
         "interpretation": {
             "result": (
                 f"{len(lookup_rows)} P1 review-queue rows have EC targets but "
-                "still lack local or resolved official Rhea equations. The next "
-                "blocker-clearing step is bounded Rhea lookup and sidecar "
-                "update, not feature use."
+                "still lack local or resolved official Rhea equations. If this "
+                "count is zero, the remaining Rhea gap has been cleared by "
+                "reviewer-approved M-CSA-only provenance."
             ),
             "next_action": (
-                "Resolve the remaining rows from the staged query URLs, then "
-                "rerun the sidecar, strict audit, review queue, and feature "
-                "readiness audit after edits."
+                "Resolve any staged query URLs, or proceed to feature-readiness "
+                "audit when no lookup rows remain after reviewer approval."
             ),
         },
         "source_artifacts": {
@@ -19653,10 +19773,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit(
         )
     row_readiness.sort(key=lambda row: _entry_id_sort_key(row["entry_id"]))
 
-    strict_passed = (
-        strict_audit.get("status")
-        == "p0_source_evidence_sidecar_strict_audit_passed_draft_not_consumable"
-    )
+    strict_passed = _p0_source_evidence_strict_audit_passed(strict_audit.get("status"))
     feature_contract_refresh_allowed = (
         strict_passed
         and bool(row_readiness)
@@ -19679,11 +19796,6 @@ def build_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit(
             1
             for row in row_readiness
             if row["feature_contract_row_has_forbidden_field"]
-        ),
-        "feature_contract_refresh_allowed_rows": sum(
-            1
-            for row in sidecar_rows
-            if row.get("allowed_for_feature_contract_consumption_now")
         ),
     }
     return {
@@ -19746,12 +19858,18 @@ def build_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit(
         "row_readiness": row_readiness,
         "interpretation": {
             "result": (
-                "The P0 sidecar has structural draft coverage for bond-change, "
-                "proton-transfer, and electron-transfer signals, but zero rows "
-                "are approved or consumable, so the no-template embedding "
-                "contract must remain unchanged."
-                if not feature_contract_refresh_allowed
-                else "All P0 rows are approved and consumable for a bounded feature-contract refresh."
+                "All P0 rows are approved and consumable for a bounded feature-contract refresh."
+                if feature_contract_refresh_allowed
+                else (
+                    "The P0 sidecar has approved consumable rows for bounded "
+                    "split-filtered materialization, but the full 15-row refresh "
+                    "remains blocked until all draft rows are reviewed."
+                    if approved_event_type_counter
+                    else "The P0 sidecar has structural draft coverage for "
+                    "bond-change, proton-transfer, and electron-transfer signals, "
+                    "but zero rows are approved or consumable, so the no-template "
+                    "embedding contract must remain unchanged."
+                )
             ),
             "next_action": (
                 "Resolve the Rhea-missing rows, manually approve or reject each "
@@ -19898,12 +20016,20 @@ def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
         ),
     }
     refresh_allowed = bool(readiness_counts.get("feature_contract_refresh_allowed"))
+    decision_rows_count = int(matrix_counts.get("decision_rows") or 0)
+    copy_ready_decisions = int(matrix_counts.get("copy_ready_approved_decisions") or 0)
+    remaining_reviewer_decision_required_rows = max(
+        0,
+        int(unresolved_counts.get("reviewer_decision_required_rows") or 0)
+        - copy_ready_decisions,
+    )
+    approved_consumable_rows = int(readiness_counts.get("approved_consumable_rows") or 0)
     blocker_counts = {
         "approved_consumable_rows_missing": (
-            1 if int(readiness_counts.get("approved_consumable_rows") or 0) == 0 else 0
+            1 if approved_consumable_rows == 0 else 0
         ),
-        "reviewer_decision_required_rows": int(
-            unresolved_counts.get("reviewer_decision_required_rows") or 0
+        "remaining_reviewer_decision_required_rows": (
+            remaining_reviewer_decision_required_rows
         ),
         "reviewer_id_missing_rows": int(
             (readiness_counts.get("blocker_counts") or {}).get("reviewer_id_missing")
@@ -19914,19 +20040,22 @@ def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
             or 0
         ),
         "copy_ready_approved_decisions_missing": (
-            1
-            if int(matrix_counts.get("copy_ready_approved_decisions") or 0) == 0
-            else 0
+            1 if copy_ready_decisions == 0 else 0
         ),
         "unexpected_contract_row_specific_fields": int(
             gap_counts.get("unexpected_bond_change_feature_rows") or 0
         ),
     }
+    partial_materialization_allowed = (
+        approved_consumable_rows > 0
+        and remaining_reviewer_decision_required_rows == 0
+        and int(blocker_counts["rhea_lookup_unresolved_rows"]) == 0
+        and all(total == 0 for total in source_critical_totals.values())
+    )
     automation_refresh_allowed = (
         refresh_allowed
         and all(total == 0 for total in source_critical_totals.values())
-        and int(matrix_counts.get("copy_ready_approved_decisions") or 0)
-        == int(matrix_counts.get("decision_rows") or 0)
+        and copy_ready_decisions == decision_rows_count
         and int(matrix_counts.get("feature_contract_consumable_rows") or 0)
         == int(readiness_counts.get("sidecar_rows") or 0)
     )
@@ -19948,11 +20077,16 @@ def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
             ],
         }
         for row in sorted(decision_rows, key=lambda item: _entry_id_sort_key(item["entry_id"]))
+        if not row.get("copy_ready_approved_decision_present")
     ]
     status = (
         "p0_no_template_feature_refresh_allowed_after_review_gate"
         if automation_refresh_allowed
-        else "p0_no_template_feature_refresh_blocked_review_required"
+        else (
+            "p0_no_template_feature_refresh_partially_unblocked_review_remaining"
+            if partial_materialization_allowed
+            else "p0_no_template_feature_refresh_blocked_review_required"
+        )
     )
     return {
         "artifact_id": (
@@ -19980,10 +20114,13 @@ def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
         },
         "decision": {
             "automation_feature_contract_refresh_allowed": automation_refresh_allowed,
+            "partial_train_cal_feature_materialization_allowed": (
+                partial_materialization_allowed
+            ),
             "feature_readiness_refresh_allowed": refresh_allowed,
             "required_before_refresh": [
-                "record reviewer provenance and exactly one decision for each unresolved Rhea row",
-                "rerun strict sidecar, review queue, Rhea manifest, feature-readiness, and consumption audits",
+                "continue manual review for remaining draft P0 source-evidence rows",
+                "materialize only approved train/cal rows; never train on heldout M-CSA rows",
                 "confirm approved consumable rows are the only rows copied into train/cal feature-contract materialization",
             ],
             "do_not_run": [
@@ -20002,6 +20139,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
             ),
             "reviewer_decision_required_rows": unresolved_counts.get(
                 "reviewer_decision_required_rows"
+            ),
+            "remaining_reviewer_decision_required_rows": (
+                remaining_reviewer_decision_required_rows
             ),
             "reviewer_decision_rows": matrix_counts.get("decision_rows"),
             "copy_ready_approved_decisions": matrix_counts.get(
@@ -20022,17 +20162,19 @@ def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
         "interpretation": {
             "result": (
                 "The no-template mechanism-feature contract refresh remains "
+                "blocked for a full 15-row refresh, but approved rows can move "
+                "to split-filtered train/cal feature materialization."
+                if partial_materialization_allowed
+                else "The no-template mechanism-feature contract refresh remains "
                 "blocked: draft P0 evidence is structurally present, but no row "
                 "has reviewer provenance or feature-contract consumption approval."
                 if not automation_refresh_allowed
                 else "The reviewed P0 evidence passes all refresh gates."
             ),
             "next_action": (
-                "Use the reviewer decision matrix for m_csa:5, m_csa:11, and "
-                "m_csa:169; after human decisions are recorded, rerun the strict "
-                "sidecar, review queue, Rhea manifest, feature-readiness, "
-                "consumption, and this blocker audit before refreshing any "
-                "feature contract."
+                "Use only approved train/cal rows for the next feature-contract "
+                "materialization step; continue reviewing remaining draft rows "
+                "before any full P0 refresh."
             ),
         },
         "source_artifacts": {

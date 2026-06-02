@@ -116,20 +116,16 @@ UNIFIED NEXT (one path; both lines feed it):
 A trainable GNN over active-site reaction graphs remains a future lever once a
 deployment-valid predicted-geometry graph dataset exists.
 
-Official-source addendum, 2026-06-02: the remaining three P0 Rhea rows were
-rechecked against bounded Rhea EC/accession queries and current UniProtKB
-catalytic-activity records. Rhea still returns 0 records; UniProt confirms the
-matching EC activities but provides no Rhea cross-references. The next action is
-now a human reviewer decision: approve M-CSA-only row-specific evidence with
-reviewer provenance, reject/hold the draft events, or authorize an alternate
-reaction source. Do not refresh the no-template feature contract until that
-review gate is explicit.
-
-Reviewer-decision addendum, 2026-06-02: the review-only decision matrix now
-names the three allowed decisions for each unresolved row: approve M-CSA-only
-source evidence with reviewer provenance, reject/rewrite draft events, or hold
-for an alternate reaction source. It records zero approvals and zero consumable
-rows; use it as the next human-facing packet.
+Reviewer-decision addendum, 2026-06-02: the remaining three P0 Rhea rows
+(`m_csa:5`, `m_csa:11`, and `m_csa:169`) were checked against bounded Rhea
+EC/accession queries and current UniProtKB catalytic-activity records. Rhea
+returns 0 records; UniProt confirms matching EC activities but provides no Rhea
+cross-references. Vivek Vardhan Arrabelli approved all three as
+M-CSA-only source evidence with reviewer provenance. The strict sidecar audit
+passes with 3 approved consumable rows, the Rhea lookup manifest is empty, and
+the refresh-blocker audit allows only partial train/cal feature materialization
+for those 3 rows. Do not run a full P0 refresh until the remaining 12 draft
+rows are reviewed, and never train or tune thresholds on heldout M-CSA rows.
 
 ### 3. Fold-level novelty signal (complementary, catches the confounded subset)
 The 6 cofactor-confounded OOS (novel chemistry reusing a known cofactor family)
