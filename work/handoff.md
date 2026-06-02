@@ -67,8 +67,10 @@ Automation run: `catalytic-earth-lever-3-2-forward-push`
   `2026-06-02T07:04:32Z` after the original recorded pid was no longer running;
   the prior lock directory was preserved as
   `.git/catalytic-earth-automation.lock.orphan.20260602T070432Z`.
-- Lock release result: pending until commit, push, clean/synced verification, and
-  lock release complete.
+- Lock release result: released; at `2026-06-02T07:33:45Z`,
+  `HEAD == origin/main` at
+  `9a4937b2c89e67d67444b0088e2b62bc7e2e5f0b`, `git status --short --branch`
+  was clean/synced, and `.git/catalytic-earth-automation.lock` was absent.
 
 #### What changed
 
