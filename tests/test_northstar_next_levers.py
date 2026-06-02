@@ -20,6 +20,11 @@ from catalytic_earth.northstar_next_levers import (
     build_fold_augmented_family_panel_source_check_queue,
     build_fold_augmented_oos_calibrated_threshold_contract,
     build_fold_augmented_abstention_threshold_contract,
+    build_fold_augmented_p23007_alternate_accession_scout,
+    build_fold_augmented_remaining_blocker_decision_matrix,
+    build_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit,
+    build_fold_augmented_source_feature_active_site_sidecar_candidates,
+    build_fold_augmented_source_sidecar_clearance_preflight,
     build_fold_augmented_train_cal_oos_negative_surface_blocker_resolution,
     build_fold_augmented_train_cal_oos_negative_surface_scores,
     build_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision,
@@ -1895,6 +1900,409 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertEqual(audit["counts"]["critical_violation_total"], 2)
         self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_source_sidecar_clearance_preflight_splits_candidates_and_policy_blockers(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            coordinate_reprobe = root / "coordinate_reprobe.json"
+            blocker_resolution = root / "blockers.json"
+            clearance = root / "clearance.json"
+            graph = root / "graph.json"
+            coordinate_reprobe.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:78",
+                                "accession": "P23007",
+                                "coordinate_available_now": False,
+                                "current_blocker": (
+                                    "alphafold_db_coordinate_unavailable"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:204",
+                                "accession": "P10746",
+                                "coordinate_available_now": True,
+                                "current_blocker": "experimental_geometry_not_ok:None",
+                            },
+                            {
+                                "entry_id": "m_csa:531",
+                                "accession": "P31572",
+                                "coordinate_available_now": True,
+                                "current_blocker": (
+                                    "experimental_geometry_not_ok:"
+                                    "insufficient_resolved_residues"
+                                ),
+                            },
+                            {
+                                "entry_id": "uniprot:P78549",
+                                "accession": "P78549",
+                                "coordinate_available_now": True,
+                                "current_blocker": "not_m_csa_entry",
+                            },
+                            {
+                                "entry_id": "uniprot:Q3LXA3",
+                                "accession": "Q3LXA3",
+                                "coordinate_available_now": True,
+                                "current_blocker": "not_m_csa_entry",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            blocker_resolution.write_text(
+                json.dumps(
+                    {
+                        "blocker_rows": [
+                            {"entry_id": "m_csa:531", "fold_tm_available": True},
+                            {"entry_id": "uniprot:P78549", "fold_tm_available": True},
+                            {"entry_id": "uniprot:Q3LXA3", "fold_tm_available": True},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            clearance.write_text(
+                json.dumps(
+                    {
+                        "row_attempts": [
+                            {
+                                "entry_id": "m_csa:78",
+                                "fold_only_evidence_available": False,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "nodes": [
+                            {"id": "m_csa:204", "residue_count": 0},
+                            {"id": "m_csa:531", "residue_count": 1},
+                            {
+                                "id": "m_csa:531:residue:1",
+                                "roles": ["nucleophile"],
+                                "sequence_positions": [
+                                    {"resid": 169, "code": "Asp"}
+                                ],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_source_sidecar_clearance_preflight(
+                remaining_blocker_coordinate_reprobe_path=coordinate_reprobe,
+                blocker_resolution_path=blocker_resolution,
+                remaining_blocker_clearance_path=clearance,
+                graph_path=graph,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_source_sidecar_clearance_preflight_candidates_ready_review_only",
+        )
+        self.assertEqual(
+            audit["counts"]["source_feature_sidecar_candidate_rows"], 3
+        )
+        self.assertEqual(audit["counts"]["coordinate_policy_blocked_rows"], 1)
+        self.assertEqual(
+            audit["counts"]["non_residue_interaction_policy_blocked_rows"], 1
+        )
+        self.assertEqual(audit["counts"]["deployment_blockers_cleared_now"], 0)
+        rows = {row["entry_id"]: row for row in audit["preflight_rows"]}
+        self.assertTrue(rows["m_csa:531"]["source_feature_sidecar_candidate"])
+        self.assertEqual(rows["m_csa:204"]["source_feature_count"], 0)
+        self.assertEqual(
+            rows["m_csa:78"]["preflight_status"],
+            "blocked_predicted_coordinate_policy_required",
+        )
+        self.assertFalse(audit["guardrails"]["source_sidecars_created"])
+
+    def test_source_feature_active_site_sidecar_candidates_remain_draft(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            preflight = root / "preflight.json"
+            preflight.write_text(
+                json.dumps(
+                    {
+                        "preflight_rows": [
+                            {
+                                "entry_id": "m_csa:531",
+                                "accession": "P31572",
+                                "source_feature_sidecar_candidate": True,
+                                "primary_source_record": {
+                                    "source_database": "UniProtKB",
+                                    "source_record_id": "P31572",
+                                    "source_url": (
+                                        "https://rest.uniprot.org/uniprotkb/P31572.json"
+                                    ),
+                                    "source_record_version_or_date": (
+                                        "2026-06-02 UniProt REST probe"
+                                    ),
+                                },
+                                "primary_source_features": [
+                                    {
+                                        "type": "Active site",
+                                        "position": 169,
+                                        "description": "Nucleophile",
+                                        "evidence_codes": ["ECO:0000255"],
+                                    },
+                                    {
+                                        "type": "Binding site",
+                                        "position": 97,
+                                        "description": "CoA",
+                                        "ligand": "CoA",
+                                    },
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:78",
+                                "accession": "P23007",
+                                "source_feature_sidecar_candidate": False,
+                                "primary_source_features": [],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_source_feature_active_site_sidecar_candidates(
+                source_sidecar_clearance_preflight_path=preflight,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_source_feature_active_site_sidecar_candidates_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["candidate_sidecar_rows"], 1)
+        self.assertEqual(audit["counts"]["approved_rows"], 0)
+        self.assertEqual(audit["counts"]["total_source_feature_support_rows"], 2)
+        row = audit["sidecar_rows"][0]
+        self.assertEqual(row["review_status"], "draft")
+        self.assertFalse(row["allowed_for_combined_channel_now"])
+        self.assertFalse(row["deployment_blocker_cleared_now"])
+        self.assertIn("manual_review_required", row["blockers"])
+
+    def test_source_feature_sidecar_candidate_strict_audit_blocks_scoring_ready_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            candidates = root / "candidates.json"
+            candidates.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:531",
+                                "accession": "P31572",
+                                "review_status": "draft",
+                                "allowed_for_combined_channel_now": False,
+                                "ready_for_predicted_geometry_scoring": False,
+                                "deployment_blocker_cleared_now": False,
+                                "blockers": ["manual_review_required"],
+                                "active_site_feature_support": [
+                                    {
+                                        "feature_type": "Active site",
+                                        "sequence_position": 169,
+                                        "source_database": "UniProtKB",
+                                        "source_record_id": "P31572",
+                                        "source_url": (
+                                            "https://rest.uniprot.org/uniprotkb/P31572.json"
+                                        ),
+                                    }
+                                ],
+                            },
+                            {
+                                "entry_id": "uniprot:P78549",
+                                "accession": "P78549",
+                                "review_status": "approved",
+                                "allowed_for_combined_channel_now": True,
+                                "ready_for_predicted_geometry_scoring": True,
+                                "deployment_blocker_cleared_now": True,
+                                "blockers": [],
+                                "active_site_feature_support": [],
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit(
+                source_feature_sidecar_candidates_path=candidates,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit_blocked",
+        )
+        self.assertEqual(audit["counts"]["audit_passed_rows"], 1)
+        self.assertEqual(audit["counts"]["audit_blocked_rows"], 1)
+        self.assertGreater(audit["counts"]["critical_violation_total"], 0)
+        blocked = {
+            row["entry_id"]: row for row in audit["row_audits"]
+        }["uniprot:P78549"]
+        self.assertIn("review_status_not_draft", blocked["critical_violations"])
+        self.assertIn(
+            "ready_for_predicted_geometry_scoring", blocked["critical_violations"]
+        )
+
+    def test_p23007_alternate_accession_scout_keeps_policy_review_only(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            preflight = root / "preflight.json"
+            preflight.write_text(
+                json.dumps(
+                    {
+                        "preflight_rows": [
+                            {
+                                "entry_id": "m_csa:78",
+                                "accession": "P23007",
+                                "coordinate_available_now": False,
+                                "preflight_status": (
+                                    "blocked_predicted_coordinate_policy_required"
+                                ),
+                                "primary_source_features": [
+                                    {"type": "Active site", "position": 274},
+                                    {"type": "Active site", "position": 320},
+                                    {"type": "Active site", "position": 375},
+                                    {
+                                        "type": "Binding site",
+                                        "position": 329,
+                                        "ligand": "oxaloacetate",
+                                    },
+                                    {
+                                        "type": "Binding site",
+                                        "position": 401,
+                                        "ligand": "oxaloacetate",
+                                    },
+                                    {
+                                        "type": "Binding site",
+                                        "position": 421,
+                                        "ligand": "oxaloacetate",
+                                    },
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_p23007_alternate_accession_scout(
+                source_sidecar_clearance_preflight_path=preflight,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_p23007_alternate_accession_scout_ready_policy_review_only",
+        )
+        self.assertEqual(audit["counts"]["candidate_alternate_accessions"], 4)
+        self.assertEqual(audit["counts"]["candidates_with_afdb"], 4)
+        self.assertEqual(audit["counts"]["pattern_compatible_candidates"], 4)
+        self.assertEqual(audit["counts"]["replacement_authorized_now"], 0)
+        self.assertFalse(audit["guardrails"]["alternate_accession_authorized"])
+        self.assertEqual(
+            audit["p23007_reference"]["source_active_site_positions"],
+            [274, 320, 375],
+        )
+
+    def test_remaining_blocker_decision_matrix_composes_review_queue(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            preflight = root / "preflight.json"
+            strict = root / "strict.json"
+            scout = root / "scout.json"
+            preflight.write_text(
+                json.dumps(
+                    {
+                        "preflight_rows": [
+                            {
+                                "entry_id": "m_csa:531",
+                                "accession": "P31572",
+                            },
+                            {
+                                "entry_id": "uniprot:P78549",
+                                "accession": "P78549",
+                            },
+                            {
+                                "entry_id": "uniprot:Q3LXA3",
+                                "accession": "Q3LXA3",
+                            },
+                            {
+                                "entry_id": "m_csa:204",
+                                "accession": "P10746",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            strict.write_text(
+                json.dumps(
+                    {
+                        "row_audits": [
+                            {"entry_id": "m_csa:531", "audit_status": "passed"},
+                            {
+                                "entry_id": "uniprot:P78549",
+                                "audit_status": "passed",
+                            },
+                            {
+                                "entry_id": "uniprot:Q3LXA3",
+                                "audit_status": "passed",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            scout.write_text(
+                json.dumps(
+                    {
+                        "candidate_alternate_accessions": [
+                            {"accession": "O75390"},
+                            {"accession": "P00889"},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_fold_augmented_remaining_blocker_decision_matrix(
+                source_sidecar_clearance_preflight_path=preflight,
+                source_feature_sidecar_candidate_strict_audit_path=strict,
+                p23007_alternate_accession_scout_path=scout,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_remaining_blocker_decision_matrix_ready_review_only",
+        )
+        self.assertEqual(audit["counts"]["decision_rows"], 5)
+        self.assertEqual(audit["counts"]["source_feature_sidecar_review_rows"], 3)
+        self.assertEqual(audit["counts"]["alternate_accession_policy_rows"], 1)
+        self.assertEqual(audit["counts"]["non_residue_interaction_policy_rows"], 1)
+        self.assertEqual(audit["counts"]["authorized_now"], 0)
+        rows = {row["entry_id"]: row for row in audit["decision_rows"]}
+        self.assertIn("authorize_alternate:O75390", rows["m_csa:78"]["decision_options"])
+        self.assertEqual(rows["m_csa:204"]["priority"], 3)
+        self.assertFalse(audit["guardrails"]["sidecars_approved_or_copied"])
 
     def test_predicted_structure_fold_confounded_readiness_blocks_deployment(
         self,

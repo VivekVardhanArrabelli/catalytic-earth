@@ -2705,6 +2705,167 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             {"m_csa:78", "m_csa:204", "m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"},
         )
 
+    def test_fold_augmented_source_sidecar_clearance_preflight_current_counts(
+        self,
+    ) -> None:
+        preflight = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_source_sidecar_clearance_preflight_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            preflight["status"],
+            "fold_augmented_source_sidecar_clearance_preflight_candidates_ready_review_only",
+        )
+        self.assertEqual(preflight["counts"]["remaining_blocker_rows"], 5)
+        self.assertEqual(
+            preflight["counts"]["source_feature_sidecar_candidate_rows"], 3
+        )
+        self.assertEqual(preflight["counts"]["coordinate_policy_blocked_rows"], 1)
+        self.assertEqual(
+            preflight["counts"]["non_residue_interaction_policy_blocked_rows"], 1
+        )
+        self.assertEqual(preflight["counts"]["deployment_blockers_cleared_now"], 0)
+        self.assertEqual(
+            preflight["counts"]["source_feature_candidate_entry_ids"],
+            ["m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        rows = {row["entry_id"]: row for row in preflight["preflight_rows"]}
+        self.assertEqual(rows["m_csa:531"]["source_feature_count"], 3)
+        self.assertEqual(rows["uniprot:P78549"]["source_feature_count"], 6)
+        self.assertEqual(rows["uniprot:Q3LXA3"]["source_feature_count"], 9)
+        self.assertEqual(
+            rows["m_csa:204"]["preflight_status"],
+            "blocked_non_residue_interaction_policy_required",
+        )
+        self.assertFalse(preflight["guardrails"]["source_sidecars_created"])
+
+    def test_fold_augmented_source_feature_active_site_sidecar_candidates_current_counts(
+        self,
+    ) -> None:
+        candidates = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_source_feature_active_site_sidecar_candidates_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            candidates["status"],
+            "fold_augmented_source_feature_active_site_sidecar_candidates_ready_review_only",
+        )
+        self.assertEqual(candidates["counts"]["candidate_sidecar_rows"], 3)
+        self.assertEqual(candidates["counts"]["draft_rows"], 3)
+        self.assertEqual(candidates["counts"]["approved_rows"], 0)
+        self.assertEqual(
+            candidates["counts"]["total_source_feature_support_rows"], 18
+        )
+        self.assertEqual(
+            candidates["counts"]["candidate_entry_ids"],
+            ["m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        rows = {row["entry_id"]: row for row in candidates["sidecar_rows"]}
+        self.assertEqual(rows["m_csa:531"]["review_status"], "draft")
+        self.assertFalse(rows["uniprot:P78549"]["allowed_for_combined_channel_now"])
+        self.assertFalse(candidates["guardrails"]["approved_sidecars_created"])
+
+    def test_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_source_feature_active_site_sidecar_candidate_"
+                "strict_audit_current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit_passed_review_only",
+        )
+        self.assertEqual(audit["counts"]["candidate_sidecar_rows"], 3)
+        self.assertEqual(audit["counts"]["audit_passed_rows"], 3)
+        self.assertEqual(audit["counts"]["audit_blocked_rows"], 0)
+        self.assertEqual(audit["counts"]["critical_violation_total"], 0)
+        self.assertEqual(audit["counts"]["approved_rows"], 0)
+        self.assertEqual(audit["counts"]["ready_for_predicted_geometry_scoring"], 0)
+        self.assertFalse(audit["guardrails"]["ready_for_predicted_geometry_scoring"])
+
+    def test_fold_augmented_p23007_alternate_accession_scout_current_counts(
+        self,
+    ) -> None:
+        scout = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_p23007_alternate_accession_scout_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            scout["status"],
+            "fold_augmented_p23007_alternate_accession_scout_ready_policy_review_only",
+        )
+        self.assertEqual(scout["counts"]["candidate_alternate_accessions"], 4)
+        self.assertEqual(scout["counts"]["candidates_with_afdb"], 4)
+        self.assertEqual(scout["counts"]["pattern_compatible_candidates"], 4)
+        self.assertEqual(scout["counts"]["replacement_authorized_now"], 0)
+        self.assertEqual(scout["counts"]["deployment_blockers_cleared_now"], 0)
+        self.assertEqual(
+            scout["p23007_reference"]["source_active_site_positions"],
+            [274, 320, 375],
+        )
+        self.assertEqual(
+            scout["candidate_alternate_accessions"][0]["accession"], "O75390"
+        )
+        self.assertFalse(scout["guardrails"]["alternate_accession_authorized"])
+
+    def test_fold_augmented_remaining_blocker_decision_matrix_current_counts(
+        self,
+    ) -> None:
+        matrix = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_fold_augmented_remaining_blocker_decision_matrix_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            matrix["status"],
+            "fold_augmented_remaining_blocker_decision_matrix_ready_review_only",
+        )
+        self.assertEqual(matrix["counts"]["decision_rows"], 5)
+        self.assertEqual(matrix["counts"]["source_feature_sidecar_review_rows"], 3)
+        self.assertEqual(matrix["counts"]["alternate_accession_policy_rows"], 1)
+        self.assertEqual(matrix["counts"]["non_residue_interaction_policy_rows"], 1)
+        self.assertEqual(matrix["counts"]["authorized_now"], 0)
+        self.assertEqual(matrix["counts"]["ready_for_scoring_now"], 0)
+        rows = {row["entry_id"]: row for row in matrix["decision_rows"]}
+        self.assertEqual(
+            rows["m_csa:531"]["decision_class"],
+            "manual_source_feature_sidecar_review",
+        )
+        self.assertIn(
+            "authorize_alternate:O75390",
+            rows["m_csa:78"]["decision_options"],
+        )
+        self.assertEqual(
+            rows["m_csa:204"]["decision_class"],
+            "non_residue_interaction_sidecar_policy_design",
+        )
+        self.assertFalse(matrix["guardrails"]["alternate_accession_authorized"])
+
     def test_fold_augmented_fold_only_deployment_contract_decision_current_counts(
         self,
     ) -> None:
@@ -2816,6 +2977,17 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ],
             4,
         )
+        self.assertEqual(audit["counts"]["source_sidecar_preflight_candidate_rows"], 3)
+        self.assertEqual(
+            audit["counts"]["source_sidecar_preflight_coordinate_policy_blocked_rows"],
+            1,
+        )
+        self.assertEqual(
+            audit["counts"][
+                "source_sidecar_preflight_non_residue_policy_blocked_rows"
+            ],
+            1,
+        )
         self.assertEqual(
             [row["entry_id"] for row in audit["remaining_production_blocker_rows"]],
             ["m_csa:78", "m_csa:204", "m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"],
@@ -2830,6 +3002,11 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "remaining_blocker"
             ],
             "source active-site geometry evidence missing",
+        )
+        self.assertTrue(
+            audit["remaining_production_blocker_rows"][2][
+                "source_sidecar_preflight"
+            ]["source_feature_sidecar_candidate"]
         )
         self.assertFalse(
             audit["guardrails"]["experimental_pdb_metadata_used_as_channel_input"]

@@ -92,6 +92,21 @@ FOLD_AUGMENTED_CONFOUNDED_DEPLOYMENT_CLOSURE_AUDIT_ID = (
 FOLD_AUGMENTED_FOLD_ONLY_DEPLOYMENT_CONTRACT_DECISION_ID = (
     "v3_fold_augmented_fold_only_deployment_contract_decision_current702_20260601"
 )
+FOLD_AUGMENTED_SOURCE_SIDECAR_CLEARANCE_PREFLIGHT_ID = (
+    "v3_fold_augmented_source_sidecar_clearance_preflight_current702_20260602"
+)
+FOLD_AUGMENTED_SOURCE_FEATURE_ACTIVE_SITE_SIDECAR_CANDIDATES_ID = (
+    "v3_fold_augmented_source_feature_active_site_sidecar_candidates_current702_20260602"
+)
+FOLD_AUGMENTED_SOURCE_FEATURE_ACTIVE_SITE_SIDECAR_CANDIDATE_STRICT_AUDIT_ID = (
+    "v3_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit_current702_20260602"
+)
+FOLD_AUGMENTED_P23007_ALTERNATE_ACCESSION_SCOUT_ID = (
+    "v3_fold_augmented_p23007_alternate_accession_scout_current702_20260602"
+)
+FOLD_AUGMENTED_REMAINING_BLOCKER_DECISION_MATRIX_ID = (
+    "v3_fold_augmented_remaining_blocker_decision_matrix_current702_20260602"
+)
 PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
     "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
 )
@@ -14140,6 +14155,1518 @@ def write_fold_augmented_fold_only_deployment_contract_decision(
     return audit
 
 
+LEVER3_BLOCKER_PRIMARY_SOURCE_FEATURES: dict[str, dict[str, Any]] = {
+    "m_csa:78": {
+        "source_database": "UniProtKB",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P23007.json",
+        "source_record_id": "P23007",
+        "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+        "primary_accession": "P23007",
+        "protein_name": "Citrate synthase, mitochondrial",
+        "features": [
+            {
+                "type": "Active site",
+                "position": 274,
+                "description": "",
+                "evidence_codes": [],
+            },
+            {
+                "type": "Active site",
+                "position": 320,
+                "description": "",
+                "evidence_codes": [],
+            },
+            {
+                "type": "Active site",
+                "position": 375,
+                "description": "",
+                "evidence_codes": [],
+            },
+            {
+                "type": "Binding site",
+                "position": 329,
+                "description": "oxaloacetate",
+                "ligand": "oxaloacetate",
+                "ligand_chebi": "CHEBI:16452",
+                "evidence_codes": ["ECO:0000250"],
+            },
+            {
+                "type": "Binding site",
+                "position": 401,
+                "description": "oxaloacetate",
+                "ligand": "oxaloacetate",
+                "ligand_chebi": "CHEBI:16452",
+                "evidence_codes": ["ECO:0000250"],
+            },
+            {
+                "type": "Binding site",
+                "position": 421,
+                "description": "oxaloacetate",
+                "ligand": "oxaloacetate",
+                "ligand_chebi": "CHEBI:16452",
+                "evidence_codes": ["ECO:0000250"],
+            },
+        ],
+    },
+    "m_csa:204": {
+        "source_database": "UniProtKB",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P10746.json",
+        "source_record_id": "P10746",
+        "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+        "primary_accession": "P10746",
+        "protein_name": "Uroporphyrinogen-III synthase",
+        "features": [],
+    },
+    "m_csa:531": {
+        "source_database": "UniProtKB",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P31572.json",
+        "source_record_id": "P31572",
+        "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+        "primary_accession": "P31572",
+        "protein_name": "L-carnitine CoA-transferase",
+        "features": [
+            {
+                "type": "Active site",
+                "position": 169,
+                "description": "Nucleophile",
+                "evidence_codes": ["ECO:0000255", "ECO:0000305"],
+            },
+            {
+                "type": "Binding site",
+                "position": 97,
+                "description": "CoA",
+                "ligand": "CoA",
+                "ligand_chebi": "CHEBI:57287",
+                "evidence_codes": ["ECO:0000255", "ECO:0000269"],
+            },
+            {
+                "type": "Binding site",
+                "position": 104,
+                "description": "CoA",
+                "ligand": "CoA",
+                "ligand_chebi": "CHEBI:57287",
+                "evidence_codes": ["ECO:0000255", "ECO:0000269"],
+            },
+        ],
+    },
+    "uniprot:P78549": {
+        "source_database": "UniProtKB",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P78549.json",
+        "source_record_id": "P78549",
+        "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+        "primary_accession": "P78549",
+        "protein_name": "Endonuclease III-like protein 1",
+        "features": [
+            {
+                "type": "Active site",
+                "position": 212,
+                "description": "Nucleophile; for N-glycosylase activity",
+                "evidence_codes": ["ECO:0000255", "ECO:0000269"],
+            },
+            {
+                "type": "Site",
+                "position": 231,
+                "description": "Important for catalytic activity",
+                "evidence_codes": [],
+            },
+            {
+                "type": "Binding site",
+                "position": 282,
+                "description": "[4Fe-4S] cluster",
+                "ligand": "[4Fe-4S] cluster",
+                "ligand_chebi": "CHEBI:49883",
+                "evidence_codes": ["ECO:0000255"],
+            },
+            {
+                "type": "Binding site",
+                "position": 289,
+                "description": "[4Fe-4S] cluster",
+                "ligand": "[4Fe-4S] cluster",
+                "ligand_chebi": "CHEBI:49883",
+                "evidence_codes": ["ECO:0000255"],
+            },
+            {
+                "type": "Binding site",
+                "position": 292,
+                "description": "[4Fe-4S] cluster",
+                "ligand": "[4Fe-4S] cluster",
+                "ligand_chebi": "CHEBI:49883",
+                "evidence_codes": ["ECO:0000255"],
+            },
+            {
+                "type": "Binding site",
+                "position": 298,
+                "description": "[4Fe-4S] cluster",
+                "ligand": "[4Fe-4S] cluster",
+                "ligand_chebi": "CHEBI:49883",
+                "evidence_codes": ["ECO:0000255"],
+            },
+        ],
+    },
+    "uniprot:Q3LXA3": {
+        "source_database": "UniProtKB",
+        "source_url": "https://rest.uniprot.org/uniprotkb/Q3LXA3.json",
+        "source_record_id": "Q3LXA3",
+        "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+        "primary_accession": "Q3LXA3",
+        "protein_name": "Triokinase/FMN cyclase",
+        "features": [
+            {
+                "type": "Active site",
+                "position": 221,
+                "description": "Tele-hemiaminal-histidine intermediate",
+                "evidence_codes": ["ECO:0000255"],
+            },
+            {
+                "type": "Binding site",
+                "position_range": [56, 59],
+                "description": "dihydroxyacetone",
+                "ligand": "dihydroxyacetone",
+                "ligand_chebi": "CHEBI:16016",
+                "evidence_codes": ["ECO:0000250"],
+            },
+            {
+                "type": "Binding site",
+                "position": 109,
+                "description": "dihydroxyacetone",
+                "ligand": "dihydroxyacetone",
+                "ligand_chebi": "CHEBI:16016",
+                "evidence_codes": ["ECO:0000255"],
+            },
+            {
+                "type": "Binding site",
+                "position": 114,
+                "description": "dihydroxyacetone",
+                "ligand": "dihydroxyacetone",
+                "ligand_chebi": "CHEBI:16016",
+                "evidence_codes": ["ECO:0000255"],
+            },
+            {
+                "type": "Binding site",
+                "position_range": [401, 404],
+                "description": "ATP",
+                "ligand": "ATP",
+                "ligand_chebi": "CHEBI:30616",
+                "evidence_codes": ["ECO:0000250"],
+            },
+            {
+                "type": "Binding site",
+                "position_range": [446, 447],
+                "description": "ATP",
+                "ligand": "ATP",
+                "ligand_chebi": "CHEBI:30616",
+                "evidence_codes": ["ECO:0000250"],
+            },
+            {
+                "type": "Binding site",
+                "position": 486,
+                "description": "ATP",
+                "ligand": "ATP",
+                "ligand_chebi": "CHEBI:30616",
+                "evidence_codes": ["ECO:0000250"],
+            },
+            {
+                "type": "Binding site",
+                "position_range": [494, 495],
+                "description": "ATP",
+                "ligand": "ATP",
+                "ligand_chebi": "CHEBI:30616",
+                "evidence_codes": ["ECO:0000250"],
+            },
+            {
+                "type": "Binding site",
+                "position_range": [556, 558],
+                "description": "ATP",
+                "ligand": "ATP",
+                "ligand_chebi": "CHEBI:30616",
+                "evidence_codes": ["ECO:0000250"],
+            },
+        ],
+    },
+}
+
+
+def _graph_nodes_by_id(graph: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    return {
+        str(node.get("id")): node
+        for node in graph.get("nodes", [])
+        if isinstance(node, dict) and node.get("id")
+    }
+
+
+def _feature_position_label(feature: dict[str, Any]) -> str:
+    if "position" in feature:
+        return str(feature["position"])
+    position_range = feature.get("position_range")
+    if isinstance(position_range, list) and len(position_range) == 2:
+        return f"{position_range[0]}-{position_range[1]}"
+    return "unknown"
+
+
+def build_fold_augmented_source_sidecar_clearance_preflight(
+    *,
+    remaining_blocker_coordinate_reprobe_path: Path,
+    blocker_resolution_path: Path,
+    remaining_blocker_clearance_path: Path,
+    graph_path: Path,
+) -> dict[str, Any]:
+    coordinate_reprobe = _read_json(remaining_blocker_coordinate_reprobe_path)
+    blocker_resolution = _read_json(blocker_resolution_path)
+    clearance = _read_json(remaining_blocker_clearance_path)
+    graph = _read_json(graph_path)
+    graph_nodes = _graph_nodes_by_id(graph)
+    blocker_by_entry = {
+        str(row.get("entry_id")): row
+        for row in blocker_resolution.get("blocker_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    clearance_by_entry = {
+        str(row.get("entry_id")): row
+        for row in clearance.get("row_attempts", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    preflight_rows: list[dict[str, Any]] = []
+    for row in coordinate_reprobe.get("rows", []):
+        if not isinstance(row, dict):
+            continue
+        entry_id = str(row.get("entry_id") or "")
+        accession = str(row.get("accession") or "")
+        source_bundle = LEVER3_BLOCKER_PRIMARY_SOURCE_FEATURES.get(entry_id, {})
+        source_features = [
+            feature
+            for feature in source_bundle.get("features", [])
+            if isinstance(feature, dict)
+        ]
+        m_csa_node = graph_nodes.get(entry_id, {})
+        residue_nodes = [
+            node
+            for node_id, node in graph_nodes.items()
+            if node_id.startswith(f"{entry_id}:residue:")
+        ]
+        coordinate_available = bool(row.get("coordinate_available_now"))
+        blockers: list[str] = []
+        candidate_sidecar = False
+        if entry_id == "m_csa:78":
+            status = "blocked_predicted_coordinate_policy_required"
+            blockers = [
+                "alphafold_db_coordinate_unavailable",
+                "alternate_accession_policy_missing",
+            ]
+        elif entry_id == "m_csa:204":
+            status = "blocked_non_residue_interaction_policy_required"
+            blockers = [
+                "primary_source_residue_features_missing",
+                "m_csa_curated_no_single_required_catalytic_residue",
+                "non_residue_interaction_sidecar_policy_missing",
+            ]
+        elif coordinate_available and source_features:
+            status = "source_feature_sidecar_candidate_ready_for_manual_review"
+            candidate_sidecar = True
+        else:
+            status = "blocked_source_feature_evidence_missing"
+            blockers = ["source_feature_evidence_missing"]
+            if not coordinate_available:
+                blockers.append("predicted_coordinate_unavailable")
+        preflight_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": accession,
+                "current_blocker": row.get("current_blocker"),
+                "coordinate_available_now": coordinate_available,
+                "fold_only_evidence_available": (
+                    blocker_by_entry.get(entry_id, {}).get("fold_tm_available")
+                    or clearance_by_entry.get(entry_id, {}).get(
+                        "fold_only_evidence_available"
+                    )
+                    or False
+                ),
+                "preflight_status": status,
+                "source_feature_sidecar_candidate": candidate_sidecar,
+                "source_sidecar_created_now": False,
+                "copy_authorized_now": False,
+                "deployment_blocker_cleared_now": False,
+                "blockers": blockers,
+                "primary_source_record": {
+                    key: value
+                    for key, value in source_bundle.items()
+                    if key != "features"
+                },
+                "primary_source_features": source_features,
+                "source_feature_count": len(source_features),
+                "local_graph_context": {
+                    "m_csa_residue_count": m_csa_node.get("residue_count"),
+                    "local_graph_residue_nodes": [
+                        {
+                            "id": residue.get("id"),
+                            "roles": residue.get("roles", []),
+                            "sequence_positions": residue.get(
+                                "sequence_positions", []
+                            ),
+                        }
+                        for residue in sorted(
+                            residue_nodes,
+                            key=lambda item: str(item.get("id") or ""),
+                        )
+                    ],
+                },
+                "planned_next_action": (
+                    "Draft a source-feature active-site sidecar for manual review; "
+                    "only after approval should it feed the combined predicted "
+                    "geometry/fold channel."
+                    if candidate_sidecar
+                    else (
+                        "Resolve the predicted-coordinate policy before any "
+                        "deployment-valid fold-channel use."
+                        if entry_id == "m_csa:78"
+                        else (
+                            "Define a non-residue active-site interaction sidecar "
+                            "policy before trying to score this row in the combined "
+                            "channel."
+                            if entry_id == "m_csa:204"
+                            else "Source row-specific active-site evidence first."
+                        )
+                    )
+                ),
+            }
+        )
+    preflight_rows.sort(key=lambda item: _entry_id_sort_key(str(item["entry_id"])))
+    candidate_rows = [
+        row for row in preflight_rows if row["source_feature_sidecar_candidate"]
+    ]
+    coordinate_policy_blocked = [
+        row
+        for row in preflight_rows
+        if row["preflight_status"] == "blocked_predicted_coordinate_policy_required"
+    ]
+    non_residue_policy_blocked = [
+        row
+        for row in preflight_rows
+        if row["preflight_status"] == "blocked_non_residue_interaction_policy_required"
+    ]
+    source_feature_missing = [
+        row
+        for row in preflight_rows
+        if row["preflight_status"] == "blocked_source_feature_evidence_missing"
+    ]
+    status = (
+        "fold_augmented_source_sidecar_clearance_preflight_candidates_ready_review_only"
+        if candidate_rows
+        else "fold_augmented_source_sidecar_clearance_preflight_blocked"
+    )
+    return {
+        "artifact_id": FOLD_AUGMENTED_SOURCE_SIDECAR_CLEARANCE_PREFLIGHT_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_source_sidecar_clearance_preflight"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Review-only source-sidecar clearance preflight for the five Lever 3 "
+            "production blockers that remain after coordinate reprobe. It records "
+            "primary-source active-site feature evidence and policy blockers but "
+            "does not create sidecars, score heldout rows, or change thresholds."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "source_sidecars_created": False,
+            "copy_to_scoring_surface_authorized": False,
+            "deployment_blockers_cleared": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "model_weights_fit_or_refit": False,
+            "foldseek_or_tm_rerun_performed": False,
+            "mechanism_text_used_as_predictive_feature": False,
+            "source_ids_used_as_predictive_feature": False,
+        },
+        "counts": {
+            "remaining_blocker_rows": len(preflight_rows),
+            "source_feature_sidecar_candidate_rows": len(candidate_rows),
+            "coordinate_policy_blocked_rows": len(coordinate_policy_blocked),
+            "non_residue_interaction_policy_blocked_rows": len(
+                non_residue_policy_blocked
+            ),
+            "source_feature_missing_rows": len(source_feature_missing),
+            "source_sidecars_created": 0,
+            "copy_authorized_now": 0,
+            "deployment_blockers_cleared_now": 0,
+            "source_feature_candidate_entry_ids": [
+                row["entry_id"] for row in candidate_rows
+            ],
+        },
+        "preflight_rows": preflight_rows,
+        "probe_commands": [
+            "curl -fsS https://rest.uniprot.org/uniprotkb/P10746.json",
+            "curl -fsS https://rest.uniprot.org/uniprotkb/P31572.json",
+            "curl -fsS https://rest.uniprot.org/uniprotkb/P78549.json",
+            "curl -fsS https://rest.uniprot.org/uniprotkb/Q3LXA3.json",
+            "curl -fsS https://rest.uniprot.org/uniprotkb/P23007.json",
+        ],
+        "source_artifacts": {
+            "remaining_blocker_coordinate_reprobe": _source_path_record(
+                remaining_blocker_coordinate_reprobe_path
+            ),
+            "blocker_resolution": _source_path_record(blocker_resolution_path),
+            "remaining_blocker_clearance_attempts": _source_path_record(
+                remaining_blocker_clearance_path
+            ),
+            "graph": _source_path_record(graph_path),
+        },
+        "interpretation": {
+            "result": (
+                "Three coordinate-available blocker rows now have concrete "
+                "primary-source feature evidence for manual sidecar drafting; "
+                "no deployment blocker is cleared until reviewed sidecars are "
+                "created and the combined channel is rebuilt."
+            ),
+            "next_action": (
+                "Draft/review source-feature sidecars for m_csa:531, "
+                "uniprot:P78549, and uniprot:Q3LXA3; separately resolve the "
+                "P23007 predicted-coordinate policy and the P10746 non-residue "
+                "interaction-sidecar policy."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_source_sidecar_clearance_preflight_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Source-Sidecar Clearance Preflight - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Remaining blocker rows: {counts['remaining_blocker_rows']}",
+        (
+            "- Source-feature sidecar candidates: "
+            f"{counts['source_feature_sidecar_candidate_rows']}"
+        ),
+        f"- Coordinate-policy blocked rows: {counts['coordinate_policy_blocked_rows']}",
+        (
+            "- Non-residue interaction-policy blocked rows: "
+            f"{counts['non_residue_interaction_policy_blocked_rows']}"
+        ),
+        f"- Source sidecars created: {counts['source_sidecars_created']}",
+        f"- Deployment blockers cleared now: {counts['deployment_blockers_cleared_now']}",
+        "",
+        "## Row Preflight",
+        "",
+        "| row | accession | coordinate | source features | status | next action |",
+        "| --- | --- | ---: | ---: | --- | --- |",
+    ]
+    for row in audit["preflight_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['accession']} | "
+            f"{row['coordinate_available_now']} | {row['source_feature_count']} | "
+            f"{row['preflight_status']} | {row['planned_next_action']} |"
+        )
+    lines += [
+        "",
+        "## Candidate Feature Evidence",
+        "",
+        "| row | source | feature positions |",
+        "| --- | --- | --- |",
+    ]
+    for row in audit["preflight_rows"]:
+        source = row.get("primary_source_record") or {}
+        feature_labels = [
+            f"{feature.get('type')}:{_feature_position_label(feature)}"
+            for feature in row.get("primary_source_features", [])
+        ]
+        lines.append(
+            f"| {row['entry_id']} | {source.get('source_record_id')} | "
+            f"{', '.join(feature_labels) if feature_labels else 'none'} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_source_sidecar_clearance_preflight(
+    *,
+    remaining_blocker_coordinate_reprobe_path: Path,
+    blocker_resolution_path: Path,
+    remaining_blocker_clearance_path: Path,
+    graph_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_source_sidecar_clearance_preflight(
+        remaining_blocker_coordinate_reprobe_path=remaining_blocker_coordinate_reprobe_path,
+        blocker_resolution_path=blocker_resolution_path,
+        remaining_blocker_clearance_path=remaining_blocker_clearance_path,
+        graph_path=graph_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_source_sidecar_clearance_preflight_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _source_feature_position_payload(feature: dict[str, Any]) -> dict[str, Any]:
+    payload: dict[str, Any] = {}
+    if "position" in feature:
+        payload["sequence_position"] = feature["position"]
+    if "position_range" in feature:
+        payload["sequence_position_range"] = feature["position_range"]
+    return payload
+
+
+def build_fold_augmented_source_feature_active_site_sidecar_candidates(
+    *,
+    source_sidecar_clearance_preflight_path: Path,
+) -> dict[str, Any]:
+    preflight = _read_json(source_sidecar_clearance_preflight_path)
+    candidate_rows = [
+        row
+        for row in preflight.get("preflight_rows", [])
+        if isinstance(row, dict) and row.get("source_feature_sidecar_candidate")
+    ]
+    sidecar_rows = []
+    for row in candidate_rows:
+        source_record = row.get("primary_source_record") or {}
+        feature_support = []
+        for index, feature in enumerate(row.get("primary_source_features", []), start=1):
+            if not isinstance(feature, dict):
+                continue
+            feature_support.append(
+                {
+                    "feature_id": (
+                        f"{row.get('entry_id')}:source_feature:{index}"
+                    ),
+                    "feature_type": feature.get("type"),
+                    **_source_feature_position_payload(feature),
+                    "description": feature.get("description", ""),
+                    "ligand": feature.get("ligand"),
+                    "ligand_chebi": feature.get("ligand_chebi"),
+                    "evidence_codes": feature.get("evidence_codes", []),
+                    "source_database": source_record.get("source_database"),
+                    "source_record_id": source_record.get("source_record_id"),
+                    "source_url": source_record.get("source_url"),
+                    "source_record_version_or_date": source_record.get(
+                        "source_record_version_or_date"
+                    ),
+                }
+            )
+        sidecar_rows.append(
+            {
+                "entry_id": row.get("entry_id"),
+                "accession": row.get("accession"),
+                "candidate_sidecar_id": (
+                    "fold_augmented_source_feature_active_site_sidecar:"
+                    f"{row.get('entry_id')}"
+                ),
+                "review_status": "draft",
+                "source_record": source_record,
+                "active_site_feature_support": feature_support,
+                "local_graph_context": row.get("local_graph_context", {}),
+                "copy_authorized_now": False,
+                "allowed_for_combined_channel_now": False,
+                "ready_for_predicted_geometry_scoring": False,
+                "deployment_blocker_cleared_now": False,
+                "blockers": [
+                    "manual_review_required",
+                    "candidate_sidecar_not_approved",
+                    "combined_channel_not_rerun",
+                ],
+                "review_checklist": [
+                    "confirm source features are active-site or ligand/cofactor features, not label or mechanism-family text",
+                    "confirm feature positions map to the same accession used by the predicted coordinate",
+                    "confirm UniProt ECO/source evidence is acceptable for the external hard-negative geometry channel",
+                    "after approval, materialize an audited sidecar and rerun combined-channel scoring without changing thresholds",
+                ],
+            }
+        )
+    sidecar_rows.sort(key=lambda item: _entry_id_sort_key(str(item["entry_id"])))
+    return {
+        "artifact_id": FOLD_AUGMENTED_SOURCE_FEATURE_ACTIVE_SITE_SIDECAR_CANDIDATES_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_source_feature_active_site_sidecar_candidates"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_source_feature_active_site_sidecar_candidates_ready_review_only"
+            if sidecar_rows
+            else "fold_augmented_source_feature_active_site_sidecar_candidates_blocked"
+        ),
+        "scope": (
+            "Draft active-site source-feature sidecar candidates for Lever 3 "
+            "production blocker rows that passed source-sidecar preflight. "
+            "Candidates are review-only and not authorized for scoring."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "approved_sidecars_created": False,
+            "copy_to_scoring_surface_authorized": False,
+            "ready_for_predicted_geometry_scoring": False,
+            "deployment_blockers_cleared": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "model_weights_fit_or_refit": False,
+            "foldseek_or_tm_rerun_performed": False,
+        },
+        "counts": {
+            "candidate_sidecar_rows": len(sidecar_rows),
+            "draft_rows": len(sidecar_rows),
+            "approved_rows": 0,
+            "allowed_for_combined_channel_now": 0,
+            "ready_for_predicted_geometry_scoring": 0,
+            "deployment_blockers_cleared_now": 0,
+            "total_source_feature_support_rows": sum(
+                len(row.get("active_site_feature_support", []))
+                for row in sidecar_rows
+            ),
+            "candidate_entry_ids": [row["entry_id"] for row in sidecar_rows],
+        },
+        "sidecar_rows": sidecar_rows,
+        "source_artifacts": {
+            "source_sidecar_clearance_preflight": _source_path_record(
+                source_sidecar_clearance_preflight_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "Draft sidecar candidates now exist for the three "
+                "coordinate-available source-feature blocker rows, but they are "
+                "not approved and cannot clear deployment blockers yet."
+            ),
+            "next_action": (
+                "Manually review the three candidate sidecars; if accepted, "
+                "materialize approved audited sidecars and rerun the combined "
+                "geometry/fold surface at the fixed threshold."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_source_feature_active_site_sidecar_candidates_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Source-Feature Active-Site Sidecar Candidates - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Candidate sidecar rows: {counts['candidate_sidecar_rows']}",
+        f"- Approved rows: {counts['approved_rows']}",
+        (
+            "- Ready for predicted-geometry scoring: "
+            f"{counts['ready_for_predicted_geometry_scoring']}"
+        ),
+        f"- Deployment blockers cleared now: {counts['deployment_blockers_cleared_now']}",
+        f"- Total source-feature support rows: {counts['total_source_feature_support_rows']}",
+        "",
+        "## Candidate Rows",
+        "",
+        "| row | accession | source | features | review status | allowed now |",
+        "| --- | --- | --- | ---: | --- | ---: |",
+    ]
+    for row in audit["sidecar_rows"]:
+        source = row.get("source_record") or {}
+        lines.append(
+            f"| {row['entry_id']} | {row['accession']} | "
+            f"{source.get('source_record_id')} | "
+            f"{len(row.get('active_site_feature_support', []))} | "
+            f"{row['review_status']} | "
+            f"{row['allowed_for_combined_channel_now']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_source_feature_active_site_sidecar_candidates(
+    *,
+    source_sidecar_clearance_preflight_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_source_feature_active_site_sidecar_candidates(
+        source_sidecar_clearance_preflight_path=source_sidecar_clearance_preflight_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_source_feature_active_site_sidecar_candidates_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit(
+    *,
+    source_feature_sidecar_candidates_path: Path,
+) -> dict[str, Any]:
+    candidates = _read_json(source_feature_sidecar_candidates_path)
+    sidecar_rows = [
+        row
+        for row in candidates.get("sidecar_rows", [])
+        if isinstance(row, dict)
+    ]
+    row_audits = []
+    critical_counts: Counter[str] = Counter()
+    seen_entries: set[str] = set()
+    for row in sidecar_rows:
+        entry_id = str(row.get("entry_id") or "")
+        feature_support = [
+            feature
+            for feature in row.get("active_site_feature_support", [])
+            if isinstance(feature, dict)
+        ]
+        violations: list[str] = []
+        if not entry_id:
+            violations.append("entry_id_missing")
+        if entry_id in seen_entries:
+            violations.append("duplicate_entry_id")
+        seen_entries.add(entry_id)
+        if row.get("review_status") != "draft":
+            violations.append("review_status_not_draft")
+        if row.get("allowed_for_combined_channel_now"):
+            violations.append("allowed_for_combined_channel_now")
+        if row.get("ready_for_predicted_geometry_scoring"):
+            violations.append("ready_for_predicted_geometry_scoring")
+        if row.get("deployment_blocker_cleared_now"):
+            violations.append("deployment_blocker_cleared_now")
+        if "manual_review_required" not in set(row.get("blockers", [])):
+            violations.append("manual_review_required_blocker_missing")
+        if not feature_support:
+            violations.append("active_site_feature_support_missing")
+        for feature in feature_support:
+            if not feature.get("feature_type"):
+                violations.append("feature_type_missing")
+            if not (
+                isinstance(feature.get("sequence_position"), int)
+                or isinstance(feature.get("sequence_position_range"), list)
+            ):
+                violations.append("feature_position_missing")
+            if not feature.get("source_database"):
+                violations.append("feature_source_database_missing")
+            if not feature.get("source_record_id"):
+                violations.append("feature_source_record_id_missing")
+            if not feature.get("source_url"):
+                violations.append("feature_source_url_missing")
+        for violation in violations:
+            critical_counts[violation] += 1
+        row_audits.append(
+            {
+                "entry_id": entry_id,
+                "accession": row.get("accession"),
+                "review_status": row.get("review_status"),
+                "active_site_feature_support_count": len(feature_support),
+                "critical_violations": sorted(set(violations)),
+                "audit_status": "passed" if not violations else "blocked",
+            }
+        )
+    if not sidecar_rows:
+        critical_counts["candidate_sidecar_rows_missing"] += 1
+    critical_total = sum(critical_counts.values())
+    return {
+        "artifact_id": (
+            FOLD_AUGMENTED_SOURCE_FEATURE_ACTIVE_SITE_SIDECAR_CANDIDATE_STRICT_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit_passed_review_only"
+            if critical_total == 0
+            else "fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit_blocked"
+        ),
+        "scope": (
+            "Strict review-only audit for draft source-feature active-site "
+            "sidecar candidates. It verifies candidates stay draft-only, carry "
+            "source-backed feature support, and are not scoring-ready."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "approved_sidecars_created": False,
+            "copy_to_scoring_surface_authorized": False,
+            "ready_for_predicted_geometry_scoring": False,
+            "deployment_blockers_cleared": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "model_weights_fit_or_refit": False,
+        },
+        "counts": {
+            "candidate_sidecar_rows": len(sidecar_rows),
+            "audit_passed_rows": sum(
+                1 for row in row_audits if row["audit_status"] == "passed"
+            ),
+            "audit_blocked_rows": sum(
+                1 for row in row_audits if row["audit_status"] == "blocked"
+            ),
+            "critical_counts": dict(sorted(critical_counts.items())),
+            "critical_violation_total": critical_total,
+            "approved_rows": sum(
+                1 for row in sidecar_rows if row.get("review_status") == "approved"
+            ),
+            "allowed_for_combined_channel_now": sum(
+                1
+                for row in sidecar_rows
+                if row.get("allowed_for_combined_channel_now")
+            ),
+            "ready_for_predicted_geometry_scoring": sum(
+                1
+                for row in sidecar_rows
+                if row.get("ready_for_predicted_geometry_scoring")
+            ),
+        },
+        "row_audits": sorted(
+            row_audits,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id") or "")),
+        ),
+        "source_artifacts": {
+            "source_feature_sidecar_candidates": _source_path_record(
+                source_feature_sidecar_candidates_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The draft source-feature sidecar candidate packet is schema- "
+                "and guardrail-clean for review-only use."
+                if critical_total == 0
+                else "The draft sidecar candidate packet has critical violations."
+            ),
+            "next_action": (
+                "Proceed to manual scientific review of the three draft rows; "
+                "do not score them until approved audited sidecars are materialized."
+                if critical_total == 0
+                else "Repair the listed critical violations before manual review."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Source-Feature Active-Site Sidecar Candidate Strict Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Candidate sidecar rows: {counts['candidate_sidecar_rows']}",
+        f"- Audit-passed rows: {counts['audit_passed_rows']}",
+        f"- Audit-blocked rows: {counts['audit_blocked_rows']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        f"- Critical counts: {counts['critical_counts']}",
+        "",
+        "## Row Audits",
+        "",
+        "| row | accession | features | status | violations |",
+        "| --- | --- | ---: | --- | --- |",
+    ]
+    for row in audit["row_audits"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['accession']} | "
+            f"{row['active_site_feature_support_count']} | "
+            f"{row['audit_status']} | "
+            f"{', '.join(row['critical_violations'])} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit(
+    *,
+    source_feature_sidecar_candidates_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit(
+        source_feature_sidecar_candidates_path=source_feature_sidecar_candidates_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+P23007_ALTERNATE_ACCESSION_SCOUT_CANDIDATES: list[dict[str, Any]] = [
+    {
+        "accession": "O75390",
+        "uniprotkb_id": "CISY_HUMAN",
+        "organism": "Homo sapiens",
+        "protein_name": "Citrate synthase, mitochondrial",
+        "sequence_length": 466,
+        "alphafold_db_available": True,
+        "source_url": "https://rest.uniprot.org/uniprotkb/O75390.json",
+        "active_site_positions": [301, 347, 402],
+        "oxaloacetate_binding_positions": [356, 428, 448],
+        "position_offset_vs_p23007_active_sites": 27,
+    },
+    {
+        "accession": "P00889",
+        "uniprotkb_id": "CISY_PIG",
+        "organism": "Sus scrofa",
+        "protein_name": "Citrate synthase, mitochondrial",
+        "sequence_length": 464,
+        "alphafold_db_available": True,
+        "source_url": "https://rest.uniprot.org/uniprotkb/P00889.json",
+        "active_site_positions": [301, 347, 402],
+        "oxaloacetate_binding_positions": [356, 428, 448],
+        "position_offset_vs_p23007_active_sites": 27,
+    },
+    {
+        "accession": "Q8VHF5",
+        "uniprotkb_id": "CISY_RAT",
+        "organism": "Rattus norvegicus",
+        "protein_name": "Citrate synthase, mitochondrial",
+        "sequence_length": 466,
+        "alphafold_db_available": True,
+        "source_url": "https://rest.uniprot.org/uniprotkb/Q8VHF5.json",
+        "active_site_positions": [301, 347, 402],
+        "oxaloacetate_binding_positions": [356, 428, 448],
+        "position_offset_vs_p23007_active_sites": 27,
+    },
+    {
+        "accession": "Q9CZU6",
+        "uniprotkb_id": "CISY_MOUSE",
+        "organism": "Mus musculus",
+        "protein_name": "Citrate synthase, mitochondrial",
+        "sequence_length": 464,
+        "alphafold_db_available": True,
+        "source_url": "https://rest.uniprot.org/uniprotkb/Q9CZU6.json",
+        "active_site_positions": [301, 347, 402],
+        "oxaloacetate_binding_positions": [356, 428, 448],
+        "position_offset_vs_p23007_active_sites": 27,
+    },
+]
+
+
+def build_fold_augmented_p23007_alternate_accession_scout(
+    *,
+    source_sidecar_clearance_preflight_path: Path,
+) -> dict[str, Any]:
+    preflight = _read_json(source_sidecar_clearance_preflight_path)
+    p23007_row = next(
+        (
+            row
+            for row in preflight.get("preflight_rows", [])
+            if isinstance(row, dict) and row.get("entry_id") == "m_csa:78"
+        ),
+        {},
+    )
+    source_features = [
+        feature
+        for feature in p23007_row.get("primary_source_features", [])
+        if isinstance(feature, dict)
+    ]
+    active_positions = [
+        feature.get("position")
+        for feature in source_features
+        if feature.get("type") == "Active site"
+    ]
+    binding_positions = [
+        feature.get("position")
+        for feature in source_features
+        if feature.get("type") == "Binding site"
+        and str(feature.get("ligand") or "").lower() == "oxaloacetate"
+    ]
+    candidates = []
+    for candidate in P23007_ALTERNATE_ACCESSION_SCOUT_CANDIDATES:
+        pattern_compatible = (
+            len(candidate["active_site_positions"]) == len(active_positions)
+            and len(candidate["oxaloacetate_binding_positions"]) == len(
+                binding_positions
+            )
+            and candidate["position_offset_vs_p23007_active_sites"] is not None
+        )
+        candidates.append(
+            {
+                **candidate,
+                "pattern_compatible_with_p23007_source_features": pattern_compatible,
+                "replacement_authorized_now": False,
+                "ready_for_predicted_fold_channel_now": False,
+                "review_status": "needs_coordinate_policy_review",
+                "blockers": [
+                    "alternate_accession_equivalence_not_approved",
+                    "source_row_replacement_policy_missing",
+                    "combined_channel_not_rerun",
+                ],
+                "afdb_cif_url": (
+                    "https://alphafold.ebi.ac.uk/files/"
+                    f"AF-{candidate['accession']}-F1-model_v6.cif"
+                ),
+            }
+        )
+    return {
+        "artifact_id": FOLD_AUGMENTED_P23007_ALTERNATE_ACCESSION_SCOUT_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_p23007_alternate_accession_scout"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "fold_augmented_p23007_alternate_accession_scout_ready_policy_review_only"
+        ),
+        "scope": (
+            "Review-only scout for source-backed alternate UniProt accessions "
+            "that could resolve the m_csa:78/P23007 AlphaFoldDB-unavailable "
+            "policy blocker. It records candidates only; no replacement is "
+            "authorized."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "alternate_accession_authorized": False,
+            "coordinates_fetched": False,
+            "ready_for_predicted_fold_channel_now": False,
+            "deployment_blockers_cleared": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "foldseek_or_tm_rerun_performed": False,
+        },
+        "p23007_reference": {
+            "entry_id": "m_csa:78",
+            "accession": "P23007",
+            "source_active_site_positions": active_positions,
+            "source_oxaloacetate_binding_positions": binding_positions,
+            "coordinate_available_now": p23007_row.get("coordinate_available_now"),
+            "preflight_status": p23007_row.get("preflight_status"),
+        },
+        "counts": {
+            "candidate_alternate_accessions": len(candidates),
+            "candidates_with_afdb": sum(
+                1 for row in candidates if row["alphafold_db_available"]
+            ),
+            "pattern_compatible_candidates": sum(
+                1
+                for row in candidates
+                if row["pattern_compatible_with_p23007_source_features"]
+            ),
+            "replacement_authorized_now": 0,
+            "ready_for_predicted_fold_channel_now": 0,
+            "deployment_blockers_cleared_now": 0,
+        },
+        "candidate_alternate_accessions": candidates,
+        "query_evidence": {
+            "queried_utc": "2026-06-02T17:18:00Z",
+            "query": '(protein_name:"citrate synthase" AND reviewed:true)',
+            "fields": (
+                "accession,id,protein_name,organism_name,length,"
+                "xref_alphafolddb,ft_act_site,ft_binding"
+            ),
+            "source_database": "UniProtKB REST search",
+            "source_url": (
+                "https://rest.uniprot.org/uniprotkb/search?query="
+                "%28protein_name%3A%22citrate+synthase%22+AND+reviewed%3Atrue%29"
+            ),
+        },
+        "source_artifacts": {
+            "source_sidecar_clearance_preflight": _source_path_record(
+                source_sidecar_clearance_preflight_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The P23007 blocker has reviewed citrate-synthase alternate "
+                "accessions with AlphaFoldDB models and matching active-site/"
+                "oxaloacetate-binding feature patterns, but no replacement is "
+                "authorized by this artifact."
+            ),
+            "next_action": (
+                "Choose whether an orthologous reviewed citrate-synthase "
+                "accession can substitute for P23007 under a deployment "
+                "coordinate policy; if yes, fetch the chosen AFDB coordinate "
+                "and rerun the fold channel without changing thresholds."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_p23007_alternate_accession_scout_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented P23007 Alternate-Accession Scout - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Candidate alternate accessions: {counts['candidate_alternate_accessions']}",
+        f"- Candidates with AFDB: {counts['candidates_with_afdb']}",
+        f"- Pattern-compatible candidates: {counts['pattern_compatible_candidates']}",
+        f"- Replacement authorized now: {counts['replacement_authorized_now']}",
+        f"- Deployment blockers cleared now: {counts['deployment_blockers_cleared_now']}",
+        "",
+        "## Candidates",
+        "",
+        "| accession | id | organism | length | pattern compatible | authorized |",
+        "| --- | --- | --- | ---: | ---: | ---: |",
+    ]
+    for row in audit["candidate_alternate_accessions"]:
+        lines.append(
+            f"| {row['accession']} | {row['uniprotkb_id']} | "
+            f"{row['organism']} | {row['sequence_length']} | "
+            f"{row['pattern_compatible_with_p23007_source_features']} | "
+            f"{row['replacement_authorized_now']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_p23007_alternate_accession_scout(
+    *,
+    source_sidecar_clearance_preflight_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_p23007_alternate_accession_scout(
+        source_sidecar_clearance_preflight_path=source_sidecar_clearance_preflight_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_p23007_alternate_accession_scout_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_fold_augmented_remaining_blocker_decision_matrix(
+    *,
+    source_sidecar_clearance_preflight_path: Path,
+    source_feature_sidecar_candidate_strict_audit_path: Path,
+    p23007_alternate_accession_scout_path: Path,
+) -> dict[str, Any]:
+    preflight = _read_json(source_sidecar_clearance_preflight_path)
+    strict_audit = _read_json(source_feature_sidecar_candidate_strict_audit_path)
+    p23007_scout = _read_json(p23007_alternate_accession_scout_path)
+    preflight_by_entry = {
+        str(row.get("entry_id")): row
+        for row in preflight.get("preflight_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    strict_by_entry = {
+        str(row.get("entry_id")): row
+        for row in strict_audit.get("row_audits", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    decision_rows: list[dict[str, Any]] = []
+    for entry_id in ["m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"]:
+        row = preflight_by_entry.get(entry_id, {})
+        audit_row = strict_by_entry.get(entry_id, {})
+        decision_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": row.get("accession"),
+                "decision_class": "manual_source_feature_sidecar_review",
+                "priority": 1,
+                "current_evidence_status": (
+                    "draft_sidecar_candidate_strict_audit_passed"
+                    if audit_row.get("audit_status") == "passed"
+                    else "draft_sidecar_candidate_audit_blocked"
+                ),
+                "decision_required": (
+                    "Approve, reject, or revise the draft source-feature "
+                    "active-site sidecar."
+                ),
+                "decision_options": [
+                    "approve_for_audited_sidecar_materialization",
+                    "revise_candidate_sidecar",
+                    "reject_keep_fold_only",
+                ],
+                "authorized_now": False,
+                "ready_for_scoring_now": False,
+                "deployment_blocker_cleared_now": False,
+                "blocking_policy_or_review_gap": "manual_sidecar_review",
+                "next_action": (
+                    "If approved, materialize an audited sidecar and rerun the "
+                    "combined geometry/fold surface at the fixed threshold."
+                ),
+            }
+        )
+    p23007_candidates = [
+        row.get("accession")
+        for row in p23007_scout.get("candidate_alternate_accessions", [])
+        if isinstance(row, dict)
+    ]
+    decision_rows.append(
+        {
+            "entry_id": "m_csa:78",
+            "accession": "P23007",
+            "decision_class": "alternate_accession_coordinate_policy_review",
+            "priority": 2,
+            "current_evidence_status": (
+                "alternate_accession_scout_ready_policy_review_only"
+            ),
+            "decision_required": (
+                "Choose whether an orthologous reviewed citrate-synthase "
+                "accession may substitute for AFDB-missing P23007."
+            ),
+            "decision_options": [
+                *[f"authorize_alternate:{accession}" for accession in p23007_candidates],
+                "reject_alternates_keep_row_outside_deployment_channel",
+            ],
+            "authorized_now": False,
+            "ready_for_scoring_now": False,
+            "deployment_blocker_cleared_now": False,
+            "blocking_policy_or_review_gap": "alternate_accession_policy",
+            "next_action": (
+                "If an alternate is authorized, fetch its AFDB coordinate and "
+                "rerun the fold channel without changing thresholds."
+            ),
+        }
+    )
+    p10746 = preflight_by_entry.get("m_csa:204", {})
+    decision_rows.append(
+        {
+            "entry_id": "m_csa:204",
+            "accession": p10746.get("accession") or "P10746",
+            "decision_class": "non_residue_interaction_sidecar_policy_design",
+            "priority": 3,
+            "current_evidence_status": (
+                "coordinate_available_but_no_primary_residue_features"
+            ),
+            "decision_required": (
+                "Define whether a non-residue active-site interaction sidecar "
+                "can represent uroporphyrinogen-III synthase for the combined "
+                "channel."
+            ),
+            "decision_options": [
+                "design_non_residue_interaction_sidecar_schema",
+                "keep_fold_only_for_diagnostics",
+                "source_new_primary_residue_evidence",
+            ],
+            "authorized_now": False,
+            "ready_for_scoring_now": False,
+            "deployment_blocker_cleared_now": False,
+            "blocking_policy_or_review_gap": "non_residue_interaction_policy",
+            "next_action": (
+                "Do not force a residue sidecar; either define an explicit "
+                "interaction-sidecar policy or keep the row fold-only."
+            ),
+        }
+    )
+    decision_rows.sort(
+        key=lambda row: (int(row["priority"]), _entry_id_sort_key(row["entry_id"]))
+    )
+    class_counts = Counter(row["decision_class"] for row in decision_rows)
+    return {
+        "artifact_id": FOLD_AUGMENTED_REMAINING_BLOCKER_DECISION_MATRIX_ID,
+        "schema_version": (
+            f"{SCHEMA_VERSION}.fold_augmented_remaining_blocker_decision_matrix"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": "fold_augmented_remaining_blocker_decision_matrix_ready_review_only",
+        "scope": (
+            "Review-only decision matrix for the five remaining Lever 3 "
+            "deployment blockers after source-sidecar preflight, draft sidecar "
+            "strict audit, and P23007 alternate-accession scouting."
+        ),
+        "guardrails": {
+            "review_only": True,
+            "sidecars_approved_or_copied": False,
+            "alternate_accession_authorized": False,
+            "ready_for_scoring_now": False,
+            "deployment_blockers_cleared": False,
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "foldseek_or_tm_rerun_performed": False,
+        },
+        "counts": {
+            "decision_rows": len(decision_rows),
+            "decision_class_counts": dict(sorted(class_counts.items())),
+            "source_feature_sidecar_review_rows": class_counts.get(
+                "manual_source_feature_sidecar_review", 0
+            ),
+            "alternate_accession_policy_rows": class_counts.get(
+                "alternate_accession_coordinate_policy_review", 0
+            ),
+            "non_residue_interaction_policy_rows": class_counts.get(
+                "non_residue_interaction_sidecar_policy_design", 0
+            ),
+            "authorized_now": sum(1 for row in decision_rows if row["authorized_now"]),
+            "ready_for_scoring_now": sum(
+                1 for row in decision_rows if row["ready_for_scoring_now"]
+            ),
+            "deployment_blockers_cleared_now": sum(
+                1
+                for row in decision_rows
+                if row["deployment_blocker_cleared_now"]
+            ),
+        },
+        "decision_rows": decision_rows,
+        "source_artifacts": {
+            "source_sidecar_clearance_preflight": _source_path_record(
+                source_sidecar_clearance_preflight_path
+            ),
+            "source_feature_sidecar_candidate_strict_audit": _source_path_record(
+                source_feature_sidecar_candidate_strict_audit_path
+            ),
+            "p23007_alternate_accession_scout": _source_path_record(
+                p23007_alternate_accession_scout_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The five remaining Lever 3 production blockers are now reduced "
+                "to three draft sidecar reviews, one alternate-accession policy "
+                "decision, and one non-residue interaction policy decision."
+            ),
+            "next_action": (
+                "Review the three draft sidecars first; then decide whether to "
+                "authorize a P23007 alternate accession; leave P10746 fold-only "
+                "unless a non-residue interaction policy is explicitly defined."
+            ),
+        },
+    }
+
+
+def _render_fold_augmented_remaining_blocker_decision_matrix_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Fold-Augmented Remaining Blocker Decision Matrix - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Decision rows: {counts['decision_rows']}",
+        f"- Source-feature sidecar review rows: {counts['source_feature_sidecar_review_rows']}",
+        f"- Alternate-accession policy rows: {counts['alternate_accession_policy_rows']}",
+        f"- Non-residue interaction policy rows: {counts['non_residue_interaction_policy_rows']}",
+        f"- Authorized now: {counts['authorized_now']}",
+        f"- Ready for scoring now: {counts['ready_for_scoring_now']}",
+        f"- Deployment blockers cleared now: {counts['deployment_blockers_cleared_now']}",
+        "",
+        "## Decision Rows",
+        "",
+        "| priority | row | accession | decision class | evidence status | authorized |",
+        "| ---: | --- | --- | --- | --- | ---: |",
+    ]
+    for row in audit["decision_rows"]:
+        lines.append(
+            f"| {row['priority']} | {row['entry_id']} | {row['accession']} | "
+            f"{row['decision_class']} | {row['current_evidence_status']} | "
+            f"{row['authorized_now']} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_fold_augmented_remaining_blocker_decision_matrix(
+    *,
+    source_sidecar_clearance_preflight_path: Path,
+    source_feature_sidecar_candidate_strict_audit_path: Path,
+    p23007_alternate_accession_scout_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_fold_augmented_remaining_blocker_decision_matrix(
+        source_sidecar_clearance_preflight_path=source_sidecar_clearance_preflight_path,
+        source_feature_sidecar_candidate_strict_audit_path=(
+            source_feature_sidecar_candidate_strict_audit_path
+        ),
+        p23007_alternate_accession_scout_path=p23007_alternate_accession_scout_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_fold_augmented_remaining_blocker_decision_matrix_report(audit),
+            encoding="utf-8",
+        )
+    return audit
+
+
 def build_predicted_structure_fold_confounded_operating_point_readiness(
     *,
     contract_audit_path: Path,
@@ -14149,6 +15676,7 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
     coordinate_provenance_audit_path: Path,
     deployment_input_audit_path: Path | None = None,
     remaining_blocker_coordinate_reprobe_path: Path | None = None,
+    source_sidecar_clearance_preflight_path: Path | None = None,
 ) -> dict[str, Any]:
     contract_audit = _read_json(contract_audit_path)
     closure = _read_json(confounded_deployment_closure_path)
@@ -14165,6 +15693,12 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
         _read_json(deployment_input_audit_path)
         if deployment_input_audit_path is not None
         and deployment_input_audit_path.exists()
+        else None
+    )
+    source_sidecar_preflight = (
+        _read_json(source_sidecar_clearance_preflight_path)
+        if source_sidecar_clearance_preflight_path is not None
+        and source_sidecar_clearance_preflight_path.exists()
         else None
     )
 
@@ -14212,9 +15746,19 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
     coordinate_reprobe_counts = (
         coordinate_reprobe.get("counts") if isinstance(coordinate_reprobe, dict) else {}
     ) or {}
+    source_sidecar_preflight_counts = (
+        source_sidecar_preflight.get("counts")
+        if isinstance(source_sidecar_preflight, dict)
+        else {}
+    ) or {}
     coordinate_reprobe_by_entry = {
         str(row.get("entry_id")): row
         for row in ((coordinate_reprobe or {}).get("rows") or [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    source_sidecar_preflight_by_entry = {
+        str(row.get("entry_id")): row
+        for row in ((source_sidecar_preflight or {}).get("preflight_rows") or [])
         if isinstance(row, dict) and row.get("entry_id")
     }
     remaining_blocker_rows = [
@@ -14455,6 +15999,21 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
                     "coordinate_available_but_source_geometry_blocked_rows"
                 )
             ),
+            "source_sidecar_preflight_candidate_rows": (
+                source_sidecar_preflight_counts.get(
+                    "source_feature_sidecar_candidate_rows"
+                )
+            ),
+            "source_sidecar_preflight_coordinate_policy_blocked_rows": (
+                source_sidecar_preflight_counts.get(
+                    "coordinate_policy_blocked_rows"
+                )
+            ),
+            "source_sidecar_preflight_non_residue_policy_blocked_rows": (
+                source_sidecar_preflight_counts.get(
+                    "non_residue_interaction_policy_blocked_rows"
+                )
+            ),
         },
         "remaining_production_blocker_rows": [
             {
@@ -14480,6 +16039,33 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
                         ].get("next_action"),
                     }
                     if str(row.get("entry_id")) in coordinate_reprobe_by_entry
+                    else None
+                ),
+                "source_sidecar_preflight": (
+                    {
+                        "preflight_status": source_sidecar_preflight_by_entry[
+                            str(row.get("entry_id"))
+                        ].get("preflight_status"),
+                        "source_feature_sidecar_candidate": (
+                            source_sidecar_preflight_by_entry[
+                                str(row.get("entry_id"))
+                            ].get("source_feature_sidecar_candidate")
+                        ),
+                        "source_feature_count": source_sidecar_preflight_by_entry[
+                            str(row.get("entry_id"))
+                        ].get("source_feature_count"),
+                        "source_sidecar_created_now": (
+                            source_sidecar_preflight_by_entry[
+                                str(row.get("entry_id"))
+                            ].get("source_sidecar_created_now")
+                        ),
+                        "deployment_blocker_cleared_now": (
+                            source_sidecar_preflight_by_entry[
+                                str(row.get("entry_id"))
+                            ].get("deployment_blocker_cleared_now")
+                        ),
+                    }
+                    if str(row.get("entry_id")) in source_sidecar_preflight_by_entry
                     else None
                 ),
                 "next_action": row.get("next_action"),
@@ -14549,6 +16135,21 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
                     "coordinate_available_but_source_geometry_blocked_rows"
                 )
             ),
+            "source_sidecar_preflight_candidate_rows": (
+                source_sidecar_preflight_counts.get(
+                    "source_feature_sidecar_candidate_rows"
+                )
+            ),
+            "source_sidecar_preflight_coordinate_policy_blocked_rows": (
+                source_sidecar_preflight_counts.get(
+                    "coordinate_policy_blocked_rows"
+                )
+            ),
+            "source_sidecar_preflight_non_residue_policy_blocked_rows": (
+                source_sidecar_preflight_counts.get(
+                    "non_residue_interaction_policy_blocked_rows"
+                )
+            ),
             "critical_counts": critical_counts,
             "critical_violation_total": sum(critical_counts.values()),
         },
@@ -14589,6 +16190,11 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
             "remaining_blocker_coordinate_reprobe": (
                 _source_path_record(remaining_blocker_coordinate_reprobe_path)
                 if remaining_blocker_coordinate_reprobe_path is not None
+                else None
+            ),
+            "source_sidecar_clearance_preflight": (
+                _source_path_record(source_sidecar_clearance_preflight_path)
+                if source_sidecar_clearance_preflight_path is not None
                 else None
             ),
         },
@@ -14633,6 +16239,8 @@ def _render_predicted_structure_fold_confounded_operating_point_readiness_report
         f"{counts['unique_coordinate_files_missing']}",
         "- Remaining-blocker coordinate reprobe rows cleared: "
         f"{counts.get('remaining_blocker_coordinate_reprobe_rows_cleared')}",
+        "- Source-sidecar preflight candidates: "
+        f"{counts.get('source_sidecar_preflight_candidate_rows')}",
         f"- Critical violations: {counts['critical_violation_total']}",
         "",
         "## Deployment Closure Gate",
@@ -14657,16 +16265,17 @@ def _render_predicted_structure_fold_confounded_operating_point_readiness_report
         "",
         "## Remaining Blocker Rows",
         "",
-        "| row | blocker | coordinate available | reprobe blocker cleared | remaining blocker | fold-only evidence |",
-        "| --- | --- | --- | --- | --- | --- |",
+        "| row | blocker | coordinate available | source-sidecar preflight | source features | fold-only evidence |",
+        "| --- | --- | --- | --- | ---: | --- |",
     ]
     for row in audit.get("remaining_production_blocker_rows", []):
         reprobe = row.get("coordinate_reprobe") or {}
+        source_preflight = row.get("source_sidecar_preflight") or {}
         lines.append(
             f"| {row.get('entry_id')} | {row.get('current_blocker')} | "
             f"{reprobe.get('coordinate_available_now')} | "
-            f"{reprobe.get('blocker_cleared_by_reprobe')} | "
-            f"{reprobe.get('remaining_blocker')} | "
+            f"{source_preflight.get('preflight_status')} | "
+            f"{source_preflight.get('source_feature_count')} | "
             f"{row.get('fold_only_evidence_available')} |"
         )
     lines += [
@@ -14692,6 +16301,7 @@ def write_predicted_structure_fold_confounded_operating_point_readiness(
     coordinate_provenance_audit_path: Path,
     deployment_input_audit_path: Path | None = None,
     remaining_blocker_coordinate_reprobe_path: Path | None = None,
+    source_sidecar_clearance_preflight_path: Path | None = None,
     out_path: Path,
     report_path: Path | None = None,
 ) -> dict[str, Any]:
@@ -14703,6 +16313,7 @@ def write_predicted_structure_fold_confounded_operating_point_readiness(
         coordinate_provenance_audit_path=coordinate_provenance_audit_path,
         deployment_input_audit_path=deployment_input_audit_path,
         remaining_blocker_coordinate_reprobe_path=remaining_blocker_coordinate_reprobe_path,
+        source_sidecar_clearance_preflight_path=source_sidecar_clearance_preflight_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(

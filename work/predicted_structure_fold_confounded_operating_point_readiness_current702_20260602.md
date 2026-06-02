@@ -1,6 +1,6 @@
 # Predicted-Structure Fold Confounded Operating-Point Readiness - current702
 
-Run: 2026-06-02T16:13:09Z
+Run: 2026-06-02T17:10:46Z
 
 Read-only readiness audit for the Lever 3 predicted-structure-vs-atlas fold channel at the existing operating point. It composes the contract audit, confounded closure, fold-only no-go decision, OOS-calibrated threshold contract, deployment-input contract, and coordinate provenance audit without selecting thresholds or rerunning Foldseek/TM.
 
@@ -16,6 +16,7 @@ Read-only readiness audit for the Lever 3 predicted-structure-vs-atlas fold chan
 - Fold-only rows abstained at 90% threshold: 0/4
 - Unique coordinate files missing: 0
 - Remaining-blocker coordinate reprobe rows cleared: 0
+- Source-sidecar preflight candidates: 3
 - Critical violations: 6
 
 ## Deployment Closure Gate
@@ -32,13 +33,13 @@ Read-only readiness audit for the Lever 3 predicted-structure-vs-atlas fold chan
 
 ## Remaining Blocker Rows
 
-| row | blocker | coordinate available | reprobe blocker cleared | remaining blocker | fold-only evidence |
-| --- | --- | --- | --- | --- | --- |
-| m_csa:78 | alphafold_db_coordinate_unavailable | False | False | alphafold_db_coordinate_unavailable | False |
-| m_csa:204 | experimental_geometry_not_ok:None | True | False | source active-site geometry evidence missing | True |
-| m_csa:531 | experimental_geometry_not_ok:insufficient_resolved_residues | True | False | source active-site geometry evidence insufficient | True |
-| uniprot:P78549 | not_m_csa_entry | True | False | UniProt-only active-site sidecar missing | True |
-| uniprot:Q3LXA3 | not_m_csa_entry | True | False | UniProt-only active-site sidecar missing | True |
+| row | blocker | coordinate available | source-sidecar preflight | source features | fold-only evidence |
+| --- | --- | --- | --- | ---: | --- |
+| m_csa:78 | alphafold_db_coordinate_unavailable | False | blocked_predicted_coordinate_policy_required | 6 | False |
+| m_csa:204 | experimental_geometry_not_ok:None | True | blocked_non_residue_interaction_policy_required | 0 | True |
+| m_csa:531 | experimental_geometry_not_ok:insufficient_resolved_residues | True | source_feature_sidecar_candidate_ready_for_manual_review | 3 | True |
+| uniprot:P78549 | not_m_csa_entry | True | source_feature_sidecar_candidate_ready_for_manual_review | 6 | True |
+| uniprot:Q3LXA3 | not_m_csa_entry | True | source_feature_sidecar_candidate_ready_for_manual_review | 9 | True |
 
 ## Decision
 

@@ -1,0 +1,183 @@
+{
+  "artifact_id": "v3_fold_augmented_p23007_alternate_accession_scout_current702_20260602",
+  "candidate_alternate_accessions": [
+    {
+      "accession": "O75390",
+      "active_site_positions": [
+        301,
+        347,
+        402
+      ],
+      "afdb_cif_url": "https://alphafold.ebi.ac.uk/files/AF-O75390-F1-model_v6.cif",
+      "alphafold_db_available": true,
+      "blockers": [
+        "alternate_accession_equivalence_not_approved",
+        "source_row_replacement_policy_missing",
+        "combined_channel_not_rerun"
+      ],
+      "organism": "Homo sapiens",
+      "oxaloacetate_binding_positions": [
+        356,
+        428,
+        448
+      ],
+      "pattern_compatible_with_p23007_source_features": true,
+      "position_offset_vs_p23007_active_sites": 27,
+      "protein_name": "Citrate synthase, mitochondrial",
+      "ready_for_predicted_fold_channel_now": false,
+      "replacement_authorized_now": false,
+      "review_status": "needs_coordinate_policy_review",
+      "sequence_length": 466,
+      "source_url": "https://rest.uniprot.org/uniprotkb/O75390.json",
+      "uniprotkb_id": "CISY_HUMAN"
+    },
+    {
+      "accession": "P00889",
+      "active_site_positions": [
+        301,
+        347,
+        402
+      ],
+      "afdb_cif_url": "https://alphafold.ebi.ac.uk/files/AF-P00889-F1-model_v6.cif",
+      "alphafold_db_available": true,
+      "blockers": [
+        "alternate_accession_equivalence_not_approved",
+        "source_row_replacement_policy_missing",
+        "combined_channel_not_rerun"
+      ],
+      "organism": "Sus scrofa",
+      "oxaloacetate_binding_positions": [
+        356,
+        428,
+        448
+      ],
+      "pattern_compatible_with_p23007_source_features": true,
+      "position_offset_vs_p23007_active_sites": 27,
+      "protein_name": "Citrate synthase, mitochondrial",
+      "ready_for_predicted_fold_channel_now": false,
+      "replacement_authorized_now": false,
+      "review_status": "needs_coordinate_policy_review",
+      "sequence_length": 464,
+      "source_url": "https://rest.uniprot.org/uniprotkb/P00889.json",
+      "uniprotkb_id": "CISY_PIG"
+    },
+    {
+      "accession": "Q8VHF5",
+      "active_site_positions": [
+        301,
+        347,
+        402
+      ],
+      "afdb_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q8VHF5-F1-model_v6.cif",
+      "alphafold_db_available": true,
+      "blockers": [
+        "alternate_accession_equivalence_not_approved",
+        "source_row_replacement_policy_missing",
+        "combined_channel_not_rerun"
+      ],
+      "organism": "Rattus norvegicus",
+      "oxaloacetate_binding_positions": [
+        356,
+        428,
+        448
+      ],
+      "pattern_compatible_with_p23007_source_features": true,
+      "position_offset_vs_p23007_active_sites": 27,
+      "protein_name": "Citrate synthase, mitochondrial",
+      "ready_for_predicted_fold_channel_now": false,
+      "replacement_authorized_now": false,
+      "review_status": "needs_coordinate_policy_review",
+      "sequence_length": 466,
+      "source_url": "https://rest.uniprot.org/uniprotkb/Q8VHF5.json",
+      "uniprotkb_id": "CISY_RAT"
+    },
+    {
+      "accession": "Q9CZU6",
+      "active_site_positions": [
+        301,
+        347,
+        402
+      ],
+      "afdb_cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9CZU6-F1-model_v6.cif",
+      "alphafold_db_available": true,
+      "blockers": [
+        "alternate_accession_equivalence_not_approved",
+        "source_row_replacement_policy_missing",
+        "combined_channel_not_rerun"
+      ],
+      "organism": "Mus musculus",
+      "oxaloacetate_binding_positions": [
+        356,
+        428,
+        448
+      ],
+      "pattern_compatible_with_p23007_source_features": true,
+      "position_offset_vs_p23007_active_sites": 27,
+      "protein_name": "Citrate synthase, mitochondrial",
+      "ready_for_predicted_fold_channel_now": false,
+      "replacement_authorized_now": false,
+      "review_status": "needs_coordinate_policy_review",
+      "sequence_length": 464,
+      "source_url": "https://rest.uniprot.org/uniprotkb/Q9CZU6.json",
+      "uniprotkb_id": "CISY_MOUSE"
+    }
+  ],
+  "counts": {
+    "candidate_alternate_accessions": 4,
+    "candidates_with_afdb": 4,
+    "deployment_blockers_cleared_now": 0,
+    "pattern_compatible_candidates": 4,
+    "ready_for_predicted_fold_channel_now": 0,
+    "replacement_authorized_now": 0
+  },
+  "created_utc": "2026-06-02T17:19:46Z",
+  "guardrails": {
+    "alternate_accession_authorized": false,
+    "coordinates_fetched": false,
+    "deployment_blockers_cleared": false,
+    "foldseek_or_tm_rerun_performed": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "production_thresholds_changed": false,
+    "ready_for_predicted_fold_channel_now": false,
+    "review_only": true
+  },
+  "interpretation": {
+    "next_action": "Choose whether an orthologous reviewed citrate-synthase accession can substitute for P23007 under a deployment coordinate policy; if yes, fetch the chosen AFDB coordinate and rerun the fold channel without changing thresholds.",
+    "result": "The P23007 blocker has reviewed citrate-synthase alternate accessions with AlphaFoldDB models and matching active-site/oxaloacetate-binding feature patterns, but no replacement is authorized by this artifact."
+  },
+  "p23007_reference": {
+    "accession": "P23007",
+    "coordinate_available_now": false,
+    "entry_id": "m_csa:78",
+    "preflight_status": "blocked_predicted_coordinate_policy_required",
+    "source_active_site_positions": [
+      274,
+      320,
+      375
+    ],
+    "source_oxaloacetate_binding_positions": [
+      329,
+      401,
+      421
+    ]
+  },
+  "query_evidence": {
+    "fields": "accession,id,protein_name,organism_name,length,xref_alphafolddb,ft_act_site,ft_binding",
+    "queried_utc": "2026-06-02T17:18:00Z",
+    "query": "(protein_name:\"citrate synthase\" AND reviewed:true)",
+    "source_database": "UniProtKB REST search",
+    "source_url": "https://rest.uniprot.org/uniprotkb/search?query=%28protein_name%3A%22citrate+synthase%22+AND+reviewed%3Atrue%29"
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_p23007_alternate_accession_scout",
+  "scope": "Review-only scout for source-backed alternate UniProt accessions that could resolve the m_csa:78/P23007 AlphaFoldDB-unavailable policy blocker. It records candidates only; no replacement is authorized.",
+  "source_artifacts": {
+    "source_sidecar_clearance_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_source_sidecar_clearance_preflight_current702_20260602.json",
+      "sha256": "05599c24f621c984848cc13cf2493e853c69cc5d51c33a287ceff5d05694f575"
+    }
+  },
+  "status": "fold_augmented_p23007_alternate_accession_scout_ready_policy_review_only"
+}

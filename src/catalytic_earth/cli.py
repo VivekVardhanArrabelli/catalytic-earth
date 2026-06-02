@@ -73,6 +73,11 @@ from .northstar_next_levers import (
     write_fold_augmented_confounded_deployment_closure_audit,
     write_fold_augmented_fold_only_deployment_contract_decision,
     write_fold_augmented_oos_calibrated_threshold_contract,
+    write_fold_augmented_p23007_alternate_accession_scout,
+    write_fold_augmented_remaining_blocker_decision_matrix,
+    write_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit,
+    write_fold_augmented_source_feature_active_site_sidecar_candidates,
+    write_fold_augmented_source_sidecar_clearance_preflight,
     write_fold_augmented_train_cal_oos_negative_surface_blocker_resolution,
     write_fold_augmented_train_cal_oos_negative_surface_scores,
     write_fold_augmented_train_cal_oos_negative_surface_sufficiency_decision,
@@ -11710,6 +11715,113 @@ def cmd_audit_fold_augmented_fold_only_deployment_contract(
     return 0
 
 
+def cmd_build_fold_augmented_source_sidecar_clearance_preflight(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_source_sidecar_clearance_preflight(
+        remaining_blocker_coordinate_reprobe_path=Path(
+            args.remaining_blocker_coordinate_reprobe
+        ),
+        blocker_resolution_path=Path(args.blocker_resolution),
+        remaining_blocker_clearance_path=Path(args.remaining_blocker_clearance),
+        graph_path=Path(args.graph),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented source-sidecar clearance preflight to "
+        f"{args.out} (candidate rows: "
+        f"{counts.get('source_feature_sidecar_candidate_rows')}, "
+        f"deployment blockers cleared now: "
+        f"{counts.get('deployment_blockers_cleared_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_source_feature_active_site_sidecar_candidates(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_source_feature_active_site_sidecar_candidates(
+        source_sidecar_clearance_preflight_path=Path(
+            args.source_sidecar_clearance_preflight
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented source-feature active-site sidecar candidates to "
+        f"{args.out} (draft rows: {counts.get('draft_rows')}, "
+        f"approved rows: {counts.get('approved_rows')})"
+    )
+    return 0
+
+
+def cmd_audit_fold_augmented_source_feature_active_site_sidecar_candidates(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit(
+        source_feature_sidecar_candidates_path=Path(
+            args.source_feature_sidecar_candidates
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented source-feature active-site sidecar candidate "
+        f"strict audit to {args.out} (status: {audit.get('status')}, "
+        f"critical violations: {counts.get('critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_p23007_alternate_accession_scout(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_p23007_alternate_accession_scout(
+        source_sidecar_clearance_preflight_path=Path(
+            args.source_sidecar_clearance_preflight
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented P23007 alternate-accession scout to "
+        f"{args.out} (candidates: "
+        f"{counts.get('candidate_alternate_accessions')}, "
+        f"authorized now: {counts.get('replacement_authorized_now')})"
+    )
+    return 0
+
+
+def cmd_build_fold_augmented_remaining_blocker_decision_matrix(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_fold_augmented_remaining_blocker_decision_matrix(
+        source_sidecar_clearance_preflight_path=Path(
+            args.source_sidecar_clearance_preflight
+        ),
+        source_feature_sidecar_candidate_strict_audit_path=Path(
+            args.source_feature_sidecar_candidate_strict_audit
+        ),
+        p23007_alternate_accession_scout_path=Path(
+            args.p23007_alternate_accession_scout
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote fold-augmented remaining blocker decision matrix to "
+        f"{args.out} (decision rows: {counts.get('decision_rows')}, "
+        f"authorized now: {counts.get('authorized_now')})"
+    )
+    return 0
+
+
 def cmd_audit_predicted_structure_fold_confounded_operating_point_readiness(
     args: argparse.Namespace,
 ) -> int:
@@ -11732,6 +11844,11 @@ def cmd_audit_predicted_structure_fold_confounded_operating_point_readiness(
             args.remaining_blocker_coordinate_reprobe
         )
         if args.remaining_blocker_coordinate_reprobe
+        else None,
+        source_sidecar_clearance_preflight_path=Path(
+            args.source_sidecar_clearance_preflight
+        )
+        if args.source_sidecar_clearance_preflight
         else None,
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
@@ -25840,6 +25957,198 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_fold_augmented_fold_only_deployment_contract
     )
 
+    source_sidecar_clearance_preflight = subparsers.add_parser(
+        "build-fold-augmented-source-sidecar-clearance-preflight",
+        help=(
+            "preflight source-backed active-site sidecar candidates for the "
+            "remaining Lever 3 production blocker rows"
+        ),
+    )
+    source_sidecar_clearance_preflight.add_argument(
+        "--remaining-blocker-coordinate-reprobe",
+        default=(
+            "artifacts/v3_fold_augmented_remaining_blocker_coordinate_reprobe_"
+            "current702_20260602.json"
+        ),
+    )
+    source_sidecar_clearance_preflight.add_argument(
+        "--blocker-resolution",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_negative_surface_"
+            "blocker_resolution_current702_20260601.json"
+        ),
+    )
+    source_sidecar_clearance_preflight.add_argument(
+        "--remaining-blocker-clearance",
+        default=(
+            "artifacts/v3_fold_augmented_train_cal_oos_remaining_blocker_"
+            "clearance_attempts_current702_20260601.json"
+        ),
+    )
+    source_sidecar_clearance_preflight.add_argument(
+        "--graph",
+        default="artifacts/v1_graph_1025.json",
+    )
+    source_sidecar_clearance_preflight.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_source_sidecar_clearance_preflight_"
+            "current702_20260602.json"
+        ),
+    )
+    source_sidecar_clearance_preflight.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_source_sidecar_clearance_preflight_"
+            "current702_20260602.md"
+        ),
+    )
+    source_sidecar_clearance_preflight.set_defaults(
+        func=cmd_build_fold_augmented_source_sidecar_clearance_preflight
+    )
+
+    source_feature_sidecar_candidates = subparsers.add_parser(
+        "build-fold-augmented-source-feature-active-site-sidecar-candidates",
+        help=(
+            "materialize draft source-feature active-site sidecar candidates "
+            "from the Lever 3 source-sidecar clearance preflight"
+        ),
+    )
+    source_feature_sidecar_candidates.add_argument(
+        "--source-sidecar-clearance-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_source_sidecar_clearance_preflight_"
+            "current702_20260602.json"
+        ),
+    )
+    source_feature_sidecar_candidates.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_candidates_"
+            "current702_20260602.json"
+        ),
+    )
+    source_feature_sidecar_candidates.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_source_feature_active_site_sidecar_candidates_"
+            "current702_20260602.md"
+        ),
+    )
+    source_feature_sidecar_candidates.set_defaults(
+        func=cmd_build_fold_augmented_source_feature_active_site_sidecar_candidates
+    )
+
+    source_feature_sidecar_candidate_audit = subparsers.add_parser(
+        "audit-fold-augmented-source-feature-active-site-sidecar-candidates",
+        help=(
+            "strict-audit the draft source-feature active-site sidecar "
+            "candidate packet before manual review"
+        ),
+    )
+    source_feature_sidecar_candidate_audit.add_argument(
+        "--source-feature-sidecar-candidates",
+        default=(
+            "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_candidates_"
+            "current702_20260602.json"
+        ),
+    )
+    source_feature_sidecar_candidate_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_candidate_"
+            "strict_audit_current702_20260602.json"
+        ),
+    )
+    source_feature_sidecar_candidate_audit.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_source_feature_active_site_sidecar_candidate_"
+            "strict_audit_current702_20260602.md"
+        ),
+    )
+    source_feature_sidecar_candidate_audit.set_defaults(
+        func=cmd_audit_fold_augmented_source_feature_active_site_sidecar_candidates
+    )
+
+    p23007_alternate_scout = subparsers.add_parser(
+        "build-fold-augmented-p23007-alternate-accession-scout",
+        help=(
+            "scout reviewed AlphaFoldDB-backed alternate accessions for the "
+            "m_csa:78/P23007 coordinate-policy blocker"
+        ),
+    )
+    p23007_alternate_scout.add_argument(
+        "--source-sidecar-clearance-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_source_sidecar_clearance_preflight_"
+            "current702_20260602.json"
+        ),
+    )
+    p23007_alternate_scout.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_p23007_alternate_accession_scout_"
+            "current702_20260602.json"
+        ),
+    )
+    p23007_alternate_scout.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_p23007_alternate_accession_scout_"
+            "current702_20260602.md"
+        ),
+    )
+    p23007_alternate_scout.set_defaults(
+        func=cmd_build_fold_augmented_p23007_alternate_accession_scout
+    )
+
+    remaining_blocker_decision_matrix = subparsers.add_parser(
+        "build-fold-augmented-remaining-blocker-decision-matrix",
+        help=(
+            "compose the remaining Lever 3 production blockers into a "
+            "review-only decision matrix"
+        ),
+    )
+    remaining_blocker_decision_matrix.add_argument(
+        "--source-sidecar-clearance-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_source_sidecar_clearance_preflight_"
+            "current702_20260602.json"
+        ),
+    )
+    remaining_blocker_decision_matrix.add_argument(
+        "--source-feature-sidecar-candidate-strict-audit",
+        default=(
+            "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_candidate_"
+            "strict_audit_current702_20260602.json"
+        ),
+    )
+    remaining_blocker_decision_matrix.add_argument(
+        "--p23007-alternate-accession-scout",
+        default=(
+            "artifacts/v3_fold_augmented_p23007_alternate_accession_scout_"
+            "current702_20260602.json"
+        ),
+    )
+    remaining_blocker_decision_matrix.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_fold_augmented_remaining_blocker_decision_matrix_"
+            "current702_20260602.json"
+        ),
+    )
+    remaining_blocker_decision_matrix.add_argument(
+        "--report",
+        default=(
+            "work/fold_augmented_remaining_blocker_decision_matrix_"
+            "current702_20260602.md"
+        ),
+    )
+    remaining_blocker_decision_matrix.set_defaults(
+        func=cmd_build_fold_augmented_remaining_blocker_decision_matrix
+    )
+
     fold_confounded_readiness = subparsers.add_parser(
         "audit-predicted-structure-fold-confounded-operating-point-readiness",
         help=(
@@ -25893,6 +26202,13 @@ def build_parser() -> argparse.ArgumentParser:
         "--remaining-blocker-coordinate-reprobe",
         default=(
             "artifacts/v3_fold_augmented_remaining_blocker_coordinate_reprobe_"
+            "current702_20260602.json"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--source-sidecar-clearance-preflight",
+        default=(
+            "artifacts/v3_fold_augmented_source_sidecar_clearance_preflight_"
             "current702_20260602.json"
         ),
     )

@@ -1,0 +1,458 @@
+{
+  "artifact_id": "v3_fold_augmented_source_feature_active_site_sidecar_candidates_current702_20260602",
+  "counts": {
+    "allowed_for_combined_channel_now": 0,
+    "approved_rows": 0,
+    "candidate_entry_ids": [
+      "m_csa:531",
+      "uniprot:P78549",
+      "uniprot:Q3LXA3"
+    ],
+    "candidate_sidecar_rows": 3,
+    "deployment_blockers_cleared_now": 0,
+    "draft_rows": 3,
+    "ready_for_predicted_geometry_scoring": 0,
+    "total_source_feature_support_rows": 18
+  },
+  "created_utc": "2026-06-02T17:13:55Z",
+  "guardrails": {
+    "approved_sidecars_created": false,
+    "copy_to_scoring_surface_authorized": false,
+    "deployment_blockers_cleared": false,
+    "foldseek_or_tm_rerun_performed": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "ready_for_predicted_geometry_scoring": false,
+    "review_only": true
+  },
+  "interpretation": {
+    "next_action": "Manually review the three candidate sidecars; if accepted, materialize approved audited sidecars and rerun the combined geometry/fold surface at the fixed threshold.",
+    "result": "Draft sidecar candidates now exist for the three coordinate-available source-feature blocker rows, but they are not approved and cannot clear deployment blockers yet."
+  },
+  "schema_version": "northstar_next_levers.v0.fold_augmented_source_feature_active_site_sidecar_candidates",
+  "scope": "Draft active-site source-feature sidecar candidates for Lever 3 production blocker rows that passed source-sidecar preflight. Candidates are review-only and not authorized for scoring.",
+  "sidecar_rows": [
+    {
+      "accession": "P31572",
+      "active_site_feature_support": [
+        {
+          "description": "Nucleophile",
+          "evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000305"
+          ],
+          "feature_id": "m_csa:531:source_feature:1",
+          "feature_type": "Active site",
+          "ligand": null,
+          "ligand_chebi": null,
+          "sequence_position": 169,
+          "source_database": "UniProtKB",
+          "source_record_id": "P31572",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/P31572.json"
+        },
+        {
+          "description": "CoA",
+          "evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000269"
+          ],
+          "feature_id": "m_csa:531:source_feature:2",
+          "feature_type": "Binding site",
+          "ligand": "CoA",
+          "ligand_chebi": "CHEBI:57287",
+          "sequence_position": 97,
+          "source_database": "UniProtKB",
+          "source_record_id": "P31572",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/P31572.json"
+        },
+        {
+          "description": "CoA",
+          "evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000269"
+          ],
+          "feature_id": "m_csa:531:source_feature:3",
+          "feature_type": "Binding site",
+          "ligand": "CoA",
+          "ligand_chebi": "CHEBI:57287",
+          "sequence_position": 104,
+          "source_database": "UniProtKB",
+          "source_record_id": "P31572",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/P31572.json"
+        }
+      ],
+      "allowed_for_combined_channel_now": false,
+      "blockers": [
+        "manual_review_required",
+        "candidate_sidecar_not_approved",
+        "combined_channel_not_rerun"
+      ],
+      "candidate_sidecar_id": "fold_augmented_source_feature_active_site_sidecar:m_csa:531",
+      "copy_authorized_now": false,
+      "deployment_blocker_cleared_now": false,
+      "entry_id": "m_csa:531",
+      "local_graph_context": {
+        "local_graph_residue_nodes": [
+          {
+            "id": "m_csa:531:residue:1",
+            "roles": [
+              "covalently attached",
+              "electrofuge",
+              "electrophile",
+              "nucleofuge",
+              "nucleophile"
+            ],
+            "sequence_positions": [
+              {
+                "code": "Asp",
+                "is_reference": true,
+                "resid": 169,
+                "uniprot_id": "P31572"
+              }
+            ]
+          }
+        ],
+        "m_csa_residue_count": 1
+      },
+      "ready_for_predicted_geometry_scoring": false,
+      "review_checklist": [
+        "confirm source features are active-site or ligand/cofactor features, not label or mechanism-family text",
+        "confirm feature positions map to the same accession used by the predicted coordinate",
+        "confirm UniProt ECO/source evidence is acceptable for the external hard-negative geometry channel",
+        "after approval, materialize an audited sidecar and rerun combined-channel scoring without changing thresholds"
+      ],
+      "review_status": "draft",
+      "source_record": {
+        "primary_accession": "P31572",
+        "protein_name": "L-carnitine CoA-transferase",
+        "source_database": "UniProtKB",
+        "source_record_id": "P31572",
+        "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P31572.json"
+      }
+    },
+    {
+      "accession": "P78549",
+      "active_site_feature_support": [
+        {
+          "description": "Nucleophile; for N-glycosylase activity",
+          "evidence_codes": [
+            "ECO:0000255",
+            "ECO:0000269"
+          ],
+          "feature_id": "uniprot:P78549:source_feature:1",
+          "feature_type": "Active site",
+          "ligand": null,
+          "ligand_chebi": null,
+          "sequence_position": 212,
+          "source_database": "UniProtKB",
+          "source_record_id": "P78549",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/P78549.json"
+        },
+        {
+          "description": "Important for catalytic activity",
+          "evidence_codes": [],
+          "feature_id": "uniprot:P78549:source_feature:2",
+          "feature_type": "Site",
+          "ligand": null,
+          "ligand_chebi": null,
+          "sequence_position": 231,
+          "source_database": "UniProtKB",
+          "source_record_id": "P78549",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/P78549.json"
+        },
+        {
+          "description": "[4Fe-4S] cluster",
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "feature_id": "uniprot:P78549:source_feature:3",
+          "feature_type": "Binding site",
+          "ligand": "[4Fe-4S] cluster",
+          "ligand_chebi": "CHEBI:49883",
+          "sequence_position": 282,
+          "source_database": "UniProtKB",
+          "source_record_id": "P78549",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/P78549.json"
+        },
+        {
+          "description": "[4Fe-4S] cluster",
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "feature_id": "uniprot:P78549:source_feature:4",
+          "feature_type": "Binding site",
+          "ligand": "[4Fe-4S] cluster",
+          "ligand_chebi": "CHEBI:49883",
+          "sequence_position": 289,
+          "source_database": "UniProtKB",
+          "source_record_id": "P78549",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/P78549.json"
+        },
+        {
+          "description": "[4Fe-4S] cluster",
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "feature_id": "uniprot:P78549:source_feature:5",
+          "feature_type": "Binding site",
+          "ligand": "[4Fe-4S] cluster",
+          "ligand_chebi": "CHEBI:49883",
+          "sequence_position": 292,
+          "source_database": "UniProtKB",
+          "source_record_id": "P78549",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/P78549.json"
+        },
+        {
+          "description": "[4Fe-4S] cluster",
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "feature_id": "uniprot:P78549:source_feature:6",
+          "feature_type": "Binding site",
+          "ligand": "[4Fe-4S] cluster",
+          "ligand_chebi": "CHEBI:49883",
+          "sequence_position": 298,
+          "source_database": "UniProtKB",
+          "source_record_id": "P78549",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/P78549.json"
+        }
+      ],
+      "allowed_for_combined_channel_now": false,
+      "blockers": [
+        "manual_review_required",
+        "candidate_sidecar_not_approved",
+        "combined_channel_not_rerun"
+      ],
+      "candidate_sidecar_id": "fold_augmented_source_feature_active_site_sidecar:uniprot:P78549",
+      "copy_authorized_now": false,
+      "deployment_blocker_cleared_now": false,
+      "entry_id": "uniprot:P78549",
+      "local_graph_context": {
+        "local_graph_residue_nodes": [],
+        "m_csa_residue_count": null
+      },
+      "ready_for_predicted_geometry_scoring": false,
+      "review_checklist": [
+        "confirm source features are active-site or ligand/cofactor features, not label or mechanism-family text",
+        "confirm feature positions map to the same accession used by the predicted coordinate",
+        "confirm UniProt ECO/source evidence is acceptable for the external hard-negative geometry channel",
+        "after approval, materialize an audited sidecar and rerun combined-channel scoring without changing thresholds"
+      ],
+      "review_status": "draft",
+      "source_record": {
+        "primary_accession": "P78549",
+        "protein_name": "Endonuclease III-like protein 1",
+        "source_database": "UniProtKB",
+        "source_record_id": "P78549",
+        "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+        "source_url": "https://rest.uniprot.org/uniprotkb/P78549.json"
+      }
+    },
+    {
+      "accession": "Q3LXA3",
+      "active_site_feature_support": [
+        {
+          "description": "Tele-hemiaminal-histidine intermediate",
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "feature_id": "uniprot:Q3LXA3:source_feature:1",
+          "feature_type": "Active site",
+          "ligand": null,
+          "ligand_chebi": null,
+          "sequence_position": 221,
+          "source_database": "UniProtKB",
+          "source_record_id": "Q3LXA3",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/Q3LXA3.json"
+        },
+        {
+          "description": "dihydroxyacetone",
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "feature_id": "uniprot:Q3LXA3:source_feature:2",
+          "feature_type": "Binding site",
+          "ligand": "dihydroxyacetone",
+          "ligand_chebi": "CHEBI:16016",
+          "sequence_position_range": [
+            56,
+            59
+          ],
+          "source_database": "UniProtKB",
+          "source_record_id": "Q3LXA3",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/Q3LXA3.json"
+        },
+        {
+          "description": "dihydroxyacetone",
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "feature_id": "uniprot:Q3LXA3:source_feature:3",
+          "feature_type": "Binding site",
+          "ligand": "dihydroxyacetone",
+          "ligand_chebi": "CHEBI:16016",
+          "sequence_position": 109,
+          "source_database": "UniProtKB",
+          "source_record_id": "Q3LXA3",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/Q3LXA3.json"
+        },
+        {
+          "description": "dihydroxyacetone",
+          "evidence_codes": [
+            "ECO:0000255"
+          ],
+          "feature_id": "uniprot:Q3LXA3:source_feature:4",
+          "feature_type": "Binding site",
+          "ligand": "dihydroxyacetone",
+          "ligand_chebi": "CHEBI:16016",
+          "sequence_position": 114,
+          "source_database": "UniProtKB",
+          "source_record_id": "Q3LXA3",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/Q3LXA3.json"
+        },
+        {
+          "description": "ATP",
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "feature_id": "uniprot:Q3LXA3:source_feature:5",
+          "feature_type": "Binding site",
+          "ligand": "ATP",
+          "ligand_chebi": "CHEBI:30616",
+          "sequence_position_range": [
+            401,
+            404
+          ],
+          "source_database": "UniProtKB",
+          "source_record_id": "Q3LXA3",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/Q3LXA3.json"
+        },
+        {
+          "description": "ATP",
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "feature_id": "uniprot:Q3LXA3:source_feature:6",
+          "feature_type": "Binding site",
+          "ligand": "ATP",
+          "ligand_chebi": "CHEBI:30616",
+          "sequence_position_range": [
+            446,
+            447
+          ],
+          "source_database": "UniProtKB",
+          "source_record_id": "Q3LXA3",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/Q3LXA3.json"
+        },
+        {
+          "description": "ATP",
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "feature_id": "uniprot:Q3LXA3:source_feature:7",
+          "feature_type": "Binding site",
+          "ligand": "ATP",
+          "ligand_chebi": "CHEBI:30616",
+          "sequence_position": 486,
+          "source_database": "UniProtKB",
+          "source_record_id": "Q3LXA3",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/Q3LXA3.json"
+        },
+        {
+          "description": "ATP",
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "feature_id": "uniprot:Q3LXA3:source_feature:8",
+          "feature_type": "Binding site",
+          "ligand": "ATP",
+          "ligand_chebi": "CHEBI:30616",
+          "sequence_position_range": [
+            494,
+            495
+          ],
+          "source_database": "UniProtKB",
+          "source_record_id": "Q3LXA3",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/Q3LXA3.json"
+        },
+        {
+          "description": "ATP",
+          "evidence_codes": [
+            "ECO:0000250"
+          ],
+          "feature_id": "uniprot:Q3LXA3:source_feature:9",
+          "feature_type": "Binding site",
+          "ligand": "ATP",
+          "ligand_chebi": "CHEBI:30616",
+          "sequence_position_range": [
+            556,
+            558
+          ],
+          "source_database": "UniProtKB",
+          "source_record_id": "Q3LXA3",
+          "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+          "source_url": "https://rest.uniprot.org/uniprotkb/Q3LXA3.json"
+        }
+      ],
+      "allowed_for_combined_channel_now": false,
+      "blockers": [
+        "manual_review_required",
+        "candidate_sidecar_not_approved",
+        "combined_channel_not_rerun"
+      ],
+      "candidate_sidecar_id": "fold_augmented_source_feature_active_site_sidecar:uniprot:Q3LXA3",
+      "copy_authorized_now": false,
+      "deployment_blocker_cleared_now": false,
+      "entry_id": "uniprot:Q3LXA3",
+      "local_graph_context": {
+        "local_graph_residue_nodes": [],
+        "m_csa_residue_count": null
+      },
+      "ready_for_predicted_geometry_scoring": false,
+      "review_checklist": [
+        "confirm source features are active-site or ligand/cofactor features, not label or mechanism-family text",
+        "confirm feature positions map to the same accession used by the predicted coordinate",
+        "confirm UniProt ECO/source evidence is acceptable for the external hard-negative geometry channel",
+        "after approval, materialize an audited sidecar and rerun combined-channel scoring without changing thresholds"
+      ],
+      "review_status": "draft",
+      "source_record": {
+        "primary_accession": "Q3LXA3",
+        "protein_name": "Triokinase/FMN cyclase",
+        "source_database": "UniProtKB",
+        "source_record_id": "Q3LXA3",
+        "source_record_version_or_date": "2026-06-02 UniProt REST probe",
+        "source_url": "https://rest.uniprot.org/uniprotkb/Q3LXA3.json"
+      }
+    }
+  ],
+  "source_artifacts": {
+    "source_sidecar_clearance_preflight": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_source_sidecar_clearance_preflight_current702_20260602.json",
+      "sha256": "05599c24f621c984848cc13cf2493e853c69cc5d51c33a287ceff5d05694f575"
+    }
+  },
+  "status": "fold_augmented_source_feature_active_site_sidecar_candidates_ready_review_only"
+}

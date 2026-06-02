@@ -1,0 +1,66 @@
+{
+  "artifact_id": "v3_fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit_current702_20260602",
+  "counts": {
+    "allowed_for_combined_channel_now": 0,
+    "approved_rows": 0,
+    "audit_blocked_rows": 0,
+    "audit_passed_rows": 3,
+    "candidate_sidecar_rows": 3,
+    "critical_counts": {},
+    "critical_violation_total": 0,
+    "ready_for_predicted_geometry_scoring": 0
+  },
+  "created_utc": "2026-06-02T17:16:46Z",
+  "guardrails": {
+    "approved_sidecars_created": false,
+    "copy_to_scoring_surface_authorized": false,
+    "deployment_blockers_cleared": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "ready_for_predicted_geometry_scoring": false,
+    "review_only": true
+  },
+  "interpretation": {
+    "next_action": "Proceed to manual scientific review of the three draft rows; do not score them until approved audited sidecars are materialized.",
+    "result": "The draft source-feature sidecar candidate packet is schema- and guardrail-clean for review-only use."
+  },
+  "row_audits": [
+    {
+      "accession": "P31572",
+      "active_site_feature_support_count": 3,
+      "audit_status": "passed",
+      "critical_violations": [],
+      "entry_id": "m_csa:531",
+      "review_status": "draft"
+    },
+    {
+      "accession": "P78549",
+      "active_site_feature_support_count": 6,
+      "audit_status": "passed",
+      "critical_violations": [],
+      "entry_id": "uniprot:P78549",
+      "review_status": "draft"
+    },
+    {
+      "accession": "Q3LXA3",
+      "active_site_feature_support_count": 9,
+      "audit_status": "passed",
+      "critical_violations": [],
+      "entry_id": "uniprot:Q3LXA3",
+      "review_status": "draft"
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit",
+  "scope": "Strict review-only audit for draft source-feature active-site sidecar candidates. It verifies candidates stay draft-only, carry source-backed feature support, and are not scoring-ready.",
+  "source_artifacts": {
+    "source_feature_sidecar_candidates": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_source_feature_active_site_sidecar_candidates_current702_20260602.json",
+      "sha256": "7f3cfb2833b5aa06f56c59c23d504fdca9e602b4dabf60f74ecf6d1b7153fff8"
+    }
+  },
+  "status": "fold_augmented_source_feature_active_site_sidecar_candidate_strict_audit_passed_review_only"
+}
