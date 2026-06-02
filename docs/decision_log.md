@@ -3,6 +3,68 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-02: Confirmed Residual Adds A Confounded-Safe Operating-Point Lift To The Rule Gate (Research-Grade Threshold)
+
+Decision: integrate the now-confirmed out-of-span residual into the per-channel
+RULE gate as a third orthogonal lift channel and measure its marginal
+operating-point contribution, rather than promoting it on AUC alone. The deployed
+rule (geometry leads; cofactor adds abstentions only where its signature is weak)
+is extended with a residual term carrying the SAME confounded-safe guard:
+
+    abstain = geom < tg
+              OR (cof < signature AND cof < tc)              # cofactor-agnostic-lift
+              OR (cof < signature AND residual_novelty >= tr)  # residual-agnostic-lift
+
+The residual is concentrated on the cofactor-agnostic majority and is NOT
+confounded-safe (confounded AUC ~0.66 vs geometry 0.84), so gating it on
+`cof < signature` keeps confounded rows decided by geometry alone. The
+three-channel search space contains the two-channel gate (a high tr disables the
+term), so a three-channel optimum can never be worse; the question was the lift
+magnitude and confounded-safety preservation. Predeclared PASS = residual adds
+OOS-abstain-recall AND preserves confounded-abstain-recall, at the operative
+retention floor.
+
+Result (deployment pool 47 in-scope / 79 OOS; 6 confounded / 73 agnostic; residual
+channel all-OOS AUC reproduced live at 0.72098, matching the embedding eval). The
+operative floor is >=85% in-scope retention: neither gate has a >=90% point because
+the agnostic-lift terms unavoidably abstain too many low-cofactor in-scope rows at
+the minimum threshold. At >=85% retention the two-channel gate abstains on 0.3038
+of OOS (confounded 0.1667, agnostic 0.3151); adding the residual-agnostic-lift
+raises OOS-abstain-recall to 0.3797 (+0.0759), ENTIRELY from the agnostic subset
+(0.3151 -> 0.3973), with the confounded subset UNCHANGED at 0.1667 -- the
+predeclared PASS holds (adds lift, confounded-safe). The confounded subset remains
+the binding constraint, exactly motivating the Lever 3 fold channel.
+
+Deployability (honest scope). tg and tc are thresholds on calibrated [0,1]
+confidences and are deployable constants; the residual threshold tr is NOT. 100% of
+held-out rows sit above the atlas residual maximum, so the residual's
+atlas-percentile calibration SATURATES and the signal survives only in raw/relative
+form -- tr is an eval-pool-relative RESEARCH operating point (a calibration-free ROC
+sweep over observed residual values), not a production threshold. The reported lift
+is the residual's marginal operating-point contribution; a deployable residual
+calibration, or the Lever 4 expanded family set, is required before production
+promotion. An exploratory ungated variant (residual firing on all rows) is recorded
+for transparency but is not the predeclared agnostic-lift form.
+
+Consequence: the confirmed residual translates into a real, confounded-safe
+operating-point lift on the cofactor-agnostic majority (+0.076 OOS-abstain-recall at
+85% retention), banking the Lever 2 win at the gate level -- but it does NOT close
+the operational gap, because the safety-critical confounded subset is unmoved and
+the residual threshold is not yet deployable. The next gains must come from a
+confounded-safe channel (Lever 3, deployment-valid fold/structure novelty) and a
+deployable residual calibration or the wider Lever 4 surface. No labels, registries,
+ontologies, splits, thresholds, or production scorers changed; the residual is
+sequence-only and atlas-only-fit, M-CSA rows are eval-only, the deployable
+thresholds are untuned, and the cofactor channel is read-only for stratification.
+
+Reproduce: `PYTHONPATH=src python -m catalytic_earth.cli
+eval-mechanism-residual-gate-integration`. Module:
+`src/catalytic_earth/mechanism_residual_gate_integration.py`. Tests:
+`tests/test_mechanism_residual_gate_integration.py` (3 fast + 1 slow integration
+gated behind `CATALYTIC_RUN_SLOW`). Artifacts:
+`artifacts/v3_mechanism_residual_gate_integration_current702_20260601.json`,
+`work/mechanism_residual_gate_integration_current702_20260601.md`.
+
 ## 2026-06-01: Out-Of-Span Residual Survives The Cutoff-Robustness And Predeclared Confirmatory Tests
 
 Decision: before treating the out-of-atlas-span residual (the AUC 0.721 Lever 2

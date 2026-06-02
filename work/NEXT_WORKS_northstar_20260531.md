@@ -59,14 +59,22 @@ whitening), evaluated at the operating point. See decision_log 2026-06-01 and
   the floor; agnostic>confounded replicates). See decision_log 2026-06-01 and
   `work/mechanism_feature_residual_robustness_current702_20260601.md`
   (`eval-mechanism-residual-robustness`).
-- NEXT: promote the now-confirmed residual into the per-channel RULE gate as the
-  third orthogonal lift channel (geometry-led + cofactor-agnostic-lift +
-  residual-agnostic-lift), PAIRED with a confounded-safe channel (Lever 3, fold) —
-  the residual is still NOT confounded-safe (confounded AUC ~0.66), so it lifts the
-  agnostic majority but cannot gate the safety-critical confounded subset alone.
-  Re-run the confirmatory test on the Lever 4 expanded family set once materialized
-  (the stronger surface). A trainable GNN over active-site reaction graphs remains a
-  future lever once a deployment-valid predicted-geometry graph dataset exists.
+- INTEGRATED (2026-06-02): the confirmed residual is wired into the per-channel RULE
+  gate as a third confounded-safe agnostic-lift channel. At the operative >=85%
+  retention floor it lifts OOS-abstain-recall 0.3038 -> 0.3797 (+0.076), entirely
+  from the cofactor-agnostic subset, with the confounded subset UNCHANGED at 0.1667
+  (confounded-safe). Caveat: the residual threshold is research-grade — 100% of
+  held-out rows saturate the atlas residual range, so it is eval-pool-relative, not a
+  deployable constant. See decision_log 2026-06-02 and
+  `work/mechanism_residual_gate_integration_current702_20260601.md`
+  (`eval-mechanism-residual-gate-integration`).
+- NEXT (the operational gap is now precisely the confounded subset, still 0.1667):
+  (a) close Lever 3 — a DEPLOYMENT-VALID confounded-safe channel (predicted-structure
+  Foldseek/TM vs the atlas; the current fold eval uses experimental-PDB metadata and
+  is not deployable); and (b) a deployable residual calibration (or the Lever 4
+  expanded family set) so the residual lift survives outside an eval-relative
+  threshold. A trainable GNN over active-site reaction graphs remains a future lever
+  once a deployment-valid predicted-geometry graph dataset exists.
 
 ### 3. Fold-level novelty signal (complementary, catches the confounded subset)
 The 6 cofactor-confounded OOS (novel chemistry reusing a known cofactor family)

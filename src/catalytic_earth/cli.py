@@ -39,6 +39,7 @@ from .mechanism_relationship_surface_eval import write_mechanism_relationship_su
 from .mechanism_novelty_abstention_eval import write_mechanism_novelty_abstention_eval
 from .mechanism_feature_embedding import write_mechanism_feature_embedding_eval
 from .mechanism_feature_residual_robustness import write_residual_robustness_audit
+from .mechanism_residual_gate_integration import write_residual_gate_integration_eval
 from .mechanism_abstention_gate_eval import (
     write_mechanism_abstention_gate_eval,
     write_mechanism_deployment_abstention_gate_eval,
@@ -10865,6 +10866,26 @@ def cmd_eval_mechanism_residual_robustness(args: argparse.Namespace) -> int:
         f"{args.out} (sweep AUC {sweep.get('auc_min')}-{sweep.get('auc_max')} holds: "
         f"{v.get('sweep_holds')}; confirmatory pass: {conf.get('overall_pass')}; "
         f"confirmed lever: {v.get('residual_confirmed_as_lever')})"
+    )
+    return 0
+
+
+def cmd_eval_mechanism_residual_gate_integration(args: argparse.Namespace) -> int:
+    audit = write_residual_gate_integration_eval(
+        esm2_150m_path=Path(args.esm2_150m_embeddings),
+        cofactor_sidecar_path=Path(args.cofactor_sidecar),
+        predicted_geometry_audit_path=Path(args.predicted_geometry_audit),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    res = audit.get("result", {})
+    v = res.get("verdict", {})
+    op = res.get("operative_floor")
+    print(
+        "Wrote residual gate integration to "
+        f"{args.out} (operative floor: {op}; residual OOS lift: "
+        f"{v.get('residual_oos_lift_at_' + str(op)) if op else None}; "
+        f"pass: {v.get('pass_at_operative_floor')})"
     )
     return 0
 
@@ -22530,6 +22551,37 @@ def build_parser() -> argparse.ArgumentParser:
         default="work/mechanism_feature_residual_robustness_current702_20260601.md",
     )
     residual_robust.set_defaults(func=cmd_eval_mechanism_residual_robustness)
+
+    residual_gate = subparsers.add_parser(
+        "eval-mechanism-residual-gate-integration",
+        help=(
+            "D11 Lever 2: integrate the confirmed out-of-span residual into the per-channel "
+            "rule gate as a third confounded-safe agnostic-lift channel and measure its "
+            "marginal operating-point lift over the geometry+cofactor gate, stratified"
+        ),
+    )
+    residual_gate.add_argument(
+        "--esm2-150m-embeddings",
+        default="artifacts/representation_tracks/esm2_150m/esm2_150m_embeddings_current702_20260525.jsonl",
+    )
+    residual_gate.add_argument(
+        "--cofactor-sidecar",
+        default="artifacts/v3_selected_organic_cofactor_score_sidecars_current702_20260530.json",
+    )
+    residual_gate.add_argument(
+        "--predicted-geometry-audit",
+        default="artifacts/v3_predicted_geometry_robustness_audit_current702_20260529.json",
+        help="predicted-geometry robustness audit with predicted_geometry_retrieval.results",
+    )
+    residual_gate.add_argument(
+        "--out",
+        default="artifacts/v3_mechanism_residual_gate_integration_current702_20260601.json",
+    )
+    residual_gate.add_argument(
+        "--report",
+        default="work/mechanism_residual_gate_integration_current702_20260601.md",
+    )
+    residual_gate.set_defaults(func=cmd_eval_mechanism_residual_gate_integration)
 
     fold_novelty = subparsers.add_parser(
         "eval-fold-level-novelty-signal",
