@@ -50,6 +50,71 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-02 Lever 2 Integration — Two Independent Builds Folded Into One Result
+
+Interactive session (not an automation work-loop run). No automation lock was
+acquired, no soak loop was run, and no test suite was executed because this is a
+docs-only synthesis change — no code, registries, scoring, thresholds, or
+artifacts were added, removed, or modified.
+
+#### Context
+
+- Branch: `claude/awesome-keller-Lys73` (work is on this feature branch and in
+  PR #2 against `main`; it is NOT yet merged to `main`).
+- Two independent agent builds of Lever 2 existed and were treated as equals:
+  - Build A (this branch's line): the closed-form information-preserving metric
+    and the out-of-atlas-span residual.
+  - Build B (merged in from `main` via `9396607`): the standardized
+    nearest-primary centroid pilot and the P0 bond-change feature track.
+- Rather than choose one and discard the other, both were folded into a single
+  Lever 2 narrative, carrying each build's genuine advancement forward.
+
+#### What changed
+
+- `docs/decision_log.md`: added the 2026-06-02 synthesis entry (integration
+  decision, consolidated negative, live deployable signal, retained discipline +
+  feature track, unified next).
+- `work/NEXT_WORKS_northstar_20260531.md`: rewrote item #2 as one unified section
+  with a single forward path (re-run both methods on the future template-free
+  feature surface).
+- `docs/project_state.md`: added the confirmed out-of-span residual and its gate
+  integration to Trusted Results (previously absent — Build A had only updated
+  the decision log), added the 2026-06-02 integration synthesis bullet, extended
+  Next Gate #3 to the unified re-run-both forward path, added the pilot/heldout/
+  residual artifacts to Primary References, and bumped the refresh date.
+- `docs/artifact_index.md`: indexed the two residual artifacts (robustness +
+  gate integration), which were on disk but previously unindexed, and noted the
+  2026-06-02 integration on the centroid-pilot row.
+- `work/handoff.md`: this entry.
+
+#### Result state
+
+- Consolidated negative (robust because two independent builds agree): a learned
+  or standardized embedding over the CURRENT feature surface does not deployably
+  beat geometry. The metric's predeclared primary is a clean negative (AUC 0.616
+  vs top1_score 0.757); the centroid pilot's strong full-contract numbers (cal AUC
+  0.948, heldout 0.881) are reaction-template dependent and its deployment-valid
+  no-template ablation is at chance (heldout AUC 0.489).
+- Live deployable signal: the confirmed out-of-span residual — deployment-valid
+  (sequence-only), cutoff-robust, confirmed on a held-out-from-design split
+  (label-permutation null p=0.0005), integrated into the per-channel rule gate for
+  a +0.076 confounded-safe OOS-abstain lift at the >=85% retention floor. Threshold
+  remains research-grade.
+- Retained forward path (from the centroid line): its train/cal/heldout discipline
+  (418 train / 106 cal / once-only heldout) is now the calibration standard the
+  residual must meet, and the bond-change/proton/electron feature-materialization
+  track (Rhea provenance) is the kept route to the genuinely-new mechanism feature.
+
+#### Exact next action for the next run
+
+Materialize the row-specific bond-change/proton/electron features — resolve the
+three open Rhea rows (`m_csa:11`, `m_csa:169`, `m_csa:5`) and add reviewer
+provenance first — then re-run BOTH the no-template centroid pilot and the
+confirmed out-of-span residual on that template-free surface under the centroid
+line's train/cal/heldout discipline, give the residual a deployable calibration,
+and aim to close a deployment-valid confounded-safe channel (Lever 3). No code or
+artifacts from either build were removed; do not discard either line.
+
 ### 2026-06-01 P0 Rhea Resolution And Predicted-Atlas Delta Audit
 
 Automation run: `catalytic-earth-work-loop`
