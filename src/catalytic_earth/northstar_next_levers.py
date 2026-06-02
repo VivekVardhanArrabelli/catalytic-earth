@@ -89,6 +89,9 @@ FOLD_AUGMENTED_CONFOUNDED_DEPLOYMENT_CLOSURE_AUDIT_ID = (
 FOLD_AUGMENTED_FOLD_ONLY_DEPLOYMENT_CONTRACT_DECISION_ID = (
     "v3_fold_augmented_fold_only_deployment_contract_decision_current702_20260601"
 )
+PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID = (
+    "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602"
+)
 FOLD_AUGMENTED_FAMILY_PANEL_RESEARCH_READOUT_ID = (
     "v3_fold_augmented_family_panel_research_readout_current702_20260601"
 )
@@ -325,6 +328,15 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_
 )
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_HELDOUT_SAFE_SURFACE_PLAN_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_APPLICATION_SURFACE_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_LOCATOR_ACTION_QUEUE_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_LOCATOR_INPUT_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602"
 )
 RHEA_REST_URL = "https://www.rhea-db.org/rhea"
 RHEA_QUERY_COLUMNS = "rhea-id,equation,ec,uniprot"
@@ -13779,6 +13791,369 @@ def write_fold_augmented_fold_only_deployment_contract_decision(
         report_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.write_text(
             _render_fold_augmented_fold_only_deployment_contract_decision_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_predicted_structure_fold_confounded_operating_point_readiness(
+    *,
+    contract_audit_path: Path,
+    confounded_deployment_closure_path: Path,
+    fold_only_deployment_decision_path: Path,
+    oos_calibrated_threshold_contract_path: Path,
+    coordinate_provenance_audit_path: Path,
+    remaining_blocker_coordinate_reprobe_path: Path | None = None,
+) -> dict[str, Any]:
+    contract_audit = _read_json(contract_audit_path)
+    closure = _read_json(confounded_deployment_closure_path)
+    fold_only = _read_json(fold_only_deployment_decision_path)
+    threshold = _read_json(oos_calibrated_threshold_contract_path)
+    coordinate_provenance = _read_json(coordinate_provenance_audit_path)
+    coordinate_reprobe = (
+        _read_json(remaining_blocker_coordinate_reprobe_path)
+        if remaining_blocker_coordinate_reprobe_path is not None
+        and remaining_blocker_coordinate_reprobe_path.exists()
+        else None
+    )
+
+    contract_counts = contract_audit.get("counts") or {}
+    closure_counts = closure.get("counts") or {}
+    closure_decision = closure.get("decision") or {}
+    fold_only_counts = fold_only.get("counts") or {}
+    fold_only_decision = fold_only.get("decision") or {}
+    threshold_counts = threshold.get("counts") or {}
+    coordinate_counts = coordinate_provenance.get("counts") or {}
+    coordinate_reprobe_counts = (
+        coordinate_reprobe.get("counts") if isinstance(coordinate_reprobe, dict) else {}
+    ) or {}
+    coordinate_reprobe_by_entry = {
+        str(row.get("entry_id")): row
+        for row in ((coordinate_reprobe or {}).get("rows") or [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    remaining_blocker_rows = [
+        row
+        for row in (closure.get("deployment_closure") or {}).get(
+            "remaining_blocker_rows", []
+        )
+        if isinstance(row, dict)
+    ]
+    contract_passed = (
+        contract_audit.get("status") == "fold_channel_contract_passed_current702"
+        and sum((contract_counts.get("critical_counts") or {}).values()) == 0
+    )
+    confounded_target_met = bool(
+        closure_decision.get("confounded_subset_target_met_for_research")
+    )
+    in_scope_retention_ok = bool(
+        closure_decision.get("in_scope_retention_ok_at_operating_point")
+    )
+    deployable_without_caveat = bool(
+        closure_decision.get("deployable_without_production_caveat")
+    )
+    fold_only_authorized = bool(
+        fold_only_decision.get("fold_only_deployment_contract_authorized")
+    )
+    result_files_parseable = bool(coordinate_counts.get("result_files_parseable"))
+    coordinate_bundle_complete = (
+        int(coordinate_counts.get("unique_coordinate_files_missing") or 0) == 0
+    )
+    production_blockers = int(
+        closure_counts.get("remaining_production_blocker_rows") or 0
+    )
+    critical_counts = {
+        "fold_contract_not_passing": 0 if contract_passed else 1,
+        "confounded_research_target_not_met": 0 if confounded_target_met else 1,
+        "in_scope_retention_not_ok": 0 if in_scope_retention_ok else 1,
+        "production_blocker_rows_remaining": production_blockers,
+        "fold_only_escape_hatch_not_authorized": 0 if fold_only_authorized else 1,
+        "coordinate_bundle_not_persisted": 0 if coordinate_bundle_complete else 1,
+    }
+    return {
+        "artifact_id": (
+            PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.predicted_structure_fold_confounded_operating_point_readiness"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "predicted_structure_fold_confounded_operating_point_research_ready_deployment_blocked"
+            if contract_passed and confounded_target_met and in_scope_retention_ok
+            else "predicted_structure_fold_confounded_operating_point_blocked"
+        ),
+        "scope": (
+            "Read-only readiness audit for the Lever 3 predicted-structure-vs-atlas "
+            "fold channel at the existing operating point. It composes the "
+            "contract audit, confounded closure, fold-only no-go decision, "
+            "OOS-calibrated threshold contract, and coordinate provenance audit "
+            "without selecting thresholds or rerunning Foldseek/TM."
+        ),
+        "operating_point_summary": {
+            "fold_contract_passed": contract_passed,
+            "priority_confounded_oos_rows": contract_counts.get(
+                "priority_cofactor_confounded_oos_rows"
+            ),
+            "priority_confounded_nearest_hits": contract_counts.get(
+                "priority_nearest_hits"
+            ),
+            "heldout_confounded_oos_abstained": closure_counts.get(
+                "heldout_confounded_oos_abstained"
+            ),
+            "heldout_confounded_oos_total": closure_counts.get(
+                "heldout_confounded_oos_total"
+            ),
+            "confounded_subset_target_met_for_research": confounded_target_met,
+            "in_scope_retention_ok_at_operating_point": in_scope_retention_ok,
+            "remaining_production_blocker_rows": production_blockers,
+            "fold_only_deployment_contract_authorized": fold_only_authorized,
+            "fold_only_rows_abstained_at_90pct_threshold": fold_only_counts.get(
+                "fold_only_rows_abstained_at_90pct_threshold"
+            ),
+            "fold_only_blocker_rows": fold_only_counts.get("fold_only_blocker_rows"),
+            "threshold_contract_heldout_confounded_oos": threshold_counts.get(
+                "heldout_confounded_oos"
+            ),
+            "coordinate_result_files_parseable": result_files_parseable,
+            "coordinate_bundle_complete": coordinate_bundle_complete,
+            "remaining_blocker_coordinate_reprobe_rows_cleared": (
+                coordinate_reprobe_counts.get("rows_cleared_by_reprobe")
+            ),
+            "remaining_blocker_coordinate_reprobe_unavailable_rows": (
+                coordinate_reprobe_counts.get("coordinate_unavailable_rows")
+            ),
+            "remaining_blocker_coordinate_reprobe_source_geometry_blocked_rows": (
+                coordinate_reprobe_counts.get(
+                    "coordinate_available_but_source_geometry_blocked_rows"
+                )
+            ),
+        },
+        "remaining_production_blocker_rows": [
+            {
+                "entry_id": row.get("entry_id"),
+                "current_blocker": row.get("current_blocker"),
+                "fold_only_evidence_available": row.get("fold_only_evidence_available"),
+                "coordinate_reprobe": (
+                    {
+                        "coordinate_available_now": coordinate_reprobe_by_entry[
+                            str(row.get("entry_id"))
+                        ].get("coordinate_available_now"),
+                        "blocker_cleared_by_reprobe": coordinate_reprobe_by_entry[
+                            str(row.get("entry_id"))
+                        ].get("blocker_cleared_by_reprobe"),
+                        "remaining_blocker": coordinate_reprobe_by_entry[
+                            str(row.get("entry_id"))
+                        ].get("remaining_blocker")
+                        or coordinate_reprobe_by_entry[
+                            str(row.get("entry_id"))
+                        ].get("current_blocker"),
+                        "next_action": coordinate_reprobe_by_entry[
+                            str(row.get("entry_id"))
+                        ].get("next_action"),
+                    }
+                    if str(row.get("entry_id")) in coordinate_reprobe_by_entry
+                    else None
+                ),
+                "next_action": row.get("next_action"),
+            }
+            for row in remaining_blocker_rows
+        ],
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "threshold_values_changed": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "foldseek_or_tm_rerun_performed": False,
+            "experimental_pdb_metadata_used_as_channel_input": False,
+            "validation_only": True,
+            "review_only": True,
+        },
+        "counts": {
+            "priority_confounded_oos_rows": contract_counts.get(
+                "priority_cofactor_confounded_oos_rows"
+            ),
+            "priority_confounded_nearest_hits": contract_counts.get(
+                "priority_nearest_hits"
+            ),
+            "heldout_confounded_oos_abstained": closure_counts.get(
+                "heldout_confounded_oos_abstained"
+            ),
+            "heldout_confounded_oos_total": closure_counts.get(
+                "heldout_confounded_oos_total"
+            ),
+            "remaining_production_blocker_rows": production_blockers,
+            "fold_only_blocker_rows": fold_only_counts.get("fold_only_blocker_rows"),
+            "fold_only_rows_abstained_at_90pct_threshold": fold_only_counts.get(
+                "fold_only_rows_abstained_at_90pct_threshold"
+            ),
+            "unique_coordinate_files_missing": coordinate_counts.get(
+                "unique_coordinate_files_missing"
+            ),
+            "unique_accessions_without_any_local_file": coordinate_counts.get(
+                "unique_accessions_without_any_local_file"
+            ),
+            "remaining_blocker_coordinate_reprobe_rows_cleared": (
+                coordinate_reprobe_counts.get("rows_cleared_by_reprobe")
+            ),
+            "remaining_blocker_coordinate_reprobe_unavailable_rows": (
+                coordinate_reprobe_counts.get("coordinate_unavailable_rows")
+            ),
+            "remaining_blocker_coordinate_reprobe_source_geometry_blocked_rows": (
+                coordinate_reprobe_counts.get(
+                    "coordinate_available_but_source_geometry_blocked_rows"
+                )
+            ),
+            "critical_counts": critical_counts,
+            "critical_violation_total": sum(critical_counts.values()),
+        },
+        "decision": {
+            "research_confounded_operating_point_ready": (
+                contract_passed and confounded_target_met and in_scope_retention_ok
+            ),
+            "deployment_closed": deployable_without_caveat
+            and fold_only_authorized
+            and coordinate_bundle_complete,
+            "fold_only_escape_hatch_authorized": fold_only_authorized,
+            "apply_or_change_threshold_now": False,
+            "next_gate": (
+                "Keep the fixed operating point unchanged. Clear the remaining "
+                "production blocker rows and persistent AFDB coordinate bundle "
+                "before claiming deployment closure; do not use the fold-only "
+                "escape hatch."
+            ),
+        },
+        "source_artifacts": {
+            "contract_audit": _source_path_record(contract_audit_path),
+            "confounded_deployment_closure": _source_path_record(
+                confounded_deployment_closure_path
+            ),
+            "fold_only_deployment_decision": _source_path_record(
+                fold_only_deployment_decision_path
+            ),
+            "oos_calibrated_threshold_contract": _source_path_record(
+                oos_calibrated_threshold_contract_path
+            ),
+            "coordinate_provenance_audit": _source_path_record(
+                coordinate_provenance_audit_path
+            ),
+            "remaining_blocker_coordinate_reprobe": (
+                _source_path_record(remaining_blocker_coordinate_reprobe_path)
+                if remaining_blocker_coordinate_reprobe_path is not None
+                else None
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The predicted-structure-vs-atlas fold channel is research-ready "
+                "for the confounded subset at the existing operating point, but "
+                "deployment closure remains blocked by production blocker rows, "
+                "a rejected fold-only escape hatch, and the missing persistent "
+                "AFDB coordinate bundle."
+            ),
+            "next_action": (
+                "Use this audit as the Lever 3 gate: clear source-backed "
+                "active-site sidecars for coordinate-available blocker rows, "
+                "resolve or exclude the coordinate-unavailable P23007 row by "
+                "policy, and persist coordinate provenance before any "
+                "deployment-valid claim."
+            ),
+        },
+    }
+
+
+def _render_predicted_structure_fold_confounded_operating_point_readiness_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    lines = [
+        "# Predicted-Structure Fold Confounded Operating-Point Readiness - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        "- Research confounded operating point ready: "
+        f"{decision['research_confounded_operating_point_ready']}",
+        f"- Deployment closed: {decision['deployment_closed']}",
+        "- Confounded OOS abstained: "
+        f"{counts['heldout_confounded_oos_abstained']}/"
+        f"{counts['heldout_confounded_oos_total']}",
+        "- Remaining production blocker rows: "
+        f"{counts['remaining_production_blocker_rows']}",
+        "- Fold-only rows abstained at 90% threshold: "
+        f"{counts['fold_only_rows_abstained_at_90pct_threshold']}/"
+        f"{counts['fold_only_blocker_rows']}",
+        "- Unique coordinate files missing: "
+        f"{counts['unique_coordinate_files_missing']}",
+        "- Remaining-blocker coordinate reprobe rows cleared: "
+        f"{counts.get('remaining_blocker_coordinate_reprobe_rows_cleared')}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Remaining Blocker Rows",
+        "",
+        "| row | blocker | coordinate available | reprobe blocker cleared | remaining blocker | fold-only evidence |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in audit.get("remaining_production_blocker_rows", []):
+        reprobe = row.get("coordinate_reprobe") or {}
+        lines.append(
+            f"| {row.get('entry_id')} | {row.get('current_blocker')} | "
+            f"{reprobe.get('coordinate_available_now')} | "
+            f"{reprobe.get('blocker_cleared_by_reprobe')} | "
+            f"{reprobe.get('remaining_blocker')} | "
+            f"{row.get('fold_only_evidence_available')} |"
+        )
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_predicted_structure_fold_confounded_operating_point_readiness(
+    *,
+    contract_audit_path: Path,
+    confounded_deployment_closure_path: Path,
+    fold_only_deployment_decision_path: Path,
+    oos_calibrated_threshold_contract_path: Path,
+    coordinate_provenance_audit_path: Path,
+    remaining_blocker_coordinate_reprobe_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_predicted_structure_fold_confounded_operating_point_readiness(
+        contract_audit_path=contract_audit_path,
+        confounded_deployment_closure_path=confounded_deployment_closure_path,
+        fold_only_deployment_decision_path=fold_only_deployment_decision_path,
+        oos_calibrated_threshold_contract_path=oos_calibrated_threshold_contract_path,
+        coordinate_provenance_audit_path=coordinate_provenance_audit_path,
+        remaining_blocker_coordinate_reprobe_path=remaining_blocker_coordinate_reprobe_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_predicted_structure_fold_confounded_operating_point_readiness_report(
                 audit
             ),
             encoding="utf-8",
@@ -29625,6 +30000,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     label_manifest_path: Path,
     active_site_role_graph_sidecar_path: Path,
     source_free_predicted_geometry_manifest_path: Path,
+    source_free_application_surface_path: Path | None = None,
+    source_free_locator_action_queue_path: Path | None = None,
+    source_free_locator_input_audit_path: Path | None = None,
 ) -> dict[str, Any]:
     pair_sidecar = _read_json(pair_train_cal_feature_sidecar_path)
     pair_contract = _read_json(pair_operating_point_contract_path)
@@ -29633,6 +30011,24 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     manifest = _read_json(label_manifest_path)
     active_role_graph = _read_json(active_site_role_graph_sidecar_path)
     source_free_manifest = _read_json(source_free_predicted_geometry_manifest_path)
+    source_free_surface = (
+        _read_json(source_free_application_surface_path)
+        if source_free_application_surface_path
+        and Path(source_free_application_surface_path).exists()
+        else None
+    )
+    locator_queue = (
+        _read_json(source_free_locator_action_queue_path)
+        if source_free_locator_action_queue_path
+        and Path(source_free_locator_action_queue_path).exists()
+        else None
+    )
+    locator_input_audit = (
+        _read_json(source_free_locator_input_audit_path)
+        if source_free_locator_input_audit_path
+        and Path(source_free_locator_input_audit_path).exists()
+        else None
+    )
 
     manifest_rows = [
         row for row in manifest.get("rows", []) if isinstance(row, dict)
@@ -29654,6 +30050,29 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     source_free_ready_rows = int(
         source_free_counts.get("source_free_geometry_ready_rows") or 0
     )
+    source_free_surface_counts = (
+        source_free_surface.get("counts", {}) if isinstance(source_free_surface, dict) else {}
+    )
+    locator_queue_counts = (
+        locator_queue.get("counts", {}) if isinstance(locator_queue, dict) else {}
+    )
+    locator_input_counts = (
+        locator_input_audit.get("counts", {})
+        if isinstance(locator_input_audit, dict)
+        else {}
+    )
+    locator_queue_ready = bool(
+        locator_queue
+        and locator_queue.get("status")
+        == "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_ready"
+    )
+    locator_input_blocks_auto_creation = bool(
+        locator_input_audit
+        and int(locator_input_counts.get("auto_create_locator_sidecar_allowed_rows") or 0)
+        == 0
+        and int(locator_input_counts.get("priority1_rows_without_source_free_anchor") or 0)
+        > 0
+    )
     previous_token = pair_sidecar.get("decision", {}).get(
         "previous_selected_feature_token"
     )
@@ -29664,6 +30083,15 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         pair_contract.get("calibration_contract", {}).get("residual_distance", {})
         if isinstance(pair_contract.get("calibration_contract"), dict)
         else {}
+    )
+    residue_count_extractor_status = (
+        "blocked_source_free_locator_anchor_inputs_missing"
+        if locator_input_blocks_auto_creation
+        else (
+            "queued_current702_locator_materialization"
+            if locator_queue_ready
+            else "missing_current702_heldout_surface"
+        )
     )
     required_extractors = [
         {
@@ -29681,7 +30109,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 "target_names",
                 "ec_or_rhea_ids",
             ],
-            "status": "missing",
+            "status": (
+                "missing_source_free_event_axis"
+                if source_free_surface is not None
+                else "missing"
+            ),
         },
         {
             "feature_token": followup_token,
@@ -29696,7 +30128,7 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 "source_ids",
                 "target_names",
             ],
-            "status": "missing_current702_heldout_surface",
+            "status": residue_count_extractor_status,
         },
     ]
     blockers = [
@@ -29763,6 +30195,29 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "heldout_rows_in_manifest": len(heldout_rows),
             "active_site_role_graph_heldout_ok_rows": len(active_heldout_ok_rows),
             "source_free_predicted_geometry_ready_rows": source_free_ready_rows,
+            "source_free_application_surface_residue_count_rows": (
+                source_free_surface_counts.get("source_free_residue_count_feature_rows")
+            ),
+            "source_free_application_surface_current702_heldout_locator_sidecars": (
+                source_free_surface_counts.get("current702_heldout_locator_sidecars")
+            ),
+            "source_free_locator_priority1_candidates": locator_queue_counts.get(
+                "priority_1_coordinate_ready_locator_candidates"
+            ),
+            "source_free_locator_position_blockers": locator_queue_counts.get(
+                "blocker_accession_compatible_sequence_positions_missing"
+            ),
+            "source_free_locator_input_priority1_rows_without_anchor": (
+                locator_input_counts.get("priority1_rows_without_source_free_anchor")
+            ),
+            "source_free_locator_input_auto_create_allowed_rows": (
+                locator_input_counts.get("auto_create_locator_sidecar_allowed_rows")
+            ),
+            "source_free_locator_schema_required_residue_locator_minimum": (
+                locator_input_counts.get(
+                    "source_free_locator_schema_required_residue_locator_minimum"
+                )
+            ),
             "required_extractors": len(required_extractors),
             "blockers": len(blockers),
             "pair_feature_dimensions": pair_sidecar.get("counts", {}).get(
@@ -29807,6 +30262,33 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             "source_free_predicted_geometry_manifest": _source_path_record(
                 source_free_predicted_geometry_manifest_path
             ),
+            "source_free_application_surface": (
+                _source_path_record(source_free_application_surface_path)
+                if source_free_application_surface_path
+                else {
+                    "path": None,
+                    "exists": False,
+                    "sha256": None,
+                }
+            ),
+            "source_free_locator_action_queue": (
+                _source_path_record(source_free_locator_action_queue_path)
+                if source_free_locator_action_queue_path
+                else {
+                    "path": None,
+                    "exists": False,
+                    "sha256": None,
+                }
+            ),
+            "source_free_locator_input_audit": (
+                _source_path_record(source_free_locator_input_audit_path)
+                if source_free_locator_input_audit_path
+                else {
+                    "path": None,
+                    "exists": False,
+                    "sha256": None,
+                }
+            ),
         },
         "interpretation": {
             "result": (
@@ -29815,9 +30297,17 @@ def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
                 "computed from source-free active-site/event evidence."
             ),
             "next_action": (
-                "Materialize source-free current702 heldout locator and "
-                "event-residue-role sidecars before any heldout threshold "
-                "application."
+                "Use the source-free locator action queue and input audit to "
+                "materialize approved current702 heldout locator sidecars only "
+                "after source-free anchor evidence is present; then add a "
+                "source-free event/residue-role linker before any heldout "
+                "threshold application."
+                if locator_queue_ready
+                else (
+                    "Materialize source-free current702 heldout locator and "
+                    "event-residue-role sidecars before any heldout threshold "
+                    "application."
+                )
             ),
         },
     }
@@ -29841,6 +30331,16 @@ def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_tok
         f"- Heldout rows: {counts['heldout_rows_in_manifest']}",
         "- Source-free predicted geometry ready rows: "
         f"{counts['source_free_predicted_geometry_ready_rows']}",
+        "- Source-free application residue-count rows: "
+        f"{counts.get('source_free_application_surface_residue_count_rows')}",
+        "- Source-free locator priority-1 candidates: "
+        f"{counts.get('source_free_locator_priority1_candidates')}",
+        "- Source-free locator priority-1 rows without anchor: "
+        f"{counts.get('source_free_locator_input_priority1_rows_without_anchor')}",
+        "- Source-free locator auto-create allowed rows: "
+        f"{counts.get('source_free_locator_input_auto_create_allowed_rows')}",
+        "- Required residue locators per approved sidecar: "
+        f"{counts.get('source_free_locator_schema_required_residue_locator_minimum')}",
         "- Pair calibration OOS abstain recall: "
         f"{counts['pair_calibration_oos_abstain_recall']}",
         "- Pair retained OOS rows: "
@@ -29885,6 +30385,9 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
     active_site_role_graph_sidecar_path: Path,
     source_free_predicted_geometry_manifest_path: Path,
     out_path: Path,
+    source_free_application_surface_path: Path | None = None,
+    source_free_locator_action_queue_path: Path | None = None,
+    source_free_locator_input_audit_path: Path | None = None,
     report_path: Path | None = None,
 ) -> dict[str, Any]:
     plan = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan(
@@ -29895,6 +30398,9 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
         label_manifest_path=label_manifest_path,
         active_site_role_graph_sidecar_path=active_site_role_graph_sidecar_path,
         source_free_predicted_geometry_manifest_path=source_free_predicted_geometry_manifest_path,
+        source_free_application_surface_path=source_free_application_surface_path,
+        source_free_locator_action_queue_path=source_free_locator_action_queue_path,
+        source_free_locator_input_audit_path=source_free_locator_input_audit_path,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(
@@ -29909,6 +30415,988 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             encoding="utf-8",
         )
     return plan
+
+
+def _source_free_locator_dir_record(locator_dir: Path) -> dict[str, Any]:
+    locator_dir = Path(locator_dir)
+    files = sorted(locator_dir.glob("*.json")) if locator_dir.exists() else []
+    return {
+        "path": str(locator_dir),
+        "exists": locator_dir.exists(),
+        "json_file_count": len(files),
+    }
+
+
+def _source_free_locator_guardrail_violations(locator: dict[str, Any]) -> list[str]:
+    violations: list[str] = []
+    if locator.get("source_free_active_site_locator_status") != "ready":
+        violations.append("locator_status_not_ready")
+    if locator.get("ready_for_predicted_geometry_scoring") is not True:
+        violations.append("ready_for_predicted_geometry_scoring_not_true")
+    forbidden_feature_audit = locator.get("forbidden_feature_audit") or {}
+    active_forbidden = [
+        str(key) for key, value in forbidden_feature_audit.items() if value is not False
+    ]
+    for key in sorted(active_forbidden):
+        violations.append(f"forbidden_feature_audit_active:{key}")
+    split_protection = locator.get("split_protection") or {}
+    if split_protection.get("review_only") is not True:
+        violations.append("split_protection_review_only_not_true")
+    for key in (
+        "allowed_for_training",
+        "allowed_for_threshold_selection",
+        "ready_for_label_import",
+    ):
+        if split_protection.get(key) is not False:
+            violations.append(f"split_protection_{key}_not_false")
+    residue_locators = [
+        row for row in locator.get("residue_locators", []) if isinstance(row, dict)
+    ]
+    if not residue_locators:
+        violations.append("residue_locators_missing")
+    for index, residue_locator in enumerate(residue_locators):
+        provenance = residue_locator.get("coordinate_independent_provenance") or {}
+        if provenance.get("source_text_used") is not False:
+            violations.append(f"residue_locator_{index}_source_text_used")
+        if provenance.get("heldout_rows_used") is not False:
+            violations.append(f"residue_locator_{index}_heldout_rows_used")
+        if provenance.get("sequence_position_uniprot_validated") is not True:
+            violations.append(
+                f"residue_locator_{index}_sequence_position_not_uniprot_validated"
+            )
+        if not residue_locator.get("residue_code"):
+            violations.append(f"residue_locator_{index}_residue_code_missing")
+        if not isinstance(residue_locator.get("sequence_position"), int):
+            violations.append(f"residue_locator_{index}_sequence_position_not_int")
+    return sorted(set(violations))
+
+
+def _source_free_locator_residue_code_counts(
+    locator: dict[str, Any],
+) -> Counter[str]:
+    counts: Counter[str] = Counter()
+    for row in locator.get("residue_locators", []):
+        if not isinstance(row, dict):
+            continue
+        code = _row_specific_feature_token_part(row.get("residue_code"))
+        if code:
+            counts[code] += 1
+    return counts
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface(
+    *,
+    pair_surface_plan_path: Path,
+    pair_operating_point_contract_path: Path,
+    label_manifest_path: Path,
+    source_free_locator_dir: Path,
+    source_free_predicted_geometry_manifest_path: Path,
+) -> dict[str, Any]:
+    pair_surface_plan = _read_json(pair_surface_plan_path)
+    pair_contract = _read_json(pair_operating_point_contract_path)
+    manifest = _read_json(label_manifest_path)
+    source_free_manifest = _read_json(source_free_predicted_geometry_manifest_path)
+    locator_sidecars = _locator_sidecars_by_entry(source_free_locator_dir)
+
+    manifest_rows = [
+        row for row in manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    heldout_rows = [
+        row for row in manifest_rows if row.get("split_assignment") == "heldout"
+    ]
+    heldout_entry_ids = {
+        str(row.get("entry_id"))
+        for row in heldout_rows
+        if row.get("entry_id")
+    }
+    current702_heldout_locator_entries = sorted(
+        heldout_entry_ids.intersection(locator_sidecars),
+        key=_entry_id_sort_key,
+    )
+    selected_pair = pair_surface_plan.get("selected_feature_pair") or {}
+    event_residue_role_token = selected_pair.get("event_residue_role_token")
+    residue_count_token = selected_pair.get("residue_count_token")
+    residual_contract = (
+        pair_contract.get("calibration_contract", {}).get("residual_distance", {})
+        if isinstance(pair_contract.get("calibration_contract"), dict)
+        else {}
+    )
+    source_free_counts = source_free_manifest.get("counts") or {}
+    surface_rows: list[dict[str, Any]] = []
+    guardrail_violation_rows: list[dict[str, Any]] = []
+    for entry_id in current702_heldout_locator_entries:
+        record = locator_sidecars[entry_id]
+        locator_path = Path(str(record.get("path") or ""))
+        locator = record.get("payload") or {}
+        violations = _source_free_locator_guardrail_violations(locator)
+        if violations:
+            guardrail_violation_rows.append(
+                {
+                    "entry_id": entry_id,
+                    "locator_path": str(locator_path),
+                    "violations": violations,
+                }
+            )
+            continue
+        residue_code_counts = _source_free_locator_residue_code_counts(locator)
+        his_count = int(residue_code_counts.get("his") or 0)
+        surface_rows.append(
+            {
+                "entry_id": entry_id,
+                "locator_path": str(locator_path),
+                "locator_sha256": _sha256(locator_path) if locator_path.exists() else None,
+                "feature_guardrails": {
+                    "accession_excluded_from_features": True,
+                    "heldout_labels_excluded_from_features": True,
+                    "source_ids_excluded_from_features": True,
+                    "source_text_excluded_from_features": True,
+                    "target_names_excluded_from_features": True,
+                    "ec_or_rhea_ids_excluded_from_features": True,
+                },
+                "source_free_pair_features": {
+                    "residue_code_count:his": his_count,
+                    "residue_code_count:his=3": his_count == 3,
+                    "event_residue_role:proton_transfer|electrostatic_stabiliser": None,
+                },
+                "feature_status": {
+                    "residue_code_count_surface": "ready_from_source_free_locator",
+                    "event_residue_role_surface": (
+                        "blocked_source_free_event_axis_missing"
+                    ),
+                },
+            }
+        )
+
+    locator_coverage_complete = len(surface_rows) == len(heldout_rows) and bool(
+        heldout_rows
+    )
+    event_surface_ready = False
+    residue_surface_ready = locator_coverage_complete
+    contract_ready = (
+        pair_contract.get("status")
+        == "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only"
+    )
+    blockers: list[str] = []
+    if not contract_ready:
+        blockers.append("pair_operating_point_contract_not_ready")
+    if not current702_heldout_locator_entries:
+        blockers.append("source_free_current702_heldout_locator_rows_missing")
+    if not locator_coverage_complete:
+        blockers.append("source_free_current702_heldout_locator_coverage_incomplete")
+    if guardrail_violation_rows:
+        blockers.append("source_free_locator_guardrail_violations_present")
+    if not event_surface_ready:
+        blockers.append("source_free_event_residue_role_extractor_missing")
+        blockers.append("source_free_proton_transfer_event_axis_missing")
+
+    surface_ready = contract_ready and residue_surface_ready and event_surface_ready
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_APPLICATION_SURFACE_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_ready"
+            if surface_ready
+            else "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_blocked"
+        ),
+        "scope": (
+            "Source-free heldout application-surface materialization audit for "
+            "the calibrated best-token follow-up pair. It computes the "
+            "residue-code count token only from approved source-free locator "
+            "sidecars, keeps the event/residue-role token blocked until a "
+            "source-free event axis exists, and does not apply the frozen "
+            "residual threshold."
+        ),
+        "selected_feature_pair": {
+            "event_residue_role_token": event_residue_role_token,
+            "residue_count_token": residue_count_token,
+        },
+        "frozen_contract": {
+            "decision_rule": residual_contract.get("decision_rule"),
+            "threshold": residual_contract.get("threshold"),
+            "calibration_oos_abstain_recall": residual_contract.get(
+                "oos_abstain_recall"
+            ),
+            "calibration_auc_oos_gt_primary": residual_contract.get(
+                "calibration_auc_oos_gt_primary"
+            ),
+        },
+        "surface_rows": surface_rows,
+        "guardrail_violation_rows": guardrail_violation_rows,
+        "blockers": blockers,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "event_residue_role_feature_imputed": False,
+            "review_only": True,
+        },
+        "counts": {
+            "heldout_rows_in_manifest": len(heldout_rows),
+            "source_free_locator_sidecars_total": len(locator_sidecars),
+            "current702_heldout_locator_sidecars": len(
+                current702_heldout_locator_entries
+            ),
+            "source_free_residue_count_feature_rows": len(surface_rows),
+            "source_free_residue_count_his3_hit_rows": sum(
+                1
+                for row in surface_rows
+                if row["source_free_pair_features"]["residue_code_count:his=3"]
+            ),
+            "source_free_event_residue_role_feature_rows": 0,
+            "source_free_locator_guardrail_violation_rows": len(
+                guardrail_violation_rows
+            ),
+            "source_free_predicted_geometry_ready_rows": int(
+                source_free_counts.get("source_free_geometry_ready_rows") or 0
+            ),
+            "surface_feature_tokens_required": 2,
+            "surface_feature_tokens_ready": (
+                int(residue_surface_ready) + int(event_surface_ready)
+            ),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "source_free_residue_count_surface_ready": residue_surface_ready,
+            "source_free_event_residue_role_surface_ready": event_surface_ready,
+            "heldout_safe_pair_application_surface_ready": surface_ready,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Create approved source-free current702 heldout active-site "
+                "locator sidecars and a source-free proton-transfer event axis "
+                "for the selected event/residue-role token; rerun this audit "
+                "and the surface plan before applying the frozen threshold once."
+            ),
+        },
+        "source_artifacts": {
+            "pair_surface_plan": _source_path_record(pair_surface_plan_path),
+            "pair_operating_point_contract": _source_path_record(
+                pair_operating_point_contract_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "source_free_locator_dir": _source_free_locator_dir_record(
+                source_free_locator_dir
+            ),
+            "source_free_predicted_geometry_manifest": _source_path_record(
+                source_free_predicted_geometry_manifest_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The selected pair is still not deployable on current702 "
+                "heldout: approved source-free locators do not cover the "
+                "heldout rows, and the event/residue-role token still lacks a "
+                "source-free proton-transfer event axis."
+            ),
+            "next_action": (
+                "Materialize approved source-free locator sidecars for the "
+                "current702 heldout rows first; the His-count token can then be "
+                "computed, but the event/residue-role token still needs a "
+                "source-free event linker before any heldout read."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_report(
+    surface: dict[str, Any],
+) -> str:
+    counts = surface["counts"]
+    decision = surface["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Application Surface - current702",
+        "",
+        f"Run: {surface['created_utc']}",
+        "",
+        surface["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {surface['status']}",
+        f"- Heldout rows: {counts['heldout_rows_in_manifest']}",
+        "- Current702 heldout source-free locator sidecars: "
+        f"{counts['current702_heldout_locator_sidecars']}",
+        "- Source-free residue-count feature rows: "
+        f"{counts['source_free_residue_count_feature_rows']}",
+        "- Source-free event/residue-role feature rows: "
+        f"{counts['source_free_event_residue_role_feature_rows']}",
+        f"- Blockers: {', '.join(surface['blockers'])}",
+        "",
+        "## Decision",
+        "",
+        "- Source-free residue-count surface ready: "
+        f"{decision['source_free_residue_count_surface_ready']}",
+        "- Source-free event/residue-role surface ready: "
+        f"{decision['source_free_event_residue_role_surface_ready']}",
+        "- Heldout-safe pair application surface ready: "
+        f"{decision['heldout_safe_pair_application_surface_ready']}",
+        f"- Apply frozen pair threshold now: {decision['apply_frozen_pair_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {surface['interpretation']['result']}",
+        f"- {surface['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface(
+    *,
+    pair_surface_plan_path: Path,
+    pair_operating_point_contract_path: Path,
+    label_manifest_path: Path,
+    source_free_locator_dir: Path,
+    source_free_predicted_geometry_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    surface = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface(
+        pair_surface_plan_path=pair_surface_plan_path,
+        pair_operating_point_contract_path=pair_operating_point_contract_path,
+        label_manifest_path=label_manifest_path,
+        source_free_locator_dir=source_free_locator_dir,
+        source_free_predicted_geometry_manifest_path=source_free_predicted_geometry_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(surface, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_report(
+                surface
+            ),
+            encoding="utf-8",
+        )
+    return surface
+
+
+def _source_free_locator_queue_class(
+    *,
+    locator_present: bool,
+    active_site_status: str,
+    predicted_geometry_status: str,
+) -> str:
+    if locator_present:
+        return "approved_source_free_locator_present"
+    if predicted_geometry_status == "ok":
+        return "priority_1_coordinate_ready_locator_candidate"
+    if predicted_geometry_status == "predicted_structure_fetch_failed":
+        return "priority_3_predicted_structure_fetch_failed"
+    if active_site_status == "ok":
+        return "priority_2_active_site_position_ready_predicted_geometry_missing"
+    if active_site_status == "missing_accession_compatible_sequence_positions":
+        return "blocker_accession_compatible_sequence_positions_missing"
+    return "blocker_geometry_and_locator_inputs_missing"
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue(
+    *,
+    source_free_application_surface_path: Path,
+    label_manifest_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    predicted_geometry_retrieval_path: Path,
+    source_free_locator_dir: Path,
+) -> dict[str, Any]:
+    source_free_surface = _read_json(source_free_application_surface_path)
+    manifest = _read_json(label_manifest_path)
+    active_role_graph = _read_json(active_site_role_graph_sidecar_path)
+    predicted_geometry = _read_json(predicted_geometry_retrieval_path)
+    locator_sidecars = _locator_sidecars_by_entry(source_free_locator_dir)
+
+    heldout_rows = [
+        row
+        for row in manifest.get("rows", [])
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and row.get("split_assignment") == "heldout"
+    ]
+    active_by_entry = {
+        str(row.get("entry_id")): row
+        for row in active_role_graph.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    predicted_by_entry = {
+        str(row.get("entry_id")): row
+        for row in predicted_geometry.get("results", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    queue_rows: list[dict[str, Any]] = []
+    for manifest_row in sorted(
+        heldout_rows, key=lambda row: _entry_id_sort_key(str(row.get("entry_id")))
+    ):
+        entry_id = str(manifest_row.get("entry_id"))
+        active_row = active_by_entry.get(entry_id, {})
+        predicted_row = predicted_by_entry.get(entry_id, {})
+        locator_record = locator_sidecars.get(entry_id)
+        locator_present = locator_record is not None
+        active_status = str(active_row.get("status") or "missing_role_graph_row")
+        predicted_status = str(
+            predicted_row.get("status") or "missing_predicted_geometry_row"
+        )
+        queue_class = _source_free_locator_queue_class(
+            locator_present=locator_present,
+            active_site_status=active_status,
+            predicted_geometry_status=predicted_status,
+        )
+        blockers: list[str] = []
+        if not locator_present:
+            blockers.append("approved_source_free_locator_missing")
+        if active_status != "ok":
+            blockers.append(f"active_site_role_graph:{active_status}")
+        if predicted_status != "ok":
+            blockers.append(f"predicted_geometry:{predicted_status}")
+        blockers.append("source_free_event_axis_missing_for_pair_token")
+        predicted_model_id = predicted_row.get("pdb_id")
+        if predicted_status != "ok":
+            predicted_model_id = None
+        queue_rows.append(
+            {
+                "entry_id": entry_id,
+                "source_accession": manifest_row.get("accession"),
+                "queue_class": queue_class,
+                "approved_source_free_locator": {
+                    "present": locator_present,
+                    "path": locator_record.get("path") if locator_record else None,
+                },
+                "source_free_candidate_inputs": {
+                    "active_site_role_graph_status": active_status,
+                    "accession_compatible_sequence_positions": active_row.get(
+                        "accession_compatible_sequence_positions"
+                    ),
+                    "active_site_residue_count": active_row.get(
+                        "active_site_residue_count"
+                    ),
+                    "predicted_geometry_status": predicted_status,
+                    "predicted_model_id": predicted_model_id,
+                    "resolved_residue_count": predicted_row.get(
+                        "resolved_residue_count"
+                    ),
+                    "missing_positions": predicted_row.get("missing_positions"),
+                },
+                "required_manual_or_mechanical_next_action": (
+                    "approve_source_free_locator_sidecar_from_coordinate_local_evidence"
+                    if queue_class
+                    == "priority_1_coordinate_ready_locator_candidate"
+                    else "repair_predicted_geometry_or_sequence_position_prerequisite_before_locator"
+                    if queue_class.startswith("priority_")
+                    else "resolve_blocker_before_source_free_locator_candidate"
+                ),
+                "blockers": blockers,
+                "feature_guardrails": {
+                    "heldout_labels_excluded_from_features": True,
+                    "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": True,
+                    "source_text_excluded_from_features": True,
+                    "source_ids_excluded_from_features": True,
+                    "target_names_excluded_from_features": True,
+                    "ec_or_rhea_ids_excluded_from_features": True,
+                    "queue_only_no_scoring": True,
+                },
+            }
+        )
+
+    class_counts = Counter(str(row["queue_class"]) for row in queue_rows)
+    ready_candidate_count = class_counts.get(
+        "priority_1_coordinate_ready_locator_candidate", 0
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_LOCATOR_ACTION_QUEUE_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_ready"
+        ),
+        "scope": (
+            "Queue for materializing approved source-free active-site locator "
+            "sidecars needed by the best-token follow-up pair heldout "
+            "application surface. It prioritizes heldout rows by existing "
+            "coordinate/readiness evidence, does not promote M-CSA active-site "
+            "roles to deployment features, and does not score heldout."
+        ),
+        "queue_rows": queue_rows,
+        "class_counts": dict(sorted(class_counts.items())),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "event_residue_role_feature_imputed": False,
+            "locator_sidecars_created_or_copied": False,
+            "queue_only": True,
+            "review_only": True,
+        },
+        "counts": {
+            "heldout_rows_in_manifest": len(heldout_rows),
+            "queue_rows": len(queue_rows),
+            "approved_current702_source_free_locator_sidecars": class_counts.get(
+                "approved_source_free_locator_present", 0
+            ),
+            "priority_1_coordinate_ready_locator_candidates": ready_candidate_count,
+            "priority_2_active_site_position_ready_predicted_geometry_missing": (
+                class_counts.get(
+                    "priority_2_active_site_position_ready_predicted_geometry_missing",
+                    0,
+                )
+            ),
+            "priority_3_predicted_structure_fetch_failed": class_counts.get(
+                "priority_3_predicted_structure_fetch_failed", 0
+            ),
+            "blocker_accession_compatible_sequence_positions_missing": (
+                class_counts.get(
+                    "blocker_accession_compatible_sequence_positions_missing", 0
+                )
+            ),
+            "source_free_application_surface_ready": bool(
+                source_free_surface.get("decision", {}).get(
+                    "heldout_safe_pair_application_surface_ready"
+                )
+            ),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "source_free_locator_materialization_queue_ready": True,
+            "locator_candidates_ready_for_manual_source_free_review": (
+                ready_candidate_count
+            ),
+            "heldout_safe_pair_application_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Start with the priority-1 coordinate-ready rows and create "
+                "approved source-free locator sidecars from coordinate-local "
+                "evidence only; then rerun the source-free application-surface "
+                "audit before any frozen-threshold application."
+            ),
+        },
+        "source_artifacts": {
+            "source_free_application_surface": _source_path_record(
+                source_free_application_surface_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "active_site_role_graph_sidecar": _source_path_record(
+                active_site_role_graph_sidecar_path
+            ),
+            "predicted_geometry_retrieval": _source_path_record(
+                predicted_geometry_retrieval_path
+            ),
+            "source_free_locator_dir": _source_free_locator_dir_record(
+                source_free_locator_dir
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The current702 heldout surface has no approved source-free "
+                f"locators yet, but {ready_candidate_count} rows already have "
+                "coordinate-ready predicted-geometry evidence suitable for "
+                "locator-sidecar review."
+            ),
+            "next_action": (
+                "Create approved source-free locator sidecars for the "
+                "priority-1 rows without using heldout labels, M-CSA heldout "
+                "mechanism text, EC/Rhea identifiers, source IDs, or target names."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_report(
+    queue: dict[str, Any],
+) -> str:
+    counts = queue["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Locator Action Queue - current702",
+        "",
+        f"Run: {queue['created_utc']}",
+        "",
+        queue["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {queue['status']}",
+        f"- Heldout rows: {counts['heldout_rows_in_manifest']}",
+        "- Approved current702 source-free locators: "
+        f"{counts['approved_current702_source_free_locator_sidecars']}",
+        "- Priority-1 coordinate-ready locator candidates: "
+        f"{counts['priority_1_coordinate_ready_locator_candidates']}",
+        "- Priority-2 predicted-geometry missing: "
+        f"{counts['priority_2_active_site_position_ready_predicted_geometry_missing']}",
+        "- Priority-3 predicted-structure fetch failed: "
+        f"{counts['priority_3_predicted_structure_fetch_failed']}",
+        "- Accession-compatible position blockers: "
+        f"{counts['blocker_accession_compatible_sequence_positions_missing']}",
+        "",
+        "## Decision",
+        "",
+        "- Locator materialization queue ready: "
+        f"{queue['decision']['source_free_locator_materialization_queue_ready']}",
+        "- Apply frozen pair threshold now: "
+        f"{queue['decision']['apply_frozen_pair_threshold_now']}",
+        "- Heldout read once performed: "
+        f"{queue['decision']['heldout_read_once_performed']}",
+        f"- Next gate: {queue['decision']['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {queue['interpretation']['result']}",
+        f"- {queue['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue(
+    *,
+    source_free_application_surface_path: Path,
+    label_manifest_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    predicted_geometry_retrieval_path: Path,
+    source_free_locator_dir: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    queue = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue(
+        source_free_application_surface_path=source_free_application_surface_path,
+        label_manifest_path=label_manifest_path,
+        active_site_role_graph_sidecar_path=active_site_role_graph_sidecar_path,
+        predicted_geometry_retrieval_path=predicted_geometry_retrieval_path,
+        source_free_locator_dir=source_free_locator_dir,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(queue, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_report(
+                queue
+            ),
+            encoding="utf-8",
+        )
+    return queue
+
+
+def _predicted_geometry_source_free_anchor_summary(
+    row: dict[str, Any],
+) -> dict[str, Any]:
+    ligand_context = row.get("ligand_context") or {}
+    proximal_ligands = [
+        item for item in ligand_context.get("proximal_ligands", []) if item
+    ]
+    ligand_codes = [item for item in ligand_context.get("ligand_codes", []) if item]
+    structure_ligands = [
+        item for item in ligand_context.get("structure_ligands", []) if item
+    ]
+    structure_ligand_codes = [
+        item for item in ligand_context.get("structure_ligand_codes", []) if item
+    ]
+    cofactor_families = [
+        item for item in ligand_context.get("cofactor_families", []) if item
+    ]
+    structure_cofactor_families = [
+        item
+        for item in ligand_context.get("structure_cofactor_families", [])
+        if item
+    ]
+    has_anchor = any(
+        (
+            proximal_ligands,
+            ligand_codes,
+            structure_ligands,
+            structure_ligand_codes,
+            cofactor_families,
+            structure_cofactor_families,
+        )
+    )
+    return {
+        "has_source_free_ligand_or_cofactor_anchor": has_anchor,
+        "proximal_ligand_count": len(proximal_ligands),
+        "ligand_codes": sorted(set(str(item) for item in ligand_codes)),
+        "structure_ligand_codes": sorted(
+            set(str(item) for item in structure_ligand_codes)
+        ),
+        "cofactor_families": sorted(set(str(item) for item in cofactor_families)),
+        "structure_cofactor_families": sorted(
+            set(str(item) for item in structure_cofactor_families)
+        ),
+    }
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit(
+    *,
+    locator_action_queue_path: Path,
+    predicted_geometry_retrieval_path: Path,
+    source_free_locator_schema_path: Path | None = None,
+) -> dict[str, Any]:
+    locator_queue = _read_json(locator_action_queue_path)
+    predicted_geometry = _read_json(predicted_geometry_retrieval_path)
+    locator_schema = (
+        _read_json(source_free_locator_schema_path)
+        if source_free_locator_schema_path is not None
+        and source_free_locator_schema_path.exists()
+        else None
+    )
+    locator_schema_counts = (
+        locator_schema.get("counts") if isinstance(locator_schema, dict) else {}
+    ) or {}
+    locator_schema_summary = (
+        {
+            "status": locator_schema.get("status"),
+            "allowed_locator_evidence_classes": locator_schema_counts.get(
+                "allowed_locator_evidence_classes"
+            ),
+            "forbidden_predictive_fields": locator_schema_counts.get(
+                "forbidden_predictive_fields"
+            ),
+            "required_residue_locator_minimum": locator_schema_counts.get(
+                "required_residue_locator_minimum"
+            ),
+            "residue_locator_required_fields": locator_schema.get(
+                "residue_locator_required_fields"
+            ),
+            "sidecar_required_top_level_fields": locator_schema.get(
+                "sidecar_required_top_level_fields"
+            ),
+        }
+        if isinstance(locator_schema, dict)
+        else None
+    )
+    predicted_by_entry = {
+        str(row.get("entry_id")): row
+        for row in predicted_geometry.get("results", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    priority_rows = [
+        row
+        for row in locator_queue.get("queue_rows", [])
+        if isinstance(row, dict)
+        and row.get("queue_class")
+        == "priority_1_coordinate_ready_locator_candidate"
+    ]
+    audit_rows = []
+    for row in priority_rows:
+        entry_id = str(row.get("entry_id") or "")
+        predicted_row = predicted_by_entry.get(entry_id, {})
+        anchor = _predicted_geometry_source_free_anchor_summary(predicted_row)
+        blockers: list[str] = []
+        if not anchor["has_source_free_ligand_or_cofactor_anchor"]:
+            blockers.append("source_free_ligand_or_cofactor_contact_anchor_missing")
+        blockers.append("source_free_event_axis_missing_for_pair_token")
+        audit_rows.append(
+            {
+                "entry_id": entry_id,
+                "queue_class": row.get("queue_class"),
+                "predicted_geometry_status": predicted_row.get(
+                    "status", "missing_predicted_geometry_row"
+                ),
+                "predicted_model_id": predicted_row.get("pdb_id"),
+                "anchor_summary": anchor,
+                "auto_create_locator_sidecar_allowed": False,
+                "blockers": blockers,
+            }
+        )
+    rows_with_anchor = [
+        row
+        for row in audit_rows
+        if row.get("anchor_summary", {}).get(
+            "has_source_free_ligand_or_cofactor_anchor"
+        )
+    ]
+    blockers = []
+    if len(rows_with_anchor) < len(audit_rows):
+        blockers.append("priority1_rows_lack_source_free_contact_anchor")
+    blockers.append("source_free_event_axis_missing_for_pair_token")
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_LOCATOR_INPUT_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_blocked"
+        ),
+        "scope": (
+            "Input audit for priority-1 source-free locator queue rows. It "
+            "checks whether the predicted-geometry artifact already contains "
+            "source-free local ligand/cofactor anchors that could support "
+            "locator sidecar creation without M-CSA heldout mechanism text, "
+            "heldout labels, source IDs, target names, or EC/Rhea IDs."
+        ),
+        "audit_rows": audit_rows,
+        "source_free_locator_schema_summary": locator_schema_summary,
+        "blockers": blockers,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "event_residue_role_feature_imputed": False,
+            "locator_sidecars_created_or_copied": False,
+            "auto_locator_creation_allowed": False,
+            "review_only": True,
+        },
+        "counts": {
+            "priority1_locator_queue_rows": len(priority_rows),
+            "priority1_rows_with_source_free_ligand_or_cofactor_anchor": len(
+                rows_with_anchor
+            ),
+            "priority1_rows_without_source_free_anchor": len(audit_rows)
+            - len(rows_with_anchor),
+            "auto_create_locator_sidecar_allowed_rows": 0,
+            "source_free_locator_schema_available": (
+                1 if locator_schema_summary is not None else 0
+            ),
+            "source_free_locator_schema_required_residue_locator_minimum": (
+                (locator_schema_summary or {}).get("required_residue_locator_minimum")
+            ),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "auto_create_locator_sidecars_now": False,
+            "approved_source_free_locator_surface_ready": False,
+            "heldout_safe_pair_application_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Do not create locator sidecars from predicted-geometry rows "
+                "alone. Add a source-free coordinate-local anchor policy or "
+                "source-free structure-local ligand/contact evidence, then "
+                "rerun this audit before sidecar materialization."
+            ),
+        },
+        "source_artifacts": {
+            "locator_action_queue": _source_path_record(locator_action_queue_path),
+            "predicted_geometry_retrieval": _source_path_record(
+                predicted_geometry_retrieval_path
+            ),
+            "source_free_locator_schema": (
+                _source_path_record(source_free_locator_schema_path)
+                if source_free_locator_schema_path is not None
+                else None
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The priority-1 queue rows have predicted-geometry coordinates, "
+                "but none currently expose source-free ligand/cofactor contact "
+                "anchors for approved locator sidecar creation."
+            ),
+            "next_action": (
+                "Define or materialize a source-free local anchor evidence path "
+                "before copying or approving any current702 heldout locator "
+                "sidecars."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    schema = audit.get("source_free_locator_schema_summary") or {}
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Locator Input Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Priority-1 queue rows: {counts['priority1_locator_queue_rows']}",
+        "- Rows with source-free ligand/cofactor anchor: "
+        f"{counts['priority1_rows_with_source_free_ligand_or_cofactor_anchor']}",
+        "- Rows without source-free anchor: "
+        f"{counts['priority1_rows_without_source_free_anchor']}",
+        "- Auto-create locator sidecars now: "
+        f"{audit['decision']['auto_create_locator_sidecars_now']}",
+        "- Source-free locator schema available: "
+        f"{counts['source_free_locator_schema_available']}",
+        "- Required residue locators per approved sidecar: "
+        f"{counts['source_free_locator_schema_required_residue_locator_minimum']}",
+        "- Allowed locator evidence classes: "
+        f"{schema.get('allowed_locator_evidence_classes')}",
+        f"- Blockers: {', '.join(audit['blockers'])}",
+        "",
+        "## Decision",
+        "",
+        f"- Next gate: {audit['decision']['next_gate']}",
+        "- Heldout read once performed: "
+        f"{audit['decision']['heldout_read_once_performed']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit(
+    *,
+    locator_action_queue_path: Path,
+    predicted_geometry_retrieval_path: Path,
+    source_free_locator_schema_path: Path | None = None,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit(
+        locator_action_queue_path=locator_action_queue_path,
+        predicted_geometry_retrieval_path=predicted_geometry_retrieval_path,
+        source_free_locator_schema_path=source_free_locator_schema_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
 
 
 def _manifest_fingerprint_id(row: dict[str, Any]) -> Any:

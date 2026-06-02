@@ -56,6 +56,114 @@ Automation run: `catalytic-earth-lever-3-2-forward-push`
 
 #### Wall-clock ledger
 
+- STARTED_AT: `2026-06-02T13:02:35Z`
+- STARTED_LOCAL: `2026-06-02T08:02:35-0500 CDT`
+- ENDED_AT: `2026-06-02T13:57:54Z`
+- ENDED_LOCAL: `2026-06-02T08:57:54-0500 CDT`
+- ELAPSED_MINUTES: `55.3`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "current-run", "started_at": "2026-06-02T13:02:35Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue Lever 2 from the calibrated best-token + follow-up-token residual
+contract. Materialize the source-free current702 heldout application surface
+needed for `event_residue_role:proton_transfer|electrostatic_stabiliser` and
+`residue_code_count:his=3`, rerun the surface plan/preflight, and only apply
+the frozen residual threshold `3.21469422` once if the surface is genuinely
+ready.
+
+#### What changed
+
+- Lever 2: added a source-free heldout application surface audit for the
+  calibrated best-token + follow-up-token pair
+  (`event_residue_role:proton_transfer|electrostatic_stabiliser` +
+  `residue_code_count:his=3`). The audit found 0/140 current702 heldout
+  approved source-free locator sidecars, 0 source-free residue-count rows, and
+  no source-free event/residue-role feature rows. The frozen threshold was not
+  applied and heldout was not scored.
+- Lever 2: added a source-free locator action queue over the 140 heldout rows.
+  It identifies 126 priority-1 coordinate-ready locator candidates, 4
+  priority-2 rows with active-site positions but missing predicted geometry, 2
+  predicted-structure fetch failures, and 8 accession-compatible sequence
+  position blockers.
+- Lever 2: added a locator input audit for the 126 priority-1 candidates. It
+  threads in the existing source-free locator schema
+  (`required_residue_locator_minimum=2`, 4 allowed locator evidence classes)
+  and blocks automatic sidecar creation because 0/126 priority-1 rows expose
+  source-free ligand/cofactor anchor evidence. This keeps the locator queue
+  mechanical without creating heldout sidecars from coordinates alone.
+- Lever 2: regenerated the heldout-safe surface plan so the residue-count
+  extractor now reports
+  `blocked_source_free_locator_anchor_inputs_missing` rather than simply
+  queued. The plan still records pair calibration OOS abstain recall 0.857143
+  and 4 retained calibration OOS rows, but the current702 heldout application
+  surface remains blocked.
+- Lever 3: added a predicted-structure fold confounded operating-point
+  readiness audit. It composes the fold contract, confounded closure,
+  fold-only no-go, OOS-calibrated threshold contract, coordinate provenance
+  audit, and the existing remaining-blocker coordinate reprobe. The confounded
+  subset is research-ready at the fixed operating point (5/6 confounded OOS
+  rows abstained) but deployment closure is blocked by 5 production blocker
+  rows, 0/4 fold-only blocker rows abstained at the 90% threshold, and the
+  missing persistent AFDB coordinate bundle.
+- No labels, registries, ontologies, imports, production thresholds, model
+  weights, or threshold values were changed. No heldout M-CSA row-specific
+  mechanism text or heldout active-site-role labels were used as predictive
+  features. No heldout scoring/read-once threshold application was performed.
+
+#### Artifacts and reports
+
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.md`
+- `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`
+- `work/predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.md`
+- `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`
+- `work/current_docs_artifact_reference_check_current702_20260601.md`
+
+#### Tests run
+
+- `PYTHONPATH=src python -m unittest discover -s tests` - passed, 1162 tests.
+- `PYTHONPATH=src python -m pytest tests -q` - passed, 1207 tests, 1 sklearn
+  deprecation warning, 93 subtests.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` - passed: 12 source
+  records, 8 fingerprints, 15 ontology families, 702 curated labels.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  - passed, missing 0.
+- `python -m compileall -q src/catalytic_earth/northstar_next_levers.py src/catalytic_earth/cli.py tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py`
+  - passed.
+- `git diff --check` - passed.
+- JSON parse check over the six touched generated JSON artifacts - passed.
+
+#### Exact next action
+
+- Lever 2 remains the immediate gate. Do not apply the frozen residual
+  threshold or read heldout yet. Reuse the source-free locator schema, then add
+  source-free coordinate-local anchor evidence for priority-1 queue rows before
+  creating approved current702 heldout locator sidecars. The current input audit
+  shows 0/126 priority-1 rows with ligand/cofactor anchors, so sidecars must not
+  be auto-created from predicted geometry alone. After anchor-backed locators
+  exist, rerun the input audit, application surface, and surface plan; the event
+  token still separately needs a source-free proton-transfer event axis/linker.
+- Lever 3 next gate: clear the 5 production blocker rows
+  (`m_csa:78`, `m_csa:204`, `m_csa:531`, `uniprot:P78549`, `uniprot:Q3LXA3`)
+  and persist the AFDB coordinate bundle before any deployment-closed claim.
+  The existing coordinate reprobe clears 0 blocker rows: P23007 remains
+  coordinate-unavailable, while P10746, P31572, P78549, and Q3LXA3 are blocked
+  by source-backed active-site sidecar requirements.
+
+### 2026-06-02 Lever 2/3/4 Forward Push Active Run
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
 - STARTED_AT: `2026-06-02T12:02:05Z`
 - STARTED_LOCAL: `2026-06-02T07:02:05-0500 CDT`
 - ENDED_AT: `2026-06-02T12:31:48Z`

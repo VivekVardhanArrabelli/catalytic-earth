@@ -94,6 +94,9 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_guardrail_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation,
@@ -145,6 +148,7 @@ from .northstar_next_levers import (
     write_predicted_atlas_geometry_novelty_variants,
     write_predicted_atlas_vs_fold_novelty_operating_grid_delta,
     write_predicted_structure_fold_augmented_novelty_operating_grid,
+    write_predicted_structure_fold_confounded_operating_point_readiness,
     write_predicted_structure_fold_channel,
     write_predicted_structure_fold_channel_carryover_resolution,
     write_predicted_structure_fold_channel_contract_audit,
@@ -11682,6 +11686,39 @@ def cmd_audit_fold_augmented_fold_only_deployment_contract(
     return 0
 
 
+def cmd_audit_predicted_structure_fold_confounded_operating_point_readiness(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_predicted_structure_fold_confounded_operating_point_readiness(
+        contract_audit_path=Path(args.contract_audit),
+        confounded_deployment_closure_path=Path(
+            args.confounded_deployment_closure
+        ),
+        fold_only_deployment_decision_path=Path(
+            args.fold_only_deployment_decision
+        ),
+        oos_calibrated_threshold_contract_path=Path(
+            args.oos_calibrated_threshold_contract
+        ),
+        coordinate_provenance_audit_path=Path(args.coordinate_provenance_audit),
+        remaining_blocker_coordinate_reprobe_path=Path(
+            args.remaining_blocker_coordinate_reprobe
+        )
+        if args.remaining_blocker_coordinate_reprobe
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    decision = audit.get("decision", {})
+    print(
+        "Wrote predicted-structure fold confounded operating-point readiness to "
+        f"{args.out} (status: {audit.get('status')}, research ready: "
+        f"{decision.get('research_confounded_operating_point_ready')}, "
+        f"deployment closed: {decision.get('deployment_closed')})"
+    )
+    return 0
+
+
 def cmd_build_fold_augmented_family_panel_research_readout(
     args: argparse.Namespace,
 ) -> int:
@@ -12991,6 +13028,15 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         source_free_predicted_geometry_manifest_path=Path(
             args.source_free_predicted_geometry_manifest
         ),
+        source_free_application_surface_path=Path(
+            args.source_free_application_surface
+        ),
+        source_free_locator_action_queue_path=Path(
+            args.source_free_locator_action_queue
+        ),
+        source_free_locator_input_audit_path=Path(
+            args.source_free_locator_input_audit
+        ),
         out_path=Path(args.out),
         report_path=Path(args.report) if args.report else None,
     )
@@ -13002,6 +13048,77 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         f"(status: {plan.get('status')}, surface ready: "
         f"{decision.get('heldout_safe_pair_application_surface_ready')}, "
         f"blockers: {counts.get('blockers')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface(
+    args: argparse.Namespace,
+) -> int:
+    surface = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface(
+        pair_surface_plan_path=Path(args.pair_surface_plan),
+        pair_operating_point_contract_path=Path(args.pair_operating_point_contract),
+        label_manifest_path=Path(args.label_manifest),
+        source_free_locator_dir=Path(args.source_free_locator_dir),
+        source_free_predicted_geometry_manifest_path=Path(
+            args.source_free_predicted_geometry_manifest
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = surface.get("counts", {})
+    decision = surface.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up pair source-free application surface to {args.out} "
+        f"(status: {surface.get('status')}, surface ready: "
+        f"{decision.get('heldout_safe_pair_application_surface_ready')}, "
+        f"current702 heldout locators: "
+        f"{counts.get('current702_heldout_locator_sidecars')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue(
+    args: argparse.Namespace,
+) -> int:
+    queue = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue(
+        source_free_application_surface_path=Path(args.source_free_application_surface),
+        label_manifest_path=Path(args.label_manifest),
+        active_site_role_graph_sidecar_path=Path(args.active_site_role_graph_sidecar),
+        predicted_geometry_retrieval_path=Path(args.predicted_geometry_retrieval),
+        source_free_locator_dir=Path(args.source_free_locator_dir),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = queue.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up pair source-free locator action queue to {args.out} "
+        f"(status: {queue.get('status')}, priority-1 candidates: "
+        f"{counts.get('priority_1_coordinate_ready_locator_candidates')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit(
+        locator_action_queue_path=Path(args.locator_action_queue),
+        predicted_geometry_retrieval_path=Path(args.predicted_geometry_retrieval),
+        source_free_locator_schema_path=Path(args.source_free_locator_schema)
+        if args.source_free_locator_schema
+        else None,
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up pair source-free locator input audit to {args.out} "
+        f"(status: {audit.get('status')}, rows with anchors: "
+        f"{counts.get('priority1_rows_with_source_free_ligand_or_cofactor_anchor')})"
     )
     return 0
 
@@ -25529,6 +25646,73 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_fold_augmented_fold_only_deployment_contract
     )
 
+    fold_confounded_readiness = subparsers.add_parser(
+        "audit-predicted-structure-fold-confounded-operating-point-readiness",
+        help=(
+            "compose the predicted-structure fold contract, confounded closure, "
+            "fold-only no-go, threshold, and coordinate provenance audits"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--contract-audit",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_contract_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--confounded-deployment-closure",
+        default=(
+            "artifacts/v3_fold_augmented_confounded_deployment_closure_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--fold-only-deployment-decision",
+        default=(
+            "artifacts/v3_fold_augmented_fold_only_deployment_contract_decision_"
+            "current702_20260601.json"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--oos-calibrated-threshold-contract",
+        default=(
+            "artifacts/v3_fold_augmented_abstention_threshold_contract_"
+            "oos_calibrated_current702_20260601.json"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--coordinate-provenance-audit",
+        default=(
+            "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_"
+            "current702_20260601.json"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--remaining-blocker-coordinate-reprobe",
+        default=(
+            "artifacts/v3_fold_augmented_remaining_blocker_coordinate_reprobe_"
+            "current702_20260602.json"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_"
+            "current702_20260602.json"
+        ),
+    )
+    fold_confounded_readiness.add_argument(
+        "--report",
+        default=(
+            "work/predicted_structure_fold_confounded_operating_point_readiness_"
+            "current702_20260602.md"
+        ),
+    )
+    fold_confounded_readiness.set_defaults(
+        func=cmd_audit_predicted_structure_fold_confounded_operating_point_readiness
+    )
+
     family_panel_readout = subparsers.add_parser(
         "build-fold-augmented-family-panel-research-readout",
         help=(
@@ -28566,6 +28750,30 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
+        "--source-free-application-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
+        "--source-free-locator-action-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
+        "--source-free-locator-input-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.add_argument(
         "--out",
         default=(
             "artifacts/v3_mechanism_feature_row_specific_bond_change_"
@@ -28584,6 +28792,194 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_oos_augmented_best_token_pair_surface_plan.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_surface = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "application-surface"
+        ),
+        help=(
+            "materialize the source-free heldout application-surface audit for "
+            "the best-token follow-up pair before any frozen-threshold read"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_surface.add_argument(
+        "--pair-surface-plan",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_surface.add_argument(
+        "--pair-operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_surface.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_surface.add_argument(
+        "--source-free-locator-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locators_"
+            "current702_20260601"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_surface.add_argument(
+        "--source-free-predicted-geometry-manifest",
+        default=(
+            "artifacts/v3_family_panel_source_free_predicted_geometry_"
+            "sidecar_manifest_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_surface.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_surface.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_surface.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_queue = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "locator-action-queue"
+        ),
+        help=(
+            "queue current702 heldout rows for source-free locator sidecar "
+            "materialization before the best-token follow-up pair heldout read"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_queue.add_argument(
+        "--source-free-application-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_queue.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_queue.add_argument(
+        "--active-site-role-graph-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_queue.add_argument(
+        "--predicted-geometry-retrieval",
+        default=(
+            "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_queue.add_argument(
+        "--source-free-locator-dir",
+        default=(
+            "artifacts/family_panel_source_free_active_site_locators_"
+            "current702_20260601"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_queue.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_queue.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_queue.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input = subparsers.add_parser(
+        (
+            "audit-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "locator-input"
+        ),
+        help=(
+            "audit whether priority-1 locator queue rows already have "
+            "source-free ligand or cofactor anchors for sidecar creation"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input.add_argument(
+        "--locator-action-queue",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input.add_argument(
+        "--predicted-geometry-retrieval",
+        default=(
+            "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input.add_argument(
+        "--source-free-locator-schema",
+        default=(
+            "artifacts/v3_family_panel_source_free_active_site_locator_schema_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_locator_input.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input
         )
     )
 

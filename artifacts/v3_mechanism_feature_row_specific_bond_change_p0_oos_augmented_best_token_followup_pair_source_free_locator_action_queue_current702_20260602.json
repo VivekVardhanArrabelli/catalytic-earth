@@ -1,0 +1,4584 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_current702_20260602",
+  "class_counts": {
+    "blocker_accession_compatible_sequence_positions_missing": 8,
+    "priority_1_coordinate_ready_locator_candidate": 126,
+    "priority_2_active_site_position_ready_predicted_geometry_missing": 4,
+    "priority_3_predicted_structure_fetch_failed": 2
+  },
+  "counts": {
+    "approved_current702_source_free_locator_sidecars": 0,
+    "blocker_accession_compatible_sequence_positions_missing": 8,
+    "critical_violation_total": 0,
+    "heldout_rows_in_manifest": 140,
+    "priority_1_coordinate_ready_locator_candidates": 126,
+    "priority_2_active_site_position_ready_predicted_geometry_missing": 4,
+    "priority_3_predicted_structure_fetch_failed": 2,
+    "queue_rows": 140,
+    "source_free_application_surface_ready": false
+  },
+  "created_utc": "2026-06-02T13:14:30Z",
+  "decision": {
+    "apply_frozen_pair_threshold_now": false,
+    "heldout_read_once_performed": false,
+    "heldout_safe_pair_application_surface_ready": false,
+    "locator_candidates_ready_for_manual_source_free_review": 126,
+    "next_gate": "Start with the priority-1 coordinate-ready rows and create approved source-free locator sidecars from coordinate-local evidence only; then rerun the source-free application-surface audit before any frozen-threshold application.",
+    "source_free_locator_materialization_queue_ready": true
+  },
+  "guardrails": {
+    "event_residue_role_feature_imputed": false,
+    "frozen_residual_threshold_applied": false,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "locator_sidecars_created_or_copied": false,
+    "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+    "m_csa_heldout_row_specific_mechanism_text_used": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "queue_only": true,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Create approved source-free locator sidecars for the priority-1 rows without using heldout labels, M-CSA heldout mechanism text, EC/Rhea identifiers, source IDs, or target names.",
+    "result": "The current702 heldout surface has no approved source-free locators yet, but 126 rows already have coordinate-ready predicted-geometry evidence suitable for locator-sidecar review."
+  },
+  "queue_rows": [
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:3",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P15559",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P15559-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:9",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P31153",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 14,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P31153-F1-model_v6",
+        "resolved_residue_count": 14
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:10",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P0A6Q3",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P0A6Q3-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:12",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P00480",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P00480-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:14",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P49053",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P49053-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:20",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q07WU7",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q07WU7-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:30",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P09373",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P09373-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:31",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P00469",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P00469-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:32",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q04760",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q04760-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:34",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P06622",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P06622-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:43",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P80366",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 10,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P80366-F1-model_v6",
+        "resolved_residue_count": 10
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:44",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P00634",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 12,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P00634-F1-model_v6",
+        "resolved_residue_count": 12
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:45",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P43379",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P43379-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:46",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P14385",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P14385-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:56",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9WZW0",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9WZW0-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:67",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "O52942",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-O52942-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:71",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P12295",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P12295-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:73",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P61459",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P61459-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:79",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q05603",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 2,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q05603-F1-model_v6",
+        "resolved_residue_count": 2
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:80",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9X0I0",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9X0I0-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:86",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P51541",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 8,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P51541-F1-model_v6",
+        "resolved_residue_count": 8
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:97",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P0ABF6",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P0ABF6-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:109",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q02127",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q02127-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:115",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9T0N8",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9T0N8-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "active_site_role_graph:missing_accession_compatible_sequence_positions",
+        "predicted_geometry:missing_predicted_geometry_row",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:116",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "blocker_accession_compatible_sequence_positions_missing",
+      "required_manual_or_mechanical_next_action": "resolve_blocker_before_source_free_locator_candidate",
+      "source_accession": "Q2RSB2",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": false,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "missing_accession_compatible_sequence_positions",
+        "missing_positions": null,
+        "predicted_geometry_status": "missing_predicted_geometry_row",
+        "predicted_model_id": null,
+        "resolved_residue_count": null
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:118",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q00511",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q00511-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:121",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P07850",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P07850-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:125",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9ZP19",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9ZP19-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:129",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P37610",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P37610-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:131",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P20586",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P20586-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "active_site_role_graph:missing_accession_compatible_sequence_positions",
+        "predicted_geometry:missing_predicted_geometry_row",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:144",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "blocker_accession_compatible_sequence_positions_missing",
+      "required_manual_or_mechanical_next_action": "resolve_blocker_before_source_free_locator_candidate",
+      "source_accession": "Q7SIF3",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": false,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "missing_accession_compatible_sequence_positions",
+        "missing_positions": null,
+        "predicted_geometry_status": "missing_predicted_geometry_row",
+        "predicted_model_id": null,
+        "resolved_residue_count": null
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:155",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "O06644",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-O06644-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:159",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P0A434",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 8,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P0A434-F1-model_v6",
+        "resolved_residue_count": 8
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:163",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P0A7Y4",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P0A7Y4-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:171",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P00730",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P00730-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:180",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P35505",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 11,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P35505-F1-model_v6",
+        "resolved_residue_count": 11
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:185",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "O15527",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 2,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-O15527-F1-model_v6",
+        "resolved_residue_count": 2
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:188",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P09147",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P09147-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:191",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P07237",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P07237-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:192",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9N0A4",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9N0A4-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "predicted_geometry:missing_predicted_geometry_row",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:193",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_2_active_site_position_ready_predicted_geometry_missing",
+      "required_manual_or_mechanical_next_action": "repair_predicted_geometry_or_sequence_position_prerequisite_before_locator",
+      "source_accession": "P21638",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 1,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "missing_predicted_geometry_row",
+        "predicted_model_id": null,
+        "resolved_residue_count": null
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:197",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P00952",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 10,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P00952-F1-model_v6",
+        "resolved_residue_count": 10
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:198",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q5SKN9",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q5SKN9-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:199",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P04425",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 8,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P04425-F1-model_v6",
+        "resolved_residue_count": 8
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:201",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9X4K7",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9X4K7-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:211",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P38489",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P38489-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:213",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P10724",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P10724-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:217",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P52704",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P52704-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "active_site_role_graph:missing_accession_compatible_sequence_positions",
+        "predicted_geometry:missing_predicted_geometry_row",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:219",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "blocker_accession_compatible_sequence_positions_missing",
+      "required_manual_or_mechanical_next_action": "resolve_blocker_before_source_free_locator_candidate",
+      "source_accession": "P29401",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": false,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "missing_accession_compatible_sequence_positions",
+        "missing_positions": null,
+        "predicted_geometry_status": "missing_predicted_geometry_row",
+        "predicted_model_id": null,
+        "resolved_residue_count": null
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:220",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P20906",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P20906-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:225",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9WZC3",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9WZC3-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:230",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q59643",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 2,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q59643-F1-model_v6",
+        "resolved_residue_count": 2
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:239",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P00433",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P00433-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:242",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q8I914",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 11,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q8I914-F1-model_v6",
+        "resolved_residue_count": 11
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:250",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P04963",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P04963-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:254",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P33247",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 17,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P33247-F1-model_v6",
+        "resolved_residue_count": 17
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:255",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P00334",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P00334-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:267",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P0A6L2",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P0A6L2-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:297",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P77072",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P77072-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:311",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P00924",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 10,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P00924-F1-model_v6",
+        "resolved_residue_count": 10
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:313",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P04395",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P04395-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:321",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P09155",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P09155-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:323",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P05314",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P05314-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:333",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9RUB5",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9RUB5-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:334",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P44859",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P44859-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:346",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P9WNP5",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P9WNP5-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:352",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P00949",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P00949-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:355",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P30074",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P30074-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:356",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P14769",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P14769-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:363",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P08179",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P08179-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:369",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P33038",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P33038-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:370",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "O75164",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-O75164-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "predicted_geometry:missing_predicted_geometry_row",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:372",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_2_active_site_position_ready_predicted_geometry_missing",
+      "required_manual_or_mechanical_next_action": "repair_predicted_geometry_or_sequence_position_prerequisite_before_locator",
+      "source_accession": "Q712I6",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "missing_predicted_geometry_row",
+        "predicted_model_id": null,
+        "resolved_residue_count": null
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:375",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P0ABP8",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P0ABP8-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:384",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P23395",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 8,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P23395-F1-model_v6",
+        "resolved_residue_count": 8
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "active_site_role_graph:missing_accession_compatible_sequence_positions",
+        "predicted_geometry:missing_predicted_geometry_row",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:388",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "blocker_accession_compatible_sequence_positions_missing",
+      "required_manual_or_mechanical_next_action": "resolve_blocker_before_source_free_locator_candidate",
+      "source_accession": "A0A0H3JGH6",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": false,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "missing_accession_compatible_sequence_positions",
+        "missing_positions": null,
+        "predicted_geometry_status": "missing_predicted_geometry_row",
+        "predicted_model_id": null,
+        "resolved_residue_count": null
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:392",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P07801",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 2,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P07801-F1-model_v6",
+        "resolved_residue_count": 2
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:396",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P56272",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P56272-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:397",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P04063",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P04063-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:402",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P04036",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 2,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P04036-F1-model_v6",
+        "resolved_residue_count": 2
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:403",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P07584",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P07584-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:407",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q0ZPV7",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 8,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q0ZPV7-F1-model_v6",
+        "resolved_residue_count": 8
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:409",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P0A790",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P0A790-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:418",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P37821",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P37821-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:419",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "O52552",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 8,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-O52552-F1-model_v6",
+        "resolved_residue_count": 8
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:423",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P08236",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P08236-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:424",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P23721",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P23721-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:428",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9ZF13",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9ZF13-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:431",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "O59893",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-O59893-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "active_site_role_graph:missing_accession_compatible_sequence_positions",
+        "predicted_geometry:missing_predicted_geometry_row",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:438",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "blocker_accession_compatible_sequence_positions_missing",
+      "required_manual_or_mechanical_next_action": "resolve_blocker_before_source_free_locator_candidate",
+      "source_accession": "P68036",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": false,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "missing_accession_compatible_sequence_positions",
+        "missing_positions": null,
+        "predicted_geometry_status": "missing_predicted_geometry_row",
+        "predicted_model_id": null,
+        "resolved_residue_count": null
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:440",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P07987",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P07987-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:444",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P62694",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P62694-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:448",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P33665",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P33665-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:453",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "O68884",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-O68884-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:474",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P19080",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 7,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P19080-F1-model_v6",
+        "resolved_residue_count": 7
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "predicted_geometry:predicted_structure_fetch_failed",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:477",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_3_predicted_structure_fetch_failed",
+      "required_manual_or_mechanical_next_action": "repair_predicted_geometry_or_sequence_position_prerequisite_before_locator",
+      "source_accession": "P04936",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "predicted_structure_fetch_failed",
+        "predicted_model_id": null,
+        "resolved_residue_count": 0
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:480",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P26214",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P26214-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "active_site_role_graph:missing_accession_compatible_sequence_positions",
+        "predicted_geometry:missing_predicted_geometry_row",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:484",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "blocker_accession_compatible_sequence_positions_missing",
+      "required_manual_or_mechanical_next_action": "resolve_blocker_before_source_free_locator_candidate",
+      "source_accession": "P01116",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": false,
+        "active_site_residue_count": 10,
+        "active_site_role_graph_status": "missing_accession_compatible_sequence_positions",
+        "missing_positions": null,
+        "predicted_geometry_status": "missing_predicted_geometry_row",
+        "predicted_model_id": null,
+        "resolved_residue_count": null
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:493",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P07649",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P07649-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:497",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9FDN7",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 8,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9FDN7-F1-model_v6",
+        "resolved_residue_count": 8
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:509",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9X592",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 2,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9X592-F1-model_v6",
+        "resolved_residue_count": 2
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:511",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q13526",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q13526-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:517",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P61517",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P61517-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:526",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P11708",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 2,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P11708-F1-model_v6",
+        "resolved_residue_count": 2
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "predicted_geometry:missing_predicted_geometry_row",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:536",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_2_active_site_position_ready_predicted_geometry_missing",
+      "required_manual_or_mechanical_next_action": "repair_predicted_geometry_or_sequence_position_prerequisite_before_locator",
+      "source_accession": "P26239",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 1,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "missing_predicted_geometry_row",
+        "predicted_model_id": null,
+        "resolved_residue_count": null
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:541",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P75430",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P75430-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:545",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q7M523",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q7M523-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "predicted_geometry:predicted_structure_fetch_failed",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:549",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_3_predicted_structure_fetch_failed",
+      "required_manual_or_mechanical_next_action": "repair_predicted_geometry_or_sequence_position_prerequisite_before_locator",
+      "source_accession": "P06229",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 10,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "predicted_structure_fetch_failed",
+        "predicted_model_id": null,
+        "resolved_residue_count": 0
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:551",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P15245",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P15245-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "active_site_role_graph:missing_accession_compatible_sequence_positions",
+        "predicted_geometry:missing_predicted_geometry_row",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:563",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "blocker_accession_compatible_sequence_positions_missing",
+      "required_manual_or_mechanical_next_action": "resolve_blocker_before_source_free_locator_candidate",
+      "source_accession": "P0AAJ3",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": false,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "missing_accession_compatible_sequence_positions",
+        "missing_positions": null,
+        "predicted_geometry_status": "missing_predicted_geometry_row",
+        "predicted_model_id": null,
+        "resolved_residue_count": null
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:566",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P46844",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P46844-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:577",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P29218",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P29218-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:590",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q01172",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q01172-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:594",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9UM07",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9UM07-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:599",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P36936",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P36936-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:606",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P0AEK4",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 2,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P0AEK4-F1-model_v6",
+        "resolved_residue_count": 2
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:609",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P00778",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P00778-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:614",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P0A715",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P0A715-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:617",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q44297",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 2,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q44297-F1-model_v6",
+        "resolved_residue_count": 2
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "predicted_geometry:missing_predicted_geometry_row",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:620",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_2_active_site_position_ready_predicted_geometry_missing",
+      "required_manual_or_mechanical_next_action": "repair_predicted_geometry_or_sequence_position_prerequisite_before_locator",
+      "source_accession": "Q8WZM3",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 1,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "missing_predicted_geometry_row",
+        "predicted_model_id": null,
+        "resolved_residue_count": null
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:627",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P36655",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P36655-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "active_site_role_graph:missing_accession_compatible_sequence_positions",
+        "predicted_geometry:missing_predicted_geometry_row",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:628",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "blocker_accession_compatible_sequence_positions_missing",
+      "required_manual_or_mechanical_next_action": "resolve_blocker_before_source_free_locator_candidate",
+      "source_accession": "O43924",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": false,
+        "active_site_residue_count": 1,
+        "active_site_role_graph_status": "missing_accession_compatible_sequence_positions",
+        "missing_positions": null,
+        "predicted_geometry_status": "missing_predicted_geometry_row",
+        "predicted_model_id": null,
+        "resolved_residue_count": null
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:634",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P84147",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P84147-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:647",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P05057",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P05057-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:651",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P04807",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P04807-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:686",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q7SIG4",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q7SIG4-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:688",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q5JP69",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q5JP69-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:709",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P00431",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P00431-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:710",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P25524",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P25524-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:714",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P0ABI8",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 20,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P0ABI8-F1-model_v6",
+        "resolved_residue_count": 20
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:723",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P00782",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P00782-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:750",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P55792",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 8,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P55792-F1-model_v6",
+        "resolved_residue_count": 8
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:853",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P31570",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 9,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P31570-F1-model_v6",
+        "resolved_residue_count": 9
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:854",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P80147",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P80147-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:866",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P94388",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 5,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P94388-F1-model_v6",
+        "resolved_residue_count": 5
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:892",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "A2RJT9",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 2,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-A2RJT9-F1-model_v6",
+        "resolved_residue_count": 2
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:897",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P23657",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 3,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P23657-F1-model_v6",
+        "resolved_residue_count": 3
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:916",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "P9WI55",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 6,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-P9WI55-F1-model_v6",
+        "resolved_residue_count": 6
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:990",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q8GS60",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 4,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q8GS60-F1-model_v6",
+        "resolved_residue_count": 4
+      }
+    },
+    {
+      "approved_source_free_locator": {
+        "path": null,
+        "present": false
+      },
+      "blockers": [
+        "approved_source_free_locator_missing",
+        "source_free_event_axis_missing_for_pair_token"
+      ],
+      "entry_id": "m_csa:994",
+      "feature_guardrails": {
+        "ec_or_rhea_ids_excluded_from_features": true,
+        "heldout_labels_excluded_from_features": true,
+        "m_csa_heldout_active_site_roles_not_promoted_to_deployment_features": true,
+        "queue_only_no_scoring": true,
+        "source_ids_excluded_from_features": true,
+        "source_text_excluded_from_features": true,
+        "target_names_excluded_from_features": true
+      },
+      "queue_class": "priority_1_coordinate_ready_locator_candidate",
+      "required_manual_or_mechanical_next_action": "approve_source_free_locator_sidecar_from_coordinate_local_evidence",
+      "source_accession": "Q9Y3Z3",
+      "source_free_candidate_inputs": {
+        "accession_compatible_sequence_positions": true,
+        "active_site_residue_count": 12,
+        "active_site_role_graph_status": "ok",
+        "missing_positions": null,
+        "predicted_geometry_status": "ok",
+        "predicted_model_id": "AF-Q9Y3Z3-F1-model_v6",
+        "resolved_residue_count": 12
+      }
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue",
+  "scope": "Queue for materializing approved source-free active-site locator sidecars needed by the best-token follow-up pair heldout application surface. It prioritizes heldout rows by existing coordinate/readiness evidence, does not promote M-CSA active-site roles to deployment features, and does not score heldout.",
+  "source_artifacts": {
+    "active_site_role_graph_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json",
+      "sha256": "8c58a6de59dde646dc3d3c4995fcda23ac3fe7f5190d1c4d19481859e7451e2b"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "predicted_geometry_retrieval": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_geometry_in_distribution_atlas_retrieval_current702_20260601.json",
+      "sha256": "a22edd41f2bc88a38dd52e76f24094d34e567422b3ced15c626314fadc05d2c6"
+    },
+    "source_free_application_surface": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json",
+      "sha256": "2b9585850cc47f20ba104a47cd12cc3d61db46ce0001b435d40d262d8629994e"
+    },
+    "source_free_locator_dir": {
+      "exists": true,
+      "json_file_count": 3,
+      "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601"
+    }
+  },
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_ready"
+}

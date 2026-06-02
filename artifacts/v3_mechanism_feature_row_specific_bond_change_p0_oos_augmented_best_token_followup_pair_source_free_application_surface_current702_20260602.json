@@ -1,0 +1,93 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602",
+  "blockers": [
+    "source_free_current702_heldout_locator_rows_missing",
+    "source_free_current702_heldout_locator_coverage_incomplete",
+    "source_free_event_residue_role_extractor_missing",
+    "source_free_proton_transfer_event_axis_missing"
+  ],
+  "counts": {
+    "blockers": 4,
+    "critical_violation_total": 0,
+    "current702_heldout_locator_sidecars": 0,
+    "heldout_rows_in_manifest": 140,
+    "source_free_event_residue_role_feature_rows": 0,
+    "source_free_locator_guardrail_violation_rows": 0,
+    "source_free_locator_sidecars_total": 3,
+    "source_free_predicted_geometry_ready_rows": 3,
+    "source_free_residue_count_feature_rows": 0,
+    "source_free_residue_count_his3_hit_rows": 0,
+    "surface_feature_tokens_ready": 0,
+    "surface_feature_tokens_required": 2
+  },
+  "created_utc": "2026-06-02T13:09:24Z",
+  "decision": {
+    "apply_frozen_pair_threshold_now": false,
+    "heldout_read_once_performed": false,
+    "heldout_safe_pair_application_surface_ready": false,
+    "next_gate": "Create approved source-free current702 heldout active-site locator sidecars and a source-free proton-transfer event axis for the selected event/residue-role token; rerun this audit and the surface plan before applying the frozen threshold once.",
+    "source_free_event_residue_role_surface_ready": false,
+    "source_free_residue_count_surface_ready": false
+  },
+  "frozen_contract": {
+    "calibration_auc_oos_gt_primary": 0.875,
+    "calibration_oos_abstain_recall": 0.857143,
+    "decision_rule": "abstain_as_novel_when_out_of_atlas_span_residual_above_threshold",
+    "threshold": 3.21469422
+  },
+  "guardrail_violation_rows": [],
+  "guardrails": {
+    "event_residue_role_feature_imputed": false,
+    "frozen_residual_threshold_applied": false,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+    "m_csa_heldout_row_specific_mechanism_text_used": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Materialize approved source-free locator sidecars for the current702 heldout rows first; the His-count token can then be computed, but the event/residue-role token still needs a source-free event linker before any heldout read.",
+    "result": "The selected pair is still not deployable on current702 heldout: approved source-free locators do not cover the heldout rows, and the event/residue-role token still lacks a source-free proton-transfer event axis."
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface",
+  "scope": "Source-free heldout application-surface materialization audit for the calibrated best-token follow-up pair. It computes the residue-code count token only from approved source-free locator sidecars, keeps the event/residue-role token blocked until a source-free event axis exists, and does not apply the frozen residual threshold.",
+  "selected_feature_pair": {
+    "event_residue_role_token": "event_residue_role:proton_transfer|electrostatic_stabiliser",
+    "residue_count_token": "residue_code_count:his=3"
+  },
+  "source_artifacts": {
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "pair_operating_point_contract": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602.json",
+      "sha256": "38cecbf67c9d8e283aa79676d8580425c78344124d017d6d5980c0f0cebb70d0"
+    },
+    "pair_surface_plan": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.json",
+      "sha256": "609eb3dd028f40c5a52f21e0dcc15bbe1e12d61fe766f1f1dac674562965ab18"
+    },
+    "source_free_locator_dir": {
+      "exists": true,
+      "json_file_count": 3,
+      "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601"
+    },
+    "source_free_predicted_geometry_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json",
+      "sha256": "058bb6e5d2e274490491fd498b30b1f44cd8e5f01fc105f744905bd8b73e7369"
+    }
+  },
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_blocked",
+  "surface_rows": []
+}

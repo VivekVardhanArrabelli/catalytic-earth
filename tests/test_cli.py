@@ -655,6 +655,39 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "application-surface"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_application_surface"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "locator-action-queue"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue"
+                ),
+            ),
+            (
+                (
+                    "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "locator-input"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_locator_input"
+                ),
+            ),
+            (
                 "build-mechanism-feature-embedding-pilot",
                 "cmd_build_mechanism_feature_embedding_pilot",
             ),
@@ -673,6 +706,13 @@ class CliTests(unittest.TestCase):
             (
                 "audit-predicted-atlas-vs-fold-novelty-operating-grid-delta",
                 "cmd_audit_predicted_atlas_vs_fold_novelty_operating_grid_delta",
+            ),
+            (
+                "audit-predicted-structure-fold-confounded-operating-point-readiness",
+                (
+                    "cmd_audit_predicted_structure_fold_confounded_"
+                    "operating_point_readiness"
+                ),
             ),
             (
                 "audit-fold-augmented-confounded-deployment-closure",

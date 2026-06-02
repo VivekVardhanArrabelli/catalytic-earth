@@ -2739,6 +2739,70 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(audit["counts"]["critical_violation_total"], 5)
         self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
 
+    def test_predicted_structure_fold_confounded_operating_point_readiness_current_counts(
+        self,
+    ) -> None:
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_predicted_structure_fold_confounded_operating_point_readiness_"
+                "current702_20260602.json"
+            )
+        )
+
+        self.assertEqual(
+            audit["status"],
+            "predicted_structure_fold_confounded_operating_point_research_ready_deployment_blocked",
+        )
+        self.assertTrue(
+            audit["decision"]["research_confounded_operating_point_ready"]
+        )
+        self.assertFalse(audit["decision"]["deployment_closed"])
+        self.assertEqual(audit["counts"]["priority_confounded_oos_rows"], 6)
+        self.assertEqual(audit["counts"]["priority_confounded_nearest_hits"], 6)
+        self.assertEqual(audit["counts"]["heldout_confounded_oos_abstained"], 5)
+        self.assertEqual(audit["counts"]["heldout_confounded_oos_total"], 6)
+        self.assertEqual(audit["counts"]["remaining_production_blocker_rows"], 5)
+        self.assertEqual(audit["counts"]["fold_only_blocker_rows"], 4)
+        self.assertEqual(
+            audit["counts"]["fold_only_rows_abstained_at_90pct_threshold"], 0
+        )
+        self.assertEqual(audit["counts"]["unique_coordinate_files_missing"], 299)
+        self.assertEqual(
+            audit["counts"]["remaining_blocker_coordinate_reprobe_rows_cleared"], 0
+        )
+        self.assertEqual(
+            audit["counts"]["remaining_blocker_coordinate_reprobe_unavailable_rows"], 1
+        )
+        self.assertEqual(
+            audit[
+                "counts"
+            ][
+                "remaining_blocker_coordinate_reprobe_source_geometry_blocked_rows"
+            ],
+            4,
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in audit["remaining_production_blocker_rows"]],
+            ["m_csa:78", "m_csa:204", "m_csa:531", "uniprot:P78549", "uniprot:Q3LXA3"],
+        )
+        self.assertFalse(
+            audit["remaining_production_blocker_rows"][0]["coordinate_reprobe"][
+                "coordinate_available_now"
+            ]
+        )
+        self.assertEqual(
+            audit["remaining_production_blocker_rows"][1]["coordinate_reprobe"][
+                "remaining_blocker"
+            ],
+            "source active-site geometry evidence missing",
+        )
+        self.assertFalse(
+            audit["guardrails"]["experimental_pdb_metadata_used_as_channel_input"]
+        )
+        self.assertFalse(audit["decision"]["apply_or_change_threshold_now"])
+
     def test_fold_augmented_remaining_blocker_coordinate_reprobe_current_counts(
         self,
     ) -> None:
@@ -4632,6 +4696,33 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "current702_20260602.json"
             )
         )
+        pair_source_free_surface = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_"
+                "current702_20260602.json"
+            )
+        )
+        pair_locator_queue = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_"
+                "current702_20260602.json"
+            )
+        )
+        pair_locator_input = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_"
+                "current702_20260602.json"
+            )
+        )
 
         self.assertEqual(
             sidecar["status"],
@@ -4914,7 +5005,150 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(pair_surface_plan["counts"]["required_extractors"], 2)
         self.assertEqual(pair_surface_plan["counts"]["blockers"], 4)
+        self.assertEqual(
+            pair_surface_plan["counts"]["source_free_locator_priority1_candidates"],
+            126,
+        )
+        self.assertEqual(
+            pair_surface_plan["counts"][
+                "source_free_locator_input_priority1_rows_without_anchor"
+            ],
+            126,
+        )
+        self.assertEqual(
+            pair_surface_plan["counts"][
+                "source_free_locator_input_auto_create_allowed_rows"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_surface_plan["counts"][
+                "source_free_locator_schema_required_residue_locator_minimum"
+            ],
+            2,
+        )
+        self.assertEqual(
+            pair_surface_plan["counts"][
+                "source_free_application_surface_current702_heldout_locator_sidecars"
+            ],
+            0,
+        )
+        self.assertEqual(
+            [
+                row["status"]
+                for row in pair_surface_plan["required_extractors"]
+                if row["extractor"] == "source_free_active_site_residue_identity_counter"
+            ],
+            ["blocked_source_free_locator_anchor_inputs_missing"],
+        )
         self.assertFalse(pair_surface_plan["guardrails"]["heldout_rows_evaluated"])
+        self.assertEqual(
+            pair_source_free_surface["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_blocked",
+        )
+        self.assertEqual(
+            pair_source_free_surface["counts"]["heldout_rows_in_manifest"], 140
+        )
+        self.assertEqual(
+            pair_source_free_surface["counts"][
+                "current702_heldout_locator_sidecars"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_source_free_surface["counts"][
+                "source_free_residue_count_feature_rows"
+            ],
+            0,
+        )
+        self.assertFalse(
+            pair_source_free_surface["decision"][
+                "heldout_safe_pair_application_surface_ready"
+            ]
+        )
+        self.assertFalse(
+            pair_source_free_surface["guardrails"]["heldout_rows_evaluated"]
+        )
+        self.assertEqual(
+            pair_locator_queue["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_ready",
+        )
+        self.assertEqual(
+            pair_locator_queue["counts"]["heldout_rows_in_manifest"], 140
+        )
+        self.assertEqual(
+            pair_locator_queue["counts"][
+                "approved_current702_source_free_locator_sidecars"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_locator_queue["counts"][
+                "priority_1_coordinate_ready_locator_candidates"
+            ],
+            126,
+        )
+        self.assertEqual(
+            pair_locator_queue["counts"][
+                "priority_2_active_site_position_ready_predicted_geometry_missing"
+            ],
+            4,
+        )
+        self.assertEqual(
+            pair_locator_queue["counts"][
+                "priority_3_predicted_structure_fetch_failed"
+            ],
+            2,
+        )
+        self.assertEqual(
+            pair_locator_queue["counts"][
+                "blocker_accession_compatible_sequence_positions_missing"
+            ],
+            8,
+        )
+        self.assertFalse(pair_locator_queue["guardrails"]["heldout_rows_evaluated"])
+        self.assertFalse(
+            pair_locator_queue["decision"]["apply_frozen_pair_threshold_now"]
+        )
+        self.assertEqual(
+            pair_locator_input["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_blocked",
+        )
+        self.assertEqual(
+            pair_locator_input["counts"]["priority1_locator_queue_rows"], 126
+        )
+        self.assertEqual(
+            pair_locator_input["counts"][
+                "priority1_rows_with_source_free_ligand_or_cofactor_anchor"
+            ],
+            0,
+        )
+        self.assertEqual(
+            pair_locator_input["counts"][
+                "priority1_rows_without_source_free_anchor"
+            ],
+            126,
+        )
+        self.assertEqual(
+            pair_locator_input["counts"]["source_free_locator_schema_available"],
+            1,
+        )
+        self.assertEqual(
+            pair_locator_input["counts"][
+                "source_free_locator_schema_required_residue_locator_minimum"
+            ],
+            2,
+        )
+        self.assertEqual(
+            pair_locator_input["source_free_locator_schema_summary"][
+                "allowed_locator_evidence_classes"
+            ],
+            4,
+        )
+        self.assertFalse(
+            pair_locator_input["decision"]["auto_create_locator_sidecars_now"]
+        )
+        self.assertFalse(pair_locator_input["guardrails"]["heldout_rows_evaluated"])
 
     def test_high_value_glycyl_radical_no_template_guardrail_current_counts(
         self,

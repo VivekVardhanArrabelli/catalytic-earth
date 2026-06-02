@@ -1,0 +1,167 @@
+{
+  "artifact_id": "v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602",
+  "counts": {
+    "critical_counts": {
+      "confounded_research_target_not_met": 0,
+      "coordinate_bundle_not_persisted": 1,
+      "fold_contract_not_passing": 0,
+      "fold_only_escape_hatch_not_authorized": 1,
+      "in_scope_retention_not_ok": 0,
+      "production_blocker_rows_remaining": 5
+    },
+    "critical_violation_total": 7,
+    "fold_only_blocker_rows": 4,
+    "fold_only_rows_abstained_at_90pct_threshold": 0,
+    "heldout_confounded_oos_abstained": 5,
+    "heldout_confounded_oos_total": 6,
+    "priority_confounded_nearest_hits": 6,
+    "priority_confounded_oos_rows": 6,
+    "remaining_blocker_coordinate_reprobe_rows_cleared": 0,
+    "remaining_blocker_coordinate_reprobe_source_geometry_blocked_rows": 4,
+    "remaining_blocker_coordinate_reprobe_unavailable_rows": 1,
+    "remaining_production_blocker_rows": 5,
+    "unique_accessions_without_any_local_file": 293,
+    "unique_coordinate_files_missing": 299
+  },
+  "created_utc": "2026-06-02T13:41:35Z",
+  "decision": {
+    "apply_or_change_threshold_now": false,
+    "deployment_closed": false,
+    "fold_only_escape_hatch_authorized": false,
+    "next_gate": "Keep the fixed operating point unchanged. Clear the remaining production blocker rows and persistent AFDB coordinate bundle before claiming deployment closure; do not use the fold-only escape hatch.",
+    "research_confounded_operating_point_ready": true
+  },
+  "guardrails": {
+    "experimental_pdb_metadata_used_as_channel_input": false,
+    "foldseek_or_tm_rerun_performed": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "threshold_selected_or_tuned": false,
+    "threshold_values_changed": false,
+    "validation_only": true
+  },
+  "interpretation": {
+    "next_action": "Use this audit as the Lever 3 gate: clear source-backed active-site sidecars for coordinate-available blocker rows, resolve or exclude the coordinate-unavailable P23007 row by policy, and persist coordinate provenance before any deployment-valid claim.",
+    "result": "The predicted-structure-vs-atlas fold channel is research-ready for the confounded subset at the existing operating point, but deployment closure remains blocked by production blocker rows, a rejected fold-only escape hatch, and the missing persistent AFDB coordinate bundle."
+  },
+  "operating_point_summary": {
+    "confounded_subset_target_met_for_research": true,
+    "coordinate_bundle_complete": false,
+    "coordinate_result_files_parseable": true,
+    "fold_contract_passed": true,
+    "fold_only_blocker_rows": 4,
+    "fold_only_deployment_contract_authorized": false,
+    "fold_only_rows_abstained_at_90pct_threshold": 0,
+    "heldout_confounded_oos_abstained": 5,
+    "heldout_confounded_oos_total": 6,
+    "in_scope_retention_ok_at_operating_point": true,
+    "priority_confounded_nearest_hits": 6,
+    "priority_confounded_oos_rows": 6,
+    "remaining_blocker_coordinate_reprobe_rows_cleared": 0,
+    "remaining_blocker_coordinate_reprobe_source_geometry_blocked_rows": 4,
+    "remaining_blocker_coordinate_reprobe_unavailable_rows": 1,
+    "remaining_production_blocker_rows": 5,
+    "threshold_contract_heldout_confounded_oos": 6
+  },
+  "remaining_production_blocker_rows": [
+    {
+      "coordinate_reprobe": {
+        "blocker_cleared_by_reprobe": false,
+        "coordinate_available_now": false,
+        "next_action": "Find a source-backed alternate accession outside the current UniProt P23007 record, or keep this row outside the deployment-valid predicted fold channel.",
+        "remaining_blocker": "alphafold_db_coordinate_unavailable"
+      },
+      "current_blocker": "alphafold_db_coordinate_unavailable",
+      "entry_id": "m_csa:78",
+      "fold_only_evidence_available": false,
+      "next_action": "Find a source-backed alternate accession with compatible catalytic residues and an AFDB model, or explicitly authorize an experimental-coordinate-only calibration diagnostic separate from the predicted fold channel."
+    },
+    {
+      "coordinate_reprobe": {
+        "blocker_cleared_by_reprobe": false,
+        "coordinate_available_now": true,
+        "next_action": "Create a source-backed row-specific active-site residue or interaction sidecar before using the coordinate in the combined channel.",
+        "remaining_blocker": "source active-site geometry evidence missing"
+      },
+      "current_blocker": "experimental_geometry_not_ok:None",
+      "entry_id": "m_csa:204",
+      "fold_only_evidence_available": true,
+      "next_action": "Source a row-specific active-site residue/interaction sidecar for uroporphyrinogen-III synthase, or keep this row fold-only in calibration diagnostics."
+    },
+    {
+      "coordinate_reprobe": {
+        "blocker_cleared_by_reprobe": false,
+        "coordinate_available_now": true,
+        "next_action": "Source additional active-site residue or interaction evidence before using the coordinate in the combined channel.",
+        "remaining_blocker": "source active-site geometry evidence insufficient"
+      },
+      "current_blocker": "experimental_geometry_not_ok:insufficient_resolved_residues",
+      "entry_id": "m_csa:531",
+      "fold_only_evidence_available": true,
+      "next_action": "Source additional residue or interaction evidence for L-carnitine CoA-transferase, or keep this row fold-only until a source-backed sidecar exists."
+    },
+    {
+      "coordinate_reprobe": {
+        "blocker_cleared_by_reprobe": false,
+        "coordinate_available_now": true,
+        "next_action": "Create a source-backed UniProt-only active-site sidecar before using the coordinate in the combined channel.",
+        "remaining_blocker": "UniProt-only active-site sidecar missing"
+      },
+      "current_blocker": "not_m_csa_entry",
+      "entry_id": "uniprot:P78549",
+      "fold_only_evidence_available": true,
+      "next_action": "Create a source-backed active-site sidecar for P78549 if an external hard-negative geometry channel is authorized; otherwise keep fold-only evidence separate."
+    },
+    {
+      "coordinate_reprobe": {
+        "blocker_cleared_by_reprobe": false,
+        "coordinate_available_now": true,
+        "next_action": "Create a source-backed UniProt-only active-site sidecar before using the coordinate in the combined channel.",
+        "remaining_blocker": "UniProt-only active-site sidecar missing"
+      },
+      "current_blocker": "not_m_csa_entry",
+      "entry_id": "uniprot:Q3LXA3",
+      "fold_only_evidence_available": true,
+      "next_action": "Create a source-backed active-site sidecar for Q3LXA3 if an external hard-negative geometry channel is authorized; otherwise keep fold-only evidence separate."
+    }
+  ],
+  "schema_version": "northstar_next_levers.v0.predicted_structure_fold_confounded_operating_point_readiness",
+  "scope": "Read-only readiness audit for the Lever 3 predicted-structure-vs-atlas fold channel at the existing operating point. It composes the contract audit, confounded closure, fold-only no-go decision, OOS-calibrated threshold contract, and coordinate provenance audit without selecting thresholds or rerunning Foldseek/TM.",
+  "source_artifacts": {
+    "confounded_deployment_closure": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_confounded_deployment_closure_audit_current702_20260601.json",
+      "sha256": "b5d364c7b9a6d1988b163831f1e78cff2c78d3e6b6b85d53cbab6f8bab351be1"
+    },
+    "contract_audit": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json",
+      "sha256": "b421d621cd04b2c7dcce098c6c2f784ffab4a8288ea0872c9875989c73eb7a11"
+    },
+    "coordinate_provenance_audit": {
+      "exists": true,
+      "path": "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json",
+      "sha256": "d1308a0eef73866a233dd4399e2cee6870b0c0f4626e97da3395bc66fb3e84df"
+    },
+    "fold_only_deployment_decision": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_fold_only_deployment_contract_decision_current702_20260601.json",
+      "sha256": "516fc7dc5c3f575e8f287aab663679239b5e4d70b94aa0cda645002e3d4deeac"
+    },
+    "oos_calibrated_threshold_contract": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_abstention_threshold_contract_oos_calibrated_current702_20260601.json",
+      "sha256": "8bd974b131270091502c9a6b9d06354a1fac937f1b3a4f02a2035ee88c95d829"
+    },
+    "remaining_blocker_coordinate_reprobe": {
+      "exists": true,
+      "path": "artifacts/v3_fold_augmented_remaining_blocker_coordinate_reprobe_current702_20260602.json",
+      "sha256": "8ce55393852d6edac86340e9cb1e00316a8f2b216d77206a32900b9d878adaf1"
+    }
+  },
+  "status": "predicted_structure_fold_confounded_operating_point_research_ready_deployment_blocked"
+}

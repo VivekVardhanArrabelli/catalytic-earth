@@ -40,6 +40,9 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_calibration_comparison,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_heldout_safe_application_preflight,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_retained_oos_feature_target,
     build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_approved_source_evidence_sidecar,
@@ -67,6 +70,7 @@ from catalytic_earth.northstar_next_levers import (
     build_predicted_atlas_geometry_novelty_variants,
     build_predicted_atlas_vs_fold_novelty_operating_grid_delta,
     build_predicted_structure_fold_augmented_novelty_operating_grid,
+    build_predicted_structure_fold_confounded_operating_point_readiness,
     build_predicted_structure_fold_channel,
     build_predicted_structure_fold_channel_carryover_resolution,
     build_predicted_structure_fold_channel_contract_audit,
@@ -1884,6 +1888,128 @@ class NorthstarNextLeversTests(unittest.TestCase):
         )
         self.assertEqual(audit["counts"]["critical_violation_total"], 2)
         self.assertFalse(audit["guardrails"]["threshold_selected_or_tuned"])
+
+    def test_predicted_structure_fold_confounded_readiness_blocks_deployment(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            contract = root / "contract.json"
+            closure = root / "closure.json"
+            fold_only = root / "fold_only.json"
+            threshold = root / "threshold.json"
+            coordinate = root / "coordinate.json"
+            coordinate_reprobe = root / "coordinate_reprobe.json"
+            contract.write_text(
+                json.dumps(
+                    {
+                        "status": "fold_channel_contract_passed_current702",
+                        "counts": {
+                            "priority_cofactor_confounded_oos_rows": 2,
+                            "priority_nearest_hits": 2,
+                            "critical_counts": {"missing_priority_hit_ids": 0},
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            closure.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "heldout_confounded_oos_abstained": 2,
+                            "heldout_confounded_oos_total": 2,
+                            "remaining_production_blocker_rows": 1,
+                        },
+                        "decision": {
+                            "confounded_subset_target_met_for_research": True,
+                            "in_scope_retention_ok_at_operating_point": True,
+                            "deployable_without_production_caveat": False,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fold_only.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "fold_only_blocker_rows": 1,
+                            "fold_only_rows_abstained_at_90pct_threshold": 0,
+                        },
+                        "decision": {
+                            "fold_only_deployment_contract_authorized": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            threshold.write_text(
+                json.dumps({"counts": {"heldout_confounded_oos": 2}}),
+                encoding="utf-8",
+            )
+            coordinate.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "result_files_parseable": True,
+                            "unique_coordinate_files_missing": 3,
+                            "unique_accessions_without_any_local_file": 2,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            coordinate_reprobe.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "rows_cleared_by_reprobe": 0,
+                            "coordinate_unavailable_rows": 1,
+                            "coordinate_available_but_source_geometry_blocked_rows": 1,
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:204",
+                                "coordinate_available_now": True,
+                                "blocker_cleared_by_reprobe": False,
+                                "remaining_blocker": (
+                                    "source active-site geometry evidence missing"
+                                ),
+                                "next_action": "source sidecar",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_predicted_structure_fold_confounded_operating_point_readiness(
+                contract_audit_path=contract,
+                confounded_deployment_closure_path=closure,
+                fold_only_deployment_decision_path=fold_only,
+                oos_calibrated_threshold_contract_path=threshold,
+                coordinate_provenance_audit_path=coordinate,
+                remaining_blocker_coordinate_reprobe_path=coordinate_reprobe,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "predicted_structure_fold_confounded_operating_point_research_ready_deployment_blocked",
+        )
+        self.assertTrue(
+            audit["decision"]["research_confounded_operating_point_ready"]
+        )
+        self.assertFalse(audit["decision"]["deployment_closed"])
+        self.assertFalse(audit["decision"]["apply_or_change_threshold_now"])
+        self.assertEqual(audit["counts"]["remaining_production_blocker_rows"], 1)
+        self.assertEqual(audit["counts"]["unique_coordinate_files_missing"], 3)
+        self.assertEqual(
+            audit["counts"]["remaining_blocker_coordinate_reprobe_rows_cleared"], 0
+        )
+        self.assertFalse(
+            audit["guardrails"]["experimental_pdb_metadata_used_as_channel_input"]
+        )
 
     def test_fold_augmented_family_panel_readout_applies_research_threshold(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -6601,6 +6727,402 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertIn(
             "source_free_event_residue_role_surface_missing",
             preflight["blockers"],
+        )
+
+    def test_followup_pair_source_free_application_surface_materializes_residue_count_only(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pair_plan_path = root / "pair_plan.json"
+            contract_path = root / "contract.json"
+            manifest_path = root / "manifest.json"
+            locator_dir = root / "locators"
+            source_free_manifest_path = root / "source_free_manifest.json"
+            locator_dir.mkdir()
+            pair_plan_path.write_text(
+                json.dumps(
+                    {
+                        "selected_feature_pair": {
+                            "event_residue_role_token": (
+                                "event_residue_role:proton_transfer|"
+                                "electrostatic_stabiliser"
+                            ),
+                            "residue_count_token": "residue_code_count:his=3",
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "status": (
+                            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_ready_calibration_only"
+                        ),
+                        "calibration_contract": {
+                            "residual_distance": {
+                                "decision_rule": (
+                                    "abstain_as_novel_when_out_of_atlas_span_residual_above_threshold"
+                                ),
+                                "threshold": 3.21469422,
+                                "oos_abstain_recall": 0.857143,
+                                "calibration_auc_oos_gt_primary": 0.875,
+                            }
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "split_assignment": "heldout",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source_free_manifest_path.write_text(
+                json.dumps({"counts": {"source_free_geometry_ready_rows": 1}}),
+                encoding="utf-8",
+            )
+            (locator_dir / "m_csa_2.json").write_text(
+                json.dumps(
+                    {
+                        "entry_id": "m_csa:2",
+                        "source_free_active_site_locator_status": "ready",
+                        "ready_for_predicted_geometry_scoring": True,
+                        "forbidden_feature_audit": {
+                            "label_type": False,
+                            "mechanism_text": False,
+                            "source_prose": False,
+                        },
+                        "split_protection": {
+                            "review_only": True,
+                            "allowed_for_training": False,
+                            "allowed_for_threshold_selection": False,
+                            "ready_for_label_import": False,
+                        },
+                        "residue_locators": [
+                            {
+                                "residue_code": "HIS",
+                                "sequence_position": 10,
+                                "coordinate_independent_provenance": {
+                                    "source_text_used": False,
+                                    "heldout_rows_used": False,
+                                    "sequence_position_uniprot_validated": True,
+                                },
+                            },
+                            {
+                                "residue_code": "HIS",
+                                "sequence_position": 20,
+                                "coordinate_independent_provenance": {
+                                    "source_text_used": False,
+                                    "heldout_rows_used": False,
+                                    "sequence_position_uniprot_validated": True,
+                                },
+                            },
+                            {
+                                "residue_code": "HIS",
+                                "sequence_position": 30,
+                                "coordinate_independent_provenance": {
+                                    "source_text_used": False,
+                                    "heldout_rows_used": False,
+                                    "sequence_position_uniprot_validated": True,
+                                },
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            surface = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface(
+                pair_surface_plan_path=pair_plan_path,
+                pair_operating_point_contract_path=contract_path,
+                label_manifest_path=manifest_path,
+                source_free_locator_dir=locator_dir,
+                source_free_predicted_geometry_manifest_path=source_free_manifest_path,
+            )
+
+        self.assertEqual(
+            surface["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_blocked",
+        )
+        self.assertTrue(
+            surface["decision"]["source_free_residue_count_surface_ready"]
+        )
+        self.assertFalse(
+            surface["decision"]["source_free_event_residue_role_surface_ready"]
+        )
+        self.assertFalse(
+            surface["decision"]["heldout_safe_pair_application_surface_ready"]
+        )
+        self.assertEqual(
+            surface["counts"]["source_free_residue_count_feature_rows"], 1
+        )
+        self.assertEqual(
+            surface["counts"]["source_free_residue_count_his3_hit_rows"], 1
+        )
+        self.assertIsNone(
+            surface["surface_rows"][0]["source_free_pair_features"][
+                "event_residue_role:proton_transfer|electrostatic_stabiliser"
+            ]
+        )
+        self.assertFalse(surface["guardrails"]["heldout_rows_evaluated"])
+        self.assertIn(
+            "source_free_event_residue_role_extractor_missing",
+            surface["blockers"],
+        )
+
+    def test_followup_pair_source_free_locator_action_queue_prioritizes_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            surface_path = root / "surface.json"
+            manifest_path = root / "manifest.json"
+            active_path = root / "active.json"
+            predicted_path = root / "predicted.json"
+            locator_dir = root / "locators"
+            locator_dir.mkdir()
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "heldout_safe_pair_application_surface_ready": False
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": f"m_csa:{idx}",
+                                "accession": f"P{idx:05d}",
+                                "split_assignment": "heldout",
+                            }
+                            for idx in range(1, 6)
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            active_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "status": "ok",
+                                "accession_compatible_sequence_positions": True,
+                                "active_site_residue_count": 3,
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "status": "ok",
+                                "accession_compatible_sequence_positions": True,
+                                "active_site_residue_count": 4,
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "status": "ok",
+                                "accession_compatible_sequence_positions": True,
+                                "active_site_residue_count": 5,
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "status": "ok",
+                                "accession_compatible_sequence_positions": True,
+                                "active_site_residue_count": 2,
+                            },
+                            {
+                                "entry_id": "m_csa:5",
+                                "status": (
+                                    "missing_accession_compatible_sequence_positions"
+                                ),
+                                "accession_compatible_sequence_positions": False,
+                                "active_site_residue_count": 2,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            predicted_path.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "status": "ok",
+                                "pdb_id": "AF-P00002-F1-model_v6",
+                                "resolved_residue_count": 4,
+                                "missing_positions": 0,
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "status": "predicted_structure_fetch_failed",
+                                "resolved_residue_count": 0,
+                                "missing_positions": 2,
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (locator_dir / "m_csa_1.json").write_text(
+                json.dumps({"entry_id": "m_csa:1"}), encoding="utf-8"
+            )
+
+            queue = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue(
+                source_free_application_surface_path=surface_path,
+                label_manifest_path=manifest_path,
+                active_site_role_graph_sidecar_path=active_path,
+                predicted_geometry_retrieval_path=predicted_path,
+                source_free_locator_dir=locator_dir,
+            )
+
+        self.assertEqual(
+            queue["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_ready",
+        )
+        self.assertEqual(
+            queue["counts"]["approved_current702_source_free_locator_sidecars"], 1
+        )
+        self.assertEqual(
+            queue["counts"]["priority_1_coordinate_ready_locator_candidates"], 1
+        )
+        self.assertEqual(
+            queue["counts"][
+                "priority_2_active_site_position_ready_predicted_geometry_missing"
+            ],
+            1,
+        )
+        self.assertEqual(
+            queue["counts"]["priority_3_predicted_structure_fetch_failed"], 1
+        )
+        self.assertEqual(
+            queue["counts"][
+                "blocker_accession_compatible_sequence_positions_missing"
+            ],
+            1,
+        )
+        self.assertFalse(queue["guardrails"]["heldout_rows_evaluated"])
+        self.assertFalse(queue["decision"]["apply_frozen_pair_threshold_now"])
+
+    def test_followup_pair_source_free_locator_input_audit_blocks_without_anchors(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue_path = root / "queue.json"
+            predicted_path = root / "predicted.json"
+            schema_path = root / "schema.json"
+            queue_path.write_text(
+                json.dumps(
+                    {
+                        "queue_rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "queue_class": (
+                                    "priority_1_coordinate_ready_locator_candidate"
+                                ),
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "queue_class": (
+                                    "priority_1_coordinate_ready_locator_candidate"
+                                ),
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            predicted_path.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "status": "ok",
+                                "pdb_id": "AF-P00001-F1-model_v6",
+                                "ligand_context": {"ligand_codes": ["ZN"]},
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "status": "ok",
+                                "pdb_id": "AF-P00002-F1-model_v6",
+                                "ligand_context": {"ligand_codes": []},
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            schema_path.write_text(
+                json.dumps(
+                    {
+                        "status": "source_free_active_site_locator_schema_ready_review_only",
+                        "counts": {
+                            "allowed_locator_evidence_classes": 4,
+                            "forbidden_predictive_fields": 10,
+                            "required_residue_locator_minimum": 2,
+                        },
+                        "residue_locator_required_fields": [
+                            "residue_code",
+                            "sequence_position",
+                        ],
+                        "sidecar_required_top_level_fields": [
+                            "entry_id",
+                            "residue_locators",
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit(
+                locator_action_queue_path=queue_path,
+                predicted_geometry_retrieval_path=predicted_path,
+                source_free_locator_schema_path=schema_path,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_blocked",
+        )
+        self.assertEqual(audit["counts"]["priority1_locator_queue_rows"], 2)
+        self.assertEqual(
+            audit["counts"][
+                "priority1_rows_with_source_free_ligand_or_cofactor_anchor"
+            ],
+            1,
+        )
+        self.assertEqual(
+            audit["counts"]["priority1_rows_without_source_free_anchor"], 1
+        )
+        self.assertEqual(audit["counts"]["source_free_locator_schema_available"], 1)
+        self.assertEqual(
+            audit["counts"][
+                "source_free_locator_schema_required_residue_locator_minimum"
+            ],
+            2,
+        )
+        self.assertFalse(audit["decision"]["auto_create_locator_sidecars_now"])
+        self.assertFalse(audit["guardrails"]["heldout_rows_evaluated"])
+        self.assertIn(
+            "priority1_rows_lack_source_free_contact_anchor",
+            audit["blockers"],
         )
 
     def test_best_token_followup_token_ablation_scores_remaining_oos(
