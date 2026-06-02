@@ -94,8 +94,8 @@ artifacts first.
   45/47 in-scope rows, abstains on 44/79 OOS rows, and abstains on 5/6
   cofactor-confounded OOS rows. This is a research contract, not a production
   threshold.
-- A compact confounded deployment-closure audit now ties that contract to the
-  predicted-structure-vs-atlas fold channel. It confirms 6/6 priority
+- A CLI-generated confounded deployment-closure audit now ties that contract to
+  the predicted-structure-vs-atlas fold channel. It confirms 6/6 priority
   cofactor-confounded rows have nearest-atlas Foldseek/TM hits and the fixed
   operating point abstains on 5/6, but production closure remains blocked by
   five train/cal OOS surface gaps.

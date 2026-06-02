@@ -1,8 +1,8 @@
 # Current Run Artifact Integrity Audit - current702
 
-Run: 2026-06-02T07:27:52Z
+Run: 2026-06-02T07:31:42Z
 
-Current automation-run integrity audit for P0 train/cal row-specific feature materialization, its calibration review gate, existing northstar carryovers, and docs-reference maintenance outputs.
+Current automation-run integrity audit for P0 train/cal row-specific feature materialization, strict feature guardrails, CLI-generated Lever 3 confounded fold-channel closure, existing northstar carryovers, and docs-reference maintenance outputs.
 
 ## Status
 
@@ -53,7 +53,7 @@ Current automation-run integrity audit for P0 train/cal row-specific feature mat
 - compileall: passed
 - current_docs_artifact_reference_check: passed; 552 references checked, 0 missing
 - disk_check: passed; 26Gi available on /System/Volumes/Data
-- focused_new_tests: passed; 35 P0 row-specific train/cal tests and current-count regressions
+- focused_new_tests: passed; closure builder, CLI registration, and artifact regression
 - full_pytest: passed; 1167 tests, 50 subtests, 1 existing sklearn/scipy deprecation warning
 - git_diff_check: passed
 - repo_json_parse_sweep: passed; 3142 JSON and 26 JSONL artifact files parsed with 0 errors
@@ -62,4 +62,4 @@ Current automation-run integrity audit for P0 train/cal row-specific feature mat
 
 ## Next Action
 
-- Review m_csa:186, m_csa:147, m_csa:6, and m_csa:133 in the calibration packet; record approve/rewrite/reject decisions before rerunning no-template methods.
+- Review m_csa:186, m_csa:147, m_csa:6, and m_csa:133 in the calibration packet; record approve/rewrite/reject decisions before rerunning no-template methods. For Lever 3 production closure, clear m_csa:78, m_csa:204, m_csa:531, uniprot:P78549, and uniprot:Q3LXA3, or define a fold-only production contract.

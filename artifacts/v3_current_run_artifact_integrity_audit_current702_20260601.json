@@ -40,10 +40,10 @@
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_fold_augmented_confounded_deployment_closure_audit_current702_20260601.json",
-      "json_sha256": "0d959b535a34e3a7a30228854f0c9f8ae54ddb347952e38ab27b46cb19d3a3b4",
+      "json_sha256": "b5d364c7b9a6d1988b163831f1e78cff2c78d3e6b6b85d53cbab6f8bab351be1",
       "work_report_exists": true,
       "work_report_path": "work/fold_augmented_confounded_deployment_closure_audit_current702_20260601.md",
-      "work_report_sha256": "0d03a7e6a13f7b7bf8f83f4fa17c78bbae4265e5fd7d7e3eeafae1232b1972d2"
+      "work_report_sha256": "367627bb01e79ed94475aa6d55a74604211ad810a413d8cff76c7f0b9a676240"
     },
     {
       "artifact_status": "predicted_atlas_vs_fold_novelty_delta_ready_review_only",
@@ -326,10 +326,10 @@
       "json_exists": true,
       "json_parse_ok": true,
       "json_path": "artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json",
-      "json_sha256": "675e9aeaf28743d676b92fd2d17a0ba8867ce193556849e856f90d0850b04cc6",
+      "json_sha256": "bc94b982518f19fd60565dfa148a1581db81a78f5ca1e585170d6138650b8f82",
       "work_report_exists": true,
       "work_report_path": "work/current_docs_artifact_reference_check_current702_20260601.md",
-      "work_report_sha256": "90acbdd48902ea0fd4c255898ded50f6dded8bc996adbdb226f43da1c5395aad"
+      "work_report_sha256": "c95fdc75770919ff32057cabb4c2787a00ed72f63332d90467adea4f4fa6946f"
     }
   ],
   "counts": {
@@ -376,7 +376,7 @@
     "work_reports_checked": 30,
     "work_reports_present": 30
   },
-  "created_utc": "2026-06-02T07:27:52Z",
+  "created_utc": "2026-06-02T07:31:42Z",
   "critical_counts": {
     "json_missing": 0,
     "json_parse_failed": 0,
@@ -399,17 +399,17 @@
     "predicted_geometry_scores_created": false,
     "production_thresholds_changed": false
   },
-  "next_action": "Review m_csa:186, m_csa:147, m_csa:6, and m_csa:133 in the calibration packet; record approve/rewrite/reject decisions before rerunning no-template methods.",
+  "next_action": "Review m_csa:186, m_csa:147, m_csa:6, and m_csa:133 in the calibration packet; record approve/rewrite/reject decisions before rerunning no-template methods. For Lever 3 production closure, clear m_csa:78, m_csa:204, m_csa:531, uniprot:P78549, and uniprot:Q3LXA3, or define a fold-only production contract.",
   "repo_parse_errors": [],
   "schema_version": "current_run_artifact_integrity.v2",
-  "scope": "Current automation-run integrity audit for P0 train/cal row-specific feature materialization, its calibration review gate, existing northstar carryovers, and docs-reference maintenance outputs.",
+  "scope": "Current automation-run integrity audit for P0 train/cal row-specific feature materialization, strict feature guardrails, CLI-generated Lever 3 confounded fold-channel closure, existing northstar carryovers, and docs-reference maintenance outputs.",
   "status": "current_run_artifact_integrity_audit_passed",
   "validation_summary": {
     "catalytic_earth_cli_validate": "passed; 12 source records, 8 fingerprints, 15 ontology families, 702 labels",
     "compileall": "passed",
     "current_docs_artifact_reference_check": "passed; 552 references checked, 0 missing",
     "disk_check": "passed; 26Gi available on /System/Volumes/Data",
-    "focused_new_tests": "passed; 35 P0 row-specific train/cal tests and current-count regressions",
+    "focused_new_tests": "passed; closure builder, CLI registration, and artifact regression",
     "full_pytest": "passed; 1167 tests, 50 subtests, 1 existing sklearn/scipy deprecation warning",
     "git_diff_check": "passed",
     "repo_json_parse_sweep": "passed; 3142 JSON and 26 JSONL artifact files parsed with 0 errors",
