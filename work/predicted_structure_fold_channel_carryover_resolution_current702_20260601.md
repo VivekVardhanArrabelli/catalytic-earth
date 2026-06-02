@@ -1,6 +1,6 @@
 # Predicted-Structure Fold Channel Carryover Resolution - current702
 
-Run: 2026-06-02T02:01:53Z
+Run: 2026-06-02T16:13:09Z
 
 Validation-only resolution of the carryover request to build or stage the AlphaFoldDB-predicted Foldseek/TM channel from frozen current702 inputs.
 
@@ -10,7 +10,7 @@ Validation-only resolution of the carryover request to build or stage the AlphaF
 - Requested outputs present: True
 - Scored scope complete: True
 - Foldseek rerun required: False
-- Remaining blockers: persistent_afdb_v6_coordinate_bundle_missing
+- Remaining blockers: none
 
 ## Counts
 
@@ -20,7 +20,7 @@ Validation-only resolution of the carryover request to build or stage the AlphaF
 - All-heldout nearest hits: 126
 - Priority nearest hits: 6
 - Contract critical violations: 0
-- Missing persistent coordinate files: 299
+- Missing persistent coordinate files: 0
 
 ## Input Status
 
@@ -28,8 +28,8 @@ Validation-only resolution of the carryover request to build or stage the AlphaF
 - fold_level_signal_status: computed_from_existing_selected_pdb_foldseek_proxy
 - predicted_structure_fold_channel_status: computed_all_heldout_foldseek_scores
 - contract_audit_status: fold_channel_contract_passed_current702
-- coordinate_provenance_status: coordinate_bundle_not_persisted_results_parseable
-- reproduction_manifest_status: fold_channel_reproduction_manifest_ready_missing_coordinates
+- coordinate_provenance_status: coordinate_provenance_complete
+- reproduction_manifest_status: fold_channel_byte_reproduction_ready
 
 ## Interpretation
 

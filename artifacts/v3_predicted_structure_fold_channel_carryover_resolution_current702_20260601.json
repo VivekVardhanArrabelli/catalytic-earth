@@ -10,16 +10,16 @@
     "atlas_in_distribution_rows_ok": 168,
     "confounded_entry_ids_from_fold_signal": 6,
     "contract_critical_violation_total": 0,
-    "deduplicated_afdb_accessions_missing": 293,
+    "deduplicated_afdb_accessions_missing": 0,
     "foldseek_result_files_parseable": true,
     "heldout_rows_ok": 126,
     "predicted_atlas_rows": 299,
     "priority_cofactor_confounded_oos_rows": 6,
     "priority_nearest_hits": 6,
     "unique_coordinate_files_expected": 299,
-    "unique_coordinate_files_missing": 299
+    "unique_coordinate_files_missing": 0
   },
-  "created_utc": "2026-06-02T02:01:53Z",
+  "created_utc": "2026-06-02T16:13:09Z",
   "guardrails": {
     "coordinate_downloads_performed": false,
     "foldseek_tm_recomputed": false,
@@ -31,24 +31,22 @@
   },
   "input_artifact_status": {
     "contract_audit_status": "fold_channel_contract_passed_current702",
-    "coordinate_provenance_status": "coordinate_bundle_not_persisted_results_parseable",
+    "coordinate_provenance_status": "coordinate_provenance_complete",
     "fold_level_signal_status": "computed_from_existing_selected_pdb_foldseek_proxy",
     "predicted_geometry_atlas_status": "complete",
     "predicted_structure_fold_channel_status": "computed_all_heldout_foldseek_scores",
-    "reproduction_manifest_status": "fold_channel_reproduction_manifest_ready_missing_coordinates"
+    "reproduction_manifest_status": "fold_channel_byte_reproduction_ready"
   },
   "interpretation": {
     "next_action": "Treat the fold channel as downstream-ready for review-only diagnostics; persistent AFDB-v6 CIF provenance is only needed for byte-level reproduction.",
     "result": "The requested fold-channel build/stage task is already satisfied by the existing scored artifact and its passing strict contract audit."
   },
   "requested_carryover_resolution": {
-    "byte_level_reproduction_ready": false,
+    "byte_level_reproduction_ready": true,
     "coordinate_provenance_blocker_is_score_blocker": false,
     "foldseek_rerun_decision": "no_rerun_existing_scored_channel_contract_passes",
     "foldseek_rerun_required": false,
-    "remaining_blocker_classes": [
-      "persistent_afdb_v6_coordinate_bundle_missing"
-    ],
+    "remaining_blocker_classes": [],
     "requested_outputs_present": true,
     "requested_primary_output_artifact": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
     "requested_primary_output_report": "work/predicted_structure_fold_channel_current702_20260601.md",
@@ -77,12 +75,12 @@
     "contract_audit": {
       "exists": true,
       "path": "artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json",
-      "sha256": "b421d621cd04b2c7dcce098c6c2f784ffab4a8288ea0872c9875989c73eb7a11"
+      "sha256": "a4bf14d6f3934aaa2d1e3abb08b45f236e692d88984e2f2d8e96ed0732979364"
     },
     "coordinate_provenance_audit": {
       "exists": true,
       "path": "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json",
-      "sha256": "d1308a0eef73866a233dd4399e2cee6870b0c0f4626e97da3395bc66fb3e84df"
+      "sha256": "a9c6f05a806fa6c446e2169331246542796c891c17eff655fb0ddd59628ff3d2"
     },
     "fold_level_signal": {
       "exists": true,
@@ -97,17 +95,17 @@
     "predicted_structure_fold_channel": {
       "exists": true,
       "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
-      "sha256": "565266bfd8379c75104e1d7a74457ef40846563ea71988c4946d16c92f733582"
+      "sha256": "27e21068789004ca280e8583dee9ebdbae8056f7ff3e63677adaa5688765c954"
     },
     "predicted_structure_fold_channel_report": {
       "exists": true,
       "path": "work/predicted_structure_fold_channel_current702_20260601.md",
-      "sha256": "db8a1bbf8af8057bf5f350dd10bbc3931ff5cc361009b4ebfee4172714c1da11"
+      "sha256": "30252c8ba3dbee6ad3c05bac1ccb3f1f38fe2547fcae976e6340a67734978a46"
     },
     "reproduction_manifest": {
       "exists": true,
       "path": "artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json",
-      "sha256": "80937bc9a44dac65ff52b2f3545f69b58756eedcc02b245ec0cd15f0e42a5ba2"
+      "sha256": "f90fd5fc2c85cebf74f978581c6cf59858fd12ed449ce22e61be973dd19ffadd"
     }
   },
   "status": "fold_channel_carryover_resolved_no_rerun_needed"

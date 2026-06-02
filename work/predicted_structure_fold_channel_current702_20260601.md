@@ -1,6 +1,6 @@
 # Predicted-Structure Fold Channel - current702
 
-Run: 2026-06-01T03:20:54Z
+Run: 2026-06-02T16:08:22Z
 
 Bounded manifest for a deployment-regime predicted-structure Foldseek/TM channel: AlphaFoldDB-predicted heldout rows scored against the current702 in-distribution predicted-structure atlas.
 
@@ -8,8 +8,8 @@ Bounded manifest for a deployment-regime predicted-structure Foldseek/TM channel
 
 - computed_all_heldout_foldseek_scores
 - Foldseek available: True
-- Priority scope missing coordinate files: 173
-- All-heldout scope missing coordinate files: 293
+- Priority scope missing coordinate files: 0
+- All-heldout scope missing coordinate files: 0
 - Priority Foldseek TSV parse status: parsed
 - All-heldout Foldseek TSV parse status: parsed
 
@@ -30,9 +30,6 @@ Bounded manifest for a deployment-regime predicted-structure Foldseek/TM channel
 
 ## Blockers
 
-- The scored Foldseek TSVs below were parsed successfully; these blockers track missing persistent coordinate-file provenance for reproduction.
-- predicted_coordinate_files_missing_for_priority_scope
-- predicted_coordinate_files_missing_for_all_heldout_scope
 
 ## All-Heldout Fold Signal
 

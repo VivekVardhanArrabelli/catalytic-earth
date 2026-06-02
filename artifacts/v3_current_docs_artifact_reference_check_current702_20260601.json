@@ -3,9 +3,9 @@
   "counts": {
     "ignored_references": 9,
     "missing_references": 0,
-    "references_checked": 552
+    "references_checked": 557
   },
-  "created_utc": "2026-06-02T13:46:05Z",
+  "created_utc": "2026-06-02T16:16:44Z",
   "docs_checked": [
     "docs/artifact_index.md",
     "docs/project_state.md",

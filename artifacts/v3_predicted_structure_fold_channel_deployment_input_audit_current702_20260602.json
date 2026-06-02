@@ -17,11 +17,11 @@
     "row_score_rows": 126,
     "row_scores_with_nearest_atlas_tm_score": 126
   },
-  "created_utc": "2026-06-02T15:24:31Z",
+  "created_utc": "2026-06-02T16:12:19Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "deployment_input_contract_passed": true,
-    "next_gate": "Use this audit with the confounded readiness artifact: the fold channel input surface is predicted-only, while deployment closure still requires the five production blockers and persistent coordinate bundle to be resolved."
+    "next_gate": "Use this audit with the confounded readiness artifact: the fold channel input surface is predicted-only, while deployment closure still depends on the composed production-blocker and coordinate-provenance gates."
   },
   "deployment_validity": {
     "coordinate_source": "AlphaFoldDB v6 CIF requests",
@@ -42,7 +42,7 @@
     "validation_only": true
   },
   "interpretation": {
-    "next_action": "Keep using the fixed operating point; clear production blockers and coordinate persistence before deployment-closed claims.",
+    "next_action": "Keep using the fixed operating point; clear production blockers and verify the composed coordinate-provenance gate before deployment-closed claims.",
     "result": "The current fold channel coordinate requests and scored row signals are predicted-structure-vs-atlas inputs; experimental PDB metadata does not appear in the checked channel fields."
   },
   "schema_version": "northstar_next_levers.v0.predicted_structure_fold_channel_deployment_input_audit",
@@ -51,7 +51,7 @@
     "predicted_structure_fold_channel": {
       "exists": true,
       "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
-      "sha256": "565266bfd8379c75104e1d7a74457ef40846563ea71988c4946d16c92f733582"
+      "sha256": "27e21068789004ca280e8583dee9ebdbae8056f7ff3e63677adaa5688765c954"
     }
   },
   "status": "predicted_structure_fold_channel_deployment_inputs_predicted_only",

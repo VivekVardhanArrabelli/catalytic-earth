@@ -803,6 +803,24 @@ Artifacts:
 `artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json`,
 `work/predicted_structure_fold_channel_carryover_resolution_current702_20260601.md`.
 
+2026-06-02 persistence follow-up: materialized the exact AFDB-v6 coordinate
+bundle recorded by the predicted-structure fold channel: 299 expected CIF paths
+across 293 deduplicated accessions. No Foldseek/TM score was recomputed, no
+threshold changed, and no label/import/registry surface changed. The fold-channel
+manifest, contract audit, deployment-input audit, coordinate-provenance audit,
+reproduction manifest, carryover-resolution audit, and confounded readiness
+artifact were regenerated against the persisted bytes. The coordinate-provenance
+gate is now complete, byte-level reproduction is ready, and Lever 3 deployment
+closure remains blocked only by the five production blocker rows plus the
+rejected fold-only escape hatch.
+
+Artifacts:
+`artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+`artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json`,
+`artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`,
+`artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json`,
+`artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`.
+
 ## 2026-06-01: Train/Cal OOS Negatives Add A Partial OOS Calibration Surface For The Fold-Augmented Gate
 
 Decision: score the hash-selected in-distribution OOS calibration negatives

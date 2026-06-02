@@ -2791,7 +2791,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(gate_statuses["production_blocker_rows"], "blocked")
         self.assertEqual(
-            gate_statuses["persistent_afdb_coordinate_bundle"], "blocked"
+            gate_statuses["persistent_afdb_coordinate_bundle"], "passed"
         )
         self.assertEqual(gate_statuses["fold_only_escape_hatch"], "rejected")
         self.assertEqual(audit["counts"]["heldout_confounded_oos_abstained"], 5)
@@ -2801,7 +2801,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             audit["counts"]["fold_only_rows_abstained_at_90pct_threshold"], 0
         )
-        self.assertEqual(audit["counts"]["unique_coordinate_files_missing"], 299)
+        self.assertEqual(audit["counts"]["unique_coordinate_files_missing"], 0)
         self.assertEqual(
             audit["counts"]["remaining_blocker_coordinate_reprobe_rows_cleared"], 0
         )
@@ -2981,16 +2981,16 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
 
         self.assertEqual(
             audit["status"],
-            "coordinate_bundle_not_persisted_results_parseable",
+            "coordinate_provenance_complete",
         )
         self.assertEqual(audit["counts"]["total_coordinate_requests"], 299)
         self.assertEqual(audit["counts"]["unique_coordinate_files_expected"], 299)
-        self.assertEqual(audit["counts"]["unique_coordinate_files_observed"], 0)
-        self.assertEqual(audit["counts"]["unique_coordinate_files_missing"], 299)
+        self.assertEqual(audit["counts"]["unique_coordinate_files_observed"], 299)
+        self.assertEqual(audit["counts"]["unique_coordinate_files_missing"], 0)
         self.assertEqual(audit["counts"]["unique_accessions_expected"], 293)
         self.assertEqual(
             audit["counts"]["unique_accessions_without_any_local_file"],
-            293,
+            0,
         )
         self.assertEqual(audit["counts"]["duplicate_accession_requests"], 6)
         self.assertTrue(audit["counts"]["result_files_parseable"])
@@ -3007,7 +3007,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
 
         self.assertEqual(
             manifest["status"],
-            "fold_channel_reproduction_manifest_ready_missing_coordinates",
+            "fold_channel_byte_reproduction_ready",
         )
         self.assertEqual(manifest["counts"]["heldout_rows_ok"], 126)
         self.assertEqual(
@@ -3016,22 +3016,19 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(manifest["counts"]["total_coordinate_requests"], 299)
         self.assertEqual(manifest["counts"]["unique_coordinate_files_expected"], 299)
-        self.assertEqual(manifest["counts"]["unique_coordinate_files_observed"], 0)
-        self.assertEqual(manifest["counts"]["unique_coordinate_files_missing"], 299)
+        self.assertEqual(manifest["counts"]["unique_coordinate_files_observed"], 299)
+        self.assertEqual(manifest["counts"]["unique_coordinate_files_missing"], 0)
         self.assertEqual(manifest["counts"]["unique_accessions_expected"], 293)
         self.assertEqual(
             manifest["counts"]["unique_accessions_without_any_local_file"],
-            293,
+            0,
         )
         self.assertEqual(manifest["counts"]["duplicate_accession_requests"], 6)
         self.assertEqual(manifest["counts"]["foldseek_result_files"], 2)
         self.assertTrue(manifest["counts"]["result_files_parseable"])
         self.assertTrue(manifest["counts"]["foldseek_runtime_available"])
-        self.assertFalse(manifest["counts"]["byte_reproduction_ready"])
-        self.assertEqual(
-            manifest["blocker_classes"],
-            ["persistent_afdb_v6_coordinate_bundle_missing"],
-        )
+        self.assertTrue(manifest["counts"]["byte_reproduction_ready"])
+        self.assertEqual(manifest["blocker_classes"], [])
         self.assertEqual(
             manifest["scored_channel_contract"]["critical_violation_total"],
             0,
@@ -3062,11 +3059,9 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(audit["counts"]["priority_cofactor_confounded_oos_rows"], 6)
         self.assertEqual(audit["counts"]["priority_nearest_hits"], 6)
         self.assertEqual(audit["counts"]["contract_critical_violation_total"], 0)
-        self.assertEqual(audit["counts"]["unique_coordinate_files_missing"], 299)
-        self.assertIn(
-            "persistent_afdb_v6_coordinate_bundle_missing",
-            resolution["remaining_blocker_classes"],
-        )
+        self.assertEqual(audit["counts"]["unique_coordinate_files_missing"], 0)
+        self.assertTrue(resolution["byte_level_reproduction_ready"])
+        self.assertEqual(resolution["remaining_blocker_classes"], [])
 
     def test_predicted_atlas_geometry_novelty_variants_current_counts(self) -> None:
         audit = _load_json(

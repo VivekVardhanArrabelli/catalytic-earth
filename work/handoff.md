@@ -56,6 +56,123 @@ Automation run: `catalytic-earth-lever-3-2-forward-push`
 
 #### Wall-clock ledger
 
+- STARTED_AT: `2026-06-02T16:02:55Z`
+- STARTED_LOCAL: `2026-06-02T11:02:55-0500 CDT`
+- ENDED_AT: `2026-06-02T16:19:42Z`
+- ENDED_LOCAL: `2026-06-02T11:19:42-0500 CDT`
+- ELAPSED_MINUTES: `16.8`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "87510", "started_at": "2026-06-02T16:02:55Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue from the Lever 2 source-free coordinate-anchor priority-1 manual
+review/approval queue and, if a guardrail-safe approval cannot be made
+mechanically, pivot within Levers 2/3/4 to the next deployability blocker that
+can be advanced without editing labels, imports, thresholds, or heldout
+outcomes.
+
+#### What changed
+
+- Lever 3: materialized the exact AFDB-v6 CIF coordinate bundle recorded by the
+  predicted-structure fold channel: 299 expected coordinate paths across 293
+  deduplicated accessions under
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/`.
+  No Foldseek/TM scores were recomputed and no threshold, label, registry,
+  ontology, or import surface changed.
+- Regenerated the predicted-structure fold-channel manifest and dependent
+  audits against the persisted coordinate bytes. The fold-channel manifest now
+  reports 0 priority/all-heldout missing coordinate files and no computed
+  blockers.
+- The contract, deployment-input, coordinate-provenance, reproduction,
+  carryover-resolution, and confounded-readiness artifacts now agree that the
+  coordinate bundle is complete. Coordinate provenance reports 299/299 observed
+  coordinate files, reproduction is byte-ready, and the persistent AFDB bundle
+  gate passes in readiness.
+- Lever 3 deployment closure remains blocked: the fixed threshold `0.44155`
+  still abstains 5/6 confounded OOS rows with in-scope retention intact, but
+  the remaining blockers are five production rows and the rejected fold-only
+  escape hatch. The five rows are `m_csa:78`, `m_csa:204`, `m_csa:531`,
+  `uniprot:P78549`, and `uniprot:Q3LXA3`.
+- Updated generated reports and targeted durable docs
+  (`docs/project_state.md`, `docs/decision_log.md`, and
+  `docs/artifact_index.md`) to reflect that the coordinate bundle is no longer
+  missing. Ended before 55 minutes because the selected mechanical gate is
+  complete and the remaining next gates require source-backed sidecar evidence,
+  an explicit coordinate policy for `P23007`, or Lever 2 locator approval.
+
+#### Artifacts and reports
+
+- New coordinate bundle:
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/`
+  (299 AFDB-v6 CIF files; largest file about 1.4 MB).
+- Regenerated:
+  `artifacts/v3_predicted_structure_fold_channel_current702_20260601.json`,
+  `work/predicted_structure_fold_channel_current702_20260601.md`,
+  `artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json`,
+  `work/predicted_structure_fold_channel_contract_audit_current702_20260601.md`,
+  `artifacts/v3_predicted_structure_fold_channel_deployment_input_audit_current702_20260602.json`,
+  `work/predicted_structure_fold_channel_deployment_input_audit_current702_20260602.md`,
+  `artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json`,
+  `work/predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.md`,
+  `artifacts/v3_predicted_structure_fold_channel_reproduction_manifest_current702_20260601.json`,
+  `work/predicted_structure_fold_channel_reproduction_manifest_current702_20260601.md`,
+  `artifacts/v3_predicted_structure_fold_channel_carryover_resolution_current702_20260601.json`,
+  `work/predicted_structure_fold_channel_carryover_resolution_current702_20260601.md`,
+  `artifacts/v3_predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.json`,
+  and
+  `work/predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.md`.
+- Regenerated docs reference check:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`
+  and `work/current_docs_artifact_reference_check_current702_20260601.md`
+  (0 missing references).
+
+#### Tests run
+
+- `python -m compileall -q src/catalytic_earth/northstar_next_levers.py src/catalytic_earth/cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py`
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'predicted_structure_fold_channel or predicted_structure_fold_confounded_operating_point_readiness' -q`
+  (6 passed, 123 deselected)
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'predicted_structure_fold' -q`
+  (9 passed, 89 deselected)
+- `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`
+  (345 passed, 81 subtests passed)
+- `PYTHONPATH=src python -m unittest discover -s tests`
+  (1171 passed; existing sklearn/SciPy deprecation warning)
+- `PYTHONPATH=src python -m pytest -q`
+  (1216 passed, 100 subtests passed; existing sklearn/SciPy deprecation warning)
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  (12 source records, 8 fingerprints, 15 ontology families, 702 curated labels)
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  (0 missing references)
+- `python -m json.tool` on the regenerated fold-channel JSON artifacts
+- `git diff --check`
+- `git diff --cached --check -- . ':(exclude,glob)**/*.cif'`
+  (passed; downloaded AFDB CIF bytes were left unnormalized so recorded
+  coordinate hashes remain byte-exact)
+- `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'current_docs_artifact_reference_check or current_run_artifact_integrity' -q`
+  (1 passed, 128 deselected)
+
+#### Exact next action
+
+- Lever 3: continue from
+  `work/predicted_structure_fold_confounded_operating_point_readiness_current702_20260602.md`.
+  The persistent AFDB coordinate bundle is complete; do not revisit that gate
+  unless fold-channel scores are refreshed. Clear the five remaining production
+  blockers instead: source-backed active-site sidecars are needed for
+  `P10746`, `P31572`, `P78549`, and `Q3LXA3`, and `m_csa:78` / `P23007` needs
+  an explicit predicted-coordinate policy or source-backed alternate accession.
+- Lever 2 remains blocked on explicit locator approval:
+  review
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_priority1_rewrite_preflight_current702_20260602.md`
+  and approve/reject the 49 clean plus 6 warning locator rewrites before any
+  audited sidecar copy or frozen residual heldout application.
+
+### 2026-06-02 Lever 2/3/4 Forward Push Active Run
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
 - STARTED_AT: `2026-06-02T15:01:56Z`
 - STARTED_LOCAL: `2026-06-02T10:01:56-0500 CDT`
 - ENDED_AT: `2026-06-02T15:36:56Z`

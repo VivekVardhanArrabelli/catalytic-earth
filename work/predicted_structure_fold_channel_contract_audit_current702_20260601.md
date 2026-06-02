@@ -1,6 +1,6 @@
 # Predicted-Structure Fold Channel Contract Audit - current702
 
-Run: 2026-06-01T12:38:58Z
+Run: 2026-06-02T16:13:08Z
 
 Strict contract audit for the existing AlphaFoldDB-predicted Foldseek/TM channel: verify that the scored all-heldout and priority cofactor-confounded rows match frozen current702 inputs.
 
@@ -26,5 +26,5 @@ Strict contract audit for the existing AlphaFoldDB-predicted Foldseek/TM channel
 
 ## Interpretation
 
-- The real predicted-structure fold channel satisfies the strict current702 scoring contract: all ok heldout rows and all six priority cofactor-confounded OOS rows have parsed nearest-atlas Foldseek/TM hits, with only persistent coordinate-file provenance listed as an allowed blocker.
-- Use this as the validation layer for downstream fold-augmented gate work; persistent CIF provenance remains optional research infrastructure, not a scoring blocker.
+- The real predicted-structure fold channel satisfies the strict current702 scoring contract: all ok heldout rows and all six priority cofactor-confounded OOS rows have parsed nearest-atlas Foldseek/TM hits, with no computed blockers remaining.
+- Use this as the validation layer for downstream fold-augmented gate work; the scored channel and coordinate bundle are now byte-reproducible under the companion provenance audit.

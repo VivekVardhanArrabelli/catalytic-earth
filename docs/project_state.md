@@ -71,18 +71,16 @@ artifacts first.
 - The scored predicted-structure fold channel now has a strict contract audit.
   It confirms 126/126 ok heldout rows and 6/6 priority cofactor-confounded OOS
   rows have parsed nearest-atlas Foldseek/TM hits, with zero critical contract
-  violations. Persistent predicted-CIF coordinate provenance remains a
-  reproducibility task, not a score-completeness blocker.
-- The fold-channel coordinate-provenance audit now makes that reproducibility
-  task exact without rerunning Foldseek/TM: the all-heldout and priority TSVs
-  are present and parseable, the contract audit still has zero critical
-  violations, and byte-level reproduction would require persisting 299 expected
-  AFDB-v6 coordinate paths across 293 deduplicated accessions.
+  violations. The AFDB-v6 coordinate bundle is now persisted locally, so the
+  coordinate-provenance gate is no longer a reproducibility blocker.
+- The fold-channel coordinate-provenance audit now reports all 299 expected
+  AFDB-v6 coordinate paths observed across 293 deduplicated accessions. The
+  all-heldout and priority TSVs remain present and parseable, and the contract
+  audit still has zero critical violations.
 - A reproduction manifest now ties that fold channel together for future reruns:
   it records exact AFDB-v6 coordinate requests, scored TSV hashes, Foldseek
-  commands, contract/provenance audit hashes, and the single blocker class
-  `persistent_afdb_v6_coordinate_bundle_missing`. No coordinates were
-  downloaded and no Foldseek/TM score was recomputed.
+  commands, contract/provenance audit hashes, and no remaining byte-level
+  reproduction blockers. No Foldseek/TM score was recomputed.
 - A carryover-resolution audit now makes stale fold-channel prompts explicit:
   the requested fold-channel artifact/report are present and score-complete,
   126/126 heldout rows and 6/6 priority cofactor-confounded rows remain scored,

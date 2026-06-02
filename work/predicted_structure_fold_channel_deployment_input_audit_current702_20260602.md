@@ -1,6 +1,6 @@
 # Predicted-Structure Fold Channel Deployment Input Audit - current702
 
-Run: 2026-06-02T15:24:31Z
+Run: 2026-06-02T16:12:19Z
 
 Validation-only audit that the current fold channel is a predicted-structure-vs-atlas signal. It checks coordinate request provenance and scored row payload fields without rerunning Foldseek/TM, changing thresholds, or editing labels.
 
@@ -25,9 +25,9 @@ Validation-only audit that the current fold channel is a predicted-structure-vs-
 ## Decision
 
 - Deployment input contract passed: True
-- Next gate: Use this audit with the confounded readiness artifact: the fold channel input surface is predicted-only, while deployment closure still requires the five production blockers and persistent coordinate bundle to be resolved.
+- Next gate: Use this audit with the confounded readiness artifact: the fold channel input surface is predicted-only, while deployment closure still depends on the composed production-blocker and coordinate-provenance gates.
 
 ## Interpretation
 
 - The current fold channel coordinate requests and scored row signals are predicted-structure-vs-atlas inputs; experimental PDB metadata does not appear in the checked channel fields.
-- Keep using the fixed operating point; clear production blockers and coordinate persistence before deployment-closed claims.
+- Keep using the fixed operating point; clear production blockers and verify the composed coordinate-provenance gate before deployment-closed claims.

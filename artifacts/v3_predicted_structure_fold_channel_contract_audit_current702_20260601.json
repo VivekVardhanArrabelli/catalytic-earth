@@ -49,7 +49,7 @@
     "priority_cofactor_confounded_oos_rows": 6,
     "priority_nearest_hits": 6
   },
-  "created_utc": "2026-06-01T12:38:58Z",
+  "created_utc": "2026-06-02T16:13:08Z",
   "foldseek_result_files": {
     "all_heldout_vs_atlas": {
       "exists": true,
@@ -79,8 +79,8 @@
     "validation_only": true
   },
   "interpretation": {
-    "next_action": "Use this as the validation layer for downstream fold-augmented gate work; persistent CIF provenance remains optional research infrastructure, not a scoring blocker.",
-    "result": "The real predicted-structure fold channel satisfies the strict current702 scoring contract: all ok heldout rows and all six priority cofactor-confounded OOS rows have parsed nearest-atlas Foldseek/TM hits, with only persistent coordinate-file provenance listed as an allowed blocker."
+    "next_action": "Use this as the validation layer for downstream fold-augmented gate work; the scored channel and coordinate bundle are now byte-reproducible under the companion provenance audit.",
+    "result": "The real predicted-structure fold channel satisfies the strict current702 scoring contract: all ok heldout rows and all six priority cofactor-confounded OOS rows have parsed nearest-atlas Foldseek/TM hits, with no computed blockers remaining."
   },
   "schema_version": "northstar_next_levers.v0",
   "scope": "Strict contract audit for the existing AlphaFoldDB-predicted Foldseek/TM channel: verify that the scored all-heldout and priority cofactor-confounded rows match frozen current702 inputs.",
@@ -95,7 +95,7 @@
     },
     "predicted_structure_fold_channel": {
       "path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601.json",
-      "sha256": "565266bfd8379c75104e1d7a74457ef40846563ea71988c4946d16c92f733582"
+      "sha256": "27e21068789004ca280e8583dee9ebdbae8056f7ff3e63677adaa5688765c954"
     }
   },
   "status": "fold_channel_contract_passed_current702",

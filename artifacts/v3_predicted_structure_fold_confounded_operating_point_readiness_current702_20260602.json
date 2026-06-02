@@ -3,14 +3,14 @@
   "counts": {
     "critical_counts": {
       "confounded_research_target_not_met": 0,
-      "coordinate_bundle_not_persisted": 1,
+      "coordinate_bundle_not_persisted": 0,
       "deployment_input_contract_not_passing": 0,
       "fold_contract_not_passing": 0,
       "fold_only_escape_hatch_not_authorized": 1,
       "in_scope_retention_not_ok": 0,
       "production_blocker_rows_remaining": 5
     },
-    "critical_violation_total": 7,
+    "critical_violation_total": 6,
     "deployment_input_contract_passed": true,
     "deployment_input_coordinate_request_rows": 299,
     "deployment_input_critical_violation_total": 0,
@@ -25,15 +25,15 @@
     "remaining_blocker_coordinate_reprobe_source_geometry_blocked_rows": 4,
     "remaining_blocker_coordinate_reprobe_unavailable_rows": 1,
     "remaining_production_blocker_rows": 5,
-    "unique_accessions_without_any_local_file": 293,
-    "unique_coordinate_files_missing": 299
+    "unique_accessions_without_any_local_file": 0,
+    "unique_coordinate_files_missing": 0
   },
-  "created_utc": "2026-06-02T15:35:45Z",
+  "created_utc": "2026-06-02T16:13:09Z",
   "decision": {
     "apply_or_change_threshold_now": false,
     "deployment_closed": false,
     "fold_only_escape_hatch_authorized": false,
-    "next_gate": "Keep the fixed operating point unchanged. Clear the remaining production blocker rows and persistent AFDB coordinate bundle before claiming deployment closure; do not use the fold-only escape hatch.",
+    "next_gate": "Keep the fixed operating point unchanged. Clear the remaining production blocker rows before claiming deployment closure; do not use the fold-only escape hatch. The persistent AFDB coordinate bundle is now complete.",
     "research_confounded_operating_point_ready": true
   },
   "deployment_closure_gate": [
@@ -71,8 +71,8 @@
     },
     {
       "gate": "persistent_afdb_coordinate_bundle",
-      "status": "blocked",
-      "unique_coordinate_files_missing": 299
+      "status": "passed",
+      "unique_coordinate_files_missing": 0
     },
     {
       "fold_only_blocker_rows": 4,
@@ -95,14 +95,14 @@
     "validation_only": true
   },
   "interpretation": {
-    "next_action": "Use this audit as the Lever 3 gate: clear source-backed active-site sidecars for coordinate-available blocker rows, resolve or exclude the coordinate-unavailable P23007 row by policy, and persist coordinate provenance before any deployment-valid claim.",
-    "result": "The predicted-structure-vs-atlas fold channel is research-ready for the confounded subset at the existing operating point with a predicted-only deployment input contract, but deployment closure remains blocked by production blocker rows, a rejected fold-only escape hatch, and the missing persistent AFDB coordinate bundle."
+    "next_action": "Use this audit as the Lever 3 gate: clear source-backed active-site sidecars for coordinate-available blocker rows and resolve or exclude the coordinate-unavailable P23007 row by policy before any deployment-valid claim.",
+    "result": "The predicted-structure-vs-atlas fold channel is research-ready for the confounded subset at the existing operating point with a predicted-only deployment input contract; deployment closure remains blocked by production blocker rows and a rejected fold-only escape hatch, while the persistent AFDB coordinate bundle is complete."
   },
   "operating_point_summary": {
     "calibration_in_scope_retain_recall": 0.9118,
     "calibration_oos_abstain_recall": 0.3944,
     "confounded_subset_target_met_for_research": true,
-    "coordinate_bundle_complete": false,
+    "coordinate_bundle_complete": true,
     "coordinate_result_files_parseable": true,
     "deployment_input_contract_passed": true,
     "deployment_input_critical_violation_total": 0,
@@ -198,17 +198,17 @@
     "contract_audit": {
       "exists": true,
       "path": "artifacts/v3_predicted_structure_fold_channel_contract_audit_current702_20260601.json",
-      "sha256": "b421d621cd04b2c7dcce098c6c2f784ffab4a8288ea0872c9875989c73eb7a11"
+      "sha256": "a4bf14d6f3934aaa2d1e3abb08b45f236e692d88984e2f2d8e96ed0732979364"
     },
     "coordinate_provenance_audit": {
       "exists": true,
       "path": "artifacts/v3_predicted_structure_fold_channel_coordinate_provenance_audit_current702_20260601.json",
-      "sha256": "d1308a0eef73866a233dd4399e2cee6870b0c0f4626e97da3395bc66fb3e84df"
+      "sha256": "a9c6f05a806fa6c446e2169331246542796c891c17eff655fb0ddd59628ff3d2"
     },
     "deployment_input_audit": {
       "exists": true,
       "path": "artifacts/v3_predicted_structure_fold_channel_deployment_input_audit_current702_20260602.json",
-      "sha256": "19abe914ce1891571b742d90e00e6d3e32369e0ca11fc58a7615cc37e4f8945d"
+      "sha256": "ac6a42415a84e8461adc6b40ca06f37b519ff0fba16864aba55a899db4e625dd"
     },
     "fold_only_deployment_decision": {
       "exists": true,

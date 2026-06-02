@@ -1,9 +1,6 @@
 {
   "artifact_id": "v3_predicted_structure_fold_channel_current702_20260601",
-  "blockers": [
-    "predicted_coordinate_files_missing_for_priority_scope",
-    "predicted_coordinate_files_missing_for_all_heldout_scope"
-  ],
+  "blockers": [],
   "commands": {
     "expected_foldseek_tsv_columns": [
       "query",
@@ -21,7 +18,7 @@
   },
   "counts": {
     "all_heldout_query_coordinate_requests": 126,
-    "all_heldout_scope_missing_coordinate_files": 293,
+    "all_heldout_scope_missing_coordinate_files": 0,
     "atlas_coordinate_requests": 167,
     "atlas_in_distribution_rows_ok": 168,
     "combined_predicted_retrieval_rows": 299,
@@ -29,9 +26,9 @@
     "priority_cofactor_confounded_oos_missing_ids": 0,
     "priority_cofactor_confounded_oos_rows": 6,
     "priority_query_coordinate_requests": 6,
-    "priority_scope_missing_coordinate_files": 173
+    "priority_scope_missing_coordinate_files": 0
   },
-  "created_utc": "2026-06-01T03:20:54Z",
+  "created_utc": "2026-06-02T16:08:22Z",
   "fold_channel_signal": {
     "nearest_atlas_tm_score": {
       "auc_in_gt_agnostic_oos": 0.813028,
@@ -1590,7 +1587,7 @@
             "m_csa:892"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_A2RJT9_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-A2RJT9-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1613,7 +1610,7 @@
             "m_csa:155"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_O06644_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O06644-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1636,7 +1633,7 @@
             "m_csa:185"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_O15527_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O15527-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1659,7 +1656,7 @@
             "m_csa:419"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_O52552_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O52552-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1682,7 +1679,7 @@
             "m_csa:67"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_O52942_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O52942-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1705,7 +1702,7 @@
             "m_csa:431"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_O59893_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O59893-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1728,7 +1725,7 @@
             "m_csa:453"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_O68884_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O68884-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1751,7 +1748,7 @@
             "m_csa:370"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_O75164_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O75164-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1774,7 +1771,7 @@
             "m_csa:255"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P00334_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00334-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1797,7 +1794,7 @@
             "m_csa:709"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P00431_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00431-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1820,7 +1817,7 @@
             "m_csa:239"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P00433_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00433-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1843,7 +1840,7 @@
             "m_csa:31"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P00469_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00469-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1866,7 +1863,7 @@
             "m_csa:12"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P00480_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00480-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1889,7 +1886,7 @@
             "m_csa:44"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P00634_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00634-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1912,7 +1909,7 @@
             "m_csa:171"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P00730_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00730-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1935,7 +1932,7 @@
             "m_csa:609"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P00778_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00778-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1958,7 +1955,7 @@
             "m_csa:723"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P00782_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00782-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -1981,7 +1978,7 @@
             "m_csa:311"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P00924_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00924-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2004,7 +2001,7 @@
             "m_csa:352"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P00949_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00949-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2027,7 +2024,7 @@
             "m_csa:197"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P00952_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00952-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2050,7 +2047,7 @@
             "m_csa:402"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P04036_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P04036-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2073,7 +2070,7 @@
             "m_csa:397"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P04063_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P04063-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2096,7 +2093,7 @@
             "m_csa:313"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P04395_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P04395-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2119,7 +2116,7 @@
             "m_csa:199"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P04425_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P04425-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2142,7 +2139,7 @@
             "m_csa:651"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P04807_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P04807-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2165,7 +2162,7 @@
             "m_csa:250"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P04963_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P04963-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2188,7 +2185,7 @@
             "m_csa:647"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P05057_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P05057-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2211,7 +2208,7 @@
             "m_csa:323"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P05314_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P05314-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2234,7 +2231,7 @@
             "m_csa:34"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P06622_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P06622-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2257,7 +2254,7 @@
             "m_csa:191"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P07237_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P07237-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2280,7 +2277,7 @@
             "m_csa:403"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P07584_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P07584-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2303,7 +2300,7 @@
             "m_csa:493"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P07649_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P07649-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2326,7 +2323,7 @@
             "m_csa:392"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P07801_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P07801-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2349,7 +2346,7 @@
             "m_csa:121"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P07850_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P07850-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2372,7 +2369,7 @@
             "m_csa:440"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P07987_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P07987-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2395,7 +2392,7 @@
             "m_csa:363"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P08179_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P08179-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2418,7 +2415,7 @@
             "m_csa:423"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P08236_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P08236-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2441,7 +2438,7 @@
             "m_csa:188"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P09147_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P09147-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2464,7 +2461,7 @@
             "m_csa:321"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P09155_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P09155-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2487,7 +2484,7 @@
             "m_csa:30"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P09373_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P09373-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2510,7 +2507,7 @@
             "m_csa:159"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P0A434_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A434-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2533,7 +2530,7 @@
             "m_csa:267"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P0A6L2_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A6L2-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2556,7 +2553,7 @@
             "m_csa:10"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P0A6Q3_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A6Q3-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2579,7 +2576,7 @@
             "m_csa:614"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P0A715_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A715-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2602,7 +2599,7 @@
             "m_csa:409"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P0A790_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A790-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2625,7 +2622,7 @@
             "m_csa:163"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P0A7Y4_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A7Y4-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2648,7 +2645,7 @@
             "m_csa:97"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P0ABF6_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0ABF6-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2671,7 +2668,7 @@
             "m_csa:714"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P0ABI8_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0ABI8-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2694,7 +2691,7 @@
             "m_csa:375"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P0ABP8_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0ABP8-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2717,7 +2714,7 @@
             "m_csa:606"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P0AEK4_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0AEK4-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2740,7 +2737,7 @@
             "m_csa:213"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P10724_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P10724-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2763,7 +2760,7 @@
             "m_csa:526"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P11708_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P11708-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2786,7 +2783,7 @@
             "m_csa:71"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P12295_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P12295-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2809,7 +2806,7 @@
             "m_csa:46"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P14385_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P14385-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2832,7 +2829,7 @@
             "m_csa:356"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P14769_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P14769-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2855,7 +2852,7 @@
             "m_csa:551"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P15245_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P15245-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2878,7 +2875,7 @@
             "m_csa:3"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P15559_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P15559-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2901,7 +2898,7 @@
             "m_csa:474"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P19080_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P19080-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2924,7 +2921,7 @@
             "m_csa:131"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P20586_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P20586-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2947,7 +2944,7 @@
             "m_csa:220"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P20906_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P20906-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2970,7 +2967,7 @@
             "m_csa:384"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P23395_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P23395-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -2993,7 +2990,7 @@
             "m_csa:897"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P23657_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P23657-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3016,7 +3013,7 @@
             "m_csa:424"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P23721_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P23721-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3039,7 +3036,7 @@
             "m_csa:710"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P25524_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P25524-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3062,7 +3059,7 @@
             "m_csa:480"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P26214_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P26214-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3085,7 +3082,7 @@
             "m_csa:577"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P29218_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P29218-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3108,7 +3105,7 @@
             "m_csa:355"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P30074_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P30074-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3131,7 +3128,7 @@
             "m_csa:9"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P31153_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P31153-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3154,7 +3151,7 @@
             "m_csa:853"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P31570_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P31570-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3177,7 +3174,7 @@
             "m_csa:369"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P33038_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P33038-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3200,7 +3197,7 @@
             "m_csa:254"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P33247_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P33247-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3223,7 +3220,7 @@
             "m_csa:448"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P33665_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P33665-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3246,7 +3243,7 @@
             "m_csa:180"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P35505_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P35505-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3269,7 +3266,7 @@
             "m_csa:627"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P36655_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P36655-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3292,7 +3289,7 @@
             "m_csa:599"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P36936_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P36936-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3315,7 +3312,7 @@
             "m_csa:129"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P37610_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P37610-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3338,7 +3335,7 @@
             "m_csa:418"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P37821_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P37821-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3361,7 +3358,7 @@
             "m_csa:211"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P38489_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P38489-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3384,7 +3381,7 @@
             "m_csa:45"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P43379_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P43379-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3407,7 +3404,7 @@
             "m_csa:334"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P44859_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P44859-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3430,7 +3427,7 @@
             "m_csa:566"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P46844_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P46844-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3453,7 +3450,7 @@
             "m_csa:14"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P49053_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P49053-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3476,7 +3473,7 @@
             "m_csa:86"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P51541_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P51541-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3499,7 +3496,7 @@
             "m_csa:217"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P52704_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P52704-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3522,7 +3519,7 @@
             "m_csa:750"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P55792_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P55792-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3545,7 +3542,7 @@
             "m_csa:396"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P56272_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P56272-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3568,7 +3565,7 @@
             "m_csa:73"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P61459_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P61459-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3591,7 +3588,7 @@
             "m_csa:517"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P61517_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P61517-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3614,7 +3611,7 @@
             "m_csa:444"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P62694_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P62694-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3637,7 +3634,7 @@
             "m_csa:541"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P75430_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P75430-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3660,7 +3657,7 @@
             "m_csa:297"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P77072_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P77072-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3683,7 +3680,7 @@
             "m_csa:854"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P80147_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P80147-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3706,7 +3703,7 @@
             "m_csa:43"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P80366_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P80366-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3729,7 +3726,7 @@
             "m_csa:634"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P84147_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P84147-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3752,7 +3749,7 @@
             "m_csa:866"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P94388_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P94388-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3775,7 +3772,7 @@
             "m_csa:916"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P9WI55_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P9WI55-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3798,7 +3795,7 @@
             "m_csa:346"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_P9WNP5_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P9WNP5-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3821,7 +3818,7 @@
             "m_csa:118"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q00511_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q00511-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3844,7 +3841,7 @@
             "m_csa:590"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q01172_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q01172-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3867,7 +3864,7 @@
             "m_csa:109"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q02127_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q02127-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3890,7 +3887,7 @@
             "m_csa:32"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q04760_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q04760-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3913,7 +3910,7 @@
             "m_csa:79"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q05603_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q05603-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3936,7 +3933,7 @@
             "m_csa:20"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q07WU7_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q07WU7-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3959,7 +3956,7 @@
             "m_csa:407"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q0ZPV7_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q0ZPV7-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -3982,7 +3979,7 @@
             "m_csa:511"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q13526_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q13526-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4005,7 +4002,7 @@
             "m_csa:617"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q44297_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q44297-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4028,7 +4025,7 @@
             "m_csa:230"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q59643_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q59643-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4051,7 +4048,7 @@
             "m_csa:688"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q5JP69_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q5JP69-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4074,7 +4071,7 @@
             "m_csa:198"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q5SKN9_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q5SKN9-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4097,7 +4094,7 @@
             "m_csa:545"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q7M523_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q7M523-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4120,7 +4117,7 @@
             "m_csa:686"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q7SIG4_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q7SIG4-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4143,7 +4140,7 @@
             "m_csa:990"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q8GS60_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q8GS60-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4166,7 +4163,7 @@
             "m_csa:242"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q8I914_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q8I914-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4189,7 +4186,7 @@
             "m_csa:497"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9FDN7_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9FDN7-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4212,7 +4209,7 @@
             "m_csa:192"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9N0A4_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9N0A4-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4235,7 +4232,7 @@
             "m_csa:333"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9RUB5_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9RUB5-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4258,7 +4255,7 @@
             "m_csa:115"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9T0N8_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9T0N8-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4281,7 +4278,7 @@
             "m_csa:594"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9UM07_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9UM07-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4304,7 +4301,7 @@
             "m_csa:225"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9WZC3_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9WZC3-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4327,7 +4324,7 @@
             "m_csa:56"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9WZW0_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9WZW0-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4350,7 +4347,7 @@
             "m_csa:80"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9X0I0_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9X0I0-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4373,7 +4370,7 @@
             "m_csa:201"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9X4K7_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9X4K7-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4396,7 +4393,7 @@
             "m_csa:509"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9X592_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9X592-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4419,7 +4416,7 @@
             "m_csa:994"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9Y3Z3_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9Y3Z3-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4442,7 +4439,7 @@
             "m_csa:428"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9ZF13_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9ZF13-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4465,7 +4462,7 @@
             "m_csa:125"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_all_heldout/afdb_Q9ZP19_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9ZP19-F1-model_v6",
           "role": "all_heldout_query_when_cheap",
           "rows": [
@@ -4490,7 +4487,7 @@
             "m_csa:973"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_A0A0C6DRW4_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-A0A0C6DRW4-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4513,7 +4510,7 @@
             "m_csa:988"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_A1AA28_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-A1AA28-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4536,7 +4533,7 @@
             "m_csa:944"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_A5JUY8_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-A5JUY8-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4559,7 +4556,7 @@
             "m_csa:998"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_F8W4B7_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-F8W4B7-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4582,7 +4579,7 @@
             "m_csa:486"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_O13297_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O13297-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4605,7 +4602,7 @@
             "m_csa:758"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_O16025_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O16025-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4628,7 +4625,7 @@
             "m_csa:181"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_O31156_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O31156-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4651,7 +4648,7 @@
             "m_csa:823"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_O33199_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O33199-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4674,7 +4671,7 @@
             "m_csa:716"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_O58727_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O58727-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4698,7 +4695,7 @@
             "m_csa:956"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_O59791_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O59791-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4728,7 +4725,7 @@
             "m_csa:495"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_O68557_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-O68557-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4751,7 +4748,7 @@
             "m_csa:102"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00175_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00175-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4774,7 +4771,7 @@
             "m_csa:133"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00183_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00183-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4797,7 +4794,7 @@
             "m_csa:117"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00388_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00388-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4820,7 +4817,7 @@
             "m_csa:6"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00390_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00390-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4843,7 +4840,7 @@
             "m_csa:277"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00392_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00392-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4866,7 +4863,7 @@
             "m_csa:124"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00396_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00396-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4889,7 +4886,7 @@
             "m_csa:506"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00455_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00455-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4912,7 +4909,7 @@
             "m_csa:205"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00489_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00489-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4935,7 +4932,7 @@
             "m_csa:631"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00590_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00590-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4958,7 +4955,7 @@
             "m_csa:83"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00592_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00592-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -4981,7 +4978,7 @@
             "m_csa:546"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00636_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00636-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5004,7 +5001,7 @@
             "m_csa:41"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00639_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00639-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5027,7 +5024,7 @@
             "m_csa:165"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00644_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00644-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5050,7 +5047,7 @@
             "m_csa:425"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00747_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00747-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5073,7 +5070,7 @@
             "m_csa:798"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00750_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00750-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5096,7 +5093,7 @@
             "m_csa:387"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00766_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00766-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5119,7 +5116,7 @@
             "m_csa:608"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00777_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00777-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5142,7 +5139,7 @@
             "m_csa:176"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00800_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00800-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5165,7 +5162,7 @@
             "m_csa:937"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00860_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00860-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5188,7 +5185,7 @@
             "m_csa:183"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00914_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00914-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5211,7 +5208,7 @@
             "m_csa:216"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00918_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00918-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5234,7 +5231,7 @@
             "m_csa:759"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P00935_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00935-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5257,7 +5254,7 @@
             "m_csa:754"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P03007_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P03007-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5280,7 +5277,7 @@
             "m_csa:376"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P03958_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P03958-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5303,7 +5300,7 @@
             "m_csa:337"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P04042_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P04042-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5326,7 +5323,7 @@
             "m_csa:16"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P04190_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P04190-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5349,7 +5346,7 @@
             "m_csa:630"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P05020_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P05020-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5372,7 +5369,7 @@
             "m_csa:852"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P05414_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P05414-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5395,7 +5392,7 @@
             "m_csa:728"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P05521_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P05521-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5418,7 +5415,7 @@
             "m_csa:233"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P05725_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P05725-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5441,7 +5438,7 @@
             "m_csa:447"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P06621_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P06621-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5464,7 +5461,7 @@
             "m_csa:449"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P06721_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P06721-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5487,7 +5484,7 @@
             "m_csa:275"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P07003_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P07003-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5510,7 +5507,7 @@
             "m_csa:147"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P07511_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P07511-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5533,7 +5530,7 @@
             "m_csa:668"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P08148_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P08148-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5556,7 +5553,7 @@
             "m_csa:142"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P08165_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P08165-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5579,7 +5576,7 @@
             "m_csa:353"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P08373_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P08373-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5602,7 +5599,7 @@
             "m_csa:623"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P08473_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P08473-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5625,7 +5622,7 @@
             "m_csa:5"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P08819_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P08819-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5648,7 +5645,7 @@
             "m_csa:160"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P09030_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P09030-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5671,7 +5668,7 @@
             "m_csa:839"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P09184_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P09184-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5694,7 +5691,7 @@
             "m_csa:186"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P09367_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P09367-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5717,7 +5714,7 @@
             "m_csa:27"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P09598_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P09598-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5740,7 +5737,7 @@
             "m_csa:791"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P09883_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P09883-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5763,7 +5760,7 @@
             "m_csa:166"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P09960_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P09960-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5786,7 +5783,7 @@
             "m_csa:865"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P0A1E3_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A1E3-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5809,7 +5806,7 @@
             "m_csa:11"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P0A6C1_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A6C1-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5832,7 +5829,7 @@
             "m_csa:912"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P0A6G7_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A6G7-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5855,7 +5852,7 @@
             "m_csa:98"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P0A6K3_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A6K3-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5878,7 +5875,7 @@
             "m_csa:38"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P0A6T5_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A6T5-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5901,7 +5898,7 @@
             "m_csa:381"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P0A9P4_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A9P4-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5924,7 +5921,7 @@
             "m_csa:762"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P0AB77_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0AB77-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5947,7 +5944,7 @@
             "m_csa:120"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P0AEZ1_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0AEZ1-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5970,7 +5967,7 @@
             "m_csa:535"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P0CE47_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0CE47-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -5993,7 +5990,7 @@
             "m_csa:28"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P10688_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P10688-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6016,7 +6013,7 @@
             "m_csa:626"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P10844_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P10844-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6039,7 +6036,7 @@
             "m_csa:739"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P10902_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P10902-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6062,7 +6059,7 @@
             "m_csa:170"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P12821_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P12821-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6085,7 +6082,7 @@
             "m_csa:249"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P12995_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P12995-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6108,7 +6105,7 @@
             "m_csa:430"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P12998_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P12998-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6131,7 +6128,7 @@
             "m_csa:42"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P13717_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P13717-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6154,7 +6151,7 @@
             "m_csa:699"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P14779_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P14779-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6177,7 +6174,7 @@
             "m_csa:379"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P15034_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P15034-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6200,7 +6197,7 @@
             "m_csa:158"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P15289_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P15289-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6223,7 +6220,7 @@
             "m_csa:641"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P15917_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P15917-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6246,7 +6243,7 @@
             "m_csa:114"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P16099_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P16099-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6269,7 +6266,7 @@
             "m_csa:168"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P16444_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P16444-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6292,7 +6289,7 @@
             "m_csa:482"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P16932_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P16932-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6315,7 +6312,7 @@
             "m_csa:87"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P18314_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P18314-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6338,7 +6335,7 @@
             "m_csa:66"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P19938_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P19938-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6361,7 +6358,7 @@
             "m_csa:573"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P21179_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P21179-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6384,7 +6381,7 @@
             "m_csa:856"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P21327_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P21327-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6407,7 +6404,7 @@
             "m_csa:922"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P21836_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P21836-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6430,7 +6427,7 @@
             "m_csa:556"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P22266_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P22266-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6453,7 +6450,7 @@
             "m_csa:520"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P22394_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P22394-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6476,7 +6473,7 @@
             "m_csa:354"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P22637_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P22637-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6499,7 +6496,7 @@
             "m_csa:473"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P23295_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P23295-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6522,7 +6519,7 @@
             "m_csa:901"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P23687_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P23687-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6545,7 +6542,7 @@
             "m_csa:395"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P24289_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P24289-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6568,7 +6565,7 @@
             "m_csa:903"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P24474_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P24474-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6591,7 +6588,7 @@
             "m_csa:195"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P24630_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P24630-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6614,7 +6611,7 @@
             "m_csa:15"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P25910_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P25910-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6637,7 +6634,7 @@
             "m_csa:740"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P27170_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P27170-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6660,7 +6657,7 @@
             "m_csa:169"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P27487_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P27487-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6683,7 +6680,7 @@
             "m_csa:305"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P28305_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P28305-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6706,7 +6703,7 @@
             "m_csa:410"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P28796_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P28796-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6729,7 +6726,7 @@
             "m_csa:218"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P29183_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P29183-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6752,7 +6749,7 @@
             "m_csa:935"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P29474_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P29474-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6775,7 +6772,7 @@
             "m_csa:401"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P30122_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P30122-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6798,7 +6795,7 @@
             "m_csa:338"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P30850_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P30850-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6821,7 +6818,7 @@
             "m_csa:933"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P31013_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P31013-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6844,7 +6841,7 @@
             "m_csa:173"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P35049_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P35049-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6867,7 +6864,7 @@
             "m_csa:895"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P37062_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P37062-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6890,7 +6887,7 @@
             "m_csa:274"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P37063_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P37063-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6913,7 +6910,7 @@
             "m_csa:518"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P37957_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P37957-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6936,7 +6933,7 @@
             "m_csa:900"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P37967_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P37967-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6959,7 +6956,7 @@
             "m_csa:172"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P39377_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P39377-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -6982,7 +6979,7 @@
             "m_csa:113"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P40859_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P40859-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7005,7 +7002,7 @@
             "m_csa:516"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P40881_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P40881-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7028,7 +7025,7 @@
             "m_csa:108"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P42593_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P42593-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7051,7 +7048,7 @@
             "m_csa:860"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P43099_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P43099-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7074,7 +7071,7 @@
             "m_csa:522"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P45478_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P45478-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7097,7 +7094,7 @@
             "m_csa:596"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P46076_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P46076-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7120,7 +7117,7 @@
             "m_csa:399"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P48534_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P48534-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7143,7 +7140,7 @@
             "m_csa:412"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P52279_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P52279-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7166,7 +7163,7 @@
             "m_csa:258"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P52700_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P52700-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7189,7 +7186,7 @@
             "m_csa:472"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P53041_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P53041-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7212,7 +7209,7 @@
             "m_csa:445"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P53608_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P53608-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7235,7 +7232,7 @@
             "m_csa:111"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P55038_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P55038-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7258,7 +7255,7 @@
             "m_csa:281"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P55931_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P55931-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7281,7 +7278,7 @@
             "m_csa:446"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P56200_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P56200-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7304,7 +7301,7 @@
             "m_csa:103"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P56216_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P56216-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7327,7 +7324,7 @@
             "m_csa:917"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P56218_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P56218-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7350,7 +7347,7 @@
             "m_csa:795"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P71119_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P71119-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7373,7 +7370,7 @@
             "m_csa:855"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P77444_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P77444-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7396,7 +7393,7 @@
             "m_csa:110"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P80324_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P80324-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7419,7 +7416,7 @@
             "m_csa:786"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P81054_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P81054-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7442,7 +7439,7 @@
             "m_csa:862"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P83686_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P83686-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7465,7 +7462,7 @@
             "m_csa:720"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P83772_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P83772-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7488,7 +7485,7 @@
             "m_csa:742"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P83788_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P83788-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7511,7 +7508,7 @@
             "m_csa:411"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P95468_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P95468-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7534,7 +7531,7 @@
             "m_csa:808"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P96086_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P96086-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7557,7 +7554,7 @@
             "m_csa:771"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_P96965_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P96965-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7580,7 +7577,7 @@
             "m_csa:705"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q00017_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q00017-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7603,7 +7600,7 @@
             "m_csa:694"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q00441_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q00441-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7626,7 +7623,7 @@
             "m_csa:167"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q01693_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q01693-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7649,7 +7646,7 @@
             "m_csa:319"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q02899_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q02899-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7672,7 +7669,7 @@
             "m_csa:304"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q05755_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q05755-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7695,7 +7692,7 @@
             "m_csa:37"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q05769_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q05769-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7718,7 +7715,7 @@
             "m_csa:706"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q06241_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q06241-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7741,7 +7738,7 @@
             "m_csa:636"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q12178_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q12178-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7764,7 +7761,7 @@
             "m_csa:157"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q16775_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q16775-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7787,7 +7784,7 @@
             "m_csa:800"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q28943_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q28943-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7810,7 +7807,7 @@
             "m_csa:94"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q29460_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q29460-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7833,7 +7830,7 @@
             "m_csa:733"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q3HWU8_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q3HWU8-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7856,7 +7853,7 @@
             "m_csa:581"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q50925_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q50925-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7879,7 +7876,7 @@
             "m_csa:378"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q56839_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q56839-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7902,7 +7899,7 @@
             "m_csa:727"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q58989_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q58989-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7925,7 +7922,7 @@
             "m_csa:286"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q6LZM9_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q6LZM9-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7948,7 +7945,7 @@
             "m_csa:528"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q6UV28_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q6UV28-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7971,7 +7968,7 @@
             "m_csa:666"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q6YBS3_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q6YBS3-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -7994,7 +7991,7 @@
             "m_csa:437"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q75WN8_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q75WN8-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8017,7 +8014,7 @@
             "m_csa:822"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q7SID9_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q7SID9-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8040,7 +8037,7 @@
             "m_csa:320"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q7ZAG8_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q7ZAG8-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8063,7 +8060,7 @@
             "m_csa:300"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q8RB32_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q8RB32-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8086,7 +8083,7 @@
             "m_csa:941"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q945K2_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q945K2-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8109,7 +8106,7 @@
             "m_csa:837"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q94702_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q94702-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8132,7 +8129,7 @@
             "m_csa:879"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q9AGP8_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9AGP8-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8155,7 +8152,7 @@
             "m_csa:697"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q9FEW9_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9FEW9-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8178,7 +8175,7 @@
             "m_csa:978"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q9HXE3_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9HXE3-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8201,7 +8198,7 @@
             "m_csa:465"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q9L9D7_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9L9D7-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8224,7 +8221,7 @@
             "m_csa:812"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q9NPB1_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9NPB1-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8247,7 +8244,7 @@
             "m_csa:523"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q9UMR5_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9UMR5-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8270,7 +8267,7 @@
             "m_csa:942"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q9X9P9_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9X9P9-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8293,7 +8290,7 @@
             "m_csa:358"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q9XBQ8_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9XBQ8-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8316,7 +8313,7 @@
             "m_csa:294"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/atlas_in_distribution/afdb_Q9YHT1_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9YHT1-F1-model_v6",
           "role": "atlas_in_distribution_target",
           "rows": [
@@ -8341,7 +8338,7 @@
             "m_csa:31"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_cofactor_confounded_oos/afdb_P00469_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P00469-F1-model_v6",
           "role": "priority_query_cofactor_confounded_oos",
           "rows": [
@@ -8364,7 +8361,7 @@
             "m_csa:191"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_cofactor_confounded_oos/afdb_P07237_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P07237-F1-model_v6",
           "role": "priority_query_cofactor_confounded_oos",
           "rows": [
@@ -8387,7 +8384,7 @@
             "m_csa:30"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_cofactor_confounded_oos/afdb_P09373_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P09373-F1-model_v6",
           "role": "priority_query_cofactor_confounded_oos",
           "rows": [
@@ -8410,7 +8407,7 @@
             "m_csa:267"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_cofactor_confounded_oos/afdb_P0A6L2_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P0A6L2-F1-model_v6",
           "role": "priority_query_cofactor_confounded_oos",
           "rows": [
@@ -8433,7 +8430,7 @@
             "m_csa:448"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_cofactor_confounded_oos/afdb_P33665_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-P33665-F1-model_v6",
           "role": "priority_query_cofactor_confounded_oos",
           "rows": [
@@ -8456,7 +8453,7 @@
             "m_csa:80"
           ],
           "expected_local_path": "artifacts/v3_predicted_structure_fold_channel_current702_20260601_coordinates/queries_cofactor_confounded_oos/afdb_Q9X0I0_v6.cif",
-          "local_file_exists": false,
+          "local_file_exists": true,
           "predicted_pdb_id": "AF-Q9X0I0-F1-model_v6",
           "role": "priority_query_cofactor_confounded_oos",
           "rows": [

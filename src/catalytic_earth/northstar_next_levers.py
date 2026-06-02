@@ -1874,6 +1874,22 @@ def build_predicted_structure_fold_channel_contract_audit(
         "missing_result_files": len(missing_result_files),
     }
     passed = all(count == 0 for count in critical_counts.values())
+    blocker_clause = (
+        "with no computed blockers remaining."
+        if not blockers
+        else "with only allowed coordinate-file provenance blockers present."
+    )
+    contract_next_action = (
+        "Use this as the validation layer for downstream fold-augmented "
+        "gate work; the scored channel and coordinate bundle are now "
+        "byte-reproducible under the companion provenance audit."
+        if not blockers
+        else (
+            "Use this as the validation layer for downstream fold-augmented "
+            "gate work; persistent CIF provenance remains optional research "
+            "infrastructure, not a scoring blocker."
+        )
+    )
     return {
         "artifact_id": PREDICTED_STRUCTURE_FOLD_CHANNEL_CONTRACT_AUDIT_ID,
         "schema_version": SCHEMA_VERSION,
@@ -1941,15 +1957,12 @@ def build_predicted_structure_fold_channel_contract_audit(
                 "The real predicted-structure fold channel satisfies the strict "
                 "current702 scoring contract: all ok heldout rows and all six "
                 "priority cofactor-confounded OOS rows have parsed nearest-atlas "
-                "Foldseek/TM hits, with only persistent coordinate-file provenance "
-                "listed as an allowed blocker."
+                f"Foldseek/TM hits, {blocker_clause}"
                 if passed
                 else "The fold channel contract has critical mismatches; treat the scored channel as blocked until repaired."
             ),
             "next_action": (
-                "Use this as the validation layer for downstream fold-augmented "
-                "gate work; persistent CIF provenance remains optional research "
-                "infrastructure, not a scoring blocker."
+                contract_next_action
                 if passed
                 else "Repair the listed violations, rerun the fold-channel builder, then rerun this audit."
             ),
@@ -2254,8 +2267,8 @@ def build_predicted_structure_fold_channel_deployment_input_audit(
             "next_gate": (
                 "Use this audit with the confounded readiness artifact: the "
                 "fold channel input surface is predicted-only, while deployment "
-                "closure still requires the five production blockers and "
-                "persistent coordinate bundle to be resolved."
+                "closure still depends on the composed production-blocker and "
+                "coordinate-provenance gates."
             ),
         },
         "source_artifacts": {
@@ -2273,8 +2286,8 @@ def build_predicted_structure_fold_channel_deployment_input_audit(
             ),
             "next_action": (
                 "Keep using the fixed operating point; clear production "
-                "blockers and coordinate persistence before deployment-closed "
-                "claims."
+                "blockers and verify the composed coordinate-provenance gate "
+                "before deployment-closed claims."
             ),
         },
     }
@@ -14321,6 +14334,45 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
             "fold_only_blocker_rows": fold_only_counts.get("fold_only_blocker_rows"),
         },
     ]
+    coordinate_gate_text = (
+        "the persistent AFDB coordinate bundle is complete"
+        if coordinate_bundle_complete
+        else "the persistent AFDB coordinate bundle still needs to be persisted"
+    )
+    deployment_next_gate = (
+        "Keep the fixed operating point unchanged. Clear the remaining "
+        "production blocker rows before claiming deployment closure; do not "
+        "use the fold-only escape hatch. The persistent AFDB coordinate bundle "
+        "is now complete."
+        if coordinate_bundle_complete
+        else (
+            "Keep the fixed operating point unchanged. Clear the remaining "
+            "production blocker rows and persistent AFDB coordinate bundle "
+            "before claiming deployment closure; do not use the fold-only "
+            "escape hatch."
+        )
+    )
+    readiness_result = (
+        "The predicted-structure-vs-atlas fold channel is research-ready "
+        "for the confounded subset at the existing operating point with "
+        "a predicted-only deployment input contract; deployment closure "
+        "remains blocked by production blocker rows and a rejected fold-only "
+        f"escape hatch, while {coordinate_gate_text}."
+    )
+    readiness_next_action = (
+        "Use this audit as the Lever 3 gate: clear source-backed "
+        "active-site sidecars for coordinate-available blocker rows and "
+        "resolve or exclude the coordinate-unavailable P23007 row by policy "
+        "before any deployment-valid claim."
+        if coordinate_bundle_complete
+        else (
+            "Use this audit as the Lever 3 gate: clear source-backed "
+            "active-site sidecars for coordinate-available blocker rows, "
+            "resolve or exclude the coordinate-unavailable P23007 row by "
+            "policy, and persist coordinate provenance before any "
+            "deployment-valid claim."
+        )
+    )
     return {
         "artifact_id": (
             PREDICTED_STRUCTURE_FOLD_CONFOUNDED_OPERATING_POINT_READINESS_ID
@@ -14513,12 +14565,7 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
             and coordinate_bundle_complete,
             "fold_only_escape_hatch_authorized": fold_only_authorized,
             "apply_or_change_threshold_now": False,
-            "next_gate": (
-                "Keep the fixed operating point unchanged. Clear the remaining "
-                "production blocker rows and persistent AFDB coordinate bundle "
-                "before claiming deployment closure; do not use the fold-only "
-                "escape hatch."
-            ),
+            "next_gate": deployment_next_gate,
         },
         "source_artifacts": {
             "contract_audit": _source_path_record(contract_audit_path),
@@ -14546,21 +14593,8 @@ def build_predicted_structure_fold_confounded_operating_point_readiness(
             ),
         },
         "interpretation": {
-            "result": (
-                "The predicted-structure-vs-atlas fold channel is research-ready "
-                "for the confounded subset at the existing operating point with "
-                "a predicted-only deployment input contract, but deployment "
-                "closure remains blocked by production blocker rows, a rejected "
-                "fold-only escape hatch, and the missing persistent AFDB "
-                "coordinate bundle."
-            ),
-            "next_action": (
-                "Use this audit as the Lever 3 gate: clear source-backed "
-                "active-site sidecars for coordinate-available blocker rows, "
-                "resolve or exclude the coordinate-unavailable P23007 row by "
-                "policy, and persist coordinate provenance before any "
-                "deployment-valid claim."
-            ),
+            "result": readiness_result,
+            "next_action": readiness_next_action,
         },
     }
 
