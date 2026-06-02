@@ -56,6 +56,134 @@ Automation run: `catalytic-earth-lever-3-2-forward-push`
 
 #### Wall-clock ledger
 
+- STARTED_AT: `2026-06-02T20:02:04Z`
+- STARTED_LOCAL: `2026-06-02T15:02:04-0500 CDT`
+- ENDED_AT: `2026-06-02T20:25:55Z`
+- ENDED_LOCAL: `2026-06-02T15:25:55-0500 CDT`
+- ELAPSED_MINUTES: `23.9`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "1251", "started_at": "2026-06-02T20:02:04Z", "status": "acquired"}`
+
+#### Current intent
+
+Continue from the prior handoff inside Levers 2, 3, or 4, make forward progress
+for the wall-clock block, and close with a concrete artifact, tests, commit,
+push, HEAD/origin verification, and lock release.
+
+#### What changed
+
+- Lever 2: regenerated the source-free application surface for the calibrated
+  best-token follow-up pair after the audited locator directory grew to five
+  source-free sidecars. The current702 heldout surface still has 0 heldout
+  locator sidecars and 0 source-free event/residue-role rows, so no frozen
+  threshold was applied and heldout remains unread.
+- Lever 2: added a source-free event-linker blocker audit for the calibrated
+  pair token
+  `event_residue_role:proton_transfer|electrostatic_stabiliser`. It confirms
+  the stronger pair remains deployment-blocked by the missing source-free
+  proton-transfer event axis, rejects the M-CSA curated heldout role graph as a
+  forbidden deployment shortcut, and records that the His-count-only fallback
+  underperforms the pair on calibration OOS abstention.
+- Lever 2: added a calibration-only source-free residue-count fallback
+  contract. The fallback uses `residue_code_count:his=3`, avoids the event
+  axis, but drops calibration OOS abstention from `0.857143` to `0.642857`.
+  It is not accepted as a deployable replacement and still needs explicit
+  acceptance plus approved current702 heldout locator sidecars. The contract
+  now carries the locator approval state: 55 preflight-passed rewrites pending
+  explicit approval, 6 warning rows, 0 approved rewrites.
+- Lever 2: added a source-free event-axis linker schema for
+  `proton_transfer|electrostatic_stabiliser`. It stages required fields,
+  acceptance criteria, and forbidden inputs, but materializes 0 linker rows and
+  applies no heldout threshold.
+- Lever 4 state check: the current repo already advanced `mh_067`/`mh_068`
+  after the older handoff text. They were approved/copied and source-checked
+  as review-only/no-promotion. The remaining priority class is
+  `mh_065`/`mh_072`, which is mechanically blocked by 0/6 requested-AFDB
+  residue-code matches and needs matching coordinates or an approved remap.
+- Updated `docs/artifact_index.md`, `docs/decision_log.md`, and the narrow
+  current-state bullets in `docs/project_state.md`. Regenerated the docs
+  artifact reference check with 0 missing references.
+- Ended before 55 minutes because the active remaining Lever 2/3/4 moves are
+  explicit approvals or source-evidence fills: current702 heldout locator
+  approval/copy, source-free event-axis linker evidence, acceptance of the
+  lower-recall fallback, Lever 3 sidecar/coordinate policy decisions, or Lever
+  4 import/family-admission decisions.
+
+#### Artifacts and reports
+
+- New:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_current702_20260602.json`
+  and
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_current702_20260602.md`.
+- New:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_current702_20260602.json`
+  and
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_current702_20260602.md`.
+- New:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.json`
+  and
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.md`.
+- Regenerated:
+  `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json`
+  and
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.md`.
+- Regenerated:
+  `artifacts/v3_current_docs_artifact_reference_check_current702_20260601.json`
+  and `work/current_docs_artifact_reference_check_current702_20260601.md`.
+
+#### Tests run
+
+- `python -m compileall -q src/catalytic_earth/northstar_next_levers.py src/catalytic_earth/cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py`
+- Focused unit tests:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py -k 'followup_pair_source_free_event_linker or followup_pair_source_free_residue_count_fallback or followup_pair_source_free_event_axis_linker or followup_pair_source_free_application_surface' -q`
+  (4 passed, 102 deselected)
+- CLI registration:
+  `PYTHONPATH=src python -m pytest tests/test_cli.py::CliTests::test_current702_northstar_carryover_commands_are_registered -q`
+  (1 passed, 77 subtests passed)
+- Focused artifact regression:
+  `PYTHONPATH=src python -m pytest tests/test_geometry_artifact_regression.py -k 'row_specific_bond_change_p0_oos_augmented' -q`
+  (5 passed, 138 deselected)
+- Relevant suites:
+  `PYTHONPATH=src python -m pytest tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py tests/test_cli.py -q`
+  (367 passed, 84 subtests passed)
+- Full pytest:
+  `PYTHONPATH=src python -m pytest -q`
+  (1238 passed, 103 subtests passed; existing sklearn/SciPy deprecation warning)
+- Full unittest discovery:
+  `PYTHONPATH=src python -m unittest discover -s tests`
+  (1193 tests passed; existing sklearn/SciPy deprecation warning)
+- `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  (12 source records, 8 fingerprints, 15 ontology families, 702 curated labels)
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  (0 missing references)
+- `python -m json.tool` on the three new Lever 2 JSON artifacts and the
+  regenerated source-free application surface JSON.
+- `git diff --check`
+
+#### Exact next action
+
+- Lever 2 preferred path: start from
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.md`.
+  Fill that schema only after approved source-free current702 heldout locator
+  sidecars exist, then rerun the event-linker blocker audit, source-free
+  application surface, and heldout-safe surface plan before any heldout
+  threshold read.
+- Lever 2 fallback path: only if explicitly accepted, use
+  `work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_current702_20260602.md`.
+  It is calibrated train/cal-only but lower recall; approve/copy current702
+  heldout locators and rerun the fallback surface before applying its frozen
+  threshold once.
+- Lever 4: do not revisit `mh_067`/`mh_068`; they are already copied and
+  source-checked review-only. Next mechanical decision class is `mh_065`/`mh_072`,
+  but current audit blocks raw copy until matching frozen coordinates or an
+  explicit approved remap is provided.
+
+### 2026-06-02 Lever 3/2/4 Forward Push Active Run
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
 - STARTED_AT: `2026-06-02T18:02:40Z`
 - STARTED_LOCAL: `2026-06-02T13:02:40-0500 CDT`
 - ENDED_AT: `2026-06-02T18:27:06Z`

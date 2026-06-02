@@ -3,6 +3,53 @@
 This log records durable decisions that future agents should apply before
 interpreting older artifacts. Dates are UTC artifact dates unless noted.
 
+## 2026-06-02: Source-Free Pair Deployment Blocks On Event Linker; His-Only Fallback Is Lower Recall
+
+Decision: keep the calibrated row-specific best-token follow-up pair as
+calibration-only until a source-free event/residue-role linker exists. The pair
+uses `event_residue_role:proton_transfer|electrostatic_stabiliser` plus
+`residue_code_count:his=3`; the first token cannot be computed from the current
+source-free heldout surface without a source-free proton-transfer event axis.
+Do not substitute the M-CSA curated heldout active-site role graph as a
+deployment feature.
+
+Result: the event-linker blocker audit confirms 0 current702 heldout locator
+sidecars, 0 source-free event/residue-role feature rows, and 132 M-CSA curated
+heldout role-graph rows that remain forbidden as deployment inputs. The
+calibrated pair keeps calibration OOS abstention at 0.857143. A separate
+His-count-only fallback contract avoids the event axis but drops calibration OOS
+abstention to 0.642857 (AUC 0.758929), so it is not accepted as a deployable
+replacement without an explicit policy decision. The fallback is also blocked
+by the same source-free locator surface: 55 preflight-passed locator rewrites
+remain pending explicit approval, including 6 warning rows and 0 approved
+rewrites.
+
+Consequence / next gate: choose one of two explicit paths before any heldout
+read. Preferred path: build the source-free proton-transfer event-axis linker
+for `proton_transfer|electrostatic_stabiliser`, then rerun the source-free
+application surface and heldout-safe surface plan. Fallback path: explicitly
+accept the lower-recall His-count-only contract, approve/copy audited
+current702 heldout locator sidecars, and only then apply the frozen fallback
+threshold once. No labels, registries, ontologies, imports, production
+thresholds, model weights, or heldout readouts changed.
+
+Schema gate: the source-free event-axis linker schema is now staged. It requires
+an approved current702 heldout locator sidecar, accession-compatible
+UniProt-validated residue positions, a source-free residue-role assignment, and
+source-free proton-transfer event-axis evidence. It explicitly forbids M-CSA
+heldout mechanism text, curated heldout active-site roles, labels/outcomes,
+source IDs, target names, and EC/Rhea IDs as predictive inputs. It materializes
+0 linker rows.
+
+Artifacts:
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_current702_20260602.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_current702_20260602.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_current702_20260602.json`,
+`work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_current702_20260602.md`,
+`artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.json`,
+and
+`work/mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.md`.
+
 ## 2026-06-02: P0 Approved Rows Materialized Train/Cal-Only; No-Template Rerun Now Blocks On Calibration Review
 
 Decision: materialize only the three reviewer-approved P0 M-CSA-only source

@@ -1,0 +1,107 @@
+{
+  "acceptance_criteria": [
+    "row has an approved source-free current702 heldout locator sidecar",
+    "residue position is accession-compatible and UniProt-validated",
+    "residue role assignment is derived without M-CSA heldout mechanism text or curated heldout role labels",
+    "proton-transfer event axis is derived from source-free structural or chemistry evidence, not EC/Rhea/source IDs/target names",
+    "guardrail audit confirms labels, source text, source IDs, target names, EC/Rhea IDs, and heldout outcomes are excluded as predictive inputs"
+  ],
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602",
+  "blockers_to_clear": [
+    "source_free_current702_heldout_locator_surface_missing",
+    "source_free_proton_transfer_event_axis_missing",
+    "source_free_event_residue_role_linker_missing"
+  ],
+  "counts": {
+    "blockers_to_clear": 3,
+    "critical_violation_total": 0,
+    "fallback_contract_available": 1,
+    "materialized_linker_rows": 0,
+    "minimum_linkers_per_ready_row": 1,
+    "required_event_types": 1,
+    "required_residue_roles": 1
+  },
+  "created_utc": "2026-06-02T20:20:12Z",
+  "decision": {
+    "apply_frozen_pair_threshold_now": false,
+    "event_axis_linker_schema_ready": true,
+    "event_axis_linkers_materialized": false,
+    "heldout_read_once_performed": false,
+    "heldout_safe_event_axis_surface_ready": false,
+    "next_gate": "Fill this schema only after approved source-free current702 heldout locator sidecars exist; then rerun the event-linker blocker audit, source-free application surface, and heldout-safe surface plan before any heldout threshold read."
+  },
+  "forbidden_inputs": [
+    "m_csa_heldout_row_specific_mechanism_text",
+    "m_csa_curated_heldout_active_site_roles",
+    "heldout_labels_or_outcomes",
+    "source_ids",
+    "target_names",
+    "ec_or_rhea_ids"
+  ],
+  "guardrails": {
+    "frozen_residual_threshold_applied": false,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "linker_rows_materialized": false,
+    "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+    "m_csa_heldout_row_specific_mechanism_text_used": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Approve/copy current702 heldout locator sidecars or provide another source-free locator path, then fill this schema for the proton-transfer/electrostatic-stabiliser token.",
+    "result": "The missing event-axis linker now has an explicit source-free schema and acceptance contract. No linker rows are materialized yet because current702 heldout locators and source-free event axis evidence remain blocked."
+  },
+  "row_schema": {
+    "allowed_event_types": [
+      "proton_transfer"
+    ],
+    "allowed_residue_roles": [
+      "electrostatic_stabiliser"
+    ],
+    "event_residue_linker_required_fields": [
+      "residue_locator_id",
+      "residue_code",
+      "sequence_position",
+      "source_free_residue_role_evidence",
+      "source_free_event_axis_evidence",
+      "confidence"
+    ],
+    "minimum_linkers_per_ready_row": 1,
+    "required_fields": [
+      "entry_id",
+      "accession",
+      "source_free_event_axis_status",
+      "event_type",
+      "residue_role",
+      "event_residue_linkers",
+      "guardrail_audit"
+    ]
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema",
+  "scope": "Schema and acceptance contract for materializing the missing source-free event-axis linker for the calibrated row-specific feature pair. This stages the contract only; it creates no linker rows, copies no locators, and applies no heldout threshold.",
+  "source_artifacts": {
+    "event_linker_blocker_audit": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_current702_20260602.json",
+      "sha256": "979a9e5149649074e263747bec577e7c8505ccf8007a203d9c5cc8054f946e85"
+    },
+    "residue_count_fallback_contract": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_current702_20260602.json",
+      "sha256": "f9d09599a37c788d237654206eaccf4d6ce6e7cf08f7ccda1a41891a5fc87c84"
+    }
+  },
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_ready_no_linkers_materialized",
+  "target_feature": {
+    "companion_source_free_fallback_token": "residue_code_count:his=3",
+    "event_residue_role_token": "event_residue_role:proton_transfer|electrostatic_stabiliser",
+    "event_type": "proton_transfer",
+    "residue_role": "electrostatic_stabiliser"
+  }
+}

@@ -545,6 +545,16 @@ artifacts first.
   bond-change/proton/electron feature-materialization track (Rhea provenance) is the
   kept forward path to the genuinely-new mechanism feature. No code or artifacts from
   either build were removed.
+- Later 2026-06-02 Lever 2 artifacts materialize the approved row-specific
+  bond/proton/electron surface into a 43-row train/cal OOS-augmented feature
+  surface and freeze a calibration-only no-template pair contract. The stronger
+  pair (`event_residue_role:proton_transfer|electrostatic_stabiliser` plus
+  `residue_code_count:his=3`) reaches calibration OOS abstention 0.857143 at
+  the residual threshold 3.21469422, with heldout still unread. Deployment is
+  blocked by the missing source-free proton-transfer event-axis linker and
+  current702 heldout locator surface. A His-count-only fallback avoids the
+  event axis but drops calibration OOS abstention to 0.642857 and requires
+  explicit acceptance before any heldout read.
 - A no-fit mechanism-feature train/cal guardrail audit now pins the same
   surface across the input manifest, split manifest, and feature contract: 524
   feature rows exactly match 524 split rows, 140 heldout rows remain excluded,
@@ -588,37 +598,32 @@ artifacts first.
    source-checked and remain review-only. `m_csa:973` reuses its frozen
    train/calibration fold score, is score-complete, and abstains under the fixed
    research threshold. The 10-row source-backed coordinate/Foldseek pass is
-   done, and three approved locator rows now have source-free predicted-geometry
-   scores joined into the readout. Next source-check the three new
-   non-abstained review rows (`mh_066`, `mh_073`, and
-   `secondary_probe::radical_sam_enzyme`) and continue clearing the seven
-   remaining source-free locator blockers before any family-expansion decision.
-   `mh_065`/`mh_072` require accession-equivalence or matching-coordinate
-   policy before any locator copy, and `mh_067`/`mh_068` now need human
-   locator-copy approval after a passing split-safe template check. The
-   glycoside panel row needs a ligand-specificity validator or approved
-   substrate-complex coordinate after acetate rejection. `mh_064` and Q59490
-   are now explicit policy-decision blockers rather than ambiguous automation
-   tasks. The refreshed blocker-status artifact should be the next run's entry
-   point for any locator decision.
+   done, and five approved locator rows now have source-free predicted-geometry
+   inputs visible to the source-free surface. `mh_067`/`mh_068` passed the
+   split-safe check, were approved/copied into the audited locator directory,
+   and are source-checked as review-only/no-promotion. The import-preview gate
+   still reports 0/22 import-ready rows: the remaining priority locator rows
+   are `mh_065`/`mh_072` (matching coordinate or approved remap required),
+   `external_glycoside_panel` (ligand-specificity validator or substrate
+   coordinate), `mh_064` (alternate-coordinate fetch policy), and Q59490 /
+   `secondary_probe::cobalamin_radical_rearrangement` (nonlabel locator
+   strategy or alternate source). No label/import/family promotion is
+   authorized.
 3. If representation work resumes, produce row-aligned local sidecars first,
    start from
    `artifacts/v3_mechanism_feature_embedding_train_cal_input_manifest_current702_20260601.json`,
    then
    `artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_current702_20260601.json`.
-   The three reviewer-approved P0 M-CSA-only source rows are already
-   materialized into a train-only feature sidecar and pass the strict
-   train/cal feature guardrail audit. Next review the four calibration-gate rows
-   in
-   `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json`
-   (`m_csa:186`, `m_csa:147`, `m_csa:6`, `m_csa:133`), record decisions in the
-   source-evidence sidecar, rerun the strict/readiness/materialization
-   artifacts, and only then re-run BOTH the no-template centroid pilot and the
-   confirmed out-of-span residual on the richer template-free surface under the
-   same train/cal/heldout discipline (train heads on train/cal rows only,
-   evaluate heldout once, include a predicted-geometry robustness cell), with a
-   deployable residual calibration. This is the unified Lever 2 forward path;
-   see `docs/decision_log.md` 2026-06-02.
+   The row-specific train/cal feature rerun is now complete through the
+   calibration-only pair contract. Next choose the deployable application path:
+   preferred path is filling
+   `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602.json`
+   after approved current702 heldout locator sidecars exist; fallback path is
+   explicitly accepting the lower-recall His-count-only contract in
+   `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_current702_20260602.json`.
+   In both cases, do not apply any frozen residual threshold or read heldout
+   until the chosen source-free application surface is complete and guardrail
+   audited.
 4. For FMO, revise the review/silver evidence gate into subtype panels, finish
    coordinate/materialization blockers, and keep candidate rows review-only.
 5. For label growth, require explicit expert decision, no-import safety checks

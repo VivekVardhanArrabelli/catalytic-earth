@@ -13,14 +13,14 @@
     "heldout_rows_in_manifest": 140,
     "source_free_event_residue_role_feature_rows": 0,
     "source_free_locator_guardrail_violation_rows": 0,
-    "source_free_locator_sidecars_total": 3,
-    "source_free_predicted_geometry_ready_rows": 3,
+    "source_free_locator_sidecars_total": 5,
+    "source_free_predicted_geometry_ready_rows": 5,
     "source_free_residue_count_feature_rows": 0,
     "source_free_residue_count_his3_hit_rows": 0,
     "surface_feature_tokens_ready": 0,
     "surface_feature_tokens_required": 2
   },
-  "created_utc": "2026-06-02T13:09:24Z",
+  "created_utc": "2026-06-02T20:04:49Z",
   "decision": {
     "apply_frozen_pair_threshold_now": false,
     "heldout_read_once_performed": false,
@@ -75,17 +75,17 @@
     "pair_surface_plan": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_heldout_safe_surface_plan_current702_20260602.json",
-      "sha256": "609eb3dd028f40c5a52f21e0dcc15bbe1e12d61fe766f1f1dac674562965ab18"
+      "sha256": "faed81ef71ec320ef7ce243d982fba2b1bee7f1e263d507881d4d6760e724e48"
     },
     "source_free_locator_dir": {
       "exists": true,
-      "json_file_count": 3,
+      "json_file_count": 5,
       "path": "artifacts/family_panel_source_free_active_site_locators_current702_20260601"
     },
     "source_free_predicted_geometry_manifest": {
       "exists": true,
       "path": "artifacts/v3_family_panel_source_free_predicted_geometry_sidecar_manifest_current702_20260601.json",
-      "sha256": "058bb6e5d2e274490491fd498b30b1f44cd8e5f01fc105f744905bd8b73e7369"
+      "sha256": "9f88b277b0f7e509bd2cd84d50543d555103e1f86d26f5069fdd865c9c71fba0"
     }
   },
   "status": "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_blocked",

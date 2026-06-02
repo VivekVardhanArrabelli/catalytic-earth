@@ -1,0 +1,127 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_current702_20260602",
+  "blockers": [
+    "source_free_current702_heldout_locator_surface_missing",
+    "source_free_proton_transfer_event_axis_missing",
+    "source_free_event_residue_role_linker_missing",
+    "m_csa_curated_active_site_role_graph_forbidden_as_deployment_input",
+    "source_free_residue_code_only_fallback_underperforms_pair_contract"
+  ],
+  "calibration_contract_comparison": {
+    "pair_followup_token_record": {
+      "feature_family": "residue_code_count",
+      "feature_token": "residue_code_count:his=3",
+      "residual_auc_oos_gt_primary": 0.875,
+      "residual_oos_abstain_recall": 0.857143
+    },
+    "pair_residual_auc_oos_gt_primary": 0.875,
+    "pair_residual_oos_abstain_recall": 0.857143,
+    "pair_residual_threshold": 3.21469422,
+    "residue_code_only_auc_delta_vs_pair": 0.116071,
+    "residue_code_only_auc_oos_gt_primary": 0.758929,
+    "residue_code_only_oos_abstain_recall": 0.642857,
+    "residue_code_only_recall_delta_vs_pair": 0.214286
+  },
+  "counts": {
+    "blockers": 5,
+    "critical_violation_total": 0,
+    "current702_heldout_locator_sidecars": 0,
+    "heldout_rows_in_manifest": 140,
+    "m_csa_curated_heldout_role_graph_ok_rows": 132,
+    "source_free_event_residue_role_feature_rows": 0,
+    "source_free_locator_sidecars_total": 5,
+    "source_free_residue_count_feature_rows": 0
+  },
+  "created_utc": "2026-06-02T20:09:34Z",
+  "decision": {
+    "apply_frozen_pair_threshold_now": false,
+    "curated_active_site_role_graph_allowed_for_deployment": false,
+    "heldout_read_once_performed": false,
+    "heldout_safe_pair_application_surface_ready": false,
+    "next_gate": "Do not substitute the M-CSA active-site role graph for heldout deployment. Either build an approved source-free proton-transfer event-axis linker for the pair token, or explicitly choose the lower-recall residue-code-only fallback as a separate calibration contract before any heldout read.",
+    "source_free_event_linker_ready": false,
+    "source_free_residue_code_only_fallback_sufficient": false
+  },
+  "guardrails": {
+    "event_residue_role_feature_imputed": false,
+    "frozen_residual_threshold_applied": false,
+    "heldout_rows_evaluated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "m_csa_heldout_active_site_roles_used_as_predictive_features": false,
+    "m_csa_heldout_row_specific_mechanism_text_used": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "source_text_or_source_ids_used_as_predictive_features": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Build the source-free event-axis linker contract for proton_transfer to electrostatic_stabiliser, then rerun the source-free application surface and heldout-safe surface plan.",
+    "result": "The calibrated pair remains deployment-blocked because the event/residue-role token requires a source-free proton-transfer event axis. The source-free His-count fallback is measurable on train/cal but loses calibration OOS abstention relative to the pair, and the curated heldout active-site role graph is an explicitly forbidden deployment shortcut."
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit",
+  "scope": "Leakage-safe blocker audit for the source-free event/residue-role linker needed by the calibrated row-specific feature pair. It compares the frozen pair contract with the source-free-computable residue-code fallback, rejects curated heldout role graphs as deployment inputs, and does not apply the heldout threshold.",
+  "selected_feature_pair": {
+    "event_residue_role_token": "event_residue_role:proton_transfer|electrostatic_stabiliser",
+    "event_type_required": "proton_transfer",
+    "residue_count_token": "residue_code_count:his=3",
+    "residue_role_required": "electrostatic_stabiliser"
+  },
+  "source_artifacts": {
+    "active_site_role_graph_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json",
+      "sha256": "8c58a6de59dde646dc3d3c4995fcda23ac3fe7f5190d1c4d19481859e7451e2b"
+    },
+    "expanded_token_ablation": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_token_ablation_current702_20260602.json",
+      "sha256": "b92400e7fdad31c2c6108a7c7251571a3d3fc524bb3fccee13f587dd8e030823"
+    },
+    "followup_token_ablation": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation_current702_20260602.json",
+      "sha256": "e37cb0d2d395f0488392d1f45f699cc2449d1eef2d479347f26626c76eee3b03"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "pair_operating_point_contract": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract_current702_20260602.json",
+      "sha256": "38cecbf67c9d8e283aa79676d8580425c78344124d017d6d5980c0f0cebb70d0"
+    },
+    "pair_train_cal_feature_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_current702_20260602.json",
+      "sha256": "5f5823da51c42b70012b606821133ca5f252ac1525a7ce04d7e478f02d743bb0"
+    },
+    "source_free_application_surface": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602.json",
+      "sha256": "bc94fa4c311d4d57b8b09148f9e973766f7c26e198281e283e9e4803eecb58c7"
+    }
+  },
+  "source_free_linker_contract": {
+    "forbidden_inputs": [
+      "m_csa_heldout_row_specific_mechanism_text",
+      "m_csa_curated_heldout_active_site_roles",
+      "heldout_labels_or_outcomes",
+      "source_ids",
+      "target_names",
+      "ec_or_rhea_ids"
+    ],
+    "mechanically_clear_now": false,
+    "required_inputs": [
+      "approved_source_free_current702_heldout_locator_sidecars",
+      "source_free_residue_identity_mapping",
+      "source_free_residue_role_assignment",
+      "source_free_proton_transfer_event_axis"
+    ]
+  },
+  "status": "p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_ready_blocked"
+}

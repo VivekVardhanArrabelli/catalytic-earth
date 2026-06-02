@@ -363,6 +363,15 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_APPLICATION_SURFACE_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface_current702_20260602"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_LINKER_BLOCKER_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_RESIDUE_COUNT_FALLBACK_CONTRACT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_SCHEMA_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_current702_20260602"
+)
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_LOCATOR_ACTION_QUEUE_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_locator_action_queue_current702_20260602"
 )
@@ -34783,6 +34792,994 @@ def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token
             encoding="utf-8",
         )
     return surface
+
+
+def _token_ablation_decision_record(
+    artifact: dict[str, Any],
+    *,
+    decision_key: str,
+    token: str,
+) -> dict[str, Any] | None:
+    decision = artifact.get("decision") if isinstance(artifact, dict) else {}
+    records = decision.get(decision_key) if isinstance(decision, dict) else []
+    for record in records or []:
+        if isinstance(record, dict) and record.get("feature_token") == token:
+            return {
+                "feature_family": record.get("feature_family"),
+                "feature_token": record.get("feature_token"),
+                "residual_oos_abstain_recall": record.get(
+                    "residual_oos_abstain_recall"
+                ),
+                "residual_auc_oos_gt_primary": record.get(
+                    "residual_auc_oos_gt_primary"
+                ),
+            }
+    for record in artifact.get("token_ablation_rows", []) or []:
+        if isinstance(record, dict) and record.get("feature_token") == token:
+            return {
+                "feature_family": record.get("feature_family"),
+                "feature_token": record.get("feature_token"),
+                "residual_oos_abstain_recall": record.get(
+                    "residual_oos_abstain_recall"
+                ),
+                "residual_auc_oos_gt_primary": record.get(
+                    "residual_auc_oos_gt_primary"
+                ),
+            }
+    return None
+
+
+def _parse_event_residue_role_token(token: Any) -> dict[str, str | None]:
+    token_text = str(token or "")
+    prefix = "event_residue_role:"
+    if not token_text.startswith(prefix):
+        return {
+            "event_type": None,
+            "residue_role": None,
+        }
+    body = token_text[len(prefix) :]
+    event_type, separator, residue_role = body.partition("|")
+    return {
+        "event_type": event_type or None,
+        "residue_role": residue_role if separator and residue_role else None,
+    }
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit(
+    *,
+    pair_train_cal_feature_sidecar_path: Path,
+    pair_operating_point_contract_path: Path,
+    source_free_application_surface_path: Path,
+    expanded_token_ablation_path: Path,
+    followup_token_ablation_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    label_manifest_path: Path,
+) -> dict[str, Any]:
+    pair_sidecar = _read_json(pair_train_cal_feature_sidecar_path)
+    pair_contract = _read_json(pair_operating_point_contract_path)
+    source_free_surface = _read_json(source_free_application_surface_path)
+    expanded_ablation = _read_json(expanded_token_ablation_path)
+    followup_ablation = _read_json(followup_token_ablation_path)
+    active_role_graph = _read_json(active_site_role_graph_sidecar_path)
+    manifest = _read_json(label_manifest_path)
+
+    manifest_rows = [
+        row for row in manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    heldout_rows = [
+        row for row in manifest_rows if row.get("split_assignment") == "heldout"
+    ]
+    selected_event_token = pair_sidecar.get("decision", {}).get(
+        "previous_selected_feature_token"
+    ) or source_free_surface.get("selected_feature_pair", {}).get(
+        "event_residue_role_token"
+    )
+    selected_residue_token = pair_sidecar.get("decision", {}).get(
+        "selected_followup_feature_token"
+    ) or source_free_surface.get("selected_feature_pair", {}).get(
+        "residue_count_token"
+    )
+    event_token_parts = _parse_event_residue_role_token(selected_event_token)
+    pair_residual = (
+        pair_contract.get("calibration_contract", {}).get("residual_distance", {})
+        if isinstance(pair_contract.get("calibration_contract"), dict)
+        else {}
+    )
+    source_free_counts = source_free_surface.get("counts", {})
+    source_free_decision = source_free_surface.get("decision", {})
+    split_status_counts = active_role_graph.get("counts", {}).get(
+        "split_status_counts", {}
+    )
+    heldout_curated_role_graph_ok_rows = int(
+        split_status_counts.get("heldout::ok") or 0
+    )
+    source_free_locator_rows = int(
+        source_free_counts.get("current702_heldout_locator_sidecars") or 0
+    )
+    source_free_event_rows = int(
+        source_free_counts.get("source_free_event_residue_role_feature_rows") or 0
+    )
+    source_free_residue_rows = int(
+        source_free_counts.get("source_free_residue_count_feature_rows") or 0
+    )
+    residue_only_record = _token_ablation_decision_record(
+        expanded_ablation,
+        decision_key="tokens_beating_coarse_residual_contract",
+        token=str(selected_residue_token or ""),
+    )
+    pair_followup_record = _token_ablation_decision_record(
+        followup_ablation,
+        decision_key="tokens_beating_best_token_residual_contract",
+        token=str(selected_residue_token or ""),
+    )
+    pair_recall = pair_residual.get("oos_abstain_recall")
+    residue_only_recall = (
+        residue_only_record.get("residual_oos_abstain_recall")
+        if residue_only_record
+        else None
+    )
+    residue_only_auc = (
+        residue_only_record.get("residual_auc_oos_gt_primary")
+        if residue_only_record
+        else None
+    )
+    pair_auc = pair_residual.get("calibration_auc_oos_gt_primary")
+    recall_delta_vs_pair = (
+        round(float(pair_recall) - float(residue_only_recall), 6)
+        if pair_recall is not None and residue_only_recall is not None
+        else None
+    )
+    auc_delta_vs_pair = (
+        round(float(pair_auc) - float(residue_only_auc), 6)
+        if pair_auc is not None and residue_only_auc is not None
+        else None
+    )
+    event_axis_ready = bool(
+        source_free_decision.get("source_free_event_residue_role_surface_ready")
+    )
+    locator_surface_ready = source_free_locator_rows == len(heldout_rows) and bool(
+        heldout_rows
+    )
+    blockers: list[str] = []
+    if not locator_surface_ready:
+        blockers.append("source_free_current702_heldout_locator_surface_missing")
+    if not event_axis_ready:
+        blockers.append("source_free_proton_transfer_event_axis_missing")
+        blockers.append("source_free_event_residue_role_linker_missing")
+    if heldout_curated_role_graph_ok_rows:
+        blockers.append(
+            "m_csa_curated_active_site_role_graph_forbidden_as_deployment_input"
+        )
+    if residue_only_record is None:
+        blockers.append("source_free_residue_code_only_fallback_not_scored")
+    elif recall_delta_vs_pair is not None and recall_delta_vs_pair > 0:
+        blockers.append(
+            "source_free_residue_code_only_fallback_underperforms_pair_contract"
+        )
+    event_linker_ready = event_axis_ready and locator_surface_ready
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_LINKER_BLOCKER_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_ready_blocked"
+            if blockers
+            else "p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_ready_clear"
+        ),
+        "scope": (
+            "Leakage-safe blocker audit for the source-free event/residue-role "
+            "linker needed by the calibrated row-specific feature pair. It "
+            "compares the frozen pair contract with the source-free-computable "
+            "residue-code fallback, rejects curated heldout role graphs as "
+            "deployment inputs, and does not apply the heldout threshold."
+        ),
+        "selected_feature_pair": {
+            "event_residue_role_token": selected_event_token,
+            "event_type_required": event_token_parts["event_type"],
+            "residue_role_required": event_token_parts["residue_role"],
+            "residue_count_token": selected_residue_token,
+        },
+        "calibration_contract_comparison": {
+            "pair_residual_oos_abstain_recall": pair_recall,
+            "pair_residual_auc_oos_gt_primary": pair_auc,
+            "pair_residual_threshold": pair_residual.get("threshold"),
+            "residue_code_only_oos_abstain_recall": residue_only_recall,
+            "residue_code_only_auc_oos_gt_primary": residue_only_auc,
+            "residue_code_only_recall_delta_vs_pair": recall_delta_vs_pair,
+            "residue_code_only_auc_delta_vs_pair": auc_delta_vs_pair,
+            "pair_followup_token_record": pair_followup_record,
+        },
+        "source_free_linker_contract": {
+            "required_inputs": [
+                "approved_source_free_current702_heldout_locator_sidecars",
+                "source_free_residue_identity_mapping",
+                "source_free_residue_role_assignment",
+                "source_free_proton_transfer_event_axis",
+            ],
+            "forbidden_inputs": [
+                "m_csa_heldout_row_specific_mechanism_text",
+                "m_csa_curated_heldout_active_site_roles",
+                "heldout_labels_or_outcomes",
+                "source_ids",
+                "target_names",
+                "ec_or_rhea_ids",
+            ],
+            "mechanically_clear_now": event_linker_ready,
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "event_residue_role_feature_imputed": False,
+            "review_only": True,
+        },
+        "counts": {
+            "heldout_rows_in_manifest": len(heldout_rows),
+            "source_free_locator_sidecars_total": source_free_counts.get(
+                "source_free_locator_sidecars_total"
+            ),
+            "current702_heldout_locator_sidecars": source_free_locator_rows,
+            "source_free_residue_count_feature_rows": source_free_residue_rows,
+            "source_free_event_residue_role_feature_rows": source_free_event_rows,
+            "m_csa_curated_heldout_role_graph_ok_rows": (
+                heldout_curated_role_graph_ok_rows
+            ),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "source_free_event_linker_ready": event_linker_ready,
+            "source_free_residue_code_only_fallback_sufficient": False,
+            "curated_active_site_role_graph_allowed_for_deployment": False,
+            "heldout_safe_pair_application_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Do not substitute the M-CSA active-site role graph for heldout "
+                "deployment. Either build an approved source-free proton-transfer "
+                "event-axis linker for the pair token, or explicitly choose the "
+                "lower-recall residue-code-only fallback as a separate "
+                "calibration contract before any heldout read."
+            ),
+        },
+        "source_artifacts": {
+            "pair_train_cal_feature_sidecar": _source_path_record(
+                pair_train_cal_feature_sidecar_path
+            ),
+            "pair_operating_point_contract": _source_path_record(
+                pair_operating_point_contract_path
+            ),
+            "source_free_application_surface": _source_path_record(
+                source_free_application_surface_path
+            ),
+            "expanded_token_ablation": _source_path_record(
+                expanded_token_ablation_path
+            ),
+            "followup_token_ablation": _source_path_record(
+                followup_token_ablation_path
+            ),
+            "active_site_role_graph_sidecar": _source_path_record(
+                active_site_role_graph_sidecar_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+        },
+        "interpretation": {
+            "result": (
+                "The calibrated pair remains deployment-blocked because the "
+                "event/residue-role token requires a source-free proton-transfer "
+                "event axis. The source-free His-count fallback is measurable on "
+                "train/cal but loses calibration OOS abstention relative to the "
+                "pair, and the curated heldout active-site role graph is an "
+                "explicitly forbidden deployment shortcut."
+            ),
+            "next_action": (
+                "Build the source-free event-axis linker contract for "
+                "proton_transfer to electrostatic_stabiliser, then rerun the "
+                "source-free application surface and heldout-safe surface plan."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    comparison = audit["calibration_contract_comparison"]
+    decision = audit["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Event-Linker Blocker Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Heldout rows: {counts['heldout_rows_in_manifest']}",
+        "- Current702 heldout source-free locator sidecars: "
+        f"{counts['current702_heldout_locator_sidecars']}",
+        "- Source-free event/residue-role feature rows: "
+        f"{counts['source_free_event_residue_role_feature_rows']}",
+        "- M-CSA curated heldout role-graph ok rows: "
+        f"{counts['m_csa_curated_heldout_role_graph_ok_rows']}",
+        f"- Blockers: {', '.join(audit['blockers'])}",
+        "",
+        "## Contract Comparison",
+        "",
+        "- Pair residual OOS abstain recall: "
+        f"{comparison['pair_residual_oos_abstain_recall']}",
+        "- Residue-code-only OOS abstain recall: "
+        f"{comparison['residue_code_only_oos_abstain_recall']}",
+        "- Residue-code-only recall delta vs pair: "
+        f"{comparison['residue_code_only_recall_delta_vs_pair']}",
+        "- Pair residual AUC: "
+        f"{comparison['pair_residual_auc_oos_gt_primary']}",
+        "- Residue-code-only AUC: "
+        f"{comparison['residue_code_only_auc_oos_gt_primary']}",
+        "",
+        "## Decision",
+        "",
+        f"- Source-free event linker ready: {decision['source_free_event_linker_ready']}",
+        "- Source-free residue-code-only fallback sufficient: "
+        f"{decision['source_free_residue_code_only_fallback_sufficient']}",
+        "- Curated active-site role graph allowed for deployment: "
+        f"{decision['curated_active_site_role_graph_allowed_for_deployment']}",
+        "- Heldout-safe pair application surface ready: "
+        f"{decision['heldout_safe_pair_application_surface_ready']}",
+        f"- Apply frozen pair threshold now: {decision['apply_frozen_pair_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit(
+    *,
+    pair_train_cal_feature_sidecar_path: Path,
+    pair_operating_point_contract_path: Path,
+    source_free_application_surface_path: Path,
+    expanded_token_ablation_path: Path,
+    followup_token_ablation_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    label_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit(
+        pair_train_cal_feature_sidecar_path=pair_train_cal_feature_sidecar_path,
+        pair_operating_point_contract_path=pair_operating_point_contract_path,
+        source_free_application_surface_path=source_free_application_surface_path,
+        expanded_token_ablation_path=expanded_token_ablation_path,
+        followup_token_ablation_path=followup_token_ablation_path,
+        active_site_role_graph_sidecar_path=active_site_role_graph_sidecar_path,
+        label_manifest_path=label_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def _token_ablation_full_record(
+    artifact: dict[str, Any],
+    *,
+    token: str,
+    decision_key: str,
+) -> dict[str, Any] | None:
+    for record in artifact.get("token_ablation_rows", []) or []:
+        if isinstance(record, dict) and record.get("feature_token") == token:
+            return dict(record)
+    return _token_ablation_decision_record(
+        artifact,
+        decision_key=decision_key,
+        token=token,
+    )
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract(
+    *,
+    expanded_token_ablation_path: Path,
+    source_free_application_surface_path: Path,
+    event_linker_blocker_audit_path: Path,
+    label_manifest_path: Path,
+    source_free_locator_input_audit_path: Path | None = None,
+) -> dict[str, Any]:
+    expanded_ablation = _read_json(expanded_token_ablation_path)
+    source_free_surface = _read_json(source_free_application_surface_path)
+    event_linker_audit = _read_json(event_linker_blocker_audit_path)
+    manifest = _read_json(label_manifest_path)
+    locator_input_audit = (
+        _read_json(source_free_locator_input_audit_path)
+        if source_free_locator_input_audit_path is not None
+        and Path(source_free_locator_input_audit_path).exists()
+        else None
+    )
+
+    manifest_rows = [
+        row for row in manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    heldout_rows = [
+        row for row in manifest_rows if row.get("split_assignment") == "heldout"
+    ]
+    selected_token = (
+        event_linker_audit.get("selected_feature_pair", {}).get(
+            "residue_count_token"
+        )
+        or source_free_surface.get("selected_feature_pair", {}).get(
+            "residue_count_token"
+        )
+        or "residue_code_count:his=3"
+    )
+    fallback_record = _token_ablation_full_record(
+        expanded_ablation,
+        token=str(selected_token),
+        decision_key="tokens_beating_coarse_residual_contract",
+    )
+    surface_counts = source_free_surface.get("counts", {})
+    locator_input_counts = (
+        locator_input_audit.get("counts", {})
+        if isinstance(locator_input_audit, dict)
+        else {}
+    )
+    event_comparison = event_linker_audit.get("calibration_contract_comparison", {})
+    current702_locator_rows = int(
+        surface_counts.get("current702_heldout_locator_sidecars") or 0
+    )
+    residue_count_surface_rows = int(
+        surface_counts.get("source_free_residue_count_feature_rows") or 0
+    )
+    pair_recall = event_comparison.get("pair_residual_oos_abstain_recall")
+    fallback_recall = (
+        fallback_record.get("residual_oos_abstain_recall")
+        if fallback_record
+        else None
+    )
+    fallback_auc = (
+        fallback_record.get("residual_auc_oos_gt_primary")
+        if fallback_record
+        else None
+    )
+    fallback_threshold = (
+        fallback_record.get("residual_threshold") if fallback_record else None
+    )
+    recall_delta_vs_pair = (
+        round(float(pair_recall) - float(fallback_recall), 6)
+        if pair_recall is not None and fallback_recall is not None
+        else event_comparison.get("residue_code_only_recall_delta_vs_pair")
+    )
+    locator_surface_ready = current702_locator_rows == len(heldout_rows) and bool(
+        heldout_rows
+    )
+    residue_count_surface_ready = residue_count_surface_rows == len(heldout_rows) and bool(
+        heldout_rows
+    )
+    blockers: list[str] = []
+    if fallback_record is None:
+        blockers.append("source_free_residue_count_fallback_token_not_scored")
+    if not locator_surface_ready:
+        blockers.append("source_free_current702_heldout_locator_surface_missing")
+    if not residue_count_surface_ready:
+        blockers.append("source_free_residue_count_surface_missing")
+    if int(
+        locator_input_counts.get(
+            "priority1_coordinate_anchor_preflight_passed_pending_explicit_approval"
+        )
+        or 0
+    ) > 0:
+        blockers.append("source_free_locator_rewrite_explicit_approval_pending")
+    if recall_delta_vs_pair is not None and recall_delta_vs_pair > 0:
+        blockers.append(
+            "source_free_residue_count_fallback_lower_recall_requires_explicit_acceptance"
+        )
+    contract_ready = fallback_record is not None
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_RESIDUE_COUNT_FALLBACK_CONTRACT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_ready_calibration_only_surface_blocked"
+            if contract_ready
+            else "p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_blocked"
+        ),
+        "scope": (
+            "Calibration-only fallback contract for the source-free-compatible "
+            "residue-count token in the row-specific feature surface. It "
+            "formalizes the lower-recall His-count-only option without "
+            "requiring the event/residue-role linker and without applying the "
+            "heldout threshold."
+        ),
+        "fallback_feature": {
+            "feature_token": selected_token,
+            "feature_family": (
+                fallback_record.get("feature_family") if fallback_record else None
+            ),
+            "source_free_required_inputs": [
+                "approved_source_free_current702_heldout_locator_sidecars",
+                "accession_compatible_residue_identity_mapping",
+            ],
+            "event_axis_required": False,
+        },
+        "calibration_contract": {
+            "decision_rule": (
+                "abstain_as_novel_when_out_of_atlas_span_residual_above_threshold"
+            ),
+            "residual_distance_threshold": fallback_threshold,
+            "calibration_oos_abstain_recall": fallback_recall,
+            "calibration_auc_oos_gt_primary": fallback_auc,
+            "pair_residual_oos_abstain_recall": pair_recall,
+            "recall_delta_vs_pair": recall_delta_vs_pair,
+            "token_hit_rows": (
+                fallback_record.get("token_hit_rows") if fallback_record else None
+            ),
+        },
+        "blockers": blockers,
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit_by_this_artifact": False,
+            "threshold_selected_or_tuned_by_this_artifact": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "event_residue_role_feature_imputed": False,
+            "review_only": True,
+        },
+        "counts": {
+            "heldout_rows_in_manifest": len(heldout_rows),
+            "current702_heldout_locator_sidecars": current702_locator_rows,
+            "source_free_residue_count_feature_rows": residue_count_surface_rows,
+            "source_free_locator_sidecars_total": surface_counts.get(
+                "source_free_locator_sidecars_total"
+            ),
+            "source_free_locator_input_priority1_preflight_passed_pending_explicit_approval": (
+                locator_input_counts.get(
+                    "priority1_coordinate_anchor_preflight_passed_pending_explicit_approval"
+                )
+            ),
+            "source_free_locator_input_priority1_preflight_rows_with_warnings": (
+                locator_input_counts.get(
+                    "priority1_coordinate_anchor_preflight_rows_with_warnings"
+                )
+            ),
+            "source_free_locator_input_priority1_approved_rewrites": (
+                locator_input_counts.get(
+                    "priority1_coordinate_anchor_preflight_approved_rewrites"
+                )
+            ),
+            "source_free_locator_input_auto_create_allowed_rows": (
+                locator_input_counts.get("auto_create_locator_sidecar_allowed_rows")
+            ),
+            "fallback_token_scored": int(fallback_record is not None),
+            "blockers": len(blockers),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "fallback_contract_calibrated_train_cal_only": contract_ready,
+            "fallback_avoids_event_axis": True,
+            "fallback_accepted_as_deployable_replacement": False,
+            "explicit_acceptance_required_before_heldout_read": bool(
+                recall_delta_vs_pair is not None and recall_delta_vs_pair > 0
+            ),
+            "heldout_safe_fallback_application_surface_ready": False,
+            "apply_frozen_fallback_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Use this fallback only if the lower calibration OOS abstention "
+                "is explicitly accepted. Otherwise build the source-free event "
+                "linker for the stronger pair. In either case, materialize "
+                "approved current702 heldout locator sidecars before any "
+                "heldout threshold application."
+            ),
+        },
+        "source_artifacts": {
+            "expanded_token_ablation": _source_path_record(
+                expanded_token_ablation_path
+            ),
+            "source_free_application_surface": _source_path_record(
+                source_free_application_surface_path
+            ),
+            "event_linker_blocker_audit": _source_path_record(
+                event_linker_blocker_audit_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "source_free_locator_input_audit": (
+                _source_path_record(source_free_locator_input_audit_path)
+                if source_free_locator_input_audit_path is not None
+                else {
+                    "path": None,
+                    "exists": False,
+                    "sha256": None,
+                }
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The His-count-only fallback is calibration-scored and avoids "
+                "the missing event axis, but it is a lower-recall alternative "
+                "to the calibrated pair and still needs approved current702 "
+                "heldout locators before a heldout-safe application surface "
+                "exists."
+            ),
+            "next_action": (
+                "Either explicitly accept this lower-recall fallback contract "
+                "or continue building the source-free event linker for the "
+                "stronger pair; do not read heldout until the selected surface "
+                "is source-free and complete."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_report(
+    contract: dict[str, Any],
+) -> str:
+    counts = contract["counts"]
+    calibration = contract["calibration_contract"]
+    decision = contract["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Residue-Count Fallback Contract - current702",
+        "",
+        f"Run: {contract['created_utc']}",
+        "",
+        contract["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {contract['status']}",
+        f"- Heldout rows: {counts['heldout_rows_in_manifest']}",
+        "- Current702 heldout source-free locator sidecars: "
+        f"{counts['current702_heldout_locator_sidecars']}",
+        "- Source-free residue-count feature rows: "
+        f"{counts['source_free_residue_count_feature_rows']}",
+        "- Locator preflight-passed pending explicit approval: "
+        f"{counts.get('source_free_locator_input_priority1_preflight_passed_pending_explicit_approval')}",
+        "- Locator preflight rows with warnings: "
+        f"{counts.get('source_free_locator_input_priority1_preflight_rows_with_warnings')}",
+        f"- Fallback token scored: {counts['fallback_token_scored']}",
+        f"- Blockers: {', '.join(contract['blockers'])}",
+        "",
+        "## Calibration Contract",
+        "",
+        f"- Feature token: {contract['fallback_feature']['feature_token']}",
+        "- Residual distance threshold: "
+        f"{calibration['residual_distance_threshold']}",
+        "- Calibration OOS abstain recall: "
+        f"{calibration['calibration_oos_abstain_recall']}",
+        "- Calibration AUC: "
+        f"{calibration['calibration_auc_oos_gt_primary']}",
+        "- Pair calibration OOS abstain recall: "
+        f"{calibration['pair_residual_oos_abstain_recall']}",
+        "- Recall delta vs pair: "
+        f"{calibration['recall_delta_vs_pair']}",
+        "",
+        "## Decision",
+        "",
+        "- Fallback calibrated train/cal only: "
+        f"{decision['fallback_contract_calibrated_train_cal_only']}",
+        f"- Fallback avoids event axis: {decision['fallback_avoids_event_axis']}",
+        "- Fallback accepted as deployable replacement: "
+        f"{decision['fallback_accepted_as_deployable_replacement']}",
+        "- Explicit acceptance required before heldout read: "
+        f"{decision['explicit_acceptance_required_before_heldout_read']}",
+        "- Heldout-safe fallback application surface ready: "
+        f"{decision['heldout_safe_fallback_application_surface_ready']}",
+        f"- Apply frozen fallback threshold now: {decision['apply_frozen_fallback_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {contract['interpretation']['result']}",
+        f"- {contract['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract(
+    *,
+    expanded_token_ablation_path: Path,
+    source_free_application_surface_path: Path,
+    event_linker_blocker_audit_path: Path,
+    label_manifest_path: Path,
+    out_path: Path,
+    source_free_locator_input_audit_path: Path | None = None,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    contract = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract(
+        expanded_token_ablation_path=expanded_token_ablation_path,
+        source_free_application_surface_path=source_free_application_surface_path,
+        event_linker_blocker_audit_path=event_linker_blocker_audit_path,
+        label_manifest_path=label_manifest_path,
+        source_free_locator_input_audit_path=source_free_locator_input_audit_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(contract, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_report(
+                contract
+            ),
+            encoding="utf-8",
+        )
+    return contract
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema(
+    *,
+    event_linker_blocker_audit_path: Path,
+    residue_count_fallback_contract_path: Path | None = None,
+) -> dict[str, Any]:
+    event_linker_audit = _read_json(event_linker_blocker_audit_path)
+    fallback_contract = (
+        _read_json(residue_count_fallback_contract_path)
+        if residue_count_fallback_contract_path is not None
+        and Path(residue_count_fallback_contract_path).exists()
+        else None
+    )
+    selected_pair = event_linker_audit.get("selected_feature_pair", {})
+    event_type = selected_pair.get("event_type_required")
+    residue_role = selected_pair.get("residue_role_required")
+    event_token = selected_pair.get("event_residue_role_token")
+    residue_token = selected_pair.get("residue_count_token")
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_AUGMENTED_BEST_TOKEN_FOLLOWUP_PAIR_SOURCE_FREE_EVENT_AXIS_LINKER_SCHEMA_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_ready_no_linkers_materialized"
+        ),
+        "scope": (
+            "Schema and acceptance contract for materializing the missing "
+            "source-free event-axis linker for the calibrated row-specific "
+            "feature pair. This stages the contract only; it creates no linker "
+            "rows, copies no locators, and applies no heldout threshold."
+        ),
+        "target_feature": {
+            "event_residue_role_token": event_token,
+            "event_type": event_type,
+            "residue_role": residue_role,
+            "companion_source_free_fallback_token": residue_token,
+        },
+        "row_schema": {
+            "required_fields": [
+                "entry_id",
+                "accession",
+                "source_free_event_axis_status",
+                "event_type",
+                "residue_role",
+                "event_residue_linkers",
+                "guardrail_audit",
+            ],
+            "event_residue_linker_required_fields": [
+                "residue_locator_id",
+                "residue_code",
+                "sequence_position",
+                "source_free_residue_role_evidence",
+                "source_free_event_axis_evidence",
+                "confidence",
+            ],
+            "allowed_event_types": [event_type],
+            "allowed_residue_roles": [residue_role],
+            "minimum_linkers_per_ready_row": 1,
+        },
+        "acceptance_criteria": [
+            "row has an approved source-free current702 heldout locator sidecar",
+            "residue position is accession-compatible and UniProt-validated",
+            "residue role assignment is derived without M-CSA heldout mechanism text or curated heldout role labels",
+            "proton-transfer event axis is derived from source-free structural or chemistry evidence, not EC/Rhea/source IDs/target names",
+            "guardrail audit confirms labels, source text, source IDs, target names, EC/Rhea IDs, and heldout outcomes are excluded as predictive inputs",
+        ],
+        "forbidden_inputs": [
+            "m_csa_heldout_row_specific_mechanism_text",
+            "m_csa_curated_heldout_active_site_roles",
+            "heldout_labels_or_outcomes",
+            "source_ids",
+            "target_names",
+            "ec_or_rhea_ids",
+        ],
+        "blockers_to_clear": [
+            blocker
+            for blocker in event_linker_audit.get("blockers", [])
+            if blocker
+            in {
+                "source_free_current702_heldout_locator_surface_missing",
+                "source_free_proton_transfer_event_axis_missing",
+                "source_free_event_residue_role_linker_missing",
+            }
+        ],
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "frozen_residual_threshold_applied": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_heldout_row_specific_mechanism_text_used": False,
+            "m_csa_heldout_active_site_roles_used_as_predictive_features": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "linker_rows_materialized": False,
+            "review_only": True,
+        },
+        "counts": {
+            "required_event_types": 1 if event_type else 0,
+            "required_residue_roles": 1 if residue_role else 0,
+            "minimum_linkers_per_ready_row": 1,
+            "materialized_linker_rows": 0,
+            "blockers_to_clear": len(
+                [
+                    blocker
+                    for blocker in event_linker_audit.get("blockers", [])
+                    if blocker
+                    in {
+                        "source_free_current702_heldout_locator_surface_missing",
+                        "source_free_proton_transfer_event_axis_missing",
+                        "source_free_event_residue_role_linker_missing",
+                    }
+                ]
+            ),
+            "fallback_contract_available": int(fallback_contract is not None),
+            "critical_violation_total": 0,
+        },
+        "decision": {
+            "event_axis_linker_schema_ready": True,
+            "event_axis_linkers_materialized": False,
+            "heldout_safe_event_axis_surface_ready": False,
+            "apply_frozen_pair_threshold_now": False,
+            "heldout_read_once_performed": False,
+            "next_gate": (
+                "Fill this schema only after approved source-free current702 "
+                "heldout locator sidecars exist; then rerun the event-linker "
+                "blocker audit, source-free application surface, and "
+                "heldout-safe surface plan before any heldout threshold read."
+            ),
+        },
+        "source_artifacts": {
+            "event_linker_blocker_audit": _source_path_record(
+                event_linker_blocker_audit_path
+            ),
+            "residue_count_fallback_contract": (
+                _source_path_record(residue_count_fallback_contract_path)
+                if residue_count_fallback_contract_path is not None
+                else {
+                    "path": None,
+                    "exists": False,
+                    "sha256": None,
+                }
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The missing event-axis linker now has an explicit source-free "
+                "schema and acceptance contract. No linker rows are materialized "
+                "yet because current702 heldout locators and source-free event "
+                "axis evidence remain blocked."
+            ),
+            "next_action": (
+                "Approve/copy current702 heldout locator sidecars or provide "
+                "another source-free locator path, then fill this schema for "
+                "the proton-transfer/electrostatic-stabiliser token."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_report(
+    schema: dict[str, Any],
+) -> str:
+    counts = schema["counts"]
+    target = schema["target_feature"]
+    decision = schema["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS-Augmented Best-Token Follow-Up Pair Source-Free Event-Axis Linker Schema - current702",
+        "",
+        f"Run: {schema['created_utc']}",
+        "",
+        schema["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {schema['status']}",
+        f"- Event token: {target['event_residue_role_token']}",
+        f"- Event type: {target['event_type']}",
+        f"- Residue role: {target['residue_role']}",
+        f"- Materialized linker rows: {counts['materialized_linker_rows']}",
+        f"- Blockers to clear: {', '.join(schema['blockers_to_clear'])}",
+        "",
+        "## Acceptance Criteria",
+        "",
+    ]
+    for criterion in schema["acceptance_criteria"]:
+        lines.append(f"- {criterion}")
+    lines += [
+        "",
+        "## Decision",
+        "",
+        f"- Event-axis linker schema ready: {decision['event_axis_linker_schema_ready']}",
+        f"- Event-axis linkers materialized: {decision['event_axis_linkers_materialized']}",
+        "- Heldout-safe event-axis surface ready: "
+        f"{decision['heldout_safe_event_axis_surface_ready']}",
+        f"- Apply frozen pair threshold now: {decision['apply_frozen_pair_threshold_now']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {schema['interpretation']['result']}",
+        f"- {schema['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema(
+    *,
+    event_linker_blocker_audit_path: Path,
+    out_path: Path,
+    residue_count_fallback_contract_path: Path | None = None,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    schema = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema(
+        event_linker_blocker_audit_path=event_linker_blocker_audit_path,
+        residue_count_fallback_contract_path=residue_count_fallback_contract_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(schema, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_report(
+                schema
+            ),
+            encoding="utf-8",
+        )
+    return schema
 
 
 def _source_free_locator_queue_class(

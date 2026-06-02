@@ -104,6 +104,9 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_no_template_rerun,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_operating_point_contract,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit,
     write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet,
@@ -13320,6 +13323,85 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_t
         f"{decision.get('heldout_safe_pair_application_surface_ready')}, "
         f"current702 heldout locators: "
         f"{counts.get('current702_heldout_locator_sidecars')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit(
+        pair_train_cal_feature_sidecar_path=Path(args.pair_train_cal_feature_sidecar),
+        pair_operating_point_contract_path=Path(args.pair_operating_point_contract),
+        source_free_application_surface_path=Path(args.source_free_application_surface),
+        expanded_token_ablation_path=Path(args.expanded_token_ablation),
+        followup_token_ablation_path=Path(args.followup_token_ablation),
+        active_site_role_graph_sidecar_path=Path(args.active_site_role_graph_sidecar),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up pair source-free event-linker blocker audit to {args.out} "
+        f"(status: {audit.get('status')}, event linker ready: "
+        f"{decision.get('source_free_event_linker_ready')}, blockers: "
+        f"{counts.get('blockers')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract(
+    args: argparse.Namespace,
+) -> int:
+    contract = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract(
+        expanded_token_ablation_path=Path(args.expanded_token_ablation),
+        source_free_application_surface_path=Path(args.source_free_application_surface),
+        event_linker_blocker_audit_path=Path(args.event_linker_blocker_audit),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        source_free_locator_input_audit_path=(
+            Path(args.source_free_locator_input_audit)
+            if args.source_free_locator_input_audit
+            else None
+        ),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = contract.get("counts", {})
+    decision = contract.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up pair source-free residue-count fallback contract to "
+        f"{args.out} (status: {contract.get('status')}, calibrated: "
+        f"{decision.get('fallback_contract_calibrated_train_cal_only')}, "
+        f"blockers: {counts.get('blockers')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema(
+    args: argparse.Namespace,
+) -> int:
+    schema = write_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema(
+        event_linker_blocker_audit_path=Path(args.event_linker_blocker_audit),
+        residue_count_fallback_contract_path=(
+            Path(args.residue_count_fallback_contract)
+            if args.residue_count_fallback_contract
+            else None
+        ),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = schema.get("counts", {})
+    decision = schema.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS-augmented best-token "
+        f"follow-up pair source-free event-axis linker schema to {args.out} "
+        f"(status: {schema.get('status')}, schema ready: "
+        f"{decision.get('event_axis_linker_schema_ready')}, blockers to clear: "
+        f"{counts.get('blockers_to_clear')})"
     )
     return 0
 
@@ -29680,6 +29762,206 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_oos_augmented_best_token_pair_source_free_surface.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_linker = subparsers.add_parser(
+        (
+            "audit-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "event-linker-blocker"
+        ),
+        help=(
+            "audit the source-free event/residue-role linker blocker before "
+            "any best-token follow-up pair heldout read"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_linker.add_argument(
+        "--pair-train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_train_cal_feature_sidecar_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_linker.add_argument(
+        "--pair-operating-point-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_operating_point_contract_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_linker.add_argument(
+        "--source-free-application-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_linker.add_argument(
+        "--expanded-token-ablation",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_token_ablation_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_linker.add_argument(
+        "--followup-token-ablation",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_token_ablation_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_linker.add_argument(
+        "--active-site-role-graph-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_linker.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_linker.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_linker_"
+            "blocker_audit_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_linker.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_linker_"
+            "blocker_audit_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_linker.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_fallback_contract = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "residue-count-fallback-contract"
+        ),
+        help=(
+            "write a calibration-only source-free residue-count fallback "
+            "contract for the best-token follow-up pair"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_fallback_contract.add_argument(
+        "--expanded-token-ablation",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_expanded_token_ablation_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_fallback_contract.add_argument(
+        "--source-free-application-surface",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_application_surface_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_fallback_contract.add_argument(
+        "--event-linker-blocker-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_linker_"
+            "blocker_audit_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_fallback_contract.add_argument(
+        "--source-free-locator-input-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_locator_input_audit_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_fallback_contract.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_fallback_contract.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_residue_count_"
+            "fallback_contract_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_fallback_contract.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_residue_count_"
+            "fallback_contract_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_fallback_contract.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract
+        )
+    )
+
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_schema = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-augmented-best-token-followup-pair-source-free-"
+            "event-axis-linker-schema"
+        ),
+        help=(
+            "stage the source-free event-axis linker schema for the "
+            "best-token follow-up pair"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_schema.add_argument(
+        "--event-linker-blocker-audit",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_linker_"
+            "blocker_audit_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_schema.add_argument(
+        "--residue-count-fallback-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_residue_count_"
+            "fallback_contract_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_schema.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_schema_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_schema.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+            "linker_schema_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_augmented_best_token_pair_event_axis_schema.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema
         )
     )
 

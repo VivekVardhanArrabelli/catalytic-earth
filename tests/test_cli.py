@@ -671,6 +671,39 @@ class CliTests(unittest.TestCase):
             ),
             (
                 (
+                    "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "event-linker-blocker"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "residue-count-fallback-contract"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-augmented-best-token-followup-pair-source-free-"
+                    "event-axis-linker-schema"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema"
+                ),
+            ),
+            (
+                (
                     "build-mechanism-feature-row-specific-bond-change-"
                     "p0-oos-augmented-best-token-followup-pair-source-free-"
                     "locator-action-queue"

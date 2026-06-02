@@ -46,6 +46,9 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_expanded_train_cal_feature_sidecar,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_token_ablation,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_application_surface,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_audit,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_candidate_strict_audit,
     build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_coordinate_anchor_manual_review_packet,
@@ -7324,6 +7327,342 @@ class NorthstarNextLeversTests(unittest.TestCase):
             "source_free_event_residue_role_extractor_missing",
             surface["blockers"],
         )
+
+    def test_followup_pair_source_free_event_linker_audit_blocks_leaky_role_graph(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            pair_sidecar_path = root / "pair_sidecar.json"
+            contract_path = root / "contract.json"
+            surface_path = root / "surface.json"
+            expanded_ablation_path = root / "expanded_ablation.json"
+            followup_ablation_path = root / "followup_ablation.json"
+            active_role_path = root / "active_role.json"
+            manifest_path = root / "manifest.json"
+            pair_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "previous_selected_feature_token": (
+                                "event_residue_role:proton_transfer|"
+                                "electrostatic_stabiliser"
+                            ),
+                            "selected_followup_feature_token": (
+                                "residue_code_count:his=3"
+                            ),
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_path.write_text(
+                json.dumps(
+                    {
+                        "calibration_contract": {
+                            "residual_distance": {
+                                "threshold": 3.21469422,
+                                "oos_abstain_recall": 0.857143,
+                                "calibration_auc_oos_gt_primary": 0.875,
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "selected_feature_pair": {
+                            "event_residue_role_token": (
+                                "event_residue_role:proton_transfer|"
+                                "electrostatic_stabiliser"
+                            ),
+                            "residue_count_token": "residue_code_count:his=3",
+                        },
+                        "counts": {
+                            "source_free_locator_sidecars_total": 5,
+                            "current702_heldout_locator_sidecars": 0,
+                            "source_free_residue_count_feature_rows": 0,
+                            "source_free_event_residue_role_feature_rows": 0,
+                        },
+                        "decision": {
+                            "source_free_event_residue_role_surface_ready": False
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            expanded_ablation_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "tokens_beating_coarse_residual_contract": [
+                                {
+                                    "feature_family": "residue_code_count",
+                                    "feature_token": "residue_code_count:his=3",
+                                    "residual_oos_abstain_recall": 0.642857,
+                                    "residual_auc_oos_gt_primary": 0.758929,
+                                }
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            followup_ablation_path.write_text(
+                json.dumps(
+                    {
+                        "decision": {
+                            "tokens_beating_best_token_residual_contract": [
+                                {
+                                    "feature_family": "residue_code_count",
+                                    "feature_token": "residue_code_count:his=3",
+                                    "residual_oos_abstain_recall": 0.857143,
+                                    "residual_auc_oos_gt_primary": 0.875,
+                                }
+                            ]
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            active_role_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "split_status_counts": {
+                                "heldout::ok": 132,
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "split_assignment": "heldout",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit(
+                pair_train_cal_feature_sidecar_path=pair_sidecar_path,
+                pair_operating_point_contract_path=contract_path,
+                source_free_application_surface_path=surface_path,
+                expanded_token_ablation_path=expanded_ablation_path,
+                followup_token_ablation_path=followup_ablation_path,
+                active_site_role_graph_sidecar_path=active_role_path,
+                label_manifest_path=manifest_path,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_ready_blocked",
+        )
+        self.assertFalse(audit["decision"]["source_free_event_linker_ready"])
+        self.assertFalse(
+            audit["decision"]["curated_active_site_role_graph_allowed_for_deployment"]
+        )
+        self.assertIn(
+            "m_csa_curated_active_site_role_graph_forbidden_as_deployment_input",
+            audit["blockers"],
+        )
+        self.assertIn(
+            "source_free_residue_code_only_fallback_underperforms_pair_contract",
+            audit["blockers"],
+        )
+        self.assertEqual(
+            audit["selected_feature_pair"]["event_type_required"],
+            "proton_transfer",
+        )
+        self.assertEqual(
+            audit["selected_feature_pair"]["residue_role_required"],
+            "electrostatic_stabiliser",
+        )
+        self.assertEqual(
+            audit["calibration_contract_comparison"][
+                "residue_code_only_recall_delta_vs_pair"
+            ],
+            0.214286,
+        )
+        self.assertFalse(audit["guardrails"]["heldout_rows_evaluated"])
+
+    def test_followup_pair_source_free_residue_count_fallback_contract_requires_acceptance(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            expanded_ablation_path = root / "expanded_ablation.json"
+            surface_path = root / "surface.json"
+            event_linker_path = root / "event_linker.json"
+            manifest_path = root / "manifest.json"
+            expanded_ablation_path.write_text(
+                json.dumps(
+                    {
+                        "token_ablation_rows": [
+                            {
+                                "feature_family": "residue_code_count",
+                                "feature_token": "residue_code_count:his=3",
+                                "residual_threshold": 3.21469422,
+                                "residual_oos_abstain_recall": 0.642857,
+                                "residual_auc_oos_gt_primary": 0.758929,
+                                "token_hit_rows": 6,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            surface_path.write_text(
+                json.dumps(
+                    {
+                        "selected_feature_pair": {
+                            "residue_count_token": "residue_code_count:his=3",
+                        },
+                        "counts": {
+                            "source_free_locator_sidecars_total": 5,
+                            "current702_heldout_locator_sidecars": 0,
+                            "source_free_residue_count_feature_rows": 0,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            event_linker_path.write_text(
+                json.dumps(
+                    {
+                        "selected_feature_pair": {
+                            "residue_count_token": "residue_code_count:his=3",
+                        },
+                        "calibration_contract_comparison": {
+                            "pair_residual_oos_abstain_recall": 0.857143,
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "split_assignment": "heldout",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            contract = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract(
+                expanded_token_ablation_path=expanded_ablation_path,
+                source_free_application_surface_path=surface_path,
+                event_linker_blocker_audit_path=event_linker_path,
+                label_manifest_path=manifest_path,
+            )
+
+        self.assertEqual(
+            contract["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_ready_calibration_only_surface_blocked",
+        )
+        self.assertTrue(
+            contract["decision"]["fallback_contract_calibrated_train_cal_only"]
+        )
+        self.assertTrue(contract["decision"]["fallback_avoids_event_axis"])
+        self.assertFalse(
+            contract["decision"]["fallback_accepted_as_deployable_replacement"]
+        )
+        self.assertTrue(
+            contract["decision"]["explicit_acceptance_required_before_heldout_read"]
+        )
+        self.assertEqual(
+            contract["calibration_contract"]["residual_distance_threshold"],
+            3.21469422,
+        )
+        self.assertEqual(
+            contract["calibration_contract"]["calibration_oos_abstain_recall"],
+            0.642857,
+        )
+        self.assertEqual(contract["calibration_contract"]["recall_delta_vs_pair"], 0.214286)
+        self.assertIn(
+            "source_free_residue_count_fallback_lower_recall_requires_explicit_acceptance",
+            contract["blockers"],
+        )
+        self.assertNotIn(
+            "source_free_proton_transfer_event_axis_missing",
+            contract["blockers"],
+        )
+        self.assertFalse(contract["guardrails"]["heldout_rows_evaluated"])
+
+    def test_followup_pair_source_free_event_axis_linker_schema_stages_contract(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            event_linker_path = root / "event_linker.json"
+            fallback_path = root / "fallback.json"
+            event_linker_path.write_text(
+                json.dumps(
+                    {
+                        "selected_feature_pair": {
+                            "event_residue_role_token": (
+                                "event_residue_role:proton_transfer|"
+                                "electrostatic_stabiliser"
+                            ),
+                            "event_type_required": "proton_transfer",
+                            "residue_role_required": "electrostatic_stabiliser",
+                            "residue_count_token": "residue_code_count:his=3",
+                        },
+                        "blockers": [
+                            "source_free_current702_heldout_locator_surface_missing",
+                            "source_free_proton_transfer_event_axis_missing",
+                            "source_free_event_residue_role_linker_missing",
+                            "m_csa_curated_active_site_role_graph_forbidden_as_deployment_input",
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            fallback_path.write_text(json.dumps({"status": "ready"}), encoding="utf-8")
+
+            schema = build_mechanism_feature_row_specific_bond_change_p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema(
+                event_linker_blocker_audit_path=event_linker_path,
+                residue_count_fallback_contract_path=fallback_path,
+            )
+
+        self.assertEqual(
+            schema["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_ready_no_linkers_materialized",
+        )
+        self.assertTrue(schema["decision"]["event_axis_linker_schema_ready"])
+        self.assertFalse(schema["decision"]["event_axis_linkers_materialized"])
+        self.assertEqual(schema["target_feature"]["event_type"], "proton_transfer")
+        self.assertEqual(
+            schema["target_feature"]["residue_role"],
+            "electrostatic_stabiliser",
+        )
+        self.assertEqual(
+            schema["row_schema"]["allowed_event_types"], ["proton_transfer"]
+        )
+        self.assertEqual(
+            schema["row_schema"]["allowed_residue_roles"],
+            ["electrostatic_stabiliser"],
+        )
+        self.assertIn(
+            "source_free_proton_transfer_event_axis_missing",
+            schema["blockers_to_clear"],
+        )
+        self.assertEqual(schema["counts"]["fallback_contract_available"], 1)
+        self.assertFalse(schema["guardrails"]["heldout_rows_evaluated"])
 
     def test_followup_pair_source_free_locator_action_queue_prioritizes_rows(
         self,

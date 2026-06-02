@@ -4950,6 +4950,33 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "current702_20260602.json"
             )
         )
+        pair_event_linker = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_event_linker_"
+                "blocker_audit_current702_20260602.json"
+            )
+        )
+        pair_residue_fallback = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_residue_count_"
+                "fallback_contract_current702_20260602.json"
+            )
+        )
+        pair_event_axis_schema = _load_json(
+            ROOT
+            / "artifacts"
+            / (
+                "v3_mechanism_feature_row_specific_bond_change_"
+                "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_"
+                "linker_schema_current702_20260602.json"
+            )
+        )
         pair_locator_queue = _load_json(
             ROOT
             / "artifacts"
@@ -5373,6 +5400,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             pair_source_free_surface["counts"]["heldout_rows_in_manifest"], 140
         )
         self.assertEqual(
+            pair_source_free_surface["counts"]["source_free_locator_sidecars_total"],
+            5,
+        )
+        self.assertEqual(
             pair_source_free_surface["counts"][
                 "current702_heldout_locator_sidecars"
             ],
@@ -5391,6 +5422,154 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertFalse(
             pair_source_free_surface["guardrails"]["heldout_rows_evaluated"]
+        )
+        self.assertEqual(
+            pair_event_linker["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_linker_blocker_audit_ready_blocked",
+        )
+        self.assertEqual(
+            pair_event_linker["counts"]["heldout_rows_in_manifest"], 140
+        )
+        self.assertEqual(
+            pair_event_linker["counts"]["current702_heldout_locator_sidecars"],
+            0,
+        )
+        self.assertEqual(
+            pair_event_linker["counts"]["m_csa_curated_heldout_role_graph_ok_rows"],
+            132,
+        )
+        self.assertEqual(
+            pair_event_linker["calibration_contract_comparison"][
+                "pair_residual_oos_abstain_recall"
+            ],
+            0.857143,
+        )
+        self.assertEqual(
+            pair_event_linker["calibration_contract_comparison"][
+                "residue_code_only_oos_abstain_recall"
+            ],
+            0.642857,
+        )
+        self.assertIn(
+            "m_csa_curated_active_site_role_graph_forbidden_as_deployment_input",
+            pair_event_linker["blockers"],
+        )
+        self.assertIn(
+            "source_free_residue_code_only_fallback_underperforms_pair_contract",
+            pair_event_linker["blockers"],
+        )
+        self.assertFalse(
+            pair_event_linker["decision"]["source_free_event_linker_ready"]
+        )
+        self.assertFalse(
+            pair_event_linker["decision"][
+                "curated_active_site_role_graph_allowed_for_deployment"
+            ]
+        )
+        self.assertFalse(pair_event_linker["guardrails"]["heldout_rows_evaluated"])
+        self.assertEqual(
+            pair_residue_fallback["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_residue_count_fallback_contract_ready_calibration_only_surface_blocked",
+        )
+        self.assertEqual(
+            pair_residue_fallback["fallback_feature"]["feature_token"],
+            "residue_code_count:his=3",
+        )
+        self.assertFalse(
+            pair_residue_fallback["fallback_feature"]["event_axis_required"]
+        )
+        self.assertEqual(
+            pair_residue_fallback["calibration_contract"][
+                "residual_distance_threshold"
+            ],
+            3.21469422,
+        )
+        self.assertEqual(
+            pair_residue_fallback["calibration_contract"][
+                "calibration_oos_abstain_recall"
+            ],
+            0.642857,
+        )
+        self.assertEqual(
+            pair_residue_fallback["calibration_contract"]["recall_delta_vs_pair"],
+            0.214286,
+        )
+        self.assertEqual(
+            pair_residue_fallback["counts"][
+                "source_free_locator_input_priority1_preflight_passed_pending_explicit_approval"
+            ],
+            55,
+        )
+        self.assertEqual(
+            pair_residue_fallback["counts"][
+                "source_free_locator_input_priority1_preflight_rows_with_warnings"
+            ],
+            6,
+        )
+        self.assertEqual(
+            pair_residue_fallback["counts"][
+                "source_free_locator_input_priority1_approved_rewrites"
+            ],
+            0,
+        )
+        self.assertTrue(
+            pair_residue_fallback["decision"][
+                "fallback_contract_calibrated_train_cal_only"
+            ]
+        )
+        self.assertFalse(
+            pair_residue_fallback["decision"][
+                "fallback_accepted_as_deployable_replacement"
+            ]
+        )
+        self.assertTrue(
+            pair_residue_fallback["decision"][
+                "explicit_acceptance_required_before_heldout_read"
+            ]
+        )
+        self.assertIn(
+            "source_free_residue_count_fallback_lower_recall_requires_explicit_acceptance",
+            pair_residue_fallback["blockers"],
+        )
+        self.assertIn(
+            "source_free_locator_rewrite_explicit_approval_pending",
+            pair_residue_fallback["blockers"],
+        )
+        self.assertFalse(
+            pair_residue_fallback["guardrails"]["heldout_rows_evaluated"]
+        )
+        self.assertEqual(
+            pair_event_axis_schema["status"],
+            "p0_oos_augmented_best_token_followup_pair_source_free_event_axis_linker_schema_ready_no_linkers_materialized",
+        )
+        self.assertEqual(
+            pair_event_axis_schema["target_feature"]["event_residue_role_token"],
+            "event_residue_role:proton_transfer|electrostatic_stabiliser",
+        )
+        self.assertEqual(
+            pair_event_axis_schema["row_schema"]["allowed_event_types"],
+            ["proton_transfer"],
+        )
+        self.assertEqual(
+            pair_event_axis_schema["row_schema"]["allowed_residue_roles"],
+            ["electrostatic_stabiliser"],
+        )
+        self.assertEqual(
+            pair_event_axis_schema["counts"]["materialized_linker_rows"],
+            0,
+        )
+        self.assertEqual(
+            pair_event_axis_schema["counts"]["blockers_to_clear"],
+            3,
+        )
+        self.assertTrue(
+            pair_event_axis_schema["decision"]["event_axis_linker_schema_ready"]
+        )
+        self.assertFalse(
+            pair_event_axis_schema["decision"]["event_axis_linkers_materialized"]
+        )
+        self.assertFalse(
+            pair_event_axis_schema["guardrails"]["heldout_rows_evaluated"]
         )
         self.assertEqual(
             pair_locator_queue["status"],
