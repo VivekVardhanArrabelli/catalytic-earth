@@ -7,21 +7,19 @@
       "train_cal_feature_sidecar_critical_violations": 0
     },
     "critical_violation_total": 0,
-    "draft_calibration_rows": 2,
-    "draft_train_cal_review_rows": 6,
-    "draft_train_rows": 4,
+    "draft_calibration_rows": 0,
+    "draft_train_cal_review_rows": 0,
+    "draft_train_rows": 0,
     "excluded_draft_rows": 0,
-    "materialized_calibration_rows": 2,
-    "materialized_feature_rows": 9,
-    "materialized_train_rows": 7,
+    "materialized_calibration_rows": 4,
+    "materialized_feature_rows": 15,
+    "materialized_train_rows": 11,
     "missing_materialized_event_type_counts": {},
-    "priority_class_counts": {
-      "P0.3_train_cal_depth": 6
-    }
+    "priority_class_counts": {}
   },
-  "created_utc": "2026-06-02T08:29:58Z",
+  "created_utc": "2026-06-02T09:19:56Z",
   "decision": {
-    "full_no_template_rerun_ready": false,
+    "full_no_template_rerun_ready": true,
     "next_review_gate_entry_ids": [],
     "next_review_gate_reason": "Approve or reject calibration-assigned P0 draft rows first, then rerun the train/cal feature sidecar.",
     "rerun_blocked_by_calibration_coverage": false
@@ -41,125 +39,7 @@
     "next_action": "Review the listed P0.1 calibration rows, record decisions in the source-evidence sidecar, rerun strict/readiness audits, then rerun the train/cal materialization sidecar.",
     "result": "The approved P0 train/cal feature surface is materialized but train-only; calibration-assigned draft rows are the next review gate before rerunning no-template novelty methods."
   },
-  "review_priority_rows": [
-    {
-      "assigned_embedding_split": "train",
-      "entry_id": "m_csa:15",
-      "event_count": 2,
-      "event_types": [
-        "bond_formed",
-        "electron_transfer"
-      ],
-      "missing_from_materialized_event_types": [],
-      "priority_class": "P0.3_train_cal_depth",
-      "priority_reasons": [
-        "adds_train_cal_surface_depth"
-      ],
-      "review_blockers": [
-        "review_status_not_approved",
-        "low_confidence_event_review"
-      ],
-      "review_category": "standard_draft_event_review"
-    },
-    {
-      "assigned_embedding_split": "train",
-      "entry_id": "m_csa:16",
-      "event_count": 2,
-      "event_types": [
-        "electron_transfer",
-        "proton_transfer"
-      ],
-      "missing_from_materialized_event_types": [],
-      "priority_class": "P0.3_train_cal_depth",
-      "priority_reasons": [
-        "adds_train_cal_surface_depth"
-      ],
-      "review_blockers": [
-        "review_status_not_approved",
-        "low_confidence_event_review"
-      ],
-      "review_category": "standard_draft_event_review"
-    },
-    {
-      "assigned_embedding_split": "train",
-      "entry_id": "m_csa:68",
-      "event_count": 3,
-      "event_types": [
-        "electron_transfer"
-      ],
-      "missing_from_materialized_event_types": [],
-      "priority_class": "P0.3_train_cal_depth",
-      "priority_reasons": [
-        "adds_train_cal_surface_depth"
-      ],
-      "review_blockers": [
-        "review_status_not_approved",
-        "low_confidence_event_review"
-      ],
-      "review_category": "standard_draft_event_review"
-    },
-    {
-      "assigned_embedding_split": "calibration",
-      "entry_id": "m_csa:6",
-      "event_count": 5,
-      "event_types": [
-        "electron_transfer",
-        "proton_transfer"
-      ],
-      "missing_from_materialized_event_types": [],
-      "priority_class": "P0.3_train_cal_depth",
-      "priority_reasons": [
-        "adds_train_cal_surface_depth"
-      ],
-      "review_blockers": [
-        "review_status_not_approved",
-        "multi_event_mechanism_review",
-        "low_confidence_event_review"
-      ],
-      "review_category": "high_complexity_multi_event_review"
-    },
-    {
-      "assigned_embedding_split": "train",
-      "entry_id": "m_csa:102",
-      "event_count": 5,
-      "event_types": [
-        "bond_broken",
-        "electron_transfer"
-      ],
-      "missing_from_materialized_event_types": [],
-      "priority_class": "P0.3_train_cal_depth",
-      "priority_reasons": [
-        "adds_train_cal_surface_depth"
-      ],
-      "review_blockers": [
-        "review_status_not_approved",
-        "multi_event_mechanism_review",
-        "low_confidence_event_review"
-      ],
-      "review_category": "high_complexity_multi_event_review"
-    },
-    {
-      "assigned_embedding_split": "calibration",
-      "entry_id": "m_csa:133",
-      "event_count": 5,
-      "event_types": [
-        "bond_formed",
-        "electron_transfer",
-        "proton_transfer"
-      ],
-      "missing_from_materialized_event_types": [],
-      "priority_class": "P0.3_train_cal_depth",
-      "priority_reasons": [
-        "adds_train_cal_surface_depth"
-      ],
-      "review_blockers": [
-        "review_status_not_approved",
-        "multi_event_mechanism_review",
-        "low_confidence_event_review"
-      ],
-      "review_category": "high_complexity_multi_event_review"
-    }
-  ],
+  "review_priority_rows": [],
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_train_cal_coverage_gap",
   "scope": "Review-priority audit for the partial P0 row-specific train/cal feature sidecar. It identifies draft rows that would add missing calibration coverage or new event-type coverage before any no-template rerun.",
   "source_artifacts": {
@@ -171,17 +51,17 @@
     "review_queue": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-      "sha256": "dbecf93989c8ba7ffbf039a83f024b5b79e86e04d106c051beac92ca56335307"
+      "sha256": "f93d29ebb67491d35796b33a6568cfc91bd421b70b4114ca7c0be16854532a1b"
     },
     "source_sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
+      "sha256": "3c9434ca729bbe68dd7374a0446f0c87960693e53908206377e08ce829e0806d"
     },
     "train_cal_feature_sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json",
-      "sha256": "2e54b9e0331aa21716cc69e3905f4e8f76acfbbd45050a54434248afc53be083"
+      "sha256": "987cbdba5b79b7337159fcdb615569d6b6150a2df72c815c91b6802995421841"
     },
     "train_cal_split_manifest": {
       "exists": true,

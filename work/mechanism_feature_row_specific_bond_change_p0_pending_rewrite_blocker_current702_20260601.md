@@ -1,31 +1,25 @@
 # Mechanism Feature Row-Specific Bond-Change P0 Pending Rewrite Blocker - current702
 
-Run: 2026-06-02T08:23:35Z
+Run: 2026-06-02T09:19:57Z
 
 Manual rewrite blocker packet for P0 row-specific bond/proton/electron rows that were reviewed but kept out of feature consumption because current events are low-confidence, unmapped, or too complex.
 
 ## Status
 
-- p0_pending_rewrite_blocker_ready_manual_only
-- Pending rewrite rows: 6
-- Blocked event rows: 16
-- Approved materialized rows: 9
-- Approved train/cal split: 7 train, 2 calibration
-- Blocked event types: {'electron_transfer': 16}
+- p0_pending_rewrite_blocker_cleared_ready_for_no_template_rerun
+- Pending rewrite rows: 0
+- Blocked event rows: 0
+- Approved materialized rows: 15
+- Approved train/cal split: 11 train, 4 calibration
+- Blocked event types: {}
 - Critical violations: 0
 
 ## Rows
 
 | row | split | blocked events | blockers | decision |
 | --- | --- | ---: | --- | --- |
-| m_csa:6 | calibration | 4 | low_confidence_event_review, unmapped_event_review, multi_event_rewrite | rewrite_events_and_keep_review_pending |
-| m_csa:15 | train | 1 | low_confidence_event_review, unmapped_event_review | rewrite_events_and_keep_review_pending |
-| m_csa:16 | train | 1 | low_confidence_event_review, unmapped_event_review | rewrite_events_and_keep_review_pending |
-| m_csa:68 | train | 3 | low_confidence_event_review, unmapped_event_review | rewrite_events_and_keep_review_pending |
-| m_csa:102 | train | 4 | low_confidence_event_review, unmapped_event_review, multi_event_rewrite | rewrite_events_and_keep_review_pending |
-| m_csa:133 | calibration | 3 | low_confidence_event_review, unmapped_event_review, multi_event_rewrite | rewrite_events_and_keep_review_pending |
 
 ## Interpretation
 
-- The calibration coverage blocker is cleared and the current approved P0 rows are materialized, but reviewed pending rows remain blocked by low-confidence or unmapped event surfaces.
-- Rewrite or reject the listed blocked events, rerun strict/readiness/materialization artifacts, and only then attempt no-template centroid/residual reruns.
+- All reviewed P0 rewrite blockers are cleared and the full train/cal row-specific feature surface is materialized.
+- Attempt no-template centroid/residual reruns only from the label-stripped train/cal feature sidecar, then keep heldout as a read-once final evaluation surface.

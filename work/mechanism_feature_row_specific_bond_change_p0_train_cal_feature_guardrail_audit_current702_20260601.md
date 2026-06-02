@@ -1,23 +1,22 @@
 # Mechanism Feature Row-Specific Bond-Change P0 Train/Cal Feature Guardrail Audit - current702
 
-Run: 2026-06-02T08:08:30Z
+Run: 2026-06-02T09:19:56Z
 
 Strict leakage and split-contract audit for the partial P0 row-specific train/cal feature sidecar. Only `row_specific_event_features` is treated as predictive payload; entry IDs, splits, guardrails, source text, source IDs, reviewer metadata, labels, and heldout outcomes are excluded.
 
 ## Status
 
 - p0_train_cal_feature_guardrail_audit_passed_partial_no_fit
-- Feature rows: 9
-- Train rows: 7
-- Calibration rows: 2
-- Feature value types: {'bool': 36, 'int': 117}
+- Feature rows: 15
+- Train rows: 11
+- Calibration rows: 4
+- Feature value types: {'bool': 60, 'int': 195}
 - Critical violations: 0
 
 ## Decision
 
 - Partial feature surface guardrail passed: True
-- Safe to run no-template methods now: False
-- Reason: Only a partial approved P0 surface is materialized; continue review until train and calibration rows cover the intended no-template feature pilot.
+- Safe to run no-template methods now: True
 
 ## Predictive Feature Contract
 

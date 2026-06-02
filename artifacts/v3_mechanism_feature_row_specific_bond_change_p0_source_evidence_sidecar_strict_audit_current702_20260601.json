@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601",
   "counts": {
-    "approved_rows": 9,
+    "approved_rows": 15,
     "critical_counts": {
       "approved_row_evidence_violation_rows": 0,
       "feature_contract_consumption_without_review_rows": 0,
@@ -14,7 +14,7 @@
       "worksheet_entry_missing_from_sidecar": 0
     },
     "draft_rows": 0,
-    "feature_contract_consumable_rows": 9,
+    "feature_contract_consumable_rows": 15,
     "feature_contract_refresh_allowed": false,
     "model_training_allowed_rows": 0,
     "rows_with_events": 15,
@@ -24,7 +24,7 @@
     "violation_counts": {},
     "worksheet_rows": 15
   },
-  "created_utc": "2026-06-02T08:08:29Z",
+  "created_utc": "2026-06-02T09:19:55Z",
   "guardrails": {
     "feature_contract_mutated": false,
     "feature_contract_refresh_allowed": false,
@@ -59,13 +59,13 @@
     },
     {
       "entry_id": "m_csa:6",
-      "event_count": 5,
-      "event_source_span_count": 5,
+      "event_count": 4,
+      "event_source_span_count": 4,
       "forbidden_fields_present": [],
-      "mapped_event_residue_count": 2,
+      "mapped_event_residue_count": 10,
       "missing_row_fields": [],
       "participant_mapping_count": 12,
-      "review_status": "needs_more_evidence",
+      "review_status": "approved",
       "status": "passed",
       "violations": []
     },
@@ -83,25 +83,25 @@
     },
     {
       "entry_id": "m_csa:15",
-      "event_count": 2,
-      "event_source_span_count": 2,
+      "event_count": 3,
+      "event_source_span_count": 3,
       "forbidden_fields_present": [],
-      "mapped_event_residue_count": 6,
+      "mapped_event_residue_count": 16,
       "missing_row_fields": [],
       "participant_mapping_count": 11,
-      "review_status": "needs_more_evidence",
+      "review_status": "approved",
       "status": "passed",
       "violations": []
     },
     {
       "entry_id": "m_csa:16",
-      "event_count": 2,
-      "event_source_span_count": 2,
+      "event_count": 4,
+      "event_source_span_count": 4,
       "forbidden_fields_present": [],
-      "mapped_event_residue_count": 1,
+      "mapped_event_residue_count": 12,
       "missing_row_fields": [],
       "participant_mapping_count": 8,
-      "review_status": "needs_more_evidence",
+      "review_status": "approved",
       "status": "passed",
       "violations": []
     },
@@ -134,10 +134,10 @@
       "event_count": 3,
       "event_source_span_count": 3,
       "forbidden_fields_present": [],
-      "mapped_event_residue_count": 0,
+      "mapped_event_residue_count": 7,
       "missing_row_fields": [],
       "participant_mapping_count": 9,
-      "review_status": "needs_more_evidence",
+      "review_status": "approved",
       "status": "passed",
       "violations": []
     },
@@ -158,10 +158,10 @@
       "event_count": 5,
       "event_source_span_count": 5,
       "forbidden_fields_present": [],
-      "mapped_event_residue_count": 1,
+      "mapped_event_residue_count": 11,
       "missing_row_fields": [],
       "participant_mapping_count": 8,
-      "review_status": "needs_more_evidence",
+      "review_status": "approved",
       "status": "passed",
       "violations": []
     },
@@ -182,10 +182,10 @@
       "event_count": 5,
       "event_source_span_count": 5,
       "forbidden_fields_present": [],
-      "mapped_event_residue_count": 4,
+      "mapped_event_residue_count": 14,
       "missing_row_fields": [],
       "participant_mapping_count": 13,
-      "review_status": "needs_more_evidence",
+      "review_status": "approved",
       "status": "passed",
       "violations": []
     },
@@ -232,7 +232,7 @@
     "sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
+      "sha256": "3c9434ca729bbe68dd7374a0446f0c87960693e53908206377e08ce829e0806d"
     },
     "source_evidence_schema": {
       "exists": true,

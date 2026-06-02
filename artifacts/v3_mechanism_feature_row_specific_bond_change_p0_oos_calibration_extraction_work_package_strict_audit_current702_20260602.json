@@ -1,0 +1,59 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit_current702_20260602",
+  "counts": {
+    "critical_counts": {
+      "heldout_rows": 0,
+      "missing_manual_template_fields": 0,
+      "non_oos_rows": 0,
+      "rows_allowed_for_feature_contract_consumption_now": 0,
+      "rows_allowed_for_model_training_now": 0,
+      "rows_not_train_or_calibration": 0,
+      "rows_with_materialized_source_evidence_status": 0
+    },
+    "critical_violation_total": 0,
+    "manual_extraction_rows": 30,
+    "required_field_count": 9
+  },
+  "created_utc": "2026-06-02T09:49:45Z",
+  "decision": {
+    "feature_consumption_allowed_now": false,
+    "manual_extraction_package_passed": true,
+    "next_gate": "Fill extraction templates with source-backed events, record reviewer approval, then rerun strict sidecar and feature materialization audits."
+  },
+  "guardrails": {
+    "feature_contract_consumption_allowed_now": false,
+    "feature_contract_mutated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "row_specific_source_evidence_materialized": false,
+    "threshold_selected_or_tuned": false,
+    "validation_only": true
+  },
+  "interpretation": {
+    "next_action": "Use the packet only for source-evidence extraction; do not materialize features until approved rows pass the sidecar guardrails.",
+    "result": "The P0 OOS calibration extraction package is valid as a manual-only review packet."
+  },
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit",
+  "scope": "Validation-only audit for the P0 OOS calibration extraction work package. It confirms the packet stays manual-only, train/cal-only, OOS-only, and template-complete before any reviewer extraction work.",
+  "source_artifacts": {
+    "extraction_work_package": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_current702_20260602.json",
+      "sha256": "032558d9dd82b47a232d02a962d7d6185e3385146684d6d7c4ac0c8b3b201bda"
+    }
+  },
+  "status": "p0_oos_calibration_extraction_work_package_strict_audit_passed",
+  "violations": {
+    "heldout_rows": [],
+    "missing_manual_template_fields": [],
+    "non_oos_rows": [],
+    "rows_allowed_for_feature_contract_consumption_now": [],
+    "rows_allowed_for_model_training_now": [],
+    "rows_not_train_or_calibration": [],
+    "rows_with_materialized_source_evidence_status": []
+  }
+}

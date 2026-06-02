@@ -229,6 +229,18 @@ MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_PENDING_REWRITE_BLOCKER_ID = (
 MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_TRAIN_CAL_FEATURE_GUARDRAIL_AUDIT_ID = (
     "v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_current702_20260601"
 )
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_NO_TEMPLATE_RERUN_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_no_template_rerun_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_CALIBRATION_GAP_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_CALIBRATION_EXTRACTION_WORK_PACKAGE_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_current702_20260602"
+)
+MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_CALIBRATION_EXTRACTION_WORK_PACKAGE_STRICT_AUDIT_ID = (
+    "v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit_current702_20260602"
+)
 RHEA_REST_URL = "https://www.rhea-db.org/rhea"
 RHEA_QUERY_COLUMNS = "rhea-id,equation,ec,uniprot"
 RHEA_USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
@@ -20660,6 +20672,14 @@ def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
         - copy_ready_decisions,
     )
     approved_consumable_rows = int(readiness_counts.get("approved_consumable_rows") or 0)
+    sidecar_rows = int(readiness_counts.get("sidecar_rows") or 0)
+    rhea_lookup_unresolved_rows = int(
+        (readiness_counts.get("blocker_counts") or {}).get("rhea_lookup_unresolved")
+        or 0
+    )
+    copy_ready_approved_decisions_missing = max(
+        0, decision_rows_count - copy_ready_decisions
+    )
     blocker_counts = {
         "approved_consumable_rows_missing": (
             1 if approved_consumable_rows == 0 else 0
@@ -20671,12 +20691,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
             (readiness_counts.get("blocker_counts") or {}).get("reviewer_id_missing")
             or 0
         ),
-        "rhea_lookup_unresolved_rows": int(
-            (readiness_counts.get("blocker_counts") or {}).get("rhea_lookup_unresolved")
-            or 0
-        ),
+        "rhea_lookup_unresolved_rows": rhea_lookup_unresolved_rows,
         "copy_ready_approved_decisions_missing": (
-            1 if copy_ready_decisions == 0 else 0
+            copy_ready_approved_decisions_missing
         ),
         "unexpected_contract_row_specific_fields": int(
             gap_counts.get("unexpected_bond_change_feature_rows") or 0
@@ -20691,9 +20708,11 @@ def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
     automation_refresh_allowed = (
         refresh_allowed
         and all(total == 0 for total in source_critical_totals.values())
-        and copy_ready_decisions == decision_rows_count
-        and int(matrix_counts.get("feature_contract_consumable_rows") or 0)
-        == int(readiness_counts.get("sidecar_rows") or 0)
+        and remaining_reviewer_decision_required_rows == 0
+        and copy_ready_approved_decisions_missing == 0
+        and rhea_lookup_unresolved_rows == 0
+        and approved_consumable_rows > 0
+        and approved_consumable_rows == sidecar_rows
     )
     unresolved_decision_rows = [
         {
@@ -20746,7 +20765,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
             "model_weights_fit_or_refit": False,
             "heldout_rows_used_for_training_or_threshold_tuning": False,
             "feature_contract_mutated": False,
-            "feature_contract_refresh_allowed_by_this_artifact": False,
+            "feature_contract_refresh_allowed_by_this_artifact": (
+                automation_refresh_allowed
+            ),
         },
         "decision": {
             "automation_feature_contract_refresh_allowed": automation_refresh_allowed,
@@ -20754,13 +20775,19 @@ def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
                 partial_materialization_allowed
             ),
             "feature_readiness_refresh_allowed": refresh_allowed,
-            "required_before_refresh": [
-                "continue manual review for remaining draft P0 source-evidence rows",
-                "materialize only approved train/cal rows; never train on heldout M-CSA rows",
-                "confirm approved consumable rows are the only rows copied into train/cal feature-contract materialization",
-            ],
+            "required_before_refresh": (
+                [
+                    "materialize only approved train/cal rows; never train on heldout M-CSA rows",
+                    "confirm approved consumable rows are the only rows copied into train/cal feature-contract materialization",
+                ]
+                if automation_refresh_allowed
+                else [
+                    "continue manual review for remaining draft P0 source-evidence rows",
+                    "materialize only approved train/cal rows; never train on heldout M-CSA rows",
+                    "confirm approved consumable rows are the only rows copied into train/cal feature-contract materialization",
+                ]
+            ),
             "do_not_run": [
-                "build-mechanism-feature-embedding-feature-contract with row-specific fields",
                 "build-mechanism-feature-embedding-pilot from draft sidecar rows",
                 "any heldout threshold tuning or production scorer refresh",
             ],
@@ -20797,20 +20824,27 @@ def build_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit(
         "unresolved_decision_rows": unresolved_decision_rows,
         "interpretation": {
             "result": (
-                "The no-template mechanism-feature contract refresh remains "
-                "blocked for a full 15-row refresh, but approved rows can move "
-                "to split-filtered train/cal feature materialization."
-                if partial_materialization_allowed
-                else "The no-template mechanism-feature contract refresh remains "
-                "blocked: draft P0 evidence is structurally present, but no row "
-                "has reviewer provenance or feature-contract consumption approval."
-                if not automation_refresh_allowed
-                else "The reviewed P0 evidence passes all refresh gates."
+                "The reviewed P0 evidence passes all refresh gates."
+                if automation_refresh_allowed
+                else (
+                    "The no-template mechanism-feature contract refresh remains "
+                    "blocked for a full 15-row refresh, but approved rows can move "
+                    "to split-filtered train/cal feature materialization."
+                    if partial_materialization_allowed
+                    else "The no-template mechanism-feature contract refresh remains "
+                    "blocked: draft P0 evidence is structurally present, but no row "
+                    "has reviewer provenance or feature-contract consumption approval."
+                )
             ),
             "next_action": (
-                "Use only approved train/cal rows for the next feature-contract "
-                "materialization step; continue reviewing remaining draft rows "
-                "before any full P0 refresh."
+                "Run only split-filtered train/cal materialization or the "
+                "no-template mechanism-feature pilot; do not tune on heldout rows."
+                if automation_refresh_allowed
+                else (
+                    "Use only approved train/cal rows for the next feature-contract "
+                    "materialization step; continue reviewing remaining draft rows "
+                    "before any full P0 refresh."
+                )
             ),
         },
         "source_artifacts": {
@@ -22536,6 +22570,16 @@ def build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
         ),
     }
     critical_violation_total = sum(critical_counts.values())
+    materialized_feature_rows = int(feature_counts.get("materialized_feature_rows") or 0)
+    materialized_train_rows = int(feature_counts.get("train_rows") or 0)
+    materialized_calibration_rows = int(feature_counts.get("calibration_rows") or 0)
+    full_no_template_rerun_ready = (
+        len(pending_rows) == 0
+        and critical_violation_total == 0
+        and materialized_feature_rows == len(source_rows)
+        and materialized_train_rows > 0
+        and materialized_calibration_rows > 0
+    )
     return {
         "artifact_id": (
             MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_PENDING_REWRITE_BLOCKER_ID
@@ -22545,9 +22589,13 @@ def build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
         ),
         "created_utc": _utc_now_iso(),
         "status": (
-            "p0_pending_rewrite_blocker_ready_manual_only"
-            if critical_violation_total == 0
-            else "p0_pending_rewrite_blocker_blocked"
+            "p0_pending_rewrite_blocker_cleared_ready_for_no_template_rerun"
+            if full_no_template_rerun_ready
+            else (
+                "p0_pending_rewrite_blocker_ready_manual_only"
+                if critical_violation_total == 0
+                else "p0_pending_rewrite_blocker_blocked"
+            )
         ),
         "scope": (
             "Manual rewrite blocker packet for P0 row-specific bond/proton/"
@@ -22567,13 +22615,16 @@ def build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
             "rewrite_packet_not_predictive_feature_input": True,
         },
         "decision": {
-            "full_no_template_rerun_ready": False,
+            "full_no_template_rerun_ready": full_no_template_rerun_ready,
             "reason_not_ready": (
-                "The reviewed P0 feature surface has "
-                f"{feature_counts.get('materialized_feature_rows') or 0}/"
-                f"{len(source_rows)} approved rows; pending rewrite rows must "
-                "be rewritten or rejected before the intended no-template "
-                "rerun surface is complete."
+                None
+                if full_no_template_rerun_ready
+                else (
+                    "The reviewed P0 feature surface has "
+                    f"{materialized_feature_rows}/{len(source_rows)} approved rows; "
+                    "pending rewrite rows must be rewritten or rejected before "
+                    "the intended no-template rerun surface is complete."
+                )
             ),
             "next_gate_entry_ids": [row["entry_id"] for row in pending_rows],
         },
@@ -22586,13 +22637,9 @@ def build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
                 sorted(blocked_event_type_counter.items())
             ),
             "blocker_counts": dict(sorted(blocker_counter.items())),
-            "approved_materialized_feature_rows": feature_counts.get(
-                "materialized_feature_rows"
-            ),
-            "approved_materialized_train_rows": feature_counts.get("train_rows"),
-            "approved_materialized_calibration_rows": feature_counts.get(
-                "calibration_rows"
-            ),
+            "approved_materialized_feature_rows": materialized_feature_rows,
+            "approved_materialized_train_rows": materialized_train_rows,
+            "approved_materialized_calibration_rows": materialized_calibration_rows,
             "critical_counts": critical_counts,
             "critical_violation_total": critical_violation_total,
         },
@@ -22609,14 +22656,25 @@ def build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
         },
         "interpretation": {
             "result": (
-                "The calibration coverage blocker is cleared and the current "
-                "approved P0 rows are materialized, but reviewed pending rows "
-                "remain blocked by low-confidence or unmapped event surfaces."
+                "All reviewed P0 rewrite blockers are cleared and the full "
+                "train/cal row-specific feature surface is materialized."
+                if full_no_template_rerun_ready
+                else (
+                    "The calibration coverage blocker is cleared and the current "
+                    "approved P0 rows are materialized, but reviewed pending rows "
+                    "remain blocked by low-confidence or unmapped event surfaces."
+                )
             ),
             "next_action": (
-                "Rewrite or reject the listed blocked events, rerun strict/"
-                "readiness/materialization artifacts, and only then attempt "
-                "no-template centroid/residual reruns."
+                "Attempt no-template centroid/residual reruns only from the "
+                "label-stripped train/cal feature sidecar, then keep heldout "
+                "as a read-once final evaluation surface."
+                if full_no_template_rerun_ready
+                else (
+                    "Rewrite or reject the listed blocked events, rerun strict/"
+                    "readiness/materialization artifacts, and only then attempt "
+                    "no-template centroid/residual reruns."
+                )
             ),
         },
     }
@@ -22694,6 +22752,1163 @@ def write_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
             encoding="utf-8",
         )
     return packet
+
+
+def _row_specific_no_template_feature_fields(
+    feature_rows: list[dict[str, Any]],
+) -> list[str]:
+    fields: set[str] = set()
+    for row in feature_rows:
+        features = row.get("row_specific_event_features") or {}
+        if not isinstance(features, dict):
+            continue
+        for key, value in features.items():
+            if isinstance(value, bool) or isinstance(value, (int, float)):
+                fields.add(str(key))
+    return sorted(fields)
+
+
+def _row_specific_no_template_vector(
+    row: dict[str, Any],
+    *,
+    feature_fields: list[str],
+) -> list[float]:
+    features = row.get("row_specific_event_features") or {}
+    values: list[float] = []
+    for field in feature_fields:
+        value = features.get(field, 0)
+        if isinstance(value, bool):
+            values.append(1.0 if value else 0.0)
+        else:
+            try:
+                values.append(float(value))
+            except (TypeError, ValueError):
+                values.append(0.0)
+    return values
+
+
+def _select_residual_distance_threshold(
+    scored_rows: list[dict[str, Any]],
+    *,
+    retention_target: float,
+) -> dict[str, Any]:
+    primary_rows = [row for row in scored_rows if row["is_primary"]]
+    oos_rows = [row for row in scored_rows if not row["is_primary"]]
+    if not primary_rows:
+        return {
+            "retention_target": retention_target,
+            "threshold": None,
+            "primary_retain_recall": None,
+            "oos_abstain_recall": None,
+            "primary_rows": 0,
+            "oos_rows": len(oos_rows),
+        }
+    candidates = sorted(
+        {
+            float(row["out_of_atlas_span_residual"])
+            for row in scored_rows
+            if row.get("out_of_atlas_span_residual") is not None
+        }
+    )
+    selected = candidates[-1] if candidates else None
+    selected_primary_retain = 0.0
+    selected_oos_abstain: float | None = None
+    for threshold in candidates:
+        primary_retain = sum(
+            1
+            for row in primary_rows
+            if float(row["out_of_atlas_span_residual"]) <= threshold
+        ) / len(primary_rows)
+        oos_abstain = (
+            sum(
+                1
+                for row in oos_rows
+                if float(row["out_of_atlas_span_residual"]) > threshold
+            )
+            / len(oos_rows)
+            if oos_rows
+            else None
+        )
+        if primary_retain >= retention_target:
+            selected = threshold
+            selected_primary_retain = primary_retain
+            selected_oos_abstain = oos_abstain
+            break
+    return {
+        "retention_target": retention_target,
+        "threshold": round(selected, 8) if selected is not None else None,
+        "primary_retain_recall": round(selected_primary_retain, 6),
+        "oos_abstain_recall": (
+            round(selected_oos_abstain, 6)
+            if selected_oos_abstain is not None
+            else None
+        ),
+        "primary_rows": len(primary_rows),
+        "oos_rows": len(oos_rows),
+    }
+
+
+def _row_specific_residual_summary(
+    scored_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    primary_scores = [
+        float(row["out_of_atlas_span_residual"])
+        for row in scored_rows
+        if row["is_primary"] and row.get("out_of_atlas_span_residual") is not None
+    ]
+    oos_scores = [
+        float(row["out_of_atlas_span_residual"])
+        for row in scored_rows
+        if not row["is_primary"] and row.get("out_of_atlas_span_residual") is not None
+    ]
+    return {
+        "rows": len(scored_rows),
+        "primary_rows": len(primary_scores),
+        "oos_rows": len(oos_scores),
+        "mean_primary_residual": _mean(primary_scores),
+        "mean_oos_residual": _mean(oos_scores),
+        "auc_oos_gt_primary": _auc_in_gt_oos(oos_scores, primary_scores),
+    }
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_no_template_rerun(
+    *,
+    train_cal_feature_sidecar_path: Path,
+    train_cal_feature_guardrail_path: Path,
+    label_manifest_path: Path,
+) -> dict[str, Any]:
+    feature_sidecar = _read_json(train_cal_feature_sidecar_path)
+    guardrail = _read_json(train_cal_feature_guardrail_path)
+    label_manifest = _read_json(label_manifest_path)
+    feature_rows = [
+        row
+        for row in feature_sidecar.get("feature_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    labels_by_entry = _label_by_entry_from_manifest(label_manifest)
+    train_rows = [
+        row for row in feature_rows if row.get("assigned_embedding_split") == "train"
+    ]
+    calibration_rows = [
+        row
+        for row in feature_rows
+        if row.get("assigned_embedding_split") == "calibration"
+    ]
+    missing_labels = [
+        str(row.get("entry_id"))
+        for row in feature_rows
+        if str(row.get("entry_id")) not in labels_by_entry
+    ]
+    guardrail_safe = bool(
+        guardrail.get("decision", {}).get("safe_to_run_no_template_methods_now")
+    ) and int(guardrail.get("counts", {}).get("critical_violation_total") or 0) == 0
+    feature_fields = _row_specific_no_template_feature_fields(feature_rows)
+    blockers = []
+    if not guardrail_safe:
+        blockers.append("train_cal_feature_guardrail_not_safe")
+    if missing_labels:
+        blockers.append("feature_rows_missing_label_manifest_records")
+    if not train_rows or not calibration_rows:
+        blockers.append("train_or_calibration_rows_missing")
+    if not feature_fields:
+        blockers.append("row_specific_numeric_feature_fields_missing")
+
+    train_scored: list[dict[str, Any]] = []
+    calibration_scored: list[dict[str, Any]] = []
+    centroid_threshold: dict[str, Any] = {
+        "retention_target": 0.9,
+        "threshold": None,
+        "primary_retain_recall": None,
+        "oos_abstain_recall": None,
+        "primary_rows": 0,
+        "oos_rows": 0,
+    }
+    residual_threshold = dict(centroid_threshold)
+    train_residual_summary = _row_specific_residual_summary([])
+    calibration_residual_summary = _row_specific_residual_summary([])
+    scaling = {"mean": [], "scale": []}
+    primary_centroids: dict[str, list[float]] = {}
+    if not blockers:
+        train_raw = [
+            _row_specific_no_template_vector(row, feature_fields=feature_fields)
+            for row in train_rows
+        ]
+        calibration_raw = [
+            _row_specific_no_template_vector(row, feature_fields=feature_fields)
+            for row in calibration_rows
+        ]
+        train_vectors, calibration_vectors, scaling = _standardize_train_cal_vectors(
+            train_raw, calibration_raw
+        )
+        primary_labels = sorted(
+            {
+                labels_by_entry.get(str(row.get("entry_id")))
+                for row in train_rows
+                if labels_by_entry.get(str(row.get("entry_id"))) != "none_of_above"
+            }
+        )
+        for label in primary_labels:
+            label_vectors = [
+                vector
+                for vector, row in zip(train_vectors, train_rows)
+                if labels_by_entry.get(str(row.get("entry_id"))) == label
+            ]
+            primary_centroids[str(label)] = _centroid(label_vectors)
+
+        train_scored = _mechanism_feature_pilot_scores(
+            train_vectors,
+            train_rows,
+            labels_by_entry=labels_by_entry,
+            primary_centroids=primary_centroids,
+        )
+        calibration_scored = _mechanism_feature_pilot_scores(
+            calibration_vectors,
+            calibration_rows,
+            labels_by_entry=labels_by_entry,
+            primary_centroids=primary_centroids,
+        )
+        for row in train_scored + calibration_scored:
+            row["out_of_atlas_span_residual"] = row["nearest_primary_distance"]
+        centroid_threshold = _select_similarity_threshold(
+            calibration_scored, retention_target=0.9
+        )
+        residual_threshold = _select_residual_distance_threshold(
+            calibration_scored, retention_target=0.9
+        )
+        train_residual_summary = _row_specific_residual_summary(train_scored)
+        calibration_residual_summary = _row_specific_residual_summary(
+            calibration_scored
+        )
+
+    calibration_oos_rows = sum(1 for row in calibration_scored if not row["is_primary"])
+    known_vs_novel_evaluable = bool(calibration_oos_rows)
+    status = (
+        "p0_row_specific_no_template_rerun_blocked"
+        if blockers
+        else (
+            "p0_row_specific_no_template_train_cal_scored_oos_blocked"
+            if not known_vs_novel_evaluable
+            else "p0_row_specific_no_template_train_cal_operating_point_ready"
+        )
+    )
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_NO_TEMPLATE_RERUN_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_no_template_rerun"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": status,
+        "scope": (
+            "Train/cal-only no-template rerun over the approved P0 "
+            "row-specific bond/proton/electron feature sidecar. It fits "
+            "nearest-primary centroids on train rows and selects thresholds "
+            "on calibration rows only; heldout rows are not materialized from "
+            "M-CSA row-specific source evidence."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": not blockers,
+            "model_fit_rows": "train_only",
+            "threshold_selected_or_tuned": not blockers,
+            "threshold_selection_rows": "calibration_only",
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_evaluated": False,
+            "m_csa_row_specific_features_train_cal_only": True,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "review_only": True,
+        },
+        "counts": {
+            "feature_rows": len(feature_rows),
+            "train_rows": len(train_rows),
+            "calibration_rows": len(calibration_rows),
+            "calibration_primary_rows": sum(
+                1 for row in calibration_scored if row["is_primary"]
+            ),
+            "calibration_oos_rows": calibration_oos_rows,
+            "missing_label_rows": len(missing_labels),
+            "feature_dimensions": len(feature_fields),
+            "primary_centroid_labels": len(primary_centroids),
+            "blockers": len(blockers),
+        },
+        "blockers": blockers,
+        "feature_fields": feature_fields,
+        "centroid_variant": {
+            "model_type": "standardized_nearest_primary_centroid",
+            "train_summary": _classification_summary(train_scored),
+            "calibration_summary": _classification_summary(calibration_scored),
+            "calibration_selected_similarity_threshold": centroid_threshold,
+        },
+        "residual_variant": {
+            "model_type": "standardized_out_of_atlas_span_residual",
+            "train_summary": train_residual_summary,
+            "calibration_summary": calibration_residual_summary,
+            "calibration_selected_residual_threshold": residual_threshold,
+        },
+        "model_parameters": {
+            "scaling": scaling,
+            "primary_centroids": primary_centroids,
+        },
+        "scored_rows": {
+            "train": train_scored,
+            "calibration": calibration_scored,
+        },
+        "decision": {
+            "centroid_train_cal_scored": bool(train_scored or calibration_scored),
+            "residual_train_cal_scored": bool(train_scored or calibration_scored),
+            "known_vs_novel_operating_point_evaluable": known_vs_novel_evaluable,
+            "heldout_read_once_performed": False,
+            "reason_operating_point_not_evaluable": (
+                None
+                if known_vs_novel_evaluable
+                else (
+                    "The approved P0 row-specific train/cal surface has no "
+                    "calibration OOS/novel rows, so known-vs-novel abstention "
+                    "cannot be measured at an operating point yet."
+                )
+            ),
+            "next_gate": (
+                "Add approved train/cal OOS/novel row-specific evidence rows "
+                "or a non-M-CSA row-specific heldout-safe surface before "
+                "claiming novelty separation."
+                if not known_vs_novel_evaluable
+                else "Apply the calibrated operating point to a heldout-safe surface exactly once."
+            ),
+        },
+        "source_artifacts": {
+            "train_cal_feature_sidecar": _source_path_record(
+                train_cal_feature_sidecar_path
+            ),
+            "train_cal_feature_guardrail": _source_path_record(
+                train_cal_feature_guardrail_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+        },
+        "interpretation": {
+            "result": (
+                "The no-template centroid and residual rerun is scored on "
+                "train/cal rows, but the P0 surface is all in-scope primary "
+                "labels, so it cannot yet answer known-vs-novel separation."
+                if not blockers and not known_vs_novel_evaluable
+                else (
+                    "The no-template centroid and residual rerun has a "
+                    "calibration OOS operating point."
+                    if not blockers
+                    else "The no-template rerun is blocked before scoring."
+                )
+            ),
+            "next_action": (
+                "Broaden the approved row-specific surface with split-safe "
+                "OOS/novel calibration evidence, then rerun this artifact and "
+                "only read heldout once on a heldout-safe feature surface."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_no_template_rerun_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    decision = audit["decision"]
+    centroid = audit["centroid_variant"]
+    residual = audit["residual_variant"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 No-Template Rerun - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Feature rows: {counts['feature_rows']}",
+        f"- Train rows: {counts['train_rows']}",
+        f"- Calibration rows: {counts['calibration_rows']}",
+        f"- Calibration OOS rows: {counts['calibration_oos_rows']}",
+        f"- Feature dimensions: {counts['feature_dimensions']}",
+        "",
+        "## Centroid Variant",
+        "",
+        f"- Train summary: {centroid['train_summary']}",
+        f"- Calibration summary: {centroid['calibration_summary']}",
+        "- Calibration threshold: "
+        f"{centroid['calibration_selected_similarity_threshold']}",
+        "",
+        "## Residual Variant",
+        "",
+        f"- Train summary: {residual['train_summary']}",
+        f"- Calibration summary: {residual['calibration_summary']}",
+        "- Calibration threshold: "
+        f"{residual['calibration_selected_residual_threshold']}",
+        "",
+        "## Decision",
+        "",
+        "- Known-vs-novel operating point evaluable: "
+        f"{decision['known_vs_novel_operating_point_evaluable']}",
+        f"- Heldout read once performed: {decision['heldout_read_once_performed']}",
+    ]
+    if decision.get("reason_operating_point_not_evaluable"):
+        lines.append(f"- Reason: {decision['reason_operating_point_not_evaluable']}")
+    lines += [
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_no_template_rerun(
+    *,
+    train_cal_feature_sidecar_path: Path,
+    train_cal_feature_guardrail_path: Path,
+    label_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_no_template_rerun(
+        train_cal_feature_sidecar_path=train_cal_feature_sidecar_path,
+        train_cal_feature_guardrail_path=train_cal_feature_guardrail_path,
+        label_manifest_path=label_manifest_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_no_template_rerun_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap(
+    *,
+    source_sidecar_path: Path,
+    feature_contract_path: Path,
+    train_cal_split_manifest_path: Path,
+    label_manifest_path: Path,
+    max_packet_rows: int = 30,
+) -> dict[str, Any]:
+    source_sidecar = _read_json(source_sidecar_path)
+    feature_contract = _read_json(feature_contract_path)
+    split_manifest = _read_json(train_cal_split_manifest_path)
+    label_manifest = _read_json(label_manifest_path)
+
+    approved_p0_entries = {
+        str(row.get("entry_id"))
+        for row in source_sidecar.get("sidecar_rows", [])
+        if isinstance(row, dict)
+        and row.get("entry_id")
+        and row.get("review_status") == "approved"
+    }
+    labels_by_entry = {
+        str(row.get("entry_id")): row
+        for row in label_manifest.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    split_by_entry = {
+        str(row.get("entry_id")): row
+        for row in split_manifest.get("split_records", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    candidates: list[dict[str, Any]] = []
+    for row in feature_contract.get("feature_rows", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        entry_id = str(row["entry_id"])
+        if entry_id in approved_p0_entries:
+            continue
+        label_row = labels_by_entry.get(entry_id) or {}
+        label_type = label_row.get("label_type")
+        label_split = label_row.get("split_assignment")
+        assigned_split = str(row.get("assigned_embedding_split") or "")
+        if label_type != "out_of_scope":
+            continue
+        if label_split == "heldout":
+            continue
+        if assigned_split not in {"train", "calibration"}:
+            continue
+
+        active_site = row.get("active_site_role_graph") or {}
+        reaction_template = row.get("reaction_center_template") or {}
+        split_record = split_by_entry.get(entry_id) or {}
+        candidates.append(
+            {
+                "entry_id": entry_id,
+                "assigned_embedding_split": assigned_split,
+                "label_manifest_split": label_split,
+                "label_manifest_type": label_type,
+                "stratum": split_record.get("stratum")
+                or f"label_type:{label_type}",
+                "active_site_residue_count": active_site.get(
+                    "active_site_residue_count"
+                ),
+                "role_graph_status": active_site.get("status"),
+                "reaction_template_status": reaction_template.get("status"),
+                "allowed_for_feature_contract_consumption_now": False,
+                "allowed_for_model_training_now": False,
+                "recommended_action": (
+                    "build row-specific source-evidence extraction package; "
+                    "approve only source-spanned train/cal rows before no-template rerun"
+                ),
+            }
+        )
+
+    candidates.sort(
+        key=lambda row: (
+            0 if row["assigned_embedding_split"] == "calibration" else 1,
+            _entry_id_sort_key(str(row["entry_id"])),
+        )
+    )
+    limit = max(0, int(max_packet_rows))
+    packet_rows = candidates[:limit]
+    candidate_split_counts = Counter(
+        str(row["assigned_embedding_split"]) for row in candidates
+    )
+    packet_split_counts = Counter(
+        str(row["assigned_embedding_split"]) for row in packet_rows
+    )
+    fills_oos_gap = bool(packet_split_counts.get("calibration"))
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_CALIBRATION_GAP_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_calibration_gap"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": "p0_oos_calibration_gap_ready_review_packet",
+        "scope": (
+            "Review-only packet of split-safe none_of_above train/cal rows "
+            "that could supply OOS/novel row-specific bond/proton/electron "
+            "evidence for the P0 no-template operating point."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "heldout_rows_in_packet": False,
+            "source_text_or_source_ids_used_as_predictive_features": False,
+            "packet_rows_not_training_input": True,
+            "review_only": True,
+        },
+        "decision": {
+            "feature_consumption_allowed_now": False,
+            "fills_no_template_oos_operating_point_if_approved": fills_oos_gap,
+            "next_gate": (
+                "Create source-evidence extraction rows for calibration "
+                "candidates first; approve only source-spanned row-specific "
+                "events, then rerun the P0 no-template artifact."
+            ),
+        },
+        "counts": {
+            "candidate_rows": len(candidates),
+            "candidate_calibration_rows": candidate_split_counts.get(
+                "calibration", 0
+            ),
+            "candidate_train_rows": candidate_split_counts.get("train", 0),
+            "packet_rows": len(packet_rows),
+            "packet_calibration_rows": packet_split_counts.get("calibration", 0),
+            "packet_train_rows": packet_split_counts.get("train", 0),
+            "approved_p0_rows_excluded": len(approved_p0_entries),
+        },
+        "packet_rows": packet_rows,
+        "source_artifacts": {
+            "approved_source_sidecar": _source_path_record(source_sidecar_path),
+            "feature_contract": _source_path_record(feature_contract_path),
+            "train_cal_split_manifest": _source_path_record(
+                train_cal_split_manifest_path
+            ),
+            "label_manifest": _source_path_record(label_manifest_path),
+        },
+        "interpretation": {
+            "result": (
+                "Found "
+                f"{candidate_split_counts.get('calibration', 0)} calibration "
+                f"and {candidate_split_counts.get('train', 0)} train none_of_above "
+                "candidates outside the approved P0 sidecar; the first "
+                f"{len(packet_rows)} are staged for manual source-evidence extraction."
+            ),
+            "next_action": (
+                "Start with the calibration rows in this packet because the "
+                "current P0 no-template rerun lacks any OOS/novel calibration rows."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap_report(
+    packet: dict[str, Any],
+) -> str:
+    counts = packet["counts"]
+    decision = packet["decision"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS Calibration Gap - current702",
+        "",
+        f"Run: {packet['created_utc']}",
+        "",
+        packet["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {packet['status']}",
+        f"- Candidate rows: {counts['candidate_rows']}",
+        f"- Candidate calibration rows: {counts['candidate_calibration_rows']}",
+        f"- Candidate train rows: {counts['candidate_train_rows']}",
+        f"- Packet rows: {counts['packet_rows']}",
+        f"- Packet calibration rows: {counts['packet_calibration_rows']}",
+        "",
+        "## Decision",
+        "",
+        "- Feature consumption allowed now: "
+        f"{decision['feature_consumption_allowed_now']}",
+        "- Fills no-template OOS operating point if approved: "
+        f"{decision['fills_no_template_oos_operating_point_if_approved']}",
+        f"- Next gate: {decision['next_gate']}",
+        "",
+        "## Packet Rows",
+        "",
+        "| entry | assigned split | active-site residues | role graph | reaction template |",
+        "| --- | --- | ---: | --- | --- |",
+    ]
+    for row in packet["packet_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row['assigned_embedding_split']} | "
+            f"{row.get('active_site_residue_count')} | "
+            f"{row.get('role_graph_status')} | "
+            f"{row.get('reaction_template_status')} |"
+        )
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {packet['interpretation']['result']}",
+        f"- {packet['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap(
+    *,
+    source_sidecar_path: Path,
+    feature_contract_path: Path,
+    train_cal_split_manifest_path: Path,
+    label_manifest_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+    max_packet_rows: int = 30,
+) -> dict[str, Any]:
+    packet = build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap(
+        source_sidecar_path=source_sidecar_path,
+        feature_contract_path=feature_contract_path,
+        train_cal_split_manifest_path=train_cal_split_manifest_path,
+        label_manifest_path=label_manifest_path,
+        max_packet_rows=max_packet_rows,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(packet, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap_report(
+                packet
+            ),
+            encoding="utf-8",
+        )
+    return packet
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package(
+    *,
+    oos_calibration_gap_path: Path,
+    label_manifest_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+) -> dict[str, Any]:
+    gap = _read_json(oos_calibration_gap_path)
+    label_manifest = _read_json(label_manifest_path)
+    role_graph = _read_json(active_site_role_graph_sidecar_path)
+
+    labels_by_entry = {
+        str(row.get("entry_id")): row
+        for row in label_manifest.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    role_graph_by_entry = {
+        str(row.get("entry_id")): row
+        for row in role_graph.get("rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+
+    extraction_rows = []
+    split_counter: Counter[str] = Counter()
+    critical_counts: Counter[str] = Counter()
+    for row in gap.get("packet_rows", []):
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        entry_id = str(row["entry_id"])
+        assigned_split = str(row.get("assigned_embedding_split") or "")
+        label_row = labels_by_entry.get(entry_id) or {}
+        role_row = role_graph_by_entry.get(entry_id) or {}
+        split_counter[assigned_split] += 1
+        if assigned_split not in {"train", "calibration"}:
+            critical_counts["packet_rows_not_train_or_calibration"] += 1
+        if label_row.get("split_assignment") == "heldout":
+            critical_counts["heldout_label_manifest_rows"] += 1
+        if row.get("label_manifest_type") != "out_of_scope":
+            critical_counts["non_oos_packet_rows"] += 1
+        if not label_row:
+            critical_counts["label_manifest_rows_missing"] += 1
+        if not role_row:
+            critical_counts["active_site_role_graph_rows_missing"] += 1
+
+        residues = []
+        for residue in role_row.get("residues", []):
+            if not isinstance(residue, dict):
+                continue
+            residues.append(
+                {
+                    "residue_node_id": residue.get("residue_node_id"),
+                    "roles": residue.get("roles") or [],
+                    "sequence_positions": residue.get("sequence_positions") or [],
+                    "structure_positions": residue.get("structure_positions") or [],
+                }
+            )
+        extraction_rows.append(
+            {
+                "entry_id": entry_id,
+                "accession": label_row.get("accession"),
+                "assigned_embedding_split": assigned_split,
+                "label_manifest_type": row.get("label_manifest_type"),
+                "label_manifest_split": label_row.get("split_assignment"),
+                "oos_tier": label_row.get("oos_tier"),
+                "benchmark_role": label_row.get("benchmark_role"),
+                "active_site_residue_count": row.get("active_site_residue_count"),
+                "role_graph_status": row.get("role_graph_status"),
+                "reaction_template_status": row.get("reaction_template_status"),
+                "active_site_residue_role_template": residues,
+                "manual_extraction_template": {
+                    field: None
+                    for field in ROW_SPECIFIC_BOND_CHANGE_EXTRACTION_REQUIRED_FIELDS
+                },
+                "required_event_schema": {
+                    "row_specific_bond_change_events": [
+                        {
+                            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+                            "participants_before": [],
+                            "participants_after": [],
+                            "mapped_active_site_residues": [],
+                            "source_evidence_span": None,
+                            "confidence": "high|medium|low",
+                        }
+                    ],
+                    "row_specific_reaction_participant_mapping": [
+                        {
+                            "participant_id": None,
+                            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+                            "source_identifier": None,
+                            "mapped_atom_or_group": None,
+                        }
+                    ],
+                },
+                "acceptance_criteria": [
+                    "all_required_fields_non_null",
+                    "at_least_one_source_backed_bond_or_proton_or_electron_event",
+                    "reaction_participant_mapping_covers_each_event",
+                    "active_site_residue_support_links_to_current_row_residues",
+                    "review_status_approved_before_feature_contract_use",
+                    "row_remains_train_cal_and_not_heldout",
+                ],
+                "allowed_for_feature_contract_consumption_now": False,
+                "allowed_for_model_training_now": False,
+                "extraction_status": "manual_extraction_not_started",
+            }
+        )
+
+    extraction_rows.sort(
+        key=lambda row: (
+            0 if row["assigned_embedding_split"] == "calibration" else 1,
+            _entry_id_sort_key(str(row["entry_id"])),
+        )
+    )
+    critical_counts["rows_allowed_for_feature_contract_consumption_now"] = sum(
+        1
+        for row in extraction_rows
+        if row["allowed_for_feature_contract_consumption_now"]
+    )
+    critical_counts["rows_allowed_for_model_training_now"] = sum(
+        1 for row in extraction_rows if row["allowed_for_model_training_now"]
+    )
+    critical_counts = Counter(
+        {key: value for key, value in critical_counts.items() if value}
+    )
+    critical_violation_total = sum(critical_counts.values())
+    passed = bool(extraction_rows) and critical_violation_total == 0
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_CALIBRATION_EXTRACTION_WORK_PACKAGE_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_calibration_extraction_work_package"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_calibration_extraction_work_package_ready_manual_only"
+            if passed
+            else "p0_oos_calibration_extraction_work_package_blocked"
+        ),
+        "scope": (
+            "No-fit manual extraction work package for the split-safe OOS "
+            "calibration rows staged by the P0 no-template gap packet. It "
+            "defines required source-evidence fields only; it does not approve "
+            "rows or materialize row-specific features."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "row_specific_source_evidence_materialized": False,
+            "feature_contract_mutated": False,
+            "feature_contract_consumption_allowed_now": False,
+            "manual_extraction_templates_only": True,
+            "review_only": True,
+        },
+        "counts": {
+            "gap_packet_rows": len(gap.get("packet_rows", [])),
+            "manual_extraction_rows": len(extraction_rows),
+            "calibration_rows": split_counter.get("calibration", 0),
+            "train_rows": split_counter.get("train", 0),
+            "rows_with_accession": sum(
+                1 for row in extraction_rows if row.get("accession")
+            ),
+            "rows_with_active_site_role_template": sum(
+                1
+                for row in extraction_rows
+                if row.get("active_site_residue_role_template")
+            ),
+            "required_field_count": len(
+                ROW_SPECIFIC_BOND_CHANGE_EXTRACTION_REQUIRED_FIELDS
+            ),
+            "critical_counts": dict(sorted(critical_counts.items())),
+            "critical_violation_total": critical_violation_total,
+        },
+        "required_fields": ROW_SPECIFIC_BOND_CHANGE_EXTRACTION_REQUIRED_FIELDS,
+        "extraction_rows": extraction_rows,
+        "source_artifacts": {
+            "oos_calibration_gap": _source_path_record(oos_calibration_gap_path),
+            "label_manifest": _source_path_record(label_manifest_path),
+            "active_site_role_graph_sidecar": _source_path_record(
+                active_site_role_graph_sidecar_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                f"{len(extraction_rows)} OOS calibration rows now have "
+                "manual source-evidence extraction templates; none are "
+                "approved for feature consumption."
+            ),
+            "next_action": (
+                "Fill these templates from source-backed M-CSA/Rhea/mechanism "
+                "evidence, approve only source-spanned calibration rows, then "
+                "rerun the P0 train/cal feature sidecar and no-template artifact."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_report(
+    package: dict[str, Any],
+) -> str:
+    counts = package["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS Calibration Extraction Work Package - current702",
+        "",
+        f"Run: {package['created_utc']}",
+        "",
+        package["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {package['status']}",
+        f"- Manual extraction rows: {counts['manual_extraction_rows']}",
+        f"- Calibration rows: {counts['calibration_rows']}",
+        f"- Train rows: {counts['train_rows']}",
+        f"- Rows with active-site role template: {counts['rows_with_active_site_role_template']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Extraction Rows",
+        "",
+        "| entry | accession | split | residues | status |",
+        "| --- | --- | --- | ---: | --- |",
+    ]
+    for row in package["extraction_rows"]:
+        lines.append(
+            f"| {row['entry_id']} | {row.get('accession')} | "
+            f"{row['assigned_embedding_split']} | "
+            f"{len(row.get('active_site_residue_role_template') or [])} | "
+            f"{row['extraction_status']} |"
+        )
+    lines += [
+        "",
+        "## Required Fields",
+        "",
+    ]
+    for field in package["required_fields"]:
+        lines.append(f"- {field}")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {package['interpretation']['result']}",
+        f"- {package['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package(
+    *,
+    oos_calibration_gap_path: Path,
+    label_manifest_path: Path,
+    active_site_role_graph_sidecar_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    package = build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package(
+        oos_calibration_gap_path=oos_calibration_gap_path,
+        label_manifest_path=label_manifest_path,
+        active_site_role_graph_sidecar_path=active_site_role_graph_sidecar_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(package, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_report(
+                package
+            ),
+            encoding="utf-8",
+        )
+    return package
+
+
+def build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit(
+    *,
+    extraction_work_package_path: Path,
+) -> dict[str, Any]:
+    package = _read_json(extraction_work_package_path)
+    extraction_rows = [
+        row
+        for row in package.get("extraction_rows", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    ]
+    package_required_fields = (
+        package.get("required_fields")
+        or ROW_SPECIFIC_BOND_CHANGE_EXTRACTION_REQUIRED_FIELDS
+    )
+    required_fields = [
+        str(field)
+        for field in package_required_fields
+        if isinstance(field, str)
+    ]
+    violations: dict[str, list[dict[str, Any]]] = {
+        "rows_not_train_or_calibration": [],
+        "heldout_rows": [],
+        "non_oos_rows": [],
+        "missing_manual_template_fields": [],
+        "rows_allowed_for_feature_contract_consumption_now": [],
+        "rows_allowed_for_model_training_now": [],
+        "rows_with_materialized_source_evidence_status": [],
+    }
+    for row in extraction_rows:
+        entry_id = str(row["entry_id"])
+        assigned_split = str(row.get("assigned_embedding_split") or "")
+        if assigned_split not in {"train", "calibration"}:
+            violations["rows_not_train_or_calibration"].append(
+                {"entry_id": entry_id, "assigned_embedding_split": assigned_split}
+            )
+        if row.get("label_manifest_split") == "heldout":
+            violations["heldout_rows"].append({"entry_id": entry_id})
+        if row.get("label_manifest_type") != "out_of_scope":
+            violations["non_oos_rows"].append(
+                {"entry_id": entry_id, "label_manifest_type": row.get("label_manifest_type")}
+            )
+        manual_template = row.get("manual_extraction_template") or {}
+        missing_fields = [
+            field
+            for field in required_fields
+            if field not in manual_template
+        ]
+        if missing_fields:
+            violations["missing_manual_template_fields"].append(
+                {"entry_id": entry_id, "missing_fields": missing_fields}
+            )
+        if row.get("allowed_for_feature_contract_consumption_now"):
+            violations["rows_allowed_for_feature_contract_consumption_now"].append(
+                {"entry_id": entry_id}
+            )
+        if row.get("allowed_for_model_training_now"):
+            violations["rows_allowed_for_model_training_now"].append(
+                {"entry_id": entry_id}
+            )
+        if row.get("extraction_status") != "manual_extraction_not_started":
+            violations["rows_with_materialized_source_evidence_status"].append(
+                {
+                    "entry_id": entry_id,
+                    "extraction_status": row.get("extraction_status"),
+                }
+            )
+
+    if not extraction_rows:
+        violations["missing_manual_template_fields"].append(
+            {"entry_id": None, "missing_fields": ["extraction_rows"]}
+        )
+    critical_counts = {key: len(value) for key, value in violations.items()}
+    critical_violation_total = sum(critical_counts.values())
+    passed = critical_violation_total == 0
+    return {
+        "artifact_id": (
+            MECHANISM_FEATURE_ROW_SPECIFIC_BOND_CHANGE_P0_OOS_CALIBRATION_EXTRACTION_WORK_PACKAGE_STRICT_AUDIT_ID
+        ),
+        "schema_version": (
+            f"{SCHEMA_VERSION}.row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit"
+        ),
+        "created_utc": _utc_now_iso(),
+        "status": (
+            "p0_oos_calibration_extraction_work_package_strict_audit_passed"
+            if passed
+            else "p0_oos_calibration_extraction_work_package_strict_audit_failed"
+        ),
+        "scope": (
+            "Validation-only audit for the P0 OOS calibration extraction work "
+            "package. It confirms the packet stays manual-only, train/cal-only, "
+            "OOS-only, and template-complete before any reviewer extraction work."
+        ),
+        "guardrails": {
+            "labels_registries_ontologies_changed": False,
+            "imports_or_promotions_performed": False,
+            "production_thresholds_changed": False,
+            "model_weights_fit_or_refit": False,
+            "threshold_selected_or_tuned": False,
+            "heldout_rows_used_for_training_or_threshold_tuning": False,
+            "row_specific_source_evidence_materialized": False,
+            "feature_contract_mutated": False,
+            "feature_contract_consumption_allowed_now": False,
+            "validation_only": True,
+            "review_only": True,
+        },
+        "decision": {
+            "manual_extraction_package_passed": passed,
+            "feature_consumption_allowed_now": False,
+            "next_gate": (
+                "Fill extraction templates with source-backed events, record "
+                "reviewer approval, then rerun strict sidecar and feature "
+                "materialization audits."
+            ),
+        },
+        "counts": {
+            "manual_extraction_rows": len(extraction_rows),
+            "required_field_count": len(required_fields),
+            "critical_counts": critical_counts,
+            "critical_violation_total": critical_violation_total,
+        },
+        "violations": {key: value[:50] for key, value in violations.items()},
+        "source_artifacts": {
+            "extraction_work_package": _source_path_record(
+                extraction_work_package_path
+            ),
+        },
+        "interpretation": {
+            "result": (
+                "The P0 OOS calibration extraction package is valid as a "
+                "manual-only review packet."
+                if passed
+                else "The P0 OOS calibration extraction package has strict-audit violations."
+            ),
+            "next_action": (
+                "Use the packet only for source-evidence extraction; do not "
+                "materialize features until approved rows pass the sidecar guardrails."
+            ),
+        },
+    }
+
+
+def _render_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit_report(
+    audit: dict[str, Any],
+) -> str:
+    counts = audit["counts"]
+    lines = [
+        "# Mechanism Feature Row-Specific Bond-Change P0 OOS Calibration Extraction Work Package Strict Audit - current702",
+        "",
+        f"Run: {audit['created_utc']}",
+        "",
+        audit["scope"],
+        "",
+        "## Status",
+        "",
+        f"- {audit['status']}",
+        f"- Manual extraction rows: {counts['manual_extraction_rows']}",
+        f"- Required fields: {counts['required_field_count']}",
+        f"- Critical violations: {counts['critical_violation_total']}",
+        "",
+        "## Critical Counts",
+        "",
+    ]
+    for key, value in counts["critical_counts"].items():
+        lines.append(f"- {key}: {value}")
+    lines += [
+        "",
+        "## Interpretation",
+        "",
+        f"- {audit['interpretation']['result']}",
+        f"- {audit['interpretation']['next_action']}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def write_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit(
+    *,
+    extraction_work_package_path: Path,
+    out_path: Path,
+    report_path: Path | None = None,
+) -> dict[str, Any]:
+    audit = build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit(
+        extraction_work_package_path=extraction_work_package_path,
+    )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(
+        json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    if report_path is not None:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            _render_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit_report(
+                audit
+            ),
+            encoding="utf-8",
+        )
+    return audit
 
 
 def _manifest_fingerprint_id(row: dict[str, Any]) -> Any:

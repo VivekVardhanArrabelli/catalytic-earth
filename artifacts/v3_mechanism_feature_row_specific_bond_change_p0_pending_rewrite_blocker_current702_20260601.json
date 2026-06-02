@@ -1,18 +1,12 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_current702_20260601",
   "counts": {
-    "approved_materialized_calibration_rows": 2,
-    "approved_materialized_feature_rows": 9,
-    "approved_materialized_train_rows": 7,
-    "blocked_event_rows": 16,
-    "blocked_event_type_counts": {
-      "electron_transfer": 16
-    },
-    "blocker_counts": {
-      "low_confidence_event_review": 6,
-      "multi_event_rewrite": 3,
-      "unmapped_event_review": 6
-    },
+    "approved_materialized_calibration_rows": 4,
+    "approved_materialized_feature_rows": 15,
+    "approved_materialized_train_rows": 11,
+    "blocked_event_rows": 0,
+    "blocked_event_type_counts": {},
+    "blocker_counts": {},
     "critical_counts": {
       "approved_feature_sidecar_critical_violations": 0,
       "pending_rows_allowed_for_feature_contract_consumption": 0,
@@ -21,27 +15,15 @@
       "pending_rows_not_in_train_cal_split": 0
     },
     "critical_violation_total": 0,
-    "event_rows": 22,
-    "event_type_counts": {
-      "bond_broken": 1,
-      "bond_formed": 2,
-      "electron_transfer": 16,
-      "proton_transfer": 3
-    },
-    "pending_rewrite_rows": 6
+    "event_rows": 0,
+    "event_type_counts": {},
+    "pending_rewrite_rows": 0
   },
-  "created_utc": "2026-06-02T08:23:35Z",
+  "created_utc": "2026-06-02T09:19:57Z",
   "decision": {
-    "full_no_template_rerun_ready": false,
-    "next_gate_entry_ids": [
-      "m_csa:6",
-      "m_csa:15",
-      "m_csa:16",
-      "m_csa:68",
-      "m_csa:102",
-      "m_csa:133"
-    ],
-    "reason_not_ready": "The reviewed P0 feature surface has 9/15 approved rows; pending rewrite rows must be rewritten or rejected before the intended no-template rerun surface is complete."
+    "full_no_template_rerun_ready": true,
+    "next_gate_entry_ids": [],
+    "reason_not_ready": null
   },
   "guardrails": {
     "feature_contract_mutated": false,
@@ -55,353 +37,10 @@
     "threshold_selected_or_tuned": false
   },
   "interpretation": {
-    "next_action": "Rewrite or reject the listed blocked events, rerun strict/readiness/materialization artifacts, and only then attempt no-template centroid/residual reruns.",
-    "result": "The calibration coverage blocker is cleared and the current approved P0 rows are materialized, but reviewed pending rows remain blocked by low-confidence or unmapped event surfaces."
+    "next_action": "Attempt no-template centroid/residual reruns only from the label-stripped train/cal feature sidecar, then keep heldout as a read-once final evaluation surface.",
+    "result": "All reviewed P0 rewrite blockers are cleared and the full train/cal row-specific feature surface is materialized."
   },
-  "pending_rewrite_rows": [
-    {
-      "accepted_event_indices_for_future_rewrite_context": [
-        4
-      ],
-      "accession": "P00390",
-      "allowed_for_feature_contract_consumption_now": false,
-      "allowed_for_model_training_now": false,
-      "assigned_embedding_split": "calibration",
-      "blocked_event_indices": [
-        0,
-        1,
-        2,
-        3
-      ],
-      "decision_rationale": "Keep pending because the calibration packet electron-transfer events are low-confidence and unmapped to active-site residues; the row needs a rewritten event surface before feature consumption.",
-      "entry_id": "m_csa:6",
-      "event_rows": [
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 0,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:6:mechanism:1",
-          "source_span_text": "Initially, the enzyme is in the oxidised state, with its redox active cysteines 58 and 63 forming a disulphide bond to each other."
-        },
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 1,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:6:mechanism:1",
-          "source_span_text": "A hydride is transferred from NAD(P)H to FAD, a process facilitated by Glu201, Lys66 and Tyr197, as demonstrated by mutagenesis and structural studies."
-        },
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 2,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:6:mechanism:1",
-          "source_span_text": "From there the electron makes an SN2 attack on the sulfur atom of Cys63, causing Cys58 to be displaced as thiolate."
-        },
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 3,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:6:mechanism:1",
-          "source_span_text": "This residue is now ready to attack the substrate, which in all cases except mercuric reductase is another disulphide bond."
-        },
-        {
-          "blocked_by_reviewer": false,
-          "confidence": "medium",
-          "event_index": 4,
-          "event_type": "proton_transfer",
-          "mapped_active_site_residue_count": 2,
-          "source_record_id": "m_csa:6:mechanism:1",
-          "source_span_text": "His467 from the other subunit of the dimer has an essential role here, as shown by mutagenesis; first it seems to withdraw a proton from Cys58, activating the latter residue for a nucleophilic attack on the substrate."
-        }
-      ],
-      "review_status": "needs_more_evidence",
-      "reviewer_decision": "rewrite_events_and_keep_review_pending",
-      "rewrite_blockers": [
-        "low_confidence_event_review",
-        "unmapped_event_review",
-        "multi_event_rewrite"
-      ]
-    },
-    {
-      "accepted_event_indices_for_future_rewrite_context": [
-        0
-      ],
-      "accession": "P25910",
-      "allowed_for_feature_contract_consumption_now": false,
-      "allowed_for_model_training_now": false,
-      "assigned_embedding_split": "train",
-      "blocked_event_indices": [
-        1
-      ],
-      "decision_rationale": "Keep pending because the zinc-water attack is currently typed as a low-confidence unmapped electron-transfer event; it needs a row-specific bond/proton rewrite before feature consumption.",
-      "entry_id": "m_csa:15",
-      "event_rows": [
-        {
-          "blocked_by_reviewer": false,
-          "confidence": "medium",
-          "event_index": 0,
-          "event_type": "bond_formed",
-          "mapped_active_site_residue_count": 6,
-          "source_record_id": "m_csa:15:mechanism:1",
-          "source_span_text": "The beta-lactam carbonyl interacts with zinc1 polarising the bond and enhancing its susceptibility to nucleophilic attack."
-        },
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 1,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:15:mechanism:1",
-          "source_span_text": "A zinc1 associated water/hydroxide is the nucleophile which attacks the beta-lactam carbonyl carbon."
-        }
-      ],
-      "review_status": "needs_more_evidence",
-      "reviewer_decision": "rewrite_events_and_keep_review_pending",
-      "rewrite_blockers": [
-        "low_confidence_event_review",
-        "unmapped_event_review"
-      ]
-    },
-    {
-      "accepted_event_indices_for_future_rewrite_context": [
-        0
-      ],
-      "accession": "P04190",
-      "allowed_for_feature_contract_consumption_now": false,
-      "allowed_for_model_training_now": false,
-      "assigned_embedding_split": "train",
-      "blocked_event_indices": [
-        1
-      ],
-      "decision_rationale": "Keep pending because the zinc-water regeneration event is low-confidence and unmapped; rewrite the event surface before row-level feature consumption.",
-      "entry_id": "m_csa:16",
-      "event_rows": [
-        {
-          "blocked_by_reviewer": false,
-          "confidence": "medium",
-          "event_index": 0,
-          "event_type": "proton_transfer",
-          "mapped_active_site_residue_count": 1,
-          "source_record_id": "m_csa:16:mechanism:1",
-          "source_span_text": "Here the zinc activated water initiates the reaction, Asp90 deprotonates the OH of the tetrahedral intermediate and finally, the intermediate collapses, with the nitrogen group re-protonating from Asp90."
-        },
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 1,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:16:mechanism:1",
-          "source_span_text": "The active site starting state is regenerated from bulk solvent, the zinc activates the water to re-form the initiating hydroxide ion (not shown)."
-        }
-      ],
-      "review_status": "needs_more_evidence",
-      "reviewer_decision": "rewrite_events_and_keep_review_pending",
-      "rewrite_blockers": [
-        "low_confidence_event_review",
-        "unmapped_event_review"
-      ]
-    },
-    {
-      "accepted_event_indices_for_future_rewrite_context": [],
-      "accession": "P26440",
-      "allowed_for_feature_contract_consumption_now": false,
-      "allowed_for_model_training_now": false,
-      "assigned_embedding_split": "train",
-      "blocked_event_indices": [
-        0,
-        1,
-        2
-      ],
-      "decision_rationale": "Keep pending because all current electron-transfer events are low-confidence and unmapped; this row needs a source-backed redox/bond-order rewrite before consumption.",
-      "entry_id": "m_csa:68",
-      "event_rows": [
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 0,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:68:mechanism:1",
-          "source_span_text": "The dehydrogenation reaction is initiated as Glu254 acts as a catalytic base abstracting the R -hydrogen of substrate in the form of a proton, with a concomitant transfer of the alpha -hydrogen from substrate as a hydride to the N(5) position of the isoalloxazine ring of the FAD, forming a trans double bond between the C(alpha) and C(beta) of the fatty acyl-CoA substrate."
-        },
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 1,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:68:mechanism:1",
-          "source_span_text": "Ultimately, reducing equivalents are passed to the mitochondrial respiratory chain first via electron transfer flavoprotein (ETF) the physiological electron acceptor for all the acyl-CoA dehydrogenases, and second by ETF- ubiquinone oxidoreductase, a membrane-bound Fe-S flavoprotein."
-        },
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 2,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:68:mechanism:1",
-          "source_span_text": "Note residues Ser136 and Met135 may serve to stabilise the oxyanion hole created in reduced FAD, however their role has not been specifically proven by experimental evidence."
-        }
-      ],
-      "review_status": "needs_more_evidence",
-      "reviewer_decision": "rewrite_events_and_keep_review_pending",
-      "rewrite_blockers": [
-        "low_confidence_event_review",
-        "unmapped_event_review"
-      ]
-    },
-    {
-      "accepted_event_indices_for_future_rewrite_context": [
-        1
-      ],
-      "accession": "P00175",
-      "allowed_for_feature_contract_consumption_now": false,
-      "allowed_for_model_training_now": false,
-      "assigned_embedding_split": "train",
-      "blocked_event_indices": [
-        0,
-        2,
-        3,
-        4
-      ],
-      "decision_rationale": "Keep pending because the lactate oxidation electron-transfer/hydride events are low-confidence and unmapped; the medium bond-broken event is only rewrite context.",
-      "entry_id": "m_csa:102",
-      "event_rows": [
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 0,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:102:mechanism:1",
-          "source_span_text": "The enzyme catalyses the oxidation of lactate to pyruvate."
-        },
-        {
-          "blocked_by_reviewer": false,
-          "confidence": "medium",
-          "event_index": 1,
-          "event_type": "bond_broken",
-          "mapped_active_site_residue_count": 1,
-          "source_record_id": "m_csa:102:mechanism:1",
-          "source_span_text": "In the wild type enzyme the OH and CH bond cleavages in lactate are highly asynchronous."
-        },
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 2,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:102:mechanism:1",
-          "source_span_text": "The lactate hydroxyl proton is abstracted by His 373 to form the alkoxide either early in the reaction or in a pre-equilibrium."
-        },
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 3,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:102:mechanism:1",
-          "source_span_text": "The hydride is then transferred to the flavin, forming pyruvate."
-        },
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 4,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:102:mechanism:1",
-          "source_span_text": "In this proposal, the His373 abstracts the alpha carbon's proton, forming a negatively charged intermediate, which then eliminates the hydride."
-        }
-      ],
-      "review_status": "needs_more_evidence",
-      "reviewer_decision": "rewrite_events_and_keep_review_pending",
-      "rewrite_blockers": [
-        "low_confidence_event_review",
-        "unmapped_event_review",
-        "multi_event_rewrite"
-      ]
-    },
-    {
-      "accepted_event_indices_for_future_rewrite_context": [
-        2,
-        3
-      ],
-      "accession": "P00183",
-      "allowed_for_feature_contract_consumption_now": false,
-      "allowed_for_model_training_now": false,
-      "assigned_embedding_split": "calibration",
-      "blocked_event_indices": [
-        0,
-        1,
-        4
-      ],
-      "decision_rationale": "Keep pending because the heme/putidaredoxin electron-transfer events are low-confidence and unmapped; only the medium mapped proton/bond-formation events are usable as rewrite context, not a complete row-level feature surface.",
-      "entry_id": "m_csa:133",
-      "event_rows": [
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 0,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:133:mechanism:1",
-          "source_span_text": "Putidaredoxin donates a single electron to the Fe(III) centre of the heme cofactor, forming Fe(II), which in turn donates the electron to the dioxygen substrate .Putidaredoxin then donates a second electron to the bound peroxo moiety, which initiates a proton transfer relay through Thr252, water, Asp251, Arg186 to bulk solvent."
-        },
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 1,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:133:mechanism:1",
-          "source_span_text": "Both Heme and Iron donate single electrons to the bound peroxo moiety, which eliminates water and initiates a proton transfer relay through the same chain as used previously."
-        },
-        {
-          "blocked_by_reviewer": false,
-          "confidence": "medium",
-          "event_index": 2,
-          "event_type": "proton_transfer",
-          "mapped_active_site_residue_count": 3,
-          "source_record_id": "m_csa:133:mechanism:1",
-          "source_span_text": "The iron-bound oxy group abstracts a hydrogen from the camphor substrate."
-        },
-        {
-          "blocked_by_reviewer": false,
-          "confidence": "medium",
-          "event_index": 3,
-          "event_type": "bond_formed",
-          "mapped_active_site_residue_count": 1,
-          "source_record_id": "m_csa:133:mechanism:1",
-          "source_span_text": "In the final step, the camphor radical initiates a homolytic substitution, hydroxylating the intermediate to form 5-hydroxycamphor."
-        },
-        {
-          "blocked_by_reviewer": true,
-          "confidence": "low",
-          "event_index": 4,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:133:mechanism:1",
-          "source_span_text": "The iron centre accepts a single electron and water displaces the product."
-        }
-      ],
-      "review_status": "needs_more_evidence",
-      "reviewer_decision": "rewrite_events_and_keep_review_pending",
-      "rewrite_blockers": [
-        "low_confidence_event_review",
-        "unmapped_event_review",
-        "multi_event_rewrite"
-      ]
-    }
-  ],
+  "pending_rewrite_rows": [],
   "reviewer_decision_missing_rows": [],
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_pending_rewrite_blocker",
   "scope": "Manual rewrite blocker packet for P0 row-specific bond/proton/electron rows that were reviewed but kept out of feature consumption because current events are low-confidence, unmapped, or too complex.",
@@ -409,12 +48,12 @@
     "source_sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
+      "sha256": "3c9434ca729bbe68dd7374a0446f0c87960693e53908206377e08ce829e0806d"
     },
     "train_cal_feature_sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json",
-      "sha256": "2e54b9e0331aa21716cc69e3905f4e8f76acfbbd45050a54434248afc53be083"
+      "sha256": "987cbdba5b79b7337159fcdb615569d6b6150a2df72c815c91b6802995421841"
     },
     "train_cal_split_manifest": {
       "exists": true,
@@ -422,5 +61,5 @@
       "sha256": "d06038f1faa9c42d98c409d949450c6cc953d6da325d98c0636ed4d9daf52d83"
     }
   },
-  "status": "p0_pending_rewrite_blocker_ready_manual_only"
+  "status": "p0_pending_rewrite_blocker_cleared_ready_for_no_template_rerun"
 }

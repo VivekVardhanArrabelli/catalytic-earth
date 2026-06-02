@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_guardrail_audit_current702_20260601",
   "counts": {
-    "calibration_rows": 2,
+    "calibration_rows": 4,
     "critical_counts": {
       "duplicate_feature_entry_ids": 0,
       "feature_guardrail_mismatches": 0,
@@ -18,20 +18,20 @@
       "unexpected_feature_row_keys": 0
     },
     "critical_violation_total": 0,
-    "feature_rows": 9,
+    "feature_rows": 15,
     "feature_value_type_counts": {
-      "bool": 36,
-      "int": 117
+      "bool": 60,
+      "int": 195
     },
     "source_sidecar_rows": 15,
-    "train_rows": 7
+    "train_rows": 11
   },
-  "created_utc": "2026-06-02T08:08:30Z",
+  "created_utc": "2026-06-02T09:19:56Z",
   "decision": {
-    "full_no_template_rerun_ready_from_sidecar": false,
+    "full_no_template_rerun_ready_from_sidecar": true,
     "partial_feature_surface_guardrail_passed": true,
-    "reason_not_ready_for_rerun": "Only a partial approved P0 surface is materialized; continue review until train and calibration rows cover the intended no-template feature pilot.",
-    "safe_to_run_no_template_methods_now": false,
+    "reason_not_ready_for_rerun": null,
+    "safe_to_run_no_template_methods_now": true,
     "safe_to_use_as_partial_train_feature_surface": true
   },
   "guardrails": {
@@ -80,12 +80,12 @@
     "source_sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
+      "sha256": "3c9434ca729bbe68dd7374a0446f0c87960693e53908206377e08ce829e0806d"
     },
     "train_cal_feature_sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json",
-      "sha256": "2e54b9e0331aa21716cc69e3905f4e8f76acfbbd45050a54434248afc53be083"
+      "sha256": "987cbdba5b79b7337159fcdb615569d6b6150a2df72c815c91b6802995421841"
     }
   },
   "status": "p0_train_cal_feature_guardrail_audit_passed_partial_no_fit",

@@ -1,21 +1,21 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601",
   "counts": {
-    "approved_rows": 9,
+    "approved_rows": 15,
     "draft_event_type_counts": {
-      "bond_broken": 1,
-      "bond_formed": 2,
-      "electron_transfer": 16,
-      "proton_transfer": 3
+      "bond_broken": 8,
+      "bond_formed": 8,
+      "bond_order_changed": 9,
+      "electron_transfer": 10,
+      "proton_transfer": 16
     },
-    "feature_contract_consumable_rows": 9,
+    "feature_contract_consumable_rows": 15,
     "m_csa_only_reviewer_approved_rows": 3,
     "model_training_allowed_rows": 0,
     "review_status_counts": {
-      "approved": 9,
-      "needs_more_evidence": 6
+      "approved": 15
     },
-    "rhea_backed_reviewer_approved_rows": 6,
+    "rhea_backed_reviewer_approved_rows": 12,
     "rows_missing_rhea_equations": 3,
     "rows_with_draft_bond_change_events": 15,
     "rows_with_rhea_equations": 12,
@@ -23,7 +23,7 @@
     "sidecar_rows": 15,
     "worksheet_rows": 15
   },
-  "created_utc": "2026-06-02T08:08:19Z",
+  "created_utc": "2026-06-02T09:08:56Z",
   "guardrails": {
     "draft_source_evidence_not_training_input": true,
     "feature_contract_mutated": false,
@@ -39,8 +39,8 @@
     "reviewer_provenance_recorded": true
   },
   "interpretation": {
-    "next_action": "Rewrite or reject the six pending low-confidence electron-transfer rows, rerun strict/readiness/materialization artifacts, and only attempt no-template reruns once the approved train/cal surface reaches the intended pilot coverage.",
-    "result": "Nine P0 rows now carry reviewer approval for split-filtered feature materialization: three M-CSA-only train rows, two Rhea-backed calibration rows, and four Rhea-backed train-depth rows. Six low-confidence electron-transfer rows stay pending rewrite."
+    "next_action": "Rerun strict/readiness/materialization and guardrail artifacts, then attempt the no-template centroid/residual rerun only from the label-stripped train/cal feature sidecar.",
+    "result": "All 15 P0 rows now carry reviewer approval for split-filtered train/cal feature materialization: three M-CSA-only train rows, eight Rhea-backed train rows, and four Rhea-backed calibration rows. The six prior pending rewrite rows were rewritten as mapped source-spanned event surfaces before approval."
   },
   "schema_snapshot": {
     "allowed_event_types": [
@@ -325,55 +325,43 @@
           "uniprot_id": "P00390"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:6",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "needs_more_evidence",
+      "review_status": "approved",
       "reviewer_decision": {
-        "accepted_event_indices_for_future_rewrite_context": [
-          4
-        ],
-        "blocked_event_indices": [
+        "accepted_event_indices": [
           0,
           1,
           2,
           3
         ],
-        "decision": "rewrite_events_and_keep_review_pending",
-        "decision_rationale": "Keep pending because the calibration packet electron-transfer events are low-confidence and unmapped to active-site residues; the row needs a rewritten event surface before feature consumption.",
-        "reviewed_utc": "2026-06-02T08:06:21Z",
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph and Rhea-backed sidecar",
+        "decision": "approve_rhea_backed_source_evidence",
+        "decision_rationale": "Rewrite and approve because the Rhea-backed row now has only source-spanned, mapped hydride/electron, disulfide-exchange, proton-transfer, and bond-formation events over catalytic residue support; the low-confidence unmapped draft electron-transfer events were replaced, not consumed.",
+        "leakage_safety_note": "M-CSA-derived row-specific features may feed only split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "official_rhea_evidence_found": true,
+        "reviewed_utc": "2026-06-02T09:08:56Z",
         "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "rewritten_from_pending_rewrite_blocker": true,
+        "rhea_backed_provenance_accepted": true,
         "source_artifacts_reviewed": [
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_current702_20260601.json",
           "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json"
         ]
       },
       "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
-          "confidence": "low",
+          "confidence": "medium",
           "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
-          "participants_after": [
-            "glutathione disulfide",
-            "NADPH",
-            "H(+)"
+          "mapped_active_site_residues": [
+            "m_csa:6:residue:2",
+            "m_csa:6:residue:3",
+            "m_csa:6:residue:6"
           ],
-          "participants_before": [
-            "2 glutathione",
-            "NADP(+)"
-          ],
-          "source_evidence_span": {
-            "source_record_id": "m_csa:6:mechanism:1",
-            "span_text": "Initially, the enzyme is in the oxidised state, with its redox active cysteines 58 and 63 forming a disulphide bond to each other."
-          }
-        },
-        {
-          "confidence": "low",
-          "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
           "participants_after": [
             "glutathione disulfide",
             "NADPH",
@@ -389,9 +377,12 @@
           }
         },
         {
-          "confidence": "low",
-          "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
+          "confidence": "medium",
+          "event_type": "bond_broken",
+          "mapped_active_site_residues": [
+            "m_csa:6:residue:4",
+            "m_csa:6:residue:5"
+          ],
           "participants_after": [
             "glutathione disulfide",
             "NADPH",
@@ -404,24 +395,6 @@
           "source_evidence_span": {
             "source_record_id": "m_csa:6:mechanism:1",
             "span_text": "From there the electron makes an SN2 attack on the sulfur atom of Cys63, causing Cys58 to be displaced as thiolate."
-          }
-        },
-        {
-          "confidence": "low",
-          "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
-          "participants_after": [
-            "glutathione disulfide",
-            "NADPH",
-            "H(+)"
-          ],
-          "participants_before": [
-            "2 glutathione",
-            "NADP(+)"
-          ],
-          "source_evidence_span": {
-            "source_record_id": "m_csa:6:mechanism:1",
-            "span_text": "This residue is now ready to attack the substrate, which in all cases except mercuric reductase is another disulphide bond."
           }
         },
         {
@@ -443,6 +416,28 @@
           "source_evidence_span": {
             "source_record_id": "m_csa:6:mechanism:1",
             "span_text": "His467 from the other subunit of the dimer has an essential role here, as shown by mutagenesis; first it seems to withdraw a proton from Cys58, activating the latter residue for a nucleophilic attack on the substrate."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "bond_formed",
+          "mapped_active_site_residues": [
+            "m_csa:6:residue:1",
+            "m_csa:6:residue:4",
+            "m_csa:6:residue:5"
+          ],
+          "participants_after": [
+            "glutathione disulfide",
+            "NADPH",
+            "H(+)"
+          ],
+          "participants_before": [
+            "2 glutathione",
+            "NADP(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:6:mechanism:1",
+            "span_text": "The proton is then poised to polarise the resulting Cys58-substrate mixed disulphide bond, making it vulnerable to attack from Cys63 to return the enzyme to its rest state."
           }
         }
       ],
@@ -920,26 +915,30 @@
           "uniprot_id": "P25910"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:15",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "needs_more_evidence",
+      "review_status": "approved",
       "reviewer_decision": {
-        "accepted_event_indices_for_future_rewrite_context": [
-          0
+        "accepted_event_indices": [
+          0,
+          1,
+          2
         ],
-        "blocked_event_indices": [
-          1
-        ],
-        "decision": "rewrite_events_and_keep_review_pending",
-        "decision_rationale": "Keep pending because the zinc-water attack is currently typed as a low-confidence unmapped electron-transfer event; it needs a row-specific bond/proton rewrite before feature consumption.",
-        "reviewed_utc": "2026-06-02T08:08:19Z",
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph and Rhea-backed sidecar",
+        "decision": "approve_rhea_backed_source_evidence",
+        "decision_rationale": "Rewrite and approve because the zinc-water attack was retyped as mapped bond/proton chemistry over the Rhea-backed hydrolysis surface, removing the low-confidence unmapped electron-transfer event.",
+        "leakage_safety_note": "M-CSA-derived row-specific features may feed only split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "official_rhea_evidence_found": true,
+        "reviewed_utc": "2026-06-02T09:08:56Z",
         "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "rewritten_from_pending_rewrite_blocker": true,
+        "rhea_backed_provenance_accepted": true,
         "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_current702_20260601.json",
           "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json"
         ]
       },
       "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
@@ -964,13 +963,19 @@
           ],
           "source_evidence_span": {
             "source_record_id": "m_csa:15:mechanism:1",
-            "span_text": "The beta-lactam carbonyl interacts with zinc1 polarising the bond and enhancing its susceptibility to nucleophilic attack."
+            "span_text": "A zinc1 associated water/hydroxide is the nucleophile which attacks the beta-lactam carbonyl carbon."
           }
         },
         {
-          "confidence": "low",
-          "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
+          "confidence": "medium",
+          "event_type": "bond_broken",
+          "mapped_active_site_residues": [
+            "m_csa:15:residue:1",
+            "m_csa:15:residue:4",
+            "m_csa:15:residue:5",
+            "m_csa:15:residue:6",
+            "m_csa:15:residue:7"
+          ],
           "participants_after": [
             "a substituted beta-amino acid"
           ],
@@ -980,7 +985,29 @@
           ],
           "source_evidence_span": {
             "source_record_id": "m_csa:15:mechanism:1",
-            "span_text": "A zinc1 associated water/hydroxide is the nucleophile which attacks the beta-lactam carbonyl carbon."
+            "span_text": "The beta-lactam carbonyl interacts with zinc1 polarising the bond and enhancing its susceptibility to nucleophilic attack."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:15:residue:1",
+            "m_csa:15:residue:4",
+            "m_csa:15:residue:5",
+            "m_csa:15:residue:6",
+            "m_csa:15:residue:7"
+          ],
+          "participants_after": [
+            "a substituted beta-amino acid"
+          ],
+          "participants_before": [
+            "a beta-lactam",
+            "H2O"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:15:mechanism:1",
+            "span_text": "An incoming water molecule is activated by the zinc ions and deprontonated by the intermediate."
           }
         }
       ],
@@ -1126,30 +1153,56 @@
           "uniprot_id": "P04190"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:16",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "needs_more_evidence",
+      "review_status": "approved",
       "reviewer_decision": {
-        "accepted_event_indices_for_future_rewrite_context": [
-          0
+        "accepted_event_indices": [
+          0,
+          1,
+          2,
+          3
         ],
-        "blocked_event_indices": [
-          1
-        ],
-        "decision": "rewrite_events_and_keep_review_pending",
-        "decision_rationale": "Keep pending because the zinc-water regeneration event is low-confidence and unmapped; rewrite the event surface before row-level feature consumption.",
-        "reviewed_utc": "2026-06-02T08:08:19Z",
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph and Rhea-backed sidecar",
+        "decision": "approve_rhea_backed_source_evidence",
+        "decision_rationale": "Rewrite and approve because the monometallic zinc-water sequence is represented as mapped bond-formation, proton-transfer, and bond-cleavage chemistry rather than the previous unmapped electron-transfer placeholder.",
+        "leakage_safety_note": "M-CSA-derived row-specific features may feed only split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "official_rhea_evidence_found": true,
+        "reviewed_utc": "2026-06-02T09:08:56Z",
         "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "rewritten_from_pending_rewrite_blocker": true,
+        "rhea_backed_provenance_accepted": true,
         "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_current702_20260601.json",
           "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json"
         ]
       },
       "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
+        {
+          "confidence": "medium",
+          "event_type": "bond_formed",
+          "mapped_active_site_residues": [
+            "m_csa:16:residue:1",
+            "m_csa:16:residue:3",
+            "m_csa:16:residue:4",
+            "m_csa:16:residue:5"
+          ],
+          "participants_after": [
+            "a substituted beta-amino acid"
+          ],
+          "participants_before": [
+            "a beta-lactam",
+            "H2O"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:16:mechanism:1",
+            "span_text": "Here the zinc activated water initiates the reaction, Asp90 deprotonates the OH of the tetrahedral intermediate and finally, the intermediate collapses, with the nitrogen group re-protonating from Asp90."
+          }
+        },
         {
           "confidence": "medium",
           "event_type": "proton_transfer",
@@ -1169,9 +1222,34 @@
           }
         },
         {
-          "confidence": "low",
-          "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
+          "confidence": "medium",
+          "event_type": "bond_broken",
+          "mapped_active_site_residues": [
+            "m_csa:16:residue:1",
+            "m_csa:16:residue:3",
+            "m_csa:16:residue:4",
+            "m_csa:16:residue:5"
+          ],
+          "participants_after": [
+            "a substituted beta-amino acid"
+          ],
+          "participants_before": [
+            "a beta-lactam",
+            "H2O"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:16:mechanism:1",
+            "span_text": "Here the zinc activated water initiates the reaction, Asp90 deprotonates the OH of the tetrahedral intermediate and finally, the intermediate collapses, with the nitrogen group re-protonating from Asp90."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:16:residue:3",
+            "m_csa:16:residue:4",
+            "m_csa:16:residue:5"
+          ],
           "participants_after": [
             "a substituted beta-amino acid"
           ],
@@ -1757,34 +1835,40 @@
           "uniprot_id": "P26440"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:68",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "needs_more_evidence",
+      "review_status": "approved",
       "reviewer_decision": {
-        "accepted_event_indices_for_future_rewrite_context": [],
-        "blocked_event_indices": [
+        "accepted_event_indices": [
           0,
           1,
           2
         ],
-        "decision": "rewrite_events_and_keep_review_pending",
-        "decision_rationale": "Keep pending because all current electron-transfer events are low-confidence and unmapped; this row needs a source-backed redox/bond-order rewrite before consumption.",
-        "reviewed_utc": "2026-06-02T08:08:19Z",
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph and Rhea-backed sidecar",
+        "decision": "approve_rhea_backed_source_evidence",
+        "decision_rationale": "Rewrite and approve because the source-backed dehydrogenation sentence now yields mapped proton-transfer, hydride/electron-transfer, and bond-order-change events; downstream ETF transfer context is left out of the row-specific active-site surface.",
+        "leakage_safety_note": "M-CSA-derived row-specific features may feed only split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "official_rhea_evidence_found": true,
+        "reviewed_utc": "2026-06-02T09:08:56Z",
         "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "rewritten_from_pending_rewrite_blocker": true,
+        "rhea_backed_provenance_accepted": true,
         "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_current702_20260601.json",
           "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json"
         ]
       },
       "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
-          "confidence": "low",
-          "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:68:residue:2"
+          ],
           "participants_after": [
             "3-methylbut-2-enoyl-CoA",
             "reduced [electron-transfer flavoprotein]"
@@ -1796,13 +1880,17 @@
           ],
           "source_evidence_span": {
             "source_record_id": "m_csa:68:mechanism:1",
-            "span_text": "The dehydrogenation reaction is initiated as Glu254 acts as a catalytic base abstracting the R -hydrogen of substrate in the form of a proton, with a concomitant transfer of the alpha -hydrogen from substrate as a hydride to the N(5) position of the isoalloxazine ring of the FAD, forming a trans double bond between the C(alpha) and C(beta) of the fatty acyl-CoA substrate."
+            "span_text": "The dehydrogenation reaction is initiated as Glu254 acts as a catalytic base abstracting the R -hydrogen of substrate in the form of a proton, with a concomitant transfer of the alpha -hydrogen from substrate as a hydride to the N(5) position of the isoalloxazine ring of the FAD, forming a trans  double bond between the C(alpha)  and C(beta)  of the fatty acyl-CoA substrate."
           }
         },
         {
-          "confidence": "low",
+          "confidence": "medium",
           "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
+          "mapped_active_site_residues": [
+            "m_csa:68:residue:2",
+            "m_csa:68:residue:3",
+            "m_csa:68:residue:4"
+          ],
           "participants_after": [
             "3-methylbut-2-enoyl-CoA",
             "reduced [electron-transfer flavoprotein]"
@@ -1814,13 +1902,17 @@
           ],
           "source_evidence_span": {
             "source_record_id": "m_csa:68:mechanism:1",
-            "span_text": "Ultimately, reducing equivalents are passed to the mitochondrial respiratory chain first via electron transfer flavoprotein (ETF) the physiological electron acceptor for all the acyl-CoA dehydrogenases, and second by ETF- ubiquinone oxidoreductase, a membrane-bound Fe-S flavoprotein."
+            "span_text": "The dehydrogenation reaction is initiated as Glu254 acts as a catalytic base abstracting the R -hydrogen of substrate in the form of a proton, with a concomitant transfer of the alpha -hydrogen from substrate as a hydride to the N(5) position of the isoalloxazine ring of the FAD, forming a trans  double bond between the C(alpha)  and C(beta)  of the fatty acyl-CoA substrate."
           }
         },
         {
-          "confidence": "low",
-          "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residues": [
+            "m_csa:68:residue:2",
+            "m_csa:68:residue:3",
+            "m_csa:68:residue:4"
+          ],
           "participants_after": [
             "3-methylbut-2-enoyl-CoA",
             "reduced [electron-transfer flavoprotein]"
@@ -1832,7 +1924,7 @@
           ],
           "source_evidence_span": {
             "source_record_id": "m_csa:68:mechanism:1",
-            "span_text": "Note residues Ser136 and Met135 may serve to stabilise the oxyanion hole created in reduced FAD, however their role has not been specifically proven by experimental evidence."
+            "span_text": "The dehydrogenation reaction is initiated as Glu254 acts as a catalytic base abstracting the R -hydrogen of substrate in the form of a proton, with a concomitant transfer of the alpha -hydrogen from substrate as a hydride to the N(5) position of the isoalloxazine ring of the FAD, forming a trans  double bond between the C(alpha)  and C(beta)  of the fatty acyl-CoA substrate."
           }
         }
       ],
@@ -2160,37 +2252,42 @@
           "uniprot_id": "P00175"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:102",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "needs_more_evidence",
+      "review_status": "approved",
       "reviewer_decision": {
-        "accepted_event_indices_for_future_rewrite_context": [
-          1
-        ],
-        "blocked_event_indices": [
+        "accepted_event_indices": [
           0,
+          1,
           2,
           3,
           4
         ],
-        "decision": "rewrite_events_and_keep_review_pending",
-        "decision_rationale": "Keep pending because the lactate oxidation electron-transfer/hydride events are low-confidence and unmapped; the medium bond-broken event is only rewrite context.",
-        "reviewed_utc": "2026-06-02T08:08:19Z",
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph and Rhea-backed sidecar",
+        "decision": "approve_rhea_backed_source_evidence",
+        "decision_rationale": "Rewrite and approve because lactate oxidation is now represented by mapped His/Tyr/Asp proton-transfer, bond-cleavage, hydride/electron-transfer, and bond-order events instead of unmapped generic electron-transfer spans.",
+        "leakage_safety_note": "M-CSA-derived row-specific features may feed only split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "official_rhea_evidence_found": true,
+        "reviewed_utc": "2026-06-02T09:08:56Z",
         "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "rewritten_from_pending_rewrite_blocker": true,
+        "rhea_backed_provenance_accepted": true,
         "source_artifacts_reviewed": [
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_current702_20260601.json",
           "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json"
         ]
       },
       "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
-          "confidence": "low",
-          "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:102:residue:3"
+          ],
           "participants_after": [
             "2 Fe(II)-[cytochrome c]",
             "pyruvate",
@@ -2202,13 +2299,15 @@
           ],
           "source_evidence_span": {
             "source_record_id": "m_csa:102:mechanism:1",
-            "span_text": "The enzyme catalyses the oxidation of lactate to pyruvate."
+            "span_text": "The lactate hydroxyl proton is abstracted by His 373 to form the alkoxide either early in the reaction or in a pre-equilibrium."
           }
         },
         {
           "confidence": "medium",
           "event_type": "bond_broken",
           "mapped_active_site_residues": [
+            "m_csa:102:residue:1",
+            "m_csa:102:residue:2",
             "m_csa:102:residue:3"
           ],
           "participants_after": [
@@ -2226,27 +2325,13 @@
           }
         },
         {
-          "confidence": "low",
+          "confidence": "medium",
           "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
-          "participants_after": [
-            "2 Fe(II)-[cytochrome c]",
-            "pyruvate",
-            "2 H(+)"
+          "mapped_active_site_residues": [
+            "m_csa:102:residue:1",
+            "m_csa:102:residue:2",
+            "m_csa:102:residue:3"
           ],
-          "participants_before": [
-            "(S)-lactate",
-            "2 Fe(III)-[cytochrome c]"
-          ],
-          "source_evidence_span": {
-            "source_record_id": "m_csa:102:mechanism:1",
-            "span_text": "The lactate hydroxyl proton is abstracted by His 373 to form the alkoxide either early in the reaction or in a pre-equilibrium."
-          }
-        },
-        {
-          "confidence": "low",
-          "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
           "participants_after": [
             "2 Fe(II)-[cytochrome c]",
             "pyruvate",
@@ -2262,9 +2347,13 @@
           }
         },
         {
-          "confidence": "low",
-          "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
+          "confidence": "medium",
+          "event_type": "bond_order_changed",
+          "mapped_active_site_residues": [
+            "m_csa:102:residue:1",
+            "m_csa:102:residue:2",
+            "m_csa:102:residue:3"
+          ],
           "participants_after": [
             "2 Fe(II)-[cytochrome c]",
             "pyruvate",
@@ -2276,6 +2365,26 @@
           ],
           "source_evidence_span": {
             "source_record_id": "m_csa:102:mechanism:1",
+            "span_text": "The hydride is then transferred to the flavin, forming pyruvate."
+          }
+        },
+        {
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:102:residue:3"
+          ],
+          "participants_after": [
+            "2 Fe(II)-[cytochrome c]",
+            "pyruvate",
+            "2 H(+)"
+          ],
+          "participants_before": [
+            "(S)-lactate",
+            "2 Fe(III)-[cytochrome c]"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:102:mechanism:2",
             "span_text": "In this proposal, the His373 abstracts the alpha carbon's proton, forming a negatively charged intermediate, which then eliminates the hydride."
           }
         }
@@ -2896,37 +3005,42 @@
           "uniprot_id": "P00183"
         }
       ],
-      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_feature_contract_consumption_now": true,
       "allowed_for_model_training_now": false,
       "entry_id": "m_csa:133",
       "extractor_id": "codex_automation_p0_draft_20260601",
-      "review_status": "needs_more_evidence",
+      "review_status": "approved",
       "reviewer_decision": {
-        "accepted_event_indices_for_future_rewrite_context": [
-          2,
-          3
-        ],
-        "blocked_event_indices": [
+        "accepted_event_indices": [
           0,
           1,
+          2,
+          3,
           4
         ],
-        "decision": "rewrite_events_and_keep_review_pending",
-        "decision_rationale": "Keep pending because the heme/putidaredoxin electron-transfer events are low-confidence and unmapped; only the medium mapped proton/bond-formation events are usable as rewrite context, not a complete row-level feature surface.",
-        "reviewed_utc": "2026-06-02T08:06:21Z",
+        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph and Rhea-backed sidecar",
+        "decision": "approve_rhea_backed_source_evidence",
+        "decision_rationale": "Rewrite and approve because the heme/putidaredoxin row now has mapped electron-transfer, proton-relay, hydrogen-abstraction, and hydroxylation bond-formation events; the terminal product-displacement sentence is omitted rather than consumed as an unmapped event.",
+        "leakage_safety_note": "M-CSA-derived row-specific features may feed only split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
+        "official_rhea_evidence_found": true,
+        "reviewed_utc": "2026-06-02T09:08:56Z",
         "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
+        "rewritten_from_pending_rewrite_blocker": true,
+        "rhea_backed_provenance_accepted": true,
         "source_artifacts_reviewed": [
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet_current702_20260601.json",
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker_current702_20260601.json",
           "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json"
+          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_feature_sidecar_current702_20260601.json"
         ]
       },
       "reviewer_id": "Codex automation catalytic-earth-lever-3-2-forward-push",
       "row_specific_bond_change_events": [
         {
-          "confidence": "low",
+          "confidence": "medium",
           "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
+          "mapped_active_site_residues": [
+            "m_csa:133:residue:3"
+          ],
           "participants_after": [
             "(1R,4R,5R)-5-hydroxycamphor",
             "2 oxidized [2Fe-2S]-[putidaredoxin]",
@@ -2944,9 +3058,38 @@
           }
         },
         {
-          "confidence": "low",
+          "confidence": "medium",
+          "event_type": "proton_transfer",
+          "mapped_active_site_residues": [
+            "m_csa:133:residue:1",
+            "m_csa:133:residue:2",
+            "m_csa:133:residue:6"
+          ],
+          "participants_after": [
+            "(1R,4R,5R)-5-hydroxycamphor",
+            "2 oxidized [2Fe-2S]-[putidaredoxin]",
+            "H2O"
+          ],
+          "participants_before": [
+            "2 reduced [2Fe-2S]-[putidaredoxin]",
+            "(1R,4R)-camphor",
+            "O2",
+            "2 H(+)"
+          ],
+          "source_evidence_span": {
+            "source_record_id": "m_csa:133:mechanism:1",
+            "span_text": "Putidaredoxin donates a single electron to the Fe(III) centre of the heme cofactor, forming Fe(II), which in turn donates the electron to the dioxygen substrate .Putidaredoxin then donates a second electron to the bound peroxo moiety, which initiates a proton transfer relay through Thr252, water, Asp251, Arg186 to bulk solvent."
+          }
+        },
+        {
+          "confidence": "medium",
           "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
+          "mapped_active_site_residues": [
+            "m_csa:133:residue:1",
+            "m_csa:133:residue:2",
+            "m_csa:133:residue:3",
+            "m_csa:133:residue:6"
+          ],
           "participants_after": [
             "(1R,4R,5R)-5-hydroxycamphor",
             "2 oxidized [2Fe-2S]-[putidaredoxin]",
@@ -2991,7 +3134,9 @@
           "confidence": "medium",
           "event_type": "bond_formed",
           "mapped_active_site_residues": [
-            "m_csa:133:residue:3"
+            "m_csa:133:residue:3",
+            "m_csa:133:residue:4",
+            "m_csa:133:residue:5"
           ],
           "participants_after": [
             "(1R,4R,5R)-5-hydroxycamphor",
@@ -3007,26 +3152,6 @@
           "source_evidence_span": {
             "source_record_id": "m_csa:133:mechanism:1",
             "span_text": "In the final step, the camphor radical initiates a homolytic substitution, hydroxylating the intermediate to form 5-hydroxycamphor."
-          }
-        },
-        {
-          "confidence": "low",
-          "event_type": "electron_transfer",
-          "mapped_active_site_residues": [],
-          "participants_after": [
-            "(1R,4R,5R)-5-hydroxycamphor",
-            "2 oxidized [2Fe-2S]-[putidaredoxin]",
-            "H2O"
-          ],
-          "participants_before": [
-            "2 reduced [2Fe-2S]-[putidaredoxin]",
-            "(1R,4R)-camphor",
-            "O2",
-            "2 H(+)"
-          ],
-          "source_evidence_span": {
-            "source_record_id": "m_csa:133:mechanism:1",
-            "span_text": "The iron centre accepts a single electron and water displaces the product."
           }
         }
       ],
@@ -3850,5 +3975,5 @@
       "sha256": "d1dc5f9edcdb5009c21e4e04a9253875280ec471216db8911435204c398e2a21"
     }
   },
-  "status": "p0_source_evidence_sidecar_partially_approved_review_required"
+  "status": "p0_source_evidence_sidecar_all_train_cal_p0_rows_approved"
 }

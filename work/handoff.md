@@ -50,6 +50,107 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Current Handoff
 
+### 2026-06-02 Lever 2/3/4 Forward Push Active Run
+
+Automation run: `catalytic-earth-lever-3-2-forward-push`
+
+#### Wall-clock ledger
+
+- STARTED_AT: `2026-06-02T09:03:04Z`
+- STARTED_LOCAL: `2026-06-02T04:03:04-0500 CDT`
+- ENDED_AT: `2026-06-02T09:56:08Z`
+- ENDED_LOCAL: `2026-06-02T04:56:08-0500 CDT`
+- ELAPSED_MINUTES: `53.1`
+- Lock acquire result:
+  `{"acquired": true, "lock_dir": ".git/catalytic-earth-automation.lock", "pid": "95147", "started_at": "2026-06-02T09:03:04Z", "status": "acquired"}`
+
+#### Current intent
+
+Lever 2 P0 row-specific mechanism surface has moved past the six pending
+rewrite blockers. The current result is train/cal-scored but operating-point
+blocked because the approved surface has no calibration OOS/novel rows. The
+next gate is now source-backed extraction and approval for the staged OOS
+calibration rows.
+
+#### What changed
+
+- Rewrote and approved the six previously pending P0 rows:
+  `m_csa:6`, `m_csa:15`, `m_csa:16`, `m_csa:68`, `m_csa:102`, and
+  `m_csa:133`. All 15 P0 sidecar rows are now `review_status=approved`,
+  split-filtered feature-contract consumable, and still not model-training
+  rows.
+- Regenerated the P0 strict/readiness/Rhea/decision/materialization chain.
+  The train/cal row-specific feature sidecar now materializes 15 approved rows:
+  11 train and 4 calibration, 17 scalar feature dimensions, and event counts
+  spanning bond broken/formed/order changed, proton transfer, and electron
+  transfer.
+- Added a train/cal no-template rerun artifact and CLI command. It fits
+  standardized nearest-primary centroids on train rows and scores both centroid
+  and out-of-atlas-span residual on calibration rows only. It performs no
+  heldout read.
+- The no-template rerun is deliberately blocked for the north-star operating
+  point: calibration rows are 4/4 primary and 0 OOS/novel, so
+  known-vs-novel abstention cannot be claimed despite train/cal scoring.
+- Added a reproducible P0 OOS calibration gap packet. It finds 353
+  split-safe `none_of_above` train/cal candidates outside the approved P0
+  sidecar: 71 calibration and 282 train. The first 30 calibration rows are
+  staged for source-evidence extraction.
+- Added a manual-only OOS calibration extraction work package and a strict
+  audit. The package has 30 calibration templates, 30 accessions, 30 active-site
+  role templates, 9 required extraction fields, and 0 critical strict-audit
+  violations. It approves nothing and materializes no row-specific evidence.
+- Added CLI parser coverage, focused unit tests for blocked and ready
+  no-template paths, OOS gap candidate selection, OOS extraction packaging, and
+  strict-audit failure behavior, plus regression tests for all new artifacts.
+  No labels, registries, ontologies, imports, production thresholds, heldout
+  thresholds, or heldout M-CSA feature rows changed.
+
+#### Artifacts and reports
+
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_no_template_rerun_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_no_template_rerun_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_current702_20260602.md`
+- `artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit_current702_20260602.json`
+- `work/mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit_current702_20260602.md`
+- Refreshed P0 source-evidence, strict/readiness/Rhea/decision, train/cal
+  feature, train/cal guardrail, coverage-gap, calibration-packet,
+  pending-rewrite, no-template, OOS gap/extraction, and docs-reference
+  artifacts.
+
+#### Tests and validation
+
+- Startup `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  1133 tests in 38.5s.
+- `PYTHONPATH=src python -m pytest tests -q` passed after final code edits:
+  1188 tests, 61 subtests, and one existing sklearn/scipy deprecation warning.
+- Final `PYTHONPATH=src python -m unittest discover -s tests` passed:
+  1143 tests in 40.045s and the same existing sklearn/scipy warning.
+- Final `PYTHONPATH=src python -m pytest tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py -q`
+  passed: 317 tests and 42 subtests.
+- `PYTHONPATH=src python -m catalytic_earth.cli validate` passed with 12
+  source records, 8 mechanism fingerprints, 15 ontology families, and 702
+  curated labels.
+- `PYTHONPATH=src python -m catalytic_earth.cli build-current-docs-artifact-reference-check`
+  passed with 0 missing references.
+- `python -m compileall -q src/catalytic_earth/cli.py src/catalytic_earth/northstar_next_levers.py tests/test_cli.py tests/test_northstar_next_levers.py tests/test_geometry_artifact_regression.py`
+  passed.
+- Repo JSON/JSONL parse sweep passed: 3153 JSON and 27 JSONL files, 0 parse
+  errors.
+- `git diff --check` passed.
+
+#### Exact next action
+
+Continue Lever 2 by filling the 30 OOS calibration extraction templates,
+starting with `m_csa:2`, `m_csa:17`, `m_csa:23`, `m_csa:25`, and
+`m_csa:40`. Approve only source-spanned row-specific bond/proton/electron
+events; then rerun strict sidecar/readiness/materialization/guardrail and the
+P0 no-template artifact. Do not claim known-vs-novel separation until
+calibration OOS rows are approved and scored. Heldout M-CSA rows remain
+read-once only.
+
 ### 2026-06-02 Lever 2/3/4 Forward Push In Progress
 
 Automation run: `catalytic-earth-lever-3-2-forward-push`

@@ -11,7 +11,7 @@
     "packet_rows": 0,
     "rows_with_unmaterialized_event_type": 0
   },
-  "created_utc": "2026-06-02T08:30:05Z",
+  "created_utc": "2026-06-02T09:19:56Z",
   "guardrails": {
     "heldout_rows_used_for_training_or_threshold_tuning": false,
     "imports_or_promotions_performed": false,
@@ -35,12 +35,12 @@
     "source_sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
+      "sha256": "3c9434ca729bbe68dd7374a0446f0c87960693e53908206377e08ce829e0806d"
     },
     "train_cal_coverage_gap": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_train_cal_coverage_gap_current702_20260601.json",
-      "sha256": "5496d759210b80a1da07d45ecedfc92183aae17551726895dfe32e45c359e030"
+      "sha256": "5ae905a36b8350bb5c12bf87853e9fd94d275f2da81fff6b1c18a59711009db9"
     }
   },
   "status": "p0_calibration_review_packet_ready_manual_only"

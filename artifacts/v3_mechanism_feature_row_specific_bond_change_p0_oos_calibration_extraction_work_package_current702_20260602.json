@@ -1,0 +1,5631 @@
+{
+  "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_current702_20260602",
+  "counts": {
+    "calibration_rows": 30,
+    "critical_counts": {},
+    "critical_violation_total": 0,
+    "gap_packet_rows": 30,
+    "manual_extraction_rows": 30,
+    "required_field_count": 9,
+    "rows_with_accession": 30,
+    "rows_with_active_site_role_template": 30,
+    "train_rows": 0
+  },
+  "created_utc": "2026-06-02T09:49:45Z",
+  "extraction_rows": [
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P62593",
+      "active_site_residue_count": 7,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:2:residue:1",
+          "roles": [
+            "covalently_attached",
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "nucleofuge",
+            "nucleophile",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 68,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 45
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:2:residue:2",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 71,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 48
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:2:residue:3",
+          "roles": [
+            "activator",
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 128,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 105
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:2:residue:4",
+          "roles": [
+            "activator",
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 164,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 141
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:2:residue:5",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 232,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 209
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:2:residue:6",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ala",
+              "is_reference": true,
+              "resid": 235,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ala",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 212
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:2:residue:7",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 68,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 45
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::boundary_oos",
+      "entry_id": "m_csa:2",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "boundary_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P00491",
+      "active_site_residue_count": 11,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:17:residue:1",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 64,
+              "uniprot_id": "P00491"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1rr6",
+              "resid": 64
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:17:residue:10",
+          "roles": [
+            "activator",
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 89,
+              "uniprot_id": "P00491"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1rr6",
+              "resid": 89
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:17:residue:11",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "polar_interaction"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asn",
+              "is_reference": true,
+              "resid": 243,
+              "uniprot_id": "P00491"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asn",
+              "is_reference": true,
+              "pdb_id": "1rr6",
+              "resid": 243
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:17:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 33,
+              "uniprot_id": "P00491"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1rr6",
+              "resid": 33
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:17:residue:3",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 220,
+              "uniprot_id": "P00491"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1rr6",
+              "resid": 220
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:17:residue:4",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Tyr",
+              "is_reference": true,
+              "resid": 88,
+              "uniprot_id": "P00491"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "1rr6",
+              "resid": 88
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:17:residue:5",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 257,
+              "uniprot_id": "P00491"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1rr6",
+              "resid": 257
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:17:residue:6",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ala",
+              "is_reference": true,
+              "resid": 116,
+              "uniprot_id": "P00491"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ala",
+              "is_reference": true,
+              "pdb_id": "1rr6",
+              "resid": 116
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:17:residue:7",
+          "roles": [
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 33,
+              "uniprot_id": "P00491"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1rr6",
+              "resid": 33
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:17:residue:8",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Met",
+              "is_reference": true,
+              "resid": 219,
+              "uniprot_id": "P00491"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Met",
+              "is_reference": true,
+              "pdb_id": "1rr6",
+              "resid": 219
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:17:residue:9",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 86,
+              "uniprot_id": "P00491"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1rr6",
+              "resid": 86
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:17",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P13255",
+      "active_site_residue_count": 5,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:23:residue:1",
+          "roles": [
+            "activator"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 143,
+              "uniprot_id": "P13255"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1xva",
+              "resid": 142
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:23:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Tyr",
+              "is_reference": true,
+              "resid": 22,
+              "uniprot_id": "P13255"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "1xva",
+              "resid": 21
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:23:residue:3",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Tyr",
+              "is_reference": true,
+              "resid": 195,
+              "uniprot_id": "P13255"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "1xva",
+              "resid": 194
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:23:residue:4",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Gly",
+              "is_reference": true,
+              "resid": 138,
+              "uniprot_id": "P13255"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Gly",
+              "is_reference": true,
+              "pdb_id": "1xva",
+              "resid": 137
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:23:residue:5",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 176,
+              "uniprot_id": "P13255"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1xva",
+              "resid": 175
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::far_oos",
+      "entry_id": "m_csa:23",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "far_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P32400",
+      "active_site_residue_count": 5,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:25:residue:1",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 51,
+              "uniprot_id": "P32400"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1nba",
+              "resid": 51
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:25:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ala",
+              "is_reference": true,
+              "resid": 172,
+              "uniprot_id": "P32400"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ala",
+              "is_reference": true,
+              "pdb_id": "1nba",
+              "resid": 172
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:25:residue:3",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Thr",
+              "is_reference": true,
+              "resid": 173,
+              "uniprot_id": "P32400"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Thr",
+              "is_reference": true,
+              "pdb_id": "1nba",
+              "resid": 173
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:25:residue:4",
+          "roles": [
+            "activator",
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 144,
+              "uniprot_id": "P32400"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1nba",
+              "resid": 144
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:25:residue:5",
+          "roles": [
+            "covalently_attached",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "nucleofuge",
+            "nucleophile",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Cys",
+              "is_reference": true,
+              "resid": 177,
+              "uniprot_id": "P32400"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Cys",
+              "is_reference": true,
+              "pdb_id": "1nba",
+              "resid": 177
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:25",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P07378",
+      "active_site_residue_count": 4,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:40:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Gly",
+              "is_reference": true,
+              "resid": 399,
+              "uniprot_id": "P07378"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Gly",
+              "is_reference": true,
+              "pdb_id": "13pk",
+              "resid": 395
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:40:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Gly",
+              "is_reference": true,
+              "resid": 376,
+              "uniprot_id": "P07378"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Gly",
+              "is_reference": true,
+              "pdb_id": "13pk",
+              "resid": 372
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:40:residue:3",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 219,
+              "uniprot_id": "P07378"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "13pk",
+              "resid": 215
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:40:residue:4",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 39,
+              "uniprot_id": "P07378"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "13pk",
+              "resid": 35
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:40",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P00862",
+      "active_site_residue_count": 7,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:49:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Phe",
+              "is_reference": true,
+              "resid": 196,
+              "uniprot_id": "P00862"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "F",
+              "code": "Phe",
+              "is_reference": true,
+              "pdb_id": "1pya",
+              "resid": 114
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:49:residue:2",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 198,
+              "uniprot_id": "P00862"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "F",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1pya",
+              "resid": 116
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:49:residue:3",
+          "roles": [
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 64,
+              "uniprot_id": "P00862"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1pya",
+              "resid": 63
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:49:residue:4",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 82,
+              "uniprot_id": "P00862"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "E",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1pya",
+              "resid": 81
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:49:residue:5",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Tyr",
+              "is_reference": true,
+              "resid": 63,
+              "uniprot_id": "P00862"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "1pya",
+              "resid": 62
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:49:residue:6",
+          "roles": [
+            "activator",
+            "hydrogen_bond_acceptor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 67,
+              "uniprot_id": "P00862"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1pya",
+              "resid": 66
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:49:residue:7",
+          "roles": [
+            "covalently_attached",
+            "electrofuge",
+            "electron_pair_acceptor",
+            "electron_pair_donor",
+            "electrophile",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor",
+            "proton_relay"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 83,
+              "uniprot_id": "P00862"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "F",
+              "code": "X",
+              "is_reference": true,
+              "pdb_id": "1pya",
+              "resid": 1
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:49",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P07547",
+      "active_site_residue_count": 10,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:59:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 264,
+              "uniprot_id": "P07547"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1dqs",
+              "resid": 264
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:59:residue:10",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 260,
+              "uniprot_id": "P07547"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1dqs",
+              "resid": 260
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:59:residue:2",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 275,
+              "uniprot_id": "P07547"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1dqs",
+              "resid": 275
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:59:residue:3",
+          "roles": [
+            "hydrogen_bond_donor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 152,
+              "uniprot_id": "P07547"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1dqs",
+              "resid": 152
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:59:residue:4",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 194,
+              "uniprot_id": "P07547"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1dqs",
+              "resid": 194
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:59:residue:5",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 271,
+              "uniprot_id": "P07547"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1dqs",
+              "resid": 271
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:59:residue:6",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 287,
+              "uniprot_id": "P07547"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1dqs",
+              "resid": 287
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:59:residue:7",
+          "roles": [
+            "hydrogen_bond_donor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asn",
+              "is_reference": true,
+              "resid": 268,
+              "uniprot_id": "P07547"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asn",
+              "is_reference": true,
+              "pdb_id": "1dqs",
+              "resid": 268
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:59:residue:8",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 130,
+              "uniprot_id": "P07547"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "B",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1dqs",
+              "resid": 130
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:59:residue:9",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 250,
+              "uniprot_id": "P07547"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1dqs",
+              "resid": 250
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:59",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P52045",
+      "active_site_residue_count": 3,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:70:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Gly",
+              "is_reference": true,
+              "resid": 110,
+              "uniprot_id": "P52045"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Gly",
+              "is_reference": true,
+              "pdb_id": "1ef8",
+              "resid": 110
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:70:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 66,
+              "uniprot_id": "P52045"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1ef8",
+              "resid": 66
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:70:residue:3",
+          "roles": [
+            "hydrogen_bond_donor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Tyr",
+              "is_reference": true,
+              "resid": 140,
+              "uniprot_id": "P52045"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "1ef8",
+              "resid": 140
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:70",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P26446",
+      "active_site_residue_count": 3,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:76:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "van_der_waals_interaction"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Tyr",
+              "is_reference": true,
+              "resid": 904,
+              "uniprot_id": "P26446"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "1a26",
+              "resid": 254
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:76:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 985,
+              "uniprot_id": "P26446"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1a26",
+              "resid": 335
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:76:residue:3",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 901,
+              "uniprot_id": "P26446"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1a26",
+              "resid": 251
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:76",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P23007",
+      "active_site_residue_count": 5,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:78:residue:1",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 375,
+              "uniprot_id": "P23007"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1al6",
+              "resid": 375
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:78:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 244,
+              "uniprot_id": "P23007"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1al6",
+              "resid": 244
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:78:residue:3",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 274,
+              "uniprot_id": "P23007"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1al6",
+              "resid": 274
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:78:residue:4",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 320,
+              "uniprot_id": "P23007"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1al6",
+              "resid": 320
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:78:residue:5",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 329,
+              "uniprot_id": "P23007"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1al6",
+              "resid": 329
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:78",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P0A731",
+      "active_site_residue_count": 7,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:85:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 107,
+              "uniprot_id": "P0A731"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "C",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1b93",
+              "resid": 107
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:85:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 19,
+              "uniprot_id": "P0A731"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1b93",
+              "resid": 19
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:85:residue:3",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 71,
+              "uniprot_id": "P0A731"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1b93",
+              "resid": 71
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:85:residue:4",
+          "roles": [
+            "activator",
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 91,
+              "uniprot_id": "P0A731"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1b93",
+              "resid": 91
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:85:residue:5",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 98,
+              "uniprot_id": "P0A731"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1b93",
+              "resid": 98
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:85:residue:6",
+          "roles": [
+            "activator",
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "repulsive_charge_charge_interaction"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 101,
+              "uniprot_id": "P0A731"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1b93",
+              "resid": 101
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:85:residue:7",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Gly",
+              "is_reference": true,
+              "resid": 66,
+              "uniprot_id": "P0A731"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Gly",
+              "is_reference": true,
+              "pdb_id": "1b93",
+              "resid": 66
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:85",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P49789",
+      "active_site_residue_count": 4,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:101:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "increase_electrophilicity",
+            "increase_nucleophilicity"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 94,
+              "uniprot_id": "P49789"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "5fit",
+              "resid": 94
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:101:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 98,
+              "uniprot_id": "P49789"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "5fit",
+              "resid": 98
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:101:residue:3",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Gln",
+              "is_reference": true,
+              "resid": 83,
+              "uniprot_id": "P49789"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Gln",
+              "is_reference": true,
+              "pdb_id": "5fit",
+              "resid": 83
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:101:residue:4",
+          "roles": [
+            "metal_ligand",
+            "nucleofuge",
+            "nucleophile"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 96,
+              "uniprot_id": "P49789"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "5fit",
+              "resid": 96
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:101",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P00488",
+      "active_site_residue_count": 6,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:149:residue:1",
+          "roles": [
+            "covalently_attached",
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "nucleofuge",
+            "nucleophile"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Cys",
+              "is_reference": true,
+              "resid": 315,
+              "uniprot_id": "P00488"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Cys",
+              "is_reference": true,
+              "pdb_id": "1ggt",
+              "resid": 314
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:149:residue:2",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Cys",
+              "is_reference": true,
+              "resid": 315,
+              "uniprot_id": "P00488"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Cys",
+              "is_reference": true,
+              "pdb_id": "1ggt",
+              "resid": 314
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:149:residue:3",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 374,
+              "uniprot_id": "P00488"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1ggt",
+              "resid": 373
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:149:residue:4",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 397,
+              "uniprot_id": "P00488"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1ggt",
+              "resid": 396
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:149:residue:5",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Tyr",
+              "is_reference": true,
+              "resid": 561,
+              "uniprot_id": "P00488"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "1ggt",
+              "resid": 560
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:149:residue:6",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Trp",
+              "is_reference": true,
+              "resid": 280,
+              "uniprot_id": "P00488"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Trp",
+              "is_reference": true,
+              "pdb_id": "1ggt",
+              "resid": 279
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:149",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P49888",
+      "active_site_residue_count": 3,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:154:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 47,
+              "uniprot_id": "P49888"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1hy3",
+              "resid": 47
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:154:residue:2",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "proton_acceptor",
+            "proton_donor",
+            "proton_relay"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 107,
+              "uniprot_id": "P49888"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1hy3",
+              "resid": 107
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:154:residue:3",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 137,
+              "uniprot_id": "P49888"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1hy3",
+              "resid": 137
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:154",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P26276",
+      "active_site_residue_count": 9,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:194:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 20,
+              "uniprot_id": "P26276"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "X",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1p5d",
+              "resid": 20
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:194:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 109,
+              "uniprot_id": "P26276"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "X",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1p5d",
+              "resid": 109
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:194:residue:3",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 118,
+              "uniprot_id": "P26276"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "X",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1p5d",
+              "resid": 118
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:194:residue:4",
+          "roles": [
+            "metal_ligand",
+            "nucleofuge",
+            "nucleophile"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 108,
+              "uniprot_id": "P26276"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "X",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1p5d",
+              "resid": 108
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:194:residue:5",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 244,
+              "uniprot_id": "P26276"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "X",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1p5d",
+              "resid": 244
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:194:residue:6",
+          "roles": [
+            "electrostatic_stabiliser",
+            "polar_interaction"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 329,
+              "uniprot_id": "P26276"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "X",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1p5d",
+              "resid": 329
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:194:residue:7",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 247,
+              "uniprot_id": "P26276"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "X",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1p5d",
+              "resid": 247
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:194:residue:8",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 242,
+              "uniprot_id": "P26276"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "X",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1p5d",
+              "resid": 242
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:194:residue:9",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 246,
+              "uniprot_id": "P26276"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "X",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1p5d",
+              "resid": 246
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:194",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P00969",
+      "active_site_residue_count": 3,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:202:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 238,
+              "uniprot_id": "P00969"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1a0i",
+              "resid": 237
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:202:residue:2",
+          "roles": [
+            "hydrogen_bond_donor",
+            "nucleofuge",
+            "nucleophile",
+            "polar_interaction"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 34,
+              "uniprot_id": "P00969"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1a0i",
+              "resid": 33
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:202:residue:3",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 240,
+              "uniprot_id": "P00969"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1a0i",
+              "resid": 239
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:202",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "Q9F4L3",
+      "active_site_residue_count": 4,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:221:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Gly",
+              "is_reference": true,
+              "resid": 419,
+              "uniprot_id": "Q9F4L3"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Gly",
+              "is_reference": true,
+              "pdb_id": "2ag0",
+              "resid": 419
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:221:residue:2",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 29,
+              "uniprot_id": "Q9F4L3"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "B",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "2ag0",
+              "resid": 29
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:221:residue:3",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 50,
+              "uniprot_id": "Q9F4L3"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "B",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "2ag0",
+              "resid": 50
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:221:residue:4",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Gln",
+              "is_reference": true,
+              "resid": 113,
+              "uniprot_id": "Q9F4L3"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "B",
+              "code": "Gln",
+              "is_reference": true,
+              "pdb_id": "2ag0",
+              "resid": 113
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:221",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P00883",
+      "active_site_residue_count": 7,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:222:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 34,
+              "uniprot_id": "P00883"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "2qut",
+              "resid": 33
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:222:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 147,
+              "uniprot_id": "P00883"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "2qut",
+              "resid": 146
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:222:residue:3",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "polar_interaction",
+            "proton_acceptor",
+            "proton_donor",
+            "proton_relay"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 188,
+              "uniprot_id": "P00883"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "2qut",
+              "resid": 187
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:222:residue:4",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Tyr",
+              "is_reference": true,
+              "resid": 364,
+              "uniprot_id": "P00883"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "2qut",
+              "resid": 363
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:222:residue:5",
+          "roles": [
+            "covalently_attached",
+            "electron_pair_acceptor",
+            "electron_pair_donor",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "nucleofuge",
+            "nucleophile",
+            "polar_interaction",
+            "proton_acceptor",
+            "proton_donor",
+            "proton_relay"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 230,
+              "uniprot_id": "P00883"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "2qut",
+              "resid": 229
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:222:residue:6",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 301,
+              "uniprot_id": "P00883"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "2qut",
+              "resid": 300
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:222:residue:7",
+          "roles": [
+            "activator",
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "polar_interaction"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 190,
+              "uniprot_id": "P00883"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "2qut",
+              "resid": 189
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:222",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "Q12341",
+      "active_site_residue_count": 2,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:224:residue:1",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 255,
+              "uniprot_id": "Q12341"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1bob",
+              "resid": 255
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:224:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Phe",
+              "is_reference": true,
+              "resid": 220,
+              "uniprot_id": "Q12341"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Phe",
+              "is_reference": true,
+              "pdb_id": "1bob",
+              "resid": 220
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:224",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P12256",
+      "active_site_residue_count": 5,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:241:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Tyr",
+              "is_reference": true,
+              "resid": 85,
+              "uniprot_id": "P12256"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "3pva",
+              "resid": 82
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:241:residue:2",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Cys",
+              "is_reference": true,
+              "resid": 4,
+              "uniprot_id": "P12256"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Cys",
+              "is_reference": true,
+              "pdb_id": "3pva",
+              "resid": 1
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:241:residue:3",
+          "roles": [
+            "activator",
+            "hydrogen_bond_donor",
+            "increase_acidity",
+            "increase_basicity",
+            "repulsive_charge_charge_interaction"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 231,
+              "uniprot_id": "P12256"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "3pva",
+              "resid": 228
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:241:residue:4",
+          "roles": [
+            "covalently_attached",
+            "nucleofuge",
+            "nucleophile",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Cys",
+              "is_reference": true,
+              "resid": 4,
+              "uniprot_id": "P12256"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Cys",
+              "is_reference": true,
+              "pdb_id": "3pva",
+              "resid": 1
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:241:residue:5",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asn",
+              "is_reference": true,
+              "resid": 178,
+              "uniprot_id": "P12256"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asn",
+              "is_reference": true,
+              "pdb_id": "3pva",
+              "resid": 175
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:241",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P06213",
+      "active_site_residue_count": 4,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:246:residue:1",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 1177,
+              "uniprot_id": "P06213"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1ir3",
+              "resid": 173
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:246:residue:2",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asn",
+              "is_reference": true,
+              "resid": 1164,
+              "uniprot_id": "P06213"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asn",
+              "is_reference": true,
+              "pdb_id": "1ir3",
+              "resid": 160
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:246:residue:3",
+          "roles": [
+            "increase_nucleophilicity",
+            "proton_acceptor",
+            "proton_donor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 1159,
+              "uniprot_id": "P06213"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1ir3",
+              "resid": 155
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:246:residue:4",
+          "roles": [
+            "electrostatic_stabiliser",
+            "increase_electrophilicity",
+            "promote_heterolysis"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 1163,
+              "uniprot_id": "P06213"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1ir3",
+              "resid": 159
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:246",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P08836",
+      "active_site_residue_count": 10,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:253:residue:1",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 121,
+              "uniprot_id": "P08836"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1fps",
+              "resid": 102
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:253:residue:10",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 188,
+              "uniprot_id": "P08836"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1fps",
+              "resid": 169
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:253:residue:2",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 257,
+              "uniprot_id": "P08836"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1fps",
+              "resid": 238
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:253:residue:3",
+          "roles": [
+            "activator"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 258,
+              "uniprot_id": "P08836"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1fps",
+              "resid": 239
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:253:residue:4",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 214,
+              "uniprot_id": "P08836"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1fps",
+              "resid": 195
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:253:residue:5",
+          "roles": [
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Phe",
+              "is_reference": true,
+              "resid": 112,
+              "uniprot_id": "P08836"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Phe",
+              "is_reference": true,
+              "pdb_id": "1fps",
+              "resid": 93
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:253:residue:6",
+          "roles": [
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Phe",
+              "is_reference": true,
+              "resid": 253,
+              "uniprot_id": "P08836"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Phe",
+              "is_reference": true,
+              "pdb_id": "1fps",
+              "resid": 234
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:253:residue:7",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 71,
+              "uniprot_id": "P08836"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1fps",
+              "resid": 52
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:253:residue:8",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 117,
+              "uniprot_id": "P08836"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1fps",
+              "resid": 98
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:253:residue:9",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 126,
+              "uniprot_id": "P08836"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1fps",
+              "resid": 107
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:253",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P00327",
+      "active_site_residue_count": 5,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:256:residue:1",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Cys",
+              "is_reference": true,
+              "resid": 175,
+              "uniprot_id": "P00327"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Cys",
+              "is_reference": true,
+              "pdb_id": "1qlh",
+              "resid": 174
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:256:residue:2",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor",
+            "proton_relay"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 49,
+              "uniprot_id": "P00327"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1qlh",
+              "resid": 48
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:256:residue:3",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Cys",
+              "is_reference": true,
+              "resid": 47,
+              "uniprot_id": "P00327"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Cys",
+              "is_reference": true,
+              "pdb_id": "1qlh",
+              "resid": 46
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:256:residue:4",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 68,
+              "uniprot_id": "P00327"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1qlh",
+              "resid": 67
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:256:residue:5",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor",
+            "proton_relay"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 52,
+              "uniprot_id": "P00327"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1qlh",
+              "resid": 51
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:256",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "Q9K499",
+      "active_site_residue_count": 4,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:263:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "polar_non_polar_interaction",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Phe",
+              "is_reference": true,
+              "resid": 95,
+              "uniprot_id": "Q9K499"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Phe",
+              "is_reference": true,
+              "pdb_id": "3kb9",
+              "resid": 116
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:263:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "polar_non_polar_interaction",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Phe",
+              "is_reference": true,
+              "resid": 96,
+              "uniprot_id": "Q9K499"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Phe",
+              "is_reference": true,
+              "pdb_id": "3kb9",
+              "resid": 117
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:263:residue:3",
+          "roles": [
+            "electrostatic_stabiliser",
+            "polar_non_polar_interaction",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Phe",
+              "is_reference": true,
+              "resid": 198,
+              "uniprot_id": "Q9K499"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Phe",
+              "is_reference": true,
+              "pdb_id": "3kb9",
+              "resid": 219
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:263:residue:4",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "promote_heterolysis"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 338,
+              "uniprot_id": "Q9K499"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "3kb9",
+              "resid": 359
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:263",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P08203",
+      "active_site_residue_count": 5,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:273:residue:1",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 95,
+              "uniprot_id": "P08203"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1jdi",
+              "resid": 95
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:273:residue:2",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 97,
+              "uniprot_id": "P08203"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1jdi",
+              "resid": 97
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:273:residue:3",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 171,
+              "uniprot_id": "P08203"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1jdi",
+              "resid": 171
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:273:residue:4",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Tyr",
+              "is_reference": true,
+              "resid": 229,
+              "uniprot_id": "P08203"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "1jdi",
+              "resid": 229
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:273:residue:5",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 120,
+              "uniprot_id": "P08203"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1jdi",
+              "resid": 120
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:273",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P08536",
+      "active_site_residue_count": 5,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:287:residue:1",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 197,
+              "uniprot_id": "P08536"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1g8f",
+              "resid": 197
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:287:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Thr",
+              "is_reference": true,
+              "resid": 196,
+              "uniprot_id": "P08536"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Thr",
+              "is_reference": true,
+              "pdb_id": "1g8f",
+              "resid": 196
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:287:residue:3",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 201,
+              "uniprot_id": "P08536"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1g8f",
+              "resid": 201
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:287:residue:4",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 204,
+              "uniprot_id": "P08536"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1g8f",
+              "resid": 204
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:287:residue:5",
+          "roles": [
+            "electrostatic_stabiliser"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Arg",
+              "is_reference": true,
+              "resid": 290,
+              "uniprot_id": "P08536"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Arg",
+              "is_reference": true,
+              "pdb_id": "1g8f",
+              "resid": 290
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:287",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P0A953",
+      "active_site_residue_count": 6,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:292:residue:1",
+          "roles": [
+            "activator",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 328,
+              "uniprot_id": "P0A953"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1dd8",
+              "resid": 328
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:292:residue:2",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "increase_basicity"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 333,
+              "uniprot_id": "P0A953"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1dd8",
+              "resid": 333
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:292:residue:3",
+          "roles": [
+            "activator",
+            "hydrogen_bond_acceptor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Phe",
+              "is_reference": true,
+              "resid": 390,
+              "uniprot_id": "P0A953"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Phe",
+              "is_reference": true,
+              "pdb_id": "1dd8",
+              "resid": 390
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:292:residue:4",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Phe",
+              "is_reference": true,
+              "resid": 392,
+              "uniprot_id": "P0A953"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Phe",
+              "is_reference": true,
+              "pdb_id": "1dd8",
+              "resid": 392
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:292:residue:5",
+          "roles": [
+            "activator",
+            "covalently_attached",
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "nucleofuge",
+            "nucleophile"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Cys",
+              "is_reference": true,
+              "resid": 163,
+              "uniprot_id": "P0A953"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Cys",
+              "is_reference": true,
+              "pdb_id": "1dd8",
+              "resid": 163
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:292:residue:6",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 298,
+              "uniprot_id": "P0A953"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1dd8",
+              "resid": 298
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:292",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "Q9WYQ4",
+      "active_site_residue_count": 4,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:312:residue:1",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "increase_basicity"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 255,
+              "uniprot_id": "Q9WYQ4"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1kq3",
+              "resid": 267
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:312:residue:2",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 169,
+              "uniprot_id": "Q9WYQ4"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1kq3",
+              "resid": 181
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:312:residue:3",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 252,
+              "uniprot_id": "Q9WYQ4"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1kq3",
+              "resid": 264
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:312:residue:4",
+          "roles": [
+            "metal_ligand"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 269,
+              "uniprot_id": "Q9WYQ4"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1kq3",
+              "resid": 281
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:312",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P14900",
+      "active_site_residue_count": 3,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:317:residue:1",
+          "roles": [
+            "hydrogen_bond_acceptor",
+            "hydrogen_bond_donor",
+            "proton_acceptor",
+            "proton_donor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 184,
+              "uniprot_id": "P14900"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1uag",
+              "resid": 183
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:317:residue:2",
+          "roles": [
+            "activator",
+            "attractive_charge_charge_interaction",
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "increase_electrophilicity"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 116,
+              "uniprot_id": "P14900"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1uag",
+              "resid": 115
+            }
+          ]
+        },
+        {
+          "residue_node_id": "m_csa:317:residue:3",
+          "roles": [
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "steric_role"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Asn",
+              "is_reference": true,
+              "resid": 139,
+              "uniprot_id": "P14900"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asn",
+              "is_reference": true,
+              "pdb_id": "1uag",
+              "resid": 138
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:317",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    },
+    {
+      "acceptance_criteria": [
+        "all_required_fields_non_null",
+        "at_least_one_source_backed_bond_or_proton_or_electron_event",
+        "reaction_participant_mapping_covers_each_event",
+        "active_site_residue_support_links_to_current_row_residues",
+        "review_status_approved_before_feature_contract_use",
+        "row_remains_train_cal_and_not_heldout"
+      ],
+      "accession": "P27000",
+      "active_site_residue_count": 1,
+      "active_site_residue_role_template": [
+        {
+          "residue_node_id": "m_csa:318:residue:1",
+          "roles": [
+            "attractive_charge_charge_interaction",
+            "electrostatic_stabiliser",
+            "hydrogen_bond_donor",
+            "increase_nucleophilicity"
+          ],
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 246,
+              "uniprot_id": "P27000"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1j09",
+              "resid": 246
+            }
+          ]
+        }
+      ],
+      "allowed_for_feature_contract_consumption_now": false,
+      "allowed_for_model_training_now": false,
+      "assigned_embedding_split": "calibration",
+      "benchmark_role": "oos_tier::unknown_oos",
+      "entry_id": "m_csa:318",
+      "extraction_status": "manual_extraction_not_started",
+      "label_manifest_split": "in_distribution",
+      "label_manifest_type": "out_of_scope",
+      "manual_extraction_template": {
+        "active_site_residue_role_support": null,
+        "extractor_id": null,
+        "review_status": null,
+        "row_specific_bond_change_events": null,
+        "row_specific_reaction_participant_mapping": null,
+        "source_database": null,
+        "source_record_id": null,
+        "source_record_version_or_date": null,
+        "source_text_or_database_evidence_span": null
+      },
+      "oos_tier": "unknown_oos",
+      "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+      "required_event_schema": {
+        "row_specific_bond_change_events": [
+          {
+            "confidence": "high|medium|low",
+            "event_type": "bond_formed|bond_broken|bond_order_changed|proton_transfer|electron_transfer",
+            "mapped_active_site_residues": [],
+            "participants_after": [],
+            "participants_before": [],
+            "source_evidence_span": null
+          }
+        ],
+        "row_specific_reaction_participant_mapping": [
+          {
+            "mapped_atom_or_group": null,
+            "participant_id": null,
+            "role": "substrate|product|cofactor|catalytic_residue|water|metal|other",
+            "source_identifier": null
+          }
+        ]
+      },
+      "role_graph_status": "ok"
+    }
+  ],
+  "guardrails": {
+    "feature_contract_consumption_allowed_now": false,
+    "feature_contract_mutated": false,
+    "heldout_rows_used_for_training_or_threshold_tuning": false,
+    "imports_or_promotions_performed": false,
+    "labels_registries_ontologies_changed": false,
+    "manual_extraction_templates_only": true,
+    "model_weights_fit_or_refit": false,
+    "production_thresholds_changed": false,
+    "review_only": true,
+    "row_specific_source_evidence_materialized": false,
+    "threshold_selected_or_tuned": false
+  },
+  "interpretation": {
+    "next_action": "Fill these templates from source-backed M-CSA/Rhea/mechanism evidence, approve only source-spanned calibration rows, then rerun the P0 train/cal feature sidecar and no-template artifact.",
+    "result": "30 OOS calibration rows now have manual source-evidence extraction templates; none are approved for feature consumption."
+  },
+  "required_fields": [
+    "source_record_id",
+    "source_database",
+    "source_record_version_or_date",
+    "row_specific_reaction_participant_mapping",
+    "row_specific_bond_change_events",
+    "active_site_residue_role_support",
+    "source_text_or_database_evidence_span",
+    "extractor_id",
+    "review_status"
+  ],
+  "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_oos_calibration_extraction_work_package",
+  "scope": "No-fit manual extraction work package for the split-safe OOS calibration rows staged by the P0 no-template gap packet. It defines required source-evidence fields only; it does not approve rows or materialize row-specific features.",
+  "source_artifacts": {
+    "active_site_role_graph_sidecar": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_current702_20260601.json",
+      "sha256": "8c58a6de59dde646dc3d3c4995fcda23ac3fe7f5190d1c4d19481859e7451e2b"
+    },
+    "label_manifest": {
+      "exists": true,
+      "path": "artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+      "sha256": "d924a588456d4460c44cd189db5d7ebe4cad6622f802eba163bc4c5f3947d151"
+    },
+    "oos_calibration_gap": {
+      "exists": true,
+      "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap_current702_20260602.json",
+      "sha256": "fef65147c3229450629fda105cbca402a9ac186f74c8c19e908d7ce9e748b69e"
+    }
+  },
+  "status": "p0_oos_calibration_extraction_work_package_ready_manual_only"
+}

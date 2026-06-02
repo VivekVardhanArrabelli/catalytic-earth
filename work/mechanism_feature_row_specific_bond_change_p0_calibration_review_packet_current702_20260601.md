@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 Calibration Review Packet - current702
 
-Run: 2026-06-02T08:30:05Z
+Run: 2026-06-02T09:19:56Z
 
 Manual review packet for the calibration-assigned P0 rows that block the partial row-specific train/cal feature sidecar from supporting a no-template rerun.
 

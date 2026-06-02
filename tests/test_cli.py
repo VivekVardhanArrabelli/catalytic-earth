@@ -329,6 +329,46 @@ class CliTests(unittest.TestCase):
                 ),
             ),
             (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-no-template-rerun"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_no_template_rerun"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-calibration-gap"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_calibration_gap"
+                ),
+            ),
+            (
+                (
+                    "build-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-calibration-extraction-work-package"
+                ),
+                (
+                    "cmd_build_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_calibration_extraction_work_package"
+                ),
+            ),
+            (
+                (
+                    "audit-mechanism-feature-row-specific-bond-change-"
+                    "p0-oos-calibration-extraction-work-package-strict"
+                ),
+                (
+                    "cmd_audit_mechanism_feature_row_specific_bond_change_"
+                    "p0_oos_calibration_extraction_work_package_strict"
+                ),
+            ),
+            (
                 "build-mechanism-feature-embedding-pilot",
                 "cmd_build_mechanism_feature_embedding_pilot",
             ),

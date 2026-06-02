@@ -1,6 +1,6 @@
 # Mechanism Feature Row-Specific Bond-Change P0 Source-Evidence Sidecar Strict Audit - current702
 
-Run: 2026-06-02T08:08:29Z
+Run: 2026-06-02T09:19:55Z
 
 Strict audit for the P0 source-evidence sidecar. It checks row alignment, schema fields, forbidden predictive fields, and the approved-row evidence gate without authorizing feature-contract consumption.
 
@@ -10,7 +10,7 @@ Strict audit for the P0 source-evidence sidecar. It checks row alignment, schema
 - Worksheet rows: 15
 - Sidecar rows: 15
 - Draft rows: 0
-- Approved rows: 9
+- Approved rows: 15
 - Rows with events: 15
 - Rows with source spans: 15
 - Strict critical violations: 0

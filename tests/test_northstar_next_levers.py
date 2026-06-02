@@ -35,6 +35,10 @@ from catalytic_earth.northstar_next_levers import (
     build_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet,
     build_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit,
     build_mechanism_feature_row_specific_bond_change_p0_extraction_work_package,
+    build_mechanism_feature_row_specific_bond_change_p0_no_template_rerun,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit,
+    build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap,
     build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker,
     build_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar,
     build_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue,
@@ -5397,6 +5401,519 @@ class NorthstarNextLeversTests(unittest.TestCase):
         self.assertTrue(row["event_rows"][0]["blocked_by_reviewer"])
         self.assertFalse(row["event_rows"][1]["blocked_by_reviewer"])
         self.assertFalse(packet["guardrails"]["model_weights_fit_or_refit"])
+
+    def test_row_specific_bond_change_p0_pending_rewrite_blocker_clears_when_full_surface_materialized(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source_path = root / "source.json"
+            feature_sidecar_path = root / "feature_sidecar.json"
+            split_path = root / "split.json"
+            source_path.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:6",
+                                "review_status": "approved",
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "allowed_for_model_training_now": False,
+                                "row_specific_bond_change_events": [],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            feature_sidecar_path.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "materialized_feature_rows": 1,
+                            "train_rows": 1,
+                            "calibration_rows": 1,
+                            "critical_violation_total": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            split_path.write_text(
+                json.dumps(
+                    {
+                        "split_records": [
+                            {
+                                "entry_id": "m_csa:6",
+                                "assigned_embedding_split": "train",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker(
+                source_sidecar_path=source_path,
+                train_cal_feature_sidecar_path=feature_sidecar_path,
+                train_cal_split_manifest_path=split_path,
+            )
+
+        self.assertEqual(
+            packet["status"],
+            "p0_pending_rewrite_blocker_cleared_ready_for_no_template_rerun",
+        )
+        self.assertTrue(packet["decision"]["full_no_template_rerun_ready"])
+        self.assertIsNone(packet["decision"]["reason_not_ready"])
+        self.assertEqual(packet["counts"]["pending_rewrite_rows"], 0)
+
+    def test_row_specific_bond_change_p0_no_template_rerun_scores_train_cal_but_blocks_without_oos(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            sidecar = root / "feature.json"
+            guardrail = root / "guardrail.json"
+            manifest = root / "manifest.json"
+            feature_payloads = [
+                ("m_csa:1", "train", "alpha", 1, 0),
+                ("m_csa:2", "train", "alpha", 2, 0),
+                ("m_csa:3", "train", "beta", 0, 2),
+                ("m_csa:4", "calibration", "alpha", 1, 1),
+            ]
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "counts": {
+                            "critical_violation_total": 0,
+                            "materialized_feature_rows": 4,
+                        },
+                        "feature_rows": [
+                            {
+                                "entry_id": entry_id,
+                                "assigned_embedding_split": split,
+                                "row_specific_event_features": {
+                                    "bond_change_event_count": bond_count,
+                                    "electron_transfer_count": electron_count,
+                                    "has_bond_change_event": bool(bond_count),
+                                },
+                            }
+                            for entry_id, split, _label, bond_count, electron_count in feature_payloads
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            guardrail.write_text(
+                json.dumps(
+                    {
+                        "counts": {"critical_violation_total": 0},
+                        "decision": {"safe_to_run_no_template_methods_now": True},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": entry_id,
+                                "fingerprint_id": label,
+                                "label_type": "seed_fingerprint",
+                            }
+                            for entry_id, _split, label, _bond_count, _electron_count in feature_payloads
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_no_template_rerun(
+                train_cal_feature_sidecar_path=sidecar,
+                train_cal_feature_guardrail_path=guardrail,
+                label_manifest_path=manifest,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_row_specific_no_template_train_cal_scored_oos_blocked",
+        )
+        self.assertTrue(audit["decision"]["centroid_train_cal_scored"])
+        self.assertTrue(audit["decision"]["residual_train_cal_scored"])
+        self.assertFalse(
+            audit["decision"]["known_vs_novel_operating_point_evaluable"]
+        )
+        self.assertEqual(audit["counts"]["calibration_oos_rows"], 0)
+        self.assertFalse(
+            audit["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+
+    def test_row_specific_bond_change_p0_oos_calibration_gap_prioritizes_calibration_oos(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            sidecar = root / "sidecar.json"
+            contract = root / "contract.json"
+            split = root / "split.json"
+            manifest = root / "manifest.json"
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "sidecar_rows": [
+                            {
+                                "entry_id": "m_csa:5",
+                                "review_status": "approved",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract_rows = [
+                ("m_csa:1", "train"),
+                ("m_csa:2", "calibration"),
+                ("m_csa:3", "calibration"),
+                ("m_csa:4", "calibration"),
+                ("m_csa:5", "calibration"),
+                ("m_csa:6", "train"),
+            ]
+            contract.write_text(
+                json.dumps(
+                    {
+                        "feature_rows": [
+                            {
+                                "entry_id": entry_id,
+                                "assigned_embedding_split": assigned_split,
+                                "active_site_role_graph": {
+                                    "active_site_residue_count": 4,
+                                    "status": "ok",
+                                },
+                                "reaction_center_template": {
+                                    "status": "no_mechanism_fingerprint_oos_or_unlabeled"
+                                },
+                            }
+                            for entry_id, assigned_split in contract_rows
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            split.write_text(
+                json.dumps(
+                    {
+                        "split_records": [
+                            {
+                                "entry_id": entry_id,
+                                "assigned_embedding_split": assigned_split,
+                                "stratum": "label_type:out_of_scope",
+                            }
+                            for entry_id, assigned_split in contract_rows
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:3",
+                                "label_type": "seed_fingerprint",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:4",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "heldout",
+                            },
+                            {
+                                "entry_id": "m_csa:5",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                            },
+                            {
+                                "entry_id": "m_csa:6",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                            },
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            packet = build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap(
+                source_sidecar_path=sidecar,
+                feature_contract_path=contract,
+                train_cal_split_manifest_path=split,
+                label_manifest_path=manifest,
+                max_packet_rows=2,
+            )
+
+        self.assertEqual(
+            packet["status"], "p0_oos_calibration_gap_ready_review_packet"
+        )
+        self.assertEqual(packet["counts"]["candidate_rows"], 3)
+        self.assertEqual(packet["counts"]["candidate_calibration_rows"], 1)
+        self.assertEqual(packet["counts"]["candidate_train_rows"], 2)
+        self.assertEqual(packet["counts"]["packet_rows"], 2)
+        self.assertEqual(packet["counts"]["packet_calibration_rows"], 1)
+        self.assertEqual(
+            [row["entry_id"] for row in packet["packet_rows"]],
+            ["m_csa:2", "m_csa:1"],
+        )
+        self.assertFalse(packet["decision"]["feature_consumption_allowed_now"])
+        self.assertTrue(
+            packet["decision"]["fills_no_template_oos_operating_point_if_approved"]
+        )
+        self.assertFalse(packet["guardrails"]["heldout_rows_in_packet"])
+        self.assertFalse(
+            packet["guardrails"]["heldout_rows_used_for_training_or_threshold_tuning"]
+        )
+
+    def test_row_specific_bond_change_p0_no_template_rerun_ready_with_calibration_oos(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            sidecar = root / "feature.json"
+            guardrail = root / "guardrail.json"
+            manifest = root / "manifest.json"
+            feature_payloads = [
+                ("m_csa:1", "train", "seed_fingerprint", "alpha", 1, 0),
+                ("m_csa:2", "train", "seed_fingerprint", "alpha", 2, 0),
+                ("m_csa:3", "train", "seed_fingerprint", "beta", 0, 2),
+                ("m_csa:4", "calibration", "seed_fingerprint", "alpha", 1, 1),
+                ("m_csa:5", "calibration", "out_of_scope", None, 4, 4),
+            ]
+            sidecar.write_text(
+                json.dumps(
+                    {
+                        "counts": {"critical_violation_total": 0},
+                        "feature_rows": [
+                            {
+                                "entry_id": entry_id,
+                                "assigned_embedding_split": split,
+                                "row_specific_event_features": {
+                                    "bond_change_event_count": bond_count,
+                                    "electron_transfer_count": electron_count,
+                                },
+                            }
+                            for entry_id, split, _label_type, _label, bond_count, electron_count in feature_payloads
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            guardrail.write_text(
+                json.dumps(
+                    {
+                        "counts": {"critical_violation_total": 0},
+                        "decision": {"safe_to_run_no_template_methods_now": True},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": entry_id,
+                                "label_type": label_type,
+                                "fingerprint_id": label,
+                            }
+                            for entry_id, _split, label_type, label, _bond_count, _electron_count in feature_payloads
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_no_template_rerun(
+                train_cal_feature_sidecar_path=sidecar,
+                train_cal_feature_guardrail_path=guardrail,
+                label_manifest_path=manifest,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_row_specific_no_template_train_cal_operating_point_ready",
+        )
+        self.assertTrue(
+            audit["decision"]["known_vs_novel_operating_point_evaluable"]
+        )
+        self.assertEqual(audit["counts"]["calibration_primary_rows"], 1)
+        self.assertEqual(audit["counts"]["calibration_oos_rows"], 1)
+        self.assertIsNotNone(
+            audit["centroid_variant"]["calibration_selected_similarity_threshold"][
+                "threshold"
+            ]
+        )
+        self.assertIsNotNone(
+            audit["residual_variant"]["calibration_selected_residual_threshold"][
+                "threshold"
+            ]
+        )
+
+    def test_row_specific_bond_change_p0_oos_calibration_extraction_package_is_manual_only(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            gap = root / "gap.json"
+            manifest = root / "manifest.json"
+            role_graph = root / "roles.json"
+            gap.write_text(
+                json.dumps(
+                    {
+                        "packet_rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "assigned_embedding_split": "calibration",
+                                "label_manifest_type": "out_of_scope",
+                                "label_manifest_split": "in_distribution",
+                                "active_site_residue_count": 2,
+                                "role_graph_status": "ok",
+                                "reaction_template_status": "no_mechanism_fingerprint_oos_or_unlabeled",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "accession": "P12345",
+                                "label_type": "out_of_scope",
+                                "split_assignment": "in_distribution",
+                                "oos_tier": "near_oos",
+                                "benchmark_role": "oos_tier::near_oos",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            role_graph.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "residues": [
+                                    {
+                                        "residue_node_id": "m_csa:2:residue:1",
+                                        "roles": ["proton_acceptor"],
+                                        "sequence_positions": [
+                                            {"code": "Asp", "resid": 10}
+                                        ],
+                                        "structure_positions": [],
+                                    }
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            package = build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package(
+                oos_calibration_gap_path=gap,
+                label_manifest_path=manifest,
+                active_site_role_graph_sidecar_path=role_graph,
+            )
+
+        self.assertEqual(
+            package["status"],
+            "p0_oos_calibration_extraction_work_package_ready_manual_only",
+        )
+        self.assertEqual(package["counts"]["manual_extraction_rows"], 1)
+        self.assertEqual(package["counts"]["calibration_rows"], 1)
+        self.assertEqual(package["counts"]["critical_violation_total"], 0)
+        self.assertFalse(
+            package["guardrails"]["feature_contract_consumption_allowed_now"]
+        )
+        self.assertFalse(package["guardrails"]["row_specific_source_evidence_materialized"])
+        row = package["extraction_rows"][0]
+        self.assertEqual(row["accession"], "P12345")
+        self.assertIn("source_record_id", row["manual_extraction_template"])
+        self.assertEqual(len(row["active_site_residue_role_template"]), 1)
+        self.assertFalse(row["allowed_for_feature_contract_consumption_now"])
+        self.assertFalse(row["allowed_for_model_training_now"])
+
+    def test_row_specific_bond_change_p0_oos_calibration_extraction_strict_audit_blocks_unsafe_rows(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            package_path = root / "package.json"
+            package_path.write_text(
+                json.dumps(
+                    {
+                        "required_fields": [
+                            "source_record_id",
+                            "source_database",
+                        ],
+                        "extraction_rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "assigned_embedding_split": "heldout",
+                                "label_manifest_split": "heldout",
+                                "label_manifest_type": "seed_fingerprint",
+                                "manual_extraction_template": {
+                                    "source_record_id": None
+                                },
+                                "allowed_for_feature_contract_consumption_now": True,
+                                "allowed_for_model_training_now": False,
+                                "extraction_status": "approved",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            audit = build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit(
+                extraction_work_package_path=package_path,
+            )
+
+        self.assertEqual(
+            audit["status"],
+            "p0_oos_calibration_extraction_work_package_strict_audit_failed",
+        )
+        self.assertFalse(audit["decision"]["manual_extraction_package_passed"])
+        self.assertGreater(audit["counts"]["critical_violation_total"], 0)
+        self.assertEqual(
+            audit["counts"]["critical_counts"][
+                "rows_allowed_for_feature_contract_consumption_now"
+            ],
+            1,
+        )
+        self.assertEqual(audit["counts"]["critical_counts"]["heldout_rows"], 1)
+        self.assertEqual(audit["counts"]["critical_counts"]["non_oos_rows"], 1)
+        self.assertEqual(
+            audit["counts"]["critical_counts"]["missing_manual_template_fields"],
+            1,
+        )
+        self.assertFalse(audit["decision"]["feature_consumption_allowed_now"])
 
     def test_mechanism_feature_sidecar_schema_audit_passes_aligned_sidecars(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

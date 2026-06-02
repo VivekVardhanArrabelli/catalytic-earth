@@ -1,324 +1,17 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601",
   "counts": {
-    "copy_ready_approved_decisions": 3,
+    "copy_ready_approved_decisions": 0,
     "decision_options_per_row": 3,
-    "decision_rows": 3,
-    "feature_contract_consumable_rows": 3,
+    "decision_rows": 0,
+    "feature_contract_consumable_rows": 0,
     "model_training_allowed_rows": 0,
-    "rows_with_existing_reviewer_id": 3,
+    "rows_with_existing_reviewer_id": 0,
     "rows_with_official_rhea_evidence_found": 0,
-    "rows_with_uniprot_matching_ec_activity": 3
+    "rows_with_uniprot_matching_ec_activity": 0
   },
-  "created_utc": "2026-06-02T08:15:33Z",
-  "decision_rows": [
-    {
-      "accession": "P08819",
-      "allowed_for_feature_contract_consumption_now": true,
-      "allowed_for_model_training_now": false,
-      "copy_ready_approved_decision_present": true,
-      "decision_options": [
-        {
-          "decision": "approve_m_csa_only_source_evidence",
-          "feature_contract_consumption_allowed_after_decision": "only after strict sidecar and readiness audits pass with review_status=approved and reviewer_id populated",
-          "meaning": "Reviewer accepts the M-CSA mechanism/residue evidence as sufficient despite absent official Rhea cross-reference.",
-          "required_fields": [
-            "reviewer_id",
-            "reviewed_utc",
-            "decision_rationale",
-            "source_artifacts_reviewed",
-            "accepted_event_indices",
-            "accepted_participant_mapping_scope"
-          ]
-        },
-        {
-          "decision": "reject_or_rewrite_draft_events",
-          "feature_contract_consumption_allowed_after_decision": "no",
-          "meaning": "Reviewer rejects one or more draft events or mappings and requires sidecar rewrite before any approval.",
-          "required_fields": [
-            "reviewer_id",
-            "reviewed_utc",
-            "decision_rationale",
-            "rejected_event_indices",
-            "rewrite_required_fields"
-          ]
-        },
-        {
-          "decision": "hold_for_alternate_reaction_source",
-          "feature_contract_consumption_allowed_after_decision": "no",
-          "meaning": "Reviewer keeps the row blocked until a non-Rhea alternate reaction source is explicitly authorized and audited.",
-          "required_fields": [
-            "reviewer_id",
-            "reviewed_utc",
-            "decision_rationale",
-            "requested_alternate_source_class"
-          ]
-        }
-      ],
-      "ec_targets": [
-        "ec:3.4.16.6"
-      ],
-      "entry_id": "m_csa:5",
-      "event_count": 1,
-      "event_summaries": [
-        {
-          "confidence": "medium",
-          "event_index": 0,
-          "event_type": "bond_broken",
-          "mapped_active_site_residue_count": 2,
-          "source_record_id": "m_csa:5:mechanism:1"
-        }
-      ],
-      "m_csa_entry_name": "carboxypeptidase D",
-      "official_rhea_evidence_found": false,
-      "official_source_status": "official_ec_activity_present_without_rhea_cross_reference",
-      "readiness_blockers": [],
-      "recommended_next_action": "Reviewer decision is copy-ready for split-filtered feature materialization.",
-      "review_status": "approved",
-      "reviewer_decision": {
-        "accepted_event_indices": [
-          0
-        ],
-        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph sidecar",
-        "decision": "approve_m_csa_only_source_evidence",
-        "decision_rationale": "Approve M-CSA-only source evidence for carboxypeptidase D because official Rhea/UniProt lookup found no Rhea cross-reference, UniProt confirms matching EC activity, and the M-CSA mechanism/residue evidence gives a coherent serine-carboxypeptidase peptide-bond cleavage event.",
-        "leakage_safety_note": "M-CSA-derived bond-change features may feed only split-filtered train/cal feature-contract materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
-        "m_csa_only_provenance_accepted": true,
-        "official_rhea_evidence_found": false,
-        "official_source_status": "official_ec_activity_present_without_rhea_cross_reference",
-        "reviewed_utc": "2026-06-02T05:12:36Z",
-        "reviewer_id": "Vivek Vardhan Arrabelli",
-        "source_artifacts_reviewed": [
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json"
-        ]
-      },
-      "reviewer_id": "Vivek Vardhan Arrabelli",
-      "uniprot_matching_ec_activity_count": 1
-    },
-    {
-      "accession": "P0A6C1",
-      "allowed_for_feature_contract_consumption_now": true,
-      "allowed_for_model_training_now": false,
-      "copy_ready_approved_decision_present": true,
-      "decision_options": [
-        {
-          "decision": "approve_m_csa_only_source_evidence",
-          "feature_contract_consumption_allowed_after_decision": "only after strict sidecar and readiness audits pass with review_status=approved and reviewer_id populated",
-          "meaning": "Reviewer accepts the M-CSA mechanism/residue evidence as sufficient despite absent official Rhea cross-reference.",
-          "required_fields": [
-            "reviewer_id",
-            "reviewed_utc",
-            "decision_rationale",
-            "source_artifacts_reviewed",
-            "accepted_event_indices",
-            "accepted_participant_mapping_scope"
-          ]
-        },
-        {
-          "decision": "reject_or_rewrite_draft_events",
-          "feature_contract_consumption_allowed_after_decision": "no",
-          "meaning": "Reviewer rejects one or more draft events or mappings and requires sidecar rewrite before any approval.",
-          "required_fields": [
-            "reviewer_id",
-            "reviewed_utc",
-            "decision_rationale",
-            "rejected_event_indices",
-            "rewrite_required_fields"
-          ]
-        },
-        {
-          "decision": "hold_for_alternate_reaction_source",
-          "feature_contract_consumption_allowed_after_decision": "no",
-          "meaning": "Reviewer keeps the row blocked until a non-Rhea alternate reaction source is explicitly authorized and audited.",
-          "required_fields": [
-            "reviewer_id",
-            "reviewed_utc",
-            "decision_rationale",
-            "requested_alternate_source_class"
-          ]
-        }
-      ],
-      "ec_targets": [
-        "ec:3.1.21.2"
-      ],
-      "entry_id": "m_csa:11",
-      "event_count": 4,
-      "event_summaries": [
-        {
-          "confidence": "medium",
-          "event_index": 0,
-          "event_type": "bond_broken",
-          "mapped_active_site_residue_count": 6,
-          "source_record_id": "m_csa:11:mechanism:1"
-        },
-        {
-          "confidence": "low",
-          "event_index": 1,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:11:mechanism:1"
-        },
-        {
-          "confidence": "medium",
-          "event_index": 2,
-          "event_type": "bond_formed",
-          "mapped_active_site_residue_count": 6,
-          "source_record_id": "m_csa:11:mechanism:1"
-        },
-        {
-          "confidence": "low",
-          "event_index": 3,
-          "event_type": "electron_transfer",
-          "mapped_active_site_residue_count": 0,
-          "source_record_id": "m_csa:11:mechanism:1"
-        }
-      ],
-      "m_csa_entry_name": "deoxyribonuclease IV (phage-T4-induced)",
-      "official_rhea_evidence_found": false,
-      "official_source_status": "official_ec_activity_present_without_rhea_cross_reference",
-      "readiness_blockers": [],
-      "recommended_next_action": "Reviewer decision is copy-ready for split-filtered feature materialization.",
-      "review_status": "approved",
-      "reviewer_decision": {
-        "accepted_event_indices": [
-          0,
-          1,
-          2,
-          3
-        ],
-        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph sidecar",
-        "decision": "approve_m_csa_only_source_evidence",
-        "decision_rationale": "Approve M-CSA-only source evidence for deoxyribonuclease IV because official Rhea/UniProt lookup found no Rhea cross-reference, UniProt confirms matching EC activity, and the M-CSA mechanism/residue evidence captures metal-assisted phosphate hydrolysis. Low-confidence draft event labels are accepted as review-provenance source features, not as a production ontology rewrite.",
-        "leakage_safety_note": "M-CSA-derived bond-change features may feed only split-filtered train/cal feature-contract materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
-        "m_csa_only_provenance_accepted": true,
-        "official_rhea_evidence_found": false,
-        "official_source_status": "official_ec_activity_present_without_rhea_cross_reference",
-        "reviewed_utc": "2026-06-02T05:12:36Z",
-        "reviewer_id": "Vivek Vardhan Arrabelli",
-        "source_artifacts_reviewed": [
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json"
-        ]
-      },
-      "reviewer_id": "Vivek Vardhan Arrabelli",
-      "uniprot_matching_ec_activity_count": 1
-    },
-    {
-      "accession": "P27487",
-      "allowed_for_feature_contract_consumption_now": true,
-      "allowed_for_model_training_now": false,
-      "copy_ready_approved_decision_present": true,
-      "decision_options": [
-        {
-          "decision": "approve_m_csa_only_source_evidence",
-          "feature_contract_consumption_allowed_after_decision": "only after strict sidecar and readiness audits pass with review_status=approved and reviewer_id populated",
-          "meaning": "Reviewer accepts the M-CSA mechanism/residue evidence as sufficient despite absent official Rhea cross-reference.",
-          "required_fields": [
-            "reviewer_id",
-            "reviewed_utc",
-            "decision_rationale",
-            "source_artifacts_reviewed",
-            "accepted_event_indices",
-            "accepted_participant_mapping_scope"
-          ]
-        },
-        {
-          "decision": "reject_or_rewrite_draft_events",
-          "feature_contract_consumption_allowed_after_decision": "no",
-          "meaning": "Reviewer rejects one or more draft events or mappings and requires sidecar rewrite before any approval.",
-          "required_fields": [
-            "reviewer_id",
-            "reviewed_utc",
-            "decision_rationale",
-            "rejected_event_indices",
-            "rewrite_required_fields"
-          ]
-        },
-        {
-          "decision": "hold_for_alternate_reaction_source",
-          "feature_contract_consumption_allowed_after_decision": "no",
-          "meaning": "Reviewer keeps the row blocked until a non-Rhea alternate reaction source is explicitly authorized and audited.",
-          "required_fields": [
-            "reviewer_id",
-            "reviewed_utc",
-            "decision_rationale",
-            "requested_alternate_source_class"
-          ]
-        }
-      ],
-      "ec_targets": [
-        "ec:3.4.14.5"
-      ],
-      "entry_id": "m_csa:169",
-      "event_count": 4,
-      "event_summaries": [
-        {
-          "confidence": "medium",
-          "event_index": 0,
-          "event_type": "bond_formed",
-          "mapped_active_site_residue_count": 1,
-          "source_record_id": "m_csa:169:mechanism:1"
-        },
-        {
-          "confidence": "medium",
-          "event_index": 1,
-          "event_type": "proton_transfer",
-          "mapped_active_site_residue_count": 2,
-          "source_record_id": "m_csa:169:mechanism:1"
-        },
-        {
-          "confidence": "medium",
-          "event_index": 2,
-          "event_type": "proton_transfer",
-          "mapped_active_site_residue_count": 2,
-          "source_record_id": "m_csa:169:mechanism:1"
-        },
-        {
-          "confidence": "medium",
-          "event_index": 3,
-          "event_type": "bond_broken",
-          "mapped_active_site_residue_count": 2,
-          "source_record_id": "m_csa:169:mechanism:1"
-        }
-      ],
-      "m_csa_entry_name": "dipeptidyl-peptidase IV",
-      "official_rhea_evidence_found": false,
-      "official_source_status": "official_ec_activity_present_without_rhea_cross_reference",
-      "readiness_blockers": [],
-      "recommended_next_action": "Reviewer decision is copy-ready for split-filtered feature materialization.",
-      "review_status": "approved",
-      "reviewer_decision": {
-        "accepted_event_indices": [
-          0,
-          1,
-          2,
-          3
-        ],
-        "accepted_participant_mapping_scope": "all current row_specific_reaction_participant_mapping entries from the M-CSA local graph sidecar",
-        "decision": "approve_m_csa_only_source_evidence",
-        "decision_rationale": "Approve M-CSA-only source evidence for dipeptidyl-peptidase IV because official Rhea/UniProt lookup found no Rhea cross-reference, UniProt confirms matching EC activity, and the M-CSA mechanism/residue evidence gives a coherent Ser-His-Asp peptide cleavage cycle with bond/proton-transfer events.",
-        "leakage_safety_note": "M-CSA-derived bond-change features may feed only split-filtered train/cal feature-contract materialization; heldout M-CSA rows remain excluded from training and threshold tuning.",
-        "m_csa_only_provenance_accepted": true,
-        "official_rhea_evidence_found": false,
-        "official_source_status": "official_ec_activity_present_without_rhea_cross_reference",
-        "reviewed_utc": "2026-06-02T05:12:36Z",
-        "reviewer_id": "Vivek Vardhan Arrabelli",
-        "source_artifacts_reviewed": [
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-          "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json"
-        ]
-      },
-      "reviewer_id": "Vivek Vardhan Arrabelli",
-      "uniprot_matching_ec_activity_count": 1
-    }
-  ],
+  "created_utc": "2026-06-02T09:19:56Z",
+  "decision_rows": [],
   "guardrails": {
     "feature_contract_mutated": false,
     "feature_contract_refresh_allowed": false,
@@ -328,13 +21,13 @@
     "model_weights_fit_or_refit": false,
     "production_thresholds_changed": false,
     "review_only": true,
-    "reviewer_decision_recorded_by_sidecar": true,
+    "reviewer_decision_recorded_by_sidecar": false,
     "reviewer_decision_recorded_by_this_artifact": false,
     "source_fetch_performed": false
   },
   "interpretation": {
     "next_action": "Use copy-ready decisions only through split-filtered train/cal feature materialization; heldout M-CSA rows remain excluded.",
-    "result": "3 unresolved P0 Rhea rows now have an explicit reviewer decision matrix; copy-ready rows reflect reviewer provenance recorded in the sidecar."
+    "result": "0 unresolved P0 Rhea rows now have an explicit reviewer decision matrix; copy-ready rows reflect reviewer provenance recorded in the sidecar."
   },
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_reviewer_decision_matrix",
   "scope": "Review-only decision matrix for P0 source-evidence rows where official Rhea/UniProt checks did not provide a Rhea cross-reference. It defines the reviewer provenance gate without approving rows or changing feature contracts.",
@@ -342,18 +35,18 @@
     "feature_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json",
-      "sha256": "4cfce6f69ae0fa395c25855a9ec6eeaf0f25ba39def37de7fc42df570f45c4ef"
+      "sha256": "302e52941d827f0da79d9548b3ebf49155bdda5f88a5d9e5bd826aa00096bed0"
     },
     "sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
+      "sha256": "3c9434ca729bbe68dd7374a0446f0c87960693e53908206377e08ce829e0806d"
     },
     "unresolved_official_source_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json",
-      "sha256": "31d32000d486099ff1abfcfa70bb1f73750ad65c6a20430f2308e187b0a7e2e3"
+      "sha256": "f82f9c3292e755876106fac2f9b4953d199b663a6c72e70abfa8ea95f6e9d3b3"
     }
   },
-  "status": "p0_reviewer_decision_matrix_copy_ready_reviewed"
+  "status": "p0_reviewer_decision_matrix_ready_review_only"
 }

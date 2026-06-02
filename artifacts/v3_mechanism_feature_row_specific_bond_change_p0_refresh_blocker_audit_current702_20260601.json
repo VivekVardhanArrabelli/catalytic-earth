@@ -1,7 +1,7 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_refresh_blocker_audit_current702_20260601",
   "counts": {
-    "approved_consumable_rows": 9,
+    "approved_consumable_rows": 15,
     "blocker_counts": {
       "approved_consumable_rows_missing": 0,
       "copy_ready_approved_decisions_missing": 0,
@@ -10,13 +10,13 @@
       "rhea_lookup_unresolved_rows": 0,
       "unexpected_contract_row_specific_fields": 0
     },
-    "copy_ready_approved_decisions": 3,
+    "copy_ready_approved_decisions": 0,
     "feature_contract_unexpected_row_specific_fields": 0,
     "remaining_reviewer_decision_required_rows": 0,
-    "reviewer_decision_required_rows": 3,
-    "reviewer_decision_rows": 3,
+    "reviewer_decision_required_rows": 0,
+    "reviewer_decision_rows": 0,
     "rhea_unresolved_rows": 0,
-    "rows_with_existing_reviewer_id": 3,
+    "rows_with_existing_reviewer_id": 0,
     "sidecar_rows": 15,
     "source_critical_totals": {
       "feature_contract_gap": 0,
@@ -26,25 +26,23 @@
     },
     "structurally_ready_draft_rows": 15
   },
-  "created_utc": "2026-06-02T08:15:33Z",
+  "created_utc": "2026-06-02T09:19:56Z",
   "decision": {
-    "automation_feature_contract_refresh_allowed": false,
+    "automation_feature_contract_refresh_allowed": true,
     "do_not_run": [
-      "build-mechanism-feature-embedding-feature-contract with row-specific fields",
       "build-mechanism-feature-embedding-pilot from draft sidecar rows",
       "any heldout threshold tuning or production scorer refresh"
     ],
-    "feature_readiness_refresh_allowed": false,
+    "feature_readiness_refresh_allowed": true,
     "partial_train_cal_feature_materialization_allowed": true,
     "required_before_refresh": [
-      "continue manual review for remaining draft P0 source-evidence rows",
       "materialize only approved train/cal rows; never train on heldout M-CSA rows",
       "confirm approved consumable rows are the only rows copied into train/cal feature-contract materialization"
     ]
   },
   "guardrails": {
     "feature_contract_mutated": false,
-    "feature_contract_refresh_allowed_by_this_artifact": false,
+    "feature_contract_refresh_allowed_by_this_artifact": true,
     "heldout_rows_used_for_training_or_threshold_tuning": false,
     "imports_or_promotions_performed": false,
     "labels_registries_ontologies_changed": false,
@@ -53,8 +51,8 @@
     "review_only": true
   },
   "interpretation": {
-    "next_action": "Use only approved train/cal rows for the next feature-contract materialization step; continue reviewing remaining draft rows before any full P0 refresh.",
-    "result": "The no-template mechanism-feature contract refresh remains blocked for a full 15-row refresh, but approved rows can move to split-filtered train/cal feature materialization."
+    "next_action": "Run only split-filtered train/cal materialization or the no-template mechanism-feature pilot; do not tune on heldout rows.",
+    "result": "The reviewed P0 evidence passes all refresh gates."
   },
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_refresh_blocker_audit",
   "scope": "Automation-only decision audit for whether the P0 row-specific bond/proton/electron draft evidence can refresh the no-template mechanism-feature contract.",
@@ -67,37 +65,37 @@
     "feature_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json",
-      "sha256": "4cfce6f69ae0fa395c25855a9ec6eeaf0f25ba39def37de7fc42df570f45c4ef"
+      "sha256": "8f0c92488e6fd12cd5e7d7303d2a3f97d6129095f3b1591343bae888ff1386b3"
     },
     "reviewer_decision_matrix": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_reviewer_decision_matrix_current702_20260601.json",
-      "sha256": "dcb04c84ad3e9bdaecc9e66f0fb0ecad0783582cae70c938b91ec9c86d9f9df4"
+      "sha256": "d1d55e5455fc69564e27f15946f9f988d30bbb60b413d059e5f673b47deddff9"
     },
     "rhea_resolution_consumption_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601.json",
-      "sha256": "411b56a75c8275a13ee90d22fec5e0e47a16937c27e3b016fffe4af7ad77dcc0"
+      "sha256": "60883f67b0078c7abf742acf8108721f4759499dc78794e595401193fb28e47b"
     },
     "strict_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_strict_audit_current702_20260601.json",
-      "sha256": "7f81eca93b348cb640382de7c58930c98aa339e1965cf7b5b1f232117d182162"
+      "sha256": "e86e989bd1260883d03588caeb3d5026b137acc1af7b484810b9a7bee5209d91"
     },
     "unresolved_official_source_audit": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_unresolved_official_source_audit_current702_20260601.json",
-      "sha256": "31d32000d486099ff1abfcfa70bb1f73750ad65c6a20430f2308e187b0a7e2e3"
+      "sha256": "f82f9c3292e755876106fac2f9b4953d199b663a6c72e70abfa8ea95f6e9d3b3"
     }
   },
   "source_statuses": {
     "feature_contract_gap": "row_specific_bond_change_gap_not_consumed_by_feature_contract",
-    "feature_readiness": "p0_feature_readiness_audit_blocked_review_required",
-    "reviewer_decision_matrix": "p0_reviewer_decision_matrix_copy_ready_reviewed",
+    "feature_readiness": "p0_feature_readiness_audit_ready_for_feature_contract_refresh",
+    "reviewer_decision_matrix": "p0_reviewer_decision_matrix_ready_review_only",
     "rhea_resolution_consumption": "p0_rhea_resolution_consumption_audit_passed_review_only",
     "strict_audit": "p0_source_evidence_sidecar_strict_audit_passed_reviewed_consumable",
     "unresolved_official_source": "p0_rhea_unresolved_official_source_audit_ready_review_only"
   },
-  "status": "p0_no_template_feature_refresh_partially_unblocked_review_remaining",
+  "status": "p0_no_template_feature_refresh_allowed_after_review_gate",
   "unresolved_decision_rows": []
 }

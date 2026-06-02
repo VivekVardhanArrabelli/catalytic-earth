@@ -92,6 +92,10 @@ from .northstar_next_levers import (
     write_mechanism_feature_row_specific_bond_change_p0_calibration_review_packet,
     write_mechanism_feature_row_specific_bond_change_p0_extraction_package_strict_audit,
     write_mechanism_feature_row_specific_bond_change_p0_extraction_work_package,
+    write_mechanism_feature_row_specific_bond_change_p0_no_template_rerun,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit,
+    write_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap,
     write_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker,
     write_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar,
     write_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue,
@@ -12266,6 +12270,89 @@ def cmd_build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_bloc
         f"{args.out} (status: {packet.get('status')}, "
         f"pending rows: {counts.get('pending_rewrite_rows')}, "
         f"blocked events: {counts.get('blocked_event_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_no_template_rerun(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_no_template_rerun(
+        train_cal_feature_sidecar_path=Path(args.train_cal_feature_sidecar),
+        train_cal_feature_guardrail_path=Path(args.train_cal_feature_guardrail),
+        label_manifest_path=Path(args.label_manifest),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    decision = audit.get("decision", {})
+    print(
+        "Wrote row-specific bond-change P0 no-template rerun to "
+        f"{args.out} (status: {audit.get('status')}, "
+        f"feature rows: {counts.get('feature_rows')}, "
+        "known-vs-novel evaluable: "
+        f"{decision.get('known_vs_novel_operating_point_evaluable')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap(
+    args: argparse.Namespace,
+) -> int:
+    packet = (
+        write_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap(
+            source_sidecar_path=Path(args.source_sidecar),
+            feature_contract_path=Path(args.feature_contract),
+            train_cal_split_manifest_path=Path(args.train_cal_split_manifest),
+            label_manifest_path=Path(args.label_manifest),
+            out_path=Path(args.out),
+            report_path=Path(args.report) if args.report else None,
+            max_packet_rows=args.max_packet_rows,
+        )
+    )
+    counts = packet.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS calibration gap packet to "
+        f"{args.out} (status: {packet.get('status')}, "
+        f"packet rows: {counts.get('packet_rows')}, "
+        f"candidate calibration rows: {counts.get('candidate_calibration_rows')})"
+    )
+    return 0
+
+
+def cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package(
+    args: argparse.Namespace,
+) -> int:
+    package = write_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package(
+        oos_calibration_gap_path=Path(args.oos_calibration_gap),
+        label_manifest_path=Path(args.label_manifest),
+        active_site_role_graph_sidecar_path=Path(args.active_site_role_graph_sidecar),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = package.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS calibration extraction work "
+        f"package to {args.out} (status: {package.get('status')}, "
+        f"manual rows: {counts.get('manual_extraction_rows')}, "
+        f"critical violations: {counts.get('critical_violation_total')})"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict(
+    args: argparse.Namespace,
+) -> int:
+    audit = write_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict_audit(
+        extraction_work_package_path=Path(args.extraction_work_package),
+        out_path=Path(args.out),
+        report_path=Path(args.report) if args.report else None,
+    )
+    counts = audit.get("counts", {})
+    print(
+        "Wrote row-specific bond-change P0 OOS calibration extraction strict "
+        f"audit to {args.out} (status: {audit.get('status')}, "
+        f"critical violations: {counts.get('critical_violation_total')})"
     )
     return 0
 
@@ -26112,6 +26199,195 @@ def build_parser() -> argparse.ArgumentParser:
     row_specific_bond_change_p0_pending_rewrite.set_defaults(
         func=(
             cmd_build_mechanism_feature_row_specific_bond_change_p0_pending_rewrite_blocker
+        )
+    )
+
+    row_specific_bond_change_p0_no_template = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-no-template-rerun",
+        help=(
+            "run the approved P0 row-specific train/cal no-template centroid "
+            "and residual diagnostics without heldout use"
+        ),
+    )
+    row_specific_bond_change_p0_no_template.add_argument(
+        "--train-cal-feature-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_train_cal_feature_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_no_template.add_argument(
+        "--train-cal-feature-guardrail",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_train_cal_feature_guardrail_audit_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_no_template.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_no_template.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_no_template_rerun_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_no_template.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_no_template_rerun_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_no_template.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_no_template_rerun
+        )
+    )
+
+    row_specific_bond_change_p0_oos_gap = subparsers.add_parser(
+        "build-mechanism-feature-row-specific-bond-change-p0-oos-calibration-gap",
+        help=(
+            "stage split-safe none_of_above calibration candidates for the "
+            "P0 row-specific no-template operating point"
+        ),
+    )
+    row_specific_bond_change_p0_oos_gap.add_argument(
+        "--source-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_source_evidence_sidecar_current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_gap.add_argument(
+        "--feature-contract",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_feature_contract_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_gap.add_argument(
+        "--train-cal-split-manifest",
+        default=(
+            "artifacts/v3_mechanism_feature_embedding_train_cal_split_manifest_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_gap.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_gap.add_argument(
+        "--max-packet-rows",
+        type=int,
+        default=30,
+    )
+    row_specific_bond_change_p0_oos_gap.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_calibration_gap_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_gap.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_calibration_gap_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_gap.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_gap
+        )
+    )
+
+    row_specific_bond_change_p0_oos_extraction = subparsers.add_parser(
+        (
+            "build-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-calibration-extraction-work-package"
+        ),
+        help=(
+            "stage manual source-evidence extraction templates for the P0 "
+            "OOS calibration candidates"
+        ),
+    )
+    row_specific_bond_change_p0_oos_extraction.add_argument(
+        "--oos-calibration-gap",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_calibration_gap_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_extraction.add_argument(
+        "--label-manifest",
+        default="artifacts/v3_sequence_nn_label_manifest_current702_20260525.json",
+    )
+    row_specific_bond_change_p0_oos_extraction.add_argument(
+        "--active-site-role-graph-sidecar",
+        default=(
+            "artifacts/v3_mechanism_feature_active_site_role_graph_sidecar_"
+            "current702_20260601.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_extraction.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_calibration_extraction_work_package_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_extraction.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_calibration_extraction_work_package_current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_extraction.set_defaults(
+        func=(
+            cmd_build_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package
+        )
+    )
+
+    row_specific_bond_change_p0_oos_extraction_audit = subparsers.add_parser(
+        (
+            "audit-mechanism-feature-row-specific-bond-change-"
+            "p0-oos-calibration-extraction-work-package-strict"
+        ),
+        help=(
+            "strictly validate the P0 OOS calibration extraction packet stays "
+            "manual-only and train/cal-only"
+        ),
+    )
+    row_specific_bond_change_p0_oos_extraction_audit.add_argument(
+        "--extraction-work-package",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_calibration_extraction_work_package_current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_extraction_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/v3_mechanism_feature_row_specific_bond_change_"
+            "p0_oos_calibration_extraction_work_package_strict_audit_"
+            "current702_20260602.json"
+        ),
+    )
+    row_specific_bond_change_p0_oos_extraction_audit.add_argument(
+        "--report",
+        default=(
+            "work/mechanism_feature_row_specific_bond_change_"
+            "p0_oos_calibration_extraction_work_package_strict_audit_"
+            "current702_20260602.md"
+        ),
+    )
+    row_specific_bond_change_p0_oos_extraction_audit.set_defaults(
+        func=(
+            cmd_audit_mechanism_feature_row_specific_bond_change_p0_oos_calibration_extraction_work_package_strict
         )
     )
 

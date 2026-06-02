@@ -1,18 +1,18 @@
 {
   "artifact_id": "v3_mechanism_feature_row_specific_bond_change_p0_rhea_resolution_consumption_audit_current702_20260601",
   "counts": {
-    "approved_rows": 4,
+    "approved_rows": 0,
     "critical_counts": {},
     "critical_violation_total": 0,
-    "feature_contract_consumable_rows": 4,
+    "feature_contract_consumable_rows": 0,
     "model_training_allowed_rows": 0,
     "remaining_lookup_manifest_rows": 0,
-    "resolution_rows": 4,
-    "resolved_rows": 1,
-    "reviewer_approved_m_csa_only_rows": 3,
+    "resolution_rows": 0,
+    "resolved_rows": 0,
+    "reviewer_approved_m_csa_only_rows": 0,
     "unresolved_rows": 0
   },
-  "created_utc": "2026-06-02T08:08:30Z",
+  "created_utc": "2026-06-02T09:19:56Z",
   "guardrails": {
     "feature_contract_mutated": false,
     "feature_contract_refresh_allowed": false,
@@ -27,101 +27,34 @@
     "next_action": "Continue with feature-readiness and refresh-blocker audits; do not train on heldout rows or use unapproved draft rows.",
     "result": "The Rhea lookup resolution and reviewer decisions are consumed as review evidence; unresolved rows without reviewer approval stay blocked, while approved M-CSA-only rows may be used only by split-filtered feature materialization."
   },
-  "row_audits": [
-    {
-      "accepted_resolution_status": "unresolved_no_rhea_record_for_ec_or_accession",
-      "allowed_for_feature_contract_consumption_now": true,
-      "allowed_for_model_training_now": false,
-      "entry_id": "m_csa:5",
-      "in_remaining_lookup_manifest": false,
-      "readiness_blockers": [],
-      "resolved": false,
-      "review_category": "approved_m_csa_only_source_evidence",
-      "review_status": "approved",
-      "reviewer_approved_m_csa_only": true,
-      "rhea_id": null,
-      "sidecar_rhea_ids": [],
-      "status": "passed",
-      "violations": []
-    },
-    {
-      "accepted_resolution_status": "unresolved_no_rhea_record_for_ec_or_accession",
-      "allowed_for_feature_contract_consumption_now": true,
-      "allowed_for_model_training_now": false,
-      "entry_id": "m_csa:11",
-      "in_remaining_lookup_manifest": false,
-      "readiness_blockers": [],
-      "resolved": false,
-      "review_category": "approved_m_csa_only_source_evidence",
-      "review_status": "approved",
-      "reviewer_approved_m_csa_only": true,
-      "rhea_id": null,
-      "sidecar_rhea_ids": [],
-      "status": "passed",
-      "violations": []
-    },
-    {
-      "accepted_resolution_status": "resolved_accession_query_with_ec_reclassification",
-      "allowed_for_feature_contract_consumption_now": true,
-      "allowed_for_model_training_now": false,
-      "entry_id": "m_csa:124",
-      "in_remaining_lookup_manifest": false,
-      "readiness_blockers": [],
-      "resolved": true,
-      "review_category": "approved_rhea_backed_source_evidence",
-      "review_status": "approved",
-      "reviewer_approved_m_csa_only": false,
-      "rhea_id": "RHEA:11436",
-      "sidecar_rhea_ids": [
-        "RHEA:11436"
-      ],
-      "status": "passed",
-      "violations": []
-    },
-    {
-      "accepted_resolution_status": "unresolved_no_rhea_record_for_ec_or_accession",
-      "allowed_for_feature_contract_consumption_now": true,
-      "allowed_for_model_training_now": false,
-      "entry_id": "m_csa:169",
-      "in_remaining_lookup_manifest": false,
-      "readiness_blockers": [],
-      "resolved": false,
-      "review_category": "approved_m_csa_only_source_evidence",
-      "review_status": "approved",
-      "reviewer_approved_m_csa_only": true,
-      "rhea_id": null,
-      "sidecar_rhea_ids": [],
-      "status": "passed",
-      "violations": []
-    }
-  ],
+  "row_audits": [],
   "schema_version": "northstar_next_levers.v0.row_specific_bond_change_p0_rhea_resolution_consumption_audit",
   "scope": "Strict review-only audit that the bounded P0 Rhea lookup resolution was consumed only as draft sidecar evidence: resolved rows must carry their Rhea equation, unresolved rows must remain in the lookup/readiness blockers, and no row may become consumable.",
   "source_artifacts": {
     "feature_readiness": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_feature_readiness_audit_current702_20260601.json",
-      "sha256": "4cfce6f69ae0fa395c25855a9ec6eeaf0f25ba39def37de7fc42df570f45c4ef"
+      "sha256": "8f0c92488e6fd12cd5e7d7303d2a3f97d6129095f3b1591343bae888ff1386b3"
     },
     "review_queue": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_review_queue_current702_20260601.json",
-      "sha256": "dbecf93989c8ba7ffbf039a83f024b5b79e86e04d106c051beac92ca56335307"
+      "sha256": "f93d29ebb67491d35796b33a6568cfc91bd421b70b4114ca7c0be16854532a1b"
     },
     "rhea_lookup_manifest": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_manifest_current702_20260601.json",
-      "sha256": "ee873325fc8dae1356f3a72ee0de6ae7b15f86ab30aed640601a51e115aecc8d"
+      "sha256": "791a06049e8919bd4f7ff61b64e0a70f7486e4b38379776df8a680693daafe74"
     },
     "rhea_lookup_resolution": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_rhea_lookup_resolution_current702_20260601.json",
-      "sha256": "7fe9372b048ef97f9451a59227a865d15376a55ef9027192928f419c61f4ca2b"
+      "sha256": "fa7a5628820ddfd8cff708c6f2f3552dec41567caa83127b6883a8ff7963a71c"
     },
     "sidecar": {
       "exists": true,
       "path": "artifacts/v3_mechanism_feature_row_specific_bond_change_p0_source_evidence_sidecar_current702_20260601.json",
-      "sha256": "3ea4050334c5f09c240b1f19ca1c8aa11ce966a4aa88cd9e725721a28ed4f1eb"
+      "sha256": "3c9434ca729bbe68dd7374a0446f0c87960693e53908206377e08ce829e0806d"
     }
   },
   "status": "p0_rhea_resolution_consumption_audit_passed_review_only"
